@@ -1,0 +1,1 @@
+{"errors":[{"message":"Cannot return null for non-nullable field SiteSiteMetadata.title.","locations":[{"line":4,"column":7}],"path":["site","siteMetadata","title"]}],"data":{"site":{"siteMetadata":null}}}
