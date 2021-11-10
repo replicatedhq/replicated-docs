@@ -1,0 +1,20 @@
+---
+title: Documentation
+---
+
+= Documentation
+
+== Getting Started
+
+Hello, world!
+
+Add content here!
+
+Yay!
+
+An example of code block:
+
+[source,javascript]
+----
+const foo = 'bar'
+----

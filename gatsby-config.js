@@ -13,5 +13,13 @@ module.exports = {
         siteUrl: "https://example.com",
       },
     },
+    {
+      resolve: "gatsby-transformer-asciidoc",
+      options: {
+        attributes: {
+          imagesdir: '/images',
+        },
+      },
+    },
   ],
 };

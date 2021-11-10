@@ -8,9 +8,10 @@
     "serve": "gatsby serve"
   },
   "dependencies": {
-    "gatsby": "^2.15.18",
-    "react": "^16.10.1",
-    "react-dom": "^16.10.1",
-    "smooth-doc": "^5.0.4"
+    "gatsby": "^3.14.5",
+    "gatsby-transformer-asciidoc": "^2.14.0",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "smooth-doc": "^8.1.0"
   }
 }
