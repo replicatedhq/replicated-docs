@@ -8,7 +8,7 @@ import {
   HeroTeaser,
   HeroActionList,
   HeroAction,
-} from "smooth-doc/components";
+} from "smooth-asciidoc/components";
 import heroBackgroundImageURL from "../images/hero-background.png";
 
 <HeroSection>
@@ -18,12 +18,8 @@ import heroBackgroundImageURL from "../images/hero-background.png";
       <HeroTeaser>Edit `pages/index.mdx` to personalize homepage.</HeroTeaser>
       <HeroActionList>
         <HeroAction>
-          <Button
-            variant="neutral"
-            forwardedAs="a"
-            href="/docs/"
-          >
-            Browse Docs
+          <Button as={Link} to="/docs/">
+            Explore Docs
           </Button>
         </HeroAction>
       </HeroActionList>

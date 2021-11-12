@@ -11296,6 +11296,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mdast-util-to-string@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "mdast-util-to-string@npm:2.0.0"
+  checksum: 0b2113ada10e002fbccb014170506dabe2f2ddacaacbe4bc1045c33f986652c5a162732a2c057c5335cdb58419e2ad23e368e5be226855d4d4e280b81c4e9ec2
+  languageName: node
+  linkType: hard
+
 "mdast-util-to-string@npm:^3.0.0, mdast-util-to-string@npm:^3.1.0":
   version: 3.1.0
   resolution: "mdast-util-to-string@npm:3.1.0"
@@ -14765,6 +14772,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"replicated-docs@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "replicated-docs@workspace:."
+  dependencies:
+    gatsby: ^4.1.4
+    gatsby-remark-images: ^6.1.3
+    react: ^17.0.2
+    react-dom: ^17.0.2
+    smooth-asciidoc: ^0.3.0
+  languageName: unknown
+  linkType: soft
+
 "require-directory@npm:^2.1.1":
   version: 2.1.1
   resolution: "require-directory@npm:2.1.1"
@@ -15405,22 +15424,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"smooth-doc-starter@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "smooth-doc-starter@workspace:."
-  dependencies:
-    gatsby: ^4.1.4
-    gatsby-remark-images: ^6.1.3
-    gatsby-transformer-asciidoc: ^3.1.0
-    react: ^17.0.2
-    react-dom: ^17.0.2
-    smooth-doc: "github:erquhart/smooth-asciidoc"
-  languageName: unknown
-  linkType: soft
-
-"smooth-doc@portal:/Users/erquhart/code/gh/erquhart/smooth-asciidoc/smooth-doc::locator=smooth-doc-starter%40workspace%3A.":
-  version: 0.0.0-use.local
-  resolution: "smooth-doc@portal:/Users/erquhart/code/gh/erquhart/smooth-asciidoc/smooth-doc::locator=smooth-doc-starter%40workspace%3A."
+"smooth-asciidoc@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "smooth-asciidoc@npm:0.3.0"
   dependencies:
     "@babel/core": ^7.16.0
     "@docsearch/css": ^3.0.0-alpha.41
@@ -15445,9 +15451,11 @@ __metadata:
     gatsby-plugin-styled-components: ^5.1.0
     gatsby-remark-images: ^6.1.3
     gatsby-source-filesystem: ^4.1.2
+    gatsby-transformer-asciidoc: ^3.1.0
     gatsby-transformer-sharp: ^4.1.0
     github-slugger: ^1.4.0
-    mdast-util-to-string: ^3.1.0
+    lodash: ^4.17.21
+    mdast-util-to-string: ^2.0.0
     polished: ^4.1.3
     prism-react-renderer: ^1.2.1
     prismjs: ^1.25.0
@@ -15457,13 +15465,14 @@ __metadata:
     react-live: ^2.4.0
     reakit: ^1.3.10
     styled-components: ^5.3.3
-    unist-util-visit: ^4.1.0
+    unist-util-visit: ^2.0.3
   peerDependencies:
-    gatsby: ^3.0.0
+    gatsby: ^4.1.4
     react: "*"
     react-dom: "*"
+  checksum: 830b43aeb5ef961018fa7e4d5012bc760ee4038a8c7715b0f131d75713db8406939a9b73abed583e7f63ea4b4dd0450c5871c0ea490064386139e12af85afe51
   languageName: node
-  linkType: soft
+  linkType: hard
 
 "snake-case@npm:^2.1.0":
   version: 2.1.0
@@ -17120,7 +17129,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unist-util-visit@npm:2.0.3, unist-util-visit@npm:^2.0.0, unist-util-visit@npm:^2.0.2":
+"unist-util-visit@npm:2.0.3, unist-util-visit@npm:^2.0.0, unist-util-visit@npm:^2.0.2, unist-util-visit@npm:^2.0.3":
   version: 2.0.3
   resolution: "unist-util-visit@npm:2.0.3"
   dependencies:
@@ -17140,7 +17149,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unist-util-visit@npm:^4.0.0, unist-util-visit@npm:^4.1.0":
+"unist-util-visit@npm:^4.0.0":
   version: 4.1.0
   resolution: "unist-util-visit@npm:4.1.0"
   dependencies:

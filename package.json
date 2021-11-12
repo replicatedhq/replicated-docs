@@ -1,21 +1,18 @@
 {
-  "name": "smooth-doc-starter",
-  "version": "0.0.0",
+  "name": "replicated-docs",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "develop": "gatsby develop",
     "build": "gatsby build",
-    "serve": "gatsby serve"
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
   },
   "dependencies": {
     "gatsby": "^4.1.4",
     "gatsby-remark-images": "^6.1.3",
-    "gatsby-transformer-asciidoc": "^3.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "smooth-doc": "github:erquhart/smooth-asciidoc"
-  },
-  "resolutions": {
-    "smooth-doc": "portal:/Users/erquhart/code/gh/erquhart/smooth-asciidoc/smooth-doc"
+    "smooth-asciidoc": "^0.3.0"
   }
 }

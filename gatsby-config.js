@@ -1,24 +1,23 @@
+const path = require('path')
+
 module.exports = {
   siteMetadata: {
-        title: `Replicated Docs`,
-        siteUrl: `https://www.gatsbyjs.com`,
-        description: `Blazing fast modern site generator for React`,
-    },
+    title: `Replicated Docs`,
+    siteUrl: `https://docs.replicated.cojm`,
+    description: `Documentation site for Replciated.`,
+  },
   plugins: [
     {
-      resolve: "smooth-doc",
+      resolve: `smooth-asciidoc`,
       options: {
-        name: "Smooth DOC Starter",
-        description: "Use your own description...",
-        siteUrl: "https://example.com",
-      },
-    },
-    {
-      resolve: "gatsby-transformer-asciidoc",
-      options: {
-        attributes: {
-          imagesdir: '/images',
-        },
+        name: `Replicated Docs`,
+        siteUrl: 'https://docs.replicated.com',
+        description: `Documentation site for Replicated.`,
+        baseDirectory: path.resolve(__dirname, '../'),
+        sections: ['Asciidoc', 'About', 'Guides', 'Components', 'Reference'],
+        navItems: [{ title: 'Docs', url: '/docs/getting-started/' }],
+        twitterAccount: 'replicatedhq',
+        githubRepositoryURL: 'https://github.com/replicatedhq/replicated-docs/',
       },
     },
   ],
