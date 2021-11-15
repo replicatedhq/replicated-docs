@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  app:
+    image: node:16
+    command: bash -c "yarn && yarn dev"
+    working_dir: /app
+    ports:
+      - 8000:8000
+      - 8080:8080
+    volumes:
+      - ./:/app
