@@ -1,6 +1,6 @@
 page-slug: /docs/vendor/snapshots/backup-hooks
 :page-order: 2
-:page-section: Vendor
+:page-section: Guides
 
 = Backup hooks
 
@@ -8,17 +8,17 @@ For many application workloads, additional processing or scripts need to be run 
 Velero has support for this, using https://velero.io/docs/main/backup-hooks/[Backup Hooks].
 
 Some common examples of how a Hook can be used to create successful backups are:
-- Run `pg_dump` to export a postgres database prior to backup
-- Lock a file before running a backup, and unlock immediately after
-- Delete TMP files that should not be backed up
+
+* Run `pg_dump` to export a postgres database prior to backup
+* Lock a file before running a backup, and unlock immediately after
+* Delete TMP files that should not be backed up
 
 Backup hooks should be run inside the container that contains the data to back up.
-
-== Example
 
 A common pattern of applications is to include and want to back up a postgres database.
 Postgres is easy to include from a Helm chart, and the following HelmChart kind can be used to configure Postgres for backups. An explanation of the configuration follows the YAML.
 
+.Example
 [source,YAML]
 ----
 apiVersion: kots.io/v1beta1
@@ -70,7 +70,7 @@ The annotations are:
 +
 [cols"1,1"]
 |===
-| annotation | description
+| Annotation | Description
 
 | `backup.velero.io/backup-volumes` | A comma separated list of volumes from the pod to include in the backup. The primary data volume is not included here.
 
