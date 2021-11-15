@@ -3,7 +3,7 @@ version: '3.8'
 services:
   app:
     image: node:16
-    command: bash -c "yarn && yarn dev"
+    command: bash -c "yarn && yarn develop"
     working_dir: /app
     ports:
       - 8000:8000
