@@ -1,4 +1,4 @@
-page-slug: /docs/vendor/snapshots/backup-hooks
+:page-slug: /docs/vendor/snapshots/backup-hooks
 :page-order: 2
 :page-section: Guides
 
