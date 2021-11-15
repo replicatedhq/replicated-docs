@@ -1,10 +1,10 @@
 :page-slug: /docs/vendor/snapshots/snapshots-overview
 :page-order: 0
-:page-section: Guides
+:page-section: Vendors/Snapshots
 
 = Snapshots overview
 
-OTS Snapshots is the backup and restore feature for applications deployed with KOTS. This is an optional feature, and it requires that licenses have the Allow Snapshots feature enabled.
+KOTS Snapshots is the backup and restore feature for applications deployed with KOTS. This is an optional feature, and it requires that licenses have the Allow Snapshots feature enabled.
 
 To enable Snapshots, KOTS uses the https://velero.io/[Velero open source project] on the backend to back up Kubernetes manifests and persistent volumes. Velero is a mature, fully-featured application.
 

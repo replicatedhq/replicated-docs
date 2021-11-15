@@ -1,6 +1,6 @@
 :page-slug: /docs/vendor/snapshots/configuring-backups
 :page-order: 1
-:page-section: Guides
+:page-section: Vendors/Snapshots
 
 = Configuring backups
 
