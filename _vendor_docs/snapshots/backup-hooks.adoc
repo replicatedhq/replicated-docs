@@ -1,4 +1,6 @@
-:page-slug: /docs/vendor/snapshots/backup-hooks/
+= Backup hooks
+
+:page-slug: /vendor_docs/snapshots/backup-hooks/
 :page-order: 2
 :page-section: Snapshots
 

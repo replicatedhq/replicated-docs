@@ -1,8 +1,8 @@
 = Snapshots
 
-:page-slug: /docs/vendor/snapshots/snapshots-overview/
+:page-slug: /vendor_docs/snapshots/snapshots-overview/
 :page-order: 0
-:page-section: Vendors
+:page-section: Snapshots
 
 = Snapshots overview
 
