@@ -1,6 +1,8 @@
+= Snapshots
+
 :page-slug: /docs/vendor/snapshots/configuring-backups/
 :page-order: 1
-:page-section: Snapshots
+:page-section: Vendors
 
 = Configuring backups
 

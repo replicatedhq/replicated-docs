@@ -14,7 +14,7 @@ module.exports = {
         siteUrl: 'https://docs.replicated.com',
         description: `Documentation site for Replicated.`,
         baseDirectory: path.resolve(__dirname, '../'),
-        sections: ['Asciidoc', 'About', 'Guides', 'Components', 'Reference', 'Vendors'],
+        sections: ['Asciidoc', 'About', 'Guides', 'Components', 'Reference'],
         navItems: [{ title: 'Docs', url: '/docs/getting-started/' }],
         twitterAccount: 'replicatedhq',
         githubRepositoryURL: 'https://github.com/replicatedhq/replicated-docs/',
