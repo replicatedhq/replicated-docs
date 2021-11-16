@@ -3,8 +3,8 @@ const path = require('path')
 module.exports = {
   siteMetadata: {
     title: `Replicated Docs`,
-    siteUrl: `https://docs.replicated.cojm`,
-    description: `Documentation site for Replciated.`,
+    siteUrl: `https://docs.replicated.com`,
+    description: `Documentation site for Replicated.`,
   },
   plugins: [
     {

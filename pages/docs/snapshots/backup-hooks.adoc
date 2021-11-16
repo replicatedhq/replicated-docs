@@ -1,6 +1,6 @@
 = Backup hooks
 
-:page-slug: /vendor_docs/snapshots/backup-hooks/
+:page-slug: /docs/snapshots/backup-hooks/
 :page-order: 2
 :page-section: Snapshots
 

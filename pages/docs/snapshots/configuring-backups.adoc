@@ -1,4 +1,4 @@
-= Snapshots
+= Configuring backups
 
 :page-slug: /vendor_docs/snapshots/configuring-backups/
 :page-order: 1
