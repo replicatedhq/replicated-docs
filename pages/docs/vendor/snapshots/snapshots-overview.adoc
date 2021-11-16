@@ -1,4 +1,4 @@
-:page-slug: /docs/vendor/snapshots/snapshots-overview/
+:page-slug: /docs/vendor/snapshots/overview/
 :page-order: 0
 :page-section: Snapshots
 
