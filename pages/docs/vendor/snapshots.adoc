@@ -186,17 +186,20 @@ The annotations are:
 |===
 | Annotation | Description
 
-| `backup.velero.io/backup-volumes` | A comma separated list of volumes from the pod to include in the backup. The primary data volume is not included here.
+| `backup.velero.io/backup-volumes`
+| A comma separated list of volumes from the pod to include in the backup. The primary data volume is not included here.
 
-| `pre.hook.backup.velero.io/command` | A stringified JSON array containing the pre backup hook command.
+| `pre.hook.backup.velero.io/command`
+| A stringified JSON array containing the pre backup hook command.
 This command is a `pg_dump` from the running database to the backup volume
 
-| `pre.hook.backup.velero.io/timeout` | A duration for the maximum time to let this script run.
+| `pre.hook.backup.velero.io/timeout`
+| A duration for the maximum time to let this script run.
+|===
 
 spec.master.extraVolumes:: This is a new volume that we inject into the postgres pod. It's an empty volume, stored in memory (does not require a PVC or storage).
 We mount this into the `/scratch` directory of the master pod, and use it as a destination when running `pg_dump` above (in the hooks).
 This is the only volume that we will back up.
-
 
 == Additional resources
 * xref:pages/docs/vendor/snapshots/snapshots-overview/[Snapshots overview]
