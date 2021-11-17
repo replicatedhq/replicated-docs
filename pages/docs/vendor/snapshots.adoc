@@ -3,6 +3,8 @@
 :page-slug: /docs/vendor/snapshots/
 :page-order: 0
 :page-section: Vendor
+:section: Snapshots
+
 
 = Snapshots overview
 
