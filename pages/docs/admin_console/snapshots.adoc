@@ -30,7 +30,7 @@ image::snapshot-instance-backup.png[Snapshot instance backup]
 After a Full Snapshot has been created, you can get a command to do a restore by clicking the restore icon (check screenshot below).
 There are two available options for doing a restore. You can either do a full restore which will restore the admin console and the application with all of its data, or you can choose to do a partial restore of just your application and its data.
 
-![Instance Restore UI](/images/snapshot-instance-restore.png)
+image::snapshot-instance-restore.png[Snapshot instance restore]
 
 If you have multiple applications within the KOTS admin console, each application should have a [backup resource](/reference/v1beta1/backup/) in order to be included in the Full Snapshot backup.
 
