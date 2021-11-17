@@ -42,7 +42,7 @@ For backups that give you the ability to do full Disaster Recovery, use [Full Sn
 
 Partial snapshots can only be created via the admin console (check screenshot below).
 
-![Application Backup UI](/images/snapshot-application-backup.png)
+/images/snapshot-application-backup.png
 
 = Storage destinations
 
