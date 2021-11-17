@@ -23,8 +23,8 @@ They can be used for full Disaster Recovery; by restoring over the same instance
 There are two ways to create a full snapshot. First, make sure that your license has the snapshots feature enabled, then:
 
 * Using the KOTS CLI [backup](/kots-cli/backup/) command.
-* Using the admin console (check screenshot below).
-
+* Using the admin console, as follows:
++
 image::snapshot-instance-backup.png[Snapshot instance backup]
 
 After a Full Snapshot has been created, you can get a command to do a restore by clicking the restore icon (check screenshot below).
@@ -40,9 +40,9 @@ Partial snapshots only back up applications volumes and application manifests; t
 They are great for capturing information before deploying a new release, in case you need to roll back, but they are not suitable for full disaster recovery.
 For backups that give you the ability to do full Disaster Recovery, use [Full Snapshots](/kotsadm/snapshots/overview/#full-snapshots-recommended).
 
-Partial snapshots can only be created via the admin console (check screenshot below).
+Partial snapshots can only be created using the admin console:
 
-/images/snapshot-application-backup.png
+image::snapshot-application-backup.png[Snapshot application backup]
 
 = Storage destinations
 
@@ -63,52 +63,82 @@ If the admin console is running with [minimal role-based-access-control (RBAC) p
 
 When configuring the admin console to store snapshots on AWS, the following fields are available:
 
-Region:: The AWS region that the S3 bucket is available in.
+[cols="1,1"]
+|===
+|Name |Description
 
-Bucket:: The name of the S3 bucket to use.
+|Region
+|The AWS region that the S3 bucket is available in.
 
-Path:: (Optional) The path in the bucket to store all snapshots in.
+|Bucket
+|The name of the S3 bucket to use.
 
-Access Key ID:: (Optional) The AWS IAM Access Key ID that can read from and write to the bucket.
+|Path (Optional)
+|The path in the bucket to store all snapshots in.
 
-Secret Access Key:: (Optional) The AWS IAM Secret Access Key that is associated with the Access Key ID.
+|Access Key ID (Optional)
+|The AWS IAM Access Key ID that can read from and write to the bucket.
 
-Use Instance Role:: When enabled, instead of providing an Access Key ID and Secret Access Key, Velero will use an instance IAM role.
+|Secret Access Key (Optional)
+|The AWS IAM Secret Access Key that is associated with the Access Key ID.
 
+|Use Instance Role
+|When enabled, instead of providing an Access Key ID and Secret Access Key, Velero will use an instance IAM role.
+|===
 
 == GCP
 
 When configuring the admin console to store snapshots on GCP, the following fields are available:
 
-Bucket:: The name of the GCP storage bucket to use.
+[cols="1,1"]
+|===
+|Name |Description
 
-Path:: (Optional) The path in the bucket to store all snapshots in.
+|Bucket
+|The name of the GCP storage bucket to use.
 
-Service Account:: The GCP IAM Service Account JSON file that has permissions to read from and write to the storage location.
+|Path (Optional)
+|The path in the bucket to store all snapshots in.
 
+|Service Account
+|The GCP IAM Service Account JSON file that has permissions to read from and write to the storage location.
+|===
 
 == Azure
 
 When configuring the admin console to store snapshots on a Azure, the following fields are available:
 
-Bucket:: The name of the Azure Blob Storage Container to use.
+[cols="1,1"]
+|===
+|Name |Description
 
-Path:: (Optional) The path in the Blob Storage Container to store all snapshots in.
+|Bucket
+|The name of the Azure Blob Storage Container to use.
 
-Resource Group:: The Resource Group name of the target Blob Storage Container.
+|Path (Optional)
+|The path in the Blob Storage Container to store all snapshots in.
 
-Storage Account:: The Storage Account Name of the target Blob Storage Container.
+|Resource Group
+|The Resource Group name of the target Blob Storage Container.
 
-Subscription ID:: The Subscription ID associated with the target Blob Storage Container (required only for access via Service Principle or AAD Pod Identity).
+|Storage Account
+|The Storage Account Name of the target Blob Storage Container.
 
-Tenant ID:: The Tenant ID associated with the Azure account of the target Blob Storage container (required only for access via Service Principle).
+|Subscription ID
+|The Subscription ID associated with the target Blob Storage Container (required only for access via Service Principle or AAD Pod Identity).
 
-Client ID:: The Client ID of a Service Principle with access to the target Container (required only for access via Service Principle).
+|Tenant ID
+|The Tenant ID associated with the Azure account of the target Blob Storage container (required only for access via Service Principle).
 
-Client Secret:: The Client Secret of a Service Principle with access to the target Container (required only for access via Service Principle).
+|Client ID
+|The Client ID of a Service Principle with access to the target Container (required only for access via Service Principle).
 
-Cloud Name:: The Azure cloud for the target storage (options: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud).
+|Client Secret
+|The Client Secret of a Service Principle with access to the target Container (required only for access via Service Principle).
 
+|Cloud Name
+|The Azure cloud for the target storage (options: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud).
+|===
 
 Only connections with Service Principles are supported at this time.
 For more information about authentication methods and setting up Azure, see the https://github.com/vmware-tanzu/velero-plugin-for-microsoft-azure[Velero Plugin for Microsoft Azure] documentation.
@@ -117,20 +147,31 @@ For more information about authentication methods and setting up Azure, see the 
 
 When configuring the admin console to store snapshots on an S3-Compatible storage, the following fields are available:
 
-Region:: The AWS region that the S3 bucket is available in.
+[cols="1,1"]
+|===
+|Name |Description
 
-Endpoint:: The endpoint to use to connect to the bucket.
+|Region
+|The AWS region that the S3 bucket is available in.
 
-Bucket:: The name of the S3 bucket to use.
+|Endpoint
+|The endpoint to use to connect to the bucket.
 
-Path:: (Optional) The path in the bucket to store all snapshots in.
+|Bucket
+|The name of the S3 bucket to use.
 
-Access Key ID:: (Optional) The AWS IAM Access Key ID that can read from and write to the bucket.
+|Path (Optional)
+|The path in the bucket to store all snapshots in.
 
-Secret Access Key:: (Optional) The AWS IAM Secret Access Key that is associated with the Access Key ID.
+|Access Key ID (Optional)
+|The AWS IAM Access Key ID that can read from and write to the bucket.
 
-Use Instance Role:: When enabled, instead of providing an Access Key ID and Secret Access Key, Velero will use an instance IAM role.
+|Secret Access Key (Optional)
+|The AWS IAM Secret Access Key that is associated with the Access Key ID.
 
+|Use Instance Role
+|When enabled, instead of providing an Access Key ID and Secret Access Key, Velero will use an instance IAM role.
+|===
 
 == Network File System (NFS)
 
@@ -250,7 +291,7 @@ IMPORTANT: Make sure that the host path exists and is writable by the user:group
 
 == Embedded Clusters
 
-Embedded clusters set up using installers that include the [Velero](https://kurl.sh/docs/add-ons/velero) add-on are configured by default to store snapshots internally in the cluster.
+Embedded clusters set up using installers that include the https://kurl.sh/docs/add-ons/velero[Velero] add-on are configured by default to store snapshots internally in the cluster.
 There are two ways to change this configuration to use a Host Path:
 
 * Using the KOTS CLI [velero configure-hostpath](/kots-cli/velero/configure-hostpath/) command.
@@ -352,7 +393,7 @@ When restoring a partial snapshot, the admin console will first "undeploy" the c
 
 The restore process then re-deploys all application manifests to the namespace, and all pods will have an extra `initContainer` and an extra directory named `.velero`. This is used for restore hooks.
 
-For more information about the actual restore process, see the [Velero documentation](https://velero.io/docs/v1.5/restore-reference/).
+For more information about the actual restore process, see the https://velero.io/docs/v1.5/restore-reference/[Velero documentation].
 
 
 = Disaster recovery
@@ -363,7 +404,7 @@ To setup disaster recovery snapshots, backups should be configured to use a stor
 
 . Begin with installing a version of Velero compatible with the one that was used to make the snapshot.
 * If restoring from an [NFS](/kotsadm/snapshots/storage-destinations/#network-file-system-nfs) or a [Host Path](/kotsadm/snapshots/storage-destinations/#host-path) storage destination, please refer to the [Configuring NFS](/kotsadm/snapshots/configuring-nfs/) or [Configuring a Host Path](/kotsadm/snapshots/configuring-hostpath/) documentation for the configuration steps and how to set up Velero.
-* Otherwise, see the Velero documention for [installing](https://velero.io/docs/v1.5/basic-install/) and [configuring](https://velero.io/plugins/) the plugins.
+* Otherwise, see the Velero documention for https://velero.io/docs/v1.5/basic-install/[installing] and https://velero.io/plugins/[configuring] the plugins.
 +
 NOTE: Restic is required and `--restic` flag must be used with `velero install` command.
 
@@ -388,7 +429,6 @@ NOTE: Restic is required and `--restic` flag must be used with `velero install` 
 An airgapped embedded kURL cluster can be restored only if the store backend used for backups is accessible from the new cluster. kURL installer must also be able to assign the same IP address to the embedded private image registry in the new cluster. kURL installer must be provided with the correct registry IP address:
 
 [source, terminal]
-
 ----
 cat install.sh | sudo bash -s airgap kurl-registry-ip=<ip>
 ----
@@ -422,8 +462,7 @@ If Velero is crashing and not starting, some common causes are:
 If the cloud access credentials are invalid or do not have access to the location in the configuration, Velero will crashloop. The velero logs will be included in a support bundle, and the message will look like this.
 If this is the case, recommend that the access key / secret or service account json are validated.
 
-[source,shell]
-
+[source,terminal]
 ----
 time="2020-04-10T14:22:24Z" level=info msg="Checking existence of namespace" logSource="pkg/cmd/server/server.go:337" namespace=velero
 time="2020-04-10T14:22:24Z" level=info msg="Namespace exists" logSource="pkg/cmd/server/server.go:343" namespace=velero
@@ -441,7 +480,6 @@ Another commonly seen problem in Velero starting is a reconfigured or re-used bu
 In this case, the error in the Velero logs will be:
 
 [source,terminal]
-
 ----
 time="2020-04-10T14:12:42Z" level=info msg="Checking existence of namespace" logSource="pkg/cmd/server/server.go:337" namespace=velero
 time="2020-04-10T14:12:42Z" level=info msg="Namespace exists" logSource="pkg/cmd/server/server.go:343" namespace=velero
@@ -474,13 +512,12 @@ In the KOTS UI, you'll see at least one volume restore progress bar frozen at 0%
 You can confirm this is the same issue by running `kubectl get pods -n <application namespace>`, and you should see at least one pod stuck in initialization:
 
 [source, terminal]
-
 ----
 NAME                                  READY   STATUS      RESTARTS   AGE
 example-mysql-0                       0/1     Init:0/2    0          4m15s  #<- the offending pod
 example-nginx-77b878b4f-zwv2h         3/3     Running     0          4m15s
 ----
 
-We've seen this issue with Velero version 1.5.4 and opened up [this issue](https://github.com/vmware-tanzu/velero/issues/3686) with the project to inspect the root cause. However we have not experienced this using Velero 1.6.0 or greater.
+We've seen this issue with Velero version 1.5.4 and opened up https://github.com/vmware-tanzu/velero/issues/3686[this issue] with the project to inspect the root cause. However we have not experienced this using Velero 1.6.0 or greater.
 
-Summary: Upgrade Velero to 1.6.0 using kURL or the [Velero instructions](https://velero.io/docs/v1.6/upgrade-to-1.6/).
+Summary: Upgrade Velero to 1.6.0 using kURL or the https://velero.io/docs/v1.6/upgrade-to-1.6/[Velero instructions].
