@@ -14765,7 +14765,7 @@ __metadata:
     react: ^17.0.2
     react-dom: ^17.0.2
     sharp: ^0.29.3
-    smooth-asciidoc: ^0.3.0
+    smooth-asciidoc: ^0.3.1
   languageName: unknown
   linkType: soft
 
@@ -15409,9 +15409,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"smooth-asciidoc@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "smooth-asciidoc@npm:0.3.0"
+"smooth-asciidoc@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "smooth-asciidoc@npm:0.3.1"
   dependencies:
     "@babel/core": ^7.16.0
     "@docsearch/css": ^3.0.0-alpha.41
@@ -15455,7 +15455,7 @@ __metadata:
     gatsby: ^4.1.4
     react: "*"
     react-dom: "*"
-  checksum: 830b43aeb5ef961018fa7e4d5012bc760ee4038a8c7715b0f131d75713db8406939a9b73abed583e7f63ea4b4dd0450c5871c0ea490064386139e12af85afe51
+  checksum: 011ec7916bc57d26f7cd04cd59ace287679726fdf44cf7031b334a405fcbf6b770ad7257b3e22ed12b2b13e39b1d8625c458efcc676ff90a35149177c9a0d22c
   languageName: node
   linkType: hard
 

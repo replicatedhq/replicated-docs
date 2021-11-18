@@ -14,6 +14,6 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "sharp": "^0.29.3",
-    "smooth-asciidoc": "^0.3.0"
+    "smooth-asciidoc": "^0.3.1"
   }
 }
