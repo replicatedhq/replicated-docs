@@ -140,8 +140,7 @@ When configuring the admin console to store snapshots on a Azure, the following 
 |The Azure cloud for the target storage (options: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud).
 |===
 
-Only connections with Service Principles are supported at this time.
-For more information about authentication methods and setting up Azure, see the https://github.com/vmware-tanzu/velero-plugin-for-microsoft-azure[Velero Plugin for Microsoft Azure] documentation.
+Only connections with Service Principles are supported at this time. For more information about authentication methods and setting up Azure, see the https://github.com/vmware-tanzu/velero-plugin-for-microsoft-azure[Velero Plugin for Microsoft Azure] documentation.
 
 == S3 Compatible
 
@@ -177,14 +176,14 @@ When configuring the admin console to store snapshots on an S3-Compatible storag
 
 > Introduced in KOTS v1.33.0
 
-* [Configuring NFS](/kotsadm/snapshots/configuring-nfs/)
+* <<Configuring NFS>>
 
 
 == Host Path
 
 > Introduced in KOTS v1.33.0
 
-* [Configuring a host path](/kotsadm/snapshots/configuring-hostpath/)
+* <<Configuring a host path>>
 
 
 = Configuring NFS
