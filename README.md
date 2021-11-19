@@ -83,17 +83,10 @@ To start the development server and preview your changes with Docker:
 
 We use AsciiDoc to format all of our content. The following table is a quick reference for the styles we use most. For more information, see the https://asciidoctor.org/docs/asciidoc-writers-guide/#writing-in-asciidoc[AsciiDoc Writer's Guide].
 
-[cols="1,1"]
-|===
-|Style |Syntax |Description
-
-|Admonitions
-|NOTE: <your text>
-IMPORTANT: <your text>
-|
-
-|Code block
-|[source,terminal]
+| Style     | Syntax     | Comments |
+| :------------- | :------------- | :----------- |
+| Admonitions     | NOTE: <your text> or IMPORTANT: <your text> | n/a |
+|Code block | [source,terminal]
 ----
 <your_code>
 ----
@@ -101,39 +94,15 @@ IMPORTANT: <your text>
 [source,YAML]
 ----
 <your_code>
-----
-| Use [source,terminal] for all types except YAML.
-
-|Cross-references to sections within a topic
-|<<section name>>
-|Example: Refer to <<Installing on an existing cluster>>
-
-|Cross reference to the top of a relative AsciiDoc document
-|<<filename.adoc#,document_title>>
-|See <<document-b.adoc#,Document B>> for more information.
-
-|External links
-|https://discuss.asciidoctor.org/[Asciidcotor mailing list] or https://discuss.asciidoctor.org/
-|
-
-|Images
-|image::<filename.png>[alt_text]
-|We require alt text for 508 compliance. We only use PNGs for images, and SVGs for diagrams.
-
-|Lists - Ordered
-|. for level 1, .. for level 2
-|When writing a task, use level one for main steps, and level 2 for subtasks under a main step.
-
-|Lists - Unordered
-|*
-|
-
-|List continue
-|+
-|Insert `+` in the line before the text/image that
-
-|Table
-|[source,terminal]
+---- | Use [source,terminal] for all types except YAML. |
+|Cross-references to sections within a topic |<<section name>> | Example: Refer to <<Installing on an existing cluster>>
+|Cross reference to the top of a relative AsciiDoc document | <<filename.adoc#,document_title>> | See <<document-b.adoc#,Document B>> for more information. |
+|External links | https://discuss.asciidoctor.org/[Asciidcotor mailing list] or https://discuss.asciidoctor.org/ | n/a |
+|Images | image::<filename.png>[alt_text] | We require alt text for 508 compliance. We only use PNGs for images, and SVGs for diagrams. |
+|Lists - Ordered | . for level 1, .. for level 2 | When writing a task, use level one for main steps, and level 2 for subtasks under a main step. |
+|Lists - Unordered |* | n/a |
+|List continue | + | Insert `+` in the line before the text/image that follows. |
+|Table | [source,terminal]
 ----
 [cols="1,1"]
 |===
@@ -145,8 +114,5 @@ IMPORTANT: <your text>
 |Row 2, Entry 1
 |Row 2, Entry 2
 |===
-----
-|
-
-|Titles and Headings
-|= Document title (level 0), == Level 1 section, === Level 2 section, and so on
+---- | n/a |
+| Titles and Headings | = Document title (level 0), == Level 1 section, === Level 2 section, and so on | n/a | 
