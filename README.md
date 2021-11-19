@@ -54,7 +54,7 @@ This procedure describes how to use yarn to start the local development server a
 
 To start the development server:
 
-1. `cd` into your local `replicated-docs` directory. 
+1. `cd` into your local `replicated-docs` directory.
 
 2. Run `yarn && yarn develop` to start the local development server. You can also run a production build locally with `yarn build && yarn serve`.
 
@@ -64,7 +64,7 @@ If you see any error messages, try `yarn clean && yarn develop`. `yarn clean` ru
 
 ### Preview changes locally with Docker
 
-If you are having trouble with yarn and Gatsby, you can also preview your changes with Docker. 
+If you are having trouble with yarn and Gatsby, you can also preview your changes with Docker.
 
 #### Prerequisites
 
@@ -76,5 +76,77 @@ This procedure describes how to use Docker to preview your local changes.
 
 To start the development server and preview your changes with Docker:
 
-1. `cd` into your local `replicated-docs` directory. 
+1. `cd` into your local `replicated-docs` directory.
 2. Run `docker-compose up` to start the development server.
+
+## Writing content
+
+We use AsciiDoc to format all of our content. The following table is a quick reference for the styles we use most. For more information, see the https://asciidoctor.org/docs/asciidoc-writers-guide/#writing-in-asciidoc[AsciiDoc Writer's Guide].
+
+[cols="1,1"]
+|===
+|Style |Syntax |Description
+
+|Admonitions
+|NOTE: <your text>
+IMPORTANT: <your text>
+|
+
+|Code block
+|[source,terminal]
+----
+<your_code>
+----
+
+[source,YAML]
+----
+<your_code>
+----
+| Use [source,terminal] for all types except YAML.
+
+|Cross-references to sections within a topic
+|<<section name>>
+|Example: Refer to <<Installing on an existing cluster>>
+
+|Cross reference to the top of a relative AsciiDoc document
+|<<filename.adoc#,document_title>>
+|See <<document-b.adoc#,Document B>> for more information.
+
+|External links
+|https://discuss.asciidoctor.org/[Asciidcotor mailing list] or https://discuss.asciidoctor.org/
+|
+
+|Images
+|image::<filename.png>[alt_text]
+|We require alt text for 508 compliance. We only use PNGs for images, and SVGs for diagrams.
+
+|Lists - Ordered
+|. for level 1, .. for level 2
+|When writing a task, use level one for main steps, and level 2 for subtasks under a main step.
+
+|Lists - Unordered
+|*
+|
+
+|List continue
+|+
+|Insert `+` in the line before the text/image that
+
+|Table
+|[source,terminal]
+----
+[cols="1,1"]
+|===
+|Heading 1 |Heading 2
+
+|Row1, Entry 1
+|Row1, Entry 2
+
+|Row 2, Entry 1
+|Row 2, Entry 2
+|===
+----
+|
+
+|Titles and Headings
+|= Document title (level 0), == Level 1 section, === Level 2 section, and so on
