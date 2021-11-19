@@ -213,14 +213,20 @@ images::snapshot-destination-dropdown-nfs.png[Snapshot Destination Dropdown NFS]
 
 . Enter the NFS server hostname or IP Address, and the path that is exported by the NFS server. Click **Update storage settings**. This step can take a couple of minutes to complete.
 +
-![Snapshot Destination NFS Fields](/images/snapshot-destination-nfs-fields.png)
+images::snapshot-destination-nfs-fields.png[Snapshot Destination NFS Fields]
 +
 When configuring the admin console to store snapshots on an NFS server, the following fields are available:
 +
-Server:: The hostname or IP address of the NFS server.
-+
-Path:: The path that is exported by the NFS server.
+[cols="1,1"]
+|===
+|Name |Description
 
+|Server
+|The hostname or IP address of the NFS server.
+
+|Path
+|The path that is exported by the NFS server.
+|===
 
 == Existing Clusters
 
@@ -264,7 +270,7 @@ A dialog opens that contains instructions for setting up Velero with different p
 
 . Click the **NFS** provider option.
 +
-![Snapshot Provider NFS](/images/snapshot-provider-nfs.png)
+images::snapshot-provider-nfs.png[Snapshot Provider NFS]
 +
 A dialog opens for configuring NFS.
 
@@ -307,16 +313,24 @@ images::snapshot-destination-hostpath-field.png[Snapshot Destination Host Path F
 +
 When configuring the admin console to store snapshots on a local host path, the following fields are available:
 
-Host Path:: A local host path on the node.
+[cols="1,1"]
+|===
+|Name |Description
 
+|Host Path
+|A local host path on the node.
+|===
 
 
 == Existing Clusters
 
-NOTE: If Velero is already installed in the cluster, you can follow the same instructions mentioned in the [Embedded Clusters](/kotsadm/snapshots/configuring-hostpath/#embedded-clusters) section.
-
 If Velero is not yet installed in the cluster, the first step is to set up and deploy the necessary components that are going to be used to install and set up Velero with the provided host path.
 This can be done in two ways:
+
+* Using the KOTS CLI
+* Using the admin console
+
+NOTE: If Velero is already installed in the cluster, you can follow the same instructions mentioned in the [Embedded Clusters](/kotsadm/snapshots/configuring-hostpath/#embedded-clusters) section.
 
 === Using the KOTS CLI
 
@@ -390,9 +404,7 @@ images::snapshot-schedule.png[Snapshot Schedule]
 
 When restoring a partial snapshot, the admin console will first "undeploy" the correct application. During this process, all existing application manifests are removed from the cluster, and all PersistentVolumeClaims are deleted. This action is not reversible.
 
-The restore process then re-deploys all application manifests to the namespace, and all pods will have an extra `initContainer` and an extra directory named `.velero`. This is used for restore hooks.
-
-For more information about the actual restore process, see the https://velero.io/docs/v1.5/restore-reference/[Velero documentation].
+The restore process then re-deploys all application manifests to the namespace, and all pods will have an extra `initContainer` and an extra directory named `.velero`. This is used for restore hooks. For more information about the actual restore process, see the https://velero.io/docs/v1.5/restore-reference/[Velero documentation].
 
 
 = Disaster recovery
@@ -458,8 +470,8 @@ If Velero is crashing and not starting, some common causes are:
 
 ==== Invalid cloud credentials
 
-If the cloud access credentials are invalid or do not have access to the location in the configuration, Velero will crashloop. The velero logs will be included in a support bundle, and the message will look like this.
-If this is the case, recommend that the access key / secret or service account json are validated.
+If the cloud access credentials are invalid or do not have access to the location in the configuration, Velero will crashloop. The Velero logs will be included in a support bundle, and the message will look like this.
+If this is the case, recommend that the access key / secret or service account JSON are validated.
 
 [source,terminal]
 ----
@@ -519,4 +531,4 @@ example-nginx-77b878b4f-zwv2h         3/3     Running     0          4m15s
 
 We've seen this issue with Velero version 1.5.4 and opened up https://github.com/vmware-tanzu/velero/issues/3686[this issue] with the project to inspect the root cause. However we have not experienced this using Velero 1.6.0 or greater.
 
-Summary: Upgrade Velero to 1.6.0 using kURL or the https://velero.io/docs/v1.6/upgrade-to-1.6/[Velero instructions].
+**Solution:** Upgrade Velero to 1.6.0 using kURL or the https://velero.io/docs/v1.6/upgrade-to-1.6/[Velero instructions].
