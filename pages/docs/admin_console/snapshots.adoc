@@ -209,7 +209,7 @@ There are two ways to change this configuration to use NFS:
 . Click the **Snapshots** tab.
 . Click **Settings and Schedule**, and click the **Network File System (NFS)** dropdown option.
 +
-![Snapshot Destination Dropdown NFS](/images/snapshot-destination-dropdown-nfs.png)
+images::snapshot-destination-dropdown-nfs.png[Snapshot Destination Dropdown NFS]
 
 . Enter the NFS server hostname or IP Address, and the path that is exported by the NFS server. Click **Update storage settings**. This step can take a couple of minutes to complete.
 +
@@ -270,11 +270,11 @@ A dialog opens for configuring NFS.
 
 . Enter the NFS server hostname or IP Address, and the path that is exported by the NFS server. Click **Configure**. This step can take a few minutes to complete.
 +
-![Snapshot Provider NFS Fields](/images/snapshot-provider-nfs-fields.png)
+images::snapshot-provider-nfs-fields.png[Snapshot Provider NFS Fields]
 +
 A dialog opens and contains a CLI command that will print out instructions on how to set up Velero with the deployed NFS configuration/components.
 +
-![Snapshot Provider File System Next Steps](/images/snapshot-provider-fs-next-steps.png)
+images::snapshot-provider-fs-next-steps.png[Snapshot Provider File System Next Steps]
 +
 . Run the CLI command and follow the instructions to install Velero.
 . From the admin console, either refresh the page or click **Check for Velero** to retry detecting Velero.
@@ -299,11 +299,11 @@ There are two ways to change this configuration to use a Host Path:
 . Click the **Snapshots** tab.
 . Click the **Settings and Schedule** tab, and click the **Host Path** dropdown option.
 +
-![Snapshot Destination Dropdown Host Path](/images/snapshot-destination-dropdown-hostpath.png)
+images::snapshot-destination-dropdown-hostpath.png[Snapshot Destination Dropdown Host Path]
 
 . Enter the path to the directory on the node, and click **Update storage settings**. This step can take a couple of minutes to complete.
 +
-![Snapshot Destination Host Path Fields](/images/snapshot-destination-hostpath-field.png)
+images::snapshot-destination-hostpath-field.png[Snapshot Destination Host Path Fields]
 +
 When configuring the admin console to store snapshots on a local host path, the following fields are available:
 
@@ -352,17 +352,17 @@ A dialog opens that contains instructions for setting up Velero with different p
 
 . Click the **Host Path** provider option (check screenshot below).
 +
-![Snapshot Provider Host Path](/images/snapshot-provider-hostpath.png)
+images::snapshot-provider-hostpath.png[Snapshot Provider Host Path]
 +
 A dialog opens for configuring the host path.
 
 . Enter the path to the directory on the node, and click **Configure**. This step can take a few minutes to complete.
 +
-![Snapshot Provider Host Path Fields](/images/snapshot-provider-hostpath-field.png)
+images::snapshot-provider-hostpath-field.png[Snapshot Provider Host Path Fields]
 +
  A dialog opens containing a CLI command that will print out instructions on how to set up Velero with the deployed host path configuration/components.
 +
-![Snapshot Provider File System Next Steps](/images/snapshot-provider-fs-next-steps.png)
+images::snapshot-provider-fs-next-steps.png[Snapshot Provider File System Next Steps]
 
 . Run the CLI command and follow the instructions.
 . From the admin console, either refresh the page or click **Check for Velero** to retry detecting Velero.
@@ -382,7 +382,7 @@ The default retention period for snapshots is 1 month. Setting the retention onl
 
 The following screenshot contains instructions on how to enable and configure automatic scheduled snapshots.
 
-![Snapshot Schedule](/images/snapshot-schedule.png)
+images::snapshot-schedule.png[Snapshot Schedule]
 
 
 
@@ -494,7 +494,7 @@ An error occurred: some backup storage locations are invalid: backup store for l
 
 Example error message:
 
-![Snapshot Troubleshoot Service NodePort](/images/snapshot-troubleshoot-service-nodeport.png)
+images::snapshot-troubleshoot-service-nodeport.png[Snapshot Troubleshoot Service NodePort]
 
 There is a known issue in older Kubernetes versions (< 1.19) where using a static NodePort for services can collide in multi-primary HA setup when recreating the services. you can find more details about the issue here: https://github.com/kubernetes/kubernetes/issues/85894.
 
@@ -506,7 +506,7 @@ Summary: upgrading to Kubernetes version 1.19+ should resolve the issue.
 
 In the KOTS UI, you'll see at least one volume restore progress bar frozen at 0%. Example admin console display:
 
-![Snapshot Troubleshoot Frozen Restore](/images/snapshot-troubleshoot-frozen-restore.png)
+images::snapshot-troubleshoot-frozen-restore.png[Snapshot Troubleshoot Frozen Restore]
 
 You can confirm this is the same issue by running `kubectl get pods -n <application namespace>`, and you should see at least one pod stuck in initialization:
 
