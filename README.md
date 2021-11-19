@@ -86,15 +86,7 @@ We use AsciiDoc to format all of our content. The following table is a quick ref
 | Style     | Syntax     | Comments |
 | :------------- | :------------- | :----------- |
 | Admonitions     | NOTE: <your text> or IMPORTANT: <your text> | n/a |
-|Code block | [source,terminal]
-----
-<your_code>
-----
-
-[source,YAML]
-----
-<your_code>
----- | Use [source,terminal] for all types except YAML. |
+|Code block | [source,terminal] or [source,YAML]| Use [source,terminal] for all types except YAML. |
 |Cross-references to sections within a topic |<<section name>> | Example: Refer to <<Installing on an existing cluster>>
 |Cross reference to the top of a relative AsciiDoc document | <<filename.adoc#,document_title>> | See <<document-b.adoc#,Document B>> for more information. |
 |External links | https://discuss.asciidoctor.org/[Asciidcotor mailing list] or https://discuss.asciidoctor.org/ | n/a |
@@ -102,17 +94,5 @@ We use AsciiDoc to format all of our content. The following table is a quick ref
 |Lists - Ordered | . for level 1, .. for level 2 | When writing a task, use level one for main steps, and level 2 for subtasks under a main step. |
 |Lists - Unordered |* | n/a |
 |List continue | + | Insert `+` in the line before the text/image that follows. |
-|Table | [source,terminal]
-----
-[cols="1,1"]
-|===
-|Heading 1 |Heading 2
-
-|Row1, Entry 1
-|Row1, Entry 2
-
-|Row 2, Entry 1
-|Row 2, Entry 2
-|===
----- | n/a |
-| Titles and Headings | = Document title (level 0), == Level 1 section, === Level 2 section, and so on | n/a | 
+|Table | Use Asciidoc table format only | n/a |
+| Titles and Headings | = Document title (level 0), == Level 1 section, === Level 2 section, and so on | n/a |
