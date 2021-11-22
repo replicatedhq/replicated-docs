@@ -290,14 +290,14 @@ images::snapshot-provider-fs-next-steps.png[Snapshot provider file system next s
 
 > Introduced in KOTS v1.33.0
 
-The steps described in this section are only necessary if you want to configure a Host Path destination as your KOTS Snapshots <<Storage destination,storage destination>>.
+The steps described in this section are only necessary if you want to configure a host path destination as your KOTS Snapshots <<Storage destination,storage destination>>.
 
 IMPORTANT: Make sure that the host path exists and is writable by the user:group 1001:1001 on all the nodes in the cluster.
 
 == Embedded clusters
 
 Embedded clusters set up using installers that include the https://kurl.sh/docs/add-ons/velero[Velero] add-on are configured by default to store snapshots internally in the cluster.
-There are two ways to change this configuration to use a Host Path:
+There are two ways to change this configuration to use a host path:
 
 * Using the KOTS CLI [velero configure-hostpath](/kots-cli/velero/configure-hostpath/) command.
 * Using the admin console (Check screenshots below):
@@ -414,7 +414,7 @@ To setup disaster recovery snapshots, backups should be configured to use a stor
 == Restoring an existing cluster
 
 . Begin with installing a version of Velero compatible with the one that was used to make the snapshot.
-* If restoring from an network file system (NFS) or a host path storage destination, see <<Network file system (NFS)>> or a <<Configuring host path>> for the configuration steps and how to set up Velero. Otherwise, see the Velero documention for https://velero.io/docs/v1.5/basic-install/[installing] and https://velero.io/plugins/[configuring] the plugins.
+* If restoring from an network file system (NFS) or a host path storage destination, see <<Network file system (NFS)>> or a <<Configuring a host path>> for the configuration steps and how to set up Velero. Otherwise, see the Velero documention for https://velero.io/docs/v1.5/basic-install/[installing] and https://velero.io/plugins/[configuring] the plugins.
 +
 NOTE: Restic is required and `--restic` flag must be used with `velero install` command.
 
@@ -430,7 +430,7 @@ NOTE: Restic is required and `--restic` flag must be used with `velero install` 
 * [GCP Configuration](/kots-cli/velero/configure-gcp/)
 * [S3-Other Coniguration (e.g. Minio)](/kots-cli/velero/configure-other-s3/)
 * <<Configuring NFS>>
-* <<Configuring a hostpath>>
+* <<Configuring a host path>>
 
 . Use the KOTS CLI to [list backups](/kots-cli/backup/ls/) and [create restores](/kots-cli/restore/).
 
