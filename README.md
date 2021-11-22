@@ -87,7 +87,7 @@ We use AsciiDoc to format all of our content. The following table is a quick ref
 | :------------- | :------------- | :----------- |
 | Admonitions     | NOTE: <your text> or IMPORTANT: <your text> | n/a |
 |Code block | [source,terminal] or [source,YAML]| Use [source,terminal] for all types except YAML. |
-|Cross-references to sections within a topic |<<section name>> | Example: Refer to <<Installing on an existing cluster>>
+|Cross-references to sections within a topic |<<section name>> | Example: For more information, see <<Installing on an existing cluster>>
 |Cross reference to the top of a relative AsciiDoc document | <<filename.adoc#,document_title>> | See <<document-b.adoc#,Document B>> for more information. |
 |External links | https://discuss.asciidoctor.org/[Asciidcotor mailing list] or https://discuss.asciidoctor.org/ | n/a |
 |Images | image::<filename.png>[alt_text] | We require alt text for 508 compliance. We only use PNGs for images, and SVGs for diagrams. |
