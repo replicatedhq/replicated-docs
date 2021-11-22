@@ -2,7 +2,7 @@
 
 :page-slug: /docs/admin_console/snapshots/
 :page-order: 0
-:page-section: Admin console
+:page-section: Enterprise
 
 = Snapshots overview
 
@@ -15,7 +15,7 @@ Currently, there are two types of snapshots:
 
 Snapshots are useful for rollback and disaster recovery scenarios. They are not intended to be used for application migration scenarios.
 
-== Full Snapshots (Recommended)
+== Full snapshots (Recommended)
 
 Full snapshots back up the admin console and all application data.
 They can be used for full Disaster Recovery; by restoring over the same instance, or into a new cluster.
@@ -34,7 +34,7 @@ image::snapshot-instance-restore.png[Snapshot instance restore]
 
 If you have multiple applications within the KOTS admin console, each application should have a [backup resource](/reference/v1beta1/backup/) in order to be included in the Full Snapshot backup.
 
-== Partial Snapshots
+== Partial snapshots
 
 Partial snapshots only back up applications volumes and application manifests; they do not back up the admin console or the metadata about an application.
 They are great for capturing information before deploying a new release, in case you need to roll back, but they are not suitable for full disaster recovery.
@@ -142,7 +142,7 @@ When configuring the admin console to store snapshots on a Azure, the following 
 
 Only connections with Service Principles are supported at this time. For more information about authentication methods and setting up Azure, see the https://github.com/vmware-tanzu/velero-plugin-for-microsoft-azure[Velero Plugin for Microsoft Azure] documentation.
 
-== S3 Compatible
+== S3 compatible
 
 When configuring the admin console to store snapshots on an S3-Compatible storage, the following fields are available:
 
@@ -172,14 +172,14 @@ When configuring the admin console to store snapshots on an S3-Compatible storag
 |When enabled, instead of providing an Access Key ID and Secret Access Key, Velero will use an instance IAM role.
 |===
 
-== Network File System (NFS)
+== Network file system (NFS)
 
 > Introduced in KOTS v1.33.0
 
 * <<Configuring NFS>>
 
 
-== Host Path
+== Host path
 
 > Introduced in KOTS v1.33.0
 
@@ -198,7 +198,7 @@ The steps described in this section are only necessary if you want to configure 
 * All of the nodes in the cluster must have the necessary NFS client packages installed to be able to communicate with the NFS server. For example, the `nfs-common` package is a very common package used on Ubuntu.
 * Any firewalls (if any) must be properly configured to allow traffic between the NFS server and clients (cluster nodes).
 
-== Embedded Clusters
+== Embedded clusters
 
 Embedded clusters set up using installers that include the https://kurl.sh/docs/add-ons/velero[Velero] add-on are configured by default to store snapshots internally in the cluster.
 There are two ways to change this configuration to use NFS:
@@ -209,11 +209,11 @@ There are two ways to change this configuration to use NFS:
 . Click the **Snapshots** tab.
 . Click **Settings and Schedule**, and click the **Network File System (NFS)** dropdown option.
 +
-images::snapshot-destination-dropdown-nfs.png[Snapshot Destination Dropdown NFS]
+images::snapshot-destination-dropdown-nfs.png[Snapshot destination dropdown NFS]
 
 . Enter the NFS server hostname or IP Address, and the path that is exported by the NFS server. Click **Update storage settings**. This step can take a couple of minutes to complete.
 +
-images::snapshot-destination-nfs-fields.png[Snapshot Destination NFS Fields]
+images::snapshot-destination-nfs-fields.png[Snapshot destination NFS fields]
 +
 When configuring the admin console to store snapshots on an NFS server, the following fields are available:
 +
@@ -228,7 +228,7 @@ When configuring the admin console to store snapshots on an NFS server, the foll
 |The path that is exported by the NFS server.
 |===
 
-== Existing Clusters
+== Existing clusters
 
 NOTE: If Velero is already installed in the cluster, you can follow the same instructions mentioned in the <<Embedded clusters>> section.
 
@@ -270,17 +270,17 @@ A dialog opens that contains instructions for setting up Velero with different p
 
 . Click the **NFS** provider option.
 +
-images::snapshot-provider-nfs.png[Snapshot Provider NFS]
+images::snapshot-provider-nfs.png[Snapshot provider NFS]
 +
 A dialog opens for configuring NFS.
 
 . Enter the NFS server hostname or IP Address, and the path that is exported by the NFS server. Click **Configure**. This step can take a few minutes to complete.
 +
-images::snapshot-provider-nfs-fields.png[Snapshot Provider NFS Fields]
+images::snapshot-provider-nfs-fields.png[Snapshot provider NFS fields]
 +
 A dialog opens and contains a CLI command that will print out instructions on how to set up Velero with the deployed NFS configuration/components.
 +
-images::snapshot-provider-fs-next-steps.png[Snapshot Provider File System Next Steps]
+images::snapshot-provider-fs-next-steps.png[Snapshot provider file system next steps]
 +
 . Run the CLI command and follow the instructions to install Velero.
 . From the admin console, either refresh the page or click **Check for Velero** to retry detecting Velero.
@@ -294,7 +294,7 @@ The steps described in this section are only necessary if you want to configure 
 
 IMPORTANT: Make sure that the host path exists and is writable by the user:group 1001:1001 on all the nodes in the cluster.
 
-== Embedded Clusters
+== Embedded clusters
 
 Embedded clusters set up using installers that include the https://kurl.sh/docs/add-ons/velero[Velero] add-on are configured by default to store snapshots internally in the cluster.
 There are two ways to change this configuration to use a Host Path:
@@ -305,11 +305,11 @@ There are two ways to change this configuration to use a Host Path:
 . Click the **Snapshots** tab.
 . Click the **Settings and Schedule** tab, and click the **Host Path** dropdown option.
 +
-images::snapshot-destination-dropdown-hostpath.png[Snapshot Destination Dropdown Host Path]
+images::snapshot-destination-dropdown-hostpath.png[Snapshot destination dropdown host path]
 
 . Enter the path to the directory on the node, and click **Update storage settings**. This step can take a couple of minutes to complete.
 +
-images::snapshot-destination-hostpath-field.png[Snapshot Destination Host Path Fields]
+images::snapshot-destination-hostpath-field.png[Snapshot destination host path fields]
 +
 When configuring the admin console to store snapshots on a local host path, the following fields are available:
 
@@ -322,7 +322,7 @@ When configuring the admin console to store snapshots on a local host path, the 
 |===
 
 
-== Existing Clusters
+== Existing clusters
 
 If Velero is not yet installed in the cluster, the first step is to set up and deploy the necessary components that are going to be used to install and set up Velero with the provided host path.
 This can be done in two ways:
@@ -366,17 +366,17 @@ A dialog opens that contains instructions for setting up Velero with different p
 
 . Click the **Host Path** provider option (check screenshot below).
 +
-images::snapshot-provider-hostpath.png[Snapshot Provider Host Path]
+images::snapshot-provider-hostpath.png[Snapshot provider host path]
 +
 A dialog opens for configuring the host path.
 
 . Enter the path to the directory on the node, and click **Configure**. This step can take a few minutes to complete.
 +
-images::snapshot-provider-hostpath-field.png[Snapshot Provider Host Path Fields]
+images::snapshot-provider-hostpath-field.png[Snapshot provider host path fields]
 +
  A dialog opens containing a CLI command that will print out instructions on how to set up Velero with the deployed host path configuration/components.
 +
-images::snapshot-provider-fs-next-steps.png[Snapshot Provider File System Next Steps]
+images::snapshot-provider-fs-next-steps.png[Snapshot provider file system next steps]
 
 . Run the CLI command and follow the instructions.
 . From the admin console, either refresh the page or click **Check for Velero** to retry detecting Velero.
@@ -430,7 +430,7 @@ NOTE: Restic is required and `--restic` flag must be used with `velero install` 
 * [GCP Configuration](/kots-cli/velero/configure-gcp/)
 * [S3-Other Coniguration (e.g. Minio)](/kots-cli/velero/configure-other-s3/)
 * <<Configuring NFS>>
-* <<Configuring hostpath>>
+* <<Configuring a hostpath>>
 
 . Use the KOTS CLI to [list backups](/kots-cli/backup/ls/) and [create restores](/kots-cli/restore/).
 
@@ -505,19 +505,19 @@ An error occurred: some backup storage locations are invalid: backup store for l
 
 Example error message:
 
-images::snapshot-troubleshoot-service-nodeport.png[Snapshot Troubleshoot Service NodePort]
+images::snapshot-troubleshoot-service-nodeport.png[Snapshot troubleshoot service NodePort]
 
 There is a known issue in older Kubernetes versions (< 1.19) where using a static NodePort for services can collide in multi-primary HA setup when recreating the services. you can find more details about the issue here: https://github.com/kubernetes/kubernetes/issues/85894.
 
 This issue has been fixed in Kubernetes version 1.19, you can find more details about the fix here: https://github.com/kubernetes/kubernetes/pull/89937.
 
-Summary: upgrading to Kubernetes version 1.19+ should resolve the issue.
+**Solution:** upgrading to Kubernetes version 1.19+ should resolve the issue.
 
 ==== Partial snapshot restore is stuck in progress
 
 In the KOTS UI, you'll see at least one volume restore progress bar frozen at 0%. Example admin console display:
 
-images::snapshot-troubleshoot-frozen-restore.png[Snapshot Troubleshoot Frozen Restore]
+images::snapshot-troubleshoot-frozen-restore.png[Snapshot troubleshoot frozen restore]
 
 You can confirm this is the same issue by running `kubectl get pods -n <application namespace>`, and you should see at least one pod stuck in initialization:
 
@@ -528,6 +528,6 @@ example-mysql-0                       0/1     Init:0/2    0          4m15s  #<- 
 example-nginx-77b878b4f-zwv2h         3/3     Running     0          4m15s
 ----
 
-We've seen this issue with Velero version 1.5.4 and opened up https://github.com/vmware-tanzu/velero/issues/3686[this issue] with the project to inspect the root cause. However we have not experienced this using Velero 1.6.0 or greater.
+We have seen this issue with Velero version 1.5.4 and opened up https://github.com/vmware-tanzu/velero/issues/3686[this issue] with the project to inspect the root cause. However we have not experienced this using Velero 1.6.0 or greater.
 
 **Solution:** Upgrade Velero to 1.6.0 using kURL or the https://velero.io/docs/v1.6/upgrade-to-1.6/[Velero instructions].
