@@ -290,7 +290,7 @@ images::snapshot-provider-fs-next-steps.png[Snapshot provider file system next s
 
 > Introduced in KOTS v1.33.0
 
-The steps described in this section are only necessary if you want to configure a Host Path destination as your KOTS Snapshots <<storage destination>>.
+The steps described in this section are only necessary if you want to configure a Host Path destination as your KOTS Snapshots <<Storage destination,storage destination>>.
 
 IMPORTANT: Make sure that the host path exists and is writable by the user:group 1001:1001 on all the nodes in the cluster.
 
