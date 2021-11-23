@@ -21,7 +21,7 @@ Please refer to our documentation of the [Kots CLI](/kots-cli/getting-started/) 
 
 == Getting Started as a KOTS Vendor
 It's easy to get started packaging an app in KOTS.
-To start, create a Replicated Vendor account at our [Vendor Portal](https://vendor.replicated.com) and follow one of our [Getting Started Guides](/vendor/guides/).
+To start, create a Replicated Vendor account at our https://vendor.replicated.com[Vendor Portal] and follow one of our [Getting Started Guides](/vendor/guides/).
 
 == Basic Packaging
 KOTS applications are packaged as a set of standard Kubernetes manifests.
@@ -38,16 +38,15 @@ If your application is already templated and packaged as a Helm chart (or includ
 KOTS vendors can invoke several other more advanced features by providing additional KOTS custom resources.
 For customizable Preflight checks, vendors can provide a [preflight custom resource](/reference/v1beta1/preflight/) in order to test a cluster for necessary resources or other dependencies, and show warnings or errors if the target cluster fails any of these checks.
 Similarly, troubleshooting features can be enabled by creating [collector and analyzer](/reference/v1beta1/support-bundle) custom resources.
-Finally, the [Application](/reference/v1beta1/application) and [sig-application](/reference/v1beta1/sig-application) custom resources provide branding metadata (icon, title, descriptions, etc...), readiness checks, and end-user links, enabling the Admin Console to show application health and readiness, and launch the app once it's ready.
+Finally, the [Application](/reference/v1beta1/application) and [sig-application](/reference/v1beta1/sig-application) custom resources provide branding metadata (icon, title, descriptions, etc...), readiness checks, and end-user links, enabling the admin console to show application health and readiness, and launch the app once it's ready.
 
-KOTS licenses are created and managed through the Replicated https://vendor.replicated.com[Vendor Portal], which provides support for configurable pre-built entitlements, expiration dates, license types and a framework for delivering custom entitlements (seat count, etc). See the [entitlements documentation](/vendor/entitlements/entitlements/) for more information.
+KOTS licenses are created and managed through the Replicated https://vendor.replicated.com[Vendor Portal], which provides support for configurable pre-built entitlements, expiration dates, license types, and a framework for delivering custom entitlements (seat count, etc). See the [entitlements documentation](/vendor/entitlements/entitlements/) for more information.
 
 
 = KOTS custom resources
 
-A KOTS application can include several recommended, but optional [KOTS custom resources](/reference/v1beta1/).
-These custom resources are packaged as part of the KOTS application, but are not deployed to the cluster.
-When included, they are consumed by KOTS, the Admin Console, or by other kubectl plugins to control the KOTS application experience.
+A KOTS application can include several recommended, but optional [KOTS custom resources](/reference/v1beta1/). These custom resources are packaged as part of the KOTS application, but are not deployed to the cluster.
+When included, they are consumed by KOTS, the admin console, or by other `kubectl` plugins to control the KOTS application experience.
 
 When viewing a release in the https://vendor.replicated.com/releases/[Vendor Portal], the KOTS custom resources are grouped together at the top of the manifests list.
 ![](/images/kots-custom-resources.png)
@@ -66,29 +65,27 @@ More details can be found in our [Promote Releases documentation](/vendor/packag
 
 == Manage Release Channels
 By default, there are 3 release channels: Stable, Beta and Unstable. When you first log in to Replicated and select the Channels tab, you’ll see these default release channels created.
-You can delete, edit, or create new channels at any time.
-The channels Replicated creates by default are commonly used for:
+You can delete, edit, or create new channels at any time. The channels Replicated creates by default are commonly used for:
 
 === Unstable
-The Unstable channel is designed for you to constantly push releases to, much in the same way that you continuously deploy new versions to your cloud product.
-This is the channel that your development environment should have a license assigned to.
-This channel is designed to be internal and for testing, not for your customers to be licensed against.
+* The Unstable channel is designed for you to constantly push releases to, much in the same way that you continuously deploy new versions to your cloud product.
+* This is the channel that your development environment should have a license assigned to.
+* This channel is designed to be internal and for testing, not for your customers to be licensed against.
 
 === Beta
-The Beta channel is created for release candidates and early adopting customers.
-We recommend you promote a release to the Beta channel once it’s passed automated testing in the Unstable channel.
-You can also choose to license some early-adopting customers against this channel.
+* The Beta channel is created for release candidates and early adopting customers.
+* We recommend you promote a release to the Beta channel once it’s passed automated testing in the Unstable channel.
+* You can also choose to license some early-adopting customers against this channel.
 
 === Stable
-For most of your customers, you will create a license that assigns them to the Stable channel.
-By doing so, they’ll only receive updates when you push a new version to this channel.
+* For most of your customers, you will create a license that assigns them to the Stable channel.
+* Customer only receive updates when you push a new version to this channel.
 
 
 = Customers and licenses
 
-Each customer you deploy to via, Replicated will need a separate license file for their installation.
-This license file identifies the customer & application during the installation and update processes.
-A customer license is created in the Customers section of the [vendor portal](https://vendor.replicated.com). You can manage the values and properties of that customer and license, including custom license fields, by selecting an individual customer.
+Each customer you deploy to via, Replicated will need a separate license file for their installation. This license file identifies the customer & application during the installation and update processes.
+A customer license is created in the Customers section of the https://vendor.replicated.com[vendor portal]. You can manage the values and properties of that customer and license, including custom license fields, by selecting an individual customer.
 
 If you are looking to create or manage custom license fields, you can do so in the License Fields section of the vendor portal, described in greater detail in the [Custom Entitlements](/vendor/entitlements/custom-entitlements) section.
 
@@ -96,12 +93,13 @@ If you are looking to create or manage custom license fields, you can do so in t
 The name of the customer to whom this license is assigned.
 
 == Channel (Required)
-When you create a license, you’ll need to assign it to at least one release channel.
-The Stable channel is intended to be used for production installations.
-Unstable and Beta channels are intended for internal testing.
+When you create a license, you’ll need to assign it to at least one release channel as follows:
+
+* The Stable channel is intended to be used for production installations.
+* Unstable and Beta channels are intended for internal testing.
 
 When a license is assigned to multiple channels, the customer will be able to select the channel at install time, and later change the release channel in the management console.
-For airgapped installs, the channel can be selected at download time only.
+For airgap installations, the channel can be selected at download time only.
 
 == Expiration Date
 When you create a license, you can specify an expiration date. By default an application with an expired license will continue to run, but will be prevented from receiving updates.
@@ -109,41 +107,40 @@ When you create a license, you can specify an expiration date. By default an app
 However applications can be instrumented to implement custom behavior by reading the license values and employing custom application logic based on the values for the `expires_at` license field.
 
 == Airgap Download Enabled
-By default, licenses will be set to disable airgapped installations.
-By enabling this feature, the actual .rli file will have license meta data embedded in it, and must be re-downloaded.
+By default, licenses will be set to disable airgap installations. By enabling this feature, the actual .rli file will have license meta data embedded in it, and must be re-downloaded.
 
 == License Type (Required)
-It is important to identify the type of license that is being created: development, trial or paid.
-Development licenses are designed to be used internally by the development team for testing and integration.
-Trial licenses should be provided to customers who are on 2-4 week trials of your software.
-Paid licenses identify the end customer as a paying customer (for which additional information can be provided.)
+It is important to identify the type of license that is being created: development, trial or paid. Development licenses are designed to be used internally by the development team for testing and integration.
+
+* Trial licenses should be provided to customers who are on 2-4 week trials of your software.
+* Paid licenses identify the end customer as a paying customer (for which additional information can be provided.)
 
 == Custom License Fields
-Custom license fields can be set for all licenses.
-This is useful if specific customer information might change from customer to customer.
-These fields can be read from both the template functions, as well as from Admin Console API.
+Custom license fields can be set for all licenses. This is useful if specific customer information might change from customer to customer.
+
+These fields can be read from both the template functions, as well as from admin console API.
+
 Examples of custom license fields are “seats” to limit the number of active users, or “hostname” in order to specify the domain that the application can be run on.
 See the [Custom Entitlements](/vendor/entitlements/) section for more details.
 
 == Archiving Licenses
-When a license is archived in the vendor portal, it will be hidden in the default license search and become read-only.
-Archival does not affect the utility of license files downloaded before the change.
-If you wish for them to expire, set an expiration date and policy before archiving.
+When a license is archived in the vendor portal, it will be hidden in the default license search and become read-only. Archival does not affect the utility of license files downloaded before the change.
+
+If you want the licenses to expire, set an expiration date and policy before archiving.
+
 This is a convenience feature for how licenses are displayed in the vendor portal.
 
 
 = Promoting releases
 
-Every Replicated license points to a Release Channel.
-When a license is installed, it will pull down and install the release that is currently at the top of its channel.
+Every Replicated license points to a Release Channel. When a license is installed, it will pull down and install the release that is currently at the top of its channel.
 It’s recommended to create customer licenses on the Stable channel, and only promote releases to Stable that are ready for all customers to install.
 
-Once an application is installed, the active instance can be updated by promoting a release to the channel that instance is licensed to (likely Stable).
-Each instance will periodically check for new releases.
+After an application is installed, the active instance can be updated by promoting a release to the channel that instance is licensed to (likely Stable). Each instance will periodically check for new releases.
 When a new release is found, the Replicated installation will show a button that allows end customers managing the instance to read the release notes and install the update.
 A license only checks it’s own release channel.
 
-To promote a release, you can use the https://vendor.replicated.com[vendor portal], and click **Promote**:
+To promote a release, you can use the https://vendor.replicated.com[vendor portal], and click *Promote*:
 
 images::promote-button.png[Promote Button]
 
@@ -153,12 +150,12 @@ Additionally, each promoted release must be given a required status (required or
 
 == Notes
 
-- Before you can create or install a license, a release must be promoted to the channel.
-- Update checking defaults to every 15 minutes but can be configured by end customers.
-- It is possible to change a license value to have updates automatically installed when detected by the running instance.
-- License values are synced with the values set in the vendor portal when the customer syncs the license.
-- Releases will not be editable after being promoted to a channel.
-- Release notes, version numbers, and the required status may be edited after promotion by visiting the channel’s history.
+* Before you can create or install a license, a release must be promoted to the channel.
+* Update checking defaults to every 15 minutes but can be configured by end customers.
+* It is possible to change a license value to have updates automatically installed when detected by the running instance.
+* License values are synced with the values set in the vendor portal when the customer syncs the license.
+* Releases will not be editable after being promoted to a channel.
+* Release notes, version numbers, and the required status may be edited after promotion by visiting the channel’s history.
 
 
 = Embedded Kubernetes
@@ -186,19 +183,18 @@ If your application images are already available in a private, but accessible im
 This is useful and recommended because it prevents you from having to modify the process you use to build and push application images, and it gives you the ability to revoke a customer’s ability to pull (such as on trial expiration).
 This External Registry is shared across all KOTS applications in a team, allowing images to be used across multiple apps.
 
-To configure access to your private images, log in to https://vendor.replicated.com[vendor.replicated.com], and click on the images menu item under your application.
-Here, there’s a button named **Add External Registry**.
-Fill this modal out with an endpoint (quay.io, index.docker.io, gcr.io, etc) and provide a username and password to Replicated that has pull access.
-For more information, see the documentation on our registry.
+To configure access to your private images:
+. Log in to https://vendor.replicated.com[vendor.replicated.com], and click on the images menu item under your application.
+. Click *Add External Registry*.
+. Fill this modal out with an endpoint (quay.io, index.docker.io, gcr.io, etc) and provide a username and password to Replicated that has pull access. For more information, see the documentation on our registry.
++
 Replicated will store your username and password encrypted and securely, and it (and the encryption key) will never leave our servers.
 
 images::add-external-registry.png[Add External Registry]
 
-Your application YAML will reference images that it cannot access.
-KOTS recognizes this, and will patch the YAML using Kustomize to change the image name.
-When KOTS is attempting to install an application, it will attempt to load image manifest using the image reference from the PodSpec.
-If it’s loaded successfully, no changes will be made to the application.
-If a 401 is received and authentication is required, KOTS will assume that this is private image that needs to be proxied through the Replicated registry-proxy service.
+Your application YAML will reference images that it cannot access. KOTS recognizes this, and will patch the YAML using Kustomize to change the image name.
+When KOTS is attempting to install an application, it will attempt to load image manifest using the image reference from the PodSpec. If it’s loaded successfully, no changes will be made to the application.
+If a 401 error message is received and authentication is required, KOTS will assume that this is private image that needs to be proxied through the Replicated registry-proxy service.
 A patch will be written to the midstream kustomization.yaml to change this image name during deployment.
 
 For example, given a private image hosted at `quay.io/my-org/api:v1.0.1`, a deployment and pod spec may reference it like this:
@@ -566,3 +562,462 @@ spec:
         imagePullPolicy: ""
 ...
 ----
+
+
+= Ingress
+
+When delivering a configurable KOTS application, ingress can be challenging as it is very cluster specific.
+Below is an example of a flexible Ingress resource spec designed to work in most Kubernetes clusters including existing and embedded Kurl clusters.
+
+== Example
+
+The following example includes an Ingress resource with a single host based routing rule.
+The resource will work in both existing and embedded Kurl clusters.
+
+=== Config
+
+A config option `enable_ingress` has been provided to allow the end-user to choose whether or not to enable the Ingress resource.
+In some clusters, a custom Ingress resource may be desired — when an ingress controller is not available, other means of exposing services may be preferred.
+
+An `annotations` textarea has been made available for the end-user to add additional annotations to the ingress.
+Here, cluster specific annotations can be added to support a variety of ingress controllers.
+For example, when using the https://docs.aws.amazon.com/eks/latest/userguide/alb-ingress.html[ALB ingress controller] in AWS, it is necessary to include the `kubernetes.io/ingress.class: alb` annotation on your Ingress resource.
+
+[source,YAML]
+----
+apiVersion: kots.io/v1beta1
+kind: Config
+metadata:
+  name: example-application
+spec:
+  groups:
+    - name: ingress
+      title: Ingress
+      items:
+        - name: enable_ingress
+          type: bool
+          title: Enable Kuberentes Ingress
+          help_text: |
+            Uncheck this box to disable the Kubernetes Ingress resource.
+          default: "1"
+        - name: hostname
+          type: text
+          title: Hostname
+          help_text: |
+            Use this field to provide a hostname for your Example Application installation.
+          required: true
+          when: repl{{ ConfigOptionEquals "enable_ingress" "1" }}
+        - name: allow_http
+          type: bool
+          title: Allow Unsecured Access through HTTP
+          help_text: |
+            Uncheck this box to disable HTTP traffic between the client and the load balancer.
+          default: "1"
+          when: repl{{ ConfigOptionEquals "enable_ingress" "1" }}
+        - name: annotations
+          type: textarea
+          title: Annotations
+          help_text: |
+            Use this textarea to provide annotations specific to your ingress controller.
+            For example, `kubernetes.io/ingress.class: alb` when using the ALB ingress controller.
+          when: repl{{ ConfigOptionEquals "enable_ingress" "1" }}
+----
+
+=== Ingress
+
+For ingress, you must create two separate resources. The first resource will be deployed to existing cluster installations, while the second resource will only be deployed to an embedded Kurl cluster.
+Both of these resources are selectively excluded with the [`kots.io/exclude` annotation](/vendor/packaging/include-resources/).
+
+.Resource 1
+[source,YAML]
+----
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: example-application-ingress
+  annotations:
+    kots.io/exclude: '{{repl or (ConfigOptionEquals "enable_ingress" "1" | not) IsKurl }}'
+    kubernetes.io/ingress.allow-http: '{{repl ConfigOptionEquals "allow_http" "1" }}'
+    nginx.ingress.kubernetes.io/force-ssl-redirect: '{{repl ConfigOptionEquals "allow_http" "1" | not }}'
+    kots.io/placeholder: repl{{ printf "'true'" }}repl{{ ConfigOption "annotations" | nindent 4 }}
+spec:
+  rules:
+    - host: repl{{ or (ConfigOption "hostname") "~" }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: nginx
+              servicePort: 80
+----
+
+.Resource 2
+[source,YAML]
+----
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: example-application-ingress-embedded
+  annotations:
+    kots.io/exclude: '{{repl or (ConfigOptionEquals "enable_ingress" "1" | not) (not IsKurl) }}'
+    kubernetes.io/ingress.allow-http: '{{repl ConfigOptionEquals "allow_http" "1" }}'
+    nginx.ingress.kubernetes.io/force-ssl-redirect: '{{repl ConfigOptionEquals "allow_http" "1" | not }}'
+    kots.io/placeholder: repl{{ printf "'true'" }}repl{{ ConfigOption "annotations" | nindent 4 }}
+spec:
+  tls:
+    - hosts:
+        - repl{{ ConfigOption "hostname" }}
+      secretName: kotsadm-tls
+  rules:
+    - host: repl{{ ConfigOption "hostname" }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: nginx
+              servicePort: 80
+----
+
+
+= Using TLS certificates
+
+Embedded [kURL](https://kurl.sh) clusters create a `kotsadm-tls` secret which can reused by other Kubernetes resources.
+
+== Verify TLS Secret
+
+Output the `kotsadm-tls` secret
+
+[source,terminal]
+----
+kubectl get secret kotsadm-tls -o yaml
+----
+
+In the output, the `tls.crt` and `tls.key` hold the certificate and key, respectively, which can be referenced in either a ` Deployment` or `Ingress` resource.
+
+[source,YAML]
+----
+apiVersion: v1
+kind: Secret
+type: kubernetes.io/tls
+metadata:
+  name: kotsadm-tls
+data:
+  tls.crt: <base64_encoded>
+  tls.key: <base64_encoded>
+----
+
+== Deployment
+
+Below is an example of how to use `kotsadm-tls` in a `Deployment` resource.
+
+[source,YAML]
+----
+apiVersion:  apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  template:
+    spec:
+      containers:
+        volumeMounts:
+          - mountPath: "/etc/nginx/ssl"
+            name: nginx-ssl
+            readOnly: true
+      volumes:
+        - name: nginx-ssl
+          secret:
+            secretName: kotsadm-tls
+----
+
+Deploy the release and `exec` into the pod to verify.
+
+[source,termimal]
+----
+$ export POD_NAME=nginx-<hash>
+$ kubectl exec -it ${POD_NAME} bash
+----
+
+Run `ls` and `cat` to verify.
+
+[source,terminal]
+
+----
+$ ls /etc/nginx/ssl
+tls.crt tls.key
+
+$ cat /etc/nginx/ssl/tls.crt
+-----BEGIN CERTIFICATE-----
+MIID8zCCAtugAwIBAgIUZF+NWHnpJCt2R1rDUhYjwgVv72UwDQYJKoZIhvcNAQEL
+
+$ cat /etc/nginx/ssl/tls.key
+-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCyiGNuHw2LY3Rv
+----
+
+== Ingress
+
+Another way `kotsadm-tls` secret can be used is by passing it directly to the `Ingress` resource so TLS can be terminated at the contour layer.
+
+[source,YAML]
+----
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx
+spec:
+  rules:
+  tls:
+    - hosts:
+      - 'tls.foo.com'
+        secretName: kotsadm-tls
+  - host: tls.foo.com
+    http:
+      paths:
+        - path: /
+          backend:
+            serviceName: nginx
+            servicePort: 80
+----
+
+NOTE: `tls.foo.com` must resolve to a valid IP and must also match the CN or Subjective Alternative Name (SAN) of the TLS cert.
+
+== Updating certificates
+
+When certificates expire, they can be re-uploaded. For more information, see [Uploading new TLS Certs](https://kurl.sh/docs/install-with-kurl/setup-tls-certs#uploading-new-tls-certs).
+
+== Existing Cluster
+
+The expectation when using an existing cluster is for the end customer to bring their own Ingress Controller such as Contour or Istio and upload their own `kubernetes.io/tls` secret.
+For an example of Ingress with TLS, see the https://kubernetes.io/docs/concepts/services-networking/ingress/#tls [Kubernetes ingress documentation].
+
+
+= Clean up jobs
+
+Kubernetes jobs are designed to run and then terminate, but they stick around in the namespace after completion. Because job objects are immutable, this can cause conflicts and errors when attempting to update the job later. For more information about Kubernetes jobs, see the https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/[Kubernetes jobs documentation].
+
+A common workaround is to use a content SHA from the job object in the name. This is fine, but a KOTS release can be updated from various events (upstream update, license sync, config update, CLI upload). If the job is already completed, it's an error to re-apply the same job to the cluster again.
+
+When running a cluster using the admin console, the built-in operator/controller can help by deleting jobs on completion. This allows the same job to be deployed again, and not pollute the namespace with completed jobs.
+
+To enable this, when creating a job object, specify a delete hook policy as an annotation on the job object.
+The annotation key is always `kots.io/hook-delete-policy`, and there are two possible values (you can use both simultaneously): `hook-succeeded` and `hook-failed`.
+When this annotation is present and includes `hook-succeeded`, the job will be deleted when it completes successfully.
+If this annotation is present and includes `hook-failed`, the job will be deleted on failure.
+
+[source,YAM]
+----
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pi
+  annotations:
+    "kots.io/hook-delete-policy": "hook-succeeded, hook-failed"
+spec:
+  template:
+    spec:
+      containers:
+      - name: pi
+        image: perl
+        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+      restartPolicy: Never
+  backoffLimit: 4
+----
+
+== Helm Charts
+
+This syntax is very similar to the Helm hook syntax.
+When KOTS encouters an upstream Helm chart with a `helm.sh/hook-delete-policy` annotation, KOTS will add the same `kots.io/hook-delete-policy` automatically to the job object.
+This means that there's nothing extra to configure when deploying a Helm chart with helm delete hooks, these will be respected by KOTS.
+
+
+= Kubernetes RBAC
+
+When a KOTS application is installed, [Kubernetes RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) resources are created to allow the admin console to manage the application.
+By default, the admin console will create a ClusterRole and ClusterRoleBinding with permissions to all namespaces.
+This behavior can be controlled by editing the [application](/reference/v1beta1/application/) manifest.
+
+As listed above, an Application may require cluster scoped access across all namespaces on all/wildcard k8 objects or to have access limited to its given namespace.
+In either case, the user who installs an application via [KOTS install](/kots-cli/install/) CLI must have the wildcard privilges in the cluster.
+If the user has insufficient privileges the following error will be shown when attempting install or upgrade.
+
+[source,terminal]
+----
+$  kubectl kots install appslug
+  • Current user has insufficient privileges to install Admin Console.
+For more information, please visit https://kots.io/vendor/packaging/rbac
+To bypass this check, use the --skip-rbac-check flag
+Error: insufficient privileges
+----
+
+== Cluster-scoped access
+
+For compatibility with earlier versions of KOTS, the default behavior of a KOTS application is to create a ClusterRole and ClusterRoleBinding with permissions to all namespaces.
+
+Applications that need access to cluster-wide resources should continue to use cluster-scoped access installers.
+
+=== Reference Objects
+
+The following `ClusterRole` and `ClusterRoleBinding` are created for cluster-scoped applications:
+
+[source,YAML]
+----
+apiVersion: "rbac.authorization.k8s.io/v1"
+kind: "ClusterRole"
+metadata:
+  name: "kotsadm-role"
+rules:
+  - apiGroups: ["*"]
+    resources: ["*"]
+    verbs: ["*"]
+----
+
+[source,YAMl]
+----
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kotsadm-role
+subjects:
+- kind: ServiceAccount
+  name: kotsadm
+  namespace: appnamespace
+----
+
+The following `Role` and `RoleBinding` are created for namespace-scoped applications.
+
+[source,YAML]
+----
+apiVersion: "rbac.authorization.k8s.io/v1"
+kind: "Role"
+metadata:
+  name: "kotsadm-role"
+rules:
+  - apiGroups: ["*"]
+    resources: ["*"]
+    verbs: ["*"]
+----
+[source,YAML]
+----
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: kotsadm-role
+subjects:
+- kind: ServiceAccount
+  name: kotsadm
+  namespace: appnamespace
+----
+
+== Namespace-scoped access
+
+An application developer can limit the RBAC grants for the admin console to be limited to a single namespace by specifying the `requireMinimalRBACPrivileges` flag in the [application](/reference/v1beta1/application/) manifest.
+When this is set, the KOTS installer will create a Role and RoleBinding, granting the admin console access to select resources in the namespace, but not outside of the cluster.
+Without access to cluster-scoped resources, some Preflight Checks and Support Bundle collectors will not be able to read the resources.
+These tools will continue to function, but will return less data.
+In this situation, the admin console will present an option for the user to either proceed with limited data or a command to execute the Preflight Checks or Support Bundle remotely, using the user's RBAC authorizations.
+Additionally, the namespace-scoped permission does not grant access to Velero's namespace if installed - Velero is a prerequisite for [admin console snapshots](/kotsadm/snapshots/overview/).
+The [`kubectl kots velero ensure-permissions` command](/kots-cli/velero/ensure-permissions/) can be used to create addition roles and rolebindings to allow the necessary cross-namespace access.
+
+Please note that airgapped installs honor the `requireMinimalRBACPrivileges` flag in [headless mode only](/kotsadm/installing/automating/#airgap-install).
+Without access to the internet or the app's `.airgap` package as provided in a headless install, KOTS does not have the information required to determine whether minimal RBAC is appropriate and so defaults to the more permissive RBAC policy.
+
+=== Operators and multiple namespaces
+
+It is possible to use namespace-scoped access for Operators and multi-namespace applications. During the installation, if there are `additionalNamespaces` specified in the application manifest, roles and roleBindings are created to give the admin console access to all namespaces specified.
+
+To enable namespace-scoped access for an application:
+
+[source,YAML]
+----
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: my-application
+spec:
+  title: My Application
+  icon: https://support.io/img/logo.png
+  requireMinimalRBACPrivileges: true
+----
+
+=== Reference Objects
+
+The following Role is created for namespace-scoped applications:
+
+[source,YAML]
+----
+apiVersion: "rbac.authorization.k8s.io/v1"
+kind: "Role"
+metadata:
+  name: "kotsadm-role"
+rules:
+  - apiGroups: ["*"]
+    resources: ["*"]
+    verb: "*"
+----
+
+NOTE: The kotsadm-operator component receives an authorization for all verb, all resources, and all apiGroups in the namespace).
+
+== Converting
+
+At this time, the RBAC permissions are set during the initial installation. The admin console is running using the assumed identity and cannot change its own authorization.
+Changing the RBAC scope from cluster to namespace or from namespace to cluster will only affect new installations of the application; existing installations will continue to run with their current authorization.
+For applications that need to elevate their permission from namespace to cluster, we recommend including a Prefight Check to ensure the permission is available.
+
+= Vulnerability and CVE policy
+
+While it’s our goal to distribute vulnerability-free versions of all components, this isn’t always possible.
+Kubernetes and KOTS are made from many components, each authored by different vendors.
+
+The best way to stay ahead of vulnerabilities is to run the latest version and have a strategy to quickly update when a patch is available.
+
+== How We Scan Our build pipeline uses [Anchore Grype](https://github.com/anchore/grype) to scan for and detect known, published vulnerabilities in our images.
+It’s possible that other security scanners will detect a different set of results.
+We commit to patching vulnerabilities according to the timeline below based on the results of our internal scans.
+
+If you or your customer detects a different vulnerability using a different scanner, we encourage you to report it to us in a Zendesk ticket, Slack message, or emailing support@replicated.com.
+Our team will evaluate the vulnerability and determine the best course of action.
+
+== Base Images
+
+When possible, KOTS uses alpine, scratch, or distroless images to reduce the number of components that might be affected by CVEs. When a larger base image is required, we will keep it updated to the latest version available based on the following timeline:
+
+[cols="1,1"]
+|===
+|Base Version Change |Time to include in release
+
+|Patch version
+|Within 2 weeks
+
+|Minor version
+|Within 30 days
+
+|Major version
+|Before the previous version is EOL
+|===
+
+== Upstream CVE Disclosure
+
+Replicated KOTS and Replicated kURL deliver many upstream Kubernetes and ecosystem components. We don’t build these packages and rely on the upstream software vendor to distribute patches.
+Our intent is to make any patches available as soon as possible, but guarantee the following timeline to make upstream patches available after we learn about the vulnerability and a patch is available to us:
+
+[cols="1,1"]
+|===
+|CVE Level |Time to release
+
+|Critical
+|Within 2 weeks
+
+|High
+|Within 60 days
+
+|Medium
+|Within 90 days
+
+|Low
+|Best effort unless risk accepted
+|===
