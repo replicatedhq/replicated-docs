@@ -71,7 +71,7 @@ const config = {
             items: [
               {
                 label: 'Tutorial',
-                to: '/docs/markdown-tutorial',
+                to: '/docs/markdown-template',
               },
             ],
           },
