@@ -1,1 +1,1 @@
-# Welcome to Replicated Documenation
+# Welcome to Replicated Documentation
