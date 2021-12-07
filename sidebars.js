@@ -19,6 +19,7 @@ const sidebars = {
   // But you can create a sidebar manually
 
   tutorialSidebar: [
+    'intro',
     {
       type: 'category',
       label: 'Vendor',
@@ -27,9 +28,8 @@ const sidebars = {
           type: 'category',
           label: 'Dropdown Label',
           items: [
-            'intro', 
-			'tutorial-extras/manage-docs-versions',
-            'tutorial-basics/create-a-document',
+			      'vendor/hello-world',
+            'vendor/hello-universe',
           ],
         },
       ],
@@ -42,8 +42,8 @@ const sidebars = {
           type: 'category',
           label: 'Dropdown Label',
           items: [
-            'tutorial-extras/manage-docs-versions',
-            'tutorial-basics/create-a-document',
+            'enterprise/hello-world-2',
+            'enterprise/hello-universe-2',
           ],
         },
       ],
