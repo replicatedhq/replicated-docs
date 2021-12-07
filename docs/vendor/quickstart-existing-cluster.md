@@ -1,9 +1,4 @@
----
-date: "2020-02-20T00:00:00Z"
-lastmod: "2020-02-20T00:00:00Z"
-title: "Quickstart with an existing cluster"
-weight: "1003"
----
+# Quickstart with an existing cluster
 
 The KOTS Existing Cluster Guide is one of our simplest guides.
 We'll get running quickly with a simple Nginx application on an existing cluster in GKE (or another cluster you have handy).

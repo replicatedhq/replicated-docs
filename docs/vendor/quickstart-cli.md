@@ -1,9 +1,4 @@
----
-date: "2019-02-20T00:00:00Z"
-lastmod: "2019-02-20T00:00:00Z"
-title: "Quickstart with the Replicated CLI"
-weight: "1003"
----
+# Quickstart with the Replicated CLI
 
 This power-user's guide will help you get set up with a CLI-based workflow for quickly iterating on your Kubernetes application with KOTS.
 If you'd prefer a more conceptual overview before digging into the CLI tools, you can start with the [standard quickstart](/vendor/guides/quickstart).

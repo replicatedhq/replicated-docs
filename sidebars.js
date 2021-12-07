@@ -28,9 +28,9 @@ const sidebars = {
           type: 'category',
           label: 'Quickstarts',
           items: [
-            'vendor/quickstart',
-            'vendor/existing-cluster',
-            'vendor/cli-quickstart',
+            'vendor/quickstart-without-existing-cluster',
+            'vendor/quickstart-existing-cluster',
+            'vendor/quickstart-cli',
           ],
         },
         {

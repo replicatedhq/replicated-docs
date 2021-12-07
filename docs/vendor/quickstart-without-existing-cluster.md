@@ -1,12 +1,4 @@
----
-date: "2020-02-20T00:00:00Z"
-lastmod: "2020-02-20T00:00:00Z"
-title: "Quickstart without an existing cluster"
-weight: "1002"
-aliases:
-  - /vendor/quickstart
-  - /vendor/quickstart/create-release
----
+# Quickstart without an existing cluster
 
 The KOTS Quickstart is our simplest guide, we'll get running quickly with a simple Nginx application in Kubernetes using a single VM.
 
