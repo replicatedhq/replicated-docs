@@ -26,6 +26,15 @@ const sidebars = {
       items: [
         {
           type: 'category',
+          label: 'Quickstarts',
+          items: [
+            'vendor/quickstart',
+            'vendor/existing-cluster',
+            'vendor/cli-quickstart',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Getting started',
           items: [
 			      'vendor/installing-replicated-cli',
