@@ -54,6 +54,15 @@ const sidebars = {
             'vendor/packaging-vulnerability-patch-policy',
           ],
         },
+        {
+          type: 'category',
+          label: 'Snapshots',
+          items: [
+            'vendor/snapshots-overview',
+            'vendor/snapshots-configuring-backups',
+            'vendor/snapshots-backup-hooks',
+          ],
+        },
       ],
     },
     {
