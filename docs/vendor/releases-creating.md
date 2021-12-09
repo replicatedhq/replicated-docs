@@ -1,0 +1,28 @@
+# Creating a release
+
+We recommend that you bookmark the [vendor portal](https://vendor.replicated.com) because it used to manage and deploy application releases.
+For additional information about deploying releases, see our [community](https://help.replicated.com/community/).
+
+1. Log in (or create a new team) on the [vendor portal](https://vendor.replicated.com) and create a new application. After signing up and activating your account, you will be prompted to create a new application. Give it a name, and click the **Create Application** button.
+
+  If you are logging in with an existing account, you are not prompted to create a new application. Instead, click https://vendor.replicated.com/new-application to create a new application.
+
+  ![Create Application](/images/guides/kots/create-application.png)
+
+  The Channels page opens and displays a list of your release channels, which are logical stacks for you to stage and promote releases to your customers.
+
+1. Click **Releases** item on the left menu, and then click **Create a release**.
+
+  ![Create Release](/images/guides/kots/create-release.png)
+
+ A YAML editor displays, where you can define how your application will work and the integration with KOTS functionality. You can use our [CLI and API](/vendor/cli) to automate this or manually edit YAML on this page. For more information about using using the CLI, see the [CLI setup guide](/vendor/guides/cli-quickstart/#2-setting-a-service-account-token).
+
+ ![Default YAML](/images/guides/kots/default-yaml.png)
+
+  The default YAML documents above the white line contains information for KOTS, preflight checks, customer configuration screen options, and support bundle analyzers for troubleshooting installs. You can learn about those [in the reference docs](/reference/v1beta1) but for now, let's
+
+1. Click **Save release**.
+
+## Next steps
+
+Promote the release.

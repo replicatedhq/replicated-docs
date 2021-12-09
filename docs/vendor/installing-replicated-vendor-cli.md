@@ -1,4 +1,4 @@
-# Installing the Replicated CLI
+# Installing the Replicated Vendor CLI
 
 The Replicated Vendor CLI is a command-line interface that helps vendors package KOTS applications using a command-line interface, including the management of releases, channels, customers, and entitlements.
 
