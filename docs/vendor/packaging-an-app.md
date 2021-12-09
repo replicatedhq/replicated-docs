@@ -1,4 +1,4 @@
-# Packaging applications with app manager
+# How applications are packaged with app manager
 
 Software vendors with a Kubernetes application can package their app as a Kubernetes-off-The-Shelf (KOTS) software for distribution to enterprise customers as a modern on-prem, private instance.
 The packaging process leverages several KOTS components (some optional, some required).
@@ -12,10 +12,6 @@ The foundational open source projects that KOTS coordinates are [Replicated Kots
 
 This document starts with an overview on how to package and manage KOTS applications via the Replicated Vendor Portal (an API and CLI are available for more rapid or automated iteration).
 Please refer to our documentation of the [Kots CLI](/kots-cli/getting-started/) to install and manage a KOTS application via the command line, or our [Kotsadm documentation](/kotsadm/installing/installing-a-kots-app/) for managing an application via the admin console.
-
-## Getting Started as a KOTS Vendor
-It's easy to get started packaging an app in KOTS.
-To start, create a Replicated Vendor account at our [Vendor Portal](https://vendor.replicated.com) and follow one of our [Getting Started Guides](/vendor/guides/).
 
 ## Basic Packaging
 KOTS applications are packaged as a set of standard Kubernetes manifests.

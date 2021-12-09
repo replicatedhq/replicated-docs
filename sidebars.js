@@ -37,12 +37,11 @@ const sidebars = {
           type: 'category',
           label: 'Getting started',
           items: [
-			      'vendor/installing-replicated-cli',
+            'vendor/getting-started-vendor-account',
+            'vendor/installing-replicated-vendor-cli',
             'vendor/packaging-an-app',
             'vendor/packaging-custom-resources',
-            'vendor/packaging-channels-releases',
             'vendor/packaging-customers-and-licenses',
-            'vendor/packaging-promoting-releases',
             'vendor/packaging-embedded-kubernetes',
             'vendor/packaging-private-images',
             'vendor/packaging-template-functions',
@@ -56,11 +55,28 @@ const sidebars = {
         },
         {
           type: 'category',
+          label: 'Releases and channels',
+          items: [
+            'vendor/releases-understanding',
+            'vendor/releases-creating',
+            'vendor/releases-promoting',
+            'vendor/releases-updating',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Snapshots',
           items: [
             'vendor/snapshots-overview',
             'vendor/snapshots-configuring-backups',
             'vendor/snapshots-backup-hooks',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Tutorials',
+          items: [
+            'vendor/tutorial-existing-cluster',
           ],
         },
       ],
