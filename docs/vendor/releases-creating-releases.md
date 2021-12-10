@@ -15,14 +15,18 @@ For additional information about deploying releases, see our [community](https:/
 
   ![Create Release](/images/guides/kots/create-release.png)
 
- A YAML editor displays, where you can define how your application will work and the integration with KOTS functionality. You can use our [CLI and API](/vendor/cli) to automate this or manually edit YAML on this page. For more information about using using the CLI, see the [CLI setup guide](/vendor/guides/cli-quickstart/#2-setting-a-service-account-token).
+  A YAML editor displays.
 
- ![Default YAML](/images/guides/kots/default-yaml.png)
+1. In the YAML editor, you can define how your application will work and the integration with KOTS functionality. You can manually edit YAML on this page or use our [CLI and API](/vendor/cli) to automate this. For more information about using the CLI, see the [CLI setup guide](/vendor/guides/cli-quickstart/#2-setting-a-service-account-token).
 
-  The default YAML documents above the white line contains information for KOTS, preflight checks, customer configuration screen options, and support bundle analyzers for troubleshooting installs. You can learn about those [in the reference docs](/reference/v1beta1) but for now, let's
+  The default YAML documents (replicated-app.yaml, preflight.yaml, config.yaml, support-bundle.yaml) contain information for KOTS, preflight checks, customer configuration screen options, and support bundle analyzers for troubleshooting installs.
+
+  Additionally, you can add custom resource YAML files, such as Helm charts and Snapshots backups. For more information about working with the custom resource YAML files, see the [Reference documentation](/reference/v1beta1).
+
+  ![Default YAML](/images/guides/kots/default-yaml.png)
 
 1. Click **Save release**.
 
 ## Next steps
 
-Promote the release.
+Promote the release to a channel.

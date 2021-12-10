@@ -58,7 +58,8 @@ const sidebars = {
           label: 'Releases and channels',
           items: [
             'vendor/releases-understanding',
-            'vendor/releases-creating',
+            'vendor/releases-creating-channels',
+            'vendor/releases-creating-releases',
             'vendor/releases-promoting',
             'vendor/releases-updating',
           ],
