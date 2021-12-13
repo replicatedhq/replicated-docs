@@ -55,7 +55,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Releases and channels',
+          label: 'Channels and Releases',
           items: [
             'vendor/releases-understanding',
             'vendor/releases-creating-channels',

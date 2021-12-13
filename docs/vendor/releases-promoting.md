@@ -1,8 +1,8 @@
 # Promoting releases
 
-Semantic versioning is available in KOTS v1.58.0 and later. You can use the semantic version format for the version label that you assign to a release in the admin console. The version label lets you sequence releases on a channel. If the version label that you assign to a channel is in the semantic version format, the admin console uses the version label for sequencing of releases during updates.
+After you create a release, it must be promoted to a channel to be active.
 
-For releases that do not use semantic versioning, the admin console sequences them in the order of their creation.
+Releases are not editable after being promoted to a channel. However, release notes, version numbers, and the required status can be edited by visiting the channel’s history.
 
 To promote a release:
 
@@ -16,17 +16,12 @@ To promote a release:
 
 1. Edit the fields:
     * **Channel** Select which channel to promote the release to. The defaults are Stable, Beta, and Unstable. If you have created custom channels using the CLI, they are listed here also.
-    * **Version label** Enter a version label. You can use the semantic version format if you are using KOTS v1.58.0 or later.
+    * **Version label** Enter a version label. You can use the semantic version format if you are using KOTS v1.58.0 or later. If you are using semantic versioning, you must also enable the semantic versioning toggle in the channel settings. This toggle is disabled by default. If you use semantic versioning on a channel, we recommend that you always use semantic versioning on that channel.
     * **Release notes** Add detailed release notes. The release notes support markdown and will be shown to your customer.
     * **Required status** Give the release a status, either required or not required.
 
 1. Click **Promote**.
 
-  **Note:**  Releases are not editable after being promoted to a channel. However, release notes, version numbers, and the required status can be edited by visiting the channel’s history.
-
-1. If you are using semantic versioning, enable the `Require semver for releases promoted to this channel` toggle in the channel settings. This toggle is disabled by default.
-
-  **Note:** If you use semantic versioning on a channel, we recommend that you always use semantic versioning on that channel.
 
 #### This content needs to be moved to the Licenses content:
 
