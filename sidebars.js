@@ -89,12 +89,23 @@ const sidebars = {
         },
         {
           type: 'category',
+          label: 'Customizing the admin console',
+          items: [
+            'vendor/admin-console-customize-config-screen',
+            'vendor/admin-console-customize-app-icon',
+            'vendor/admin-console-display-app-status',
+            'vendor/admin-console-port-forwarding',
+            'vendor/admin-console-prometheus-monitoring',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Packaging a Kubernetes operator application',
           items: [
             'vendor/operator-packaging-about',
             'vendor/operator-defining-additional-images',
             'vendor/operator-referencing-images',
-            'vendor/operator-defining-additional-namespaces'
+            'vendor/operator-defining-additional-namespaces',
           ],
         },
         {
