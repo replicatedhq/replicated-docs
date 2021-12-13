@@ -75,6 +75,10 @@ const sidebars = {
           ],
         },
         {
+          type: 'doc',
+          id: 'vendor/identity-service-configuring',
+        },
+        {
           type: 'category',
           label: 'Snapshots',
           items: [
