@@ -106,6 +106,11 @@ const sidebars = {
         },
       ],
     },
+    {
+      type: 'link',
+      label: 'KOTS CLI Documentation',
+      href: 'https://kots.io/kots-cli/getting-started/'
+    },
   ],
 };
 
