@@ -19,10 +19,10 @@ To update a release:
     Any license installed from the selected channel will start with this new release, and any installation already running is prompted to update to the new release.
 
 1. To install and test this new release in a test server, connect to the admin console dashboard on port :8800 using a web browser.
-  At this point, it will likely show that our test application is "Up To Date" and that "No Updates Are Available". The admin console will check for new updates about every five hours but we can force it to check now.
+  At this point, it will likely show that our test application is "Up To Date" and that "No Updates Are Available". The admin console checks for new updates about every five hours, but you can force it to check now.
 
-1. From the Application or Version History tab, click **"Check For Updates**.
-  On the version history page the Deploy button is enabled. Additionally, it should say how many files were changed and how many lines are different. You can click on that to view the changes in the YAML file.
+1. To check for updates now, go to the Application or Version History tab and click **"Check For Updates**.
+  On the version history page, you see that the **Deploy** button is enabled. Additionally, it should say how many files were changed and how many lines are different. You can click on that to view the changes in the YAML file.
 
   ![View Update](/images/guides/kots/view-update.png)
 
