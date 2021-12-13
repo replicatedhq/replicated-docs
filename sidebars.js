@@ -89,6 +89,16 @@ const sidebars = {
         },
         {
           type: 'category',
+          label: 'Packaging a Kubernetes operator application',
+          items: [
+            'vendor/operator-packaging-about',
+            'vendor/operator-defining-additional-images',
+            'vendor/operator-referencing-images',
+            'vendor/operator-defining-additional-namespaces'
+          ],
+        },
+        {
+          type: 'category',
           label: 'Tutorials',
           items: [
             'vendor/tutorial-existing-cluster',
