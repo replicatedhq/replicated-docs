@@ -1,4 +1,4 @@
-# About customers and licenses
+# About customer licenses and entitlements
 
 Each customer you deploy to Replicated will need a separate license file for their installation.
 This license file identifies the customer & application during the installation and update processes.

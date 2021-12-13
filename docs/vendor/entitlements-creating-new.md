@@ -1,4 +1,4 @@
-# Creating new entitlements
+# Creating custom entitlements
 
 KOTS applications that are packaged and delivered through the Replicated [Vendor Portal](https://vendor.replicated.com) use per-customer licenses to install.
 Each of these licenses uniquely identifies the customer, defines their release channel, and defines _entitlement information_ about the customer.  
