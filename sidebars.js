@@ -66,6 +66,16 @@ const sidebars = {
         },
         {
           type: 'category',
+          label: 'Licenses and entitlements',
+          items: [
+            'vendor/licenses-and-entitlements-about',
+            'vendor/entitlements-built-in-using',
+            'vendor/entitlements-creating-new',
+            'vendor/entitlements-community-using',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Snapshots',
           items: [
             'vendor/snapshots-overview',
