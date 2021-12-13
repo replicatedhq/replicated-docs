@@ -90,6 +90,11 @@ const sidebars = {
             'vendor/tutorial-existing-cluster',
           ],
         },
+        {
+          type: 'link',
+          label: 'KOTS CLI Documentation',
+          href: 'https://kots.io/kots-cli/getting-started/'
+        },
       ],
     },
     {
@@ -105,11 +110,6 @@ const sidebars = {
           ],
         },
       ],
-    },
-    {
-      type: 'link',
-      label: 'KOTS CLI Documentation',
-      href: 'https://kots.io/kots-cli/getting-started/'
     },
   ],
 };
