@@ -80,6 +80,22 @@ const sidebars = {
         },
         {
           type: 'category',
+          label: 'Helm',
+          items: [
+            'vendor/helm-overview',
+            'vendor/helm-chart-components',
+            'vendor/helm-applications',
+            'vendor/helm-optional-charts',
+            'vendor/helm-optional-value-keys',
+            'vendor/helm-airgap-builder',
+            'vendor/helm-installing-native-helm',
+            'vendor/helm-native-helm-install-order',
+            'vendor/helm-installing-replicated-helm',
+            'vendor/helm-processing',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Snapshots',
           items: [
             'vendor/snapshots-overview',
