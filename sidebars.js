@@ -79,6 +79,10 @@ const sidebars = {
           id: 'vendor/identity-service-configuring',
         },
         {
+          type: 'doc',
+          id: 'vendor/preflight-support-bundle-creating',
+        },
+        {
           type: 'category',
           label: 'Helm',
           items: [
