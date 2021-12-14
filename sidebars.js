@@ -137,16 +137,6 @@ const sidebars = {
           items: [
             {
               type: 'category',
-              label: 'Kubernetes Installers',
-              items: [
-                'vendor/kubernetes-installers-about',
-                'vendor/kubernetes-installers-creating-api',
-                'vendor/kubernetes-installers-creating-ui',
-                'vendor/kubernetes-installers-advanced-options',
-              ],
-            },
-            {
-              type: 'category',
               label: 'Custom resources',
               items: [
                 'vendor/custom-resource-about',
