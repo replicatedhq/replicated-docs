@@ -132,6 +132,40 @@ const sidebars = {
           ],
         },
         {
+          type: 'category',
+          label: 'Reference',
+          items: [
+            {
+              type: 'category',
+              label: 'Custom resources',
+              items: [
+                'vendor/custom-resource-about',
+                'vendor/custom-resource-application',
+                'vendor/custom-resource-backup',
+                'vendor/custom-resource-config',
+                'vendor/custom-resource-helmchart',
+                'vendor/custom-resource-identity',
+                'vendor/custom-resource-preflight',
+                'vendor/custom-resource-redactor',
+                'vendor/custom-resource-sig-application',
+                'vendor/custom-resource-support-bundle',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Template functions',
+              items: [
+                'vendor/template-functions-about',
+                'vendor/template-functions-config-context',
+                'vendor/template-functions-identity-context',
+                'vendor/template-functions-kurl-context',
+                'vendor/template-functions-license-context',
+                'vendor/template-functions-static-context',
+              ],
+            },
+          ],
+        },
+        {
           type: 'link',
           label: 'KOTS CLI Documentation',
           href: 'https://kots.io/kots-cli/getting-started/'
