@@ -218,6 +218,14 @@ const sidebars = {
             'enterprise/updating-licenses',
           ],
         },
+        {
+          type: 'category',
+          label: 'Managing user accounts and access',
+          items: [
+            'enterprise/admin-console-authentication',
+            'enterprise/admin-console-rbac',
+          ],
+        },
       ],
     },
   ],
