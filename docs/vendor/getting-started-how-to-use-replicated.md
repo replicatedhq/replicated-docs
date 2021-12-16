@@ -5,12 +5,11 @@ NOTE: The intent is that all of these steps will be linked to the corresponding 
 
 1. [Create your vendor account](https://replicated-docs.netlify.app/docs/vendor/getting-started-vendor-account).
 1. [Install the Replicated vendor CLI](https://replicated-docs.netlify.app/docs/vendor/installing-replicated-vendor-cli).
-1. Review the checklist.
-1. Prepare your application package using the basic packaging, Helm chart packaging, and optionally use the advanced features. For more information, see [Understanding packaging with app manager](https://replicated-docs.netlify.app/docs/vendor/packaging-an-app) and [follow the planning checklist](https://replicated-docs.netlify.app/docs/vendor/planning-checklist).
-1. Optional: Package the application as a Kubernetes Operator application.
-1. Optional: Create a custom channel. Alternatively, you can use the default channels.
-1. Create a release.
-1. Promote the release to a channel.
-1. Create a customer and download the license.
-1. Optional: Make the release available through the download portal.
-1. Share the release download with customers.
+1. [Review the checklist and package the application package](https://replicated-docs.netlify.app/docs/vendor/planning-checklist).
+1. Optional: [Package the application as a Kubernetes Operator application](https://replicated-docs.netlify.app/docs/vendor/operator-packaging-about).
+1. Optional: [Create a custom channel or edit the default channels](https://replicated-docs.netlify.app/docs/vendor/releases-creating-channels).
+1. [Create a release](http://localhost:3000/docs/vendor/releases-creating-releases).
+1. [Promote the release to a channel](http://localhost:3000/docs/vendor/releases-promoting).
+1. Optional: [Create a custom entitlement](http://localhost:3000/docs/vendor/entitlements-creating-new).
+1. [Create a customer and download the license]**We have a content gap here - there is no existing procedure for creating a customer and downloading a license**. 
+1. Share the release and license with customers using either the download portal or by email.
