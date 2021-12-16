@@ -226,6 +226,10 @@ const sidebars = {
             'enterprise/auth-configuring-rbac',
           ],
         },
+        {
+          type: 'doc',
+          id: 'enterprise/monitoring-prometheus'
+        },
       ],
     },
   ],
