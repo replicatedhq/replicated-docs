@@ -230,6 +230,10 @@ const sidebars = {
           type: 'doc',
           id: 'enterprise/monitoring-prometheus'
         },
+        {
+          type: 'doc',
+          id: 'enterprise/troubleshooting-an-app'
+        },
       ],
     },
   ],
