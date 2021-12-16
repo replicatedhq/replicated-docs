@@ -220,10 +220,10 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Managing user accounts and access',
+          label: 'Managing user access',
           items: [
-            'enterprise/admin-console-authentication',
-            'enterprise/admin-console-rbac',
+            'enterprise/auth-identity-provider',
+            'enterprise/auth-configuring-rbac',
           ],
         },
       ],
