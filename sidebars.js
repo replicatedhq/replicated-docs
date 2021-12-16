@@ -182,10 +182,29 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'Dropdown Label',
+          label: 'Installing an application',
           items: [
-            'enterprise/hello-world-2',
-            'enterprise/hello-universe-2',
+            'enterprise/installing-overview',
+            'enterprise/installing-general-requirements',
+            {
+              type: 'category',
+              label: 'Installing on an existing cluster',
+              items: [
+                'enterprise/installing-existing-cluster-requirements',
+                'enterprise/installing-existing-cluster-persistent-storage',
+                'enterprise/installing-existing-cluster-online',
+                'enterprise/installing-existing-cluster-airgapped',
+                'enterprise/installing-existing-cluster-automation',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Installing on an embedded cluster with the Kubernetes installer',
+              items: [
+                'enterprise/installing-embedded-cluster-requirements',
+                'enterprise/installing-embedded-cluster',
+              ],
+            },
           ],
         },
       ],
