@@ -30,3 +30,7 @@ For additional information about deploying releases, see our [community](https:/
 ## Next steps
 
 Promote the release to a channel.
+
+## Additional resources
+
+[How to use the Replicated product](http://localhost:3000/docs/vendor/getting-started-how-to-use-replicated)
