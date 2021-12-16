@@ -228,7 +228,7 @@ const sidebars = {
         },
         {
           type: 'doc',
-          id: 'enterprise/monitoring-prometheus.md'
+          id: 'enterprise/monitoring-prometheus'
         },
       ],
     },
