@@ -44,7 +44,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Planning and customizing a package',
+          label: 'Planning and packaging an application',
           items: [
             'vendor/planning-checklist',
             'vendor/packaging-an-app',
@@ -110,19 +110,13 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Channels and Releases',
+          label: 'Releasing an application',
           items: [
             'vendor/releases-understanding',
             'vendor/releases-creating-channels',
             'vendor/releases-creating-releases',
             'vendor/releases-promoting',
             'vendor/releases-updating',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Licenses and entitlements',
-          items: [
             'vendor/licenses-and-entitlements-about',
             'vendor/entitlements-built-in-using',
             'vendor/entitlements-creating-new',

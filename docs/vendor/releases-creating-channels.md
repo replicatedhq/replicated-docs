@@ -36,3 +36,8 @@ To edit an existing channel:
     * Enable or disable semantic versioning on the channel
 
 1. Click **Save**.
+
+
+## Additional resources
+
+[How to use the Replicated product](http://localhost:3000/docs/vendor/getting-started-how-to-use-replicated)
