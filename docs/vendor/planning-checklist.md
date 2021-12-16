@@ -2,6 +2,7 @@
 
 NOTE: This checklist will include anything they need to consider, including
 using any of the following options and hyperlinks to specific info:
+
     1. Configure Helm charts. Which Helm workflow option do you want to use - Replicated Helm or native Helm?
     1. Configure custom resources. Which ones do you want to use?
     1. Configure ingress.
