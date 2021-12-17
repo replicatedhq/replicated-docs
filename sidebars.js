@@ -229,6 +229,20 @@ const sidebars = {
           id: 'enterprise/monitoring-prometheus'
         },
         {
+          type: 'category',
+          label: 'Snapshots',
+          items: [
+            'enterprise/snapshots-understanding',
+            'enterprise/snapshots-storage-destinations',
+            'enterprise/snapshots-configuring-nfs',
+            'enterprise/snapshots-configuring-hostpath',
+            'enterprise/snapshots-scheduling',
+            'enterprise/snapshots-restoring-partial',
+            'enterprise/snapshots-configuring-disaster-recovery',
+            'enterprise/snapshots-troubleshooting-backup-restore',
+          ],
+        },
+        {
           type: 'doc',
           id: 'enterprise/troubleshooting-an-app'
         },
