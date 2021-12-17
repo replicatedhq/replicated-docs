@@ -32,12 +32,9 @@ To promote a release:
 
 ## Next steps
 
-Create customers and download licenses.
+[Creating customers and downloading licenses](https://replicated-docs.netlify.app/docs/vendor/releases-creating-customer)
 
 ## Additional resources
 
-* ## Additional resources
-
-[How to use the Replicated product](http://localhost:3000/docs/vendor/getting-started-how-to-use-replicated)
-* [Checking for Updates](/kotsadm/updating/updating-kots-apps/#checking-for-updates)
-* Understanding releases and channels
+* [Understanding channels and releases](https://replicated-docs.netlify.app/docs/vendor/releases-understanding)
+* [How to release a packaged application](https://replicated-docs.netlify.app/docs/vendor/releases-workflow)

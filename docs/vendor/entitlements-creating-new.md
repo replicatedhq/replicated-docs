@@ -108,6 +108,10 @@ rp({
 });
 ```
 
+## Next steps
+
+[Creating customers and downloading licenses](https://replicated-docs.netlify.app/docs/vendor/releases-creating-customer)
+
 ## Additional resources
 
-[How to use the Replicated product](http://localhost:3000/docs/vendor/getting-started-how-to-use-replicated)
+[How to release a packaged application](https://replicated-docs.netlify.app/docs/vendor/releases-workflow)

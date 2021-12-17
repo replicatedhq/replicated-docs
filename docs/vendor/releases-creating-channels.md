@@ -37,7 +37,10 @@ To edit an existing channel:
 
 1. Click **Save**.
 
+## Next steps
+
+[Creating a release](https://replicated-docs.netlify.app/docs/vendor/releases-creating-releases)
 
 ## Additional resources
 
-[How to use the Replicated product](http://localhost:3000/docs/vendor/getting-started-how-to-use-replicated)
+[How to release a packaged application](https://replicated-docs.netlify.app/docs/vendor/releases-workflow)
