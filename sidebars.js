@@ -207,6 +207,15 @@ const sidebars = {
         },
         {
           type: 'category',
+          label: 'Using self-hosted image registries',
+          items: [
+            'enterprise/image-registry-existing-cluster',
+            'enterprise/image-registry-embedded-cluster',
+            'enterprise/image-registry-rate-limits',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Updating',
           items: [
             'enterprise/updating-kots-apps',
