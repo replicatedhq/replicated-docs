@@ -27,3 +27,7 @@ To update a release:
   ![View Update](/images/guides/kots/view-update.png)
 
 1. Click **Deploy** to apply the new YAML files. This should only take a few seconds to deploy.
+
+## Additional resources
+
+[How to release a packaged application](https://replicated-docs.netlify.app/docs/vendor/releases-workflow)
