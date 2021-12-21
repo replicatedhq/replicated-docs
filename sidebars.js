@@ -87,7 +87,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Customizing the admin console',
+              label: 'Customizing the admin console and download portal',
               items: [
                 'vendor/admin-console-customize-config-screen',
                 'vendor/admin-console-customize-app-icon',
