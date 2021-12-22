@@ -1,9 +1,12 @@
 # Customizing the application icon
 
-Selecting the right logo is important to making sure that brands are reflected properly in the Kots Admin Console.
-Here we will go over some tips for adding a 'proper' logo to an application YAML file.
+You can add a custom application icon that displays in the Replicated admin
+console and the download portal. Adding a custom icon helps ensure that your
+brand is reflected for your customers.
 
-To add a custom icon for an application, include an `icons` key under the `descriptor` where a src url and an image type will be specified.
+To add a custom application icon for the admin console and the download portal,
+create  an `application.yaml` file and include an `icons` key under the `descriptor`.
+In the `icons` key, specify a src url and an image type.
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -15,7 +18,7 @@ spec:
   icon: https://kots.io/images/kotsadm-logo-large@2x.png
 ```
 
-## Proper logo size
+## Proper admin console logo size
 For logos to look best in the Kots Admin Console, use a PNG or JPG that is square, at least 250x250 pixels, and exported at 2x. Logo's will be contained to a bounding box so although a logo with a rectangular shape will work, the logo may be small and hard to see. The next section will show an example.
 
 Here is the full Admin Console wordmark logo shown on the the login screen.

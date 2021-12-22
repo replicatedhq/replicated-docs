@@ -87,7 +87,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Customizing the admin console',
+              label: 'Customizing the admin console and download portal',
               items: [
                 'vendor/admin-console-customize-config-screen',
                 'vendor/admin-console-customize-app-icon',
@@ -118,7 +118,7 @@ const sidebars = {
             'vendor/releases-promoting',
             'vendor/entitlements-creating-new',
             'vendor/releases-creating-customer',
-            'vendor/releases-configuring-download-portal',
+            'vendor/releases-sharing-license-install-script',
             'vendor/releases-updating',
             'vendor/releases-understanding',
             'vendor/licenses-and-entitlements-about',
