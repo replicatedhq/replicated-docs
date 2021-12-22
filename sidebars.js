@@ -118,7 +118,7 @@ const sidebars = {
             'vendor/releases-promoting',
             'vendor/entitlements-creating-new',
             'vendor/releases-creating-customer',
-            'vendor/releases-configuring-download-portal',
+            'vendor/releases-sharing-license-install-script',
             'vendor/releases-updating',
             'vendor/releases-understanding',
             'vendor/licenses-and-entitlements-about',

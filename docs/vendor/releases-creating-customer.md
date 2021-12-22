@@ -1,6 +1,11 @@
-# Creating a customer and downloading a license
+# Creating a customer
 
-After you promote a release, create a customer and download the license.
+After you promote a release, create a customer and share the associated license
+file with the customer.
+
+## Create a customer
+
+To create a customer:
 
 1. From the [vendor portal](https://vendor.replicated.com), select Customers from the left menu.
 1. Click **Create Customer**.
@@ -18,13 +23,14 @@ After you promote a release, create a customer and download the license.
     | Customer fields | Lets you securely deliver customer-specific values or entitlements to the installation. The custom fields you create  apply to all customers. |
 
 1. Click **Save Changes**.
-1. From the Customer page, click the download license icon on the right side of the row.
-1. In the Opening _filename_ dialog, use the Save File default and click **OK**.
-    The file is saved to your Downloads folder by default.
+1. (Optional) Click the download license icon on the right side of the row to
+download and save the license file. You will send the license file to your customer
+in the next step. See [Next steps](#next-steps) below.
 
 ## Next steps
 
-Share the download and license with your customer either by email or by [configuring the download portal](http://localhost:3000/docs/vendor/releases-configuring-download-portal).
+Share the license file that you created with your customer along with the
+installation script. See [Sharing the license file and installation script](releases-sharing-license-install-script).
 
 ## Additional resources
 
