@@ -1,6 +1,6 @@
 # Customizing the application icon
 
-You can add a custom application icon to be displayed in the Replicated admin
+You can add a custom application icon that displays in the Replicated admin
 console and the download portal. Adding a custom icon helps ensure that your
 brand is reflected for your customers.
 

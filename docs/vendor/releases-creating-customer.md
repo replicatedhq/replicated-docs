@@ -23,9 +23,6 @@ To create a customer:
     | Customer fields | Lets you securely deliver customer-specific values or entitlements to the installation. The custom fields you create  apply to all customers. |
 
 1. Click **Save Changes**.
-1. (Optional) Click the download license icon on the right side of the row to
-download and save the license file. You will send the license file to your customer
-in the next step. See [Next steps](#next-steps) below.
 
 ## Next steps
 

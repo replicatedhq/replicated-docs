@@ -4,7 +4,7 @@ This topic describes how to share the license file and installation script with
 your customers so that they can install your application.
 
 For more information about how customers use the license file and installation
-script that you send them to install your application,
+script to install your application,
 see [Overview of installing an application with app manager](../enterprise/installing-overview).
 
 ## Share the license file
@@ -29,7 +29,7 @@ To download and share the license file:
 1. Click the download license icon on the right side of the row.
 1. In the Opening _filename_ dialog, use the Save File default and click **OK**.
     The file is saved to your Downloads folder by default.
-1. Send the license file to the customer along with their installation script.
+1. Send the license file to your customer along with their installation script.
 See [Share the installation script](#share-the-installation-script).
 
 ### Share the license file through the download portal
@@ -44,7 +44,7 @@ this password to log in to the download portal.
 This is the URL where your customer can access the download portal.
 1. (Optional) Click **Visit download portal** to log in to the download portal
 and preview your customer's experience.
-1. Send the URL and password for the download portal to the customer along with
+1. Send the URL and password for the download portal to your customer along with
 their installation script. See [Share the installation script](#share-the-installation-script).
 
 ## Share the installation script
@@ -66,13 +66,13 @@ customer is assigned.
    * Click **Embedded Cluster** if your customer does not have an existing Kubernetes
    cluster and will install your application on a cluster created by the Kubernetes
    installer.
-1. Copy the command displayed and share it with your customer along with their
+1. Copy the command displayed and send it to your customer along with their
 license file.
 
 ## Next steps
 
 For more information about how customers use the license file and installation
-script that you send them to install your application,
+script to install your application,
 see [Overview of installing an application with app manager](../enterprise/installing-overview).
 
 ## Additional resources
