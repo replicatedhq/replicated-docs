@@ -69,12 +69,6 @@ customer is assigned.
 1. Copy the command displayed and send it to your customer along with their
 license file.
 
-## Next steps
-
-For more information about how customers use the license file and installation
-script to install your application,
-see [Overview of installing an application with app manager](../enterprise/installing-overview).
-
 ## Additional resources
 
 [How to release a packaged application](https://replicated-docs.netlify.app/docs/vendor/releases-workflow)
