@@ -46,7 +46,7 @@ const sidebars = {
           type: 'category',
           label: 'Planning and packaging an application',
           items: [
-            'vendor/planning-checklist',
+            'vendor/packaging-planning-checklist',
             'vendor/packaging-an-app',
             'vendor/packaging-custom-resources',
             'vendor/packaging-embedded-kubernetes',
