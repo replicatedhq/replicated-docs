@@ -2,9 +2,9 @@
 
 This is a lightweight checklist to help you plan the packaging of your application. This list helps you explore the Replicated features and integrate the ones that will help your end users be successful in deploying and running your application.
 
-This document includes implementation steps and a questionnaire for your end users to help you better understand the specifics of their environment and needs.
+This document includes implementation steps and a questionnaire for your end users to help you better understand the specifics of their environments.
 
-## Implementation Steps
+## Implementation Checklist
 
 ### Basic Whitelabeling
 
