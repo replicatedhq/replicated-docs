@@ -1,8 +1,32 @@
-# Private images and registry credentials
+# Using private image registries
 
-When building your application, you have the option to use the Replicated private registry or any supported external private or public registry.
+This topic describes how to use the Replicated private registry or any supported external private or public registry with your application.
 
-## External Registry Support
+To follow a tutorial on using an Amazon Elastic Container Registry (ECR) with your application, see [Using ECR for private images](tutorial-ecr-private-images).
+
+## Use the Replicated private registry
+
+When using the Replicated Private Registry, you have 2 options to connect with the `registry.replicated.com` container registry:
+1. Use `docker login registry.replicated.com` with your Vendor portal email and password credentials
+2. Use `docker login registry.replicated.com` with a Vendor Portal [API token](/vendor/guides/cli-quickstart/#2-setting-a-service-account-token) for both username and password.
+
+Once logged in, you will need to tag your image. Replicated accepts images in the standard Docker format: `registry.replicated.com/<application-slug>/<image-name>:<version>`. You can find your application slug on the Images page of the [Replicated Vendor Portal](https://vendor.replicated.com/#/images).
+
+An example of tagging an existing image is:
+
+```shell
+$ docker tag worker registry.replicated.com/myapp/worker:1.0.1
+```
+
+Once the image is tagged you can use `docker push` to push your private image to the Replicated private registry:
+```shell
+$ docker push registry.replicated.com/app-slug/image:tag
+```
+
+For additional information on building, tagging and pushing docker images, please refer to the
+[Docker CLI Documentation](https://docs.docker.com/engine/reference/commandline/cli/).
+
+## Use an external registry
 
 When packaging and delivering an enterprise application, a common problem is the need to include private Docker images.
 Most enterprise applications consist of public images (postgres, mysql, redis, elasticsearch) and private images (the application images).
@@ -65,28 +89,6 @@ Images hosted at `registry.replicated.com` will not be rewritten.
 However, the same secret will be added to those PodSpecs as well.
 
 > KOTS [Application](/reference/v1beta1/application/) deployments are supported via image tags in all use cases. KOTS has limited support for deploying via image digests. Use of image digests are only supported for fully online installs where all images can be pulled from the Replicated registry, a public repo, or proxied from a private repo via the Replicated registry.
-
-## Replicated Private Registry
-
-When using the Replicated Private Registry, you have 2 options to connect with the `registry.replicated.com` container registry:
-1. Use `docker login registry.replicated.com` with your Vendor portal email and password credentials
-2. Use `docker login registry.replicated.com` with a Vendor Portal [API token](/vendor/guides/cli-quickstart/#2-setting-a-service-account-token) for both username and password.
-
-Once logged in, you will need to tag your image. Replicated accepts images in the standard Docker format: `registry.replicated.com/<application-slug>/<image-name>:<version>`. You can find your application slug on the Images page of the [Replicated Vendor Portal](https://vendor.replicated.com/#/images).
-
-An example of tagging an existing image is:
-
-```shell
-$ docker tag worker registry.replicated.com/myapp/worker:1.0.1
-```
-
-Once the image is tagged you can use `docker push` to push your private image to the Replicated private registry:
-```shell
-$ docker push registry.replicated.com/app-slug/image:tag
-```
-
-For additional information on building, tagging and pushing docker images, please refer to the
-[Docker CLI Documentation](https://docs.docker.com/engine/reference/commandline/cli/).
 
 ## Additional namespaces
 
