@@ -115,14 +115,22 @@ const sidebars = {
             'vendor/releases-creating-channels',
             'vendor/releases-creating-releases',
             'vendor/releases-promoting',
-            'vendor/entitlements-creating-new',
-            'vendor/releases-creating-customer',
+            {
+              type: 'category',
+              label: 'Creating a customer',
+              items: [
+                'vendor/releases-creating-customer',
+                'vendor/licenses-about',
+                'vendor/licenses-about-types',
+                'vendor/licenses-using-builtin-fields',
+                'vendor/licenses-adding-custom-fields',
+                'vendor/licenses-manifest-files-api',
+              ],
+            },
+
             'vendor/releases-sharing-license-install-script',
             'vendor/releases-updating',
             'vendor/releases-understanding',
-            'vendor/licenses-and-entitlements-about',
-            'vendor/entitlements-built-in-using',
-            'vendor/entitlements-community-using',
           ],
         },
         {

@@ -1,7 +1,10 @@
 # Creating a customer
 
-After you promote a release, create a customer and share the associated license
-file with the customer.
+After you promote a release, you create a customer.
+
+Each customer you create has a unique license file. The license file includes several built-in and custom fields that define the customer's entitlements. For example, if the license has an expiration date or if there is a limited number of users for the application.
+
+For more information about customer licenses, see [About customer licenses](licenses-about).
 
 ## Create a customer
 
@@ -17,10 +20,10 @@ To create a customer:
 
     | Field                  | Description           |
     |-----------------------|------------------------|
-    | Expiration policy | Defines how long the customer’s license will be valid and how to handle expired licenses. **Default:** Cusomer's license does not expire |
-    | Customer type| The type of customer is used solely for reporting purposes. Their access to your app is not affected by the type you assign to them. **Options:** Development, Trial, Paid, Community **Default:** Trial|
-    | License options | Enables the options that you have added to the application package. **Options:** Airgap, Gitops, Identity Service, Support Bundle Upload, Allow Snapshots|
-    | Customer fields | Lets you securely deliver customer-specific values or entitlements to the installation. The custom fields you create  apply to all customers. |
+    | Expiration policy | Defines how long the customer’s license will be valid and how to handle expired licenses. **Default:** The license does not expire. |
+    | Customer type| The type of customer is used solely for reporting purposes. Their access to your app is not affected by the type you assign to them. **Options:** Development, Trial, Paid, Community **Default:** Trial. For more information, see [About customer license types](licenses-about-types).|
+    | License options | Enables the options that you have added to the application package. **Options:** Airgap, Gitops, Identity Service, Support Bundle Upload, Allow Snapshots. For more information, see [About built-in license fields](licenses-using-builtin-fields).|
+    | Custom fields | Lets you securely deliver customer-specific values or entitlements to the installation. The custom fields you create apply to all customers. For more information, see [Creating custom license fields](licenses-adding-custom-fields).|
 
 1. Click **Save Changes**.
 
