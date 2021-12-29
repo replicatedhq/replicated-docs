@@ -2,7 +2,7 @@
 
 After you promote a release, you create a customer.
 
-Each customer you create has a unique license file. The license file includes several built-in and custom fields that define the customer's entitlements. For example, if the license has an expiration date or if there is a limited number of users for the application.
+Each customer that you create in the Replicated vendor portal has a unique license file. Each customer license uniquely identifies the customer and the application, specifies their release channel, and defines _entitlement information_ about the customer.
 
 For more information about customer licenses, see [About customer licenses](licenses-about).
 

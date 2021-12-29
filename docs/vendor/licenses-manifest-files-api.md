@@ -1,10 +1,10 @@
-# Defining license fields in manifest files or the API
+# Defining a customer license in manifest files or the API
 
 In addition to defining license fields through the Replicated vendor portal UI, you can also define them in the Kubernetes manifest files or by querying the license fields at runtime.
 
-## Set license fields
+## About defining license fields
 
-These fields can be read from both the template functions, as well as from Admin Console API. 
+These fields can be read from both the template functions, as well as from Admin Console API.
 
 You can set license fields for a customer in one of the following ways:
 
