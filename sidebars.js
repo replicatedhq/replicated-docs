@@ -173,6 +173,14 @@ const sidebars = {
           label: 'KOTS CLI Documentation',
           href: 'https://kots.io/kots-cli/getting-started/'
         },
+        {
+          type: 'category',
+          label: 'Policies',
+          items: [
+                'vendor/policies-vulnerability-patch-policy',
+                'vendor/policies-data-transmission-policy',
+              ],
+        },
       ],
     },
     {
