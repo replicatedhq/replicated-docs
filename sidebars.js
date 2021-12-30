@@ -176,8 +176,8 @@ const sidebars = {
           type: 'category',
           label: 'Policies',
           items: [
-                'vendor/policies-vulnerability-patch-policy',
-                'vendor/policies-data-transmission-policy',
+                'vendor/policies-vulnerability-patch',
+                'vendor/policies-data-transmission',
               ],
         },
       ],
