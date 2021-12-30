@@ -57,7 +57,6 @@ const sidebars = {
             'vendor/packaging-using-tls-certs',
             'vendor/packaging-cleaning-up-jobs',
             'vendor/packaging-rbac',
-            'vendor/packaging-vulnerability-patch-policy',
             'vendor/identity-service-configuring',
             'vendor/preflight-support-bundle-creating',
             {
