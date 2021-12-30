@@ -1,6 +1,7 @@
 # About built-in license fields
 
-This topic describes the built-in license fields. For information about creating custom license fields for a customer, see [Creating custom license fields](licenses-adding-custom-fields).
+This topic describes the built-in license fields. For information about creating
+custom license fields for a customer, see [Creating custom license fields](licenses-adding-custom-fields).
 
 ## Built-in license fields
 

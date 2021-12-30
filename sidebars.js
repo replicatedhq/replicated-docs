@@ -124,7 +124,7 @@ const sidebars = {
                 'vendor/licenses-about-types',
                 'vendor/licenses-using-builtin-fields',
                 'vendor/licenses-adding-custom-fields',
-                'vendor/licenses-manifest-files-api',
+                'vendor/licenses-referencing-fields',
               ],
             },
 

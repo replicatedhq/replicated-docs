@@ -3,12 +3,11 @@
 There are three default channels that can be configured, and you can add custom channels.
 
 The default channels are:
-* **Stable**: The Stable channel is intended to be used for production installations.
+* **Stable**: The Stable channel is intended for production installations.
 * **Unstable**: The Unstable channel is intended for internal testing.
-* **Beta**: The Beta channel is intended for internal testing.
+* **Beta**: The Beta channel is intended for release candidates and early adopting customers.
 
-You will assign a customer to one or more of these channels. When you assign a customer to multiple channels, the customer selects the channel when they install your application. The customer can later change the release channel in the management console.
-For installations in air gapped environments, the customer selects the channel during download.
+For more information, see [Understanding channels and releases](releases-understanding).
 
 ## Create a channel
 

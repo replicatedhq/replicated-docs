@@ -17,9 +17,9 @@ about the customer.
 Entitlement information describes the details of the license, such as if the license
 has an expiration date.
 
-Replicated securely delivers these entitlements to the application. Replicated makes
-the entitlements available in the Kubernetes manifest files or at runtime using the
-Replicated admin console license API.
+Replicated securely delivers these entitlements to the application and makes them
+available in the Kubernetes manifest files or at runtime using the Replicated admin
+console API.
 
 ## About license types
 
@@ -28,7 +28,7 @@ by the `license_type` field is used solely for reporting purposes. A customer's
 access to your application is not affected by the type that you assign.
 
 The possible values for the `license_type` field are development, trial, paid, and
-community. For more information about each of these types, see [About customer license types](licenses-about-types).
+community. For more information about each type, see [About customer license types](licenses-about-types).
 
 ## About built-in and custom license fields
 
@@ -43,11 +43,27 @@ are supported.
 For more information about built-in fields, see [About built-in license fields](licenses-using-builtin-fields).
 
 You can also create custom license fields. Custom license fields are useful when
-there are entitlements specific to the customer. For example, you could define a
-`seat_count` custom field that defines the maximum number of users for your application
-for the specific customer.
+there are entitlements specific to the customer.
+
+For example, you can create a custom license field to limit the number of active
+users permitted. Or, you can create a field that specifies the domain on which
+the customer can run the application.
 
 For more information about creating custom license fields, see [Creating custom license fields](licenses-adding-custom).
+
+## About referencing license fields
+
+After you define built-in or custom license fields for a customer, you must create
+a reference to the license fields. This ensures that the customer's application
+instance provides the entitlements that you defined in their license file.
+
+You can reference the license fields when your customer installs or updates your
+application by writing the fields to a Kubernetes manifest file.
+
+You can also reference the license fields during application runtime by querying
+the admin console API for the license field values.
+
+For more information, see [Referencing license fields](licenses-referencing-fields).
 
 ## About archiving customer licenses
 

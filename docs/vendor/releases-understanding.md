@@ -27,6 +27,10 @@ More details can be found in our [Promote Releases documentation](/vendor/packag
 ## Manage Release Channels
 By default, there are 3 release channels: Stable, Beta and Unstable. When you first log in to Replicated and select the Channels tab, you’ll see these default release channels created.
 You can delete, edit, or create new channels at any time.
+
+You assign a customer to one or more of these channels. When you assign a customer to multiple channels, the customer selects the channel when they install your application. The customer can later change the release channel in the management console.
+For installations in air gapped environments, the customer selects the channel during download.
+
 The channels Replicated creates by default are commonly used for:
 
 ### Unstable
