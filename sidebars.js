@@ -57,7 +57,6 @@ const sidebars = {
             'vendor/packaging-using-tls-certs',
             'vendor/packaging-cleaning-up-jobs',
             'vendor/packaging-rbac',
-            'vendor/packaging-vulnerability-patch-policy',
             'vendor/identity-service-configuring',
             'vendor/preflight-support-bundle-creating',
             {
@@ -172,6 +171,14 @@ const sidebars = {
           type: 'link',
           label: 'KOTS CLI Documentation',
           href: 'https://kots.io/kots-cli/getting-started/'
+        },
+        {
+          type: 'category',
+          label: 'Policies',
+          items: [
+                'vendor/policies-vulnerability-patch',
+                'vendor/policies-data-transmission',
+              ],
         },
       ],
     },
