@@ -165,13 +165,24 @@ const sidebars = {
                 'vendor/template-functions-static-context',
               ],
             },
+            {
+              type: 'link',
+              label: 'KOTS CLI Documentation',
+              href: 'https://kots.io/kots-cli/getting-started/'
+            },
+            {
+              type: 'link',
+              label: 'Vendor API v3 Documentation',
+              href: 'https://replicated-vendor-api.readme.io/v3/'
+            },
+            {
+              type: 'link',
+              label: 'Vendor API v3 Spec',
+              href: 'https://api.replicated.com/vendor/v3/spec/vendor-api-v3.json'
+            },
           ],
         },
-        {
-          type: 'link',
-          label: 'KOTS CLI Documentation',
-          href: 'https://kots.io/kots-cli/getting-started/'
-        },
+
         {
           type: 'category',
           label: 'Policies',
