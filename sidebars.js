@@ -129,7 +129,6 @@ const sidebars = {
           type: 'category',
           label: 'Tutorials',
           items: [
-            'vendor/tutorial-existing-cluster',
             'vendor/tutorial-ecr-private-images'
           ],
         },
