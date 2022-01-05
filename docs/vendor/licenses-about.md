@@ -53,15 +53,18 @@ For more information about creating custom license fields, see [Creating custom 
 
 ## About referencing license fields
 
-After you define built-in or custom license fields for a customer, you must create
-a reference to the license fields. This ensures that the customer's application
-instance provides the entitlements that you defined in their license file.
+After you define built-in or custom license fields for a customer in the vendor
+portal, you create references to these license fields that your application can
+query.
 
-You can reference the license fields when your customer installs or updates your
+This ensures that the customer's application instance can enforce the entitlements
+that you defined in their license file.
+
+You can query the license fields when your customer installs or updates your
 application by writing the fields to a Kubernetes manifest file.
 
-You can also reference the license fields during application runtime by querying
-the admin console API for the license field values.
+You can also query the license fields during application runtime by sending an HTTP
+request to the admin console API.
 
 For more information, see [Referencing license fields](licenses-referencing-fields).
 

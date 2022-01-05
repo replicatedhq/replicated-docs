@@ -6,15 +6,16 @@ see [Using built-in license fields](licenses-using-builtin-fields).
 
 ## Overview of creating custom license fields
 
-You can add custom license fields for a customer. Custom license fields are useful
-when there are entitlements specific to the customer.
+You can add custom license fields in the Replicated vendor portal. Custom license
+fields are useful when there is entitlement information that applies to a subset
+of customers.
 
 For example, you can create a custom license field to limit the number of active
-users permitted. Or, you can create a field that specifies the domain on which
-the customer can run the application.
+users permitted. Or, you can create a field that limits the number of nodes a
+customer is permitted on their cluster.
 
-After you create a custom license field, it is displayed for all customers that
-you created in the Replicated vendor portal.
+After you create a custom license field, it is displayed in the vendor portal for
+all new and existing customers.
 If the custom field is not hidden, it is also displayed under the **Licenses**
 tab for customers in the Replicated admin console.
 

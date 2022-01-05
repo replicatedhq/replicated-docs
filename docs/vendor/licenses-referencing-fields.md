@@ -1,57 +1,91 @@
 # Referencing license fields
 
-This topic describes how to reference license fields.
+This topic describes how to create references to the license fields that you defined
+for a customer in the Replicated vendor portal.
 
-For information about built-in license fields, see [About built-in license fields](licenses-using-builtin-fields). For information about creating custom license fields, see [Creating custom license fields](licenses-adding-custom-fields).
+For information about the built-in license fields, see [About built-in license fields](licenses-using-builtin-fields).
+For information about creating custom license fields, see [Creating custom license fields](licenses-adding-custom-fields).
 
 ## Overview of referencing license fields
 
-After you define built-in or custom license fields for a customer, you must create a reference to the license fields. This ensures that the customer's application instance provides the entitlements that you defined in their license file.
+After you define built-in or custom license fields for a customer in the vendor
+portal, you create references to these license fields that your application can
+query.
 
-To reference the license fields, you can do one of the following:
+This ensures that the customer's application instance can enforce the entitlements
+that you defined in their license file.
 
-* **Using application manifests**: Write the fields to a Kubernetes manifest. The LicenseFieldValue template function then accesses license fields during application installation and update. See [Write license fields to Kubernetes manifests](#write-license-fields-to-kubernetes-manifests) below.
-* **Using the admin console API**: Query the license field from the application during runtime using the admin console API. See [Query license fields at runtime](#query-license-fields-at-runtime) below.
+To reference a license field, you can:
 
-### Write license fields to Kubernetes manifests
+* **Write license fields to Kubernetes manifests**: Create references to license
+fields in Kubernetes manifest files. This allows you to enforce entitlements when
+your customer installs or updates your application. See [Write license fields to Kubernetes manifests](#write-license-fields-to-kubernetes-manifests) below.
+* **Query the admin console API**: Query the license field from the application
+using the admin console API. This allows you to enforce entitlements during
+application runtime. See [Query license fields from the API](#query-license-fields-from-the-api)
+below.
 
-The LicenseFieldValue template function accesses license fields when a customer installs or updates your application. For more information, see [LicenseFieldValue](template-functions-license-context#licensefieldvalue) in _License context_.
+## Write license fields to Kubernetes manifests
 
-You can write license fields to a Kubernetes manifest file to allow the LicenseFieldValue template function to read the values during installation or update.
+This section describes referencing license fields in Kubernetes manifest files.
 
-For example, the `seat_count` custom license field below limits the number of users that a license is permitted:
+### About writing license fields to Kubernetes manifests
 
-| Name | Key | Type | Description | Default Value |
-|------|-----|------|-------------|---------------|
-| Seat Count | seat_count | Integer | The maximum number of users permitted | 50 |
+To enforce entitlements when your customer installs or updates your application,
+you can reference built-in and custom license fields in a Kubernetes manifest.
 
-The following manifest file shows how to write this `seat_count` value to an environment variable in a pod that is part of an API deployment:
+The Replicated app manager uses the `LicenseFieldValue` template function to read
+license fields when a customer installs or updates your application. For more
+information, see [LicenseFieldValue](template-functions-license-context#licensefieldvalue) in _License context_.
+
+### Example: Reference a custom license field in a preflight check
+
+For example, a license might limit how many nodes are permitted in a customer's
+cluster.
+You could define this limit by creating a `node_count` custom license field:
+
+| Name | Key | Type | Description |
+|------|-----|------|-------------|
+| Node Count | node_count | Integer | The maximum number of nodes permitted |
+
+To enforce the node count when a customer installs or updates your application,
+you can create a preflight check that references the `node_count` field:
 
 ```
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: troubleshoot.replicated.com/v1beta1
+kind: Preflight
 metadata:
-  name: api
+  name: example-preflight-checks
 spec:
-  selector:
-    matchLabels:
-      app: api
-  template:
-    spec:
-      containers:
-      - image: myapp/api:v1.0.1
-        name: api
-        env:
-          - name: SEAT_COUNT
-            value: '{{repl LicenseFieldValue "seat_count" }}
-```            
+  analyzers:
+    - nodeResources:
+        checkName: Node Count Check
+        outcomes:
+          - fail:
+              when: 'count() > {{repl LicenseFieldValue "node_count"}}'
+              message: The cluster has more nodes than the {{repl LicenseFieldValue "node_count"}} you are licensed for.
+          - pass:
+              message: The number of nodes matches your license ({{repl LicenseFieldValue "node_count"}})
+```
 
+In the example above, the manifest defines a preflight check that uses the `nodeResources`
+analyzer and the value of the `node_count` license field to determine if the customer
+has exceeded the maximum number of nodes permitted by their license.
 
-### Query license fields at runtime
+This preflight check runs during application installation and update, and prevents
+the installation or update from continuing if the maximum number of nodes defined
+by the `node_count` license field is exceeded.
 
-The Replicated admin console runs on the customer's cluster and provides entitlement information during application runtime.
+For more information, see [How Can I Use License Custom Fields Value in a Pre-Flight Check?](https://help.replicated.com/community/t/how-can-i-use-license-custom-fields-value-in-a-pre-flight-check/624) in Replicated Community.
 
-To reference license fields at runtime, you can send an http request to the admin console API `/license/v1/license` endpoint at the following location:
+## Query license fields from the API
+
+The Replicated admin console runs on the customer's cluster and provides entitlement
+information during application runtime. You can query the admin console API to
+enforce entitlements at runtime.
+
+To reference license fields at runtime, send an HTTP request to the admin console
+API `/license/v1/license` endpoint at the following location:
 
 ```
 http://kotsadm:3000/license/v1/license
@@ -71,9 +105,11 @@ The admin console API returns a response in YAML format. For example:
   {"field":"Modules","title":"Enabled Modules","type":"String","value":"Analytics, Integration"}]}
 ```
 
-To return a license field value, parse the response using the name of the license field.
+To return a license field value, parse the response using the name of the license
+field.
 
-For example, the following Javascript parses the API response for the value of the `seat_count` custom field:
+For example, the following Javascript parses the API response for the value of a
+`seat_count` custom field:
 
 ```javascript
 import * as rp from "request-promise";
