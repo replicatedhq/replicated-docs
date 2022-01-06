@@ -1,6 +1,6 @@
 # Deploying a high availability cluster
 
-In this guide, we will walk through the steps needed to take enable Kubernetes high availability capabilities with a cluster installed by kURL and managed by KOTS. This only applies to embedded cluster installs using kURL.
+In this guide, we will walk through the steps needed to enable Kubernetes high availability capabilities with a cluster installed by kURL and managed by KOTS. This only applies to embedded cluster installs using kURL.
 
 ## Objective
 
