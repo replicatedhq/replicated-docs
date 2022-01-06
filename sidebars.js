@@ -82,6 +82,7 @@ const sidebars = {
                   'vendor/snapshots-overview',
                   'vendor/snapshots-configuring-backups',
                   'vendor/snapshots-backup-hooks',
+                  'vendor/snapshots-backup-hooks-usecase'
               ],
             },
             {
