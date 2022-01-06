@@ -2,6 +2,13 @@
 
 There are three default channels that can be configured, and you can add custom channels.
 
+The default channels are:
+* **Stable**: The Stable channel is intended for production installations.
+* **Unstable**: The Unstable channel is intended for internal testing.
+* **Beta**: The Beta channel is intended for release candidates and early adopting customers.
+
+For more information, see [Understanding channels and releases](releases-understanding).
+
 ## Create a channel
 
 To create a channel:
