@@ -137,7 +137,8 @@ const sidebars = {
           type: 'category',
           label: 'Tutorials',
           items: [
-            'vendor/tutorial-ecr-private-images'
+            'vendor/tutorial-ecr-private-images',
+            'vendor/tutorial-ha-cluster-deploying',
           ],
         },
         {
