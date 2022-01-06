@@ -140,6 +140,7 @@ const sidebars = {
           items: [
             'vendor/tutorial-ecr-private-images',
             'vendor/tutorial-ha-cluster-deploying',
+            'vendor/tutorial-ci-cd-integration',
           ],
         },
         {
