@@ -141,6 +141,7 @@ const sidebars = {
             'vendor/tutorial-ecr-private-images',
             'vendor/tutorial-ha-cluster-deploying',
             'vendor/tutorial-ci-cd-integration',
+            'vendor/tutorial-adding-db-config',
           ],
         },
         {
