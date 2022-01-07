@@ -4,12 +4,12 @@ KOTS applications have access to a rich set of template functions that can be us
 
 KOTS uses Go's [text/template](https://golang.org/pkg/text/template/) libraries as the basis for the templating. All functionality of Go's templating language can be used in conjuction with KOTS custom functions.
 
-All template functions are documented in the [template function reference](/reference/template-functions) section of these docs.
+All template functions are documented in the [template function reference](template-functions-about) section of these docs.
 
 ## Using Template Functions
 
 To use a template function, include it as a string in the application.
-A simple example is using a boolean [custom entitlement field](/vendor/entitlements/custom-entitlements/) to deliver a value for Max Concurrent Users.
+A simple example is using a boolean [custom entitlement field](licenses-adding-custom-fields) to deliver a value for Max Concurrent Users.
 This value should be available as an environment variable in a pod.
 
 Given the custom license field named `max_concurrent_users`, this value can be supplied to the pod environment variable like this:
@@ -90,10 +90,10 @@ And Kubernetes will be able to handle this.
 A result returned from a template function can be assigned to a variable, and the variable can be used in another template function as long as the templates are evaluated at the same time.
 All application YAML documents are templated in a single pass.
 
-The application [Config file](/reference/v1beta1/config/) is an exception.
+The application [Config file](custom-resource-config) is an exception.
 Each config item is templated separately and has no access to variables created in other config items.
 As a workaround, a hidden config item can be used to evaluate complex templates and render the results.
-The result can be accessed using the [ConfigOption](/reference/template-functions/config-context/#configoption) function.
+The result can be accessed using the [ConfigOption](template-functions-config-context#configoption) function.
 
 ### Generating TLS certs and keys example
 

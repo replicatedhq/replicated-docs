@@ -8,15 +8,15 @@ This document includes implementation steps and a questionnaire for your end use
 
 ### Basic Whitelabeling
 
-All applications should be whitelabeled with [a title and an icon](/reference/v1beta1/application/#title).
+All applications should be whitelabeled with [a title and an icon](custom-resource-application#title).
 
 ### Status Informers
 
-Applications should integrate [StatusInformers](/vendor/config/application-status) to ensure information about app readiness is presented to the user during initial install and start-up.
+Applications should integrate [StatusInformers](admin-console-display-app-status) to ensure information about app readiness is presented to the user during initial install and start-up.
 
 ### Allowing Rollbacks
 
-If an application is guaranteed not to introduce backwards-incompatible versions (e.g. via database migrations), the [allowRollback](/reference/v1beta1/application/#allowrollback) flag can allow end users to easily roll back to previous versions (this will not revert any state, just the YAML manifests that are applied to the cluster).
+If an application is guaranteed not to introduce backwards-incompatible versions (e.g. via database migrations), the [allowRollback](custom-resource-application#allowrollback) flag can allow end users to easily roll back to previous versions (this will not revert any state, just the YAML manifests that are applied to the cluster).
 
 
 ### Adding Preflight Checks
@@ -28,7 +28,7 @@ There are a number of basic examples for checking CPU, memory, and disk capacity
 ### Managing Stateful Services
 
 In the [persistent datastores guide](/vendor/guides/persistent-datastores), we review best practices for integrating persistent stores like databases, queues, and caches.
-Explore ways to give an end user the option to either embed an instance alongside the application, or connect an appplication to an external instance that they will manage.
+Explore ways to give an end user the option to either embed an instance alongside the application, or connect an application to an external instance that they will manage.
 
 If you expect to also install stateful services into existing clusters, you'll likely want to expose [preflight analyzers that check for the existence of a storage class](https://troubleshoot.sh/reference/analyzers/storage-class/).
 
@@ -77,7 +77,7 @@ spec:
 
 Helm charts are supported by KOTS but not required.
 If for applications that are already packaged using helm, then the helm support in KOTS can help get an app packaged faster.
-If an application does not presently use helm, there's no requirement to use helm, as the KOTS built-in templating includes much of the same functionality, and the admin console includes a deep [kustomize.io integration](/kotsadm/updating/patching-with-kustomize) to greatly reduce the amount of templating required by app maintainers in the first place.
+If an application does not presently use helm, there's no requirement to use helm, as the KOTS built-in templating includes much of the same functionality, and the admin console includes a deep [kustomize.io integration](../enterprise/updating-patching-with-kustomize) to greatly reduce the amount of templating required by app maintainers in the first place.
 
 ### Operators
 Operators are good for specific use cases, we've written in-depth about them in our [Operators Blog Post](https://blog.replicated.com/operators-in-kots/).
@@ -102,13 +102,13 @@ As common issues are encountered in the field, it will make sense to add not onl
 
 ### Adding Prometheus Graphs
 
-If an application exposes Prometheus metrics, we recommend integrating [Custom Graphs](/vendor/config/dashboard-graphs) to expose these metrics to end users.
+If an application exposes Prometheus metrics, we recommend integrating [Custom Graphs](admin-console-prometheus-monitoring) to expose these metrics to end users.
 
 
 ### Building a Collaborative Workflow
 
 We recommend using a git-based workflow, as presented in the [KOTS starter Repo](https://github.com/replicatedhq/replicated-starter-kots).
-This will allow teams to map git branches to channels in the [Vendor Portal](https://vendor.replicated.com), and allow multiple team members to seamlessly collaborate across features and releases.
+This will allow teams to map git branches to channels in the [vendor portal](https://vendor.replicated.com), and allow multiple team members to seamlessly collaborate across features and releases.
 
 ### Tagging Releases for Production
 
@@ -126,8 +126,7 @@ The recommended workflow is:
 ## Application Deployment Questionnaire
 
 When packaging an application, it can be useful to get a sense of your environments you'll being deploying into.
-We here provide a short questionnaire that you can copy and customize for distributing to your end users.
-You can copy this and replace $APP with your application name.
+You can copy and customize questionnaire, and replace $APP with your application name for distribution to your end users.
 
 ### $APP Deployment Questionnaire
 

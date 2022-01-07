@@ -6,7 +6,7 @@ Below is an example of a flexible Ingress resource spec designed to work in most
 ## Example
 
 The following example includes an Ingress resource with a single host based routing rule.
-The resource will work in both existing and embedded Kurl clusters.
+The resource will work in both existing and embedded kURL clusters.
 
 ### Config
 
@@ -60,7 +60,7 @@ spec:
 
 For ingress, you must create two separate resources.
 The first of which will be deployed to existing cluster installations while the second will only be deployed to an embedded Kurl cluster.
-Both of these resources are selectively excluded with the [`kots.io/exclude` annotation](/vendor/packaging/include-resources/).
+Both of these resources are selectively excluded with the [`kots.io/exclude` annotation](packaging-include-resources).
 
 ```yaml
 apiVersion: extensions/v1beta1

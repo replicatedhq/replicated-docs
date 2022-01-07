@@ -1,7 +1,7 @@
 # Quickstart with the Replicated CLI
 
 This power-user's guide will help you get set up with a CLI-based workflow for quickly iterating on your Kubernetes application with KOTS.
-If you'd prefer a more conceptual overview before digging into the CLI tools, you can start with the [standard quickstart](/vendor/guides/quickstart).
+If you'd prefer a more conceptual overview before digging into the CLI tools, you can start with the [standard quickstart](quickstart-without-existing-cluster).
 
 In this guide we'll walk through the following steps:
 
@@ -86,7 +86,7 @@ SEQUENCE    CREATED    EDITED    ACTIVE_CHANNELS
 ### 3. Getting some YAML
 
 Next, we'll need some YAML files from which to create a release, we'll start from the repo at https://github.com/replicatedhq/replicated-starter-kots.
-When you've finshed this guide, you can explore [Creating a release from an existing Helm Chart](/vendor/guides/helm-chart) for steps on how to add the necessary kots YAMLs to your helm chart.
+When you've finshed this guide, you can explore [Creating a release from an existing Helm Chart](helm-overview) for steps on how to add the necessary KOTS YAMLs to your helm chart.
 
 First, let's create a folder for our project:
 
@@ -284,8 +284,8 @@ AIRGAP:
 
 ### 7. Installing KOTS
 
-From here you can choose whether you'd like to do an [Embedded cluster install](/kotsadm/installing/installing-embedded-cluster/) or an [Existing Cluster install](/kotsadm/installing/online-install/).
-We'll skip Airgap for now, as it is covered in great depth in [other guides](/vendor/guides).
+From here you can choose whether you'd like to do an [Embedded cluster install](installing-embedded-cluster-requirements) or an [Existing Cluster install](installing-existing-cluster-requirements).
+We'll skip Airgap for now, as it is covered in great depth in [other guides](installing-existing-cluster-airgapped).
 For the sake of simplicity, we'll run with an "embedded cluster" install on a single VM, since those are usually easier to come by than a full Kubernetes cluster.
 
 First we will need a server. We'll use Google Cloud for this example but any cloud provider or [local virtual machine](https://github.com/replicatedhq/replicated-automation/tree/master/vendor/vagrant-boxes) will suffice. For this guide, let's create a server with:

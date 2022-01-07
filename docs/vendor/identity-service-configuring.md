@@ -1,4 +1,4 @@
-# Enabling and configuring identity service
+# Configuring identity service (BETA)
 
 When enabling the identity service for your application, KOTS will deploy [Dex](https://dexidp.io/) as an intermediary that can be configured to control access to the application.
 Dex implements an array of protocols for querying other user-management systems, known as [connectors](https://dexidp.io/docs/connectors/).
@@ -13,8 +13,8 @@ The Identity Service currently has the following limitations:
 The KOTS Identity custom resource enables and configures the Identity Service for your application.
 If you prefer, here is an [example application](https://github.com/replicatedhq/kots-idp-example-app) that demonstrates how to configure the Identity Service.
 
-To begin, create a new release on the [Vendor portal](https://vendor.replicated.com).
-Once you are editing the release, create a new [KOTS Identity CRD](/vendor/additional-objects/identity/) file customized for your application.
+To begin, create a new release on the [vendor portal](https://vendor.replicated.com).
+Once you are editing the release, create a new [KOTS Identity CRD](custom-resource-identity) file customized for your application.
 
 ![Identity Service CRD](/images/identity-service-crd.png)
 
