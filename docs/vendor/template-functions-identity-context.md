@@ -59,7 +59,9 @@ data:
 func IdentityServiceRoles() map[string][]string
 ```
 
-Returns a list of groups specified by the customer mapped to a list of roles as defined in the [kots.io/v1beta1.Identity](/reference/v1beta1/identity/#roles) document.
+Returns a list of groups specified by the customer mapped to a list of roles as defined in the `Identity` custom resource YAML file.
+
+For more information about the Identity custom resource, see [Identity](custom-resource-identity#roles) in the _Custom resources_ section.
 
 ```yaml
 apiVersion: apps/v1

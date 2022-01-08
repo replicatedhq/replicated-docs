@@ -3,8 +3,7 @@
 ## Mastermind Sprig
 
 Many of the utility functions provided come from Sprig, a third-party library of Go template functions.
-The Sprig documentation can be found [here](https://masterminds.github.io/sprig/).
-
+For more information, see [Sprig Function Documentation](https://masterminds.github.io/sprig/) on the sprig website.
 
 ## Namespace
 ```go
@@ -44,7 +43,7 @@ Returns the current timestamp as an RFC3339 formatted string.
 func NowFmt(format string) string
 ```
 Returns the current timestamp as a formatted string.
-See Go's time formatting guidelines [here](https://golang.org/pkg/time/#pkg-constants).
+For information about Go time formatting guidelines, see [Constants](https://golang.org/pkg/time/#pkg-constants) in the Go documentation.
 ```yaml
 '{{repl Now "20060102" }}'
 ```
@@ -90,7 +89,7 @@ Trim returns a string with all leading and trailing string contained in the opti
 func UrlEncode(stringToEncode string) string
 ```
 Returns the string, url encoded.
-Equivalent to the [`QueryEscape`](https://godoc.org/net/url#QueryEscape) function within the golang `net/url` library.
+Equivalent to the `QueryEscape` function within the golang `net/url` library. For more information, see [func QueryEscape](https://godoc.org/net/url#QueryEscape) in the Go documentation.
 ```yaml
 '{{repl ConfigOption "smtp_email" | UrlEncode }}:{{repl ConfigOption "smtp_password" | UrlEncode }}@smtp.example.com:587'
 ```
@@ -100,7 +99,7 @@ Equivalent to the [`QueryEscape`](https://godoc.org/net/url#QueryEscape) functio
 func UrlPathEscape(stringToEncode string) string
 ```
 Returns the string, url *path* encoded.
-Equivalent to the [`PathEscape`](https://godoc.org/net/url#PathEscape) function within the golang `net/url` library.
+Equivalent to the `PathEscape` function within the golang `net/url` library. For more information, see [func PathEscape](https://godoc.org/net/url#PathEscape) in the Go documentation.
 ```yaml
 '{{repl ConfigOption "smtp_email" | UrlPathEscape }}:{{repl ConfigOption "smtp_password" | UrlPathEscape }}@smtp.example.com:587'
 ```
@@ -155,7 +154,7 @@ Or for a total of 64 `a`s and `b`s:
 '{{repl RandomString 64 "[ab]" }}'
 ```
 
-Each time that this function is called, the behavior changes based on the [hidden](/reference/v1beta1/config/#hidden) and [readonly](/reference/v1beta1/config/#readonly) properties.
+Each time that this function is called, the behavior changes based on the `hidden` and `readonly` properties in the Config custom resource. For more information, see [hidden](custom-resource-config#hidden) and [readonly](custom-resource-config#hidden#readonly) in _Config_.
 
 - To generate a `RandomString` value that is **persistent** between Config changes, use it in conjunction with `hidden` property set to `true`. The `value` is not shown in HTML, hence it cannot be modified.
 - To generate a `RandomString` value that is **ephemeral** between Config changes, use it in conjunction with `readonly` property set to `true`. The `value` is shown in HTML but the it cannot be modified.
@@ -259,10 +258,7 @@ ParseUint returns the unsigned integer value represented by the string with opti
 
 ## TLSCert
 
-{{< notes title="Deprecation Notice">}}
-This function has been superseded in KOTS 1.26.0 by [Sprig's crypto](http://masterminds.github.io/sprig/crypto.html) functions.
-Refer to [this example](/vendor/packaging/template-functions/#generating-tls-certs-and-keys-example) for more information.
-{{< /notes >}}
+**Deprecation Notice**: This function has been superseded in KOTS 1.26.0 by the Sprig crypto functions. For more information, see [Generating TLS certs and keys example](packaging-template-functions#generating-tls-certs-and-keys-example) in _Template functions_. For more information about the Sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the Sprig documentation.
 
 ```go
 func TLSCert(certName string, cn string, ips []interface{}, alternateDNS []interface{}, daysValid int) string
@@ -283,10 +279,7 @@ repl{{ TLSCert "my_custom_cert" "foo.com" (list "10.0.0.1" "10.0.0.2") (list "ba
 
 ## TLSKey
 
-{{< notes title="Deprecation Notice">}}
-This function has been superseded in KOTS 1.26.0 by [Sprig's crypto](http://masterminds.github.io/sprig/crypto.html) functions.
-Refer to [this example](/vendor/packaging/template-functions/#generating-tls-certs-and-keys-example) for more information.
-{{< /notes >}}
+**Deprecation Notice**: This function has been superseded in KOTS 1.26.0 by the Sprig crypto functions. For more information, see [Generating TLS certs and keys example](packaging-template-functions#generating-tls-certs-and-keys-example) in _Template functions_. For more information about the Sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the Sprig documentation.
 
 ```go
 func TLSKey(certName string, cn string, ips []interface{}, alternateDNS []interface{}, daysValid int) string
@@ -300,10 +293,8 @@ repl{{ TLSKey "my_custom_cert" "foo.com" (list "10.0.0.1" "10.0.0.2") (list "bar
 
 ## TLSCACert
 
-{{< notes title="Deprecation Notice">}}
-This function has been superseded in KOTS 1.26.0 by [Sprig's crypto](http://masterminds.github.io/sprig/crypto.html) functions.
-Refer to [this example](/vendor/packaging/template-functions/#generating-tls-certs-and-keys-example) for more information.
-{{< /notes >}}
+**Deprecation Notice**: This function has been superseded in KOTS 1.26.0 by the Sprig crypto functions. For more information, see [Generating TLS certs and keys example](packaging-template-functions#generating-tls-certs-and-keys-example) in _Template functions_. For more information about the Sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the Sprig documentation.
+
 
 ```go
 func TLSCACert(caName string, daysValid int) string
@@ -319,10 +310,7 @@ repl{{ TLSCACert "foo.com" 365 }}
 
 ## TLSCertFromCA
 
-{{< notes title="Deprecation Notice">}}
-This function has been superseded in KOTS 1.26.0 by [Sprig's crypto](http://masterminds.github.io/sprig/crypto.html) functions.
-Refer to [this example](/vendor/packaging/template-functions/#generating-tls-certs-and-keys-example) for more information.
-{{< /notes >}}
+**Deprecation Notice**: This function has been superseded in KOTS 1.26.0 by the Sprig crypto functions. For more information, see [Generating TLS certs and keys example](packaging-template-functions#generating-tls-certs-and-keys-example) in _Template functions_. For more information about the Sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the Sprig documentation.
 
 ```go
 func TLSCertFromCA(caName string, certName string, cn string, ips []interface{}, alternateDNS []interface{}, daysValid int) string
@@ -335,10 +323,7 @@ repl{{ TLSCertFromCA "foo.com" "my_custom_cert" "bar.com" (list "10.0.0.1" "10.0
 
 ## TLSKeyFromCA
 
-{{< notes title="Deprecation Notice">}}
-This function has been superseded in KOTS 1.26.0 by [Sprig's crypto](http://masterminds.github.io/sprig/crypto.html) functions.
-Refer to [this example](/vendor/packaging/template-functions/#generating-tls-certs-and-keys-example) for more information.
-{{< /notes >}}
+**Deprecation Notice**: This function has been superseded in KOTS 1.26.0 by the Sprig crypto functions. For more information, see [Generating TLS certs and keys example](packaging-template-functions#generating-tls-certs-and-keys-example) in _Template functions_. For more information about the Sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the Sprig documentation.
 
 ```go
 func TLSKeyFromCA(caName string, certName string, cn string, ips []interface{}, alternateDNS []interface{}, daysValid int) string
@@ -412,4 +397,4 @@ repl{{KotsVersion | semverCompare ">= 1.19"}}
 
 The above template function will return `true` if `KotsVersion` is greater than `1.19`.
 
-For more complex comparisons, please refer to [sprig Semantic Version Functions](https://masterminds.github.io/sprig/semver.html)
+For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
