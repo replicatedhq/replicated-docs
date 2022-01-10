@@ -33,8 +33,7 @@ Before S3 is removed, full compatibility will be guaranteed and KOTS will be abl
 ## OCI Registry (alpha support)
 
 Beginning with KOTS 1.19, experimental support has been added to use an OCI Registry for storage instead of the Object Store listed above.
-When this feature is enabled, KOTS will deploy [docker distribution](https://github.com/docker/distribution) to satisfy the storage requirement.
-
+When this feature is enabled, KOTS will deploy docker distribution to satisfy the storage requirement. For more information, see [distribution](https://github.com/docker/distribution) in GitHub.
 
 When using the OCI Registry instead of the S3 compatible object store, a few benefits are realized:
 
@@ -42,12 +41,8 @@ When using the OCI Registry instead of the S3 compatible object store, a few ben
 
 The KOTS installation does not need to use its own, locally configured registry for storage.
 A customer can choose to provide their own registry to use as storage.
-At this time, KOTS has been tested to be compatible with the following registries:
 
-- [Docker Hub](https://hub.docker.com)
-- Locally Hosted Docker Registry [(docker distribution)](https://github.com/docker/distribution)
-- [Google Artifact Registry](https://cloud.google.com/artifact-registry/docs/transition-from-gcr)
-- Amazon Elastic Container Registry [(coming soon)](https://github.com/aws/containers-roadmap/issues/308)
+For more information, see [About deploying a registry on an existing cluster](image-registry-existing-cluster).
 
 **Improved performance**
 

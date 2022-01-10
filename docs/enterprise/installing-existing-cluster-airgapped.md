@@ -5,10 +5,9 @@ This feature is only available for licenses that have the airgapped feature enab
 
 ## KOTS install
 This section only applies to installing the Admin Console into an existing Kubernetes cluster.  
-See [this](https://kots.io/kotsadm/installing/installing-embedded-cluster/) document for embedded installations with kURL.
+For information about how to install on an embedded cluster in an air gapped environment, see [Airgapped Installations](installing-embedded-cluster#airgapped-installations) in _Installing on an embedded cluster_.
 
-Begin by [installing the KOTS CLI kubectl plugin](/kots-cli/getting-started/).
-The Admin Console can be installed using the KOTS plugin and the airgap package that can be downloaded from the [release assets](https://github.com/replicatedhq/kots/releases) named `kotsadm.tar.gz`.
+The Admin Console can be installed using the `kots` plugin for the `kubectl` command-line tool. The airgap package is named `kotsadm.tar.gz` and can be downloaded from the kots release page on GitHub. See [Releases](https://github.com/replicatedhq/kots/releases) in the kots GitHub repository.
 The asset version must match the KOTS CLI version, which can be determined by running:
 
 ```shell
