@@ -60,22 +60,6 @@ const sidebars = {
             'vendor/identity-service-configuring',
             'vendor/preflight-support-bundle-creating',
             {
-              type: 'category',
-              label: 'Helm',
-              items: [
-                'vendor/helm-overview',
-                'vendor/helm-chart-components',
-                'vendor/helm-applications',
-                'vendor/helm-optional-charts',
-                'vendor/helm-optional-value-keys',
-                'vendor/helm-airgap-builder',
-                'vendor/helm-installing-native-helm',
-                'vendor/helm-native-helm-install-order',
-                'vendor/helm-installing-replicated-helm',
-                'vendor/helm-processing',
-              ],
-            },
-            {
                 type: 'category',
                 label: 'Snapshots',
                 items: [
@@ -94,6 +78,23 @@ const sidebars = {
                 'vendor/admin-console-display-app-status',
                 'vendor/admin-console-port-forwarding',
                 'vendor/admin-console-prometheus-monitoring',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Packing an application using Helm charts',
+              items: [
+                'vendor/helm-overview',
+                'vendor/helm-chart-components',
+                'vendor/helm-applications',
+                'vendor/helm-optional-charts',
+                'vendor/helm-optional-value-keys',
+                'vendor/helm-airgap-builder',
+                'vendor/helm-installing-native-helm',
+                'vendor/helm-native-helm-install-order',
+                'vendor/helm-installing-replicated-helm',
+                'vendor/helm-processing',
+                'vendor/helm-mapping-example',
               ],
             },
             {
