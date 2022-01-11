@@ -4,7 +4,7 @@ The most direct and simple way to install a KOTS application to a Kubernetes clu
 In this scenario, the container images will be pulled from the upstream registries directly.
 
 ## KOTS install
-To start, first [install the KOTS CLI kubectl plugin](/kots-cli/getting-started/) & then run the command that was provided by the application vendor.
+To start, run the command that was provided by the application vendor:
 
 ```shell
 kubectl kots install application-name
@@ -49,7 +49,7 @@ If the license is outdated, the latest license will be fetched and used instead.
 ![Upload License](/images/upload-license.png)
 
 Once the license file is installed, if airgapped installations are enabled, an option will be presented to proceed with an airgapped setup.
-For instructions on performing an airgapped setup, [read the airgapped doc](/kotsadm/installing/airgap-packages).
+For information on how to install in an air gap environment, see [Installing on an embedded cluster](installing-embedded-cluster).
 For now, this walk through will continue with an online installation.
 
 ### Config Screen
@@ -68,7 +68,8 @@ Finally, Preflight checks (conformance tests) are executed against the target na
 ### Proxies
 
 When installing behind a proxy, Admin Console needs to be able to use the proxy to communicate with the APIs on the internet as well as local services.
-Both [kots install](/kots-cli/install/) and [kots pull](/kots-cli/pull/) commands provide arguments to specify proxy settings for the Admin Console containers.
+Both the `kots install` and `kots pull` commands provide arguments to specify proxy settings for the Admin Console containers.
+
 If either `http-proxy` or `https-proxy` is specified, `no-proxy` should also be specified.  The `no-proxy` string should include all localhost addresses as well as the local network and Kubernetes cluster CIDRs.
 For example:
 ```bash
@@ -76,3 +77,5 @@ kubectl kots install app --http-proxy http://10.128.0.3:3128 \
   --no-proxy localhost,127.0.0.1,10.0.0.0/8,10.138.0.82
 ```
 If `copy-proxy-env` flag is specified, proxy settings will be read from the environment of the shell where the kots command is running.
+
+For more information, see the [kots CLI documentation](https://kots.io/kots-cli/getting-started/).

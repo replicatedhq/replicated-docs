@@ -4,8 +4,10 @@ This topic describes using the kURL registry add-on to host application images o
 
 ## About the kURL registry add-on
 
-KOTS can be installed as an add-on on a [kURL](https://kurl.sh/docs/introduction/) cluster, which can also include the [registry add-on](https://kurl.sh/docs/add-ons/registry).
-When installing in [air gap](/kotsadm/installing/installing-embedded-cluster/#airgapped-installations) mode, the embedded registry will be automatically used to host all application images.
+KOTS can be installed as an add-on on a kURL cluster, which can also include the registry add-on.
+When installing in an air gapped envionment, the embedded registry will be automatically used to host all application images.
+
+For more information about the registry add-on, see [Registry Add-On](https://kurl.sh/docs/add-ons/registry) in the kURL documentation.
 
 ## Enable and disable image garbage collection
 
@@ -28,11 +30,13 @@ kubectl patch configmaps kotsadm-confg --type merge -p "{\"data\":{\"enable-imag
 ```
 
 Garbage collection is triggered automatically when a new application version is deployed.
-The [admin-console garbage-collect-images](/kots-cli/admin-console/garbage-collect-images/) command can be used to trigger it manually.
+The `admin-console garbage-collect-images` command can be used to trigger it manually. For more information, see [kots admin-console garbage-collect-images](https://kots.io/kots-cli/admin-console/garbage-collect-images/) in the kots CLI documentation.
 
 ### Restoring deleted images
-Deleted images may be reloaded from application and Admin Console [airgap bundles](/kotsadm/installing/airgap-packages/) using the [admin-console push-images](/kots-cli/admin-console/push-images/) command.
-See [installation instructions](/kotsadm/installing/airgap-packages/#kots-install) for an example of using this command.
+Deleted images may be reloaded from application and Admin Console air gap bundles using the `admin-console push-images` command. For more information, see [kots admin-console push-images](https://kots.io/kots-cli/admin-console/push-images/) in the kots CLI documentation.
+
+For an example of using the `admin-console push-images` command, see [Installing in an air gapped environment](installing-existing-cluster-airgapped).
+
 Registry address and namespace can be found on the Registry Settings page in Admin Console.
 Registry username and password can be found in the `registry-creds` secret in the default namespace.
 
@@ -48,4 +52,4 @@ This feature is currently only supported when used with the embedded kURL regist
 If the Admin Console instance is configured to use a different registry, this feature should be disabled to prevent image loss.
 
 #### Application rollbacks
-Currently image garbage collection has no effect when [application rollback](/reference/v1beta1/application/#allowrollback) is enabled.
+Currently image garbage collection has no effect when the `allowrollback` field in the `application.yaml` file is set to `true`. For more information, see [Application](../vendor/custom-resource-application) in _Custom Resources_.

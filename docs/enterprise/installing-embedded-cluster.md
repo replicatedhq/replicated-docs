@@ -1,11 +1,13 @@
 # Installing on an embedded cluster
 
 This article refers to installing the Admin Console along with an embedded cluster.
-When running the Admin Console on an existing cluster, refer to the [Installing the Admin Console](/kotsadm/installing/installing-a-kots-app/) documentation.
+When running the Admin Console on an existing cluster, see [Installing in an online (Internet-connected) environment](installing-existing-cluster-online) in _Installing on an existing cluster_.
 
 ### Powered by kURL
-Replicated KOTS leverages a [deep integration](https://blog.replicated.com/kurl-with-replicated-kots/) with the [Replicated kURL project](https://github.com/replicatedhq/kurl) in order to provide native embedded Kubernetes cluster support.
-More documentation on installing with kURL (including [advanced install options](https://kurl.sh/docs/install-with-kurl/advanced-options)) is available at [kurl.sh/docs](https://kurl.sh/docs/introduction/).
+Replicated KOTS leverages a deep integration with the open-source kURL project in order to provide native embedded Kubernetes cluster support.
+For more information about installing with kURL, including advanced installation options, see the [kURL documentation](https://kurl.sh/docs/introduction/).
+
+For information about the kURL project, see the [kURL repository](https://github.com/replicatedhq/kurl) on GitHub.
 
 ### Online Installations
 
@@ -43,12 +45,17 @@ kubectl kots install myapp \
 ### HA Installations
 
 Both online and airgapped installations can be configured in high-availability mode.
+
 When installing a highly available cluster, the script will prompt for a load balancer address.
 The load balancer can be preconfigured by passing in the `load-balancer-address=<host:port>` flag.
+
 This load balancer should be configured to distribute traffic to all healthy control plane nodes in its target list.
 This should be a TCP forwarding load balancer.
+
 The health check for an apiserver is a TCP check on the port the kube-apiserver listens on (default value :6443).
-For more information on the kube-apiserver load balancer see https://kubernetes.io/docs/setup/independent/high-availability/#create-load-balancer-for-kube-apiserver.
+
+For more information on the kube-apiserver load balancer see [Create load balancer for kube-apiserver](https://kubernetes.io/docs/setup/independent/high-availability/#create-load-balancer-for-kube-apiserver) in the Kubernetes documentation.
+
 In the absence of a load balancer, all traffic will be routed to the first primary.
 
 ```bash
@@ -63,7 +70,7 @@ cat install.sh | sudo bash -s airgap ha
 
 ## System Requirements
 
-Supported operating systems and minimum system requirements are [specified by Replicated kURL](https://kurl.sh/docs/install-with-kurl/system-requirements).
+Supported operating systems and minimum system requirements are specified by kURL. For more information, see [System Requirements](https://kurl.sh/docs/install-with-kurl/system-requirements) in the kURL documentation.
 
 ## Joining Nodes
 

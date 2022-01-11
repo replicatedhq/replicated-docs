@@ -7,7 +7,7 @@ To start, click on the Troubleshoot tab in the Admin Console.
 ![Troubleshoot](/images/troubleshoot.png)
 
 The green button will start analyzing the application.
-No data will leave the cluster -- the analysis works by the `Admin Console Operator` executing the [Support Bundle plugin](https://troubleshoot.sh), and sending the collected bundle directly to the admin console api.
+No data will leave the cluster -- the analysis works by the `Admin Console Operator` executing the support bundle plugin and sending the collected bundle directly to the admin console api.
 It's never sent across the internet, or to anyone else.
 
 ![Troubleshooting](/images/troubleshooting.png)

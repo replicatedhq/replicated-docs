@@ -1,7 +1,7 @@
 # Updating an embedded cluster
 
 This document refers to upgrading the Admin Console on an embedded cluster.
-When running the Admin Console on an existing cluster, refer to the [Updating the Admin Console](/kotsadm/updating/updating-admin-console/) documentation.
+For information about how to upgrade the admin console on an existing cluster, see [Updating the admin console](updating-admin-console).
 
 ### Online Installations
 
