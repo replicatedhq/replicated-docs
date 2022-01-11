@@ -82,7 +82,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Packing an application using Helm charts',
+              label: 'Packaging an application using Helm charts',
               items: [
                 'vendor/helm-overview',
                 'vendor/helm-chart-components',
