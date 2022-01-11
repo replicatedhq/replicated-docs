@@ -8,7 +8,7 @@ In addition to the default functionality that Velero provides, KOTS provides a d
 
 Note: The restore process is managed through the KOTS CLI only.
 
-KOTS also exposes hooks that can be used to inject scripts to execute with Snapshots both [before and after a backup](snapshots-configuring-backups) and [before and after a restore](../enterprise/snapshots-overview).
+KOTS also exposes hooks that can be used to inject scripts to execute with Snapshots both [before and after a backup](snapshots-configuring-backups) and [before and after a restore](../enterprise/snapshots-understanding).
 
 ## Velero version compatibility
 

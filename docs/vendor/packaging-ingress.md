@@ -60,7 +60,7 @@ spec:
 
 For ingress, you must create two separate resources.
 The first of which will be deployed to existing cluster installations while the second will only be deployed to an embedded kURL cluster.
-Both of these resources are selectively excluded with the [`kots.io/exclude` annotation](packaging-include-resources).
+Both of these resources are selectively excluded with the [`exclude` annotation](packaging-include-resources).
 
 ```yaml
 apiVersion: extensions/v1beta1

@@ -5,7 +5,7 @@ This topics describes an optional advanced use case for using backup hooks with 
 In many cases, simply taking a snapshot of a volume is not enough. For example, the recommend way to backup Postgres is to use `pg_dump` and only take a snapshot of the backup.
 A similar approach would also be needed for applications that use an 'in memory' database that requires a service shut down before any backup is taken.
 
-Velero provides both pre and post [backup hooks](https://velero.io/docs/v1.4/hooks/#docs).
+Velero provides both pre- and post- [backup hooks](https://velero.io/docs/v1.4/hooks/#docs).
 These can be configured by adding annotations to the pod itself or in the [Backup spec](https://velero.io/docs/v1.2.0/api-types/backup/).
 For the purposes of this guide, we'll do the former and use label annotations.
 

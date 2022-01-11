@@ -18,7 +18,7 @@ Once you are editing the release, create a new [KOTS Identity CRD](custom-resour
 
 ![Identity Service CRD](/images/identity-service-crd.png)
 
-The Identity Service has to be accessible from the browser, for that reason, KOTS provides the service name and port to the app through the [identity template functions](/reference/template-functions/identity-context/) so that the app can then configure ingress for the identity service, for example:
+The Identity Service has to be accessible from the browser, for that reason, KOTS provides the service name and port to the app through the [identity template functions](template-functions-identity-context) so that the app can then configure ingress for the identity service, for example:
 
 ![Identity Service Ingress](/images/identity-service-ingress.png)
 
@@ -30,11 +30,11 @@ All the necessary information that your application needs to communicate and int
 
 It is also possible to regulate access to your application resources based on the roles of individual users within the customer's organization.
 
-A list of the available roles within your application can be provided to the customer via the [roles](/reference/v1beta1/identity/#roles) section of the Identity CRD.
+A list of the available roles within your application can be provided to the customer via the [roles](custom-resource-identity#roles) section of the Identity CRD.
 
 ![Identity Service CRD Roles](/images/identity-service-crd-roles.png)
 
 Then, using the KOTS admin console, the customer will have the ability to create groups and assign specific roles to each group.
-This mapping of roles to groups will then be available to your application via the [IdentityServiceRoles](/reference/template-functions/identity-context/#identityserviceroles) template function.
+This mapping of roles to groups will then be available to your application via the [IdentityServiceRoles](template-functions-identity-context#identityserviceroles) template function.
 
 ![Identity Service CRD Roles](/images/identity-service-roles-template-function.png)
