@@ -1,7 +1,7 @@
 # Updating the admin console
 
 This document refers to upgrading the Admin Console on an existing cluster.
-When running the Admin Console on an embedded cluster, refer to the [Updating an Embedded Cluster](/kotsadm/updating/updating-embedded-cluster/) documentation.
+For information about how to upgrade the admin console on an embedded cluster, see [Updating an embedded cluster](updating-embedded-cluster).
 
 **Prerequisites**
 
@@ -21,7 +21,7 @@ Additional usage information can be found by running the `kubectl kots admin-con
 
 ### Airgap Installations
 
-Similar to the [initial installation](/kotsadm/installing/airgap-packages/#kots-install) into an existing cluster, images must be pushed to a private registry first:
+Similar to the initial installation into an existing cluster, images must be pushed to a private registry first:
 
 ```shell
 kubectl kots admin-console push-images ./kotsadm.tar.gz private.registry.host/application-name \

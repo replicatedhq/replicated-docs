@@ -5,4 +5,4 @@ During this process, all existing application manifests will be removed from the
 
 The restore process will then re-deploy all application manifests to the namespace, and all pods will have an extra `initContainer` and an extra directory named `.velero`. This is used for restore hooks.
 
-For more information about the actual restore process, see the [Velero documentation](https://velero.io/docs/v1.5/restore-reference/).
+For more information about the actual restore process, see [Restore Reference](https://velero.io/docs/v1.5/restore-reference/) in the Velero documentation.

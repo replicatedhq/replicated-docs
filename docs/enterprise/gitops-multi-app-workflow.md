@@ -23,7 +23,8 @@ The Admin Console can either create a new commit to the branch specified, or it 
 On this screen, there's an option to choose what type of asset to deliver to the git repo.
 
 Selecting "Rendered YAML" will result in a single, multi-doc YAML file being committed to the repo.
-This is useful for legacy clusters, or GitOps deploy tools that don't yet support [Kustomize](https://kustomize.io).
+This is useful for legacy clusters, or GitOps deploy tools that don't yet support Kustomize. For information about Kustomize, see the [Kustomize website](https://kustomize.io).
+
 For modern (> 1.14) Kubernetes clusters and tools that run `kubectl` 1.14 or later, it's recommended to choose the "Full Kustomizable Output" option.
 This will create a `kustomization.yaml` in the commit/pull request that can then be passed to `kubectl apply -k`.
 

@@ -2,7 +2,7 @@
 
 > Introduced in KOTS v1.33.0
 
-The steps described on this page are only necessary if you wish to configure a Network File System (NFS) as your KOTS Snapshots [storage destination](/kotsadm/snapshots/storage-destinations/).
+The steps described on this page are only necessary if you wish to configure a Network File System (NFS) as your KOTS Snapshots storage destination. For more information about Snapshot storage destinations, see [Storage destinations](snapshots-storage-destinations).
 
 Important notes before you begin:
 
@@ -13,10 +13,10 @@ For example, the `nfs-common` package is a very common package used on Ubuntu.
 
 ## Embedded Clusters
 
-Embedded clusters set up using installers that include the [Velero](https://kurl.sh/docs/add-ons/velero) addon are configured by default to store snapshots internally in the cluster.
+Embedded clusters set up using installers that include the Velero add-on are configured by default to store snapshots internally in the cluster. For more information about the Velero add-on, see [Velero Add-On](https://kurl.sh/docs/add-ons/velero) in the kURL documentation.
 There are two ways to change this configuration to use NFS:
 
-* Using the KOTS CLI [velero configure-nfs](/kots-cli/velero/configure-nfs/) command.
+* Using the KOTS CLI `velero configure-nfs` command. See [kots velero configure-nfs](https://kots.io/kots-cli/velero/configure-nfs/) in the kots CLI documentation.
 * Using the admin console (Check screenshots below):
 
 First, head to the "Snapshots" tab.
@@ -38,14 +38,14 @@ When configuring the admin console to store snapshots on an NFS server, the foll
 
 ## Existing Clusters
 
-**Note:** If Velero is already installed in the cluster, you can follow the same instructions mentioned in the [Embedded Clusters](/kotsadm/snapshots/configuring-nfs/#embedded-clusters) section.
+**Note:** If Velero is already installed in the cluster, you can follow the same instructions mentioned in the [Embedded Clusters](#embedded-clusters) section above.
 
 If Velero is not yet installed in the cluster, then the first step would be to set up and deploy the necessary components that are going to be used to install and set up Velero with NFS.
 This can be done in two ways:
 
 ### Using the KOTS CLI
 
-The [velero configure-nfs](/kots-cli/velero/configure-nfs/) CLI command can be used to configure NFS for either online or airgapped installations.
+The `velero configure-nfs` CLI command can be used to configure NFS for either online or airgapped installations.
 After this command has run and completed successfully, it will detect if Velero is not installed and print out specific instructions on how to install and set up Velero.
 
 **Online Installations**

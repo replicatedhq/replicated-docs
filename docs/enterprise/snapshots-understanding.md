@@ -15,7 +15,7 @@ They can be used for full Disaster Recovery; by restoring over the same instance
 
 There are two ways to create a full snapshot. First, make sure that your license has the snapshots feature enabled, then:
 
-1. Using the KOTS CLI [backup](/kots-cli/backup/) command.
+1. Using the KOTS CLI `backup` command. See [kots backup](https://kots.io/kots-cli/backup/) in the kots CLI documention.
 2. Using the admin console (check screenshot below).
 
     ![Instance Backup UI](/images/snapshot-instance-backup.png)
@@ -25,13 +25,13 @@ There are two available options for doing a restore. You can either do a full re
 
 ![Instance Restore UI](/images/snapshot-instance-restore.png)
 
-If you have multiple applications within the KOTS admin console, each application should have a [backup resource](/reference/v1beta1/backup/) in order to be included in the Full Snapshot backup.
+If you have multiple applications within the KOTS admin console, each application should have a backup resource in order to be included in the Full Snapshot backup. For more information, see [Backup](../vendor/custom-resource-backup) in _Custom resources_.
 
 ## Partial Snapshots
 
 Partial snapshots only back up applications volumes and application manifests; they do not back up the admin console or the metadata about an application.
 They are great for capturing information before deploying a new release, in case you need to roll back, but they are not suitable for full disaster recovery.
-For backups that give you the ability to do full Disaster Recovery, use [Full Snapshots](/kotsadm/snapshots/overview/#full-snapshots-recommended).
+For backups that give you the ability to do full Disaster Recovery, use full snapshots. For more information, see [Full Snapshots (Recommended)](#full-snapshots-recommended) above.
 
 Partial snapshots can only be created via the admin console (check screenshot below).
 

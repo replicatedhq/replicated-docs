@@ -1,6 +1,6 @@
 # Patching with Kustomize
 
-[Kustomize](https://kustomize.io) allows for last-mile patches (i.e. modifications) to the app that are otherwise not configurable via `Config` page.
+Kustomize allows for last-mile patches (i.e. modifications) to the app that are otherwise not configurable via the `Config` page. For more information, see the [Kustomize website](https://kustomize.io).
 
 ## Directory Structure
 
