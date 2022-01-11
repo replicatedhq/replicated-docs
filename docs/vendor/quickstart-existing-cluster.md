@@ -41,10 +41,7 @@ For now, click on the "Releases" item on the left menu and then click the "Creat
 You should now see a YAML editor where you can define how your application will work and the integration with KOTS functionality.
 Once you are familiar with these concepts, you'll probably use our [CLI and API](/vendor/cli) to automate this rather than manually edit YAML on this page (although if you're itching to hit the command line, rather than editing YAML in the browser, you can always run through the [CLI setup guide](/vendor/guides/cli-quickstart/#2-setting-a-service-account-token) before coming back to complete this guide).
 
-{{< notes title="Quickstart" >}}
-Since this guide is intended as a "Hello, World" example, we'll skip editing the YAML right now and just proceed with the defaults.
-We'll make some changes later on in this guide.
-{{< /notes >}}
+**Note**: Since this guide is intended as a "Hello, World" example, we'll skip editing the YAML right now and just proceed with the defaults. We'll make some changes later on in this guide.
 
 ![Default YAML](/images/guides/kots/default-yaml.png)
 
