@@ -95,9 +95,8 @@ spec:
 
 ### Updating Certs
 
-When certs expire they can be reuploaded, here are the instructions on [Uploading new TLS Certs](https://kurl.sh/docs/install-with-kurl/setup-tls-certs#uploading-new-tls-certs).
+When certs expire, they can be reuploaded. For instructions, see [Uploading new TLS Certs](https://kurl.sh/docs/install-with-kurl/setup-tls-certs#uploading-new-tls-certs).
 
 ### Existing Cluster
 
-The expectation when using an existing cluster is for the end customer to bring their own Ingress Controller such as Contour or Istio and upload their own `kubernetes.io/tls` secret.
-Here is an [Ingress with TLS](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls) example.
+The expectation when using an existing cluster is for the end customer to bring their own Ingress Controller such as Contour or Istio and upload their own `kubernetes.io/tls` secret. For an example, see [Ingress with TLS](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls.

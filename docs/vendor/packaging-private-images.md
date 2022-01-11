@@ -112,4 +112,4 @@ However, the same secret will be added to those PodSpecs as well.
 
 When deploying pods to namespaces other than the KOTS application namespace, the namespace must be added to the `additionalNamespaces` attribute of the [Application](custom-resource-application) spec.
 This will ensure that the application image pull secret will get auto-provisioned by KOTS in the namespace to allow the pod to pull the image.
-For more information about the `additionalNamespaces` attribute see [Defining additional namespaces](operator-defining-additional-namespaces).
+For more information about the `additionalNamespaces` attribute, see [Defining additional namespaces](operator-defining-additional-namespaces).

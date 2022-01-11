@@ -8,7 +8,7 @@ It's possible to either remove or include value when certain conditions are met.
 ## Removing values
 
 If the `values.yaml` contains a static value that should be removed when deploying using KOTS, add this value to the `<chart-name.yaml>` file, setting the value equal to the string `"null"` (with the quotes).
-For additional information on this syntax, refer to the [Helm feature](https://github.com/helm/helm/pull/2648).
+For more information about this syntax, see the [Helm feature](https://github.com/helm/helm/pull/2648).
 
 ## Including values
 
@@ -32,7 +32,8 @@ postgresql:
 ```
 
  When the postgres chart is deployed, the existence of the database key will set the value.  
- The way the Sentry chart is written, it will use the value in `postgresql.postgresDatabase` unless it's *missing*. For reference, see the [workers-deployment.yaml](https://github.com/helm/charts/blob/e64112e0913db99227926b49fa0ae59158c9c9d9/stable/sentry/templates/workers-deployment.yaml#L80) implementation.
+ The way the Sentry chart is written, it will use the value in `postgresql.postgresDatabase` unless it's *missing*. For more information, see the [workers-deployment.yaml](https://github.com/helm/charts/blob/e64112e0913db99227926b49fa0ae59158c9c9d9/stable/sentry/templates/workers-deployment.yaml#L80) implementation.
+
  In order to make this work reliably, we need to be able to dynamically add and remove the `postgresDatabase` key from the `values.yaml`, where it's only present if the user has selected `embedded_postgres`.
  If the user selects external postgres, we want the Sentry `workers-deployment.yaml` to receive the value that the user provided.
 

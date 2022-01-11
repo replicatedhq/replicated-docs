@@ -221,7 +221,7 @@ At this point, it will likely show that our test application is "Up To Date" and
 The Admin Console will check for new updates about every five hours but we can force it to check now.
 
 In the "Application" or "Version History" tab click on the "Check For Updates" button.
-On the version history page the faded "Deployed" button should become active and say "Deploy."
+On the version history page, the disabled "Deployed" button should become active and say "Deploy."
 In addition, it should say how many files were changed and how many lines are different.
 You can click on that to view what has changed in the yaml.
 

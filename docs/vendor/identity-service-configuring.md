@@ -34,7 +34,7 @@ A list of the available roles within your application can be provided to the cus
 
 ![Identity Service CRD Roles](/images/identity-service-crd-roles.png)
 
-Then, using the KOTS Admin Console, the customer will have the ability to create groups and assign specific roles to each group.
+Then, using the KOTS admin console, the customer will have the ability to create groups and assign specific roles to each group.
 This mapping of roles to groups will then be available to your application via the [IdentityServiceRoles](/reference/template-functions/identity-context/#identityserviceroles) template function.
 
 ![Identity Service CRD Roles](/images/identity-service-roles-template-function.png)

@@ -17,9 +17,9 @@ The KOTS Snapshots feature is a backup and restore option that lets you define a
 
         ```
 
-    1. Optional: Configure the [optional resources](packaging-include-resources/) annotation in the manifest so that it can be dynamically enabled based on a license field or a config option.
+    1. Optional: Configure the optional resources annotation in the manifest so that it can be dynamically enabled based on a license field or a config option. For more information, see [optional resources](packaging-include-resources/).
 
-        Note: if you are using multiple applications, each application should have a [backup resource](custom-resource-backup) in each application's manifest so that each application can be included in the [Full Snapshot](../enterprise/snapshots-overview) backup.
+        **Note:** if you are using multiple applications, each application should have a [backup resource](custom-resource-backup) in each application's manifest so that each application can be included in the [Full Snapshot](../enterprise/snapshots-overview) backup.
 
 1. Configure a backup for any volumes that require backup. By default, no volumes are included in the backup. If any pods mount a volume that should be backed up, you must configure the backup with an annotation listing the specific volumes to include in the snapshot.
 

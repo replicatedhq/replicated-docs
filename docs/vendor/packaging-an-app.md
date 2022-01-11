@@ -27,7 +27,9 @@ If your application is already templated and packaged as a Helm chart (or includ
 ## Advanced Features
 KOTS vendors can invoke several other more advanced features by providing additional KOTS custom resources.
 For customizable Preflight checks, vendors can provide a [preflight custom resource](custom-resource-preflight) in order to test a cluster for necessary resources or other dependencies, and show warnings or errors if the target cluster fails any of these checks.
-Similarly, troubleshooting features can be enabled by creating [collector and analyzer](custom-resource-support-bundle) custom resources.
-Finally, the [Application](custom-resource-application) and [sig-application](custom-resource-sig-application) custom resources provide branding metadata (icon, title, descriptions, etc...), readiness checks, and end-user links, enabling the Admin Console to show application health and readiness, and launch the app once it's ready.
 
-KOTS licenses are created and managed through the Replicated [vendor portal](https://vendor.replicated.com), which provides support for configurable pre-built entitlements, expiration dates, license types and a framework for delivering custom entitlements (seat count, etc). See the [entitlements documentation](licenses-adding-custom-fields) for more information.
+Similarly, troubleshooting features can be enabled by creating [collector and analyzer](custom-resource-support-bundle) custom resources.
+
+Finally, the [Application](custom-resource-application) and [sig-application](custom-resource-sig-application) custom resources provide branding metadata (icon, title, descriptions, and so on), readiness checks, and end-user links, enabling the admin console to show application health and readiness, and launch the app once it's ready.
+
+KOTS licenses are created and managed through the Replicated [vendor portal](https://vendor.replicated.com), which provides support for configurable pre-built entitlements, expiration dates, license types and a framework for delivering custom entitlements (seat count, etc). For more information. see the [entitlements documentation](licenses-adding-custom-fields).

@@ -21,20 +21,19 @@ Note that if you use subcharts, you may also need to run `helm dependecy update`
 
 ## Adding a Helm Chart to a Replicated application
 
-To add this chart to a Replicated application, create a new release on the [Vendor portal](https://vendor.replicated.com).
+To add this chart to a Replicated application, create a new release on the [vendor portal](https://vendor.replicated.com).
 Once you are editing the release, drop the Helm chart into the file tree.
-The chart will be added to a new section near the top of the file tree, and the `values.yaml`, `Chart.yaml` and a new ``&lt;chart-name&gt;.yaml` file will be created.
+The chart will be added to a new section near the top of the file tree, and the `values.yaml`, `chart.yaml` and a new `chart-name.yaml` file will be created.
 
 ![Postgres Helm Chart](/images/postgres-helm-chart.png)
 
 ### &lt;chart-name&gt;.yaml
 
 This file is required for chart to be installed.
-When using the Vendor portal generated automatically when adding a new chart, and allows you to configure the chart with your application.
-The reference for this kind is in the [references section](/reference/v1beta1/helmchart).
+When using the Vendor portal generated automatically when adding a new chart, and allows you to configure the chart with your application. For more information, see the [references section](custom-resource-helmchart).
 
 ### chart.yaml
-This file is readonly, and extracted from the Helm chart (as metadata).
+This file is read-only, and extracted from the Helm chart (as metadata).
 
 ### values.yaml
-This file is readonly, and extracted from the Helm chart (as metadata).
+This file is read-only, and extracted from the Helm chart (as metadata).
