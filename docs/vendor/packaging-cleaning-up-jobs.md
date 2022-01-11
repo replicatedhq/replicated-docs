@@ -36,4 +36,4 @@ spec:
 
 This syntax is very similar to the Helm hook syntax.
 When KOTS encouters an upstream Helm chart with a `helm.sh/hook-delete-policy` annotation, KOTS will add the same `kots.io/hook-delete-policy` automatically to the job object.
-This means that there's nothing extra to configure when deploying a Helm chart with helm delete hooks, these will be respected by KOTS.
+This means that there's nothing extra to configure when deploying a Helm chart with Helm delete hooks, these will be respected by KOTS.

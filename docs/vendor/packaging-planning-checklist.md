@@ -27,7 +27,7 @@ There are a number of basic examples for checking CPU, memory, and disk capacity
 
 ### Managing Stateful Services
 
-In the [persistent datastores guide](/vendor/guides/persistent-datastores), we review best practices for integrating persistent stores like databases, queues, and caches.
+In the [persistent datastores guide](tutorial-adding-db-config), we review best practices for integrating persistent stores like databases, queues, and caches.
 Explore ways to give an end user the option to either embed an instance alongside the application, or connect an application to an external instance that they will manage.
 
 If you expect to also install stateful services into existing clusters, you'll likely want to expose [preflight analyzers that check for the existence of a storage class](https://troubleshoot.sh/reference/analyzers/storage-class/).

@@ -22,7 +22,7 @@ For compatibilty with earlier versions of KOTS, the default behavior of a KOTS a
 
 Applications that need access to cluster-wide resources should continue to use cluster-scoped access installers.
 
-#### Reference Objects
+#### Reference objects
 
 The following ClusterRole and ClusterRoleBinding are created for cluster-scoped applications:
 

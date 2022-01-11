@@ -69,7 +69,7 @@ Since we only need to use it as a temporary holding place while we take the snap
             storage: 2Gi
  ```
 
- The entire file with these changes is also in the [Appendix A](#postgres-deployment-pgdumpyaml).
+ The entire file with these changes is also in the [sample manifests](#postgres-deployment-pgdumpyaml).
 
 ### Verify the backup and restore output
 

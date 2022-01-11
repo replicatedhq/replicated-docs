@@ -11,7 +11,7 @@ These tools are built with a strong focus on production grade day-2 operations.
 The foundational open source projects that KOTS coordinates are [Replicated KOTS CLI](https://kots.io/vendor/cli/getting-started/) and [Kotsadm](../enterprise/installing-overview) (installation and admin console), [Replicated Troubleshoot](https://troubleshoot.sh) (preflight checks and support bundles), [Replicated kURL](https://kurl.sh) (embedded K8s option) as well as several community driven OSS projects like Kubernetes, Kustomize, Helm, and Kubeadm.
 
 This document starts with an overview on how to package and manage KOTS applications via the Replicated Vendor Portal (an API and CLI are available for more rapid or automated iteration).
-Please refer to our documentation of the [KOTS CLI](https://kots.io/kots-cli/getting-started/) to install and manage a KOTS application via the command line, or our [Kotsadm documentation](../enterprise/installing-overview) for managing an application via the admin console.
+Please refer to our documentation of the [KOTS CLI](https://kots.io/kots-cli/getting-started/) to install and manage a KOTS application via the command line, or our [Enterprise documentation](../enterprise/installing-overview) for managing an application via the admin console.
 
 ## Basic Packaging
 KOTS applications are packaged as a set of standard Kubernetes manifests.
@@ -22,7 +22,7 @@ Most applications require some amount of customer supplied configuration values.
 These values can be collected during the installation process by specifying a [config KOTS custom resource](custom-resource-config) to [create a config screen](admin-console-customize-config-screen), and provided to the application by [templating your Kubernetes manifests](packaging-template-functions).
 
 ## Helm Chart Packaging
-If your application is already templated and packaged as a Helm chart (or includes Helm charts), then you can follow our documentation on [packaging a Helm chart as a KOTS application](helm-installing-native-helm).
+If your application is already templated and packaged as a Helm chart (or includes Helm charts), then you can follow our documentation on [packaging a Helm chart as a KOTS application](helm-installing-native-helm). Note that packaging with Helm charts is optional.
 
 ## Advanced Features
 KOTS vendors can invoke several other more advanced features by providing additional KOTS custom resources.
