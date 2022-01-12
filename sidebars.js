@@ -57,7 +57,7 @@ const sidebars = {
             'vendor/packaging-using-tls-certs',
             'vendor/packaging-cleaning-up-jobs',
             'vendor/packaging-rbac',
-            'vendor/identity-service-configuring (Beta)',
+            'vendor/identity-service-configuring',
             'vendor/preflight-support-bundle-creating',
             {
                 type: 'category',
@@ -260,7 +260,7 @@ const sidebars = {
           type: 'category',
           label: 'Managing user access',
           items: [
-            'enterprise/auth-identity-provider (Beta)',
+            'enterprise/auth-identity-provider,
             'enterprise/auth-configuring-rbac',
           ],
         },
@@ -274,7 +274,7 @@ const sidebars = {
           items: [
             'enterprise/gitops-single-app-workflow',
             'enterprise/gitops-multi-app-workflow',
-            'enterprise/gitops-managing-secrets (Alpha)',
+            'enterprise/gitops-managing-secrets',
           ],
         },
         {
