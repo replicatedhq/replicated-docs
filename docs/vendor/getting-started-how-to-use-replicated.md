@@ -9,6 +9,6 @@ This is a high-level workflow for releasing an application using Replicated. For
 
 ## Additional Resources
 
-* [Installing without an existing cluster](installing-without-existing-cluster)
-* [Installing with an existing cluster](installing-with-existing-cluster)
-* [Installing with the CLI](installing-with-cli)
+* [Installing without an existing cluster](tutorial-installing-without-existing-cluster)
+* [Installing with an existing cluster](tutorial-installing-with-existing-cluster)
+* [Installing with the CLI](tutorial-installing-with-cli)
