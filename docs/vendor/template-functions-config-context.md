@@ -7,7 +7,8 @@ func ConfigOption(optionName string) string
 ```
 
 Returns the value of the config option as a string.
-The config screen and associated options are described [here](/reference/v1beta1/config).
+
+For information about the config screen and associated options, see [Config](custom-resource-config) in the _Custom Resources_ section.
 
 ```yaml
 '{{repl ConfigOption "hostname" }}'
@@ -31,7 +32,7 @@ data:
   tls.key: '{{repl ConfigOption "tls_private_key_file" }}'
 ```
 
-Learn more about [using TLS certs](/vendor/packaging/using-tls-certs) in KOTS.
+For more information about using TLS certificates, see [Using TLS Certificates](packaging-using-tls-certs).
 
 ## ConfigOptionData
 

@@ -2,16 +2,17 @@
 
 > Introduced in KOTS v1.33.0
 
-The steps described on this page are only necessary if you wish to configure a Host Path destination as your KOTS Snapshots [storage destination](/kotsadm/snapshots/storage-destinations/).
+The steps described on this page are only necessary if you wish to configure a Host Path destination as your KOTS Snapshots storage destination. For more information about Snapshot storage destinations, see [Storage destinations](snapshots-storage-destinations).
 
 **Important note:** Make sure that the host path exists and is writable by the user:group 1001:1001 on all the nodes in the cluster.
 
 ## Embedded Clusters
 
-Embedded clusters set up using installers that include the [Velero](https://kurl.sh/docs/add-ons/velero) addon are configured by default to store snapshots internally in the cluster.
+Embedded clusters set up using installers that include the Velero add-on are configured by default to store snapshots internally in the cluster. For more information about the Velero add-on, see [Velero Add-On](https://kurl.sh/docs/add-ons/velero) in the kURL documentation.
+
 There are two ways to change this configuration to use a Host Path:
 
-* Using the KOTS CLI [velero configure-hostpath](/kots-cli/velero/configure-hostpath/) command.
+* Using the KOTS CLI `velero configure-hostpath` command. See [kots velero configure-hostpath](https://kots.io/kots-cli/velero/configure-hostpath/) in the kots CLI documentation.
 * Using the admin console (Check screenshots below):
 
 First, head to the "Snapshots" tab.
@@ -33,14 +34,14 @@ When configuring the admin console to store snapshots on a local host path, the 
 
 ## Existing Clusters
 
-**Note:** If Velero is already installed in the cluster, you can follow the same instructions mentioned in the [Embedded Clusters](/kotsadm/snapshots/configuring-hostpath/#embedded-clusters) section.
+**Note:** If Velero is already installed in the cluster, you can follow the same instructions mentioned in the [Embedded Clusters](#embedded-clusters) section above.
 
 If Velero is not yet installed in the cluster, then the first step would be to set up and deploy the necessary components that are going to be used to install and set up Velero with the provided host path.
 This can be done in two ways:
 
 ### Using the KOTS CLI
 
-The [velero configure-hostpath](/kots-cli/velero/configure-hostpath/) CLI command can be used to configure a host path for either online or airgapped installations.
+The `velero configure-hostpath` CLI command can be used to configure a host path for either online or airgapped installations.
 After this command has run and completed successfully, it will detect if Velero is not installed and print out specific instructions on how to install and set up Velero.
 
 **Online Installations**

@@ -3,8 +3,8 @@
 When enabling GitOps, the KOTS Admin Console will push the rendered application manifests to the configured git repository.
 Application manifests often contain secrets and sensitive information that should not be committed to git.
 
-KOTS 1.18 introduces an integration with [SealedSecrets](https://github.com/bitnami-labs/sealed-secrets) to encrypt secrets before committing.
-This integration is currently alpha and subject to change in future releases of KOTS.
+KOTS 1.18 introduces an integration with SealedSecrets to encrypt secrets before committing.
+This integration is currently alpha and subject to change in future releases of KOTS. For more information, see the [sealed-secrets](https://github.com/bitnami-labs/sealed-secrets) Github repository.
 
 To enable this integration, a Secret with specific labels must be deployed to the same namespace as the Admin Console.
 This secret must contain the SealedSecrets public key and will be used by KOTS to replace all Secret objects created by the application and by the Admin Console.
