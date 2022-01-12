@@ -32,11 +32,12 @@ release channels.
 the vendor defines to package and install an application on a Kubernetes cluster
 in a customer environment. It also installs the admin console along with the application.
 The app manager is based on the open-source KOTS project, which is maintained by
-Replicated.
+Replicated. For more information, see [Understanding packaging with app manager](vendor/packaging-an-app).
 * **The Kubernetes installer**: The Kubernetes installer provisions a Kubernetes
 cluster, called an _embedded cluster_, in the customer's environment if they do
 not have an existing cluster. The Kubernetes installer is based on the open-source
-kURL project, which is maintained by Replicated.
+kURL project, which is maintained by Replicated. For more information, see
+[Introduction to kURL](https://kurl.sh/docs/introduction/) in the kURL documentation.
 * **The admin console**: The admin console is the user interface where enterprise
 application users can configure, update, manage, backup and restore, and troubleshoot
 the application that they installed. The admin console is deployed by the app manager
