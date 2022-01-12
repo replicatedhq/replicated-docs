@@ -6,7 +6,7 @@ With the native Helm installation, you can exercise more control over chart depl
 * Not supported on existing charts deployed on existing applications.
 * The test hook is not supported.
 * Hook weights below -9999. All hook weights must be set to a value above -9999 to ensure the Replicated image pull secret is deployed before any resources are pulled.
-* Not supported with the [GitOps Workflow](/kotsadm/gitops/).
+* Not supported with the [GitOps workflows](../enterprise/gitops-single-app-workflow).
 
 > Currently, migrating existing applications to the native Helm implementation is not supported. Vendors who are interested in delivering applications using the native Helm workflow can promote releases to a new channel for new customer installations.
 
@@ -14,7 +14,7 @@ With the native Helm installation, you can exercise more control over chart depl
 
 To leverage this option, set `useHelmInstall: true` in the `HelmChart` CRD. Then promote these changes to a channel and install new instances of the application with the native Helm installation. For any existing installations of the application, you can update these via the Admin Console or KOTS CLI. Once updated, any new helm charts added to the application will be deployed with the native Helm installation.
 
-For more information on adding charts to KOTS applications, see our documentation on [optional charts](/vendor/helm/optional-charts) and the [Helm docs](https://helm.sh/docs/topics/charts/).
+For more information about adding charts to KOTS applications, see [optional charts](helm-optional-charts) and the [Helm docs](https://helm.sh/docs/topics/charts/).
 
 ![Use Helm Install Flag](/images/vendor-use-helm-install-flag.png)
 
@@ -22,7 +22,7 @@ For more information on adding charts to KOTS applications, see our documentatio
 
 ## Helm hooks and weights
 
-Native Helm hooks and weights enable more control over when resources are deployed. This is useful if you want to bundle actions as part of a release. For example, you can build in a database backup as part of the upgrade process while ensuring that the backup occurs prior to upgrading the rest of the resources. Helm weights provide even more control by governing the order of operations within each hook.
+Native Helm hooks and weights enable more control over when resources are deployed. This is useful if you want to bundle actions as part of a release. For example, you can build in a database backup as part of the upgrade process while ensuring that the backup occurs prior to upgrading the rest of the resources. The Helm weights provide even more control by governing the order of operations within each hook.
 
 The following hooks are currently supported:
 * pre-install - executes after resources are rendered but before any resources are installed.
@@ -36,4 +36,4 @@ The following hooks may be used but no actions will be taken by Replicated:
 * pre-delete - executes before any resources are deleted.
 * post-delete - executes after resources are deleted.
 
-See the [Helm docs](https://helm.sh/docs/topics/charts_hooks/) for more information on Helm hooks and weights.
+For more information about Helm hooks and weights, see the [Helm docs](https://helm.sh/docs/topics/charts_hooks/).

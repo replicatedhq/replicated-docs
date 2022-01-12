@@ -1,21 +1,21 @@
 # Helm processing
 
-The Replicated Helm installation is compatible with both Helm v2 and Helm v3 as it does not rely on Tiller to deploy the chart into the cluster. Instead, KOTS treats a Helm Chart as the packaging spec rather than the deployment tool. The Replicated Helm installation creates deployable YAML by leveraging the same functionality that the `helm template` command uses (with some extended functionality for [specific Helm hooks](/vendor/packaging/cleaning-up-jobs/#helm-charts)).
+The Replicated Helm installation is compatible with both Helm v2 and Helm v3 as it does not rely on Tiller to deploy the chart into the cluster. Instead, KOTS treats a Helm Chart as the packaging spec rather than the deployment tool. The Replicated Helm installation creates deployable YAML by leveraging the same functionality that the `helm template` command uses, with some extended functionality for [specific Helm hooks](packaging-cleaning-up-jobs#helm-charts).
 
-When a [Helm chart based KOTS application is installed via airgap](/vendor/helm/helm-airgap-builder), the processing of the chart is managed in the end customer environment (via the KOTS CLI or as part of the Admin Console). This means that the customer supplied values, license values, and existing values can be used to create the deployable manifests.
+When a [Helm chart based KOTS application is installed via airgap](helm-airgap-builder), the processing of the chart is managed in the end customer environment (via the KOTS CLI or as part of the Admin Console). This means that the customer supplied values, license values, and existing values can be used to create the deployable manifests.
 
 
 In either scenario the resulting deployment is comprised of raw Kubernetes manifests. Therefore, cluster operator's are always able to view the exact diff between what is currently deployed and what the update will deploy. This level of change management provides the necessary transparency to provide the level of assurance that cluster operators require.
 
 ## Helm v3
 
-To determine if Helm v3 is necessary, KOTS will check the apiVersion supplied in the `Chart.yaml` file of the Helm Chart. By default (if **Chart.yaml** is not supplied or apiVersion is not present), KOTS will use Helm V2 to process all Helm Charts to create deployable YAML. Optionally, an API version can be specified in the KOTS [`HelmChart`](https://kots.io/reference/v1beta1/helmchart/) resource. When the `helmVersion` property is set to `"v3"`, KOTS will use Helm v3 to process the Helm Chart.
+To determine if Helm v3 is necessary, KOTS will check the apiVersion supplied in the `Chart.yaml` file of the Helm Chart. By default (if **Chart.yaml** is not supplied or apiVersion is not present), KOTS will use Helm V2 to process all Helm Charts to create deployable YAML. Optionally, an API version can be specified in the KOTS [`HelmChart`](custom-resource-helmchart) resource. When the `helmVersion` property is set to `"v3"`, KOTS will use Helm v3 to process the Helm Chart.
 
 In the future KOTS may be updated to use Helm v3 by default.
 
 ## Native Helm
 
-Our [Native Helm](https://kots.io/vendor/helm/using-native-helm-charts/) feature utilizes the Helm binary to deploy charts instead of `kubectl apply`. This helps support Helm lifecycle instruments such as Helm Hooks and Weights.
+Our [Native Helm](helm-installing-native-helm) feature utilizes the Helm binary to deploy charts instead of `kubectl apply`. This helps support Helm lifecycle instruments such as Helm Hooks and Weights.
 
 Processing Helm charts for the Replicated App Manager is accomplished with five high-level steps:
 
@@ -34,7 +34,7 @@ Deployment method for chart <chart> has changed
 
 The Helm manifests are extracted, rendered with Replicated templating, and added to `base/charts`.
 
-Replicated's [`HelmChart` spec](https://kots.io/reference/v1beta1/helmchart/) can be modified to allow the `ConfigOptions` to [overwrite a chart's values](https://kots.io/reference/v1beta1/helmchart/#values). This allows vendors to surface a chart's value options inside the Replicated Config page. After Replicated templating is processed on the `values.yaml` file, all files from the original Helm tarball are written to the `base/charts/` directory, maintaining the original directory structure of the Helm Chart. A `kustomization.yaml` file is included in each chart and sub chart directory. This is used later to merge kustomization instructions up to the chart resources.
+Replicated's [`HelmChart`spec](custom-resource-helmchart) can be modified to allow the `ConfigOptions` to [overwrite a chart's values](custom-resource-helmchart#values). This allows vendors to surface a chart's value options inside the Replicated Config page. After Replicated templating is processed on the `values.yaml` file, all files from the original Helm tarball are written to the `base/charts/` directory, maintaining the original directory structure of the Helm Chart. A `kustomization.yaml` file is included in each chart and sub chart directory. This is used later to merge kustomization instructions up to the chart resources.
 
 **Example**
 	In this example, a `base` directory is illustrated and the `base/charts/postgresql/kustomization.yaml` targets chart resources:

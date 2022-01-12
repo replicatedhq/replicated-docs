@@ -194,15 +194,6 @@ const sidebars = {
             },
           ],
         },
-
-        {
-          type: 'category',
-          label: 'Policies',
-          items: [
-                'vendor/policies-vulnerability-patch',
-                'vendor/policies-data-transmission',
-              ],
-        },
       ],
     },
     {
@@ -296,6 +287,14 @@ const sidebars = {
           id: 'enterprise/troubleshooting-an-app'
         },
       ],
+    },
+    {
+      type: 'category',
+      label: 'Policies',
+      items: [
+            'vendor/policies-vulnerability-patch',
+            'vendor/policies-data-transmission',
+             ],
     },
   ],
 };
