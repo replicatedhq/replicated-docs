@@ -183,15 +183,20 @@ const sidebars = {
               href: 'https://kots.io/kots-cli/getting-started/'
             },
             {
-              type: 'link',
-              label: 'Vendor API v3 Documentation',
-              href: 'https://replicated-vendor-api.readme.io/v3/'
-            },
-            {
-              type: 'link',
-              label: 'Vendor API v3 Spec',
-              href: 'https://api.replicated.com/vendor/v3/spec/vendor-api-v3.json'
-            },
+              type: 'category',
+              label: 'Vendor API v3',
+              items: [
+                {
+                  type: 'doc',
+                  id: 'vendor/reference-vendor-api'
+                },
+                {
+                  type: 'link',
+                  label: 'Vendor API v3 Documentation',
+                  href: 'https://replicated-vendor-api.readme.io/v3/'
+                },
+              ],
+            },  
           ],
         },
       ],
