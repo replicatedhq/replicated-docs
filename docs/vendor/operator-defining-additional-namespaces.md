@@ -7,7 +7,7 @@ In addition to RBAC policies, clusters running in air gapped environments or clu
 ## Creating additional namespaces
 
 A KOTS application can identify additional namespaces to create during installation time.
-These are defined in the `additionalNamespaces` attribute of the [Application](custom-resources-application) spec.
+These are defined in the `additionalNamespaces` attribute of the [Application](custom-resource-application) spec.
 When these are defined, `kots install` will create the namespaces and ensure that the Admin Console has full access to manage resources in these namespaces.
 This is accomplished by creating a Role and RoleBinding per namespace, and setting the Subject to the Admin Console service account.
 If the current user account does not have access to create these additional namespaces, the installer will show an error and fail.
@@ -30,7 +30,7 @@ An operator can reliably depend on this secret existing in all installs (online 
 ## Dynamic namespaces
 
 Some applications need access to dynamically created namespaces or even all namespaces.
-In this case, a KOTS application spec can list `"*"` as one of its `addtionalNamespaces` in the [Application](custom-resources-application) spec.
+In this case, a KOTS application spec can list `"*"` as one of its `addtionalNamespaces` in the [Application](custom-resource-application) spec.
 When KOTS encounters the wildcard, it will not create any namespaces, but it will ensure that the application image pull secret is copied to all namespaces.
 The Admin Console will run an informer internally to watch namespaces in the cluster, and when a new namespace is created, the secret will automatically be copied to it.
 
