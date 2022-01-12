@@ -1,4 +1,4 @@
-# Managing secrets with GitOps
+# Managing secrets with GitOps (Alpha)
 
 When enabling GitOps, the KOTS Admin Console will push the rendered application manifests to the configured git repository.
 Application manifests often contain secrets and sensitive information that should not be commited to git.
