@@ -9,26 +9,11 @@ The only requirement is that a StorageClass be present.
 KOTS uses a Postgresql StatefulSet to store the version history, application metadata and other small amounts of data needed to manage the application(s).
 This Postgresql component is deployed with KOTS and secured with a randomly generated password, and only exposed as a ClusterIP on the overlay network.
 
-{{< notes title="Future Plans">}}
-
-A future version of KOTS will remove the Postgresql requirement to enable multiple replicas of every component and facilitate a true highly-available deployment.
-The work is being tracked in [GitHub issue #537](https://github.com/replicatedhq/kots/pull/537).
-
-{{< /notes >}}
-
 ## S3 Compatible Object Store
 
 KOTS also requires an S3 compatible object store to store application archives and support bundles.
 A KOTS installation to an existing cluster will deploy Minio to satisfy this requirement, and nothing is required during installation.
 When deploying, Minio is configured with a randomly generated AccessKeyID and SecretAccessKey, and only exposed as a ClusterIP on the overlay network.
-
-{{< notes title="Future Plans">}}
-
-A future version of KOTS will remove compatibility with S3 in favor of a unified storage backend using OCI registries.
-KOTS 1.19 contains the first release of this.
-Before S3 is removed, full compatibility will be guaranteed and KOTS will be able to seamlessly and automatically migrate data.
-
-{{< /notes >}}
 
 ## OCI Registry (alpha support)
 
