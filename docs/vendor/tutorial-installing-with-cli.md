@@ -1,7 +1,7 @@
 # Installing with the Replicated CLI
 
 This power-user's guide will help you get set up with a CLI-based workflow for quickly iterating on your Kubernetes application with KOTS.
-If you'd prefer a more conceptual overview before digging into the CLI tools, you can start with the [standard quickstart](tutorial-installing-without-existing-cluster).
+If you'd prefer a more conceptual overview before digging into the CLI tools, you can start with the tutorial for [installing without an existing cluster](tutorial-installing-without-existing-cluster).
 
 In this guide we'll walk through the following steps:
 
@@ -286,7 +286,7 @@ AIRGAP:
 ### 7. Installing KOTS
 
 From here you can choose whether you'd like to do an [Embedded cluster install](installing-embedded-cluster-requirements) or an [Existing Cluster install](installing-existing-cluster-requirements).
-We'll skip Airgap for now, as it is covered in great depth in [other guides](installing-existing-cluster-airgapped).
+We'll skip air gap for now, as it is covered in great depth in [other guides](installing-existing-cluster-airgapped).
 For the sake of simplicity, we'll run with an "embedded cluster" install on a single VM, since those are usually easier to come by than a full Kubernetes cluster.
 
 First we will need a server. We'll use Google Cloud for this example but any cloud provider or [local virtual machine](https://github.com/replicatedhq/replicated-automation/tree/master/vendor/vagrant-boxes) will suffice. For this guide, let's create a server with:
