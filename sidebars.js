@@ -26,15 +26,6 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'Quickstarts',
-          items: [
-            'vendor/quickstart-without-existing-cluster',
-            'vendor/quickstart-existing-cluster',
-            'vendor/quickstart-cli',
-          ],
-        },
-        {
-          type: 'category',
           label: 'Getting started',
           items: [
             'vendor/getting-started-how-to-use-replicated',
@@ -139,6 +130,9 @@ const sidebars = {
           type: 'category',
           label: 'Tutorials',
           items: [
+            'vendor/tutorial-installing-without-existing-cluster',
+            'vendor/tutorial-installing-with-existing-cluster',
+            'vendor/tutorial-installing-with-cli',
             'vendor/tutorial-ecr-private-images',
             'vendor/tutorial-ha-cluster-deploying',
             'vendor/tutorial-ci-cd-integration',

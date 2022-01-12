@@ -1,4 +1,4 @@
-# Quickstart without an existing cluster
+# Installing without an existing cluster
 
 The KOTS Quickstart is our simplest guide, we'll get running quickly with a simple Nginx application in Kubernetes using a single VM.
 
@@ -40,7 +40,7 @@ For now, click on the Releases item on the left menu and then click the "Create 
 
 You should now see a YAML editor where you can define how your application will work and the integration with KOTS functionality.
 Once you are familiar with these concepts, you'll probably use our [CLI and API](https://kots.io/kots-cli/getting-started/) to automate this rather than manually edit YAML on this page.
-If you prefer to use the command line, rather than editing YAML in the browser, you can always follow our [CLI Quickstart guide](quickstart-cli) instead.
+If you prefer to use the command line, rather than editing YAML in the browser, you can always follow our [CLI Quickstart guide](tutorial-installing-with-cli) instead.
 
 **Note**: Since this guide is intended as a "Hello, World" example, we'll skip editing the YAML right now and just proceed with the defaults. We'll make some changes later on in this guide.
 
@@ -223,7 +223,7 @@ replicas: 1
 
 Change the number to `2` or more.
 
-**Note**: If you've worked ahead and already completed the [CLI setup guide](quickstart-cli), you can make this `replicas` change in your locally checked-out git repo, and publish them with `replicated release create --auto`, then skip to [Update the Test Server](#update-the-test-server).
+**Note**: If you've worked ahead and already completed the [CLI setup guide](tutorial-installing-with-cli), you can make this `replicas` change in your locally checked-out git repo, and publish them with `replicated release create --auto`, then skip to [Update the Test Server](#update-the-test-server).
 
 ### Save and Promote the Release
 
@@ -258,6 +258,6 @@ You should see two pods running.
 
 ## Next Steps: Manage YAML in your Git Repo
 
-Now that you're familiar with the basics, you should run through the [CLI Quickstart](quickstart-cli) so you can start managing your release YAML in a git repo.
+Now that you're familiar with the basics, you should run through the [CLI Quickstart](tutorial-installing-with-cli) so you can start managing your release YAML in a git repo.
 
 You can also head over to [Planning and packaging an application](packaging-planning-checklist) to learn how to integrate your application with other KOTS features.

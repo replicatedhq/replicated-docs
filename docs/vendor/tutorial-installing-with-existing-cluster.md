@@ -1,4 +1,4 @@
-# Quickstart with an existing cluster
+# Installing with an existing cluster
 
 The KOTS Existing Cluster Guide is one of our simplest guides.
 We'll get running quickly with a simple nginx application on an existing cluster in GKE (or another cluster you have handy).
@@ -39,7 +39,7 @@ For now, click on the "Releases" item on the left menu and then click the "Creat
 ### Create a Release
 
 You should now see a YAML editor where you can define how your application will work and the integration with KOTS functionality.
-Once you are familiar with these concepts, you'll probably use our [CLI and API](https://kots.io/kots-cli/getting-started/) to automate this rather than manually edit YAML on this page (although if you're itching to hit the command line, rather than editing YAML in the browser, you can always run through the [CLI setup guide](quickstart-cli) before coming back to complete this guide).
+Once you are familiar with these concepts, you'll probably use our [CLI and API](https://kots.io/kots-cli/getting-started/) to automate this rather than manually edit YAML on this page (although if you're itching to hit the command line, rather than editing YAML in the browser, you can always run through the [CLI setup guide](tutorial-installing-with-cli) before coming back to complete this guide).
 
 **Note**: Since this guide is intended as a "Hello, World" example, we'll skip editing the YAML right now and just proceed with the defaults. We'll make some changes later on in this guide.
 
@@ -92,7 +92,7 @@ You can see the installation options at the bottom of each channel on the Channe
 
 ![Installation Methods](/images/guides/kots/installation-methods-existing.png)
 
-Installing KOTS on existing clusters is very similar to using an [embedded cluster](quickstart-without-existing-cluster#installing-and-testing), except instead of bringing a plain VM, we will use a pre-built Kubernetes cluster and deploy your KOTS app into a namespace.
+Installing KOTS on existing clusters is very similar to using an [embedded cluster](tutorial-installing-without-existing-cluster#installing-and-testing), except instead of bringing a plain VM, we will use a pre-built Kubernetes cluster and deploy your KOTS app into a namespace.
 
 In this example, we will launch a GKE cluster using `gcloud` CLI, but you can use any cluster for which you have `kubectl` access.
 
@@ -204,7 +204,7 @@ replicas: 1
 
 Change the number to `2` or more.
 
-**Note**: If you've worked ahead and already completed the [CLI setup guide](quickstart-cli), you can make this `replicas` change in your locally checked-out git repo, and publish them with `replicated release create --auto`, then skip to [Update the Test Server](#update-the-test-server).
+**Note**: If you've worked ahead and already completed the [CLI setup guide](tutorial-installing-with-cli), you can make this `replicas` change in your locally checked-out git repo, and publish them with `replicated release create --auto`, then skip to [Update the Test Server](#update-the-test-server).
 
 ### Save and Promote the Release
 
@@ -233,6 +233,6 @@ This should only take a few seconds to deploy.
 
 ## Next Steps: Manage YAML in your Git Repo
 
-Now that you're familiar with the basics, you should run through the [CLI Quickstart](quickstart-cli) so you can start managing your release YAML in a git repo.
+Now that you're familiar with the basics, you should run through the [CLI Quickstart](tutorial-installing-with-cli) so you can start managing your release YAML in a git repo.
 
 You can also head over to [Planning and packaging an application](packaging-planning-checklist) to learn how to integrate your application with other KOTS features.
