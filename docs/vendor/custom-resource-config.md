@@ -100,7 +100,7 @@ This type will be displayed as radio buttons in the Admin Console.
 ### `textarea`
 A `textarea` can specify a `props` that will map into the HTML element directly.
 Examples of available properties are `rows`, `cols` and `wrap`.
-For more information, see [HTML <textarea> Tag](https://www.w3schools.com/tags/tag_textarea.asp).
+For more information, see [HTML <textarea/> Tag](https://www.w3schools.com/tags/tag_textarea.asp).
 
 ```yaml
     - name: custom_key
