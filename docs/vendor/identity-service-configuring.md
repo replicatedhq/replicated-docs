@@ -1,4 +1,4 @@
-# Enabling and configuring identity service
+# Enabling and configuring identity service (Beta)
 
 When enabling the identity service for your application, KOTS will deploy [Dex](https://dexidp.io/) as an intermediary that can be configured to control access to the application.
 Dex implements an array of protocols for querying other user-management systems, known as [connectors](https://dexidp.io/docs/connectors/).

@@ -1,4 +1,4 @@
-# Using an identity provider for user access
+# Using an identity provider for user access (Beta)
 
 Upon initial installation, the KOTS Admin Console is secured with a single shared password for all users.
 It is possible to further configure the KOTS Admin Console to authenticate users with your organization's user management system.
