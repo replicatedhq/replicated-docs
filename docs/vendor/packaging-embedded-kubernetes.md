@@ -9,7 +9,7 @@ When you package your application with Replicated, your customers can install th
 application on either an existing Kubernetes cluster or an _embedded cluster_.
 
 Embedded clusters are Kubernetes clusters that are provisioned by the Replicated
-Kubernetes installer on your customer's VM. The Kuberntes installer allows customers
+Kubernetes installer on your customer's VM. The Kubernetes installer allows customers
 who do not have an existing cluster to install your application without manually
 provisioning a new cluster themselves.
 
