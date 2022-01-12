@@ -4,7 +4,7 @@ Each customer you deploy to via, Replicated will need a separate license file fo
 This license file identifies the customer & application during the installation and update processes.
 A customer license is created in the Customers section of the [vendor portal](https://vendor.replicated.com). You can manage the values and properties of that customer and license, including custom license fields, by selecting an individual customer.
 
-If you are looking to create or manage custom license fields, you can do so in the License Fields section of the vendor portal, described in greater detail in the [Custom Entitlements](/vendor/entitlements/custom-entitlements) section.
+For more information about creating or managing custom license fields, see [Creating custom license fields](licenses-adding-custom-fields).
 
 
 ### Name (Required)
@@ -38,7 +38,8 @@ Custom license fields can be set for all licenses.
 This is useful if specific customer information might change from customer to customer.
 These fields can be read from both the template functions, as well as from Admin Console API.
 Examples of custom license fields are “seats” to limit the number of active users, or “hostname” in order to specify the domain that the application can be run on.
-See the [Custom Entitlements](/vendor/entitlements/) section for more details.
+
+For more information, see [Creating custom license fields](licenses-adding-custom-fields).
 
 ### Archiving Licenses
 When a license is archived in the vendor portal, it will be hidden in the default license search and become read-only.

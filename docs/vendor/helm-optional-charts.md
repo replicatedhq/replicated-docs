@@ -4,7 +4,7 @@
 
 Charts can be optionally included in a Replicated KOTS application. By default, an instance of a Helm chart is created for every `apiVersion: kots.io/v1beta` and `kind: HelmChart` that's found in the upstream application manifests.
 
-To make a chart optional, add a [template-parsable](/reference/template-functions/contexts/) `exclude` attribute to the `kind: HelmChart` document.
+To make a chart optional, add a [template-parsable](template-functions-about) `exclude` attribute to the `kind: HelmChart` document.
 When downloading, KOTS will render this field and exclude the entire chart if the output of this field can be parsed as a boolean evaluating to `true`.
 
 If this value is not provided, the chart will be included.
@@ -107,7 +107,7 @@ helm repo update
 helm fetch stable/postgresl
 ```
 
-After dropping this file into the file tree in the [Vendor Portal](https://vendor.replicated.com), a new file named `postgresql.yaml` is created.
+After dropping this file into the file tree in the [vendor portal](https://vendor.replicated.com), a new file named `postgresql.yaml` is created.
 This will be already set to to reference the `.tgz` file you uploaded.
 Let's add a mapping to the `values` key so that it uses the password we've created and also we should add an `exclude` attribute to the chart to specify that it should only be included when the user has selected embedded postgres.
 

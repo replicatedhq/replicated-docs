@@ -1,7 +1,7 @@
 # Quickstart with the Replicated CLI
 
 This power-user's guide will help you get set up with a CLI-based workflow for quickly iterating on your Kubernetes application with KOTS.
-If you'd prefer a more conceptual overview before digging into the CLI tools, you can start with the [standard quickstart](/vendor/guides/quickstart).
+If you'd prefer a more conceptual overview before digging into the CLI tools, you can start with the [standard quickstart](quickstart-without-existing-cluster).
 
 In this guide we'll walk through the following steps:
 
@@ -49,7 +49,7 @@ $ replicated version
 
 Next we'll set up two environment variables. You can export these right in your shell or add them to your favorite dotfiles.
 
-If you haven't already, you'll want to head over to https://vendor.replicated.com and create an Application.
+If you haven't already, you'll want to head over to https://vendor.replicated.com and create an application.
 You can name the app whatever you want, we'll use "CLI Quickstart" in this case.
 From there you can head to the settings page, grab the Application Slug, and export it:
 
@@ -86,7 +86,8 @@ SEQUENCE    CREATED    EDITED    ACTIVE_CHANNELS
 ### 3. Getting some YAML
 
 Next, we'll need some YAML files from which to create a release, we'll start from the repo at https://github.com/replicatedhq/replicated-starter-kots.
-When you've finshed this guide, you can explore [Creating a release from an existing Helm Chart](/vendor/guides/helm-chart) for steps on how to add the necessary kots YAMLs to your helm chart.
+
+**Note:** If you are using Helm charts to package your application, you can explore [Creating a release from an existing Helm Chart](helm-overview) for steps on how to add the necessary KOTS YAMLs to your Helm chart after you finish reviewing this guide.
 
 First, let's create a folder for our project:
 
@@ -284,8 +285,8 @@ AIRGAP:
 
 ### 7. Installing KOTS
 
-From here you can choose whether you'd like to do an [Embedded cluster install](/kotsadm/installing/installing-embedded-cluster/) or an [Existing Cluster install](/kotsadm/installing/online-install/).
-We'll skip Airgap for now, as it is covered in great depth in [other guides](/vendor/guides).
+From here you can choose whether you'd like to do an [Embedded cluster install](installing-embedded-cluster-requirements) or an [Existing Cluster install](installing-existing-cluster-requirements).
+We'll skip Airgap for now, as it is covered in great depth in [other guides](installing-existing-cluster-airgapped).
 For the sake of simplicity, we'll run with an "embedded cluster" install on a single VM, since those are usually easier to come by than a full Kubernetes cluster.
 
 First we will need a server. We'll use Google Cloud for this example but any cloud provider or [local virtual machine](https://github.com/replicatedhq/replicated-automation/tree/master/vendor/vagrant-boxes) will suffice. For this guide, let's create a server with:
@@ -460,10 +461,10 @@ Continue making changes and using `replicated release create --auto` to publish 
 You can add `-y` to the command to skip the prompt.
 
 
-If you want to learn more about KOTS features, you can explore some of the [intermediate and advanced guides](/vendor/guides), some good next steps might be
+If you want to learn more about KOTS features, you can explore some of the tutorials and packaging options, such as:
 
-- [Integrating your release workflow with CI](/vendor/guides/ci-cd-integration)
-- [Integrating a Helm Chart](/vendor/guides/helm-chart)
+- [Integrating your release workflow with CI](tutorial-ci-cd-integration)
+- [Integrating a Helm Chart](helm-overview)
 
 If you already have a release published in https://vendor.replicated.com you'd like to use as a starting point, check out the help docs for `replicated release download`:
 
