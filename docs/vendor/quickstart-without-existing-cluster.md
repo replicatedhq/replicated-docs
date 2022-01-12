@@ -13,7 +13,7 @@ It is broken into four sections:
 
 ## Creating a Release
 
-When getting started with the KOTS platform, the [Vendor Portal](https://vendor.replicated.com) will be the place you spend a lot of time.
+When getting started with the KOTS platform, the [vendor portal](https://vendor.replicated.com) will be the place you spend a lot of time.
 This guide is designed to help you get familiar with the concepts and ideas that are important to successfully deploy your application with KOTS.
 If you get stuck or need help, head to our [community](https://help.replicated.com/community/).
 
@@ -39,17 +39,16 @@ For now, click on the Releases item on the left menu and then click the "Create 
 ### Create a Release
 
 You should now see a YAML editor where you can define how your application will work and the integration with KOTS functionality.
-Once you are familiar with these concepts, you'll probably use our [CLI and API](/vendor/cli) to automate this rather than manually edit YAML on this page.
-If you prefer to use the command line, rather than editing YAML in the browser, you can always follow our [CLI Quickstart guide](/vendor/guides/cli-quickstart) instead.
+Once you are familiar with these concepts, you'll probably use our [CLI and API](https://kots.io/kots-cli/getting-started/) to automate this rather than manually edit YAML on this page.
+If you prefer to use the command line, rather than editing YAML in the browser, you can always follow our [CLI Quickstart guide](quickstart-cli) instead.
 
-{{< notes title="Quickstart" >}}
+**Note:**
 Since this guide is intended as a "Hello, World" example, we'll skip editing the YAML right now and just proceed with the defaults. We'll make some changes later on in this guide.
-{{< /notes >}}
 
 ![Default YAML](/images/guides/kots/default-yaml.png)
 
 The default YAML documents above the white line contain information for KOTS, preflight checks, customer configuration screen options, and support bundle analyzers for troubleshooting installs.
-You can learn about those [in the reference docs](/reference/v1beta1), but for now, let's click the "Save release" button in the bottom right.
+You can learn about those [in the custom resources reference docs](custom-resource-about), but for now, let's click the **Save release** button in the bottom right.
 
 ### Save and Promote Release
 
@@ -73,7 +72,7 @@ Now that we've created a release and promoted it to the Unstable channel, the ne
 ### Create License
 
 A customer license (downloadable as a `.yaml` file) is required to install any KOTS application.
-To create a customer license, log in to the [Vendor Portal](https://vendor.replicated.com) and select the "Customers" link on the left. Click the "Create a new customer" button to continue.
+To create a customer license, log in to the [vendor portal](https://vendor.replicated.com) and select the "Customers" link on the left. Click the "Create a new customer" button to continue.
 
 ![Customers](/images/guides/kots/customers.png)
 
@@ -212,7 +211,7 @@ Now that we have a KOTS application running, a common task is to deliver updates
 
 ### Create a New Release
 
-On the "Releases" page of the [Vendor Portal](https://vendor.replicated.com), click the "Create Release" link on top.
+On the "Releases" page of the [vendor portal](https://vendor.replicated.com), click the "Create Release" link on top.
 Once again, you'll be taken to a YAML editor that shows the contents of the most recently created release.
 This gives us everything we've done so far, and our task now is to only write the changes needed to increase the number of nginx replicas.
 
@@ -225,7 +224,7 @@ replicas: 1
 
 Change the number to `2` or more.
 
-**Note**: If you've worked ahead and already completed the [CLI setup guide](/vendor/guides/cli-quickstart), you can make this `replicas` change in your locally checked-out git repo, and publish them with `replicated release create --auto`, then skip to [Update the Test Server](#update-the-test-server).
+**Note**: If you've worked ahead and already completed the [CLI setup guide](quickstart-cli), you can make this `replicas` change in your locally checked-out git repo, and publish them with `replicated release create --auto`, then skip to [Update the Test Server](#update-the-test-server).
 
 ### Save and Promote the Release
 
@@ -260,6 +259,6 @@ You should see two pods running.
 
 ## Next Steps: Manage YAML in your Git Repo
 
-Now that you're familiar with the basics, you should run through the [CLI Quickstart](/vendor/guides/cli-quickstart) so you can start managing your release YAML in a git repo.
+Now that you're familiar with the basics, you should run through the [CLI Quickstart](quickstart-cli) so you can start managing your release YAML in a git repo.
 
-You can also head over to [KOTS Documentation](/vendor/packaging/packaging-an-app/) to learn how to integrate your application with other KOTS features.
+You can also head over to [Planning and packaging an application](packaging-planning-checklist) to learn how to integrate your application with other KOTS features.

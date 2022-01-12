@@ -4,7 +4,7 @@ The Replicated Vendor CLI is a command-line interface that helps vendors package
 
 ## Prerequisites
 
-This guide already assumes that you have created a team and an initial KOTS application in [Vendor](/vendor/packaging). You'll also need:
+This guide already assumes that you have created a team and an initial KOTS application in [Vendor](packaging-an-app). You'll also need:
 
 * [curl](https://curl.haxx.se/) (For running CLI directly on linux/mac)
 * [docker](https://www.docker.com) (For running CLI through docker container)

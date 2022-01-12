@@ -1,7 +1,7 @@
 # Quickstart with an existing cluster
 
 The KOTS Existing Cluster Guide is one of our simplest guides.
-We'll get running quickly with a simple Nginx application on an existing cluster in GKE (or another cluster you have handy).
+We'll get running quickly with a simple nginx application on an existing cluster in GKE (or another cluster you have handy).
 
 It is broken into four sections:
 
@@ -12,7 +12,7 @@ It is broken into four sections:
 
 ## Creating a Release
 
-When getting started with the KOTS platform, the [Vendor Portal](https://vendor.replicated.com) will be the place you spend a lot of time.
+When getting started with the KOTS platform, the [vendor portal](https://vendor.replicated.com) will be the place you spend a lot of time.
 This guide is designed to help you get familiar with the concepts and ideas that are important to successfully deploy your application with KOTS.
 If you get stuck or need help, head to our [community](https://help.replicated.com/community/).
 
@@ -39,17 +39,16 @@ For now, click on the "Releases" item on the left menu and then click the "Creat
 ### Create a Release
 
 You should now see a YAML editor where you can define how your application will work and the integration with KOTS functionality.
-Once you are familiar with these concepts, you'll probably use our [CLI and API](/vendor/cli) to automate this rather than manually edit YAML on this page (although if you're itching to hit the command line, rather than editing YAML in the browser, you can always run through the [CLI setup guide](/vendor/guides/cli-quickstart/#2-setting-a-service-account-token) before coming back to complete this guide).
+Once you are familiar with these concepts, you'll probably use our [CLI and API](https://kots.io/kots-cli/getting-started/) to automate this rather than manually edit YAML on this page (although if you're itching to hit the command line, rather than editing YAML in the browser, you can always run through the [CLI setup guide](quickstart-cli) before coming back to complete this guide).
 
-{{< notes title="Quickstart" >}}
+**Note:**
 Since this guide is intended as a "Hello, World" example, we'll skip editing the YAML right now and just proceed with the defaults.
 We'll make some changes later on in this guide.
-{{< /notes >}}
 
 ![Default YAML](/images/guides/kots/default-yaml.png)
 
 The default YAML documents above the white line contains information for KOTS, preflight checks, customer configuration screen options, and support bundle analyzers for troubleshooting installs.
-You can learn about those [in the reference docs](/reference/v1beta1) but for now, let's click the "Save release" button in the bottom right.
+You can learn about those [in the custom resources reference docs](custom-resource-about) but for now, let's click the "Save release" button in the bottom right.
 
 ### Save and Promote Release
 
@@ -73,7 +72,7 @@ Now that we've created a release and promoted it to the "Unstable" channel, the 
 ### Create License
 
 A customer license (downloadable as a `.yaml` file) is required to install any KOTS application.
-To create a customer license, log in to the [Vendor Portal](https://vendor.replicated.com) and select the Customers link on the left.
+To create a customer license, log in to the [vendor portal](https://vendor.replicated.com) and select the Customers link on the left.
 Click the "Create your first customer" button to continue.
 
 ![Customers](/images/guides/kots/customers.png)
@@ -95,7 +94,7 @@ You can see the installation options at the bottom of each channel on the Channe
 
 ![Installation Methods](/images/guides/kots/installation-methods-existing.png)
 
-Installing KOTS on existing clusters is very similar to using an [embedded cluster](/vendor/guides/quickstart#installing-and-testing), except instead of bringing a plain VM, we will use a pre-built Kubernetes cluster and deploy your KOTS app into a namespace.
+Installing KOTS on existing clusters is very similar to using an [embedded cluster](quickstart-without-existing-cluster#installing-and-testing), except instead of bringing a plain VM, we will use a pre-built Kubernetes cluster and deploy your KOTS app into a namespace.
 
 In this example, we will launch a GKE cluster using `gcloud` CLI, but you can use any cluster for which you have `kubectl` access.
 
@@ -173,7 +172,7 @@ To view the running Nginx Application, port-forward the Nginx service port to lo
 kubectl port-forward service/<service-name> 8080:80
 ```
 
-You can also add a link on the admin dashboard and port-forward the nginx port to your localhost as part of the [kots application spec](/vendor/config/dashboard-buttons).
+You can also add a link on the admin dashboard and port-forward the nginx port to your localhost as part of the [kots application spec](admin-console-port-forwarding).
 
 Then head to `http://localhost:8080/`, and you should see a basic (perhaps familiar) nginx server running.
 
@@ -194,7 +193,7 @@ Let's change the number of nginx replicas to show how to deliver an update.
 
 ### Create a New Release
 
-On the Releases page of the [Vendor Portal](https://vendor.replicated.com), click the "Create Release" link on top.
+On the Releases page of the [vendor portal](https://vendor.replicated.com), click the "Create Release" link on top.
 Once again, you'll be taken to a YAML editor that shows the contents of the most recently created release.
 This gives us everything we've done so far, and our task now is to only write the changes needed to increase the number of nginx replicas.
 
@@ -207,7 +206,7 @@ replicas: 1
 
 Change the number to `2` or more.
 
-**Note**: If you've worked ahead and already completed the [CLI setup guide](/vendor/guides/cli-quickstart), you can make this `replicas` change in your locally checked-out git repo, and publish them with `replicated release create --auto`, then skip to [Update the Test Server](#update-the-test-server).
+**Note**: If you've worked ahead and already completed the [CLI setup guide](quickstart-cli), you can make this `replicas` change in your locally checked-out git repo, and publish them with `replicated release create --auto`, then skip to [Update the Test Server](#update-the-test-server).
 
 ### Save and Promote the Release
 
@@ -222,7 +221,7 @@ At this point, it will likely show that our test application is "Up To Date" and
 The Admin Console will check for new updates about every five hours but we can force it to check now.
 
 In the "Application" or "Version History" tab click on the "Check For Updates" button.
-On the version history page the faded "Deployed" button should become active and say "Deploy."
+On the version history page, the disabled "Deployed" button should become active and say "Deploy."
 In addition, it should say how many files were changed and how many lines are different.
 You can click on that to view what has changed in the yaml.
 
@@ -236,6 +235,6 @@ This should only take a few seconds to deploy.
 
 ## Next Steps: Manage YAML in your Git Repo
 
-Now that you're familiar with the basics, you should run through the [CLI Quickstart](/vendor/guides/cli-quickstart) so you can start managing your release YAML in a git repo.
+Now that you're familiar with the basics, you should run through the [CLI Quickstart](quickstart-cli) so you can start managing your release YAML in a git repo.
 
-You can also head over to [KOTS Documentation](/vendor/packaging/packaging-an-app/) to learn how to integrate your application with other KOTS features.
+You can also head over to [Planning and packaging an application](packaging-planning-checklist) to learn how to integrate your application with other KOTS features.

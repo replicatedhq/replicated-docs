@@ -30,7 +30,7 @@ Docker format:
    Where:
    * `IMAGE_NAME` is the name of the existing private image for your application.
    * `APPLICATION_SLUG` is the slug assigned to your application. You can find your application slug on the **Images** page of the vendor portal.
-   * `TARGET_IMAGE_NAME` is a name for the image. This name is used for _____. Replicated recommends that the `TARGET_IMAGE_NAME` is the same as the `IMAGE_NAME`. 
+   * `TARGET_IMAGE_NAME` is a name for the image. This name is used for _____. Replicated recommends that the `TARGET_IMAGE_NAME` is the same as the `IMAGE_NAME`.
    * `TAG` is a tag for the image. This tag is used for ____
 
    For example:
@@ -110,6 +110,6 @@ However, the same secret will be added to those PodSpecs as well.
 
 ## Additional namespaces
 
-When deploying pods to namespaces other than the KOTS application namespace, the namespace must be added to the `additionalNamespaces` attribute of the [Application](/reference/v1beta1/application/) spec.
+When deploying pods to namespaces other than the KOTS application namespace, the namespace must be added to the `additionalNamespaces` attribute of the [Application](custom-resource-application) spec.
 This will ensure that the application image pull secret will get auto-provisioned by KOTS in the namespace to allow the pod to pull the image.
-For more information about the `additionalNamespaces` attribute see [this doc](/vendor/operators/additional-namespaces/).
+For more information about the `additionalNamespaces` attribute, see [Defining additional namespaces](operator-defining-additional-namespaces).
