@@ -22,8 +22,7 @@ fields in Kubernetes manifest files. This allows you to enforce entitlements whe
 your customer installs or updates your application. See [Write license fields to Kubernetes manifests](#write-license-fields-to-kubernetes-manifests) below.
 * **Query the admin console API**: Query the license field from the application
 using the admin console API. This allows you to enforce entitlements during
-application runtime. See [Query license fields from the API](#query-license-fields-from-the-api)
-below.
+application runtime. See [Query license fields from the API](#query-license-fields-from-the-api) below.
 
 ## Write license fields to Kubernetes manifests
 
@@ -36,7 +35,7 @@ you can reference built-in and custom license fields in a Kubernetes manifest.
 
 The Replicated app manager uses the `LicenseFieldValue` template function to read
 license fields when a customer installs or updates your application. For more
-information, see [LicenseFieldValue](template-functions-license-context#licensefieldvalue) in _License context_.
+information, see [LicenseFieldValue](template-functions-license-context#licensefieldvalue).
 
 ### Example: Reference a custom license field in a preflight check
 
@@ -76,7 +75,8 @@ This preflight check runs during application installation and update, and preven
 the installation or update from continuing if the maximum number of nodes defined
 by the `node_count` license field is exceeded.
 
-For more information, see [How Can I Use License Custom Fields Value in a Pre-Flight Check?](https://help.replicated.com/community/t/how-can-i-use-license-custom-fields-value-in-a-pre-flight-check/624) in Replicated Community.
+//To Do: create new topic from the linked community post//
+For more information, see [How Can I Use License Custom Fields Value in a Pre-Flight Check?](https://help.replicated.com/community/t/how-can-i-use-license-custom-fields-value-in-a-pre-flight-check/624) in the Replicated Community.
 
 ## Query license fields from the API
 

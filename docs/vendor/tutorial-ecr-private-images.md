@@ -8,7 +8,7 @@ The purpose of this guide is to walk you through a hello-world example on how to
 
 ## Prerequisites & Assumptions
 
-This power-user's guide assumes you have completed the [standard quickstart](https://kots.io/vendor/guides/quickstart/) or the [CLI quickstart](https://kots.io/vendor/guides/cli-quickstart/) guides as this guide is a continuation of those guides.
+This power-user's guide assumes you have completed the [standard quickstart](quickstart-without-existing-cluster) or the [CLI quickstart](quickstart-cli) guides as this guide is a continuation of those guides.
 As with the previous guides, we will also need a VM to install the application with the following minimum requirements:
 
 * Ubuntu 18.04
@@ -47,7 +47,7 @@ For this guide, we are simply going to use the default nginx deployment to creat
 
 ### Create Sample Application and deploy the first release
 
-In this section, we cover at a high level the steps to create a new application and install it on a VM. As mentioned earlier, it's assumed you have completed the [standard quickstart](https://kots.io/vendor/guides/quickstart/) or the [CLI quickstart](https://kots.io/vendor/guides/cli-quickstart/) guide, which cover these steps in detail.
+In this section, we cover at a high level the steps to create a new application and install it on a VM. As mentioned earlier, it's assumed you have completed the [standard quickstart](quickstart-without-existing-cluster) or the [CLI quickstart](quickstart-cli) guide, which cover these steps in detail.
 
 To create our sample application follow these steps:
 
@@ -99,8 +99,8 @@ docker.io/library/nginx:latest
 ```
 
 Next we need to login to ECR and push this container.
-To use `docker login` with ECR we will need to [install the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) and  [configure it](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html) if not already.
-As part of this, we will need to provide the AWS Access Key ID and AWS Secret Key for a user that has permissions to create and push images to the repository. Please refer to [this guide](https://docs.aws.amazon.com/AmazonECR/latest/userguide/getting-started-cli.html) if you are not familiar using the AWS CLI to work with containers and ECR.
+To use `docker login` with ECR we will need to [install the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) and [configure it](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html) if not already done.
+As part of this, we will need to provide the AWS Access Key ID and AWS Secret Key for a user that has permissions to create and push images to the repository. Please refer [Using Amazon ECR with the AWS CLI](https://docs.aws.amazon.com/AmazonECR/latest/userguide/getting-started-cli.html) in the AWS documentation if you are not familiar with using the AWS CLI to work with containers and ECR.
 
 
 Just like with any other private registry, we need to know the registry endpoint to pass the `docker login` command.
@@ -307,7 +307,7 @@ The install of the new version should have created a new pod. If we run `kubectl
 
 ## Further Reading
 
-- [Kots.io Documenmtation on using Private Images](https://kots.io/vendor/packaging/private-images/)
+- [Using private image registries](packaging-private-images/)
 
 - [Replicated Community Thread on AWS Roles and Permissions](https://help.replicated.com/community/t/what-are-the-minimal-aws-iam-permissions-needed-to-proxy-images-from-elastic-container-registry-ecr/267)
 

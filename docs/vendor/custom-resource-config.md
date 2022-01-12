@@ -20,7 +20,6 @@ spec:
 [Markdown](https://guides.github.com/features/mastering-markdown/) syntax is supported in this property.
 
 A group can be hidden from customer view and made optional by setting the `when` property on the group to `false`.
-See [below](https://kots.io/reference/v1beta1/config/#when) for more information on the usage of `when`.
 
 ## Items
 
@@ -101,7 +100,7 @@ This type will be displayed as radio buttons in the Admin Console.
 ### `textarea`
 A `textarea` can specify a `props` that will map into the HTML element directly.
 Examples of available properties are `rows`, `cols` and `wrap`.
-See https://www.w3schools.com/tags/tag_textarea.asp for reference.
+For more information, see [HTML `<textarea/>` Tag](https://www.w3schools.com/tags/tag_textarea.asp).
 
 ```yaml
     - name: custom_key
@@ -121,7 +120,7 @@ See https://www.w3schools.com/tags/tag_textarea.asp for reference.
 ### `file`
 A `file` is a special type of form field that renders an [`<input type="file" />`](https://www.w3schools.com/tags/tag_input.asp) HTML element.
 Only the contents of the file, not the name, are captured.
-See the [`ConfigOptionData`](/reference/template-functions/config-context/#configoptiondata) template function for examples on how to use the file contents in your application.
+See the [`ConfigOptionData`](template-functions-config-context#configoptiondata) template function for examples on how to use the file contents in your application.
 
 ```yaml
     - name: certs
@@ -165,7 +164,7 @@ A required field will prevent the application from starting until it has a value
 ```
 
 ### `when`
-The when value is used to denote conditional inputs that will only be visible (or required) when the condition evaluates to true.
+The `when` value is used to denote conditional inputs that are only visible (or required) when the condition evaluates to true.
 The `when` item can be used on groups, items and select_one options.
 
 The settings UI will update right away when a field used in a when clause is updated (no need to save) and can be used to used to show optional config sections.
@@ -216,7 +215,7 @@ Items can be hidden. They will not be visible if hidden.
           value: "{{repl RandomString 40}}"
 ```
 
-When used in conjunction with a function that generates a value, for example [RandomString](/reference/template-functions/static-context/#randomstring)
+When used in conjunction with a function that generates a value, for example [RandomString](template-functions-static-context#randomstring)
 - If set to `true`, the `value` is **persistent** between Config changes but it **cannot** be modified because its not visible in HTML.
 - If not set or set to `false`, the `value` is **persistent** between Config changes. It **can** be modified because it is visible in HTML.
 
@@ -230,7 +229,7 @@ Items can be readonly.
           readonly: true
 ```
 
-When used in conjunction with a function that generates value, for example [RandomString](/reference/template-functions/static-context/#randomstring)
+When used in conjunction with a function that generates value, for example [RandomString](template-functions-static-context#randomstring)
 - If set to `true`, the `value` is **ephemeral** between Config changes. It **cannot** be modified because it is greyed out in HTML.
 - If not set or set to `false`, the `value` is **persistent** between Config changes. It **can** be modified because its not greyed out in HTML.
 

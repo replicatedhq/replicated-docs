@@ -9,7 +9,7 @@ To export a port and a button on the Admin Console dashboard to the application,
 
 ## Add a button to the dashboard
 
-It’s recommended that every KOTS application include an application custom resource as defined by https://github.com/kubernetes-sigs/application.
+It’s recommended that every KOTS application include an application custom resource as defined by [Kubernetes-sigs](https://github.com/kubernetes-sigs/application).
 KOTS uses this as metadata and will not require or use an in-cluster controller to handle this custom resource.
 A KOTS application that follows best practices will never require cluster admin privileges or any cluster-wide components to be installed.
 

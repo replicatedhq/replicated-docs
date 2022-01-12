@@ -3,12 +3,12 @@
 The KOTS Application custom resource enables features such as branding, release notes, port forwarding, dashboard buttons, app status indicators, and custom graphs.
 
 With ports specified, the KOTS CLI can establish port-forwarding, to simplify connections to the deployed application.  
-When [statusInformers](/vendor/config/application-status/#kots-application-spec) are specified, the dashboard can provide timely feedback when the application deployment is complete and the application is ready for use.
+When [statusInformers](admin-console-display-app-status) are specified, the dashboard can provide timely feedback when the application deployment is complete and the application is ready for use.
 This CR is optional for KOTS applications.
 
-There is some overlap between the [KOTS Application spec](/reference/v1beta1/application/) and the [Kubernetes SIG Application spec](https://github.com/kubernetes-sigs/application#application-objects). In time, it's likely that the SIG Application spec will grow to include all the necessary metadata to support the full KOTS features.
+There is some overlap between the `Application` spec and the [Kubernetes SIG Application spec](https://github.com/kubernetes-sigs/application#application-objects). In time, it's likely that the SIG Application spec will grow to include all the necessary metadata to support the full KOTS features.
 
-In the meantime, enabling features (such as [dashboard buttons to the application](/vendor/dashboard/open-buttons/)) requires the use of both the KOTS Application spec and the SIG Application spec.
+In the meantime, enabling features (such as [adding a button to the dashboard](admin-console-port-forwarding#add-a-button-to-the-dashboard)) requires the use of both the KOTS Application spec and the SIG Application spec.
 
 The `Application` spec contains vendor-supplied metadata about the application.
 
@@ -56,13 +56,13 @@ This defaults to `false`. Enable to create a "Rollback" button on the end-custom
 
 ## additionalNamespaces
 An optional array of namespaces as strings.
-In addition to creating these namespaces, the Admin Console will ensure that the application secret exists in them, and that this secret has access to pull the application images (both images that are used and [additionalImages](/vendor/operators/additional-images/)).
+In addition to creating these namespaces, the Admin Console will ensure that the application secret exists in them, and that this secret has access to pull the application images (both images that are used and [`additionalImages`](operator-defining-additional-images)).
 For access to dynamically created namespaces, `"*"` can be specified.
 This pull secret will be automatically added to all application specs that use private images.
-See the [Additional Namespaces](/vendor/operators/additional-namespaces/) documentation for more information.
+For more information, see [Defining additional namespaces](operator-defining-additional-namespaces).
 
 ## additionalImages
-An optional array of strings that reference images to be included in airgap bundles and pushed to the local registry during installation.
+An optional array of strings that reference images to be included in air gap bundles and pushed to the local registry during installation.
 While KOTS detects images from the PodSpecs in the application, some applications (Operators) may need to include additional images that will not be referenced until runtime.
 
 ## kubectlVersion
@@ -99,7 +99,7 @@ When an exact version is specified, KOTS will choose the matching major and mino
 
 ## requireMinimalRBACPrivileges
 When set to true, this will instruct the KOTS installer to create a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.
-For more information, see the [RBAC](/vendor/packaging/rbac) documentation.
+For more information, see the [RBAC](packaging-rbac) documentation.
 
 ## ports
 These are extra ports (additional to the :8800 admin console port) that should be port-forwarded when running the `kots admin-console` command.

@@ -15,10 +15,10 @@ To promote a release:
   The Promote Release dialog opens.
 
 1. Edit the fields:
-    * **Channel** Select which channel to promote the release to. The defaults are Stable, Beta, and Unstable. If you have created custom channels using the CLI, they are listed here also.
-    * **Version label** Enter a version label. You can use the semantic version format if you are using KOTS v1.58.0 or later. If you are using semantic versioning, you must also enable the semantic versioning toggle in the channel settings. This toggle is disabled by default. If you use semantic versioning on a channel, we recommend that you always use semantic versioning on that channel.
-    * **Release notes** Add detailed release notes. The release notes support markdown and will be shown to your customer.
-    * **Required status** Give the release a status, either required or not required.
+    * **Channel** - Select the channel you want to promote the release to. The defaults are Stable, Beta, and Unstable. If you have created custom channels using the CLI, they are listed here also.
+    * **Version label** - Enter a version label. You can use the semantic version format if you are using KOTS v1.58.0 or later. If you are using semantic versioning, you must also enable the semantic versioning toggle in the channel settings. This toggle is disabled by default. If you use semantic versioning on a channel, we recommend that you always use semantic versioning on that channel.
+    * **Release notes** - Add detailed release notes. The release notes support markdown and will be shown to your customer.
+    * **Required status** - Give the release a status, either required or not required.
 
 1. Click **Promote**.
 
@@ -32,9 +32,9 @@ To promote a release:
 
 ## Next steps
 
-[Creating customers and downloading licenses](https://replicated-docs.netlify.app/docs/vendor/releases-creating-customer)
+[Creating customers and downloading licenses](releases-creating-customer)
 
 ## Additional resources
 
-* [Understanding channels and releases](https://replicated-docs.netlify.app/docs/vendor/releases-understanding)
-* [How to release a packaged application](https://replicated-docs.netlify.app/docs/vendor/releases-workflow)
+* [Understanding channels and releases](releases-understanding)
+* [How to release a packaged application](releases-workflow)
