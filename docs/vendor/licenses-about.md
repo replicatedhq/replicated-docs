@@ -49,7 +49,7 @@ For example, you can create a custom license field to limit the number of active
 users permitted. Or, you can create a field that specifies the domain on which
 the customer can run the application.
 
-For more information about creating custom license fields, see [Creating custom license fields](licenses-adding-custom).
+For more information about creating custom license fields, see [Creating custom license fields](licenses-adding-custom-fields).
 
 ## About referencing license fields
 
