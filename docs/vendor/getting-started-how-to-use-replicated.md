@@ -6,3 +6,9 @@ This is a high-level workflow for releasing an application using Replicated. For
 1. Optional: [Install the Replicated vendor CLI](vendor-cli-installing).
 1. [Review the checklist and package the application](packaging-planning-checklist).
 1. [Release and share the packaged application](releases-workflow).
+
+## Additional Resources
+
+* [Installing without an existing cluster](tutorial-installing-without-existing-cluster)
+* [Installing with an existing cluster](tutorial-installing-with-existing-cluster)
+* [Installing with the CLI](tutorial-installing-with-cli)

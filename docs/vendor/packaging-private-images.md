@@ -18,7 +18,7 @@ To use the Replicated private registry:
 1. Do one of the following to log in to the `registry.replicated.com` container
 registry:
    * **Log in with your credentials**: Run `docker login registry.replicated.com`. When prompted, provide your Replicated vendor portal username and password.
-   * **Log in with an API token**: Run `docker login registry.replicated.com`. When prompted for a username and password, provide the API token for the application. See [Setting a service account token](quickstart-cli#2-setting-a-service-account-token).
+   * **Log in with an API token**: Run `docker login registry.replicated.com`. When prompted for a username and password, provide the API token for the application. See [Setting a service account token](tutorial-installing-with-cli#2-setting-a-service-account-token).
 
 1. Tag your private image with the Replicated registry hostname in the standard
 Docker format:
