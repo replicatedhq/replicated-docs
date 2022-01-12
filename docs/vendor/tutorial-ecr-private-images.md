@@ -8,8 +8,9 @@ The purpose of this guide is to walk you through a hello-world example on how to
 
 ## Prerequisites & Assumptions
 
-This power-user's guide assumes you have completed the [standard quickstart](quickstart-without-existing-cluster) or the [CLI quickstart](quickstart-cli) guides as this guide is a continuation of those guides.
-As with the previous guides, we will also need a VM to install the application with the following minimum requirements:
+This power-user's guide assumes you have completed the Replicated product installation tutorials [without an existing cluster](tutorial-installing-without-existing-cluster) or the [using the CLI](tutorial-installing-with-cli), as this guide is a continuation of those tutorials.
+
+As with the previous tutorials, we will also need a VM to install the application with the following minimum requirements:
 
 * Ubuntu 18.04
 * At least 8 GB of RAM
@@ -47,7 +48,7 @@ For this guide, we are simply going to use the default nginx deployment to creat
 
 ### Create Sample Application and deploy the first release
 
-In this section, we cover at a high level the steps to create a new application and install it on a VM. As mentioned earlier, it's assumed you have completed the [standard quickstart](quickstart-without-existing-cluster) or the [CLI quickstart](quickstart-cli) guide, which cover these steps in detail.
+In this section, we cover at a high level the steps to create a new application and install it on a VM. As mentioned earlier, it's assumed you have completed the Replicated product installation tutorials [without an existing cluster](tutorial-installing-without-existing-cluster) or the [using the CLI](tutorial-installing-with-cli), which cover these steps in detail.
 
 To create our sample application follow these steps:
 
