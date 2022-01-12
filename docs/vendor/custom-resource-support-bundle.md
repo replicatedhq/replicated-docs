@@ -11,7 +11,7 @@ An [Analyzer Spec](https://troubleshoot.sh/docs/analyze/) defines how to interpr
 
 Both support-bundle custom resources are optional for KOTS applications.
 
-Support Bundle collection and analysis are integrated into the [Admin Console Dashboard](/kotsadm/troubleshooting/support-bundle/), and are also available through a [standalone kubectl plugin](https://troubleshoot.sh/docs/#installation).
+Support Bundle collection and analysis are integrated into the [Admin Console Dashboard](../enterprise/troubleshooting-an-app), and are also available through a [standalone kubectl plugin](https://troubleshoot.sh/docs/#installation).
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2

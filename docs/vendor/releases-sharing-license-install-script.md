@@ -71,4 +71,4 @@ license file.
 
 ## Additional resources
 
-[How to release a packaged application](https://replicated-docs.netlify.app/docs/vendor/releases-workflow)
+[How to release a packaged application](releases-workflow)

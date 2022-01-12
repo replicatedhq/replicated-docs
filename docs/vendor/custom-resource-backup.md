@@ -1,9 +1,9 @@
 # Backup
 
-A Backup resource in an application causes the Admin Console to enable [snapshots](/vendor/snapshots/overview/) for the application.
-This resource is [fully documented](https://velero.io/docs/v1.5/api-types/backup/) on velero.io.
+A Backup resource in an application causes the Admin Console to enable [snapshots](snapshots-overview) for the application.
+This resource is fully documented on [velero.io](https://velero.io/docs/v1.5/api-types/backup/).
 
-This resource supports the [KOTS optional resources](/vendor/packaging/include-resources/) annotations.
+This custom resource supports optional resource installations. For more information, see [Include optional resources](packaging-include-resources).
 
 ```yaml
 apiVersion: velero.io/v1
@@ -17,7 +17,7 @@ spec: {}
 
 Refer to the Velero documentation for all options in this resource.
 
-**Important Note**: the following top-level spec fields are not currently supported in [Full Snapshots](https://kots.io/kotsadm/snapshots/overview/#full-snapshots-recommended):
+**Important Note**: the following top-level spec fields are not currently supported in [Full Snapshots](../enterprise/snapshots-understanding/#full-snapshots-recommended):
 
 - `snapshotVolumes`
 - `volumeSnapshotLocations`

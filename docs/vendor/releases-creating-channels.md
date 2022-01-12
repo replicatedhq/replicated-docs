@@ -29,8 +29,8 @@ To create a channel:
 
 To edit an existing channel:
 
-1. In the vendor portal, select Channels from the left menu.
-1. Click the edit icon on the top right of the channel that you want to modify.
+1. In the vendor portal, select **Channels** from the left menu.
+1. Click the **edit** icon on the top right of the channel that you want to modify.
 
   The Edit a channel dialog opens.
 
@@ -39,15 +39,15 @@ To edit an existing channel:
 1. Edit the fields. You can perform one or more of the following actions:
 
     * Change the name or description
-    * Enable or disable automatically creating airgap builds
+    * Enable or disable automatically creating air gap builds
     * Enable or disable semantic versioning on the channel
 
 1. Click **Save**.
 
 ## Next steps
 
-[Creating a release](https://replicated-docs.netlify.app/docs/vendor/releases-creating-releases)
+[Creating a release](releases-creating-releases)
 
 ## Additional resources
 
-[How to release a packaged application](https://replicated-docs.netlify.app/docs/vendor/releases-workflow)
+[How to release a packaged application](releases-workflow)

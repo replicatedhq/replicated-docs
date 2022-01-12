@@ -22,7 +22,7 @@ For releases that do not use semantic versioning, the admin console sequences th
 
 ## Promoting Releases
 After a release is ready to be installed, the release can be promoted to one or more release channels.
-More details can be found in our [Promote Releases documentation](/vendor/packaging/promoting-releases).
+For more information, see [Promoting Releases](releases-promoting).
 
 ## Manage Release Channels
 By default, there are 3 release channels: Stable, Beta and Unstable. When you first log in to Replicated and select the Channels tab, you’ll see these default release channels created.

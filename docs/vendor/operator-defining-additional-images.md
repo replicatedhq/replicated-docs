@@ -3,7 +3,7 @@
 To ensure that images will be available locally, KOTS finds all images defined in the application manifests and includes them in airgap bundles.
 During the install or update workflow, KOTS will collect these images from the airgap bundle (if airgapped) or from the internet (if online), retag and push all of the images to customer-defined registry.
 
-If there are required images that are not defined in any of the Kubernetes manifests, these should be listed in the `additionalImages` attribute of the [Application](/reference/v1beta1/application/) spec.
+If there are required images that are not defined in any of the Kubernetes manifests, these should be listed in the `additionalImages` attribute of the [Application](custom-resource-application) spec.
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -21,7 +21,7 @@ KOTS supports additional images that are:
 
 - public images: referenced by the docker pullable image name
 - images pushed to the Replicated Registry: referenced by the `registry.replicated.com` name
-- images pushed to another [private, linked registry](https://kots.io/vendor/packaging/private-images/): referenced by the docker pullable name
+- images pushed to another [private, linked registry](packaging-private-images): referenced by the docker pullable name
 
 ## Authentication
 

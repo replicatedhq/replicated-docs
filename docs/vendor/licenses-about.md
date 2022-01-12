@@ -11,7 +11,7 @@ file. The customer uploads this license file to the Replicated admin console whe
 they install and update your application.
 
 Each customer license includes several fields that uniquely identify the customer
-and the application, specify the release channel, and define _entitlement information_
+and the application, specify the release channel, and define the _entitlement information_
 about the customer.
 
 Entitlement information describes the details of the license, such as if the license
