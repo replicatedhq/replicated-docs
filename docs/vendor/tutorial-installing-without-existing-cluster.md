@@ -1,6 +1,6 @@
-# Installing without an existing cluster
+# Installing applications without an existing cluster
 
-This installation guide is our simplest guide, and demonstrates a simple Nginx application in Kubernetes using a single VM.
+This topic demonstrates packaging and installing a simple Nginx application in Kubernetes using a single VM.
 
 It is broken into four sections:
 

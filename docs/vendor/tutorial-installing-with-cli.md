@@ -1,4 +1,4 @@
-# Installing with the Replicated CLI
+# Installing applications with the CLI
 
 This power-user's guide will help you get set up with a CLI-based workflow for quickly iterating on your Kubernetes application with KOTS.
 If you'd prefer a more conceptual overview before digging into the CLI tools, you can start with the tutorial for [installing without an existing cluster](tutorial-installing-without-existing-cluster).

@@ -1,7 +1,6 @@
-# Installing with an existing cluster
+# Installing applications with an existing cluster
 
-The KOTS Existing Cluster Guide is one of our simplest guides.
-We'll get running quickly with a simple nginx application on an existing cluster in GKE (or another cluster you have handy).
+This topic demonstrates packaging and installing a simple Nginx application in Kubernetes on an existing cluster in GKE (or another cluster you have handy).
 
 It is broken into four sections:
 
