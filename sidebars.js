@@ -31,7 +31,6 @@ const sidebars = {
           items: [
             'vendor/getting-started-how-to-use-replicated',
             'vendor/getting-started-creating-vendor-account',
-            'vendor/vendor-cli-installing',
           ],
         },
         {
