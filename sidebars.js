@@ -20,6 +20,7 @@ const sidebars = {
 
   tutorialSidebar: [
     'intro',
+    'replicated-about',
     {
       type: 'category',
       label: 'Vendor',
@@ -190,7 +191,7 @@ const sidebars = {
                   href: 'https://replicated-vendor-api.readme.io/v3/'
                 },
               ],
-            },  
+            },
           ],
         },
       ],
