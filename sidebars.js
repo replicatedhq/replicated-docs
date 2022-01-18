@@ -39,9 +39,8 @@ const sidebars = {
           items: [
             'vendor/packaging-planning-checklist',
             'vendor/packaging-an-app',
-            'vendor/packaging-custom-resources',
-            'vendor/packaging-embedded-kubernetes',
             'vendor/packaging-private-images',
+            'vendor/packaging-custom-resources',
             'vendor/packaging-template-functions',
             'vendor/packaging-include-resources',
             'vendor/packaging-ingress',
@@ -49,7 +48,6 @@ const sidebars = {
             'vendor/packaging-cleaning-up-jobs',
             'vendor/packaging-rbac',
             'vendor/identity-service-configuring',
-            'vendor/preflight-support-bundle-creating',
             {
                 type: 'category',
                 label: 'Snapshots',
@@ -60,15 +58,16 @@ const sidebars = {
                   'vendor/snapshots-backup-hooks-usecase'
               ],
             },
+            'vendor/preflight-support-bundle-creating',
             {
               type: 'category',
               label: 'Customizing the admin console and download portal',
               items: [
-                'vendor/admin-console-customize-config-screen',
                 'vendor/admin-console-customize-app-icon',
                 'vendor/admin-console-display-app-status',
-                'vendor/admin-console-port-forwarding',
+                'vendor/admin-console-adding-buttons-links',
                 'vendor/admin-console-prometheus-monitoring',
+                'vendor/admin-console-customize-config-screen',
               ],
             },
             {
@@ -98,6 +97,7 @@ const sidebars = {
                 'vendor/operator-defining-additional-namespaces',
               ],
             },
+            'vendor/packaging-embedded-kubernetes',
             ],
           },
         {
