@@ -20,7 +20,7 @@ const sidebars = {
 
   tutorialSidebar: [
     'intro-docs',
-    'replicated-about',
+    'intro-replicated',
     {
       type: 'category',
       label: 'Vendor',
