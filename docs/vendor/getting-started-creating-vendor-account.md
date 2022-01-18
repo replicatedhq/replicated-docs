@@ -4,5 +4,4 @@ To get started with Replicated, create a Replicated Vendor account at our [vendo
 
 # Next steps
 
-* Optional: [Install the Replicated vendor CLI](vendor-cli-installing)
 * [Package your application](packaging-planning-checklist)

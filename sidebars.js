@@ -31,7 +31,6 @@ const sidebars = {
           items: [
             'vendor/getting-started-how-to-use-replicated',
             'vendor/getting-started-creating-vendor-account',
-            'vendor/vendor-cli-installing',
           ],
         },
         {
@@ -173,9 +172,30 @@ const sidebars = {
               ],
             },
             {
-              type: 'link',
-              label: 'KOTS CLI Documentation',
-              href: 'https://kots.io/kots-cli/getting-started/'
+              type: 'category',
+              label: 'Vendor CLI',
+              items: [
+                'vendor/vendor-cli-installing',
+                'vendor/vendor-cli-tokens',
+                'vendor/vendor-cli-app-create',
+                'vendor/vendor-cli-app-delete',
+                'vendor/vendor-cli-app-ls',
+                'vendor/vendor-cli-channel-create',
+                'vendor/vendor-cli-channel-delete',
+                'vendor/vendor-cli-channel-inspect',
+                'vendor/vendor-cli-channel-ls',
+                'vendor/vendor-cli-customer-create',
+                'vendor/vendor-cli-customer-download-license',
+                'vendor/vendor-cli-customer-ls',
+                'vendor/vendor-cli-installer-create',
+                'vendor/vendor-cli-installer-ls',
+                'vendor/vendor-cli-release-create',
+                'vendor/vendor-cli-release-download',
+                'vendor/vendor-cli-release-lint',
+                'vendor/vendor-cli-release-ls',
+                'vendor/vendor-cli-release-promote',
+                'vendor/vendor-cli-release-update',
+              ],
             },
             {
               type: 'category',
@@ -191,6 +211,11 @@ const sidebars = {
                   href: 'https://replicated-vendor-api.readme.io/v3/'
                 },
               ],
+            },
+            {
+              type: 'link',
+              label: 'KOTS CLI Documentation',
+              href: 'https://kots.io/kots-cli/getting-started/'
             },
           ],
         },
