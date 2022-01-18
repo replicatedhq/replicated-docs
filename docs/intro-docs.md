@@ -1,19 +1,7 @@
-# Welcome to Replicated Documentation
+# Welcome to Replicated documentation
 
-This topic provides an introduction to Replicated as well as information about
-how to navigate the Replicated product documentation.
-
-## What is Replicated?
-
-Replicated allows software vendors to securely distribute their application to
-diverse customer environments, including both on-premises and cloud environments.
-
-Replicated packages the vendor's application using a set of Kubernetes manifests
-and installs the application onto a Kubernetes cluster in the customer's environment.
-
-For more information about Replicated features, see [About Replicated](replicated-about).
-
-## About the Replicated documentation
+This topic describes how to navigate the Replicated product documentation site.
+For information about the Replicated product, see [What is Replicated?](intro-replicated).
 
 The Replicated product documentation is divided into the following main sections:
 
