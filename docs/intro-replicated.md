@@ -1,9 +1,4 @@
-# About Replicated
-
-This topic provides an overview of the Replicated product, as well as information
-about the key Replicated features.
-
-## What is Replicated?
+# What is Replicated?
 
 Replicated allows software vendors to securely distribute their application to
 diverse customer environments, including both on-premises and cloud environments.
@@ -43,6 +38,14 @@ application users can configure, update, manage, backup and restore, and trouble
 the application that they installed. The admin console is deployed by the app manager
 when the customer installs the application.
 
+## Replicated APIs and CLIs
+
 Replicated also includes a Vendor API and CLIs that allow both vendors and enterprise
 users to complete tasks programmatically.
-For more information, see the _Reference_ section in the _Vendor_ documentation.
+
+For information about the Vendor API v3, see [Using the Vendor API v3](vendor/reference-vendor-api).
+
+For information about the Vendor CLI, see [Installing the Replicated Vendor CLI](vendor/vendor-cli-installing).
+
+For information about the kots CLI, see [Getting Started with KOTS](https://kots.io/kots-cli/getting-started/)
+in the kots CLI documentation.
