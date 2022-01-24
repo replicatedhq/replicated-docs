@@ -132,6 +132,7 @@ const sidebars = {
             'vendor/tutorial-installing-without-existing-cluster',
             'vendor/tutorial-installing-with-existing-cluster',
             'vendor/tutorial-installing-with-cli',
+            'vendor/tutorial-installing-air-gap',
             'vendor/tutorial-ecr-private-images',
             'vendor/tutorial-ha-cluster-deploying',
             'vendor/tutorial-ci-cd-integration',
