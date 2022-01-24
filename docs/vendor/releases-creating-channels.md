@@ -1,4 +1,4 @@
-# Creating and editing channels
+# Creating and managing channels
 
 There are three default channels that can be configured, and you can add custom channels.
 
