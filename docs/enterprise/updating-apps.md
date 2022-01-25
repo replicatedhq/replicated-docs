@@ -1,4 +1,4 @@
-# Updating a KOTS application
+# Updating an application
 
 ## Using Admin Console
 

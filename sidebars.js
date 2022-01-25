@@ -274,8 +274,8 @@ const sidebars = {
           type: 'category',
           label: 'Updating',
           items: [
-            'enterprise/updating-kots-apps',
-            'enterprise/updating-admin-console',
+            'enterprise/updating-apps',
+            'enterprise/updating-existing-cluster',
             'enterprise/updating-embedded-cluster',
             'enterprise/updating-patching-with-kustomize',
             'enterprise/updating-licenses',
