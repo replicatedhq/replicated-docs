@@ -145,7 +145,11 @@ const sidebars = {
             'vendor/tutorial-installing-without-existing-cluster',
             'vendor/tutorial-installing-with-existing-cluster',
             'vendor/tutorial-installing-with-cli',
+ 42052
             'vendor/tutorial-installing-airgap-existing-cluster',
+
+            'vendor/tutorial-installing-air-gap',
+ main
             'vendor/tutorial-ecr-private-images',
             'vendor/tutorial-ha-cluster-deploying',
             'vendor/tutorial-ci-cd-integration',
@@ -224,11 +228,6 @@ const sidebars = {
                   href: 'https://replicated-vendor-api.readme.io/v3/'
                 },
               ],
-            },
-            {
-              type: 'link',
-              label: 'KOTS CLI Documentation',
-              href: 'https://kots.io/kots-cli/getting-started/'
             },
           ],
         },
@@ -323,6 +322,11 @@ const sidebars = {
         {
           type: 'doc',
           id: 'enterprise/troubleshooting-an-app'
+        },
+        {
+          type: 'link',
+          label: 'kots CLI Documentation',
+          href: 'https://kots.io/kots-cli/getting-started/'
         },
       ],
     },

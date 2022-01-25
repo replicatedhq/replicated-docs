@@ -11,7 +11,10 @@ These tools are built with a strong focus on production grade day-2 operations.
 The foundational open source projects that KOTS coordinates are [Replicated KOTS CLI](https://kots.io/vendor/cli/getting-started/) and [Kotsadm](../enterprise/installing-overview) (installation and admin console), [Replicated Troubleshoot](https://troubleshoot.sh) (preflight checks and support bundles), [Replicated kURL](https://kurl.sh) (embedded K8s option) as well as several community driven OSS projects like Kubernetes, Kustomize, Helm, and Kubeadm.
 
 This document starts with an overview on how to package and manage KOTS applications via the Replicated Vendor Portal (an API and CLI are available for more rapid or automated iteration).
-Please refer to our documentation of the [KOTS CLI](https://kots.io/kots-cli/getting-started/) to install and manage a KOTS application via the command line, or our [Enterprise documentation](../enterprise/installing-overview) for managing an application via the admin console.
+
+For information about installing and managing an application using the kots CLI, see [Getting Started with KOTS](https://kots.io/kots-cli/getting-started/) in the kots CLI documentation.
+
+For information about installing and managing an application using the Replicated admin console, see [Overview of installing an application with app manager](../enterprise/installing-overview).
 
 ## Basic Packaging
 KOTS applications are packaged as a set of standard Kubernetes manifests.

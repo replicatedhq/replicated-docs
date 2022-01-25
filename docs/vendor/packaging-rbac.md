@@ -5,7 +5,7 @@ By default, the Admin Console will create a ClusterRole and ClusterRoleBinding w
 This behavior can be controlled by editing the [application](custom-resource-application) manifest.
 
 As listed above, an Application may require cluster scoped access across all namespaces on all/wildcard k8 objects or to have access limited to its given namespace.
-In either case, the user who installs an application via [KOTS install](https://kots.io/kots-cli/install/) CLI must have the wildcard privileges in the cluster.
+In either case, the user who installs an application with the kots CLI must have the wildcard privileges in the cluster.
 If the user has insufficient privileges the following error will be shown when attempting install or upgrade.
 
 ```bash
@@ -15,6 +15,8 @@ For more information, please visit https://kots.io/vendor/packaging/rbac
 To bypass this check, use the --skip-rbac-check flag
 Error: insufficient privileges
 ```
+
+For more information about installing an application with the kots CLI, see [kots install](https://kots.io/kots-cli/install/) in the kots CLI documentation.
 
 ## Cluster-scoped access
 
@@ -78,13 +80,15 @@ subjects:
 
 ## Namespace-scoped access
 
-An application developer can limit the RBAC grants for the Admin Console to be limited to a single namespace by specifying the `requireMinimalRBACPrivileges` flag in the [application](custom-resource-application) manifest.
-When this is set, the KOTS installer will create a Role and RoleBinding, granting the Admin Console access to select resources in the namespace, but not outside of the cluster.
+An application developer can limit the RBAC grants for the Admin Console to be limited to a single namespace by specifying the `requireMinimalRBACPrivileges` flag in the [application](custom-resource-application) manifest. When this is set, the KOTS installer will create a Role and RoleBinding, granting the Admin Console access to select resources in the namespace, but not outside of the cluster.
+
 Without access to cluster-scoped resources, some Preflight Checks and Support Bundle collectors will not be able to read the resources.
 These tools will continue to function, but will return less data.
 In this situation, the Admin Console will present an option for the user to either proceeed with limited data or a command to execute the Preflight Checks or Support Bundle remotely, using the user's RBAC authorizations.
+
 Additionally, the namespace-scoped permission does not grant access to Velero's namespace if installed - Velero is a prerequisite for [admin console snapshots](../enterprise/snapshots-understanding).
-The [`kubectl kots velero ensure-permissions` command](https://kots.io/kots-cli/velero/ensure-permissions/) can be used to create addition roles/rolebindings to allow the necessary cross-namespace access.
+
+The `kubectl kots velero ensure-permissions` command can be used to create additional roles/rolebindings to allow the necessary cross-namespace access. For more information, see [kots velero ensure-permissions](https://kots.io/kots-cli/velero/ensure-permissions/) in the kots CLI documentation.
 
 Please note that airgapped installs honor the `requireMinimalRBACPrivileges` flag in [headless mode only](../enterprise/installing-existing-cluster-automation#airgap-install).
 Without access to the internet or the app's `.airgap` package as provided in a headless install, KOTS does not have the information required to determine whether minimal RBAC is appropriate and so defaults to the more permissive RBAC policy.
