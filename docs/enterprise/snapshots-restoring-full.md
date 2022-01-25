@@ -1,4 +1,4 @@
-# Configuring disaster recovery
+# Restoring full snapshots
 
 In order to setup disaster recovery snapshots, backups should be configured to use a store that exists outside of the cluster.
 This is especially true for installations on embedded kURL clusters.
