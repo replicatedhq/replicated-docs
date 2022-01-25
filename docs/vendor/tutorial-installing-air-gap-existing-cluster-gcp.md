@@ -1,4 +1,4 @@
-# Installing in an airgapped existing cluster using GCP
+# Installing in an air gapped existing cluster using GCP
 
 This is an advanced guide that shows how to install a KOTS app in an Existing Cluster environment where the workstation and the cluster have no outbound internet connectivity ("airgapped").
 This guide will assume you've already completed the [Existing Cluster Quickstart](/vendor/guides/existing-cluster) to set up a non-airgapped cluster.   We'll be doing what the Terraform Enterprise team refers to as Modern Airgapped or "2019 Airgapped" in [How Hashicorp delivers On-prem with Replicated](https://blog.replicated.com/hashicorp-recording/)
