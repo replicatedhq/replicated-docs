@@ -281,7 +281,7 @@ const sidebars = {
         },
         {
           type: 'doc',
-          id: 'enterprise/monitoring-prometheus'
+          id: 'enterprise/monitoring-applications'
         },
         {
           type: 'category',
