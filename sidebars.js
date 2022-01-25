@@ -273,6 +273,15 @@ const sidebars = {
         },
         {
           type: 'category',
+          label: 'GitOps',
+          items: [
+            'enterprise/gitops-single-app-workflow',
+            'enterprise/gitops-multi-app-workflow',
+            'enterprise/gitops-managing-secrets',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Managing user access',
           items: [
             'enterprise/auth-identity-provider',
@@ -292,18 +301,9 @@ const sidebars = {
             'enterprise/snapshots-configuring-nfs',
             'enterprise/snapshots-configuring-hostpath',
             'enterprise/snapshots-scheduling',
+            'enterprise/snapshots-restoring-full',
             'enterprise/snapshots-restoring-partial',
-            'enterprise/snapshots-configuring-disaster-recovery',
             'enterprise/snapshots-troubleshooting-backup-restore',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'GitOps',
-          items: [
-            'enterprise/gitops-single-app-workflow',
-            'enterprise/gitops-multi-app-workflow',
-            'enterprise/gitops-managing-secrets',
           ],
         },
         {
