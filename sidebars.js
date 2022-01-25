@@ -224,11 +224,6 @@ const sidebars = {
                 },
               ],
             },
-            {
-              type: 'link',
-              label: 'KOTS CLI Documentation',
-              href: 'https://kots.io/kots-cli/getting-started/'
-            },
           ],
         },
       ],
@@ -322,6 +317,11 @@ const sidebars = {
         {
           type: 'doc',
           id: 'enterprise/troubleshooting-an-app'
+        },
+        {
+          type: 'link',
+          label: 'kots CLI Documentation',
+          href: 'https://kots.io/kots-cli/getting-started/'
         },
       ],
     },

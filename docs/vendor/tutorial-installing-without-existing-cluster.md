@@ -39,10 +39,10 @@ For now, click on the Releases item on the left menu and then click the "Create 
 ### Create a Release
 
 You should now see a YAML editor where you can define how your application will work and the integration with KOTS functionality.
-Once you are familiar with these concepts, you'll probably use our [CLI and API](https://kots.io/kots-cli/getting-started/) to automate this rather than manually edit YAML on this page.
-If you prefer to use the command line, rather than editing YAML in the browser, you can always follow our tutorial for [installing with the CLI](tutorial-installing-with-cli) instead.
 
 **Note**: Since this guide is intended as a "Hello, World" example, we'll skip editing the YAML right now and just proceed with the defaults. We'll make some changes later on in this guide.
+
+When you are familiar with these concepts, you can use the Replicated Vendor CLI and API to automate this task rather than manually editing the YAML on this page. For more information, see [Installing the Replicated Vendor CLI](vendor-cli-installing) and [Using the Vendor API v3](reference-vendor-api).
 
 ![Default YAML](/images/guides/kots/default-yaml.png)
 
