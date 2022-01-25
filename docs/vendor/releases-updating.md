@@ -1,4 +1,4 @@
-# Updating Releases
+# Updating releases
 
 You can deliver an update to an application after it has been released.
 

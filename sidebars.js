@@ -103,10 +103,25 @@ const sidebars = {
           type: 'category',
           label: 'Releasing an application',
           items: [
+            'vendor/releases-understanding',
             'vendor/releases-workflow',
-            'vendor/releases-creating-channels',
-            'vendor/releases-creating-releases',
-            'vendor/releases-promoting',
+            {
+              type: 'category',
+              label: 'Creating and managing channels',
+              items: [
+                'vendor/releases-creating-channels',
+                'vendor/releases-about-channels',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Creating and managing releases',
+              items: [
+                'vendor/releases-creating-releases',
+                'vendor/releases-promoting',
+                'vendor/releases-updating',
+              ],
+            },
             {
               type: 'category',
               label: 'Creating a customer',
@@ -121,8 +136,6 @@ const sidebars = {
             },
 
             'vendor/releases-sharing-license-install-script',
-            'vendor/releases-updating',
-            'vendor/releases-understanding',
           ],
         },
         {

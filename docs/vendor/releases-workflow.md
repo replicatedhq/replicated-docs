@@ -1,4 +1,4 @@
-# How to release a packaged application
+# How to release an application
 
 After you package an application, use Replicated to release it:
 
