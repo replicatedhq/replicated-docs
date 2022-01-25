@@ -1,7 +1,7 @@
-# Updating an embedded cluster
+# Updating the admin console on a Kubernetes installer cluster
 
-This document refers to upgrading the Admin Console on an embedded cluster.
-For information about how to upgrade the admin console on an existing cluster, see [Updating the admin console](updating-admin-console).
+This document refers to upgrading the Admin Console on an embedded cluster created with the Kubernetes installer.
+For information about how to upgrade the admin console on an existing cluster, see [Updating the admin console on an existing cluster](updating-existing-cluster).
 
 ### Online Installations
 
