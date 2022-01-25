@@ -255,7 +255,7 @@ const sidebars = {
           type: 'category',
           label: 'Using self-hosted image registries',
           items: [
-            'enterprise/image-registry-existing-cluster',
+            'enterprise/image-registry-airgap',
             'enterprise/image-registry-embedded-cluster',
             'enterprise/image-registry-rate-limits',
           ],
