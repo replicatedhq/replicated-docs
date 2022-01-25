@@ -38,9 +38,10 @@ For now, click on the "Releases" item on the left menu and then click the "Creat
 ### Create a Release
 
 You should now see a YAML editor where you can define how your application will work and the integration with KOTS functionality.
-Once you are familiar with these concepts, you'll probably use our [CLI and API](https://kots.io/kots-cli/getting-started/) to automate this rather than manually edit YAML on this page (although if you're itching to hit the command line, rather than editing YAML in the browser, you can always run through the [CLI setup guide](tutorial-installing-with-cli) before coming back to complete this guide).
 
 **Note**: Since this guide is intended as a "Hello, World" example, we'll skip editing the YAML right now and just proceed with the defaults. We'll make some changes later on in this guide.
+
+Once you are familiar with these concepts, you'll probably use the Replicated Vendor CLI and API to automate this rather than manually editing YAML on this page. For more information, see [Installing the Replicated Vendor CLI](vendor-cli-installing) and [Using the Vendor API v3](reference-vendor-api).
 
 ![Default YAML](/images/guides/kots/default-yaml.png)
 
@@ -110,7 +111,7 @@ Install latest KOTS version as `kubectl` plugin.
 curl https://kots.io/install | bash
 ```
 
-Install your KOTS app
+Install your KOTS app using the kots CLI. For more information about installing an application with the kots CLI, see [kots install](https://kots.io/kots-cli/install/) in the kots CLI documentation.
 ```shell
 kubectl kots install <your-app-name-and-channel>
 
