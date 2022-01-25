@@ -1,4 +1,4 @@
-# About deploying a registry on an existing cluster
+# Image registry for air gap clusters
 
 Kots can be used to download and prepare an application to be installed onto a secured, airgapped Kubernetes cluster.
 When doing this, there are a few additional steps and configuration needed.

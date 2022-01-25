@@ -1,11 +1,11 @@
-# About deploying a registry on an embedded cluster
+# Image registry for Kubernetes installer clusters
 
-This topic describes using the kURL registry add-on to host application images on embedded clusters.
+This topic describes using the kURL registry add-on to host application images on embedded clusters created with the Kubernetes installer.
 
 ## About the kURL registry add-on
 
 KOTS can be installed as an add-on on a kURL cluster, which can also include the registry add-on.
-When installing in an air gapped envionment, the embedded registry will be automatically used to host all application images.
+When installing in an air gapped environment, the embedded registry will be automatically used to host all application images.
 
 For more information about the registry add-on, see [Registry Add-On](https://kurl.sh/docs/add-ons/registry) in the kURL documentation.
 
