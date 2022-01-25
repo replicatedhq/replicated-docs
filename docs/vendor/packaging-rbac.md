@@ -88,7 +88,7 @@ In this situation, the Admin Console will present an option for the user to eith
 
 Additionally, the namespace-scoped permission does not grant access to Velero's namespace if installed - Velero is a prerequisite for [admin console snapshots](../enterprise/snapshots-understanding).
 
-The `kubectl kots velero ensure-permissions` command can be used to create addition roles/rolebindings to allow the necessary cross-namespace access. For more information, see [kots velero ensure-permissions](https://kots.io/kots-cli/velero/ensure-permissions/) in the kots CLI documentation.
+The `kubectl kots velero ensure-permissions` command can be used to create additional roles/rolebindings to allow the necessary cross-namespace access. For more information, see [kots velero ensure-permissions](https://kots.io/kots-cli/velero/ensure-permissions/) in the kots CLI documentation.
 
 Please note that airgapped installs honor the `requireMinimalRBACPrivileges` flag in [headless mode only](../enterprise/installing-existing-cluster-automation#airgap-install).
 Without access to the internet or the app's `.airgap` package as provided in a headless install, KOTS does not have the information required to determine whether minimal RBAC is appropriate and so defaults to the more permissive RBAC policy.
