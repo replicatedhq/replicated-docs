@@ -161,14 +161,14 @@ const sidebars = {
               items: [
                 'vendor/custom-resource-about',
                 'vendor/custom-resource-application',
-                'vendor/custom-resource-backup',
                 'vendor/custom-resource-config',
-                'vendor/custom-resource-helmchart',
-                'vendor/custom-resource-identity',
                 'vendor/custom-resource-preflight',
                 'vendor/custom-resource-redactor',
-                'vendor/custom-resource-sig-application',
                 'vendor/custom-resource-support-bundle',
+                'vendor/custom-resource-sig-application',
+                'vendor/custom-resource-helmchart',
+                'vendor/custom-resource-backup',
+                'vendor/custom-resource-identity',
               ],
             },
             {
@@ -176,11 +176,11 @@ const sidebars = {
               label: 'Template functions',
               items: [
                 'vendor/template-functions-about',
+                'vendor/template-functions-static-context',
                 'vendor/template-functions-config-context',
-                'vendor/template-functions-identity-context',
                 'vendor/template-functions-kurl-context',
                 'vendor/template-functions-license-context',
-                'vendor/template-functions-static-context',
+                'vendor/template-functions-identity-context',
               ],
             },
             {
