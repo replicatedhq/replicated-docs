@@ -249,14 +249,11 @@ Log in to the admin console using the address and password from the install. Onc
 
 Once you upload your license it may take a few minutes to load and continue with the deployment.
 
-
-![License-Load](/images/guides/kots/ha-cluster-license-load.png)
-
 Once the license is loaded, the next window will depend on the application being deployed as this window renders whatever has been codified in the application's [Config.yaml](https://kots.io/reference/v1beta1/config/).
 
 After the configuration window, you should see the preflight checks and eventually land on a window similar to what is shown below
 
-![KotsAdmin](/images/guides/kots/ha-cluster-app-dployed.png)
+![KotsAdmin](/images/guides/kots/ha-cluster-app-deployed.png)
 
 
 ### Verify the deployment
@@ -280,7 +277,7 @@ Once connected using the client of your choice, you can retrieve the records by 
 
 `SELECT * FROM tblrecords`
 
-You should see records for each time that the /sql-add route is accessed. Below is a screenshot of what it looks like in pgAdmin:
+You should see records for each time that the /sql-add route is accessed. Below is a screenshot of what it looks like in Admin:
 
 ![pgAdmin](/images/guides/kots/ha-cluster-pg-admin.png)
 
@@ -295,8 +292,6 @@ In the admin console, under Cluster Management you can view the status of the em
 ![ClusterManagement](/images/guides/kots/ha-cluster-cluster-mgmt.png)
 
 To get the command to run on the other nodes, click on the 'Add Node' button. This will display the command to use for primary and secondary nodes. For our exercise we will add primary nodes to give us a proper HA cluster.
-
-![ClusterManagement](/images/guides/kots/ha-cluster-add-node-cmd.png)
 
 #### SSH into the nodes and run the command
 

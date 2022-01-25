@@ -65,7 +65,7 @@ spec:
             - name: DB_HOST
               value: postgres
             - name: DB_PORT
-              value: 5432
+              value: "5432"
             - name: DB_USER
               value: postgres
             - name: DB_PASSWORD
@@ -521,8 +521,6 @@ spec:
 ```
 
 Let's save this and create a new release. After deploying the release in the Admin Console, head to "Config" and set the toggle to "External Postgres" to see the new fields:
-
-![External PG Config](/images/guides/kots/external-pg-config.png)
 
 In order to demonstrate that these are working, let's add some values that we know won't work, and just check to confirm that checking "External Postgres" will remove our embedded postgres instance:
 
