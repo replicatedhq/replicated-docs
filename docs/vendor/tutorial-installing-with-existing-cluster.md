@@ -33,8 +33,6 @@ This is a list of your release channels, which are logical stacks for you to sta
 We'll explore this in more detail later.
 For now, click on the "Releases" item on the left menu and then click the "Create a release" button.
 
-![Create Release](/images/guides/kots/create-release.png)
-
 ### Create a Release
 
 You should now see a YAML editor where you can define how your application will work and the integration with KOTS functionality.
@@ -72,8 +70,6 @@ Now that we've created a release and promoted it to the "Unstable" channel, the 
 A customer license (downloadable as a `.yaml` file) is required to install any KOTS application.
 To create a customer license, log in to the [vendor portal](https://vendor.replicated.com) and select the Customers link on the left.
 Click the "Create your first customer" button to continue.
-
-![Customers](/images/guides/kots/customers.png)
 
 On the "Create a new customer" page, fill in your name for the "Customer name" field, select the "Unstable" channel on the right hand side, and click "Save Changes".
 The defaults in all other fields will be fine.
@@ -132,14 +128,10 @@ At this point, the Admin Console and Kubernetes are running, but the application
 This is also what your customer would be experiencing when installing your application.
 To complete the installation, visit the URL `http://localhost:8800` where you'll be required to enter the password set earlier.
 
-![Console TLS](/images/guides/kots/admin-console-login.png)
-
 Now the installation needs a license file to continue.
 Until this point, this cluster is just running Kubernetes and the Admin Console containers.
 Once we upload a license file, kotsadm will have access to pull the application YAML and containers.
 Click the Upload button and select your `.yaml` file to continue.
-
-![Upload License](/images/guides/kots/upload-license.png)
 
 The settings page is here with default configuration items.
 The appearance of this page can be configured in the `config.yaml` file.
@@ -151,12 +143,8 @@ Preflight checks are designed to ensure this server has the minimum system and s
 By default, we include some preflight checks that are expected to fail so that we can see what failing checks might look like for a customer.
 If you click continue it will warn you but you can still continue.
 
-![Preflight Checks](/images/guides/kots/preflight.png)
-
 Click the "Application" link on the top to see the application running.
 If you are still connected to this server over ssh, `kubectl get pods` will now show the example nginx service we just deployed.
-
-![Dashboard](/images/guides/kots/dashboard.png)
 
 On the nav bar, there's a link to the application page.
 Clicking that will show you the Kubernetes services that we just deployed.
