@@ -358,13 +358,9 @@ For production installations we recommend using a trusted cert, but for this tut
 
 Next, you'll be asked for a password -- you'll want to grab the password from the CLI output and use it to log in to the console.
 
-![Log In](/images/guides/kots/admin-console-login.png)
-
 Until this point, this server is just running Docker, Kubernetes, and the kotsadm containers.
 The next step is to upload a license file so KOTS can pull containers and run your application.
 Click the Upload button and select your `.yaml` file to continue, or drag and drop the license file from your desktop.
-
-![Upload License](/images/guides/kots/upload-license.png)
 
 The settings page is here with default configuration items.
 For now, if you're using the defaults you'll want to check the "Enable Ingress" box.
@@ -377,12 +373,8 @@ Preflight checks are designed to ensure this server has the minimum system and s
 Depending on your YAML in `preflight.yaml`, you may see some of the example preflight checks fail.
 If you have failing checks, you can click continue -- the UI will show a warning that will need to be dismissed before you can continue.
 
-![Preflight Checks](/images/guides/kots/preflight.png)
-
 You should now be on the version history page, which will show the initial version that was check deployed.
 Later, we'll come back to this page to deploy an update to the application.
-
-![Dashboard](/images/guides/kots/dashboard.png)
 
 Click the Application link on the top to see the status of the application and some basic monitoring stats (CPU, memory, disk space).
 If you are still connected to this server over ssh, `kubectl get pods` will now show the example nginx service we just deployed.

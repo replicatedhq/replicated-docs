@@ -57,11 +57,7 @@ To create our sample application follow these steps:
 * Create a customer, assign it to the *Unstable* channel and download the license file after creating the customer.
 * Install the application to a Virtual Machine
 
-Once you have installed the first release of the sample application you should arrive at this screen in the Admin Console:
-
-![kots-admin-v1](/images/guides/kots/priv-reg-ecr-after-deploy.png)
-
-To inspect what was deployed let's look at the files under **View Files** from the Admin Console.
+Log in to the admin console. To inspect what was deployed let's look at the files under **View Files** from the Admin Console.
 In the Upstream files (files from the Release created in the Replicated Vendor Portal) show that we are pulling the public image.
 
 ![admin-console-view-files-upstream-release1](/images/guides/kots/priv-reg-ecr-ups-files-rel1.png)
