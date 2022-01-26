@@ -1,21 +1,20 @@
 # Cluster requirements
 
-Existing cluster compatibility is primarily determined through the version of Kubernetes the cluster is running.
-Unless otherwise noted on this page, cluster infrastructure having compatibility for a supported version of Kubernetes will be compatible with KOTS.
-This excludes any specific and additional requirements imposed by software vendor.
+This topic describes the requirements for installing an application with the Replicated app manager on an existing cluster.
 
-In addition to a valid Kubernetes version, KOTS requires that an existing storage class is available on the cluster. For more information, see [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) in the Kubernetes documentation.
+In addition to the requirements listed on this page, you must also meet the general system requirements as well as any additional requirements from your software vendor. For more information about the system requirements, see [General System Requirements](installing-general-requirements).
 
-Root access on nodes or workstations is *not* required for installations to existing clusters. To perform an install, the user executing `kubectl kots install` will need either.
+To install an application on an existing cluster with Replicated, the cluster must meet the following requirements:
 
-## Cluster RBAC
+* **Kubernetes version compatibility**: The version of Kubernetes running on the cluster must be compatible with the version of KOTS  that you use to install the application. KOTS is an open source project maintained by Replicated. The Replicated app manager is based on the KOTS project. This compatibility requirement does not include any specific and additional requirements defined by the software vendor for the application.
 
-Unless the `requireMinimalRBACPrivileges` attribute is included and set to `true` in the `application.yaml` file, KOTS will require:
+   For more information about the versions of Kubernetes that are compatible with each version of KOTS, see [Kubernetes Version Compatibility](installing-general-requirements/#kubernetes-version-compatibility) in _General System Requirements_.
+* **Storage class**: The cluster must have an existing storage class available. For more information, see [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) in the Kubernetes documentation.
+* **Roll-based access control (RBAC)**: Replicated requires the following RBAC permissions on the cluster:
+   * An existing namespace and an RBAC binding that permits the user of the `kubectl` command-line tool to create workloads, ClusterRoles, and ClusterRoleBindings.
+   * cluster-admin permissions to create namespaces and assign RBAC roles across the cluster.
 
-- Existing namespace, and an RBAC binding that allows the `kubectl`-ing user to create workloads, ClusterRoles, and ClusterRoleBindings
-- cluster-admin permissions to create namespaces and assign RBAC roles across the cluster
+   **Note**: If the `requireMinimalRBACPrivileges` property is set to `true` in the `application.yaml` manifest file for the application, the app manager does not require the ability to create ClusterRoles and ClusterRoleBindings.
+   When `requireMinimalRBACPrivileges` is set to `true`, the app manager uses a namespace-scoped Role and RoleBinding. For more information about the attributes in the `application.yaml` file, see [Application](../vendor/custom-resource-application) in _Custom resources_.
 
-With the `requireMinimalRBACPrivileges` included and set to `true`, KOTS will not require the ability to create ClusterRoles and ClusterRoleBindings.
-In this mode, KOTS will use a namespace-scoped Role and RoleBinding.
-
-For more information about the attributes in the `application.yaml` file, see [Application](../vendor/custom-resource-application) in _Custom resources_. 
+**Note**: Root access on nodes or workstations is *not* required to install an application on an existing cluster.
