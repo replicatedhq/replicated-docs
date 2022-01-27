@@ -1,4 +1,4 @@
-# Configuring role based access control
+# Configuring role based access control (Beta)
 
 It is also possible to regulate access to the Admin Console resources based on the roles of individual users within your organization.
 
