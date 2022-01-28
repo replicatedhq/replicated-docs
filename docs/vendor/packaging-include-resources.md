@@ -1,21 +1,21 @@
 # Include optional resources
 
-Often, Vendors need a way to optionally install resources depending on customers configuration choices. A common example is giving the customer the choice to install a new database or use an existing database.
+Often, vendors need a way to optionally install resources depending on customers configuration choices. A common example is giving the customer the choice to install a new database or use an existing database.
 
 In this scenario, when a customer chooses to bring their own database, it is not desirable to deploy the optional database resources (StatefulSet, Service, etc.). This means that the customer-supplied configuration input values may result in optional Kubernetes manifests that should not be installed.
 
-To provide optional resource installation, KOTS uses [annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) and [template functions](template-functions-about) to conditionally include or exclude resources.
+To provide optional resource installation, the app manager uses [annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) and [template functions](template-functions-about) to conditionally include or exclude resources.
 
 
-## KOTS Annotations
+## App Manager Annotations
 
 ### Placeholder Annotation
 
 `kots.io/placeholder '<bool>' '<string>'`
 
-KOTS uses placeholder annotations as a way to provide an annotation that may not appear in the final rendered YAML.
+the app manager uses placeholder annotations as a way to provide an annotation that may not appear in the final rendered YAML.
 
-Use case: providing custom Ingress annotations for a customer-provided Ingress controller.
+Use case: Providing custom Ingress annotations for a customer-provided Ingress controller.
 
 When the placeholder evaluates to `true`, it will be replaced with the value of the desired annotation in the final rendered YAML.
 

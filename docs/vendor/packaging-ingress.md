@@ -1,6 +1,6 @@
 # Ingress
 
-When delivering a configurable KOTS application, ingress can be challenging as it is very cluster specific.
+When delivering a configurable application, ingress can be challenging as it is very cluster specific.
 Below is an example of a flexible Ingress resource spec designed to work in most Kubernetes clusters including existing and embedded kURL clusters.
 
 ## Example
@@ -13,7 +13,7 @@ The resource will work in both existing and embedded kURL clusters.
 A config option `enable_ingress` has been provided to allow the end-user to choose whether or not to enable the Ingress resource.
 In some clusters a custom Ingress resource may be desired — when an ingress controller is not available, other means of exposing services may be preferred.
 
-An `annotations` textarea has been made available for the end-user to add additional annotations to the ingress.
+An `annotations` text area has been made available for the end-user to add additional annotations to the ingress.
 Here, cluster specific annotations can be added to support a variety of ingress controllers.
 For example, when using the [ALB ingress controller](https://docs.aws.amazon.com/eks/latest/userguide/alb-ingress.html) in AWS, it is necessary to include the `kubernetes.io/ingress.class: alb` annotation on your Ingress resource.
 
@@ -59,7 +59,7 @@ spec:
 ### Ingress
 
 For ingress, you must create two separate resources.
-The first of which will be deployed to existing cluster installations while the second will only be deployed to an embedded kURL cluster.
+The first of which will be deployed to existing cluster installations, while the second will only be deployed to an embedded kURL cluster.
 Both of these resources are selectively excluded with the [`exclude` annotation](packaging-include-resources).
 
 ```yaml

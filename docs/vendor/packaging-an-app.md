@@ -10,11 +10,11 @@ These tools are built with a strong focus on production grade day-2 operations.
 
 The foundational open source projects that the app manager coordinates are the [replicated CLI](https://kots.io/vendor/cli/getting-started/) and [Kotsadm](../enterprise/installing-overview) (installation and admin console), [Replicated Troubleshoot](https://troubleshoot.sh) (preflight checks and support bundles), [Replicated kURL](https://kurl.sh) (embedded K8s option) as well as several community driven OSS projects like Kubernetes, Kustomize, Helm, and Kubeadm.
 
-This document starts with an overview on how to package and manage the app manager applications via the Replicated vendor portal (an API and CLI are available for more rapid or automated iteration).
+This document starts with an overview on how to package and manage applications via the Replicated vendor portal (an API and CLI are available for more rapid or automated iteration).
 
 For information about installing and managing an application using the kots CLI, see [Getting Started with KOTS](https://kots.io/kots-cli/getting-started/) in the kots CLI documentation.
 
-For information about installing and managing an application using the Replicated admin console, see [Overview of installing an application with app manager](../enterprise/installing-overview).
+For information about installing and managing an application using the Replicated admin console, see [Overview of installing an application](../enterprise/installing-overview).
 
 ## Basic Packaging
 Your application is packaged as a set of standard Kubernetes manifests.
@@ -25,7 +25,7 @@ Most applications require some amount of customer supplied configuration values.
 These values can be collected during the installation process by specifying a [Config custom resource](custom-resource-config) to [create a config screen](admin-console-customize-config-screen), and provided to the application by [using templates for your Kubernetes manifests](packaging-template-functions).
 
 ## Helm Chart Packaging
-If your application is already templated and packaged as a Helm chart (or includes Helm charts), then you can follow our documentation on [packaging a Helm chart as an app manager application](helm-installing-native-helm). Note that packaging with Helm charts is optional.
+If your application is already templated and packaged as a Helm chart (or includes Helm charts), then you can follow our documentation on [packaging a Helm chart as an application](helm-installing-native-helm). Note that packaging with Helm charts is optional.
 
 ## Advanced Features
 Vendors can invoke several other more advanced features by providing additional app manager custom resources.

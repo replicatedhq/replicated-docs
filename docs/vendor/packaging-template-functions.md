@@ -1,6 +1,6 @@
 # Template functions
 
-The Replicated app manager applications have access to a rich set of template functions that can be used to render the Kubernetes manifests in the customer's environment.
+Replicated app manager applications have access to a rich set of template functions that can be used to render the Kubernetes manifests in the customer's environment.
 
 The app manager uses Go's [text/template](https://golang.org/pkg/text/template/) libraries as the basis for the templating. All functionality of Go's templating language can be used in conjunction with the app manager custom functions.
 
@@ -36,7 +36,7 @@ spec:
 ### A note on `{{repl` vs `repl{{`
 
 The template function syntax supports delimiters of either `{{repl ...}}` or `repl{{ ... }}`.
-These are functionally equivalent and both are supported by the KOTS runtime.
+These are functionally equivalent and both are supported by the app manager runtime.
 
 However, `{{` is not a valid string beginning in YAML, so to use `{{repl` as the only part of a value, it's required that the YAML attribute be surrounded by quotes.
 For example:
@@ -101,7 +101,7 @@ This example demonstrates how to generate a CA, a cert, and a key using [Sprig](
 `tls_json` is the hidden config item that contains all of the generated values in JSON format.
 
 *Prerequisites*
-* This requires KOTS 1.26.0 or later.
+* This requires the app manager 1.26.0 or later.
 * **Warning**: Default values are treated as ephemeral. The following certificate chain is recalculated each time the application configuration is modified. Be sure that your application can handle updating these parameters dynamically.
 
 ```yaml

@@ -95,7 +95,7 @@ spec:
 
 ### Updating Certs
 
-When certs expire, they can be reuploaded. For instructions, see [Uploading new TLS Certs](https://kurl.sh/docs/install-with-kurl/setup-tls-certs#uploading-new-tls-certs).
+When certs expire, they can be re-uploaded. For more information, see [Uploading new TLS Certs](https://kurl.sh/docs/install-with-kurl/setup-tls-certs#uploading-new-tls-certs).
 
 ### Existing Cluster
 
