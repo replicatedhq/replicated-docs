@@ -1,8 +1,8 @@
 # Template functions
 
-KOTS applications have access to a rich set of template functions that can be used to render the Kubernetes manifests in the customer's environment.
+The Replicated app manager applications have access to a rich set of template functions that can be used to render the Kubernetes manifests in the customer's environment.
 
-KOTS uses Go's [text/template](https://golang.org/pkg/text/template/) libraries as the basis for the templating. All functionality of Go's templating language can be used in conjuction with KOTS custom functions.
+The app manager uses Go's [text/template](https://golang.org/pkg/text/template/) libraries as the basis for the templating. All functionality of Go's templating language can be used in conjunction with the app manager custom functions.
 
 All template functions are documented in the [template function reference](template-functions-about) section.
 
