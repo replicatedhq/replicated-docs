@@ -76,8 +76,8 @@ spec:
 ### Helm
 
 Helm charts are supported by the app manager but are not required.
-If for applications that are already packaged using helm, then the helm support in the app manager can help get an app packaged faster.
-If an application does not presently use helm, there's no requirement to use helm, as the the app manager built-in templating includes much of the same functionality, and the admin console includes a deep [kustomize.io integration](../enterprise/updating-patching-with-kustomize) to greatly reduce the amount of templating required by app maintainers in the first place.
+If for applications that are already packaged using Helm, then the Helm support in the app manager can help get an app packaged faster.
+If an application does not presently use Helm, there's no requirement to use Helm, as the the app manager built-in templating includes much of the same functionality, and the admin console includes a deep [kustomize.io integration](../enterprise/updating-patching-with-kustomize) to greatly reduce the amount of templating required by app maintainers in the first place.
 
 ### Operators
 Operators are good for specific use cases, we've written in-depth about them in our [Operators Blog Post](https://blog.replicated.com/operators-in-kots/).
@@ -118,9 +118,9 @@ It adds logic for making production releases using git tags.
 
 The recommended workflow is:
 
-- On pushes to the `master` branch, create a release on unstable with the name `Unstable-${SHA}`
+- On pushes to the `main` branch, create a release on unstable with the name `Unstable-${SHA}`
 - On pushing a git tag, create a release on the beta branch, using the name `Beta-${TAG}` for the release version.
-- Our recommendation is that these tags be tested, and then the release be manually promoted to the `Stable` channel using the  [vendor portal](https://vendor.replicated.com). Using manual promotion allows you to restrict which team members can publish new versions to go out to users via RBAC roles in the Vendor Portal.
+- Our recommendation is that these tags be tested, and then the release be manually promoted to the `Stable` channel using the  [vendor portal](https://vendor.replicated.com). Using manual promotion allows you to restrict which team members can publish new versions to go out to users via RBAC roles in the vendor portal.
 
 
 ## Application Deployment Questionnaire

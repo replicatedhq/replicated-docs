@@ -90,10 +90,10 @@ And Kubernetes will be able to handle this.
 A result returned from a template function can be assigned to a variable, and the variable can be used in another template function as long as the templates are evaluated at the same time.
 All application YAML documents are templated in a single pass.
 
-The application [Config file](custom-resource-config) is an exception.
+The application [`Config.yaml` file](custom-resource-config) is an exception.
 Each config item is templated separately and has no access to variables created in other config items.
 As a workaround, a hidden config item can be used to evaluate complex templates and render the results.
-The result can be accessed using the [ConfigOption](template-functions-config-context#configoption) function.
+The result can be accessed using the [`ConfigOption`](template-functions-config-context#configoption) function.
 
 ### Generating TLS certs and keys example
 
