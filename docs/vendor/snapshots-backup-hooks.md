@@ -55,7 +55,7 @@ spec:
 
 In this example, a few fields are worth explaining:
 
-`spec.exclude`: this is a common and recommended pattern for KOTS applications.
+`spec.exclude`: this is a common and recommended pattern for applications.
 The customer can choose (using the config screen) to bring an external postgres instance instead of running it in-cluster.
 When this is set, we want to exclude the chart from installing.
 

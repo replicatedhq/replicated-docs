@@ -19,10 +19,10 @@ spec:
 ```
 
 ## Proper admin console logo size
-For logos to look best in the Kots Admin Console, use a PNG or JPG that is square, at least 250x250 pixels, and exported at 2x. Logo's will be contained to a bounding box so although a logo with a rectangular shape will work, the logo may be small and hard to see. The next section will show an example.
+For logos to look best in the admin console, use a PNG or JPG that is square, at least 250x250 pixels, and exported at 2x. Logos are contained to a bounding box so although a logo with a rectangular shape will work, the logo may be small and hard to see. The next section will show an example.
 
-Here is the full Admin Console wordmark logo shown on the the login screen.
-Although the entire logo is visible because it's being contained to the circle, it's a little small and will appear even smaller, about half of this size, in some parts of the Admin Console.
+Here is the full admin console wordmark logo shown on the the login screen.
+Although the entire logo is visible because it's being contained to the circle, it's a little small and will appear even smaller, about half of this size, in some parts of the admin console.
 
 ![Kotsadm logo](/images/login-icon-large.png)
 
