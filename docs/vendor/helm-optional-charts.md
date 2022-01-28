@@ -2,10 +2,10 @@
 
 > This topic applies to both native Helm and Replicated Helm installations.
 
-Charts can be optionally included in a Replicated KOTS application. By default, an instance of a Helm chart is created for every `apiVersion: kots.io/v1beta` and `kind: HelmChart` that's found in the upstream application manifests.
+Charts can be optionally included in an application. By default, an instance of a Helm chart is created for every `apiVersion: kots.io/v1beta` and `kind: HelmChart` that's found in the upstream application manifests.
 
 To make a chart optional, add a [template-parsable](template-functions-about) `exclude` attribute to the `kind: HelmChart` document.
-When downloading, KOTS will render this field and exclude the entire chart if the output of this field can be parsed as a boolean evaluating to `true`.
+When downloading, the Replicated app manager will render this field and exclude the entire chart if the output of this field can be parsed as a boolean evaluating to `true`.
 
 If this value is not provided, the chart will be included.
 

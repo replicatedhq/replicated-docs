@@ -12,9 +12,9 @@ With the native Helm installation, you can exercise more control over chart depl
 
 ## Enabling and using native Helm chart support
 
-To leverage this option, set `useHelmInstall: true` in the `HelmChart` CRD. Then promote these changes to a channel and install new instances of the application with the native Helm installation. For any existing installations of the application, you can update these via the Admin Console or KOTS CLI. Once updated, any new helm charts added to the application will be deployed with the native Helm installation.
+To leverage this option, set `useHelmInstall: true` in the `HelmChart` CRD. Then promote these changes to a channel and install new instances of the application with the native Helm installation. For any existing installations of the application, you can update these via the Replicated admin console or kots CLI. Once updated, any new helm charts added to the application will be deployed with the native Helm installation.
 
-For more information about adding charts to KOTS applications, see [optional charts](helm-optional-charts) and the [Helm docs](https://helm.sh/docs/topics/charts/).
+For more information about adding charts to applications, see [optional charts](helm-optional-charts) and the [Helm docs](https://helm.sh/docs/topics/charts/).
 
 ![Use Helm Install Flag](/images/vendor-use-helm-install-flag.png)
 
