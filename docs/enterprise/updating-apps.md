@@ -37,8 +37,6 @@ The installer may elect to ignore these failures and proceed with the upgrade.
 An update is performed by clicking "Continue" on the preflight checks page, or by clicking the "Deploy" button on the "Version History" tab.
 At this point, the current cluster will be updated to the new version of the KOTS application and the "Deployed" status will be set on that version.
 
-[![Updated Version](/images/version-history.png)](/images/version-history.png)
-
 ## Using CLI
 
 KOTS CLI can be used to install and deploy updates for both online and airgapped instances as well.
