@@ -1,10 +1,10 @@
 # Referencing images
 
-KOTS is responsible for delivering and ensuring that all container images (automatically detected and additionalImages) are pushed to the customer's private, internal registry.
-Additionally, KOTS creates Kustomize patches to rewrite image names and inject image pull secrets to all pods.
+The Replicated app manager is responsible for delivering and ensuring that all container images (automatically detected and additionalImages) are pushed to the customer's private, internal registry.
+Additionally, the app manager creates Kustomize patches to rewrite image names and inject image pull secrets to all pods.
 
-KOTS cannot modify pods that are created at runtime by the Operator.
-To support this in all environments, the Operator code should use KOTS functionality to determine the image name and image pull secrets for all pods when they are created.
+The app manager cannot modify pods that are created at runtime by the Operator.
+To support this in all environments, the Operator code should use app manager functionality to determine the image name and image pull secrets for all pods when they are created.
 
 There are several template functions available to assist with this.
 This may require 2 new environment variables to be added to a manager to read these values.
@@ -31,7 +31,7 @@ env:
 ```
 
 For online installations (no local registry), this will be written with no changes -- the variable will contain `elasticsearch:7.6.0`.
-For installations that are air gapped or have a locally-configured registry, this will be rewritten as the locally referenceable image name (i.e. `registry.somebigbank.com/my-app/elasticsearch:7.6.0`).
+For installations that are air gapped or have a locally-configured registry, this will be rewritten as the locally referenceable image name. For example, `registry.somebigbank.com/my-app/elasticsearch:7.6.0`.
 
 **Example:**
 
@@ -45,7 +45,7 @@ In the above example, this is a private image, and will always be rewritten. For
 
 #### Option 2: Build image names manually
 
-For applications that have multiple images or dynamically construct the image name at runtime, the Replicated Template functions can also return the elements that make up the local registry endpoint and secrets, and let the application developer construct the locally-referenceable image name.
+For applications that have multiple images or dynamically construct the image name at runtime, the Replicated template functions can also return the elements that make up the local registry endpoint and secrets, and let the application developer construct the locally-referenceable image name.
 
 **Example:**
 
@@ -62,7 +62,7 @@ env:
 Private, local images will need to reference an image pull secret to be pulled.
 The value of the secret's `.dockerconfigjson` is provided in a template function, and the application can write this pull secret as a new secret to the namespace.
 If the application is deploying the pod to the same namespace as the operator, the pull secret will already exist in the namespace, and the secret name can be obtained using the [ImagePullSecretName](template-functions-config-context/#imagepullsecretname) template function.
-KOTS will create this secret automatically, but only in the namespace that the operator is running in.
+The app manager will create this secret automatically, but only in the namespace that the operator is running in.
 It's the responsibility of the application developer (the Operator code) to ensure that this secret is present in any namespace that new pods will be deployed to.
 
 This template function returns the base64-encoded, docker auth that can be written directly to a secret, and referenced in the `imagePullSecrets` attribute of the PodSpec.
