@@ -24,6 +24,7 @@ const sidebars = {
     {
       type: 'category',
       label: 'Vendor',
+      collapsed: false,
       items: [
         {
           type: 'category',
