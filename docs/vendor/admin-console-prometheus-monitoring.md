@@ -1,16 +1,16 @@
 # Adding custom graphs
 
-By default, when installing a Kots application into an embedded cluster, the Prometheus monitoring system will be included alongside the Kots application.
-This will collect valuable metrics about the cluster as well as the application and expose graphs with key metrics on the dashboard of the Admin Console.
+By default, when installing an application into an embedded cluster, the Prometheus monitoring system will be included alongside the application.
+This will collect valuable metrics about the cluster as well as the application and expose graphs with key metrics on the dashboard of the admin console.
 When running in an existing cluster, it is possible to configure the address of the Prometheus service in the Admin Console.
 
 ![Graphs](/images/kotsadm-dashboard-graph.png)
 
 By default, metrics graphs that are included monitor cluster disk usage, pod cpu usage, pod memory usage and pod health.
 
-### Kots Application Spec
+### Application manifest
 
-To add custom graphs, use the `graphs` property of the kots.io Application spec.
+To add custom graphs, use the `graphs` property of the `application.yaml` manifest file.
 A minimal graph includes only a title and a Prometheus query:
 
 ```yaml

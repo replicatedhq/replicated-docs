@@ -2,12 +2,12 @@
 
 > This topic applies to both native Helm and Replicated Helm installations.
 
-The `values.yaml` is not a static mapping in a KOTS application.
+The `values.yaml` is not a static mapping in an application.
 It's possible to either remove or include value when certain conditions are met.
 
 ## Removing values
 
-If the `values.yaml` contains a static value that should be removed when deploying using KOTS, add this value to the `<chart-name.yaml>` file, setting the value equal to the string `"null"` (with the quotes).
+If the `values.yaml` contains a static value that should be removed when deploying using the Replicated app manager, add this value to the `<chart-name.yaml>` file, setting the value equal to the string `"null"` (with the quotes).
 For more information about this syntax, see the [Helm feature](https://github.com/helm/helm/pull/2648).
 
 ## Including values
@@ -37,7 +37,7 @@ postgresql:
  In order to make this work reliably, we need to be able to dynamically add and remove the `postgresDatabase` key from the `values.yaml`, where it's only present if the user has selected `embedded_postgres`.
  If the user selects external postgres, we want the Sentry `workers-deployment.yaml` to receive the value that the user provided.
 
-To enable this, you can add an `optionalValues` section to the `kind: HelmChart`, and include a `when` condition to instruct KOTS how to determine if these keys should be merged.
+To enable this, you can add an `optionalValues` section to the `kind: HelmChart`, and include a `when` condition to instruct the app manager how to determine if these keys should be merged.
 
 For example, using the Sentry helm chart:
 
@@ -94,6 +94,6 @@ And the following `values.yaml` if the user has selected `embedded_postgres`:
 postgresql:
   enabled: true
 ```
-> Starting in KOTS v1.38.0 release, a new opt-in feature is introduced where values and optionalValues are recursively merged if the dataset is recursive in nature. A new flag "recursiveMerge" flag is introduced. If the flag is set to True, values and optionalValues are merged if they are mutually exclusive. If the optionalValue key mataches with the values key, optionalValue takes precedence. By default, the flag is set to False.
+> Starting in app manager v1.38.0, a new opt-in feature is introduced where values and optionalValues are recursively merged if the dataset is recursive in nature. A new flag "recursiveMerge" flag is introduced. If the flag is set to True, values and optionalValues are merged if they are mutually exclusive. If the optionalValue key mataches with the values key, optionalValue takes precedence. By default, the flag is set to False.
 
 **Note:** This could also be done by modifying the render logic in the Helm chart, but that's not always an easy option.
