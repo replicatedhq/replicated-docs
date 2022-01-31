@@ -1,6 +1,6 @@
 # Displaying application status
 
-With minimal additional configuration to the kots.io Application YAML, it is possible to display application status on the dashboard of the Admin Console.
+You can configure the Application custom resource to display application status on the dashboard of the admin console.
 
 ![Application Status](/images/kotsadm-dashboard-appstatus.png)
 
@@ -8,9 +8,9 @@ It is necessary to target specific Kubernetes resources for the dashboard to acc
 We suggest at least one resource be added.
 Resources that are currently supported are Deployments, StatefulSets, Services, Ingresses and PersistentVolumeClaims.
 
-## Kots Application Spec
+## Application manifest file
 
-To add an informer, simply include the `statusInformers` property in the kots.io Application spec.
+To add an informer, include the `statusInformers` property in the `application.yaml` manifest file.
 Status informers are in the format `[namespace/]type/name` where namespace is optional and will default to the current namespace.
 
 ```yaml

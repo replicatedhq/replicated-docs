@@ -3,15 +3,15 @@
 When distributing an application, it’s helpful to make sure that the person or process performing the installation can easily verify that the application is running.
 Networking and ingress is handled differently in each cluster and this makes it difficult to provide a consistent URL at application packaging time, and even likely requires that the cluster operator creates firewall rules before they can test the application installation.
 
-KOTS and the Admin Console can provide a port-forward tunnel that will work more consistently to provide an easy way for the cluster operator to open one or more links directly to the application before ingress and firewalls are configured.
+The Replicated app manager and admin console can provide a port-forward tunnel that will work more consistently to provide an easy way for the cluster operator to open one or more links directly to the application before ingress and firewalls are configured.
 
-To export a port and a button on the Admin Console dashboard to the application, a couple of additional steps are necessary.
+To export a port and a button on the admin console dashboard to the application, a couple of additional steps are necessary.
 
 ## Add a button to the dashboard
 
-It’s recommended that every KOTS application include an application custom resource as defined by [Kubernetes-sigs](https://github.com/kubernetes-sigs/application).
-KOTS uses this as metadata and will not require or use an in-cluster controller to handle this custom resource.
-A KOTS application that follows best practices will never require cluster admin privileges or any cluster-wide components to be installed.
+It’s recommended that every application include an application custom resource as defined by [Kubernetes-sigs](https://github.com/kubernetes-sigs/application).
+The app manager uses this as metadata and will not require or use an in-cluster controller to handle this custom resource.
+An application that follows best practices will never require cluster admin privileges or any cluster-wide components to be installed.
 
 The Application custom resource includes many fields, but the one that we are going to examine in this document is the links:
 
@@ -22,7 +22,7 @@ Each link contains two fields, description and url.
 The description field is the title of the button that will be added to the admin console.
 The url field should be the url of your application.
 
-You can use the service name in place of the host name and KOTS will rewrite the URL with hostname in the browser.
+You can use the service name in place of the host name and the app manager will rewrite the URL with hostname in the browser.
 
 #### Example
 
@@ -46,11 +46,11 @@ spec:
 
 ## Additional ports and port forwarding
 
-When running the KOTS kubectl plugin, KOTS can add additional ports that are defined in the application to the port-forward tunnel.
+When running the `kubectl` plugin for the kots CLI, the app manager can add additional ports that are defined in the application to the port-forward tunnel.
 This is useful for internal services such as application admin controls and other services that should not be exposed to all users.
 It's also recommended to list the primary application port(s) here to make verification of the installation possible before ingress is installed.
 
-In order to define additional ports, add a `ports` key to the `kots.io/v1beta1, kind: Application` manifest.
+In order to define additional ports, add a `ports` key to the `application.yaml` manifest file.
 
 #### Example
 
@@ -69,7 +69,7 @@ spec:
       applicationUrl: "http://myapplication-service"
  ```
 
-Given the above example, when the application starts and the service is ready, the KOTS CLI will run the equivalent of `kubectl port-forward svc/myapplication-service 9000:9000` and print a message in the terminal.
+Given the above example, when the application starts and the service is ready, the kots CLI will run the equivalent of `kubectl port-forward svc/myapplication-service 9000:9000` and print a message in the terminal.
 Service should reference the service name that the application deployed without the namespace.
 
 ## Using dashboard buttons with port forward

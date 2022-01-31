@@ -5,7 +5,7 @@ bundles and include them with your application.
 
 ## About preflight checks and support bundles
 
-Preflight checks and support bundles are both available through the open-source
+Preflight checks and support bundles are both available through the open source
 Replicated Troubleshoot project.
 
 * **Support bundles**: Support bundles allow you to collect and analyze troubleshooting data
