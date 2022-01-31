@@ -1,7 +1,8 @@
 # Understanding packaging with the app manager
 
-Software vendors can use Replicated to package their application for distribution to enterprise customers as an on-premises, private instance. The Replicated packaging process leverages several open source KOTS components (some optional, some required).
-The Replicated app manager is the component that packages applications for distribution. The app manager is based on the open source KOTS project, which is maintained by Replicated.
+Software vendors can use Replicated to package their application for distribution to enterprise customers as an on-premises, private instance.
+
+The Replicated app manager is the component that packages applications for distribution. The app manager is based on the open source KOTS project, which is maintained by Replicated. The packaging process leverages several open source KOTS components (some optional, some required).
 
 In general, Replicated components are grouped into one of the following categories:
 
