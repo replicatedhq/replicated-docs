@@ -1,8 +1,8 @@
 # Using TLS Certificates
 
-Embedded [kURL](https://kurl.sh) clusters create a `kotsadm-tls` secret which can reused by other Kubernetes resources.
+[Kubernetes installer](https://kurl.sh) clusters create a `kotsadm-tls` secret which can reused by other Kubernetes resources.
 
-### Verify TLS Secret
+## Verify TLS Secret
 
 Output the `kotsadm-tls` secret
 
@@ -10,7 +10,7 @@ Output the `kotsadm-tls` secret
 kubectl get secret kotsadm-tls -o yaml
 ```
 
-In the output the `tls.crt` and `tls.key` hold the certificate and key, respectively, which can be referenced in either a ` Deployment` or `Ingress` resource.
+In the output the `tls.crt` and `tls.key` hold the certificate and key, respectively, which can be referenced in either a  Deployment or Ingress resource.
 
 ```yaml
 apiVersion: v1
@@ -23,9 +23,9 @@ data:
   tls.key: <base64_encoded>
 ```
 
-### Deployment
+## Deployment
 
-Below is an example of how to use `kotsadm-tls` in a `Deployment` resource.
+Below is an example of how to use `kotsadm-tls` in a Deployment resource.
 
 ```yaml
 apiVersion:  apps/v1
@@ -68,9 +68,9 @@ $ cat /etc/nginx/ssl/tls.key
 MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCyiGNuHw2LY3Rv
 ```
 
-### Ingress
+## Ingress
 
-Another way `kotsadm-tls` secret can be used is by passing it directly to the `Ingress` resource so TLS can be terminated at the contour layer.
+Another way `kotsadm-tls` secret can be used is by passing it directly to the Ingress resource so TLS can be terminated at the contour layer.
 
 ```yaml
 apiVersion: extensions/v1beta1
@@ -93,10 +93,10 @@ spec:
 ```
 **Note:** `tls.foo.com` must resolve to a valid IP and must also match the CN or Subjective Alternative Name (SAN) of the TLS cert.
 
-### Updating Certs
+## Updating Certs
 
-When certs expire, they can be reuploaded. For instructions, see [Uploading new TLS Certs](https://kurl.sh/docs/install-with-kurl/setup-tls-certs#uploading-new-tls-certs).
+When certs expire, they can be re-uploaded. For more information, see [Uploading new TLS Certs](https://kurl.sh/docs/install-with-kurl/setup-tls-certs#uploading-new-tls-certs).
 
-### Existing Cluster
+## Existing Cluster
 
 The expectation when using an existing cluster is for the end customer to bring their own Ingress Controller such as Contour or Istio and upload their own `kubernetes.io/tls` secret. For an example, see [Ingress with TLS](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls).

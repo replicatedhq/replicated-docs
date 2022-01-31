@@ -1,8 +1,8 @@
 # Template functions
 
-KOTS applications have access to a rich set of template functions that can be used to render the Kubernetes manifests in the customer's environment.
+Replicated app manager applications have access to a rich set of template functions that can be used to render the Kubernetes manifests in the customer's environment.
 
-KOTS uses Go's [text/template](https://golang.org/pkg/text/template/) libraries as the basis for the templating. All functionality of Go's templating language can be used in conjuction with KOTS custom functions.
+The app manager uses Go's [text/template](https://golang.org/pkg/text/template/) libraries as the basis for the templating. All functionality of Go's templating language can be used in conjunction with the app manager custom functions.
 
 All template functions are documented in the [template function reference](template-functions-about) section.
 
@@ -36,7 +36,7 @@ spec:
 ### A note on `{{repl` vs `repl{{`
 
 The template function syntax supports delimiters of either `{{repl ...}}` or `repl{{ ... }}`.
-These are functionally equivalent and both are supported by the KOTS runtime.
+These are functionally equivalent and both are supported by the app manager runtime.
 
 However, `{{` is not a valid string beginning in YAML, so to use `{{repl` as the only part of a value, it's required that the YAML attribute be surrounded by quotes.
 For example:
@@ -90,10 +90,10 @@ And Kubernetes will be able to handle this.
 A result returned from a template function can be assigned to a variable, and the variable can be used in another template function as long as the templates are evaluated at the same time.
 All application YAML documents are templated in a single pass.
 
-The application [Config file](custom-resource-config) is an exception.
+The application [`Config.yaml` file](custom-resource-config) is an exception.
 Each config item is templated separately and has no access to variables created in other config items.
 As a workaround, a hidden config item can be used to evaluate complex templates and render the results.
-The result can be accessed using the [ConfigOption](template-functions-config-context#configoption) function.
+The result can be accessed using the [`ConfigOption`](template-functions-config-context#configoption) function.
 
 ### Generating TLS certs and keys example
 
@@ -101,7 +101,7 @@ This example demonstrates how to generate a CA, a cert, and a key using [Sprig](
 `tls_json` is the hidden config item that contains all of the generated values in JSON format.
 
 *Prerequisites*
-* This requires KOTS 1.26.0 or later.
+* This requires the app manager 1.26.0 or later.
 * **Warning**: Default values are treated as ephemeral. The following certificate chain is recalculated each time the application configuration is modified. Be sure that your application can handle updating these parameters dynamically.
 
 ```yaml

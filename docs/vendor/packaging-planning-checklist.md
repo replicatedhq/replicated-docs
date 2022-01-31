@@ -40,9 +40,7 @@ It is *strongly* advised that applications be architected to deploy a single app
 Most notably, it allows you to run with minimal Kubernetes permissions, which can reduce friction when an app runs as a tenant in a large cluster.
 Don't specify a namespace in your YAML resources, or try to make this user-configurable using the `kots.io` `Config` object, just leave namespace blank.
 
-Letting the end user manage namespaces will be the easiest way to reduce friction.
-The ability to manage namespaces in the admin console will be added in an upcoming KOTS release, so if you intend to  deploy multiple apps using a single admin console, it is reasonable to architect your app assuming the end user will manage the Namespaces that each component runs in.
-
+Letting the end user manage namespaces is the easiest way to reduce friction.
 
 ```yaml
 # good, namespace absent
@@ -75,9 +73,9 @@ spec:
 
 ### Helm
 
-Helm charts are supported by KOTS but not required.
-If for applications that are already packaged using helm, then the helm support in KOTS can help get an app packaged faster.
-If an application does not presently use helm, there's no requirement to use helm, as the KOTS built-in templating includes much of the same functionality, and the admin console includes a deep [kustomize.io integration](../enterprise/updating-patching-with-kustomize) to greatly reduce the amount of templating required by app maintainers in the first place.
+Helm charts are supported by the app manager but are not required.
+If for applications that are already packaged using Helm, then the Helm support in the app manager can help get an app packaged faster.
+If an application does not presently use Helm, there's no requirement to use Helm, as the the app manager built-in templating includes much of the same functionality, and the admin console includes a deep [kustomize.io integration](../enterprise/updating-patching-with-kustomize) to greatly reduce the amount of templating required by app maintainers in the first place.
 
 ### Operators
 Operators are good for specific use cases, we've written in-depth about them in our [Operators Blog Post](https://blog.replicated.com/operators-in-kots/).
@@ -107,20 +105,20 @@ If an application exposes Prometheus metrics, we recommend integrating [Custom G
 
 ### Building a Collaborative Workflow
 
-We recommend using a git-based workflow, as presented in the [KOTS starter Repo](https://github.com/replicatedhq/replicated-starter-kots).
+We recommend using a git-based workflow, as presented in the [app manager starter repo](https://github.com/replicatedhq/replicated-starter-kots).
 This will allow teams to map git branches to channels in the [vendor portal](https://vendor.replicated.com), and allow multiple team members to seamlessly collaborate across features and releases.
 
 ### Tagging Releases for Production
 
-In addition to the starter GitHub actions workflow included in the [KOTS starter Repo](https://github.com/replicatedhq/replicated-starter-kots), Replicated provides a [tag-based workflow
+In addition to the starter GitHub actions workflow included in the [`replicated-starter-kots` repo](https://github.com/replicatedhq/replicated-starter-kots), Replicated provides a [tag-based workflow
 ](https://github.com/replicatedhq/replicated-starter-kots/tree/main/.github/workflows/main.yml).
 It adds logic for making production releases using git tags.
 
 The recommended workflow is:
 
-- On pushes to the `master` branch, create a release on unstable with the name `Unstable-${SHA}`
+- On pushes to the `main` branch, create a release on unstable with the name `Unstable-${SHA}`
 - On pushing a git tag, create a release on the beta branch, using the name `Beta-${TAG}` for the release version.
-- Our recommendation is that these tags be tested, and then the release be manually promoted to the `Stable` channel using [vendor.replicated.com](https://vendor.replicated.com). Using manual promotion allows you to restrict which team members can publish new versions to go out to users via RBAC roles in the Vendor Portal.
+- Our recommendation is that these tags be tested, and then the release be manually promoted to the `Stable` channel using the  [vendor portal](https://vendor.replicated.com). Using manual promotion allows you to restrict which team members can publish new versions to go out to users via RBAC roles in the vendor portal.
 
 
 ## Application Deployment Questionnaire
@@ -141,12 +139,11 @@ If it’s more convenient, limit answers to the scope of the target infrastructu
 
 - Do you ever install on bare metal?
 
-
 - Do you have any restrictions on what operating systems are used?
 
 - Does the target infrastructure have a direct outbound internet connection? Can it connect out via a Proxy?
 
-- If the environment has no outbound network, do machines in a DMZ have direct network access to the airgapped infrastructure, or do release artifacts need to be copied to physical media for installation?
+- If the environment has no outbound network, do machines in a DMZ have direct network access to the air gapped infrastructure, or do release artifacts need to be copied to physical media for installation?
 
 - If there is an issue causing downtime in the on-prem application, would you be willing to give the $APP team direct SSH access to the instance(s)?
 
