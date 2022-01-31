@@ -1,10 +1,10 @@
 # Custom resources
 
-A Replicated app manager application can include several recommended, but optional [app manager custom resources](custom-resource-about).
+A Replicated app manager application can include several recommended, but optional [custom resources](custom-resource-about).
 These custom resources are packaged as part of the application, but are not deployed to the cluster.
-When included, they are consumed by the app manager, the admin console, or by other `kubectl` plugins to control the app manager application experience.
+When included, they are consumed by the app manager, the admin console, or by other `kubectl` plugins to control the application experience.
 
-When viewing a release in the [vendor portal](https://vendor.replicated.com/releases/), the app manager custom resources are grouped together at the top of the manifests list.
+When viewing a release in the [vendor portal](https://vendor.replicated.com/releases/), the custom resources are grouped together at the top of the manifests list.
 
 ![](/images/kots-custom-resources.png)
 
