@@ -10,7 +10,7 @@ If the user has insufficient privileges the following error will be shown when a
 
 ```bash
 $  kubectl kots install appslug
-  • Current user has insufficient privileges to install admin console.
+  • Current user has insufficient privileges to install Admin Console.
 For more information, please visit https://kots.io/vendor/packaging/rbac
 To bypass this check, use the --skip-rbac-check flag
 Error: insufficient privileges
