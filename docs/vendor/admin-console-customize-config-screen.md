@@ -5,7 +5,7 @@ This is a dynamic form that can be used to prompt for, validate and generate inp
 For applications that don't have any required fields, this page will be accessible from the Config tab of the Replicated admin console.
 
 To add a configuration page to your application, add a new Kubernetes manifest to a release that contains the field definitions. Below is a short example of a config screen definition.
-For more information about the full language syntax, see [`Config` custom resource](custom-resource-config).
+For more information about the full language syntax, see [Config custom resource](custom-resource-config).
 
 ```yaml
 apiVersion: kots.io/v1beta1

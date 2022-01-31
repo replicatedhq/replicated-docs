@@ -10,12 +10,12 @@ This can be tricky for Helm chart-based applications as they might have [optiona
 To solve this problem, the [HelmChart custom resource](custom-resource-helmchart) contains a `builder` attribute for vendors to provide values that will `helm template` to the full manifest.
 
 The values passed in `builder` should be the bare minimum [Helm Values](https://helm.sh/docs/chart_template_guide/values_files/) to be able to template out the Helm chart so that it will have the correct image tags.
-Upon promotion to a release channel, the Airgap Builder will template the chart with the builder values, render the resulting YAML manifests, and export any images referenced to build the air gap package.
+Upon promotion to a release channel, the air gap builder templates the chart with the builder values, renders the resulting YAML manifests, and exports any images referenced to build the air gap package.
 
 ## Builder Attribute
 ```yaml
 # builder values provide a way to render the chart with all images
-# and manifests. this is used in replicated to create airgap packages
+# and manifests. this is used in replicated to create air gap packages
 builder:
   postgresql:
     enabled: true
