@@ -1,7 +1,8 @@
 # Defining additional namespaces
 
-Operators often need to be able to manage resource in multiple namespaces in the cluster.
+Operators often need to be able to manage resources in multiple namespaces in the cluster.
 When deploying an application to an existing cluster, the Replicated app manager creates a Kubernetes Role and RoleBinding that are limited to only accessing the namespace that the application is being installed into.
+
 In addition to RBAC policies, clusters running in air gap environments or clusters that are configured to use a local registry also need to ensure that image pull secrets exist in all namespaces that the operator will manage resource in.
 
 ## Creating additional namespaces
