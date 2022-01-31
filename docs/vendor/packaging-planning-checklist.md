@@ -40,9 +40,7 @@ It is *strongly* advised that applications be architected to deploy a single app
 Most notably, it allows you to run with minimal Kubernetes permissions, which can reduce friction when an app runs as a tenant in a large cluster.
 Don't specify a namespace in your YAML resources, or try to make this user-configurable using the `kots.io` `Config` object, just leave namespace blank.
 
-Letting the end user manage namespaces will be the easiest way to reduce friction.
-The ability to manage namespaces in the admin console will be added in an upcoming Replicated app manager release, so if you intend to deploy multiple apps using a single admin console, it is reasonable to architect your app assuming the end user will manage the namespaces that each component runs in.
-
+Letting the end user manage namespaces is the easiest way to reduce friction.
 
 ```yaml
 # good, namespace absent
@@ -112,7 +110,7 @@ This will allow teams to map git branches to channels in the [vendor portal](htt
 
 ### Tagging Releases for Production
 
-In addition to the starter GitHub actions workflow included in the [app manager starter repo](https://github.com/replicatedhq/replicated-starter-kots), Replicated provides a [tag-based workflow
+In addition to the starter GitHub actions workflow included in the [`replicated-starter-kots` repo](https://github.com/replicatedhq/replicated-starter-kots), Replicated provides a [tag-based workflow
 ](https://github.com/replicatedhq/replicated-starter-kots/tree/main/.github/workflows/main.yml).
 It adds logic for making production releases using git tags.
 

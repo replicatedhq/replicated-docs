@@ -1,14 +1,15 @@
 # Understanding packaging with the app manager
 
-Software vendors with a Kubernetes application can package their app as a Kubernetes-off-The-Shelf (KOTS) software for distribution to enterprise customers as a modern on-prem, private instance.
-The Replicated packaging process leverages several open source KOTS components (some optional, some required).
-For context, Replicated app manager is made of several purpose built, open source components, but should be thought of in two distinct (but highly integrated) categories.
+Software vendors can use Replicated to package their application for distribution to enterprise customers as an on-premises, private instance. The Replicated packaging process leverages several open source KOTS components (some optional, some required).
+The Replicated app manager is the component that packages applications for distribution. The app manager is based on the open source KOTS project, which is maintained by Replicated.
+
+In general, Replicated components are grouped into one of the following categories:
 
 * **Cluster Operator Tools**: A set of open source projects that vendors can invoke to provide cluster operators with the necessary tools to validate, install, configure, troubleshoot, and automate the management of applications.
 These tools are built with a strong focus on production grade day-2 operations.
-* **Software Vendor Tools**: Primarily provided by a hosted the [Replicated vendor portal](https://vendor.replicated.com) that serves as a centralized collaboration platform to manage customers, licenses/entitlements, releases/release channels, and troubleshooting. The vendor tools are [integrated with the open source KOTS projects](https://blog.replicated.com/announcing-kots/) to provide processes and workflows to operationalize and scale the distribution of a modern on-prem application.
+* **Software Vendor Tools**: Primarily hosted by the [Replicated vendor portal](https://vendor.replicated.com) that serves as a centralized collaboration platform to manage customers, licenses/entitlements, releases/release channels, and troubleshooting. The vendor tools are [integrated with the open source KOTS projects](https://blog.replicated.com/announcing-kots/) to provide processes and workflows to operationalize and scale the distribution of a modern on-prem application.
 
-The foundational open source projects that the app manager coordinates are the [replicated CLI](https://kots.io/vendor/cli/getting-started/) and [Kotsadm](../enterprise/installing-overview) (installation and admin console), [Replicated Troubleshoot](https://troubleshoot.sh) (preflight checks and support bundles), [Replicated kURL](https://kurl.sh) (embedded K8s option) as well as several community driven open source software (OSS) projects like Kubernetes, Kustomize, Helm, and Kubeadm.
+The foundational open source projects that Replicated coordinates are the [kots CLI](https://kots.io/vendor/cli/getting-started/) and [KOTS](../enterprise/installing-overview) (installation and admin console), [Troubleshoot](https://troubleshoot.sh) (preflight checks and support bundles), [kURL](https://kurl.sh) (embedded K8s option) as well as several community driven open source software (OSS) projects like Kubernetes, Kustomize, Helm, and Kubeadm.
 
 This document starts with an overview on how to package and manage applications via the Replicated vendor portal (an API and CLI are available for more rapid or automated iteration).
 

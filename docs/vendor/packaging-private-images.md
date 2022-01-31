@@ -55,7 +55,7 @@ The license file grants revokable image pull access to private images, whether t
 If your application images are already available in a private, but accessible image registry (such as Docker Hub, quay.io, ECR, GCR, Artifactory, and so on), then your application licenses can be configured to grant proxy, or pull-through access to the assignee without giving actual credentials to the customer.
 
 This is useful and recommended because it prevents you from having to modify the process you use to build and push application images, and it gives you the ability to revoke a customer’s ability to pull (such as on trial expiration).
-This External Registry is shared across all app manager applications in a team, allowing images to be used across multiple apps.
+This External Registry is shared across all applications in a team, allowing images to be used across multiple apps.
 
 To configure access to your private images, log in to the [vendor portal](https://vendor.replicated.com), and click on the images menu item under your application.
 Click **Add External Registry**.
