@@ -34,14 +34,14 @@ contact [support@replicated.com](mailto:support@replicated.com).
 Community licenses function in the same the other types of licenses, with the following
 exceptions:
 
-* **No Airgapped Support**: Community licenses cannot support air gapped installations.
-* **No Expiration**: Community licenses cannot include an expiration date.
-* **Marking in the Admin Console**: When a community license is installed, the
+* **No air gapped support**: Community licenses cannot support air gapped installations.
+* **No expiration**: Community licenses cannot include an expiration date.
+* **Marking in the admin console**: When a community license is installed, the
 admin console indicates this to differentiate the experience.
 The license tile on the Dashboard page is highlighted in yellow and with the words
 "Community Edition".
    ![Community License Dashboard](/images/community-license-dashboard.png)
-* **Support Bundle**: Because community licenses are not designed to include the
+* **Support bundle**: Because community licenses are not designed to include the
 same level of support as paid licenses, all support bundles and analysis in the
 admin console will be clearly marked as Community Edition.
 The same functionality is included in the support bundle and analysis, there is
