@@ -10,7 +10,7 @@ If the user has insufficient privileges the following error will be shown when a
 
 ```bash
 $  kubectl kots install appslug
-  • Current user has insufficient privileges to install Admin Console.
+  • Current user has insufficient privileges to install admin console.
 For more information, please visit https://kots.io/vendor/packaging/rbac
 To bypass this check, use the --skip-rbac-check flag
 Error: insufficient privileges
@@ -96,7 +96,7 @@ Without access to the internet or the app's `.airgap` package as provided in a h
 ### Operators and multiple namespaces
 
 It is possible to use namespace-scoped access for Operators and multi-namespace applications.
-During the installation, if there are `additionalNamespaces` specified in the application manifest, Roles and RoleBindings will be created to give the admin console access to all namespaces specified.
+During the installation, if there are `additionalNamespaces` specified in the `application.yaml` manifest, Roles and RoleBindings will be created to give the admin console access to all namespaces specified.
 
 To enable namespace-scoped access for an application:
 
@@ -133,4 +133,4 @@ rules:
 The RBAC permissions are set during the initial installation.
 The admin console is running using the assumed identity and cannot change its own authorization.
 Changing the RBAC scope from cluster to namespace or from namespace to cluster will only affect new installations of the application; existing installations will continue to run with their current authorization.
-For applications that need to elevate their permission from namespace to cluster, we recommend including a Preflight Check to ensure the permission is available.
+For applications that need to elevate their permission from namespace to cluster, we recommend including a preflight check to ensure the permission is available.
