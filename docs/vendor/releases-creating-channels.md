@@ -13,7 +13,7 @@ For more information, see [About channels](releases-about-channels).
 
 To create a channel:
 
-1. From the [vendor portal](https://vendor.replicated.com), select Channels from the left menu.
+1. From the Replicated [vendor portal](https://vendor.replicated.com), select Channels from the left menu.
 1. Click **Create Channel**.
 
   The Create a new channel dialog opens.

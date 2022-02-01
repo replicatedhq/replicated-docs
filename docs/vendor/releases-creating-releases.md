@@ -1,6 +1,6 @@
 # Creating a release
 
-We recommend that you bookmark the [vendor portal](https://vendor.replicated.com) because it is used to manage and deploy application releases.
+We recommend that you bookmark the Replicated [vendor portal](https://vendor.replicated.com) because it is used to manage and deploy application releases.
 
 1. Log in (or create a new team) on the [vendor portal](https://vendor.replicated.com) and create a new application. After signing up and activating your account, you will be prompted to create a new application. Name your application and click **Create Application**.
 
@@ -16,11 +16,11 @@ We recommend that you bookmark the [vendor portal](https://vendor.replicated.com
 
   A YAML editor displays.
 
-1. In the YAML editor, you can define how your application will work and the integration with KOTS functionality. You can manually edit YAML on this page or use the Replicated CLI and API to automate this. For more information about using the CLI, see [Installing the Replicated Vendor CLI](vendor-cli-installing).
+1. In the YAML editor, you can define how your application will work and define the integration with the Replicated app manager functionality. You can manually edit YAML on this page or use the replicated CLI and API to automate this. For more information about using the CLI, see [Installing the replicated CLI](vendor-cli-installing).
 
-  The default YAML documents (replicated-app.yaml, preflight.yaml, config.yaml, support-bundle.yaml) contain information for KOTS, preflight checks, customer configuration screen options, and support bundle analyzers for troubleshooting installs.
+  The default YAML documents (`replicated-app.yaml`, `preflight.yaml`, `config.yaml`, `support-bundle.yaml`) contain information for the app manager, preflight checks, customer configuration screen options, and support bundle analyzers for troubleshooting installs.
 
-  Additionally, you can add custom resource YAML files, such as Helm charts and Snapshots backups. For more information about working with the custom resource YAML files, see [About custom resources](custom-resource-about).
+  Additionally, you can add custom resource YAML files, such as Helm charts and snapshots backups. For more information about working with the custom resource YAML files, see [About custom resources](custom-resource-about).
 
   ![Default YAML](/images/guides/kots/default-yaml.png)
 
@@ -32,4 +32,4 @@ We recommend that you bookmark the [vendor portal](https://vendor.replicated.com
 
 ## Additional resources
 
-[How to release a packaged application](releases-workflow)
+[How to release an application](releases-workflow)
