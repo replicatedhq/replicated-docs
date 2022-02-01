@@ -15,11 +15,11 @@ The steps to ensure that an Operator is using the correct image names and has th
 
 ### Adding a reference to the local registry
 
-The manager of an operator is often a `Statefulset`, but could be a `Deployment` or another kind.
+The manager of an Operator is often a `Statefulset`, but could be a `Deployment` or another kind.
 Regardless of where the spec is defined, the location of the private images can be read using the [Replicated template functions](packaging-template-functions).
 
 #### Option 1: Define each image
-If an operator only requires one additional image, the easiest way to determine this location is to use the `LocalImageName` function.
+If an Operator only requires one additional image, the easiest way to determine this location is to use the `LocalImageName` function.
 This will always return the image name to use, whether the customer's environment is configured to use a local registry or not.
 
 **Example:**
@@ -61,8 +61,8 @@ env:
 
 Private, local images will need to reference an image pull secret to be pulled.
 The value of the secret's `.dockerconfigjson` is provided in a template function, and the application can write this pull secret as a new secret to the namespace.
-If the application is deploying the pod to the same namespace as the operator, the pull secret will already exist in the namespace, and the secret name can be obtained using the [ImagePullSecretName](template-functions-config-context/#imagepullsecretname) template function.
-The app manager will create this secret automatically, but only in the namespace that the operator is running in.
+If the application is deploying the pod to the same namespace as the Operator, the pull secret will already exist in the namespace, and the secret name can be obtained using the [ImagePullSecretName](template-functions-config-context/#imagepullsecretname) template function.
+The app manager will create this secret automatically, but only in the namespace that the Operator is running in.
 It's the responsibility of the application developer (the Operator code) to ensure that this secret is present in any namespace that new pods will be deployed to.
 
 This template function returns the base64-encoded, docker auth that can be written directly to a secret, and referenced in the `imagePullSecrets` attribute of the PodSpec.

@@ -20,7 +20,7 @@ spec:
 The app manager supports additional images that are:
 
 - public images: referenced by the docker pullable image name
-- images pushed to the Replicated Registry: referenced by the `registry.replicated.com` name
+- images pushed to the Replicated registry: referenced by the `registry.replicated.com` name
 - images pushed to another [private, linked registry](packaging-private-images): referenced by the docker pullable name
 
 ## Authentication
