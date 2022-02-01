@@ -5,11 +5,12 @@ The open source Troubleshoot project provides a Preflight custom resource that t
 For more information, see [Introduction](https://troubleshoot.sh/docs/preflight/introduction/) in the Troubleshoot documentation.
 
 This enables the app manager and the Replicated admin console to provide cluster Operators with clear feedback on any missing requirements or incompatibilities in the target environment before an application is deployed.
-This custom resource is optional for applications.
+
+The Preflight custom resource is optional.
 
 You can also run preflight checks independently with the [Preflight kubectl plugin](https://troubleshoot.sh/docs/#installation).
 
-A Preflight kind is a collector and an analyzer specification in one `preflight.yaml` manifest file.
+A Preflight custom resource manifest file is a collector and an analyzer specification in one manifest.
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2

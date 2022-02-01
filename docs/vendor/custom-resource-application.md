@@ -1,14 +1,15 @@
 # Application
 
-The Application custom resource enables features such as branding, release notes, port forwarding, dashboard buttons, app status indicators, and custom graphs. The Application custom resource is defined in the `application.yaml` manifest file.
+The Application custom resource enables features such as branding, release notes, port forwarding, dashboard buttons, app status indicators, and custom graphs.
 
 With ports specified, the kots CLI can establish port-forwarding to simplify connections to the deployed application.  
 When [statusInformers](admin-console-display-app-status) are specified, the dashboard can provide timely feedback when the application deployment is complete and the application is ready for use.
-This custom resource is optional for applications.
 
-**Note**: There is some overlap between the `application.yaml` manifest file and the [Kubernetes SIG Application manifest](https://github.com/kubernetes-sigs/application#application-objects). Enabling features such as [adding a button to the dashboard](admin-console-port-forwarding#add-a-button-to-the-dashboard) requires the use of both the Application and SIG Application custom resources.
+The Application custom resource is optional.
 
-The `application.yaml` manifest contains vendor-supplied metadata about the application.
+**Note**: There is some overlap between the Application custom resource manifest file and the [Kubernetes SIG Application manifest](https://github.com/kubernetes-sigs/application#application-objects). Enabling features such as [adding a button to the dashboard](admin-console-port-forwarding#add-a-button-to-the-dashboard) requires the use of both the Application and SIG Application custom resources.
+
+The Application manifest file contains vendor-supplied metadata about the application.
 
 ```yaml
 apiVersion: kots.io/v1beta1
