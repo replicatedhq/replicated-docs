@@ -20,7 +20,7 @@ To reference a license field, you can:
 * **Write license fields to Kubernetes manifests**: Create references to license
 fields in Kubernetes manifest files. This allows you to enforce entitlements when
 your customer installs or updates your application. See [Write license fields to Kubernetes manifests](#write-license-fields-to-kubernetes-manifests) below.
-* **Query the admin console API**: Query the license field from the application
+* **Query the Replicated admin console API**: Query the license field from the application
 using the admin console API. This allows you to enforce entitlements during
 application runtime. See [Query license fields from the API](#query-license-fields-from-the-api) below.
 
@@ -75,7 +75,7 @@ This preflight check runs during application installation and update, and preven
 the installation or update from continuing if the maximum number of nodes defined
 by the `node_count` license field is exceeded.
 
-//To Do: create new topic from the linked community post//
+[]: # (To Do: create new topic from the linked community post)
 For more information, see [How Can I Use License Custom Fields Value in a Pre-Flight Check?](https://help.replicated.com/community/t/how-can-i-use-license-custom-fields-value-in-a-pre-flight-check/624) in the Replicated Community.
 
 ## Query license fields from the API
