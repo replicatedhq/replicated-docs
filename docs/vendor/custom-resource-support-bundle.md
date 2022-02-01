@@ -1,17 +1,22 @@
 # Support Bundle
 
-The [Replicated Troubleshoot project](https://github.com/replicatedhq/troubleshoot) provides the Support Bundle diagnostic tool that KOTS integrates deeply with.
-By providing this custom resource, vendors can collect, redact, and analyze troubleshooting data from a cluster, to help diagnose problems with application deployments.
+The open source Troubleshoot project provides the Support Bundle custom resource that the app manager integrates with.
 
-Vendors can customize the diagnostics using the [Support Bundle Spec](https://troubleshoot.sh/docs/support-bundle/collecting/), which is combination of [Collector](https://troubleshoot.sh/docs/collect/collectors/) and [Analyzer](https://troubleshoot.sh/docs/analyze/) specs in one document.
+Vendors can use the Support Bundle custom resource to collect, redact, and analyze troubleshooting data from a cluster, to help diagnose problems with application deployments.
 
-A [Collector Spec](https://troubleshoot.sh/docs/collect/collectors/) defines the data to be collected and included in the tar.gz bundle.
+Vendors can customize the diagnostics using the [Support Bundle custom resource](https://troubleshoot.sh/docs/support-bundle/collecting/), which is combination of [Collector](https://troubleshoot.sh/docs/collect/collectors/) and [Analyzer](https://troubleshoot.sh/docs/analyze/) specs in one document.
 
-An [Analyzer Spec](https://troubleshoot.sh/docs/analyze/) defines how to interpret and present the collected data to the application operator.
+A [Collector custom resource](https://troubleshoot.sh/docs/collect/collectors/) defines the data to be collected and included in the `tar.gz` bundle.
 
-Both support-bundle custom resources are optional for KOTS applications.
+An [Analyzer custom resource](https://troubleshoot.sh/docs/analyze/) defines how to interpret and present the collected data to the application operator.
 
-Support Bundle collection and analysis are integrated into the [Admin Console Dashboard](../enterprise/troubleshooting-an-app), and are also available through a [standalone kubectl plugin](https://troubleshoot.sh/docs/#installation).
+Both Support Bundle custom resources are optional for applications.
+
+Support Bundle collection and analysis is integrated into the Replicated admin console dashboard. It is also available through a kubectl plugin.
+
+For more information about how enterprise application users can troubleshoot their application instance in the admin console, see [Troubleshooting an application](../enterprise/troubleshooting-an-app).
+
+For more information about installing the kubectl plugin, see [Installation](https://troubleshoot.sh/docs/#installation) in the Troubleshoot documentation.
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2

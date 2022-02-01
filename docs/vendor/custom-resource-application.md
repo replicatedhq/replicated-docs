@@ -1,16 +1,14 @@
 # Application
 
-The KOTS Application custom resource enables features such as branding, release notes, port forwarding, dashboard buttons, app status indicators, and custom graphs.
+The Application custom resource enables features such as branding, release notes, port forwarding, dashboard buttons, app status indicators, and custom graphs. The Application custom resource is defined in the `application.yaml` manifest file.
 
-With ports specified, the KOTS CLI can establish port-forwarding, to simplify connections to the deployed application.  
+With ports specified, the kots CLI can establish port-forwarding to simplify connections to the deployed application.  
 When [statusInformers](admin-console-display-app-status) are specified, the dashboard can provide timely feedback when the application deployment is complete and the application is ready for use.
-This CR is optional for KOTS applications.
+This custom resource is optional for applications.
 
-There is some overlap between the `Application` spec and the [Kubernetes SIG Application spec](https://github.com/kubernetes-sigs/application#application-objects). In time, it's likely that the SIG Application spec will grow to include all the necessary metadata to support the full KOTS features.
+**Note**: There is some overlap between the `application.yaml` manifest file and the [Kubernetes SIG Application manifest](https://github.com/kubernetes-sigs/application#application-objects). Enabling features such as [adding a button to the dashboard](admin-console-port-forwarding#add-a-button-to-the-dashboard) requires the use of both the Application and SIG Application custom resources.
 
-In the meantime, enabling features (such as [adding a button to the dashboard](admin-console-port-forwarding#add-a-button-to-the-dashboard)) requires the use of both the KOTS Application spec and the SIG Application spec.
-
-The `Application` spec contains vendor-supplied metadata about the application.
+The `application.yaml` manifest contains vendor-supplied metadata about the application.
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -43,10 +41,10 @@ spec:
 ```
 
 ## title
-The application title. This will be used on the license upload and in various places in the Admin Console.
+The application title. This will be used on the license upload and in various places in the Replicated admin console.
 
 ## icon
-The icon file for the application. This will be used on the license upload and in various places in the Admin Console.
+The icon file for the application. This will be used on the license upload and in various places in the admin console.
 
 ## releaseNotes
 The release notes for this version. These can also be set when promoting a release.
@@ -56,24 +54,24 @@ This defaults to `false`. Enable to create a "Rollback" button on the end-custom
 
 ## additionalNamespaces
 An optional array of namespaces as strings.
-In addition to creating these namespaces, the Admin Console will ensure that the application secret exists in them, and that this secret has access to pull the application images (both images that are used and [`additionalImages`](operator-defining-additional-images)).
+In addition to creating these namespaces, the admin console ensures that the application secret exists in them, and that this secret has access to pull the application images (both images that are used and [`additionalImages`](operator-defining-additional-images)).
 For access to dynamically created namespaces, `"*"` can be specified.
 This pull secret will be automatically added to all application specs that use private images.
 For more information, see [Defining additional namespaces](operator-defining-additional-namespaces).
 
 ## additionalImages
 An optional array of strings that reference images to be included in air gap bundles and pushed to the local registry during installation.
-While KOTS detects images from the PodSpecs in the application, some applications (Operators) may need to include additional images that will not be referenced until runtime.
+While the Replicated app manager detects images from the PodSpecs in the application, some applications (Operators) may need to include additional images that will not be referenced until runtime.
 
 ## kubectlVersion
-KOTS maintains up-to-date patch versions of all supported kubelet minor versions.
-When unspecified, KOTS will use the newest version from the list of supported versions below.
+The app manager maintains up-to-date patch versions of all supported kubelet minor versions.
+When unspecified, the app manager uses the newest version from the list of supported versions below.
 
-- 1.21.x (added in [KOTS 1.48.0](https://kots.io/release-notes/1.48.0/))
-- 1.20.x (added in [KOTS 1.48.0](https://kots.io/release-notes/1.48.0/))
-- 1.19.x (added in [KOTS 1.22.0](https://kots.io/release-notes/1.22.0/))
-- 1.18.x (added in [KOTS 1.22.0](https://kots.io/release-notes/1.22.0/))
-- 1.17.x (added in [KOTS 1.22.0](https://kots.io/release-notes/1.22.0/))
+- 1.21.x (added in [App manager 1.48.0](https://kots.io/release-notes/1.48.0/))
+- 1.20.x (added in [App manager 1.48.0](https://kots.io/release-notes/1.48.0/))
+- 1.19.x (added in [App manager 1.22.0](https://kots.io/release-notes/1.22.0/))
+- 1.18.x (added in [App manager 1.22.0](https://kots.io/release-notes/1.22.0/))
+- 1.17.x (added in [App manager 1.22.0](https://kots.io/release-notes/1.22.0/))
 - 1.16.x
 - 1.14.x
 
@@ -82,11 +80,11 @@ The latest version within the provided range will be used.
 If the specified version or range does not match any supported versions, the latest version from the above list will be used.
 
 For backwards compatibility, exact versions are also supported.
-When an exact version is specified, KOTS will choose the matching major and minor version.
+When an exact version is specified, the app manager will choose the matching major and minor version.
 
 ## kustomizeVersion
-KOTS maintains up-to-date minor and patch versions of all supported kustomize major versions.
-When unspecified, KOTS will use the newest version from the list of supported versions below.
+The app manager maintains up-to-date minor and patch versions of all supported Kustomize major versions.
+When unspecified, the app manager will use the newest version from the list of supported versions below.
 
 - 3.x.x
 
@@ -95,10 +93,10 @@ The latest version within the provided range will be used.
 If the specified version or range does not match any supported versions, the latest version from the above list will be used.
 
 For backwards compatibility, exact versions are also supported.
-When an exact version is specified, KOTS will choose the matching major and minor version.
+When an exact version is specified, the app manager will choose the matching major and minor version.
 
 ## requireMinimalRBACPrivileges
-When set to true, this will instruct the KOTS installer to create a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.
+When set to true, this will instruct the app manager to create a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.
 For more information, see the [RBAC](packaging-rbac) documentation.
 
 ## ports
@@ -130,7 +128,7 @@ statusInformers:
 ```
 
 ## graphs
-Custom graphs to include on your Admin Console application dashboard.
+Custom graphs to include on your admin console application dashboard.
 
 ### title
 The graph title.

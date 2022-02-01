@@ -1,8 +1,8 @@
 # Identity
 
-The KOTS Identity custom resource enables and configures the KOTS Identity Service for the vendor application.
+The Identity custom resource enables and configures the Replicated identity service for the application.
 
-The `Identity` spec contains vendor-supplied configuration for the KOTS Identity Service.
+The manifest file for the Identity custom resource contains vendor-supplied configuration for the identity service.
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -35,12 +35,12 @@ spec:
 ```
 
 ## identityIssuerURL
-**(required)** This is the canonical URL that all clients MUST use to refer to the OIDC identity service.
+**(required)** This is the canonical URL that all clients must use to refer to the OIDC identity service.
 If a path is provided, the HTTP service will listen at a non-root URL.
 
 ## oidcRedirectUris
 **(required)** A registered set of redirect URIs.
-When redirecting from the KOTS identity OIDC server to the client, the URI requested to redirect to MUST match one of these values.
+When redirecting from the Replicated app manager identity OIDC server to the client, the URI requested to redirect to must match one of these values.
 
 ## supportedProviders
 A list of supported identity providers.
@@ -50,7 +50,7 @@ If unspecified, all providers will be available.
 If true, require the identity provider configuration to be set by the customer before the app can be deployed.
 
 ## roles
-**(`id` required)** A list of roles to be mapped to identity provider groups by the customer on the KOTS Admin Console Identity Service configuration page.
+**(`id` required)** A list of roles to be mapped to identity provider groups by the customer on the Replicated admin console identity service configuration page.
 
 ## oauth2AlwaysShowLoginScreen
 If true, show the identity provider selection screen even if there's only one configured.

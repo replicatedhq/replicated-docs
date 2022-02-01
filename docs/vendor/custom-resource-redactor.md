@@ -1,9 +1,12 @@
 # Redactor
 
-The [Replicated Troubleshoot project](https://github.com/replicatedhq/troubleshoot) provides a [Redactor spec](https://troubleshoot.sh/docs/redact/redactors/) that integrates with KOTS to enable custom redactions during support bundle generation.
-Vendors can use this to hide sensitive information like API keys, credentials, account numbers, etc. in support bundles.
-This custom resource is optional for KOTS applications, but KOTS includes all of the [pre-configured redactors describe in Troubleshoot](https://troubleshoot.sh/docs/redact/) by default in support bundle generation.
-These cannot be disabled by the vendor, but any additional Redactor specs will be added to the defaults.
+The open source Troubleshoot project provides a Redactor custom resource that integrates with the Replicated app manager to enable custom redactions during support bundle generation.
+
+Vendors can use this to hide sensitive information like API keys, credentials, or account numbers in support bundles.
+
+This custom resource is optional for applications, but the app manager includes all of the pre-configured redactors described in Troubleshoot by default in support bundle generation. For more information, see [Redacting Data](https://troubleshoot.sh/docs/redact/) in the Troubleshoot documentation.
+
+These cannot be disabled by the vendor, but any additional Redactor custom resources will be added to the defaults.
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
