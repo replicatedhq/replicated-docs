@@ -1,6 +1,6 @@
 # Example: Mapping config screen to Helm values
 
-KOTS allows you to map the [config screen](/vendor/config/config-screen) to the Helm `values.yaml` file. This example shows a possible configuration for the Grafana platform.
+The Replicated app manager allows you to map the [config screen](/vendor/config/config-screen) to the Helm `values.yaml` file. This example shows a possible configuration for the Grafana platform.
 
 ## Choosing Values
 

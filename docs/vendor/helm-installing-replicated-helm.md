@@ -1,6 +1,6 @@
-# Installing with Replicated KOTS
+# Installing with the app manager
 
-By default, Replicated KOTS renders Helm chart templates and deploys them as standard Kubernetes manifests. To include a Helm chart, start by retrieving the chart `.tgz` package. For Helm charts that you do not control, these can be quickly downloaded using the `helm` CLI.
+By default, the Replicated app manager renders Helm chart templates and deploys them as standard Kubernetes manifests. To include a Helm chart, start by retrieving the chart `.tgz` package. For Helm charts that you do not control, these can be quickly downloaded using the `helm` CLI.
 
 ```shell
 helm repo update
@@ -21,7 +21,7 @@ Note that if you use subcharts, you may also need to run `helm dependecy update`
 
 ## Adding a Helm Chart to a Replicated application
 
-To add this chart to a Replicated application, create a new release on the [vendor portal](https://vendor.replicated.com).
+To add this chart to an application, create a new release on the Replicated vendor portal.
 Once you are editing the release, drop the Helm chart into the file tree.
 The chart will be added to a new section near the top of the file tree, and the `values.yaml`, `chart.yaml` and a new `chart-name.yaml` file will be created.
 
@@ -29,8 +29,8 @@ The chart will be added to a new section near the top of the file tree, and the 
 
 ### &lt;chart-name&gt;.yaml
 
-This file is required for chart to be installed.
-When using the Vendor portal generated automatically when adding a new chart, and allows you to configure the chart with your application. For more information, see the [references section](custom-resource-helmchart).
+This file is required for the chart to be installed.
+When using the vendor portal generated automatically when adding a new chart, and allows you to configure the chart with your application. For more information, see the [references section](custom-resource-helmchart).
 
 ### chart.yaml
 This file is read-only, and extracted from the Helm chart (as metadata).
