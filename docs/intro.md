@@ -1,3 +1,6 @@
+---
+slug: /
+---
 # Welcome to Replicated documentation
 
 This topic describes how to navigate the Replicated product documentation site.
