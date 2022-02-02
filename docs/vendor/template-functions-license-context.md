@@ -31,7 +31,7 @@ In addition to custom license fields, `LicenseFieldValue` also accepts the follo
 func LicenseDockerCfg() string
 ```
 LicenseDockerCfg returns a value that can be written to a secret if needed to deploy manually.
-KOTS will create and inject this secret automatically in normal conditions, but some deployments (with static, additional namespaces) may need to include this.
+The Replicated app manager creates and injects this secret automatically in normal conditions, but some deployments (with static, additional namespaces) may need to include this.
 
 ```yaml
 apiVersion: v1
@@ -46,7 +46,7 @@ data:
 
 ## Sequence
 
-> Sequence was introduced in Kots v1.20.0.
+> Sequence was introduced in the app manager v1.20.0.
 
 ```go
 func Sequence() int64
@@ -60,7 +60,7 @@ This will start at 0 for each installation, and increase with every app update, 
 
 ## Cursor
 
-> Cursor was introduced in Kots v1.20.0.
+> Cursor was introduced in the app manager v1.20.0.
 
 ```go
 func Cursor() string
@@ -74,7 +74,7 @@ For instance, if 5 releases have been promoted to the channel that the app is ru
 
 ## ChannelName
 
-> ChannelName was introduced in Kots v1.20.0.
+> ChannelName was introduced in the app manager v1.20.0.
 
 ```go
 func ChannelName() string
@@ -87,7 +87,7 @@ ChannelName is the name of the deployed channel of the app.
 
 ## VersionLabel
 
-> VersionLabel was introduced in Kots v1.20.0.
+> VersionLabel was introduced in the app manager v1.20.0.
 
 ```go
 func VersionLabel() string
@@ -100,7 +100,7 @@ VersionLabel is the semantic version of the app, as specified when promoting a r
 
 ## ReleaseNotes
 
-> ReleaseNotes was introduced in Kots v1.20.0.
+> ReleaseNotes was introduced in the app manager v1.20.0.
 
 ```go
 func ReleaseNotes() string
@@ -113,7 +113,7 @@ ReleaseNotes is the release notes of the current version of the app.
 
 ## IsAirgap
 
-> IsAirgap was introduced in Kots v1.20.0.
+> IsAirgap was introduced in the app manager v1.20.0.
 
 ```go
 func IsAirgap() bool
