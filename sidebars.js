@@ -36,7 +36,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Planning and packaging an application',
+          label: 'Planning your deployment',
           items: [
             'vendor/packaging-planning-checklist',
             'vendor/packaging-an-app',
