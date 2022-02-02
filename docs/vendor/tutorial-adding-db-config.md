@@ -14,7 +14,7 @@ It is split into 5 sections:
 
 ### Prerequisites
 
-You should have completed one of the installation tutorials, such as [installing without an existing cluster](tutorial-installing-without-existing-cluster), as this guide assumes you have a running instance of `kotsadm` to iterate against in either an existing or embedded cluster, and a local git checkout of your KOTS app manifests.
+You should have completed one of the installation tutorials, such as [installing without an existing cluster](tutorial-installing-without-existing-cluster), as this guide assumes you have a running instance of `kotsadm` to iterate against in either an existing cluster or Replicated Kubernetes installer-created cluster, and a local git checkout of your application manifests.
 
 ### Accompanying Code Examples
 
@@ -24,7 +24,7 @@ A full example of the code for this guide can be found in the [kotsapps reposito
 
 ## The Example Application
 
-For demonstration purposes, we'll use a simple app that connects to a postgres database via the `psql` CLI.
+For demonstration purposes, we'll use a simple app that connects to a Postgres database via the `psql` CLI.
 Once you've finished this guide, you should feel confident replacing it with any Kubernetes workload(s) that need to connect to a database.
 The deployment we'll use can be seen below:
 
@@ -84,17 +84,17 @@ For now we'll hard code the DB variable values, in the next sections we'll wire 
 ### Deploying the example application
 
  Once you've added this deployment to you application's `manifests` directory, create a release by pushing a commit to your [starter repo copy](tutorial-installing-with-cli#2-setting-a-service-account-token) or by running `replicated release create --auto` locally.
- Then head to the Admin Console instance and click "Check for Updates" on the "Version History" tab to pull the new release:
+ Then head to the admin console instance and click **Check for Updates** on the Version History tab to pull the new release:
 
 ![View Update](/images/guides/kots/view-update.png)
 
-After clicking "Deploy", you should be able to review the logs and see `deployment.apps/pg-consumer created` in `applyStdout`:
+Click **Deploy**. You should be able to review the logs and see `deployment.apps/pg-consumer created` in `applyStdout`:
 
 
 ![Deployed PG Consumer](/images/guides/kots/pg-consumer-deployed.png)
 
 
-Once it's deployed, you can run `kubectl get pods` to inspect the cluster.
+After it is deployed, you can run `kubectl get pods` to inspect the cluster.
 We should expect the Pod to be crashlooping at this point, since there's no database to connect to just yet:
 
 ```text
@@ -108,7 +108,7 @@ kotsadm-postgres-0                 1/1     Running            0          12m
 pg-consumer-75f49bfb69-mljr6       0/1     CrashLoopBackOff   1          10s
 ```
 
-Checking the logs, we should see a connect error.
+Checking the logs, we should see a connect error:
 
 ```text
 $ kubectl logs -l app=pg-consumer
@@ -123,20 +123,20 @@ $ kubectl logs -l app=pg-consumer --previous
 psql: could not translate host name "postgres" to address: Name or service not known
 ```
 
-Now that our test app is deployed, we'll walk through presenting options to the end user for connecting a postgres instance to this app.
+Now that our test app is deployed, we'll walk through presenting options to the end user for connecting a Postgres instance to this app.
 
 * * *
 
 ## User-Facing Configuration
 
-The core of this guide will be around how to give your end users the option to either
+The core of this guide will be around how to give your end users the option to do one of the following actions:
 
-1. Bring their own PostgreSQL instance for your app to connect to
-1. Use an "embedded" database bundled in with the application
+* Bring their own PostgreSQL instance for your app to connect to
+* Use an "embedded" database bundled in with the application
 
-The first step here is to present that option to the user, then we'll walk through implementing each scenario in KOTS.
+The first step here is to present that option to the user, then we'll walk through implementing each scenario in the app manager.
 The `kots.io/v1beta1` `Config` resource controls what configuration options are presented to the end user.
-If you followed one of the "Getting Started" guides, you probably have a `config.yaml` in your manifests that looks something like this:
+If you followed one of the "Getting Started" guides, you probably have a `config.yaml` in your manifests that looks something like the following YAML file:
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -163,7 +163,7 @@ spec:
 
 To add a database section, we'll modify it to include some database settings.
 In this case we'll remove the Ingress toggle that is included as an example, although you might also choose to leave this in. None of these database settings will have any effect yet, but we'll still be able to preview what the end user will see.
-Modify your yaml to include this database section:
+Modify your YAML to include this database section:
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -200,11 +200,11 @@ As mentioned in the introduction, a full example of the code for this guide can 
 
 Even though the options aren't wired, let's create a new release to validate the configuration screen was modified.
 Create a release by pushing a commit to your [ci-enabled repo](tutorial-ci-cd-integration) or by running `replicated release create --auto` locally.
-Then head to the Admin Console instance and click "Check for Updates" on the "Version History" tab to pull the new release:
+Then head to the admin console instance and click **Check for Updates** on the Version History tab to pull the new release:
 
 ![View Update](/images/guides/kots/view-update.png)
 
-Once the update is deployed, we can head over to the "Config" tab and review our new toggle.
+After the update is deployed, click the Config tab and review our new toggle.
 You might also notice that we've removed the Ingress settings to simplify things for this guide:
 
 ![Database Config](/images/guides/kots/database-config.png)
@@ -215,11 +215,11 @@ Now that we have the configuration screen started, we can proceed to implement t
 
 ## Embedding a Database
 
-To implement the embedded Database option, we'll add a Kubernetes [Statefulset](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/), and use the [KOTS annotations for optional resources](packaging-include-resources/) to control when it will be included in the application.
+To implement the embedded Database option, we'll add a Kubernetes [Statefulset](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/), and use the [annotations for optional resources](packaging-include-resources/) to control when it will be included in the application.
 
 ### Adding the Secret and StatefulSet
 
-First, we'll create a secret to store the root password for our embedded postgres instance.
+First, we'll create a secret to store the root password for our embedded postgres instance:
 
 ```yaml
 # postgres-secret.yaml
@@ -232,7 +232,7 @@ data:
 ```
 
 Next, create a new YAML file in your `manifests` directory with the following contents.
-Note the use of `kots.io/when` to only conditionally include this based on end-user inputs.
+Note the use of `kots.io/when` to only conditionally include this based on end-user inputs:
 
 ```yaml
 # postgres-statefulset.yaml
@@ -291,7 +291,7 @@ spec:
           storage: 1Gi
 ```
 
-Finally, lets add a Service object so we can route traffic to our postgres instance, again using `kots.io/when` to conditionally include this resource.
+Finally, lets add a Service object so we can route traffic to our postgres instance, again using `kots.io/when` to conditionally include this resource:
 
 
 ```yaml
@@ -314,12 +314,12 @@ spec:
 
 ### Validating the embedded Database
 
-Once you've added these resources, you can push a new release and update in the Admin Console.
+After you've added these resources, you can push a new release and update in the admin console.
 You should see the following in the deployment logs:
 
 ![Embedded PG Deployed](/images/guides/kots/embedded-pg-deployed.png)
 
-We should now see an instance of postgres running in our namespace as well.
+We should now see an instance of Postgres running in our namespace as well.
 The consumer may still be crashlooping, but we can see the error is different now:
 
 ```text
@@ -328,14 +328,14 @@ psql: FATAL:  password authentication failed for user "postgres"
 ```
 
 This is because we still need to deliver the generated password to our workload pod.
-In `pg-consumer.yaml`, we'll remove this section
+In `pg-consumer.yaml`, we'll remove this section:
 
 ```yaml
             - name: DB_PASSWORD
               value: postgres
 ```
 
-and replace it with
+and replace it with:
 
 ```yaml
             - name: DB_PASSWORD
@@ -345,7 +345,7 @@ and replace it with
                   key: DB_PASSWORD
 ```
 
-The full Deployment should now look like:
+The full Deployment should now look like the following YAML file:
 
 ```yaml
 apiVersion: apps/v1
@@ -432,12 +432,12 @@ Now that we've configured our application to read from an embedded postgres inst
 
 ## Connecting to an external Database
 
-In this section, we'll expand our configuration section to allow end users to bring their own postgres instance.
+In this section, we'll expand our configuration section to allow end users to bring their own Postgres instance.
 
 ### Modifying the Config Screen
 
 Let's update our config screen to allow an end user to input some details about their database.
-We'll add the following YAML, noting the use of the `when` field to conditionally hide or show fields in the user-facing config screen.
+We'll add the following YAML, noting the use of the `when` field to conditionally hide or show fields in the user-facing config screen:
 
 ```yaml
         - name: external_postgres_host
@@ -467,7 +467,7 @@ We'll add the following YAML, noting the use of the `when` field to conditionall
           default: sentry
 ```
 
-Your full configuration screen should now look something like
+Your full configuration screen should now look something like the following YAMl file:
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -520,18 +520,18 @@ spec:
           default: postgres
 ```
 
-Let's save this and create a new release. After deploying the release in the Admin Console, head to "Config" and set the toggle to "External Postgres" to see the new fields:
+Let's save this and create a new release. After deploying the release in the admin console, click **Config** and set the toggle to "External Postgres" to see the new fields:
 
 In order to demonstrate that these are working, let's add some values that we know won't work, and just check to confirm that checking "External Postgres" will remove our embedded postgres instance:
 
 
 ![External PG Config Fake](/images/guides/kots/external-pg-config-fake.png)
 
-Save these settings, and then you'll be directed back to the "Version History" page to apply the change:
+Save these settings, and then you'll be directed back to the Version History page to apply the change:
 
 ![Deploy Config Change](/images/guides/kots/deploy-config-change.png)
 
-Once this is deployed, we should see that the postgres statefulset has been removed, and that our sample application is back to failing.
+after this is deployed, we should see that the postgres statefulset has been removed, and that our sample application is back to failing:
 
 
 ```text
@@ -556,7 +556,7 @@ psql: could not translate host name "postgres" to address: Name or service not k
 ### Mapping User Inputs
 
 To map the user-supplied configuration, we'll start by expanding our secret we created before, adding fields for additional variables, using `{{repl if ... }}` blocks to switch between embedded/external contexts.
-To start we'll add a field for hostname, using the yaml `>-` to collapse the multiline string into a single line.
+To start, we'll add a field for hostname, using the yaml `>-` to collapse the multiline string into a single line:
 
 ```yaml
 apiVersion: v1
@@ -574,14 +574,14 @@ data:
 ```
 
 Now that we have the value in our Secret, we can modify our deployment to consume it.
-Replace
+Replace this text:
 
 ```yaml
             - name: DB_HOST
               value: postgres
 ```
 
-with
+with this text:
 
 ```yaml
             - name: DB_HOST
@@ -591,7 +591,7 @@ with
                   key: DB_HOST
 ```
 
-Your full deployment should look something like:
+Your full deployment should look something like the following YAML file:
 
 ```yaml
 apiVersion: apps/v1
@@ -643,7 +643,7 @@ spec:
                   key: DB_PASSWORD
 ```
 
-From here, let's create and deploy a release, and verify that the secret has the customer-provided value, base64 decoding the secret contents
+From here, let's create and deploy a release, and verify that the secret has the customer-provided value, base64 decoding the secret contents:
 
 ```text
 $ kubectl get secret postgres -o yaml | head -n 4
@@ -662,19 +662,17 @@ fake
 
 Checking on our service itself, we can verify that it's now trying to connect to the `fake` hostname instead of `postgres`:
 
-
-
 ```text
 $ kubectl logs -l app=pg-consumer
 psql: could not translate host name "fake" to address: Name or service not known
 ```
 
-We'll optionally wire this to a real external postgres database later, but for now we'll proceed to add the rest of the fields.
+We'll optionally wire this to a real external Postgres database later, but for now we'll proceed to add the rest of the fields.
 
 ### Extending this to all fields
 
 Now that we've wired the DB_HOST field all the way through, we'll do the same for the other fields.
-In the end, your Secret and Deployment should look like:
+In the end, your Secret and Deployment should look like the following YAML files:
 
 ```yaml
 # postgres-secret.yaml
@@ -815,7 +813,7 @@ spec:
 ```
 
 
-after deploying this, you should see all fields in the secret:
+After deploying this, you should see all of the fields in the secret:
 
 ```text
 $ kubectl get secret postgres -o yaml
@@ -830,7 +828,7 @@ kind: Secret
 # ...snip...
 ```
 
-We can also print the environment in our sample app to verify all the values are piped properly:
+We can also print the environment in our sample app to verify that all of the values are piped properly:
 
 ```text
 $ kubectl exec $(kubectl get pod -l app=pg-consumer -o jsonpath='{.items[0].metadata.name}' ) -- /bin/sh -c 'printenv | grep DB_'
@@ -843,7 +841,7 @@ DB_USER=fake
 
 ### Testing Config Changes
 
-Now let's make some changes to the database credentials. In this case, we'll use a postgres database provisioned in Amazon RDS, but you can use any external database.
+Now let's make some changes to the database credentials. In this case, we'll use a Postgres database provisioned in Amazon RDS, but you can use any external database.
 To start, head to the "Config" screen and input your values:
 
 ![Real Postgres Values](/images/guides/kots/real-postgres-values.png)
@@ -905,7 +903,7 @@ annotations:
 What matters here is that when the value in a Deployment annotation changes, it will cause Kubernetes to roll out a new version of the pod, stopping the old one and thus picking up our config changes.
 
 
-Your full deployment should now look like
+Your full deployment should now look like the following YAML file:
 
 ```yaml
 apiVersion: apps/v1
@@ -948,7 +946,7 @@ spec:
 
 ### Integrating a real Database
 
-If you'd like at this point, you can integrate a real database in your environment, just fill out your configuration fields. You'll know you did it right if your pg-consumer pod can connect!
+If you'd like at this point, you can integrate a real database in your environment, just fill out your configuration fields. You'll know you did it right if your pg-consumer pod can connect.
 
 
 <!-- Coming Soon!

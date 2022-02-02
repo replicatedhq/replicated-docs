@@ -1,6 +1,6 @@
 # Using ECR for private images
 
-KOTS supports working with private images stored in Amazon's Elastic Container Registry (ECR).
+The Replicated app manager supports working with private images stored in Amazon's Elastic Container Registry (ECR).
 
 ## Objective
 
@@ -10,31 +10,31 @@ The purpose of this guide is to walk you through a hello-world example on how to
 
 This power-user's guide assumes you have completed the Replicated product installation tutorials [without an existing cluster](tutorial-installing-without-existing-cluster) or the [using the CLI](tutorial-installing-with-cli), as this guide is a continuation of those tutorials.
 
-As with the previous tutorials, we will also need a VM to install the application with the following minimum requirements:
+As with the previous tutorials, we will also need a virtual machine (VM) to install the application with the following minimum requirements:
 
 * Ubuntu 18.04
 * At least 8 GB of RAM
 * 4 CPU cores
 * At least 40GB of disk space
 
-In this guide we are going to focus on the difference between using a public image versus a private image in Replicated.
-To do this, we'll pull the public ngnix container and then push it to a private repository in ECR.
+We are going to focus on the difference between using a public image versus a private image in Replicated.
+To do this, we'll pull the public NGINX container and then push it to a private repository in ECR.
 
 This means we'll need:
 
 * An ECR Repository
-* An AWS Account to use with Docker to pull and push the public nginx image to the ECR repository
+* An AWS Account to use with Docker to pull and push the public NGINX image to the ECR repository
 * Docker
 * The AWS CLI
 
-Later in the guide we'll configure Replicated to pull from the ECR repository using a read-only account.
+Later in the guide we will configure Replicated to pull from the ECR repository using a read-only account.
 To do this we'll need to make sure the above AWS account can also create this user.
 
 ## Overview
 
 The guide is divided into the following steps:
 
- 1. [Set Up Testing Environment](#1-set-up-testing-environment)
+ 1. [Set Up the Testing Environment](#1-set-up-testing-environment)
 
  2. [Configure Private Registries in Replicated](#2-configure-private-registries-in-replicated)
 
@@ -42,39 +42,39 @@ The guide is divided into the following steps:
 
  4. [Install the New Version](#4-install-the-new-version)
 
-## 1. Set Up Testing Environment
+## 1. Set Up the Testing Environment
 
-For this guide, we are simply going to use the default nginx deployment to create our application and then update it to pull the same container from a private repository in ECR and note the differences.
+We are going to use the default NGINX deployment to create our application and then update it to pull the same container from a private repository in ECR and note the differences.
 
 ### Create Sample Application and deploy the first release
 
-In this section, we cover at a high level the steps to create a new application and install it on a VM. As mentioned earlier, it's assumed you have completed the Replicated product installation tutorials [without an existing cluster](tutorial-installing-without-existing-cluster) or the [using the CLI](tutorial-installing-with-cli), which cover these steps in detail.
+In this section, we cover at a high level the steps to create a new application and install it on a VM. As mentioned earlier, it is assumed that you have completed the Replicated product installation tutorials [without an existing cluster](tutorial-installing-without-existing-cluster) or the [using the CLI](tutorial-installing-with-cli), which cover these steps in detail.
 
 To create our sample application follow these steps:
 
-* Create a new application in Replicated and call it 'MySampleECRApp'.
+* Create a new application in the Replicated [vendor portal](https://vendor.replicated.com) and call it 'MySampleECRApp'.
 * Create the first release using the default definition files and promote it to the *unstable* channel.
 * Create a customer, assign it to the *Unstable* channel and download the license file after creating the customer.
-* Install the application to a Virtual Machine
+* Install the application to a VM
 
-Log in to the admin console. To inspect what was deployed let's look at the files under **View Files** from the Admin Console.
-In the Upstream files (files from the Release created in the Replicated Vendor Portal) show that we are pulling the public image.
+Log in to the Replicated admin console. To inspect what was deployed, look at the files under **View Files** from the admin console.
+In the Upstream files (files from the release created in the vendor portal) show that we are pulling the public image.
 
 ![admin-console-view-files-upstream-release1](/images/guides/kots/priv-reg-ecr-ups-files-rel1.png)
 
 We can further validate this if we switch back to the terminal window on the VM where we installed the application.
-If we run `kubectl describe pod <pod-name>` on the nginx pod, we can confirm that it was in fact pulled from the public repository.
+If we run `kubectl describe pod <pod-name>` on the NGINX pod, we can confirm that it was in fact pulled from the public repository.
 
 ![admin-console-kubectl-describe-release2](/images/guides/kots/priv-reg-ecr-kubctl-describe-rel1.png)
 
-Now that we have the basic application installed, we are now going to pull the same image but from an ECR repository.
+Now that we have the basic application installed, we are now going to pull the same image, but from an ECR repository.
 
 ### Pull Public Image and Push to ECR
 
-To keep the changes to a minimum and only focus on using a private registry, we are going to pull the public nginx container (as specified in the `deployment.yaml` file) to our local environment, and then push it to a repository in ECR.
+To keep the changes to a minimum and only focus on using a private registry, we are going to pull the public NGINX container (as specified in the `deployment.yaml` file) to our local environment, and then push it to a repository in ECR.
 To use `docker login` with ECR, we will need to configure AWS CLI with the AWS Access Key ID and AWS Secret Key for this user.
 
-Let's start by pulling the public image
+Let's start by pulling the public image:
 
 ```shell
 $ docker pull nginx
@@ -95,10 +95,9 @@ Status: Downloaded newer image for nginx:latest
 docker.io/library/nginx:latest
 ```
 
-Next we need to login to ECR and push this container.
-To use `docker login` with ECR we will need to [install the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) and [configure it](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html) if not already done.
-As part of this, we will need to provide the AWS Access Key ID and AWS Secret Key for a user that has permissions to create and push images to the repository. Please refer [Using Amazon ECR with the AWS CLI](https://docs.aws.amazon.com/AmazonECR/latest/userguide/getting-started-cli.html) in the AWS documentation if you are not familiar with using the AWS CLI to work with containers and ECR.
-
+Next, log in to ECR and push this container.
+To use `docker login` with ECR, [install the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) and [configure it](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html) if not already done.
+As part of this, we will need to provide the AWS Access Key ID and AWS Secret Key for a user that has permissions to create and push images to the repository. For more information about working with containers and ECR in the AWS CLI, see [Using Amazon ECR with the AWS CLI](https://docs.aws.amazon.com/AmazonECR/latest/userguide/getting-started-cli.html).
 
 Just like with any other private registry, we need to know the registry endpoint to pass the `docker login` command.
 The syntax is as follows:
@@ -110,7 +109,7 @@ docker login [some.private.registry]:[port]
 ```
 In this case, the endpoint is the **[some.private.registry]:[port]**
 
-To determine the endpoint for ECR, login to the AWS console and seach for 'ECR', which should bring up Elastic Container Registry as an option as shown below.
+To determine the endpoint for ECR, log in to the AWS console and search for 'ECR', which should bring up Elastic Container Registry as an option as shown below.
 
 ![search-4-ecr](/images/guides/kots/priv-reg-ecr-search-4-ecr.png)
 
@@ -119,31 +118,31 @@ Select 'Elastic Container Registry' from the options in the dropdown to get to t
 ![ecr-repos](/images/guides/kots/priv-reg-ecr-repos.png)
 
 As you can see from the screenshot above, you can see the endpoints for each repository under the URI column.
-For the purpose of this guide, we will push the nginx image to the **demo-apps** repository.
+For the purpose of this guide, we will push the NGINX image to the **demo-apps** repository.
 
-To determine the endpoint to use in the login command, use the url without the repository name.
+To determine the endpoint to use in the login command, use the URL without the repository name.
 
-When it comes to loggin in to ECR, we need to use the AWS CLI to the user credentials.
-As an example, to login to ECR we run the following command:
+When logging in to ECR, use the AWS CLI to the user credentials.
+For example, to log in to ECR, we run the following command:
 
 ```shell
 
 $ aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 4999999999999.dkr.ecr.us-east-2.amazonaws.com
 ```
 
-A succesful login will display a `Login Succeeded` message.
-In order to push this image to our private repsoitory, we need to tag the image.
+A successful login will display a `Login Succeeded` message.
+To push this image to our private repository, tag the image.
 The new tag will consist of:
 
 `<ecr repoendpoint>/image`
 
-As an example, to tag the public nginx image we run the following command:
+For example, to tag the public NGINX image, we run the following command:
 
 ```shell
 $ docker tag nginx 4999999999999.dkr.ecr.us-east-2.amazonaws.com/demo-apps/nginx
 ```
 
-Assuming a successful tag, we now push the container to our ECR repository
+Assuming the tagging is successful, push the container to our ECR repository:
 
 ```shell
 $ docker push 4999999999999.dkr.ecr.us-east-2.amazonaws.com/demo-apps/nginx      
@@ -156,7 +155,7 @@ f431d0917d41: Pushed
 latest: digest: sha256:794275d96b4ab96eeb954728a7bf11156570e8372ecd5ed0cbc7280313a27d19 size: 1362
 
 ```
-Our testing environment is all set!
+Our testing environment is all set.
 We are now ready to update Replicated to use the private registry.
 
 * * *
@@ -249,7 +248,7 @@ First, we must link Replicated with the registry. To do this, click on **Add Ext
 The values for the fields are:
 
 **Endpoint:**
-Enter the same URL used to login to ECR.
+Enter the same URL used to log in to ECR.
 For example, to link to the same registry as the one in the section, we would enter *4999999999999.dkr.ecr.us-east-2.amazonaws.com*.
 
 **Username:**
@@ -262,7 +261,7 @@ Enter the AWS Secret Key for the user created in the [Setting Up the Service Acc
 
 ## 3. Update Definition Files
 
-Last step is to update our defintion manifest to pull the image from the ECR repository.
+Last step is to update our definition manifest to pull the image from the ECR repository.
 To do this, we'll update the `deployment.yaml` file by adding the ECR registry URL to the `image` value.
 Below is an example using the registry URL used in this guide.
 
@@ -281,7 +280,7 @@ Save your changes and create the new release and promote it to the *Unstable* ch
 
 ## 4. Install the New Version
 
-To deploy the new version of the application, go back to the Admin Console and select the *Version History* tab.
+To deploy the new version of the application, go back to the admin console and select the *Version History* tab.
 Click on **Check for Updates** and then **Deploy** when the new version is listed.
 To confirm that the new version was in fact installed, it should look like the screenshot below.
 
@@ -292,17 +291,17 @@ Looking at the `deployment.yaml` upstream file, we see the image path as we set 
 
 ![admin-console-view-files-upstream-release2](/images/guides/kots/priv-reg-ecr-upstream-file-rel2.png)
 
-Since KOTS is able to detect that it can't pull this image anonymously, it then tries to proxy the private registries configured. Looking at the `kustomization.yaml` downstream file we can see that the image path is changed to use the Replicated proxy.
+Since the app manager is able to detect that it cannot pull this image anonymously, it then tries to proxy the private registries configured. Looking at the `kustomization.yaml` downstream file we can see that the image path is changed to use the Replicated proxy.
 
 ![admin-console-view-files-downstream-release2](/images/guides/kots/priv-reg-ecr-downstream-file-rel2.png)
 
-The install of the new version should have created a new pod. If we run `kubectl describe pod` on the new nginx pod, we can confirm that the image was in fact pulled from the ECR repository.
+The install of the new version should have created a new pod. If we run `kubectl describe pod` on the new NGINX pod, we can confirm that the image was in fact pulled from the ECR repository.
 
 ![admin-console-kubectl-describe-release2](/images/guides/kots/priv-reg-ecr-kubectl-describe-rel2.png)
 
 * * *
 
-## Further Reading
+## Additional resources
 
 - [Using private image registries](packaging-private-images/)
 
