@@ -1,8 +1,8 @@
 # release download
 
-Download the YAML config file for a release.
+Download the config manifest file for a release.
 
-**Note:** This command is the same as the `release inspect` command for non-KOTS apps.
+**Note:** This command is the same as the `release inspect` command for applications that are not packaged with Replicated.
 
 ## Usage
 ```bash

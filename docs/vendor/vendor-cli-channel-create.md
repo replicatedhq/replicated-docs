@@ -1,6 +1,6 @@
 # channel create
 
-Create a new channel in your app, and then print the channel.
+Create a new channel in your application, and then print the channel.
 
 ## Usage
 ```bash

@@ -12,7 +12,7 @@ replicated release update --yaml-dir YAML_DIR [Flags]
 
 | Flag                 | Type | Description |
 |:----------------------|------|-------------|
-| `--yaml-dir` | path | The directory containing multiple yamls for a Kots release. (**required**) |
+| `--yaml-dir` | path | The directory containing multiple yamls for a release. (**required**) |
 | `-h, --help`   |  |          Help for the command |
 | `--app string` | |   The app slug or app id used in all calls (default uses `$REPLICATED_APP` env variable) |
 | `--token string` | |  The API token used to access your app in the Vendor API (default uses `$REPLICATED_API_TOKEN` env variable) |

@@ -1,6 +1,6 @@
 # app ls
 
-List all created kots apps, or specify the kots app you want to list.
+List all applications, or specify the application you want to list.
 
 ## Usage
 ```bash
@@ -14,7 +14,7 @@ replicated app ls
 
 ## Examples
 
-List all created kots apps:
+List all created apps:
 ```bash
 replicated app ls
 ID                                  NAME                                  SLUG                              SCHEDULER
@@ -23,7 +23,7 @@ cqzmRRIdJtZ_E82Cl36nkBDSmGrG2uoe    sentry-enterprise                     sentry
 XlkTz6qxXepG_HjK_vUFlLUY14p05wO1    default-kots                          default-kots                      kots
 ```
 
-List a specific kots app:
+List a specific app:
 ```bash
 replicated app ls default-kots
 ID                                  NAME                    SLUG                    SCHEDULER

@@ -1,6 +1,6 @@
 # installer ls
 
-List the https://kurl.sh Kubernetes Installers for an app.
+List the Kubernetes installer manifests for an app. For more information, see [Create An Installer](https://kurl.sh/docs/create-installer/) in the kURL documentation.
 
 ## Usage
 ```bash
