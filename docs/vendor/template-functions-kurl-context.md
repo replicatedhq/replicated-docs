@@ -2,7 +2,7 @@
 
 ## kURL Context Functions
 
-For applications installed on clusters clusters created by the Replicated Kubernetes installer, you can use template functions to show all options the cluster was installed with.
+For applications installed on clusters created by the Replicated Kubernetes installer, you can use template functions to show all options the cluster was installed with.
 
 The creation of the Installer custom resource will reflect both install script changes made by posting YAML to the Kubernetes installer API and changes made with -s flags at runtime. These functions are not available on the config page.
 
