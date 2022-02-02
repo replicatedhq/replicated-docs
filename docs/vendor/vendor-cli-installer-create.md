@@ -1,6 +1,6 @@
 # installer create
 
-Create a new Kuberentes installer manifest by providing a YAML file for a cluster. For more information, see [Create An Installer](https://kurl.sh/docs/create-installer/) in the kURL documentation.
+Create a new Kubernetes installer manifest by providing a YAML file for a cluster. For more information, see [Create An Installer](https://kurl.sh/docs/create-installer/) in the kURL documentation.
 
 ## Usage
 ```bash
