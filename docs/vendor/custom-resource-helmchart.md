@@ -11,6 +11,7 @@ By default, the HelmChart custom resource uses the Replicated Helm installation,
 **Deploying multiple instance of the same chart**:
 You must add an additional HelmChart custom resource for each instance of the chart that is to be deployed as part of the application. However, only one `.tgz` of the chart needs to be included in the release.
 
+The following is an example manifest file for the HelmChart custom resource:
 
 ```yaml
 apiVersion: kots.io/v1beta1

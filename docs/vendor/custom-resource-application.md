@@ -9,7 +9,7 @@ The Application custom resource is optional.
 
 **Note**: There is some overlap between the Application custom resource manifest file and the [Kubernetes SIG Application manifest](https://github.com/kubernetes-sigs/application#application-objects). Enabling features such as [adding a button to the dashboard](admin-console-port-forwarding#add-a-button-to-the-dashboard) requires the use of both the Application and SIG Application custom resources.
 
-The Application manifest file contains vendor-supplied metadata about the application.
+The following is an example manifest file for the Application custom resource:
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -76,7 +76,7 @@ When unspecified, the app manager uses the newest version from the list of suppo
 - 1.16.x
 - 1.14.x
 
-An optional semver range can be specified, as defined in [blang semver range](https://github.com/blang/semver#ranges) (like `1.16.x` or `>=1.16.0 <1.17.0`).
+An optional Semantic Versioning (SemVer) range can be specified, as defined in [blang SemVer range](https://github.com/blang/semver#ranges) (like `1.16.x` or `>=1.16.0 <1.17.0`).
 The latest version within the provided range will be used.
 If the specified version or range does not match any supported versions, the latest version from the above list will be used.
 
@@ -89,7 +89,7 @@ When unspecified, the app manager will use the newest version from the list of s
 
 - 3.x.x
 
-An optional semver range can be specified, as defined in [blang semver range](https://github.com/blang/semver#ranges) (like `3.x.x` or `>=3.0.0 <4.0.0`).
+An optional SemVer range can be specified, as defined in [blang SemVer range](https://github.com/blang/semver#ranges) (like `3.x.x` or `>=3.0.0 <4.0.0`).
 The latest version within the provided range will be used.
 If the specified version or range does not match any supported versions, the latest version from the above list will be used.
 

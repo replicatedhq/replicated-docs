@@ -236,7 +236,7 @@ Items can be readonly.
 
 When used in conjunction with a function that generates value, for example [RandomString](template-functions-static-context#randomstring)
 - If set to `true`, the `value` is **ephemeral** between Config changes. It **cannot** be modified because it is greyed out in HTML.
-- If not set or set to `false`, the `value` is **persistent** between Config changes. It **can** be modified because it's not greyed out in HTML.
+- If not set or set to `false`, the `value` is **persistent** between Config changes. It **can** be modified because it is not greyed out in HTML.
 
 ### `affix`
 Items can be affixed left or right.
@@ -424,7 +424,7 @@ spec:
 
 **After repeatable config processing**
 
-*Note: this phase is internal to configuration rendering for the app manager. This example is only provided to further explain the templating process.*
+**Note**: this phase is internal to configuration rendering for the app manager. This example is only provided to further explain the templating process.*
 ```yaml
 apiVersion: v1
 kind: Service
@@ -516,7 +516,7 @@ spec:
 
 **After repeatable config processing**
 
-*Note: this phase is internal to configuration rendering for the app manager. This example is only provided to further explain the templating process.*
+**Note**: this phase is internal to configuration rendering for the app manager. This example is only provided to further explain the templating process.*
 ```yaml
 apiVersion: v1
 kind: Service

@@ -1,8 +1,8 @@
 # Identity
 
-The Identity custom resource enables and configures the Replicated identity service for the application.
+The Identity custom resource allows you to configure the Replicated identity service for your application.
 
-The Identity custom resource manifest file contains vendor-supplied configuration for the identity service.
+The following is an example manifest file for the Identity custom resource:
 
 ```yaml
 apiVersion: kots.io/v1beta1

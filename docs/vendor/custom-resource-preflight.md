@@ -10,7 +10,7 @@ The Preflight custom resource is optional.
 
 You can also run preflight checks independently with the [Preflight kubectl plugin](https://troubleshoot.sh/docs/#installation).
 
-A Preflight custom resource manifest file is a collector and an analyzer specification in one manifest.
+A Preflight custom resource manifest file is a collector and an analyzer specification in one manifest. The following is an example manifest file for the Preflight custom resource:
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
