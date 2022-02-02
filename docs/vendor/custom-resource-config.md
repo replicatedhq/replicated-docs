@@ -1,8 +1,8 @@
 # Config
 
-The Config custom resource can be provided by a vendor to specify a Config screen for collecting customer supplied values and template function rendering.
+The Config custom resource can be provided by a vendor to specify a configuration screen in the Replicated admin console for collecting customer supplied values and template function rendering.
 
-The Admin Console settings screen configuration is specified as an array configuration groups and items.
+The settings that appear on the admin console configuration screen are specified as an array configuration groups and items.
 
 ## Groups
 
@@ -65,7 +65,10 @@ The `label` type allows you to display an input label.
 
 ### `heading`
 The `heading` type allows you to display a group heading as a subelement within a group.
-This is useful when you would like to group items all in one config group but would like to separate the items visually, for instance when using a config group test proc. **Currently, the `heading` item type is not supported**
+This is useful when you would like to group items all in one config group but would like to separate the items visually, for instance when using a config group test proc.
+
+**Note**: The `heading` item type is not supported.
+
 ```yaml
     - name: ldap_settings
       title: LDAP Server Settings
@@ -80,7 +83,7 @@ This is useful when you would like to group items all in one config group but wo
 ### `select_one`
 Type `select_one` is a special case.
 This type must have nested items that act as options.
-This type will be displayed as radio buttons in the Admin Console.
+This type will be displayed as radio buttons in the admin console.
 
 ```yaml
     - name: authentication
@@ -138,12 +141,12 @@ See the [`ConfigOptionData`](template-functions-config-context#configoptiondata)
 
 ### `default` and `value`
 A default value will be applied to the ConfigOption template function when no value is specified.
-If default value is not a password field, it will appear as placeholder text in the settings section of the On-Prem Console.
+If default value is not a password field, it will appear as placeholder text in the settings section of the admin console.
 Default values are treated as ephemeral, which is the same behavior as the `readonly` property.
 Configuration changes will re-evaluate the template expressions.
 
 A value is data that will be overwritten by user input on non-readonly fields.  
-It will appear as the HTML input value in the settings section of the On-Prem Console.
+It will appear as the HTML input value in the settings section of the admin console.
 
 ```yaml
     - name: custom_key
@@ -193,8 +196,10 @@ The equality check should match exactly without quotes.
 
 ### `recommended`
 An item can be recommended.
-This item will bear the tag "recommended" in the Admin Console.
-**Presently only works for boolean and text field types**
+This item will bear the tag "recommended" in the admin console.
+
+**Note:** Only works for boolean and text field types.
+
 ```yaml
     - name: toggles
       items:
@@ -231,11 +236,11 @@ Items can be readonly.
 
 When used in conjunction with a function that generates value, for example [RandomString](template-functions-static-context#randomstring)
 - If set to `true`, the `value` is **ephemeral** between Config changes. It **cannot** be modified because it is greyed out in HTML.
-- If not set or set to `false`, the `value` is **persistent** between Config changes. It **can** be modified because its not greyed out in HTML.
+- If not set or set to `false`, the `value` is **persistent** between Config changes. It **can** be modified because it is not greyed out in HTML.
 
 ### `affix`
 Items can be affixed left or right.
-These items will appear in the Admin Console on the same line.
+These items will appear in the admin console on the same line.
 ```yaml
     affix: left
 ```
@@ -258,7 +263,7 @@ This property can show a helpful message below `title`.
 
 A repeatable config item copies a YAML array entry or YAML document for as many values as are provided. Any number of values can be added to a repeatable item to generate additional copies.
 
-**Repeatable Items presently only work for text, textarea, and file types**
+**Note**: Repeatable Items only work for text, textarea, and file types.
 
 To make an item repeatable, set `repeatable` to true
 ```yaml
@@ -363,9 +368,9 @@ Repeatable items are processed in order of the template targets in the Config Sp
 
 ## Repeatable Examples
 
-In these examples, the default service port of "80" is included with the release. Port 443 is added as an additional port on the KOTS Admin Console `Config` page, which is stored in the ConfigValues file.
+In these examples, the default service port of "80" is included with the release. Port 443 is added as an additional port on the admin console configuration page, which is stored in the ConfigValues file.
 ### Repeatable Item Example for a YamlPath
-**Config spec**
+**Config custom resource manifest file**
 ```yaml
     - name: ports
       items:
@@ -419,7 +424,7 @@ spec:
 
 **After repeatable config processing**
 
-*Note: this phase is internal to KOTS configuration rendering. This example is only provided to further explain the templating process.*
+**Note**: this phase is internal to configuration rendering for the app manager. This example is only provided to further explain the templating process.*
 ```yaml
 apiVersion: v1
 kind: Service
@@ -511,7 +516,7 @@ spec:
 
 **After repeatable config processing**
 
-*Note: this phase is internal to KOTS configuration rendering. This example is only provided to further explain the templating process.*
+**Note**: this phase is internal to configuration rendering for the app manager. This example is only provided to further explain the templating process.*
 ```yaml
 apiVersion: v1
 kind: Service

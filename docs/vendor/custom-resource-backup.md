@@ -1,7 +1,8 @@
 # Backup
 
-A Backup resource in an application causes the Admin Console to enable [snapshots](snapshots-overview) for the application.
-This resource is fully documented on [velero.io](https://velero.io/docs/v1.5/api-types/backup/).
+When you include a Backup custom resource in an application, the Replicated admin console enables [snapshots](snapshots-overview) for the application.
+
+For more information about the Backup custom resource, including all options for this custom resource, see [Backups](https://velero.io/docs/v1.5/api-types/backup/) in the Velero documentation.
 
 This custom resource supports optional resource installations. For more information, see [Include optional resources](packaging-include-resources).
 
@@ -15,9 +16,9 @@ metadata:
 spec: {}
 ```
 
-Refer to the Velero documentation for all options in this resource.
+## Limitations for full snapshots
 
-**Important Note**: the following top-level spec fields are not currently supported in [Full Snapshots](../enterprise/snapshots-understanding/#full-snapshots-recommended):
+The following top-level fields for Backup custom resources are not supported in [Full snapshots](../enterprise/snapshots-understanding/#full-snapshots-recommended):
 
 - `snapshotVolumes`
 - `volumeSnapshotLocations`

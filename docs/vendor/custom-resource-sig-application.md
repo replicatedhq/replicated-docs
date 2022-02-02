@@ -1,7 +1,7 @@
 # SIG Application
 
-The [Kubernetes SIG Application](https://github.com/kubernetes-sigs/application#kubernetes-applications) spec provides a standard API for creating, viewing, and managing applications.
-The `spec.descriptor.links` field can be used to [configure buttons on the Admin Console Dashboard](admin-console-port-forwarding#add-a-button-to-the-dashboard), linking to application dashboards or landing pages.
-This custom resource is optional for KOTS applications.
+The Kubernetes SIG Application custom resource provides a standard API for creating, viewing, and managing applications. For more information, see [Kubernetes Applications](https://github.com/kubernetes-sigs/application#kubernetes-applications) in the `kubernetes-sigs` Github repository.
 
-The other fields of the SIG Application spec are not currently used by KOTS, but our goal is to help steer the evolution of this spec to include all of the necessary application metadata, removing the need for a separate [KOTS Application spec](custom-resource-application).
+The `spec.descriptor.links` field can be used to configure buttons on the Replicated admin console that link to application dashboards or landing pages. For more information see, [Adding buttons and links](admin-console-adding-buttons-links).
+
+This custom resource is optional.
