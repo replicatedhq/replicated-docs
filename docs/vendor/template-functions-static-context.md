@@ -384,7 +384,7 @@ repl{{ NoProxy }}
 func KotsVersion() string
 ```
 
-KotsVersion returns the current KOTS tag/version the admin console is using. **Note**: The app manager is based on the KOTS open source project. The current KOTS version is the same as the current app manager version.
+KotsVersion returns the current KOTS tag/version the admin console is using. **Note**: The app manager is based on the KOTS open source project. The current KOTS version is the same as the current app manager version. The app manager installs the admin console.
 
 ```yaml
 repl{{ KotsVersion }}
