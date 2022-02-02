@@ -8,7 +8,7 @@ In addition to RBAC policies, clusters running in air gap environments or cluste
 ## Creating additional namespaces
 
 An application can identify additional namespaces to create during installation time.
-You can define these additional namespaces in the Application custom resource by adding an `additionalNamespaces` attribute to the `application.yaml` manifest. For more information, see [Application](custom-resource-application) in the _Custom Resources_ section.
+You can define these additional namespaces in the Application custom resource by adding an `additionalNamespaces` attribute to the Application custom resource manifest file. For more information, see [Application](custom-resource-application) in the _Custom Resources_ section.
 
 When these are defined, `kots install` will create the namespaces and ensure that the Replicated admin console has full access to manage resources in these namespaces.
 This is accomplished by creating a Role and RoleBinding per namespace, and setting the Subject to the admin console service account.
@@ -32,7 +32,7 @@ An operator can reliably depend on this secret existing in all installs (online 
 ## Dynamic namespaces
 
 Some applications need access to dynamically created namespaces or even all namespaces.
-In this case, an application spec can list `"*"` as one of its `addtionalNamespaces` in the `application.yaml` file.
+In this case, an application spec can list `"*"` as one of its `addtionalNamespaces` in the Application manifest file.
 When the app manager encounters the wildcard, it will not create any namespaces, but it will ensure that the application image pull secret is copied to all namespaces.
 The admin console will run an informer internally to watch namespaces in the cluster, and when a new namespace is created, the secret will automatically be copied to it.
 

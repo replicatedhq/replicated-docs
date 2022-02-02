@@ -10,7 +10,7 @@ Resources that are currently supported are Deployments, StatefulSets, Services, 
 
 ## Application manifest file
 
-To add an informer, include the `statusInformers` property in the `application.yaml` manifest file.
+To add an informer, include the `statusInformers` property in the Application custom resource manifest file.
 Status informers are in the format `[namespace/]type/name` where namespace is optional and will default to the current namespace.
 
 ```yaml
