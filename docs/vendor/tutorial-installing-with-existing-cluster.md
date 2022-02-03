@@ -1,6 +1,6 @@
 # Installing applications with an existing cluster
 
-This topic demonstrates packaging and installing a simple Nginx application in Kubernetes on an existing cluster in GKE (or another cluster you have handy).
+This topic demonstrates packaging and installing a simple NGINX application in Kubernetes on an existing cluster in GKE (or another cluster you have handy).
 
 It is broken into four sections:
 
@@ -11,18 +11,18 @@ It is broken into four sections:
 
 ## Creating a Release
 
-When getting started with the KOTS platform, the [vendor portal](https://vendor.replicated.com) will be the place you spend a lot of time.
-This guide is designed to help you get familiar with the concepts and ideas that are important to successfully deploy your application with KOTS.
-If you get stuck or need help, head to our [community](https://help.replicated.com/community/).
+When getting started with the Replicated platform, the Replicated [vendor portal](https://vendor.replicated.com) will be the place you spend a lot of time.
+This guide is designed to help you get familiar with the concepts and ideas that are important to successfully deploy your application with the Replicated app manager.
+For help and information, see the [community documentation](https://help.replicated.com/community/).
 
-This guide will deploy a basic application using KOTS, and show you how to deliver an update to that application.
-The guide isn't going to teach Kubernetes, rather it will start with a minimal Kubernetes application that deploys a single replica of [nginx](https://www.nginx.com).
+This guide will deploy a basic application using the app manager, and show you how to deliver an update to that application.
+The guide isn't going to teach Kubernetes, rather it will start with a minimal Kubernetes application that deploys a single replica of [NGINX](https://www.nginx.com).
 
 ### Create a New Application
 
 To start, log in (or create a new team) on [vendor.replicated.com](https://vendor.replicated.com) and create a new application.
 After signing up and activating your account, you will be prompted to create a new application.
-Give it a name like "Starter KOTS application" or "Nginx Example" and click the "Create Application" button.
+Give it a name like "Starter application" or "NGINX Example" and click the "Create Application" button.
 
 ![Create Application](/images/guides/kots/create-application.png)
 
@@ -35,16 +35,16 @@ For now, click on the "Releases" item on the left menu and then click the "Creat
 
 ### Create a Release
 
-You should now see a YAML editor where you can define how your application will work and the integration with KOTS functionality.
+You should now see a YAML editor where you can define how your application will work and the integration with the app manager functionality.
 
 **Note**: Since this guide is intended as a "Hello, World" example, we'll skip editing the YAML right now and just proceed with the defaults. We'll make some changes later on in this guide.
 
-When you are familiar with these concepts, you can use the Replicated Vendor CLI and API to automate this task rather than manually editing the YAML on this page. For more information, see [Installing the Replicated Vendor CLI](vendor-cli-installing) and [Using the Vendor API v3](reference-vendor-api).
+When you are familiar with these concepts, you can use the replicated CLI and the Replicated Vendor API to automate this task rather than manually editing the YAML on this page. For more information, see [Installing the replicated CLI](vendor-cli-installing) and [Using the Vendor API v3](reference-vendor-api).
 
 ![Default YAML](/images/guides/kots/default-yaml.png)
 
-The default YAML documents above the white line contains information for KOTS, preflight checks, customer configuration screen options, and support bundle analyzers for troubleshooting installs.
-You can learn about those [in the custom resources reference docs](custom-resource-about) but for now, let's click the "Save release" button in the bottom right.
+The default YAML documents above the white line contains information for the app manager, preflight checks, customer configuration screen options, and support bundle analyzers for troubleshooting installations.
+You can learn about those in the [custom resources reference docs](custom-resource-about) but for now, let's click the "Save release" button in the bottom right.
 
 ### Save and Promote Release
 
@@ -54,20 +54,20 @@ In this popup, choose the "Unstable" channel and click the "Promote" button.
 
 ![Create Application](/images/guides/kots/promote-release.png)
 
-Now that we've got a release promoted, we can walk through creating a license and installing our basic nginx application on a test server.
+Now that we've got a release promoted, we can walk through creating a license and installing our basic NGINX application on a test server.
 
 * * *
 
 ## Installing and Testing
 
-This guide will give you first-hand experience installing a KOTS application using an existing Kubernetes cluster.
+This guide will give you first-hand experience installing an application using an existing Kubernetes cluster.
 If you haven't yet created a release, head back to the [Create and Promote a Release](#creating-a-release) guide and complete that first.
 
 Now that we've created a release and promoted it to the "Unstable" channel, the next step is to create a customer license and use this license to install the application in a namespace in our test cluster.
 
 ### Create License
 
-A customer license (downloadable as a `.yaml` file) is required to install any KOTS application.
+A customer license (downloadable as a `.yaml` file) is required to install any application.
 To create a customer license, log in to the [vendor portal](https://vendor.replicated.com) and select the Customers link on the left.
 Click the "Create your first customer" button to continue.
 
@@ -79,16 +79,16 @@ The defaults in all other fields will be fine.
 After creating the customer, click the "Download license" link in the upper right corner.
 This will download the file with your customer name and a `.yaml` extension.
 This is the license file your customer will need to install your application.
-When a customer is installing your software you need to send them two things: the KOTS install script and the license file.
+When a customer is installing your software you need to send them two things: the app manager installation script and the license file.
 
-### Create Kubernetes Cluster and Install KOTS
+### Create Kubernetes Cluster and Install the App Manager
 
-KOTS can be installed either into an existing Kubernetes cluster, or as an embedded cluster.
+The app manager can be installed either into an existing Kubernetes cluster, or as a Kubernetes installer-created cluster (embedded cluster).
 You can see the installation options at the bottom of each channel on the Channels page.
 
 ![Installation Methods](/images/guides/kots/installation-methods-existing.png)
 
-Installing KOTS on existing clusters is very similar to using an [embedded cluster](tutorial-installing-without-existing-cluster#installing-and-testing), except instead of bringing a plain VM, we will use a pre-built Kubernetes cluster and deploy your KOTS app into a namespace.
+Installing the app manager on existing clusters is very similar to using a [Kubernetes installer cluster](tutorial-installing-without-existing-cluster#installing-and-testing), except instead of bringing a plain virtual machine (VM), we will use a pre-built Kubernetes cluster and deploy your application into a namespace.
 
 In this example, we will launch a GKE cluster using `gcloud` CLI, but you can use any cluster for which you have `kubectl` access.
 
@@ -107,7 +107,7 @@ Install latest KOTS version as `kubectl` plugin.
 curl https://kots.io/install | bash
 ```
 
-Install your KOTS app using the kots CLI. For more information about installing an application with the kots CLI, see [kots install](https://kots.io/kots-cli/install/) in the kots CLI documentation.
+Install your application using the kots CLI. For more information about installing an application with the kots CLI, see the [kots installation documentation](https://kots.io/kots-cli/install/).
 ```shell
 kubectl kots install <your-app-name-and-channel>
 
@@ -124,13 +124,13 @@ Enter a new password to be used for the Admin Console: ••••••••
 
 ### Install License
 
-At this point, the Admin Console and Kubernetes are running, but the application isn't yet.
+At this point, the admin console and Kubernetes are running, but the application isn't yet.
 This is also what your customer would be experiencing when installing your application.
 To complete the installation, visit the URL `http://localhost:8800` where you'll be required to enter the password set earlier.
 
 Now the installation needs a license file to continue.
-Until this point, this cluster is just running Kubernetes and the Admin Console containers.
-Once we upload a license file, kotsadm will have access to pull the application YAML and containers.
+Until this point, this cluster is just running Kubernetes and the admin console containers.
+Once we upload a license file, the admin console will have access to pull the application YAML and containers.
 Click the Upload button and select your `.yaml` file to continue.
 
 The settings page is here with default configuration items.
@@ -144,23 +144,23 @@ By default, we include some preflight checks that are expected to fail so that w
 If you click continue it will warn you but you can still continue.
 
 Click the "Application" link on the top to see the application running.
-If you are still connected to this server over ssh, `kubectl get pods` will now show the example nginx service we just deployed.
+If you are still connected to this server using SSH, `kubectl get pods` will now show the example NGINX service we just deployed.
 
-On the nav bar, there's a link to the application page.
+On the navigation bar, there's a link to the application page.
 Clicking that will show you the Kubernetes services that we just deployed.
 
 ![Cluster](/images/guides/kots/application.png)
 
 ### View the application
 
-To view the running Nginx Application, port-forward the Nginx service port to localhost `8080`.
+To view the running NGINX Application, port-forward the NGINX service port to localhost `8080`.
 ```shell
 kubectl port-forward service/<service-name> 8080:80
 ```
 
-You can also add a link on the admin dashboard and port-forward the nginx port to your localhost as part of the [kots application spec](admin-console-port-forwarding).
+You can also add a link on the admin console dashboard and port-forward the NGINX port to your localhost as part of the [kots application spec](admin-console-port-forwarding).
 
-Then head to `http://localhost:8080/`, and you should see a basic (perhaps familiar) nginx server running.
+Then head to `http://localhost:8080/`, and you should see a basic NGINX server running.
 
 ![Cluster](/images/guides/kots/example-nginx.png)
 
@@ -174,16 +174,16 @@ This guide will walk you through making a change and delivering an update to an 
 It's assumed you have the environment from parts 1 and 2 of this guide ([creating a release](#creating-a-release) and [installing](#installing-and-testing)).
 If you haven't completed these guides, head back and finish them first.
 
-Now that we have a KOTS application running, a common task is to deliver updates.
-Let's change the number of nginx replicas to show how to deliver an update.
+Now that we have an application running, a common task is to deliver updates.
+Let's change the number of NGINX replicas to show how to deliver an update.
 
 ### Create a New Release
 
 On the Releases page of the [vendor portal](https://vendor.replicated.com), click the "Create Release" link on top.
 Once again, you'll be taken to a YAML editor that shows the contents of the most recently created release.
-This gives us everything we've done so far, and our task now is to only write the changes needed to increase the number of nginx replicas.
+This gives us everything we've done so far, and our task now is to only write the changes needed to increase the number of NGINX replicas.
 
-In the release YAML, find the nginx image to change.
+In the release YAML, find the NGINX image to change.
 The line is in the `deployment.yaml` file and looks like:
 
 ```yaml
@@ -202,19 +202,19 @@ Now, any license installed from the "Unstable" channel will start with this new 
 
 ### Update the Test Server
 
-To install and test this new release, we need to connect to the Admin Console dashboard on port :8800 using a web browser.
+To install and test this new release, we need to connect to the admin console dashboard on port :8800 using a web browser.
 At this point, it will likely show that our test application is "Up To Date" and that "No Updates Are Available".
-The Admin Console will check for new updates about every five hours but we can force it to check now.
+The admin console will check for new updates about every five hours but we can force it to check now.
 
 In the "Application" or "Version History" tab click on the "Check For Updates" button.
-On the version history page, the disabled "Deployed" button should become active and say "Deploy."
+On the Version History page, the "Deploy" button becomes active.
 In addition, it should say how many files were changed and how many lines are different.
-You can click on that to view what has changed in the yaml.
+You can click on that to view what has changed in the YAML.
 
 
 ![View Update](/images/guides/kots/view-update.png)
 
-Clicking the "Deploy" button will apply the new YAML which will change the number of nginx replicas.
+Clicking the "Deploy" button will apply the new YAML which will change the number of NGINX replicas.
 This should only take a few seconds to deploy.
 
 * * *
@@ -223,4 +223,4 @@ This should only take a few seconds to deploy.
 
 Now that you're familiar with the basics, you should run through the [CLI Quickstart](tutorial-installing-with-cli) so you can start managing your release YAML in a git repo.
 
-You can also head over to [Planning and packaging an application](packaging-planning-checklist) to learn how to integrate your application with other KOTS features.
+You can also head over to [Planning an application](packaging-planning-checklist) to learn how to integrate your application with other app manager features.
