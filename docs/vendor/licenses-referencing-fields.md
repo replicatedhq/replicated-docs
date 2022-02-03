@@ -75,7 +75,6 @@ This preflight check runs during application installation and update, and preven
 the installation or update from continuing if the maximum number of nodes defined
 by the `node_count` license field is exceeded.
 
-[]: # (To Do: create new topic from the linked community post)
 For more information, see [How Can I Use License Custom Fields Value in a Pre-Flight Check?](https://help.replicated.com/community/t/how-can-i-use-license-custom-fields-value-in-a-pre-flight-check/624) in the Replicated Community.
 
 ## Query license fields from the API
