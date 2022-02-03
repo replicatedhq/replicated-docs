@@ -1,20 +1,25 @@
 # Installing in an air gapped environment
 
-When installing an application from an airgap package, the container images and application manifests are provided by the application vendor in an archive that can be used to deliver the artifacts into the cluster.
-This feature is only available for licenses that have the airgapped feature enabled.
+When installing an application with the Replicated app manager from a `.airgap` package, the container images and application manifests are provided by the application vendor in an archive that can be used to deliver the artifacts into the cluster.
 
-## KOTS install
-This section only applies to installing the Admin Console into an existing Kubernetes cluster.  
-For information about how to install on an embedded cluster in an air gapped environment, see [Airgapped Installations](installing-embedded-cluster#airgapped-installations) in _Installing on an embedded cluster_.
+This feature is only available for licenses that have the air gapped feature enabled.
 
-The Admin Console can be installed using the `kots` plugin for the `kubectl` command-line tool. The airgap package is named `kotsadm.tar.gz` and can be downloaded from the kots release page on GitHub. See [Releases](https://github.com/replicatedhq/kots/releases) in the kots GitHub repository.
-The asset version must match the KOTS CLI version, which can be determined by running:
+This topic applies to installing the Replicated admin console into an existing Kubernetes cluster.  
+For information about how to install on a cluster created by the Kuberentes installer in an air gapped environment, see [Airgapped installations](installing-embedded-cluster#airgapped-installations) in _Installing on an embedded cluster_.
+
+## Push images and install the admin console
+
+You can install the admin console using the kots CLI plugin for the kubectl command-line tool.
+
+The `.airgap` package is named `kotsadm.tar.gz`. You can download `kotsadm.tar.gz` from the kots release page on GitHub. See [Releases](https://github.com/replicatedhq/kots/releases) in the kots GitHub repository.
+
+The asset version must match the kots CLI version, which can be determined by running:
 
 ```shell
 kubectl kots version
 ```
 
-The first step is to extract KOTS Admin Console container images and push them into a private registry.
+The first step is to extract admin console container images and push them into a private registry.
 Registry credentials provided in this step must have push access.
 These credentials will not be stored anywhere or reused later.
 
@@ -24,8 +29,9 @@ kubectl kots admin-console push-images ./kotsadm.tar.gz private.registry.host/ap
   --registry-password rw-password
 ```
 
-The next step is to install the Admin Console using images pushed in the previous step.
-Registry credentials provided in this step only need to have read access, and they will be stored in a Kubernetes secret in the same namespace where Admin Console will be installed.
+The next step is to install the admin console using images pushed in the previous step.
+Registry credentials provided in this step only need to have read access, and they will be stored in a Kubernetes secret in the same namespace where admin console will be installed.
+
 These credentials will be used to pull the images, and will be automatically created as an imagePullSecret on all of the Admin Console pods.
 
 ```shell
@@ -36,8 +42,8 @@ kubectl kots install app-name \
   --registry-password ro-password
 ```
 
-Once this has completed, the KOTS will create a port-forward to the Admin Console on port 8800.
-The Admin Console is exposed internally in the cluster, and can only be accessed using a port forward.
+After this has completed, the app manager will create a port-forward to the admin console on port 8800.
+The admin console is exposed internally in the cluster, and can only be accessed using a port forward.
 The port-forward will be active as long as the CLI is running.
 Pressing Ctrl+C will end the port forward.
 
@@ -46,19 +52,19 @@ Pressing Ctrl+C will end the port forward.
   • Go to http://localhost:8800 to access the Admin Console
 ```
 
-Once this message is displayed visit `http://localhost:8800` to complete the application setup using the Admin Console.
+After this message is displayed visit `http://localhost:8800` to complete the application setup using the admin console.
 
-### Upload Airgap Bundle
+## Upload the airgap bundle
+
 ![Airgap Bundle](../../static/images/airgap-install.png)
 
-The software vendor should have delivered a `.airgap` bundle to be used on this screen.
+The software vendor should have delivered an `.airgap` bundle to be used on this screen.
 The bundle contains the container images and manifests.
 Choose the bundle and click continue to start processing.
 
 ![Airgap Uploading](../../static/images/airgap-uploading.png)
 
-### Processing Images
-Once the bundle has been completely uploaded, the Admin Console will start to process the images and manifests.
-Images will be loaded, re-tagged and pushed to the registry provided.
+After the bundle has been completely uploaded, the admin console processes the images and manifests.
+Images will be loaded, re-tagged, and pushed to the registry provided.
 
 ![Processing Images](../../static/images/processing-images.gif)

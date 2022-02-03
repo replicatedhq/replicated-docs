@@ -1,25 +1,25 @@
-# Installing on an embedded cluster
+# Installing with the Kubernetes installer
 
-This article refers to installing the Admin Console along with an embedded cluster.
-When running the Admin Console on an existing cluster, see [Installing in an online (Internet-connected) environment](installing-existing-cluster-online) in _Installing on an existing cluster_.
+This article refers to installing an application and the Replicated admin console on a cluster created by the Replicated Kuberentes installer.
 
-### Powered by kURL
-Replicated KOTS leverages a deep integration with the open-source kURL project in order to provide native embedded Kubernetes cluster support.
-For more information about installing with kURL, including advanced installation options, see the [kURL documentation](https://kurl.sh/docs/introduction/).
+The Kubernetes installer is based on the open source kURL project, which is maintained by Replicated. For more information about installing with kURL, including advanced installation options, see the [kURL documentation](https://kurl.sh/docs/introduction/).
 
-For information about the kURL project, see the [kURL repository](https://github.com/replicatedhq/kurl) on GitHub.
+## Requirements
 
-### Online Installations
+Before you install, ensure that you meet the system requirements. For more information, see [Kubernetes installer requirements](installing-embedded-cluster-requirements).
 
-To install the Admin Console with an embedded cluster, simply run the installation script provided by the application developer.
+## Install in an online environment
+
+To install the admin console on a cluster created by the Kuberentes installer, run the installation script provided by the application developer.
 
 ```bash
 curl -sSL https://kurl.sh/supergoodtool | sudo bash
 ```
 
-### Airgapped Installations
+## Install in an air gapped environment
 
-To install an airgapped embedded cluster, download the airgap bundle, untar it, and run the install.sh script.
+To install in an air gapped environment, download the `.airgap` bundle, untar it, and run the install.sh script.
+
 You can construct the URL for the bundle by prefixing the above online URL path with `/bundle` and adding `.tar.gz` to the end.
 
 ```bash
@@ -30,8 +30,9 @@ cat install.sh | sudo bash -s airgap
 
 kURL currently uses `.tar.gz` extension for a `.tar` file, hence the `-o *.tar`.
 
-Note that the airgap bundle above only includes the Admin Console components, which are required in order to install the application.
-After this command completes, the application can be installed using the application airgap bundle.
+Note that the `.airgap` bundle above only includes the admin console components, which are required in order to install the application.
+
+After this command completes, the application can be installed using the application `.airgap` bundle.
 
 ```bash
 kubectl kots install myapp \
@@ -42,11 +43,11 @@ kubectl kots install myapp \
   --shared-password password
 ```
 
-### HA Installations
+## Install with high availability
 
-Both online and airgapped installations can be configured in high-availability mode.
+Both online and air gapped installations can be configured in high-availability mode.
 
-When installing a highly available cluster, the script will prompt for a load balancer address.
+When installing on a highly available cluster, the script will prompt for a load balancer address.
 The load balancer can be preconfigured by passing in the `load-balancer-address=<host:port>` flag.
 
 This load balancer should be configured to distribute traffic to all healthy control plane nodes in its target list.
@@ -68,12 +69,8 @@ or
 cat install.sh | sudo bash -s airgap ha
 ```
 
-## System Requirements
+## Join primary and secondary nodes
 
-Supported operating systems and minimum system requirements are specified by kURL. For more information, see [System Requirements](https://kurl.sh/docs/install-with-kurl/system-requirements) in the kURL documentation.
+Visit the `/cluster/manage` page in the admin console to generate scripts for joining additional secondary and primary nodes.
 
-## Joining Nodes
-
-Visit the `/cluster/manage` page in the Kotsadm web console to generate scripts for joining additional secondary and primary nodes.
-
-For airgapped installations, the airgap bundle must also be downloaded and extracted on the remote node prior to running the join script.
+For air gapped installations, the `.airgap` bundle must also be downloaded and extracted on the remote node prior to running the join script.

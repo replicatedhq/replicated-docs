@@ -254,7 +254,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Installing on an embedded cluster with the Kubernetes installer',
+              label: 'Installing without an existing cluster',
               items: [
                 'enterprise/installing-embedded-cluster-requirements',
                 'enterprise/installing-embedded-cluster',
