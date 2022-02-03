@@ -1,17 +1,17 @@
 # Updating the admin console on an existing cluster
 
-This document refers to upgrading the Admin Console on an existing cluster.
-For information about how to upgrade the admin console on an embedded cluster, see [Updating the admin console on a Kubernetes installer cluster](updating-embedded-cluster).
+This document refers to upgrading the Replicated admin console on an existing cluster.
+For information about how to upgrade the admin console on a Kubernetes installer-created cluster (embedded cluster), see [Updating the admin console on a Kubernetes installer cluster](updating-embedded-cluster).
 
 **Prerequisites**
 
-As a prerequisite for any admin console upgrade, you should start by upgrading your KOTS CLI to the desired version.
-* For online installs, follow the instructions after running `kubectl kots version` to download the latest binary.
-* For airgapped installs or to use a previous KOTS version, download the the latest KOTS binary from [Github](https://github.com/replicatedhq/kots/releases) or the customer download page in [vendor.replicated.com](https://vendor.replicated.com).
+As a prerequisite for any admin console upgrade, start by upgrading your kots CLI to the desired version.
+* For online installations, follow the instructions after running `kubectl kots version` to download the latest binary.
+* For air gapped installations or to use a previous Replicated app manager version, download the the latest app manager binary from [Github](https://github.com/replicatedhq/kots/releases) or the customer download page in the Replicated [vendor portal](https://vendor.replicated.com).
 
 ### Online Installations
 
-A simple Kots command has been provided to update the Admin Console on an existing cluster.
+A `kots` command has been provided to update the admin console on an existing cluster.
 
 ```bash
 kubectl kots admin-console upgrade -n <namespace>
@@ -19,7 +19,7 @@ kubectl kots admin-console upgrade -n <namespace>
 
 Additional usage information can be found by running the `kubectl kots admin-console upgrade -h` command.
 
-### Airgap Installations
+### Air gap Installations
 
 Similar to the initial installation into an existing cluster, images must be pushed to a private registry first:
 

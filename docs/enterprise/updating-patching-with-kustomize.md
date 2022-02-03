@@ -1,44 +1,44 @@
 # Patching with Kustomize
 
-Kustomize allows for last-mile patches (i.e. modifications) to the app that are otherwise not configurable via the `Config` page. For more information, see the [Kustomize website](https://kustomize.io).
+Kustomize allows for last-mile patches (such as modifications) to the application that are otherwise not configurable using the `Config` page. For more information, see the [Kustomize website](https://kustomize.io).
 
 ## Directory Structure
 
-Click on `View files` and lets take a look at the directory structure.
+Click **View files** and lets take a look at the directory structure.
 
 ![Kustomize Dir Structure](/images/kustomize-dir-structure.png)
 
 ### Upstream
 
 The `upstream` directory mirrors exactly the content pushed to a release.
-This includes the template functions, preflight checks, support-bundle, config options, license etc.
-In addition, it has a `userdata` directory which includes the license file, config file, etc.
+This includes the template functions, preflight checks, support-bundle, config options, license, and so on.
+In addition, it has a `userdata` directory which includes the license file, config file, and so on.
 
 **Note:** With the exception of `upstream/userdata`, no changes should be made in the `upstream` directory as they are overwritten on each new release.
 
 ### Base
 
-After KOTS processes and renders the `upstream`, it puts those files in the `base` directory.
-Any non-deployable manifests such as template functions, preflight checks, config options, and so on are removed, and only the "deployable" application (such as, deployable with `kubectl apply`) will be placed here.
+After the Replicated app manager processes and renders the `upstream`, it puts those files in the `base` directory.
+Any non-deployable manifests such as template functions, preflight checks, config options, and so on are removed, and only the deployable application (such as, deployable with `kubectl apply`) will be placed here.
 
 **Note:** No changes should be made in the `base` directory as they are overwritten on each new release.
 
 ### Overlays
 
-The `overlays` directory references the `base` directory, and this is where your local kustomize patches should be placed.
+The `overlays` directory references the `base` directory, and this is where your local Kustomize patches should be placed.
 Unlike `upstream` and `base`, any changes made here will persist between releases.
 
 * * *
 
 ## Patching the Overlays
 
-Since `upstream` and `base` are ephemeral, let's make a kustomize patch in `overlays/downstreams/this-cluster/` so it persists between releases.
+Since `upstream` and `base` are ephemeral, let's make a Kustomize patch in `overlays/downstreams/this-cluster/` so it persists between releases.
 
-Go to View Files and click on **Need to edit these files? Click here to learn how**.
+Go to View Files and click **Need to edit these files? Click here to learn how**.
 
 ![edit-patches-kots-app](/images/edit-patches-kots-app.png)
 
-To download the KOTS app locally:
+To download the app manager locally:
 
 ```shell
 export APP_NAMESPACE=app-namespace
@@ -46,7 +46,6 @@ export APP_SLUG=app-slug
 kubectl kots download --namespace ${APP_NAMESPACE} --slug ${APP_SLUG} --dest ~/my-kots-app
   • Connecting to cluster ✓
 ```
-
 
 Let's patch something simple like the `replicas` count:
 Create a file in `~/my-kots-app/overlays/downstreams/this-cluster/patch-deployment.yaml` with the following:
@@ -74,7 +73,7 @@ Don't forget to add this file under `patches` in `~/my-kots-app/overlays/downstr
 +- ./patch-deployment.yaml
 ```
 
-Upload the KOTS app to the cluster:
+Upload the app manager to the cluster:
 
 ```shell
 export APP_NAMESPACE=app-namespace
@@ -83,11 +82,11 @@ kubectl kots upload --namespace ${APP_NAMESPACE} --slug ${APP_SLUG} ~/my-kots-ap
   • Uploading local application to Admin Console ✓
 ```
 
-Under View history, you should see a new version ready to deploy along with the diff of the changes we pushed in the last few steps.
+Under View History, you should see a new version ready to deploy along with the diff of the changes we pushed in the last few steps.
 
 ![kustomize-view-history-diff](/images/kustomize-view-history-diff.png)
 
-Before deploying, ensure there is only 1 nginx pod running:
+Before deploying, ensure there is only 1 NGINX pod running:
 
 ```shell
 $ kubectl get po | grep example-nginx
@@ -98,7 +97,7 @@ Click **Deploy** to apply the changes.
 
 ![kustomize-view-history-deploy](/images/kustomize-view-history-deploy.png)
 
-You should now see 2 nginx pods running:
+You should now see 2 NGINX pods running:
 
 ```shell
 $ kubectl get po | grep example-nginx
