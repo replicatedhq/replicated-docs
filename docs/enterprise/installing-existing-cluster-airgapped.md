@@ -5,7 +5,7 @@ When installing an application with the Replicated app manager from a `.airgap` 
 This feature is only available for licenses that have the air gapped feature enabled.
 
 This topic applies to installing the Replicated admin console into an existing Kubernetes cluster.  
-For information about how to install on a cluster created by the Kuberentes installer in an air gapped environment, see [Airgapped installations](installing-embedded-cluster#airgapped-installations) in _Installing on an embedded cluster_.
+For information about how to install on a cluster created by the Kuberentes installer in an air gapped environment, see [Install in an air gapped environment](installing-embedded-cluster#airgapped-installations) in _Installing with the Kubernetes installer_.
 
 ## Push images and install the admin console
 

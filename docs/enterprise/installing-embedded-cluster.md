@@ -28,7 +28,7 @@ tar xvzf supergoodtool.tar
 cat install.sh | sudo bash -s airgap
 ```
 
-kURL currently uses `.tar.gz` extension for a `.tar` file, hence the `-o *.tar`.
+The Kubernetes installer uses `.tar.gz` extension for a `.tar` file, hence the `-o *.tar`.
 
 Note that the `.airgap` bundle above only includes the admin console components, which are required in order to install the application.
 
