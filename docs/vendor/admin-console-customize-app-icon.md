@@ -5,8 +5,8 @@ console and the download portal. Adding a custom icon helps ensure that your
 brand is reflected for your customers.
 
 To add a custom application icon for the admin console and the download portal,
-create  an `application.yaml` file and include an `icons` key under the `descriptor`.
-In the `icons` key, specify a src url and an image type.
+create an Application custom resource manifest file and include an `icons` key under the `descriptor`.
+In the `icons` key, specify a source URL and an image type.
 
 ```yaml
 apiVersion: kots.io/v1beta1

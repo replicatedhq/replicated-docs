@@ -36,7 +36,7 @@ spec:
 ```
 
 ## Template Functions
-Customer supplied values can be used when generating the YAML by using the `{{repl ConfigOption <item_name>}}` syntax.
+Customer supplied values can be used when generating the YAML for the manifest file by using the `{{repl ConfigOption <item_name>}}` syntax.
 For example, to set the `smtp_hostname` value in the above YAML as the value of an environment variable in a PodSpec:
 
 ```yaml
@@ -49,7 +49,7 @@ env:
 Config options can receive their default values through two different keys: `default` and `value`.
 If a value is provided in the `value` key, this is treated the same as a user-supplied value, and will not be overwritten on application update.
 The user will see this value on the Config screen in the admin console, and it's indistinguishable from other values they provided.
-If a value is only provided in the `default` key, this value will be used when rendering the application YAML, but the value will show up as a placeholder on the Config screen in the admin console.
+If a value is only provided in the `default` key, this value will be used when rendering the manifest files for the application, but the value will show up as a placeholder on the Config screen in the admin console.
 The default value will only be used if the user doesn't provide a different value.
 
 ## Required Fields

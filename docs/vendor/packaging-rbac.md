@@ -1,8 +1,9 @@
 # Kubernetes RBAC
 
 When an application is installed, [Kubernetes RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) resources are created to allow the Replicated admin console to manage the application.
+
 By default, the admin console will create a ClusterRole and ClusterRoleBinding with permissions to all namespaces.
-This behavior can be controlled by editing the `application.yaml` manifest file. For more information about the `application.yaml` file, see [Application](custom-resource-application) in the _Custom Resources_ section.
+This behavior can be controlled by editing the Application custom resource manifest file. For more information about the Application manifest, see [Application](custom-resource-application) in the _Custom Resources_ section.
 
 As listed above, an application may require cluster scoped access across all namespaces on all/wildcard k8 objects or to have access limited to its given namespace.
 In either case, the user who installs an application with the kots CLI must have the wildcard privileges in the cluster.
@@ -80,7 +81,7 @@ subjects:
 
 ## Namespace-scoped access
 
-An application developer can limit the RBAC grants for the admin console to be limited to a single namespace by specifying the `requireMinimalRBACPrivileges` flag in the `application.yaml` manifest file. When this is set, the app manager will create a Role and RoleBinding, granting the admin console access to select resources in the namespace, but not outside of the cluster.
+An application developer can limit the RBAC grants for the admin console to be limited to a single namespace by specifying the `requireMinimalRBACPrivileges` flag in the Application manifest file. When this is set, the app manager will create a Role and RoleBinding, granting the admin console access to select resources in the namespace, but not outside of the cluster.
 
 Without access to cluster-scoped resources, some preflight checks and support bundle collectors will not be able to read the resources.
 These tools will continue to function, but will return less data.
@@ -96,7 +97,7 @@ Without access to the internet or the app's `.airgap` package as provided in a h
 ### Operators and multiple namespaces
 
 It is possible to use namespace-scoped access for Operators and multi-namespace applications.
-During the installation, if there are `additionalNamespaces` specified in the `application.yaml` manifest, Roles and RoleBindings will be created to give the admin console access to all namespaces specified.
+During the installation, if there are `additionalNamespaces` specified in the Application manifest, Roles and RoleBindings will be created to give the admin console access to all namespaces specified.
 
 To enable namespace-scoped access for an application:
 

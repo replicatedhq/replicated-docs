@@ -65,7 +65,7 @@ Replicated will store your username and password encrypted and securely, and it 
 
 ![Add External Registry](/images/add-external-registry.png)
 
-Your application YAML will reference images that it cannot access.
+Your Application custom resource manifest file will reference images that it cannot access.
 The app manager recognizes this, and will patch the YAML using Kustomize to change the image name.
 When the app manager is attempting to install an application, it will attempt to load image manifest using the image reference from the PodSpec.
 If it’s loaded successfully, no changes will be made to the application.
@@ -110,6 +110,6 @@ However, the same secret will be added to those PodSpecs as well.
 
 ## Additional namespaces
 
-When deploying pods to namespaces other than the app manager application namespace, the namespace must be added to the `additionalNamespaces` attribute of the [Application](custom-resource-application) spec.
+When deploying pods to namespaces other than the app manager application namespace, the namespace must be added to the `additionalNamespaces` attribute of the [Application](custom-resource-application) manifest.
 This helps to ensure that the application image pull secret will get auto-provisioned by the app manager in the namespace to allow the pod to pull the image.
 For more information about the `additionalNamespaces` attribute, see [Defining additional namespaces](operator-defining-additional-namespaces).

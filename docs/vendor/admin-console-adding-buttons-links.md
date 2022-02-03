@@ -50,7 +50,7 @@ When running the `kubectl` plugin for the kots CLI, the app manager can add addi
 This is useful for internal services such as application admin controls and other services that should not be exposed to all users.
 It's also recommended to list the primary application port(s) here to make verification of the installation possible before ingress is installed.
 
-In order to define additional ports, add a `ports` key to the `application.yaml` manifest file.
+In order to define additional ports, add a `ports` key to the Application custom resource manifest file.
 
 #### Example
 
