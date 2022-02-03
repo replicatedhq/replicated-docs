@@ -22,7 +22,7 @@ To generate a user API token:
 1. Name the token and select the required permissions, then click **Create token**.
 1. Copy the user API token and save it in a secure location.
 
-## Vendor API v3 Documentation
+## Vendor API v3 documentation
 
 For Vendor API documentation and an interactive API console, see [Vendor API v3 Reference](https://replicated-vendor-api.readme.io/v3/reference/createapp).
 

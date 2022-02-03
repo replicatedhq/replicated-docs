@@ -1,14 +1,18 @@
 # General system requirements
 
-This topic describes the general system requirements for installing applications with Replicated.
+This topic describes the general system requirements for installing applications with the Replicated app manager.
 
-There are additional requirements specific to installing an application on an existing cluster and installing an application on a cluster provisioned by the Kubernetes installer. For more information, see [Cluster requirements](installing-existing-cluster-requirements) and [Kubernetes installer requirements](installing-embedded-cluster-requirements).
+There are additional requirements specific to installing an application on an existing cluster and installing an application on a cluster created by the Kubernetes installer.
+
+For more information about requirements for existing clusters, see [Cluster requirements](installing-existing-cluster-requirements).
+
+For more information about requirements for the Kubernetes installer, see [Kubernetes installer requirements](installing-embedded-cluster-requirements).
 
 **Note**: This topic does not include any requirements specific to your software vendor. Ensure that you meet any additional requirements for the application defined by your software vendor.
 
-## Supported Browsers
+## Supported browsers
 
-This section describes the browser requirements for the latest KOTS Admin Console
+This section describes the browser requirements for the latest Replicated admin console.
 
 | Browser              | Support     |
 |----------------------|-------------|
@@ -19,22 +23,25 @@ This section describes the browser requirements for the latest KOTS Admin Consol
 | Safari (Mac OS only) | 13+         |
 | Internet Explorer    | Unsupported |
 
-## Kubernetes Version Compatibility
+## Kubernetes version compatibility
 
-Each release of KOTS maintains compatibility with the current Kubernetes version, and the 2 most recent versions at the time of its release.
+Each release of the open source KOTS project maintains compatibility with the current Kubernetes version, and the two most recent versions at the time of its release.
+
+**Note**: The app manager is based on the open source KOTS project. The app manager version is the same as the KOTS version. For example, KOTS v1.48 is the same as the app manager v1.48.
+
 This includes support against all patch releases of the corresponding Kubernetes version.
 
-| KOTS Version(s) | Kubernetes Compatibility |
+| KOTS versions   | Kubernetes compatibility |
 |-----------------|--------------------------|
-| 1.11 to 1.14    | 1.17, 1.16, and 1.15     |
-| 1.15 to 1.19    | 1.18, 1.17, and 1.16     |
-| 1.20 to 1.35    | 1.19, 1.18, and 1.17     |
-| 1.36 to 1.47    | 1.20, 1.19, and 1.18     |
-| 1.48+           | 1.21, 1.20, and 1.19     |
+| v1.11 to v1.14  | v1.17, v1.16, and v1.15  |
+| v1.15 to v1.19  | v1.18, v1.17, and v1.16  |
+| v1.20 to v1.35  | v1.19, v1.18, and v1.17  |
+| v1.36 to v1.47  | v1.20, v1.19, and v1.18  |
+| v1.48 and later | v1.21, v1.20, and v1.19  |
 
-## Firewall Openings for Online Installations
+## Firewall openings for online installations
 
-The following domains need to be accessible from servers performing online KOTS installs.
+The following domains need to be accessible from servers performing online installations.
 For a list of IP addresses for these services, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/master/ip_addresses.json) in GitHub.
 
 | Host                 | Existing Cluster Installation | Embedded Cluster Installation | Description                                                                                                                                                                                                                                                                                                                                                |
