@@ -44,7 +44,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Replicated Docs',
+        title: 'Docs',
         logo: {
           alt: 'R',
           src: 'images/logo-replicated-red.png',

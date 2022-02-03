@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
 /**
  * Any CSS included here will be global. The classic template
  * bundles Infima by default. Infima is a CSS framework designed to
@@ -6,15 +9,26 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --doc-sidebar-width: 350px !important;
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: rgb(33, 175, 144);
-  --ifm-color-primary-darker: rgb(31, 165, 136);
-  --ifm-color-primary-darkest: rgb(26, 136, 112);
-  --ifm-color-primary-light: rgb(70, 203, 174);
-  --ifm-color-primary-lighter: rgb(102, 212, 189);
-  --ifm-color-primary-lightest: rgb(146, 224, 208);
+  --doc-sidebar-width: 300px !important;
+  --ifm-color-primary: #00959E;
+  --ifm-color-primary-dark: #00959E;
+  --ifm-color-primary-darker: #00959E;
+  --ifm-color-primary-darkest: #007b81;
+  --ifm-color-primary-light: #6DD2D2;
+  --ifm-color-primary-lighter: #97e2e2;
+  --ifm-color-primary-lightest: rgb(146, 221, 224);
   --ifm-code-font-size: 95%;
+  --ifm-font-family-base: 'Open Sans';
+  --ifm-heading-font-family: 'Poppins', sans-serif;
+  --ifm-heading-font-weight: 600;
+}
+
+html[data-theme='light'] {
+    --ifm-heading-color: #2f2f2f;
+}
+
+html[data-theme='dark'] {
+    --ifm-color-primary: #6DD2D2;
 }
 
 .docusaurus-highlight-code-line {
@@ -26,4 +40,17 @@
 
 html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+article {
+    max-width: 800px;
+    margin: 10px 25px;
+}
+
+.menu__link--active {
+    font-weight: bold;
+}
+
+.footer--dark {
+    --ifm-footer-background-color: #2f2f2f;
 }
