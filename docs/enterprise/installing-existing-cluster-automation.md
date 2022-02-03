@@ -1,11 +1,14 @@
 # Using automation to install on an existing cluster
 
-Starting with KOTS 1.15.0, it's possible to automate a KOTS installation to an existing cluster (non-airgap) by providing a license file and the application configuration values when running `kots install`.
-When these values are provided, they are written as ConfigMaps to the cluster, and the Admin Console will find these and process them to complete the installation.
+Starting with the Replicated app manager v1.15.0, it is possible to automate an application installation to an existing cluster in an online environment by providing a license file and the application configuration values when running `kots install`.
 
-### License File
+When these values are provided, they are written as ConfigMaps to the cluster, and the Replicated admin console finds these and processes them to complete the installation.
 
-Given a license file stored locally as `license.yaml`, running:
+## Online installation
+
+### Provide a license file
+
+Given a license file stored locally as `license.yaml`, you can run the following command to install the admin console to the `app-name` namespace:
 
 ```shell
 kubectl kots install app-name \
@@ -14,14 +17,18 @@ kubectl kots install app-name \
   --namespace app-name
 ```
 
-Will install the Admin Console to the `app-name` namespace, and when starting, the Admin Console will automatically install the license file provided.
+When starting, the admin console automatically installs the license file provided.
 
-### Config Values
+### Define application configuration values
 
-Many applications need configuration. It's possible to also supply the config values at installation time using the `--config-values` flag.
-To do this, create a local YAML file that contains all of the config values.
-The easist way to get a template to start from is to use `kubectl kots download --decrypt-password-values` from an already running instance of the application.
-When KOTS downloads the application from the cluster using this command, a file will be written to `upstream/userdata/config.yaml`.
+Many applications need configuration. You can supply the configuration values at installation time using the `--config-values` flag.
+
+To do this, create a local YAML file that contains all of the configuration values.
+
+For a template to start from, Replicated recommends that you use `kubectl kots download --decrypt-password-values` from an already running instance of the application.
+
+When the app manager downloads the application from the cluster using this command, a file will be written to `upstream/userdata/config.yaml`.
+
 This file will be:
 
 ```yaml
@@ -34,14 +41,16 @@ All password type items will be decrypted and the value will be stored in `value
 All non-password type config items will have their value stored in `value`.
 When this file is uploaded, any `valuePlaintext` will be re-encrypted if the matching config item is a type password.
 
-### Disable Admin Console port-forwarding
-`kots install` by default will open up a port-forward to the Admin Console as part of the installation. To disable this behavior add the following flag to the install command:
+### Disable admin console port-forwarding
+The `kots install` kots CLI command by default opens a port-forward to the admin console as part of the application installation.
+
+To disable this behavior, add the following flag to the install command:
 
 ```shell
 --port-forward=false
 ```
 
-You can later access the Admin Console with the following command:
+You can later access the admin console with the following command:
 
 ```shell
 kubectl kots admin-console -n <your app namespace>
@@ -49,7 +58,7 @@ kubectl kots admin-console -n <your app namespace>
 
 ## Example
 
-Given the information above, and a config file named `configvalues.yaml`, a license file named `license.yaml`, the following command might be used to automate the installation of an application:
+Given the information above, and a config file named `configvalues.yaml`, a license file named `license.yaml`, you could use the following command to automate an application installation:
 
 ```shell
 kubectl kots install app-name \
@@ -60,11 +69,11 @@ kubectl kots install app-name \
   --port-forward=false
 ```
 
-Once this has completed, visiting http://localhost:8800 will show the configured application dashboard, assuming all required config items were set and any included preflight checks passed.
+After this has completed, you can go to http://localhost:8800 will show the configured application dashboard, assuming all required config items were set and any included preflight checks passed.
 
-## Airgap Install
+## Air gap installation
 
-As the first step, Admin Console images must be pushed to a private registry using `kubectl kots admin-console push-images` command as described in [this](/kotsadm/installing/airgap-packages/#kots-install) document.
+As the first step, admin console images must be pushed to a private registry using `kubectl kots admin-console push-images` command. For more information, see [Installing in an air gapped environment](installing-existing-cluster-airgapped/).
 
 ```shell
 kubectl kots install app-name \

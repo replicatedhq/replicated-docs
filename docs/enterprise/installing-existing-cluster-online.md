@@ -1,9 +1,10 @@
 # Installing in an online (Internet-connected) environment
 
-The most direct and simple way to install a KOTS application to a Kubernetes cluster is to deploy to an existing cluster that contains nodes that can access the internet.
-In this scenario, the container images will be pulled from the upstream registries directly.
+You can install an application to an existing Kuberentes cluster that contains nodes that can access the internet.
+In an online installation, the Replicated app manager pulls container images from the upstream registries directly.
 
-## KOTS install
+## Install with the app manager
+
 To start, run the command that was provided by the application vendor:
 
 ```shell
@@ -26,56 +27,59 @@ Enter a new password to be used for the Admin Console: ••••••••
 
 ```
 
-Once this has completed, the kots plugin will create a port-forward to the Admin Console interface.
-The Admin Console API and Web server are exposed over a ClusterIP service in the namespace provided.
+After this has completed, the kots CLI plugin will create a port-forward to the Replicated admin console interface.
+The admin console API and Web server are exposed over a ClusterIP service in the namespace provided.
 The port-forward will be active as long as the CLI is running. Pressing Ctrl+C will end the port forward.
 
-Once this has completed, click the link, or visit `http://localhost:8800` to complete the setup using the Admin Console web-based UI.
+After this has completed, click the link, or visit `http://localhost:8800` to complete the setup using the admin console web-based UI.
 
-## Web Based Setup
+## Set up the application
 
 At this point, visit `http://localhost:8800` to complete the setup of the application.
 
-### Unlock the Admin Console
+### Unlock the admin console
 ![Secure Console](/images/secure-console.png)
 
 Enter the password provided during the setup, and you'll be redirected to the "Upload License" screen.
 
-### Provide a License File
-At this point, the Admin Console is still just an admin console without an application.
+### Provide a license file
+At this point, the admin console is still just an admin console without an application.
 Providing a license file will include the entitlements necessary to pull the manifest and images and start the application.
 If the license is outdated, the latest license will be fetched and used instead.
 
 ![Upload License](/images/upload-license.png)
 
-Once the license file is installed, if airgapped installations are enabled, an option will be presented to proceed with an airgapped setup.
-For information on how to install in an air gap environment, see [Installing on an embedded cluster](installing-embedded-cluster).
-For now, this walk through will continue with an online installation.
+After the license file is installed, if air gapped installations are enabled, an option will be presented to proceed with an air gapped setup.
 
-### Config Screen
-Most KOTS applications include some required and some optional configuration.
+### Configure the application
+
+Most applications include some required and some optional configuration.
 This is used to build the final deployable Kubernetes manifests for the application.
-The config screen of the setup will prompt for initial values to use in the application.
+
+The admin console configuration screen prompts for initial values to use in the application.
 These can be changed later, but must be completed to continue.
 
 ![Initial Config](/images/initial-config.png)
 
-### Preflight Checks
-Finally, Preflight checks (conformance tests) are executed against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application.
+### Pass preflight checks
+
+The app manager run preflight checks (conformance tests) against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application.
 
 ![Preflight Checks](/images/preflight-checks.png)
 
-### Proxies
+### Specify proxies
 
-When installing behind a proxy, Admin Console needs to be able to use the proxy to communicate with the APIs on the internet as well as local services.
-Both the `kots install` and `kots pull` commands provide arguments to specify proxy settings for the Admin Console containers.
+When installing behind a proxy, the admin console needs to be able to use the proxy to communicate with the APIs on the internet as well as local services.
 
-If either `http-proxy` or `https-proxy` is specified, `no-proxy` should also be specified.  The `no-proxy` string should include all localhost addresses as well as the local network and Kubernetes cluster CIDRs.
+Both the `kots install` and `kots pull` kots CLI commands provide arguments to specify proxy settings for the admin console containers.
+
+If either `http-proxy` or `https-proxy` is specified, `no-proxy` should also be specified. The `no-proxy` string should include all localhost addresses as well as the local network and Kubernetes cluster CIDRs.
+
 For example:
 ```bash
 kubectl kots install app --http-proxy http://10.128.0.3:3128 \
   --no-proxy localhost,127.0.0.1,10.0.0.0/8,10.138.0.82
 ```
-If `copy-proxy-env` flag is specified, proxy settings will be read from the environment of the shell where the kots command is running.
+If the `copy-proxy-env` flag is specified, proxy settings will be read from the environment of the shell where the kots command is running.
 
 For more information, see the [kots CLI documentation](https://kots.io/kots-cli/getting-started/).
