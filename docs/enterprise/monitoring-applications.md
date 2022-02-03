@@ -1,12 +1,12 @@
 # Monitoring applications
 
-Kots includes built-in monitoring functionality for all distributed applications.
-By default, Kots displays cluster disk usage, pod cpu usage, pod memory usage, and pod health graphs on the dashboard page of the Admin Console.
+The Replicated app manager includes built-in monitoring functionality for all applications.
+By default, the app manager displays cluster disk usage, pod cpu usage, pod memory usage, and pod health graphs on the dashboard page of the Replicated admin console.
 
 Additionally, application developers can choose to expose business and application level metrics and alerts.
 In order to take advantage of the monitoring functionality, Prometheus will need to be installed in the cluster.
 
-If Prometheus is already installed, see [Configuring Kots](#configuring-kots) below for more information on configuring an existing Prometheus installation.
+If Prometheus is already installed, see [Configure the Prometheus address](#configure-the-prometheus-address) below for more information on configuring an existing Prometheus installation.
 
 ![Admin Console Dashboard](/images/kotsadm-dashboard-graph.png)
 
@@ -38,11 +38,13 @@ For more advanced and cluster-specific configuration, you can customize Kube-Pro
 
 For more information about advanced configuration, see [Customizing Kube-Prometheus](https://github.com/coreos/kube-prometheus#customizing-kube-prometheus) in the kube-prometheus GitHub repository.
 
-### Configuring Kots
+### Configure the Prometheus address
 
-Once installed, Kots needs to be made aware of the address of the Prometheus instance within the cluster in which it is installed.
-The address can be configured on the Admin Console dashboard page, by clicking the "Configure Prometheus Address" link and entering the address in the text box and clicking "Save".
-Graphs should appear on the dashboard shortly after saving the address.
+The app manager needs to be made aware of the address of the Prometheus instance within the cluster in which it is installed.
+
+You can configure the address on the admin console dashboard page by clicking **Configure Prometheus Address**, entering the address in the text box, and clicking **Save**.
+
+Graphs appear on the dashboard shortly after saving the address.
 
 A support bundle may include more information when troubleshooting configuration of the Prometheus address. For more information about using support bundles to troubleshoot, see [Troubleshooting an application](troubleshooting-an-app).
 
@@ -50,8 +52,9 @@ A support bundle may include more information when troubleshooting configuration
 
 ### Access the dashboards
 
-Prometheus, Grafana, and Alertmanager dashboards can be accessed quickly using kubectl port-forward after installing the manifests via the commands below.
-For more advanced configuration it is possible to expose these pods on NodePorts or behind an ingress controller.
+You can use the commands below to access Prometheus, Grafana, and Alertmanager dashboards using kubectl port-forward after you install the manifests.
+
+You can also expose these pods on NodePorts or behind an ingress controller. This is an advanced use case.
 
 For information about exposing the pods on NodePorts, see [NodePorts](https://github.com/prometheus-operator/kube-prometheus/blob/main/docs/customizations/node-ports.md) in the kube-prometheus GitHub repository.
 
@@ -91,8 +94,9 @@ For information about the Prometheus Expression Browser, see [Expression Browser
 
 ### Alerting
 
-Alerting with Prometheus is separated into two parts.
-Alerting rules in Prometheus servers send alerts to an Alertmanager.
-The Alertmanager then manages those alerts, including silencing, inhibition, aggregation, and sending out notifications via methods such as email, on-call notification systems, and chat platforms.
+Alerting with Prometheus has two phases:
+
+1. Alerting rules in Prometheus servers send alerts to an Alertmanager.
+2. The Alertmanager then manages those alerts, including silencing, inhibition, aggregation, and sending out notifications through methods such as email, on-call notification systems, and chat platforms.
 
 For more information about configuring Alertmanager, see [Configuration](https://prometheus.io/docs/alerting/configuration/) in the Prometheus documentation.

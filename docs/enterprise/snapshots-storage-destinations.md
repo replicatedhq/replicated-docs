@@ -1,12 +1,12 @@
 # Storage destinations
 
-The KOTS Snapshot feature supports any compatible Velero storage provider. For more information, see [Providers](https://velero.io/docs/main/supported-providers/) in the Velero documention.
+The Replicated snapshot feature supports any compatible Velero storage provider. For more information, see [Providers](https://velero.io/docs/main/supported-providers/) in the Velero documentation.
 
-The admin console has built-in support for configuring AWS, GCP, Azure, S3-Compatible object store, NFS Server, or local host path as destinations.
+The Replicated admin console has built-in support for configuring AWS, GCP, Azure, S3-Compatible object store, NFS Server, or local host path as destinations.
 
-Although embedded clusters from kURL installations are preconfigured in the admin console to store backups in the locally-provisioned object store, this is sufficient for only rollbacks and downgrades. It is not a suitable configuration for disaster recovery. We recommend that you configure a storage destination that is external to the embedded cluster in the admin console.
+Although clusters created by the Replicated Kubernetes installer are preconfigured in the admin console to store backups in the locally-provisioned object store, this is sufficient for only rollbacks and downgrades. It is not a suitable configuration for disaster recovery. We recommend that you configure a storage destination that is external to the cluster in the admin console.
 
-If the admin console is running with minimal role-based-access-control (RBAC) privileges, the `kots velero ensure-permissions` command must be leveraged, as the admin console requires access to the namespace in which Velero is installed.
+If the admin console is running with minimal role-based-access-control (RBAC) privileges, you must use the `kots velero ensure-permissions` command because the admin console requires access to the namespace in which Velero is installed.
 
 For more information, see [kots ensure-permissions](https://kots.io/kots-cli/velero/ensure-permissions/) in the kots CLI documentation.
 
@@ -14,8 +14,8 @@ For more information about RBAC priviledges for the admin console, see [Kubernet
 
 ## Prerequisites for cloud configurations
 
-* Existing clusters: Customers must install Velero before configuring Snapshots. See [Basic Install](https://velero.io/docs/v1.6/basic-install/) in the Velero documention.
-* Embedded clusters: The vendor can provide the Velero add-on in the embedded cluster installation. If it is not provided, the Snapshots configuration dialog in the admin console notifies you to install Velero before you can proceed with the configuration.
+* Existing clusters: Customers must install Velero before configuring snapshots. See [Basic Install](https://velero.io/docs/v1.6/basic-install/) in the Velero documentation.
+* Kubernetes installer-created clusters: The vendor can provide the Velero add-on in the embedded cluster installation. If it is not provided, the snapshots configuration dialog in the admin console notifies you to install Velero before you can proceed with the configuration.
 
 ## AWS
 
@@ -76,12 +76,12 @@ When configuring the admin console to store snapshots on an S3-Compatible storag
 
 ## Network File System (NFS)
 
-> Introduced in KOTS v1.33.0
+> Introduced in the Replicated app manager v1.33.0
 
 * [Configuring NFS](snapshots-configuring-nfs)
 
 ## Host Path
 
-> Introduced in KOTS v1.33.0
+> Introduced in the app manager v1.33.0
 
 * [Configuring a host path](snapshots-configuring-hostpath)
