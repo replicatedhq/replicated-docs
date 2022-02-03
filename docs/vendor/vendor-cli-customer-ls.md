@@ -1,6 +1,6 @@
 # customer ls
 
-List all customers in your app
+List all customers in your application.
 
 ## Usage
 ```bash

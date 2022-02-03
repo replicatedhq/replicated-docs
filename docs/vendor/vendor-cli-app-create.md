@@ -1,6 +1,6 @@
 # app create
 
-Create a kots app.
+Create an application.
 
 ## Usage
 ```bash

@@ -2,14 +2,14 @@
 
 ## Mastermind Sprig
 
-Many of the utility functions provided come from Sprig, a third-party library of Go template functions.
+Many of the utility functions provided come from sprig, a third-party library of Go template functions.
 For more information, see [Sprig Function Documentation](https://masterminds.github.io/sprig/) on the sprig website.
 
 ## Namespace
 ```go
 func Namespace() string
 ```
-Namespace returns the Kubernetes namespace that the KOTS application belongs to.
+Namespace returns the Kubernetes namespace that the application belongs to.
 ```yaml
 '{{repl Namespace}}'
 ```
@@ -258,7 +258,7 @@ ParseUint returns the unsigned integer value represented by the string with opti
 
 ## TLSCert
 
-**Deprecation Notice**: This function has been superseded in KOTS 1.26.0 by the Sprig crypto functions. For more information, see [Generating TLS certs and keys example](packaging-template-functions#generating-tls-certs-and-keys-example) in _Template functions_. For more information about the Sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the Sprig documentation.
+**Deprecation Notice**: This function has been superseded in the Replicated app manager 1.26.0 by the sprig crypto functions. For more information, see [Generating TLS certs and keys example](packaging-template-functions#generating-tls-certs-and-keys-example) in _Template functions_. For more information about the sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the sprig documentation.
 
 ```go
 func TLSCert(certName string, cn string, ips []interface{}, alternateDNS []interface{}, daysValid int) string
@@ -279,7 +279,7 @@ repl{{ TLSCert "my_custom_cert" "foo.com" (list "10.0.0.1" "10.0.0.2") (list "ba
 
 ## TLSKey
 
-**Deprecation Notice**: This function has been superseded in KOTS 1.26.0 by the Sprig crypto functions. For more information, see [Generating TLS certs and keys example](packaging-template-functions#generating-tls-certs-and-keys-example) in _Template functions_. For more information about the Sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the Sprig documentation.
+**Deprecation Notice**: This function has been superseded in the app manager 1.26.0 by the sprig crypto functions. For more information, see [Generating TLS certs and keys example](packaging-template-functions#generating-tls-certs-and-keys-example) in _Template functions_. For more information about the sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the sprig documentation.
 
 ```go
 func TLSKey(certName string, cn string, ips []interface{}, alternateDNS []interface{}, daysValid int) string
@@ -293,7 +293,7 @@ repl{{ TLSKey "my_custom_cert" "foo.com" (list "10.0.0.1" "10.0.0.2") (list "bar
 
 ## TLSCACert
 
-**Deprecation Notice**: This function has been superseded in KOTS 1.26.0 by the Sprig crypto functions. For more information, see [Generating TLS certs and keys example](packaging-template-functions#generating-tls-certs-and-keys-example) in _Template functions_. For more information about the Sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the Sprig documentation.
+**Deprecation Notice**: This function has been superseded in the app manager 1.26.0 by the sprig crypto functions. For more information, see [Generating TLS certs and keys example](packaging-template-functions#generating-tls-certs-and-keys-example) in _Template functions_. For more information about the sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the sprig documentation.
 
 
 ```go
@@ -310,7 +310,7 @@ repl{{ TLSCACert "foo.com" 365 }}
 
 ## TLSCertFromCA
 
-**Deprecation Notice**: This function has been superseded in KOTS 1.26.0 by the Sprig crypto functions. For more information, see [Generating TLS certs and keys example](packaging-template-functions#generating-tls-certs-and-keys-example) in _Template functions_. For more information about the Sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the Sprig documentation.
+**Deprecation Notice**: This function has been superseded in the app manager 1.26.0 by the sprig crypto functions. For more information, see [Generating TLS certs and keys example](packaging-template-functions#generating-tls-certs-and-keys-example) in _Template functions_. For more information about the sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the sprig documentation.
 
 ```go
 func TLSCertFromCA(caName string, certName string, cn string, ips []interface{}, alternateDNS []interface{}, daysValid int) string
@@ -323,7 +323,7 @@ repl{{ TLSCertFromCA "foo.com" "my_custom_cert" "bar.com" (list "10.0.0.1" "10.0
 
 ## TLSKeyFromCA
 
-**Deprecation Notice**: This function has been superseded in KOTS 1.26.0 by the Sprig crypto functions. For more information, see [Generating TLS certs and keys example](packaging-template-functions#generating-tls-certs-and-keys-example) in _Template functions_. For more information about the Sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the Sprig documentation.
+**Deprecation Notice**: This function has been superseded in the app manager 1.26.0 by the sprig crypto functions. For more information, see [Generating TLS certs and keys example](packaging-template-functions#generating-tls-certs-and-keys-example) in _Template functions_. For more information about the sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the sprig documentation.
 
 ```go
 func TLSKeyFromCA(caName string, certName string, cn string, ips []interface{}, alternateDNS []interface{}, daysValid int) string
@@ -347,7 +347,7 @@ repl{{ IsKurl }}
 ```go
 func Distribution() string
 ```
-Distribution returns the kubernetes distribution detected, such as `kurl`, `openShift` or `eks`.
+Distribution returns the Kubernetes distribution detected, such as `kurl`, `openShift` or `eks`.
 ```yaml
 repl{{ Distribution }}
 ```
@@ -356,7 +356,7 @@ repl{{ Distribution }}
 ```go
 func NodeCount() int
 ```
-NodeCount returns the number of nodes detected within the kubernetes cluster.
+NodeCount returns the number of nodes detected within the Kubernetes cluster.
 ```yaml
 repl{{ NodeCount }}
 ```
@@ -365,7 +365,7 @@ repl{{ NodeCount }}
 ```go
 func HTTPProxy() string
 ```
-HTTPProxy returns the address of the proxy that the Admin Console is configured to use.
+HTTPProxy returns the address of the proxy that the Replicated admin console is configured to use.
 ```yaml
 repl{{ HTTPProxy }}
 ```
@@ -374,7 +374,7 @@ repl{{ HTTPProxy }}
 ```go
 func NoProxy() string
 ```
-NoProxy returns the comma-separated list of no-proxy addresses that the Admin Console is configured to use.
+NoProxy returns the comma-separated list of no-proxy addresses that the admin console is configured to use.
 ```yaml
 repl{{ NoProxy }}
 ```
@@ -384,17 +384,17 @@ repl{{ NoProxy }}
 func KotsVersion() string
 ```
 
-KotsVersion returns the current KOTS tag/version the Admin Console is using.
+KotsVersion returns the current KOTS tag/version the admin console is using. **Note**: The app manager is based on the KOTS open source project. The current KOTS version is the same as the current app manager version. The app manager installs the admin console.
 
 ```yaml
 repl{{ KotsVersion }}
 ```
 
-`KotsVersion` can be compared to semvers like follows:
+`KotsVersion` can be compared to Semantic Versions (SemVers) like follows:
 ```yaml
 repl{{KotsVersion | semverCompare ">= 1.19"}}
 ```
 
-The above template function will return `true` if `KotsVersion` is greater than `1.19`.
+The above template function will return `true` if `KotsVersion` is greater than `1.19`. **Note**: The app manager is based on the KOTS open source project. The current KOTS version is the same as the current app manager version.
 
 For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.

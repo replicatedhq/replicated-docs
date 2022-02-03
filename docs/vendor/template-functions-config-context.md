@@ -192,7 +192,7 @@ func LocalRegistryImagePullSecret() string
 ```
 
 Returns the base64 encoded local registry image pull secret value.
-This is often needed when an operator is deploying images to a namespace that is not managed by KOTS.
+This is often needed when an operator is deploying images to a namespace that is not managed by the Replicated app manager.
 Image pull secrets must be present in the namespace of the pod.
 
 ```yaml
@@ -247,4 +247,4 @@ func HasLocalRegistry() bool
 ```
 
 Returns true if the environment is configured to rewrite images to a local registry.
-This will be true for airgapped installs, and optionally true for online installs.
+This is true for air gapped installations, and optionally true for online installations.

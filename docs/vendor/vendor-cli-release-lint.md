@@ -1,6 +1,6 @@
 # release lint
 
-Lint a directory of YAML application manifests
+Lint a directory of application manifest files.
 
 ## Usage
 ```bash
@@ -12,7 +12,7 @@ replicated release lint --yaml-dir YAML_DIR [flags]
 
 | Flag                 | Type | Description |
 |:----------------------|------|-------------|
-| `--yaml-dir` | path | The directory containing yaml application manifests for a Kots release. (**required**) |
+| `--yaml-dir` | path | The directory containing application manifests for a release. (**required**) |
 | `--fail-on` | string | The minimum severity of a linting rule to cause a non-zero exit code. Supported values are [info, warn, error, none]. (default is error) |
 | `-h, --help`   |  |          Help for the admin-console |
 

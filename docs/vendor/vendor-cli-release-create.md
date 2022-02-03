@@ -1,6 +1,6 @@
 # release create
 
-Create a new release using a collection of YAML application manifests.
+Create a new release using a collection of application manifest files.
 
 ## Usage
 ```bash
@@ -8,11 +8,11 @@ replicated release create --yaml-dir YAML_DIR [flags]
 ```
 
 * _`YAML_DIR` corresponds to the root directory of the YAML application manifest files._
-* _Additional flags returned by `--help` that are not supported in KOTS have been omitted from the list below_
+* _Additional flags returned by `--help` that are not supported in Replicated have been omitted from the list below_
 
 | Flag                 | Type | Description |
 |:----------------------|------|-------------|
-| `--yaml-dir` | path | The directory containing multiple yamls for a Kots release. (**required**) |
+| `--yaml-dir` | path | The directory containing multiple manifests for a release. (**required**) |
 | `--promote` | string |    Channel name to promote this release to (**case sensitive**)|
 | `--ensure-channel` |  |    When used with --promote _channel_, will create the channel if it doesn't exist |
 | `--release-notes` | string |  When used with --promote _channel_, sets the **markdown** release notes |

@@ -1,6 +1,6 @@
 # customer download-license
 
-Print the license YAML for a customer.
+Print the license YAML file for a customer.
 
 ## Usage
 ```bash

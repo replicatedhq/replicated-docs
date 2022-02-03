@@ -1,6 +1,6 @@
 # app delete
 
-Delete a kots app.
+Delete an application.
 
 ## Usage
 ```bash

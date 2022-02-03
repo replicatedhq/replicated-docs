@@ -1,6 +1,6 @@
 # channel ls
 
-List all channels in your app
+List all channels in your application.
 
 ## Usage
 ```bash
