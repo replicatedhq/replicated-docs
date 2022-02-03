@@ -10,7 +10,7 @@ If Velero is crashing and not starting, some common causes are:
 #### Invalid cloud credentials
 
 If the cloud access credentials are invalid or do not have access to the location in the configuration, Velero will crashloop. The Velero logs will be included in a support bundle, and the message will look like this.
-If this is the case, recommend that the access key / secret or service account json are validated.
+If this is the case, Replicated recommends that you validate the access key / secret or service account json.
 
 ```shell
 time="2020-04-10T14:22:24Z" level=info msg="Checking existence of namespace" logSource="pkg/cmd/server/server.go:337" namespace=velero

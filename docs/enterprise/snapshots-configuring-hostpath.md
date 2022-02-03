@@ -8,7 +8,7 @@ If you use a host path as the snapshots storage destination, you must ensure tha
 
 ## Configure a host path on Kubernetes installer-created clusters
 
-Clusters created by the Replicated Kubernetes installer that include the Velero add-on store snapshots internally in the cluster by default. For more information about the Velero add-on, see [Velero Add-On](https://kurl.sh/docs/add-ons/velero) in the kURL documentation.
+Clusters created by the Replicated Kubernetes installer that include the Velero add-on store snapshots internally in the cluster by default. For more information about the Velero add-on, see [Velero Add-On](https://kurl.sh/docs/add-ons/velero) in the open source kURL documentation.
 
 There are two ways to change this snapshots storage destination to use a host path:
 

@@ -13,7 +13,7 @@ This is especially true for installations on cluster created with the Replicated
 
 1. Use the kots CLI to list backups and create restores. See [kots backup ls](https://kots.io/kots-cli/backup/ls/) and [kots restore](https://kots.io/kots-cli/restore/) in the kots CLI documentation.
 
-## Restore on online Kuberentes installer-created clusters
+## Restore on online Kubernetes installer-created clusters
 
 1. Set up the embedded cluster. See [Installing on an embedded cluster](installing-embedded-cluster).
 1. Use the kots CLI to configure the pre-installed Velero setup to point at the snapshot storage destination.
@@ -26,13 +26,13 @@ This is especially true for installations on cluster created with the Replicated
     * **HostPath Configuration**: See [kots velero configure-hostpath](https://kots.io/kots-cli/velero/configure-hostpath/) and [Configuring a host path](snapshots-configuring-hostpath).
 1. Use the kots CLI to list backups and create restores. See [kots backup ls](https://kots.io/kots-cli/backup/ls/) and [kots restore](https://kots.io/kots-cli/restore/) in the kots CLI documentation.
 
-## Restore on air gapped Kuberentes installer-created clusters
+## Restore on air gapped Kubernetes installer-created clusters
 
-An air gapped Kuberentes installer-created cluster can be restored only if the store backend used for backups is accessible from the new cluster.
+An air gapped Kubernetes installer-created cluster can be restored only if the store backend used for backups is accessible from the new cluster.
 
-The Kuberentes installer must also be able to assign the same IP address to the embedded private image registry in the new cluster.
+The Kubernetes installer must also be able to assign the same IP address to the embedded private image registry in the new cluster.
 
-The Kuberentes installer must be provided with the correct registry IP address:
+The Kubernetes installer must be provided with the correct registry IP address:
 
 ```bash
 cat install.sh | sudo bash -s airgap kurl-registry-ip=<ip>
@@ -40,7 +40,7 @@ cat install.sh | sudo bash -s airgap kurl-registry-ip=<ip>
 
 The registry from the old cluster does not need to be (and should not be) accessible.
 
-1. Set up the cluster in accordance with the above guidance as well as the guidance in the air gap installation documentation. See [Air gapped Installations](installing-embedded-cluster#airgapped-installations).
+1. Set up the cluster in accordance with the above guidance as well as the guidance in the air gap installation documentation. See [Air gapped installations](installing-embedded-cluster#airgapped-installations).
 1. Use the kots CLI to configure the pre-installed velero setup to point at the snapshot storage destination.
     Consult the relevant CLI documentation for your provider:
     * **AWS S3 Configuration**: See [kots velero configure-aws-s3](https://kots.io/kots-cli/velero/configure-aws-s3/).

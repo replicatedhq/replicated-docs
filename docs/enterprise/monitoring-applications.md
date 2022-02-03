@@ -6,7 +6,7 @@ By default, the app manager displays cluster disk usage, pod cpu usage, pod memo
 Additionally, application developers can choose to expose business and application level metrics and alerts.
 In order to take advantage of the monitoring functionality, Prometheus will need to be installed in the cluster.
 
-If Prometheus is already installed, see [Configuring Kots](#configuring-kots) below for more information on configuring an existing Prometheus installation.
+If Prometheus is already installed, see [Configure the Prometheus address](#configure-the-prometheus-address) below for more information on configuring an existing Prometheus installation.
 
 ![Admin Console Dashboard](/images/kotsadm-dashboard-graph.png)
 
