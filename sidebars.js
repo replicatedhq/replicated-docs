@@ -241,12 +241,12 @@ const sidebars = {
           items: [
             'enterprise/installing-overview',
             'enterprise/installing-general-requirements',
+            'enterprise/installing-stateful-component-requirements',
             {
               type: 'category',
               label: 'Installing on an existing cluster',
               items: [
                 'enterprise/installing-existing-cluster-requirements',
-                'enterprise/installing-existing-cluster-persistent-storage',
                 'enterprise/installing-existing-cluster-online',
                 'enterprise/installing-existing-cluster-airgapped',
                 'enterprise/installing-existing-cluster-automation',
