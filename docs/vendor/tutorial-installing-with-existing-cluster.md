@@ -20,7 +20,7 @@ The guide isn't going to teach Kubernetes, rather it will start with a minimal K
 
 ### Create a New Application
 
-To start, log in (or create a new team) on [vendor.replicated.com](https://vendor.replicated.com) and create a new application.
+To start, log in (or create a new team) on vendor.replicated.com and create a new application.
 After signing up and activating your account, you will be prompted to create a new application.
 Give it a name like "Starter application" or "NGINX Example" and click the "Create Application" button.
 
@@ -39,7 +39,7 @@ You should now see a YAML editor where you can define how your application will 
 
 **Note**: Since this guide is intended as a "Hello, World" example, we'll skip editing the YAML right now and just proceed with the defaults. We'll make some changes later on in this guide.
 
-When you are familiar with these concepts, you can use the replicated CLI and the Replicated Vendor API to automate this task rather than manually editing the YAML on this page. For more information, see [Installing the replicated CLI](vendor-cli-installing) and [Using the Vendor API v3](reference-vendor-api).
+When you are familiar with these concepts, you can use the replicated CLI and the Replicated Vendor API to automate this task rather than manually editing the YAML on this page. For more information, see [Installing the replicated CLI](replicated-cli-installing) and [Using the Vendor API v3](reference-vendor-api).
 
 ![Default YAML](/images/guides/kots/default-yaml.png)
 
@@ -67,8 +67,8 @@ Now that we've created a release and promoted it to the "Unstable" channel, the 
 
 ### Create License
 
-A customer license (downloadable as a `.yaml` file) is required to install any application.
-To create a customer license, log in to the [vendor portal](https://vendor.replicated.com) and select the Customers link on the left.
+A customer license (downloadable as a YAML file) is required to install any application.
+To create a customer license, log in to the vendor portal and select the Customers link on the left.
 Click the "Create your first customer" button to continue.
 
 On the "Create a new customer" page, fill in your name for the "Customer name" field, select the "Unstable" channel on the right hand side, and click "Save Changes".
@@ -77,7 +77,7 @@ The defaults in all other fields will be fine.
 ![Create Customer](/images/guides/kots/create-customer.png)
 
 After creating the customer, click the "Download license" link in the upper right corner.
-This will download the file with your customer name and a `.yaml` extension.
+This will download the file with your customer name and a YAML extension.
 This is the license file your customer will need to install your application.
 When a customer is installing your software you need to send them two things: the app manager installation script and the license file.
 
@@ -179,7 +179,7 @@ Let's change the number of NGINX replicas to show how to deliver an update.
 
 ### Create a New Release
 
-On the Releases page of the [vendor portal](https://vendor.replicated.com), click the "Create Release" link on top.
+On the Releases page of the vendor portal, click the "Create Release" link on top.
 Once again, you'll be taken to a YAML editor that shows the contents of the most recently created release.
 This gives us everything we've done so far, and our task now is to only write the changes needed to increase the number of NGINX replicas.
 
