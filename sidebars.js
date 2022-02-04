@@ -21,6 +21,7 @@ const sidebars = {
   tutorialSidebar: [
     'intro',
     'intro-replicated',
+
     {
       type: 'category',
       label: 'Vendor',
@@ -335,6 +336,27 @@ const sidebars = {
             'vendor/policies-vulnerability-patch',
             'vendor/policies-data-transmission',
              ],
+    },
+    {
+      type: 'category',
+      label: 'Release notes',
+      collapsed: false,
+      items: [
+        {
+          type: 'doc',
+          id: 'release-notes/rn-whats-new',
+        },
+        {
+          type: 'link',
+          label: 'App manager release notes',
+          href: 'https://kots.io/release-notes/',
+        },
+        {
+          type: 'link',
+          label: 'Kubernetes installer release notes',
+          href: 'https://kurl.sh/release-notes',
+        },
+      ],
     },
   ],
 };
