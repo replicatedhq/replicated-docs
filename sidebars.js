@@ -189,6 +189,101 @@ const sidebars = {
             },
             {
               type: 'category',
+              label: 'kots CLI',
+              items: [
+                'kots cli/kots-cli-getting-started',
+                'kots cli/kots-cli-global-flags',
+                {
+                    type: 'category',
+                    label: 'admin console',
+                    items: [
+                      'kots cli/kots-cli-admin-console-index',
+                      'kots cli/kots-cli-admin-console-upgrade',
+                      'kots cli/kots-cli-admin-console-push-images',
+                      'kots cli/kots-cli-admin-console-garbage-collect-images',
+                      'kots cli/kots-cli-admin-console-generate-manifests',
+                  ],
+                },
+                'kots cli/kots-cli-install',
+                'kots cli/kots-cli-pull',
+                'kots cli/kots-cli-remove',
+                'kots cli/kots-cli-download',
+                'kots cli/kots-cli-upload',
+                'kots cli/kots-cli-reset-tls',
+                'kots cli/kots-cli-reset-password',
+                'kots cli/kots-cli-upstream',
+                {
+                    type: 'category',
+                    label: 'get',
+                    items: [
+                      'kots cli/kots-cli-get-index',
+                      'kots cli/kots-cli-get-apps',
+                      'kots cli/kots-cli-get-backups',
+                      'kots cli/kots-cli-get-config',
+                      'kots cli/kots-cli-get-versions',
+                      'kots cli/kots-cli-get-restores',
+                  ],
+                },
+                {
+                    type: 'category',
+                    label: 'set',
+                    items: [
+                      'kots cli/kots-cli-set-index',
+                      'kots cli/kots-cli-set-config',
+                  ],
+                },
+                {
+                    type: 'category',
+                    label: 'backup',
+                    items: [
+                      'kots cli/kots-cli-backup-index',
+                      'kots cli/kots-cli-backup-ls',
+                  ],
+                },
+                {
+                    type: 'category',
+                    label: 'restore',
+                    items: [
+                      'kots cli/kots-cli-restore-index',
+                      'kots cli/kots-cli-restore-ls',
+                  ],
+                },
+                {
+                    type: 'category',
+                    label: 'velero',
+                    items: [
+                      'kots cli/kots-cli-velero-index',
+                      'kots cli/kots-cli-velero-configure-aws-s3',
+                      'kots cli/kots-cli-velero-configure-azure',
+                      'kots cli/kots-cli-velero-configure-gcp',
+                      'kots cli/kots-cli-velero-configure-internal',
+                      'kots cli/kots-cli-velero-configure-other-s3',
+                      'kots cli/kots-cli-velero-configure-nfs',
+                      'kots cli/kots-cli-velero-configure-hostpath',
+                      'kots cli/kots-cli-velero-print-fs-instructions',
+                      'kots cli/kots-cli-velero-ensure-permissions',
+                  ],
+                },
+                {
+                    type: 'category',
+                    label: 'identity-service',
+                    items: [
+                      'kots cli/kots-cli-identity-service-index',
+                      'kots cli/kots-cli-identity-service-enable-shared-password',
+                  ],
+                },
+                {
+                    type: 'category',
+                    label: 'docker',
+                    items: [
+                      'kots cli/kots-cli-docker-index',
+                      'kots cli/kots-cli-docker-ensure-secret',
+                  ],
+                },
+              ],
+            },
+            {
+              type: 'category',
               label: 'replicated CLI',
               items: [
                 'vendor/replicated-cli-installing',
