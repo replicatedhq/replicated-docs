@@ -11,6 +11,7 @@ By default, metrics graphs that are included monitor cluster disk usage, pod cpu
 ### Application manifest
 
 To add custom graphs, use the `graphs` property of the Application custom resource manifest file.
+Adding custom graphs replaces the default graphs.
 A minimal graph includes only a title and a Prometheus query:
 
 ```yaml
