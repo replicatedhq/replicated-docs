@@ -107,7 +107,8 @@ Install latest KOTS version as `kubectl` plugin.
 curl https://kots.io/install | bash
 ```
 
-Install your application using the kots CLI. For more information about installing an application with the kots CLI, see the [kots installation documentation](https://kots.io/kots-cli/install/).
+Install your application using the kots CLI. For more information about installing an application with the kots CLI, see the [install](../reference/kots-cli-install/) in the kots CLI documentation.
+
 ```shell
 kubectl kots install <your-app-name-and-channel>
 
