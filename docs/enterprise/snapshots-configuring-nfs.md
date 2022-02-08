@@ -17,7 +17,7 @@ Clusters created by the Replicated Kubernetes installer that include the Velero 
 
 There are two ways to change this configuration to use NFS:
 
-* Using the kots CLI `velero configure-nfs` command. See [kots velero configure-nfs](https://kots.io/kots-cli/velero/configure-nfs/) in the kots CLI documentation.
+* Using the kots CLI `velero configure-nfs` command. See [velero configure-nfs](../reference/kots-cli-velero-configure-nfs/) in the kots CLI documentation.
 * Using the Replicated admin console. See the instructions below.
 
 First, head to the "Snapshots" tab.

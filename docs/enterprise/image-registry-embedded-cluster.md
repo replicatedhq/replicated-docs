@@ -29,10 +29,10 @@ kubectl patch configmaps kotsadm-confg --type merge -p "{\"data\":{\"enable-imag
 ```
 
 Garbage collection is triggered automatically when a new application version is deployed.
-The `admin-console garbage-collect-images` command can be used to trigger it manually. For more information, see [kots admin-console garbage-collect-images](https://kots.io/kots-cli/admin-console/garbage-collect-images/) in the kots CLI documentation.
+The `admin-console garbage-collect-images` command can be used to trigger it manually. For more information, see [admin-console garbage-collect-images](../reference/kots-cli-admin-console-garbage-collect-images/) in the kots CLI documentation.
 
 ### Restoring deleted images
-Deleted images may be reloaded from application and the Replicated admin console air gap bundles using the `admin-console push-images` command. For more information, see [kots admin-console push-images](https://kots.io/kots-cli/admin-console/push-images/) in the kots CLI documentation.
+Deleted images may be reloaded from application and the Replicated admin console air gap bundles using the `admin-console push-images` command. For more information, see [admin-console push-images](../reference/kots-cli-admin-console-push-images/) in the kots CLI documentation.
 
 For an example of using the `admin-console push-images` command, see [Installing in an air gapped environment](installing-existing-cluster-airgapped).
 
