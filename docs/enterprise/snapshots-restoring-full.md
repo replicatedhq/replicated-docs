@@ -7,7 +7,7 @@ This is especially true for installations on cluster created with the Replicated
 
 1. Begin with installing a version of Velero compatible with the one that was used to make the snapshot.
     * If restoring from an NFS or a host path storage destination, see [Configuring NFS](snapshots-configuring-nfs) or [Configuring a host path](snapshots-configuring-hostpath) for the configuration steps and how to set up Velero.
-    * Otherwise, see [Basic Install](https://velero.io/docs/v1.5/basic-install/) and [Plugins](https://velero.io/plugins/) in the Velero documentation.
+    * Otherwise, see [Basic Install](https://velero.netlify.app/docs/v1.5/basic-install/) and [Plugins](https://velero.netlify.app/plugins/) in the Velero documentation.
 
     **Note**: Restic is required and `--restic` flag must be used with `velero install` command.
 
