@@ -1,6 +1,6 @@
 # Using Vendor API Tokens
 
-Using the [replicated CLI](replicated-cli-installing) and [Vendor REST API](reference-vendor-api) requires a token for authorization.  Replicated supports three types of tokens: Team, Service Account and User Tokens.
+Using the [replicated CLI](replicated-cli-installing) and [Vendor REST API](vendor-api-using) requires a token for authorization.  Replicated supports three types of tokens: Team, Service Account and User Tokens.
 
 Some operations can only be performed by a user logged into the vendor portal. The following administrative resources can only be executed by a logged-in user and cannot be managed with token-based authentication:
 - Team members

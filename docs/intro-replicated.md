@@ -43,7 +43,7 @@ when the customer installs the application.
 Replicated also includes a Vendor API and CLIs that allow both vendors and enterprise
 users to complete tasks programmatically.
 
-For information about the Vendor API v3, see [Using the Vendor API v3](vendor/reference-vendor-api).
+For information about the Vendor API v3, see [Using the Vendor API v3](reference/vendor-api-using).
 
 For information about the replicated CLI, see [Installing the replicated CLI](vendor/vendor-cli-installing).
 
