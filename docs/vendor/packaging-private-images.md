@@ -1,13 +1,11 @@
 # Using private image registries
 
-This topic describes how to use the Replicated private registry or any supported
+You can use the Replicated private registry or any supported
 external private or public registry with your application.
-
-To follow a tutorial on using an Amazon Elastic Container Registry (ECR) with your application, see [Using ECR for private images](tutorial-ecr-private-images).
 
 ## Use the Replicated private registry
 
-This section describes how to push the private image for your application to the
+You can push the private image for your application to the
 Replicated private registry.
 
 For more information about building, tagging and pushing docker images, see the
@@ -15,10 +13,10 @@ For more information about building, tagging and pushing docker images, see the
 
 To use the Replicated private registry:
 
-1. Do one of the following to log in to the `registry.replicated.com` container
-registry:
-   * **Log in with your credentials**: Run `docker login registry.replicated.com`. When prompted, provide your Replicated vendor portal username and password.
-   * **Log in with an API token**: Run `docker login registry.replicated.com`. When prompted for a username and password, provide the API token for the application. See [Setting a service account token](tutorial-installing-with-cli#2-setting-a-service-account-token).
+1. Do one of the following to to connect with the `registry.replicated.com` container registry:
+   * **Log in with a service account or team token**: Use `docker login registry.replicated.com` with a Replicated vendor portal service account or team token as the password. You can use any string as the username. For more information, see [Service accounts](../reference/replicated-cli-tokens#service-accounts) and [Team tokens](../reference/replicated-cli-tokens#team-tokens) in _Using Vendor API tokens_.
+   * **Log in with a user token**: Use `docker login registry.replicated.com` with your vendor portal email as the username and a vendor portal user token as the password. For more information, see [User tokens](../reference/replicated-cli-tokens#user-tokens) in _Using Vendor API tokens_.
+   * **Log in with your credentials**: Use `docker login registry.replicated.com` with your vendor portal email and password as the credentials.
 
 1. Tag your private image with the Replicated registry hostname in the standard
 Docker format:
@@ -30,8 +28,8 @@ Docker format:
    Where:
    * `IMAGE_NAME` is the name of the existing private image for your application.
    * `APPLICATION_SLUG` is the slug assigned to your application. You can find your application slug on the **Images** page of the vendor portal.
-   * `TARGET_IMAGE_NAME` is a name for the image. This name is used for _____. Replicated recommends that the `TARGET_IMAGE_NAME` is the same as the `IMAGE_NAME`.
-   * `TAG` is a tag for the image. This tag is used for ____
+   * `TARGET_IMAGE_NAME` is a name for the image. Replicated recommends that the `TARGET_IMAGE_NAME` is the same as the `IMAGE_NAME`.
+   * `TAG` is a tag for the image.
 
    For example:
 
@@ -110,6 +108,6 @@ However, the same secret will be added to those PodSpecs as well.
 
 ## Additional namespaces
 
-When deploying pods to namespaces other than the app manager application namespace, the namespace must be added to the `additionalNamespaces` attribute of the [Application](custom-resource-application) manifest.
+When deploying pods to namespaces other than the app manager application namespace, the namespace must be added to the `additionalNamespaces` attribute of the [Application](../reference/custom-resource-application) manifest.
 This helps to ensure that the application image pull secret will get auto-provisioned by the app manager in the namespace to allow the pod to pull the image.
 For more information about the `additionalNamespaces` attribute, see [Defining additional namespaces](operator-defining-additional-namespaces).
