@@ -11,7 +11,7 @@ In either scenario the resulting deployment is comprised of raw Kubernetes manif
 
 To determine if Helm v3 is necessary, the app manager will check the apiVersion supplied in the `Chart.yaml` file of the Helm Chart. By default (if **Chart.yaml** is not supplied or apiVersion is not present), the app manager will use Helm V2 to process all Helm Charts to create deployable YAML.
 
-Optionally, you can specify an API version in the HelmChart custom resource. When the `helmVersion` property is set to `"v3"`, the app manager will use Helm v3 to process the Helm Chart. For more information, see [HelmChart](custom-resource-helmchart) in _Custom resources_.
+Optionally, you can specify an API version in the HelmChart custom resource. When the `helmVersion` property is set to `"v3"`, the app manager will use Helm v3 to process the Helm Chart. For more information, see [HelmChart](../reference/custom-resource-helmchart) in the _Custom resources_ section.
 
 ## Native Helm
 
@@ -34,7 +34,7 @@ Deployment method for chart <chart> has changed
 
 The Helm manifests are extracted, rendered with Replicated templating, and added to `base/charts`.
 
-The HelmChart custom resource can be modified to allow the `ConfigOptions` to overwrite a chart's values. This allows vendors to surface a chart's value options inside the Replicated Config page. For more information, see [values​](custom-resource-helmchart#values) in _HelmChart_.
+The HelmChart custom resource can be modified to allow the `ConfigOptions` to overwrite a chart's values. This allows vendors to surface a chart's value options inside the Replicated Config page. For more information, see [values​](../reference/custom-resource-helmchart#values) in _HelmChart_.
 
 After Replicated templating is processed on the `values.yaml` file, all files from the original Helm tarball are written to the `base/charts/` directory, maintaining the original directory structure of the Helm Chart. A `kustomization.yaml` file is included in each chart and sub chart directory. This is used later to merge kustomization instructions up to the chart resources.
 

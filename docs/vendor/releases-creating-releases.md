@@ -20,7 +20,7 @@ We recommend that you bookmark the Replicated [vendor portal](https://vendor.rep
 
   The default YAML documents (`replicated-app.yaml`, `preflight.yaml`, `config.yaml`, `support-bundle.yaml`) contain information for the app manager, preflight checks, customer configuration screen options, and support bundle analyzers for troubleshooting installs.
 
-  Additionally, you can add custom resource YAML files, such as Helm charts and snapshots backups. For more information about working with the custom resource YAML files, see [About custom resources](custom-resource-about).
+  Additionally, you can add custom resource YAML files, such as Helm charts and snapshots backups. For more information about working with the custom resource YAML files, see [About custom resources](../reference/custom-resource-about).
 
   ![Default YAML](/images/guides/kots/default-yaml.png)
 

@@ -15,6 +15,6 @@ To install an application on an existing cluster with Replicated, the cluster mu
    * cluster-admin permissions to create namespaces and assign RBAC roles across the cluster.
 
    **Note**: If the `requireMinimalRBACPrivileges` property is set to `true` in the Application custom resource manifest file for the application, the app manager does not require the ability to create ClusterRoles and ClusterRoleBindings.
-   When `requireMinimalRBACPrivileges` is set to `true`, the app manager uses a namespace-scoped Role and RoleBinding. For more information about the attributes in the Application custom resource, see [Application](../vendor/custom-resource-application) in _Custom resources_.
+   When `requireMinimalRBACPrivileges` is set to `true`, the app manager uses a namespace-scoped Role and RoleBinding. For more information about the attributes in the Application custom resource, see [Application](../reference/custom-resource-application) in _Custom resources_.
 
 **Note**: Root access on nodes or workstations is *not* required to install an application on an existing cluster.

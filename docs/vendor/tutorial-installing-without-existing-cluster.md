@@ -47,7 +47,7 @@ When you are familiar with these concepts, you can use the replicated CLI and AP
 ![Default YAML](/images/guides/kots/default-yaml.png)
 
 The default YAML documents above the white line contain information for the app manager, preflight checks, customer configuration screen options, and support bundle analyzers for troubleshooting installations.
-For more information, see the [custom resources reference docs](custom-resource-about). For now, let's click the **Save release** button in the bottom right.
+For more information, see the [custom resources reference docs](../reference/custom-resource-about). For now, let's click the **Save release** button in the bottom right.
 
 ### Save and Promote Release
 

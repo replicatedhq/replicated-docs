@@ -3,7 +3,7 @@
 When an application is installed, [Kubernetes RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) resources are created to allow the Replicated admin console to manage the application.
 
 By default, the admin console will create a ClusterRole and ClusterRoleBinding with permissions to all namespaces.
-This behavior can be controlled by editing the Application custom resource manifest file. For more information about the Application manifest, see [Application](custom-resource-application) in the _Custom Resources_ section.
+This behavior can be controlled by editing the Application custom resource manifest file. For more information about the Application manifest, see [Application](../reference/custom-resource-application) in the _Custom Resources_ section.
 
 As listed above, an application may require cluster scoped access across all namespaces on all/wildcard k8 objects or to have access limited to its given namespace.
 In either case, the user who installs an application with the kots CLI must have the wildcard privileges in the cluster.

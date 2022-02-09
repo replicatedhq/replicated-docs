@@ -95,7 +95,7 @@ Each config item is templated separately and has no access to variables created 
 As a workaround, a hidden config item can be used to evaluate complex templates and render the results.
 The result can be accessed using the [`ConfigOption`](template-functions-config-context#configoption) function.
 
-For more information about the Config custom resource, see [Config](custom-resource-config) in the _Custom resources_ section.
+For more information about the Config custom resource, see [Config](../reference/custom-resource-config) in the _Custom resources_ section.
 
 ### Generating TLS certs and keys example
 
