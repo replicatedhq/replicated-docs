@@ -3,7 +3,7 @@
 Template functions are grouped into different contexts, depending on the phase of the application lifecycle when the function is available and the context data that is provided.
 Static, Config, and License contexts are available everywhere, while kURL context functions are not available on the config page.
 
-For more information about using template functions, see [Template functions](packaging-template-functions).
+For more information about using template functions, see [Template functions](../vendor/packaging-template-functions).
 
 ## Static context
 Template functions in the static context can be used in any YAML, at any time.
