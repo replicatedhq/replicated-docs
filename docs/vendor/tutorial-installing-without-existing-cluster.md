@@ -42,7 +42,7 @@ You should now see a YAML editor where you can define how your application will 
 
 **Note**: Since this guide is intended as a "Hello, World" example, we'll skip editing the YAML right now and just proceed with the defaults. We'll make some changes later on in this guide.
 
-When you are familiar with these concepts, you can use the replicated CLI and API to automate this task rather than manually editing the YAML on this page. For more information, see [Installing the replicated CLI](../reference/replicated-cli-installing) and [Using the Replicated Vendor API v3](reference-vendor-api).
+When you are familiar with these concepts, you can use the replicated CLI and API to automate this task rather than manually editing the YAML on this page. For more information, see [Installing the replicated CLI](../reference/replicated-cli-installing) and [Using the Replicated Vendor API v3](../reference/vendor-api-using).
 
 ![Default YAML](/images/guides/kots/default-yaml.png)
 
