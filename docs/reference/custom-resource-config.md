@@ -539,7 +539,7 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: repl{{repl ConfigOption "service_port-8jdn2bgd" | ParseInt }}
+  - port: repl{{ ConfigOption "service_port-8jdn2bgd" | ParseInt }}
   selector:
     app: repeat_example
     component: service_port-8jdn2bgd
