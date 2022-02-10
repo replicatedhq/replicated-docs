@@ -23,6 +23,8 @@ spec:
   allowRollback: false
   kubectlVersion: latest
   kustomizeVersion: latest
+  targetKotsVersion: "1.60.0"
+  minKotsVersion: "1.40.0"
   requireMinimalRBACPrivileges: false
   additionalImages:
     - jenkins/jenkins:lts
@@ -154,3 +156,31 @@ The format of the Y axis labels with support for all Grafana [units](https://gra
 
 ### yAxisTemplate
 Y axis labels template. Use `{{ value }}`.
+
+## targetKotsVersion
+The KOTS version that is targeted by the release.
+
+**Note**: The app manager is based on the KOTS open source project. The KOTS version is the same as the app manager version. For example, KOTS v1.60 is the same as the app manager v1.60.
+
+Including `targetKotsVersion` in the Application manifest file of the release enforces compatibility checks for new installations and blocks the installation if the version used is later than the target version.
+
+If the latest release in a channel includes `targetKotsVersion`, the install command for existing clusters is modified to install that specific version of KOTS. The install command for existing clusters is on the channel card in the [vendor portal](https://vendor.replicated.com).
+
+Specifying a `targetKotsVersion` does not prevent an end user from upgrading to a later version of KOTS after the initial installation.
+
+If a new version of the application specifies a later target KOTS version than what is currently installed, the end user is not prevented from deploying that version of the application.
+
+If an end-user's admin console is running a version of KOTS that is earlier than the target version specified in the new version of the application, the admin console displays a message in the footer to indicate that a newer supported version of KOTS is available.
+
+For installations onto a cluster created by the Replicated Kubernetes installer, the version of the KOTS add-on must not be later than the target KOTS version specified in the Application manifest. If the KOTS add-on version is later than the version specified for `targetKotsVersion`, the initial installation fails.
+
+For more information about the KOTS add-on, see [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) in the open source kURL documentation.
+
+## minKotsVersion (Beta)
+The minimum KOTS version that is required by the release.
+
+**Note**: The app manager is based on the KOTS open source project. The KOTS version is the same as the app manager version. For example, KOTS v1.60 is the same as the app manager v1.60.
+
+Including `minKotsVersion` in the Application manifest file of the release enforces compatibility checks for both new installations and application updates. It also blocks installation or update if the current deployed KOTS version is earlier than the `minKotsVersion`.
+
+This feature is not currently supported for channels that have semantic versioning enabled. For more information, see [Semantic versioning](../vendor/releases-understanding#semantic-versioning) in _About releasing an application_.
