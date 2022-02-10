@@ -408,7 +408,7 @@ const sidebars = {
           items: [
             {
               type: 'doc',
-              id: 'reference/reference-vendor-api'
+              id: 'reference/vendor-api-using'
             },
             {
               type: 'link',
