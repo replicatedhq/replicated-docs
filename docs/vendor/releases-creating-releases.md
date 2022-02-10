@@ -16,7 +16,7 @@ We recommend that you bookmark the Replicated [vendor portal](https://vendor.rep
 
   A YAML editor displays.
 
-1. In the YAML editor, you can define how your application will work and define the integration with the Replicated app manager functionality. You can manually edit YAML on this page or use the replicated CLI and API to automate this. For more information about using the CLI, see [Installing the replicated CLI](replicated-cli-installing).
+1. In the YAML editor, you can define how your application will work and define the integration with the Replicated app manager functionality. You can manually edit YAML on this page or use the replicated CLI and API to automate this. For more information about using the CLI, see [Installing the replicated CLI](../reference/replicated-cli-installing).
 
   The default YAML documents (`replicated-app.yaml`, `preflight.yaml`, `config.yaml`, `support-bundle.yaml`) contain information for the app manager, preflight checks, customer configuration screen options, and support bundle analyzers for troubleshooting installs.
 
