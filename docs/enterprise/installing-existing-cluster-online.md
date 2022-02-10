@@ -82,4 +82,4 @@ kubectl kots install app --http-proxy http://10.128.0.3:3128 \
 ```
 If the `copy-proxy-env` flag is specified, proxy settings will be read from the environment of the shell where the kots command is running.
 
-For more information, see the [kots CLI documentation](https://kots.io/kots-cli/getting-started/).
+For more information, see [install](../reference/kots-cli-install) and [pull](../reference/kots-cli-pull) in the kots CLI documentation.

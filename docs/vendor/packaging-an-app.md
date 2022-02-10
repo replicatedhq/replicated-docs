@@ -10,11 +10,11 @@ In general, Replicated components are grouped into one of the following categori
 These tools are built with a strong focus on production grade day-2 operations.
 * **Software Vendor Tools**: Primarily hosted by the [Replicated vendor portal](https://vendor.replicated.com) that serves as a centralized collaboration platform to manage customers, licenses/entitlements, releases/release channels, and troubleshooting. The vendor tools are [integrated with the open source KOTS projects](https://blog.replicated.com/announcing-kots/) to provide processes and workflows to operationalize and scale the distribution of a modern on-prem application.
 
-The foundational open source projects that Replicated coordinates are the [kots CLI](https://kots.io/vendor/cli/getting-started/) and [KOTS](../enterprise/installing-overview) (installation and admin console), [Troubleshoot](https://troubleshoot.sh) (preflight checks and support bundles), [kURL](https://kurl.sh) (embedded K8s option) as well as several community driven open source software (OSS) projects like Kubernetes, Kustomize, Helm, and Kubeadm.
+The foundational open source projects that Replicated coordinates are the [kots CLI](../reference/kots-cli-getting-started/) and [KOTS](../enterprise/installing-overview) (installation and admin console), [Troubleshoot](https://troubleshoot.sh) (preflight checks and support bundles), [kURL](https://kurl.sh) (embedded K8s option) as well as several community driven open source software (OSS) projects like Kubernetes, Kustomize, Helm, and Kubeadm.
 
 This document starts with an overview on how to package and manage applications via the Replicated vendor portal (an API and CLI are available for more rapid or automated iteration).
 
-For information about installing and managing an application using the kots CLI, see [Getting Started with KOTS](https://kots.io/kots-cli/getting-started/) in the kots CLI documentation.
+For information about installing and managing an application using the kots CLI, see [Getting Started with KOTS](../reference/kots-cli-getting-started/).
 
 For information about installing and managing an application using the Replicated admin console, see [Overview of installing an application](../enterprise/installing-overview).
 
