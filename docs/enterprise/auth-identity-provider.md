@@ -29,4 +29,4 @@ Here you can configure access to the admin console, integrating with one of the 
 When enabling identity provider access to the admin console, shared password authentication will be disabled.
 In case authentication needs to be reset, the `kubectl kots identity-service enable-shared-password --namespace [namespace]` command can be run to re-enable shared password authentication.
 
-For more information, see [kots identity-service enable-shared-password](https://kots.io/kots-cli/identity-service/enable-shared-password/) in the kots CLI documentation.
+For more information, see [identity-service enable-shared-password](../reference/kots-cli-identity-service-enable-shared-password/) in the kots CLI documentation.

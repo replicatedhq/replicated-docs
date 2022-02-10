@@ -15,4 +15,4 @@ Example:
 kubectl kots docker ensure-secret --dockerhub-username sentrypro --dockerhub-password password --namespace sentry-pro
 ```
 
-For more information, see [kots docker ensure-secret](https://kots.io/kots-cli/docker/ensure-permissions/) in the kots CLI documentation.
+For more information, see [docker ensure-secret](../reference/kots-cli-docker-ensure-secret) in the kots CLI documentation.

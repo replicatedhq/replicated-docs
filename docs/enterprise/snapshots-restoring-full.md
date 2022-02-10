@@ -11,20 +11,20 @@ This is especially true for installations on cluster created with the Replicated
 
     **Note**: Restic is required and `--restic` flag must be used with `velero install` command.
 
-1. Use the kots CLI to list backups and create restores. See [kots backup ls](https://kots.io/kots-cli/backup/ls/) and [kots restore](https://kots.io/kots-cli/restore/) in the kots CLI documentation.
+1. Use the kots CLI to list backups and create restores. See [backup ls](../reference/kots-cli-backup-ls/) and [restore](../reference/kots-cli-restore-index/) in the kots CLI documentation.
 
 ## Restore on online Kubernetes installer-created clusters
 
 1. Set up the embedded cluster. See [Installing on an embedded cluster](installing-embedded-cluster).
 1. Use the kots CLI to configure the pre-installed Velero setup to point at the snapshot storage destination.
     Consult the relevant CLI documentation for your provider:
-    * **AWS S3 Configuration**: See [kots velero configure-aws-s3](https://kots.io/kots-cli/velero/configure-aws-s3/).
-    * **Azure Configuration**: See [kots velero configure-azure](https://kots.io/kots-cli/velero/configure-azure/).
-    * **GCP Configuration**: See [kots velero configure-gcp](https://kots.io/kots-cli/velero/configure-gcp/).
-    * **S3-Other (e.g. Minio) Configuration**: See [kots velero configure-other-s3](https://kots.io/kots-cli/velero/configure-other-s3/).
-    * **NFS Configuration**: See [kots velero configure-nfs](https://kots.io/kots-cli/velero/configure-nfs/) and [Configuring NFS](snapshots-configuring-nfs).
-    * **HostPath Configuration**: See [kots velero configure-hostpath](https://kots.io/kots-cli/velero/configure-hostpath/) and [Configuring a host path](snapshots-configuring-hostpath).
-1. Use the kots CLI to list backups and create restores. See [kots backup ls](https://kots.io/kots-cli/backup/ls/) and [kots restore](https://kots.io/kots-cli/restore/) in the kots CLI documentation.
+    * **AWS S3 Configuration**: See [velero configure-aws-s3](../reference/kots-cli-velero-configure-aws-s3/).
+    * **Azure Configuration**: See [velero configure-azure](../reference/kots-cli-velero-configure-azure/).
+    * **GCP Configuration**: See [velero configure-gcp](../reference/kots-cli-velero-configure-gcp/).
+    * **S3-Other (e.g. Minio) Configuration**: See [velero configure-other-s3](../reference/kots-cli-velero-configure-other-s3/).
+    * **NFS Configuration**: See [velero configure-nfs](../reference/kots-cli-velero-configure-nfs/) and [Configuring NFS](snapshots-configuring-nfs).
+    * **HostPath Configuration**: See [velero configure-hostpath](../reference/kots-cli-velero-configure-hostpath/) and [Configuring a host path](snapshots-configuring-hostpath).
+1. Use the kots CLI to list backups and create restores. See [backup ls](../reference/kots-cli-backup-ls/) and [restore](../reference/kots-cli-restore-index/) in the kots CLI documentation.
 
 ## Restore on air gapped Kubernetes installer-created clusters
 
@@ -43,10 +43,10 @@ The registry from the old cluster does not need to be (and should not be) access
 1. Set up the cluster in accordance with the above guidance as well as the guidance in the air gap installation documentation. See [Air gapped installations](installing-embedded-cluster#airgapped-installations).
 1. Use the kots CLI to configure the pre-installed velero setup to point at the snapshot storage destination.
     Consult the relevant CLI documentation for your provider:
-    * **AWS S3 Configuration**: See [kots velero configure-aws-s3](https://kots.io/kots-cli/velero/configure-aws-s3/).
-    * **Azure Configuration**: See [kots velero configure-azure](https://kots.io/kots-cli/velero/configure-azure/).
-    * **GCP Configuration**: See [kots velero configure-gcp](https://kots.io/kots-cli/velero/configure-gcp/).
-    * **S3-Other (e.g. Minio) Configuration**: See [kots velero configure-other-s3](https://kots.io/kots-cli/velero/configure-other-s3/).
-    * **NFS Configuration**: See [kots velero configure-nfs](https://kots.io/kots-cli/velero/configure-nfs/) and [Configuring NFS](snapshots-configuring-nfs).
-    * **HostPath Configuration**: See [kots velero configure-hostpath](https://kots.io/kots-cli/velero/configure-hostpath/) and [Configuring a host path](snapshots-configuring-hostpath).
-1. Use the kots CLI to list backups and create restores. See [kots backup ls](https://kots.io/kots-cli/backup/ls/) and [kots restore](https://kots.io/kots-cli/restore/) in the kots CLI documentation.
+    * **AWS S3 Configuration**: See [velero configure-aws-s3](../reference/kots-cli-velero-configure-aws-s3/).
+    * **Azure Configuration**: See [velero configure-azure](../reference/kots-cli-velero-configure-azure/).
+    * **GCP Configuration**: See [velero configure-gcp](../reference/kots-cli-velero-configure-gcp/).
+    * **S3-Other (e.g. Minio) Configuration**: See [velero configure-other-s3](../reference/kots-cli-velero-configure-other-s3/).
+    * **NFS Configuration**: See [velero configure-nfs](../reference/kots-cli-velero-configure-nfs/) and [Configuring NFS](snapshots-configuring-nfs).
+    * **HostPath Configuration**: See [velero configure-hostpath](../reference/kots-cli-velero-configure-hostpath/) and [Configuring a host path](snapshots-configuring-hostpath).
+1. Use the kots CLI to list backups and create restores. See [backup ls](../reference/kots-cli-backup-ls/) and [restore](../reference/kots-cli-restore-index/) in the kots CLI documentation.
