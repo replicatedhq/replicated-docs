@@ -70,6 +70,7 @@ While the Replicated app manager detects images from the PodSpecs in the applica
 The app manager maintains up-to-date patch versions of all supported kubelet minor versions.
 When unspecified, the app manager uses the newest version from the list of supported versions below.
 
+- 1.22.x (added in [App manager 1.59.3](https://kots.io/release-notes/1.59.3/))
 - 1.21.x (added in [App manager 1.48.0](https://kots.io/release-notes/1.48.0/))
 - 1.20.x (added in [App manager 1.48.0](https://kots.io/release-notes/1.48.0/))
 - 1.19.x (added in [App manager 1.22.0](https://kots.io/release-notes/1.22.0/))
