@@ -178,10 +178,28 @@ For installations onto a cluster created by the Replicated Kubernetes installer,
 For more information about the KOTS add-on, see [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) in the open source kURL documentation.
 
 ## minKotsVersion (Beta)
+
 The minimum KOTS version that is required by the release.
 
 **Note**: The app manager is based on the KOTS open source project. The KOTS version is the same as the app manager version. For example, KOTS v1.60 is the same as the app manager v1.60.
 
-Including `minKotsVersion` in the Application manifest file of the release enforces compatibility checks for both new installations and application updates. It also blocks installation or update if the current deployed KOTS version is earlier than the `minKotsVersion`.
+Including `minKotsVersion` in the Application manifest file enforces compatibility checks for both new installations and application updates. It also blocks installation or update if the current deployed KOTS version is earlier than the `minKotsVersion`.
 
-This feature is not currently supported for channels that have semantic versioning enabled. For more information, see [Semantic versioning](../vendor/releases-understanding#semantic-versioning) in _About releasing an application_.
+### Limitations
+
+`minKotsVersion` is not supported in the following cases:
+
+* Channels that have semantic versioning enabled. For more information, see [Semantic versioning](../vendor/releases-understanding#semantic-versioning) in _About releasing an application_.
+* The minimum version increases and then decreases from one release to the next.
+
+`minKotsVersion` is not supported in these cases because when the minimum version increases, the admin console can error when retrieving it. For more information about these error messages, see [Guidance for informing users of the need to update](#guidance-for-informing-users-of-the-need-to-update) below.
+
+If the minimum KOTS version then decreases in the next release, KOTS successfully retrieves that release, which means the intermediate release is lost.
+
+### Guidance for informing users of the need to update
+
+After promoting a new release that specifies a minimum KOTS version that is later than what an end user currently has deployed, that release does not appear in the version history of the admin console after checking for updates. The admin console displays an error message temporarily, but it disappears after a few minutes. The admin console also displays this error when the user checks for updates with the [`kots upstream upgrade` command](/kots-cli/upstream/).
+
+End users must update their admin console to the minimum KOTS version or later in order to fetch the update without error. The app manager cannot update itself automatically, and users cannot update KOTS from the admin console.
+
+When promoting a new release that changes the minimum KOTS version to a later version, vendors can inform their end users of the need to update KOTS if they are concerned end users will not see the error message or will not know how to proceed.
