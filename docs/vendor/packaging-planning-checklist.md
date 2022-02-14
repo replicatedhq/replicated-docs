@@ -8,7 +8,7 @@ This document includes implementation steps and a questionnaire for your end use
 
 ### Basic Whitelabeling
 
-All applications should be whitelabeled with [a title and an icon](custom-resource-application#title).
+All applications should be whitelabeled with [a title and an icon](../reference/custom-resource-application#title).
 
 ### Status Informers
 
@@ -16,7 +16,7 @@ Applications should integrate [StatusInformers](admin-console-display-app-status
 
 ### Allowing Rollbacks
 
-If an application is guaranteed not to introduce backwards-incompatible versions (e.g. via database migrations), the [allowRollback](custom-resource-application#allowrollback) flag can allow end users to easily roll back to previous versions (this will not revert any state, just the YAML manifests that are applied to the cluster).
+If an application is guaranteed not to introduce backwards-incompatible versions (e.g. via database migrations), the [allowRollback](../reference/custom-resource-application#allowrollback) flag can allow end users to easily roll back to previous versions (this will not revert any state, just the YAML manifests that are applied to the cluster).
 
 
 ### Adding Preflight Checks

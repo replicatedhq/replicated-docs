@@ -8,7 +8,7 @@ In addition to RBAC policies, clusters running in air gap environments or cluste
 ## Creating additional namespaces
 
 An application can identify additional namespaces to create during installation time.
-You can define these additional namespaces in the Application custom resource by adding an `additionalNamespaces` attribute to the Application custom resource manifest file. For more information, see [Application](custom-resource-application) in the _Custom Resources_ section.
+You can define these additional namespaces in the Application custom resource by adding an `additionalNamespaces` attribute to the Application custom resource manifest file. For more information, see [Application](../reference/custom-resource-application) in the _Custom Resources_ section.
 
 When these are defined, `kots install` will create the namespaces and ensure that the Replicated admin console has full access to manage resources in these namespaces.
 This is accomplished by creating a Role and RoleBinding per namespace, and setting the Subject to the admin console service account.

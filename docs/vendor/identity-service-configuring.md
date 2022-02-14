@@ -15,7 +15,7 @@ The Identity custom resource enables and configures the identity service for you
 If you prefer, here is an [example application](https://github.com/replicatedhq/kots-idp-example-app) that demonstrates how to configure the identity service.
 
 To begin, create a new release on the [vendor portal](https://vendor.replicated.com).
-Once you are editing the release, create a new [Identity CRD](custom-resource-identity) file customized for your application.
+Once you are editing the release, create a new [Identity CRD](../reference/custom-resource-identity) file customized for your application.
 
 ![Identity Service CRD](/images/identity-service-crd.png)
 
@@ -31,11 +31,11 @@ All the necessary information that your application needs to communicate and int
 
 It is also possible to regulate access to your application resources based on the roles of individual users within the customer's organization.
 
-A list of the available roles within your application can be provided to the customer via the [roles](custom-resource-identity#roles) section of the Identity CRD.
+A list of the available roles within your application can be provided to the customer via the [roles](../reference/custom-resource-identity#roles) section of the Identity CRD.
 
 ![Identity Service CRD Roles](/images/identity-service-crd-roles.png)
 
 Then, using the admin console, the customer will have the ability to create groups and assign specific roles to each group.
-This mapping of roles to groups will then be available to your application via the [IdentityServiceRoles](template-functions-identity-context#identityserviceroles) template function.
+This mapping of roles to groups will then be available to your application via the [IdentityServiceRoles](../reference/template-functions-identity-context#identityserviceroles) template function.
 
 ![Identity Service CRD Roles](/images/identity-service-roles-template-function.png)

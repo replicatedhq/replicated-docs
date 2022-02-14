@@ -19,7 +19,7 @@ The snapshots feature is a backup and restore option that lets you define a mani
 
     1. Optional: Configure the optional resources annotation in the manifest so that it can be dynamically enabled based on a license field or a config option. For more information, see [optional resources](packaging-include-resources/).
 
-        **Note:** if you are using multiple applications, each application should have a [backup resource](custom-resource-backup) in each application's manifest so that each application can be included in the [Full snapshot](../enterprise/snapshots-understanding) backup.
+        **Note:** if you are using multiple applications, each application should have a [backup resource](../reference/custom-resource-backup) in each application's manifest so that each application can be included in the [Full snapshot](../enterprise/snapshots-understanding) backup.
 
 1. Configure a backup for any volumes that require backup. By default, no volumes are included in the backup. If any pods mount a volume that should be backed up, you must configure the backup with an annotation listing the specific volumes to include in the snapshot.
 
@@ -85,4 +85,4 @@ Next, you can [configure backup hooks](snapshots-backup-hooks/).
 ## Additional resources
   * [Snapshots overview](snapshots-overview/)
   * [Including and excluding resources](packaging-include-resources/)
-  * [About backup resources](custom-resource-backup)
+  * [Backup](../reference/custom-resource-backup)

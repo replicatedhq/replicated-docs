@@ -30,7 +30,7 @@ The chart will be added to a new section near the top of the file tree, and the 
 ### &lt;chart-name&gt;.yaml
 
 This file is required for the chart to be installed.
-When using the vendor portal generated automatically when adding a new chart, and allows you to configure the chart with your application. For more information, see the [references section](custom-resource-helmchart).
+When using the vendor portal generated automatically when adding a new chart, and allows you to configure the chart with your application. For more information, see [HelmChart](../reference/custom-resource-helmchart) in the _Custom resources_ section.
 
 ### chart.yaml
 This file is read-only, and extracted from the Helm chart (as metadata).
