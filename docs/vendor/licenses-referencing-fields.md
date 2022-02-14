@@ -35,7 +35,7 @@ you can reference built-in and custom license fields in a Kubernetes manifest.
 
 The Replicated app manager uses the `LicenseFieldValue` template function to read
 license fields when a customer installs or updates your application. For more
-information, see [LicenseFieldValue](template-functions-license-context#licensefieldvalue).
+information, see [LicenseFieldValue](../reference/template-functions-license-context#licensefieldvalue).
 
 ### Example: Reference a custom license field in a preflight check
 

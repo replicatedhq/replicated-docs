@@ -19,7 +19,7 @@ Once you are editing the release, create a new [Identity CRD](custom-resource-id
 
 ![Identity Service CRD](/images/identity-service-crd.png)
 
-The identity service has to be accessible from the browser. For that reason, the app manager provides the service name and port to the app through the [identity template functions](template-functions-identity-context) so that the app can then configure ingress for the identity service, for example:
+The identity service has to be accessible from the browser. For that reason, the app manager provides the service name and port to the app through the [identity template functions](../reference/template-functions-identity-context) so that the app can then configure ingress for the identity service, for example:
 
 ![Identity Service Ingress](/images/identity-service-ingress.png)
 

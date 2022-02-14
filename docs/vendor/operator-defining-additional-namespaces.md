@@ -26,7 +26,7 @@ spec:
 ```
 
 In addition to creating these namespaces, the admin console will ensure that the application pull secret exists in them, and that this secret has access to pull the application images (both images that are used and [additionalImages](operator-additional-images)).
-Pull secret name can be obtained using the [ImagePullSecretName](template-functions-config-context/#imagepullsecretname) template function.
+Pull secret name can be obtained using the [ImagePullSecretName](../reference/template-functions-config-context/#imagepullsecretname) template function.
 An operator can reliably depend on this secret existing in all installs (online and air gapped), and can use this secret name in any created `podspec` to pull private images.
 
 ## Dynamic namespaces
