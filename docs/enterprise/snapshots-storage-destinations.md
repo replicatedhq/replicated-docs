@@ -1,6 +1,6 @@
-# Storage destinations
+.netlify.app# Storage destinations
 
-The Replicated snapshot feature supports any compatible Velero storage provider. For more information, see [Providers](https://velero.io/docs/main/supported-providers/) in the Velero documentation.
+The Replicated snapshot feature supports any compatible Velero storage provider. For more information, see [Providers](https://velero.netlify.app/docs/main/supported-providers/) in the Velero documentation.
 
 The Replicated admin console has built-in support for configuring AWS, GCP, Azure, S3-Compatible object store, NFS Server, or local host path as destinations.
 
@@ -8,13 +8,13 @@ Although clusters created by the Replicated Kubernetes installer are preconfigur
 
 If the admin console is running with minimal role-based-access-control (RBAC) privileges, you must use the `kots velero ensure-permissions` command because the admin console requires access to the namespace in which Velero is installed.
 
-For more information, see [kots ensure-permissions](https://kots.io/kots-cli/velero/ensure-permissions/) in the kots CLI documentation.
+For more information, see [velero ensure-permissions](../reference/kots-cli-velero-ensure-permissions/) in the kots CLI documentation.
 
 For more information about RBAC priviledges for the admin console, see [Kubernetes RBAC](../vendor/packaging-rbac).
 
 ## Prerequisites for cloud configurations
 
-* Existing clusters: Customers must install Velero before configuring snapshots. See [Basic Install](https://velero.io/docs/v1.6/basic-install/) in the Velero documentation.
+* Existing clusters: Customers must install Velero before configuring snapshots. See [Basic Install](https://velero.netlify.app/docs/v1.6/basic-install/) in the Velero documentation.
 * Kubernetes installer-created clusters: The vendor can provide the Velero add-on in the embedded cluster installation. If it is not provided, the snapshots configuration dialog in the admin console notifies you to install Velero before you can proceed with the configuration.
 
 ## AWS

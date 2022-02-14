@@ -46,7 +46,7 @@ When deploying, MinIO is configured with a randomly generated `AccessKeyID` and 
 
 When the flag `--with-minio=false` is used with the `kots install` command, the installer will not deploy MinIO. The app manager deploys the admin console as a Statefulset with an attached PV instead of a deployment.
 
-For more information, see [kots install](https://kots.io/kots-cli/install/) in the kots CLI documentation.
+For more information, see [install](../reference/kots-cli-install/) in the kots CLI documentation.
 
 #### Upgrade the admin console without MinIO
 
@@ -54,4 +54,4 @@ When the flag `--with-minio=false` is used with the `kots admin-console upgrade`
 
 This results in temporary downtime for the admin console, but deployed applications will be unaffected.
 
-For more information, see [kots admin-console upgrade](https://kots.io/kots-cli/admin-console/upgrade/)
+For more information, see [admin-console upgrade](../reference/kots-cli-admin-console-upgrade/) in the kots CLI documentation.
