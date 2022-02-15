@@ -16,6 +16,12 @@
     var(--ifm-transition-timing-default);
 }
 
+@media (min-width: 997px) {
+  .DocSearch-Button {
+    min-width: 250px;
+  }
+}
+
 
 .DocSearch-Container {
   z-index: calc(var(--ifm-z-index-fixed) + 1);
