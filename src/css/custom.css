@@ -61,3 +61,11 @@ article {
   --ifm-alert-foreground-color: var( --ifm-color-danger-contrast-foreground );
   --ifm-alert-border-color: var(--ifm-color-danger-dark);
 }
+
+ol ol {
+  list-style-type: lower-alpha;
+}
+
+ol ol ol {
+  list-style-type: lower-roman
+}
