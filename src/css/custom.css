@@ -54,3 +54,10 @@ article {
 .footer--dark {
     --ifm-footer-background-color: #2f2f2f;
 }
+
+.alert--warning {
+  --ifm-alert-background-color: var( --ifm-color-danger-contrast-background );
+  --ifm-alert-background-color-highlight: rgba(250, 56, 62, 0.15);
+  --ifm-alert-foreground-color: var( --ifm-color-danger-contrast-foreground );
+  --ifm-alert-border-color: var(--ifm-color-danger-dark);
+}
