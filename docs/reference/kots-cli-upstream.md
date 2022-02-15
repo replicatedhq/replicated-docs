@@ -24,7 +24,7 @@ kubectl kots upstream upgrade [app-slug] [flags]
 | `--registry-password`    | string | the password to use to authenticate with the registry                                            |
 | `--registry-username`    | string | the username to use to authenticate with the registry                                            |
 | `--disable-image-push`   | bool   | set to true to disable images from being pushed to private registry                              |
-| `--wait` | bool | set to false to download the updates in the background (defaults to true)
+| `--wait` | bool | set to false to download the updates in the background _(defaults to true)_
 | `-o, --output`           | string | output format (currently supported: json) _(defaults to plain text if not set)_                  |
 
 ### Example
