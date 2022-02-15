@@ -61,7 +61,7 @@ func IdentityServiceRoles() map[string][]string
 
 Returns a list of groups specified by the customer mapped to a list of roles as defined in the Identity custom resource manifest file.
 
-For more information about the Identity custom resource, see [Identity](custom-resource-identity#roles) in the _Custom resources_ section.
+For more information about roles in the Identity custom resource, see [Identity](custom-resource-identity#roles) in the _Custom resources_ section.
 
 ```yaml
 apiVersion: apps/v1

@@ -51,4 +51,4 @@ This feature is currently only supported when used with the embedded open source
 If the admin console instance is configured to use a different registry, this feature should be disabled to prevent image loss.
 
 #### Application rollbacks
-Currently image garbage collection has no effect when the `allowrollback` field in the `application.yaml` file is set to `true`. For more information, see [Application](../vendor/custom-resource-application) in _Custom Resources_.
+Currently image garbage collection has no effect when the `allowrollback` field in the `application.yaml` file is set to `true`. For more information, see [Application](../reference/custom-resource-application) in _Custom Resources_.

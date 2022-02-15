@@ -61,7 +61,7 @@ env:
 
 Private, local images will need to reference an image pull secret to be pulled.
 The value of the secret's `.dockerconfigjson` is provided in a template function, and the application can write this pull secret as a new secret to the namespace.
-If the application is deploying the pod to the same namespace as the Operator, the pull secret will already exist in the namespace, and the secret name can be obtained using the [ImagePullSecretName](template-functions-config-context/#imagepullsecretname) template function.
+If the application is deploying the pod to the same namespace as the Operator, the pull secret will already exist in the namespace, and the secret name can be obtained using the [ImagePullSecretName](../reference/template-functions-config-context/#imagepullsecretname) template function.
 The app manager will create this secret automatically, but only in the namespace that the Operator is running in.
 It's the responsibility of the application developer (the Operator code) to ensure that this secret is present in any namespace that new pods will be deployed to.
 

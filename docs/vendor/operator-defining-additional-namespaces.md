@@ -8,7 +8,7 @@ In addition to RBAC policies, clusters running in air gap environments or cluste
 ## Creating additional namespaces
 
 An application can identify additional namespaces to create during installation time.
-You can define these additional namespaces in the Application custom resource by adding an `additionalNamespaces` attribute to the Application custom resource manifest file. For more information, see [Application](custom-resource-application) in the _Custom Resources_ section.
+You can define these additional namespaces in the Application custom resource by adding an `additionalNamespaces` attribute to the Application custom resource manifest file. For more information, see [Application](../reference/custom-resource-application) in the _Custom Resources_ section.
 
 When these are defined, `kots install` will create the namespaces and ensure that the Replicated admin console has full access to manage resources in these namespaces.
 This is accomplished by creating a Role and RoleBinding per namespace, and setting the Subject to the admin console service account.
@@ -26,7 +26,7 @@ spec:
 ```
 
 In addition to creating these namespaces, the admin console will ensure that the application pull secret exists in them, and that this secret has access to pull the application images (both images that are used and [additionalImages](operator-additional-images)).
-Pull secret name can be obtained using the [ImagePullSecretName](template-functions-config-context/#imagepullsecretname) template function.
+Pull secret name can be obtained using the [ImagePullSecretName](../reference/template-functions-config-context/#imagepullsecretname) template function.
 An operator can reliably depend on this secret existing in all installs (online and air gapped), and can use this secret name in any created `podspec` to pull private images.
 
 ## Dynamic namespaces

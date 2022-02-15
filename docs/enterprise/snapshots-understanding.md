@@ -25,7 +25,7 @@ There are two available options for doing a restore. You can either do a full re
 
 ![Instance Restore UI](/images/snapshot-instance-restore.png)
 
-If you have multiple applications within the admin console, each application should have a backup resource in order to be included in the full snapshot backup. For more information, see [Backup](../vendor/custom-resource-backup) in _Custom resources_.
+If you have multiple applications within the admin console, each application should have a backup resource in order to be included in the full snapshot backup. For more information, see [Backup](../reference/custom-resource-backup) in the _Custom resources_ section.
 
 ## Partial snapshots
 

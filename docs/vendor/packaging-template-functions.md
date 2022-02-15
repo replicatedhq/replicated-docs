@@ -4,7 +4,7 @@ Replicated app manager applications have access to a rich set of template functi
 
 The app manager uses Go's [text/template](https://golang.org/pkg/text/template/) libraries as the basis for the templating. All functionality of Go's templating language can be used in conjunction with the app manager custom functions.
 
-All template functions are documented in the [template function reference](template-functions-about) section.
+All template functions are documented in the [template function reference](../reference/template-functions-about) section.
 
 ## Using Template Functions
 
@@ -93,9 +93,9 @@ All manifest files for the application are templated in a single pass.
 The Config custom resource manifest file is an exception.
 Each config item is templated separately and has no access to variables created in other config items.
 As a workaround, a hidden config item can be used to evaluate complex templates and render the results.
-The result can be accessed using the [`ConfigOption`](template-functions-config-context#configoption) function.
+The result can be accessed using the [`ConfigOption`](../reference/template-functions-config-context#configoption) function.
 
-For more information about the Config custom resource, see [Config](custom-resource-config) in the _Custom resources_ section.
+For more information about the Config custom resource, see [Config](../reference/custom-resource-config) in the _Custom resources_ section.
 
 ### Generating TLS certs and keys example
 

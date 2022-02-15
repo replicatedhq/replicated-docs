@@ -4,7 +4,7 @@ Often, vendors need a way to optionally install resources depending on customers
 
 In this scenario, when a customer chooses to bring their own database, it is not desirable to deploy the optional database resources (StatefulSet, Service, etc.). This means that the customer-supplied configuration input values may result in optional Kubernetes manifests that should not be installed.
 
-To provide optional resource installation, the app manager uses [annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) and [template functions](template-functions-about) to conditionally include or exclude resources.
+To provide optional resource installation, the app manager uses [annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) and [template functions](../reference/template-functions-about) to conditionally include or exclude resources.
 
 ## App Manager Annotations
 
