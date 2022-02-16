@@ -1,6 +1,6 @@
 # get config
 
-The `kots get config` command returns the **configValues** file for an application.
+The `kots get config` command returns the `configValues` file for an application.
 
 ### Usage
 
@@ -12,7 +12,7 @@ kubectl kots get config [flags]
 
 | Flag              | Type   | Description                                                         |
 | :---------------- | ------ | ------------------------------------------------------------------- |
-| `--appslug`       | string | The application slug of the application for which the `configValues` file is retrieved. Required when more than one app is deployed.|
+| `--appslug`       | string | The application slug of the application for which the `configValues` file is retrieved. Required when more than one application is deployed.|
 | `--sequence`      | int    | The application sequence for which the `configValues` file is retrieved. **Default**: latest.|
 | `--decrypt`       | bool   | Decrypts password items within the configuration.|
 | `-h, --help`      |        | Help for `get config`.|
