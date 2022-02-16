@@ -50,6 +50,7 @@ const config = {
         // Public API key: it is safe to commit it
         apiKey: 'c1b3ad730ee08e83703eeaadd39c4790',
         indexName: 'docs',
+        contextualSearch: true,
       },
       googleAnalytics: {
         trackingID: 'UA-61420213-4',
