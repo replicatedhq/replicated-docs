@@ -12,10 +12,10 @@ kubectl kots get config [flags]
 
 | Flag              | Type   | Description                                                         |
 | :---------------- | ------ | ------------------------------------------------------------------- |
-| `--appslug`       | string | The app slug of the application for which the configValues file is retrieved. Required if more than one app is deployed.|
-| `--sequence`      | int    | The app sequence for which the configValues file is retrieved. Default: latest.|
-| `--decrypt`       | bool   | Decrypt password items within the config.|
-| `-h, --help`      |        | Help for get config.|
+| `--appslug`       | string | The application slug of the application for which the `configValues` file is retrieved. Required when more than one app is deployed.|
+| `--sequence`      | int    | The application sequence for which the `configValues` file is retrieved. **Default**: latest.|
+| `--decrypt`       | bool   | Decrypts password items within the configuration.|
+| `-h, --help`      |        | Help for `get config`.|
 | `-n, --namespace` | string | (Required) The namespace where the admin console is running.|
 
 ### Example
