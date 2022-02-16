@@ -1,6 +1,6 @@
 # Creating a customer
 
-After you promote a release, you create a customer.
+After you promote a release to a channel, you create a customer.
 
 Each customer that you create in the Replicated vendor portal has a unique license file. Each customer license uniquely identifies the customer and the application, specifies their release channel, and defines entitlement information about the customer.
 
