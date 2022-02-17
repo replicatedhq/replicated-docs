@@ -62,10 +62,23 @@ article {
   --ifm-alert-border-color: var(--ifm-color-danger-dark);
 }
 
+.alert a {
+  color: var(--ifm-color-primary-dark);
+  text-decoration-color: var(--ifm-color-primary-dark);
+}
+
 ol ol {
   list-style-type: lower-alpha;
 }
 
 ol ol ol {
   list-style-type: lower-roman
+}
+
+.DocSearch-Logo {
+  display: none;
+}
+
+.DocSearch-Footer  {
+  justify-content: center !important;
 }

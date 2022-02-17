@@ -19,7 +19,7 @@ export default function EditThisPage({editUrl}) {
       <Translate
         id="theme.common.editThisPage"
         description="The link label to edit the current page">
-        Create a pull request or raise an issue on this source content in GitHub
+        Create pull request or raise issue on GitHub
       </Translate>
     </a>
   );
