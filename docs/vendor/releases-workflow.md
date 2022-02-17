@@ -1,6 +1,7 @@
-# How to release an application
+# How to Distribute an Application
 
-After you package an application, use Replicated to release it:
+Complete the following procedures to distribute your application to your customers with
+Replicated:
 
 1. Optional: [Create a custom channel or edit the default channels](releases-creating-channels).
 1. [Create a release](releases-creating-releases).

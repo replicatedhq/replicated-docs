@@ -104,9 +104,8 @@ const sidebars = {
           },
         {
           type: 'category',
-          label: 'Releasing an application',
+          label: 'Distributing Your Application',
           items: [
-            'vendor/releases-understanding',
             'vendor/releases-workflow',
             {
               type: 'category',
@@ -120,6 +119,7 @@ const sidebars = {
               type: 'category',
               label: 'Creating and managing releases',
               items: [
+                'vendor/releases-understanding',
                 'vendor/releases-creating-releases',
                 'vendor/releases-promoting',
                 'vendor/releases-updating',
