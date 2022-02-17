@@ -51,7 +51,7 @@ To install the replicated CLI:
 
 ### Set a Service Account Token
 
-Set up two environment variables for an application. You can export these in your shell or add them to your favorite dotfiles.
+Set up two environment variables for the application. You can export these in your shell or add them to your favorite dotfiles.
 
 To export the environment variables:
 
@@ -83,7 +83,7 @@ To export the environment variables:
   replicated release ls
   ```
 
-  You will likely see an empty list of releases. We will create a release later in this tutorial.
+  You will likely see an empty list of releases. You will create a release later in this tutorial.
 
   ```text
   SEQUENCE    CREATED    EDITED    ACTIVE_CHANNELS
@@ -309,7 +309,7 @@ AIRGAP:
     sudo bash ./install.sh airgap
 ```
 
-The output generates commands for installing on an [existing cluster](installing-existing-cluster-requirements), an [without an existing cluster](installing-embedded-cluster-requirements), and an [air gap cluster](installing-existing-cluster-airgapped).
+The output generates commands for installing on an [existing cluster](installing-existing-cluster-requirements), installing [without an existing cluster](installing-embedded-cluster-requirements), and installing on an [air gap cluster](installing-existing-cluster-airgapped).
 
 ## Installing the App Manager
 
@@ -423,7 +423,7 @@ To install the application:
 
   ![Cluster](/images/guides/kots/application.png)
 
-## View the deployed application
+## View the Deployed Application
 
 Since you used the default NGINX application and enabled the Ingress object, you can view the application at `http://${INSTANCE_IP}/` without a port and see a basic NGINX server running:
 
@@ -474,7 +474,7 @@ To make an update:
 
 To install and test this new release, you must connect to the admin console on port :8800 using a web browser.
 At this point, the UI likely shows that your test application is up-to-date and that no updates are available.
-The admin console can be configured to check for new updates at regular intervals, but for now we will trigger a check manually.
+The admin console can be configured to check for new updates at regular intervals, but for now you will trigger a check manually.
 
 To check for updates manually:
 
@@ -500,7 +500,7 @@ You can iterate further on your application. Continue making changes and using `
 
 To learn more about the app manager features, you can explore some of the tutorials and packaging options, such as:
 
-* [Integrating your release workflow with CI](tutorial-ci-cd-integration)
+* [Integrating with an existing CI/CD platform](tutorial-ci-cd-integration)
 * [Integrating a Helm chart](helm-overview)
 
 If you already have a release published in the vendor portal that you want to use as a starting point, run the following command to access the help docs for `replicated release download`:
