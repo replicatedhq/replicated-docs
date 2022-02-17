@@ -40,6 +40,7 @@ const sidebars = {
           label: 'Planning your deployment',
           items: [
             'vendor/packaging-planning-checklist',
+            'vendor/planning-questionnaire',
             'vendor/packaging-an-app',
             'vendor/packaging-private-images',
             'vendor/packaging-custom-resources',
