@@ -131,7 +131,7 @@ $ ls -la manifests
 Run the following command to verify this YAML:
 
 ```shell script
-replicated release lint --yaml-dir=manifests
+$ replicated release lint --yaml-dir=manifests
 ```
 
 If there are no errors, an empty list is displayed with a zero exit code.
@@ -164,7 +164,7 @@ To create and prmote a release:
 1. Run the following command with the `--auto` flag to generate release notes and metadata based on the git status.
 
   ```shell script
-  replicated release create --auto
+  $ replicated release create --auto
   ```
 
   **Example output:**
@@ -275,6 +275,10 @@ Run the following command to get the installation commands for the Unstable chan
 
 ```text
 $ replicated channel inspect Unstable
+```
+
+**Example output:**
+```
 ID:             VEr0nhJBBUdaWpPaOIK-SOryKZEwa3Mg
 NAME:           Unstable
 DESCRIPTION:
@@ -303,136 +307,154 @@ The output generates commands for installing on an existing cluster, and embedde
 
 You can choose to do an installation [without an existing cluster](installing-embedded-cluster-requirements) (embedded cluster), [with an existing cluster](installing-existing-cluster-requirements), or do an [air gap installation](installing-existing-cluster-airgapped).
 
-For this tutorial, we demonstrate an installation without an existing cluster on a single virtual machine (VM), since that is typically easier to come by than a full Kubernetes cluster.
+In this case, we demonstrate an installation without an existing cluster, on a single virtual machine (VM).
 
-First we will need a server. We'll use Google Cloud for this example but any cloud provider or [local virtual machine](https://github.com/replicatedhq/replicated-automation/tree/master/vendor/vagrant-boxes) will suffice. For this guide, let's create a server with:
+1. Create a server using Google Cloud using the following criteria for this example:
 
-- Ubuntu 18.04
-- At least 8 GB of RAM
-- 4 CPU cores
-- At least 40GB of disk space
+    - Ubuntu 18.04
+    - At least 8 GB of RAM
+    - 4 CPU cores
+    - At least 40GB of disk space
 
+    :::note
+    You can use any cloud provider or [local virtual machine](https://github.com/replicatedhq/replicated-automation/tree/master/vendor/vagrant-boxes).
+    :::
 
-### On the Server
+1. Use SSH to access the server you just created, and run the installation script from above, using the `EMBEDDED` version:
 
-Next, use SSH to access the server we just created, and run the installation script from above, using the `EMBEDDED` version:
+  ```shell
+  curl -sSL https://kurl.sh/<your-app-name-and-channel> | sudo bash
+  ```
 
-```shell
-curl -sSL https://kurl.sh/<your-app-name-and-channel> | sudo bash
-```
+  This script installs Docker, Kubernetes, and the Replicated admin console containers (kotsadm).
 
-This script will install Docker, Kubernetes, and the Replicated admin console containers (kotsadm).
+  Installation takes approximately 5-10 minutes.
 
-Installation should take about 5-10 minutes.
+  After the installation script is completed, the output displays the URL you can connect to for the next part of the installation:
 
-Once the installation script is completed, it will show the URL you can connect to in order to continue the installation:
+  ```text
 
-```text
+  Kotsadm: http://[ip-address]:8800
+  Login with password (will not be shown again): [password]
+  ```
 
-Kotsadm: http://[ip-address]:8800
-Login with password (will not be shown again): [password]
+1. Reload your shell using the following command to access the cluster with kubectl:
 
-
-To access the cluster with kubectl, reload your shell:
-
+    ```
     bash -l
+    ```
 
-The UIs of Prometheus, Grafana and Alertmanager have been exposed on NodePorts 30900, 30902 and 30903 respectively.
+    The UIs of Prometheus, Grafana and Alertmanager have been exposed on NodePorts 30900, 30902 and 30903 respectively.
 
-To access Grafana use the generated user:password of admin:[password] .
+1. Use the generated user:password of admin:[password] to access Grafana.
 
-To add worker nodes to this installation, run the following script on your other nodes
+1. Run the following script on your other nodes to add worker nodes to this installation:
+
+    ```
     curl -sSL https://kurl.sh/cli-quickstart-unstable/join.sh | sudo bash -s kubernetes-master-address=[ip-address]:6443 kubeadm-token=[token] kubeadm-token-ca-hash=sha256:[sha] kubernetes-version=1.16.4 docker-registry-ip=[ip-address]
+      ```
 
-```
+1. Reload the shell, following the instructions on the screen, to make `kubectl` work:
 
-Following the instructions on the screen, you can reload the shell and `kubectl` will now work:
-
-```bash
-user@kots-guide:~$ kubectl get pods
-NAME                                  READY   STATUS      RESTARTS   AGE
-kotsadm-585579b884-v4s8m              1/1     Running     0          4m47s
-kotsadm-migrations                    0/1     Completed   2          4m47s
-kotsadm-operator-fd9d5d5d7-8rrqg      1/1     Running     0          4m47s
-kotsadm-postgres-0                    1/1     Running     0          4m47s
-kurl-proxy-kotsadm-77c59cddc5-qs5bm   1/1     Running     0          4m46s
-user@kots-guide:~$
-```
+    ```bash
+    user@kots-guide:~$ kubectl get pods
+    ```
+    **Example output:**
+    ```
+    NAME                                  READY   STATUS      RESTARTS   AGE
+    kotsadm-585579b884-v4s8m              1/1     Running     0          4m47s
+    kotsadm-migrations                    0/1     Completed   2          4m47s
+    kotsadm-operator-fd9d5d5d7-8rrqg      1/1     Running     0          4m47s
+    kotsadm-postgres-0                    1/1     Running     0          4m47s
+    kurl-proxy-kotsadm-77c59cddc5-qs5bm   1/1     Running     0          4m46s
+    user@kots-guide:~$
+    ```
 
 
 ## Install the Application
 
-At this point, Kubernetes and the Admin Console are running, but the application isn't deployed yet.
-To complete the installation, visit the URL that the installation script displays when completed.
-You'll notice that the [kurl.sh](https://kurl.sh) KOTS cluster has provisioned a self-signed certificate, and that it provides
+At this point, Kubernetes and the Replicated admin console are running, but the application is not deployed yet.
+To complete the installation, visit the URL that the installation script displays when it finishes.
+Notice that the app manager cluster, created using the [Kubernetes installer](https://kurl.sh), has provisioned a self-signed certificate.
 
-Once you've bypassed the insecure certificate warning, you have the option of uploading a trusted cert and key.
-For production installations we recommend using a trusted cert, but for this tutorial we'll click the "skip this step" button to proceed with the self-signed cert.
+When you bypass the insecure certificate warning, you have the option of uploading a trusted certificate and key.
+For production installations, we recommend using a trusted certificate. For this tutorial, use the self-signed certificate.
 
-![Console TLS](/images/guides/kots/admin-console-tls.png)
+1. Click **Skip & continue** to proceed using the self-signed certificate.
 
-Next, you'll be asked for a password -- you'll want to grab the password from the CLI output and use it to log in to the console.
+  ![Console TLS](/images/guides/kots/admin-console-tls.png)
 
-Until this point, this server is just running Docker, Kubernetes, and the admin console containers.
-The next step is to upload a license file so the admin console can pull containers and run your application.
-Click the Upload button and select your `.yaml` file to continue, or drag and drop the license file from your desktop.
+  You are prompted for a password.
 
-The settings page is here with default configuration items.
-For now, if you're using the defaults you'll want to check the "Enable Ingress" box.
-You can leave the "Ingress Hostname" field blank.
-Later you'll customize what appears on this screen to collect the configuration your application needs from the customer.
+1. Enter the password from the CLI output to log in to the console.
 
-![Settings Page](/images/guides/kots/configuration.png)
+    The Upload license page opens. Until this point, this server is running Docker, Kubernetes, and the admin console containers only.
 
-Preflight checks are designed to ensure this server has the minimum system and software requirements to run the application.
-Depending on your YAML in `preflight.yaml`, you may see some of the example preflight checks fail.
-If you have failing checks, you can click continue -- the UI will show a warning that will need to be dismissed before you can continue.
+1. Click Upload and select your YAML license file or drag and drop the license file from your desktop.
+    The admin console can pull containers and run your application now.
 
-You should now be on the Version History page, which will show the initial version that was check deployed.
-Later, we'll come back to this page to deploy an update to the application.
+    The Settings page opens with default configuration items.
 
-Click the Application link on the top to see the status of the application and some basic monitoring stats (CPU, memory, disk space).
-If you are still connected to this server using SSH, `kubectl get pods` will now show the example NGINX service we just deployed.
+1. If you are using the defaults, select the **Enable Ingress** checkbox. You can leave the Ingress Hostname field blank. Click **Continue**.
 
-![Cluster](/images/guides/kots/application.png)
+    :::note
+    For production, you can customize this screen to collect the configuration that your application needs from the customer.
+    :::
+
+    ![Settings Page](/images/guides/kots/configuration.png)
+
+    The Preflight page opens.
+
+1. Click **Continue**. If there are failing checks, dismiss the warning to continue. Preflight checks are designed to help ensure this server has the minimum system and software requirements to run the application. Depending on your YAML configuration in `preflight.yaml`, you can see some of the example preflight checks fail.
+
+  The Version History page opens and displays the initial version that was deployed. Later, you will come back to this page to deploy an update to the application.
+
+1. Click **Application** on the top to see the status of the application and some basic monitoring statistics (such as CPU, memory, and disk space). If you are still connected to this server using SSH, `kubectl get pods` show the example NGINX service that you just deployed.
+
+  ![Cluster](/images/guides/kots/application.png)
 
 ## View the application
 
-Since we used the default NGINX application and enabled the Ingress object, we can view the application at `http://${INSTANCE_IP}/` with no port, and you should see a basic (perhaps familiar) NGINX server running:
+Since you used the default NGINX application and enabled the Ingress object, you can view the application at `http://${INSTANCE_IP}/` without a port and see a basic NGINX server running:
 
 ![Cluster](/images/guides/kots/example-nginx.png)
 
-Next, we'll walk through creating and delivering an update to the application we just installed.
+Next, you will create and deliver an update to the sample application.
 
-## Iterating
+## Iterate the Application
 
-From our local repo, we can update the NGINX deployment to test a simple update to the application.
-We'll add a line to `deployment.yaml`, right after `spec:`. The line to add is:
+From your local repo, you can update the NGINX deployment to test a simple update to the application.
 
-```yaml
-  replicas: 2
-```
+To make an update:
 
-Using `head` to view the first 10 lines of the file should give the output below:
+1. Add the following line to `deployment.yaml`, right after `spec:`:
 
-```shell script
-head manifests/deployment.yaml
-```
+  ```yaml
+    replicas: 2
+  ```
 
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: example-nginx
-  labels:
-    app: example
-    component: nginx
-spec:
-  replicas: 2
-  selector:
-```
+1. Use `head` to view the first 10 lines of the file:
 
-Once you've added the `replicas` line, you can create a new release:
+  ```shell script
+  head manifests/deployment.yaml
+  ```
+
+  **Example output:**
+
+  ```yaml
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: example-nginx
+    labels:
+      app: example
+      component: nginx
+  spec:
+    replicas: 2
+    selector:
+  ```
+
+1. Run the following command to create a new release:
 
 ```shell script
 replicated release create --auto
@@ -440,37 +462,38 @@ replicated release create --auto
 
 ## Update the Test Server
 
-To install and test this new release, we need to connect to the admin console dashboard on port :8800 using a web browser.
-At this point, it will likely show that our test application is "Up To Date" and that "No Updates" Are Available.
-The admin console can be configured to check for new updates at regular intervals, but for now we'll trigger a check manually by clicking "Check for Updates".
-You should see a new release in the history now.
-You can click the +/- diff numbers to review the diff, but for now let's click "Deploy" to roll out this new version.
+To install and test this new release, you must connect to the admin console dashboard on port :8800 using a web browser.
+At this point, the UI likely shows that your test application is up-to-date and that no updates are available.
+The admin console can be configured to check for new updates at regular intervals, but for now we'll trigger a check manually.
 
-![View Update](/images/guides/kots/view-update.png)
+To check for updates manually:
 
-Clicking the Deploy button will apply the new YAML which will change the number of NGINX replicas, this should only take a few seconds.
-You can verify this on the server by running
+1. Click **Check for Updates** on the Version History page.
+  You should see a new release in the history now. You can click the +/- diff numbers to review the diff.
 
-```shell script
-kubectl get pod -l component=nginx
-```
+  ![View Update](/images/guides/kots/view-update.png)
 
-You should see two pods running.
+1. Click **Deploy** to apply the new YAML, which will change the number of NGINX replicas. The deployment only takes a few seconds.
+
+1. Run the following command to verify the deployment on the server:
+
+  ```shell script
+  kubectl get pod -l component=nginx
+  ```
+
+  You should see two pods running.
 
 
 ## Next Steps
 
-From here, it's time to start iterating on your application.
-Continue making changes and using `replicated release create --auto` to publish them.
-You can add `-y` to the command to skip the prompt.
+From here, you can iterate further on your application. Continue making changes and using `replicated release create --auto` to publish them. You can add `-y` to the command to skip the prompt.
 
-
-If you want to learn more about the app manager features, you can explore some of the tutorials and packaging options, such as:
+To learn more about the app manager features, you can explore some of the tutorials and packaging options, such as:
 
 * [Integrating your release workflow with CI](tutorial-ci-cd-integration)
 * [Integrating a Helm chart](helm-overview)
 
-If you already have a release published in the [vendor portal](https://vendor.replicated.com) you'd like to use as a starting point, check out the help docs for `replicated release download`:
+If you already have a release published in the vendor portal that you want to use as a starting point, run the following command to access the help docs for `replicated release download`:
 
 ```shell script
 replicated release download --help
