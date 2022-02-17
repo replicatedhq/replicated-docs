@@ -15,28 +15,54 @@ deployments.
 * **Preflight checks**: Preflight checks allow you to define requirements and dependencies for the cluster
 on which a customer installs your application. Preflight checks provide clear
 feedback to your customer about any missing requirements or incompatibilities in
-the cluster before they install and deploy your application.
+the cluster before they install and deploy your application. This can reduce the number of support escaltions during installation.
 
-## Creating preflight checks and support bundles
+## Creating preflight checks
 
-You can create preflight checks and support bundles with the `preflight`
-and `support-bundle` plugins for the `kubectl` Kubernetes command-line tool.
+You can create preflight checks with the `preflight` plugin for the `kubectl` Kubernetes command-line tool.
 
-You define preflight checks and support bundles by creating `preflight.yaml`
-and `support-bundle.yaml` manifest files. These files specify the cluster data
-that is collected and redacted as part of the preflight check or support bundle.
-The manifest files also define how the collected data is analyzed.
+You define preflight checks by creating a `preflight.yaml`
+manifest files. This file specifies the cluster data that is collected and redacted as part of the preflight check.
+The manifest file also defines how the collected data is analyzed.
 
-You then add `preflight.yaml` and `support-bundle.yaml` manifest files
-to the application that you are packaging and distributing with Replicated.    
+You then add the `preflight.yaml` manifest file to the application that you are packaging and distributing with Replicated.    
 
-For more information about installing the `preflight` and `support-bundle` plugins,
+For more information about installing the `preflight` plugin,
 see [Getting Started](https://troubleshoot.sh/docs/) in the Troubleshoot documentation.
 
 For more information about creating preflight checks, see
 [Preflight Checks](https://troubleshoot.sh/docs/preflight/introduction/) in the
-Troubleshoot documentation.
+Troubleshoot documentation. There are also a number of basic examples for checking CPU, memory, and disk capacity under [Node Resources Analyzer](https://troubleshoot.sh/reference/analyzers/node-resources/).
+
+
+
+## Creating support bundles
+
+You can create support bundles with the `support-bundle` plugin for the `kubectl` Kubernetes command-line tool.
+
+You define support bundles by creating a `support-bundle.yaml` manifest file. This file specifies the cluster data
+that is collected and redacted as part of the support bundle. The manifest file also defines how the collected data is analyzed.
+
+You then add the `support-bundle.yaml` manifest file to the application that you are packaging and distributing with Replicated.    
+
+For more information about installing `support-bundle` plugin,
+see [Getting Started](https://troubleshoot.sh/docs/) in the Troubleshoot documentation.
 
 For more information about creating support bundles, see
 [Support Bundle](https://troubleshoot.sh/docs/support-bundle/introduction/) in the
 Troubleshoot documentation.
+
+### Bundling and Analyzing Logs with Support bundle
+
+A robust support bundle is essential to minimizing back-and-forth when things go wrong.
+At a very minimum, every app's support bundle should contain logs for an application's core pods.
+Usually this will be done with label selectors. To get the labels for an application, either inspect the YAML, or run the following YAML against a running instance to see what labels are used:
+
+```shell
+kubectl get pods --show-labels
+```
+
+Once the labels are discovered, a [logs collector](https://troubleshoot.sh/reference/collectors/pod-logs/) can be used to include logs from these pods in a bundle.
+Depending on the complexity of an app's labeling schema, you may need a few different declarations of the `logs` collector.
+
+As common issues are encountered in the field, it will make sense to add not only collectors but also analyzers to an app's troubleshooting stack. For example, when an error in a log file is discovered that should be surfaced to an end user in the future, a simple [Text Analyzer](https://troubleshoot.sh/reference/analyzers/regex/) can detect specific log lines and inform an end user of remediation steps.

@@ -1,6 +1,9 @@
 # About packaging a Kubernetes operator application
 
 Kubernetes Operators can be packaged and delivered as an application using the same methods as other Kubernetes applications.
+
+Operators are good for [specific use cases](https://blog.replicated.com/operators-in-kots/). In general, we recommend thinking deeply about the problem space an application solves before going down the Operator path because, although powerful, Operators take a lot of time to build and maintain.
+
 Operators are generally defined using one or more `CustomResourceDefinition` manifests, and the controller is often a `StatefulSet`, along with other additional objects.
 These Kubernetes manifests can be included in an application by adding them to a release and promoting the release to a channel.
 
