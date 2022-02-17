@@ -71,4 +71,4 @@ license file.
 
 ## Additional resources
 
-[How to release an application](releases-workflow)
+[How to Distribute an Application](distributing-workflow)

@@ -106,7 +106,7 @@ const sidebars = {
           type: 'category',
           label: 'Distributing Your Application',
           items: [
-            'vendor/releases-workflow',
+            'vendor/distributing-workflow',
             {
               type: 'category',
               label: 'Creating and managing channels',
