@@ -2,25 +2,29 @@
 
 This tutorial helps you use Replicated app manager to quickly deploy, install, and iterate with a sample Kubernetes application using a CLI-based workflow.
 
-For a more conceptual overview before using the CLI tools, you can start with the tutorial for [installing without an existing cluster](tutorial-installing-without-existing-cluster).
+For a more conceptual overview before using the CLI tools, you can start with the tutorial for [installing a sample application without an existing cluster](tutorial-installing-without-existing-cluster).
 
 To deploy the sample application, follow these steps:
 
-1. [Installing the replicated CLI](install-cli)
-1. [Setting a service account token](setting-a-service-account-token)
-1. [Getting some YAML ready](getting-some-yaml)
-1. [Creating a release](creating-our-first-release)
-1. [Creating a customer license](creating-a-customer-license)
-1. [Getting an install command](getting-an-install-command)
-1. [Installing the app manager](installing-kots)
-1. [Installing the application](install-the-application)
-1. [Iterating](iterating)
+1. [Install the replicated CLI](install-the-replicated-cli)
+1. [Set a service account token](set-a-service-account-token)
+1. [Get YAML manifest files](get-yaml--manifest-files)
+1. [Create a release](create-a-first-release)
+1. [Create a customer license](create-a-customer-license)
+1. [Get an installation command](get-an-installation-command)
+1. [Install the app manager](install-the-app-manager)
+1. [Install the application](install-the-application)
+1. [View the deployed application](view-the-deployed-application)
+1. [Iterate the application](iterating)
+1. [Update the test server](update-the-test-server)
 
-## Install CLI
+## Install the replicated CLI
 
 Install the replicated CLI to perform the deployment tasks.
 
-1. Install the replicated CLI. You can install using [homebrew](https://brew.sh) or using the latest Linux or macOS version from [the replicatedhq/replicated releases page](https://github.com/replicatedhq/replicated/releases).
+To install the replicated CLI:
+
+1. Use [homebrew](https://brew.sh) or the latest Linux or macOS version from [the replicatedhq/replicated releases page](https://github.com/replicatedhq/replicated/releases) to install the CLI.
 
   ```shell script
   brew install replicatedhq/replicated/cli
@@ -85,14 +89,16 @@ To export the environment variables:
   SEQUENCE    CREATED    EDITED    ACTIVE_CHANNELS
   ```
 
-## Get some YAML
+## Get YAML Manifest Files
 
-YAML manifest files are needed to create a release. You can download a sample repository to get some YAML files for this tutorial at https://github.com/replicatedhq/replicated-starter-kots.
+YAML manifest files are needed to create a release. You can download a sample repository to get YAML files for this tutorial at https://github.com/replicatedhq/replicated-starter-kots.
 
 :::note
 
-If you are using Helm charts to package your application, you can explore [Creating a release from an existing Helm chart](helm-overview) for steps on how to add the required app manager YAML files to your Helm chart after you finish reviewing this guide.
+If you are using Helm charts to package your application, you can explore [Creating a release from an existing Helm chart](helm-overview) for steps on how to add the required app manager YAML files to your Helm chart after you finish reviewing this tutorial.
 :::
+
+To get the sample YAML files:
 
 1. Run the following command to create a folder for your project:
 
@@ -155,11 +161,11 @@ git add .
 git commit -m "Initial Commit: CLI Quickstart"
 ```
 
-## Creating Your First Release
+## Create a First Release
 
-Now that you have some YAML files, you can create a release and promote it to the `Unstable` channel for internal testing.
+Now that you have some YAML manifest files, you can create a release and promote it to the `Unstable` channel for internal testing.
 
-To create and prmote a release:
+To create and promote a release:
 
 1. Run the following command with the `--auto` flag to generate release notes and metadata based on the git status.
 
@@ -183,7 +189,7 @@ To create and prmote a release:
     Create with these properties? [Y/n]
   ```
 
-1. Press Enter/Return to confirm the prompt. The release is created and promoted.
+1. Press Enter to confirm the prompt. The release is created and promoted.
 
   **Example output:**
 
@@ -195,7 +201,7 @@ To create and prmote a release:
       • Channel VEr0nhJBBUdaWpPvOIK-SOryKZEwa3Mg successfully set to release 1
   ```
 
-1. Run the following command to verify the release was created:
+1. Run the following command to verify that the release was created:
 
   ```text
   $ replicated release ls
@@ -215,7 +221,9 @@ A customer represents a single licensed end user of your application.
 
 In this example, create a customer named `Some Big Bank` with an expiration in 10 days.
 
-1. Run the following command to create the customer and assign them to a channel. In this example, since you created your release on the Unstable channel, assign the customer to the same channel:
+To create a customer license:
+
+1. Run the following command to create the customer and assign them to a channel. For this example, since you created your release on the Unstable channel, assign the customer to the same channel:
 
   ```shell script
   replicated customer create \
@@ -244,14 +252,14 @@ In this example, create a customer named `Some Big Bank` with an expiration in 1
     --customer "Some-Big-Bank"
   ```
 
-1. Because the license downloads to stdout, run the following command if you want to redirect the output to a file:
+1. Because the license downloads to `stdout`, run the following command if you want to redirect the output to a file:
 
   ```shell script
   export LICENSE_FILE=~/Desktop/Some-Big-Bank-${REPLICATED_APP}-license.yaml
   replicated customer download-license --customer "Some-Big-Bank" > "${LICENSE_FILE}"
   ```
 
-1. You can verify the license was written properly with `cat` or `head`:
+1. Verify the license was written properly using either `cat` or `head`:
 
   ```text
   $ head ${LICENSE_FILE}
@@ -301,13 +309,13 @@ AIRGAP:
     sudo bash ./install.sh airgap
 ```
 
-The output generates commands for installing on an existing cluster, and embedded Kubernetes installer-created cluster, and an air gap cluster.
+The output generates commands for installing on an [existing cluster](installing-existing-cluster-requirements), an [without an existing cluster](installing-embedded-cluster-requirements), and an [air gap cluster](installing-existing-cluster-airgapped).
 
-## Installing the Replicated App Manager
+## Installing the App Manager
 
-You can choose to do an installation [without an existing cluster](installing-embedded-cluster-requirements) (embedded cluster), [with an existing cluster](installing-existing-cluster-requirements), or do an [air gap installation](installing-existing-cluster-airgapped).
+In this case, we demonstrate an installation without an existing cluster, on a single virtual machine (VM). This type of installation is known as an embedded or Kubernetes installer-created cluster.
 
-In this case, we demonstrate an installation without an existing cluster, on a single virtual machine (VM).
+To install the app manager:
 
 1. Create a server using Google Cloud using the following criteria for this example:
 
@@ -330,7 +338,7 @@ In this case, we demonstrate an installation without an existing cluster, on a s
 
   Installation takes approximately 5-10 minutes.
 
-  After the installation script is completed, the output displays the URL you can connect to for the next part of the installation:
+  After the script completes the initial installation, the output displays the connection URL and password that you must use in a later step of the installation process:
 
   ```text
 
@@ -338,7 +346,7 @@ In this case, we demonstrate an installation without an existing cluster, on a s
   Login with password (will not be shown again): [password]
   ```
 
-1. Reload your shell using the following command to access the cluster with kubectl:
+1. Reload your shell using the following command to access the cluster with `kubectl`:
 
     ```
     bash -l
@@ -374,11 +382,13 @@ In this case, we demonstrate an installation without an existing cluster, on a s
 ## Install the Application
 
 At this point, Kubernetes and the Replicated admin console are running, but the application is not deployed yet.
-To complete the installation, visit the URL that the installation script displays when it finishes.
-Notice that the app manager cluster, created using the [Kubernetes installer](https://kurl.sh), has provisioned a self-signed certificate.
 
-When you bypass the insecure certificate warning, you have the option of uploading a trusted certificate and key.
-For production installations, we recommend using a trusted certificate. For this tutorial, use the self-signed certificate.
+To install the application:
+
+1. In a browser, enter the URL that the installation script displayed previously when it finished. Notice that the app manager cluster, created using the [Kubernetes installer](https://kurl.sh), has provisioned a self-signed certificate.
+
+  When you bypass the insecure certificate warning, you have the option of uploading a trusted certificate and key.
+  For production installations, we recommend using a trusted certificate. For this tutorial, use the self-signed certificate.
 
 1. Click **Skip & continue** to proceed using the self-signed certificate.
 
@@ -386,11 +396,11 @@ For production installations, we recommend using a trusted certificate. For this
 
   You are prompted for a password.
 
-1. Enter the password from the CLI output to log in to the console.
+1. Enter the password from the CLI output to log in to the admin console.
 
     The Upload license page opens. Until this point, this server is running Docker, Kubernetes, and the admin console containers only.
 
-1. Click Upload and select your YAML license file or drag and drop the license file from your desktop.
+1. Click Upload. Select your YAML license file or drag and drop the license file from your desktop.
     The admin console can pull containers and run your application now.
 
     The Settings page opens with default configuration items.
@@ -409,11 +419,11 @@ For production installations, we recommend using a trusted certificate. For this
 
   The Version History page opens and displays the initial version that was deployed. Later, you will come back to this page to deploy an update to the application.
 
-1. Click **Application** on the top to see the status of the application and some basic monitoring statistics (such as CPU, memory, and disk space). If you are still connected to this server using SSH, `kubectl get pods` show the example NGINX service that you just deployed.
+1. Click **Application** on the top to see the status of the application and some basic monitoring statistics (such as CPU, memory, and disk space). If you are still connected to this server using SSH, `kubectl get pods` shows the example NGINX service that you just deployed.
 
   ![Cluster](/images/guides/kots/application.png)
 
-## View the application
+## View the deployed application
 
 Since you used the default NGINX application and enabled the Ingress object, you can view the application at `http://${INSTANCE_IP}/` without a port and see a basic NGINX server running:
 
@@ -456,24 +466,24 @@ To make an update:
 
 1. Run the following command to create a new release:
 
-```shell script
-replicated release create --auto
-```
+  ```shell script
+  replicated release create --auto
+  ```
 
 ## Update the Test Server
 
-To install and test this new release, you must connect to the admin console dashboard on port :8800 using a web browser.
+To install and test this new release, you must connect to the admin console on port :8800 using a web browser.
 At this point, the UI likely shows that your test application is up-to-date and that no updates are available.
-The admin console can be configured to check for new updates at regular intervals, but for now we'll trigger a check manually.
+The admin console can be configured to check for new updates at regular intervals, but for now we will trigger a check manually.
 
 To check for updates manually:
 
 1. Click **Check for Updates** on the Version History page.
-  You should see a new release in the history now. You can click the +/- diff numbers to review the diff.
+  You should see a new release in the history now. You can click **Diff versions** to review the differences.
 
   ![View Update](/images/guides/kots/view-update.png)
 
-1. Click **Deploy** to apply the new YAML, which will change the number of NGINX replicas. The deployment only takes a few seconds.
+1. Click **Deploy** to apply the new YAML, which changes the number of NGINX replicas. The deployment only takes a few seconds.
 
 1. Run the following command to verify the deployment on the server:
 
@@ -486,7 +496,7 @@ To check for updates manually:
 
 ## Next Steps
 
-From here, you can iterate further on your application. Continue making changes and using `replicated release create --auto` to publish them. You can add `-y` to the command to skip the prompt.
+You can iterate further on your application. Continue making changes and using `replicated release create --auto` to publish them. You can add `-y` to the command to skip the prompt.
 
 To learn more about the app manager features, you can explore some of the tutorials and packaging options, such as:
 
