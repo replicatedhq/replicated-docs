@@ -32,4 +32,4 @@ We recommend that you bookmark the Replicated [vendor portal](https://vendor.rep
 
 ## Additional resources
 
-[How to release an application](releases-workflow)
+[How to Distribute an Application](distributing-workflow)

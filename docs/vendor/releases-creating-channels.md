@@ -50,4 +50,4 @@ To edit an existing channel:
 
 ## Additional resources
 
-[How to release a packaged application](releases-workflow)
+[How to Distribute an Application](distributing-workflow)

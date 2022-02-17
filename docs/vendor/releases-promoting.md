@@ -30,4 +30,4 @@ To promote a release:
 ## Additional resources
 
 * [Understanding channels and releases](releases-understanding)
-* [How to release an application](releases-workflow)
+* [How to Distribute an Application](distributing-workflow)

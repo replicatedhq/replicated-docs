@@ -34,4 +34,4 @@ installation script. See [Sharing the license file and installation script](rele
 
 ## Additional resources
 
-[How to release an application](releases-workflow)
+[How to Distribute an Application](distributing-workflow)
