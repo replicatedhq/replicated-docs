@@ -27,21 +27,15 @@ const sidebars = {
       label: 'Vendor',
       collapsed: false,
       items: [
-        {
-          type: 'category',
-          label: 'Getting started',
-          items: [
-            'vendor/getting-started-how-to-use-replicated',
-            'vendor/getting-started-creating-vendor-account',
-          ],
-        },
+        'vendor/distributing-workflow',
+        'vendor/getting-started-creating-vendor-account',
         {
           type: 'category',
           label: 'Planning your deployment',
           items: [
+            'vendor/packaging-an-app',
             'vendor/packaging-planning-checklist',
             'vendor/planning-questionnaire',
-            'vendor/packaging-an-app',
             'vendor/packaging-private-images',
             'vendor/packaging-custom-resources',
             'vendor/packaging-template-functions',
@@ -106,7 +100,6 @@ const sidebars = {
           type: 'category',
           label: 'Distributing Your Application',
           items: [
-            'vendor/distributing-workflow',
             {
               type: 'category',
               label: 'Creating and managing channels',
