@@ -28,7 +28,7 @@ const sidebars = {
       collapsed: false,
       items: [
         'vendor/distributing-workflow',
-        'vendor/getting-started-creating-vendor-account',
+        'vendor/vendor-portal-creating-account',
         {
           type: 'category',
           label: 'Planning your deployment',
