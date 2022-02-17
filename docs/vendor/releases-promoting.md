@@ -23,13 +23,6 @@ To promote a release:
 1. Click **Promote**.
 
 
-#### This content needs to be moved to the Licenses content:
-
-- Before you can create or install a license, a release must be promoted to the channel.
-- It is possible to change a license value to have updates automatically installed when detected by the running instance.
-- License values are synced with the values set in the vendor portal when the customer syncs the license.
-
-
 ## Next steps
 
 [Creating customers and downloading licenses](releases-creating-customer)
