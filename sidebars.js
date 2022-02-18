@@ -27,8 +27,14 @@ const sidebars = {
       label: 'Vendor',
       collapsed: false,
       items: [
-        'vendor/distributing-workflow',
-        'vendor/vendor-portal-creating-account',
+        {
+          type: 'category',
+          label: 'Getting started',
+          items: [
+            'vendor/getting-started-how-to-use-replicated',
+            'vendor/getting-started-creating-vendor-account',
+          ],
+        },
         {
           type: 'category',
           label: 'Planning your deployment',
@@ -102,6 +108,7 @@ const sidebars = {
           type: 'category',
           label: 'Distributing Your Application',
           items: [
+            'vendor/distributing-workflow',
             {
               type: 'category',
               label: 'Creating and managing channels',
