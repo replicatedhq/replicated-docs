@@ -9,7 +9,7 @@ Replicated:
    * [Installing a Sample Application on an Existing Cluster](tutorial-installing-with-existing-cluster).
    * [Installing a Sample Application Without an Existing Cluster](tutorial-installing-without-existing-cluster).
 1. Learn about the application packaging process and begin to plan your deployment. See [Understanding packaging with the app manager](packaging-an-app).
-1. Send a questionnaire to your customers to gather information about their environments. See [Customer Application Deployment Questionnaire](planning-questionnaire).
+1. (Recommended) Send a questionnaire to your customers to gather information about their environments. See [Customer Application Deployment Questionnaire](planning-questionnaire).
 1. (Optional) Create a custom channel or edit the default channels in the vendor portal. See [Creating and Editing Channels](releases-creating-channels).
 1. Create a release in the vendor portal and write the Kubernetes manifest files to package your application. Then, promote the release to a channel. See [Creating a Release](releases-creating-releases) and [Promoting Releases](releases-promoting).
 1. Create a license file in the vendor portal that contains entitlement information for your customer. Then, create references to the license fields that your application can query. See [Creating a Customer](releases-creating-customer) and [Referencing License Fields](licenses-referencing-fields).
