@@ -6,17 +6,17 @@ For a more conceptual overview before using the CLI tools, you can start with th
 
 To deploy the sample application, follow these steps:
 
-1. [Install the replicated CLI](install-the-replicated-cli)
-1. [Set a service account token](set-a-service-account-token)
-1. [Get YAML manifest files](get-yaml--manifest-files)
-1. [Create a release](create-a-first-release)
-1. [Create a customer license](create-a-customer-license)
-1. [Get an installation command](get-an-installation-command)
-1. [Install the app manager](install-the-app-manager)
-1. [Install the application](install-the-application)
-1. [View the deployed application](view-the-deployed-application)
-1. [Iterate the application](iterating)
-1. [Update the test server](update-the-test-server)
+1. [Install the replicated CLI](#install-the-replicated-cli)
+1. [Set a service account token](#set-a-service-account-token)
+1. [Get YAML manifest files](#get-yaml-manifest-files)
+1. [Create a release](#create-a-first-release)
+1. [Create a customer license](#create-a-customer-license)
+1. [Get an installation command](#get-an-installation-command)
+1. [Install the app manager](#install-the-app-manager)
+1. [Install the application](#install-the-application)
+1. [View the deployed application](#view-the-deployed-application)
+1. [Iterate the application](#iterate-the-application)
+1. [Update the test server](#update-the-test-server)
 
 ## Install the replicated CLI
 
@@ -311,7 +311,7 @@ AIRGAP:
 
 The output generates commands for installing on an [existing cluster](installing-existing-cluster-requirements), installing [without an existing cluster](installing-embedded-cluster-requirements), and installing on an [air gap cluster](installing-existing-cluster-airgapped).
 
-## Installing the App Manager
+## Install the App Manager
 
 In this case, we demonstrate an installation without an existing cluster, on a single virtual machine (VM). This type of installation is known as an embedded or Kubernetes installer-created cluster.
 
