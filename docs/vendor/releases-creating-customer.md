@@ -29,8 +29,7 @@ To create a customer:
 
 ## Next steps
 
-Share the license file that you created with your customer along with the
-installation script. See [Sharing the license file and installation script](releases-sharing-license-install-script).
+Create references to the license fields that your application can query. See [Referencing License Fields](licenses-referencing-fields).
 
 ## Additional resources
 

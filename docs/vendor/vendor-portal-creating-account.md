@@ -21,4 +21,8 @@ To create a vendor account:
 
 # Next steps
 
-* [Planning your deployment](packaging-planning-checklist)
+* Complete a tutorial to package, distribute, and install a sample application. See:
+   * [Installing a Sample Application with the CLI](tutorial-installing-with-cli).
+   * [Installing a Sample Application on an Existing Cluster](tutorial-installing-with-existing-cluster).
+   * [Installing a Sample Application Without an Existing Cluster](tutorial-installing-without-existing-cluster).
+* Learn about the application packaging process and begin to plan your deployment. See [Understanding packaging with the app manager](packaging-an-app).
