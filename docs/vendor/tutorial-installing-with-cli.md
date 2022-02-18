@@ -6,17 +6,17 @@ For a more conceptual overview before using the CLI tools, you can start with th
 
 To deploy the sample application, follow these steps:
 
-1. [Install the replicated CLI](install-the-replicated-cli)
-1. [Set a service account token](set-a-service-account-token)
-1. [Get YAML manifest files](get-yaml--manifest-files)
-1. [Create a release](create-a-first-release)
-1. [Create a customer license](create-a-customer-license)
-1. [Get an installation command](get-an-installation-command)
-1. [Install the app manager](install-the-app-manager)
-1. [Install the application](install-the-application)
-1. [View the deployed application](view-the-deployed-application)
-1. [Iterate the application](iterating)
-1. [Update the test server](update-the-test-server)
+1. [Install the replicated CLI](#install-the-replicated-cli)
+1. [Set a service account token](#set-a-service-account-token)
+1. [Get YAML manifest files](#get-yaml--manifest-files)
+1. [Create a release](#create-a-first-release)
+1. [Create a customer license](#create-a-customer-license)
+1. [Get an installation command](#get-an-installation-command)
+1. [Install the app manager](#install-the-app-manager)
+1. [Install the application](#install-the-application)
+1. [View the deployed application](#view-the-deployed-application)
+1. [Iterate the application](#iterating)
+1. [Update the test server](#update-the-test-server)
 
 ## Install the replicated CLI
 
