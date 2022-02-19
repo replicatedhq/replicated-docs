@@ -63,9 +63,9 @@ To promote the release:
 
 1. Click **Releases** from the top left menu.
 
-![Promote Release](/images/guides/kots/promote-release-button.png)
-
 1. Click **Promote** on the row for the release that you just created.
+
+  ![Promote Release](/images/guides/kots/promote-release-button.png)
 
   The Promote Release dialog opens.
 
@@ -93,7 +93,7 @@ To create a customer license:
 1. Edit the following fields, leaving the rest of the fields set to the default values:
 
     1. Enter your name for the Customer Name field.
-    1. Select the Unstable channel on the right hand side
+    1. Select the Unstable channel on the right hand side.
     1. Set the Customer Type to Development.
 
     ![Create Customer](/images/guides/kots/create-customer.png)
@@ -112,7 +112,7 @@ The app manager can be installed either into an existing Kubernetes cluster or a
 
 ![Installation Methods](/images/guides/kots/installation-methods-embedded.png)
 
-For this tutorial, you will use the Kubernetes installer option.
+For this tutorial, you will use the Kubernetes installer option (EMBEDDED).
 
 To create the test server and install the app manager:
 
@@ -214,7 +214,7 @@ To install the application:
 
   The Preflight page opens.
 
-1. Click **Continue**. If you have failing checks, dismiss the warning to continue.Preflight checks are designed to help ensure that this server has the minimum system and software requirements to run the application. Depending on your YAML configuration in the `preflight.yaml` file, you can see some of the example preflight checks fail.
+1. Click **Continue**. If you have failing checks, dismiss the warning to continue. Preflight checks are designed to help ensure that this server has the minimum system and software requirements to run the application. Depending on your YAML configuration in the `preflight.yaml` file, you can see some of the example preflight checks fail.
 
   The Version History page opens and displays the initial version that was deployed. Later, you will come back to this page to deploy an update to the application.
 
@@ -224,7 +224,7 @@ To install the application:
 
 ### View the Deployed Application
 
-Because you used the default NGINX application and enabled the ingress object, you can view the application at `http://${INSTANCE_IP}/` without a port, and see a basic NGINX server running:
+Because you used the default NGINX application and enabled the ingress object, you can view the application at `http://${INSTANCE_IP}/` without a port and see a basic NGINX server running:
 
 ![Cluster](/images/guides/kots/example-nginx.png)
 
