@@ -145,6 +145,13 @@ const sidebars = {
         },
         {
           type: 'category',
+          label: 'Team Managment',
+          items: [
+            'vendor/team-management',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Tutorials',
           items: [
             'vendor/tutorial-installing-without-existing-cluster',
