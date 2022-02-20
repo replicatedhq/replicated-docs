@@ -15,14 +15,14 @@ More details on these token types can be found in [Using Vendor API Tokens](repl
 
 To access the Vendor API, you need a User API Token or a Service Account (Team API tokens continue to work as well). 
 
-### To generate a User API token:
+### To generate a User API token
 
 1. Log in to the vendor portal and go to the [Account Settings](https://vendor.replicated.com/account-settings) page.
 2. Under **User API Tokens**, click **New User API Token**.
 3. Name the token and select the required permissions, then click **Create token**.
 4. Copy the user API token and save it in a secure location. The token will not be available to view again.
 
-### To generate a Service Account:
+### To generate a Service Account
 
 1. Log in to the vendor portal and go to the **Team** page.
 2. Navigate to [Service Accounts](https://vendor.replicated.com/team/serviceaccounts), click **New Service Account**.
