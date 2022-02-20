@@ -148,6 +148,7 @@ const sidebars = {
           label: 'Team Managment',
           items: [
             'vendor/team-management',
+            'vendor/team-management-google-auth',
           ],
         },
         {
