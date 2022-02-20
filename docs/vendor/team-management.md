@@ -1,6 +1,6 @@
 # Team Management
 
-The primary [Team](https://vendor.replicated.com/team/members) page is the default location to view & manage team members (invite, remove, manage permissions). 
+The primary [Team](https://vendor.replicated.com/team/members) page of the vendor portal is the default location to view & manage team members (invite, remove, manage permissions). 
 
 ## Viewing Team Members
 The [Team](https://vendor.replicated.com/team/members) page provides a list of all accounts currently associated with (or invited to) your team. Each row contains information about the user including their MFA-status, RBAC Role, and allows Admins to take some additional actions (remove, reinvite, edit permissions). The account you're currently logged in with will be annotated with "(You)".
