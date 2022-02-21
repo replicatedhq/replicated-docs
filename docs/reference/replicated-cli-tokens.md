@@ -33,7 +33,7 @@ User token names must be unique per user.
 
 User tokens are only displayed once when created. The token cannot be retrieved again after initial creation. 
 
-Revoking a user token will immediately invalidate that token. In addition, deleting the user account will also delete all user tokens that belong to the user account.
+Revoking a user token will immediately invalidate that token. Additionally, deleting the user account also deletes all user tokens that belong to the user account.
 
 Updates to a user's RBAC role are applied to the user's tokens. 
 
