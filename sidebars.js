@@ -131,6 +131,14 @@ const sidebars = {
           'vendor/releases-sharing-license-install-script',
         {
           type: 'category',
+          label: 'Team Managment',
+          items: [
+            'vendor/team-management',
+            'vendor/team-management-google-auth',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Tutorials',
           items: [
             'vendor/tutorial-installing-without-existing-cluster',
