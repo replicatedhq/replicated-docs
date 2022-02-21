@@ -35,7 +35,7 @@ If there are multiple tasks that go into the larger procedure, separate each tas
 
 ## Next step​
 
-Describe and link to the next step in the process.
+Describe and link to the next task or procedure in the process.
 
 ## Additional resources​
 
