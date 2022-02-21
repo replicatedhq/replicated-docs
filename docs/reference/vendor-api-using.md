@@ -6,7 +6,7 @@ The [replicated CLI](replicated-cli-installing) is an implementation of the Vend
 
 ## Types of Available API Tokens
 - **Service Accounts:** Independent RBAC Policies, useful for operations that are not tied to a particular user (such as CI/CD or integrations).
-- **User API Tokens:** Tied to a user account so the user inherits the RBAC policy and only exists if the user exists in the team.
+- **User API Tokens:** Tied to a user account so the user inherits the RBAC policy and only exists if the user exists in the team. Any changes to the user's RBAC are applied to all User API Tokens.
 - **Team API Tokens:** Deprecated and unable to be generated. However, you can migrate to Service Accounts instead.
 
 For more information about these token types, see [Using Vendor API Tokens](replicated-cli-tokens).
