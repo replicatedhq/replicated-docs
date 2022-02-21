@@ -1,32 +1,32 @@
 # Using the Vendor API v3
 
-The Vendor API v3 is the API to manage KOTS applications, releases, customers, licenses, and everything related to a KOTS application.
+The Vendor API v3 is the API to manage applications, releases, customers, licenses, and everything related to an application managed by the Replicated app manager.
 
 The [replicated CLI](replicated-cli-installing) is an implementation of the Vendor API v3, however you can directly use the Replicated Vendor API when it's preferred over the CLI.
 
 ## Types of Available API Tokens
-- **Service Accounts:** Independent RBAC Policies, useful for operations that aren't tied to a particular user (such as CI/CD or integrations.)
-- **User API Tokens:** Tied to a user's account so they inherit RBAC Policy and only exist if the User exists in the Team.
-- **Team API Tokens:** Deprecated and unable to be generated, please migrate to Service Accounts.
+- **Service Accounts:** Independent RBAC Policies, useful for operations that are not tied to a particular user (such as CI/CD or integrations).
+- **User API Tokens:** Tied to a user account so the user inherits the RBAC policy and only exists if the user exists in the team.
+- **Team API Tokens:** Deprecated and unable to be generated. However, you can migrate to Service Accounts instead.
 
-More details on these token types can be found in [Using Vendor API Tokens](replicated-cli-tokens).
+For more information about these token types, see [Using Vendor API Tokens](replicated-cli-tokens).
 
 ## Generate an API token
 
-To access the Vendor API, you need a User API Token or a Service Account (Team API tokens continue to work as well). 
+To access the Vendor API, you need a User API Token or a Service Account (Team API tokens also continue to work). 
 
 ### To generate a User API token
 
 1. Log in to the vendor portal and go to the [Account Settings](https://vendor.replicated.com/account-settings) page.
 2. Under **User API Tokens**, click **New User API Token**.
-3. Name the token and select the required permissions, then click **Create token**.
+3. Name the token and select the required permissions, and click **Create token**.
 4. Copy the user API token and save it in a secure location. The token will not be available to view again.
 
 ### To generate a Service Account
 
-1. Log in to the vendor portal and go to the **Team** page.
-2. Navigate to [Service Accounts](https://vendor.replicated.com/team/serviceaccounts), click **New Service Account**.
-3. Name the token and select the RBAC Policy & permissions (selecting Read Only will limit to read-only version of the selected RBAC policy), then click **Create Service Account**.
+1. Log in to the vendor portal and go to the Team page.
+2. Navigate to [Service Accounts](https://vendor.replicated.com/team/serviceaccounts), and click **New Service Account**.
+3. Name the token and select the RBAC policy and permissions (selecting Read Only limits users to read-only permissions for the selected RBAC policy), and click **Create Service Account**.
 4. Copy the user API token and save it in a secure location. The token will not be available to view again.
 
 ## Using API Tokens
