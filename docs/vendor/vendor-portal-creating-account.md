@@ -1,4 +1,4 @@
-# Creating a vendor account
+# Creating a Vendor Account
 
 To get started with Replicated, you must create a Replicated vendor account. When you create your account, you are also prompted to create an application.
 
@@ -8,7 +8,8 @@ To create a vendor account:
 
 1. Go to the [vendor portal](https://vendor.replicated.com), where you can log in or create an account.
 1. To create an account, select **Create a new team**. The Start a trial page opens.
-1. Enter your name, email, and contact information Create a password, and click **Getting Started**. An activation code is sent to the email address you registered with, and the Activate account page opens.
+1. Enter your name, email, and contact information.
+1. Create a password, and click **Getting Started**. An activation code is sent to the email address you registered with, and the Activate account page opens.
 
     **Note:** To resend the code, click **Resend it**.
 1. Copy and paste the activation code into the text box, and click **Activate**. The Create application page opens.
@@ -20,4 +21,8 @@ To create a vendor account:
 
 # Next steps
 
-* [Planning your application package](packaging-planning-checklist)
+* Complete a tutorial to package, distribute, and install a sample application. See:
+   * [Installing a Sample Application with the CLI](tutorial-installing-with-cli).
+   * [Installing a Sample Application on an Existing Cluster](tutorial-installing-with-existing-cluster).
+   * [Installing a Sample Application Without an Existing Cluster](tutorial-installing-without-existing-cluster).
+* Learn about the application packaging process and begin to plan your deployment. See [Understanding packaging with the app manager](packaging-an-app).
