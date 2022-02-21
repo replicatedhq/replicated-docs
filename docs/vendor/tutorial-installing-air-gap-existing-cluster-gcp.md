@@ -34,7 +34,7 @@ airgap-workstation        us-central1-b  n1-standard-1    10.240.0.26           
 
 
 This tutorial does a lot of network configuration for IP address management, but omits any details regarding opening ports.
-While you can open specific ports between instances and to the public web, this example is working with inter-instance traffic wide open. For more information about opening additional Transmission Control Protocol (TCP) ports, such as `32000`, and other NodePort services that you will create in this guide, see the `gcloud compute firewall-rules --help` docs.
+While you can open specific ports between instances and to the public web, this example is working with the inter-instance traffic wide open. For more information about opening additional Transmission Control Protocol (TCP) ports, such as `32000`, and other NodePort services that you will create in this guide, see the `gcloud compute firewall-rules --help` docs.
 
 Because you will use SSH tunneling for reaching the instances in the cluster, it is not necessary to open ports for those air gapped instances to have access from the outside world.
 
@@ -155,7 +155,7 @@ To create an air gapped cluster with a registry:
     'kubectl --kubeconfig /etc/kubernetes/admin.conf apply -f https://raw.githubusercontent.com/replicatedhq/replicated-automation/master/customer/existing-cluster-airgap/plain-registry.yaml'
   ```
 
-1. Configures a basic auth htpasswd that configures a username/password for `kots/kots`, which you will use later:
+1. The following gist configures a basic auth htpasswd that configures a username/password for `kots/kots`, which you will use later:
 
   ```shell script
   gcloud compute ssh ${AIRGAP_CLUSTER} -- \
@@ -176,7 +176,7 @@ To create an air gapped cluster with a registry:
 
   You should see `Pushed` if it is successful.
 
-  **Example:**
+  **Example output:**
 
   ```shell
   be8b8b42328a: Pushed
