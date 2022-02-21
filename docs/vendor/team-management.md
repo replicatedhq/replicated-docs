@@ -6,9 +6,9 @@ The primary [Team](https://vendor.replicated.com/team/members) page of the vendo
 The [Team](https://vendor.replicated.com/team/members) page provides a list of all accounts currently associated with or invited to your team. Each row contains information about the user, including their MFA-status and RBAC Role, and lets Admins take some additional actions (such as remove, reinvite, and edit permissions). The account you are currently logged in with will be annotated with "(You)".
 
 ## Inviting Members
-By default, Replicated Teams can invite more team members to collaborate from the [Team Members](https://vendor.replicated.com/team/members) page. (SAML-only enforced teams do not use the email invite flow.)
+By default, Replicated Teams can invite more team members to collaborate from the [Team Members](https://vendor.replicated.com/team/members) page. (SAML-only enforced teams do not use the email invitation flow.)
 
-To invite a new team member, click **Invite member** on the right side of the page and ener the email address of the member and their assigned RBAC policy in the dialog.
+To invite a new team member, click **Invite member** on the right side of the page and enter the email address of the member and their assigned RBAC policy in the dialog.
 
 People invited to join your team will receive an email notification to accept the invitation. They must follow the link in the email to accept the invitation and join the team. If they do not have a Replicated account already, they can create one that complies with your Password Policies, MFA and/or Google Auth requirements. If they already have a Replicated account, by accepting your invitation, they will automatically leave their current team and join the team you have invited them to.
 
