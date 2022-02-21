@@ -26,7 +26,7 @@ To access the Vendor API, you need a User API Token or a Service Account (Team A
 
 1. Log in to the vendor portal and go to the Team page.
 2. Navigate to [Service Accounts](https://vendor.replicated.com/team/serviceaccounts), and click **New Service Account**.
-3. Name the token and select the RBAC policy and permissions (selecting Read Only limits users to read-only permissions for the selected RBAC policy), and click **Create Service Account**.
+3. Name the token and select the RBAC policy and permissions. Selecting Read Only limits the token to a read-only version of the selected RBAC policy. Click **Create Service Account**.
 4. Copy the user API token and save it in a secure location. The token will not be available to view again.
 
 ## Using API Tokens
