@@ -53,7 +53,11 @@ const config = {
         contextualSearch: true,
       },
       googleAnalytics: {
-        trackingID: 'UA-61420213-4',
+        trackingID: 'UA-61420213-25',
+        anonymizeIP: true,
+      },
+      gtag: {
+        trackingID: 'GTM-W3BM5G5',
         anonymizeIP: true,
       },
       navbar: {
