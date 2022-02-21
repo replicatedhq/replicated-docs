@@ -10,7 +10,7 @@ We usually deliver 2019 air gap, which is essentially an AWS VPC without an inte
 
 Most importantly, this tutorial presents a set of steps for creating a full environment in GCP, including:
 
-* An air gapped instance running basic Kubernetes (without the Replicated app manager)
+* An air gapped instance running basic Kubernetes (without the app manager)
 * An air gapped workstation instance from which you will run the deployment
 * An online jump box server that represents a DMZ with `scp` or sneakernet access to the air gapped virtual machines (VMs)
 
@@ -299,258 +299,258 @@ Verify the Docker client on the workstation and make sure that you have `kubectl
     Digest: sha256:2131f09e4044327fd101ca1fd4043e6f3ad921ae7ee901e9142e6e36b354a907
     Status: Downloaded newer image for 10.240.0.100:32000/busybox:latest
     10.240.0.100:32000/busybox:latest
-```
+    ```
 
 #### `kubectl`
 
-Next, use SSH into the air gapped workstation. Access the `admin.conf` from the cluster and run a few `kubectl` commands to ensure that it is working:
+To access the `admin.conf` from the cluster and run a few `kubectl` commands to verify that it is working:
 
-```shell script
-gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- "ssh -A ${AIRGAP_WORKSTATION}"
-```
+1. Use SSH into the air gapped workstation:
 
-From the Airgapped workstation, run the following:
+  ```shell script
+  gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- "ssh -A ${AIRGAP_WORKSTATION}"
+  ```
 
-```shell script
-export AIRGAP_CLUSTER=airgap-cluster
-scp ${AIRGAP_CLUSTER}:admin.conf .
-export KUBECONFIG=$PWD/admin.conf
-kubectl get ns
-kubectl get pod -n kube-system
-```
+1. From the air gapped workstation, run the following command:
 
-You should see something like:
+  ```shell script
+  export AIRGAP_CLUSTER=airgap-cluster
+  scp ${AIRGAP_CLUSTER}:admin.conf .
+  export KUBECONFIG=$PWD/admin.conf
+  kubectl get ns
+  kubectl get pod -n kube-system
+  ```
 
-```text
-NAME                                     READY   STATUS    RESTARTS   AGE
-coredns-5644d7b6d9-j6gqs                 1/1     Running   0          15m
-coredns-5644d7b6d9-s7q64                 1/1     Running   0          15m
-etcd-airgap-cluster                      1/1     Running   0          14m
-kube-apiserver-airgap-cluster            1/1     Running   0          14m
-kube-controller-manager-airgap-cluster   1/1     Running   0          13m
-kube-proxy-l6fw8                         1/1     Running   0          15m
-kube-scheduler-airgap-cluster            1/1     Running   0          13m
-weave-net-7nf4z                          2/2     Running   0          15m
-```
+  **Example output:**
 
-Now, log out of the air gapped instance:
+  ```text
+  NAME                                     READY   STATUS    RESTARTS   AGE
+  coredns-5644d7b6d9-j6gqs                 1/1     Running   0          15m
+  coredns-5644d7b6d9-s7q64                 1/1     Running   0          15m
+  etcd-airgap-cluster                      1/1     Running   0          14m
+  kube-apiserver-airgap-cluster            1/1     Running   0          14m
+  kube-controller-manager-airgap-cluster   1/1     Running   0          13m
+  kube-proxy-l6fw8                         1/1     Running   0          15m
+  kube-scheduler-airgap-cluster            1/1     Running   0          13m
+  weave-net-7nf4z                          2/2     Running   0          15m
+  ```
 
-```shell script
-exit
-```
+1. Run the following command to log out of the air gapped instance:
+
+  ```shell script
+  exit
+  ```
 
 ### Installing
 
-We'll follow the instructions at [Installing from an air gap package](https://kots.io/kotsadm/installing/airgap-packages/).
+We will follow the instructions at [Installing from an Air Gap Package](https://kots.io/kotsadm/installing/airgap-packages/).
 
-Let's start by downloading the `kots` plugin and the air gap bundle to our workstation:
+1. Download the `kots` plugin and the air gap bundle to your workstation:
 
-```shell script
-gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- 'curl https://kots.io/install | bash'
-```
+  ```shell script
+  gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- 'curl https://kots.io/install | bash'
+  ```
 
-Next, let's copy the binary to our air gapped workstation from there:
+1. Copy the binary to your air gapped workstation from there:
 
-```shell script
-gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
-  scp /usr/local/bin/kubectl-kots ${AIRGAP_WORKSTATION}:
-gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
-  ssh ${AIRGAP_WORKSTATION} -- sudo cp kubectl-kots /usr/local/bin
-```
+  ```shell script
+  gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
+    scp /usr/local/bin/kubectl-kots ${AIRGAP_WORKSTATION}:
+  gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
+    ssh ${AIRGAP_WORKSTATION} -- sudo cp kubectl-kots /usr/local/bin
+  ```
 
-Next,verify that it is working:
+1. Verify that it is working:
 
-```shell script
-gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
-  ssh ${AIRGAP_WORKSTATION} -- /snap/bin/kubectl kots version
-```
+  ```shell script
+  gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
+    ssh ${AIRGAP_WORKSTATION} -- /snap/bin/kubectl kots version
+  ```
 
-You should see a version like this:
+  **Example output:**
 
-```text
-Replicated Kots 1.17.2
-```
+  ```text
+  Replicated Kots 1.17.2
+  ```
 
-Next, we need to get the air gap bundle to our workstation.
-We'll go to https://github.com/replicatedhq/kots/releases and use the version that matches the installed kots CLI (1.17.2) in this case, then copy it over:
+1. To get the air gap bundle to your workstation. You will go to https://github.com/replicatedhq/kots/releases and use the version that matches the installed kots CLI (1.17.2) in this case, and run the following command to copy it over:
 
-```shell script
-gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
-  wget https://github.com/replicatedhq/kots/releases/download/v1.17.2/kotsadm.tar.gz
-gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
-  scp ./kotsadm.tar.gz ${AIRGAP_WORKSTATION}:
-```
+  ```shell script
+  gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
+    wget https://github.com/replicatedhq/kots/releases/download/v1.17.2/kotsadm.tar.gz
+  gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
+    scp ./kotsadm.tar.gz ${AIRGAP_WORKSTATION}:
+  ```
 
-We can now push the images using this bundle:
+1. Run the following command to push the images using this bundle:
 
-```shell script
-gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
-  ssh ${AIRGAP_WORKSTATION} -- \
-  /snap/bin/kubectl kots admin-console push-images \
-  ./kotsadm.tar.gz ${CLUSTER_PRIVATE_IP}:32000/kotsadm \
-  --registry-username kots \
-  --registry-password kots
-```
+  ```shell script
+  gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
+    ssh ${AIRGAP_WORKSTATION} -- \
+    /snap/bin/kubectl kots admin-console push-images \
+    ./kotsadm.tar.gz ${CLUSTER_PRIVATE_IP}:32000/kotsadm \
+    --registry-username kots \
+    --registry-password kots
+  ```
 
-Once the images are pushed, we can run the installation.
-Copy the application slug for your application; in this case we'll use `sentry-pro`. We'll set a matching namespace as well.
+1. After the images are pushed, run the installation. Copy the application slug for your application. For this tutorial, you can use `sentry-pro` and set a matching namespace:
 
-```shell script
-export APP_SLUG=sentry-pro
-export NAMESPACE=sentry-pro
-gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
-  ssh ${AIRGAP_WORKSTATION} -- \
-  KUBECONFIG=./admin.conf /snap/bin/kubectl kots install \
-  --kotsadm-registry ${CLUSTER_PRIVATE_IP}:32000 \
-  --registry-username kots --registry-password kots \
-  ${APP_SLUG} --namespace ${NAMESPACE} --port-forward=false
-```
+  ```shell script
+  export APP_SLUG=sentry-pro
+  export NAMESPACE=sentry-pro
+  gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
+    ssh ${AIRGAP_WORKSTATION} -- \
+    KUBECONFIG=./admin.conf /snap/bin/kubectl kots install \
+    --kotsadm-registry ${CLUSTER_PRIVATE_IP}:32000 \
+    --registry-username kots --registry-password kots \
+    ${APP_SLUG} --namespace ${NAMESPACE} --port-forward=false
+  ```
 
-**NOTE** If the UI for kots prompts gives you trouble, you may also want to pass `--shared-password=...` to set a password ahead of time.
+  :::note
+  If the UI for kots prompts gives you trouble, you may also want to pass `--shared-password=...` to set a password ahead of time.
+  :::
 
-You should expect to see something like:
+  **Example output:**
 
-```text
+  ```text
 
-    Unable to pull application metadata.
-    This can be ignored, but custom branding will not be available in the Admin Console until a license is installed.
+      Unable to pull application metadata.
+      This can be ignored, but custom branding will not be available in the Admin Console until a license is installed.
 
-  • Deploying Admin Console
-    •  ✓ Creating namespace
-    •  ✓ Waiting for datastore to be ready
-  •  ✓  Waiting for Admin Console to be ready
+    • Deploying Admin Console
+      •  ✓ Creating namespace
+      •  ✓ Waiting for datastore to be ready
+    •  ✓  Waiting for Admin Console to be ready
 
-• To access the Admin Console, run kubectl kots admin-console --namespace sentry-pro
+  • To access the Admin Console, run kubectl kots admin-console --namespace sentry-pro
 
-```
+  ```
 
-## Connecting to the app manager
+## Connect to the App Manager
 
-Create a node port to expose the service:
+To connect to the app manager:
 
+1. Create a node port to expose the service:
 
-```shell script
-gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
-  ssh ${AIRGAP_WORKSTATION} -- \
-  KUBECONFIG=./admin.conf /snap/bin/kubectl \
-  -n "${NAMESPACE}" expose deployment kotsadm \
-  --target-port=3000 --port=3000 \
-  --type=NodePort --name=kotsadm-nodeport
-```
+  ```shell script
+  gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
+    ssh ${AIRGAP_WORKSTATION} -- \
+    KUBECONFIG=./admin.conf /snap/bin/kubectl \
+    -n "${NAMESPACE}" expose deployment kotsadm \
+    --target-port=3000 --port=3000 \
+    --type=NodePort --name=kotsadm-nodeport
+  ```
 
-Next, get the port and expose it locally via an SSH tunnel:
+1. Get the port and expose it locally using an SSH tunnel:
 
-```shell script
-gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
-  ssh ${AIRGAP_WORKSTATION} -- \
-  KUBECONFIG=./admin.conf /snap/bin/kubectl -n "${NAMESPACE}" \
-  get svc kotsadm-nodeport
-```
+  ```shell script
+  gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
+    ssh ${AIRGAP_WORKSTATION} -- \
+    KUBECONFIG=./admin.conf /snap/bin/kubectl -n "${NAMESPACE}" \
+    get svc kotsadm-nodeport
+  ```
 
-Assuming this is our output, we'll set the `PORT` to `40038`:
+1. Assuming this is your output, set the `PORT` to `40038`:
 
-```shell script
-NAME               TYPE       CLUSTER-IP   EXTERNAL-IP   PORT(S)          AGE
-kotsadm-nodeport   NodePort   10.96.3.54   <none>        3000:40038/TCP   6s
-```
+  ```shell script
+  NAME               TYPE       CLUSTER-IP   EXTERNAL-IP   PORT(S)          AGE
+  kotsadm-nodeport   NodePort   10.96.3.54   <none>        3000:40038/TCP   6s
+  ```
 
-Finally, create an SSH tunnel via the jump box node.
+1. Create an SSH tunnel using the jump box node.
 
-```shell script
-export CLUSTER_PRIVATE_IP=$(\
-  gcloud compute instances describe ${AIRGAP_CLUSTER} \
-  --format='get(networkInterfaces[0].networkIP)')
-```
-```shell script
-export PORT=40038
-gcloud compute ssh --ssh-flag=-N \
-  --ssh-flag="-L ${PORT}:${CLUSTER_PRIVATE_IP}:${PORT}" ${AIRGAP_JUMP}
-```
+  ```shell script
+  export CLUSTER_PRIVATE_IP=$(\
+    gcloud compute instances describe ${AIRGAP_CLUSTER} \
+    --format='get(networkInterfaces[0].networkIP)')
+  ```
+  ```shell script
+  export PORT=40038
+  gcloud compute ssh --ssh-flag=-N \
+    --ssh-flag="-L ${PORT}:${CLUSTER_PRIVATE_IP}:${PORT}" ${AIRGAP_JUMP}
+  ```
 
-
-Now, open `localhost:${PORT}` in your browser and you should get to the Replicated admin console. Proceed with the installation from there.
+1. Open `localhost:${PORT}` in your browser to access the Replicated admin console. Proceed with the installation from there.
 
 ## Troubleshooting
 
 If you run into issues, you may be able to use the support-bundle tool to collect a diagnostic bundle.
-This will only be usable once the cluster is up and you have the `admin.conf` kubeconfig on the air gapped workstation.
+This is usable only after the cluster is up and you have the `admin.conf` kubeconfig on the air gapped workstation.
 
-You will also need to download the support-bundle plugin and move it to the air gapped workstation:
+1. Run the following command to download the support-bundle plugin and move it to the air gapped workstation:
 
-```shell script
-gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
-  'curl https://krew.sh/support-bundle | bash'
-```
+  ```shell script
+  gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
+    'curl https://krew.sh/support-bundle | bash'
+  ```
 
-Next, let's copy the binary to our air gapped workstation from there:
+1. Copy the binary to our air gapped workstation from there:
 
-```shell script
-gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
-  scp .krew/bin/kubectl-support_bundle ${AIRGAP_WORKSTATION}:kubectl-support_bundle
-gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
-  ssh ${AIRGAP_WORKSTATION} -- sudo cp kubectl-support_bundle /usr/local/bin
-```
+  ```shell script
+  gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
+    scp .krew/bin/kubectl-support_bundle ${AIRGAP_WORKSTATION}:kubectl-support_bundle
+  gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
+    ssh ${AIRGAP_WORKSTATION} -- sudo cp kubectl-support_bundle /usr/local/bin
+  ```
 
-Next we can verify its working:
+1. Run the following command to verify that it working:
 
-```shell script
-gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
-  ssh ${AIRGAP_WORKSTATION} -- /snap/bin/kubectl support-bundle version
-```
+  ```shell script
+  gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
+    ssh ${AIRGAP_WORKSTATION} -- /snap/bin/kubectl support-bundle version
+  ```
 
-You should see:
+  **EXample output:**
 
-```text
-Replicated Troubleshoot 0.9.38
-```
+  ```text
+  Replicated Troubleshoot 0.9.38
+  ```
 
-Next, access the default support bundle spec for the app manager and move it to our workstation:
+1. Run the following command to access the default support bundle spec for the app manager and move it to your workstation:
 
-```shell script
-gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
-  wget https://raw.githubusercontent.com/replicatedhq/kots/master/support-bundle.yaml
-gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
-  scp support-bundle.yaml ${AIRGAP_WORKSTATION}:
-```
+  ```shell script
+  gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
+    wget https://raw.githubusercontent.com/replicatedhq/kots/master/support-bundle.yaml
+  gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
+    scp support-bundle.yaml ${AIRGAP_WORKSTATION}:
+  ```
 
+  The support bundle collects logs for all `kots` services:
 
-The support bundle collects logs for all `kots` services:
+  ```shell script
+  gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
+    ssh ${AIRGAP_WORKSTATION} -- \
+    KUBECONFIG=./admin.conf /snap/bin/kubectl support-bundle ./support-bundle.yaml
+  ```
 
-```shell script
-gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
-  ssh ${AIRGAP_WORKSTATION} -- \
-  KUBECONFIG=./admin.conf /snap/bin/kubectl support-bundle ./support-bundle.yaml
-```
+1. After the information is collected, copy the bundle to your local machine:
 
-After the information is collected, copy the bundle to your local machine:
+  ```shell script
+  gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
+    scp ${AIRGAP_WORKSTATION}:support-bundle.tar.gz .
+  gcloud compute scp ${AIRGAP_JUMP}:support-bundle.tar.gz .
+  ```
 
-```shell script
-gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
-  scp ${AIRGAP_WORKSTATION}:support-bundle.tar.gz .
-gcloud compute scp ${AIRGAP_JUMP}:support-bundle.tar.gz .
-```
+1. Extract the bundle and inspect the logs, or share it as appropriate. For now, you can list the files with `tar`:
 
-Extract the bundle and inspect the logs, or share it as appropriate.
-For now we can list the files with `tar`:
+  ```text
+  $ tar -tvf support-bundle.tar.gz
+  -rw-r--r--  0 dex    dex        98 Jul 30 15:42 version.yaml
+  drwxrwxr-x  0 dex    dex         0 Jul 30 15:42 cluster-info/
+  -rw-r--r--  0 dex    dex       321 Jul 30 15:42 cluster-info/cluster_version.json
+  drwxrwxr-x  0 dex    dex         0 Jul 30 15:42 cluster-resources/
+  drwxrwxr-x  0 dex    dex         0 Jul 30 15:42 cluster-resources/auth-cani-list/
+  -rw-r--r--  0 dex    dex       811 Jul 30 15:42 cluster-resources/auth-cani-list/default.json
+  -rw-r--r--  0 dex    dex       811 Jul 30 15:42 cluster-resources/auth-cani-list/kube-node-lease.json
+  -rw-r--r--  0 dex    dex       811 Jul 30 15:42 cluster-resources/auth-cani-list/kube-public.json
+  -rw-r--r--  0 dex    dex       811 Jul 30 15:42 cluster-resources/auth-cani-list/kube-system.json
+  -rw-r--r--  0 dex    dex       811 Jul 30 15:42 cluster-resources/auth-cani-list/registry.json
+  # ... snip ...
+  ```
 
-```text
-$ tar -tvf support-bundle.tar.gz
--rw-r--r--  0 dex    dex        98 Jul 30 15:42 version.yaml
-drwxrwxr-x  0 dex    dex         0 Jul 30 15:42 cluster-info/
--rw-r--r--  0 dex    dex       321 Jul 30 15:42 cluster-info/cluster_version.json
-drwxrwxr-x  0 dex    dex         0 Jul 30 15:42 cluster-resources/
-drwxrwxr-x  0 dex    dex         0 Jul 30 15:42 cluster-resources/auth-cani-list/
--rw-r--r--  0 dex    dex       811 Jul 30 15:42 cluster-resources/auth-cani-list/default.json
--rw-r--r--  0 dex    dex       811 Jul 30 15:42 cluster-resources/auth-cani-list/kube-node-lease.json
--rw-r--r--  0 dex    dex       811 Jul 30 15:42 cluster-resources/auth-cani-list/kube-public.json
--rw-r--r--  0 dex    dex       811 Jul 30 15:42 cluster-resources/auth-cani-list/kube-system.json
--rw-r--r--  0 dex    dex       811 Jul 30 15:42 cluster-resources/auth-cani-list/registry.json
-# ... snip ...
-```
+## Clean Up
 
-## Cleaning up
-
-To clean up, delete the servers we created:
+To clean up, delete the servers that you created:
 
 ```shell script
 gcloud compute instances delete ${AIRGAP_CLUSTER} ${AIRGAP_JUMP} ${AIRGAP_WORKSTATION}
