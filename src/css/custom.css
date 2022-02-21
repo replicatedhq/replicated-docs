@@ -9,7 +9,7 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --doc-sidebar-width: 300px !important;
+  --doc-sidebar-width: 350px !important;
   --ifm-color-primary: #00959E;
   --ifm-color-primary-dark: #00959E;
   --ifm-color-primary-darker: #00959E;

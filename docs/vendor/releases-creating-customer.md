@@ -1,6 +1,6 @@
 # Creating a customer
 
-After you promote a release, you create a customer.
+After you promote a release to a channel, you create a customer.
 
 Each customer that you create in the Replicated vendor portal has a unique license file. Each customer license uniquely identifies the customer and the application, specifies their release channel, and defines entitlement information about the customer.
 
@@ -29,9 +29,8 @@ To create a customer:
 
 ## Next steps
 
-Share the license file that you created with your customer along with the
-installation script. See [Sharing the license file and installation script](releases-sharing-license-install-script).
+Create references to the license fields that your application can query. See [Referencing License Fields](licenses-referencing-fields).
 
 ## Additional resources
 
-[How to release an application](releases-workflow)
+[How to Distribute an Application](distributing-workflow)

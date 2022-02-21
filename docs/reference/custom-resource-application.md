@@ -53,7 +53,7 @@ The icon file for the application. This will be used on the license upload and i
 The release notes for this version. These can also be set when promoting a release.
 
 ## allowRollback
-This defaults to `false`. Enable to create a "Rollback" button on the end-customer Version History page.
+This defaults to `false`. Enable this flag to create a Rollback button on the end-customer Version History page. If an application is guaranteed not to introduce backwards-incompatible versions (such as through database migrations), the `allowRollback` flag can allow end users to easily roll back to previous versions. This will not revert any state, just the YAML manifests that are applied to the cluster.
 
 ## additionalNamespaces
 An optional array of namespaces as strings.

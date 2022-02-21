@@ -1,4 +1,4 @@
-# Creating a release
+# Creating a Release
 
 We recommend that you bookmark the Replicated [vendor portal](https://vendor.replicated.com) because it is used to manage and deploy application releases.
 
@@ -16,11 +16,15 @@ We recommend that you bookmark the Replicated [vendor portal](https://vendor.rep
 
   A YAML editor displays.
 
-1. In the YAML editor, you can define how your application will work and define the integration with the Replicated app manager functionality. You can manually edit YAML on this page or use the replicated CLI and API to automate this. For more information about using the CLI, see [Installing the replicated CLI](../reference/replicated-cli-installing).
+1. In the YAML editor, package your application by providing a set of Kubernetes manifest files. These can include standard manifests such as Deployment and Service resources, as well as several custom resources that invoke app manager functions.
 
-  The default YAML documents (`replicated-app.yaml`, `preflight.yaml`, `config.yaml`, `support-bundle.yaml`) contain information for the app manager, preflight checks, customer configuration screen options, and support bundle analyzers for troubleshooting installs.
+  The _Packaging Your Application_ section includes information about how to write the manifest files for these resources. For more information, see [Understanding packaging with the app manager](packaging-an-app).
 
-  Additionally, you can add custom resource YAML files, such as Helm charts and snapshots backups. For more information about working with the custom resource YAML files, see [About custom resources](../reference/custom-resource-about).
+  For reference information about the custom resources, see [About custom resources](../reference/custom-resource-about).
+
+  :::note
+  You can manually edit the YAML for each manifest file on this page or use the replicated CLI and API to automate this. For more information about using the CLI, see [Installing the replicated CLI](../reference/replicated-cli-installing).
+  :::
 
   ![Default YAML](/images/guides/kots/default-yaml.png)
 
@@ -32,4 +36,4 @@ We recommend that you bookmark the Replicated [vendor portal](https://vendor.rep
 
 ## Additional resources
 
-[How to release an application](releases-workflow)
+[How to Distribute an Application](distributing-workflow)

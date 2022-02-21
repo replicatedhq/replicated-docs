@@ -1,7 +1,5 @@
-# What's new?
+# Overview
 
-The Replicated Platform allows software vendors to securely distribute their application to diverse customer environments, including both on-premises and cloud environments.
+New features and improvements that have been added to Replicated are documented on a per component basis in the corresponding release notes section. Component updates may be released at any time following a continuous delivery model.
 
-New features, changes, and known issues that pertain to the Replicated Platform are documented by component in the corresponding release note sections. Components are released following a continuous delivery model.
-
-Want a more comprehensive overview of what we've released across the product? Head over to the [Replicated Blog ](https://www.replicated.com/blog/) and check out our monthly Release Roundup.
+For a comprehensive overview of recent new features, check out the monthly [Replicated Release Highlights blog](https://www.replicated.com/blog/tag/replicated%20release%20highlights/). 

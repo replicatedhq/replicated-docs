@@ -1,8 +1,8 @@
-# About releasing an application
+# About Releases
 
 The Replicated [vendor portal](https://vendor.replicated.com) provides you with a location to create and release versions of your application to various release channels. The vendor portal hosts a built-in YAML editor and linter to help you write and validate manifest files.
 
-## Semantic versioning
+## Semantic Versioning
 Semantic versioning is available in the app manager v1.58.0 and later. You can use the semantic version format for the version label that you assign to a release in the Replicated admin console. For more information about semantic versioning, see [Semantic Versioning 2.0.0](https://semver.org).
 
 **Note:** If you use semantic versioning on a channel, we recommend that you always use semantic versioning on that channel.
@@ -11,7 +11,7 @@ If the version label that you assign to a channel is in the semantic version for
 
 For releases that do not use semantic versioning, the admin console sequences them in the order of their creation.
 
-## About promoting releases
+## About Promoting Releases
 After a release is ready to be installed, the release can be promoted to one or more release channels.
 
 Every Replicated license points to a release channel.
