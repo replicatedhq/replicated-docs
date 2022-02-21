@@ -1,6 +1,6 @@
 # Using Vendor API Tokens
 
-Using the [replicated CLI](replicated-cli-installing) and [Vendor REST API](vendor-api-using) requires a token for authorization.  Replicated supports two types of tokens: Service Accounts, User Tokens. Existing team tokens continue to work but are deprecated and new team tokens cannot be created.
+Using the [replicated CLI](replicated-cli-installing) and [Vendor REST API](vendor-api-using) requires a token for authorization.  Replicated supports two types of tokens: Service Accounts and User Tokens. Existing team tokens continue to work but are deprecated and new team tokens cannot be created.
 
 Some operations can only be performed by a user logged into the vendor portal. The following administrative resources can only be executed by a logged-in user and cannot be managed with token-based authentication:
 
@@ -21,9 +21,9 @@ Users can also assign write or read only permissions. The associated token appli
 
 Service account names must be unique within a given team.
 
-Service account tokens are only displayed once when created. The token may never be retrieved again after initial creation. 
+Service account tokens are only displayed once when created. The token cannot be retrieved again after initial creation. 
 
-Updates to a service account's RBAC policy are automatically applied to its associated token. When a service account is removed, it's token is also invalidated.
+Updates to a service account's RBAC policy are automatically applied to its associated token. When a service account is removed, its token is also invalidated.
 
 ## User Tokens
 
@@ -39,6 +39,6 @@ Updates to a user's RBAC role are applied to the user's tokens.
 
 ## Team Tokens
 
-Team tokens are deprecated, but continue to function similar to Service Accounts. Team tokens are not connected to a user account's lifecycle. Team tokens do not have an RBAC policy applied other than "Admin" or "Read Only". All use cases for a team token can be replaced with a Service Account.
+Team tokens are deprecated, but continue to function similar to Service Accounts. Team tokens are not connected to a user account lifecycle. Team tokens do not have an RBAC policy applied other than Admin or Read Only. All use cases for a team token can be replaced with a Service Account.
 
-It's recommended to replace Team Tokens with Service Accounts for automation and integrations.
+We recommended replacing Team Tokens with Service Accounts for automation and integrations.
