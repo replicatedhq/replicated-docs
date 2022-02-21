@@ -31,7 +31,7 @@ User tokens are private to the user creating the token. User tokens assume the u
 
 User token names must be unique per user.
 
-User tokens are only displayed once when created. The token may never be retrieved again after initial creation. 
+User tokens are only displayed once when created. The token cannot be retrieved again after initial creation. 
 
 Revoking a user token will immediately invalidate that token. In addition, deleting the user account will also delete all user tokens that belong to the user account.
 
