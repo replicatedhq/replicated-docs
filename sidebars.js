@@ -29,6 +29,17 @@ const sidebars = {
       items: [
         'vendor/distributing-workflow',
         'vendor/vendor-portal-creating-account',
+        {
+          type: 'category',
+          label: 'Quick Start Tutorials with Sample Applications',
+          items: [
+            'vendor/tutorial-installing-without-existing-cluster',
+            'vendor/tutorial-installing-with-existing-cluster',
+            'vendor/tutorial-installing-with-cli',
+            'vendor/tutorial-installing-air-gap',
+            'vendor/tutorial-installing-air-gap-existing-cluster-gcp',
+          ]
+        },
         'vendor/planning-questionnaire',
           {
             type: 'category',
@@ -141,11 +152,6 @@ const sidebars = {
           type: 'category',
           label: 'Tutorials',
           items: [
-            'vendor/tutorial-installing-without-existing-cluster',
-            'vendor/tutorial-installing-with-existing-cluster',
-            'vendor/tutorial-installing-with-cli',
-            'vendor/tutorial-installing-air-gap',
-            'vendor/tutorial-installing-air-gap-existing-cluster-gcp',
             'vendor/tutorial-ecr-private-images',
             'vendor/tutorial-ha-cluster-deploying',
             'vendor/tutorial-ci-cd-integration',

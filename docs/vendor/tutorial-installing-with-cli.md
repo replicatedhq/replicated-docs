@@ -1,4 +1,4 @@
-# Installing a Sample Application with the CLI
+# Managing Releases with the CLI
 
 This tutorial helps you use Replicated app manager to quickly deploy, install, and iterate with a sample Kubernetes application using a CLI-based workflow.
 

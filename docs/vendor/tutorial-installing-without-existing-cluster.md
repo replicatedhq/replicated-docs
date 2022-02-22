@@ -1,4 +1,4 @@
-# Installing applications without an existing cluster
+# Installing without an Existing Cluster
 
 This topic demonstrates packaging and installing a simple NGINX application in Kubernetes using a single virtual machine (VM).
 
