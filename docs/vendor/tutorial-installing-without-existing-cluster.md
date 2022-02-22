@@ -108,11 +108,9 @@ To create a customer license:
 
 ### Create a Test Server and Install the App Manager
 
-The app manager can be installed either into an existing Kubernetes cluster or as a Kubernetes installer-created cluster (embedded cluster). You can see the installation options at the bottom of each channel on the Channels page.
+The app manager can be installed either into an existing Kubernetes cluster or as a Kubernetes installer-created cluster (embedded cluster). You can see the installation options at the bottom of each channel on the Channels page. For this tutorial, you will use the Kubernetes installer, or _embedded cluster_, option.
 
 ![Installation Methods](/images/guides/kots/installation-methods-embedded.png)
-
-For this tutorial, you will use the Kubernetes installer option (EMBEDDED).
 
 To create the test server and install the app manager:
 
