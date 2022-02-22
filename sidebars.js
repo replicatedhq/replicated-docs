@@ -59,7 +59,6 @@ const sidebars = {
                 type: 'category',
                 label: 'Packaging Your Application',
                 items: [
-                  'vendor/packaging-an-app',
                   'vendor/repository-workflow-and-tagging-releases',
                   'vendor/packaging-private-images',
                   'vendor/database-config-adding-options',
