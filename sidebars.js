@@ -74,7 +74,7 @@ const sidebars = {
                   'vendor/identity-service-configuring',
                   {
                       type: 'category',
-                      label: 'Snapshots',
+                      label: 'Configuring Backup and Restore',
                       items: [
                         'vendor/snapshots-overview',
                         'vendor/snapshots-configuring-backups',
@@ -129,7 +129,7 @@ const sidebars = {
           },
           {
             type: 'category',
-            label: 'Creating a Customer',
+            label: 'Creating and Managing Customers',
             items: [
               'vendor/releases-creating-customer',
               'vendor/licenses-about',
@@ -455,4 +455,3 @@ const sidebars = {
 };
 
 module.exports = sidebars;
-
