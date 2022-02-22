@@ -188,7 +188,7 @@ To create an air gapped cluster with a registry:
   Error response from daemon: Get https://<CLUSTER_PUBLIC_IP>:32000/v2/: http: server gave HTTP response to HTTPS client
   ```
 
-1. If you are testing using docker-for-mac, you can use the settings to add the folllwing:
+1. If you are testing using docker-for-mac, you can use the settings to add the following:
 
   ```json
   {
@@ -215,7 +215,7 @@ To create an air gapped cluster with a registry:
     "ssh ${AIRGAP_CLUSTER} 'curl -v https://kubernetes.io'"
   ```
 
-  This command should hang, and you might see something with `Network is unreachable`:
+  This command should hang, and you can see a message such as `Network is unreachable`:
 
   ```text
     0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0*   Trying 2607:f8b0:4001:c05::64...
@@ -243,7 +243,7 @@ Verify the Docker client on the workstation and make sure that you have `kubectl
   ```
 
 1. Create a docker daemon config to trust this registry from the workstation and from the cluster.
-    1. First, let's quickly verify that no existing daemon JSON config exists on the workstation (if it does, you'll have to modify the next step slightly to just add the registry setting).
+    1. Run the following command to verify that no existing daemon JSON config exists on the workstation (if it does, you'll have to modify the next step slightly to just add the registry setting).
 
       ```shell script
       gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
@@ -493,14 +493,14 @@ This is usable only after the cluster is up and you have the `admin.conf` kubeco
     ssh ${AIRGAP_WORKSTATION} -- sudo cp kubectl-support_bundle /usr/local/bin
   ```
 
-1. Run the following command to verify that it working:
+1. Run the following command to verify that it is working:
 
   ```shell script
   gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
     ssh ${AIRGAP_WORKSTATION} -- /snap/bin/kubectl support-bundle version
   ```
 
-  **EXample output:**
+  **Example output:**
 
   ```text
   Replicated Troubleshoot 0.9.38
@@ -515,7 +515,7 @@ This is usable only after the cluster is up and you have the `admin.conf` kubeco
     scp support-bundle.yaml ${AIRGAP_WORKSTATION}:
   ```
 
-  The support bundle collects logs for all `kots` services:
+  The collected support bundle collects logs for all `kots` services.
 
   ```shell script
   gcloud compute ssh --ssh-flag=-A ${AIRGAP_JUMP} -- \
@@ -531,7 +531,7 @@ This is usable only after the cluster is up and you have the `admin.conf` kubeco
   gcloud compute scp ${AIRGAP_JUMP}:support-bundle.tar.gz .
   ```
 
-1. Extract the bundle and inspect the logs, or share it as appropriate. For now, you can list the files with `tar`:
+1. Extract the bundle and inspect the logs, or share it as appropriate. For now, you can list the files using `tar`:
 
   ```text
   $ tar -tvf support-bundle.tar.gz
