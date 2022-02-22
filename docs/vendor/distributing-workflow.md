@@ -14,6 +14,6 @@ Replicated:
 1. Create a release in the vendor portal and write the Kubernetes manifest files to package your application. Then, promote the release to a channel. See [Creating a Release](releases-creating-releases) and [Promoting Releases](releases-promoting).
 1. Create a license file in the vendor portal that contains entitlement information for your customer. Then, create references to the license fields that your application can query. See [Creating a Customer](releases-creating-customer) and [Referencing License Fields](licenses-referencing-fields).
 1. Test your release by following the application installation procedures in the _Enterprise_ documentation. See [Overview of Installing an Application](../enterprise/installing-overview).
-1. Continue to iterate through the above steps until you are ready to share the
-application with your customers.
+1. Continue to iterate by [updating the release](releases-updating) until you are ready to share the
+application with your customers. After each release is promoted with your iterative manifest configuration changes, you [update the application in the admin console](../enterprise/updating-apps) to test the changes.
 1. Share the license file that you created and the installation script available in the vendor portal with each customer. See [Sharing the License File and Installation Script](releases-sharing-license-install-script).
