@@ -116,12 +116,12 @@ To create the test server and install the app manager:
 
 1. Create a server using Google Cloud and the following criteria:
 
-  * Ubuntu 18.04
-  * At least 8 GB of RAM
-  * 4 CPU cores
-  * At least 40GB of disk space
+    * Ubuntu 18.04
+    * At least 8 GB of RAM
+    * 4 CPU cores
+    * At least 40GB of disk space
 
-  :::note:
+  :::note
   You can also use any cloud provider or local virtual machine.
   :::
 
