@@ -1,4 +1,4 @@
-# Helm processing
+# How the App Manager Processes Helm Charts
 
 ## Native Helm
 

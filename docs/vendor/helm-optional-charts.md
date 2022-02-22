@@ -1,4 +1,4 @@
-# Optional charts
+# Including Optional Charts
 
 > This topic applies to both native Helm and Replicated Helm installations.
 
