@@ -1,4 +1,4 @@
-# How to Distribute an Application
+# How to Distribute a Production Application
 
 Complete the following procedures to distribute your application to your customers with
 Replicated:
