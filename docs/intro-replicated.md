@@ -47,5 +47,5 @@ For information about the Vendor API v3, see [Using the Vendor API v3](reference
 
 For information about the replicated CLI, see [Installing the replicated CLI](reference/replicated-cli-installing).
 
-For information about the kots CLI, see [Getting Started with KOTS](https://kots.io/kots-cli/getting-started/)
+For information about the kots CLI, see [Getting Started with KOTS](reference/kots-cli-getting-started)
 in the kots CLI documentation.
