@@ -1,4 +1,4 @@
-# Custom resources
+# Custom Resources
 
 A Replicated app manager application can include several recommended, but optional custom resources.
 These custom resources are packaged as part of the application, but are not deployed to the cluster.

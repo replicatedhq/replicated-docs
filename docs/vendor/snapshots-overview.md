@@ -1,4 +1,4 @@
-# Snapshots overview
+# Snapshots Overview
 
 Snapshots is the backup and restore feature for applications. This is an optional feature, and it requires that licenses have the Allow Snapshots feature enabled.
 

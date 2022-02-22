@@ -1,4 +1,4 @@
-# Using private image registries
+# Connecting to an Image Registry
 
 You can use the Replicated private registry or any supported
 external private or public registry with your application.

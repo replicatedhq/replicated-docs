@@ -1,4 +1,4 @@
-# Adding buttons and links
+# Adding Buttons and Links
 
 When distributing an application, it’s helpful to make sure that the person or process performing the installation can easily verify that the application is running.
 Networking and ingress is handled differently in each cluster and this makes it difficult to provide a consistent URL at application packaging time, and even likely requires that the cluster operator creates firewall rules before they can test the application installation.

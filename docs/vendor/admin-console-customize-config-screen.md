@@ -1,4 +1,4 @@
-# Customizing the configuration screen
+# Customizing the Configuration Screen
 
 Applications can include a robust, custom configuration page.
 This is a dynamic form that can be used to prompt for, validate and generate inputs that are needed to start the application. During installation, the customer will be directed to this page after uploading a license if there are required fields.

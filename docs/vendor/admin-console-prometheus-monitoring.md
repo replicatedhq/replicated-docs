@@ -1,4 +1,4 @@
-# Adding custom graphs
+# Adding Custom Graphs
 
 By default, when installing an application into an embedded cluster, the Prometheus monitoring system will be included alongside the application.
 This will collect valuable metrics about the cluster as well as the application and expose graphs with key metrics on the dashboard of the admin console.
