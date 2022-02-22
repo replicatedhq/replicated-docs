@@ -1,4 +1,4 @@
-# Installing a Sample Application without an Existing Cluster
+# Installing without an Existing Cluster
 
 This tutorial demonstrates packaging and installing a sample NGINX application in Kubernetes using a single virtual machine (VM).
 

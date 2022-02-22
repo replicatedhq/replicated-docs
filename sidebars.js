@@ -27,131 +27,131 @@ const sidebars = {
       label: 'Vendor',
       collapsed: false,
       items: [
+        'vendor/distributing-workflow',
+        'vendor/vendor-portal-creating-account',
         {
           type: 'category',
-          label: 'Getting started',
-          items: [
-            'vendor/getting-started-how-to-use-replicated',
-            'vendor/getting-started-creating-vendor-account',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Planning your deployment',
-          items: [
-            'vendor/planning-questionnaire',
-            'vendor/repository-workflow-and-tagging-releases',
-            'vendor/packaging-an-app',
-            'vendor/packaging-private-images',
-            'vendor/database-config-adding-options',
-            'vendor/packaging-custom-resources',
-            'vendor/packaging-template-functions',
-            'vendor/packaging-include-resources',
-            'vendor/namespaces',
-            'vendor/packaging-ingress',
-            'vendor/packaging-using-tls-certs',
-            'vendor/packaging-cleaning-up-jobs',
-            'vendor/packaging-rbac',
-            'vendor/identity-service-configuring',
-            {
-                type: 'category',
-                label: 'Snapshots',
-                items: [
-                  'vendor/snapshots-overview',
-                  'vendor/snapshots-configuring-backups',
-                  'vendor/snapshots-backup-hooks',
-              ],
-            },
-            'vendor/preflight-support-bundle-creating',
-            {
-              type: 'category',
-              label: 'Customizing the admin console and download portal',
-              items: [
-                'vendor/admin-console-customize-app-icon',
-                'vendor/admin-console-display-app-status',
-                'vendor/admin-console-adding-buttons-links',
-                'vendor/admin-console-prometheus-monitoring',
-                'vendor/admin-console-customize-config-screen',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Packaging an application using Helm charts',
-              items: [
-                'vendor/helm-overview',
-                'vendor/helm-chart-components',
-                'vendor/helm-applications',
-                'vendor/helm-optional-charts',
-                'vendor/helm-optional-value-keys',
-                'vendor/helm-airgap-builder',
-                'vendor/helm-installing-native-helm',
-                'vendor/helm-native-helm-install-order',
-                'vendor/helm-installing-replicated-helm',
-                'vendor/helm-processing',
-                'vendor/helm-mapping-example',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Packaging a Kubernetes Operator application',
-              items: [
-                'vendor/operator-packaging-about',
-                'vendor/operator-defining-additional-images',
-                'vendor/operator-referencing-images',
-                'vendor/operator-defining-additional-namespaces',
-              ],
-            },
-            'vendor/packaging-embedded-kubernetes',
-            ],
-          },
-        {
-          type: 'category',
-          label: 'Distributing Your Application',
-          items: [
-            'vendor/distributing-workflow',
-            {
-              type: 'category',
-              label: 'Creating and managing channels',
-              items: [
-                'vendor/releases-creating-channels',
-                'vendor/releases-about-channels',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Creating and managing releases',
-              items: [
-                'vendor/releases-understanding',
-                'vendor/releases-creating-releases',
-                'vendor/releases-promoting',
-                'vendor/releases-updating',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Creating a customer',
-              items: [
-                'vendor/releases-creating-customer',
-                'vendor/licenses-about',
-                'vendor/licenses-about-types',
-                'vendor/licenses-using-builtin-fields',
-                'vendor/licenses-adding-custom-fields',
-                'vendor/licenses-referencing-fields',
-              ],
-            },
-
-            'vendor/releases-sharing-license-install-script',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Tutorials',
+          label: 'Quick Start Tutorials with Sample Applications',
           items: [
             'vendor/tutorial-installing-without-existing-cluster',
             'vendor/tutorial-installing-with-existing-cluster',
             'vendor/tutorial-installing-with-cli',
             'vendor/tutorial-installing-air-gap',
             'vendor/tutorial-installing-air-gap-existing-cluster-gcp',
+          ]
+        },
+        'vendor/planning-questionnaire',
+          {
+            type: 'category',
+            label: 'Creating and Managing Channels',
+            items: [
+              'vendor/releases-creating-channels',
+              'vendor/releases-about-channels',
+            ],
+          },
+          {
+            type: 'category',
+            label: 'Creating and Managing Releases',
+            items: [
+              'vendor/releases-understanding',
+              'vendor/releases-creating-releases',
+              {
+                type: 'category',
+                label: 'Packaging Your Application',
+                items: [
+                  'vendor/packaging-an-app',
+                  'vendor/repository-workflow-and-tagging-releases',
+                  'vendor/packaging-private-images',
+                  'vendor/database-config-adding-options',
+                  'vendor/packaging-custom-resources',
+                  'vendor/packaging-template-functions',
+                  'vendor/packaging-include-resources',
+                  'vendor/namespaces',
+                  'vendor/packaging-ingress',
+                  'vendor/packaging-using-tls-certs',
+                  'vendor/packaging-cleaning-up-jobs',
+                  'vendor/packaging-rbac',
+                  'vendor/identity-service-configuring',
+                  {
+                      type: 'category',
+                      label: 'Snapshots',
+                      items: [
+                        'vendor/snapshots-overview',
+                        'vendor/snapshots-configuring-backups',
+                        'vendor/snapshots-backup-hooks',
+                    ],
+                  },
+                  'vendor/preflight-support-bundle-creating',
+                  {
+                    type: 'category',
+                    label: 'Customizing the Admin Console and Download Portal',
+                    items: [
+                      'vendor/admin-console-customize-app-icon',
+                      'vendor/admin-console-display-app-status',
+                      'vendor/admin-console-adding-buttons-links',
+                      'vendor/admin-console-prometheus-monitoring',
+                      'vendor/admin-console-customize-config-screen',
+                    ],
+                  },
+                  {
+                    type: 'category',
+                    label: 'Packaging an Application Using Helm charts',
+                    items: [
+                      'vendor/helm-overview',
+                      'vendor/helm-chart-components',
+                      'vendor/helm-applications',
+                      'vendor/helm-optional-charts',
+                      'vendor/helm-optional-value-keys',
+                      'vendor/helm-airgap-builder',
+                      'vendor/helm-installing-native-helm',
+                      'vendor/helm-native-helm-install-order',
+                      'vendor/helm-installing-replicated-helm',
+                      'vendor/helm-processing',
+                      'vendor/helm-mapping-example',
+                    ],
+                  },
+                  {
+                    type: 'category',
+                    label: 'Packaging a Kubernetes Operator Application',
+                    items: [
+                      'vendor/operator-packaging-about',
+                      'vendor/operator-defining-additional-images',
+                      'vendor/operator-referencing-images',
+                      'vendor/operator-defining-additional-namespaces',
+                    ],
+                  },
+                  'vendor/packaging-embedded-kubernetes',
+                ],
+              },
+              'vendor/releases-promoting',
+              'vendor/releases-updating',
+            ],
+          },
+          {
+            type: 'category',
+            label: 'Creating a Customer',
+            items: [
+              'vendor/releases-creating-customer',
+              'vendor/licenses-about',
+              'vendor/licenses-about-types',
+              'vendor/licenses-using-builtin-fields',
+              'vendor/licenses-adding-custom-fields',
+              'vendor/licenses-referencing-fields',
+            ],
+          },
+          'vendor/releases-sharing-license-install-script',
+        {
+          type: 'category',
+          label: 'Team Management',
+          items: [
+            'vendor/team-management',
+            'vendor/team-management-google-auth',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Tutorials',
+          items: [
             'vendor/tutorial-ecr-private-images',
             'vendor/tutorial-ha-cluster-deploying',
             'vendor/tutorial-ci-cd-integration',
@@ -455,3 +455,4 @@ const sidebars = {
 };
 
 module.exports = sidebars;
+

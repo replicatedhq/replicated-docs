@@ -1,4 +1,4 @@
-# Installing applications with an existing cluster
+# Installing with an Existing Cluster
 
 This topic demonstrates packaging and installing a simple NGINX application in Kubernetes on an existing cluster in GKE (or another cluster you have handy).
 

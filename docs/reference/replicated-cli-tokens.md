@@ -1,8 +1,9 @@
 # Using Vendor API Tokens
 
-Using the [replicated CLI](replicated-cli-installing) and [Vendor REST API](vendor-api-using) requires a token for authorization.  Replicated supports three types of tokens: Team, Service Account and User Tokens.
+Using the [replicated CLI](replicated-cli-installing) and [Vendor REST API](vendor-api-using) requires a token for authorization.  Replicated supports two types of tokens: Service Accounts and User Tokens. Existing team tokens continue to work but are deprecated and new team tokens cannot be created.
 
 Some operations can only be performed by a user logged into the vendor portal. The following administrative resources can only be executed by a logged-in user and cannot be managed with token-based authentication:
+
 - Team members
 - Tokens
 - Notifications
@@ -10,7 +11,7 @@ Some operations can only be performed by a user logged into the vendor portal. T
 - User Tokens
 - Service Account Tokens
 
-Tokens are primarily used with the replicated CLI or REST API commands for automated customer, channel, and release management.
+Tokens are primarily used with the [vendor api](vendor-api-using) and the [replicated CLI](replicated-cli-installing) for automated customer, channel, and release management.
 
 ## Service Accounts
 
@@ -20,9 +21,9 @@ Users can also assign write or read only permissions. The associated token appli
 
 Service account names must be unique within a given team.
 
-Service account tokens are only displayed once when created. The token may never be retrieved again after initial creation. It is highly recommended to store the token in a safe place, such as a password vault.
+Service account tokens are only displayed once when created. The token cannot be retrieved again after initial creation. 
 
-Updates to a service account's RBAC policy are automatically applied to its associated token. When a service account is removed, it's token is also invalidated.
+Updates to a service account's RBAC policy are automatically applied to its associated token. When a service account is removed, its token is also invalidated.
 
 ## User Tokens
 
@@ -30,16 +31,14 @@ User tokens are private to the user creating the token. User tokens assume the u
 
 User token names must be unique per user.
 
-User tokens are only displayed once when created. The token may never be retrieved again after initial creation. It is highly recommended to store the token in a safe place, such as a password vault.
+User tokens are only displayed once when created. The token cannot be retrieved again after initial creation. 
 
-Revoking a user token will immediately invalidate that token.
+Revoking a user token will immediately invalidate that token. Additionally, deleting the user account also deletes all user tokens that belong to the user account.
 
-Updates to a user's RBAC role are applied to the user's tokens. A removed user's tokens are immediately invalidated.
+Updates to a user's RBAC role are applied to the user's tokens. 
 
 ## Team Tokens
 
-Team tokens are available to all members of the vendor team. These tokens can be created, retrieved, and revoked by any user with the proper RBAC policy.
+Team tokens are deprecated, but continue to function similar to Service Accounts. Team tokens are not connected to a user account lifecycle. Team tokens do not have an RBAC policy applied other than Admin or Read Only. All use cases for a team token can be replaced with a Service Account.
 
-Team tokens can be set to Read Only or Read / Write privileges. This privilege applies to the entirety of the team where the team token is created.
-
-It is recommended to first leverage user and service account tokens as they provide more robust privilege control and flexibility.
+We recommended replacing Team Tokens with Service Accounts for automation and integrations.

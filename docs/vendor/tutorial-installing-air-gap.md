@@ -1,4 +1,4 @@
-# Installing in an air gapped environment
+# Installing in an Air Gapped Environment
 
 This advanced guide shows how to install the Replicated app manager in an air gapped environment.
 This guide assumes that you have already completed one of the [Getting Started Guides](/vendor/guides/#getting-started) to set up a non-airgapped cluster.

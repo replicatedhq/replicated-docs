@@ -22,7 +22,7 @@ define Kubernetes manifest files, including application manifests and custom res
 manifests, for their application. These files describe to the app manager how to
 package the application for distribution. Vendors can also use the vendor portal
 to manage other artifacts, such as customer license files, image registries, and
-release channels. For more information, see [Creating a vendor account](vendor/getting-started-creating-vendor-account).
+release channels. For more information, see [Creating a Vendor Account](vendor/vendor-portal-creating-account).
 * **App manager**: The app manager reads the Kubernetes manifest files that
 the vendor defines to package and install an application on a Kubernetes cluster
 in a customer environment. It also installs the admin console along with the application.
@@ -47,5 +47,5 @@ For information about the Vendor API v3, see [Using the Vendor API v3](reference
 
 For information about the replicated CLI, see [Installing the replicated CLI](reference/replicated-cli-installing).
 
-For information about the kots CLI, see [Getting Started with KOTS](https://kots.io/kots-cli/getting-started/)
+For information about the kots CLI, see [Getting Started with KOTS](reference/kots-cli-getting-started)
 in the kots CLI documentation.
