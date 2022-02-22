@@ -145,6 +145,7 @@ ol ol ol {
   padding: 0.2em 0.6em 0.3em;
   display: inline;
   font-weight: 400;
+  margin-bottom: 10px;
 }
 
 .label-green {
