@@ -5,9 +5,9 @@ Replicated:
 
 1. Create your account in the Replicated vendor portal. See [Creating a Vendor Account](vendor-portal-creating-account).
 1. (Recommended) Complete a tutorial to package, distribute, and install a sample application. See:
-   * [Installing a Sample Application with the CLI](tutorial-installing-with-cli).
-   * [Installing a Sample Application on an Existing Cluster](tutorial-installing-with-existing-cluster).
-   * [Installing a Sample Application Without an Existing Cluster](tutorial-installing-without-existing-cluster).
+   * [Managing Releases with the CLI](tutorial-installing-with-cli).
+   * [Installing with an Existing Cluster](tutorial-installing-with-existing-cluster).
+   * [Installing without an Existing Cluster](tutorial-installing-without-existing-cluster).
 1. Learn about the application packaging process and begin to plan your deployment. See [Understanding packaging with the app manager](packaging-an-app).
 1. (Recommended) Send a questionnaire to your customers to gather information about their environments. See [Customer Application Deployment Questionnaire](planning-questionnaire).
 1. (Optional) Create a custom channel or edit the default channels in the vendor portal. See [Creating and Editing Channels](releases-creating-channels).
