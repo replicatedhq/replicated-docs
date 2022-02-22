@@ -16,7 +16,7 @@ Most importantly, this tutorial presents a set of steps for creating a full envi
 
 If you are planning to deploy your application to air gapped Amazon EKS, Red Hat Openshift, or another locked-down Kubernetes cluster, this tutorial is a great way to set up a testing environment in which to experiment.
 
-## Prerequisite
+## Prerequisites
 
 * Complete the [existing cluster quickstart](/vendor/guides/existing-cluster) to set up a non-air gapped cluster.
 
@@ -38,9 +38,9 @@ While you can open specific ports between instances and to the public web, this 
 
 Because you will use SSH tunneling for reaching the instances in the cluster, it is not necessary to open ports for those air gapped instances to have access from the outside world.
 
-### Instances
+### Create Instances
 
-Pick some names for your instances, for example:
+Pick some names for your instances and export them, for example:
 
 ```shell script
 export AIRGAP_JUMP=airgap-jump
@@ -48,10 +48,9 @@ export AIRGAP_WORKSTATION=airgap-workstation
 export AIRGAP_CLUSTER=airgap-cluster
 ```
 
-### Jump Box
+### Create a Jump Box
 
 Create a VM with a public IP. This will be your jump box with both public internet access and access to the air gapped environment.
-
 
 ```shell script
 gcloud compute instances create ${AIRGAP_JUMP} \
@@ -60,7 +59,7 @@ gcloud compute instances create ${AIRGAP_JUMP} \
   --machine-type n1-standard-1
 ```
 
-### Air Gapped Workstation
+### Create an Air Gapped Workstation
 
 To create an air gapped workstation:
 
@@ -112,7 +111,7 @@ You will forward the SSH agent with `--ssh-flag=-A` so that you can use SSH to a
 1. After you are satisfied that the instance has no outbound connectivity, you can use Ctrl+C to exit this command and proceed to setting up the air gapped cluster.
 
 
-### Air Gapped Cluster with Registry
+### Create an Air Gapped Cluster with a Registry
 
 To create an air gapped cluster with a registry:
 
@@ -226,7 +225,7 @@ To create an air gapped cluster with a registry:
 
 1. After you are satisfied the instance has no outbound connectivity, you can use Ctrl+C to exit this command and proceed to finalizing your workstation configuration.
 
-### Final Workstation Setup
+### Finalize the Workstation Setup
 
 Verify the Docker client on the workstation and make sure that you have `kubectl` access properly configured before you run the full installation. Use SHH to access the workstation through the jump box.
 
@@ -341,7 +340,7 @@ To access the `admin.conf` from the cluster and run a few `kubectl` commands to 
   exit
   ```
 
-### Installing
+### Install the Application
 
 We will follow the instructions at [Installing from an Air Gap Package](https://kots.io/kotsadm/installing/airgap-packages/).
 
@@ -470,12 +469,14 @@ To connect to the app manager:
     --ssh-flag="-L ${PORT}:${CLUSTER_PRIVATE_IP}:${PORT}" ${AIRGAP_JUMP}
   ```
 
-1. Open `localhost:${PORT}` in your browser to access the Replicated admin console. Proceed with the installation from there.
+1. Open `localhost:${PORT}` in your browser to access the Replicated admin console. Proceed with the installation from the the admin console.
 
-## Troubleshooting
+## Troubleshoot Issues
 
 If you run into issues, you may be able to use the support-bundle tool to collect a diagnostic bundle.
 This is usable only after the cluster is up and you have the `admin.conf` kubeconfig on the air gapped workstation.
+
+To use the support bundle:
 
 1. Run the following command to download the support-bundle plugin and move it to the air gapped workstation:
 
