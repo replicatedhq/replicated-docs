@@ -90,6 +90,11 @@ article {
   --ifm-alert-border-color: var(--ifm-color-info-dark);
 }
 
+.admonition-note a {
+  color: var(--ifm-color-primary-dark);
+  text-decoration-color: var(--ifm-color-primary-dark);
+}
+
 .admonition-important {
   --ifm-code-background: var(--ifm-alert-background-color-highlight);
   --ifm-link-color: var(--ifm-alert-foreground-color);
@@ -111,6 +116,11 @@ article {
   --ifm-alert-background-color-highlight: rgba(250, 56, 62, 0.15);
   --ifm-alert-foreground-color: var( --ifm-color-danger-contrast-foreground );
   --ifm-alert-border-color: var(--ifm-color-danger-dark);
+}
+
+.admonition-important a {
+  color: var(--ifm-color-primary-dark);
+  text-decoration-color: var(--ifm-color-primary-dark);
 }
 
 ol ol {
