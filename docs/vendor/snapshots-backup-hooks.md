@@ -1,4 +1,4 @@
-# Backup hooks
+# Configuring Backup Hooks
 
 For many application workloads, additional processing or scripts need to be run before and/or after a backup is taken to prepare the system for a backup.
 Velero has support for this, using [Backup Hooks](https://velero.netlify.app/docs/main/backup-hooks/).

@@ -1,4 +1,4 @@
-# Creating preflight checks and support bundles
+# Creating Preflight Checks and Support Bundles
 
 This topic provides information about how to create preflight checks and support
 bundles and include them with your application.

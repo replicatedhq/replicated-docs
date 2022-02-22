@@ -1,4 +1,4 @@
-# Helm overview
+# Helm Overview
 
 Helm is a popular package manager for Kubernetes applications.
 

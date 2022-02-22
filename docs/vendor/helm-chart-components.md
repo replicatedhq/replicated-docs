@@ -1,4 +1,4 @@
-# Helm chart components
+# Helm Chart Components
 
 > This topic applies to both native Helm and Replicated Helm installations.
 

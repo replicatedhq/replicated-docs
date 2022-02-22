@@ -1,4 +1,4 @@
-# Template functions
+# Using Template Functions
 
 Replicated app manager applications have access to a rich set of template functions that can be used to render the Kubernetes manifests in the customer's environment.
 
@@ -6,10 +6,10 @@ The app manager uses Go's [text/template](https://golang.org/pkg/text/template/)
 
 All template functions are documented in the [template function reference](../reference/template-functions-about) section.
 
-## Using Template Functions
+## Example: Use a Template Function for a Custom License Field
 
 To use a template function, include it as a string in the application.
-A simple example is using a boolean [custom entitlement field](licenses-adding-custom-fields) to deliver a value for Max Concurrent Users.
+A simple example is using a boolean [custom license field](licenses-adding-custom-fields) to deliver a value for Max Concurrent Users.
 This value should be available as an environment variable in a pod.
 
 Given the custom license field named `max_concurrent_users`, this value can be supplied to the pod environment variable like this:
@@ -33,7 +33,7 @@ spec:
             value: 'repl{{ LicenseFieldValue "max_concurrent_users" }}'
 ```
 
-### A note on `{{repl` vs `repl{{`
+## Template Function Syntax
 
 The template function syntax supports delimiters of either `{{repl ...}}` or `repl{{ ... }}`.
 These are functionally equivalent and both are supported by the app manager runtime.
@@ -85,7 +85,7 @@ replicas: 5
 
 And Kubernetes will be able to handle this.
 
-## Using Variables in Templates
+## Use Variables in Templates
 
 A result returned from a template function can be assigned to a variable, and the variable can be used in another template function as long as the templates are evaluated at the same time.
 
@@ -97,7 +97,7 @@ The result can be accessed using the [`ConfigOption`](../reference/template-func
 
 For more information about the Config custom resource, see [Config](../reference/custom-resource-config) in the _Custom resources_ section.
 
-### Generating TLS certs and keys example
+### Example: Generating TLS Certificates and Keys
 
 This example demonstrates how to generate a CA, a cert, and a key using [Sprig](http://masterminds.github.io/sprig/) functions.
 `tls_json` is the hidden config item that contains all of the generated values in JSON format.

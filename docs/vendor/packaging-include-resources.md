@@ -1,4 +1,4 @@
-# Include optional resources
+# Including Optional and Conditional Resources
 
 Often, vendors need a way to optionally install resources depending on customers configuration choices. A common example is giving the customer the choice to install a new database or use an existing database.
 

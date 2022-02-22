@@ -1,4 +1,4 @@
-# Configuring backups
+# Configuring Backups
 
 The snapshots feature is a backup and restore option that lets you define a manifest for executing snapshots and restoring previous snapshots.
 
