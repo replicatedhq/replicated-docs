@@ -1,6 +1,6 @@
 # Installing in an Air Gapped Existing Cluster using GCP
 
-This tutorial shows how to install the Replicated app manager using in an existing cluster in an _air gapped_ environment, where the workstation and the cluster have no outbound internet connectivity.
+This tutorial shows how to install the Replicated app manager in an existing cluster in an _air gapped_ environment, where the workstation and the cluster have no outbound internet connectivity.
 
 You will be doing what the Terraform Enterprise team refers to as modern air gapped or _2019 air gapped_ in [How Hashicorp delivers On-prem with Replicated](https://blog.replicated.com/hashicorp-recording/).
 
@@ -16,7 +16,7 @@ Most importantly, this tutorial presents a set of steps for creating a full envi
 
 If you are planning to deploy your application to air gapped Amazon EKS, Red Hat Openshift, or another locked-down Kubernetes cluster, this tutorial is a great way to set up a testing environment in which to experiment.
 
-## Prerequisites
+## Prerequisite
 
 * Complete the [existing cluster quickstart](/vendor/guides/existing-cluster) to set up a non-air gapped cluster.
 
