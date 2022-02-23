@@ -8,26 +8,37 @@ KOTS includes an Admin Console that runs alongside the application.
 The Admin Console is installed in the cluster and provides a web-based UI to manage the lifecycle of a KOTS application.
 The KOTS plugin will install and configure the Admin Console during installation and upgrade of a KOTS application.
 
-## How To Install
+## Prerequisite
 
-All installation methods assume you already have [kubectl](https://kubernetes.io/docs/tasks/tools/) installed on your machine.
-If you're using an [embedded Kubernetes cluster](/kotsadm/installing/installing-embedded-cluster/)), both tools will already be pre-installed.
+Before you install the kots CLI, install [kubectl](https://kubernetes.io/docs/tasks/tools/) on your machine.
 
-### Easy installation script
+:::note
+If you're using an [embedded Kubernetes cluster](/kotsadm/installing/installing-embedded-cluster/), both tools will already be pre-installed.
+:::
 
-To start, install KOTS using the Krew plugin manager:
+## Install the kots CLI
+
+To install the latest version of the kots CLI, run:
+
 ```bash
 curl https://kots.io/install | bash
 ```
 
-This will give you a new kubectl command.
+To install a specific version of the kots CLI, run:
+
+```bash
+curl https://kots.io/install/<version> | bash
+```
+
+To verify your installation, run:
+
 ```bash
 kubectl kots --help
 ```
 
-### Installing without root access
+## Install the kots CLI without Root Access
 
-For computers without root access or cannot write to the `/usr/local/bin` directory, the `kots` plugin can be downloaded using the following steps:
+For computers without root access or those that cannot write to the `/usr/local/bin` directory, the `kots` plugin can be downloaded using the following steps:
 
 1. Download the release for your Operating System from https://github.com/replicatedhq/kots/releases/latest (Linux and MacOS are supported)
 1. Unpack the release
