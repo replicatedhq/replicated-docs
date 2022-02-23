@@ -7,16 +7,25 @@ The vendor portal is the user interface where vendors define Kubernetes manifest
 To create a vendor account:
 
 1. Go to the [vendor portal](https://vendor.replicated.com), where you can log in or create an account.
-1. To create an account, select **Create a new team**. The Start a trial page opens.
+1. To create an account, select **Create a new team**.
+
+    The Start a trial page opens.
 1. Enter your name, email, and contact information.
-1. Create a password, and click **Getting Started**. An activation code is sent to the email address you registered with, and the Activate account page opens.
+1. Create a password, and click **Getting Started**.
+
+    An activation code is sent to the email address you registered with, and the Activate account page opens.
 
     :::note
     To resend the code, click **Resend it**.
     :::
-1. Copy and paste the activation code into the text box, and click **Activate**. The Create application page opens.
 
-1. Enter a name for the application, such as `My-Application-Demo`. Click **Create application**. The application is created and the Channels page opens.
+1. Copy and paste the activation code into the text box, and click **Activate**.
+
+    The Create application page opens.
+
+1. Enter a name for the application, such as `My-Application-Demo`. Click **Create application**.
+
+    The application is created and the Channels page opens.
 
    :::important
    Replicated recommends that you use a temporary name for the application at this time such as `My-Application-Demo` or `My-Application-Test`.
@@ -32,4 +41,4 @@ To create a vendor account:
    * [Installing a Sample Application with the CLI](tutorial-installing-with-cli).
    * [Installing a Sample Application on an Existing Cluster](tutorial-installing-with-existing-cluster).
    * [Installing a Sample Application Without an Existing Cluster](tutorial-installing-without-existing-cluster).
-* Learn about the application packaging process and begin to plan your deployment. See [Understanding packaging with the app manager](packaging-an-app).
+* Learn about how to package, test, iterate, and distribute your production application. See [How to Distribute a Production Application](distributing-workflow).
