@@ -21,7 +21,7 @@ To create a vendor account:
    :::important
    Replicated recommends that you use a temporary name for the application at this time such as `My-Application-Demo` or `My-Application-Test`.
 
-   Only use an official name for your application, such as `My-Application`, when you have completed testing are ready to distribute the application to your customers.
+   Only use an official name for your application, such as `My-Application`, when you have completed testing and are ready to distribute the application to your customers.
 
    Replicated recommends that you use a temporary application name for testing because you are not able to restore or modify previously-used application names or application slugs in the vendor portal.
    :::
