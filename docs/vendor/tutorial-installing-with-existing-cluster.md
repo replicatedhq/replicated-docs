@@ -1,6 +1,6 @@
 # Installing with an Existing Cluster
 
-This topic demonstrates packaging and installing a simple NGINX application in Kubernetes on an existing cluster in GKE (or another cluster you have handy).
+This tutorial demonstrates packaging and installing a sample NGINX application in Kubernetes on an existing cluster in GKE (or another cluster you have handy).
 
 It is broken into four sections:
 
@@ -11,84 +11,108 @@ It is broken into four sections:
 
 ## Creating a Release
 
-When getting started with the Replicated platform, the Replicated [vendor portal](https://vendor.replicated.com) will be the place you spend a lot of time.
-This guide is designed to help you get familiar with the concepts and ideas that are important to successfully deploy your application with the Replicated app manager.
-For help and information, see the [community documentation](https://help.replicated.com/community/).
+When you work with the Replicated platform, the Replicated vendor portal is the primary user interface (UI) that you will use to package and distribute your application. This tutorial is designed to help you get familiar with the concepts and ideas that are important to successfully deploy your application with the Replicated app manager.
 
-This guide will deploy a basic application using the app manager, and show you how to deliver an update to that application.
-The guide isn't going to teach Kubernetes, rather it will start with a minimal Kubernetes application that deploys a single replica of [NGINX](https://www.nginx.com).
+For help and information, see [How to Distribute an Application](distributing-workflow) or our [community documentation](https://help.replicated.com/community/).
+
+This tutorial you how to deploy a sample application using the app manager, and how to deliver an update to that application.
+The tutorial does not teach Kubernetes, rather it will start with a minimal Kubernetes application that deploys a single replica of [NGINX](https://www.nginx.com).
 
 ### Create a New Application
 
-To start, log in (or create a new team) on vendor.replicated.com and create a new application.
-After signing up and activating your account, you will be prompted to create a new application.
-Give it a name like "Starter application" or "NGINX Example" and click the "Create Application" button.
+To create a new application:
 
-![Create Application](/images/guides/kots/create-application.png)
+1. Log in (or create a new team) to [vendor portal](https://vendor.replicated.com).
 
-### Releases
+  After signing up and activating your account, the Create a new application page opens.
 
-You should be at the channels page now.
-This is a list of your release channels, which are logical stacks for you to stage and promote releases to your customers.
-We'll explore this in more detail later.
-For now, click on the "Releases" item on the left menu and then click the "Create a release" button.
+1. Enter a name for the new application, such as Starter Application or NGINX Example.
+
+  ![Create Application](/images/guides/kots/create-application.png)
+
+1. Click **Create Application**.
+
+  The Channels page opens and displays a list of your release channels that are logical stacks for you to stage and promote releases to your customers. We will explore this in more detail later.
 
 ### Create a Release
 
-You should now see a YAML editor where you can define how your application will work and the integration with the app manager functionality.
+To create a release:
 
-**Note**: Since this guide is intended as a "Hello, World" example, we'll skip editing the YAML right now and just proceed with the defaults. We'll make some changes later on in this guide.
+1. Click **Releases** from the left menu, and click **Create a release**.
 
-When you are familiar with these concepts, you can use the replicated CLI and the Replicated Vendor API to automate this task rather than manually editing the YAML on this page. For more information, see [Installing the replicated CLI](../reference/replicated-cli-installing) and [Using the Vendor API v3](../reference/vendor-api-using).
+  ![Create Release](/images/guides/kots/create-release.png)
 
-![Default YAML](/images/guides/kots/default-yaml.png)
+  A YAML editor opens, where you can define how your application will work and the integration with the app manager functionality. The default YAML documents above the white line contain information for the app manager, preflight checks, customer configuration screen options, and support bundle analyzers for troubleshooting installations.
+  For more information, see the [custom resources reference docs](../reference/custom-resource-about).
 
-The default YAML documents above the white line contains information for the app manager, preflight checks, customer configuration screen options, and support bundle analyzers for troubleshooting installations.
-You can learn about those in the [custom resources reference docs](../reference/custom-resource-about) but for now, let's click the "Save release" button in the bottom right.
+1. Click **Save release** to proceed using the default values. For this example, you can skip editing the YAML. (You will make some changes later in this tutorial.)
 
-### Save and Promote Release
+  :::note
+  When you are familiar with these concepts, you can use the replicated CLI and the Replicated Vendor API to automate this task rather than manually editing the YAML on this page. For more information, see [Installing the replicated CLI](../reference/replicated-cli-installing) and [Using the Vendor API v3](../reference/vendor-api-using).
+  :::
 
-Once the release is saved, go ahead and promote it to the "Unstable" channel to make this release available for installation.
-To do this, click the "Releases" link in the top left and then click the "Promote" button on the row we just created.
-In this popup, choose the "Unstable" channel and click the "Promote" button.
+  ![Default YAML](/images/guides/kots/default-yaml.png)
 
-![Create Application](/images/guides/kots/promote-release.png)
 
-Now that we've got a release promoted, we can walk through creating a license and installing our basic NGINX application on a test server.
+### Promote a Release
 
-* * *
+After the release is saved, promote it to the Unstable channel to make this release available for installation.
+
+To promote the release:
+
+1. Click **Releases** from the top left menu.
+1. Click **Promote** on the row for the release that you just created.
+
+  ![Create Application](/images/guides/kots/promote-release.png)
+
+  The Promote Release dialog opens.
+
+1. Choose the Unstable channel, and click **Promote**.
+
+
+Now that you have a release promoted, you can create a license and install the sample NGINX application on a test server.
+
 
 ## Installing and Testing
 
-This guide will give you first-hand experience installing an application using an existing Kubernetes cluster.
-If you haven't yet created a release, head back to the [Create and Promote a Release](#creating-a-release) guide and complete that first.
+This section gives you experience installing an application using an existing Kubernetes cluster.
 
-Now that we've created a release and promoted it to the "Unstable" channel, the next step is to create a customer license and use this license to install the application in a namespace in our test cluster.
+After you create and promote a release, create a customer license and use this license to install the application in a namespace in your test cluster.
 
-### Create License
+### Create a License
 
-A customer license (downloadable as a YAML file) is required to install any application.
-To create a customer license, log in to the vendor portal and select the Customers link on the left.
-Click the "Create your first customer" button to continue.
+A customer license, downloadable as a YAML file, is required to install any application.
 
-On the "Create a new customer" page, fill in your name for the "Customer name" field, select the "Unstable" channel on the right hand side, and click "Save Changes".
-The defaults in all other fields will be fine.
+To create a customer license:
 
-![Create Customer](/images/guides/kots/create-customer.png)
+1. From the vendor portal, select **Customers** from the left menu.
 
-After creating the customer, click the "Download license" link in the upper right corner.
-This will download the file with your customer name and a YAML extension.
-This is the license file your customer will need to install your application.
-When a customer is installing your software you need to send them two things: the app manager installation script and the license file.
+1. Click **Create your first customer**.
 
-### Create Kubernetes Cluster and Install the App Manager
+  The Create a new customer page opens.
 
-The app manager can be installed either into an existing Kubernetes cluster, or as a Kubernetes installer-created cluster (embedded cluster).
-You can see the installation options at the bottom of each channel on the Channels page.
+1. Edit the following fields, leaving the rest of the fields set to the default values:
+
+    1. Enter your name for the Customer Name field.
+    1. Select the Unstable channel on the right hand side.
+
+    ![Create Customer](/images/guides/kots/create-customer.png)
+
+    1. Click **Create Customer**.
+
+    1. Click **Download license** in the upper right corner for the newly created customer.
+
+      This downloads the file with your customer name and a `.yaml` extension. This is the license file your customer needs to install your application. When a customer is installing your software you need to send them two things: the app manager installation script and the license file.
+
+      You will also use this license file to install and test the application on the test server.
+
+### Create a Kubernetes Cluster and Install the App Manager
+
+The app manager can be installed either into an existing Kubernetes cluster, or as a Kubernetes installer-created cluster (embedded cluster). You can see the installation options at the bottom of each channel on the Channels page.
 
 ![Installation Methods](/images/guides/kots/installation-methods-existing.png)
 
-Installing the app manager on existing clusters is very similar to using a [Kubernetes installer cluster](tutorial-installing-without-existing-cluster#installing-and-testing), except instead of bringing a plain virtual machine (VM), we will use a pre-built Kubernetes cluster and deploy your application into a namespace.
+Installing the app manager on existing clusters is similar to using a [Kubernetes installer cluster](tutorial-installing-without-existing-cluster#installing-and-testing), except instead of bringing a plain virtual machine (VM), we will use a pre-built Kubernetes cluster and deploy your application into a namespace.
 
 In this example, we will launch a GKE cluster using `gcloud` CLI, but you can use any cluster for which you have `kubectl` access.
 
