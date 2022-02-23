@@ -27,7 +27,7 @@ release channels. For more information, see [Creating a Vendor Account](vendor/v
 the vendor defines to package and install an application on a Kubernetes cluster
 in a customer environment. It also installs the admin console along with the application.
 The app manager is based on the open-source KOTS project, which is maintained by
-Replicated. For more information, see [Understanding packaging with app manager](vendor/packaging-an-app).
+Replicated.
 * **Kubernetes installer**: The Replicated Kubernetes installer provisions a Kubernetes
 cluster, called an _embedded cluster_, in the customer's environment if they do
 not have an existing cluster. The Kubernetes installer is based on the open-source

@@ -6,7 +6,7 @@ Alternatively, you can use the Replicated vendor portal user interface for the s
 
 ## Prerequisites
 
-This guide already assumes that you have created a team and an initial application in the vendor portal. For more information, see [Understanding packaging with the app manager](packaging-an-app). You'll also need:
+This guide already assumes that you have created a team and an initial application in the vendor portal. For more information, see [How to Distribute a Production Application](../vendor/distributing-workflow). You'll also need:
 
 * [curl](https://curl.haxx.se/) (For running CLI directly on linux/mac)
 * [docker](https://www.docker.com) (For running CLI through docker container)
