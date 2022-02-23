@@ -8,7 +8,7 @@ KOTS includes an Admin Console that runs alongside the application.
 The Admin Console is installed in the cluster and provides a web-based UI to manage the lifecycle of a KOTS application.
 The KOTS plugin will install and configure the Admin Console during installation and upgrade of a KOTS application.
 
-## Prerequisites
+## Prerequisite
 
 Before you install the kots CLI, install [kubectl](https://kubernetes.io/docs/tasks/tools/) on your machine.
 
