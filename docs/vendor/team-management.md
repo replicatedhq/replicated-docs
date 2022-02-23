@@ -15,10 +15,10 @@ People invited to join your team will receive an email notification to accept th
 Invitations expire after 7 days. To reinvite a member, there is an option located immediately below the user's email address on this page. Clicking **Reinvite** prompts you to confirm invitation.
 
 ## Removing Members & Ending Sessions
-Team Admins can remove members, except for the account their currently logged in with, from their team by clicking **Remove** on the right side of a user's row. Clicking **Remove** prompts you to confirm the action.
+Team Admins can remove members, except for the account they are currently logged in with, from their team by clicking **Remove** on the right side of a user's row. Clicking **Remove** prompts you to confirm the action.
 
 When a member is removed, all of their current user sessions are deleted and their next attempt at communicating with the server logs them out of their browser's session.
 
-SAML created users must be removed in the same way in order to expire their existing sessions, as Replicated does not support SCIM).
+SAML created users must be removed in the same way in order to expire their existing sessions, as Replicated does not support SCIM.
 
 For Google Authenticated Users, if the user's Google Account is suspended or deleted, Replicated logs that user out of all Google authenticated vendor portal sessions within 10 minutes. The user remains in the team list, but they cannot log into the vendor portal unless Username/Password is also allowed.

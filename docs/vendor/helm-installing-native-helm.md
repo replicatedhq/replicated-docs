@@ -1,4 +1,4 @@
-# Installing with native Helm
+# Installing with Native Helm
 
 With the native Helm installation, you can exercise more control over chart deployment via Helm hooks and weights. The native Helm chart support currently has the following limitations:
 * Only available for Helm V3.

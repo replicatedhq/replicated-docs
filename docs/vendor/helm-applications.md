@@ -1,4 +1,4 @@
-# Helm applications
+# Helm Applications
 
 > This topic applies to both native Helm and Replicated Helm installations.
 

@@ -1,4 +1,4 @@
-# Sharing the license file and installation script
+# Sharing the License File and Installation Script
 
 This topic describes how to share the license file and installation script with
 your customers so that they can install your application.

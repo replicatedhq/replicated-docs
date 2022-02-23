@@ -1,4 +1,4 @@
-# Creating a Kubernetes installer specification
+# Creating a Kubernetes Installer Specification
 
 This topic describes creating a specification file for your application to support
 installations on clusters created by the Replicated Kubernetes installer.

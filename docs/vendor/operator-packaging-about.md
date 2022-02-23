@@ -1,4 +1,4 @@
-# About packaging a Kubernetes operator application
+# About Packaging a Kubernetes Operator Application
 
 Kubernetes Operators can be packaged and delivered as an application using the same methods as other Kubernetes applications.
 

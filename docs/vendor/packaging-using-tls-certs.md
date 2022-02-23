@@ -1,4 +1,4 @@
-# Using TLS Certificates
+# Using Kubernetes Installer TLS Certificates
 
 [Kubernetes installer](https://kurl.sh) clusters create a `kotsadm-tls` secret which can reused by other Kubernetes resources.
 
@@ -93,9 +93,9 @@ spec:
 ```
 **Note:** `tls.foo.com` must resolve to a valid IP and must also match the CN or Subjective Alternative Name (SAN) of the TLS cert.
 
-## Updating Certs
+## Updating Certificates
 
-When certs expire, they can be re-uploaded. For more information, see [Uploading new TLS Certs](https://kurl.sh/docs/install-with-kurl/setup-tls-certs#uploading-new-tls-certs).
+When certificates expire, they can be re-uploaded. For more information, see [Uploading new TLS Certificates](https://kurl.sh/docs/install-with-kurl/setup-tls-certs#uploading-new-tls-certs).
 
 ## Existing Cluster
 

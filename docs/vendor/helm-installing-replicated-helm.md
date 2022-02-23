@@ -1,4 +1,4 @@
-# Installing with the app manager
+# Installing with the App Manager
 
 By default, the Replicated app manager renders Helm chart templates and deploys them as standard Kubernetes manifests. To include a Helm chart, start by retrieving the chart `.tgz` package. For Helm charts that you do not control, these can be quickly downloaded using the `helm` CLI.
 

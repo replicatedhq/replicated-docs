@@ -1,4 +1,4 @@
-# Displaying application status
+# Displaying Application Status
 
 You can configure the Application custom resource to display application status on the dashboard of the admin console.
 

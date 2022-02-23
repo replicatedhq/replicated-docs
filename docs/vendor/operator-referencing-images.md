@@ -1,4 +1,4 @@
-# Referencing images
+# Referencing Images
 
 The Replicated app manager is responsible for delivering and ensuring that all container images (automatically detected and additionalImages) are pushed to the customer's private, internal registry.
 Additionally, the app manager creates Kustomize patches to rewrite image names and inject image pull secrets to all pods.

@@ -29,6 +29,17 @@ const sidebars = {
       items: [
         'vendor/distributing-workflow',
         'vendor/vendor-portal-creating-account',
+        {
+          type: 'category',
+          label: 'Quick Start Tutorials with Sample Applications',
+          items: [
+            'vendor/tutorial-installing-without-existing-cluster',
+            'vendor/tutorial-installing-with-existing-cluster',
+            'vendor/tutorial-installing-with-cli',
+            'vendor/tutorial-installing-air-gap',
+            'vendor/tutorial-installing-air-gap-existing-cluster-gcp',
+          ]
+        },
         'vendor/planning-questionnaire',
           {
             type: 'category',
@@ -48,7 +59,6 @@ const sidebars = {
                 type: 'category',
                 label: 'Packaging Your Application',
                 items: [
-                  'vendor/packaging-an-app',
                   'vendor/repository-workflow-and-tagging-releases',
                   'vendor/packaging-private-images',
                   'vendor/database-config-adding-options',
@@ -63,7 +73,7 @@ const sidebars = {
                   'vendor/identity-service-configuring',
                   {
                       type: 'category',
-                      label: 'Snapshots',
+                      label: 'Configuring Backup and Restore',
                       items: [
                         'vendor/snapshots-overview',
                         'vendor/snapshots-configuring-backups',
@@ -118,7 +128,7 @@ const sidebars = {
           },
           {
             type: 'category',
-            label: 'Creating a Customer',
+            label: 'Creating and Managing Customers',
             items: [
               'vendor/releases-creating-customer',
               'vendor/licenses-about',
@@ -131,7 +141,7 @@ const sidebars = {
           'vendor/releases-sharing-license-install-script',
         {
           type: 'category',
-          label: 'Team Managment',
+          label: 'Team Management',
           items: [
             'vendor/team-management',
             'vendor/team-management-google-auth',
@@ -141,11 +151,6 @@ const sidebars = {
           type: 'category',
           label: 'Tutorials',
           items: [
-            'vendor/tutorial-installing-without-existing-cluster',
-            'vendor/tutorial-installing-with-existing-cluster',
-            'vendor/tutorial-installing-with-cli',
-            'vendor/tutorial-installing-air-gap',
-            'vendor/tutorial-installing-air-gap-existing-cluster-gcp',
             'vendor/tutorial-ecr-private-images',
             'vendor/tutorial-ha-cluster-deploying',
             'vendor/tutorial-ci-cd-integration',
@@ -449,4 +454,3 @@ const sidebars = {
 };
 
 module.exports = sidebars;
-

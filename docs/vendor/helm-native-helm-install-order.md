@@ -1,4 +1,4 @@
-# Native Helm charts installation order
+# Native Helm Charts Installation Order
 
 When deploying applications with native Helm charts, your charts are deployed to the cluster in parallel with any other Kubernetes YAML within your application.
 This includes Custom Resource Definitions (CRDs).

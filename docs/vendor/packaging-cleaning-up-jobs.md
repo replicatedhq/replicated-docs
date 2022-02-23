@@ -1,4 +1,4 @@
-# Cleaning up jobs
+# Cleaning Up Kubernetes Jobs
 
 Kubernetes [Jobs](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/) are designed to run and then terminate, but they stick around in the namespace after completion.
 Because job objects are immutable, this can cause conflicts and errors when attempting to update the job later.

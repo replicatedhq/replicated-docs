@@ -1,4 +1,4 @@
-# Helm airgap builder
+# Helm Air Gap Builder
 
 > This topic applies to both native Helm and Replicated Helm installations.
 

@@ -1,4 +1,4 @@
-# Defining additional images
+# Defining Additional Images
 
 To ensure that images will be available locally, the Replicated app manager finds all images defined in the application manifests and includes them in `.airgap` bundles.
 During the application install or update workflow, the app manager collects these images from the internet or from the `.airgap` bundle, if the application is installed in an air gap environment. The app manager then retags and pushes all the images to a customer-defined registry.
