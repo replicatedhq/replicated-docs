@@ -110,58 +110,70 @@ To create a customer license:
 
 The app manager can be installed either into an existing Kubernetes cluster, or as a Kubernetes installer-created cluster (embedded cluster). You can see the installation options at the bottom of each channel on the Channels page.
 
+Installing the app manager on existing clusters is similar to using a [Kubernetes installer cluster](tutorial-installing-without-existing-cluster#installing-and-testing), except instead of bringing a plain virtual machine (VM), you will use a pre-built Kubernetes cluster and deploy your application into a namespace.
+
 ![Installation Methods](/images/guides/kots/installation-methods-existing.png)
 
-Installing the app manager on existing clusters is similar to using a [Kubernetes installer cluster](tutorial-installing-without-existing-cluster#installing-and-testing), except instead of bringing a plain virtual machine (VM), we will use a pre-built Kubernetes cluster and deploy your application into a namespace.
+To install the app manager:
 
-In this example, we will launch a GKE cluster using `gcloud` CLI, but you can use any cluster for which you have `kubectl` access.
+1. Run the following command to launch a GKE cluster using `gcloud` CLI. (You can use any cluster for which you have `kubectl` access instead of a GKE cluster.)
 
-```shell
-gcloud container clusters create kots-app --preemptible --no-enable-ip-alias
-```
+  ```shell
+  gcloud container clusters create kots-app --preemptible --no-enable-ip-alias
+  ```
 
-Once the cluster is launched set the local `kubectl` context.
+1. Run the following command to set the local `kubectl` context:
 
-```shell
-gcloud container clusters get-credentials kots-app
-```
+  ```shell
+  gcloud container clusters get-credentials kots-app
+  ```
 
-Install latest KOTS version as `kubectl` plugin.
-```shell
-curl https://kots.io/install | bash
-```
+1. Run the following command to install the latest app manager version as a `kubectl` plugin:
 
-Install your application using the kots CLI. For more information about installing an application with the kots CLI, see [install](../reference/kots-cli-install/) in the kots CLI documentation.
+  ```shell
+  curl https://kots.io/install | bash
+  ```
 
-```shell
-kubectl kots install <your-app-name-and-channel>
+1. Install your application using the kots CLI. For more information about installing an application with the kots CLI, see [install](../reference/kots-cli-install/) in the kots CLI documentation.
 
-Enter the namespace to deploy to: <your-app-name-and-channel>
-  • Deploying Admin Console
-    • Creating namespace ✓
-    • Waiting for datastore to be ready ✓
-Enter a new password to be used for the Admin Console: ••••••••
-  • Waiting for Admin Console to be ready ✓
+  ```shell
+  kubectl kots install <your-app-name-and-channel>
 
-  • Press Ctrl+C to exit
-  • Go to http://localhost:8800 to access the Admin Console
-```
+  Enter the namespace to deploy to: <your-app-name-and-channel>
+    • Deploying Admin Console
+      • Creating namespace ✓
+      • Waiting for datastore to be ready ✓
+  Enter a new password to be used for the Admin Console: ••••••••
+    • Waiting for Admin Console to be ready ✓
+
+    • Press Ctrl+C to exit
+    • Go to http://localhost:8800 to access the Admin Console
+  ```
+
+1. Note the URL and password that you will use to access the Replicated admin console.
 
 ### Install the Application
 
-At this point, the Replicated admin console and Kubernetes are running, but the application is not deployed yet.
-This is also what your customer would be experiencing when installing your application. To complete the installation, visit the URL `http://localhost:8800` where you'll be required to enter the password set earlier.
+At this point, the admin console and Kubernetes are running, but the application is not deployed yet.
+This is also what your customer would be experiencing when installing your application.
 
-Now the installation needs a license file to continue.
-Until this point, this cluster is just running Kubernetes and the admin console containers.
-Once we upload a license file, the admin console will have access to pull the application YAML and containers.
-Click the Upload button and select your `.yaml` file to continue.
+To install the application:
 
-The settings page is here with default configuration items.
-The appearance of this page can be configured in the `config.yaml` file.
-For now we can proceed with the defaults.
+1. In a browser, enter the URL `http://localhost:8800` and password to access the admin console.
 
-![Settings Page](/images/guides/kots/configuration.png)
+  The Upload license page opens. Until this point, this cluster is running only Kubernetes and the admin console containers.
+
+1. Click Upload. Select your customer license YAML file to continue, or drag and drop the license file from your desktop. The admin console will have access to pull the application YAML and containers now.
+
+  The Settings page opens with the default configuration items.
+
+  :::note
+  The appearance of this page can be configured in the `config.yaml` file.
+  :::
+
+1. Proceed with the default settings.
+
+  ![Settings Page](/images/guides/kots/configuration.png)
 
 Preflight checks are designed to ensure this server has the minimum system and software requirements to run the application.
 By default, we include some preflight checks that are expected to fail so that we can see what failing checks might look like for a customer.
