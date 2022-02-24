@@ -154,16 +154,15 @@ To install the app manager:
 
 ### Install the Application
 
-At this point, the admin console and Kubernetes are running, but the application is not deployed yet.
-This is also what your customer would be experiencing when installing your application.
+At this point, the admin console and Kubernetes are running, but the application is not deployed yet. This is also what your customer would be experiencing when installing your application.
 
 To install the application:
 
 1. In a browser, enter the URL `http://localhost:8800` and password to access the admin console.
 
-  The Upload license page opens. Until this point, this cluster is running only Kubernetes and the admin console containers.
+  The Upload license page opens.
 
-1. Click Upload. Select your customer license YAML file to continue, or drag and drop the license file from your desktop. The admin console will have access to pull the application YAML and containers now.
+1. Click Upload. Select your customer license YAML file to continue, or drag and drop the license file from your desktop. The admin console can pull the application YAML and containers now.
 
   The Settings page opens with the default configuration items.
 
@@ -175,88 +174,86 @@ To install the application:
 
   ![Settings Page](/images/guides/kots/configuration.png)
 
-Preflight checks are designed to ensure this server has the minimum system and software requirements to run the application.
-By default, we include some preflight checks that are expected to fail so that we can see what failing checks might look like for a customer.
-If you click continue it will warn you but you can still continue.
+  The Preflight page opens.
 
-Click the "Application" link on the top to see the application running.
-If you are still connected to this server using SSH, `kubectl get pods` will now show the example NGINX service we just deployed.
+1. Click **Continue** and ignore the warnings. Preflight checks are designed to ensure this server has the minimum system and software requirements to run the application. By default, we included some preflight checks that are expected to fail so that you can see what failing checks might look like for a customer.
 
-On the navigation bar, there's a link to the application page.
-Clicking that will show you the Kubernetes services that we just deployed.
+1. Click **Application** on the top to see the application running. If you are still connected to this server using SSH, `kubectl get pods` shows the example NGINX service that you just deployed.
 
-![Cluster](/images/guides/kots/application.png)
+  ![Cluster](/images/guides/kots/application.png)
 
-### View the application
+### View the Deployed Application
 
-To view the running NGINX Application, port-forward the NGINX service port to localhost `8080`.
-```shell
-kubectl port-forward service/<service-name> 8080:80
-```
+To view the running NGINX application:
 
-You can also add a link on the admin console dashboard and port-forward the NGINX port to your localhost as part of the [kots application spec](admin-console-port-forwarding).
+1. Port-forward the NGINX service port to localhost `8080`:
 
-Then head to `http://localhost:8080/`, and you should see a basic NGINX server running.
+  ```shell
+  kubectl port-forward service/<service-name> 8080:80
+  ```
+  You can also add a link on the admin console dashboard and port-forward the NGINX port to your localhost as part of the [kots application spec](admin-console-port-forwarding).
 
-![Cluster](/images/guides/kots/example-nginx.png)
+1. From your browser, go to `http://localhost:8080/`, and you should see a basic NGINX server running.
 
-Next, we'll walk through creating and delivering an update to the application we just installed.
+  ![Cluster](/images/guides/kots/example-nginx.png)
+
+Next, you will create and deliver an update to the sample application.
 
 * * *
 
 ## Iterating and Updating
 
-This guide will walk you through making a change and delivering an update to an application after it's been deployed.
-It's assumed you have the environment from parts 1 and 2 of this guide ([creating a release](#creating-a-release) and [installing](#installing-and-testing)).
-If you haven't completed these guides, head back and finish them first.
-
-Now that we have an application running, a common task is to deliver updates.
-Let's change the number of NGINX replicas to show how to deliver an update.
+Now that you have an application running, a common task is to deliver updates. You will change the number of NGINX replicas to learn how to deliver an update.
 
 ### Create a New Release
 
-On the Releases page of the vendor portal, click the "Create Release" link on top.
-Once again, you'll be taken to a YAML editor that shows the contents of the most recently created release.
-This gives us everything we've done so far, and our task now is to only write the changes needed to increase the number of NGINX replicas.
+1. From the vendor portal, click **Releases** > **Create Release**.
 
-In the release YAML, find the NGINX image to change.
-The line is in the `deployment.yaml` file and looks like:
+  The YAML editor opens and shows the contents of the most recently created release. This gives you everything that you have done so far, and the next task is to increase the number of NGINX replicas.
 
-```yaml
-replicas: 1
-```
+1. In the release YAML, find the NGINX image to change. The line is in the `deployment.yaml` file and looks like:
 
-Change the number to `2` or more.
+  ```yaml
+  replicas: 1
+  ```
 
-**Note**: If you've worked ahead and already completed the [CLI setup guide](tutorial-installing-with-cli), you can make this `replicas` change in your locally checked-out git repo, and publish them with `replicated release create --auto`, then skip to [Update the Test Server](#update-the-test-server).
+1. Change the number to `2` or more.
 
-### Save and Promote the Release
+  :::note
+  If you have worked ahead and completed the [CLI setup guide](tutorial-installing-with-cli), you can make this `replicas` change in your locally checked-out git repository, publish it with `replicated release create --auto`, and then skip to [Update the Test Server](#update-the-test-server).
+  :::
 
-Following the same process we did before, click the "Save Release" button, go back one screen and click "Promote" next to the newly created Sequence 2.
-Choose the "Unstable" channel again to promote this new release.
-Now, any license installed from the "Unstable" channel will start with this new release, and any installation already running will be prompted to update to the new release.
+1. Click **Save Release**.
+
+### Promote the Release
+
+Following the same process you before, promote the release to a channel.
+
+To promote the release:
+
+1. Click **Promote** next to the newly created Sequence 2.
+
+1. Choose the Unstable channel, and click **Promote**.
+
+  Any license installed from the Unstable channel will start with this new release, and any installation already running is prompted to update to the new release.
 
 ### Update the Test Server
 
-To install and test this new release, we need to connect to the admin console dashboard on port :8800 using a web browser.
-At this point, it will likely show that our test application is "Up To Date" and that "No Updates Are Available".
-The admin console will check for new updates about every five hours but we can force it to check now.
+To install and test this new release, you must connect to the admin console on port :8800 using a web browser.
+At this point, the UI likely shows that your test application is up-to-date and that no updates are available.
+The admin console checks for new updates approximately every five hours, but for now you will trigger a check manually.
 
-In the "Application" or "Version History" tab click on the "Check For Updates" button.
-On the Version History page, the "Deploy" button becomes active.
-In addition, it should say how many files were changed and how many lines are different.
-You can click on that to view what has changed in the YAML.
+To check for updates manually:
+
+1. Click **Check for Updates** on the Version History tab. You should see a new release in the history now. You can click **Diff versions** to review the differences in the YAML files.
+
+  ![View Update](/images/guides/kots/view-update.png)
+
+1. Click **Deploy** to apply the new YAML, which changes the number of NGINX replicas. The deployment takes only a few seconds.
 
 
-![View Update](/images/guides/kots/view-update.png)
+## Next Steps
 
-Clicking the "Deploy" button will apply the new YAML which will change the number of NGINX replicas.
-This should only take a few seconds to deploy.
+Now that you are familiar with the basics, we recommend that you run through the [CLI Quickstart Tutorial](tutorial-installing-with-cli) to start managing your release YAML in a git repository.
 
-* * *
-
-## Next Steps: Manage YAML in your Git Repo
-
-Now that you're familiar with the basics, you should run through the [CLI Quickstart](tutorial-installing-with-cli) so you can start managing your release YAML in a git repo.
-
-You can also head over to [Planning an application](packaging-planning-checklist) to learn how to integrate your application with other app manager features.
+You can also head over to [How to Distribute a Production Application](distributing-workflow) to learn how to integrate your application with other app manager features.
