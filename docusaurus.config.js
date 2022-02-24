@@ -60,7 +60,7 @@ const config = {
       algolia: {
         // The application ID provided by Algolia
         appId: 'BHWS2Z6GO0',
-  
+
         // Public API key: it is safe to commit it
         apiKey: 'c1b3ad730ee08e83703eeaadd39c4790',
         indexName: 'docs',
@@ -89,8 +89,12 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/',
+                label: 'Release Notes',
+                to: 'release-notes/rn-whats-new',
+              },
+              {
+                label: 'Quick Start Tutorials',
+                to: 'vendor/tutorial-installing-without-existing-cluster',
               },
             ],
           },
