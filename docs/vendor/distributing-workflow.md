@@ -23,7 +23,7 @@ with Replicated:
        :::note
        You will create several iterations of a release before you are ready to share the application with your customers.
 
-       Replicated recommends that you begin by connecting your application to an image registry, and writing standard Deployment and Service manifest files. See [Connecting to an Image Registry](packaging-private-images).
+       Replicated recommends that you begin by connecting your application to an image registry, and writing standard Deployment and Service manifest files. See [Connecting to an Image Registry](packaging-private-images). See also [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) and [Service](https://kubernetes.io/docs/concepts/services-networking/service/) in the Kubernetes documentation.
 
        Then, promote and test the release and make additional updates in your subsequent iterations.
 
