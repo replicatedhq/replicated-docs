@@ -1,8 +1,8 @@
 # Installing with an Existing Cluster
 
-This tutorial demonstrates packaging and installing a sample NGINX application in Kubernetes on an existing cluster in GKE (or another cluster you have handy).
+This tutorial demonstrates packaging and installing a sample NGINX application in Kubernetes on an existing cluster in GKE (or another cluster that you have available).
 
-It is broken into four sections:
+The tutorial is broken into four sections:
 
 - [Creating a Release](#creating-a-release)
 - [Installing and Testing](#installing-and-testing)
@@ -11,12 +11,12 @@ It is broken into four sections:
 
 ## Creating a Release
 
-When you work with the Replicated platform, the Replicated vendor portal is the primary user interface (UI) that you will use to package and distribute your application. This tutorial is designed to help you get familiar with the concepts and ideas that are important to successfully deploy your application with the Replicated app manager.
+When you work with the Replicated platform, the Replicated vendor portal is the primary user interface (UI) that you use to package and distribute your application. This tutorial is designed to help you get familiar with the concepts and ideas that are important to successfully deploy your application with the Replicated app manager.
 
 For help and information, see [How to Distribute an Application](distributing-workflow) or our [community documentation](https://help.replicated.com/community/).
 
-This tutorial you how to deploy a sample application using the app manager, and how to deliver an update to that application.
-The tutorial does not teach Kubernetes, rather it will start with a minimal Kubernetes application that deploys a single replica of [NGINX](https://www.nginx.com).
+This tutorial shows you how to deploy a sample application using the app manager, and how to deliver an update to that application.
+The tutorial does not teach Kubernetes, rather it starts with a minimal Kubernetes application that deploys a single replica of [NGINX](https://www.nginx.com).
 
 ### Create a New Application
 
