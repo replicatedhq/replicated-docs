@@ -147,11 +147,10 @@ Enter a new password to be used for the Admin Console: ••••••••
   • Go to http://localhost:8800 to access the Admin Console
 ```
 
-### Install License
+### Install the Application
 
-At this point, the admin console and Kubernetes are running, but the application isn't yet.
-This is also what your customer would be experiencing when installing your application.
-To complete the installation, visit the URL `http://localhost:8800` where you'll be required to enter the password set earlier.
+At this point, the Replicated admin console and Kubernetes are running, but the application is not deployed yet.
+This is also what your customer would be experiencing when installing your application. To complete the installation, visit the URL `http://localhost:8800` where you'll be required to enter the password set earlier.
 
 Now the installation needs a license file to continue.
 Until this point, this cluster is just running Kubernetes and the admin console containers.
