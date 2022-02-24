@@ -10,7 +10,7 @@ const config = {
   tagline: 'Technical documentation for Replicated vendors and their enterprise end-customers.',
   url: 'https://docs.replicated.com',
   baseUrl: '/',
-  onBrokenLinks: 'warn',
+  onBrokenLinks: 'error',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'images/favicon.png',
   organizationName: 'replicatedhq', // Usually your GitHub org/user name.
