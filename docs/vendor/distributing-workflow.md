@@ -38,4 +38,4 @@ with Replicated:
     1. Continue to iterate by updating and promoting releases until you are ready to share the application with your customers.
 
        After you promote each new release, update the application in the admin console to test the changes. See [Updating Releases](releases-updating) and [Updating an Application](../enterprise/updating-apps).
-1. Share the license file that you created and the installation script available in the vendor portal with each customer. See [Sharing the License File and Installation Script](releases-sharing-license-install-script).
+1. When you are ready to distribute the application to your customers, promote the release to the desired channel in the vendor portal. Share the license file that you created and the installation script available in the vendor portal with each customer. See [Sharing the License File and Installation Script](releases-sharing-license-install-script).
