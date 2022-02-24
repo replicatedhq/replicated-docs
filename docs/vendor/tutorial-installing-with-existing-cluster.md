@@ -22,7 +22,7 @@ The tutorial does not teach Kubernetes, rather it starts with a minimal Kubernet
 
 To create a new application:
 
-1. Log in (or create a new team) to [vendor portal](https://vendor.replicated.com).
+1. Log in (or create a new team) to the [vendor portal](https://vendor.replicated.com).
 
   After signing up and activating your account, the Create a new application page opens.
 
@@ -116,7 +116,7 @@ Installing the app manager on existing clusters is similar to using a [Kubernete
 
 To install the app manager:
 
-1. Run the following command to launch a GKE cluster using `gcloud` CLI. (You can use any cluster for which you have `kubectl` access instead of a GKE cluster.)
+1. Run the following command to launch a GKE cluster using the `gcloud` CLI. (You can use any cluster for which you have `kubectl` access instead of a GKE cluster.)
 
   ```shell
   gcloud container clusters create kots-app --preemptible --no-enable-ip-alias
@@ -191,7 +191,7 @@ To view the running NGINX application:
   ```shell
   kubectl port-forward service/<service-name> 8080:80
   ```
-  You can also add a link on the admin console dashboard and port-forward the NGINX port to your localhost as part of the [kots application spec](admin-console-port-forwarding).
+  You can also add a link on the admin console dashboard and port-forward the NGINX port to your localhost as part of the [Application custom resource manifest](admin-console-adding-buttons-links#additional-ports-and-port-forwarding).
 
 1. From your browser, go to `http://localhost:8080/`, and you should see a basic NGINX server running.
 
