@@ -1,4 +1,4 @@
-Support Bundle
+# Support Bundle
 
 The open source Troubleshoot project provides the Support Bundle custom resource that the app manager integrates with.
 

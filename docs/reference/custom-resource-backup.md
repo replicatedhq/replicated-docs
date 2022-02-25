@@ -4,7 +4,7 @@ When you include a Backup custom resource in an application, the Replicated admi
 
 For more information about the Backup custom resource, including all options for this custom resource, see [Backups](https://velero.netlify.app/docs/v1.5/api-types/backup/) in the Velero documentation.
 
-This custom resource supports optional resource installations. For more information, see [Include optional resources](packaging-include-resources).
+This custom resource supports optional resource installations. For more information, see [Include optional resources](..vendor/packaging-include-resources).
 
 ```yaml
 apiVersion: velero.io/v1
