@@ -45,6 +45,8 @@ It is a best practice to provide a default value when possible.
 
 License fields can be deleted, but this should be carefully considered. Existing deployments where your app or the app manager config screen are expecting a license to provide a required value could cause outages. As such we've limited the RBAC policy to Admins and added several levels of warnings on deletion.
 
-By default, deleting a license field will also delete all values associated with that field within each customer record.
+Deleted license fields and their values will not show up in the customer's license in any location (your view in the vendor portal, the downloaded YAML version of the license or the app manager license screen).
+
+By default, deleting a license field will also delete all values associated with that field within each customer record. 
 
 When the "Preserve License Values" option is selected, the values for the field will be orphaned in each customer record (not visible to you or the customer). If you recreate a field with this exact name again, the orphaned values will come back.
