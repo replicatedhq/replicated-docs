@@ -32,7 +32,7 @@ To create a custom license field:
    * **Title** The display name for the field. This is how the field appears in
    the vendor portal and the admin console. You can change the title in the vendor portal.
    * **Type** The field type. Supported formats include integer, string, text
-   (multi-line string), and boolean values.
+   (multi-line string), and boolean values. This value cannot be changed.
    * **Default** The default value for the field for both existing and new customers.
 It is a best practice to provide a default value when possible.
    * **Is this field is required?** If checked, this prevents the creation of
@@ -40,3 +40,11 @@ It is a best practice to provide a default value when possible.
    * **Is this field hidden?** If checked, the field is not visible to your
    customer in the admin console. The field is still visible to you in the vendor
    portal.
+
+## Delete custom license fields
+
+License fields can be deleted, but this should be carefully considered. Existing deployments where your app or the app manager config screen are expecting a license to provide a required value could cause outages. As such we've limited the RBAC policy to Admins and added several levels of warnings on deletion.
+
+By default, deleting a license field will also delete all values associated with that field within each customer record.
+
+When the "Preserve License Values" option is selected, the values for the field will be orphaned in each customer record (not visible to you or the customer). If you recreate a field with this exact name again, the orphaned values will come back.
