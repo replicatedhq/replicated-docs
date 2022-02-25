@@ -1,14 +1,18 @@
 # Installing in an Air Gapped Environment
 
 This advanced guide shows how to install the Replicated app manager in an air gapped environment.
-This guide assumes that you have already completed one of the [Getting Started Guides](/vendor/guides/#getting-started) to set up a non-airgapped cluster.
+
+This guide assumes that you have already completed one of the quick start tutorials and set up a non-air gapped cluster. See:
+* [Installing without an Existing Cluster](tutorial-installing-without-existing-cluster)
+* [Installing with an Existing Cluster](tutorial-installing-with-existing-cluster)
+* [Managing Releases with the CLI](tutorial-installing-with-cli)
 
 It is broken into a few sections:
 
-- [Download air gap bundle and license](#download-airgap-bundle-and-license)
-- [Kubernetes installer-created cluster](#embedded-kurl-cluster)
+- [Download air gap bundle and license](#download-air-gap-bundle-and-license)
+- [Kubernetes installer-created cluster](#kubernetes-installer-created-cluster)
 - [Icon in Base64](#icon-in-base64)
-- [Upload air gap bundle and license](#upload-airgap-bundle-and-license)
+- [Upload air gap bundle and license](#upload-air-gap-bundle-and-license)
 - [Automatically build bundles](#automatically-build-bundles)
 - [Upload new bundle](#upload-new-bundle)
 
@@ -140,11 +144,11 @@ Once you have the open source components installed with the [Kubernetes installe
 
 ### Upload air gap license
 
-* Upload the license YAML file from [previous step](/vendor/guides/airgapped-cluster/#download-airgap-bundle-and-license), which enables you to upload the `.airgap` bundle in the following step.
+* Upload the license YAML file from the [previous step](#download-air-gap-bundle-and-license), which enables you to upload the `.airgap` bundle in the following step.
 
 ### Upload air gap bundle
 
-* You are prompted to upload the `.airgap` bundle from [previous step](/vendor/guides/airgapped-cluster/#download-airgap-bundle-and-license).
+* You are prompted to upload the `.airgap` bundle from the [previous step](#download-air-gap-bundle-and-license).
 
 ![Airgap Upload Bundle](/images/guides/kots/airgap-upload-bundle.png)
 
@@ -174,7 +178,7 @@ For other channels, you must enable the flag to build bundles automatically.
 When automatic builds are enabled, you can push a release and wait a few minutes for the bundle to build (depending on the number of images). Then download the new `.airgap` bundle to make an update to your application.
 
 After the first installation, subsequent releases can be uploaded from the Version History tab.
-Download a new bundle following the [previous step](/vendor/guides/airgapped-cluster/#download-airgap-bundle-and-license).
+Download a new bundle following the [previous step](#download-air-gap-bundle-and-license).
 
 ### Upload new version
 
