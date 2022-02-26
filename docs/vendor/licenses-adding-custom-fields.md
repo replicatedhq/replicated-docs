@@ -58,10 +58,10 @@ To delete a custom license field:
 1. On the **License Fields** page, click **Edit Field** icon on the right side of the target row.
 1. Select delete on the bottom left of the modal and follow the instructions on the following screen to confirm.
 
-License fields can be deleted, but this should be carefully considered. OUtages can occur when existing deployments where your application or the app manager config screen are expecting a license to provide a required value. As such, we have limited the RBAC policy to administrators and added several levels of warnings on deletion.
+License fields can be deleted, but this should be carefully considered. Outages can occur when existing deployments where your application or the app manager config screen are expecting a license to provide a required value. As such, we have limited the RBAC policy to administrators and added several levels of warnings on deletion.
 
 Deleted license fields and their values do not show up in the customer's license in any location (such as your view in the vendor portal, the downloaded YAML version of the license or the app manager license screen).
 
 By default, deleting a license field also deletes all of the values associated with that field in each customer record. 
 
-When the Preserve License Values option is selected, the values for the field not set by the default are orphaned in each customer record (this is not visible to you or your customer). If you recreate a field with this exact name, the orphaned values are reinstated. To bring default values back to licenses that didn't override the value, use the same default value during recreation. 
+When the Preserve License Values option is selected, the values for the field not set by the default are orphaned in each customer record (this is not visible to you or your customer). If you recreate a field with this exact name and `type`, the orphaned values are reinstated. To bring default values back to licenses that didn't override the value, use the same default value during recreation. 
