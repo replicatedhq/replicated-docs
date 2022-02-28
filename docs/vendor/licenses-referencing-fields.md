@@ -1,46 +1,36 @@
-# Referencing license fields
+# Referencing Custom License Fields
 
-This topic describes how to create references to the license fields that you defined
-for a customer in the Replicated vendor portal.
-
-For information about the built-in license fields, see [About built-in license fields](licenses-using-builtin-fields).
-For information about creating custom license fields, see [Creating custom license fields](licenses-adding-custom-fields).
-
-## Overview of referencing license fields
-
-After you define built-in or custom license fields for a customer in the vendor
-portal, you create references to these license fields that your application can
-query.
+After you create custom license fields for a customer, you must create references
+to these fields that your application can query.
 
 This ensures that the customer's application instance can enforce the entitlements
 that you defined in their license file.
 
-To reference a license field, you can:
+For information about creating custom license fields, see [Managing Custom License Fields](licenses-adding-custom-fields).
+
+To reference a custom license field, you can:
 
 * **Write license fields to Kubernetes manifests**: Create references to license
 fields in Kubernetes manifest files. This allows you to enforce entitlements when
-your customer installs or updates your application. See [Write license fields to Kubernetes manifests](#write-license-fields-to-kubernetes-manifests) below.
+your customer installs or updates your application. See [Write License Fields to Kubernetes Manifests](#write-license-fields-to-kubernetes-manifests) below.
 * **Query the Replicated admin console API**: Query the license field from the application
 using the admin console API. This allows you to enforce entitlements during
-application runtime. See [Query license fields from the API](#query-license-fields-from-the-api) below.
+application runtime. See [Query License Fields from the API](#query-license-fields-from-the-api) below.
 
-## Write license fields to Kubernetes manifests
-
-This section describes referencing license fields in Kubernetes manifest files.
-
-### About writing license fields to Kubernetes manifests
+## Write License Fields to Kubernetes Manifests
 
 To enforce entitlements when your customer installs or updates your application,
-you can reference built-in and custom license fields in a Kubernetes manifest.
+you can reference custom license fields in a Kubernetes manifest.
 
 The Replicated app manager uses the `LicenseFieldValue` template function to read
 license fields when a customer installs or updates your application. For more
 information, see [LicenseFieldValue](../reference/template-functions-license-context#licensefieldvalue).
 
-### Example: Reference a custom license field in a preflight check
+### Example: Reference a Custom License Field in a Preflight Check
 
 For example, a license might limit how many nodes are permitted in a customer's
 cluster.
+
 You could define this limit by creating a `node_count` custom license field:
 
 | Name | Key | Type | Description |
@@ -77,7 +67,7 @@ by the `node_count` license field is exceeded.
 
 For more information, see [How Can I Use License Custom Fields Value in a Pre-Flight Check?](https://help.replicated.com/community/t/how-can-i-use-license-custom-fields-value-in-a-pre-flight-check/624) in the Replicated Community.
 
-## Query license fields from the API
+## Query License Fields from the API
 
 The Replicated admin console runs on the customer's cluster and provides entitlement
 information during application runtime. You can query the admin console API to
