@@ -1,4 +1,4 @@
-# Storage destinations
+# Storage Destinations
 
 The Replicated snapshot feature supports any compatible Velero storage provider. For more information, see [Providers](https://velero.netlify.app/docs/main/supported-providers/) in the Velero documentation.
 
