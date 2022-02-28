@@ -10,7 +10,7 @@ kubectl kots pull [upstream uri] [flags]
 * _If the KOTS application has been packaged by Replicated Vendor, the `--license-file` flag must be provided._
 * _Provide `[flags]` according to the table below_
 
-This command supports all [global flags](/kots-cli/global-flags/) and also:
+This command supports all [global flags](kots-cli-global-flags) and also:
 
 | Flag | Type | Description |
 |:-----|------|-------------|

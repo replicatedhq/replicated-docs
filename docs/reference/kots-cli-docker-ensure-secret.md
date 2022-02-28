@@ -1,6 +1,6 @@
 # docker ensure-secret
 
-Creates an image pull secret that the Admin Console can utilize in case of [rate limiting](/kotsadm/registries/dockerhub-rate-limiting/).
+Creates an image pull secret that the Admin Console can utilize in case of [rate limiting](../enterprise/image-registry-rate-limits).
 Will validate the credentials before creating the image pull secret.
 
 ### Usage

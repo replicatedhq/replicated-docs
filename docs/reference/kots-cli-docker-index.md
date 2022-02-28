@@ -8,4 +8,4 @@ KOTS Docker interface
 kubectl kots docker [command]
 ```
 
-This command supports all [global flags](/kots-cli/global-flags/).
+This command supports all [global flags](kots-cli-global-flags).

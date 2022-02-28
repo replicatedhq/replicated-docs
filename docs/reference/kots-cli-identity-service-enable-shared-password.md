@@ -8,7 +8,7 @@ Enable the shared password login option in the Replicated admin console.
 kubectl kots identity-service enable-shared-password [flags]
 ```
 
-This command supports all [global flags](/kots-cli/global-flags/) and also:
+This command supports all [global flags](kots-cli-global-flags) and also:
 
 | Flag              | Type   | Description                                      |
 | :---------------- | ------ | ------------------------------------------------ |

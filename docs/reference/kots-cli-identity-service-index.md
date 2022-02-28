@@ -8,4 +8,4 @@ KOTS Identity Service
 kubectl kots identity-service [command]
 ```
 
-This command supports all [global flags](/kots-cli/global-flags/).
+This command supports all [global flags](kots-cli-global-flags).

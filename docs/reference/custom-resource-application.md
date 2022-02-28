@@ -3,11 +3,11 @@
 The Application custom resource enables features such as branding, release notes, port forwarding, dashboard buttons, app status indicators, and custom graphs.
 
 With ports specified, the kots CLI can establish port-forwarding to simplify connections to the deployed application.  
-When [statusInformers](admin-console-display-app-status) are specified, the dashboard can provide timely feedback when the application deployment is complete and the application is ready for use.
+When [statusInformers](../vendor/admin-console-display-app-status) are specified, the dashboard can provide timely feedback when the application deployment is complete and the application is ready for use.
 
 The Application custom resource is optional.
 
-**Note**: There is some overlap between the Application custom resource manifest file and the [Kubernetes SIG Application manifest](https://github.com/kubernetes-sigs/application#application-objects). Enabling features such as [adding a button to the dashboard](admin-console-port-forwarding#add-a-button-to-the-dashboard) requires the use of both the Application and SIG Application custom resources.
+**Note**: There is some overlap between the Application custom resource manifest file and the [Kubernetes SIG Application manifest](https://github.com/kubernetes-sigs/application#application-objects). Enabling features such as [adding a button to the dashboard](../vendor/admin-console-adding-buttons-links) requires the use of both the Application and SIG Application custom resources.
 
 The following is an example manifest file for the Application custom resource:
 
@@ -57,10 +57,10 @@ This defaults to `false`. Enable this flag to create a Rollback button on the en
 
 ## additionalNamespaces
 An optional array of namespaces as strings.
-In addition to creating these namespaces, the admin console ensures that the application secret exists in them, and that this secret has access to pull the application images (both images that are used and [`additionalImages`](operator-defining-additional-images)).
+In addition to creating these namespaces, the admin console ensures that the application secret exists in them, and that this secret has access to pull the application images (both images that are used and [`additionalImages`](../vendor/operator-defining-additional-images)).
 For access to dynamically created namespaces, `"*"` can be specified.
 This pull secret will be automatically added to all application specs that use private images.
-For more information, see [Defining additional namespaces](operator-defining-additional-namespaces).
+For more information, see [Defining additional namespaces](../vendor/operator-defining-additional-namespaces).
 
 ## additionalImages
 An optional array of strings that reference images to be included in air gap bundles and pushed to the local registry during installation.
@@ -102,7 +102,7 @@ When an exact version is specified, the app manager will choose the matching maj
 
 ## requireMinimalRBACPrivileges
 When set to true, this will instruct the app manager to create a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.
-For more information, see the [RBAC](packaging-rbac) documentation.
+For more information, see the [RBAC](../vendor/packaging-rbac) documentation.
 
 ## ports
 These are extra ports (additional to the :8800 admin console port) that should be port-forwarded when running the `kots admin-console` command.

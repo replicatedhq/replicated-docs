@@ -40,7 +40,7 @@ By default, the app manager creates a ClusterRole and ClusterRoleBinding with pe
 During install, the app manager can re-tag and push images to a local image registry.
 This is useful to enable CVE scans, image policy validation, and other pre-deployment rules.
 
-For information about using a local image registry, see [About deploying a registry on an existing cluster](image-registry-existing-cluster) in _Using self-hosted image registries_.
+For information about using a local image registry, see [Image Registry for Air Gap Clusters](image-registry-airgap).
 
 ### Use a GitOps or internal version control workflow
 
