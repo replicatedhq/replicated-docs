@@ -11,7 +11,7 @@ kubectl kots download [app-slug] [flags]
 * _Replace `[app-slug]` with the "slug" of your KOTS application (required)._
 * _Provide `[flags]` according to the table below_
 
-This command supports all [global flags](/kots-cli/global-flags/) and also:
+This command supports all [global flags](kots-cli-global-flags) and also:
 
 
 | Flag                 | Type | Description |

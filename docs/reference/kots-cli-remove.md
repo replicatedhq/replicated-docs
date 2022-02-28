@@ -13,7 +13,7 @@ kubectl kots remove [app-slug]
 * _`[app-slug]` is the slug of the installed application to be removed (required)_
 * _Provide `[flags]` according to the table below_
 
-This command supports all [global flags](/kots-cli/global-flags/) and also:
+This command supports all [global flags](kots-cli-global-flags) and also:
 
 
 | Flag                 | Type | Description |

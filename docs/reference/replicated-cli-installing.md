@@ -14,7 +14,7 @@ This guide already assumes that you have created a team and an initial applicati
 
 ## Configure Environment
 
-You’ll need to set up two environment variables to interact with https://vendor.replicated.com: `REPLICATED_APP` and `REPLICATED_API_TOKEN`.
+You’ll need to set up two environment variables to interact with the [vendor portal](https://vendor.replicated.com): `REPLICATED_APP` and `REPLICATED_API_TOKEN`.
 
 
 * `REPLICATED_APP` should be set to the name of your application, as shown in the URL path at https://vendor.replicated.com/apps. _Note that this is **case sensitive**_

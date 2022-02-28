@@ -13,7 +13,7 @@ kubectl kots install [upstream uri] [flags]
 - _If the KOTS application has been packaged by Replicated Vendor, the `--license-file` flag must be provided._
 - _Provide `[flags]` according to the table below_
 
-This command supports all [global flags](/kots-cli/global-flags/) and also:
+This command supports all [global flags](kots-cli-global-flags) and also:
 
 | Flag                        | Type   | Description                                                                                                                                                                               |
 |:----------------------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -39,7 +39,7 @@ This command supports all [global flags](/kots-cli/global-flags/) and also:
 | `--disable-image-push`      | bool   | set to true to disable images from being pushed to private registry                                                                                                                       |
 | `--wait-duration`           | string | timeout out to be used while waiting for individual components to be ready. must be in [Go duration](https://pkg.go.dev/time#ParseDuration) format (eg: 10s, 2m).                         |
 | `--with-minio`              | bool   | when set, kots will deploy a local minio instance for storage and use minio for hostpath and NFS snapshot storage (default true)                                                          |
-| `--ensure-rbac`             | bool   | when set, kots will skip RBAC configuration at install time. (default false) if a role spec is needed, use the [generate-manifests](/kots-cli/admin-console/generate-manifests/) command. |
+| `--ensure-rbac`             | bool   | when set, kots will skip RBAC configuration at install time. (default false) if a role spec is needed, use the [generate-manifests](kots-cli-admin-console-generate-manifests) command. |
 | `--strict-security-context` | bool   | set to explicitly enable strict security contexts for all kots pods and containers (may not work for some storage providers, default false)                                               |
 
 <!-- | `--repo` | string | repo uri to use when installing a helm chart | -->

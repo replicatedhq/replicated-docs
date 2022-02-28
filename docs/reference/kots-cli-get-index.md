@@ -9,7 +9,7 @@ The `kots get` command shows information about one or more resources.
 kubectl kots get [resource] [flags]
 ```
 
-This command supports all [global flags](/kots-cli/global-flags/) and also:
+This command supports all [global flags](kots-cli-global-flags) and also:
 
 | Flag                 | Type | Description |
 |:----------------------|------|-------------|
