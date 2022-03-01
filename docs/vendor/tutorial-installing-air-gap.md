@@ -9,12 +9,12 @@ The tutorial assumes that you have already completed one of the quick start tuto
 
 This content is broken into a few sections:
 
-- [Downloading the air gap bundle and license](#download-the-air-gap-bundle-and-license)
-- [Kubernetes installer-created cluster](#kubernetes-installer-created-cluster)
-- [Icon in Base64](#icon-in-base64)
+- [Download the air gap bundle and license](#download-the-air-gap-bundle)
+- [Install the Kubernetes installer bundle](#install-the-kubernetes-installer-bundle)
+- [Convert the icon to Base64](#convert-the-icon-to-base64)
 - [Upload the air gap bundle and license](#upload-the-air-gap-bundle-and-license)
 - [Automatically build bundles](#automatically-build-bundles)
-- [Upload a new bundle](#upload-a-new-bundle)
+- [Deploy a new bundle](#deploy-a-new-bundle)
 
 
 ## Download the Air Gap Bundle
@@ -110,7 +110,7 @@ To install the Kubernetes installer bundle:
   ssh -N -L 8800:${AIRGAP_PRIVATE_IP}:8800 ${JUMPBOX_PUBLIC_IP}
   ```
 
-## Converting icon to Base64
+## Convert the icon to Base64
 
 In an air gapped environment, if the `icon` uses a URL, it cannot display the image because it is fetched at the time the page is rendered. You must convert the PNG file into `base64`.
 
