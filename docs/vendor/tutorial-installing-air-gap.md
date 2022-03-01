@@ -18,7 +18,7 @@ This content is broken into a few sections:
 
 ## Downloading the Air Gap Bundle and License
 
-This section explains how to download the `.airgap` bundle and license from the Replicated [vendor portal](https://vendor.replicated.com) that you need for [Kubernetes installer](#kubernetes-installer-created-cluster). You will upload these files later in the installation process:
+This section explains how to download the `.airgap` bundle and license from the Replicated [vendor portal](https://vendor.replicated.com) that you need for the [Kubernetes installer](#kubernetes-installer-created-cluster). You will upload these files later in the installation process:
 
 - **`.airgap` bundle**: This file contains application-specific files, such as Kubernetes YAML and Docker images.
 You can view its contents with `tar -zxvf`.
