@@ -16,22 +16,13 @@ This content is broken into a few sections:
 - [Automatically build bundles](#automatically-build-bundles)
 - [Upload a new bundle](#upload-a-new-bundle)
 
-## Downloading the Air Gap Bundle and License
+## Download the Air Gap Bundle
 
-This section explains how to download the `.airgap` bundle and license from the Replicated [vendor portal](https://vendor.replicated.com) that you need for [Kubernetes installer](#kubernetes-installer-created-cluster). You will upload these files later in the installation process:
-
-- **`.airgap` bundle**: This file contains application-specific files, such as Kubernetes YAML and Docker images.
-You can view its contents with `tar -zxvf`.
-
-- **Air gap license**: The air gap license option lets you install the `.airgap` bundle.
-Without this enabled, you cannot use the `.airgap` bundle.
-
-
-### Download the Air Gap Bundle
+The `airgap` bundle contains application-specific files, such as Kubernetes YAML and Docker images. You can view its contents with `tar -zxvf`.
 
 To download the `.airgap` bundle:
 
-1. From the vendor portal, click **[App Name] > Channels > [Channel Name] > Release History**.
+1. From the Replicated [vendor portal](https://vendor.replicated.com), click **[App Name] > Channels > [Channel Name] > Release History**.
 
   ![Airgap Channels](/images/guides/kots/airgap-channels.png)
 
@@ -41,9 +32,9 @@ To download the `.airgap` bundle:
 
 1. Click **Download Bundle** to download the `.airgap` bundle. Keep this file on your local laptop to access the Replicated admin console in later steps.
 
-### Download the Air Gap License
+## Download the Air Gap License
 
-You must enable the customer license to use the air gap entitlement, and then download the updated license with the new entitlement.
+The air gap license option lets you install the `.airgap` bundle. Without this enabled, you cannot use the `.airgap` bundle.
 
 To enable the air gap entitlement and download the updated license:
 
@@ -57,17 +48,16 @@ To enable the air gap entitlement and download the updated license:
 
 1. Click **Download license** to download the updated air gapped enabled YAML license.
 
-## Kubernetes Installer-created Cluster
+## Install the Kubernetes Installer Bundle
 
 Clusters created by the Kubernetes installer (embedded clusters) need a third file, in addition to the `.airgap` bundle and license file.
+
 The Kubernetes installer bundle provides the open source components to run the cluster: Docker, Kubernetes, the admin console, Weave, Contour, Rook, Registry and a number of other [add-ons](https://kurl.sh/add-ons).
 The Kubernetes installer bundle is kept separate from the `.airgap` app bundle for the following reasons:
 
 * The Kubernetes installer bundle can get quite large, so this method lets you update your application with a smaller bundle size.
 
 * The release cadence of the `.airgap` bundle is generally higher in comparison to the Kubernetes installer components, which only needs to be updated when the underlying cluster components or add-ons need to be updated.
-
-### Install the Kubernetes Installer Bundle
 
 To install the Kubernetes installer bundle:
 
@@ -119,30 +109,26 @@ To install the Kubernetes installer bundle:
   ssh -N -L 8800:${AIRGAP_PRIVATE_IP}:8800 ${JUMPBOX_PUBLIC_IP}
   ```
 
-
-## Icon in Base64
+## Converting icon to Base64
 
 In an air gapped environment, if the `icon` uses a URL, it cannot display the image because it is fetched at the time the page is rendered. You must convert the PNG file into `base64`.
 
-### Converting icon to Base64
-
-To fetch the image:
+To convert and use the image:
 
 1. Use `curl`, then use `base64` to encode the image:
 
   ```shell
   curl -LSs https://sentry-brand.storage.googleapis.com/sentry-glyph-black.png | base64
   ```
+
 1. Verify that this works in your browser by prefixing the stream with `data:image/png;base64,<encoded_base64_stream>` and putting it in the address bar, where the URL would typically go.
 
-### Using the Encoded icon
+1. After the base64 encoded string is copied, replace the `icon` URL with the base64 encoded string and prefix it with `data:image/png;base64,<encoded_base64_stream>`, similar to when you previously accessed it using the browser:
 
-After the base64 encoded string is copied, replace the `icon` URL with the base64 encoded string and prefix it with `data:image/png;base64,<encoded_base64_stream>`, similar to when you previously accessed it using the browser:
-
-```yaml
-spec:
-  icon: data:image/png;base64,<encoded_base64_stream>
-```
+  ```yaml
+  spec:
+    icon: data:image/png;base64,<encoded_base64_stream>
+  ```
 
 ## Upload the Air Gap Bundle and License
 
