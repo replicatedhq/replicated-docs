@@ -7,14 +7,14 @@ The tutorial assumes that you have already completed one of the quick start tuto
 * [Installing with an Existing Cluster](tutorial-installing-with-existing-cluster)
 * [Managing Releases with the CLI](tutorial-installing-with-cli)
 
-This content is broken into a few sections:
+The air gap installation follows this process:
 
-- [Download the air gap bundle and license](#download-the-air-gap-bundle)
-- [Install the Kubernetes installer bundle](#install-the-kubernetes-installer-bundle)
-- [Convert the icon to Base64](#convert-the-icon-to-base64)
-- [Upload the air gap bundle and license](#upload-the-air-gap-bundle-and-license)
-- [Automatically build bundles](#automatically-build-bundles)
-- [Deploy a new bundle](#deploy-a-new-bundle)
+1. [Download the air gap bundle and license](#download-the-air-gap-bundle)
+1. [Install the Kubernetes installer bundle](#install-the-kubernetes-installer-bundle)
+1. [Convert the icon to Base64](#convert-the-icon-to-base64)
+1. [Upload the air gap bundle and license](#upload-the-air-gap-bundle-and-license)
+1. [Build bundles automatically](#build-bundles-automatically)
+1. [Deploy a new bundle](#deploy-a-new-bundle)
 
 
 ## Download the Air Gap Bundle
@@ -150,7 +150,7 @@ To upload the bundle and license:
   After the bundle is uploaded, the preflight checks begin. After all of the checks pass, the application is automatically deployed.
 
 
-## Automatically Build Bundles
+## Build Bundles Automatically
 
 When creating new releases, you must click **Build** every time a new release is made.
 By default, only Stable and Beta channels automatically build `.airgap` bundles on new releases.
