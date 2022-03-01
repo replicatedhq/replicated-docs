@@ -146,7 +146,9 @@ spec:
 
 ## Upload the Air Gap Bundle and License
 
-After you have the open source components installed with the [Kubernetes installer](/vendor/guides/airgapped-cluster/#embedded-kurl-cluster), upload the air gap bundle and license
+After you have the open source components installed with the [Kubernetes installer](/vendor/guides/airgapped-cluster/#embedded-kurl-cluster), upload the air gap bundle and license.
+
+To upload the bundle and license:
 
 1. Log in to the admin console using the password from the installation.
 
@@ -158,7 +160,7 @@ After you have the open source components installed with the [Kubernetes install
 
   ![Airgap Upload Bundle](/images/guides/kots/airgap-upload-bundle.png)
 
-  After the bundle is uploaded, the preflights checks begin. After all of the checks pass, the application is automatically deployed.
+  After the bundle is uploaded, the preflight checks begin. After all of the checks pass, the application is automatically deployed.
 
 
 ## Automatically Build Bundles
