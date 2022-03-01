@@ -18,7 +18,16 @@ This content is broken into a few sections:
 
 ## Download the Air Gap Bundle
 
-The `airgap` bundle contains application-specific files, such as Kubernetes YAML and Docker images. You can view its contents with `tar -zxvf`.
+This section explains how to download the `.airgap` bundle and license from the Replicated [vendor portal](https://vendor.replicated.com) that you need for the [Kubernetes installer](#kubernetes-installer-created-cluster). You will upload these files later in the installation process:
+
+- **`.airgap` bundle**: This file contains application-specific files, such as Kubernetes YAML and Docker images.
+You can view its contents with `tar -zxvf`.
+
+- **Air gap license**: The air gap license option lets you install the `.airgap` bundle.
+Without this enabled, you cannot use the `.airgap` bundle.
+
+
+### Download the Air Gap Bundle
 
 To download the `.airgap` bundle:
 
@@ -42,7 +51,7 @@ To enable the air gap entitlement and download the updated license:
 
   ![Airgap Customers](/images/guides/kots/airgap-customers.png)
 
-1. Click **License options > Airgap Download Enabled**, and **Save Changes**. This lets the the app manager use the `.airgap` bundle.
+1. Click **License options > Airgap Download Enabled**, and **Save Changes**. This lets the app manager use the `.airgap` bundle.
 
   ![Airgap Download License](/images/guides/kots/airgap-download-license.png)
 
@@ -132,7 +141,9 @@ To convert and use the image:
 
 ## Upload the Air Gap Bundle and License
 
-After you have the open source components installed with the [Kubernetes installer](/vendor/guides/airgapped-cluster/#embedded-kurl-cluster), upload the air gap bundle and license
+After you have the open source components installed with the [Kubernetes installer](/vendor/guides/airgapped-cluster/#embedded-kurl-cluster), upload the air gap bundle and license.
+
+To upload the bundle and license:
 
 1. Log in to the admin console using the password from the installation.
 
@@ -144,7 +155,7 @@ After you have the open source components installed with the [Kubernetes install
 
   ![Airgap Upload Bundle](/images/guides/kots/airgap-upload-bundle.png)
 
-  After the bundle is uploaded, the preflights checks begin. After all of the checks pass, the application is automatically deployed.
+  After the bundle is uploaded, the preflight checks begin. After all of the checks pass, the application is automatically deployed.
 
 
 ## Automatically Build Bundles
