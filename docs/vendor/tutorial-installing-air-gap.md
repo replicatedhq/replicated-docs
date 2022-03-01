@@ -40,13 +40,13 @@ To download the `.airgap` bundle:
 
   ![Airgap Download Bundle](/images/guides/kots/airgap-download-bundle.png)
 
-1. Click **Download Bundle** to download the `.airgap` bundle.
-
-1. Keep this file on your local laptop to access the Replicated admin console in later steps.
+1. Click **Download Bundle** to download the `.airgap` bundle. Keep this file on your local laptop to access the Replicated admin console in later steps.
 
 ### Download the Air Gap License
 
-To download the air gap license:
+You must enable the customer license to use the air gap entitlement, and then download the updated license with the new entitlement.
+
+To enable the air gap entitlement and download the updated license:
 
 1. Click **[App Name] > Customer > [Customer Name]**.
 
@@ -55,8 +55,6 @@ To download the air gap license:
 1. Click **License options > Airgap Download Enabled**, and **Save Changes**. This lets the the app manager use the `.airgap` bundle.
 
   ![Airgap Download License](/images/guides/kots/airgap-download-license.png)
-
-  When the customer is modified, the license changes along with the new air gapped entitlement, so you must download the updated license with the new entitlements.
 
 1. Click **Download license** to download the updated air gapped enabled YAML license.
 
@@ -83,7 +81,7 @@ To install the Kubernetes installer bundle:
       curl -LS https://k8s.kurl.sh/bundle/${REPLICATED_APP}.tar.gz -o ${REPLICATED_APP}.tar.gz
       ```
 
-      * To download the Kubernetes installer bundle for all other channels, use the suffix `-<channel_name>`:
+    * To download the Kubernetes installer bundle for all other channels, use the suffix `-<channel_name>`:
 
       ```shell
       export REPLICATED_APP=<app_slug>
@@ -174,7 +172,7 @@ To enable the flag:
 
 1. Click **[App Name] > Channels > [Channel Name]**, and click the **Edit channel** icon.
 
-1. Enable th**Automatically create airgap builds for all releases in this channel**.
+1. Enable **Automatically create airgap builds for all releases in this channel**.
 
 1. Click **Save**.
 
@@ -183,7 +181,7 @@ To enable the flag:
 
 ## Deploy a New Bundle
 
-When automatic builds are enabled, you can push a release and wait a few minutes for the bundle to build (depending on the number of images).
+When automatic builds are enabled, you can push a release and wait a few minutes for the bundle to build, depending on the number of images.
 
 To deploy an update to your application:
 
