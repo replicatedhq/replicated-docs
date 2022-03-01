@@ -17,7 +17,7 @@ Tokens are primarily used with the [vendor api](vendor-api-using) and the [repli
 
 Service accounts are assigned a token and associated with an RBAC policy. Any user with the proper permissions can create, retrieve or revoke them. Admin users can assign any RBAC policy to a service account. Non-admin users can only assign their own RBAC policy.
 
-Users can also assign write or read only permissions. The associated token applies the least privilege between the RBAC policy and permissions.
+At creation time, users can also choose to limit the service account to a read-only version of the selected RBAC policy
 
 Service account names must be unique within a given team.
 
