@@ -98,7 +98,7 @@ To install the Kubernetes installer bundle:
   cat install.sh | sudo bash -s airgap
   ```
 
-1. After the installation completes, save the output at the end.
+1. After the installation completes, save the output.
 
 1. Access the admin console using `http://<airgap_private_ip>:8800` to continue the installation from the browser to upload the `.airgap` bundle and license file.
 
@@ -133,7 +133,7 @@ To convert and use the image:
 
 ## Upload the Air Gap Bundle and License
 
-After you have the open source components installed with the [Kubernetes installer](/vendor/guides/airgapped-cluster/#embedded-kurl-cluster), upload the air gap bundle and license.
+After you have the open source components installed with the [Kubernetes installer](#install-the-kubernetes-installer-bundle), upload the air gap bundle and license.
 
 To upload the bundle and license:
 
@@ -173,7 +173,7 @@ When automatic builds are enabled, you can push a release and wait a few minutes
 
 To deploy an update to your application:
 
-1. [Download a new bundle](#downloading-the-air-gap-bundle-and-license).
+1. [Download a new bundle](#download-the-air-gap-bundle).
 
 1. From the admin console, click **Version History > Upload new version** to upload the new bundle. As the bundle uploads, you can see the progress.
 
