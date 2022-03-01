@@ -27,7 +27,6 @@ You can view its contents with `tar -zxvf`.
 Without this enabled, you cannot use the `.airgap` bundle.
 
 
-
 ### Download the Air Gap Bundle
 
 To download the `.airgap` bundle:
@@ -155,7 +154,7 @@ After you have the open source components installed with the [Kubernetes install
 
   The Install in airgapped environment dialog opens.
 
-1. Upload the `.airgap` bundle.
+1. Click **Upload airgap bundle**.
 
   ![Airgap Upload Bundle](/images/guides/kots/airgap-upload-bundle.png)
 
