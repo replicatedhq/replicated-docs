@@ -145,6 +145,7 @@ const sidebars = {
           items: [
             'vendor/team-management',
             'vendor/team-management-google-auth',
+            'vendor/team-management-saml-auth',
           ],
         },
         {
