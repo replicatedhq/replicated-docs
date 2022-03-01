@@ -51,7 +51,7 @@ To enable the air gap entitlement and download the updated license:
 
   ![Airgap Customers](/images/guides/kots/airgap-customers.png)
 
-1. Click **License options > Airgap Download Enabled**, and **Save Changes**. This lets the the app manager use the `.airgap` bundle.
+1. Click **License options > Airgap Download Enabled**, and **Save Changes**. This lets the app manager use the `.airgap` bundle.
 
   ![Airgap Download License](/images/guides/kots/airgap-download-license.png)
 
