@@ -184,7 +184,7 @@ The minimum KOTS version that is required by the release.
 
 >Introduced in app manager v1.62.0.
 
-Including `minKotsVersion` in the Application manifest file enforces compatibility checks for both new installations and application updates. It also blocks installation or update if the current deployed KOTS version is earlier than the `minKotsVersion`. For more information, see [How the Admin Console Handles minKotsVersion](#how-the-admin-console-handles-minKotsVersion) below.
+Including `minKotsVersion` in the Application manifest file enforces compatibility checks for both new installations and application updates. It also blocks installation or update if the current deployed KOTS version is earlier than the `minKotsVersion`. For more information, see [How the Admin Console Handles minKotsVersion](#how-the-admin-console-handles-minkotsversion) below.
 
 :::note
 The app manager is based on the KOTS open source project. The KOTS version is the same as the app manager version. For example, KOTS v1.60 is the same as the app manager v1.60.
