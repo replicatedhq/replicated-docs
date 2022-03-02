@@ -1,4 +1,4 @@
-# Configuring Roll-Based Access Control
+# Configuring Role-Based Access Control
 
 When an application is installed, [Kubernetes RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) resources are created to allow the Replicated admin console to manage the application.
 
