@@ -6,7 +6,7 @@ After starting out with Replicated, most teams grow, adding more developers, sup
 
 ### Enabling
 
-To enable SAML on your account, you must have an Enterprise plan. For access to SAML, you can contact us in Slack or through [Support] (https://vendor.replicated.com/support). For information about the Enterprise plan, see [pricing](https://www.replicated.com/pricing/).
+To enable SAML on your account, you must have an Enterprise plan. For access to SAML, you can contact Replicated in Slack or through [Support](https://vendor.replicated.com/support). For information about the Enterprise plan, see [pricing](https://www.replicated.com/pricing/).
 
 ### SCIM
 
@@ -20,31 +20,42 @@ Replicated supports Role Based Access Control (RBAC) in the vendor portal. To us
 
 When first enabling SAML, we do not recommend that you disable username/password access at the same time. It is possible, and recommended during testing, to support both SAML and non-SAML authentication on your account simultaneously.
 
+:::note
+To configure Replicated SAML with Okta, see [Configure Okta](#configure-okta)
+:::
+
+**Prerequisite**
+
+- Download your XML Metadata file and x.509 public certificate from your SAML provider. For more information on supported SAML providers and how to find these files, see [supported SAML providers](#supported-saml-providers).
+
 To configure SAML:
 
-1. Log in to the [vendor portal Team Members page](https://vendor.replicated.com/team/members) as a user with Admin access.
+1. Log in to the vendor portal [Team Members page](https://vendor.replicated.com/team/members) as a user with Admin access.
 1. Click SAML Authentication from the left menu. If you do not see these options, contact Replicated in Slack or through [Support](https://vendor.replicated.com/support).
 
  The SAML Authentication page opens.
 
  ![SAML Authentication](/images/team-mgmt-saml-authentication.png)
 
-1. Browse for, or drag and drop, your XML Metadata file and x.509 public certificate from your SAML provider. For more information on supported SAML providers and how to find these files, see [supported SAML providers](#supported-saml-providers).
+1. Browse for, or drag and drop, your XML Metadata file and x.509 public certificate from your SAML provider.
 
 1. Click **Upload Metadata & Cert**.
 
+### Next Step
 
-## Tested SAML providers
+At this point, SAML is configured, but not enabled. The next step is to enable SAML enforcement options. For more information, see [enable SAML Enforcement](#enable-saml-enforcement).
 
-Replicated tests several SAML providers, but the service should be compatible with any SAML 2.0 compliant service provider. We provide setup instructions and support for the following SAML providers.
+## Supported SAML providers
+
+Replicated tests several SAML providers, but the service should be compatible with any SAML 2.0 compliant service provider. We provide support for the following SAML providers.
 
 ### Okta
 
-If your team is using Okta, it’s fully supported in Replicated. For more information, see [Configure Okta](#configure-okta).
+Okta is fully supported in Replicated. For more information about integrating Replicated with Okta, see [Configure Okta](#configure-okta).
 
 ### OneLogin
 
-If your team is using OneLogin, it’s also fully supported.
+OneLogin is fully supported in Replicated.
 
 
 ## Configure Okta
@@ -75,12 +86,32 @@ To configure the integration of the vendor portal and Okta:
 
 1. Click **Next**.
 
-1. Select **I’m an Okta customer adding an internal app** on the final screen, and click **Finish**.o
+1. Select **I’m an Okta customer adding an internal app** on the final screen, and click **Finish**.
 
 1. Click **Identity provider metadata** to download the Metadata.xml file. This likely opens an XML download that you can right-click and select **Save Link As…** to download this file.
 
 1. In the Replicated vendor portal, follow the steps in [Configure SAML](#configure-saml) to upload the metadata.xml file and your Okta certification.
 
-1. In the Replicated vendor portal, follow the steps in [Configure SAML](#configure-saml) to upload the metadata.xml file and your Okta certification.
 
-At this point, SAML is configured, but not enabled. You have two options for enforcement, and can continue to the Enforcing section to understand these options.
+### Next Step
+At this point, SAML is configured, but not enabled. The next step is to enable SAML enforcement options. For more information, see [enable SAML Enforcement](#enable-saml-enforcement).
+
+## Enable SAML enforcement
+
+After you have SAML authentication configured, you must enable SAML enforcement options. Replicated provides two options that can be enabled or disabled at any time.
+
+
+  To enable SAML enforcement:
+
+  1. From the vendor portal, select **Team > Authentication**.
+
+    The SAML enforcement options appear.
+
+  1. Select either or both options:
+
+    **Enable SAML for team logins** - Allows members of your team to log in to the vendor portal from your SSO provider. This does not remove, change, or restrict any other authentication methods you have configured on Replicated. If you enable SAML and your team already is logging in with accounts provisioned in Replicated, they will be able to continue logging in with those accounts. Allowing both login methods is a good way to test SAML without risking any interruption for the rest of your team.
+
+    **Only allow SAML logins** - Prevents any non-SAML accounts from logging in. Replicated does not delete the existing accounts. If you turn on this option and then later disable it, accounts that never logged in using SAML will be able to log in again. If an account exists outside of SAML and then is authenticated with SAML, the account is converted and cannot authenticate using a password again.
+
+  1. Click **Re-Upload IdP Metadata** and follow the prompts to upload the required metadata.
+  1. Click **Save**.
