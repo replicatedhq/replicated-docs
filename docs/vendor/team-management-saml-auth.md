@@ -68,7 +68,7 @@ To configure the integration of the vendor portal and Okta:
 
 1. Select **Add a new application**, and create a new application as a SAML 2.0 application.
 
-1. Provide a name and icon for the application, such as Replicated vendor portal. You can download a high quality Replicated icon here: https://help.replicated.com/images/guides/vendor-portal-saml/replicated-application.icon.png.
+1. Provide a name and icon for the application, such as Replicated vendor portal. You can download a high quality Replicated icon [here](https://help.replicated.com/images/guides/vendor-portal-saml/replicated-application-icon.png).
 
 1. Click **Next**.
 
@@ -80,7 +80,7 @@ To configure the integration of the vendor portal and Okta:
 
   | Field Name              | Description                                                                                     |
   | :---------------------- | ----------------------------------------------------------------------------------------------- |
-  | Single Sign On URL      | Set this to https://id.replicated.com/v1/saml.                                                  |
+  | Single Sign On URL      | Set this to `https://id.replicated.com/v1/saml`.                                                  |
   | Audience URI (SP Entity ID) | Displays on the vendor portal authentication tab, and is unique to your team in Replicated. |
   | Name ID Format          | Change this to `EmailAddress`.                                                                  |
 
