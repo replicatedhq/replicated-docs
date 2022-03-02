@@ -4,9 +4,9 @@
 
 After starting out with Replicated, most teams grow, adding more developers, support engineers, and sales engineers. Eventually, managing access to the Replicated vendor portal can become difficult. Replicated supports logging in using SAML, which lets you manage access (provisioning and deprovisioning) outside of Replicated. Using SAML, everyone on your team can log in with their existing usernames and passwords, simplifying their experience.
 
-### Enabling
+### Enabling SAML in Your Vendor Account
 
-To enable SAML on your account, you must have an Enterprise plan. For access to SAML, you can contact Replicated in Slack or through [Support](https://vendor.replicated.com/support). For information about the Enterprise plan, see [pricing](https://www.replicated.com/pricing/).
+To enable SAML in your vendor portal account, you must have an Enterprise plan. For access to SAML, you can contact Replicated in Slack or through [Support](https://vendor.replicated.com/support). For information about the Enterprise plan, see [pricing](https://www.replicated.com/pricing/).
 
 ### SCIM
 
@@ -18,7 +18,7 @@ Replicated supports Role Based Access Control (RBAC) in the vendor portal. To us
 
 ## Configure SAML
 
-When first enabling SAML, we do not recommend that you disable username/password access at the same time. It is possible, and recommended during testing, to support both SAML and non-SAML authentication on your account simultaneously.
+When you initially configure SAML, we do not recommend that you disable username/password access at the same time. It is possible, and recommended during testing, to support both SAML and non-SAML authentication on your account simultaneously.
 
 :::note
 To configure Replicated SAML with Okta, see [Configure Okta](#configure-okta)
@@ -26,7 +26,7 @@ To configure Replicated SAML with Okta, see [Configure Okta](#configure-okta)
 
 **Prerequisite**
 
-- Download your XML Metadata file and x.509 public certificate from your SAML provider. For more information on supported SAML providers and how to find these files, see [supported SAML providers](#supported-saml-providers).
+- Download your XML Metadata file and x.509 public certificate from your SAML provider. For more information on supported SAML providers and how to find these files, see [Supported SAML providers](#supported-saml-providers).
 
 To configure SAML:
 
@@ -43,7 +43,7 @@ To configure SAML:
 
 ### Next Step
 
-At this point, SAML is configured, but not enabled. The next step is to enable SAML enforcement options. For more information, see [enable SAML Enforcement](#enable-saml-enforcement).
+At this point, SAML is configured, but not enabled. The next step is to enable SAML enforcement options. For more information, see [Enable SAML Enforcement](#enable-saml-enforcement).
 
 ## Supported SAML providers
 
@@ -68,7 +68,7 @@ To configure the integration of the vendor portal and Okta:
 
 1. Select **Add a new application**, and create a new application as a SAML 2.0 application.
 
-1. Provide a name and icon for the application, such as Replicated Vendor Portal. You can download a high quality Replicated icon here: https://help.replicated.com/images/guides/vendor-portal-saml/replicated-application.icon.png.
+1. Provide a name and icon for the application, such as Replicated vendor portal. You can download a high quality Replicated icon here: https://help.replicated.com/images/guides/vendor-portal-saml/replicated-application.icon.png.
 
 1. Click **Next**.
 
@@ -94,22 +94,21 @@ To configure the integration of the vendor portal and Okta:
 
 
 ### Next Step
-At this point, SAML is configured, but not enabled. The next step is to enable SAML enforcement options. For more information, see [enable SAML Enforcement](#enable-saml-enforcement).
+At this point, SAML is configured, but not enabled. The next step is to enable SAML enforcement options. For more information, see [Enable SAML Enforcement](#enable-saml-enforcement).
 
 ## Enable SAML enforcement
 
 After you have SAML authentication configured, you must enable SAML enforcement options. Replicated provides two options that can be enabled or disabled at any time.
 
-
-  To enable SAML enforcement:
+To enable SAML enforcement:
 
   1. From the vendor portal, select **Team > Authentication**.
 
     The SAML enforcement options appear.
 
-  1. Select either or both options:
+  1. Select either or both options. Allowing both login methods is a good way to test SAML without risking any interruption for the rest of your team.
 
-    **Enable SAML for team logins** - Allows members of your team to log in to the vendor portal from your SSO provider. This does not remove, change, or restrict any other authentication methods you have configured on Replicated. If you enable SAML and your team already is logging in with accounts provisioned in Replicated, they will be able to continue logging in with those accounts. Allowing both login methods is a good way to test SAML without risking any interruption for the rest of your team.
+    **Enable SAML for team logins** - Allows members of your team to log in to the vendor portal from your SSO provider. This option does not remove, change, or restrict any other authentication that methods you have configured on Replicated. If you enable SAML and your team already is logging in with accounts provisioned in Replicated, they will be able to continue logging in with those accounts.
 
     **Only allow SAML logins** - Prevents any non-SAML accounts from logging in. Replicated does not delete the existing accounts. If you turn on this option and then later disable it, accounts that never logged in using SAML will be able to log in again. If an account exists outside of SAML and then is authenticated with SAML, the account is converted and cannot authenticate using a password again.
 
