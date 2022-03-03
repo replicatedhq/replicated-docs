@@ -15,11 +15,7 @@ const config = {
   favicon: 'images/favicon.png',
   organizationName: 'replicatedhq', // Usually your GitHub org/user name.
   projectName: 'replicated-docs', // Usually your repo name.
-  customFields: {
-    productName: 'Replicated',
-    testVariable: 'Test'
-  },
-
+  
   presets: [
     [
       '@docusaurus/preset-classic',
