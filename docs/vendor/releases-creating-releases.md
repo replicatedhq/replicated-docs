@@ -18,7 +18,7 @@ We recommend that you bookmark the Replicated [vendor portal](https://vendor.rep
 
 1. In the YAML editor, package your application by providing a set of Kubernetes manifest files. These can include standard manifests such as Deployment and Service resources, as well as several custom resources that invoke app manager functions.
 
-  The _Packaging Your Application_ section includes information about how to write the manifest files for these resources. For more information, see [Understanding packaging with the app manager](packaging-an-app).
+  The _Packaging Your Application_ section includes information about how to write the manifest files for these resources.
 
   For reference information about the custom resources, see [About custom resources](../reference/custom-resource-about).
 

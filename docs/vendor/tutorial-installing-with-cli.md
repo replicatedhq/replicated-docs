@@ -309,7 +309,7 @@ AIRGAP:
     sudo bash ./install.sh airgap
 ```
 
-The output generates commands for installing on an [existing cluster](installing-existing-cluster-requirements), installing [without an existing cluster](installing-embedded-cluster-requirements), and installing on an [air gap cluster](installing-existing-cluster-airgapped).
+The output generates commands for installing on an [existing cluster](../enterprise/installing-existing-cluster-requirements), installing [without an existing cluster](../enterprise/installing-embedded-cluster-requirements), and installing on an [air gap cluster](../enterprise/installing-existing-cluster-airgapped).
 
 ## Install the App Manager
 

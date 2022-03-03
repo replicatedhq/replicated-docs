@@ -17,7 +17,7 @@ When you work with the Replicated platform, the Replicated vendor portal is the 
 
 For help or more information, see [How to Distribute an Application](distributing-workflow) or our [community documentation](https://help.replicated.com/community/).
 
-This tutorial show you how to deploy a sample application using the app manager and how to deliver an update to that application. The tutorial does not teach Kubernetes, rather it starts with a minimal Kubernetes application that deploys a single replica of [NGINX](https://www.nginx.com).
+This tutorial shows you how to deploy a sample application using the app manager and how to deliver an update to that application. The tutorial does not teach Kubernetes, rather it starts with a minimal Kubernetes application that deploys a single replica of [NGINX](https://www.nginx.com).
 
 ### Create a New Application
 
@@ -78,7 +78,7 @@ Now that you have a release promoted, you can create a license and install the s
 
 This section gives you experience installing an application using the Replicated Kubernetes installer for an embedded Kubernetes cluster. For more information, see [Kubernetes installer](https://kurl.sh).
 
-### Create License
+### Create a License
 
 A customer license, downloadable as a YAML file, is required to install any application.
 

@@ -1,6 +1,6 @@
 # HelmChart
 
-A HelmChart custom resource enables the Replicated app manager to process and deploy Helm charts as part of an application. The app manager can process Helm charts using the Replicated Helm installation for existing applications. You can also use a native Helm installation for new applications. For more information, see [Installing with the app manager](helm-installing-replicated-helm) and [Installing with native Helm](helm-installing-native-helm).
+A HelmChart custom resource enables the Replicated app manager to process and deploy Helm charts as part of an application. The app manager can process Helm charts using the Replicated Helm installation for existing applications. You can also use a native Helm installation for new applications. For more information, see [Installing with the app manager](../vendor/helm-installing-replicated-helm) and [Installing with native Helm](../vendor/helm-installing-native-helm).
 
 HelmChart custom resources are required for the app manager to deploy Helm charts. HelmChart custom resources are not required if only raw Kubernetes manifests are deployed.
 
@@ -81,7 +81,7 @@ Acceptable values are `v2` or `v3`. `v2` is the default when no value is specifi
 
 ## values
 
-The `values` key allows for values to be changed in the chart. It also can create a mapping between the Replicated admin console configuration screen and the values. For more information about the configuration screen, see [Customizing the configuration screen](admin-console-customize-config-screen).
+The `values` key allows for values to be changed in the chart. It also can create a mapping between the Replicated admin console configuration screen and the values. For more information about the configuration screen, see [Customizing the configuration screen](../vendor/admin-console-customize-config-screen).
 
 This makes it possible to use the configuration screen in the admin console to control the Helm `values.yaml` file.
 
@@ -93,11 +93,11 @@ For more options, see [Helm pull request](https://github.com/helm/helm/pull/2648
 
 ## exclude
 
-The  attribute is a value for making [optional charts](helm-optional-charts). The `exclude` attribute can be parsed by template functions. For more information about template functions, see [About template function contexts](template-functions-about).
+The  attribute is a value for making [optional charts](../vendor/helm-optional-charts). The `exclude` attribute can be parsed by template functions. For more information about template functions, see [About template function contexts](template-functions-about).
 
 When the app manager processes Helm charts, it excludes the entire chart if the output of the `exclude` field can be parsed as a boolean evaluating to `true`.
 
-For more information about how the app manager processes Helm charts, see [Helm processing](helm-processing).
+For more information about how the app manager processes Helm charts, see [Helm processing](../vendor/helm-processing).
 
 ## optionalValues
 
@@ -105,7 +105,7 @@ The `optionalValues` array is provided for advanced use cases to make value over
 Not all charts treat `""` and missing as the same value.
 If it's required to only optionally have a value set, and an empty string does not provide the same functionality as "not set", then use the values here.
 
-For more information, see [HelmChart optionalValues](helm-optional-value-keys).
+For more information, see [HelmChart optionalValues](../vendor/helm-optional-value-keys).
 
 ### `optionalValues[].when`
 

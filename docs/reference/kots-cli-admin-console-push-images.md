@@ -8,7 +8,7 @@ The air gap bundle can be either a Replicated admin console release or an applic
 kubectl kots admin-console push-images [airgap-bundle] [private-registry] [flags]
 ```
 
-This command supports all [global flags](/kots-cli/global-flags/) and also:
+This command supports all [global flags](kots-cli-global-flags) and also:
 
 | Flag                 | Type | Description |
 |:----------------------|------|-------------|

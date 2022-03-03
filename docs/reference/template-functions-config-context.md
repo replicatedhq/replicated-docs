@@ -32,7 +32,7 @@ data:
   tls.key: '{{repl ConfigOption "tls_private_key_file" }}'
 ```
 
-For more information about using TLS certificates, see [Using TLS Certificates](packaging-using-tls-certs).
+For more information about using TLS certificates, see [Using TLS Certificates](../vendor/packaging-using-tls-certs).
 
 ## ConfigOptionData
 

@@ -8,4 +8,4 @@ KOTS Velero interface
 kubectl kots velero [command]
 ```
 
-This command supports all [global flags](/kots-cli/global-flags/).
+This command supports all [global flags](kots-cli-global-flags).

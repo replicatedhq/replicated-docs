@@ -8,7 +8,7 @@ The admin console must be running and an application must be installed in order 
 kubectl kots admin-console garbage-collect-images -n <namespace>
 ```
 
-This command supports all [global flags](/kots-cli/global-flags/).
+This command supports all [global flags](kots-cli-global-flags).
 
 | Flag                | Type   | Description                                                                                                                                                                           |
 |:--------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

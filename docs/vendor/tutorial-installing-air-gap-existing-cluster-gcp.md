@@ -18,7 +18,7 @@ If you are planning to deploy your application to air gapped Amazon EKS, Red Hat
 
 ## Prerequisites
 
-* Complete the [existing cluster quickstart](/vendor/guides/existing-cluster) to set up a non-air gapped cluster.
+* Complete the [existing cluster quick start](tutorial-installing-with-existing-cluster) to set up a non-air gapped cluster.
 
 ## End to End GCP Example
 
@@ -342,7 +342,7 @@ To access the `admin.conf` from the cluster and run a few `kubectl` commands to 
 
 ### Install the Application
 
-We will follow the instructions at [Installing from an Air Gap Package](https://kots.io/kotsadm/installing/airgap-packages/).
+This procedure follows the instructions at [Installing in an Air Gapped Environment](../enterprise/installing-existing-cluster-airgapped) in the _Enterprise_ section.
 
 1. Download the `kots` plugin and the air gap bundle to your workstation:
 

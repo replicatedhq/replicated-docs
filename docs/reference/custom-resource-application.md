@@ -3,11 +3,11 @@
 The Application custom resource enables features such as branding, release notes, port forwarding, dashboard buttons, app status indicators, and custom graphs.
 
 With ports specified, the kots CLI can establish port-forwarding to simplify connections to the deployed application.  
-When [statusInformers](admin-console-display-app-status) are specified, the dashboard can provide timely feedback when the application deployment is complete and the application is ready for use.
+When [statusInformers](../vendor/admin-console-display-app-status) are specified, the dashboard can provide timely feedback when the application deployment is complete and the application is ready for use.
 
 The Application custom resource is optional.
 
-**Note**: There is some overlap between the Application custom resource manifest file and the [Kubernetes SIG Application manifest](https://github.com/kubernetes-sigs/application#application-objects). Enabling features such as [adding a button to the dashboard](admin-console-port-forwarding#add-a-button-to-the-dashboard) requires the use of both the Application and SIG Application custom resources.
+**Note**: There is some overlap between the Application custom resource manifest file and the [Kubernetes SIG Application manifest](https://github.com/kubernetes-sigs/application#application-objects). Enabling features such as [adding a button to the dashboard](../vendor/admin-console-adding-buttons-links) requires the use of both the Application and SIG Application custom resources.
 
 The following is an example manifest file for the Application custom resource:
 
@@ -57,10 +57,10 @@ This defaults to `false`. Enable this flag to create a Rollback button on the en
 
 ## additionalNamespaces
 An optional array of namespaces as strings.
-In addition to creating these namespaces, the admin console ensures that the application secret exists in them, and that this secret has access to pull the application images (both images that are used and [`additionalImages`](operator-defining-additional-images)).
+In addition to creating these namespaces, the admin console ensures that the application secret exists in them, and that this secret has access to pull the application images (both images that are used and [`additionalImages`](../vendor/operator-defining-additional-images)).
 For access to dynamically created namespaces, `"*"` can be specified.
 This pull secret will be automatically added to all application specs that use private images.
-For more information, see [Defining additional namespaces](operator-defining-additional-namespaces).
+For more information, see [Defining additional namespaces](../vendor/operator-defining-additional-namespaces).
 
 ## additionalImages
 An optional array of strings that reference images to be included in air gap bundles and pushed to the local registry during installation.
@@ -102,7 +102,7 @@ When an exact version is specified, the app manager will choose the matching maj
 
 ## requireMinimalRBACPrivileges
 When set to true, this will instruct the app manager to create a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.
-For more information, see the [RBAC](packaging-rbac) documentation.
+For more information, see the [RBAC](../vendor/packaging-rbac) documentation.
 
 ## ports
 These are extra ports (additional to the :8800 admin console port) that should be port-forwarded when running the `kots admin-console` command.
@@ -182,25 +182,24 @@ For more information about the KOTS add-on, see [KOTS add-on](https://kurl.sh/do
 
 The minimum KOTS version that is required by the release.
 
-**Note**: The app manager is based on the KOTS open source project. The KOTS version is the same as the app manager version. For example, KOTS v1.60 is the same as the app manager v1.60.
+>Introduced in app manager v1.62.0.
 
-Including `minKotsVersion` in the Application manifest file enforces compatibility checks for both new installations and application updates. It also blocks installation or update if the current deployed KOTS version is earlier than the `minKotsVersion`.
+Including `minKotsVersion` in the Application manifest file enforces compatibility checks for both new installations and application updates. It also blocks installation or update if the current deployed KOTS version is earlier than the `minKotsVersion`. For more information, see [How the Admin Console Handles minKotsVersion](#how-the-admin-console-handles-minkotsversion) below.
 
-### Limitations
+:::note
+The app manager is based on the KOTS open source project. The KOTS version is the same as the app manager version. For example, KOTS v1.60 is the same as the app manager v1.60.
+:::
 
-`minKotsVersion` is not supported in the following cases:
+### How the Admin Console Handles minKotsVersion
 
-* Channels that have semantic versioning enabled. For more information, see [Semantic versioning](../vendor/releases-understanding#semantic-versioning) in _About releasing an application_.
-* The minimum version increases and then decreases from one release to the next.
+When you promote a new release that specifies a minimum KOTS version later than what a user currently has deployed, that application version appears in the version history of the admin console after the user checks for updates. However, it is not downloaded.
 
-`minKotsVersion` is not supported in these cases because when the minimum version increases, the admin console can error when retrieving it. For more information about these error messages, see [Guidance for informing users of the need to update](#guidance-for-informing-users-of-the-need-to-update) below.
+The admin console temporarily displays an error message that informs the user that they must update KOTS in order to download the application version. This error displays when the user checks for updates with the [`kots upstream upgrade`](/kots-cli/upstream/upgrade/) command.
 
-If the minimum KOTS version then decreases in the next release, KOTS successfully retrieves that release, which means the intermediate release is lost.
+Users must update their admin console to the minimum KOTS version or later in order to download the application version without error. KOTS cannot update itself automatically, and users cannot update KOTS from the admin console.
 
-### Guidance for informing users of the need to update
+After updating KOTS to the minimum version or later, users can return to the admin console and click **Download** next to the version in order to download the release. Alternatively, they can use the [`kots upstream download`](/kots-cli/upstream/download/) command.
 
-After promoting a new release that specifies a minimum KOTS version that is later than what an end user currently has deployed, that release does not appear in the version history of the admin console after checking for updates. The admin console displays an error message temporarily, but it disappears after a few minutes. The admin console also displays this error when the user checks for updates with the [`kots upstream upgrade` command](/kots-cli/upstream/).
-
-End users must update their admin console to the minimum KOTS version or later in order to fetch the update without error. The app manager cannot update itself automatically, and users cannot update KOTS from the admin console.
-
-When promoting a new release that changes the minimum KOTS version to a later version, vendors can inform their end users of the need to update KOTS if they are concerned end users will not see the error message or will not know how to proceed.
+:::note
+When you promote a new release that changes the minimum KOTS version to a later version, you can also inform your users directly of the need to update KOTS if you are not certain that they will know how to proceed based on the error message in the admin console.
+:::

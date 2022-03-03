@@ -11,7 +11,7 @@ To access the admin console, browse to http://localhost:8800 after running this 
 kubectl kots admin-console [flags]
 ```
 
-This command supports all [global flags](/kots-cli/global-flags/) and also:
+This command supports all [global flags](kots-cli-global-flags) and also:
 
 | Flag                 | Type | Description |
 |:----------------------|------|-------------|

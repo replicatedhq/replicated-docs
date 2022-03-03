@@ -9,7 +9,7 @@ kubectl kots reset-password [namespace] [flags]
 * _Replace `[namespace]` with the namespace where the admin console and your KOTS application resides (required)._
 * _Provide `[flags]` according to the table below_
 
-This command supports all [global flags](/kots-cli/global-flags/) and also:
+This command supports all [global flags](kots-cli-global-flags) and also:
 
 
 | Flag                 | Type | Description |

@@ -2,6 +2,8 @@
 
 The `kots get versions` command lists all versions of an application.
 
+> Introduced in KOTS v1.61.0
+
 ### Usage
 
 ```bash
@@ -13,9 +15,9 @@ kubectl kots get versions [app-slug] [flags]
 
 | Flag              | Type   | Description                                                         |
 | :---------------- | ------ | ------------------------------------------------------------------- |
-| `-h, --help`      |        | help for get apps                                                   |
-| `-n, --namespace` | string | the namespace where the admin console is running _(required)_       |
-| `-o, --output`    | string | output format (currently supported: json) (defaults to plain text if not set)|
+| `-h, --help`      |        | Help for `get apps`.                                                  |
+| `-n, --namespace` | string | (Required) The namespace where the admin console is running.       |
+| `-o, --output`    | string | Output format. **Supported formats**: `json`. **Default**: Plain text.|
 
 ### Example
 
