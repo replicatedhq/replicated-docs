@@ -15,7 +15,8 @@ const config = {
   favicon: 'images/favicon.png',
   organizationName: 'replicatedhq', // Usually your GitHub org/user name.
   projectName: 'replicated-docs', // Usually your repo name.
-  
+  trailingSlash: false,
+
   presets: [
     [
       '@docusaurus/preset-classic',
