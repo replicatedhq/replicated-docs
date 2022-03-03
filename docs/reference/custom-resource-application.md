@@ -162,6 +162,8 @@ Y axis labels template. Use `{{ value }}`.
 ## targetKotsVersion
 The KOTS version that is targeted by the release.
 
+>Introduced in app manager v1.62.0.
+
 **Note**: The app manager is based on the KOTS open source project. The KOTS version is the same as the app manager version. For example, KOTS v1.60 is the same as the app manager v1.60.
 
 Including `targetKotsVersion` in the Application manifest file of the release enforces compatibility checks for new installations and blocks the installation if the version used is later than the target version.
