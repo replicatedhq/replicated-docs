@@ -2,14 +2,14 @@
 
 ## 1.65.0
 
-Released on 25 February 2022
+Released on February 25, 2022
 
 Support for Kubernetes: 1.20, 1.21, 1.22, and 1.23
 
 ### Features
 * Permanently enables the redesigned admin console app dashboard and version history pages introduced in [KOTS 1.60.0](#1600).
 * Application versions that fail to download now appear in the version history. A new button is also present with the version to allow the download to be retried. Previously, these failures were lost when a newer version was downloaded successfully.
-* Introduces the [`kots upstream download`](../reference/kots-cli-upstream#upstream-download) command to retry downloading a failed update of the upstream application.
+* Introduces the [`kots upstream download`](../reference/kots-cli-upstream-download) command to retry downloading a failed update of the upstream application.
 
 
 ### Changes
@@ -23,7 +23,7 @@ Support for Kubernetes: 1.20, 1.21, 1.22, and 1.23
 
 ## 1.64.0
 
-Released on 18 February 2022
+Released on February 18, 2022
 
 Support for Kubernetes: 1.20, 1.21, 1.22, and 1.23
 
@@ -38,12 +38,12 @@ Support for Kubernetes: 1.20, 1.21, 1.22, and 1.23
 
 ## 1.63.0
 
-Released on 11 February 2022
+Released on February 11, 2022
 
 Supported on Kubernetes: 1.20, 1.21, 1.22, and 1.23
 
 ### Features
-* Changes the [`kots upstream upgrade`](../reference/kots-cli-upstream#upstream-upgrade) command to be synchronous by default and exposes error messages for it.
+* Changes the [`kots upstream upgrade`](../reference/kots-cli-upstream-upgrade) command to be synchronous by default and exposes error messages for it.
 
 ### Changes
 * Sets the Native Helm timeout to 60 minutes instead of 5 minutes.
@@ -51,7 +51,7 @@ Supported on Kubernetes: 1.20, 1.21, 1.22, and 1.23
 
 ## 1.62.0
 
-Released on 4 February 2022
+Released on February 4, 2022
 
 Supported on Kubernetes: 1.20, 1.21, 1.22, and 1.23
 
@@ -61,34 +61,34 @@ Supported on Kubernetes: 1.20, 1.21, 1.22, and 1.23
 * Adds [`minKotsVersion`](../reference/custom-resource-application/#minkotsversion-beta) (Beta) as a field in the application spec. This allows you to specify the minimum supported KOTS version for a release. An application cannot be installed if the currently deployed KOTS version is less than the minimum KOTS version specified for a release. See the [`minKotsVersion` documentation](../reference/custom-resource-application/#minkotsversion-beta) for caveats since this is a Beta feature.
 
 ### Changes
-* Defaults [`kubectl kots get config --appslug`](/kots-cli/get/config/) to the app slug of the deployed application if there is only one in the namespace.
-* Defaults [`kubectl kots get config --sequence`](/kots-cli/get/config/) to the sequence of the latest available version.
+* Defaults [`kubectl kots get config --appslug`](../reference/kots-cli-get-config) to the app slug of the deployed application if there is only one in the namespace.
+* Defaults [`kubectl kots get config --sequence`](../reference/kots-cli-get-config) to the sequence of the latest available version.
 
 ### Fixes
-* Fixes a bug that caused the "Details" link, which shows the [application status](/vendor/config/application-status/), to be not visible in the new dashboard UI.
-* Fixes the omission of certain password values from the rendered YAML file when using [`kubectl kots pull`](/kots-cli/get/config/).
+* Fixes a bug that caused the "Details" link, which shows the [application status](../vendor/admin-console-display-app-status), to be not visible in the new dashboard UI.
+* Fixes the omission of certain password values from the rendered YAML file when using [`kubectl kots pull`](../reference/kots-cli-get-config).
 * Fixes an issue that caused the license file included in a support bundle to contain a long array of integers instead of a string in the signature field.
 * Fixes an issue which caused setting up a host path as a snapshot storage destination to fail.
 
 ## 1.61.0
 
-Released on 1 February 2022
+Released on February 1, 2022
 
 Supported on Kubernetes: 1.20, 1.21, 1.22, and 1.23
 
 ### Features
-* Adds a CLI command to [get all available versions for an application](https://kots.io/kots-cli/get/versions/) from the app manager.
+* Adds a CLI command to [get all available versions for an application](../reference/kots-cli-get-versions) from the app manager.
 * Adds the ability to block installing or upgrading an application if the current KOTS version is incompatible with the KOTS version required by the application. This feature is experimental and is only available to vendors who have requested access.
 
 
 ### Fixes
 * Fixes a bug that caused images to be pushed to a private registry multiple times during an air gap installation.
 * Fixes a bug that erroneously displays a message to edit the current config when performing a new installation.
-* Fixes an issue that caused [image garbage collection](/kotsadm/registries/kurl-registry/#image-garbage-collection) to only remove images with the "latest" tag.
+* Fixes an issue that caused [image garbage collection](../enterprise/image-registry-embedded-cluster#enable-and-disable-image-garbage-collection) to only remove images with the "latest" tag.
 
 ## 1.60.0
 
-Released on 25 January 2022
+Released on January 25, 2022
 
 Supported on Kubernetes: 1.20, 1.21, and 1.22
 
@@ -100,5 +100,5 @@ Supported on Kubernetes: 1.20, 1.21, and 1.22
 * Updates Postgres to version 10.19.
 
 ### Fixes
-* Fixes an issue that caused images to be pushed multiple times during an [airgap installation](/kotsadm/installing/airgap-packages/#upload-airgap-bundle) when the [Native Helm](/vendor/helm/helm-processing/#native-helm) feature is enabled.
+* Fixes an issue that caused images to be pushed multiple times during an [airgap installation](../enterprise/installing-existing-cluster-airgapped#upload-the-airgap-bundle) when the [Native Helm](../vendor/helm-processing/#native-helm) feature is enabled.
 * Fixes an issue that prevented the deployment status labels from breaking into multiple lines on small displays.
