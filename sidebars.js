@@ -439,9 +439,9 @@ const sidebars = {
           id: 'release-notes/rn-whats-new',
         },
         {
-          type: 'link',
-          label: 'App manager release notes',
-          href: 'https://kots.io/release-notes/',
+          type: 'doc',
+          id: 'release-notes/rn-app-manager',
+
         },
         {
           type: 'link',
