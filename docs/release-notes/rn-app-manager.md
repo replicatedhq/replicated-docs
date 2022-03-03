@@ -1,4 +1,4 @@
-# App manager release notes
+# App Manager Release Notes
 
 ## 1.65.0
 
