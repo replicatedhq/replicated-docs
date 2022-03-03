@@ -7,9 +7,9 @@ Released on 25 February 2022
 Support for Kubernetes: 1.20, 1.21, 1.22, and 1.23
 
 ### Features
-* Permanently enables the redesigned admin console app dashboard and version history pages introduced in [KOTS 1.60.0](/release-notes/1.60.0/).
+* Permanently enables the redesigned admin console app dashboard and version history pages introduced in [KOTS 1.60.0](#1600).
 * Application versions that fail to download now appear in the version history. A new button is also present with the version to allow the download to be retried. Previously, these failures were lost when a newer version was downloaded successfully.
-* Introduces the [`kots upstream download`](/kots-cli/upstream/download) command to retry downloading a failed update of the upstream application.
+* Introduces the [`kots upstream download`](../reference/kots-cli-upstream#upstream-download) command to retry downloading a failed update of the upstream application.
 
 
 ### Changes
@@ -43,7 +43,7 @@ Released on 11 February 2022
 Supported on Kubernetes: 1.20, 1.21, 1.22, and 1.23
 
 ### Features
-* Changes the [`kots upstream upgrade`](/kots-cli/upstream/upgrade/) command to be synchronous by default and exposes error messages for it.
+* Changes the [`kots upstream upgrade`](../reference/kots-cli-upstream#upstream-upgrade) command to be synchronous by default and exposes error messages for it.
 
 ### Changes
 * Sets the Native Helm timeout to 60 minutes instead of 5 minutes.
@@ -56,9 +56,9 @@ Released on 4 February 2022
 Supported on Kubernetes: 1.20, 1.21, 1.22, and 1.23
 
 ### Features
-* Adds [`targetKotsVersion`](/reference/v1beta1/application/#targetkotsversion) as a field in the application spec. This field allows you to set a target version of KOTS for a release. The initial installation of an application will fail if the currently installed KOTS version is greater than the target version. When a target version is set, end users will receive a notification in the admin console if their currently deployed version of KOTS is less than the target version. For more informaiton, see the documentation.
+* Adds [`targetKotsVersion`](../reference/custom-resource-application#targetkotsversion) as a field in the application spec. This field allows you to set a target version of KOTS for a release. The initial installation of an application will fail if the currently installed KOTS version is greater than the target version. When a target version is set, end users will receive a notification in the admin console if their currently deployed version of KOTS is less than the target version. For more informaiton, see the documentation.
 
-* Adds [`minKotsVersion`](/reference/v1beta1/application/#minkotsversion-beta) (Beta) as a field in the application spec. This allows you to specify the minimum supported KOTS version for a release. An application cannot be installed if the currently deployed KOTS version is less than the minimum KOTS version specified for a release. See the [`minKotsVersion` documentation](/reference/v1beta1/application/#minkotsversion-beta) for caveats since this is a Beta feature.
+* Adds [`minKotsVersion`](../reference/custom-resource-application/#minkotsversion-beta) (Beta) as a field in the application spec. This allows you to specify the minimum supported KOTS version for a release. An application cannot be installed if the currently deployed KOTS version is less than the minimum KOTS version specified for a release. See the [`minKotsVersion` documentation](../reference/custom-resource-application/#minkotsversion-beta) for caveats since this is a Beta feature.
 
 ### Changes
 * Defaults [`kubectl kots get config --appslug`](/kots-cli/get/config/) to the app slug of the deployed application if there is only one in the namespace.
@@ -72,7 +72,7 @@ Supported on Kubernetes: 1.20, 1.21, 1.22, and 1.23
 
 ## 1.61.0
 
-Release on 1 February 2022
+Released on 1 February 2022
 
 Supported on Kubernetes: 1.20, 1.21, 1.22, and 1.23
 
@@ -85,3 +85,20 @@ Supported on Kubernetes: 1.20, 1.21, 1.22, and 1.23
 * Fixes a bug that caused images to be pushed to a private registry multiple times during an air gap installation.
 * Fixes a bug that erroneously displays a message to edit the current config when performing a new installation.
 * Fixes an issue that caused [image garbage collection](/kotsadm/registries/kurl-registry/#image-garbage-collection) to only remove images with the "latest" tag.
+
+## 1.60.0
+
+Released on 25 January 2022
+
+Supported on Kubernetes: 1.20, 1.21, and 1.22
+
+### Features
+* The admin console app dashboard and version history pages have been redesigned! This redesign improves the aesthetics of these pages and brings key functionality directly to the app dashboard. See [this blog](https://www.replicated.com/blog/new-features-announced-improvements-to-ux-host-preflights/) for more details.
+
+### Changes
+* Updates MinIO to RELEASE.2022-01-08T03-11-54Z (resolves CVE-2021-43858 CVE).
+* Updates Postgres to version 10.19.
+
+### Fixes
+* Fixes an issue that caused images to be pushed multiple times during an [airgap installation](/kotsadm/installing/airgap-packages/#upload-airgap-bundle) when the [Native Helm](/vendor/helm/helm-processing/#native-helm) feature is enabled.
+* Fixes an issue that prevented the deployment status labels from breaking into multiple lines on small displays.
