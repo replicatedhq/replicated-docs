@@ -17,6 +17,7 @@ const config = {
   projectName: 'replicated-docs', // Usually your repo name.
   customFields: {
     productName: 'Replicated',
+    testVariable: 'Test'
   },
 
   presets: [

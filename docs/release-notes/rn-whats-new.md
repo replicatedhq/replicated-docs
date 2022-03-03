@@ -1,4 +1,11 @@
+import variables from '/variables.js';
+const {productName, exampleVariable} = variables
+
+<p>{productName}</p>
+<p>{exampleVariable}</p>
+
 # Overview
+
 
 New features and improvements that have been added to Replicated are documented on a per component basis in the corresponding release notes section. Component updates may be released at any time following a continuous delivery model.
 
