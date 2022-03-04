@@ -5,7 +5,7 @@ Configure kots resources.
 ### Usage
 
 ```bash
-kubectl kots set [resosurce] [flags]
+kubectl kots set [resource] [flags]
 ```
 
 This command supports all [global flags](kots-cli-global-flags).
