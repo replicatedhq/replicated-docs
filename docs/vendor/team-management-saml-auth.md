@@ -108,6 +108,8 @@ To enable SAML enforcement:
 
   **Only allow SAML logins** - Prevents any non-SAML accounts from logging in. Replicated does not delete the existing accounts. If you turn on this option and then later disable it, accounts that never logged in using SAML will be able to log in again. If an account exists outside of SAML and then is authenticated with SAML, the account is converted and cannot authenticate using a password again.
 
+  ![SAML Authentication](/images/team-mgmt-saml-manage-auth.png)
+
 1. (Optional) Set a default policy for new accounts from the drop-down list.
 1. (Optional) Click **Change IdP Metadata** and follow the prompts to upload any changes to your metadata.
 
@@ -121,3 +123,5 @@ To disable SAML enforcement:
 1. From the vendor portal, select **Team > SAML Authentication**.
 
 1. Click **Deprovision SAML** in the Manage your SAML authentication pane.
+
+  ![SAML Authentication](/images/team-mgmt-saml-manage-auth.png)
