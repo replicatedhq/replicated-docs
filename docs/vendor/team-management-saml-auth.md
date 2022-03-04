@@ -12,6 +12,10 @@ To enable SAML in your vendor portal account, you must have an Enterprise plan. 
 
 Replicated does not implement System for Cross-domain Identity Management (SCIM). Instead, we use SAML to authenticate and create one-time use identities in our system. We resolve the username (email address) as the actor and use this to ensure that audit log events follow these dynamically provisioned and deprovisioned users.
 
+### Two-Factor Authentication
+
+If SAML authentication is configured for your team, Two-Factor Authentication (2FA) is bypassed. You can leave 2FA enabled, but you are not prompted to enter a code when logging in.
+
 ### Role Based Access Control
 
 Replicated supports Role Based Access Control (RBAC) in the vendor portal. To use RBAC with SAML, you must configure policies and add users to the policies by their username. Usernames are the identity of the user in your identity provide (IDP). Typically, this username is the full email address. For more information about RBAC, see [Configuring Role Based Access Control](https://replicated-docs.netlify.app/vendor/packaging-rbac).
@@ -96,21 +100,30 @@ To configure the integration of the vendor portal and Okta:
 ### Next Step
 At this point, SAML is configured, but not enabled. The next step is to enable SAML enforcement options. For more information, see [Enable SAML Enforcement](#enable-saml-enforcement).
 
-## Enable SAML enforcement
+## Enable SAML Enforcement
 
-After you have SAML authentication configured, you must enable SAML enforcement options. Replicated provides two options that can be enabled or disabled at any time.
+After you have uploaded the metadata and x.509 public certificate, you must enable SAML enforcement options. Replicated provides two options that can be enabled or disabled at any time.
 
 To enable SAML enforcement:
 
-  1. From the vendor portal, select **Team > Authentication**.
+1. From the vendor portal, select **Team > SAML Authentication**.
 
-    The SAML enforcement options appear.
+1. Select either or both login method options in the the Manage your SAML authentication pane. Allowing both login methods is a good way to test SAML without risking any interruption for the rest of your team.
 
-  1. Select either or both options. Allowing both login methods is a good way to test SAML without risking any interruption for the rest of your team.
+  **Enable SAML for team logins** - Allows members of your team to log in to the vendor portal from your SSO provider. This option does not remove, change, or restrict any other authentication that methods you have configured on Replicated. If you enable SAML and your team already is logging in with accounts provisioned in Replicated, they will be able to continue logging in with those accounts.
 
-    **Enable SAML for team logins** - Allows members of your team to log in to the vendor portal from your SSO provider. This option does not remove, change, or restrict any other authentication that methods you have configured on Replicated. If you enable SAML and your team already is logging in with accounts provisioned in Replicated, they will be able to continue logging in with those accounts.
+  **Only allow SAML logins** - Prevents any non-SAML accounts from logging in. Replicated does not delete the existing accounts. If you turn on this option and then later disable it, accounts that never logged in using SAML will be able to log in again. If an account exists outside of SAML and then is authenticated with SAML, the account is converted and cannot authenticate using a password again.
 
-    **Only allow SAML logins** - Prevents any non-SAML accounts from logging in. Replicated does not delete the existing accounts. If you turn on this option and then later disable it, accounts that never logged in using SAML will be able to log in again. If an account exists outside of SAML and then is authenticated with SAML, the account is converted and cannot authenticate using a password again.
+1. (Optional) Set a default policy for new accounts from the drop-down list.
+1. Click **Change IdP Metadata** and follow the prompts to upload the required metadata.
+1. Click **Save**.
 
-  1. Click **Re-Upload IdP Metadata** and follow the prompts to upload the required metadata.
-  1. Click **Save**.
+## Disable SAML Enforcement
+
+Replicated provides two SAML authentication options that can be enabled or disabled at any time.
+
+To disable SAML enforcement:
+
+1. From the vendor portal, select **Team > SAML Authentication**.
+
+1. Click **Deprovision SAML** in the Manage your SAML authentication pane.
