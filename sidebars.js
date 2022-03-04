@@ -307,7 +307,6 @@ const sidebars = {
             'reference/kots-cli-upload',
             'reference/kots-cli-reset-tls',
             'reference/kots-cli-reset-password',
-            'reference/kots-cli-upstream',
             {
                 type: 'category',
                 label: 'get',
@@ -342,6 +341,15 @@ const sidebars = {
                 items: [
                   'reference/kots-cli-restore-index',
                   'reference/kots-cli-restore-ls',
+              ],
+            },
+              {
+                  type: 'category',
+                  label: 'upstream',
+                  items: [
+                    'reference/kots-cli-upstream',
+                    'reference/kots-cli-upstream-upgrade',
+                    'reference/kots-cli-upstream-download',
               ],
             },
             {
@@ -439,9 +447,9 @@ const sidebars = {
           id: 'release-notes/rn-whats-new',
         },
         {
-          type: 'link',
-          label: 'App manager release notes',
-          href: 'https://kots.io/release-notes/',
+          type: 'doc',
+          id: 'release-notes/rn-app-manager',
+
         },
         {
           type: 'link',
