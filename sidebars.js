@@ -442,20 +442,9 @@ const sidebars = {
       label: 'Release notes',
       collapsed: false,
       items: [
-        {
-          type: 'doc',
-          id: 'release-notes/rn-whats-new',
-        },
-        {
-          type: 'doc',
-          id: 'release-notes/rn-app-manager',
-
-        },
-        {
-          type: 'link',
-          label: 'Kubernetes installer release notes',
-          href: 'https://kurl.sh/release-notes',
-        },
+          'release-notes/rn-whats-new',
+          'release-notes/rn-app-manager',
+          'release-notes/rn-kubernetes-installer'
       ],
     },
   ],
