@@ -1,6 +1,6 @@
 # SAML Authentication
 
-## Using Vendor Portal SAML
+## Using SAML with the Vendor Portal
 
 After starting out with Replicated, most teams grow, adding more developers, support engineers, and sales engineers. Eventually, managing access to the Replicated vendor portal can become difficult. Replicated supports logging in using SAML, which lets you manage access (provisioning and deprovisioning) outside of Replicated. Using SAML, everyone on your team can log in with their existing usernames and passwords, simplifying their experience.
 
@@ -65,17 +65,17 @@ To configure Okta and download the required files:
 
 1. Click **Identity provider metadata** to download the Metadata.xml file. This likely opens an XML download that you can right-click and select **Save Link As…** to download this file.
 
-## Next Step
+### Next Step
 
-Configure and enable SAML in the vendor portal. For more information, see [Configure and Enable SAML](#configure-and-enable-saml).
+Configure and enable SAML in the vendor portal. For more information, see [Configure SAML](#configure-saml).
 
-## Configure and Enable SAML
+## Configure SAML
 
 When you initially configure SAML, we do not recommend that you disable username/password access at the same time. It is possible, and recommended during testing, to support both SAML and non-SAML authentication on your account simultaneously.
 
 **Prerequisite**
 
-- Download your XML Metadata file and x.509 public certificate from your SAML provider. For more information on supported SAML providers and how to find these files, see [Supported SAML providers](#supported-saml-providers).
+- Download your XML Metadata file and x.509 public certificate from your SAML provider. For more information on supported SAML providers and how to find these files, see [Supported SAML providers](#downloading-certificates-from-supported-saml-providers).
 
 To configure SAML:
 
