@@ -1,5 +1,10 @@
 # Kubernetes Installer Release Notes
 
+:::note
+For release notes earlier than v2022.01.25-0, see
+[Release Notes](https://kurl.sh/release-notes) in the open source kURL documentation.
+:::
+
 ## Release v2022.03.01-0
 
 Released on March 1, 2022

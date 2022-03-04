@@ -1,5 +1,10 @@
 # App Manager Release Notes
 
+:::note
+For release notes earlier than v1.60.0, see
+[Release Notes](https://kots.io/release-notes/) in the open source KOTS documentation.
+:::
+
 ## 1.65.0
 
 Released on February 25, 2022
