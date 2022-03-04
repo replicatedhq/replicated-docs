@@ -96,7 +96,7 @@ At this point, SAML is configured, but not enabled. The next step is to enable S
 
 ## Enable SAML Enforcement
 
-After you have uploaded the metadata and x.509 public certificate, you must enable SAML enforcement options. Replicated provides two options that can be enabled or disabled at any time.
+After you have uploaded the metadata and x.509 public certificate, you must enable SAML enforcement options. Replicated provides options that can be enabled or disabled at any time. You can also change the IDP metadata if needed.
 
 To enable SAML enforcement:
 
@@ -109,12 +109,12 @@ To enable SAML enforcement:
   **Only allow SAML logins** - Prevents any non-SAML accounts from logging in. Replicated does not delete the existing accounts. If you turn on this option and then later disable it, accounts that never logged in using SAML will be able to log in again. If an account exists outside of SAML and then is authenticated with SAML, the account is converted and cannot authenticate using a password again.
 
 1. (Optional) Set a default policy for new accounts from the drop-down list.
-1. Click **Change IdP Metadata** and follow the prompts to upload the required metadata.
-1. Click **Save**.
+1. (Optional) Click **Change IdP Metadata** and follow the prompts to upload any changes to your metadata.
+
 
 ## Disable SAML Enforcement
 
-Replicated provides two SAML authentication options that can be enabled or disabled at any time.
+You can disable SAML authentication options at any time and re-enable them later if needed.
 
 To disable SAML enforcement:
 
