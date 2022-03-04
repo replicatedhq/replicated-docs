@@ -15,7 +15,7 @@ kubectl kots get versions [app-slug] [flags]
 
 | Flag              | Type   | Description                                                         |
 | :---------------- | ------ | ------------------------------------------------------------------- |
-| `-h, --help`      |        | Help for `get apps`.                                                  |
+| `-h, --help`      |        | Help for `get versions`.                                                  |
 | `-n, --namespace` | string | (Required) The namespace where the admin console is running.       |
 | `-o, --output`    | string | Output format. **Supported formats**: `json`. **Default**: Plain text.|
 
