@@ -1,5 +1,7 @@
 # SAML Authentication
 
+This topic describes how to enable or disable SAML authentication.
+
 ## Using SAML with the Vendor Portal
 
 After starting out with Replicated, most teams grow, adding more developers, support engineers, and sales engineers. Eventually, managing access to the Replicated vendor portal can become difficult. Replicated supports logging in using SAML, which lets you manage access (provisioning and deprovisioning) outside of Replicated. Using SAML, everyone on your team can log in with their existing usernames and passwords, simplifying their experience.
