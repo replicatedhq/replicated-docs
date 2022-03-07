@@ -52,14 +52,10 @@ To create a custom license field:
 To update a custom license field:
 
 1. Log in to the vendor portal and select the application.
-1. On the **License Fields** page, click **Edit Field** on the right side of the target row.
+1. On the **License Fields** page, click **Edit Field** on the right side of the target row. Changing the default value for a field updates the value for each existing customer record that has not overridden the default value.
 
    :::important
    Enabling **Is this field is required?** updates the license field to be required on all new and existing licenses. If you enable **Is this field is required?**, you must either set a default value for the field or manually update each existing license file to provide a value for the field.
-   :::
-
-   :::note
-   Changing the default value for a field updates the value for each existing customer record that has not overridden the default value.
    :::
 
 ## Delete Custom License Fields
@@ -80,11 +76,11 @@ To delete a custom license field:
 
 1. Log in to the vendor portal and select the application.
 1. On the **License Fields** page, click **Edit Field** on the right side of the target row.
-1. Click **Delete** on the bottom left of the modal.
+1. Click **Delete** on the bottom left of the dialog.
 1. (Optional) Enable **Preserve License Values** to save values for the license field that were not set by the default in each customer record. Preserved license values are not visible to you or the customer.
 
    :::note
    If you enable **Preserve License Values**, you can create a new field with the same name and `type` as the deleted field to reinstate the preserved values.
    :::
-   
-1. Follow the instructions in the modal and click **Delete**.
+
+1. Follow the instructions in the dialog and click **Delete**.
