@@ -73,7 +73,7 @@ Only administrators can delete license fields.
 :::important
 Replicated recommends that you take care when deleting license fields.
 
-Outages can occur for existing deployments if your application or the app manager configuration screen are expecting a license file to provide a required value.
+Outages can occur for existing deployments if your application or the app manager configuration screen expect a license file to provide a required value.
 :::
 
 To delete a custom license field:
@@ -81,9 +81,10 @@ To delete a custom license field:
 1. Log in to the vendor portal and select the application.
 1. On the **License Fields** page, click **Edit Field** on the right side of the target row.
 1. Click **Delete** on the bottom left of the modal.
-1. (Optional) Enable **Preserve License Values** to save values for the field that were not set by the default in the customer record. Preserved license values are not visible to you or the customer.
+1. (Optional) Enable **Preserve License Values** to save values for the license field that were not set by the default in each customer record. Preserved license values are not visible to you or the customer.
 
    :::note
    If you enable **Preserve License Values**, you can create a new field with the same name and `type` as the deleted field to reinstate the preserved values.
    :::
-1. Click **Delete**.
+   
+1. Follow the instructions in the modal and click **Delete**.
