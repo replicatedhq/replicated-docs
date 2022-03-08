@@ -29,7 +29,7 @@ spec:
       items:
         - name: enable_ingress
           type: bool
-          title: Enable Kuberentes Ingress
+          title: Enable Kubernetes Ingress
           help_text: |
             Uncheck this box to disable the Kubernetes Ingress resource.
           default: "1"

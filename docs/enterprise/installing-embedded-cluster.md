@@ -1,6 +1,6 @@
 # Installing with the Kubernetes installer
 
-This article refers to installing an application and the Replicated admin console on a cluster created by the Replicated Kuberentes installer.
+This article refers to installing an application and the Replicated admin console on a cluster created by the Replicated Kubernetes installer.
 
 The Kubernetes installer is based on the open source kURL project, which is maintained by Replicated. For more information about installing with kURL, including advanced installation options, see the [kURL documentation](https://kurl.sh/docs/introduction/).
 
@@ -10,7 +10,7 @@ Before you install, ensure that you meet the system requirements. For more infor
 
 ## Install in an online environment
 
-To install the admin console on a cluster created by the Kuberentes installer, run the installation script provided by the application developer.
+To install the admin console on a cluster created by the Kubernetes installer, run the installation script provided by the application developer.
 
 ```bash
 curl -sSL https://kurl.sh/supergoodtool | sudo bash

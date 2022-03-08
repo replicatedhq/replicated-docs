@@ -8,7 +8,7 @@ Although clusters created by the Replicated Kubernetes installer are preconfigur
 
 If the admin console is running with minimal role-based-access-control (RBAC) privileges, you must use the `kots velero ensure-permissions` command because the admin console requires access to the namespace in which Velero is installed.
 
-For more information, see [velero ensure-permissions](../reference/kots-cli-velero-ensure-permissions/) in the kots CLI documentation.
+For more information, see [`velero ensure-permissions`](../reference/kots-cli-velero-ensure-permissions/) in the kots CLI documentation.
 
 For more information about RBAC priviledges for the admin console, see [Kubernetes RBAC](../vendor/packaging-rbac).
 

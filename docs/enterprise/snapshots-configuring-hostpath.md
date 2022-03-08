@@ -12,7 +12,7 @@ Clusters created by the Replicated Kubernetes installer that include the Velero 
 
 There are two ways to change this snapshots storage destination to use a host path:
 
-* Using the kots CLI `velero configure-hostpath` command. See [velero configure-hostpath](../reference/kots-cli-velero-configure-hostpath/) in the kots CLI documentation.
+* Using the kots CLI `velero configure-hostpath` command. See [`velero configure-hostpath`](../reference/kots-cli-velero-configure-hostpath/) in the kots CLI documentation.
 * Using the Replicated admin console. See the instructions below.
 
 First, head to the "Snapshots" tab.

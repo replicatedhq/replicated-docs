@@ -10,7 +10,7 @@ Before you install an application, consider the following installation options.
 
 With Replicated, you can install an application in one of two ways:
 * **With an existing cluster**: You can install an application onto an existing Kubernetes cluster that meets the system requirements. For more information, see [Cluster requirements](installing-existing-cluster-requirements).
-* **Without an existing cluster**: If you do not have an existing Kubernetes cluster, the Replicated Kuberentes installer can create a new cluster for you on a modern Linux machine. For more information, see [Kuberentes installer requirements](installing-embedded-cluster-requirements).
+* **Without an existing cluster**: If you do not have an existing Kubernetes cluster, the Replicated Kubernetes installer can create a new cluster for you on a modern Linux machine. For more information, see [Kubernetes installer requirements](installing-embedded-cluster-requirements).
 
 Most software vendors support both options and require the customer to determine their preferred method of deployment.
 

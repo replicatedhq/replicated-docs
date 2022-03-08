@@ -24,7 +24,7 @@ The following top-level fields for Backup custom resources are not supported in 
 - `volumeSnapshotLocations`
 - `labelSelector`, `includedResources` and `excludedResources`
 
-All resources are included by default. To exclude resources from the backup, the [velero.io/exclude-from-backup=true](https://velero.netlify.app/docs/v1.5/resource-filtering/#veleroioexclude-from-backuptrue) label must be used and added to the resource instead.
+All resources are included by default. To exclude resources from the backup, the [`velero.io/exclude-from-backup=true`](https://velero.netlify.app/docs/v1.5/resource-filtering/#veleroioexclude-from-backuptrue) label must be used and added to the resource instead.
 
 - `includeClusterResources`: this will always be set to `true`.
 - `ttl`: this is set to `720h` (1 month) by default and is only configurable by the customer.

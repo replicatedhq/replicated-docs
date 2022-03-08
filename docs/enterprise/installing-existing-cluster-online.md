@@ -1,6 +1,6 @@
 # Installing in an online (Internet-connected) environment
 
-You can install an application to an existing Kuberentes cluster that contains nodes that can access the internet.
+You can install an application to an existing Kubernetes cluster that contains nodes that can access the internet.
 In an online installation, the Replicated app manager pulls container images from the upstream registries directly.
 
 ## Install with the app manager
