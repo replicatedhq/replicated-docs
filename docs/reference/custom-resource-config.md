@@ -33,9 +33,9 @@ Specific item types can including new types.
 - `heading`
 - `label`
 - `password`
+- `select_one`
 - `text`
 - `textarea`
-- `select_one`
 
 ## Examples
 
@@ -49,20 +49,22 @@ The `bool` input type should use a "0" or "1" to set the value
         type: bool
         default: "0"
 ```
+### `file`
+A `file` is a special type of form field that renders an [`<input type="file" />`](https://www.w3schools.com/tags/tag_input.asp) HTML element.
+Only the contents of the file, not the name, are captured.
+See the [`ConfigOptionData`](template-functions-config-context#configoptiondata) template function for examples on how to use the file contents in your application.
 
-### `label`
-The `label` type allows you to display an input label.
 ```yaml
-    - name: Email
+    - name: certs
+      title: TLS Configuration
       items:
-      - name: email-address
-        title: Email Address
-        type: text
-      - name: description
-        type: label
-        title: "Note: The system will send you an email every hour."
+      - name: tls_private_key_file
+        title: Private Key
+        type: file
+      - name: tls_certificate_file
+        title: Certificate
+        type: file
 ```
-
 ### `heading`
 The `heading` type allows you to display a group heading as a subelement within a group.
 This is useful when you would like to group items all in one config group but would like to separate the items visually, for instance when using a config group test proc.
@@ -79,6 +81,24 @@ This is useful when you would like to group items all in one config group but wo
         title: LDAP schema
       ...
 ```
+
+### `label`
+The `label` type allows you to display an input label.
+```yaml
+    - name: Email
+      items:
+      - name: email-address
+        title: Email Address
+        type: text
+      - name: description
+        type: label
+        title: "Note: The system will send you an email every hour."
+```
+
+### `password`
+Type `password` is a text field that hides the character input.
+This type must have nested items that act as options.
+This type will be displayed as radio buttons in the admin console.
 
 ### `select_one`
 Type `select_one` is a special case.
@@ -99,6 +119,15 @@ This type will be displayed as radio buttons in the admin console.
         - name: authentication_type_password
           title: Password
 ```
+### `text`
+A `text` inut field allows users to enter a string value.
+Optionally, all additional properties are avaialble for this input type.
+
+```yaml
+    - name: example_text_input
+      title: Example Text Input
+      type: text
+```
 
 ### `textarea`
 A `textarea` can specify a `props` that will map into the HTML element directly.
@@ -118,23 +147,6 @@ For more information, see [HTML `<textarea/>` Tag](https://www.w3schools.com/tag
       - name: hostname
         title: Hostname
         type: text
-```
-
-### `file`
-A `file` is a special type of form field that renders an [`<input type="file" />`](https://www.w3schools.com/tags/tag_input.asp) HTML element.
-Only the contents of the file, not the name, are captured.
-See the [`ConfigOptionData`](template-functions-config-context#configoptiondata) template function for examples on how to use the file contents in your application.
-
-```yaml
-    - name: certs
-      title: TLS Configuration
-      items:
-      - name: tls_private_key_file
-        title: Private Key
-        type: file
-      - name: tls_certificate_file
-        title: Certificate
-        type: file
 ```
 
 ## Properties
