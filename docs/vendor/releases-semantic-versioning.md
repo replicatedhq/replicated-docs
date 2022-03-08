@@ -14,7 +14,7 @@ When you enable semantic versioning on a channel, the version label for a releas
 
 For channels with semantic versioning, the Replicated admin console sequences releases by their semantic versions instead of their creation dates. The admin console does not sort any releases already promoted to the channel that do not use a valid semantic version.
 
-The admin console sorts releases with semantic versions starting with the earliest version and proceeding to the latest. For example, assume that you promote these releases in the following order to a channel: 1.0.0, abc, 0.1.0, xyz, and 2.0.0. Then, you enable semantic versioning on that channel. The admin console would sequence the version history as follows for the channel: 0.1.0, 1.0.0, abc, xyz, 2.0.0.
+If releases that do not use a valid semantic version are already promoted to a channel, the admin console sorts the releases that do have semantic versions starting with the earliest version and proceeding to the latest. For example, assume that you promote these releases in the following order to a channel: 1.0.0, abc, 0.1.0, xyz, and 2.0.0. Then, you enable semantic versioning on that channel. The admin console would sequence the version history as follows for the channel: 0.1.0, 1.0.0, abc, xyz, 2.0.0.
 
 For more information about how enterprise application users check for application updates in the admin console, see [Checking for Updates](../enterprise/updating-apps#checking-for-updates).
 
