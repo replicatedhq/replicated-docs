@@ -23,7 +23,7 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 * Corrects the placeholder Prometheus URL in the admin console dashboard so that it is accurate for embedded installations.
 * Fixes a bug where the warning message indicating a mismatch between the KOTS API and CLI versions printed incorrect messages in some cases.
 * Fixes a bug where the "See details" button on the support bundle analysis page wouldn't show any information about an unhealthy pod.
-* Allows a user to re-upload a license if the application is not installed.
+* Allows a user to re-upload a license if the application is not yet installed.
 
 ## 1.65.0
 
