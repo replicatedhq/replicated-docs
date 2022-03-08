@@ -97,7 +97,6 @@ The `label` type allows you to display an input label.
 
 ### `password`
 The `password` type is a text field that hides the character input.
-This type will be displayed as radio buttons in the admin console.
 
 ```yaml
     - name: password_text
