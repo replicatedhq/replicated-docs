@@ -5,6 +5,26 @@ For release notes earlier than v1.60.0, see
 [Release Notes](https://kots.io/release-notes/) in the open source KOTS documentation.
 :::
 
+## 1.66.0
+
+Released on March 8, 2022
+
+Support for Kubernetes: 1.21, 1.22, and 1.23
+
+### New Features
+* Adds the ability to exclude the applications or the admin console from full snapshot restores using the [`kots restore`](/reference/kots-cli-restore-index) command.
+* Adds the ability to display the command to restore only the admin console from a [full snapshot](/enterprise/snapshots-understanding#full-snapshots-recommended) on the Full Snapshots page in the admin console.
+
+### Improvements
+* Adds the [`--no-port-forward`](/reference/kots-cli-install#usage) flag to the `kots install` command to disable automatic port-forwarding. The old `--port-forward` flag has been deprecated.
+
+### Bug Fixes
+* Corrects the placeholder Prometheus URL in the admin console dashboard so that it is accurate for embedded installations.
+* Fixes a bug where the warning message indicated a mismatch between the kots CLI version and the version of the admin console that is running in the cluster. This bug printed incorrect messages in some cases.
+* Fixes a bug where the **See details** button on the support bundle analysis page did not show any information about an unhealthy pod.
+* Allows a user to re-upload a license if the application is not yet installed.
+* Allows GitOps to be disabled when it is enabled but has an invalid configuration. Previously, you were required to fix the configuration before disabling GitOps.
+
 ## 1.65.0
 
 Released on February 25, 2022
