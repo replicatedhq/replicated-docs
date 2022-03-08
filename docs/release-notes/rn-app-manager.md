@@ -21,7 +21,7 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### Bug Fixes
 * Corrects the placeholder prometheus URL in the admin console dashboard so that it is accurate for kURL clusters.
-* Fixes a bug where the version mismatch message does not make sense if an older version of KOTS is running in the cluster and the CLI is up-to-date.
+* Fixes a bug where the version mismatch warning was printing incorrect messages in some cases.
 * Fixes a bug where the "See details" button in the support bundle analysis page wouldn't show any information about the unhealthy pod.
 * Allow user to re-upload license if application is not installed.
 
