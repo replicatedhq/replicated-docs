@@ -107,9 +107,9 @@ This type will be displayed as radio buttons in the admin console.
 ```
 
 ### `select_one`
-Type `select_one` is a special case.
+The `select_one` type is a special case.
 This type must have nested items that act as options.
-This type will be displayed as radio buttons in the admin console.
+This type is displayed as radio buttons in the admin console.
 
 ```yaml
     - name: authentication
@@ -126,8 +126,8 @@ This type will be displayed as radio buttons in the admin console.
           title: Password
 ```
 ### `text`
-A `text` inut field allows users to enter a string value.
-Optionally, all additional properties are avaialble for this input type.
+A `text` input field allows users to enter a string value.
+Optionally, all additional properties are available for this input type.
 
 ```yaml
     - name: example_text_input
