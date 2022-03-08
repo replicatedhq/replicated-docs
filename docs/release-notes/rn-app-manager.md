@@ -16,7 +16,6 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 * Adds the ability to display the command to restore only the KOTS admin console from a [full snapshot](/enterprise/snapshots-understanding#full-snapshots-recommended) on the “Full Snapshots” page in the admin console.
 
 ### Improvements
-* Allows GitOps to be disabled when it's enabled but has an invalid config. Previously, you were required to fix the configuration before disabling GitOps.
 * Adds the [`--no-port-forward`](/reference/kots-cli-install#usage) flag to the `kots install` command to disable automatic port-forwarding. The old `--port-forward` flag has been deprecated.
 
 ### Bug Fixes
@@ -24,6 +23,7 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 * Fixes a bug where the warning message indicating a mismatch between the KOTS API and CLI versions printed incorrect messages in some cases.
 * Fixes a bug where the "See details" button on the support bundle analysis page wouldn't show any information about an unhealthy pod.
 * Allows a user to re-upload a license if the application is not yet installed.
+* Allows GitOps to be disabled when it's enabled but has an invalid config. Previously, you were required to fix the configuration before disabling GitOps.
 
 ## 1.65.0
 
