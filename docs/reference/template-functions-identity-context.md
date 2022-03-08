@@ -82,13 +82,15 @@ func IdentityServiceName() string
 Returns the Service name for the identity service OIDC server.
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 ...
           - path: /dex
             backend:
-              serviceName: repl{{ IdentityServiceName }}
-              servicePort: repl{{ IdentityServicePort }}
+              service:
+                name: repl{{ IdentityServiceName }}
+                port:
+                  number: repl{{ IdentityServicePort }}
 ```
 
 
@@ -101,11 +103,13 @@ func IdentityServicePort() string
 Returns the Service port number for the identity service OIDC server.
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 ...
           - path: /dex
             backend:
-              serviceName: repl{{ IdentityServiceName }}
-              servicePort: repl{{ IdentityServicePort }}
+              service:
+                name: repl{{ IdentityServiceName }}
+                port:
+                  number: repl{{ IdentityServicePort }}
 ```
