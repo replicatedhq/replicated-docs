@@ -3,7 +3,7 @@
 This topic describes how to manage team members in the Replicated vendor portal, such as inviting and removing members, and editing permissions.
 
 ## Viewing Team Members
-The [Team](https://vendor.replicated.com/team/members) page provides a list of all accounts currently associated with or invited to your team. Each row contains information about the user, including their Multi-factor Authentication (MFA) status and Role Based Access Control (RBAC) role, and lets administrators take additional actions, such as remove, re-invite, and edit permissions.
+The [Team](https://vendor.replicated.com/team/members) page provides a list of all accounts currently associated with or invited to your team. Each row contains information about the user, including their multi-factor authentication (MFA) status and role-based access control (RBAC) role, and lets administrators take additional actions, such as remove, re-invite, and edit permissions.
 
 ## Invite Members
 By default, team administrators can invite more team members to collaborate.

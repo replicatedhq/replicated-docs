@@ -23,12 +23,12 @@ To manage Google authentication settings:
 
 
 ## Migrating Existing Accounts
-Excluding some teams that restrict users to use only SAML or require MFA, existing users can seamlessly sign into an account that exactly matches their Google Workspace (formerly GSuite) email address. However, Google authentication only matches existing user accounts, so for users who have signed up using “[task-based email addresses](https://support.google.com/a/users/answer/9308648?hl=en)” (such as name+news@domain.com), you can continue to use email/password to sign in, invite your normal email address to your team, or contact support to change your email address.
+Excluding some teams that restrict end users to use only Security Assertion Markup Language (SAML) or require multi-factor authentication (MFA), existing end users can seamlessly sign into an account that exactly matches their Google Workspace (formerly GSuite) email address. However, Google authentication only matches existing user accounts, so for users who have signed up using task-based email addresses (such as name+news@domain.com), you can continue to use email/password to sign in, invite your normal email address to your team, or contact support to change your email address. For more information about task-based email addresses, see [Create task-specific email addresses](https://support.google.com/a/users/answer/9308648?hl=en) in the Google Support site.
 
-Migrated accounts maintain the same RBAC permissions that were previously assigned. Once signed in with Google, users can choose to disable username/password-based authentication on their account or maintain both authentication methods using [account settings](https://vendor.replicated.com/account-settings).
+Migrated accounts maintain the same role-based access control (RBAC) permissions that were previously assigned. After signing in with Google, users can choose to disable username/password-based authentication on their account or maintain both authentication methods using the vendor portal [account settings page](https://vendor.replicated.com/account-settings).
 
 ## Compatibility with MFA
-Google authentication is not entirely compatible with the Replicated Multi-Factor Authentication (MFA) implementation because Google authentication bypasses account-based MFA, relying on your Google Authentication MFA instead. However, MFA will continue to be enforced on all email/password-based authentication, even for the same user, if both options are enabled.
+Google authentication is not entirely compatible with the Replicated MFA implementation because Google authentication bypasses account-based MFA, relying on your Google Authentication MFA instead. However, the vendor portal continues to enforce MFA on all email/password-based authentication, even for the same user, if both options are enabled.
 
 ## Additional Resources
 
