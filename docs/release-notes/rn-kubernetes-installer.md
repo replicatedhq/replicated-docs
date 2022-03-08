@@ -15,7 +15,7 @@ Released on March 8, 2022
 
 ### Bug Fixes
 
-- Fixes a bug where the `installerVersion` field for the [kURL add-on](https://kurl.sh/docs/add-ons/kurl) was being stripped when creating or promoting the installer.
+- Fixes a bug where the `installerVersion` field for the [kURL add-on](https://kurl.sh/docs/add-ons/kurl) was stripped when creating or promoting the installer.
 
 ## Release v2022.03.04-1
 

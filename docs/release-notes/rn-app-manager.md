@@ -12,18 +12,18 @@ Released on March 8, 2022
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### New Features
-* Adds the ability to exclude the applications or the KOTS admin console from full snapshot restores using the [kots restore](/reference/kots-cli-restore-index) CLI command.
-* Adds the ability to display the command to restore only the KOTS admin console from a full snapshot on the “Full Snapshots” page.
+* Adds the ability to exclude the applications or the KOTS admin console from full snapshot restores using the [kots restore](/reference/kots-cli-restore-index) command.
+* Adds the ability to display the command to restore only the KOTS admin console from a full snapshot on the “Full Snapshots” page in the admin console.
 
 ### Improvements
-* Allows gitops to be disabled when it's enabled but has an invalid config. Before this change, you were required to fix the configuration and then disable.
-* Adds a new flag `--no-port-forward` to the CLI install command to disable automatic port-forwarding. The old flag `--port-forward` has been deprecated.
+* Allows GitOps to be disabled when it's enabled but has an invalid config. Previously, you were required to fix the configuration before disabling GitOps.
+* Adds the [`--no-port-forward`](/reference/kots-cli-install#usage) flag to the `kots install` command to disable automatic port-forwarding. The old `--port-forward` flag has been deprecated.
 
 ### Bug Fixes
-* Corrects the placeholder prometheus URL in the admin console dashboard so that it is accurate for kURL clusters.
-* Fixes a bug where the version mismatch warning was printing incorrect messages in some cases.
-* Fixes a bug where the "See details" button in the support bundle analysis page wouldn't show any information about the unhealthy pod.
-* Allow user to re-upload license if application is not installed.
+* Corrects the placeholder Prometheus URL in the admin console dashboard so that it is accurate for embedded installations.
+* Fixes a bug where the warning message indicating a mismatch between the KOTS API and CLI versions printed incorrect messages in some cases.
+* Fixes a bug where the "See details" button on the support bundle analysis page wouldn't show any information about an unhealthy pod.
+* Allows a user to re-upload a license if the application is not installed.
 
 ## 1.65.0
 
