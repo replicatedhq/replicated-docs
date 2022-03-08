@@ -20,7 +20,7 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### Bug Fixes
 * Corrects the placeholder Prometheus URL in the admin console dashboard so that it is accurate for embedded installations.
-* Fixes a bug where the warning message indicated a mismatch between the kots CLI version and the version of the admin console that is running in the cluster. This bug printed incorrect messages in some cases.
+* Fixes a bug where the warning message sometimes printed incorrectly when a mismatch was detected between the kots CLI version and the version of the admin console that is running in the cluster.
 * Fixes a bug where the **See details** button on the support bundle analysis page did not show any information about an unhealthy pod.
 * Allows a user to re-upload a license if the application is not yet installed.
 * Allows GitOps to be disabled when it is enabled but has an invalid configuration. Previously, you were required to fix the configuration before disabling GitOps.
