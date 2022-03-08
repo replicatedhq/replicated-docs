@@ -5,6 +5,35 @@ For release notes earlier than v2022.01.25-0, see
 [Release Notes](https://kurl.sh/release-notes) in the open source kURL documentation.
 :::
 
+## Release v2022.03.08-0
+
+Released on March 8, 2022
+
+### Improvements
+
+- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.66.0.
+
+### Bug Fixes
+
+- Fixes a bug where the `installerVersion` field for the [kURL add-on](https://kurl.sh/docs/add-ons/kurl) was being stripped when creating or promoting the installer.
+
+## Release v2022.03.04-1
+
+Released on March 4, 2022
+
+### Improvements
+
+- Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.18.0.
+
+## Release v2022.03.04-0
+
+Released on March 4, 2022
+
+### Improvements
+
+- Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.17.0.
+- Adds CPU resource limits for Envoy in Contour add-on version 1.20.1.
+
 ## Release v2022.03.01-0
 
 Released on March 1, 2022
