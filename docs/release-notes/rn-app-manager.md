@@ -13,7 +13,7 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### New Features
 * Adds the ability to exclude the applications or the KOTS admin console from full snapshot restores using the [kots restore](/reference/kots-cli-restore-index) command.
-* Adds the ability to display the command to restore only the KOTS admin console from a full snapshot on the “Full Snapshots” page in the admin console.
+* Adds the ability to display the command to restore only the KOTS admin console from a [full snapshot](/kotsadm/snapshots/overview/#full-snapshots-recommended) on the “Full Snapshots” page in the admin console.
 
 ### Improvements
 * Allows GitOps to be disabled when it's enabled but has an invalid config. Previously, you were required to fix the configuration before disabling GitOps.
