@@ -50,27 +50,37 @@ To create a custom license field:
 ## Update Custom License Fields
 
 To update a custom license field:
-1. Log in to the vendor portal and select the application.
-1. On the **License Fields** page, click **Edit Field** icon on the right side of the target row.
 
-The following attributes of the custom license fields can be updated.
-   * **Title** This can be changed without any special behavior.
-   * **Default** Updating the default will update each customer record that hasn't overridden the default value.
-   * **Is this field is required?** When updated to on, this field will become required on all existing licenses. If you do not set a default, you'll need to update each license manually.
-   * **Is this field hidden?** This can be changed without any special behavior.
+1. Log in to the vendor portal and select the application.
+1. On the **License Fields** page, click **Edit Field** on the right side of the target row. Changing the default value for a field updates the value for each existing customer record that has not overridden the default value.
+
+   :::important
+   Enabling **Is this field is required?** updates the license field to be required on all new and existing licenses. If you enable **Is this field is required?**, you must either set a default value for the field or manually update each existing license file to provide a value for the field.
+   :::
 
 ## Delete Custom License Fields
 
-You can delete license fields, but this should be carefully considered. Outages can occur when existing deployments where your application or the app manager config screen are expecting a license to provide a required value. As such, we have limited the RBAC policy to administrators and added several levels of warnings on deletion.
+Deleted license fields and their values do not appear in the customer's license in any location, including your view in the vendor portal, the downloaded YAML version of the license, and the app manager license screen.
 
-Deleted license fields and their values do not show up in the customer's license in any location (such as your view in the vendor portal, the downloaded YAML version of the license or the app manager license screen).
+By default, deleting a license field also deletes all of the values associated with the field in each customer record.
 
-By default, deleting a license field also deletes all of the values associated with that field in each customer record.
+Only administrators can delete license fields.
 
-When the Preserve License Values option is selected, the values for the field not set by the default are orphaned in each customer record (this is not visible to you or your customer). If you recreate a field with this exact name and `type`, the orphaned values are reinstated. To bring default values back to licenses that didn't override the value, use the same default value during recreation.
+:::important
+Replicated recommends that you take care when deleting license fields.
+
+Outages can occur for existing deployments if your application or the app manager configuration screen expect a license file to provide a required value.
+:::
 
 To delete a custom license field:
 
 1. Log in to the vendor portal and select the application.
 1. On the **License Fields** page, click **Edit Field** on the right side of the target row.
-1. Select delete on the bottom left of the modal and follow the instructions on the following screen to confirm.
+1. Click **Delete** on the bottom left of the dialog.
+1. (Optional) Enable **Preserve License Values** to save values for the license field that were not set by the default in each customer record. Preserved license values are not visible to you or the customer.
+
+   :::note
+   If you enable **Preserve License Values**, you can create a new field with the same name and `type` as the deleted field to reinstate the preserved values.
+   :::
+
+1. Follow the instructions in the dialog and click **Delete**.
