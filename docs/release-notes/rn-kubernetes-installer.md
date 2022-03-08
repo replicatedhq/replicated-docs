@@ -32,7 +32,7 @@ Released on March 4, 2022
 ### Improvements
 
 - Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.17.0.
-- Adds CPU resource limits for Envoy in Contour add-on version 1.20.1.
+- Adds CPU resource requests and limits to the [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.20.1+ to prevent Envoy from becoming unresponsive.
 
 ## Release v2022.03.01-0
 
