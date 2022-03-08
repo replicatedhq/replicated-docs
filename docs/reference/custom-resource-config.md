@@ -97,8 +97,14 @@ The `label` type allows you to display an input label.
 
 ### `password`
 Type `password` is a text field that hides the character input.
-This type must have nested items that act as options.
 This type will be displayed as radio buttons in the admin console.
+
+```yaml
+    - name: password_text
+      title: Password Text
+      type: password
+      value: "{{repl RandomString 10}}"
+```
 
 ### `select_one`
 Type `select_one` is a special case.
