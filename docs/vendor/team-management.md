@@ -6,7 +6,7 @@ This topic describes how to manage team members in the Replicated vendor portal,
 The [Team](https://vendor.replicated.com/team/members) page provides a list of all accounts currently associated with or invited to your team. Each row contains information about the user, including their MFA-status and RBAC Role, and lets administrators take additional actions, such as remove, re-invite, and edit permissions.
 
 ## Invite Members
-By default, Replicated teams can invite more team members to collaborate.
+By default, team administrators can invite more team members to collaborate.
 
 :::note
 SAML-only enforced teams do not use the email invitation flow.
@@ -24,7 +24,7 @@ To invite a new team member:
 
 ## Re-invite Members
 
-Invitations expire after 7 days. If a member has not accepted their invitation in this timeframe, you can re-invite them without having to re-enter their details.
+Invitations expire after 7 days. If a prospective member has not accepted their invitation in this timeframe, you can re-invite them without having to re-enter their details. You must be an administrator to perform this action.
 
 To re-invite a prospective member:
 
@@ -33,9 +33,9 @@ To re-invite a prospective member:
 1. Click **Reinvite** in the confirmation dialog.
 
 ## Remove Members and End Sessions
-As a Team Admin, you can remove team members, except for the account you are currently logged in with.
+As a team administrator, you can remove team members, except for the account you are currently logged in with.
 
-SAML created users must be removed using this method to expire their existing sessions because Replicated does not support System for Cross-domain Identity Management (SCIM).
+SAML-created users must be removed using this method to expire their existing sessions because Replicated does not support System for Cross-domain Identity Management (SCIM).
 
 To remove a member:
 
@@ -45,4 +45,4 @@ To remove a member:
 
   The member is removed. All of their current user sessions are deleted and their next attempt at communicating with the server logs them out of their browser's session.
 
-  For Google authenticated Users, if the user's Google account is suspended or deleted, Replicated logs that user out of all Google authenticated vendor portal sessions within 10 minutes. The user remains in the team list, but they cannot log into the vendor portal unless the username and password are allowed.
+  For Google-authenticated users, if the user's Google account is suspended or deleted, Replicated logs that user out of all Google authenticated vendor portal sessions within 10 minutes. The user remains in the team list, but they cannot log into the vendor portal unless the username and password are allowed.
