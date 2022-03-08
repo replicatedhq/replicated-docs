@@ -120,8 +120,8 @@ This type is displayed as radio buttons in the admin console.
           title: Password
 ```
 ### `text`
-A `text` inut field allows users to enter a string value.
-Optionally, all additional properties are avaialble for this input type.
+A `text` input field allows users to enter a string value.
+Optionally, all additional properties are available for this input type.
 
 ```yaml
     - name: example_text_input
