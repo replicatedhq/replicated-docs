@@ -25,7 +25,7 @@ kubectl patch configmaps kotsadm-confg --type merge -p "{\"data\":{\"enable-imag
 
 To enable it again, execute the following command:
 ```bash
-kubectl patch configmaps kotsadm-confg --type merge -p "{\"data\":{\"enable-image-deletion\":\"false\"}}"
+kubectl patch configmaps kotsadm-confg --type merge -p "{\"data\":{\"enable-image-deletion\":\"true\"}}"
 ```
 
 Garbage collection is triggered automatically when a new application version is deployed.
