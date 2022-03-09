@@ -43,7 +43,7 @@ To configure Okta and download the required files:
 
 1. Log in to your Okta Admin dashboard, and click applications.
 
-1. Select **Add a new application**, and create a new application as a SAML 2.0 application.
+1. Select **Create new app integration**, and create a new application as a SAML 2.0 application.
 
 1. Provide a name and icon for the application, such as Replicated vendor portal. You can download a high quality Replicated icon [here](https://help.replicated.com/images/guides/vendor-portal-saml/replicated-application-icon.png).
 
@@ -58,7 +58,7 @@ To configure Okta and download the required files:
   | Field Name              | Description                                                                                     |
   | :---------------------- | ----------------------------------------------------------------------------------------------- |
   | Single Sign On URL      | Set this to `https://id.replicated.com/v1/saml`.                                                  |
-  | Audience URI (SP Entity ID) | Displays on the vendor portal authentication tab, and is unique to your team in Replicated. |
+  | Audience URI (SP Entity ID) | Displays on the vendor portal [SAML authentication](https://vendor.replicated.com/team/saml-authentication) tab, and is unique to your team in Replicated. |
   | Name ID Format          | Change this to `EmailAddress`.                                                                  |
 
 1. Click **Next**.
@@ -82,7 +82,7 @@ When you initially configure SAML, we do not recommend that you disable username
 To configure SAML:
 
 1. Log in to the vendor portal [Team Members page](https://vendor.replicated.com/team/members) as a user with Admin access.
-1. Click SAML Authentication from the left menu. If you do not see these options, contact Replicated in Slack or through [Support](https://vendor.replicated.com/support).
+1. Click [SAML Authentication](https://vendor.replicated.com/team/saml-authentication) from the left menu. If you do not see these options, contact Replicated in Slack or through [Support](https://vendor.replicated.com/support).
 
  The SAML Authentication page opens.
 
@@ -102,7 +102,7 @@ After you have uploaded the metadata and x.509 public certificate, you must enab
 
 To enable SAML enforcement:
 
-1. From the vendor portal, select **Team > SAML Authentication**.
+1. From the vendor portal, select **Team > [SAML Authentication](https://vendor.replicated.com/team/saml-authentication)**.
 
 1. Select either or both login method options in the the Manage your SAML authentication pane. Allowing both login methods is a good way to test SAML without risking any interruption for the rest of your team.
 
