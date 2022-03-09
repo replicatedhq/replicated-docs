@@ -47,6 +47,7 @@ const sidebars = {
             items: [
               'vendor/releases-creating-channels',
               'vendor/releases-about-channels',
+              'vendor/releases-semantic-versioning',
             ],
           },
           {
@@ -398,6 +399,8 @@ const sidebars = {
             'reference/replicated-cli-app-ls',
             'reference/replicated-cli-channel-create',
             'reference/replicated-cli-channel-delete',
+            'reference/replicated-cli-channel-disable-semver',
+            'reference/replicated-cli-channel-enable-semver',
             'reference/replicated-cli-channel-inspect',
             'reference/replicated-cli-channel-ls',
             'reference/replicated-cli-customer-create',
