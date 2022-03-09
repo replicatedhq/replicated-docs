@@ -63,20 +63,22 @@ These can be changed later, but must be completed to continue.
 
 ### Pass preflight checks
 
-The app manager run preflight checks (conformance tests) against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application.
+The app manager runs preflight checks (conformance tests) against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application.
 
 ![Preflight Checks](/images/preflight-checks.png)
 
-#### Strict preflight Checks
-Strict preflight can used to block deployments when the cluster resources are not met with application requirements
-When Strict preflight Checks are present and fail, application installation cannot be continued.
-In order to continue application installation, the failed strict preflight errors should be fixed in environment and run preflight again and pass.
+### Resolve strict preflight checks
 
-If preflight are running and strict preflight are present, Deployment button will be disabled on GUI and will wait for preflight to be passed and automatically button will be enabled once the results have passed.
+Strict preflight checks block application deployment when the cluster resources are not met with application requirements.
 
-During minimal RBAC installations, preflight can be run and results can be uploaded using CLI command. GUI will recognize if preflight fail due to RBAC issues and provide a modal with CLI command which can be used to run and upload preflight results.
+If any strict preflight checks fail, application installation cannot continue.
+To continue the application installation, you must resolve the errors from the failed strict preflight checks in your environment. Then, rerun the preflight checks.
 
-For Automatic installs, preflight will be run and results will be evaluated before deploying the application
+If strict preflight checks are present, the Deployment button is disabled while the preflight checks are running. The Deployment button is enabled after the preflight checks pass.
+
+During minimal role-based access control (RBAC) installations, you can use the CLI to run preflight checks and upload the results. The admin console recognizes if the preflight checks have failed due to RBAC issues and displays a dialog with the CLI command that you can use to run the preflight checks and upload the results.
+
+For automatic application installations, the results of the preflight are evaluated before deploying the application.
 
 ### Specify proxies
 
