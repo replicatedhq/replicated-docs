@@ -11,5 +11,5 @@ As you make your selections the declarative YAML for the kURL manifest is dynami
 ![kurl-url](../../static/images/kurl-url.png)
 
 ## Advanced Options
-The kURL manifest can include [advanced configuration](add-on-adv-options) options for each add-on.  
+The kURL manifest can include advanced configuration options for each add-on. For more information, see [Add Ons](https://kurl.sh/docs/add-ons/antrea) in the open source kURL documentation.
 ![kurl-advanced](../../static/images/kurl-advanced.png)

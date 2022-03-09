@@ -104,7 +104,7 @@ This secret is based on the customer license, and will be used to pull all image
 Images hosted at `registry.replicated.com` will not be rewritten.  
 However, the same secret will be added to those PodSpecs as well.
 
-> [Application](/reference/v1beta1/application/) deployments are supported via image tags in all use cases. The app manager has limited support for deploying via image digests. Use of image digests are only supported for fully online installs where all images can be pulled from the Replicated registry, a public repo, or proxied from a private repo via the Replicated registry.
+> Application deployments are supported via image tags in all use cases. The app manager has limited support for deploying via image digests. Use of image digests are only supported for fully online installs where all images can be pulled from the Replicated registry, a public repo, or proxied from a private repo via the Replicated registry.
 
 ## Additional namespaces
 

@@ -1,4 +1,4 @@
-# About creating a Kubernetes Installer
+# About Creating a Kubernetes Installer
 
 The installer can support various add-ons. Removing an add-on from the spec will remove it from your installer. For a full list of supported add-ons and the advanced options they support see the [advanced reference documentation](kubernetes-installers-advanced-options).
 
@@ -25,7 +25,9 @@ spec:
 ```
 
 ## Versions
-To pin a specific version of an add-on, you can specify a (supported) version of that add-on. Supported versions for each add-on can be found on the [add-ons](/add-ons) page. Since specifying a particular version will lock your installer to that version, you will not continue to get patch updates that include bug fixes and security patches. For this reason, it is recommended to use the [`.x` patch versions](#x-patch-versions) functionality.
+To pin a specific version of an add-on, you can specify a supported version of that add-on. For a list of supported versions for each add-on, see [Supported Add-ons](https://kurl.sh/add-ons) on the kURL website.
+
+Since specifying a particular version will lock your installer to that version, you will not continue to get patch updates that include bug fixes and security patches. For this reason, it is recommended to use the [`.x` patch versions](#x-patch-versions) functionality.
 
 ### Latest Versions
 When `"latest"` is the specified version for an add-on, this will resolve to the latest recommended version of the component that is supported by our installer. This means that when an update to the component is shipped, your installer will automatically be updated. This may be desirable in some scenarios, but more often installers should use tested, locked and predictable installed versions.
@@ -37,6 +39,7 @@ For add-ons that use [semantic versioning](https://semver.org), you can specify 
 The hash for a specific distro is immutable, each hash references a specific combination of components and versions. Mutable, vanity urls are available for Replicated customers as described below in **Managing a kURL Installer**.
 
 ## Creation & Management Options
+
 ### UI-based Installer Creation
 kURL hosts a website where users can specify a kURL manifest. Creating a new distro can be as easy as selecting a few drop down components. [Learn more](kubernetes-installers-creating-ui).
 

@@ -23,7 +23,7 @@ To [do this task]: (For example, "To create a customer license:")
     | Field                  | Instructions           |
     |-----------------------|------------------------|
     | Field name | Instructions on how to complete the field, starting with a verb. |
-    | Customer type| The type of customer is used solely for reporting purposes. Their access to your app is not affected by the type you assign to them. **Options:** Development, Trial, Paid, Community **Default:** Trial. For more information, see [About customer license types](licenses-about-types).|
+    | Customer type| The type of customer is used solely for reporting purposes. Their access to your app is not affected by the type you assign to them. **Options:** Development, Trial, Paid, Community **Default:** Trial. For more information, see LINK.|
 
 1. Click **Save Changes**.
 
