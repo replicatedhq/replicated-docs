@@ -1,24 +1,48 @@
-# Team Management
+# Managing Team Members
 
-The primary [Team](https://vendor.replicated.com/team/members) page of the vendor portal is the default location to view and manage team members (such as invite, remove, and manage permissions). 
+This topic describes how to manage team members in the Replicated vendor portal, such as inviting and removing members, and editing permissions.
 
 ## Viewing Team Members
-The [Team](https://vendor.replicated.com/team/members) page provides a list of all accounts currently associated with or invited to your team. Each row contains information about the user, including their MFA-status and RBAC Role, and lets Admins take some additional actions (such as remove, reinvite, and edit permissions). The account you are currently logged in with will be annotated with "(You)".
+The [Team](https://vendor.replicated.com/team/members) page provides a list of all accounts currently associated with or invited to your team. Each row contains information about the user, including their multi-factor authentication (MFA) status and role-based access control (RBAC) role, and lets administrators take additional actions, such as remove, re-invite, and edit permissions.
 
-## Inviting Members
-By default, Replicated Teams can invite more team members to collaborate from the [Team Members](https://vendor.replicated.com/team/members) page. (SAML-only enforced teams do not use the email invitation flow.)
+## Invite Members
+By default, team administrators can invite more team members to collaborate.
 
-To invite a new team member, click **Invite member** on the right side of the page and enter the email address of the member and their assigned RBAC policy in the dialog.
+:::note
+SAML-only enforced teams do not use the email invitation flow.
+:::
 
-People invited to join your team will receive an email notification to accept the invitation. They must follow the link in the email to accept the invitation and join the team. If they do not have a Replicated account already, they can create one that complies with your Password Policies, MFA and/or Google Auth requirements. If they already have a Replicated account, by accepting your invitation, they will automatically leave their current team and join the team you have invited them to.
+To invite a new team member:
 
-Invitations expire after 7 days. To reinvite a member, there is an option located immediately below the user's email address on this page. Clicking **Reinvite** prompts you to confirm invitation.
+1. From the [Team Members](https://vendor.replicated.com/team/members) page, click **Invite member**.
 
-## Removing Members & Ending Sessions
-Team Admins can remove members, except for the account they are currently logged in with, from their team by clicking **Remove** on the right side of a user's row. Clicking **Remove** prompts you to confirm the action.
+  The Invite team member dialog opens.
 
-When a member is removed, all of their current user sessions are deleted and their next attempt at communicating with the server logs them out of their browser's session.
+1. Enter the email address of the member and their assigned RBAC policy, and click **Invite Member**.
 
-SAML created users must be removed in the same way in order to expire their existing sessions, as Replicated does not support SCIM.
+  People invited to join your team receive an email notification to accept the invitation. They must follow the link in the email to accept the invitation and join the team. If they do not have a Replicated account already, they can create one that complies with your password policies, MFA, and Google authentication requirements. If they already have a Replicated account, by accepting your invitation, they automatically leave their current team and join the team that you have invited them to.
 
-For Google Authenticated Users, if the user's Google Account is suspended or deleted, Replicated logs that user out of all Google authenticated vendor portal sessions within 10 minutes. The user remains in the team list, but they cannot log into the vendor portal unless Username/Password is also allowed.
+## Re-invite Members
+
+Invitations expire after 7 days. If a prospective member has not accepted their invitation in this timeframe, you can re-invite them without having to re-enter their details. You must be an administrator to perform this action.
+
+To re-invite a prospective member:
+
+1. Click **Reinvite** below the user's email address on the Team Members page.
+
+1. Click **Reinvite** in the confirmation dialog.
+
+## Remove Members and End Sessions
+As a team administrator, you can remove team members, except for the account you are currently logged in with.
+
+SAML-created users must be removed using this method to expire their existing sessions because Replicated does not support System for Cross-domain Identity Management (SCIM).
+
+To remove a member:
+
+1. From the Team Members page, click **Remove** on the right side of a user's row.
+
+1. Click **Remove** in the confirmation dialog.
+
+  The member is removed. All of their current user sessions are deleted and their next attempt at communicating with the server logs them out of their browser's session.
+
+  For Google-authenticated users, if the user's Google account is suspended or deleted, Replicated logs that user out of all Google authenticated vendor portal sessions within 10 minutes. The user remains in the team list, but they cannot log into the vendor portal unless the username and password are allowed.
