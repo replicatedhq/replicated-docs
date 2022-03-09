@@ -437,18 +437,19 @@ const sidebars = {
       type: 'category',
       label: 'Policies',
       items: [
-            'vendor/policies-vulnerability-patch',
-            'vendor/policies-data-transmission',
-             ],
+        'vendor/policies-data-transmission',
+        'vendor/policies-support-lifecycle',
+        'vendor/policies-vulnerability-patch',
+      ],
     },
     {
       type: 'category',
       label: 'Release notes',
       collapsed: false,
       items: [
-          'release-notes/rn-whats-new',
-          'release-notes/rn-app-manager',
-          'release-notes/rn-kubernetes-installer'
+        'release-notes/rn-whats-new',
+        'release-notes/rn-app-manager',
+        'release-notes/rn-kubernetes-installer'
       ],
     },
   ],
