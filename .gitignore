@@ -21,4 +21,3 @@ yarn-error.log*
 
 # Algolia Search
 .env
-config.json
