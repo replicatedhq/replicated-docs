@@ -67,6 +67,17 @@ The app manager run preflight checks (conformance tests) against the target name
 
 ![Preflight Checks](/images/preflight-checks.png)
 
+#### Strict preflight Checks
+Strict preflight can used to block deployments when the cluster resources are not met with application requirements
+When Strict preflight Checks are present and fail, application installation cannot be continued.
+In order to continue application installation, the failed strict preflight errors should be fixed in environment and run preflight again and pass.
+
+If preflight are running and strict preflight are present, Deployment button will be disabled on GUI and will wait for preflight to be passed and automatically button will be enabled once the results have passed.
+
+During minimal RBAC installations, preflight can be run and results can be uploaded using CLI command. GUI will recognize if preflight fail due to RBAC issues and provide a modal with CLI command which can be used to run and upload preflight results.
+
+For Automatic installs, preflight will be run and results will be evaluated before deploying the application
+
 ### Specify proxies
 
 When installing behind a proxy, the admin console needs to be able to use the proxy to communicate with the APIs on the internet as well as local services.
