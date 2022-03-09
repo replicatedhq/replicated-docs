@@ -11,7 +11,7 @@ We recommend configuring and testing one manifest file at a time until the entir
 
 These configuration tasks are either required or highly recommended in your first production pass, in the following order:
 
-1. Connect to a private registry. If your images are open-source or public, skip this step. To connect your private registry, either push the image to Replicated's registry or link your private registry. See [Using Private Registry Images](packagine-private-images).
+1. Connect to a private registry. If your images are open-source or public, skip this step. To connect your private registry, either push the image to Replicated's registry or link your private registry. See [Using Private Registry Images](packaging-private-images).
 
 1. Configure the `deployment.yaml` file.
 1. Configure the `services.yaml` file.

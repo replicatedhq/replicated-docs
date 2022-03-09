@@ -1,6 +1,8 @@
 # Example: Mapping the Configuration Screen to Helm Values
 
-The Replicated app manager allows you to map the [config screen](/vendor/config/config-screen) to the Helm `values.yaml` file. This example shows a possible configuration for the Grafana platform.
+The Replicated app manager allows you to map the the Replicated admin console configuration screen to the Helm `values.yaml` file. This example shows a possible configuration for the Grafana platform.
+
+For more information about customizing the configuration screen, see [Customizing the Configuration Screen](admin-console-customize-config-screen).
 
 ## Choosing Values
 

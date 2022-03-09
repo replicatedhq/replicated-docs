@@ -196,11 +196,11 @@ The app manager is based on the KOTS open source project. The KOTS version is th
 
 When you promote a new release that specifies a minimum KOTS version later than what a user currently has deployed, that application version appears in the version history of the admin console after the user checks for updates. However, it is not downloaded.
 
-The admin console temporarily displays an error message that informs the user that they must update KOTS in order to download the application version. This error displays when the user checks for updates with the [`kots upstream upgrade`](/kots-cli/upstream/upgrade/) command.
+The admin console temporarily displays an error message that informs the user that they must update KOTS in order to download the application version. This error displays when the user checks for updates with the [`kots upstream upgrade`](kots-cli-upstream-upgrade) command.
 
 Users must update their admin console to the minimum KOTS version or later in order to download the application version without error. KOTS cannot update itself automatically, and users cannot update KOTS from the admin console.
 
-After updating KOTS to the minimum version or later, users can return to the admin console and click **Download** next to the version in order to download the release. Alternatively, they can use the [`kots upstream download`](/kots-cli/upstream/download/) command.
+After updating KOTS to the minimum version or later, users can return to the admin console and click **Download** next to the version in order to download the release. Alternatively, they can use the [`kots upstream download`](kots-cli-upstream-download) command.
 
 :::note
 When you promote a new release that changes the minimum KOTS version to a later version, you can also inform your users directly of the need to update KOTS if you are not certain that they will know how to proceed based on the error message in the admin console.

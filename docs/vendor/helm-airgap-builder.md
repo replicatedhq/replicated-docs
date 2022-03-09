@@ -15,7 +15,7 @@ Upon promotion to a release channel, the air gap builder templates the chart wit
 Values in the `builder` attribute only determine the images used within the Helm chart.
 These values should not be templates because they are not used within a customer installation and do not change.
 
-To define a resource such as a required namespace, include a hardcoded "default" entry in `builder` and a templated entry in `values`. For more information about defining a templated entry in `values`, see [values](/reference/v1beta1/helmchart/#values) in _HelmChart_.
+To define a resource such as a required namespace, include a hardcoded "default" entry in `builder` and a templated entry in `values`. For more information about defining a templated entry in `values`, see [values](../reference/custom-resource-helmchart#values) in _HelmChart_.
 
 ## Builder Attribute
 ```yaml
