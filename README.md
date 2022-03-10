@@ -121,16 +121,9 @@ Replicated uses its own CSS, and Docusaurus supports its own specific Markdown s
 | Bold                                | **bold text**                                                  |
 | Italic                              | _italicized text_                                              |
 | Ordered List                        | 1. First item
-                                        1. Second item
-                                        1. Third item                                                  |
-| Unordered List                      | - or *
-                                        - First item
-                                        - Second item
-                                        - Third item                                                   |
-| Code                                | `code`                                                         |
-| Code Block                          | ```
-                                        $ my code
-                                        ```                                                            |
+                                        (Use `1.` for each item)                                       |
+| Unordered List                      | `-` or `*` (for each item)
+| Code or command in a sentence       | `code`                                                         |
 | Note:                               | :::note
                                         text
                                         :::                                                            |
@@ -148,7 +141,7 @@ Replicated uses its own CSS, and Docusaurus supports its own specific Markdown s
 
 Whether you are editing existing content or adding a new topic, our goal is to make it task based. The `procedure.md` template provides the formatting guidelines that you need. You can also see a published example of a task [here](https://docs.replicated.com/vendor/releases-creating-customer).
 
-Replicated product documentation has in-house style guidelines that the Documentation team will use when reviewing your PR. Please feel free to just add the content you need, knowing that our team will be there to assist with editorial reviews. We encourage your contributions in the true open-source spirit.
+Replicated product documentation has in-house style guidelines that the Documentation team uses when reviewing your PR. Please feel free to just add the content you need, knowing that our team will be there to assist with editorial reviews and information architecture, such as TOC placement, whether to create a task, and so on. The Documentation team will actively write content, not just give editorial reviews, so we take the heavy burden off of you. We encourage your contributions in the true open-source spirit.
 
 
 ### SME and Editorial Reviews
