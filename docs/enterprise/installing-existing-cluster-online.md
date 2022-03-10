@@ -63,11 +63,24 @@ These can be changed later, but must be completed to continue.
 
 ### Pass Preflight Checks
 
-The app manager run preflight checks (conformance tests) against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application.
+The app manager runs preflight checks (conformance tests) against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application.
 
 ![Preflight Checks](/images/preflight-checks.png)
 
-### Specify Proxies
+### Resolve strict preflight checks
+
+Strict preflight checks block application deployment when the cluster resources are not met with application requirements.
+
+If any strict preflight checks fail, application installation cannot continue.
+To continue the application installation, you must resolve the errors from the failed strict preflight checks in your environment. Then, rerun the preflight checks.
+
+If strict preflight checks are present, the Deployment button is disabled while the preflight checks are running. The Deployment button is enabled after the preflight checks pass.
+
+During minimal role-based access control (RBAC) installations, you can use the CLI to run preflight checks and upload the results. The admin console recognizes if the preflight checks have failed due to RBAC issues and displays a dialog with the CLI command that you can use to run the preflight checks and upload the results.
+
+For automatic application installations, the results of the preflight are evaluated before deploying the application.
+
+### Specify proxies
 
 When installing behind a proxy, the admin console needs to be able to use the proxy to communicate with the APIs on the internet as well as local services.
 
