@@ -1,47 +1,96 @@
-# Updating an application
+# Updating an Application
 
-## Using the admin console
+You can update an application using the Replicated admin console or the kots CLI.
+See [Update an Application in the Admin Console](#update-an-application-in-the-admin-console)
+or [Update an Application with the kots CLI](#update-an-application-with-the-kots-cli) below.
 
-The simplest way to update an application is through the Version History tab on the Replicated admin console.
+## Update an Application in the Admin Console
+
+You can manually update an application in the Version History tab of the Replicated admin console.
 This method works for both online and air gapped installations.
 
-### Checking for updates
-The admin console automatically checks for updates once every 4 hours.
-To manually check for a more recent version, click **Check for updates** in the admin console.
-In air gapped instances this button will be replaced with **Upload a new version**.
-Air gapped instances cannot check for updates automatically.
-When an update has been downloaded (for online) or uploaded (for air gap), a new upstream version will show in the list of released versions.
+For applications installed in an online environment, you can also configure the
+admin console to automatically update and deploy new versions of an application
+on a custom cadence. For more information, see
+[Configure Automatic Updates](#configure-automatic-updates) below.
 
-[![New Version Available](/images/new-version-available.png)](/images/new-version-available.png)
+To manually update an application:
 
-## Comparing changes between releases
-When there are multiple versions of a application, you can compare the changes between them by clicking **Diff releases** in the right corner.
+1. In the admin console, go to the Version History tab.
+1. Click **Check for updates** to manually check for new versions of the application.
 
-[![Diff Releases](/images/diff-releases.png)](/images/diff-releases.png)
+   :::note
+   For air gapped installations, click **Upload a new version** to upload a new
+   version of the application.
+   :::
 
-Changes can be reviewed between any arbitrary release by clicking the icon in the header of the release column. Select the two versions to compare, and click **Diff releases** to show the relative changes between the two releases.
+   When the admin console downloads an update (for online), or when you upload an update (for air gap),
+   a new upstream version displays in the list of released versions.
 
-[![New Changes](/images/new-changes.png)](/images/new-changes.png)
+   [![New Version Available](/images/new-version-available.png)](/images/new-version-available.png)
+
+1. (Optional) When there are multiple versions of an application, you can compare
+the changes between them by clicking **Diff releases** in the right corner.
+
+   You can review changes between any arbitrary release by clicking the icon in the header
+   of the release column. Select the two versions to compare, and click **Diff releases**
+   to show the relative changes between the two releases.
+
+   [![Diff Releases](/images/diff-releases.png)](/images/diff-releases.png)
+   [![New Changes](/images/new-changes.png)](/images/new-changes.png)
+
+1. Click **Preflight results** to run the preflight checks defined by
+the application vendor.
+
+   [![Preflight Checks](/images/preflight-checks.png)](/images/preflight-checks.png)
+:::note
+Preflight failures and warnings do not prevent the upgrade to a new version. You can decide to ignore these failures and proceed with the upgrade.
+:::
+1. To update the application, click **Continue** on the preflight checks page. Or,
+return to the Version History tab and click **Deploy** next to the target version.
+
+   When you update an application, the current cluster is updated to the new version
+   of the application and the Deployed status is set on that version.   
 
 
-### Preflight checks
-Click the **Preflight results** link to run the preflight checks defined by the application vendor.
-Based on the outcome of each preflight check, you can decide whether or not to perform the upgrade by clicking **Continue**.
+## Configure Automatic Updates
 
-[![Preflight Checks](/images/preflight-checks.png)](/images/preflight-checks.png)
+For applications installed in an online environment, the admin console automatically
+checks for new versions once every 4 hours by default. After the admin console
+checks for updates, it downloads any new versions of the application and displays
+them on the Version History tab.
 
-Preflight failures and warnings do not preclude the upgrade to a new version.
-The installer may elect to ignore these failures and proceed with the upgrade.
+You can edit this default cadence to customize how often the admin console checks
+for and downloads new versions.
 
-### Updating
-An update is performed by clicking **Continue** on the preflight checks page, or by clicking **Deploy** on the Version History tab.
-At this point, the current cluster will be updated to the new version of the application and the Deployed status will be set on that version.
+You can also configure the admin console to automatically deploy new versions of
+the application after it downloads them. By default, the admin console does not
+automatically deploy any version of an application. The admin console also never
+automatically deploys a version that you manually download by clicking **Check for update**.
 
-## Using CLI
+You cannot configure automatic updates for application installed in air gapped
+environments.
+
+To configure automatic updates:
+
+1. In the admin console, go to the Version History tab and click **Configure automatic updates**.
+1. In the Configure automatic updates dialog, under Automatically check for updates,
+select a cadence for the admin console to check for updates. To define a custom cadence,
+select **Custom** in the drop-down, then enter a cron expression into the text field.
+1. Under Automatically deploy new versions:
+   * **For applications that use semantic versioning**: Select an option in the dropdown
+   to specify the versions that the admin console automatically deploys. For example,
+   to automatically deploy only new major versions, select **Automatically deploy new major versions**.
+   * **For applications that do not use semantic versioning**: Optionally select **Enable automatic deployment**.
+   When this checkbox is enabled, the admin console automatically
+   deploys each new version of the application that it downloads.    
+
+
+## Update an Application with the kots CLI
 
 The kots CLI can be used to install and deploy updates for both online and air gapped instances as well.
 
-### Online installations
+### Online Installations
 
 In order to download updates from the internet, the following command can be used:
 
@@ -51,7 +100,7 @@ kubectl kots upstream upgrade <app slug> -n <admin console namespace>
 
 Adding the `--deploy` flag will also automatically deploy the latest version.
 
-### Existing cluster air gapped installations
+### Air Gapped Installations on an Existing Cluster
 
 In order to install an update from an air gap file, the following command can be used:
 
@@ -67,7 +116,7 @@ kubectl kots upstream upgrade <app slug> \
 
 Adding the `--deploy` flag will also automatically deploy this version.
 
-### Embedded cluster air gapped installations
+### Air Gapped Installations on a Kubernetes Installer-Created Cluster
 
 > Introduced in the Replicated app manager v1.34.0
 
