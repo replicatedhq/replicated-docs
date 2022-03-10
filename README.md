@@ -58,6 +58,7 @@ There are several main aspects of documentation to consider when adding content 
 * Folder structure and TOC
 * Topic templates
 * Filenaming
+* Images
 * Using Markdown
 * Style guidelines
 * SME and editorial reviews
@@ -101,15 +102,47 @@ releases-creating-customer.md
 tutorial-ha-cluster-deploying.md
 
 
+### images
+
+We only use PNG images, which render a better quality.
+
+The maximum allowed width is 600 pixels.
+
+
 ### Using Markdown with our Docusaurus CSS
 
 Replicated uses its own CSS, and Docusaurus supports its own specific Markdown syntax. The following table provides an overview of the supported syntax elements.
 
-| Element                  | Syntax           |
-|-----------------------|------------------------|
-| Field name | Instructions on how to complete the field, starting with a verb. |
-
-
+| Element                             | Syntax                                                         |
+|-------------------------------------|----------------------------------------------------------------|
+| Headings                            | # H1
+                                        ## H2
+                                        ### H3                                                         |
+| Bold                                | **bold text**                                                  |
+| Italic                              | _italicized text_                                              |
+| Ordered List                        | 1. First item
+                                        1. Second item
+                                        1. Third item                                                  |
+| Unordered List                      | - or *
+                                        - First item
+                                        - Second item
+                                        - Third item                                                   |
+| Code                                | `code`                                                         |
+| Code Block                          | ```
+                                        $ my code
+                                        ```                                                            |
+| Note:                               | :::note
+                                        text
+                                        :::                                                            |
+| Important:                          | :::important
+                                        text
+                                        :::                                                            |
+| Link - external site                | [Title](https://www.example.com)                               |
+| Link - topic in same folder         | [Title](filename) without file extension                       |
+| Link - topic in different folder    | [Title](../folder/file-name) without file extension            |
+| Link - to specific section in topic | [Title](file-name#section-name) for same folder
+                                        [Title](../folder/file-name#section-name) for different folder |
+| Image                               | ![alt text](image.png)                                         |
 
 ### Style Guidelines
 
