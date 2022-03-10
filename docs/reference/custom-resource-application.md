@@ -101,9 +101,9 @@ For backwards compatibility, exact versions are also supported.
 When an exact version is specified, the app manager will choose the matching major and minor version.
 
 ## requireMinimalRBACPrivileges
-When set to true, this will instruct the app manager to create a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.
+When set to `true`, this instructs the app manager to create a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.
 
-During minimal role-based access control (RBAC) installations where a `strict` [preflight](../vendor/preflight-support-bundle-creating#creating-preflight-checks) is specified, you can use the CLI to run preflight checks and upload the results. The app manager recognizes if the preflight checks have failed due to RBAC issues and displays a dialog for users providing a CLI command. This command can be usedto manually run the preflight checks and upload the results to app manager.
+During minimal role-based access control (RBAC) installations where a `strict` [preflight](../vendor/preflight-support-bundle-creating#creating-preflight-checks) is specified, you can use the kots CLI to run preflight checks and upload the results. The app manager recognizes if the preflight checks have failed due to RBAC issues and displays a dialog for users providing a kots CLI command. This command can be used to manually run the preflight checks and upload the results to the app manager.
 
 For more information, see the [RBAC](../vendor/packaging-rbac) documentation.
 
