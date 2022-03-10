@@ -178,6 +178,12 @@ To install the application:
 
 1. Click **Continue** and ignore the warnings. Preflight checks are designed to ensure this server has the minimum system and software requirements to run the application. By default, we included some preflight checks that are expected to fail so that you can see what failing checks might look like for a customer.
 
+    :::note
+    As a vendor, you can optionally configure `strict` preflight checks that cause the application deployment to fail if your specific requirements are not met. For more information about preflight checks, see [Creating Preflight Checks and Support Bundles](preflight-support-bundle-creating).
+  
+    Additionally, when installing with minimal role-based access control (RBAC), the app manager recognizes if the preflight checks have failed due to insufficient privileges. When this occurs, a `kubectl preflight` command is displayed that lets the end user manually run the preflight checks and upload the results automatically to the app manager. For more information about configuring RBAC privileges, see [`requireMinimalRBACPrivileges`](../reference/custom-resource-application#requireminimalrbacprivileges) in Application custom resources.
+    :::
+
 1. Click **Application** on the top to see the application running. If you are still connected to this server using SSH, `kubectl get pods` shows the example NGINX service that you just deployed.
 
   ![Cluster](/images/guides/kots/application.png)
