@@ -68,3 +68,20 @@ After the bundle has been completely uploaded, the admin console processes the i
 Images will be loaded, re-tagged, and pushed to the registry provided.
 
 ![Processing Images](../../static/images/processing-images.gif)
+
+### Pass preflight checks
+
+The app manager runs preflight checks (conformance tests) against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application.
+
+![Preflight Checks](/images/preflight-checks.png)
+
+#### Resolve strict preflight checks
+
+When one or more strict preflight checks are present, the application deployment is blocked until these strict checks are ran. Strict preflight checks must not contain failures and will block the release from being deployed until the failure is resolved. A vendor may specify strict preflight checks to help enforce that specific requirements are  met before the application can be deployed. 
+
+When installing with [minimal role-based access control (RBAC)](../reference/custom-resource-application#requireminimalrbacprivileges), the app manager recognizes if the preflight checks have failed due to insufficient privilege. When this occurs, a `kubectl preflight` command will be displayed that can be ran manually in the cluster to run the preflight checks. When the command is ran and completes, the  results are automatically uploaded to the app manager.
+An example of the format for this command is below:
+```bash
+curl https://krew.sh/preflight|bash
+kubectl preflight secret/<namespace>/kotsadm-<appslug>-preflight
+```
