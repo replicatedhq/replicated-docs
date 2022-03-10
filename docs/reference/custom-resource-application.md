@@ -164,7 +164,9 @@ The KOTS version that is targeted by the release.
 
 >Introduced in app manager v1.62.0.
 
-**Note**: The app manager is based on the KOTS open source project. The KOTS version is the same as the app manager version. For example, KOTS v1.60 is the same as the app manager v1.60.
+:::note
+The app manager is based on the KOTS open source project. The KOTS version is the same as the app manager version. For example, KOTS v1.60 is the same as the app manager v1.60.
+:::
 
 Including `targetKotsVersion` in the Application manifest file of the release enforces compatibility checks for new installations and blocks the installation if the version used is later than the target version.
 
@@ -196,7 +198,7 @@ The app manager is based on the KOTS open source project. The KOTS version is th
 
 When you promote a new release that specifies a minimum KOTS version later than what a user currently has deployed, that application version appears in the version history of the admin console after the user checks for updates. However, it is not downloaded.
 
-The admin console temporarily displays an error message that informs the user that they must update KOTS in order to download the application version. This error displays when the user checks for updates with the [`kots upstream upgrade`](kots-cli-upstream-upgrade) command.
+The admin console temporarily displays an error message that informs the user that they must update KOTS in order to download the application version. This error also displays when the user checks for updates with the [`kots upstream upgrade`](kots-cli-upstream-upgrade) command.
 
 Users must update their admin console to the minimum KOTS version or later in order to download the application version without error. KOTS cannot update itself automatically, and users cannot update KOTS from the admin console.
 
