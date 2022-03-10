@@ -69,16 +69,11 @@ The app manager runs preflight checks (conformance tests) against the target nam
 
 ### Resolve strict preflight checks
 
-Strict preflight checks block application deployment when the cluster resources are not met with application requirements.
+Strict preflight checks can block application deployment when vendor specified application requirements are not met. These preflight checks must not `fail` and will block deployment until they are resolved. When `strict` preflight checks exist, the Deployment button will only be available once the preflights have ran and there are no failures for the `strict` checks.
 
-If any strict preflight checks fail, application installation cannot continue.
-To continue the application installation, you must resolve the errors from the failed strict preflight checks in your environment. Then, rerun the preflight checks.
+When installing with  minimal role-based access control (RBAC), app manager recognizes if the preflight checks have failed due to insufficient cluster privilege. When this occurs, a CLI command will be provided for you to manually run the preflight checks in the cluster. The returned results will be uploaded to app manager.
 
-If strict preflight checks are present, the Deployment button is disabled while the preflight checks are running. The Deployment button is enabled after the preflight checks pass.
-
-During minimal role-based access control (RBAC) installations, you can use the CLI to run preflight checks and upload the results. The admin console recognizes if the preflight checks have failed due to RBAC issues and displays a dialog with the CLI command that you can use to run the preflight checks and upload the results.
-
-For automatic application installations, the results of the preflight are evaluated before deploying the application.
+For automatic application deployments, the results of the preflight are evaluated before deploying the application. If a `strict` preflight check fails, then the automatic deployment will not deploy. You must resolve this failure and manually deploy the version.
 
 ### Specify proxies
 
