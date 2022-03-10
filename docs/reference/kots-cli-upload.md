@@ -28,7 +28,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 Note: Any `plainText` values in the `upstream/userdata/config.yaml` file will be re-encrypted using the application cipher automatically, if the matching config item is a password type.
 If both an encrypted and plainText value is provided on a single item, the plainText value will overwrite the encrypted value, if they differ.
 
-Note: If any [`strict preflights`](../docs/vendor/preflight-support-bundle-creating.md) are configured, the `--skip-preflights` flag should not be used with the `--deploy` flag as the preflight checks must run and contain no failures for `strict` analyzers before  the application can be deployed.
+Note: If any [`strict preflights`](../docs/vendor/preflight-support-bundle-creating.md) are configured, the `--skip-preflights` flag will not be honored since preflight checks must be ran and contain no failures before the application can be deployed. 
 
 ### Examples
 ```bash
