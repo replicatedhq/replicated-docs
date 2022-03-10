@@ -69,17 +69,17 @@ The app manager runs preflight checks (conformance tests) against the target nam
 
 ### Resolve strict preflight checks
 
-Strict preflight checks can block application deployment when vendor specified application requirements are not met. These preflight checks must not `fail` and will block deployment until they are resolved. When `strict` preflight checks exist, the Deployment button will only be available once the preflights have ran and there are no failures for the `strict` checks.
+When strict preflight checks are used, the application deployment is blocked if the vendor-specified requirements are not met. The deployment fails until the requirements are resolved. When strict preflight checks exist, the Deploy button is available after the strict preflights run successfully.
 
-When installing with  minimal role-based access control (RBAC), app manager recognizes if the preflight checks have failed due to insufficient cluster privilege. When this occurs, a CLI command will be provided for you to manually run the preflight checks in the cluster. The returned results will be uploaded to app manager.
+When installing with minimal role-based access control (RBAC), the app manager recognizes if the preflight checks have failed due to insufficient cluster privilege. When this occurs, a kots CLI command is provided for you to manually run the preflight checks in the cluster. The returned results are uploaded to the app manager.
 
-For automatic application deployments, the results of the preflight are evaluated before deploying the application. If a `strict` preflight check fails, then the automatic deployment will not deploy. You must resolve this failure and manually deploy the version.
+For automatic application deployments, the results of the preflight are evaluated before deploying the application. If a strict preflight check fails, then the automatic deployment does not deploy. You must resolve this failure and manually deploy the version.
 
 ### Specify proxies
 
 When installing behind a proxy, the admin console needs to be able to use the proxy to communicate with the APIs on the internet as well as local services.
 
-Both the `kots install` and `kots pull` kots CLI commands provide arguments to specify proxy settings for the admin console containers.
+Both the `kots install` and `kots pull` CLI commands provide arguments to specify proxy settings for the admin console containers.
 
 If either `http-proxy` or `https-proxy` is specified, `no-proxy` should also be specified. The `no-proxy` string should include all localhost addresses as well as the local network and Kubernetes cluster CIDRs.
 
