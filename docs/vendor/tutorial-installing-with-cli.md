@@ -417,6 +417,8 @@ To install the application:
 
 1. Click **Continue**. If there are failing checks, dismiss the warning to continue. Preflight checks are designed to help ensure this server has the minimum system and software requirements to run the application. Depending on your YAML configuration in `preflight.yaml`, you can see some of the example preflight checks fail.
 
+Copy and paste here, JQ!!!
+
   The Version History page opens and displays the initial version that was deployed. Later, you will come back to this page to deploy an update to the application.
 
 1. Click **Application** on the top to see the status of the application and some basic monitoring statistics (such as CPU, memory, and disk space). If you are still connected to this server using SSH, `kubectl get pods` shows the example NGINX service that you just deployed.
