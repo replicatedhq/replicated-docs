@@ -50,3 +50,76 @@ If you are using GitHub pages for hosting, this command is a convenient way to b
 ```
 $ GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
 ```
+
+## Adding and Editing Content
+
+There are several main aspects of documentation to consider when adding content to this repo.
+
+* Folder structure and TOC
+* Topic templates
+* Filenaming
+* Using Markdown
+* Style guidelines
+* SME and editorial reviews
+
+### Folder Structure and TOC
+
+The folder structure is broken into several high-level categories under the main `docs` folder: vendor, enterprise, reference, release notes.
+
+Images are under the `static` > `images` folder.
+
+The TOC is managed in the `sidebar.js` file. You only need to edit the `sidebar.js` file when you are adding a new topic or deleting an existing topic. The `sidebar.js` file is the one that causes most of the merge conflicts because many technical writers are working on content daily. You will need to accept the changes from other contributors if you are committing a PR.
+
+Don't worry if you're not sure where in the TOC a new topic belongs. When you submit your PR, the Documentation team will edit it and help to find the right placement.
+
+The right-hand TOC is created automatically when you add headings to a topic.
+
+### Topic templates
+
+Please copy the topic templates that are located in the `templates` folder to create new content. Right now we have a template for creating a procedure (`procedure.md`), which is our main form of content creation.
+
+Save the new topic to the correct folder and be sure to follow the [filenaming convention](#filenaming).
+
+### Filenaming
+
+If you are adding a new file, it must be named following our naming conventions. The file name should always start with the feature type (such as licenses, helm, or gitops). Depending on the content type, it typically also includes a secondary descriptor and a verb. Verbs are used when you are creating a task topic.
+
+Because we author content using Markdown, you must add the `.md` the file extension to the file name.
+
+If you are adding a new topic to an existing feature category, follow the existing naming convention for that category.
+
+**Example: Concept topic**
+
+snapshots-backup-hooks.md
+
+**Example: Task topic**
+
+releases-creating-customer.md
+
+**Example: Tutorial**
+
+tutorial-ha-cluster-deploying.md
+
+
+### Using Markdown with our Docusaurus CSS
+
+Replicated uses its own CSS, and Docusaurus supports its own specific Markdown syntax. The following table provides an overview of the supported syntax elements.
+
+| Element                  | Syntax           |
+|-----------------------|------------------------|
+| Field name | Instructions on how to complete the field, starting with a verb. |
+
+
+
+### Style Guidelines
+
+Whether you are editing existing content or adding a new topic, our goal is to make it task based. The `procedure.md` template provides the formatting guidelines that you need. You can also see a published example of a task [here](https://docs.replicated.com/vendor/releases-creating-customer).
+
+Replicated product documentation has in-house style guidelines that the Documentation team will use when reviewing your PR. Please feel free to just add the content you need, knowing that our team will be there to assist with editorial reviews. We encourage your contributions in the true open-source spirit.
+
+
+### SME and Editorial Reviews
+
+All PRs that are submitted are reviewed by the Replicated Docs team for editorial review.
+
+Content that is submitted by our customers and the open-source community are also reviewed by our Replicated subject matter experts (SMEs) to help ensure technical accuracy.
