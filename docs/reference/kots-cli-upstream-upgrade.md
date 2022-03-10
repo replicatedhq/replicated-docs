@@ -27,7 +27,7 @@ kubectl kots upstream upgrade [app-slug] [flags]
 | `--wait` | bool | set to false to download the updates in the background _(defaults to true)_
 | `-o, --output`           | string | output format (currently supported: json) _(defaults to plain text if not set)_                  |
 
-Note: If any [`strict preflights`](../docs/vendor/preflight-support-bundle-creating.md) are configured, the `--skip-preflights` flag will not be honored since preflight checks must be ran and contain no failures before the application can be deployed. 
+Note: If any [`strict preflights`](../docs/vendor/preflight-support-bundle-creating.md) are configured, the `--skip-preflights` flag will not be honored since preflight checks must run and contain no failures before the application can be deployed. 
 
 When the `--deploy` option is provided and there are [`strict preflights`](../docs/vendor/preflight-support-bundle-creating.md), the preflight checks will always run. The deployment will wait up to 15 minutes for preflight checks to complete before deploying.
 
