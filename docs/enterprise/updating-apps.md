@@ -31,7 +31,7 @@ Based on the outcome of each preflight check, you can decide whether or not to p
 [![Preflight Checks](/images/preflight-checks.png)](/images/preflight-checks.png)
 
 Preflight failures and warnings do not preclude the upgrade to a new version.
-The installer may elect to ignore these failures and proceed with the upgrade.
+The installer may elect to ignore these failures and proceed with the upgrade. If any `strict` preflight checks are configured and the check has a `fail` outcome, the release cannot be deployed. For more details, review [Resolving Strict Preflight Checks](../enterprise/installing-existing-cluster-online#resolve-strict-preflight-checks).
 
 ### Updating
 An update is performed by clicking **Continue** on the preflight checks page, or by clicking **Deploy** on the Version History tab.
