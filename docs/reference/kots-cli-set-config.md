@@ -23,7 +23,7 @@ kubectl kots set config [appSlug] [KEY_1=VAL_1 ... KEY_N=VAL_N] [flags]
 | `--skip-preflights` |        | set to true to skip preflight checks when deploying new version                                                                       |
 | `-n, --namespace`   | string | the namespace where the admin console is running _(required)_                                                                         |
 
-Note: If any [`strict preflights`](../docs/vendor/preflight-support-bundle-creating.md) are configured, the `--skip-preflights` flag will not be honored since preflight checks must be ran and contain no failures before the application can be deployed. 
+Note: If any [`strict preflights`](../docs/vendor/preflight-support-bundle-creating.md) are configured, the `--skip-preflights` flag will not be honored since preflight checks must run and contain no failures before the application can be deployed. 
 
 When the `--deploy` option is provided and there are [`strict preflights`](../docs/vendor/preflight-support-bundle-creating.md), the preflight checks will always run. The deployment will wait up to 15 minutes for preflight checks to complete before deploying.
 
