@@ -17,7 +17,7 @@ on which a customer installs your application. Preflight checks provide clear
 feedback to your customer about any missing requirements or incompatibilities in
 the cluster before they install and deploy your application. This can reduce the number of support escaltions during installation.
   
-* **Strict preflight checks**: When an analyzer is marked as [`strict`](https://troubleshoot.sh/docs/analyze/#strict), the deployment of the release is blocked for `fail` outcomes. This feature can be used to prevent users from deploying a release when vendor-specified requirements must be met before deploying the release. When configuring `strict` preflight checks, vendors should consider the app manager [cluster privileges](../reference/custom-resource-application#requireminimalrbacprivileges). 
+* **Strict preflight checks**: When an analyzer is marked as [`strict`](https://troubleshoot.sh/docs/analyze/#strict), any `fail` outcomes for that analyzer will block the deployment of the release. This can be used to prevent users from deploying a release until vendor-specified requirements are met. When configuring `strict` preflight checks, vendors should consider the app manager [cluster privileges](../reference/custom-resource-application#requireminimalrbacprivileges). 
 
 ## Creating preflight checks
 
