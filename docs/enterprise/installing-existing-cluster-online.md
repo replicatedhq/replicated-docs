@@ -67,13 +67,13 @@ The app manager runs preflight checks (conformance tests) against the target nam
 
 ![Preflight Checks](/images/preflight-checks.png)
 
-### Resolve strict preflight checks
+#### Resolve strict preflight checks
 
-When strict preflight checks are used, the application deployment is blocked if the vendor-specified requirements are not met. The deployment fails until the requirements are resolved. When strict preflight checks exist, the Deploy button is available after the strict preflights run successfully.
+When one or more strict preflight checks are present, the application deployment is blocked until these strict checks are ran. Strict preflight checks must not contain failures and will block the release from being deployed until the failure is resolved. A vendor may specify strict preflight checks to help enforce that specific requirements are  met before the application can be deployed. 
 
-When installing with minimal role-based access control (RBAC), the app manager recognizes if the preflight checks have failed due to insufficient cluster privilege. When this occurs, a kots CLI command is provided for you to manually run the preflight checks in the cluster. The returned results are uploaded to the app manager.
+When installing with [minimal role-based access control (RBAC)](../reference/custom-resource-application#requireminimalrbacprivileges), the app manager recognizes if the preflight checks have failed due to insufficient privileges. When this occurs, a kots CLI command is provided for you to manually run the preflight checks in the cluster. The returned results are uploaded to the app manager.
 
-For automatic application deployments, the results of the preflight are evaluated before deploying the application. If a strict preflight check fails, then the automatic deployment does not deploy. You must resolve this failure and manually deploy the version.
+For automatic application deployments, the results of the preflight are evaluated before deploying the application. If a strict preflight check fails, then the automatic deployment will not deploy. You must resolve this failure and then manually deploy the release.
 
 ### Specify proxies
 
