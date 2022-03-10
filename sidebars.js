@@ -437,9 +437,9 @@ const sidebars = {
       type: 'category',
       label: 'Policies',
       items: [
-        'vendor/policies-data-transmission',
-        'vendor/policies-support-lifecycle',
         'vendor/policies-vulnerability-patch',
+        'vendor/policies-support-lifecycle',
+        'vendor/policies-data-transmission',
       ],
     },
     {
