@@ -16,6 +16,7 @@ deployments.
 on which a customer installs your application. Preflight checks provide clear
 feedback to your customer about any missing requirements or incompatibilities in
 the cluster before they install and deploy your application. This can reduce the number of support escaltions during installation.
+  * **Strict Preflights**: When an analyzer is marked as [`strict`](https://troubleshoot.sh/docs/analyze/#strict), deployment of the release will be blocked on `fail` outcomes. This can be used to help prevent users from deploying a release when the failure must be resolved before deploying the release. When configuring `strict` preflight checks, vendors should take app manager's [cluster privilege](../reference/custom-resource-application#requireminimalrbacprivileges) into consideration. 
 
 ## Creating preflight checks
 
@@ -33,7 +34,6 @@ see [Getting Started](https://troubleshoot.sh/docs/) in the Troubleshoot documen
 For more information about creating preflight checks, see
 [Preflight Checks](https://troubleshoot.sh/docs/preflight/introduction/) in the
 Troubleshoot documentation. There are also a number of basic examples for checking CPU, memory, and disk capacity under [Node Resources Analyzer](https://troubleshoot.sh/reference/analyzers/node-resources/).
-
 
 
 ## Creating support bundles
