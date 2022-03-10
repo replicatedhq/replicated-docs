@@ -79,8 +79,10 @@ The app manager runs preflight checks (conformance tests) against the target nam
 
 When one or more strict preflight checks are present, the application deployment is blocked until these strict checks are ran. Strict preflight checks must not contain failures and will block the release from being deployed until the failure is resolved. A vendor may specify strict preflight checks to help enforce that specific requirements are  met before the application can be deployed. 
 
-When installing with [minimal role-based access control (RBAC)](../reference/custom-resource-application#requireminimalrbacprivileges), the app manager recognizes if the preflight checks have failed due to insufficient privilege. When this occurs, a `kubectl preflight` command will be displayed that can be ran manually in the cluster to run the preflight checks. When the command is ran and completes, the  results are automatically uploaded to the app manager.
-An example of the format for this command is below:
+When installing with [minimal role-based access control (RBAC)](../reference/custom-resource-application#requireminimalrbacprivileges), the app manager recognizes if the preflight checks have failed due to insufficient privilege. When this occurs, a `kubectl preflight` command is displayed that can be ran manually in the cluster to run the preflight checks. When the command is ran and completes, the results are automatically uploaded to the app manager.
+
+**Example of this command input**
+
 ```bash
 curl https://krew.sh/preflight|bash
 kubectl preflight secret/<namespace>/kotsadm-<appslug>-preflight
