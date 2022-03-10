@@ -73,8 +73,6 @@ When one or more strict preflight checks are present, the application deployment
 
 When installing with [minimal role-based access control (RBAC)](../reference/custom-resource-application#requireminimalrbacprivileges), the app manager recognizes if the preflight checks have failed due to insufficient privileges. When this occurs, a kots CLI command is provided for you to manually run the preflight checks in the cluster. The returned results are uploaded to the app manager.
 
-For automatic application deployments, the results of the preflight are evaluated before deploying the application. If a strict preflight check fails, then the automatic deployment will not deploy. You must resolve this failure and then manually deploy the release.
-
 ### Specify proxies
 
 When installing behind a proxy, the admin console needs to be able to use the proxy to communicate with the APIs on the internet as well as local services.
