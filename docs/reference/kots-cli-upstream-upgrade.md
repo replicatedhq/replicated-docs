@@ -27,6 +27,8 @@ kubectl kots upstream upgrade [app-slug] [flags]
 | `--wait` | bool | set to false to download the updates in the background _(defaults to true)_
 | `-o, --output`           | string | output format (currently supported: json) _(defaults to plain text if not set)_                  |
 
+Note: If any [`strict preflights`](../docs/vendor/preflight-support-bundle-creating.md) are configured, the `--skip-preflights` flag should not be used with the `--deploy` flag as the preflight checks must run and contain no failures for `strict` analyzers before  the application can be deployed.
+
 ### Example
 ```bash
 kubectl kots upstream upgrade kots-sentry --namespace kots-sentry
