@@ -30,8 +30,7 @@ If both an encrypted and plainText value is provided on a single item, the plain
 
 Note: If any [`strict preflights`](../docs/vendor/preflight-support-bundle-creating.md) are configured, the `--skip-preflights` flag will not be honored since preflight checks must run and contain no failures before the application can be deployed. 
 
-When the `--deploy` option is provided and there are [`strict preflights`](../docs/vendor/preflight-support-bundle-creating.md), the preflight checks will always run. The deployment will wait up to 15 minutes for preflight checks to complete before deploying.
-
+When the `--deploy` option is provided and there are [`strict preflights`](../docs/vendor/preflight-support-bundle-creating.md), the preflight checks will always run. The deployment will wait for up to 15 minutes for preflight checks to complete; if the checks complete with no strict preflight failures then the release will deploy. If checks do not complete within 15 minutes, then the release will not deploy. If there is one or more strict preflight failures, the release will not deploy.
 ### Examples
 ```bash
 kubectl kots upload ./manifests --name kots-sentry --namespace kots-sentry --slug kots-sentry --upstream-uri kots-sentry/unstable
