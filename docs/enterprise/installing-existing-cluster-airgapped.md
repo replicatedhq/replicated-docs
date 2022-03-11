@@ -69,13 +69,13 @@ Images will be loaded, re-tagged, and pushed to the registry provided.
 
 ![Processing Images](../../static/images/processing-images.gif)
 
-### Pass preflight checks
+## Pass preflight checks
 
 The app manager runs preflight checks (conformance tests) against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application.
 
 ![Preflight Checks](/images/preflight-checks.png)
 
-#### Resolve strict preflight checks
+### Resolve strict preflight checks
 
 When one or more strict preflight checks are present, the application deployment is blocked until these strict checks are ran. Strict preflight checks must not contain failures and will block the release from being deployed until the failure is resolved. A vendor may specify strict preflight checks to help enforce that specific requirements are  met before the application can be deployed. 
 
