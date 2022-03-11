@@ -113,29 +113,40 @@ The maximum allowed width is 600 pixels.
 
 Replicated uses its own CSS, and Docusaurus supports its own specific Markdown syntax. The following table provides an overview of the supported syntax elements.
 
-| Element                             | Syntax                                                         |
-|-------------------------------------|----------------------------------------------------------------|
-| Headings                            | `# H1`
-                                        `## H2`
-                                        `### H3`                                                       |
-| Bold                                | **bold text**                                                  |
-| Italic                              | _italicized text_                                              |
-| Ordered List                        | `1.` First item
-                                        (Use `1.` for each item)                                       |
-| Unordered List                      | `-` or `*` (for each item)
-| Code or command in a sentence       | `code`                                                         |
-| Note                                | `:::note`
-                                         text
-                                        `:::`                                                          |
-| Important                           |  `:::important`
-                                          text
-                                         `:::`                                                          |
-| Link - external site                | [Title](https://www.example.com)                               |
-| Link - topic in same folder         | [Title](filename) without file extension                       |
-| Link - topic in different folder    | [Title](../folder/file-name) without file extension            |
-| Link - to specific section in topic | [Title](file-name#section-name) for same folder
-                                        [Title](../folder/file-name#section-name) for different folder |
-| Image                               | ![alt text](images/<image-name>.png)                           |
+| Element                                     | Syntax                                              |
+|---------------------------------------------|-----------------------------------------------------|
+| Headings                                    | `# H1`, `## H2`, `### H3`                           |
+| Bold                                        | **bold text**                                       |
+| Italic                                      | _italicized text_                                   |
+| Ordered List                                | `1.` First item (Use `1.` for each item)            |
+| Unordered List                              | `-` or `*` (for each item)                          |
+| Code or command in a sentence               | `code`                                              |
+| Link - external site                        | [Title](https://www.example.com)                    |
+| Link - topic in same folder                 | [Title](filename) without file extension            |
+| Link - topic in different folder            | [Title](../folder/file-name) without file extension |
+| Link - section in topic in same folder      | [Title](file-name#section-name)                     |
+| Link - section in topic in different folder | [Title](../folder/file-name#section-name)           |
+| Image                                       | ![alt text](images/<image-name>.png)                |
+
+Alt text, used with image syntax, is parsed by screen readers to support accessibility. The user will hear the alt text spoken out loud by the screen reader, so it is important to use succinct text that is clear and complete.
+
+#### Admonitions
+
+Note admonitions are formatted as follows:
+
+```
+:::note
+text
+:::
+```
+
+Important admonitions, typically used as a warning, are formatted as follows:
+
+```
+:::important
+text
+:::
+```
 
 ### Style Guidelines
 
