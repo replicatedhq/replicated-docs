@@ -24,9 +24,9 @@ Run this command to install the `yarn` CLI:
 $ yarn
 ```
 
-### Create a Local Development Server and Preview
+### Create a Local Development Server and WYSIWYG Preview
 
-Run the following command to start a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+Run the following command to start a local development server and open up a browser window. Most changes are reflected live without having to restart the server. This preview shows the formatting and styles as they would render on the live site (also known as what-you-see-is-what-you-get or WYSIWYG), which can be more helpful than viewing content in a VS Code preview.
 
 ```
 $ yarn start
@@ -55,13 +55,13 @@ $ GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
 
 There are several main aspects of documentation to consider when adding content to this repo.
 
-* Folder structure and TOC
-* Topic templates
-* Filenaming
-* Images
-* Using Markdown
-* Style guidelines
-* SME and editorial reviews
+* [Folder structure and TOC](#folder-structure-and-toc)
+* [Topic templates](#topic-temlates)
+* [Filenaming](#filenaming)
+* [Images](#images)
+* [Using Markdown with our Docusaurus CSS](#using-markdown-with-our-docusaurus-css)
+* [Style guidelines](#style-guidelines)
+* [SME and editorial reviews](#sme-and-editorial-reviews)
 
 ### Folder Structure and TOC
 
@@ -102,7 +102,7 @@ releases-creating-customer.md
 tutorial-ha-cluster-deploying.md
 
 
-### images
+### Images
 
 We only use PNG images, which render a better quality.
 
@@ -115,31 +115,31 @@ Replicated uses its own CSS, and Docusaurus supports its own specific Markdown s
 
 | Element                             | Syntax                                                         |
 |-------------------------------------|----------------------------------------------------------------|
-| Headings                            | # H1
-                                        ## H2
-                                        ### H3                                                         |
+| Headings                            | `# H1`
+                                        `## H2`
+                                        `### H3`                                                       |
 | Bold                                | **bold text**                                                  |
 | Italic                              | _italicized text_                                              |
-| Ordered List                        | 1. First item
+| Ordered List                        | `1.` First item
                                         (Use `1.` for each item)                                       |
 | Unordered List                      | `-` or `*` (for each item)
 | Code or command in a sentence       | `code`                                                         |
-| Note:                               | :::note
-                                        text
-                                        :::                                                            |
-| Important:                          | :::important
-                                        text
-                                        :::                                                            |
+| Note                                | `:::note`
+                                         text
+                                        `:::`                                                          |
+| Important                           |  `:::important`
+                                          text
+                                         `:::`                                                          |
 | Link - external site                | [Title](https://www.example.com)                               |
 | Link - topic in same folder         | [Title](filename) without file extension                       |
 | Link - topic in different folder    | [Title](../folder/file-name) without file extension            |
 | Link - to specific section in topic | [Title](file-name#section-name) for same folder
                                         [Title](../folder/file-name#section-name) for different folder |
-| Image                               | ![alt text](image.png)                                         |
+| Image                               | ![alt text](images/<image-name>.png)                           |
 
 ### Style Guidelines
 
-Whether you are editing existing content or adding a new topic, our goal is to make it task based. The `procedure.md` template provides the formatting guidelines that you need. You can also see a published example of a task [here](https://docs.replicated.com/vendor/releases-creating-customer).
+Whether you are editing existing content or adding a new topic, our goal is to make it task-based. The `procedure.md` template provides the formatting guidelines that you need. You can also see a published example of a task [here](https://docs.replicated.com/vendor/releases-creating-customer).
 
 Replicated product documentation has in-house style guidelines that the Documentation team uses when reviewing your PR. Please feel free to just add the content you need, knowing that our team will be there to assist with editorial reviews and information architecture, such as TOC placement, whether to create a task, and so on. The Documentation team will actively write content, not just give editorial reviews, so we take the heavy burden off of you. We encourage your contributions in the true open-source spirit.
 
