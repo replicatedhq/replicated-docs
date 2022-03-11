@@ -39,15 +39,15 @@ the changes between them by clicking **Diff releases** in the right corner.
    [![Diff Releases](/images/diff-releases.png)](/images/diff-releases.png)
    [![New Changes](/images/new-changes.png)](/images/new-changes.png)
 
-1. Click **Preflight results** to run the preflight checks defined by
+1. Click the **View preflight checks** logo to view or re-run the preflight checks defined by
 the application vendor.
 
    [![Preflight Checks](/images/preflight-checks.png)](/images/preflight-checks.png)
 :::note
 Preflight failures and warnings do not prevent the upgrade to a new version. You can decide to ignore these failures and proceed with the upgrade.
 :::
-1. To update the application, click **Continue** on the preflight checks page. Or,
-return to the Version History tab and click **Deploy** next to the target version.
+1. To update the application, return to the Version History tab
+and click **Deploy** next to the target version.
 
    When you update an application, the current cluster is updated to the new version
    of the application and the Deployed status is set on that version.   
