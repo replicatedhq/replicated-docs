@@ -12,7 +12,7 @@ To enable SAML in your vendor portal account, you must have an Enterprise plan. 
 
 ### SCIM
 
-Replicated does not implement System for Cross-domain Identity Management (SCIM). Instead, we use SAML to authenticate and create one-time use identities in our system. We resolve the username (email address) as the actor and use this to ensure that audit log events follow these dynamically provisioned and deprovisioned users.
+Replicated does not implement System for Cross-domain Identity Management (SCIM). Instead, we use SAML to authenticate and create one-time use identities in our system. We resolve the username (email address) as the actor and use this to ensure that audit log events follow these dynamically provisioned users. If a user's email address is already associated with a Replicated account, by using your SAML integration to access the vendor portal, they automatically leave their current team and join the team associated with the SAML login.
 
 ### Two-Factor Authentication
 
