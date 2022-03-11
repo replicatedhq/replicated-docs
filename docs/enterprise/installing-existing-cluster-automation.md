@@ -49,10 +49,14 @@ The app manager runs preflight checks (conformance tests) against the target nam
 
 #### Resolve strict preflight checks
 
-When one or more strict preflight checks are present, the application deployment is blocked until these strict checks are ran. Strict preflight checks must not contain failures and will block the release from being deployed until the failure is resolved. A vendor may specify strict preflight checks to help enforce that specific requirements are  met before the application can be deployed. 
+When one or more strict preflight checks are present, the application deployment is blocked until these strict checks are run. Strict preflight checks must not contain failures and block the release from being deployed until the failures are resolved. Strict preflight checks help enforce that vendor-specific requirements are  met before the application can be deployed.
 
-When installing with [minimal role-based access control (RBAC)](../reference/custom-resource-application#requireminimalrbacprivileges), the app manager recognizes if the preflight checks have failed due to insufficient privilege. When this occurs, a `kubectl preflight` command will be displayed that can be ran manually in the cluster to run the preflight checks. When the command is ran and completes, the  results are automatically uploaded to the app manager.
-An example of the format for this command is below:
+### Resolve role-based access control checks
+
+When the installation uses [minimal role-based access control (RBAC)](../reference/custom-resource-application#requireminimalrbacprivileges), the app manager recognizes if the preflight checks failed due to insufficient privileges. When this occurs, a `kubectl preflight` command is displayed that you must run manually in the cluster to run the preflight checks. When the command runs and completes, the results are automatically uploaded to the app manager.
+
+**Example:**
+
 ```bash
 curl https://krew.sh/preflight | bash
 kubectl preflight secret/<namespace>/kotsadm-<appslug>-preflight
