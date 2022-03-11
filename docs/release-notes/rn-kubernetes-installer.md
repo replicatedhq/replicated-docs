@@ -14,7 +14,7 @@ For release notes earlier than v2022.01.25-0, see
 Released on March 11, 2022
 
 ### New Features
-* Adds the [labels flag][https://kurl.sh/docs/install-with-kurl/advanced-options], which applies the given labels to the node.
+* Adds the [labels flag](https://kurl.sh/docs/install-with-kurl/advanced-options), which applies the given labels to the node.
 
 ### Bug Fixes
 * Fixes false validation errors when creating a new installer that includes one or more of the following fields: `excludeBuiltinHostPreflights`, `hostPreflightIgnore`, `hostPreflightEnforceWarnings`, and `storageOverProvisioningPercentage`.
