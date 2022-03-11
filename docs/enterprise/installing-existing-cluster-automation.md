@@ -44,11 +44,7 @@ When this file is uploaded, any `valuePlaintext` will be re-encrypted if the mat
 ### Disable admin console port-forwarding
 The `kots install` kots CLI command by default opens a port-forward to the admin console as part of the application installation.
 
-To disable this behavior, add the following flag to the install command:
-
-```shell
---port-forward=false
-```
+To disable this behavior, add the `--no-port-forward` flag to the install command.
 
 You can later access the admin console with the following command:
 
@@ -66,7 +62,7 @@ kubectl kots install app-name \
   --shared-password password \
   --license-file ./license.yaml \
   --config-values ./configvalues.yaml \
-  --port-forward=false
+  --no-port-forward
 ```
 
 After this has completed, you can go to http://localhost:8800 will show the configured application dashboard, assuming all required config items were set and any included preflight checks passed.
@@ -86,5 +82,5 @@ kubectl kots install app-name \
   --kotsadm-namespace app-name \
   --registry-username rw-username \
   --registry-password rw-password \
-  --port-forward=false
+  --no-port-forward
 ```

@@ -402,7 +402,7 @@ This procedure follows the instructions at [Installing in an Air Gapped Environm
     KUBECONFIG=./admin.conf /snap/bin/kubectl kots install \
     --kotsadm-registry ${CLUSTER_PRIVATE_IP}:32000 \
     --registry-username kots --registry-password kots \
-    ${APP_SLUG} --namespace ${NAMESPACE} --port-forward=false
+    ${APP_SLUG} --namespace ${NAMESPACE} --no-port-forward
   ```
 
   :::note
