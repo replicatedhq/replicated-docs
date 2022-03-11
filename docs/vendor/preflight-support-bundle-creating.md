@@ -36,7 +36,6 @@ For more information about creating preflight checks, see
 [Preflight Checks](https://troubleshoot.sh/docs/preflight/introduction/) in the
 Troubleshoot documentation. There are also a number of basic examples for checking CPU, memory, and disk capacity under [Node Resources Analyzer](https://troubleshoot.sh/reference/analyzers/node-resources/).
 
-
 ## Creating support bundles
 
 You can create support bundles with the `support-bundle` plugin for the `kubectl` Kubernetes command-line tool.
