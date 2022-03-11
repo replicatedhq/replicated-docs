@@ -77,7 +77,7 @@ The app manager runs preflight checks (conformance tests) against the target nam
 
 ### Resolve strict preflight checks
 
-When one or more strict preflight checks are present, the application deployment is blocked until these strict checks run. Strict preflight checks must not contain failures and blocks the release from being deployed until the failure is resolved. Strict preflight checks to help enforce that vendor-specific requirements are met before the application can be deployed. 
+When one or more strict preflight checks are present, the application deployment is blocked until these strict checks are run. Strict preflight checks must not contain failures and blocks the release from being deployed until the failure is resolved. Strict preflight checks to help enforce that vendor-specific requirements are met before the application can be deployed. 
 
 ### Resolve role-based access control checks
 
