@@ -103,7 +103,7 @@ When an exact version is specified, the app manager will choose the matching maj
 ## requireMinimalRBACPrivileges
 When set to `true`, the app manager creates a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.
 
-When installing with [minimal role-based access control (RBAC)](../reference/custom-resource-application#requireminimalrbacprivileges), the app manager recognizes if the preflight checks failed due to insufficient privileges. When this occurs, a `kubectl preflight` command is displayed that can be ran manually in the cluster to run the preflight checks. When the command runs and completes, the results are automatically uploaded to the app manager.
+When installing with [minimal role-based access control (RBAC)](../reference/custom-resource-application#requireminimalrbacprivileges), the app manager recognizes if the preflight checks failed due to insufficient privileges. When this occurs, a `kubectl preflight` command is displayed that can be run manually in the cluster to run the preflight checks. When the command runs and completes, the results are automatically uploaded to the app manager.
 
 **Example:**
 

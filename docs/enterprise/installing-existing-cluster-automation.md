@@ -47,11 +47,11 @@ The app manager runs preflight checks (conformance tests) against the target nam
 
 ![Preflight Checks](/images/preflight-checks.png)
 
-### Resolve strict preflight checks
+#### Resolve strict preflight checks
 
 When one or more strict preflight checks are present, the application deployment is blocked until these strict checks are run. Strict preflight checks must not contain failures and block the release from being deployed until the failures are resolved. Strict preflight checks help enforce that vendor-specific requirements are met before the application is deployed.
 
-### Resolve role-based access control checks
+#### Resolve role-based access control checks
 
 When the installation uses [minimal role-based access control (RBAC)](../reference/custom-resource-application#requireminimalrbacprivileges), the app manager recognizes if the preflight checks failed due to insufficient privileges.
 
