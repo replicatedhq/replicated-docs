@@ -87,6 +87,8 @@ Without access to cluster-scoped resources, some preflight checks and support bu
 These tools will continue to function, but will return less data.
 In this situation, the admin console will present an option for the user to either proceed with limited data or a command to execute the preflight checks or support bundle remotely, using the user's RBAC authorizations.
 
+Additionally, when installing using `strict` preflight check and minimal role-based access control (RBAC), preflight checks can fail due to insufficient privileges. When this occurs, a kubectl preflight command is displayed that lets the end user manually run the preflight checks and upload the results automatically to the app manager. For more information about strict preflight checks, see [strict preflight checks](preflight-support-bundle-creating#about-preflight-checks-and-support-bundles). For more information about configuring RBAC privileges, see [requireMinimalRBACPrivileges](../reference/custom-resource-application#requireminimalrbacprivileges) in Application custom resources.
+
 Additionally, the namespace-scoped permission does not grant access to Velero's namespace if installed - Velero is a prerequisite for [admin console snapshots](../enterprise/snapshots-understanding).
 
 The `kubectl kots velero ensure-permissions` command can be used to create additional Roles and RoleBindings to allow the necessary cross-namespace access. For more information, see [`velero ensure-permissions`](../reference/kots-cli-velero-ensure-permissions/) in the kots CLI documentation.

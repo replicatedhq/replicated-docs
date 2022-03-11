@@ -29,9 +29,9 @@ Any `plainText` values in the `upstream/userdata/config.yaml` file will be re-en
 If both an encrypted and plainText value is provided on a single item, the plainText value will overwrite the encrypted value, if they differ.
 
 :::note
-If any [`strict preflights`](../docs/vendor/preflight-support-bundle-creating.md) are configured, the `--skip-preflights` flag are not honored because the preflight checks must run and contain no failures before the application is deployed. 
+If any [`strict preflights`](../vendor/preflight-support-bundle-creating) are configured, the `--skip-preflights` flag are not honored because the preflight checks must run and contain no failures before the application is deployed.
 
-When the `--deploy` option is provided and there are [`strict preflights`](../docs/vendor/preflight-support-bundle-creating.md), the preflight checks always run. The deployment waits for up to 15 minutes for the preflight checks to complete. If the checks complete without strict preflight failures, the release deploys. If the checks do not complete within 15 minutes, the release does not deploy. If there are one or more strict preflight failures, the release does not deploy.
+When the `--deploy` option is provided and there are [`strict preflights`](../vendor/preflight-support-bundle-creating), the preflight checks always run. The deployment waits for up to 15 minutes for the preflight checks to complete. If the checks complete without strict preflight failures, the release deploys. If the checks do not complete within 15 minutes, the release does not deploy. If there are one or more strict preflight failures, the release does not deploy.
 :::
 
 ### Examples
