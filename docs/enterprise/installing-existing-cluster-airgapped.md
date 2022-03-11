@@ -84,6 +84,6 @@ When installing with [minimal role-based access control (RBAC)](../reference/cus
 **Example of this command input**
 
 ```bash
-curl https://krew.sh/preflight|bash
+curl https://krew.sh/preflight | bash
 kubectl preflight secret/<namespace>/kotsadm-<appslug>-preflight
 ```
