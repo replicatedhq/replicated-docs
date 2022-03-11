@@ -101,15 +101,16 @@ For backwards compatibility, exact versions are also supported.
 When an exact version is specified, the app manager will choose the matching major and minor version.
 
 ## requireMinimalRBACPrivileges
-When set to `true`, this instructs the app manager to create a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.
+When set to `true`, the app manager creates a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.
 
-When installing with [minimal role-based access control (RBAC)](../reference/custom-resource-application#requireminimalrbacprivileges), the app manager recognizes if the preflight checks have failed due to insufficient privilege. When this occurs, a `kubectl preflight` command will be displayed that can be ran manually in the cluster to run the preflight checks. When the command is ran and completes, the  results are automatically uploaded to the app manager.
-An example of the format for this command is below:
+When installing with [minimal role-based access control (RBAC)](../reference/custom-resource-application#requireminimalrbacprivileges), the app manager recognizes if the preflight checks failed due to insufficient privileges. When this occurs, a `kubectl preflight` command is displayed that can be ran manually in the cluster to run the preflight checks. When the command runs and completes, the results are automatically uploaded to the app manager.
+
+**Example:**
+
 ```bash
 curl https://krew.sh/preflight | bash
 kubectl preflight secret/<namespace>/kotsadm-<appslug>-preflight
 ```
-
 For more information, see the [RBAC](../vendor/packaging-rbac) documentation.
 
 ## ports
