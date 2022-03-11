@@ -25,13 +25,17 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 | `-o, --output` | string | output format (currently supported: json) _(defaults to plain text if not set)_ |
 
 
-Note: Any `plainText` values in the `upstream/userdata/config.yaml` file will be re-encrypted using the application cipher automatically, if the matching config item is a password type.
+Any `plainText` values in the `upstream/userdata/config.yaml` file will be re-encrypted using the application cipher automatically, if the matching config item is a password type.
 If both an encrypted and plainText value is provided on a single item, the plainText value will overwrite the encrypted value, if they differ.
 
-Note: If any [`strict preflights`](../docs/vendor/preflight-support-bundle-creating.md) are configured, the `--skip-preflights` flag will not be honored since preflight checks must run and contain no failures before the application can be deployed. 
+:::note
+If any [`strict preflights`](../docs/vendor/preflight-support-bundle-creating.md) are configured, the `--skip-preflights` flag are not honored because the preflight checks must run and contain no failures before the application is deployed. 
 
-When the `--deploy` option is provided and there are [`strict preflights`](../docs/vendor/preflight-support-bundle-creating.md), the preflight checks will always run. The deployment will wait for up to 15 minutes for preflight checks to complete; if the checks complete with no strict preflight failures then the release will deploy. If checks do not complete within 15 minutes, then the release will not deploy. If there is one or more strict preflight failures, the release will not deploy.
+When the `--deploy` option is provided and there are [`strict preflights`](../docs/vendor/preflight-support-bundle-creating.md), the preflight checks always run. The deployment waits for up to 15 minutes for preflight checks to complete. If the checks complete with no strict preflight failures, the release deploys. If the checks do not complete within 15 minutes, the release does not deploy. If there are one or more strict preflight failures, the release does not deploy.
+:::
+
 ### Examples
+
 ```bash
 kubectl kots upload ./manifests --name kots-sentry --namespace kots-sentry --slug kots-sentry --upstream-uri kots-sentry/unstable
 ```
