@@ -27,9 +27,12 @@ kubectl kots upstream upgrade [app-slug] [flags]
 | `--wait` | bool | set to false to download the updates in the background _(defaults to true)_
 | `-o, --output`           | string | output format (currently supported: json) _(defaults to plain text if not set)_                  |
 
-Note: If any [`strict preflights`](../docs/vendor/preflight-support-bundle-creating.md) are configured, the `--skip-preflights` flag will not be honored since preflight checks must run and contain no failures before the application can be deployed. 
 
-When the `--deploy` option is provided and there are [`strict preflights`](../docs/vendor/preflight-support-bundle-creating.md), the preflight checks will always run. The deployment will wait for up to 15 minutes for preflight checks to complete; if the checks complete with no strict preflight failures then the release will deploy. If checks do not complete within 15 minutes, then the release will not deploy. If there is one or more strict preflight failures, the release will not deploy.
+:::note
+If any [`strict preflights`](../docs/vendor/preflight-support-bundle-creating.md) are configured, the `--skip-preflights` flag is not honored because preflight checks must run and contain no failures before the application is deployed. 
+
+When the `--deploy` option is provided and there are [`strict preflights`](../docs/vendor/preflight-support-bundle-creating.md), the preflight checks always run. The deployment waits for up to 15 minutes for the preflight checks to complete. If the checks complete without strict preflight failures, the release deploys. If the checks do not complete within 15 minutes, the release does not deploy. If there are one or more strict preflight failures, the release does not deploy.
+:::
 
 ### Example
 ```bash
