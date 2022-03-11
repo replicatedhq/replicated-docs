@@ -4,7 +4,7 @@ The `kots set config` allows setting values for application config items in the 
 
 > Introduced in KOTS v1.31.0
 
-### Usage
+## Usage
 
 ```bash
 kubectl kots set config [appSlug] [KEY_1=VAL_1 ... KEY_N=VAL_N] [flags]
@@ -22,14 +22,17 @@ kubectl kots set config [appSlug] [KEY_1=VAL_1 ... KEY_N=VAL_N] [flags]
 | `--deploy`          |        | when set, automatically deploy the latest version with the new configuration                                                          |
 | `--skip-preflights` |        | set to true to skip preflight checks when deploying new version                                                                       |
 | `-n, --namespace`   | string | the namespace where the admin console is running _(required)_                                                                         |
-:::note
-If any [`strict preflights`](../vendor/preflight-support-bundle-creating) are configured, the `--skip-preflights` flag is not honored because preflight checks must run and contain no failures before the application is deployed.
-
-When the `--deploy` option is provided and there are [`strict preflights`](../vendor/preflight-support-bundle-creating), the preflight checks always run. The deployment waits for up to 15 minutes for the preflight checks to complete. If the checks complete without strict preflight failures,  the release deploys. If the checks do not complete within 15 minutes, the release does not deploy. If there are one or more strict preflight failures, the release does not deploy.
-:::
 
 
-### Examples
+#### About Strict Preflight Checks
+If any strict preflight checks are configured, the `--skip-preflights` flag is not honored because preflight checks must run and contain no failures before the application is deployed.
+
+When the `--deploy` option is provided and there are strict preflight checks, the preflight checks always run. The deployment waits for up to 15 minutes for the preflight checks to complete. If the checks complete without strict preflight failures, the release deploys. If the checks do not complete within 15 minutes, the release does not deploy. If there are one or more strict preflight failures, the release does not deploy.
+
+For more information about strict preflight checks, see [About Preflight Checks and Support Bundles](../vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles).
+
+
+## Examples
 
 ```bash
 kubectl kots set config myapp -n default --config-file /path/to/local/config.yaml

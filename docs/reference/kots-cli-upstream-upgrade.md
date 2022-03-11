@@ -3,7 +3,7 @@
 The `kots upstream upgrade` fetches the latest version of the upstream application.
 It is functionality equivalent to clicking the "Check For Updates" in the admin console.
 
-### Usage
+## Usage
 ```bash
 kubectl kots upstream upgrade [app-slug] [flags]
 ```
@@ -28,13 +28,15 @@ kubectl kots upstream upgrade [app-slug] [flags]
 | `-o, --output`           | string | output format (currently supported: json) _(defaults to plain text if not set)_                  |
 
 
-:::note
-If any [`strict preflights`](../vendor/preflight-support-bundle-creating) are configured, the `--skip-preflights` flag is not honored because preflight checks must run and contain no failures before the application is deployed.
+#### About Strict Preflight Checks
+If any strict preflight checks are configured, the `--skip-preflights` flag is not honored because preflight checks must run and contain no failures before the application is deployed.
 
-When the `--deploy` option is provided and there are [`strict preflights`](../vendor/preflight-support-bundle-creating), the preflight checks always run. The deployment waits for up to 15 minutes for the preflight checks to complete. If the checks complete without strict preflight failures, the release deploys. If the checks do not complete within 15 minutes, the release does not deploy. If there are one or more strict preflight failures, the release does not deploy.
-:::
+When the `--deploy` option is provided and there are strict preflight checks, the preflight checks always run. The deployment waits for up to 15 minutes for the preflight checks to complete. If the checks complete without strict preflight failures, the release deploys. If the checks do not complete within 15 minutes, the release does not deploy. If there are one or more strict preflight failures, the release does not deploy.
 
-### Example
+For more information about strict preflight checks, see [About Preflight Checks and Support Bundles](../vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles).
+
+
+## Example
 ```bash
 kubectl kots upstream upgrade kots-sentry --namespace kots-sentry
 ```

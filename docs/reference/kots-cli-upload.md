@@ -3,7 +3,7 @@
 Upload Kubernetes manifests from the local filesystem, creating a new version of the application that can be deployed.
 When you have a copy of an application that was created with `kots pull` or `kots download`, you can upload it back to the Admin Console using the `kots upload` command.
 
-### Usage
+## Usage
 ```bash
 kubectl kots upload [source] [flags]
 ```
@@ -28,13 +28,15 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 Any `plainText` values in the `upstream/userdata/config.yaml` file will be re-encrypted using the application cipher automatically, if the matching config item is a password type.
 If both an encrypted and plainText value is provided on a single item, the plainText value will overwrite the encrypted value, if they differ.
 
-:::note
-If any [`strict preflights`](../vendor/preflight-support-bundle-creating) are configured, the `--skip-preflights` flag are not honored because the preflight checks must run and contain no failures before the application is deployed.
+#### About Strict Preflight Checks
+If any strict preflight checks are configured, the `--skip-preflights` flag are not honored because the preflight checks must run and contain no failures before the application is deployed.
 
-When the `--deploy` option is provided and there are [`strict preflights`](../vendor/preflight-support-bundle-creating), the preflight checks always run. The deployment waits for up to 15 minutes for the preflight checks to complete. If the checks complete without strict preflight failures, the release deploys. If the checks do not complete within 15 minutes, the release does not deploy. If there are one or more strict preflight failures, the release does not deploy.
-:::
+When the `--deploy` option is provided and there are strict preflight checks, the preflight checks always run. The deployment waits for up to 15 minutes for the preflight checks to complete. If the checks complete without strict preflight failures, the release deploys. If the checks do not complete within 15 minutes, the release does not deploy. If there are one or more strict preflight failures, the release does not deploy.
 
-### Examples
+For more information about strict preflight checks, see [About Preflight Checks and Support Bundles](../vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles).
+
+
+## Examples
 
 ```bash
 kubectl kots upload ./manifests --name kots-sentry --namespace kots-sentry --slug kots-sentry --upstream-uri kots-sentry/unstable

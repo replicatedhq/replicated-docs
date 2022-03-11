@@ -467,11 +467,13 @@ To connect to the app manager:
 
 1. Open `localhost:${PORT}` in your browser to access the Replicated admin console. Proceed with the installation from the the admin console.
 
-  :::note
   Vendors can optionally configure `strict` preflight checks that cause the application deployment to fail if specific requirements are not met. For more information about preflight checks, see [Creating Preflight Checks and Support Bundles](preflight-support-bundle-creating).
 
-  Additionally, when installing with minimal role-based access control (RBAC), preflight checks can fail due to insufficient privileges. When this occurs, a `kubectl preflight` command is displayed that lets the end user manually run the preflight checks and upload the results automatically to the app manager. For more information about configuring RBAC privileges, see [`requireMinimalRBACPrivileges`](../reference/custom-resource-application#requireminimalrbacprivileges) in Application custom resources.
-  :::
+  Additionally, when installing with minimal role-based access control (RBAC), preflight checks can fail due to insufficient privileges.
+
+  ![Run Preflight Checks Manually](/images/manual-run-preflights.png)
+
+  When this occurs, a `kubectl preflight` command is displayed that lets the end user manually run the preflight checks and upload the results automatically to the app manager. For more information about configuring RBAC privileges, see [`requireMinimalRBACPrivileges`](../reference/custom-resource-application#requireminimalrbacprivileges) in Application custom resources.
 
 ## Troubleshoot Issues
 

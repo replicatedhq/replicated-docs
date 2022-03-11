@@ -149,11 +149,13 @@ To upload the bundle and license:
 
   After the bundle is uploaded, the preflight checks begin. After all of the checks pass, the application is automatically deployed.
 
-  :::note
   Vendors can optionally configure `strict` preflight checks that cause the application deployment to fail if specific requirements are not met. For more information about preflight checks, see [Creating Preflight Checks and Support Bundles](preflight-support-bundle-creating).
 
-  Additionally, when installing with minimal role-based access control (RBAC), the preflight checks can fail due to insufficient privileges. When this occurs, a `kubectl preflight` command is displayed that lets the end user manually run the preflight checks and upload the results automatically to the app manager. For more information about configuring RBAC privileges, see [`requireMinimalRBACPrivileges`](../reference/custom-resource-application#requireminimalrbacprivileges) in Application custom resources.
-  :::
+  Additionally, when installing with minimal role-based access control (RBAC), the preflight checks can fail due to insufficient privileges.
+
+  ![Run Preflight Checks Manually](/images/manual-run-preflights.png)
+
+  When this occurs, a `kubectl preflight` command is displayed that lets the end user manually run the preflight checks and upload the results automatically to the app manager. For more information about configuring RBAC privileges, see [`requireMinimalRBACPrivileges`](../reference/custom-resource-application#requireminimalrbacprivileges) in Application custom resources.
 
 
 ## Build Bundles Automatically
