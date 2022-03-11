@@ -24,9 +24,9 @@ Run this command to install the `yarn` CLI:
 $ yarn
 ```
 
-### Create a Local Development Server and WSYWG Preview
+### Create a Local Development Server and WSYWYG Preview
 
-Run the following command to start a local development server and opens up a browser window. Most changes are reflected live without having to restart the server. This preview shows all of the formatting and styles as they would render on the live site (also known as WSYWG), which can be more helpful than viewing content in a VS Code preview.
+Run the following command to start a local development server and opens up a browser window. Most changes are reflected live without having to restart the server. This preview shows the formatting and styles as they would render on the live site (also known as WSYWYG), which can be more helpful than viewing content in a VS Code preview.
 
 ```
 $ yarn start
