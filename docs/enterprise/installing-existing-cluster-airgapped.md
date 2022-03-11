@@ -81,7 +81,7 @@ When one or more strict preflight checks are present, the application deployment
 
 When installing with [minimal role-based access control (RBAC)](../reference/custom-resource-application#requireminimalrbacprivileges), the app manager recognizes if the preflight checks have failed due to insufficient privilege. When this occurs, a `kubectl preflight` command is displayed that can be run manually in the cluster to run the preflight checks. When the command runs and completes, the results are automatically uploaded to the app manager.
 
-**Example of this command input**
+**Example of this command:**
 
 ```bash
 curl https://krew.sh/preflight | bash
