@@ -10,7 +10,7 @@ You can manually update an application in the Version History tab of the Replica
 This method works for both online and air gapped installations.
 
 For applications installed in an online environment, you can also configure the
-admin console to automatically update and deploy new versions of an application
+admin console to automatically check for and deploy new versions of an application
 on a custom cadence. For more information, see
 [Configure Automatic Updates](#configure-automatic-updates) below.
 
@@ -25,14 +25,14 @@ To manually update an application:
    :::
 
    When the admin console downloads an update (for online), or when you upload an update (for air gap),
-   a new upstream version displays in the list of released versions.
+   a new upstream version displays in the list of available versions.
 
    [![New Version Available](/images/new-version-available.png)](/images/new-version-available.png)
 
 1. (Optional) When there are multiple versions of an application, you can compare
 the changes between them by clicking **Diff releases** in the right corner.
 
-   You can review changes between any arbitrary release by clicking the icon in the header
+   You can review changes between any two arbitrary releases by clicking the icon in the header
    of the release column. Select the two versions to compare, and click **Diff releases**
    to show the relative changes between the two releases.
 
@@ -68,7 +68,7 @@ the application after it downloads them. By default, the admin console does not
 automatically deploy any version of an application. The admin console also never
 automatically deploys a version that you manually download by clicking **Check for update**.
 
-You cannot configure automatic updates for application installed in air gapped
+You cannot configure automatic updates for applications installed in air gapped
 environments.
 
 To configure automatic updates:
@@ -80,7 +80,8 @@ select **Custom** in the drop-down, then enter a cron expression into the text f
 1. Under Automatically deploy new versions:
    * **For applications that use semantic versioning**: Select an option in the dropdown
    to specify the versions that the admin console automatically deploys. For example,
-   to automatically deploy only new major versions, select **Automatically deploy new major versions**.
+   to automatically deploy only new patch and minor versions, select
+   **Automatically deploy new patch and minor versions**.
    * **For applications that do not use semantic versioning**: Optionally select **Enable automatic deployment**.
    When this checkbox is enabled, the admin console automatically
    deploys each new version of the application that it downloads.    
