@@ -32,7 +32,7 @@ Based on the outcome of each preflight check, you can decide whether or not to p
 
 Warnings do not preclude the upgrade to a new version. The installer may elect to ignore warnings and proceed with the upgrade. 
 
-Preflight check failures may also be ignored unless they are `strict`. If present, `strict` preflight checks that have a `fail` outcome will prevent the installer from deploying the release. For more details, review [Resolving Strict Preflight Checks](../enterprise/installing-existing-cluster-online#resolve-strict-preflight-checks).
+Preflight check failures can be ignored unless they are `strict`. If present, `strict` preflight checks that have a `fail` outcome prevent the installer from deploying the release. For more information about resolving strict preflight checks, see [Resolving Strict Preflight Checks](../enterprise/installing-existing-cluster-online#resolve-strict-preflight-checks).
 
 ### Updating
 An update is performed by clicking **Continue** on the preflight checks page, or by clicking **Deploy** on the Version History tab.
