@@ -7,7 +7,7 @@ For more information about how customers use the license file and installation
 script to install your application,
 see [Overview of installing an application with Replicated app manager](../enterprise/installing-overview).
 
-## Share the license file
+## Share the License File
 
 After you create a customer, assign the customer to a channel, and define the customer's
 license file in the Replicated vendor portal, you can share the license file with your customer.
@@ -21,7 +21,7 @@ To share the license file with a customer, you can do one of the following:
 * Send your customer a link to the Replicated download portal where they can download
 the license file. See [Share the license file through the download portal](#share-the-license-file-through-the-download-portal).
 
-### Download and share the license file
+### Download and Share the License File
 
 To download and share the license file:
 
@@ -32,7 +32,7 @@ To download and share the license file:
 1. Send the license file to your customer along with their installation script.
 See [Share the installation script](#share-the-installation-script).
 
-### Share the license file through the download portal
+### Share the License File through the Download Portal
 
 To share the license file through the download portal:
 
@@ -47,7 +47,7 @@ and preview your customer's experience.
 1. Send the URL and password for the download portal to your customer along with
 their installation script. See [Share the installation script](#share-the-installation-script).
 
-## Share the installation script
+## Share the Installation Script
 
 In the vendor portal, Replicated provides installation scripts that your customer
 can use to install your application.
@@ -69,6 +69,6 @@ customer is assigned.
 1. Copy the command displayed and send it to your customer along with their
 license file.
 
-## Additional resources
+## Additional Resources
 
 [How to Distribute an Application](distributing-workflow)

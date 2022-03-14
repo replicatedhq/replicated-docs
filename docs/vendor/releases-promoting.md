@@ -1,4 +1,4 @@
-# Promoting releases
+# Promoting Releases
 
 After you create a release, it must be promoted to a channel to be active.
 
@@ -23,11 +23,11 @@ To promote a release:
 1. Click **Promote**.
 
 
-## Next steps
+## Next Steps
 
 [Creating customers and downloading licenses](releases-creating-customer)
 
-## Additional resources
+## Additional Resources
 
 * [Understanding channels and releases](releases-understanding)
 * [How to Distribute an Application](distributing-workflow)
