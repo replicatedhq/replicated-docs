@@ -4,13 +4,13 @@ Table of Contents:
 
 * [About this Repository](#about-tis-repository)
 * [Setting Up Your Local Environment](#setting-up-your-local-environment)
-* [Folder structure and TOC](#folder-structure-and-toc)
-* [Topic templates](#topic-temlates)
+* [Folder Structure and TOC](#folder-structure-and-toc)
+* [Topic Templates](#topic-temlates)
 * [Filenaming](#filenaming)
 * [Images](#images)
 * [Using Markdown with our Docusaurus CSS](#using-markdown-with-our-docusaurus-css)
-* [Style guidelines](#style-guidelines)
-* [SME and editorial reviews](#sme-and-editorial-reviews)
+* [Style Guidelines](#style-guidelines)
+* [SME and Editorial Reviews](#sme-and-editorial-reviews)
 
 ## About this Repository
 
@@ -75,7 +75,7 @@ Don't worry if you're not sure where in the TOC a new topic belongs. When you su
 
 The right-hand TOC is created automatically when you add headings to a topic.
 
-## Topic templates
+## Topic Templates
 
 Please copy the topic templates that are located in the `templates` folder to create new content. Right now we have a template for creating a procedure (`procedure.md`), which is our main form of content creation.
 
