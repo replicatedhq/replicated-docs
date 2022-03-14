@@ -1,8 +1,8 @@
 # [Replicated](https://www.replicated.com/) Product Documentation
 
-Table of Contents:
+## Table of Contents:
 
-* [About this Repository](#about-tis-repository)
+* [How to Contribute to the Documentation](#how-to-contribute-to-the-documentation)
 * [Setting Up Your Local Environment](#setting-up-your-local-environment)
 * [Folder Structure and TOC](#folder-structure-and-toc)
 * [Topic Templates](#topic-temlates)
@@ -12,7 +12,7 @@ Table of Contents:
 * [Style Guidelines](#style-guidelines)
 * [SME and Editorial Reviews](#sme-and-editorial-reviews)
 
-## About this Repository
+## How to Contribute to the Documentation
 
 Welcome to the repository for the [Replicated documentation site](https://docs.replicated.com/).
 
