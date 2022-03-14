@@ -1,6 +1,18 @@
 # [Replicated](https://www.replicated.com/) Product Documentation
 
-## About this repository
+Table of Contents:
+
+* [About this Repository](#about-tis-repository)
+* [Setting Up Your Local Environment](#setting-up-your-local-environment)
+* [Folder structure and TOC](#folder-structure-and-toc)
+* [Topic templates](#topic-temlates)
+* [Filenaming](#filenaming)
+* [Images](#images)
+* [Using Markdown with our Docusaurus CSS](#using-markdown-with-our-docusaurus-css)
+* [Style guidelines](#style-guidelines)
+* [SME and editorial reviews](#sme-and-editorial-reviews)
+
+## About this Repository
 
 Welcome to the repository for the [Replicated documentation site](https://docs.replicated.com/).
 
@@ -10,7 +22,7 @@ This repository has been made public so that vendors and the open-source communi
 
 - **Open a Github Issue** - To open a GitHub issue for this repository, click the Issues tab and click **New Issue**. This method may be more useful when you want to report a bug specifically for the documentation. If you are having an issue with the product itself, we encourage you to report it to us in a Zendesk ticket, Slack message, or by emailing support@replicated.com.
 
-## Site Information
+## Setting Up Your Local Environment
 
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
@@ -51,19 +63,7 @@ If you are using GitHub pages for hosting, this command is a convenient way to b
 $ GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
 ```
 
-## Adding and Editing Content
-
-There are several main aspects of documentation to consider when adding content to this repo.
-
-* [Folder structure and TOC](#folder-structure-and-toc)
-* [Topic templates](#topic-temlates)
-* [Filenaming](#filenaming)
-* [Images](#images)
-* [Using Markdown with our Docusaurus CSS](#using-markdown-with-our-docusaurus-css)
-* [Style guidelines](#style-guidelines)
-* [SME and editorial reviews](#sme-and-editorial-reviews)
-
-### Folder Structure and TOC
+## Folder Structure and TOC
 
 The folder structure is broken into several high-level categories under the main `docs` folder: vendor, enterprise, reference, release notes.
 
@@ -75,13 +75,13 @@ Don't worry if you're not sure where in the TOC a new topic belongs. When you su
 
 The right-hand TOC is created automatically when you add headings to a topic.
 
-### Topic templates
+## Topic templates
 
 Please copy the topic templates that are located in the `templates` folder to create new content. Right now we have a template for creating a procedure (`procedure.md`), which is our main form of content creation.
 
 Save the new topic to the correct folder and be sure to follow the [filenaming convention](#filenaming).
 
-### Filenaming
+## Filenaming
 
 If you are adding a new file, it must be named following our naming conventions. The file name should always start with the feature type (such as licenses, helm, or gitops). Depending on the content type, it typically also includes a secondary descriptor and a verb. Verbs are used when you are creating a task topic.
 
@@ -91,46 +91,54 @@ If you are adding a new topic to an existing feature category, follow the existi
 
 **Example: Concept topic**
 
-snapshots-backup-hooks.md
+`snapshots-backup-hooks.md`
 
 **Example: Task topic**
 
-releases-creating-customer.md
+`releases-creating-customer.md`
 
 **Example: Tutorial**
 
-tutorial-ha-cluster-deploying.md
+`tutorial-ha-cluster-deploying.md`
 
 
-### Images
+## Images
 
-We only use PNG images, which render a better quality.
+* Screenshots are use sparingly to minimize the maintenance of out-of-date content. However, we do include some screenshots to provide context.
 
-The maximum allowed width is 600 pixels.
+* Use a focused area of the UI, unless the entire screen is truly needed. If using a focused area, use approximately 400 pixels for the width. If capturing the entire screen, use a maximum of 600 pixels for the width.
+
+* We only use PNG format, which renders a better quality and lossless compression.
+
+* For privacy and legal purposes, do not reveal personal information, IP addresses, domain information, login credentials and so on in screenshots, code blocks, or text.
+
+* Add _alt text_ for all images to provide accessibility. The user will hear the alt text spoken out loud by the screen reader, so it is important to use succinct text that is clear and complete. For more information about alt text formatting, see the following section.
 
 
-### Using Markdown with our Docusaurus CSS
+## Using Markdown with our Docusaurus CSS
 
 Replicated uses its own CSS, and Docusaurus supports its own specific Markdown syntax. The following table provides an overview of the supported syntax elements.
 
-| Element                                     | Syntax                                              |
-|---------------------------------------------|-----------------------------------------------------|
-| Headings                                    | `# H1`, `## H2`, `### H3`                           |
-| Bold                                        | **bold text**                                       |
-| Italic                                      | _italicized text_                                   |
-| Ordered List                                | `1.` First item (Use `1.` for each item)            |
-| Unordered List                              | `-` or `*` (for each item)                          |
-| Code or command in a sentence               | `code`                                              |
-| Link - external site                        | [Title](https://www.example.com)                    |
-| Link - topic in same folder                 | [Title](filename) without file extension            |
-| Link - topic in different folder            | [Title](../folder/file-name) without file extension |
-| Link - section in topic in same folder      | [Title](file-name#section-name)                     |
-| Link - section in topic in different folder | [Title](../folder/file-name#section-name)           |
-| Image                                       | ![alt text](images/<image-name>.png)                |
+| Element                                     | Syntax                                                |
+|---------------------------------------------|-------------------------------------------------------|
+| Headings                                    | `# H1`, `## H2`, `### H3`                             |
+| Bold                                        | `**bold text**`                                       |
+| Italic                                      | `_italicized text_`                                    |
+| Ordered List                                | `1.` First item (use `1.` for each item)              |
+| Unordered List                              | `-` or `*` (for each item)                            |
+| Code or command in a sentence               | ``code``                                              |
+| Link - external site                        | `[Title](https://www.example.com)`                    |
+| Link - topic in same folder                 | `[Title](filename) without file extension`            |
+| Link - topic in different folder            | `[Title](../folder/file-name) without file extension` |
+| Link - section in topic in same folder      | `[Title](file-name#section-name)`                     |
+| Link - section in topic in different folder | `[Title](../folder/file-name#section-name)`           |
+| Image                                       | `![alt text](images/<image-name>.png)`                |
 
-Alt text, used with image syntax, is parsed by screen readers to support accessibility. The user will hear the alt text spoken out loud by the screen reader, so it is important to use succinct text that is clear and complete.
+:::note
+Alt text, used with image syntax, is parsed by screen readers to support accessibility.
+:::
 
-#### Admonitions
+### Admonitions
 
 Note admonitions are formatted as follows:
 
@@ -148,14 +156,16 @@ text
 :::
 ```
 
-### Style Guidelines
+## Style Guidelines
 
 Whether you are editing existing content or adding a new topic, our goal is to make it task-based. The `procedure.md` template provides the formatting guidelines that you need. You can also see a published example of a task [here](https://docs.replicated.com/vendor/releases-creating-customer).
 
 Replicated product documentation has in-house style guidelines that the Documentation team uses when reviewing your PR. Please feel free to just add the content you need, knowing that our team will be there to assist with editorial reviews and information architecture, such as TOC placement, whether to create a task, and so on. The Documentation team will actively write content, not just give editorial reviews, so we take the heavy burden off of you. We encourage your contributions in the true open-source spirit.
 
+Replicated employees can review more information in the Documentation Style Guide in the employee handbook.
 
-### SME and Editorial Reviews
+
+## SME and Editorial Reviews
 
 All PRs that are submitted are reviewed by the Replicated Docs team for editorial review.
 
