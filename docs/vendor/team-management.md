@@ -20,7 +20,7 @@ To invite a new team member:
 
 1. Enter the email address of the member and their assigned RBAC policy, and click **Invite Member**.
 
-  People invited to join your team receive an email notification to accept the invitation. They must follow the link in the email to accept the invitation and join the team. If they do not have a Replicated account already, they can create one that complies with your password policies, MFA, and Google authentication requirements. If they already have a Replicated account, by accepting your invitation, they automatically leave their current team and join the team that you have invited them to.
+  People invited to join your team receive an email notification to accept the invitation. They must follow the link in the email to accept the invitation and join the team. If they do not have a Replicated account already, they can create one that complies with your password policies, MFA, and Google authentication requirements. If an invited user's email address is already associated with a Replicated account, by accepting your invitation, they automatically leave their current team and join the team that you have invited them to.
 
 ## Re-invite Members
 
