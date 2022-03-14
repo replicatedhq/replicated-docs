@@ -1,4 +1,4 @@
-# Adding database configuration options for your application
+# Adding Database Configuration Options for your Application
 
 In this tutorial, we'll explore ways to give your end user the option to either embed a database instance with the application, or connect your application to an external database instance that they will manage.
 We'll use a PostgreSQL database as an example, configuring an example app to connect.
@@ -430,7 +430,7 @@ Now that we've configured our application to read from an embedded postgres inst
 
 * * *
 
-## Connecting to an external Database
+## Connecting to an External Database
 
 In this section, we'll expand our configuration section to allow end users to bring their own Postgres instance.
 
@@ -669,7 +669,7 @@ psql: could not translate host name "fake" to address: Name or service not known
 
 We'll optionally wire this to a real external Postgres database later, but for now we'll proceed to add the rest of the fields.
 
-### Extending this to all fields
+### Extending this to All Fields
 
 Now that we've wired the DB_HOST field all the way through, we'll do the same for the other fields.
 In the end, your Secret and Deployment should look like the following YAML files:
@@ -877,7 +877,7 @@ DB_HOST=10.128.0.12
 DB_USER=postgres
 ```
 
-### Triggering restarts on changes
+### Triggering Restarts on Changes
 
 In order to automate this restart on changes, we're going to use a hash of all database parameters to trigger a rolling update whenever database parameters are changed.
 We'll use a `hidden`, `readonly` field to store this in our config screen:
@@ -944,7 +944,7 @@ spec:
 ```
 
 
-### Integrating a real Database
+### Integrating a Real Database
 
 If you'd like at this point, you can integrate a real database in your environment, just fill out your configuration fields. You'll know you did it right if your pg-consumer pod can connect.
 

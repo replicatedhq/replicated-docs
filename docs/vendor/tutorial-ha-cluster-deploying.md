@@ -1,4 +1,4 @@
-# Deploying a high availability cluster
+# Deploying a High Availability Cluster
 
 In this guide, we will walk through the steps needed to enable Kubernetes high availability capabilities with a cluster installed by the Replicated Kubernetes installer and managed by the Replicated app manager. This only applies to Kubernetes installer-created cluster (embedded cluster) installations. (The Kubernetes installer is our commercial distribution of the kURL open source project).
 

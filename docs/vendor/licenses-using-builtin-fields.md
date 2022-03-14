@@ -1,9 +1,9 @@
-# About built-in license fields
+# About Built-in License Fields
 
 This topic describes the built-in license fields. For information about creating
 custom license fields for a customer, see [Managing Custom License Fields](licenses-adding-custom-fields).
 
-## Built-in license fields
+## Built-in License Fields
 
 All applications that are packaged and delivered through the Replicated vendor
 portal include built-in license fields. Built-in fields are reserved field names

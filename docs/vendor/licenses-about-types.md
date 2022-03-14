@@ -1,9 +1,9 @@
-# About customer license types
+# About Customer License Types
 
 This topic describes the types of customer licenses. It also describes the
 differences between community licenses and the other types of licenses.
 
-## Types of customer licenses
+## Types of Customer License
 
 Each customer license includes a `license_type` field.
 
@@ -23,7 +23,7 @@ additional information can be provided.
 application. For more details about this type, see [About community licenses](#about-community-licenses)
 below.
 
-## About community licenses
+## About Community Licenses
 
 This section describes what a community license is and what happens when your
 customer uses a community license in the Replicated admin console.

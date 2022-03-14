@@ -1,4 +1,4 @@
-# Creating and editing channels
+# Creating and Editing Channels
 
 There are three default channels that can be configured, and you can add custom channels.
 
@@ -9,7 +9,7 @@ The default channels are:
 
 For more information, see [About channels](releases-about-channels).
 
-## Create a channel
+## Create a Channel
 
 To create a channel:
 
@@ -25,7 +25,7 @@ To create a channel:
 1. Optional: To enable the semantic versioning, turn on the toggle for preventing promoting releases with an invalid version to this channel.
 1. Click **Create Channel**.
 
-## Edit a channel
+## Edit a Channel
 
 To edit an existing channel:
 
@@ -44,10 +44,10 @@ To edit an existing channel:
 
 1. Click **Save**.
 
-## Next steps
+## Next Steps
 
 [Creating a release](releases-creating-releases)
 
-## Additional resources
+## Additional Resources
 
 [How to Distribute an Application](distributing-workflow)

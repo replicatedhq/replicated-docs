@@ -1,4 +1,4 @@
-# Using ECR for private images
+# Using ECR for Private Images
 
 The Replicated app manager supports working with private images stored in Amazon's Elastic Container Registry (ECR).
 
