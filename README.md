@@ -134,9 +134,7 @@ Replicated uses its own CSS, and Docusaurus supports its own specific Markdown s
 | Link - section in topic in different folder | `[Title](../folder/file-name#section-name)`           |
 | Image                                       | `![alt text](images/<image-name>.png)`                |
 
-:::note
-Alt text, used with image syntax, is parsed by screen readers to support accessibility.
-:::
+**Note:** Alt text, used with image syntax, is parsed by screen readers to support accessibility.
 
 ### Admonitions
 
