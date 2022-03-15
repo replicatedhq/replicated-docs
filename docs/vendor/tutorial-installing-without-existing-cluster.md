@@ -119,7 +119,7 @@ To create the test server and install the app manager:
     * Ubuntu 18.04
     * At least 8 GB of RAM
     * 4 CPU cores
-    * At least 40GB of disk space
+    * At least 50GB of disk space
 
   :::note
   You can also use any cloud provider or local virtual machine.
