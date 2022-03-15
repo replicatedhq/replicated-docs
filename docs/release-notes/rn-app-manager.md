@@ -134,7 +134,7 @@ Released on January 21, 2022
 Supported on Kubernetes: 1.20, 1.21, and 1.22
 
 ### Improvements
-* Updates the [kubectl](https://kots.io/reference/v1beta1/application/#kubectlversion) patch versions and added kubectl version 1.22.x.
+* Updates the [kubectl](../reference/custom-resource-application#kubectlversion) patch versions and added kubectl version 1.22.x.
 
 ### Bug Fixes
 * Fixes an issue that caused the load balancer services to regenerate, resulting in downtime.
@@ -160,7 +160,7 @@ Released on December 29, 2021
 Supported on Kubernetes: 1.19, 1.20, and 1.21
 
 ### Bug Fixes
-* Fixes a `panic: runtime error` that occurs when the [`kots upstream upgrade`](/kots-cli/upstream/upgrade/) command is run.
+* Fixes a `panic: runtime error` that occurs when the [`kots upstream upgrade`](../reference/kots-cli-upstream-upgrade) command is run.
 
 ## 1.59.0
 
@@ -173,13 +173,13 @@ Supported on Kubernetes: 1.19, 1.20, and 1.21
 * The internal storage location for snapshots now uses a persistent volume instead of object storage when the `disableS3` flag is set to `true` for embedded clusters. For more information about removing KOTS use of object storage, see the [kURL add-on documentation](https://kurl.sh/docs/add-ons/kotsadm).
 
 ### Improvements
-* Adds version output for current and new releases to the [`upstream upgrade`](/kots-cli/upstream/upgrade/) CLI command.
+* Adds version output for current and new releases to the [`upstream upgrade`](../reference/kots-cli-upstream-upgrade) CLI command.
 
 ### Bug Fixes
 * Fixes a bug that caused analyzers to surface errors in namespaces not used by the application when the admin console has cluster access in existing cluster installations.
 * Fixes an issue that caused image pull secrets to be rendered in the admin console namespace instead of the `namespace` specified in the kots.io/v1beta1.HelmChart when using `useHelmInstall`.
 * Fixes the `kots pull` CLI command to properly inject `imagePullSecrets` when using Helm Charts with `useHelmInstall` set to `true`.
-* Fixes a bug that causes application images to not be deleted from a [private registry](/kotsadm/registries/kurl-registry/).
+* Fixes a bug that causes application images to not be deleted from a [private registry](../enterprise/image-registry-embedded-cluster).
 * Fixes a bug that causes images included in support bundle's [`run` collector](https://troubleshoot.sh/docs/collect/run/#image-required) to not be deleted from a private registry.
 
 ## 1.58.2
@@ -207,5 +207,5 @@ Released on December 1, 2021
 Supported on Kubernetes: 1.19, 1.20, and 1.21
 
 ### New Features
- * Adds support for the semantic versioning of releases when the version labels are [valid](https://semver.org/). To use this feature, [enable semantic versioning for the channel](/vendor/packaging/promoting-releases/#semantic-versioning) that the license is currently on.
- * Adds the ability to automatically deploy new patch, minor, or major [valid](https://semver.org/) semantic versions when [semantic versioning is enabled](/vendor/packaging/promoting-releases/#semantic-versioning). This new capability can be configured from the **Version History** page under the 'Configure automatic updates' option.
+ * Adds support for the semantic versioning of releases when the version labels are [valid](https://semver.org/). To use this feature, [enable semantic versioning for the channel](../vendor/releases-semantic-versioning) that the license is currently on.
+ * Adds the ability to automatically deploy new patch, minor, or major [valid](https://semver.org/) semantic versions when [semantic versioning is enabled](../vendor/releases-semantic-versioning). This new capability can be configured from the **Version History** page under the 'Configure automatic updates' option.
