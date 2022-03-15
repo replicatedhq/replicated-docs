@@ -1,4 +1,4 @@
-# Installing in an air gapped environment
+# Installing in an Air Gapped Environment
 
 When installing an application with the Replicated app manager from a `.airgap` package, the container images and application manifests are provided by the application vendor in an archive that can be used to deliver the artifacts into the cluster.
 

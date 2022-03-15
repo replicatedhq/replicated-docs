@@ -1,4 +1,4 @@
-# Managing secrets with GitOps (Alpha)
+# Managing Secrets with GitOps (Alpha)
 
 When enabling GitOps, the Replicated admin console will push the rendered application manifests to the configured git repository.
 Application manifests often contain secrets and sensitive information that should not be committed to git.

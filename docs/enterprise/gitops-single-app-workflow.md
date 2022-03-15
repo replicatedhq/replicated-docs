@@ -1,4 +1,4 @@
-# Pushing updates to a GitOps workflow in single-app mode
+# Pushing Updates to a GitOps Workflow in Single-app Mode
 
 While the Replicated admin console is initially configured to receive updates, show the changes and deploy them to the cluster, this process can be changed and converted to use a GitOps workflow instead.
 When using a GitOps workflow, changes from the admin console (config changes, upstream updates, license updates) will be pushed to a private Git repository, where an existing CI/CD process can execute to deliver the manifests to the cluster.
@@ -27,7 +27,7 @@ To begin migrating to a GitOps deployment workflow:
 
     ![GitOps Connection](/images/gitops-connected.png)
 
-## First commits
+## First Commits
 
 After converting to GitOps, the admin console will make a commit/pull request with the current version that is deployed.
 Then, it will make separate commits (or a single pull request) with any pending updates that have not been deployed from the admin console.
