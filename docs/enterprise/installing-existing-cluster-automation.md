@@ -6,7 +6,7 @@ When these values are provided, they are written as ConfigMaps to the cluster, a
 
 ## Online Installation
 
-### Provide a license file
+### Provide a License File
 
 Given a license file stored locally as `license.yaml`, you can run the following command to install the admin console to the `app-name` namespace:
 
@@ -67,7 +67,7 @@ kubectl kots install app-name \
 
 After this has completed, you can go to http://localhost:8800 will show the configured application dashboard, assuming all required config items were set and any included preflight checks passed.
 
-## Air gap installation
+## Air Gap Installation
 
 As the first step, admin console images must be pushed to a private registry using `kubectl kots admin-console push-images` command. For more information, see [Installing in an air gapped environment](installing-existing-cluster-airgapped/).
 

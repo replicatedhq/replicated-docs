@@ -1,6 +1,6 @@
 # Updating an Application
 
-## Using the admin console
+## Using the Admin Console
 
 The simplest way to update an application is through the Version History tab on the Replicated admin console.
 This method works for both online and air gapped installations.
