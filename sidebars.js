@@ -167,14 +167,14 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'Installing an application',
+          label: 'Installing an Application',
           items: [
             'enterprise/installing-overview',
             'enterprise/installing-general-requirements',
             'enterprise/installing-stateful-component-requirements',
             {
               type: 'category',
-              label: 'Installing on an existing cluster',
+              label: 'Installing on an Existing Cluster',
               items: [
                 'enterprise/installing-existing-cluster-requirements',
                 'enterprise/installing-existing-cluster-online',
@@ -184,7 +184,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Installing without an existing cluster',
+              label: 'Installing Without an Existing Cluster',
               items: [
                 'enterprise/installing-embedded-cluster-requirements',
                 'enterprise/installing-embedded-cluster',
@@ -194,7 +194,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Using self-hosted image registries',
+          label: 'Using Self-hosted Image Registries',
           items: [
             'enterprise/image-registry-airgap',
             'enterprise/image-registry-embedded-cluster',
@@ -223,7 +223,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Managing user access',
+          label: 'Managing User Access',
           items: [
             'enterprise/auth-identity-provider',
             'enterprise/auth-configuring-rbac',
@@ -259,7 +259,7 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'Custom resources',
+          label: 'Custom Resources',
           items: [
             'reference/custom-resource-about',
             'reference/custom-resource-application',
@@ -275,7 +275,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Template functions',
+          label: 'Template Functions',
           items: [
             'reference/template-functions-about',
             'reference/template-functions-static-context',
@@ -444,7 +444,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Release notes',
+      label: 'Release Notes',
       collapsed: false,
       items: [
         'release-notes/rn-whats-new',
