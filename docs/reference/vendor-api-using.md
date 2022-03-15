@@ -11,23 +11,27 @@ The [replicated CLI](replicated-cli-installing) is an implementation of the Vend
 
 For more information about these token types, see [Using Vendor API Tokens](replicated-cli-tokens).
 
-## Generate an API token
+## Generate an API Token
 
-To access the Vendor API, you need a User API Token or a Service Account (Team API tokens also continue to work). 
+To access the Vendor API, you need a User API Token or a Service Account (Team API tokens also continue to work).
 
-### To generate a User API token
+### Generate a User API Token
+
+To generate a user API token:
 
 1. Log in to the vendor portal and go to the [Account Settings](https://vendor.replicated.com/account-settings) page.
-2. Under **User API Tokens**, click **New User API Token**.
-3. Name the token and select the required permissions, and click **Create token**.
-4. Copy the user API token and save it in a secure location. The token will not be available to view again.
+1. Under **User API Tokens**, click **New User API Token**.
+1. Name the token and select the required permissions, and click **Create token**.
+1. Copy the user API token and save it in a secure location. The token will not be available to view again.
 
-### To generate a Service Account
+### Generate a Service Account
+
+To generate a service account:
 
 1. Log in to the vendor portal and go to the Team page.
-2. Navigate to [Service Accounts](https://vendor.replicated.com/team/serviceaccounts), and click **New Service Account**.
-3. Name the token and select the RBAC policy. Optionally, check the box to limit the token to a read-only version of the selected RBAC policy. Click **Create Service Account**.
-4. Copy the user API token and save it in a secure location. The token will not be available to view again.
+1. Navigate to [Service Accounts](https://vendor.replicated.com/team/serviceaccounts), and click **New Service Account**.
+1. Name the token and select the RBAC policy. Optionally, check the box to limit the token to a read-only version of the selected RBAC policy. Click **Create Service Account**.
+1. Copy the user API token and save it in a secure location. The token will not be available to view again.
 
 ## Using API Tokens
 
@@ -42,7 +46,7 @@ curl --request GET \
      --header 'Authorization: my-token'
 ```
 
-## Vendor API v3 documentation
+## Vendor API v3 Documentation
 
 For Vendor API documentation and an interactive API console, see [Vendor API v3 Reference](https://replicated-vendor-api.readme.io/v3/reference/createapp).
 

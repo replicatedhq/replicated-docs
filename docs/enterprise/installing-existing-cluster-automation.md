@@ -1,10 +1,10 @@
-# Using automation to install on an existing cluster
+# Using Automation to Install on an Existing Cluster
 
 Starting with the Replicated app manager v1.15.0, it is possible to automate an application installation to an existing cluster in an online environment by providing a license file and the application configuration values when running `kots install`.
 
 When these values are provided, they are written as ConfigMaps to the cluster, and the Replicated admin console finds these and processes them to complete the installation.
 
-## Online installation
+## Online Installation
 
 ### Provide a license file
 
@@ -19,7 +19,7 @@ kubectl kots install app-name \
 
 When starting, the admin console automatically installs the license file provided.
 
-### Define application configuration values
+### Define Application Configuration Values
 
 Many applications need configuration. You can supply the configuration values at installation time using the `--config-values` flag.
 
@@ -41,7 +41,7 @@ All password type items will be decrypted and the value will be stored in `value
 All non-password type config items will have their value stored in `value`.
 When this file is uploaded, any `valuePlaintext` will be re-encrypted if the matching config item is a type password.
 
-### Disable admin console port-forwarding
+### Disable Admin Console Port-forwarding
 The `kots install` kots CLI command by default opens a port-forward to the admin console as part of the application installation.
 
 To disable this behavior, add the `--no-port-forward` flag to the install command.

@@ -1,9 +1,9 @@
-# Installing in an online (Internet-connected) environment
+# Installing in an Online (Internet-connected) Environment
 
 You can install an application to an existing Kubernetes cluster that contains nodes that can access the internet.
 In an online installation, the Replicated app manager pulls container images from the upstream registries directly.
 
-## Install with the app manager
+## Install with the App Manager
 
 To start, run the command that was provided by the application vendor:
 
@@ -33,16 +33,16 @@ The port-forward will be active as long as the CLI is running. Pressing Ctrl+C w
 
 After this has completed, click the link, or visit `http://localhost:8800` to complete the setup using the admin console web-based UI.
 
-## Set up the application
+## Set up the Application
 
 At this point, visit `http://localhost:8800` to complete the setup of the application.
 
-### Unlock the admin console
+### Unlock the Admin Console
 ![Secure Console](/images/secure-console.png)
 
 Enter the password provided during the setup, and you'll be redirected to the "Upload License" screen.
 
-### Provide a license file
+### Provide a License File
 At this point, the admin console is still just an admin console without an application.
 Providing a license file will include the entitlements necessary to pull the manifest and images and start the application.
 If the license is outdated, the latest license will be fetched and used instead.
@@ -51,7 +51,7 @@ If the license is outdated, the latest license will be fetched and used instead.
 
 After the license file is installed, if air gapped installations are enabled, an option will be presented to proceed with an air gapped setup.
 
-### Configure the application
+### Configure the Application
 
 Most applications include some required and some optional configuration.
 This is used to build the final deployable Kubernetes manifests for the application.
@@ -61,13 +61,13 @@ These can be changed later, but must be completed to continue.
 
 ![Initial Config](/images/initial-config.png)
 
-### Pass preflight checks
+### Pass Preflight Checks
 
 The app manager run preflight checks (conformance tests) against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application.
 
 ![Preflight Checks](/images/preflight-checks.png)
 
-### Specify proxies
+### Specify Proxies
 
 When installing behind a proxy, the admin console needs to be able to use the proxy to communicate with the APIs on the internet as well as local services.
 

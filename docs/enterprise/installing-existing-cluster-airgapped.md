@@ -7,7 +7,7 @@ This feature is only available for licenses that have the air gapped feature ena
 This topic applies to installing the Replicated admin console into an existing Kubernetes cluster.  
 For information about how to install on a cluster created by the Kubernetes installer in an air gapped environment, see [Install in an air gapped environment](installing-embedded-cluster#airgapped-installations) in _Installing with the Kubernetes installer_.
 
-## Push images and install the admin console
+## Push Images and Install the Admin Console
 
 You can install the admin console using the kots CLI plugin for the kubectl command-line tool.
 
@@ -54,7 +54,7 @@ Pressing Ctrl+C will end the port forward.
 
 After this message is displayed visit `http://localhost:8800` to complete the application setup using the admin console.
 
-## Upload the airgap bundle
+## Upload the Air Gap Bundle
 
 ![Airgap Bundle](../../static/images/airgap-install.png)
 

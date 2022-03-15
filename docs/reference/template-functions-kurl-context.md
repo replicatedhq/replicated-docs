@@ -1,4 +1,4 @@
-# kURL context
+# kURL Context
 
 ## kURL Context Functions
 
