@@ -359,3 +359,246 @@ Released on December 1, 2021
 
 ### Bug Fixes
 - Host packages installed as DNF modules are now reset after installation to allow for running yum update without dependency errors.
+
+
+## Release v2021.11.22-0
+
+Released on November 22, 2021
+
+### New Features
+- Added [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.57.0.
+
+
+## Release v2021.11.09-0
+
+Released on November 09, 2021
+
+### Improvements
+- kURL will now report when migrations occur between the Rook Ceph and MiniO object stores.
+- kURL will now report when migrations occur between the Rook Ceph and Longhorn storage classes.
+
+### Bug Fixes
+- Fixed an issue that prevented the versions of Longhorn and MinIO from resolving in kurl.sh/latest.
+
+## Release v2021.11.08-0
+
+Released on November 08, 2021
+
+### Improvements
+- The default configuration for https://kurl.sh/latest was updated to replace Rook with Longhorn and MinIO.
+
+## Release v2021.11.05-0
+
+Released on November 05, 2021
+
+### New Features
+- Added mechanism to migrate registry contents from s3 to a persistent volume. Note that this cannot be triggered yet, but will later be used once all object storage-related migrations are available.
+- Added [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.56.0.
+
+### Bug Fixes
+- Reverted changes to https://kurl.sh/latest that were introduced in [v2021.11.04-0](https://kurl.sh/release-notes/v2021.11.04-0). As a result, Rook and Kubernetes 1.19 are once again in the default configuration.
+
+## Release v2021.11.04-0
+
+Released on November 04, 2021
+
+### Improvements
+- The default configuration for https://kurl.sh/latest was updated to include Kubernetes 1.21 instead of 1.19, and Rook was replaced with Longhorn and MinIO. Note that using `rook: latest` with `kubernetes: latest` no longer works as Rook 1.0.4 is not compatible with Kubernetes 1.20+. To avoid this, pin a specific version instead of using `latest`.
+
+## Release v2021.11.02-0
+
+Released on November 02, 2021
+
+### Improvements
+- Rook Ceph versions 1.4+ will now display an info-level message when trying to mount an external disk, along with some troubleshooting tips.
+
+### Bug Fixes
+- kURL [yaml patches](https://kurl.sh/docs/install-with-kurl/#modifying-an-install-using-a-yaml-patch-file-at-runtime) that include non-breaking spaces will now cause the installer to fail with a helpful error.
+- Null or empty kURL [yaml patches](https://kurl.sh/docs/install-with-kurl/#modifying-an-install-using-a-yaml-patch-file-at-runtime) will not remove the configuration provided by the kURL spec.
+
+## Release v2021.10.22-0
+
+Released on October 22, 2021
+
+### New Features
+- Added [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.55.0.
+
+## Release v2021.10.20-0
+
+Released on October 20, 2021
+
+### New Features
+- Added [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.54.0.
+
+### Bug Fixes
+- Fixed a bug caused when Ceph update versions are not applied to all Ceph components.
+- Reverted the ability for the registry add-on to run with two replicas and a RWX volume when used with Longhorn. This was originally released in [v2021.10.01-0](https://kurl.sh/release-notes/v2021.10.01-0).
+
+## Release v2021.10.08-0
+
+Released on October 08, 2021
+
+### New Features
+- Added [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.53.0.
+
+## Release v2021.10.04-0
+
+Released on October 04, 2021
+
+### New Features
+- Added [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.52.1.
+
+## Release v2021.10.01-0
+
+Released on October 01, 2021
+
+### New Features
+- Containerd is now the default container runtime, replacing the previous default container runtime, Docker.
+- Log rotation will now be configured by default for the [Docker add-on](https://kurl.sh/docs/add-ons/docker), where the [max-size](https://docs.docker.com/config/containers/logging/json-file/#options) parameter for the log file is set to `10m`.
+- Added the ability to configure log rotation through kubelet, which helps when using containerd instead of docker.
+- Re-enabled the ability to declare custom host preflight checks in the kURL installer spec.
+
+### Improvements
+- When Longhorn is specified in an installer spec but an object store (e.g., MinIO) is not, the [Registry add-on](https://kurl.sh/docs/add-ons/registry) will be deployed with two replicas and a ReadWriteMany (RWX) volume for greater availability.
+
+### Bug Fixes
+- Fixed a bug that didn't allow User and Service Account tokens to authenticate to the kURL API.
+
+## Release v2021.09.30-0
+
+Released on September 30, 2021
+
+### Bug Fixes
+- Fixed a bug to allow User and Service Account token authenticate to the API
+- Fixed a bug that could cause upgrades from Rook 1.0.4 to 1.0.4-14.2.21 to fail
+- Fixed a bug that would cause snapshots not to restore after a Rook to Longhorn migration
+
+### Improvements
+- Sysctl parameters required for pod networking are now enabled for all operating systems in /etc/sysctl.conf
+
+## Release v2021.09.27-4
+
+Released on September 27, 2021
+
+### Bug Fixes
+- Due to a bug, removed the ability to add custom host preflights in the kURL installer spec. This was initially released in [v2021.09.24-0](https://kurl.sh/release-notes/v2021.09.24-0).
+
+## Release v2021.09.24-0
+
+Released on September 24, 2021
+
+### New Features
+- Custom host preflight checks can be declared in the kURL installer spec.
+- Added [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.52.0.
+
+### Bug Fixes
+- Fixed an issue that prevented Rook add-on preflight checks from executing.
+
+## Release v2021.09.20-0
+
+Released on September 20, 2021
+
+### Bug Fixes
+- Fixed a bug that could cause the EKCO addon to fail when mistakenly trying to deploy the `PodImageOverrides` mutating webhook configuration.
+
+## Release v2021.09.17-0
+
+Released on September 17, 2021
+
+### New Features
+- Added Kubernetes versions 1.21.5, 1.21.4, 1.21.3, 1.20.11, 1.20.10, and 1.19.15.
+
+## Release v2021.09.16-0
+
+Released on September 16, 2021
+
+### New Features
+- Added [KOTS add-on](https://kurl.sh/docs/add-ons/kots) nightly version.
+
+## Release v2021.09.15-0
+
+Released on September 15, 2021
+
+### New Features
+- Added [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.12.0.
+- Host preflights check disk space in /opt/replicated/rook with Rook 1.0.4.
+
+### Improvements
+- Host preflight block device checks run for all versions of Rook 1.4+.
+
+## Release v2021.09.09-0
+
+Released on September 9, 2021
+
+### New Features
+- Added [KOTS add-on](/docs/add-ons/kots) version 1.50.2.
+
+## Release v2021.08.27-0
+
+Released on August 27, 2021
+
+### New Features
+- Clusters with containerd enabled will be automatically migrated from docker when docker is detected. Previously containerd would not be installed when docker was detected.
+
+### Bug Fixes
+- Fixed an issue that prevented the [internal load balancer](https://kurl.sh/docs/add-ons/ekco#internal-load-balancer) from being started on remote nodes when not explicitly enabled.
+- Fixed an issue that could cause the [minio add-on](https://kurl.sh/docs/add-ons/minio) to wait forever when creating a PVC.
+
+## Release v2021.08.20-0
+
+Released on August 20, 2021
+
+### New Features
+- Added a new parameter to the [MinIO addon](https://kurl.sh/docs/add-ons/minio), `claimSize`. This defaults to `10Gi` and allows setting the size of the MinIO PVC.
+- Added [KOTS add-on](https://kurl.sh/docs/add-ons/kots) version 1.50.1.
+
+## Release v2021.08.16-0
+
+Released on August 16, 2021
+
+### New Features
+- New feature flag [licenseURL](https://kurl.sh/docs/install-with-kurl/#vendor-licensing-agreement-beta) for kURL allows vendors to include a URL to a licensing agreement for non-airgap installs.
+- Added [Antrea add-on](https://kurl.sh/docs/add-ons/antrea) version 1.2.1.
+- Added [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.49.0-17.1.3.
+- Added [local-volume-provider](https://github.com/replicatedhq/local-volume-provider) plugin to Velero addon versions 1.5.1 through 1.6.2.
+- Added [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.50.0.
+
+### Bug Fixes
+- Docker preflights will no longer run when docker is not configured within kURL.
+
+## Release v2021.08.09-0
+
+Released on August 9, 2021
+
+### New Features
+- Added [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.53.0.
+- Added [Goldpinger add-on](https://kurl.sh/docs/add-ons/goldpinger) version 3.2.0-4.2.1.
+- Added [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.49.0-17.1.1.
+
+### Bug Fixes
+- The [Rook add-on block storage](https://kurl.sh/docs/add-ons/rook#block-storage) flag is no longer required to be set for version 1.4.3+. Instead, it is assumed to be set to true for these versions.
+
+## Release v2021.08.06-0
+
+Released on August 6, 2021
+
+### New Features
+- Added [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.49.0.
+
+## Release v2021.08.04-0
+
+Released on August 4, 2021
+
+### New Features
+- The kURL installer can now differentiate between installs and upgrades.
+- Added [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.11.0 with support for [internal load balancing with HAProxy on HA installs](https://kurl.sh/docs/install-with-kurl/#highly-available-k8s-ha).
+
+## Release v2021.08.03-0
+
+Released on August 3, 2021
+
+### New Features
+- Added [KOTS add-on](/docs/add-ons/kotsadm) version 1.48.1.
+
+### Bug Fixes
+- Fixed an issue where the kotsadm config would be overriden when updating kURL.
