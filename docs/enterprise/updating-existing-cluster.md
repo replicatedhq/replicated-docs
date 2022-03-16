@@ -31,13 +31,17 @@ To update an online installation of the admin console:
 
 To update an air gap installation of the admin console:
 
-1. Download your desired version of the Replicated app manager air gap bundle from [Github](https://github.com/replicatedhq/kots/releases) or the customer download page in the Replicated [vendor portal](https://vendor.replicated.com). The air gap bundle is named `kotsadm.tar.gz`.
+1. Download your desired version of the Replicated app manager air gap bundle from [Github](https://github.com/replicatedhq/kots/releases) or from the customer download page provided by your vendor. The air gap bundle is named `kotsadm.tar.gz`.
 
 1. Do _one_ of the following actions to update your kots CLI version:
 
-    - For the latest version, run `curl https://kots.io/install | bash`
+    :::important
+    The kots CLI version must match the air gap bundle version.
+    :::
 
-    - For a particular version, run `curl https://kots.io/install/<version> | bash`
+    - For the latest version, run `curl https://kots.io/install | bash`.
+
+    - For a particular version, run `curl https://kots.io/install/<version> | bash`.
 
 1. Push images to a private registry:
 
