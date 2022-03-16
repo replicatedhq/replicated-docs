@@ -1,9 +1,9 @@
-# Image registry for air gap clusters
+# Image Registry for Air Gap Clusters
 
 The app manager can be used to download and prepare an application to be installed onto a secured, air gapped Kubernetes cluster.
 When doing this, there are a few additional steps and configuration needed.
 
-## Docker image registry requirements
+## Docker Image Registry Requirements
 
 To install an application into an air gapped network, you must have a docker image registry that is available inside the network.
 The app manager rewrites the application image names in all application manifests to read from the on-prem registry, and it retags and pushes the images to the on-prem registry.
@@ -16,7 +16,7 @@ Keep in mind that a registry typically expects the namespace to exist before any
 
 **Note:** ECR does not use namespaces.
 
-## Docker image registry compatibility
+## Docker Image Registry Compatibility
 
 The app manager has been tested for compatibility with the following registries:
 

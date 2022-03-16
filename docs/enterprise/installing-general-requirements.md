@@ -1,4 +1,4 @@
-# General system requirements
+# General System Requirements
 
 This topic describes the general system requirements for installing applications with the Replicated app manager.
 
@@ -10,7 +10,7 @@ For more information about requirements for the Kubernetes installer, see [Kuber
 
 **Note**: This topic does not include any requirements specific to your software vendor. Ensure that you meet any additional requirements for the application defined by your software vendor.
 
-## Supported browsers
+## Supported Browsers
 
 This section describes the browser requirements for the latest Replicated admin console.
 
@@ -23,7 +23,7 @@ This section describes the browser requirements for the latest Replicated admin 
 | Safari (Mac OS only) | 13+         |
 | Internet Explorer    | Unsupported |
 
-## Kubernetes version compatibility
+## Kubernetes Version Compatibility
 
 Each release of the open source KOTS project maintains compatibility with the current Kubernetes version, and the two most recent versions at the time of its release.
 
@@ -41,7 +41,7 @@ This includes support against all patch releases of the corresponding Kubernetes
 | v1.59.3 to v1.60  | v1.22, v1.21, and v1.20      |
 | v1.61 and later  | v1.23, v1.22, v1.21, and v1.20|
 
-## Firewall openings for online installations
+## Firewall Openings for Online Installations
 
 The following domains need to be accessible from servers performing online installations.
 For a list of IP addresses for these services, see [replicatedhq/ips](https://github.com/replicatedhq/ips/blob/master/ip_addresses.json) in GitHub.

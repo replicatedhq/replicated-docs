@@ -1,4 +1,4 @@
-# License context
+# License Context
 
 ## LicenseFieldValue
 ```go

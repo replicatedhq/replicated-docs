@@ -6,7 +6,7 @@ slug: /
 This topic describes how to navigate the Replicated product documentation site.
 For information about the Replicated product, see [What is Replicated?](intro-replicated).
 
-## About the Replicated documentation
+## About the Replicated Documentation
 
 The Replicated product documentation is divided into the following main sections:
 

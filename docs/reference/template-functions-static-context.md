@@ -1,4 +1,4 @@
-# Static context
+# Static Context
 
 ## Mastermind Sprig
 

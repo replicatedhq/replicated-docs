@@ -31,7 +31,7 @@ To verify your installation, run:
 kubectl kots --help
 ```
 
-## Install the kots CLI without Root Access
+## Install the kots CLI Without Root Access
 
 For computers without root access or computers that cannot write to the `/usr/local/bin` directory, the `kots` CLI can be downloaded using the following steps:
 

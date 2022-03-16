@@ -11,7 +11,7 @@ Prerequisites:
 For example, the `nfs-common` package is a common package used on Ubuntu.
 * Make sure that any firewalls are properly configured to allow traffic between the NFS server and clients (cluster nodes).
 
-## Configure NFS on Kubernetes installer-created clusters
+## Configure NFS on Kubernetes Installer-created Clusters
 
 Clusters created by the Replicated Kubernetes installer that include the Velero add-on store snapshots internally in the cluster by default. For more information about the Velero add-on, see [Velero Add-On](https://kurl.sh/docs/add-ons/velero) in the kURL documentation.
 
@@ -37,7 +37,7 @@ When configuring the admin console to store snapshots on an NFS server, the foll
 | Server | The hostname or IP address of the NFS server |
 | Path   | The path that is exported by the NFS server  |
 
-## Existing clusters
+## Existing Clusters
 
 If Velero is already installed in the cluster, follow the instructions in the [Configure NFS on Kubernetes installer-created clusters](#configure-nfs-on-kubernetes-installer-created-clusters) section above.
 
@@ -68,7 +68,7 @@ kubectl kots velero configure-nfs \
   --registry-password ro-password
 ```
 
-### Using the admin console
+### Using the Admin Console
 
 First, head to the “Snapshots” tab.
 From there, head to the “Settings and Schedule” tab.

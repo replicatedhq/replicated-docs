@@ -1,13 +1,13 @@
-# Troubleshooting backup and restore
+# Troubleshooting Backup and Restore
 
 When a snapshot fails, a support bundle will be collected and stored automatically.
 Because this is a point-in-time collection of all logs and system state at the time of the failed snapshot, this is a good place to view the logs.
 
-## Velero is crashing
+## Velero is Crashing
 
 If Velero is crashing and not starting, some common causes are:
 
-#### Invalid cloud credentials
+#### Invalid Cloud Credentials
 
 If the cloud access credentials are invalid or do not have access to the location in the configuration, Velero will crashloop. The Velero logs will be included in a support bundle, and the message will look like this.
 If this is the case, Replicated recommends that you validate the access key / secret or service account json.
@@ -23,7 +23,7 @@ An error occurred: some backup storage locations are invalid: backup store for l
 ```
 
 
-#### Invalid top-level directories
+#### Invalid Top-level Directories
 
 Another commonly seen problem in Velero starting is a reconfigured or re-used bucket.
 When configuring Velero to use a bucket, the bucket cannot contain other data, or Velero will crash.  
@@ -38,9 +38,9 @@ time="2020-04-10T14:12:44Z" level=info msg="Checking that all backup storage loc
 An error occurred: some backup storage locations are invalid: backup store for location "default" is invalid: Backup store contains invalid top-level directories: [other-directory]
 ```
 
-## Snapshot restore is failing
+## Snapshot Restore is Failing
 
-#### Service NodePort is already allocated
+#### Service NodePort is Already Allocated
 
 Example error message:
 
@@ -52,7 +52,7 @@ This issue has been fixed in Kubernetes version 1.19. You can find more details 
 
 Summary: upgrading to Kubernetes version v1.19 or later should resolve the issue.
 
-#### Partial snapshot restore is stuck in progress
+#### Partial Snapshot Restore is Stuck in Progress
 
 In the Replicated admin console, you see at least one volume restore progress bar frozen at 0%. Example admin console display:
 

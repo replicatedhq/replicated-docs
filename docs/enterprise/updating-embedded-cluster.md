@@ -1,9 +1,9 @@
-# Updating the admin console on a Kubernetes installer cluster
+# Updating the Admin Console on a Kubernetes Installer Cluster
 
 This document refers to upgrading the Replicated admin console on a Kubernetes installer-created cluster (embedded cluster).
 For information about how to upgrade the admin console on an existing cluster, see [Updating the admin console on an existing cluster](updating-existing-cluster).
 
-### Online installations
+### Online Installations
 
 To update the admin console when deployed to a Kubernetes installer-created cluster, re-run the installation script on the first primary node where the installation was initialized.
 All flags passed to the script for the initial installation must be passed again.
@@ -12,7 +12,7 @@ All flags passed to the script for the initial installation must be passed again
 curl -sSL https://kurl.sh/supergoodtool | sudo bash
 ```
 
-### Air gapped installations
+### Air Gapped Installations
 
 To update admin console in an air gapped environment, download the new Kubernetes installer air gap bundle, extract it, and run the install.sh script.
 
@@ -54,6 +54,6 @@ The script will ensure that at most one node is cordoned at a time.
 The Kubernetes scheduler will automatically reschedule pods to other nodes during maintenance.
 Any deployments or StatefulSets with a single replica will experience downtime while being rescheduled.
 
-### Updating add-ons
+### Updating Add-ons
 
 If the application vendor has updated any add-ons in the installer since the last time the script was run, the upgrade will proceed automatically after any required Kubernetes upgrade.
