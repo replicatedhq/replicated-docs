@@ -35,9 +35,9 @@ To update an air gap installation of the admin console:
 
 1. Do one of the following actions to update your kots CLI version:
 
-    - For the latest version, run `curl https://kots.io/install | bash`.
+    - For the latest version, run `curl https://kots.io/install | bash`
 
-    - For a particular version, run `curl https://kots.io/install/<version> | bash`.
+    - For a particular version, run `curl https://kots.io/install/<version> | bash`
 
 1. Push images to a private registry:
 
