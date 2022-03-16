@@ -1,4 +1,4 @@
-# Cluster requirements
+# Cluster Requirements
 
 This topic describes the requirements for installing an application with the Replicated app manager on an existing cluster.
 

@@ -1,4 +1,4 @@
-# Updating the admin console on an existing cluster
+# Updating the Admin Console on an Existing Cluster
 
 This document refers to upgrading the Replicated admin console on an existing cluster.
 For information about how to upgrade the admin console on a Kubernetes installer-created cluster (embedded cluster), see [Updating the admin console on a Kubernetes installer cluster](updating-embedded-cluster).
@@ -19,7 +19,7 @@ kubectl kots admin-console upgrade -n <namespace>
 
 Additional usage information can be found by running the `kubectl kots admin-console upgrade -h` command.
 
-### Air gap Installations
+### Air Gap Installations
 
 Similar to the initial installation into an existing cluster, images must be pushed to a private registry first:
 

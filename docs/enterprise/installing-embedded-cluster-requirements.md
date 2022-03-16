@@ -1,4 +1,4 @@
-# Kubernetes installer requirements
+# Kubernetes Installer Requirements
 
 To install on a cluster created by the Replicated Kubernetes installer, you must meet the following requirements:
 

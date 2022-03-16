@@ -1,4 +1,4 @@
-# Configuring role based access control (Beta)
+# Configuring Role-based Access Control (Beta)
 
 You can regulate access to the Replicated admin console resources based on the roles of individual users within your organization.
 
@@ -10,24 +10,24 @@ To configure role based access control (RBAC) for the admin console:
 
 ![Role Based Access Control](/images/identity-service-kotsadm-rbac.png)
 
-## Admin console roles
+## Admin Console Roles
 
 The admin console comes with pre-defined identity service roles that can be assigned to groups when you configure RBAC for the admin console.
 
-## Cluster Admin role
+## Cluster Admin Role
 
-### Read access
+### Read Access
 This role has read permissions to all resources.
 
-### Write access
+### Write Access
 This role has write permissions to all resources.
 
-## Support role
+## Support Role
 
-### Read access
+### Read Access
 This role has read permissions to all resources except the application's file tree.
 
-### Write access
+### Write Access
 This role has write permissions to the following resources:
 
 * Support bundles

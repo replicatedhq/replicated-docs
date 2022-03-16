@@ -1,4 +1,4 @@
-# Identity context
+# Identity Context
 
 ## IdentityServiceEnabled
 

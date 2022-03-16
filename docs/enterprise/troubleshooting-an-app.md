@@ -1,4 +1,4 @@
-# Troubleshooting an application
+# Troubleshooting an Application
 
 The Replicated admin console includes a Troubleshoot page where you can generate, analyze, manage, and review remediation suggestions for troubleshooting an application.
 

@@ -1,12 +1,12 @@
-# Overview of installing an application with app manager
+# Overview of Installing an Application With the App Manager
 
 You can use the Replicated app manager to install applications into various environments and Kubernetes clusters, including air gapped, bare metal Kubernetes installations, managed offerings such as EKS, GKE and AKS, and more.
 
-## Considerations before installing an application
+## Considerations Before Installing an Application
 
 Before you install an application, consider the following installation options.
 
-### Install with or without an existing cluster
+### Install With or Without an Existing Cluster
 
 With Replicated, you can install an application in one of two ways:
 * **With an existing cluster**: You can install an application onto an existing Kubernetes cluster that meets the system requirements. For more information, see [Cluster requirements](installing-existing-cluster-requirements).
@@ -14,7 +14,7 @@ With Replicated, you can install an application in one of two ways:
 
 Most software vendors support both options and require the customer to determine their preferred method of deployment.
 
-### Install in an air gapped environment
+### Install in an Air Gapped Environment
 
 Most Kubernetes clusters are able to make outbound internet requests. Inbound access is never recommended or required.
 As such, most cluster operators are able to perform an online installation.
@@ -27,7 +27,7 @@ For information about installing in an online environment, see [Installing in an
 
 For information about installing in an air gap environment, see [Installing in an air gapped environment](installing-existing-cluster-airgapped).
 
-### Provide access to the target namespaces
+### Provide Access to the Target Namespaces
 
 During installation, the app manager prompts for the target namespace. This is the namespace where both the application and the Replicated admin console is deployed, unless any manifest files have hard-coded namespace names or are overridden using Kustomize.
 
@@ -35,14 +35,14 @@ The kubectl command-line tool access used must have read and write access to the
 
 By default, the app manager creates a ClusterRole and ClusterRoleBinding with permissions to all namespaces unless otherwise specified by the application developer. For more information, see [Kubernetes RBAC](../vendor/packaging-rbac).
 
-### Deploy images to local registries
+### Deploy Images to Local Registries
 
 During install, the app manager can re-tag and push images to a local image registry.
 This is useful to enable CVE scans, image policy validation, and other pre-deployment rules.
 
 For information about using a local image registry, see [Image Registry for Air Gap Clusters](image-registry-airgap).
 
-### Use a GitOps or internal version control workflow
+### Use a GitOps or Internal Version Control Workflow
 
 In a GitOps workflow, the app manager pushes changes from the admin console (config changes, upstream updates, license updates) to a private Git repository, where you can use an existing continuous integration and continuous delivery (CI/CD) process to deliver the manifests to the cluster.
 

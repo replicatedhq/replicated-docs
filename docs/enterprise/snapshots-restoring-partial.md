@@ -1,4 +1,4 @@
-# Restoring partial snapshots
+# Restoring Partial Snapshots
 
 When restoring a partial snapshot, the Replicated admin console will first "undeploy" the correct application.
 During this process, all existing application manifests will be removed from the cluster, and all `PersistentVolumeClaims` will be deleted. This is not reversible.
