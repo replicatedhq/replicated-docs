@@ -9,7 +9,7 @@ Updating the admin console requires upgrading the kots CLI KOTS first. You have 
 
 To update an online installation of the admin console:
 
-1. Run the `kubectl kots version` to download the latest binary.
+1. (Optional) Run the `kubectl kots version` command to see the current version of the kots CLI.
 
 1. Do _one_ of the following actions to update your kots CLI version:
 
