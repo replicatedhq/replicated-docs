@@ -3,7 +3,7 @@
 This topic explains how to upgrade the Replicated admin console on an existing cluster.
 For information about how to upgrade the admin console on a Kubernetes installer-created cluster (embedded cluster), see [Updating the admin console on a Kubernetes installer cluster](updating-embedded-cluster).
 
-Updating the admin console requires upgrading the kots CLI KOTS first. You have the option to upgrade to the latest version of the kots CLI or to a specific earlier version. Then, when you upgrade the admin console, the version that is installed matches the kots CLI version.
+Updating the admin console requires upgrading the kots CLI KOTS first. You have the option to upgrade to the latest version of the kots CLI or to a specific earlier version. Then, the admin console version that you upgrade to will match the kots CLI version.
 
 ### Update an Online Installations
 
@@ -11,7 +11,7 @@ To update an online installation of the admin console:
 
 1. Run the `kubectl kots version` to download the latest binary.
 
-1. Do one of the following actions to update your kots CLI version:
+1. Do _one_ of the following actions to update your kots CLI version:
 
     - For the latest version, run `curl https://kots.io/install | bash`.
 
@@ -33,7 +33,7 @@ To update an air gap installation of the admin console:
 
 1. Download the the latest Replicated app manager binary from [Github](https://github.com/replicatedhq/kots/releases) or the customer download page in the Replicated [vendor portal](https://vendor.replicated.com).
 
-1. Do one of the following actions to update your kots CLI version:
+1. Do _one_ of the following actions to update your kots CLI version:
 
     - For the latest version, run `curl https://kots.io/install | bash`
 
