@@ -4,7 +4,7 @@ slug: /
 # Welcome to Replicated Docs
 
 This topic describes how to navigate the Replicated product documentation site.
-For information about the Replicated product, see [What is Replicated?](intro-replicated).
+For information about the Replicated product, see [What is Replicated?](intro-replicated)
 
 ## About the Replicated Documentation
 
