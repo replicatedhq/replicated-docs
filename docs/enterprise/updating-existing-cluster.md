@@ -1,13 +1,13 @@
 # Updating the Admin Console on an Existing Cluster
 
 This topic explains how to update the Replicated admin console on an existing cluster.
-For information about how to updating the admin console on a Kubernetes installer-created cluster (embedded cluster), see [Updating the admin console on a Kubernetes installer cluster](updating-embedded-cluster).
+For information about how to update the admin console on a Kubernetes installer-created cluster (embedded cluster), see [Updating the admin console on a Kubernetes installer cluster](updating-embedded-cluster).
 
-Updating the admin console requires updating the kots CLI first. You have the option to update to the latest version of the kots CLI or to a specific earlier version.
+Updating the admin console requires updating the kots CLI first. You have the option to update to the latest version of the kots CLI or to a specific version.
 
-### Update an Online Installations
+### Update an Online Installation
 
-For online installations, the admin console is updated to the same version as the version of the kots CLI that is used to perform the update.
+For online installations, the admin console is updated to the same version as the version of the kots CLI that you use to perform the update. For example, if you use v1.56.0 of the kots CLI to update the admin console, then the admin console is updated to v1.56.0.
 
 To update an online installation of the admin console:
 
@@ -31,11 +31,11 @@ To update an online installation of the admin console:
 
 ### Update an Air Gap Installation
 
-For air gap installations, the version of the kots CLI that is used to perform the update must match the version of the KOTS air gap bundle used for the update.
+For air gap installations, the version of the kots CLI that is used to perform the update must match the version of the Replicated app manager air gap bundle used for the update.
 
 To update an air gap installation of the admin console:
 
-1. Download your desired version of the Replicated app manager air gap bundle from [Github](https://github.com/replicatedhq/kots/releases) or from the customer download page provided by your vendor. The air gap bundle is named `kotsadm.tar.gz`.
+1. Download your desired version of the app manager air gap bundle from [Github](https://github.com/replicatedhq/kots/releases) or from the customer download page provided by your vendor. The air gap bundle is named `kotsadm.tar.gz`.
 
 1. Do _one_ of the following actions to update your kots CLI version:
 
