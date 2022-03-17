@@ -1,11 +1,13 @@
 # Updating the Admin Console on an Existing Cluster
 
-This topic explains how to upgrade the Replicated admin console on an existing cluster.
-For information about how to upgrade the admin console on a Kubernetes installer-created cluster (embedded cluster), see [Updating the admin console on a Kubernetes installer cluster](updating-embedded-cluster).
+This topic explains how to update the Replicated admin console on an existing cluster.
+For information about how to updating the admin console on a Kubernetes installer-created cluster (embedded cluster), see [Updating the admin console on a Kubernetes installer cluster](updating-embedded-cluster).
 
-Updating the admin console requires upgrading the kots CLI KOTS first. You have the option to upgrade to the latest version of the kots CLI or to a specific earlier version. Then, the admin console version that you upgrade to will match the kots CLI version.
+Updating the admin console requires updating the kots CLI KOTS first. You have the option to update to the latest version of the kots CLI or to a specific earlier version.
 
 ### Update an Online Installations
+
+For online installations, the admin console is updated to the same version as the version of the kots CLI that is used to perform the update.
 
 To update an online installation of the admin console:
 
@@ -28,6 +30,8 @@ To update an online installation of the admin console:
   :::
 
 ### Update an Air Gap Installation
+
+For air gap installations, the version of the kots CLI that is used to perform the update must match the version of the KOTS air gap bundle used for the update.
 
 To update an air gap installation of the admin console:
 
