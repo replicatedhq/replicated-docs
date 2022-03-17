@@ -12,10 +12,6 @@ All flags passed to the script for the initial installation must be passed again
 curl -sSL https://kurl.sh/supergoodtool | sudo bash
 ```
 
-:::note
-To install a specific version, the command your vendor provides will have the `appVersionLabel` flag, for example: `curl https://kurl.sh/supergoodtool | sudo bash -s appVersionLabel=3.1.0`.
-:::
-
 ### Air Gapped Installations
 
 To update admin console in an air gapped environment, download the new Kubernetes installer air gap bundle, extract it, and run the install.sh script.

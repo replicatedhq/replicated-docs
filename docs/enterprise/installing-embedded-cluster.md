@@ -16,6 +16,10 @@ To install the admin console on a cluster created by the Kubernetes installer, r
 curl -sSL https://kurl.sh/supergoodtool | sudo bash
 ```
 
+:::note
+To install a specific version, the command your vendor provides will have the `appVersionLabel` flag, for example: `curl https://kurl.sh/supergoodtool | sudo bash -s appVersionLabel=3.1.0`.
+:::
+
 ## Install in an Air Gapped Environment
 
 To install in an air gapped environment, download the `.airgap` bundle, untar it, and run the install.sh script.
