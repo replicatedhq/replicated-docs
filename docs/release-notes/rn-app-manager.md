@@ -4,11 +4,6 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
-:::note
-For release notes earlier than v1.60.0, see
-[Release Notes](https://kots.io/release-notes/) in the open source KOTS documentation.
-:::
-
 ## 1.66.0
 
 Released on March 8, 2022
