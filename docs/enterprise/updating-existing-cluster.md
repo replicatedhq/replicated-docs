@@ -5,6 +5,8 @@ For information about how to update the admin console on a Kubernetes installer-
 
 Updating the admin console requires updating the kots CLI first. You have the option to update to the latest version of the kots CLI or to a specific version.
 
+Downgrading the admin console to a version earlier than what is currently deployed is not supported.
+
 ### Update an Online Installation
 
 For online installations, the admin console is updated to the same version as the version of the kots CLI that you use to perform the update. For example, if you use v1.56.0 of the kots CLI to update the admin console, then the admin console is updated to v1.56.0.
