@@ -11,7 +11,7 @@ To start, run the command that was provided by the application vendor:
 kubectl kots install application-name
 ```
 :::note
-To install a specific version, the command your vendor provides will have the `appVersionlabel` flag, for example: `kubectl kots install application-name --app-version-label=3.1.0`.
+With KOTS v1.67.0 and higher, you can install a specific version of the application. To install a specific version, the command your vendor provides will have the `appVersionlabel` flag. Example: `kubectl kots install application-name --app-version-label=3.1.0`.
 :::
 
 The kubectl plugin will walk you through the necessary steps to install the application:
