@@ -1,7 +1,7 @@
 # Updating the Admin Console on an Existing Cluster
 
 This topic explains how to update the Replicated admin console on an existing cluster.
-For information about how to update the admin console on a Kubernetes installer-created cluster (embedded cluster), see [Updating the admin console on a Kubernetes installer cluster](updating-embedded-cluster).
+For information about how to update the admin console on a Kubernetes installer-created cluster (embedded cluster), see [Updating the admin console on a Kubernetes installer-created cluster](updating-embedded-cluster).
 
 Updating the admin console requires updating the kots CLI first. You have the option to update to the latest version of the kots CLI or to a specific version.
 
