@@ -17,7 +17,7 @@ curl -sSL https://kurl.sh/supergoodtool | sudo bash
 ```
 
 :::note
-With KOTS v1.67.0 and higher, you can install a specific version of the application. To install a specific version, the command your vendor provides will have the `appVersionLabel` flag. Example: `curl https://kurl.sh/supergoodtool | sudo bash -s appVersionLabel=3.1.0`.
+With KOTS v1.67.0 and higher, you can install a specific version of the application. To install a specific version, your vendor provides an installation command with the `appVersionLabel` flag. Example: `curl https://kurl.sh/supergoodtool | sudo bash -s appVersionLabel=3.1.0`.
 :::
 
 ## Install in an Air Gapped Environment
