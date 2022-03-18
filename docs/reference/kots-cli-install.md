@@ -1,7 +1,7 @@
 # install
 
-Installs the KOTS application and the admin console directly to a cluster.
-The `kots install` command pulls Kubernetes manifests from the remote upstream, deploys the manifests to the specified cluster, installs the admin console, and sets up port forwarding to make the admin console accessible.
+Installs the application and the admin console directly to a cluster.
+The `kots install` command pulls Kubernetes manifests from the remote upstream, deploys the manifests to the specified cluster, installs the Replicated admin console, and sets up port forwarding to make the admin console accessible.
 
 ### Usage
 
@@ -17,31 +17,31 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 
 | Flag                        | Type   | Description                                                                                                                                                                               |
 |:----------------------------|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `--airgap`                  | bool   | set to true to run install in airgapped mode. setting --airgap-bundle implies --airgap=true.                                                                                              |
-| `--airgap-bundle`           | string | path to the application airgap bundle where application metadata will be loaded from                                                                                                      |
-| `--config-values`           | string | path to a manifest containing config values (must be apiVersion: kots.io/v1beta1, kind: ConfigValues                                                                                      |
-| `--copy-proxy-env`          | bool   | copy proxy environment variables from current environment into all KOTS Admin Console components                                                                                          |
-| `--disable-image-push`      | bool   | set to true to disable images from being pushed to private registry                                                                                                                       |
-| `--ensure-rbac`             | bool   | when set, kots will skip RBAC configuration at install time. (default false) if a role spec is needed, use the [generate-manifests](kots-cli-admin-console-generate-manifests) command. |
-| `-h, --help`                |        | help for install                                                                                                                                                                          |
-| `--http-proxy`              | string | sets HTTP_PROXY environment variable in all KOTS Admin Console components                                                                                                                 |
-| `--https-proxy`             | string | sets HTTPS_PROXY environment variable in all KOTS Admin Console components                                                                                                                |
-| `--kotsadm-namespace`       | string | set to override the namespace of kotsadm images. used for airgapped installations.                                                                                                        |
-| `--kotsadm-registry`        | string | set to override the registry of kotsadm images. used for airgapped installations.                                                                                                         |
-| `--license-file`            | string | path to a license file _(required when `[upstream-uri]` points to a replicated app)_                                                                                                      |
-| `--app-version-label`      | string | the application version label to install. if not specified, the latest version will be installed                                                                                                      |
-| `--local-path`              | string | specify a local-path to test the behavior of rendering a replicated app locally _(only supported on replicated app types currently)_                                                      |
-| `--name`                    | string | name of the application to use in the Admin Console                                                                                                                                       |
-| `-n, --namespace`           | string | the namespace to deploy to                                                                                                                                                                |
-| `--no-port-forward`            | bool   | set to true to disable automatic port forward (default false).                                                                                                                            |
-| `--no-proxy`                | string | sets NO_PROXY environment variable in all KOTS Admin Console components                                                                                                                   |
-| `--registry-password`       | string | password to use to authenticate with the application registry. used for airgapped installations.                                                                                          |
-| `--registry-username`       | string | username to use to authenticate with the application registry. used for airgapped installations.                                                                                          |
-| `--shared-password`         | string | shared password to apply                                                                                                                                                                  |
-| `--skip-preflights`         | bool   | set to true to skip preflight checks                                                                                                                                                      |
-| `--strict-security-context` | bool   | set to explicitly enable strict security contexts for all kots pods and containers (may not work for some storage providers, default false)                                               |
-| `--wait-duration`           | string | timeout out to be used while waiting for individual components to be ready. must be in [Go duration](https://pkg.go.dev/time#ParseDuration) format (eg: 10s, 2m).                         |
-| `--with-minio`              | bool   | when set, kots will deploy a local minio instance for storage and use minio for hostpath and NFS snapshot storage (default true)                                                          |
+| `--airgap`                  | bool   | Set to true to run install in air gapped mode. Setting --airgap-bundle implies --airgap=true.                                                                                              |
+| `--airgap-bundle`           | string | Path to the application air gap bundle where application metadata will be loaded from.                                                                                                      |
+| `--config-values`           | string | Path to a manifest containing config values (must be apiVersion: kots.io/v1beta1, kind: ConfigValues).                                                                                      |
+| `--copy-proxy-env`          | bool   | Copy proxy environment variables from current environment into all admin console components.                                                                                          |
+| `--disable-image-push`      | bool   | Set to true to disable images from being pushed to private registry.                                                                                                                       |
+| `--ensure-rbac`             | bool   | When set, kots skips RBAC configuration at installation time. **Default:** false. If a role specification is needed, use the [generate-manifests](kots-cli-admin-console-generate-manifests) command. |
+| `-h, --help`                |        | Help for install.                                                                                                                                                                          |
+| `--http-proxy`              | string | Sets HTTP_PROXY environment variable in all admin console components.                                                                                                                 |
+| `--https-proxy`             | string | Sets HTTPS_PROXY environment variable in all admin console components.                                                                                                                |
+| `--kotsadm-namespace`       | string | Set to override the namespace of kotsadm images. Used for air gapped installations.                                                                                                        |
+| `--kotsadm-registry`        | string | Set to override the registry of kotsadm images. Used for air gapped installations.                                                                                                         |
+| `--license-file`            | string | Path to a license file _(required when `[upstream-uri]` points to a replicated app)_.                                                                                                      |
+| `--app-version-label`      | string | The application version label to install. If not specified, the latest version is installed.                                                                                                      |
+| `--local-path`              | string | Specify a local-path to test the behavior of rendering a replicated application locally _(only supported on replicated app types currently)_.                                                      |
+| `--name`                    | string | Name of the application to use in the admin console.                                                                                                                                       |
+| `-n, --namespace`           | string | The namespace to deploy to.                                                                                                                                                                |
+| `--no-port-forward`            | bool   | Set to true to disable automatic port forward. **Default:** false                                                                                                                            |
+| `--no-proxy`                | string | Sets NO_PROXY environment variable in all admin console components.                                                                                                                   |
+| `--registry-password`       | string | Password to use to authenticate with the application registry. Used for air gapped installations.                                                                                          |
+| `--registry-username`       | string | Username to use to authenticate with the application registry. Used for air gapped installations.                                                                                          |
+| `--shared-password`         | string | Shared password to apply.                                                                                                                                                                  |
+| `--skip-preflights`         | bool   | Set to true to skip preflight checks.                                                                                                                                                      |
+| `--strict-security-context` | bool   | Set to explicitly enable strict security contexts for all kots pods and containers (may not work for some storage providers) **Default:** false                                               |
+| `--wait-duration`           | string | Timeout to be used while waiting for individual components to be ready. Must be in [Go duration](https://pkg.go.dev/time#ParseDuration) format (eg: 10s, 2m).                         |
+| `--with-minio`              | bool   | When set, kots deploys a local minio instance for storage and use minio for hostpath and NFS snapshot storage. **Default:** true                                                          |
 
 <!-- | `--repo` | string | repo uri to use when installing a helm chart | -->
 <!-- | `--set` | strings | values to pass to helm when running helm template | -->
