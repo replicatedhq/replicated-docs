@@ -11,12 +11,12 @@ replicated customer create [Flags]
 | Flag                 | Type | Description |
 |:----------------------|------|-------------|
 | `--name`           |  string | The name of the customer (**required**) |
-| `--channel string` | string | The channel name to associate with the customer (**case-sensitive, required**) |
+| `--channel` | string | The channel name to associate with the customer (**case-sensitive, required**) |
 | `--ensure-channel` |        | If set, channel will be created if it does not exist. |
 | `--expires-in` | duration | If set, license will expire a specified number of units from the current time. For example, `2h` or `1h60m` or `120m` are all the same duration.  |
 | `-h, --help`   |  |          Help for the command |
-| `--app string` | |   The app slug or app id used in all calls (default uses `$REPLICATED_APP` env variable) |
-| `--token string` | |  The API token used to access your app in the Vendor API (default uses `$REPLICATED_API_TOKEN` env variable) |
+| `--app` | string |   The app slug or app id used in all calls (default uses `$REPLICATED_APP` env variable) |
+| `--token` | string |  The API token used to access your app in the Vendor API (default uses `$REPLICATED_API_TOKEN` env variable) |
 
 ## Examples
 ```bash
