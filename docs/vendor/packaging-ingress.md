@@ -1,12 +1,12 @@
 # Configuring Cluster Ingress
 
 When delivering a configurable application, ingress can be challenging as it is very cluster specific.
-Below is an example of a flexible `ingress.yaml` file designed to work in most Kubernetes clusters including existing and Kubernetes installer clusters.
+Below is an example of a flexible `ingress.yaml` file designed to work in most Kubernetes clusters including existing and Kubernetes installer-created clusters.
 
 ## Example
 
 The following example includes an Ingress resource with a single host based routing rule.
-The resource will work in both existing clusters and Kubernetes installer clusters.
+The resource will work in both existing clusters and Kubernetes installer-created clusters.
 
 ### Config
 
@@ -59,7 +59,7 @@ spec:
 ### Ingress
 
 For ingress, you must create two separate resources.
-The first of which will be deployed to existing cluster installations, while the second will only be deployed to a Kubernetes installer cluster.
+The first of which will be deployed to existing cluster installations, while the second will only be deployed to a Kubernetes installer-created cluster.
 Both of these resources are selectively excluded with the [`exclude` annotation](packaging-include-resources).
 
 ```yaml

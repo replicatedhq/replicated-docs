@@ -8,7 +8,7 @@ The Replicated app manager uses the kots CLI, which is a `kubectl`-based plugin,
 Before you install the kots CLI, install [kubectl](https://kubernetes.io/docs/tasks/tools/) on your machine.
 
 :::note
-If you are using an [embedded Kubernetes installer cluster](../enterprise/installing-embedded-cluster), both tools are already pre-installed.
+If you are using an [embedded Kubernetes installer-created cluster](../enterprise/installing-embedded-cluster), both tools are already pre-installed.
 :::
 
 ## Install the kots CLI
