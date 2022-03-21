@@ -1,10 +1,10 @@
-# Updating licenses
+# Updating Licenses
 
 You can check if there are any changes on your license through the License tab on the Replicated admin console.
 
-## Syncing the license
+## Syncing the License
 
-### Online licenses
+### Online Licenses
 
 Click **Sync license** on the right side of the license wrapper to get the latest updates on your current license.
 This will update your license and create a new release with the new changes.
@@ -14,7 +14,7 @@ This will update your license and create a new release with the new changes.
 - A "License is already up to date" note will appear if no changes are detected.
 - A "License synced successfully" note will appear when the changes are successfully applied.
 
-### Air gap licenses
+### Air Gap Licenses
 
 Click **Upload license** on the right side of the license wrapper and select the latest license from your machine.
 The admin console will then check if there are any updates on your current license and will create a new release with the new changes.

@@ -1,4 +1,4 @@
-# Configuring a host path
+# Configuring a Host Path
 
 > Introduced in the Replicated app manager v1.33.0
 
@@ -6,7 +6,7 @@ You can configure a host path as your snapshots storage destination. For more in
 
 If you use a host path as the snapshots storage destination, you must ensure that the host path exists and is writable by the user:group 1001:1001 on all the nodes in the cluster.
 
-## Configure a host path on Kubernetes installer-created clusters
+## Configure a Host Path on Kubernetes Installer-created Clusters
 
 Clusters created by the Replicated Kubernetes installer that include the Velero add-on store snapshots internally in the cluster by default. For more information about the Velero add-on, see [Velero Add-On](https://kurl.sh/docs/add-ons/velero) in the open source kURL documentation.
 
@@ -32,7 +32,7 @@ When configuring the admin console to store snapshots on a local host path, the 
 | Host Path | A local host path on the node |
 
 
-## Configure a host path on existing clusters
+## Configure a Host Path on Existing Clusters
 
 If Velero is already installed in the cluster, follow the instructions in the [Configure a host path on Kubernetes installer-created clusters](#configure-a-host-path-on-kubernetes-installer-created-clusters) section above.
 
@@ -62,7 +62,7 @@ kubectl kots velero configure-hostpath \
   --registry-password ro-password
 ```
 
-### Using the admin console
+### Using the Admin Console
 
 First, head to the “Snapshots” tab.
 From there, head to the “Settings and Schedule” tab.

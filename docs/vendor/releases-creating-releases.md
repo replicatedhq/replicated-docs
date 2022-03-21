@@ -30,10 +30,10 @@ We recommend that you bookmark the Replicated [vendor portal](https://vendor.rep
 
 1. Click **Save release**.
 
-## Next steps
+## Next Steps
 
 [Promoting releases](releases-promoting)
 
-## Additional resources
+## Additional Resources
 
 [How to Distribute an Application](distributing-workflow)

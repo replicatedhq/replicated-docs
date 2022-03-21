@@ -110,7 +110,7 @@ To create a customer license:
 
 The app manager can be installed either into an existing Kubernetes cluster, or as a Kubernetes installer-created cluster (embedded cluster). You can see the installation options at the bottom of each channel on the Channels page.
 
-Installing the app manager on existing clusters is similar to using a [Kubernetes installer cluster](tutorial-installing-without-existing-cluster#installing-and-testing), except instead of bringing a plain virtual machine (VM), you will use a pre-built Kubernetes cluster and deploy your application into a namespace.
+Installing the app manager on existing clusters is similar to using a [Kubernetes installer-created cluster](tutorial-installing-without-existing-cluster#installing-and-testing), except instead of bringing a plain virtual machine (VM), you will use a pre-built Kubernetes cluster and deploy your application into a namespace.
 
 ![Installation Methods](/images/guides/kots/installation-methods-existing.png)
 

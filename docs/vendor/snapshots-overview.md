@@ -10,7 +10,7 @@ In addition to the default functionality that Velero provides, the app manager p
 
 The app manager also exposes hooks that can be used to inject scripts to execute with Snapshots both [before and after a backup](snapshots-configuring-backups) and [before and after a restore](../enterprise/snapshots-understanding).
 
-## Velero version compatibility
+## Velero Version Compatibility
 
 The following table lists which versions of Velero are compatible with each version of the app manager.
 

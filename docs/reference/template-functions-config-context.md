@@ -1,4 +1,4 @@
-# Config context
+# Config Context
 
 ## ConfigOption
 

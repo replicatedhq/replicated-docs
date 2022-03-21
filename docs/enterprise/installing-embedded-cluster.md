@@ -1,4 +1,4 @@
-# Installing with the Kubernetes installer
+# Installing with the Kubernetes Installer
 
 This article refers to installing an application and the Replicated admin console on a cluster created by the Replicated Kubernetes installer.
 
@@ -8,7 +8,7 @@ The Kubernetes installer is based on the open source kURL project, which is main
 
 Before you install, ensure that you meet the system requirements. For more information, see [Kubernetes installer requirements](installing-embedded-cluster-requirements).
 
-## Install in an online environment
+## Install in an Online Environment
 
 To install the admin console on a cluster created by the Kubernetes installer, run the installation script provided by the application developer.
 
@@ -16,7 +16,7 @@ To install the admin console on a cluster created by the Kubernetes installer, r
 curl -sSL https://kurl.sh/supergoodtool | sudo bash
 ```
 
-## Install in an air gapped environment
+## Install in an Air Gapped Environment
 
 To install in an air gapped environment, download the `.airgap` bundle, untar it, and run the install.sh script.
 
@@ -43,7 +43,7 @@ kubectl kots install myapp \
   --shared-password password
 ```
 
-## Install with high availability
+## Install with High Availability
 
 Both online and air gapped installations can be configured in high-availability mode.
 
@@ -69,7 +69,7 @@ or
 cat install.sh | sudo bash -s airgap ha
 ```
 
-## Join primary and secondary nodes
+## Join Primary and Secondary Nodes
 
 Visit the `/cluster/manage` page in the admin console to generate scripts for joining additional secondary and primary nodes.
 

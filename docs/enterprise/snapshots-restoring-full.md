@@ -1,9 +1,9 @@
-# Restoring full snapshots
+# Restoring Full Snapshots
 
 In order to set up disaster recovery snapshots, backups should be configured to use a store that exists outside of the cluster.
 This is especially true for installations on cluster created with the Replicated Kubernetes installer.
 
-## Restore on existing cluster
+## Restore on Existing Cluster
 
 1. Begin with installing a version of Velero compatible with the one that was used to make the snapshot.
     * If restoring from an NFS or a host path storage destination, see [Configuring NFS](snapshots-configuring-nfs) or [Configuring a host path](snapshots-configuring-hostpath) for the configuration steps and how to set up Velero.
@@ -13,7 +13,7 @@ This is especially true for installations on cluster created with the Replicated
 
 1. Use the kots CLI to list backups and create restores. See [backup ls](../reference/kots-cli-backup-ls/) and [restore](../reference/kots-cli-restore-index/) in the kots CLI documentation.
 
-## Restore on online Kubernetes installer-created clusters
+## Restore on Online Kubernetes Installer-created Clusters
 
 1. Set up the embedded cluster. See [Installing on an embedded cluster](installing-embedded-cluster).
 1. Use the kots CLI to configure the pre-installed Velero setup to point at the snapshot storage destination.
@@ -26,7 +26,7 @@ This is especially true for installations on cluster created with the Replicated
     * **HostPath Configuration**: See [velero configure-hostpath](../reference/kots-cli-velero-configure-hostpath/) and [Configuring a host path](snapshots-configuring-hostpath).
 1. Use the kots CLI to list backups and create restores. See [backup ls](../reference/kots-cli-backup-ls/) and [restore](../reference/kots-cli-restore-index/) in the kots CLI documentation.
 
-## Restore on air gapped Kubernetes installer-created clusters
+## Restore on Air Gapped Kubernetes Installer-created Clusters
 
 An air gapped Kubernetes installer-created cluster can be restored only if the store backend used for backups is accessible from the new cluster.
 

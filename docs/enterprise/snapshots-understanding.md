@@ -1,4 +1,4 @@
-# Understanding snapshots
+# Understanding Snapshots
 
 An important part of the lifecycle of an application is backup and restore. The Replicated admin console can be used to create and manage your storage destination and schedule, and to perform and monitor the backup and restore process. This feature is only available for licenses that have the Allow Snapshots feature enabled.
 
@@ -8,7 +8,7 @@ There are two types of snapshots:
 
 Snapshots are useful for rollback and disaster recovery scenarios. They are not intended to be used for application migration scenarios.
 
-## Full snapshots (recommended)
+## Full Snapshots (recommended)
 
 Full snapshots back up the admin console and all application data.
 They can be used for full Disaster Recovery; by restoring over the same instance, or into a new cluster.
@@ -27,7 +27,7 @@ There are two available options for doing a restore. You can either do a full re
 
 If you have multiple applications within the admin console, each application should have a backup resource in order to be included in the full snapshot backup. For more information, see [Backup](../reference/custom-resource-backup) in the _Custom resources_ section.
 
-## Partial snapshots
+## Partial Snapshots
 
 Partial snapshots only back up applications volumes and application manifests; they do not back up the admin console or the metadata about an application.
 They are useful for capturing information before deploying a new release, in case you need to roll back, but they are not suitable for full disaster recovery.

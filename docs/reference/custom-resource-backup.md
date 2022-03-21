@@ -16,7 +16,7 @@ metadata:
 spec: {}
 ```
 
-## Limitations for full snapshots
+## Limitations for Full Snapshots
 
 The following top-level fields for Backup custom resources are not supported in [Full snapshots](../enterprise/snapshots-understanding/#full-snapshots-recommended):
 

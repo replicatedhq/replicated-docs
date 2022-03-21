@@ -1,4 +1,4 @@
-# Monitoring applications
+# Monitoring Applications
 
 The Replicated app manager includes built-in monitoring functionality for all applications.
 By default, the app manager displays cluster disk usage, pod cpu usage, pod memory usage, and pod health graphs on the dashboard page of the Replicated admin console.
@@ -38,7 +38,7 @@ For more advanced and cluster-specific configuration, you can customize Kube-Pro
 
 For more information about advanced configuration, see [Customizing Kube-Prometheus](https://github.com/coreos/kube-prometheus#customizing-kube-prometheus) in the kube-prometheus GitHub repository.
 
-### Configure the Prometheus address
+### Configure the Prometheus Address
 
 The app manager needs to be made aware of the address of the Prometheus instance within the cluster in which it is installed.
 
@@ -50,7 +50,7 @@ A support bundle may include more information when troubleshooting configuration
 
 ![Configuring Prometheus](/images/kotsadm-dashboard-configureprometheus.png)
 
-### Access the dashboards
+### Access the Dashboards
 
 You can use the commands below to access Prometheus, Grafana, and Alertmanager dashboards using kubectl port-forward after you install the manifests.
 

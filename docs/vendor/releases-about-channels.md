@@ -1,5 +1,5 @@
 
-# About release channels
+# About Release Channels
 
 By default, there are 3 release channels: Stable, Beta and Unstable. When you first log in to Replicated and select the Channels tab, you’ll see these default release channels created.
 You can delete, edit, or create new channels at any time.

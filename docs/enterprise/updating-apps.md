@@ -52,7 +52,6 @@ and click **Deploy** next to the target version.
    When you update an application, the current cluster is updated to the new version
    of the application and the Deployed status is set on that version.   
 
-
 ## Configure Automatic Updates
 
 For applications installed in an online environment, the admin console automatically

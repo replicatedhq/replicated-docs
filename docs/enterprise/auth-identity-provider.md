@@ -1,4 +1,4 @@
-# Using an identity provider for user access (Beta)
+# Using an Identity Provider for User Access (Beta)
 
 When you install an application for the first time, the Replicated admin console is secured with a single shared password for all users.
 It is possible to further configure the admin console to authenticate users with your organization's user management system.

@@ -1,15 +1,15 @@
-# Image registry for Kubernetes installer clusters
+# Image Registry for Kubernetes Installer-Created Clusters
 
 You can use the open source kURL registry add-on to host application images on Kubernetes installer-created clusters.
 
-## About the kURL registry add-on
+## About the kURL Registry Add-on
 
 The open source KOTS add-on can be installed on a Kubernetes installer-created cluster, which can also include the open source kURL registry add-on.
 When installing in an air gapped environment, the embedded registry will be automatically used to host all application images.
 
 For more information about the registry add-on, see [Registry Add-On](https://kurl.sh/docs/add-ons/registry) in the kURL documentation.
 
-## Enable and disable image garbage collection
+## Enable and Disable Image Garbage Collection
 
 > Introduced in KOTS 1.48.0
 
@@ -31,7 +31,7 @@ kubectl patch configmaps kotsadm-confg --type merge -p "{\"data\":{\"enable-imag
 Garbage collection is triggered automatically when a new application version is deployed.
 The `admin-console garbage-collect-images` command can be used to trigger it manually. For more information, see [admin-console garbage-collect-images](../reference/kots-cli-admin-console-garbage-collect-images/) in the kots CLI documentation.
 
-### Restoring deleted images
+### Restoring Deleted Images
 Deleted images may be reloaded from application and the Replicated admin console air gap bundles using the `admin-console push-images` command. For more information, see [admin-console push-images](../reference/kots-cli-admin-console-push-images/) in the kots CLI documentation.
 
 For an example of using the `admin-console push-images` command, see [Installing in an air gapped environment](installing-existing-cluster-airgapped).
@@ -42,13 +42,13 @@ Registry username and password can be found in the `registry-creds` secret in th
 ### Limitations
 Currently the image garbage collection feature has following limitations:
 
-#### Shared image registries
+#### Shared Image Registries
 The image garbage collection process assumes that the registry is not shared with any other instances of the Replicated app manager nor any external applications.
 If the embedded registry is used by another external application, this feature should be disabled to prevent image loss.
 
-#### Customer supplied registries
+#### Customer Supplied Registries
 This feature is currently only supported when used with the embedded open source kURL registry.
 If the admin console instance is configured to use a different registry, this feature should be disabled to prevent image loss.
 
-#### Application rollbacks
+#### Application Rollbacks
 Currently image garbage collection has no effect when the `allowrollback` field in the `application.yaml` file is set to `true`. For more information, see [Application](../reference/custom-resource-application) in _Custom Resources_.
