@@ -6,7 +6,7 @@ toc_max_heading_level: 2
 
 ## Release v2022.03.21-0
 
-Released on March 11, 2022
+Released on March 21, 2022
 
 ### Improvements
 
