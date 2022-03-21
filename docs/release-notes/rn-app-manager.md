@@ -17,7 +17,7 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 * Fixes an issue where the same license could be installed more than once in some cases.
 * Fixes an issue where the Cluster Management tab was not always initially present for Kubernetes installer-created clusters.
 * Fixes an issue where attempting to re-download a pending application version would fail after upgrading the admin console from KOTS 1.65.
-* Fixes an issue where the app icon in the metadata did not show as the favicon on the TLS pages.
+* Fixes an issue where the application icon in the metadata did not show as the favicon on the TLS pages.
 
 ## 1.66.0
 
