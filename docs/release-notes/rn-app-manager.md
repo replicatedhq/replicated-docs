@@ -7,17 +7,17 @@ Released on March 21, 2022
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### New Features
-* Add support for installing a [specific application release](/enterprise/installing-embedded-cluster#install-in-an-online-environment).
-* Extends the ability of [status informers](/vendor/admin-console-display-app-status#resource-statuses) to detect if the application is being updated.
-* Ability to provide a `strict` preflight spec that must run and cannot have any `strict` failure outcomes before fail before deploying an application. For more information about strict preflight checks, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles).
-* Application release channels that do not have [semantic versioning](/vendor/releases-understanding#semantic-versioning) enabled can now perform automatic release deployments. The most recent release is used when updating, regardless of its version tag.
+* Adds support for installing a specific application release. For more information about installing a specific application version, see [Installing in an Online (Internet-connected) Environment](/enterprise/installing-existing-cluster-online) and [Installing with the Kubernetes Installer](/enterprise/installing-embedded-cluster).
+* Extends the ability of status informers to detect if the application is being updated.
+* Adds the ability to provide a strict preflight, which cannot be skipped and must not have any failure outcomes. Any failure outcomes will prevent the user from deploying the application. For more information on strict preflights, see [About preflight checks and support bundles​](/vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles) in Creating Preflight Checks and Support Bundles.
+* New versions can automatically be deployed in the admin console, regardless of whether the vendor uses semantic versioning. For more information on automatically deploying new versions, see [Configure Automatic Updates​](/enterprise/updating-apps#configure-automatic-updates) in Updating an Application.
 
 ### Bug Fixes
-* Fixes an issue that can cause images that are still used by the application to be deleted from the private kURL registry during image garbage collection.
-* Fixes an issue where the same license can be installed more than once, in some cases.
-* Fixes an issue where the Cluster Management tab would not be initially present if the application is installed using kURL.
-* Fixes an issue where trying to re-download a pending application version after upgrading from KOTS 1.65 would fail due to an invalid license for that version.
-* Fixes an issue where the application icon in the metadata would not show as the favicon on the TLS pages.
+* Fixes an issue that could cause images that are still used by the application to be deleted from the private registry in a Kubernetes installer-created cluster during image garbage collection.
+* Fixes an issue where the same license could be installed more than once in some cases.
+* Fixes an issue where the Cluster Management tab was not always initially present for Kubernetes installer-created clusters.
+* Fixes an issue where attempting to re-download a pending application version would fail after upgrading the admin console from KOTS 1.65.
+* Fixes an issue where the app icon in the metadata did not show as the favicon on the TLS pages.
 
 ## 1.66.0
 
