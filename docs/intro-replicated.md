@@ -1,6 +1,10 @@
 # What is Replicated?
 
-Replicated allows software vendors to package and securely distribute their application to
+import variables from '/variables.js';
+const {productName} = variables
+const {adminConsole} = variables
+
+<p>{productName} allows software vendors to package and securely distribute their application to
 diverse customer environments, including both on-premises and cloud environments.
 
 Replicated packages the vendor's application using a set of Kubernetes manifests
@@ -33,7 +37,7 @@ cluster, called an _embedded cluster_, in the customer's environment if they do
 not have an existing cluster. The Kubernetes installer is based on the open-source
 kURL project, which is maintained by Replicated. For more information, see
 [Introduction to kURL](https://kurl.sh/docs/introduction/) in the kURL documentation.
-* **Admin console**: The Replicated admin console is the user interface where enterprise
+* **Admin console**: The Replicated {adminConsole} is the user interface where enterprise
 application users can configure, update, manage, backup and restore, and troubleshoot
 the application that they installed. The admin console is deployed by the app manager
 when the customer installs the application.
@@ -58,4 +62,4 @@ For information about the Vendor API v3, see [Using the Vendor API v3](reference
 For information about the replicated CLI, see [Installing the replicated CLI](reference/replicated-cli-installing).
 
 For information about the kots CLI, see [Getting Started with KOTS](reference/kots-cli-getting-started)
-in the kots CLI documentation.
+in the kots CLI documentation.</p>

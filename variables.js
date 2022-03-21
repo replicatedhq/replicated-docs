@@ -1,8 +1,7 @@
 
 const variables = {
     productName: 'Replicated',
-    exampleVariable: 'Example'
+    adminConsole: 'admin console',
 };
 
 module.exports = variables;
-
