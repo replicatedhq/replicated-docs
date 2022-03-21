@@ -41,7 +41,7 @@ A [support bundle](../enterprise/troubleshooting-an-app) will include diagnostic
 Below is a table of resources that are supported and conditions that contribute to each status:
 
 | | Unavailable | Degraded | Ready | Updating |
-|---|---|---|---|
+|---|---|---|---|---|
 | **Deployment** | No replicas are ready | At least 1 replica is ready and less than desired | Ready replicas equals desired replicas | The deployed replicas are from a different revision |
 | **StatefulSet** | No replicas are ready | At least 1 replica is ready and less than desired | Ready replicas equals desired replicas | The deployed replicas are from a different revision |
 | **Service** | No endpoints are ready, no load balancer has been assigned | At least one endpoint is ready and less than desired | All desired endpoints are ready, any load balancers have been assigned | n/a |
