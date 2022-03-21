@@ -4,6 +4,25 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.67.0
+
+Released on March 21, 2022
+
+Support for Kubernetes: 1.21, 1.22, and 1.23
+
+### New Features
+* Added support for installing a specific application release.
+* Extends the ability of status informers to detect if the application is being updated.
+* Ability to provide a `strict` preflight spec that must run and cannot have any `strict` failure outcomes before fail before deploying an app.
+* Application release channels that do not have [semantic versioning](https://docs.replicated.com/vendor/releases-understanding#semantic-versioning) enabled can now perform automatic release deployments. The most recent release will be used when updating, regardless of its version tag.
+
+### Bug Fixes
+* Fixes an issue that can cause images that are still used by the application to be deleted from the private kURL registry during image garbage collection.
+* Fixes an issue where the same license can be installed more than once in some cases.
+* Fixes an issue where the Cluster Management tab would not be initially present if the application is installed via kURL
+* Fixes an issue where trying to re-download a pending app version after upgrading from KOTS 1.65 would fail due to an invalid license for that version.
+* Fixes an issue where the app icon in the metadata would not show as the favicon on the TLS pages.
+
 ## 1.66.0
 
 Released on March 8, 2022
