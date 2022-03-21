@@ -13,7 +13,7 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 ### New Features
 * Added support for installing a specific application release.
 * Extends the ability of status informers to detect if the application is being updated.
-* Ability to provide a strict preflight spec which should run and not fail before deploying an app.
+* Ability to provide a `strict` preflight spec that must run and cannot have any `strict` failure outcomes before fail before deploying an app.
 * Application release channels that do not have [semantic versioning](https://docs.replicated.com/vendor/releases-understanding#semantic-versioning) enabled can now perform automatic release deployments. The most recent release will be used when updating, regardless of its version tag.
 
 ### Bug Fixes
