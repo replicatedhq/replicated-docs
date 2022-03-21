@@ -7,10 +7,10 @@ Released on March 21, 2022
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### New Features
-* Adda support for installing a specific application release.
-* Extends the ability of status informers to detect if the application is being updated.
-* Ability to provide a `strict` preflight spec that must run and cannot have any `strict` failure outcomes before fail before deploying an application. For more information about strict preflight checks, see [About Preflight Checks and Support Bundles](../vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles).
-* Application release channels that do not have [semantic versioning](https://docs.replicated.com/vendor/releases-understanding#semantic-versioning) enabled can now perform automatic release deployments. The most recent release is used when updating, regardless of its version tag.
+* Add support for installing a [specific application release](/enterprise/installing-embedded-cluster#install-in-an-online-environment).
+* Extends the ability of [status informers](/vendor/admin-console-display-app-status#resource-statuses) to detect if the application is being updated.
+* Ability to provide a `strict` preflight spec that must run and cannot have any `strict` failure outcomes before fail before deploying an application. For more information about strict preflight checks, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles).
+* Application release channels that do not have [semantic versioning](/vendor/releases-understanding#semantic-versioning) enabled can now perform automatic release deployments. The most recent release is used when updating, regardless of its version tag.
 
 ### Bug Fixes
 * Fixes an issue that can cause images that are still used by the application to be deleted from the private kURL registry during image garbage collection.
