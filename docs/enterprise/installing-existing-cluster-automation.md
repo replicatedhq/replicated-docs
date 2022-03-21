@@ -41,7 +41,32 @@ All password type items will be decrypted and the value will be stored in `value
 All non-password type config items will have their value stored in `value`.
 When this file is uploaded, any `valuePlaintext` will be re-encrypted if the matching config item is a type password.
 
-### Disable Admin Console Port-forwarding
+### Pass preflight checks
+
+The app manager runs preflight checks (conformance tests) against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application.
+
+![Preflight Checks](/images/preflight-checks.png)
+
+#### Resolve strict preflight checks
+
+When one or more strict preflight checks are present, the application deployment is blocked until these strict checks are run. Strict preflight checks must not contain failures and block the release from being deployed until the failures are resolved. Strict preflight checks help enforce that vendor-specific requirements are met before the application is deployed.
+
+#### Resolve role-based access control checks
+
+When the installation uses [minimal role-based access control (RBAC)](../reference/custom-resource-application#requireminimalrbacprivileges), the app manager recognizes if the preflight checks failed due to insufficient privileges.
+
+![Run Preflight Checks Manually](/images/manual-run-preflights.png)
+
+When this occurs, a `kubectl preflight` command is displayed that you must run manually in the cluster to run the preflight checks. When the command runs and completes, the results are automatically uploaded to the app manager.
+
+**Example:**
+
+```bash
+curl https://krew.sh/preflight | bash
+kubectl preflight secret/<namespace>/kotsadm-<appslug>-preflight
+```
+
+### Disable admin console port-forwarding
 The `kots install` kots CLI command by default opens a port-forward to the admin console as part of the application installation.
 
 To disable this behavior, add the `--no-port-forward` flag to the install command.

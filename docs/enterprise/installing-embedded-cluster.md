@@ -10,11 +10,15 @@ Before you install, ensure that you meet the system requirements. For more infor
 
 ## Install in an Online Environment
 
-To install the admin console on a cluster created by the Kubernetes installer, run the installation script provided by the application developer.
+To install the admin console on a cluster created by the Kubernetes installer, run the installation script provided by the application vendor.
 
 ```bash
 curl -sSL https://kurl.sh/supergoodtool | sudo bash
 ```
+
+:::note
+With KOTS v1.67.0 and later, you can install a specific version of the application. Use the `app-version-label` flag and the version label for a particular version of your vendor's application. Example: `curl https://kurl.sh/supergoodtool | sudo bash -s app-version-label=3.1.0`.
+:::
 
 ## Install in an Air Gapped Environment
 
