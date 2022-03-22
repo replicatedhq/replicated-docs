@@ -1,40 +1,68 @@
 # Updating the Admin Console on an Existing Cluster
 
-This document refers to upgrading the Replicated admin console on an existing cluster.
-For information about how to upgrade the admin console on a Kubernetes installer-created cluster (embedded cluster), see [Updating the admin console on a Kubernetes installer-created cluster](updating-embedded-cluster).
+This topic explains how to update the Replicated admin console on an existing cluster.
+For information about how to update the admin console on a Kubernetes installer-created cluster (embedded cluster), see [Updating the admin console on a Kubernetes installer-created cluster](updating-embedded-cluster).
 
-**Prerequisites**
+Updating the admin console requires updating the kots CLI first. You have the option to update to the latest version of the kots CLI or to a specific version.
 
-As a prerequisite for any admin console upgrade, start by upgrading your kots CLI to the desired version.
-* For online installations, follow the instructions after running `kubectl kots version` to download the latest binary.
-* For air gapped installations or to use a previous Replicated app manager version, download the the latest app manager binary from [Github](https://github.com/replicatedhq/kots/releases) or the customer download page in the Replicated [vendor portal](https://vendor.replicated.com).
+Downgrading the admin console to a version earlier than what is currently deployed is not supported.
 
-### Online Installations
+### Update an Online Installation
 
-A `kots` command has been provided to update the admin console on an existing cluster.
+For online installations, the admin console is updated to the same version as the version of the kots CLI that you use to perform the update. For example, if you use v1.56.0 of the kots CLI to update the admin console, then the admin console is updated to v1.56.0.
 
-```bash
-kubectl kots admin-console upgrade -n <namespace>
-```
+To update an online installation of the admin console:
 
-Additional usage information can be found by running the `kubectl kots admin-console upgrade -h` command.
+1. (Optional) Run the `kubectl kots version` command to see the current version of the kots CLI.
 
-### Air Gap Installations
+1. Do _one_ of the following actions to update your kots CLI version:
 
-Similar to the initial installation into an existing cluster, images must be pushed to a private registry first:
+    - For the latest version, run `curl https://kots.io/install | bash`.
 
-```shell
-kubectl kots admin-console push-images ./kotsadm.tar.gz private.registry.host/application-name \
-  --registry-username rw-username \
-  --registry-password rw-password
-```
+    - For a particular version, run `curl https://kots.io/install/<version> | bash`.
 
-After images have been pushed, the upgrade command can be executed with registry read-only credentials:
+1. Run the following command to update the admin console on an existing cluster:
 
-```bash
-kubectl kots admin-console upgrade \
-  --kotsadm-registry private.registry.host/application-name \
-  --registry-username ro-username \
-  --registry-password ro-password \
-  -n <namespace>
-```
+  ```bash
+  kubectl kots admin-console upgrade -n <namespace>
+  ```
+
+  :::note
+  For help information, run `kubectl kots admin-console upgrade -h`.
+  :::
+
+### Update an Air Gap Installation
+
+For air gap installations, the version of the kots CLI that is used to perform the update must match the version of the Replicated app manager air gap bundle used for the update.
+
+To update an air gap installation of the admin console:
+
+1. Download your desired version of the app manager air gap bundle from [Github](https://github.com/replicatedhq/kots/releases) or from the customer download page provided by your vendor. The air gap bundle is named `kotsadm.tar.gz`.
+
+1. Do _one_ of the following actions to update your kots CLI version:
+
+    - For the latest version, run `curl https://kots.io/install | bash`.
+
+    - For a particular version, run `curl https://kots.io/install/<version> | bash`.
+
+    :::important
+    The kots CLI version must match the air gap bundle version.
+    :::
+
+1. Push images to a private registry:
+
+    ```shell
+    kubectl kots admin-console push-images ./kotsadm.tar.gz private.registry.host/application-name \
+      --registry-username rw-username \
+      --registry-password rw-password
+    ```
+
+1. Run the following command using registry read-only credentials to update the admin console:
+
+    ```bash
+    kubectl kots admin-console upgrade \
+      --kotsadm-registry private.registry.host/application-name \
+      --registry-username ro-username \
+      --registry-password ro-password \
+      -n <namespace>
+    ```
