@@ -18,7 +18,6 @@ To promote a release:
     * **Channel** - Select the channel you want to promote the release to. The defaults are Stable, Beta, and Unstable. If you have created custom channels using the CLI, they are listed here also.
     * **Version label** - Enter a version label. You can use the semantic version format if you are using the Replicated app manager v1.58.0 or later. If you are using semantic versioning, you must also enable the semantic versioning toggle in the channel settings. This toggle is disabled by default. If you use semantic versioning on a channel, we recommend that you always use semantic versioning on that channel.
     * **Release notes** - Add detailed release notes. The release notes support markdown and will be shown to your customer.
-    * **Required status** - Give the release a status, either required or not required.
 
 1. Click **Promote**.
 
