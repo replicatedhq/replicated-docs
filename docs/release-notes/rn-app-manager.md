@@ -222,4 +222,4 @@ Supported on Kubernetes: 1.19, 1.20, and 1.21
 
 ## 1.57.0 and earlier
 
-For release notes for app manager versions earlier than 1.58.0, see [Replicated App Manager Release Notes v1.9.0 - v1.65.0](https://github.com/replicatedhq/replicated-docs/blob/main/docs/release-notes/app-manager-release-notes.pdf) in GitHub.
+For release notes for app manager versions earlier than 1.58.0, see [Replicated App Manager Release Notes v1.9.0 - v1.65.0](../pdfs/app-manager-release-notes.pdf) in GitHub.
