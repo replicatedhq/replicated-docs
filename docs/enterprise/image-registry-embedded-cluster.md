@@ -1,4 +1,4 @@
-# Image Registry for Kubernetes Installer Clusters
+# Image Registry for Kubernetes Installer-Created Clusters
 
 You can use the open source kURL registry add-on to host application images on Kubernetes installer-created clusters.
 

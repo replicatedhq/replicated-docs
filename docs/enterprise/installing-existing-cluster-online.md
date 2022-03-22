@@ -10,6 +10,9 @@ To start, run the command that was provided by the application vendor:
 ```shell
 kubectl kots install application-name
 ```
+:::note
+With KOTS v1.67.0 and later, you can install a specific version of the application. Use the `app-version-label` flag and the version label for a particular version of your vendor's application. Example: `kubectl kots install application-name --app-version-label=3.1.0`.
+:::
 
 The kubectl plugin will walk you through the necessary steps to install the application:
 
@@ -63,15 +66,34 @@ These can be changed later, but must be completed to continue.
 
 ### Pass Preflight Checks
 
-The app manager run preflight checks (conformance tests) against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application.
+The app manager runs preflight checks (conformance tests) against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application.
 
 ![Preflight Checks](/images/preflight-checks.png)
 
-### Specify Proxies
+#### Resolve strict preflight checks
+
+When one or more strict preflight checks are present, the application deployment is blocked until these strict checks are run. Strict preflight checks must not contain failures and block the release from being deployed until the failures are resolved. Strict preflight checks help enforce that vendor-specific requirements are met before the application is deployed.
+
+#### Resolve role-based access control checks
+
+When the installation uses [minimal role-based access control (RBAC)](../reference/custom-resource-application#requireminimalrbacprivileges), the app manager recognizes if the preflight checks failed due to insufficient privileges.
+
+![Run Preflight Checks Manually](/images/manual-run-preflights.png)
+
+When this occurs, a `kubectl preflight` command is displayed that you must run manually in the cluster to run the preflight checks. When the command runs and completes, the results are automatically uploaded to the app manager.
+
+**Example:**
+
+```bash
+curl https://krew.sh/preflight | bash
+kubectl preflight secret/<namespace>/kotsadm-<appslug>-preflight
+```
+
+### Specify proxies
 
 When installing behind a proxy, the admin console needs to be able to use the proxy to communicate with the APIs on the internet as well as local services.
 
-Both the `kots install` and `kots pull` kots CLI commands provide arguments to specify proxy settings for the admin console containers.
+Both the `kots install` and `kots pull` CLI commands provide arguments to specify proxy settings for the admin console containers.
 
 If either `http-proxy` or `https-proxy` is specified, `no-proxy` should also be specified. The `no-proxy` string should include all localhost addresses as well as the local network and Kubernetes cluster CIDRs.
 

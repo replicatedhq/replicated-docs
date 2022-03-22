@@ -1,13 +1,23 @@
----
-toc_max_heading_level: 2
----
-
 # App Manager Release Notes
 
-:::note
-For release notes earlier than v1.60.0, see
-[Release Notes](https://kots.io/release-notes/) in the open source KOTS documentation.
-:::
+## 1.67.0
+
+Released on March 21, 2022
+
+Support for Kubernetes: 1.21, 1.22, and 1.23
+
+### New Features
+* Adds support for installing a specific application version. For more information about installing a specific application version, see [Installing in an Online (Internet-connected) Environment](/enterprise/installing-existing-cluster-online) and [Installing with the Kubernetes Installer](/enterprise/installing-embedded-cluster).
+* Extends the ability of status informers to detect if the application is being updated.
+* Adds the ability to provide a strict preflight, which cannot be skipped and must not have any failure outcomes. Any failure outcomes will prevent the user from deploying the application. For more information on strict preflights, see [About preflight checks and support bundles​](/vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles) in Creating Preflight Checks and Support Bundles.
+* New versions can automatically be deployed in the admin console, regardless of whether the vendor uses semantic versioning. For more information about automatically deploying new versions, see [Configure Automatic Updates​](/enterprise/updating-apps#configure-automatic-updates) in Updating an Application.
+
+### Bug Fixes
+* Fixes an issue that could cause images that are still used by the application to be deleted from the private registry in a Kubernetes installer-created cluster during image garbage collection.
+* Fixes an issue where the same license could be installed more than once in some cases.
+* Fixes an issue where the Cluster Management tab was not always initially present for Kubernetes installer-created clusters.
+* Fixes an issue where attempting to re-download a pending application version would fail after upgrading the admin console from KOTS 1.65.
+* Fixes an issue where the application icon in the metadata did not show as the favicon on the TLS pages.
 
 ## 1.66.0
 
@@ -209,3 +219,7 @@ Supported on Kubernetes: 1.19, 1.20, and 1.21
 ### New Features
  * Adds support for the semantic versioning of releases when the version labels are [valid](https://semver.org/). To use this feature, [enable semantic versioning for the channel](../vendor/releases-semantic-versioning) that the license is currently on.
  * Adds the ability to automatically deploy new patch, minor, or major [valid](https://semver.org/) semantic versions when [semantic versioning is enabled](../vendor/releases-semantic-versioning). This new capability can be configured from the **Version History** page under the 'Configure automatic updates' option.
+
+## 1.57.0 and earlier
+
+For release notes for app manager versions earlier than 1.58.0, see [Replicated App Manager Release Notes v1.9.0 - v1.65.0](https://github.com/replicatedhq/replicated-docs/blob/main/docs/release-notes/app-manager-release-notes.pdf) in GitHub.
