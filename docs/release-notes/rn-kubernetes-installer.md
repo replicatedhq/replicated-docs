@@ -10,7 +10,7 @@ Released on March 23, 2022
 
 ### Improvements
 
-- Adds a [CIS Compliance](/docs/install-with-kurl/cis-compliance) option to the kURL installer specification for the Kubernetes add-on that configures the instance to meet the [Center for Internet Security (CIS)](https://www.cisecurity.org/cis-benchmarks/) compliance benchmark.
+- Adds a [CIS Compliance](https://kurl.sh/docs/install-with-kurl/cis-compliance) option to the kURL installer specification for the Kubernetes add-on that configures the instance to meet the [Center for Internet Security (CIS)](https://www.cisecurity.org/cis-benchmarks/) compliance benchmark.
 - Fixes a bug that could cause an unbound variable error when restoring from a backup.
 
 ## Release v2022.03.22-0
