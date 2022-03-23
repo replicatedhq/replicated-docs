@@ -4,6 +4,15 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.03.23-0
+
+Released on March 23, 2022
+
+### Improvements
+
+- Adds a [CIS Compliance](/docs/install-with-kurl/cis-compliance) option to the kURL installer specification for the Kubernetes add-on that configures the instance to meet the [Center for Internet Security (CIS)](https://www.cisecurity.org/cis-benchmarks/) compliance benchmark.
+- Fixes a bug that could cause an unbound variable error when restoring from a backup.
+
 ## Release v2022.03.22-0
 
 Released on March 22, 2022
