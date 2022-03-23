@@ -64,6 +64,7 @@ const sidebars = {
                   'vendor/packaging-private-images',
                   'vendor/database-config-adding-options',
                   'vendor/packaging-custom-resources',
+                  'vendor/packaging-versioning-kots-installations',
                   'vendor/packaging-template-functions',
                   'vendor/packaging-include-resources',
                   'vendor/namespaces',
