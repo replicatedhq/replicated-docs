@@ -10,7 +10,7 @@ Released on March 22, 2022
 
 ### Bug Fixes
 
-- Fixes a bug that caused installations to fail with the error “incorrect binary usage” for all installers that include KOTS add-on version v1.67.0.
+- Fixes a bug that caused installations to fail with the error “incorrect binary usage” for all installers that include KOTS add-on version 1.67.0.
 
 ## Release v2022.03.21-0
 
