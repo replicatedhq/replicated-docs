@@ -101,17 +101,17 @@ For backwards compatibility, exact versions are also supported.
 When an exact version is specified, the app manager will choose the matching major and minor version.
 
 ## requireMinimalRBACPrivileges
-When set to `true`, the app manager creates a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.
+When set to `true`, the app manager creates a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding. Setting this applies to all customers. To apply this on a per-customer basis, see [`supportsMinimalRBACPrivileges`](#supportsinimalrbacprivileges).
 
-When installing with [minimal role-based access control (RBAC)](../reference/custom-resource-application#requireminimalrbacprivileges), the app manager recognizes if the preflight checks failed due to insufficient privileges. When this occurs, a `kubectl preflight` command is displayed that can be run manually in the cluster to run the preflight checks. When the command runs and completes, the results are automatically uploaded to the app manager.
+When installing with minimal role-based access control (RBAC), the app manager recognizes if the preflight checks fail due to insufficient privileges. For more information about RBAC, see [Namespace-scoped Access](../vendor/packaging-rbac/#namespace-scoped-access) in _Configuring Role-based Access Control_.
 
-**Example:**
+## supportsMinimalRBACPrivileges
 
-```bash
-curl https://krew.sh/preflight | bash
-kubectl preflight secret/<namespace>/kotsadm-<appslug>-preflight
-```
-For more information, see the [RBAC](../vendor/packaging-rbac) documentation.
+This option is applicable to existing clusters only.
+
+Allows minimal role-based access control (RBAC) for be set on a per-customer basis. When set to `true`, the app manager enables a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding. However, as a per-customer feature, it is not triggered by default in the installation. You must also tell the end user to opt in using the `kots install` command with the `-- use-minimal-rbac` flag set to `true`.
+
+When installing with minimal RBAC, the app manager recognizes if the preflight checks fail due to insufficient privileges. For more information about RBAC, see [Namespace-scoped Access](../vendor/packaging-rbac/#namespace-scoped-access) in _Configuring Role-based Access Control_.
 
 ## ports
 These are extra ports (additional to the :8800 admin console port) that should be port-forwarded when running the `kots admin-console` command.
