@@ -1,19 +1,87 @@
 # Connecting to an Image Registry
 
-You can use the Replicated private registry or any supported
-external private or public registry with your application.
+When packaging and delivering an application with Replicated, you can include private
+images for the application without distributing registry credentials
+to your customer.
 
-## Use the Replicated private registry
+The customer license file can grant revokable image pull access to private images,
+whether the images are stored in the Replicated private registry or a supported
+external registry.
 
-You can push the private image for your application to the
-Replicated private registry.
+:::note
+The app manager supports image tags for applications in all use cases.
+
+The app manager supports image digests only for online (Internet-connected) installation where the app manager can pull all images from the Replicated private registry, a public external registry, or from a private external registry through proxy access.
+:::
+
+## About Using an External Registry
+
+If your application images are available in a private, accessible image registry, such as Docker Hub, quay.io, Amazon Elastic Container Registry (ECR), Google Container Registry (GCR), or Artifactory, then the customer licenses for your application can grant proxy, or _pull-through_, access to the assignee without exposing registry credentials to the customer.
+
+With proxy access, the app manager can use the Replicated registry proxy service to pull private images from an external registry. Instances of your application can then pull private images from the proxy service at `proxy.replicated.com` during deployment.
+
+Allowing the app manager to have proxy access to an external registry is useful and recommended because it prevents you from having to modify the process you use to build and push application images in order to deploy your application with Replicated. It also allows you to revoke a customer’s ability to pull private images, such as when their trial license expires.
+
+To grant proxy access to your external registry, see [Configure Access to an External Registry](#configure-access-to-an-external-registry) below.
+
+The following diagram demonstrates how the registry proxy service pulls images from your external registry, and how deployed instances of your application pull images from the proxy service:
+
+![Registry proxy service workflow diagram](/images/private-registry-diagram.png)
+
+[View a larger version of this image](/images/private-registry-diagram-large.png)
+
+For more information about how the app manager uses the registry proxy service, see [How the App Manager Accesses Private Images](#how-the-app-manager-accesses-private-images) below.
+
+## Configure Access to an External Registry
+
+You can provide the credentials for an external registry in the vendor portal to
+grant the app manager proxy access to the private application images in the
+registry.
+
+All applications in your vendor portal Team have access to the external registry
+that you add. This means that you can use the images in the external registry across
+multiple apps in the Team.
+
+To configure access to your private images in an external registry:
+
+1. Log in to the [vendor portal](https://vendor.replicated.com) and go to the Images page.
+1. Click **Add external registry**.
+   ![Add External Registry dialog in the vendor portal](/images/add-external-registry.png)
+1. Complete the fields in the dialog:
+<table>
+  <tr>
+    <th width="30%">Field</th>
+    <th width="70%">Instructions</th>
+  </tr>
+  <tr>
+    <td>Name</td>
+    <td>Enter a name for the registry.</td>
+  </tr>
+  <tr>
+    <td>Endpoint</td>
+    <td>Enter the endpoint, such as quay.io, index.docker.io, or gcr.io.</td>
+  </tr>
+  <tr>
+    <td>Username and Password</td>
+    <td>Provide the username and password to Replicated for an account that has pull access.<br/><br/>Replicated stores your username and password encrypted and securely. Your credentials and the encryption key do not leave Replicated servers.</td>
+  </tr>
+  <tr>
+    <td>Email Address</td>
+    <td>Enter the email address associated with the registry.</td>
+  </tr>
+</table>
+
+
+## Push Images to the Replicated Private Registry
+
+You can host the private images for your application on the Replicated private registry.
 
 For more information about building, tagging and pushing docker images, see the
 [Docker CLI documentation](https://docs.docker.com/engine/reference/commandline/cli/).
 
-To use the Replicated private registry:
+To push images to the Replicated private registry:
 
-1. Do one of the following to to connect with the `registry.replicated.com` container registry:
+1. Do one of the following to connect with the `registry.replicated.com` container registry:
    * **Log in with a service account or team token**: Use `docker login registry.replicated.com` with a Replicated vendor portal service account or team token as the password. You can use any string as the username. For more information, see [Service accounts](../reference/replicated-cli-tokens#service-accounts) and [Team tokens](../reference/replicated-cli-tokens#team-tokens) in _Using Vendor API tokens_.
    * **Log in with a user token**: Use `docker login registry.replicated.com` with your vendor portal email as the username and a vendor portal user token as the password. For more information, see [User tokens](../reference/replicated-cli-tokens#user-tokens) in _Using Vendor API tokens_.
    * **Log in with your credentials**: Use `docker login registry.replicated.com` with your vendor portal email and password as the credentials.
@@ -42,72 +110,65 @@ Docker format:
   $ docker push registry.replicated.com/APPLICATION_SLUG/TARGET_IMAGE_NAME:TAG
   ```
 
-## Use an external registry
+## How the App Manager Accesses Private Images
 
-When packaging and delivering an enterprise application, a common problem is the need to include private Docker images.
-Most enterprise applications consist of public images (postgres, mysql, redis, elasticsearch) and private images (the application images).
+The app manager uses Kustomize to change the `name` of private images in the PodSpec
+during application deployment from the external registry domain to the Replicated
+proxy service domain.
+It then creates an `imagePullSecret` to access the images through the proxy service.
 
-When delivering an application through the [vendor portal](https://vendor.replicated.com), there’s built-in support to include private images -- without managing or distributing actual registry credentials to your customer.
-The license file grants revokable image pull access to private images, whether these are stored in the Replicated private registry, or another private registry server that you’ve decided to use.
+### Patching the Image Name with Kustomize
 
-If your application images are already available in a private, but accessible image registry (such as Docker Hub, quay.io, ECR, GCR, Artifactory, and so on), then your application licenses can be configured to grant proxy, or pull-through access to the assignee without giving actual credentials to the customer.
+When the app manager is installing an application, it attempts to load image manifests
+using the image reference from the PodSpec. If the app manager receives a 401 response,
+it assumes that this is a private image that must be proxied through the
+registry proxy service.
 
-This is useful and recommended because it prevents you from having to modify the process you use to build and push application images, and it gives you the ability to revoke a customer’s ability to pull (such as on trial expiration).
-This External Registry is shared across all applications in a team, allowing images to be used across multiple apps.
+The app manager uses Kustomize to patch the `midstream/kustomization.yaml` file to change the image name during deployment to reference the proxy service.
 
-To configure access to your private images, log in to the [vendor portal](https://vendor.replicated.com), and click on the images menu item under your application.
-Click **Add External Registry**.
-In the modal, enter an endpoint (quay.io, index.docker.io, gcr.io, and so on), and provide a username and password to Replicated that has pull access.
-For more information, see the documentation about our registry.
-Replicated will store your username and password encrypted and securely, and it (and the encryption key) will never leave our servers.
-
-![Add External Registry](/images/add-external-registry.png)
-
-Your Application custom resource manifest file will reference images that it cannot access.
-The app manager recognizes this, and will patch the YAML using Kustomize to change the image name.
-When the app manager is attempting to install an application, it will attempt to load image manifest using the image reference from the PodSpec.
-If it’s loaded successfully, no changes will be made to the application.
-If a 401 is received and authentication is required, the app manager assumes that this is a private image that needs to be proxied through the Replicated registry-proxy service.
-A patch will be written to the midstream `kustomization.yaml` to change this image name during deployment.
-
-For example, given a private image hosted at `quay.io/my-org/api:v1.0.1`, a deployment and pod spec may reference it like this:
+For example, a Deployment and PodSpec reference a private image hosted at `quay.io/my-org/api:v1.0.1`:
 
 ```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: example
-spec:
-  template:
-    spec:
-      containers:
-        - name: api
-          image: quay.io/my-org/api:v1.0.1
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: example
+  spec:
+    template:
+      spec:
+        containers:
+          - name: api
+            image: quay.io/my-org/api:v1.0.1
 ```
 
-When the application is deployed, the app manager will detect that it cannot access the image at quay.io and will create a patch in the `midstream/kustomization.yaml`:
+When this application is deployed, the app manager detects that it cannot access
+the image at quay.io. So, it creates a patch in the `midstream/kustomization.yaml`
+file that changes the image name everywhere it appears:
 
 ```yaml
-apiVersion: kustomize.config.k8s.io/v1beta1
-bases:
-- ../../base
-images:
-- name: quay.io/my-org/api:v1.0.1
-  newName: proxy.replicated.com/proxy/my-kots-app/quay.io/my-org/api
+  apiVersion: kustomize.config.k8s.io/v1beta1
+  bases:
+  - ../../base
+  images:
+  - name: quay.io/my-org/api:v1.0.1
+    newName: proxy.replicated.com/proxy/my-kots-app/quay.io/my-org/api
 ```
 
-This will change that image name everywhere it appears.
+This allows the app manager to use the proxy service to pull the images.
 
-In addition, the app manager will create an imagePullSecret dynamically and automatically at install time.
-This secret is based on the customer license, and will be used to pull all images from `proxy.replicated.com`
 
-Images hosted at `registry.replicated.com` will not be rewritten.  
-However, the same secret will be added to those PodSpecs as well.
+### Accessing the Proxy Service with an Image Pull Secret
 
-> Application deployments are supported via image tags in all use cases. The app manager has limited support for deploying via image digests. Use of image digests are only supported for fully online installs where all images can be pulled from the Replicated registry, a public repo, or proxied from a private repo via the Replicated registry.
+During installation, the app manager automatically creates an `imagePullSecret`
+that is based on the customer license. It uses this secret to authenticate in order to
+pull private images from `proxy.replicated.com`.
 
-## Additional namespaces
+The app manager does not overwrite images hosted on the Replicated private registry
+at `registry.replicated.com`. However, it adds the same `imagePullSecret` to
+PodSpecs that reference images in the Replicated private registry.
 
-When deploying pods to namespaces other than the app manager application namespace, the namespace must be added to the `additionalNamespaces` attribute of the [Application](../reference/custom-resource-application) manifest.
-This helps to ensure that the application image pull secret will get auto-provisioned by the app manager in the namespace to allow the pod to pull the image.
-For more information about the `additionalNamespaces` attribute, see [Defining additional namespaces](operator-defining-additional-namespaces).
+:::note
+When deploying Pods to namespaces other than the app manager application namespace, you must add the namespace to the `additionalNamespaces` attribute of the Application custom resource manifest.
+This ensures the app manager can provision the the `imagePullSecret` in the namespace to allow the Pod to pull the image.
+For more information about the `additionalNamespaces` attribute, see [Defining Additional Namespaces](operator-defining-additional-namespaces).
+:::
