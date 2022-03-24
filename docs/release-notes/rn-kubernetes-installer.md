@@ -552,7 +552,7 @@ Released on September 15, 2021
 Released on September 9, 2021
 
 ### New Features
-- Added [KOTS add-on](/docs/add-ons/kots) version 1.50.2.
+- Added [KOTS add-on](https://kurl.sh/docs/add-ons/kots) version 1.50.2.
 
 ## Release v2021.08.27-0
 
@@ -684,7 +684,7 @@ Released on July 19, 2021
 
 ### New Features
 - Added [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.47.2
-- The [Rook add-on's](https://kurl.sh/docs/add-ons/rook) object store can be migrated to [MinIO](/docs/add-ons/minio) with the `migrate-rgw-to-minio` task.
+- The [Rook add-on's](https://kurl.sh/docs/add-ons/rook) object store can be migrated to [MinIO](https://kurl.sh/docs/add-ons/minio) with the `migrate-rgw-to-minio` task.
 
 ### Improvements
 - Weave add-on host preflight check will not fail on connection timeout on metrics ports 6781 and 6782.
@@ -909,7 +909,7 @@ Released on May 26, 2021
 ### New Features
 - Added Kubernetes versions 1.21.1, 1.20.7, 1.19.11 and 1.18.19.
 - Added [Rook add-on](https://kurl.sh/docs/add-ons/rook) version 1.5.11.
-- Added [Prometheus add-on](/docs/add-ons/prometheus) version 0.47.1-16.0.1.
+- Added [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.47.1-16.0.1.
 
 ### Improvements
 - The [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) will now be upgraded to conform to the latest kURL spec installed.
