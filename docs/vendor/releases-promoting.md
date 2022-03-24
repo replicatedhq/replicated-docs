@@ -16,7 +16,7 @@ To promote a release:
 
 1. Edit the fields:
     * **Channel**: Select the channel where you want to promote the release. The defaults are Stable, Beta, and Unstable. If you created custom channels using the CLI, they are listed here also.
-    * **Version label**: Enter a version label. You can use the semantic version format if you are using the Replicated app manager v1.58.0 or later. If you are using semantic versioning, you must also enable the semantic versioning toggle in the channel settings. This toggle is disabled by default. If you use semantic versioning on a channel, we recommend that you always use semantic versioning on that channel. For more information, see [Enabling Semantic Versioning](releases-semantic-versioning).
+    * **Version label**: Enter a version label. If semantic versioning is enabled for the channel, you must use a valid semantic version. For more information, see [Enabling Semantic Versioning](releases-semantic-versioning).
     * **Requirements**: Select **Prevent this release from being skipped during upgrades** to mark the release as required. When a release is required, the admin console requires users to upgrade to that version before they can upgrade to a later version. For example, if you select **Prevent this release from being skipped during upgrades** for release v2.0.0, users with v1.0.0 deployed must upgrade to v2.0.0 before they can upgrade to a version later than v2.0.0, such as v2.1.0.
 
       :::note
