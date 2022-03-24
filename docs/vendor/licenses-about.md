@@ -32,8 +32,7 @@ by the `license_type` field is used solely for reporting purposes. A customer's
 access to your application is not affected by the type that you assign.
 
 The possible values for the `license_type` field are development, trial, paid, and
-community. For more information about each type, see [About customer license types](licenses-about-types).
-
+community. For more information about each type, see [About Customer License Types](licenses-about-types).
 ## Built-in and Custom License Fields
 
 Each customer license file has several built-in fields. Built-in fields are reserved
@@ -44,7 +43,7 @@ For example, there are built-in license fields that define the license expiratio
 date, the customer name, the application slug value, and whether air gap installations
 are supported.
 
-For more information about built-in fields, see [About built-in license fields](licenses-using-builtin-fields).
+For more information about built-in fields, see [About Built-in License Fields](licenses-using-builtin-fields).
 
 You can also create custom license fields. Custom license fields are useful when
 there are entitlements specific to the customer.
@@ -56,7 +55,13 @@ the customer can run the application.
 For more information about creating custom license fields, see [Managing Custom License Fields](licenses-adding-custom-fields)
 and [Referencing Custom License Fields](licenses-referencing-fields).
 
-## About Archiving Customer Licenses
+## License Expiration Handling
+
+The built-in `expires_at` license field defines the expiration date for a customer license.
+
+By default, an application with an expired license continues to run, but is prevented from receiving updates. To change the behavior of your application when a license expires, you can can add custom logic based on the values for the `expires_at` field.
+
+## Archiving Customer Licenses
 
 When you archive a license in the vendor portal, it is hidden in the default license
 search and becomes read-only. Archival does not affect the utility of license files
