@@ -5,9 +5,9 @@ When an application is installed, [Kubernetes RBAC](https://kubernetes.io/docs/r
 By default, the admin console will create a ClusterRole and ClusterRoleBinding with permissions to all namespaces.
 This behavior can be controlled by editing the Application custom resource manifest file. For more information about the Application manifest, see [Application](../reference/custom-resource-application) in the _Custom Resources_ section.
 
-As listed above, an application may require cluster scoped access across all namespaces on all/wildcard k8 objects or to have access limited to its given namespace.
+As listed above, an application can require cluster scoped access across all namespaces on all/wildcard k8 objects or to have access limited to its given namespace.
 In either case, the user who installs an application with the kots CLI must have the wildcard privileges in the cluster.
-If the user has insufficient privileges the following error will be shown when attempting install or upgrade.
+If the user has insufficient privileges the following error is shown when attempting install or upgrade.
 
 ```bash
 $  kubectl kots install appslug
@@ -81,15 +81,15 @@ subjects:
 
 ## Namespace-scoped access
 
-An application developer can limit the minimal role-based access control (RBAC) grants for the admin console to be limited to a single namespace by specifying one of the following options in the Application manifest file.
+An application developer can limit the role-based access control (RBAC) grants for the admin console to a single namespace by specifying one of the following options in the Application manifest file.
 
-* `requireMinimalRBACPrivileges` - When this flag is set, the app manager will create a Role and RoleBinding, granting the admin console access to select resources in the namespace, but not outside of the cluster. Setting this applies to all customers.
+* `requireMinimalRBACPrivileges` - When this flag is set, the app manager creates a Role and RoleBinding, granting the admin console access to select resources in the namespace, but not outside of the cluster. Setting this flag applies to all customers.
 
-* `suppportMinimalRBACPrivileges` - Applicable to existing clusters only. When set to `true`, the app manager enables a namespace-scoped Role and RoleBinding on a per-customer basis. Therefore, it is not triggered by default in the installation. You must also tell the end user to opt in using the `kots install` command with the `-- use-minimal-rbac` flag set to `true`.
+* `supportMinimalRBACPrivileges` - Applicable to existing clusters only. When set to `true`, the app manager enables a namespace-scoped Role and RoleBinding on a per-customer basis. Therefore, this setting is not triggered by default in the installation. You must also tell the end user to opt in using the `kots install` command with the `-- use-minimal-rbac` flag set to `true`.
 
 ### Preflight Checks and Support Bundles
 
-Without access to cluster-scoped resources, some preflight checks and support bundle collectors will not be able to read the resources. These tools will continue to function, but will return less data. In this situation, the admin console presents an option for the user to either proceed with limited data or use the displayed `kubectl preflight` command to run the preflight checks or support bundle remotely with the user's RBAC authorizations. After the command runs, the results are automatically uploaded to the app manager.
+Without access to cluster-scoped resources, some preflight checks and support bundle collectors are not be able to read the resources. These tools continue to function, but return less data. In this situation, the admin console presents an option for the user to either proceed with limited data or use the displayed `kubectl preflight` command to run the preflight checks or support bundle remotely with the user's RBAC authorizations. After the command runs, the results are automatically uploaded to the app manager.
 
 **Example: `kubectl preflight` command**
 
@@ -108,7 +108,7 @@ The `kubectl kots velero ensure-permissions` command can be used to create addit
 ### Air Gap Installations
 
 Air gap installations honor the `requireMinimalRBACPrivileges` flag in [headless mode only](../enterprise/installing-existing-cluster-automation#airgap-install).
-Without access to the internet or the app's `.airgap` package as provided in a headless install, the app manager does not have the information required to determine whether minimal RBAC is appropriate and so it defaults to the more permissive RBAC policy.
+Without access to the internet or the application's `.airgap` package as provided in a headless install, the app manager does not have the information required to determine whether minimal RBAC is appropriate and so it defaults to the more permissive RBAC policy.
 
 ### Operators and multiple namespaces
 
@@ -143,11 +143,11 @@ rules:
     verb: "*"
 ```
 
-(Note that the kotsadm-operator component receives an authorization for all verb, all resources and all apiGroups in the namespace).
+:::note
+The kotsadm-operator component receives an authorization for all verb, all resources and all apiGroups in the namespace.
+:::
 
 ## Converting
 
-The RBAC permissions are set during the initial installation.
-The admin console is running using the assumed identity and cannot change its own authorization.
-Changing the RBAC scope from cluster to namespace or from namespace to cluster affects only new installations of the application; existing installations continue to run with their current authorization.
+The RBAC permissions are set during the initial installation. The admin console is running using the assumed identity and cannot change its own authorization. Changing the RBAC scope from cluster to namespace or from namespace to cluster affects only new installations of the application; existing installations continue to run with their current authorization.
 For applications that need to elevate their permission from namespace to cluster, we recommend including a preflight check to ensure the permission is available.
