@@ -101,7 +101,7 @@ For backwards compatibility, exact versions are also supported.
 When an exact version is specified, the app manager will choose the matching major and minor version.
 
 ## requireMinimalRBACPrivileges
-When set to `true`, the app manager creates a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding. Setting this applies to all customers. To apply this on a per-customer basis, see [`supportsMinimalRBACPrivileges`](#supportsinimalrbacprivileges).
+When set to `true`, the app manager creates a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding. Setting this flag applies to all customers.
 
 When installing with minimal role-based access control (RBAC), the app manager recognizes if the preflight checks fail due to insufficient privileges. For more information about RBAC, see [Namespace-scoped Access](../vendor/packaging-rbac/#namespace-scoped-access) in _Configuring Role-based Access Control_.
 
