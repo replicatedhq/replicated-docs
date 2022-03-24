@@ -12,6 +12,7 @@ replicated release promote SEQUENCE CHANNEL_ID [Flags]
 
 | Flag                 | Type | Description |
 |:----------------------|------|-------------|
+| `--required` | | Prevents users from skipping this release during application upgrades. For more information, see [Promoting Releases](../vendor/releases-promoting).|
 | `--release-notes` | string |  The release notes for the release. Supports markdown formatting.|
 | `--version` | string |       A version label for the release in this channel. |
 | `-h, --help`   |  |          Help for the command. |
