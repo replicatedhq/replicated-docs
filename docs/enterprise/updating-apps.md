@@ -44,9 +44,8 @@ the application vendor.
 
    [![Preflight Checks](/images/preflight-checks.png)](/images/preflight-checks.png)
 :::note
-Preflight failures and warnings do not prevent the upgrade to a new version. You can decide to ignore these failures and proceed with the upgrade.
-
-Preflight check failures can be ignored unless they are `strict`. If present, strict preflight checks that have a `fail` outcome prevent the installer from deploying the release. For more information about resolving strict preflight checks, see [Resolving Strict Preflight Checks](../enterprise/installing-existing-cluster-online#resolve-strict-preflight-checks).
+Not all preflight failures and warnings prevent the upgrade to a new version. Unless the admin console blocks you from continuing due to a failed preflight check, you can decide to ignore these failures and proceed with the upgrade.
+For more information about preflight checks that prevent application deployment, see [Resolving Strict Preflight Checks](../enterprise/installing-existing-cluster-online#resolve-strict-preflight-checks).
 :::
 1. To update the application, return to the Version History tab
 and click **Deploy** next to the target version.
