@@ -142,5 +142,5 @@ The kotsadm-operator component receives an authorization for all verbs, resource
 
 ## Converting
 
-The RBAC permissions are set during the initial installation. The admin console is running using the assumed identity and cannot change its own authorization. Changing the RBAC scope from cluster to namespace or from namespace to cluster affects only new installations of the application; existing installations continue to run with their current authorization.
+The RBAC permissions are set during the initial installation. The admin console runs using the assumed identity and cannot change its own authorization. Changing the RBAC scope from cluster to namespace or conversely affects only new installations . Existing installations continue to run with their current authorization.
 For applications that need to elevate their permission from namespace to cluster, we recommend including a preflight check to ensure the permission is available.
