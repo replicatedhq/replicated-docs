@@ -7,7 +7,7 @@ This behavior can be controlled by editing the Application custom resource manif
 
 As listed above, an application can require cluster scoped access across all namespaces on all/wildcard k8 objects or to have access limited to its given namespace.
 In either case, the user who installs an application with the kots CLI must have the wildcard privileges in the cluster.
-If the user has insufficient privileges the following error is shown when attempting install or upgrade.
+If the user has insufficient privileges, the following error is shown when attempting to install or upgrade.
 
 ```bash
 $  kubectl kots install appslug
