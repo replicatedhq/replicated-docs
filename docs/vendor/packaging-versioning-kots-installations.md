@@ -2,7 +2,7 @@
 
 The Replicated app manager is based on the KOTS open source project. The KOTS version is the same as the app manager version. For example, KOTS v1.60 is the same as the app manager v1.60.
 
-Using these KOTS installation version features are optional. These features are part of the Application custom resources, which help to control the application experience but are not deployed to the cluster. For more information, see [Application Custom Resources](../reference/custom-resource-application).
+You can configure these optional KOTS installation version features in the Application custom resources (manifest file). The attributes in this file help to control the application experience but are not deployed to the cluster. For more information, see [Application Custom Resources](../reference/custom-resource-application).
 
 ## Using Minimum KOTS versions (Beta)
 
@@ -10,7 +10,7 @@ Using these KOTS installation version features are optional. These features are 
 
 The `minKotsVersion` attribute in the Application manifest file defines the minimum KOTS version that is required by the application release. Including this attribute enforces compatibility checks for both new installations and application updates. It also blocks installation or an update if the current deployed KOTS version is earlier than the `minKotsVersion`.
 
-For existing installations, using `minKotsVersion` requires your users to upgrade to the specified version of KOTS before they can update the application. This can be useful when you want to get your users on the same version of KOTS that you are using for QA or testing or when you want your users to start using new features that you have added to a minimum version of KOTS. For example, if you do not offer a backup and restore option of your own, you can add the Replicated snapshots feature to your minimum KOTS version.
+For existing installations, using `minKotsVersion` requires your users to upgrade to the specified version of KOTS before they can update the application. This can be useful when you want to get users on the same version of KOTS that you are using for testing or when you want them to start using new features that you have added to a minimum version of KOTS. For example, if you do not offer a backup and restore option of your own, you can add the Replicated snapshots feature to your minimum KOTS version.
 
 For more information about the user experience for updates, see [How the Admin Console Handles minKotsVersion](#how-the-admin-console-handles-minkotsversion).
 
