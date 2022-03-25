@@ -87,16 +87,9 @@ An application vendor can limit the role-based access control (RBAC) grants for 
 
 * `supportMinimalRBACPrivileges` - Applicable to existing clusters only. When set to `true`, the app manager supports creating a namespace-scoped Role and RoleBinding, granting the admin console access to all resources in the namespace, but not to any resources outside of the namespace. Minimal RBAC is not be used by default. It is used only when the `--use-minimal-rbac` flag is passed to the `kots install` command. Use this option if you want a subset of customer installations to use minimal RBAC.
 
-### Preflight Checks and Support Bundles
+### Strict Preflight Checks
 
-Without access to cluster-scoped resources, some preflight checks and support bundle collectors are not be able to read the resources. These tools continue to function, but return less data. In this situation, the admin console presents an option for the user to either proceed with limited data or use the displayed `kubectl preflight` command to run the preflight checks or support bundle remotely with the user's RBAC authorizations. After the command runs, the results are automatically uploaded to the app manager.
-
-**Example: `kubectl preflight` command**
-
-```bash
-curl https://krew.sh/preflight | bash
-kubectl preflight secret/<namespace>/kotsadm-<appslug>-preflight
-```
+Without access to cluster-scoped resources, some preflight checks are not be able to read the resources. These tools continue to function, but return less data. For more information, see [Creating Preflight Checks and Support Bundles](https://docs.replicated.com/vendor/preflight-support-bundle-creating).
 
 ### Velero Namespace Access
 
