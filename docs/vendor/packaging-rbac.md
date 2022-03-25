@@ -144,7 +144,7 @@ rules:
 ```
 
 :::note
-The kotsadm-operator component receives an authorization for all verb, all resources and all apiGroups in the namespace.
+The kotsadm-operator component receives an authorization for all verbs, resources, and apiGroups in the namespace.
 :::
 
 ## Converting
