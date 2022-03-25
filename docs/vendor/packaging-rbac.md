@@ -83,7 +83,7 @@ subjects:
 
 An application vendor can limit the role-based access control (RBAC) grants for the admin console to a single namespace by specifying one of the following options in the Application manifest file.
 
-* `requireMinimalRBACPrivileges` - When this flag is set, the app manager creates a Role and RoleBinding, granting the admin console access to select resources in the namespace, but not outside of the cluster. Setting this flag applies to all customers.
+* `requireMinimalRBACPrivileges` - Applicable to existing clusters only. When set to `true`, the app manager creates a Role and RoleBinding, granting the admin console access to all resources in the namespace, but not to any resources outside of the namespace. If you want all customer installations to use minimal RBAC, use this option.
 
 * `supportMinimalRBACPrivileges` - Applicable to existing clusters only. When set to `true`, the app manager enables a namespace-scoped Role and RoleBinding on a per-customer basis. Therefore, this setting is not triggered by default in the installation. You must also tell the end user to opt in using the `kots install` command with the `-- use-minimal-rbac` flag set to `true`.
 
