@@ -112,7 +112,7 @@ When installing with minimal role-based access control (RBAC), the app manager r
 
 This option is applicable to existing clusters only.
 
-Allows minimal role-based access control (RBAC) for be set on a per-customer basis. When set to `true`, the app manager enables a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding. However, as a per-customer feature, it is not triggered by default in the installation. You must also tell the end user to opt in using the `kots install` command with the `-- use-minimal-rbac` flag set to `true`.
+Allows minimal role-based access control (RBAC) for be used for a subset of customer installations. When set to `true`, the app manager supports creating a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding. Minimal RBAC will not be used by default. It will only be used when the `--use-minimal-rbac` flag is passed to the `kots install` command.
 
 When installing with minimal RBAC, the app manager recognizes if the preflight checks fail due to insufficient privileges. For more information about RBAC, see [Namespace-scoped Access](../vendor/packaging-rbac/#namespace-scoped-access) in _Configuring Role-based Access Control_.
 
