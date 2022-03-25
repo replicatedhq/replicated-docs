@@ -106,7 +106,7 @@ This option is applicable to existing clusters only.
 
 Allows minimal role-based access control (RBAC) to be used for all customer installations. When set to `true`, the app manager creates a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.
 
-When installing with minimal role-based access control (RBAC), the app manager recognizes if the preflight checks fail due to insufficient privileges. For more information about RBAC, see [Namespace-scoped Access](../vendor/packaging-rbac/#namespace-scoped-access) in _Configuring Role-based Access Control_.
+For more information about RBAC, see [Namespace-scoped Access](../vendor/packaging-rbac/#namespace-scoped-access) in _Configuring Role-based Access Control_.
 
 ## supportsMinimalRBACPrivileges
 
