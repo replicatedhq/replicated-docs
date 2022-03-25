@@ -5,7 +5,7 @@ When an application is installed, [Kubernetes RBAC](https://kubernetes.io/docs/r
 By default, the admin console will create a ClusterRole and ClusterRoleBinding with permissions to all namespaces.
 This behavior can be controlled by editing the Application custom resource manifest file. For more information about the Application manifest, see [Application](../reference/custom-resource-application) in the _Custom Resources_ section.
 
-As listed above, an application can require cluster scoped access across all namespaces on all/wildcard k8 objects or to have access limited to its given namespace.
+As listed above, an application can require cluster-scoped access across all namespaces on all/wildcard Kubernetes objects, or it can have access limited to its given namespace.
 In either case, the user who installs an application with the kots CLI must have the wildcard privileges in the cluster.
 If the user has insufficient privileges, the following error is shown when attempting to install or upgrade.
 
