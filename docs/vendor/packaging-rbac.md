@@ -81,7 +81,7 @@ subjects:
 
 ## Namespace-scoped access
 
-An application developer can limit the role-based access control (RBAC) grants for the admin console to a single namespace by specifying one of the following options in the Application manifest file.
+An application vendor can limit the role-based access control (RBAC) grants for the admin console to a single namespace by specifying one of the following options in the Application manifest file.
 
 * `requireMinimalRBACPrivileges` - When this flag is set, the app manager creates a Role and RoleBinding, granting the admin console access to select resources in the namespace, but not outside of the cluster. Setting this flag applies to all customers.
 
