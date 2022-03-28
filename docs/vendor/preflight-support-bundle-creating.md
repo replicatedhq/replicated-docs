@@ -36,16 +36,6 @@ For more information about creating preflight checks, see
 [Preflight Checks](https://troubleshoot.sh/docs/preflight/introduction/) in the
 Troubleshoot documentation. There are also a number of basic examples for checking CPU, memory, and disk capacity under [Node Resources Analyzer](https://troubleshoot.sh/reference/analyzers/node-resources/).
 
-### Using Preflight Checks with Minimal RBAC
-When installing with minimal role-based access control (RBAC), the app manager recognizes if the preflight checks failed due to insufficient privileges. When this occurs, a `kubectl preflight` command is displayed that can be run manually in the cluster to run the preflight checks. When the command runs and completes, the results are automatically uploaded to the app manager.
-
-**Example: `kubectl preflight` command**
-
-```bash
-curl https://krew.sh/preflight | bash
-kubectl preflight secret/<namespace>/kotsadm-<appslug>-preflight
-```
-
 ## Creating support bundles
 
 You can create support bundles with the `support-bundle` plugin for the `kubectl` Kubernetes command-line tool.
