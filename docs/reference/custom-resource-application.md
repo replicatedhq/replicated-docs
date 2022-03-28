@@ -119,7 +119,7 @@ kubectl preflight secret/<namespace>/kotsadm-<appslug>-preflight
 
 This option is applicable to existing clusters only.
 
-Allows minimal role-based access control (RBAC) for be used for a subset of customer installations. When set to `true`, the app manager supports creating a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding. Minimal RBAC will not be used by default. It will only be used when the `--use-minimal-rbac` flag is passed to the `kots install` command. For more information about RBAC, see [Namespace-scoped Access](../vendor/packaging-rbac/#namespace-scoped-access) in _Configuring Role-based Access Control_.
+Allows minimal role-based access control (RBAC) to be used for a subset of customer installations. When set to `true`, the app manager supports creating a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding. Minimal RBAC will not be used by default. It will only be used when the `--use-minimal-rbac` flag is passed to the `kots install` command. For more information about RBAC, see [Namespace-scoped Access](../vendor/packaging-rbac/#namespace-scoped-access) in _Configuring Role-based Access Control_.
 
 When installing with minimal role-based access control (RBAC), the app manager recognizes if the preflight checks failed due to insufficient privileges. When this occurs, a `kubectl preflight` command is displayed that can be run manually in the cluster to run the preflight checks. When the command runs and completes, the results are automatically uploaded to the app manager.
 
