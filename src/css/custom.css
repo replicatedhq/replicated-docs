@@ -147,7 +147,7 @@ h3[id^="new-features"] {
   border-radius: 25px!important;
   color: #fff;
   width: max-content;
-  padding: 0.2em 0.8em 0.3em;
+  padding: 0.2em 0.8em 0.2em;
   font-weight: 500;
   font-size: 20px;
 }
@@ -157,7 +157,7 @@ h3[id^="improvements"] {
   border-radius: 25px!important;
   color: #fff;
   width: max-content;
-  padding: 0.2em 0.8em 0.3em;
+  padding: 0.2em 0.8em 0.2em;
   font-weight: 500;
   font-size: 20px;
 }
@@ -167,7 +167,7 @@ h3[id^="bug-fixes"] {
   border-radius: 25px!important;
   color: #fff;
   width: max-content;
-  padding: 0.2em 0.8em 0.3em;
+  padding: 0.2em 0.8em 0.2em;
   font-weight: 500;
   font-size: 20px;
 }
