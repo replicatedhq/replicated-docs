@@ -144,30 +144,30 @@ ol ol ol {
 
 h3[id^="new-features"] {
   background-color: #4BC99C;
-  border-radius: 25px!important;
+  border-radius: 7px!important;
   color: #fff;
   width: max-content;
-  padding: 0.2em 0.8em 0.2em;
+  padding: 0.2em 0.6em 0.2em;
   font-weight: 500;
   font-size: 20px;
 }
 
 h3[id^="improvements"] {
   background-color: #38C1CA;
-  border-radius: 25px!important;
+  border-radius: 7px!important;
   color: #fff;
   width: max-content;
-  padding: 0.2em 0.8em 0.2em;
+  padding: 0.2em 0.6em 0.2em;
   font-weight: 500;
   font-size: 20px;
 }
 
 h3[id^="bug-fixes"] {
-  background-color: #F96B62;
-  border-radius: 25px!important;
+  background-color: #F47878;
+  border-radius: 7px!important;
   color: #fff;
   width: max-content;
-  padding: 0.2em 0.8em 0.2em;
+  padding: 0.2em 0.6em 0.2em;
   font-weight: 500;
   font-size: 20px;
 }
