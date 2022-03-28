@@ -14,6 +14,8 @@ To install an application on an existing cluster with Replicated, the cluster mu
    * An existing namespace and an RBAC binding that permits the user of the kubectl command-line tool to create workloads, ClusterRoles, and ClusterRoleBindings.
    * cluster-admin permissions to create namespaces and assign RBAC roles across the cluster.
 
-   **Note**: If the `requireMinimalRBACPrivileges` property is set to `true` in the Application custom resource manifest, or if the `supportsMinimalRBACPrivileges` property is set to `true` in the Application custom resource manifest and the `--use-minimal-rbac` flag is passed to the `kots install` command, the app manager does not require the ability to create ClusterRoles and ClusterRoleBindings and uses a namespace-scoped Role and RoleBinding instead. For more information about the Application custom resource, see [Application](../reference/custom-resource-application) in _Custom resources_.
+:::note
+If the `requireMinimalRBACPrivileges` property is set to `true` in the Application custom resource manifest, or if the `supportsMinimalRBACPrivileges` property is set to `true` in the Application custom resource manifest and the `--use-minimal-rbac` flag is passed to the `kots install` command, the app manager does not require the ability to create ClusterRoles and ClusterRoleBindings and uses a namespace-scoped Role and RoleBinding instead. For more information about the Application custom resource, see [Application](../reference/custom-resource-application) in _Custom resources_.
+:::
 
 **Note**: Root access on nodes or workstations is *not* required to install an application on an existing cluster.
