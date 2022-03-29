@@ -110,7 +110,7 @@ Requires minimal role-based access control (RBAC) be used for all customer insta
 
 This option is applicable to existing clusters only.
 
-Allows minimal role-based access control (RBAC) to be used for a subset of customer installations. When set to `true`, the app manager supports creating a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding. Minimal RBAC will not be used by default. It will only be used when the `--use-minimal-rbac` flag is passed to the `kots install` command. For more information about RBAC, see [Namespace-scoped Access](../vendor/packaging-rbac/#namespace-scoped-access) in _Configuring Role-based Access Control_.
+Allows minimal role-based access control (RBAC) to be used for a subset of customer installations. When set to `true`, the app manager supports creating a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding. Minimal RBAC is not used by default. It is only used when the `--use-minimal-rbac` flag is passed to the `kots install` command. For more information about RBAC, see [Namespace-scoped Access](../vendor/packaging-rbac/#namespace-scoped-access) in _Configuring Role-based Access Control_.
 
 ## ports
 These are extra ports (additional to the :8800 admin console port) that should be port-forwarded when running the `kots admin-console` command.
