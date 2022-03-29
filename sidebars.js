@@ -61,7 +61,14 @@ const sidebars = {
                 label: 'Packaging Your Application',
                 items: [
                   'vendor/repository-workflow-and-tagging-releases',
-                  'vendor/packaging-private-images',
+                  {
+                      type: 'category',
+                      label: 'Using Private Registries',
+                      items: [
+                        'vendor/packaging-private-registry-security',
+                        'vendor/packaging-private-images',
+                    ],
+                  },
                   'vendor/database-config-adding-options',
                   'vendor/packaging-custom-resources',
                   'vendor/packaging-template-functions',
