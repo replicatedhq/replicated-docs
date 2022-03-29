@@ -172,20 +172,19 @@ Y axis labels template. Use `{{ value }}`.
 
 >Introduced in app manager v1.62.0.
 
-The KOTS version that is targeted by the release.
+The KOTS version that is targeted by the release. For more information, see [Setting Minimum and Target Versions for KOTS](../vendor/packaging-kots-versions).
 
 :::note
-The app manager is based on the KOTS open source project. The KOTS version is the same as the app manager version. For example, KOTS v1.60 is the same as the app manager v1.60.
+The app manager is based on the KOTS open source project. The KOTS version is the same as the app manager version. For example, KOTS v1.60 is the same as the app manager v1.60. For more information about the KOTS add-on, see [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) in the open source kURL documentation.
 :::
 
-For more information about the KOTS add-on, see [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) in the open source kURL documentation.
 
 ## minKotsVersion (Beta)
 
 >Introduced in app manager v1.62.0.
 
-The minimum KOTS version that is required by the release.
+The minimum KOTS version that is required by the release. For more information, see [Setting Minimum and Target Versions for KOTS](../vendor/packaging-kots-versions).
 
 :::note
-The app manager is based on the KOTS open source project. The KOTS version is the same as the app manager version. For example, KOTS v1.60 is the same as the app manager v1.60.
+The app manager is based on the KOTS open source project. The KOTS version is the same as the app manager version. For example, KOTS v1.60 is the same as the app manager v1.60. For more information about the KOTS add-on, see [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) in the open source kURL documentation.
 :::
