@@ -6,7 +6,7 @@ Minimum and target KOTS versions are optional features that are configured in th
 The Replicated app manager is based on the KOTS open source project. The KOTS version is the same as the app manager version. For example, KOTS v1.60 is the same as the app manager v1.60. For more information, see [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) in the open source kURL documentation.
 :::
 
-## Using Minimum KOTS versions (Beta)
+## Using Minimum KOTS Versions (Beta)
 
 >Introduced in app manager v1.62.0.
 
