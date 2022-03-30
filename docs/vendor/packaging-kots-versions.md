@@ -3,14 +3,14 @@
 Minimum and target KOTS versions are optional features that are configured in the Application custom resource file. The attributes in this file help to control the application experience but are not deployed to the cluster. For more information, see [Application Custom Resource](../reference/custom-resource-application).
 
 :::note
-The Replicated app manager is based on the KOTS open source project. The KOTS version is the same as the app manager version. For example, KOTS v1.60 is the same as the app manager v1.60. For more information about the KOTS add-on, see [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) in the open source kURL documentation.
+The Replicated app manager is based on the KOTS open source project. The KOTS version is the same as the app manager version. For example, KOTS v1.60 is the same as the app manager v1.60. For more information, see [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) in the open source kURL documentation.
 :::
 
 ## Using Minimum KOTS versions (Beta)
 
 >Introduced in app manager v1.62.0.
 
-The `minKotsVersion` attribute in the Application manifest file defines the minimum KOTS version that is required by the application release. This can be useful when you want to get users on the same version of KOTS that you are using for testing or when you want them to start using new features that are supporting on a minimum version of KOTS.
+The `minKotsVersion` attribute in the Application manifest file defines the minimum KOTS version that is required by the application release. This can be useful when you want to get users on the same version of KOTS that you have tested or for using new features that are supported on a minimum version of KOTS.
 
 Including this attribute enforces compatibility checks for both new installations and application updates. It also blocks an installation or an update if the currently deployed KOTS version is earlier than the `minKotsVersion`.
 
@@ -31,7 +31,7 @@ After updating KOTS to the minimum version or later, users can use the admin con
 
 >Introduced in app manager v1.62.0.
 
- Including `targetKotsVersion` in the Application manifest file enforces compatibility checks for new installations. It also blocks the installation if a user tries to install a version that is later than the target version. For example, this can be useful if you do not want users installing a version of KOTS that you have not tested yet.
+ Including `targetKotsVersion` in the Application manifest file enforces compatibility checks for new installations. It also blocks the installation if a user tries to install a version that is later than the target version. For example, this can prevent users from installing a version of KOTS that you have not tested.
 
 If the latest release in a channel includes `targetKotsVersion`, the install command for existing clusters is modified to install that specific version of KOTS. The install command for existing clusters is on the channel card in the [vendor portal](https://vendor.replicated.com).
 
