@@ -5,7 +5,7 @@ This document lists the security measures and processes in place to ensure that 
 
 ## Single Tenant Isolation
 
-The registry is deployed and managed as a multi-tenant application, but each tenant is completely isolated from data that is created and pulled by other tenants. Docker images have shared base layers, but the private registry does not share these between tenants. For example, if a tenant creates an image `FROM postgres:10.3`, and pushes the image to Replicated, all of the layers are uploaded, even if other tenants have this base layer uploaded.
+The registry is deployed and managed as a multi-tenant application, but each tenant is completely isolated from data that is created and pulled by other tenants. Docker images have shared base layers, but the private registry does not share these between tenants. For example, if a tenant creates an image `FROM postgres:10.3` and pushes the image to Replicated, all of the layers are uploaded, even if other tenants have this base layer uploaded.
 
 A tenant in the private registry is a team on the Replicated [vendor portal](https://vendor.replicated.com). Licenses and customers created by the team are also granted some permissions to the registry data, as specified in the following sections. Cross-tenant access is never allowed in the private registry.
 
