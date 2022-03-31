@@ -164,7 +164,7 @@ PodSpecs that reference images in the Replicated private registry.
 
 :::note
 When deploying Pods to namespaces other than the app manager application namespace, you must add the namespace to the `additionalNamespaces` attribute of the Application custom resource manifest.
-This ensures the app manager can provision the the `imagePullSecret` in the namespace to allow the Pod to pull the image.
+This ensures the app manager can provision the `imagePullSecret` in the namespace to allow the Pod to pull the image.
 For more information about the `additionalNamespaces` attribute, see [Defining Additional Namespaces](operator-defining-additional-namespaces).
 :::
 
