@@ -20,7 +20,7 @@ If SAML authentication is configured for your team, Two-Factor Authentication (2
 
 ### Role Based Access Control
 
-Replicated supports Role Based Access Control (RBAC) in the vendor portal. To use RBAC with SAML, you must configure policies and add users to the policies by their username. Usernames are the identity of the user in your identity provide (IDP). Typically, this username is the full email address. For more information about RBAC, see [Configuring Role Based Access Control](https://replicated-docs.netlify.app/vendor/packaging-rbac).
+Replicated supports Role Based Access Control (RBAC) in the vendor portal. To use RBAC with SAML, you must configure policies and add users to the policies by their username. Usernames are the identity of the user in your identity provide (IDP). Typically, this username is the full email address. For more information about RBAC, see [Configuring Role Based Access Control](https://help.replicated.com/docs/vendor-rbac/overview/).
 
 ## Downloading Certificates from Supported SAML providers
 
