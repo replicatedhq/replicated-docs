@@ -10,7 +10,7 @@ The Replicated app manager is based on the KOTS open source project. The KOTS ve
 
 >Introduced in app manager v1.62.0.
 
-The `minKotsVersion` attribute in the Application manifest file defines the minimum KOTS version that is required by the application release. This can be useful when you want to get users on the same version of KOTS that you have tested or for using new features that are supported on a minimum version of KOTS.
+The `minKotsVersion` attribute in the Application manifest file defines the minimum KOTS version that is required by the application release. This can be useful when you want to get users who are lagging behind to update to a more recent KOTS version, or if your application requires functionality that was introduced in a particular KOTS version.
 
 Including this attribute enforces compatibility checks for both new installations and application updates. It also blocks an installation or an update if the currently deployed KOTS version is earlier than the `minKotsVersion`.
 
@@ -31,7 +31,7 @@ After updating KOTS to the minimum version or later, users can use the admin con
 
 >Introduced in app manager v1.62.0.
 
- Including `targetKotsVersion` in the Application manifest file enforces compatibility checks for new installations. It also blocks the installation if a user tries to install a version that is later than the target version. For example, this can prevent users from installing a version of KOTS that you have not tested.
+ Including `targetKotsVersion` in the Application manifest file enforces compatibility checks for new installations. It blocks the installation if a user tries to install a version that is later than the target version. For example, this can prevent users from installing a version of KOTS that you have not tested. This setting also encourages users to update KOTS. If the currently deployed KOTS version is earlier than the target KOTS version, a banner appears at the bottom of the admin console informing the user of a later KOTS version that they can update to.
 
 If the latest release in a channel includes `targetKotsVersion`, the install command for existing clusters is modified to install that specific version of KOTS. The install command for existing clusters is on the channel card in the [vendor portal](https://vendor.replicated.com).
 
