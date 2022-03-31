@@ -65,8 +65,8 @@ const sidebars = {
                       type: 'category',
                       label: 'Using Private Registries',
                       items: [
-                        'vendor/packaging-private-registry-security',
                         'vendor/packaging-private-images',
+                        'vendor/packaging-private-registry-security',
                     ],
                   },
                   'vendor/database-config-adding-options',

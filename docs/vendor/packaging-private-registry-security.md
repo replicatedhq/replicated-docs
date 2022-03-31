@@ -1,6 +1,6 @@
-# About Private Registry Security
+# Replicated Private Registry Security
 
-This document lists the security measures and processes in place to ensure that images pushed to the Replicated private registry remain private. For more information about how to work with private registries, see [Connecting to an Image Registry](packaging-private-images).
+This document lists the security measures and processes in place to ensure that images pushed to the Replicated private registry remain private. For more information about pushing images to the Replicated private registry, see [Use The Replicated Private Registry](packaging-private-images#use-the-replicated-private-registry) in _Connecting to an Image Registry_ .
 
 
 ## Single Tenant Isolation
