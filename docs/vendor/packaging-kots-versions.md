@@ -31,7 +31,7 @@ After updating KOTS to the minimum version or later, users can use the admin con
 
 >Introduced in app manager v1.62.0.
 
- Including `targetKotsVersion` in the Application manifest file enforces compatibility checks for new installations. It blocks the installation if a user tries to install a version that is later than the target version. For example, this can prevent users from installing a version of KOTS that you have not tested. This setting also encourages users to update KOTS. If the currently deployed KOTS version is earlier than the target KOTS version, a banner appears at the bottom of the admin console informing the user of a later KOTS version that they can update to.
+ Including `targetKotsVersion` in the Application manifest file enforces compatibility checks for new installations. It blocks the installation if a user tries to install a version that is later than the target version. For example, this can prevent users from installing a version of KOTS that you have not tested.
 
 If the latest release in a channel includes `targetKotsVersion`, the install command for existing clusters is modified to install that specific version of KOTS. The install command for existing clusters is on the channel card in the [vendor portal](https://vendor.replicated.com).
 
@@ -39,9 +39,9 @@ If the latest release in a channel includes `targetKotsVersion`, the install com
 
 Specifying a `targetKotsVersion` does not prevent an end user from upgrading to a later version of KOTS after the initial installation.
 
-If a new version of the application specifies a later target KOTS version than what is currently installed, the end user is not prevented from deploying that version of the application.
+If a new version of the application specifies a later target KOTS version than what is currently installed, users are not prevented from deploying that version of the application.
 
-If a user's admin console is running a version of KOTS that is earlier than the target version specified in the new version of the application, the admin console displays a message in the footer to indicate that a newer supported version of KOTS is available.
+If a user's admin console is running a version of KOTS that is earlier than the target version specified in the new version of the application, the admin console displays a banner indicating that a newer supported version of KOTS is available.
 
 ### Using Target Versions with the Kubernetes Installer
 
