@@ -4,7 +4,7 @@ This topic describes how to enable or disable SAML authentication.
 
 ## Using SAML with the Vendor Portal
 
-After starting out with Replicated, most teams grow, adding more developers, support engineers, and sales engineers. Eventually, managing access to the Replicated vendor portal can become difficult. Replicated supports logging in using SAML, which lets you manage access (provisioning and deprovisioning) outside of Replicated. Using SAML, everyone on your team can log in with their existing usernames and passwords, simplifying their experience.
+After starting out with Replicated, most teams grow, adding more developers, support engineers, and sales engineers. Eventually, managing access to the Replicated vendor portal can become difficult. Replicated supports logging in using SAML, which lets you manage access (provisioning and unprovisioning) outside of Replicated. Using SAML, everyone on your team can log in with their existing usernames and passwords, simplifying their experience.
 
 ### Enabling SAML in Your Vendor Account
 
@@ -24,7 +24,7 @@ Replicated supports Role Based Access Control (RBAC) in the vendor portal. To us
 
 ## Downloading Certificates from Supported SAML providers
 
-You must retrieve the metadata and .509 pubic certificate files from your SAML provide before configuring Replciated.
+You must retrieve the metadata and .509 public certificate files from your SAML provide before configuring Replicated.
 
 Replicated tests several SAML providers, but the service should be compatible with any SAML 2.0 compliant service provider. We provide full support for the following SAML providers:
 
