@@ -18,7 +18,7 @@ For more information about the user experience for updates, see [How the Admin C
 
 ### How the Admin Console Handles minKotsVersion
 
-When you promote a new release specifying a minimum KOTS version that is later than what a user currently has deployed, that application version appears in the version history of the admin console after the user checks for updates. However, it is not downloaded.
+When you promote a new release specifying a minimum KOTS version that is later than what a user currently has deployed, and that user checks for updates, that application version appears in the version history of the admin console. However, it is not downloaded.
 
 The admin console temporarily displays an error message that informs the user that they must update KOTS before downloading the application version. This error also displays when the user checks for updates with the [`kots upstream upgrade`](../reference/kots-cli-upstream-upgrade) command.
 
