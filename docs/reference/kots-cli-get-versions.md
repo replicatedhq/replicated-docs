@@ -17,10 +17,10 @@ kubectl kots get versions [app-slug] [flags]
 | :------------------- | ------ | ------------------------------------------------------------------------------------- |
 | `-h, --help`         |        | Help for `get versions`.                                                              |
 | `-n, --namespace`    | string | (Required) The namespace where the admin console is running.                          |
-| `--current-page`     | int    | Offset by page size at which to start retrieving versions. **Default**: 0.            |
-| `--page-size`        | int    | Number of versions to return. **Default**: 20.                                        |
-| `--pin-latest`       | int    | Set to true to always return the latest version at the beginning. **Default**: false. |
-| `-o, --output`       | string | Output format. **Supported formats**: `json`. **Default**: Plain text.                |
+| `--current-page`     | int    | Offset, by page size, at which to start retrieving versions. **Default:** 0            |
+| `--page-size`        | int    | Number of versions to return. **Default:** 20                                        |
+| `--pin-latest`       | int    | When set to true, always returns the latest version at the beginning. **Default:** false |
+| `-o, --output`       | string | Output format. **Supported formats:** `json`. **Default:** Plain text                |
 
 ### Example
 
