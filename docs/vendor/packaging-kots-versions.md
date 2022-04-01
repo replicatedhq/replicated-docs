@@ -26,7 +26,7 @@ The admin console temporarily displays an error message that informs the user th
 
 KOTS cannot update itself automatically, and users cannot update KOTS from the admin console. For more information on updating KOTS, see [Updating the Admin Console on an Existing Cluster](../enterprise/updating-existing-cluster) and [Updating the Admin Console on a Kubernetes Installer-Created Cluster](../enterprise/updating-embedded-cluster).
 
-After updating KOTS to the minimum version or later, users can use the admin console or use the [`kots upstream download`](../reference/kots-cli-upstream-download) command to download the release.
+After updating KOTS to the minimum version or later, users can use the admin console or use the [`kots upstream download`](../reference/kots-cli-upstream-download) command to download the release and subsequently deploy it.
 
 
 ## Using Target KOTS Versions
