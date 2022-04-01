@@ -31,7 +31,7 @@ After updating KOTS to the minimum version or later, users can use the admin con
 
 >Introduced in app manager v1.62.0.
 
- Including `targetKotsVersion` in the Application manifest file enforces compatibility checks for new installations. It blocks the installation if a user tries to install a version that is later than the target version. For example, this can prevent users from installing a version of KOTS that you have not tested.
+ Including `targetKotsVersion` in the Application manifest file enforces compatibility checks for new installations. It blocks the installation if a user tries to install a version that is later than the target version. For example, this can prevent users from installing a version of KOTS that you have not tested yet.
 
 If the latest release in a channel includes `targetKotsVersion`, the install command for existing clusters is modified to install that specific version of KOTS. The install command for existing clusters is on the channel card in the [vendor portal](https://vendor.replicated.com).
 
