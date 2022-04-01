@@ -28,6 +28,7 @@ When configuring the admin console to store snapshots on AWS, the following fiel
 | Path (optional)              | The path in the bucket to store all snapshots in                                                                |
 | Access Key ID (optional)     | The AWS IAM Access Key ID that can read from and write to the bucket                                            |
 | Secret Access Key (optional) | The AWS IAM Secret Access Key that is associated with the Access Key ID                                         |
+| Add a CA Certificate         | (Optional) Upload a 3rd-party proxy CA certificate used for trusting the authenticity of the snapshot storage endpoint. Only one file can be uploaded, however, it is possible to concatenate multiple certificates into one file. **Supported formats:** PEM, CER, CRT, CA, and KEY.          |
 | Use Instance Role            | When enabled, instead of providing an Access Key ID and Secret Access Key, Velero will use an instance IAM role |
 
 ## GCP
