@@ -3,7 +3,7 @@
 Minimum and target KOTS versions are optional features that are configured in the Application custom resource file. The attributes in this file help to control the application experience but are not deployed to the cluster. For more information, see [Application Custom Resource](../reference/custom-resource-application).
 
 :::note
-The Replicated app manager is based on the KOTS open source project. The KOTS version is the same as the app manager version. For example, KOTS v1.60 is the same as the app manager v1.60. For more information, see [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) in the open source kURL documentation.
+The Replicated app manager is based on the KOTS open source project. The KOTS version is the same as the app manager version. For example, KOTS v1.60 is the same as the app manager v1.60.
 :::
 
 ## Using Minimum KOTS Versions (Beta)
