@@ -26,7 +26,8 @@ kind: Ingress
 metadata:
   name: example-annotation
   annotations:
-    kots.io/placeholder: repl{{ printf "'true'" }}repl{{ printf "'my.custom/annotation.class: somevalue'" | nindent 4 }}
+    kots.io/placeholder: |-
+      repl{{ printf "true" }}repl{{ printf "my.custom/annotation.class: somevalue" | nindent 4 }}
 ```
 
 will result in the final rendered YAML:
@@ -48,7 +49,8 @@ kind: Ingress
 metadata:
   name: example-annotation
   annotations:
-    kots.io/placeholder: repl{{ printf "'false'" }}repl{{ printf "'my.custom/annotation.class: somevalue'" | nindent 4 }}
+    kots.io/placeholder: |-
+      repl{{ printf "false" }}repl{{ printf "my.custom/annotation.class: somevalue" | nindent 4 }}
 ```
 
 will result in no annotations appearing in the final rendered YAML:
