@@ -28,8 +28,8 @@ When configuring the admin console to store snapshots on AWS, the following fiel
 | Path (optional)              | The path in the bucket to store all snapshots in                                                                |
 | Access Key ID (optional)     | The AWS IAM Access Key ID that can read from and write to the bucket                                            |
 | Secret Access Key (optional) | The AWS IAM Secret Access Key that is associated with the Access Key ID                                         |
-| Add a CA Certificate         | (Optional) Upload a 3rd-party proxy CA certificate used for trusting the authenticity of the snapshot storage endpoint. Only one file can be uploaded, however, it is possible to concatenate multiple certificates into one file. **Supported formats:** PEM, CER, CRT, CA, and KEY.          |
 | Use Instance Role            | When enabled, instead of providing an Access Key ID and Secret Access Key, Velero will use an instance IAM role |
+| Add a CA Certificate         | (Optional) Upload a 3rd-party proxy CA certificate used for trusting the authenticity of the snapshot storage endpoint. Only one file can be uploaded, however, it is possible to concatenate multiple certificates into one file. **Formats:** PEM, CER, CRT, CA, and KEY          |
 
 ## GCP
 
@@ -40,6 +40,7 @@ When configuring the admin console to store snapshots on GCP, the following fiel
 | Bucket          | The name of the GCP storage bucket to use                                                                 |
 | Path (optional) | The path in the bucket to store all snapshots in                                                          |
 | Service Account | The GCP IAM Service Account JSON file that has permissions to read from and write to the storage location |
+| Add a CA Certificate         | (Optional) Upload a 3rd-party proxy CA certificate used for trusting the authenticity of the snapshot storage endpoint. Only one file can be uploaded, however, it is possible to concatenate multiple certificates into one file. **Formats:** PEM, CER, CRT, CA, and KEY          |
 
 ## Azure
 
@@ -56,6 +57,7 @@ When configuring the admin console to store snapshots on a Azure, the following 
 | Client ID                  | The Client ID of a Service Principle with access to the target Container (required only for access via Service Principle)                  |
 | Client Secret              | The Client Secret of a Service Principle with access to the target Container (required only for access via Service Principle)              |
 | Cloud Name                 | The Azure cloud for the target storage (options: AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud, AzureGermanCloud)              |
+| Add a CA Certificate         | (Optional) Upload a 3rd-party proxy CA certificate used for trusting the authenticity of the snapshot storage endpoint. Only one file can be uploaded, however, it is possible to concatenate multiple certificates into one file. **Formats:** PEM, CER, CRT, CA, and KEY          |
 
 Only connections with Service Principles are supported at this time.
 
@@ -74,6 +76,7 @@ When configuring the admin console to store snapshots on an S3-Compatible storag
 | Access Key ID (optional)     | The AWS IAM Access Key ID that can read from and write to the bucket                                            |
 | Secret Access Key (optional) | The AWS IAM Secret Access Key that is associated with the Access Key ID                                         |
 | Use Instance Role            | When enabled, instead of providing an Access Key ID and Secret Access Key, Velero will use an instance IAM role |
+| Add a CA Certificate         | (Optional) Upload a 3rd-party proxy CA certificate used for trusting the authenticity of the snapshot storage endpoint. Only one file can be uploaded, however, it is possible to concatenate multiple certificates into one file. **Formats:** PEM, CER, CRT, CA, and KEY          |
 
 ## Network File System (NFS)
 
