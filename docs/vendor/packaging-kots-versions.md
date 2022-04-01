@@ -12,9 +12,7 @@ The Replicated app manager is based on the KOTS open source project. The KOTS ve
 
 The `minKotsVersion` attribute in the Application manifest file defines the minimum KOTS version that is required by the application release. This can be useful when you want to get users who are lagging behind to update to a more recent KOTS version, or if your application requires functionality that was introduced in a particular KOTS version.
 
-Including this attribute enforces compatibility checks for both new installations and application updates. It also blocks an installation or an update if the currently deployed KOTS version is earlier than the `minKotsVersion`.
-
-For existing installations, using `minKotsVersion` requires users to upgrade to the specified version of KOTS before they can update the application.
+Including this attribute enforces compatibility checks for both new installations and application updates. An installation or update is blocked if the currently deployed KOTS version is earlier than the specified minimum KOTS version. Users must upgrade to at least the specified minimum version of KOTS before they can install or update the application.
 
 For more information about the user experience for updates, see [How the Admin Console Handles `minKotsVersion`](#how-the-admin-console-handles-minkotsversion).
 
