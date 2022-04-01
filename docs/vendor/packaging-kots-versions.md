@@ -16,7 +16,7 @@ Including this attribute enforces compatibility checks for both new installation
 
 For existing installations, using `minKotsVersion` requires users to upgrade to the specified version of KOTS before they can update the application.
 
-For more information about the user experience for updates, see [How the Admin Console Handles minKotsVersion](#how-the-admin-console-handles-minkotsversion).
+For more information about the user experience for updates, see [How the Admin Console Handles `minKotsVersion`](#how-the-admin-console-handles-minkotsversion).
 
 ### How the Admin Console Handles minKotsVersion
 
