@@ -186,5 +186,5 @@ The app manager is based on the KOTS open source project. The KOTS version is th
 The minimum KOTS version that is required by the release. For more information, see [Setting Minimum and Target Versions for KOTS](../vendor/packaging-kots-versions).
 
 :::note
-The app manager is based on the KOTS open source project. The KOTS version is the same as the app manager version. For example, KOTS v1.60 is the same as the app manager v1.60. For more information about the KOTS add-on, see [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) in the open source kURL documentation.
+The app manager is based on the KOTS open source project. The KOTS version is the same as the app manager version. For example, KOTS v1.60 is the same as the app manager v1.60.
 :::
