@@ -43,7 +43,7 @@ Specifying a `targetKotsVersion` does not prevent an end user from upgrading to 
 
 If a new version of the application specifies a later target KOTS version than what is currently installed, users are not prevented from deploying that version of the application.
 
-If a user's admin console is running a version of KOTS that is earlier than the target version specified in the new version of the application, the admin console displays a banner indicating that a newer supported version of KOTS is available.
+If a user's admin console is running a version of KOTS that is earlier than the target version specified in a new version of the application, the admin console displays a notification in the footer, indicating that a newer supported version of KOTS is available.
 
 ### Using Target Versions with the Kubernetes Installer
 
