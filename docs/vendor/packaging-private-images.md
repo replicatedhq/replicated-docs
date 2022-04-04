@@ -155,11 +155,11 @@ using the license information provided to the app manager for authentication.
 ### Accessing the Proxy Service with an Image Pull Secret
 
 During installation, the app manager automatically creates an `imagePullSecret`
-that is based on the customer license. It uses this secret to authenticate in order to
+that is based on the customer license. The app manager uses this secret to authenticate and
 pull private images from `proxy.replicated.com`.
 
 The app manager does not patch the image location URL for images hosted on the Replicated private registry
-at `registry.replicated.com`. However, it adds the same `imagePullSecret` to
+at `registry.replicated.com`. However, the app manager adds the same `imagePullSecret` to
 PodSpecs that reference images in the Replicated private registry.
 
 :::note
