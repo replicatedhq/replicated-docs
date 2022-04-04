@@ -4,6 +4,33 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.68.0
+
+Released on April 4, 2022
+
+Support for Kubernetes: 1.21, 1.22, and 1.23
+
+### New Features
+* Adds the ability to make a KOTS application version required and blocking.
+* Adds ability to choose minimal RBAC at install time if application supports it.
+* Adds pagination to the version history page and improves the admin console API performance.
+
+### Improvements
+* Displays the node labels on the the cluster management page node row.
+* The default troubleshoot analyzers will now specifically call out issues with envoy/contour if detected.
+
+### Bug Fixes
+* Fixes a bug with auto deploys where deployments would happen regardless of preflight success or failure. Auto-deploys will now only deploy if the preflights succeed.
+* Fixes an issue where updating the snapshot storage location to NFS or Host Path would incorrectly display a dialog indicating that Velero was not installed and configured properly.
+* Fixes an issue that could cause wrong metadata to be used at application install time when `--app-version-label` flag is used.
+* Fixes an issue which causes the support bundle analysis and/or redactions to not show up in the troubleshoot page in the admin console in some cases.
+* Fixes an issue where deployments weren't blocked when strict preflight analyzers fail due to parse/process errors.
+* Fixes a style bug that causes the grid of metric graphs to be broken when there are more than three graphs.
+* Fixed an issue on the config editor page that caused an element to be hidden under the navbar when the corresponding config item was clicked on from the sidebar.
+* Fixed an issue where a version that was pulled in via automatic checks and deployed via automatic deployments would not be properly updated on the dashboard version card.
+* Fixed an issue where a version that was pulled in via automatic checks and deployed via automatic deployments  and the previously deployed version would both show as the currently deployed version on the version history page.
+* Fixes an issue where AWS IAM instance roles could not be used when configuring the snapshot storage destination.
+
 ## 1.67.0
 
 Released on March 21, 2022
