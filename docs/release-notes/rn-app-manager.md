@@ -4,6 +4,34 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.68.0
+
+Released on April 4, 2022
+
+Support for Kubernetes: 1.21, 1.22, and 1.23
+
+### New Features
+* Adds the ability to make a KOTS application version required. Required version cannot be skipped during upgrades. See [Promoting releases](../vendor/releases-promoting).
+* Adds the `supportsMinimalRBACPrivileges` field to the Application custom resource, and adds the `--use-minimal-rbac` flag to the `kots install` command. `supportsMinimalRBACPrivileges` indicates that the application supports minimal RBAC, but it will not be used unless the `--use-minimal-rbac` flag is passed to the `kots install` command. See [`supportsMinimalRBACPrivileges`](../reference/custom-resource-application#supportsminimalrbacprivileges) in the Application custom resource.
+
+### Improvements
+* Adds pagination to the version history page and improves the admin console API performance.
+* Displays on the cluster management page of the admin console the labels applied to nodes in a Kubernetes installer-created cluster.
+* The default Troubleshoot analyzers will now specifically call out issues with Envoy/Contour if detected.
+
+### Bug Fixes
+* Fixes a bug with automatic updates where new versions would be deployed automatically regardless of preflight outcomes. When automatic updates are configured, new versions will now only be deployed automatically if the preflights succeed.
+* Fixes an issue where NFS snapshots could not be configured when MinIO is enabled in the cluster.
+* Fixes an issue where updating the snapshot storage location to NFS or Host Path would incorrectly display a dialog indicating that Velero was not installed and configured properly.
+* Fixes an issue that caused wrong metadata to be used at application install time when installing a specific version of an application with the `--app-version-label` flag.
+* Fixes an issue that caused the support bundle analysis and/or redactions to not show up in the Troubleshoot page in the admin console in some cases.
+* Fixes an issue where deployments weren't blocked when strict preflight analyzers failed due to parse/process errors.
+* Fixes a style bug that caused the grid of metric graphs to be broken when there were more than three graphs.
+* Fixes an issue on the config editor page that caused an element to be hidden under the navbar when the corresponding config item was clicked on from the sidebar.
+* Fixes an issue where a version that was pulled in via automatic checks and deployed via automatic deployments would not be properly updated on the dashboard version card.
+* Fixes an issue where two versions could show as being currently deployed on the version history page when using automatic deployments.
+* Fixes an issue where AWS IAM instance roles could not be used when configuring the snapshot storage destination.
+
 ## 1.67.0
 
 Released on March 21, 2022
