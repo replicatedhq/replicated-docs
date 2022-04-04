@@ -36,11 +36,11 @@ For each task, do a full release, perform an update, test your changes, and then
 
 Perform these tasks in the following order:
 
-1. (Recommended) Configure stateful service and configuration options. You can offer an external database option and generally implement database configuration options for end users. For more information about practically applying intermediate template formatting in the YAML manifest files, conditional configuration options, and optional resources to the config screen, see [Adding a Database Configuration](/tutorial-adding-db-config).
+1. (Recommended) Configure stateful service and configuration options. You can offer an external database option and implement general database configuration options for end users. For more information about applying intermediate template formatting in the YAML manifest files, conditional configuration options, and optional resources to the config screen, see [Adding a Database Configuration](/tutorial-adding-db-config).
 
 1. **Placeholder:** Best practices for storing data. Or is this already covered by the tutorial?
 
-1. (Required) Review a default Kubernetes installer specification and decide which versions to pin. You can pin all of the versions. For more information, see [Creating a Kubernetes Installer Specification](packaging-embedded-kubernetes).
+1. (Recommended for non-existing clusters) Review a default Kubernetes installer specification and decide which versions to pin. You can pin all of the versions. For more information, see [Creating a Kubernetes Installer Specification](packaging-embedded-kubernetes).
 
 1. (Recommended) Customize the admin console:
 
@@ -53,9 +53,9 @@ Perform these tasks in the following order:
     1. Enable `requireMinimalRBACPrivileges` flag - the Kubernetes RBAC for the admin console. For more information, see [Namespace-scoped Access](packaging-rbac#namespace-scoped-access).
     1. Consolidate the application to a single namespace. For more information, see [Managing Application Namespaces](namespaces).
 
-1. Configure basic preflight checks, such as memory, CPU, and storage. For more information about creating preflight checks, see [Creating Preflight Checks](preflight-support-bundle-creating#creating-preflight-checks). For basic confirgation examples, see [Node Resources Analyzer](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
-1. Configure basic support collectors to get logs for all of your pods. For more information, see [Creating Support Bundles](preflight-support-bundle-creating#creating-support-bundles).
-1. Configure ingress options to manage traffic to your application. Options to consider include:
+1. (Recommended) Configure basic preflight checks, such as memory, CPU, and storage. For more information about creating preflight checks, see [Creating Preflight Checks](preflight-support-bundle-creating#creating-preflight-checks). For basic confirgation examples, see [Node Resources Analyzer](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
+1. (Recommended) Configure basic support collectors to get logs for all of your pods. For more information, see [Creating Support Bundles](preflight-support-bundle-creating#creating-support-bundles).
+1. (Recommended) Configure ingress options to manage traffic to your application. Options to consider include:
 
     * Kubernetes Ingress? (need a link to something here- is it this? [Configuring Cluster Ingress](packaging-ingress)) – this might also include TLS certificates/using the kURL TLS certs. For more information about using ingress with TLS certificates, see [Packaging Using TLS Certificates](packaging-using-tls-certs#ingress).
       * Built-in kURL ingress?
