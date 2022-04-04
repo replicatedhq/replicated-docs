@@ -22,7 +22,7 @@ With KOTS v1.67.0 and later, you can install a specific version of the applicati
 
 ## Install in an Air Gapped Environment
 
-To install in an air gapped environment, download the kurl airgap .tar.gz, untar it, and run the install.sh script.
+To install in an air gapped environment, download the kURL air gap `.tar.gz`, untar it, and run the install.sh script.
 
 You can construct the URL for the bundle by prefixing the above online URL path with `/bundle` and adding `.tar.gz` to the end.
 
@@ -32,7 +32,9 @@ tar xvzf supergoodtool.tar.gz
 cat install.sh | sudo bash -s airgap
 ```
 
-Note that the airgap .tar.gz above only includes the admin console components, which are required in order to install the application.
+:::note
+The air gap `.tar.gz` includes only the admin console components, which are required to install the application.
+:::
 
 After this command completes, the application can be installed using the application `.airgap` bundle.
 
