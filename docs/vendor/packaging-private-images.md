@@ -70,7 +70,7 @@ To configure access to your private images in an external registry:
 
 You can host the private images for your application on the Replicated private registry. Hosting your images on the Replicated private registry is useful if you do not already have your images in an existing private registry. It is also useful for testing purposes.
 
-For more information about building, tagging and pushing Docker images, see the
+For more information about building, tagging, and pushing Docker images, see the
 [Docker CLI documentation](https://docs.docker.com/engine/reference/commandline/cli/).
 
 To push images to the Replicated private registry:
