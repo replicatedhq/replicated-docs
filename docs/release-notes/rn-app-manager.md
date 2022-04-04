@@ -21,6 +21,7 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### Bug Fixes
 * Fixes a bug with auto deploys where deployments would happen regardless of preflight success or failure. Auto-deploys will now only deploy if the preflights succeed.
+* Fixes an issue where NFS snapshots could not be configured when Minio is enabled in the cluster.
 * Fixes an issue where updating the snapshot storage location to NFS or Host Path would incorrectly display a dialog indicating that Velero was not installed and configured properly.
 * Fixes an issue that could cause wrong metadata to be used at application install time when `--app-version-label` flag is used.
 * Fixes an issue which causes the support bundle analysis and/or redactions to not show up in the troubleshoot page in the admin console in some cases.
