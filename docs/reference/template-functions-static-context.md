@@ -45,7 +45,7 @@ func NowFmt(format string) string
 Returns the current timestamp as a formatted string.
 For information about Go time formatting guidelines, see [Constants](https://golang.org/pkg/time/#pkg-constants) in the Go documentation.
 ```yaml
-'{{repl Now "20060102" }}'
+'{{repl NowFmt "20060102" }}'
 ```
 
 ## ToLower
