@@ -4,6 +4,19 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.04.04-0
+
+Released on April 4, 2022
+
+### New Features
+
+- Adds the `kubeReserved` and `systemReservedResources` options to the [Kubernetes add-on](https://kurl.sh/docs/add-ons/kubernetes) to reserve resources for Kubernetes and OS system daemons. For more information, see [Kube Reserved](https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/#kube-reserved) and [System Reserved](https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/#system-reserved).
+- Adds the `evictionThresholdResources` option to the [Kubernetes add-on](https://kurl.sh/docs/add-ons/kubernetes) to set [Kubernetes eviction thresholds](https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/#eviction-thresholds).
+
+### Improvements
+
+- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.68.0.
+
 ## Release v2022.03.23-0
 
 Released on March 23, 2022
