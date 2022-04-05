@@ -184,7 +184,7 @@ To install the application:
 
     ![Run Preflight Checks Manually](/images/manual-run-preflights.png)
 
-    When this occurs, a `kubectl preflight` command is displayed that lets the end user manually run the preflight checks and upload the results automatically to the app manager. For more information about configuring RBAC privileges, see [`requireMinimalRBACPrivileges`](../reference/custom-resource-application#requireminimalrbacprivileges) in Application custom resources.
+    When this occurs, a `kubectl preflight` command is displayed that lets the end user manually run the preflight checks and upload the results automatically to the app manager. For more information about configuring RBAC privileges, see [`requireMinimalRBACPrivileges`](../reference/custom-resource-application#requireminimalrbacprivileges) and [`supportsMinimalRBACPrivileges`](../reference/custom-resource-application#supportsminimalrbacprivileges) in the Application custom resource.
 
 1. Click **Application** on the top to see the application running. If you are still connected to this server using SSH, `kubectl get pods` shows the example NGINX service that you just deployed.
 

@@ -5,9 +5,9 @@ When an application is installed, [Kubernetes RBAC](https://kubernetes.io/docs/r
 By default, the admin console will create a ClusterRole and ClusterRoleBinding with permissions to all namespaces.
 This behavior can be controlled by editing the Application custom resource manifest file. For more information about the Application manifest, see [Application](../reference/custom-resource-application) in the _Custom Resources_ section.
 
-As listed above, an application may require cluster scoped access across all namespaces on all/wildcard k8 objects or to have access limited to its given namespace.
+As listed above, an application can require cluster-scoped access across all namespaces on all/wildcard Kubernetes objects, or it can have access limited to its given namespace.
 In either case, the user who installs an application with the kots CLI must have the wildcard privileges in the cluster.
-If the user has insufficient privileges the following error will be shown when attempting install or upgrade.
+If the user has insufficient privileges, the following error is shown when attempting to install or upgrade.
 
 ```bash
 $  kubectl kots install appslug
@@ -81,23 +81,32 @@ subjects:
 
 ## Namespace-scoped access
 
-An application developer can limit the RBAC grants for the admin console to be limited to a single namespace by specifying the `requireMinimalRBACPrivileges` flag in the Application manifest file. When this is set, the app manager will create a Role and RoleBinding, granting the admin console access to select resources in the namespace, but not outside of the cluster.
+An application vendor can limit the role-based access control (RBAC) grants for the admin console to a single namespace by specifying one of the following options in the Application manifest file.
 
-Without access to cluster-scoped resources, some preflight checks and support bundle collectors will not be able to read the resources.
-These tools will continue to function, but will return less data.
-In this situation, the admin console will present an option for the user to either proceed with limited data or a command to execute the preflight checks or support bundle remotely, using the user's RBAC authorizations.
+* `requireMinimalRBACPrivileges` - Applicable to existing clusters only. When set to `true`, the app manager creates a Role and RoleBinding, granting the admin console access to all resources in the namespace, but not to any resources outside of the namespace. Use this option if you want all customer installations to use minimal RBAC.
 
-Additionally, the namespace-scoped permission does not grant access to Velero's namespace if installed - Velero is a prerequisite for [admin console snapshots](../enterprise/snapshots-understanding).
+* `supportMinimalRBACPrivileges` - Applicable to existing clusters only. When set to `true`, the app manager supports creating a Role and RoleBinding, granting the admin console access to all resources in the namespace, but not to any resources outside of the namespace. Minimal RBAC is not used by default. It is used only when the `--use-minimal-rbac` flag is passed to the `kots install` command. Use this option if you want a subset of customer installations to use minimal RBAC.
+
+### Strict Preflight Checks
+
+Without access to cluster-scoped resources, some preflight checks are not be able to read the resources. These tools continue to function, but return less data. For more information, see [Creating Preflight Checks and Support Bundles](../vendor/preflight-support-bundle-creating).
+
+### Velero Namespace Access
+
+Velero is a prerequisite for [admin console snapshots](../enterprise/snapshots-understanding). The namespace-scoped permission does not grant access to Velero's namespace if Velero is installed.
 
 The `kubectl kots velero ensure-permissions` command can be used to create additional Roles and RoleBindings to allow the necessary cross-namespace access. For more information, see [`velero ensure-permissions`](../reference/kots-cli-velero-ensure-permissions/) in the kots CLI documentation.
 
-Please note that air gap installations honor the `requireMinimalRBACPrivileges` flag in [headless mode only](../enterprise/installing-existing-cluster-automation#airgap-install).
-Without access to the internet or the app's `.airgap` package as provided in a headless install, the app manager does not have the information required to determine whether minimal RBAC is appropriate and so defaults to the more permissive RBAC policy.
+
+### Air Gap Installations
+
+Air gap installations honor the `requireMinimalRBACPrivileges` and `supportsMinimalRBACPrivileges` flags in [headless mode only](../enterprise/installing-existing-cluster-automation#airgap-install).
+Without access to the internet or the application's `.airgap` package as provided in a headless install, the app manager does not have the information required to determine whether minimal RBAC is appropriate and so it defaults to the more permissive RBAC policy.
 
 ### Operators and multiple namespaces
 
 It is possible to use namespace-scoped access for Operators and multi-namespace applications.
-During the installation, if there are `additionalNamespaces` specified in the Application manifest, Roles and RoleBindings will be created to give the admin console access to all namespaces specified.
+During the installation, if there are `additionalNamespaces` specified in the Application manifest, Roles and RoleBindings are created to give the admin console access to all specified namespaces.
 
 To enable namespace-scoped access for an application:
 
@@ -127,11 +136,11 @@ rules:
     verb: "*"
 ```
 
-(Note that the kotsadm-operator component receives an authorization for all verb, all resources and all apiGroups in the namespace).
+:::note
+The kotsadm-operator component receives an authorization for all verbs, resources, and apiGroups in the namespace.
+:::
 
 ## Converting
 
-The RBAC permissions are set during the initial installation.
-The admin console is running using the assumed identity and cannot change its own authorization.
-Changing the RBAC scope from cluster to namespace or from namespace to cluster will only affect new installations of the application; existing installations will continue to run with their current authorization.
+The RBAC permissions are set during the initial installation. The admin console runs using the assumed identity and cannot change its own authorization. Changing the RBAC scope from cluster to namespace or from namespace to cluster affects only new installations. Existing installations continue to run with their current authorization.
 For applications that need to elevate their permission from namespace to cluster, we recommend including a preflight check to ensure the permission is available.
