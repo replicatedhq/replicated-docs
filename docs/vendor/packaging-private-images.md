@@ -70,7 +70,7 @@ To configure access to your private images in an external registry:
 
 You can host the private images for your application on the Replicated private registry. Hosting your images on the Replicated private registry is useful if you do not already have your images in an existing private registry. It is also useful for testing purposes.
 
-For more information about building, tagging and pushing Docker images, see the
+For more information about building, tagging, and pushing Docker images, see the
 [Docker CLI documentation](https://docs.docker.com/engine/reference/commandline/cli/).
 
 To push images to the Replicated private registry:
@@ -155,11 +155,11 @@ using the license information provided to the app manager for authentication.
 ### Accessing the Proxy Service with an Image Pull Secret
 
 During installation, the app manager automatically creates an `imagePullSecret`
-that is based on the customer license. It uses this secret to authenticate in order to
+that is based on the customer license. The app manager uses this secret to authenticate and
 pull private images from `proxy.replicated.com`.
 
 The app manager does not patch the image location URL for images hosted on the Replicated private registry
-at `registry.replicated.com`. However, it adds the same `imagePullSecret` to
+at `registry.replicated.com`. However, the app manager adds the same `imagePullSecret` to
 PodSpecs that reference images in the Replicated private registry.
 
 :::note
