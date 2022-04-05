@@ -4,6 +4,19 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.04.04-0
+
+Released on April 4, 2022
+
+### New Features
+
+- Allow specifying system-reserved resources.
+- Adds support for eviction threshold resources.
+
+### Improvements
+
+- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.68.0.
+
 ## Release v2022.03.23-0
 
 Released on March 23, 2022
