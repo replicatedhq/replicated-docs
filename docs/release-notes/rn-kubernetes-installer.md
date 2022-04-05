@@ -10,7 +10,7 @@ Released on April 4, 2022
 
 ### New Features
 
-- Adds the `kubeReserved` and `systemReserved` options to the [Kubernetes add-on](https://kurl.sh/docs/add-ons/kubernetes) to reserve resources for Kubernetes and OS system daemons. For more information, see [Kube Reserved](https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/#kube-reserved) and [System Reserved](https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/#system-reserved).
+- Adds the `kubeReserved` and `systemReservedResources` options to the [Kubernetes add-on](https://kurl.sh/docs/add-ons/kubernetes) to reserve resources for Kubernetes and OS system daemons. For more information, see [Kube Reserved](https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/#kube-reserved) and [System Reserved](https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/#system-reserved).
 - Adds the `evictionThresholdResources` option to the [Kubernetes add-on](https://kurl.sh/docs/add-ons/kubernetes) to set [Kubernetes eviction thresholds](https://kubernetes.io/docs/tasks/administer-cluster/reserve-compute-resources/#eviction-thresholds).
 
 ### Improvements
