@@ -12,11 +12,12 @@ replicated release promote SEQUENCE CHANNEL_ID [Flags]
 
 | Flag                 | Type | Description |
 |:----------------------|------|-------------|
-| `--release-notes` | string |  The release notes for the release. Supports markdown formatting.|
-| `--version` | string |       A version label for the release in this channel. |
-| `-h, --help`   |  |          Help for the command. |
 | `--app string` | |   The app slug or app id used in all calls. **Default**: `$REPLICATED_APP` environment variable. |
+| `-h, --help`   |  |  Help for the command. |
+| `--release-notes` | string |  The release notes for the release. Supports markdown formatting.|
+| `--required` | | Prevents users from skipping this release during application upgrades. For more information, see [Promoting Releases](../vendor/releases-promoting).|
 | `--token string` | |  The API token used to access your app in the Vendor API. **Default**: `$REPLICATED_API_TOKEN` environment variable. |
+| `--version` | string |       A version label for the release in this channel. |
 
 ## Examples
 ```bash
