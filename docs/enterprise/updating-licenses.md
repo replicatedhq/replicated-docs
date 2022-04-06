@@ -2,7 +2,7 @@
 
 You can check if there are any changes on your license through the License tab on the Replicated admin console.
 
-## Syncing the License
+## Syncing a License
 
 ### Online Licenses
 
@@ -23,3 +23,12 @@ The admin console will then check if there are any updates on your current licen
 
 - A "License is already up to date" note will appear if no changes are detected.
 - A "License uploaded successfully" note will appear when the changes are successfully applied.
+
+## Changing a Community License
+
+You can change a community license to a paid license. This allows you to upgrade to a paid license without having to do a new installation and losing data.
+
+To change a community license to a paid license:
+
+1. In the License tab of the admin console, click **Change license**.
+1. In the dialog, upload the new, paid license file that you received from your vendor.
