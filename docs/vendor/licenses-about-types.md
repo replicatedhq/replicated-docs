@@ -39,7 +39,7 @@ exceptions:
 * **Support for changing to a paid license**: After installing an application with
 a community license, enterprise users can change their community license to a new,
 paid license. This allows you to upgrade your users to a paid license without
-requiring them to reinstall the application. For more information, see [Changing a Community License](../enterprise/updating-licenses) in _Updating Licenses_. 
+requiring them to reinstall the application. For more information, see [Changing a Community License](../enterprise/updating-licenses#changing-a-community-license) in _Updating Licenses_. 
 * **No air gapped support**: Community licenses cannot support air gapped installations.
 * **No expiration**: Community licenses cannot include an expiration date.
 * **Marking in the admin console**: When a community license is installed, the
