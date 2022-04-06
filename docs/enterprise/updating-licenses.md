@@ -31,4 +31,4 @@ You can change a community license to a paid license. This allows you to upgrade
 To change a community license to a paid license:
 
 1. In the License tab of the admin console, click **Change license**.
-1. In the dialog, upload the new, paid license file that you received from your vendor.
+1. In the dialog, upload the new license file that you received from your vendor.
