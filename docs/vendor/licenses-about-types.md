@@ -19,21 +19,27 @@ team for testing and integration.
 of your software.
 * **Paid**: The Paid type identify the customer as a paying customer for which
 additional information can be provided.
-* **Community**: The Community type is designed for a community version of your
-application. For more details about this type, see [About community licenses](#about-community-licenses)
+* **Community**: The Community type is designed for an open source, community version of your
+application. For more details about this type, see [Community Licenses](#community-licenses)
 below.
 
-## About Community Licenses
+## Community Licenses
 
-This section describes what a community license is and what happens when your
-customer uses a community license in the Replicated admin console.
+Community licenses are unpaid licenses intended for use with an open source version
+of your application.
 
-**Note**: Not all accounts support community licenses. To enable community licenses,
+:::note
+Not all accounts support community licenses. To enable community licenses,
 contact [support@replicated.com](mailto:support@replicated.com).
+:::
 
 Community licenses function in the same the other types of licenses, with the following
 exceptions:
 
+* **Support for changing to a paid license**: After installing an application with
+a community license, enterprise users can change their community license to a new,
+paid license. This allows you to upgrade your users to a paid license without
+requiring them to reinstall the application. For more information, see [Changing a Community License](../enterprise/updating-licenses) in _Updating Licenses_. 
 * **No air gapped support**: Community licenses cannot support air gapped installations.
 * **No expiration**: Community licenses cannot include an expiration date.
 * **Marking in the admin console**: When a community license is installed, the
