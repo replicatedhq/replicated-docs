@@ -19,14 +19,15 @@ team for testing and integration.
 of your software.
 * **Paid**: The Paid type identify the customer as a paying customer for which
 additional information can be provided.
-* **Community**: The Community type is designed for an open source, community version of your
+* **Community**: The Community type is designed for a free or low cost version of your
 application. For more details about this type, see [Community Licenses](#community-licenses)
 below.
 
 ## Community Licenses
 
-Community licenses are unpaid licenses intended for use with a free or low cost version
-of your application.
+Community licenses are intended for use with a free or low cost version
+of your application. For example, you could use community licenses for an
+open source version of your application.
 
 :::note
 Not all accounts support community licenses. To enable community licenses,
@@ -38,8 +39,12 @@ exceptions:
 
 * **Support for changing to a paid license**: After installing an application with
 a community license, enterprise users can change their community license to a new,
-paid license. This allows you to upgrade your users to a paid license without
-requiring them to reinstall the application. For more information, see [Changing a Community License](../enterprise/updating-licenses#changing-a-community-license) in _Updating Licenses_. 
+paid license. Because several of your community users might use the same community
+license, this allows you to upgrade a single user to a paid license without changing the
+community license to a paid license for all users. This also allows you to upgrade a user
+to a paid license without requiring them to reinstall the application. For more information,
+see [Changing a Community License](../enterprise/updating-licenses#changing-a-community-license)
+in _Updating Licenses_. 
 * **No air gapped support**: Community licenses cannot support air gapped installations.
 * **No expiration**: Community licenses cannot include an expiration date.
 * **Marking in the admin console**: When a community license is installed, the
