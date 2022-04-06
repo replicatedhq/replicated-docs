@@ -17,7 +17,7 @@ The customer types are:
 team for testing and integration.
 * **Trial**: The Trial type can be used for customers who are on 2-4 week trials
 of your software.
-* **Paid**: The Paid type identify the customer as a paying customer for which
+* **Paid**: The Paid type identifies the customer as a paying customer for which
 additional information can be provided.
 * **Community**: The Community type is designed for a free or low cost version of your
 application. For more details about this type, see [Community Licenses](#community-licenses)
@@ -37,12 +37,12 @@ contact [support@replicated.com](mailto:support@replicated.com).
 Community licenses function in the same the other types of licenses, with the following
 exceptions:
 
-* **Support for changing to a paid license**: After installing an application with
-a community license, enterprise users can change their community license to a new,
-paid license. Because several of your community users might use the same community
-license, this allows you to upgrade a single user to a paid license without changing the
-community license to a paid license for all users. This also allows you to upgrade a user
-to a paid license without requiring them to reinstall the application. For more information,
+* **Support for changing to a different license type**: After installing an application with
+a community license, enterprise users can change their community license to a different type of
+license. Because several of your community users might use the same community
+license, this allows you to upgrade a single user to a new license without changing the
+community license for all users. This also allows you to upgrade a user
+from a community license without requiring them to reinstall the application. For more information,
 see [Changing a Community License](../enterprise/updating-licenses#changing-a-community-license)
 in _Updating Licenses_. 
 * **No air gapped support**: Community licenses cannot support air gapped installations.
