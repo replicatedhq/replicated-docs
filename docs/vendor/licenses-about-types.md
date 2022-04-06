@@ -25,7 +25,7 @@ below.
 
 ## Community Licenses
 
-Community licenses are unpaid licenses intended for use with an open source version
+Community licenses are unpaid licenses intended for use with a free or low cost version
 of your application.
 
 :::note
