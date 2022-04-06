@@ -26,7 +26,7 @@ The admin console will then check if there are any updates on your current licen
 
 ## Changing a Community License
 
-You can change a community license to a paid license. This allows you to upgrade to a paid license without having to do a new installation and losing data.
+You can change a community license to a paid license. This allows you to upgrade to a paid license without having to reinstall the application.
 
 To change a community license to a paid license:
 
