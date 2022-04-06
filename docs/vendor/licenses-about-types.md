@@ -3,7 +3,7 @@
 This topic describes the types of customer licenses. It also describes the
 differences between community licenses and the other types of licenses.
 
-## Types of Customer License
+## Types of Customer Licenses
 
 Each customer license includes a `license_type` field.
 
