@@ -153,6 +153,7 @@ const sidebars = {
           label: 'Team Management',
           items: [
             'vendor/team-management',
+            `vendor/team-management-vendor-rbac`,
             'vendor/team-management-google-auth',
             'vendor/team-management-saml-auth',
           ],
