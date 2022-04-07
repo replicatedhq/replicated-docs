@@ -37,7 +37,7 @@ contact [support@replicated.com](mailto:support@replicated.com).
 Community licenses function in the same the other types of licenses, with the following
 exceptions:
 
-* **Support for changing to a different license type**: After installing an application with
+* **Support for changing to a different license**: After installing an application with
 a community license, enterprise users can change their community license to a different type of
 license. Because several of your community users might use the same community
 license, this allows you to upgrade a single user to a new license without changing the
