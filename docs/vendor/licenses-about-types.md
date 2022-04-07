@@ -42,7 +42,7 @@ a community license, enterprise users can change their community license to a di
 license. Because several of your community users might use the same community
 license, this allows you to upgrade a single user to a new license without changing the
 community license for all users. This also allows you to upgrade a user
-from a community license without requiring them to reinstall the application. For more information,
+from a shared community license without requiring them to reinstall the application. For more information,
 see [Changing a Community License](../enterprise/updating-licenses#changing-a-community-license)
 in _Updating Licenses_. 
 * **No air gapped support**: Community licenses cannot support air gapped installations.
