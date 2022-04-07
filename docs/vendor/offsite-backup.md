@@ -21,7 +21,8 @@ is migrated from an existing S3 bucket to the enterprise S3 bucket, all data is
 deleted from the previous S3 bucket.
 
 To ensure customer data in the GCP storage location remains up-to-date, the GCP
-account syncs at least daily with the enterprise S3 bucket.
+account uses the Google Storage Transfer service to sync at least daily with the
+enterprise S3 bucket.
 
 The GCP backup functions only as a data storage location and does not serve customer
 data. In the case of an AWS outage, Replicated can use a manual process to restore
@@ -30,6 +31,6 @@ customer data from the GCP backup into a production-grade database.
 ## Disabling Offsite Data Backup
 
 Disabling offsite data backup requires a manual process by Replicated to migrate
-data out of the enterprise S3 bucket.
+data out of the enterprise S3 bucket that is backed up to GCP.
 
 To disable offsite data backup, contact [INSERT CONTACT].
