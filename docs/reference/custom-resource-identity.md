@@ -1,4 +1,4 @@
-# Identity
+# Identity (Beta)
 
 The Identity custom resource allows you to configure the Replicated identity service for your application.
 
