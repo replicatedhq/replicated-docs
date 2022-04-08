@@ -22,7 +22,7 @@ This repository has been made public so that vendors and the open-source communi
 
 - **Open a Github Issue** - To open a GitHub issue for this repository, click the Issues tab and click **New Issue**. This method may be more useful when you want to report a bug specifically for the documentation. If you are having an issue with the product itself, we encourage you to report it to us in a Zendesk ticket, Slack message, or by emailing support@replicated.com.
 
-## Setting Up Your Local Environment
+## Setting Up Local WYSIWYG Previews
 
 This website is built using [Docusaurus 2](https://docusaurus.io/), a modern static website generator.
 
@@ -153,6 +153,12 @@ Important admonitions, typically used as a warning, are formatted as follows:
 text
 :::
 ```
+
+### Tables
+
+Traditional markdown for tables can be limiting. Instead, we use HTML tables, which lets us manage the width of the table columns. The template topic `procedure.md` contains an example of the HTML formatting for tables.
+
+**Note:** There are still many instances of the old markdown table formatting in the content that was carried over from the content migration, but we do not encourage the use of it going forward.
 
 ## Style Guidelines
 
