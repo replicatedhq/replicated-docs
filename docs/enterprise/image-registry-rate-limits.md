@@ -6,10 +6,10 @@ Docker Pro and Docker Team accounts continue to have unlimited access to pull co
 
 For more information on rate limits, see [Understanding Docker Hub rate limiting](https://www.docker.com/increase-rate-limits) on the Docker website.
 
-In app manager v1.44.0 and later, a Docker Hub username and password can be passed to the [`kots docker ensure-secret` command](/reference/kots-cli-docker-ensure-secret), which will create an image pull secret that the admin console can utilize when pulling images to avoid rate limits.
+In app manager v1.44.0 and later, a Docker Hub username and password can be passed to the `kots docker ensure-secret` command, which creates an image pull secret that the admin console can use when pulling images to avoid rate limits.
 These credentials are only used to increase limits and do not need access to any private repositories on Docker Hub.
 
-In app manager v1.69.0 and later, `kots docker ensure-secret` was updated to also apply the image pull secret to all Kubernetes manifests that have images. A new version, based on the latest version, is created in the admin console for this purpose.
+In app manager v1.69.0 and later, `kots docker ensure-secret` also applies the image pull secret to all Kubernetes manifests that have images. A new version, based on the latest version, is created in the admin console for this purpose.
 
 Example:
 
