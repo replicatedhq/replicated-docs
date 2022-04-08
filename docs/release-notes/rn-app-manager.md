@@ -11,6 +11,28 @@ Released on April 4, 2022
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### New Features
+* Adds the ability to switch from a community license to a different license from the same application.
+
+### Improvements
+* Adds an "Add a CA Certificate" field to the snapshot page.
+* Changes the KOTS login session timeout to 12 hours and validates expired sessions and logs out automatically.
+* Extends the login session timeout by an hour if the session's expiry date is at least less than one hour of session timeout.
+* Removes expired sessions from the store in a daily cleanup job
+* Two kotsadm airgap bundles are available on the KOTS release page, one of which does not include MinIO.
+
+### Bug Fixes
+* Fixes an issue that caused instances to run into DockerHub's rate limiting after running the [ensure-secret](/reference/kots-cli-docker-ensure-secret) command.
+* Fixes an issue where the registry image pull secrets were not applied in the additional namespaces specified by the application in minimal RBAC installations.
+* Fixes an issue where some releases could be missed if they were promoted while other releases are being downloaded and semantic versioning is enabled.
+* Fixes an issue where the "Select a different file" link was not allowing the user to change the selected file.
+
+## 1.68.0
+
+Released on April 4, 2022
+
+Support for Kubernetes: 1.21, 1.22, and 1.23
+
+### New Features
 * Adds the ability to make a KOTS application version required. Required version cannot be skipped during upgrades. See [Promoting releases](../vendor/releases-promoting).
 * Adds the `supportsMinimalRBACPrivileges` field to the Application custom resource, and adds the `--use-minimal-rbac` flag to the `kots install` command. `supportsMinimalRBACPrivileges` indicates that the application supports minimal RBAC, but it will not be used unless the `--use-minimal-rbac` flag is passed to the `kots install` command. See [`supportsMinimalRBACPrivileges`](../reference/custom-resource-application#supportsminimalrbacprivileges) in the Application custom resource.
 
