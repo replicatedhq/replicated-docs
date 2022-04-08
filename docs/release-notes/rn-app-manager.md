@@ -15,8 +15,7 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### Improvements
 * Adds an "Add a CA Certificate" field to the snapshot page.
-* Changes the KOTS login session timeout to 12 hours and validates expired sessions and logs out automatically.
-* Extends the login session timeout by an hour if the session's expiry date is at least less than one hour of session timeout.
+* User sessions will expire after 12 hours of inactivity.
 * Removes expired sessions from the store in a daily cleanup job
 * Two kotsadm airgap bundles are available on the KOTS release page, one of which does not include MinIO.
 
