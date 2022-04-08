@@ -11,7 +11,7 @@ Released on April 8, 2022
 ### Improvements
 
 - Adds support for Kubernetes versions 1.21.11, 1.22.8, and 1.23.5.
-- Adds support for containerd versions 1.4.13, 1.5.10, and 1.5.11.
+- Adds support for containerd version 1.4.13.
 
 ### Bug Fixes
 
