@@ -2,6 +2,8 @@
 
 Creates an image pull secret that the Admin Console can utilize in case of [rate limiting](../enterprise/image-registry-rate-limits).
 Will validate the credentials before creating the image pull secret.
+Running this command will create a new application version based on the latest one with the new pull secrets added to all kubernetes specs that have images.
+In order for this secret to take effect, the new version must be deployed.
 
 ### Usage
 
