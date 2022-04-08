@@ -4,6 +4,26 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.69.0
+
+Released on April 8, 2022
+
+Support for Kubernetes: 1.21, 1.22, and 1.23
+
+### New Features
+* Adds the ability to switch from a community license to a different license for the same application. See [Changing a Community License](../enterprise/updating-licenses#changing-a-community-license).
+
+### Improvements
+* The [ensure-secret](/reference/kots-cli-docker-ensure-secret) command now creates a new application version, based on the latest version, that adds the Docker Hub image pull secret to all Kubernetes manifests that have images. This avoids Docker Hub's rate limiting.
+* CA certificates for snapshot storage endpoints can now be uploaded on the snapshot page of the admin console.
+* User sessions expire after 12 hours of inactivity.
+* Removes expired sessions from the store in a daily cleanup job.
+
+### Bug Fixes
+* Fixes an issue where the registry image pull secrets were not applied in the additional namespaces specified by the application in minimal RBAC installations.
+* Fixes an issue where some releases could be missed if they were promoted while other releases were being downloaded and semantic versioning was enabled.
+* Fixes an issue where the "Select a different file" link did not allow the user to change the selected file on the config page.
+
 ## 1.68.0
 
 Released on April 4, 2022
