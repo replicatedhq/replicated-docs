@@ -154,11 +154,11 @@ const sidebars = {
           items: [
             'vendor/team-management',
             {
-              type: 'category',
-              label: 'Vendor Role-based Access Control',
-              items: [
-                'vendor/team-management-vendor-rbac',
-                'vendor/team-management-resource-names',
+                type: 'category',
+                label: 'Role-based Access Control',
+                items: [
+                  'vendor/team-management-vendor-rbac',
+                  'vendor/team-management-rbac-resource-names',
               ],
             },
             'vendor/team-management-google-auth',

@@ -1,6 +1,6 @@
-# Vendor RBAC Resource names
+# RBAC Resource Names
 
-This a list of all available resource names for the Replicated Vendor RBAC policy:
+This a list of all available resource names for the Replicated Vendor role-based access control (RBAC) policy:
 
 <table>
   <tr>
