@@ -14,13 +14,12 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 * Adds the ability to switch from a community license to a different license for the same application. See [Changing a Community License](../enterprise/updating-licenses#changing-a-community-license).
 
 ### Improvements
+* Running the [ensure-secret](/reference/kots-cli-docker-ensure-secret) command now creates a new application version, based on the latest version, that adds the Docker Hub image pull secret to all Kubernetes manifests that have images. This avoid Docker Hub's rate limiting.
 * CA certificates for snapshot storage endpoints can now be uploaded on the snapshot page of the admin console.
 * User sessions expire after 12 hours of inactivity.
 * Removes expired sessions from the store in a daily cleanup job.
-* Two kotsadm airgap bundles are available on the KOTS release page, one of which does not include MinIO.
 
 ### Bug Fixes
-* Fixes an issue that caused instances to run into DockerHub's rate limiting after running the [ensure-secret](/reference/kots-cli-docker-ensure-secret) command.
 * Fixes an issue where the registry image pull secrets were not applied in the additional namespaces specified by the application in minimal RBAC installations.
 * Fixes an issue where some releases could be missed if they were promoted while other releases were being downloaded and semantic versioning was enabled.
 * Fixes an issue where the "Select a different file" link did not allow the user to change the selected file on the config page.
