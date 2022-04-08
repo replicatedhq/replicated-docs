@@ -14,7 +14,7 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 * Adds the ability to switch from a community license to a different license for the same application. See [Changing a Community License](../enterprise/updating-licenses#changing-a-community-license).
 
 ### Improvements
-* Running the [ensure-secret](/reference/kots-cli-docker-ensure-secret) command now creates a new application version, based on the latest version, that adds the Docker Hub image pull secret to all Kubernetes manifests that have images. This avoid Docker Hub's rate limiting.
+* The [ensure-secret](/reference/kots-cli-docker-ensure-secret) command now creates a new application version, based on the latest version, that adds the Docker Hub image pull secret to all Kubernetes manifests that have images. This avoids Docker Hub's rate limiting.
 * CA certificates for snapshot storage endpoints can now be uploaded on the snapshot page of the admin console.
 * User sessions expire after 12 hours of inactivity.
 * Removes expired sessions from the store in a daily cleanup job.
