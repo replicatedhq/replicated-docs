@@ -19,6 +19,7 @@ Released on April 8, 2022
 - Fixes an issue where Contour and Envoy were requesting too much CPU, causing other pods to not get scheduled in 4 CPU single node installations.
 - Fixes a bug where persistent volume migrations sometimes failed due to a nil pointer dereference.
 - Fixes a bug where the migration from Rook's object store to MinIO would fail after failing to get the logs of the sync-object-store pod.
+- Increases the timeout while waiting for kotsadm deployment to start in order to improve success rate when migrating from rook to longhorn.
 
 ## Release v2022.04.04-0
 
