@@ -4,6 +4,14 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.04.08-1
+
+Released on April 8, 2022
+
+### Improvements
+
+- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.69.0.
+
 ## Release v2022.04.08-0
 
 Released on April 8, 2022
