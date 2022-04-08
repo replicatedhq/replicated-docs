@@ -4,6 +4,23 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.04.08-0
+
+Released on April 8, 2022
+
+### Improvements
+
+- Adds support for Kubernetes versions 1.23.5, 1.22.8, and 1.21.11.
+- Adds support for Containerd 1.5.11, 1.5.10, and 1.4.13.
+
+### Bug Fixes
+
+- Fixes a bug that caused cross-cluster restores to fail in some situations.
+- Fixes a bug that prevented migrating from Docker to Containerd while also upgrading k8s by more than one minor version in multi-node clusters.
+- Fixes an issue where contour and envoy were requesting too much CPU, causing other pods to not get scheduled in 4 CPU single node installations.
+- Fixes a bug where persistent volume migrations were sometimes failing due to a nil pointer dereference.
+- Fixes a bug where the migration from Rook's object store to MinIO would fail after failing to get the logs of the sync-object-store pod.
+
 ## Release v2022.04.04-0
 
 Released on April 4, 2022
