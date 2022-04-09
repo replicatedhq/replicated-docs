@@ -28,6 +28,7 @@ Released on April 8, 2022
 - Fixes a bug where persistent volume migrations sometimes failed due to a nil pointer dereference.
 - Fixes a bug where the migration from Rook's object store to MinIO would fail after failing to get the logs of the sync-object-store pod.
 - Increases the timeout while waiting for the kotsadm deployment to start, in order to improve the success rate when migrating from Rook to Longhorn.
+- Fixes a bug that caused migrating from Docker to containerd to fail when also upgrading Kubernetes by more than one minor version in multi-node clusters.
 
 ## Release v2022.04.04-0
 
