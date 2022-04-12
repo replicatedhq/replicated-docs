@@ -1,6 +1,6 @@
 # RBAC Resource Names
 
-This a list of all available resource names for the Replicated Vendor role-based access control (RBAC) policy:
+This a list of all available resource names for the Replicated vendor role-based access control (RBAC) policy:
 
 <table>
   <tr>
@@ -21,35 +21,35 @@ This a list of all available resource names for the Replicated Vendor role-based
   </tr>
 </table>
 
-#### integration/catalog/list
+### integration/catalog/list
 
 Grants the holder permission to view the catalog events and triggers available for integrations.
 
-#### team/integration/list
+### team/integration/list
 
 Grants the holder permission to view team's integrations.
 
-#### team/integration/create
+### team/integration/create
 
 Grants the holder permission to create an integration.
 
-#### team/integration/[:integrationId]/delete
+### team/integration/[:integrationId]/delete
 
 Grants the holder permission to delete specified integration(s).
 
-#### team/integration/[:integrationId]/update
+### team/integration/[:integrationId]/update
 
 Grants the holder permission to update specified integration(s).
 
-#### team/member/invite
+### team/member/invite
 
 Grants the holder permission to invite additional people to the team.
 
-#### team/members/delete
+### team/members/delete
 
 Grants the holder permission to delete other team members.
 
-#### user/token/list
+### user/token/list
 
 Grants the holder permission to list user tokens.
 

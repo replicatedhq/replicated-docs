@@ -155,7 +155,7 @@ const sidebars = {
             'vendor/team-management',
             {
                 type: 'category',
-                label: 'Role-based Access Control',
+                label: 'Configuring Role-based Access Control',
                 items: [
                   'vendor/team-management-vendor-rbac',
                   'vendor/team-management-rbac-resource-names',
