@@ -14,8 +14,6 @@ The `minKotsVersion` attribute in the Application manifest file defines the mini
 
 Including this attribute enforces compatibility checks for both new installations and application updates. An installation or update is blocked if the currently deployed KOTS version is earlier than the specified minimum KOTS version. Users must upgrade to at least the specified minimum version of KOTS before they can install or update the application.
 
-For more information about the user experience for updates, see [How the Admin Console Handles `minKotsVersion`](#how-the-admin-console-handles-minkotsversion).
-
 ### How the Admin Console Handles minKotsVersion
 
 When you promote a new release specifying a minimum KOTS version that is later than what a user currently has deployed, and that user checks for updates, that application version appears in the version history of the admin console. However, it is not downloaded.
@@ -24,14 +22,14 @@ The admin console temporarily displays an error message that informs the user th
 
 KOTS cannot update itself automatically, and users cannot update KOTS from the admin console. For more information on updating KOTS, see [Updating the Admin Console on an Existing Cluster](../enterprise/updating-existing-cluster) and [Updating the Admin Console on a Kubernetes Installer-Created Cluster](../enterprise/updating-embedded-cluster).
 
-After updating KOTS to the minimum version or later, users can use the admin console or use the [`kots upstream download`](../reference/kots-cli-upstream-download) command to download the release and subsequently deploy it.
+After updating KOTS to the minimum version or later, users can use the admin console or the [`kots upstream download`](../reference/kots-cli-upstream-download) command to download the release and subsequently deploy it.
 
 
 ## Using Target KOTS Versions
 
 >Introduced in app manager v1.62.0.
 
- Including `targetKotsVersion` in the Application manifest file enforces compatibility checks for new installations. It blocks the installation if a user tries to install a version that is later than the target version. For example, this can prevent users from installing a version of KOTS that you have not tested yet.
+ Including `targetKotsVersion` in the Application manifest file enforces compatibility checks for new installations. It blocks the installation if a user tries to install a version of KOTS that is later than the target version. For example, this can prevent users from installing a version of KOTS that you have not tested yet.
 
 If the latest release in a channel includes `targetKotsVersion`, the install command for existing clusters is modified to install that specific version of KOTS. The install command for existing clusters is on the channel card in the [vendor portal](https://vendor.replicated.com).
 
