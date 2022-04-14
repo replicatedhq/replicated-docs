@@ -2,7 +2,7 @@
 
 This tutorial shows how to install the Replicated app manager in an existing cluster in an _air gapped_ environment, where the workstation and the cluster have no outbound internet connectivity.
 
-You will be doing what the Terraform Enterprise team refers to as modern air gapped or _2019 air gapped_ in [How Hashicorp delivers On-prem with Replicated](https://blog.replicated.com/hashicorp-recording/), which is essentially a cloud VPC without an internet gateway.
+You will be doing what the Terraform Enterprise team refers to as modern air gap or what Hashicorp refers to as _2019 air gap_, which is essentially a cloud VPC without an internet gateway. For more information about how Hashicorp uses 2019 air gap, see [How Hashicorp delivers On-prem with Replicated](https://blog.replicated.com/hashicorp-recording/).
 
 Most importantly, this tutorial presents a set of steps for creating a full environment in GCP, including:
 
