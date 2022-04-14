@@ -37,7 +37,6 @@ const sidebars = {
             'vendor/tutorial-installing-with-existing-cluster',
             'vendor/tutorial-installing-with-cli',
             'vendor/tutorial-installing-air-gap',
-            'vendor/tutorial-installing-air-gap-existing-cluster-gcp',
           ]
         },
         'vendor/planning-questionnaire',
@@ -161,6 +160,7 @@ const sidebars = {
           type: 'category',
           label: 'Tutorials',
           items: [
+            'vendor/tutorial-installing-air-gap-existing-cluster-gcp',
             'vendor/tutorial-ecr-private-images',
             'vendor/tutorial-ha-cluster-deploying',
             'vendor/tutorial-ci-cd-integration',
