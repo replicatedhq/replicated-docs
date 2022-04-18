@@ -25,7 +25,7 @@ With KOTS v1.67.0 and later, you can install a specific version of the applicati
 
 ## Install in an Air Gapped Environment
 
-To install in an air gapped environment, download the kURL air gap `.tar.gz`, untar it, and run the install.sh script:
+To install in an air gapped environment, download the kURL air gap `.tar.gz`, extract it, and run the install.sh script:
 
 ```bash
 curl -LO https://k8s.kurl.sh/bundle/FILENAME.tar.gz
