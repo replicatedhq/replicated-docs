@@ -8,7 +8,7 @@ Note that the deployed application will not be removed from the cluster; only it
 
 ### Usage
 ```bash
-kubectl kots remove [app-slug]
+kubectl kots remove [app-slug] -n [namespace]
 ```
 * _`[app-slug]` is the slug of the installed application to be removed (required)_
 * _Provide `[flags]` according to the table below_
