@@ -5,11 +5,11 @@ Services (AWS) S3 buckets. Clustering and network redundancies help to avoid a
 single point of failure.
 
 The offsite data backup add-on provides additional redundancy by copying data to
-an offsite Google Cloud Provider (GCP) storage location. This helps to avoid
-any data loss caused by an outage to AWS.
+an offsite Google Cloud Provider (GCP) storage location. This helps to mitigate
+any potential data loss caused by an outage to AWS.
 
 :::note
-The offsite data backup add-on has limited availability.
+The offsite data backup add-on is available only to [Replicated Enterprise](https://www.replicated.com/pricing/) customers at an additional cost. Please contact your customer success representative if you are interested in this feature. 
 :::
 
 ## Overview
@@ -28,14 +28,6 @@ data. In the case of an AWS outage, Replicated can use a manual
 process to restore customer data from the GCP backups into a production-grade database.
 
 For more information, see [Architecture](#architecture) below.
-
-## Enabling Offsite Data Backup
-
-:::note
-The offsite data backup add-on has limited availability.
-:::
-
-To request offsite data backup, contact [INSERT CONTACT].
 
 ## Architecture
 
