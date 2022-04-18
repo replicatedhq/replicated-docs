@@ -51,7 +51,7 @@ The `bool` input type should use a "0" or "1" to set the value
 ```
 ### `file`
 A `file` is a special type of form field that renders an [`<input type="file" />`](https://www.w3schools.com/tags/tag_input.asp) HTML element.
-Only the contents of the file, not the name, are captured.
+Only the contents of the file, not the name, are captured. **Note:** Binary file are unsupported.
 See the [`ConfigOptionData`](template-functions-config-context#configoptiondata) template function for examples on how to use the file contents in your application.
 
 ```yaml
