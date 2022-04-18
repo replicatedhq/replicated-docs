@@ -51,8 +51,9 @@ The `bool` input type should use a "0" or "1" to set the value
 ```
 ### `file`
 A `file` is a special type of form field that renders an [`<input type="file" />`](https://www.w3schools.com/tags/tag_input.asp) HTML element.
-Only the contents of the file, not the name, are captured. **Note:** Binary file are unsupported.
+Only the contents of the file, not the name, are captured. 
 See the [`ConfigOptionData`](template-functions-config-context#configoptiondata) template function for examples on how to use the file contents in your application.
+**Note**: Binary files are not supported. To provide a binary file to a Helm chart, [values](https://docs.replicated.com/reference/custom-resource-helmchart#values) may be used. 
 
 ```yaml
     - name: certs
