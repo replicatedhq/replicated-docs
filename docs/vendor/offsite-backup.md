@@ -17,15 +17,15 @@ The offsite data backup add-on has limited availability.
 When the offsite data backup add-on is enabled, data is migrated to
 enterprise AWS S3 buckets that are backed up to offsite storage in GCP.
 After data is migrated from existing S3 buckets to the enterprise buckets,
-all data is deleted from the previous S3 buckets.
+all data is deleted from the original S3 buckets.
 
 To ensure customer data in the offsite GCP storage remains up-to-date, the GCP
 account uses the Google Storage Transfer service to synchronize at least daily with the
 enterprise S3 buckets.
 
-The offsite GCP backups function only as data storage and do not serve customer
+The offsite GCP data backup functions only as data storage and does not serve customer
 data. In the case of an AWS outage, Replicated can use a manual
-process to restore customer data from the backups into a production-grade database.
+process to restore customer data from the GCP backups into a production-grade database.
 
 For more information, see [Architecture](#architecture) below.
 
@@ -41,7 +41,7 @@ To request offsite data backup, contact [INSERT CONTACT].
 
 The following diagram shows the flow of air gap build data and registry image data
 when the offsite data backup add-on is enabled. The flow of data that is backed
-up offsite is depicted with green arrows.
+up offsite in GCP is depicted with green arrows.
 
 ![architecture of offsite data storage with the offsite data backup add-on](../../static/images/offsite-backup.png)
 
