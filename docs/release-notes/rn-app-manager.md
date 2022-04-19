@@ -14,10 +14,11 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 *
 
 ### Improvements
-*
+* Update local-volume-provider to v0.3.3.
 
 ### Bug Fixes
-*
+* Fixes an issue where the 'checked for last updates at' time would only be updated when updates were found.
+* Fixes an issue where links and text within the `app.k8s.io/v1beta1` `Application` kind were not templated.
 
 ## 1.69.0
 
