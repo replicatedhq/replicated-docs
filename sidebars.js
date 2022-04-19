@@ -156,7 +156,6 @@ const sidebars = {
             'vendor/team-management-saml-auth',
           ],
         },
-        'vendor/offsite-backup',
         {
           type: 'category',
           label: 'Tutorials',
