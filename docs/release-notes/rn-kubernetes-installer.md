@@ -11,6 +11,7 @@ Released on April 19, 2022
 ### Improvements
 
 - Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.69.1.
+- Adds [Goldpinger add-on](https://kurl.sh/docs/add-ons/goldpinger) version 3.3.0-5.1.0.
 
 ## Release v2022.04.08-1
 
