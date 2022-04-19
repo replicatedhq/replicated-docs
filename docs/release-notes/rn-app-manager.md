@@ -4,6 +4,21 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.69.1
+
+Released on April 19, 2022
+
+Support for Kubernetes: 1.21, 1.22, and 1.23
+
+### New Features
+*
+
+### Improvements
+*
+
+### Bug Fixes
+*
+
 ## 1.69.0
 
 Released on April 8, 2022
