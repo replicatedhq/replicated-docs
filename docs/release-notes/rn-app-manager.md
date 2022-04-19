@@ -11,7 +11,7 @@ Released on April 19, 2022
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### Improvements
-* Update local-volume-provider to v0.3.3.
+* Updates local-volume-provider to v0.3.3.
 
 ### Bug Fixes
 * Fixes an issue where links and text within the `app.k8s.io/v1beta1` `Application` kind were not templated.
