@@ -10,9 +10,6 @@ Released on April 19, 2022
 
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
-### New Features
-*
-
 ### Improvements
 * Update local-volume-provider to v0.3.3.
 
