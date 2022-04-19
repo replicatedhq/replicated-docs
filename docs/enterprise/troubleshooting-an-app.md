@@ -1,6 +1,6 @@
 # Troubleshooting an Application
 
-The Replicated admin console includes a Troubleshoot page where you can generate an analysis and review remediation suggestions for troubleshooting an application. You can also download a support bundle that you can shared with your vendor.
+The Replicated admin console includes a Troubleshoot page where you can generate an analysis and review remediation suggestions for troubleshooting an application. You can also download a support bundle that you can share with your vendor.
 
 ## Create a Support Bundle using the Admin Console
 
