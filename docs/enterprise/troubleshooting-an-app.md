@@ -1,6 +1,6 @@
 # Troubleshooting an Application
 
-The Replicated admin console includes a Troubleshoot page where you can generate an analysis and review remediation suggestions for troubleshooting an application. You can also download a support bundle that can be shared with your vendor.
+The Replicated admin console includes a Troubleshoot page where you can generate an analysis and review remediation suggestions for troubleshooting an application. You can also download a support bundle that you can shared with your vendor.
 
 ## Create a Support Bundle using the Admin Console
 
@@ -18,7 +18,7 @@ The Replicated admin console includes a Troubleshoot page where you can generate
 
   ![Analysis](/images/analysis.png)
 
-1. (Optional) Click **Download bundle** to download the collected and redacted support bundle. You can send the bundle to your vendor for assistance.
+1. (Optional) Click **Download bundle** to download the support bundle. You can send the bundle to your vendor for assistance.
 
 ## Create a Support Bundle using the CLI
 
@@ -26,14 +26,14 @@ You can generate a support bundle using the CLI instead of the admin console. Fo
 
 Create a support bundle using one of the following methods, depending on your environment or situation.
 
-### Create a Support Bundle Using the Default kots.io Specification
+### With the Default kots.io Specification
 To use the default kots.io specification, run the following command to create a support bundle:
 
   ```
   kubectl support-bundle https://kots.io
   ```
 
-### Create a Support Bundle on an Air Gap Server
+### On an Air Gap Server
 If you are on an air gapped server, perform the following steps to create a support bundle:
 
 1. Run the following command from a computer with internet access to download the default kots.io specification:
@@ -50,7 +50,7 @@ If you are on an air gapped server, perform the following steps to create a supp
     kubectl support-bundle /path/to/spec.yaml
     ```
 
-### Create a Support Bundle when the Admin Console and Application are Installed
+### When the Admin Console and Application are Installed
 
 If the admin console is running and the application is installed, run the following command to create a support bundle that includes any customization specific to the application from the [support-bundle.yaml manifest file](/vendor/preflight-support-bundle-creating#creating-support-bundles):
 
@@ -58,7 +58,7 @@ If the admin console is running and the application is installed, run the follow
   kubectl support-bundle http://<server-address>:8800/api/v1/troubleshoot/<app-slug>
   ```
 
-### Create a Support Bundle when an Application is not Installed
+### When an Application is not Installed
 If the application is not installed but the admin console is running, run the following command to create a support bundle with additional customization from the admin console:
 
   ```
@@ -66,15 +66,15 @@ If the application is not installed but the admin console is running, run the fo
   ```
 
 ### Install the Support Bundle Plugin
+
 - If you do not already have the `support-bundle` kubectl plugin installed, run the following command to install the plugin:
 
-  ```
-  curl https://krew.sh/support-bundle | bash
-  ```
+    ```
+    curl https://krew.sh/support-bundle | bash
+    ```
 
-### Install the Support Bundle Plugin using krew
-If you have installed krew, run the following command to install the `support-bundle` plugin:
+- If you have installed krew, run the following command to install the `support-bundle` plugin:
 
-  ```
-  kubectl krew install support-bundle
-  ```
+    ```
+    kubectl krew install support-bundle
+    ```
