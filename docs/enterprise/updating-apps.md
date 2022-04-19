@@ -64,7 +64,8 @@ You can edit this default cadence to customize how often the admin console check
 for and downloads new versions.
 
 You can also configure the admin console to automatically deploy new versions of
-the application after it downloads them. By default, the admin console does not
+the application after it downloads them. New versions will only be deployed
+automatically if preflight checks pass. By default, the admin console does not
 automatically deploy any version of an application. The admin console also never
 automatically deploys a version that you manually download by clicking **Check for update**.
 
