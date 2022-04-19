@@ -158,6 +158,14 @@ const sidebars = {
         },
         {
           type: 'category',
+          label: 'Data Continuity and Availability',
+          items: [
+            'vendor/data-storage',
+            'vendor/offsite-backup'
+          ],
+        },
+        {
+          type: 'category',
           label: 'Tutorials',
           items: [
             'vendor/tutorial-installing-air-gap-existing-cluster-gcp',
