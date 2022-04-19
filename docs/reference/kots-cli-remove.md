@@ -19,6 +19,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 | Flag                 | Type | Description |
 |:----------------------|------|-------------|
 | `--force` |  bool  |  Remove the reference even if the application has already been deployed |
+| `-n`      | string | The namespace to remove the application from. Replace [namespace] with the actual namespace designation or use `default` for the default namespace. |
 
 ### Example
 ```bash
