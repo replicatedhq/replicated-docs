@@ -4,6 +4,18 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.69.1
+
+Released on April 19, 2022
+
+Support for Kubernetes: 1.21, 1.22, and 1.23
+
+### Improvements
+* Updates `local-volume-provider` to v0.3.3.
+
+### Bug Fixes
+* Fixes an issue where links and text within the `app.k8s.io/v1beta1` `Application` kind were not templated.
+
 ## 1.69.0
 
 Released on April 8, 2022
