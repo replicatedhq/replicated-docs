@@ -24,31 +24,19 @@ The Replicated admin console includes a Troubleshoot page where you can generate
 
 You can generate a support bundle using the CLI instead of the admin console. For example, if an installation fails when you are using an embedded KURL cluster to install the Replicated admin console or upload the application, the admin console may not be available.
 
-To create a support bundle using the CLI:
-
-1. [Install the `support-bundle` plugin](#install-the-support-bundle-plugin).
-
-1. Create a support bundle using one of the following methods, depending on your environment or situation:
-
-  - [With the Default kots.io Specification](#create-a-bundle-with-the-kots.io-specification)
-  - [On an Air Gap Server](#create-a-bundle-on-an-air-gap-server)
-  - [When the Admin Console and Application are Installed](create-a-bundle-when-the-admin-console-and-application-are-installed)
-  - [When the Application is not Installed](create-a-bundle-when-the-application-is-not-installed)
-
-
-### Install the Support Bundle Plugin
+### Prerequisite: Install the Support Bundle Plugin
 
 The `support-bundle` kubectl plugin is required to generate a support bundle.
 
 To install the plugin, do one of the following actions:
 
-- Run the following command to install the plugin:
+- If krew is _not_ installed, run the following command:
 
     ```
     curl https://krew.sh/support-bundle | bash
     ```
 
-- If you have installed krew, run the following command:
+- If krew is installed, run the following command:
 
     ```
     kubectl krew install support-bundle
@@ -56,12 +44,7 @@ To install the plugin, do one of the following actions:
 
 ### Create a Support Bundle with the CLI
 
-Create a support bundle using one of the following methods, depending on your environment or situation:
-
-  - [With the Default kots.io Specification](#with-the-kots.io-specification)
-  - [On an Air Gap Server](#on-an-air-gap-server)
-  - [When the Admin Console and Application are Installed](when-the-admin-console-and-application-are-installed)
-  - [When the Application is not Installed](when-the-application-is-not-installed)
+Create a support bundle using one of the following methods, depending on your environment or situation.
 
 #### With the Default kots.io Specification
 
