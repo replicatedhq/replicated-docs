@@ -25,15 +25,15 @@ To push images and install the admin console:
 
    ```shell
    kubectl kots admin-console push-images ./kotsadm.tar.gz private.registry.host/app-name \
-     --registry-username USERNAME \
-     --registry-password PASSWORD
+     --registry-username RW-USERNAME \
+     --registry-password RW-PASSWORD
    ```
 
    Where:
 
-   * `USERNAME` is the username for an account that has push access to the private image registry.
+   * `RW-USERNAME` is the username for an account that has read and write access to the private image registry.
 
-   * `PASSWORD` is the password to the account with the username that you provided.
+   * `RW-PASSWORD` is the password for the account with read and write access.
    :::note
    Replicated does not store or reuse these credentials.
    :::
@@ -50,13 +50,11 @@ To push images and install the admin console:
 
    Where:
    * `RO-USERNAME` is the username for an account that has read-only access to the private image registry.
-   * `RO-PASSWORD` is the password to the read-only account with the username that you provided.
+   * `RO-PASSWORD` is the password for the read-only account.
    :::note
-   The registry credentials that you provide in this command only need to have read access.
+   Replicated stores these read-only credentials in a Kubernetes secret in the same namespace where the admin console is installed.
 
-   Replicated stores the credentials in a Kubernetes secret in the same namespace where the admin console is installed.
-
-   Replicated uses the credentials to pull the images. The credentials are automatically created as an imagePullSecret on all of the admin console Pods.
+   Replicated uses these credentials to pull the images. To allow Replicated to pull images, the credentials are automatically created as an imagePullSecret on all of the admin console Pods.
    :::
 
   After the `kots install` command completes, the app manager creates a port-forward to the admin console on port 8800. The admin console is exposed internally in the cluster and can only be accessed using a port forward.
