@@ -40,7 +40,7 @@ When a resource name is specified in both the `allow` and the `deny` chains of a
 If `denied` is left empty, it is implied as a `**/*` rule, unless `**/*` rule is specified in the `allowed` resources. If a rule exactly conflicts with another rule, the `denied` rule takes precedence.
 
 ### Defining Precedence Using Rule Specificity
-The most specific rule definition is always applied, when compared with less specific rules. Specificity of a rule is calculated by the number of `**` and `*` in the definition. A `**` in the rule definition is the least specific, followed by rules with `*`, and finally rules with no wildcards as the most specific.
+The most specific rule definition is always applied, when compared with less specific rules. Specificity of a rule is calculated by the number of asterisks (`**` and `*`) in the definition. A `**` in the rule definition is the least specific, followed by rules with `*`, and finally rules with no wildcards as the most specific.
 
 ### Rule Order Examples
 
