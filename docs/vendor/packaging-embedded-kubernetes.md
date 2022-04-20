@@ -27,13 +27,17 @@ with your application.
 To create a Kubernetes installer specification:
 
 1. In the Replicated [vendor portal](https://vendor.replicated.com), select your application and click **Kubernetes Installer**.
-1. On the **Kubernetes Installer** page, click **Create kubernetes installer**.
-1. Edit the file and click **Save installer**. For information about editing a
-Kubernetes installer specification file, see [Create An Installer](https://kurl.sh/docs/create-installer/)
-in the kURL open source documentation.
 
-   **Note**: Replicated recommends that you pin specific versions of Kubernetes
-   and Kubernetes add-ons in the Kubernetes installer specification. This ensures
-   easily-reproducible versions across your customer installations. For example,
-   pin `Kubernetes 1.23.x` in your specification to ensure that v1.23 of Kubernetes
-   is installed along with the latest security and bug patch release for that version.
+1. On the **Kubernetes Installer** page, click **Create kubernetes installer**.
+
+1. Edit the file. For information about creating a
+Kubernetes installer specification file, see [Create An Installer](https://kurl.sh/docs/create-installer/) in the kURL open source documentation.
+:::note
+   Replicated recommends that you pin specific versions of Kubernetes and Kubernetes add-ons in the Kubernetes installer specification. This ensures easily-reproducible versions across your customer installations.
+
+   For example, pin `Kubernetes 1.23.x` in your specification to ensure that v1.23 of Kubernetes is installed along with the latest security and bug patch release for that version.
+
+   For more information about pinning versions, see [Versions](https://kurl.sh/docs/create-installer/#versions) and [Versioned Releases](https://kurl.sh/docs/install-with-kurl/#versioned-releases) in the kURL open source documentation.
+:::
+
+1. Click **Save installer**.
