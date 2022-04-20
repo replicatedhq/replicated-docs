@@ -15,7 +15,7 @@ Released on April 19, 2022
 
 ### Bug Fixes
 
-- Fixes a bug where the installerVersion in the kurl manifest was not being fully applied.
+- Fixes a bug where the `installerVersion` in the kURL manifest was not fully applied.
 
 ## Release v2022.04.08-1
 
