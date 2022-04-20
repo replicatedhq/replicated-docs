@@ -14,17 +14,15 @@ The offsite data backup add-on is available only to [Replicated Enterprise](http
 
 ## Overview
 
-When the offsite data backup add-on is enabled, data is migrated to
-enterprise AWS S3 buckets that are backed up to offsite storage in GCP.
-After data is migrated from existing S3 buckets to the enterprise buckets,
+When the offsite data backup add-on is enabled, data is migrated from Replicated's existing AWS S3 buckets to a dedicated second set of AWS S3 buckets. These buckets are only used for vendors with this add-on enabled, and all vendor data remains logically isolated by vendor Team. After data is migrated from existing S3 buckets to the secondary buckets,
 all data is deleted from the original S3 buckets.
 
 To ensure customer data in the offsite GCP storage remains up-to-date, the GCP
 account uses the Google Storage Transfer service to synchronize at least daily with the
-enterprise S3 buckets.
+secondary dedicated S3 buckets.
 
-The offsite GCP data backup functions only as data storage and does not serve customer
-data. In the case of an AWS outage, Replicated can use a manual
+The offsite GCP data backup functions only as secondary data storage and does not serve customer
+data. Customer data continues to be served from the AWS S3 buckets. In the case of an AWS outage, Replicated can use a manual
 process to restore customer data from the GCP backups into a production-grade database.
 
 For more information, see [Architecture](#architecture) below.
@@ -40,8 +38,8 @@ up offsite in GCP is depicted with green arrows.
 [View a larger version of this image](../../static/images/offsite-backup.png)
 
 As shown in the diagram above, when the offsite data backup add-on is enabled,
-registry and air gap data are stored in separate enterprise S3 buckets. Both of
-these enterprise S3 buckets back up data to offsite storage in GCP.
+registry and air gap data are stored in dedicated S3 buckets. Both of
+these dedicated S3 buckets back up data to offsite storage in GCP.
 
 The diagram also shows how customer installations continue to pull data from the
 vendor registry and the customer portal when offsite data backup is enabled.
