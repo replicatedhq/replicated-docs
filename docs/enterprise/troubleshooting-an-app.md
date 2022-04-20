@@ -20,32 +20,58 @@ The Replicated admin console includes a Troubleshoot page where you can generate
 
 1. (Optional) Click **Download bundle** to download the support bundle. You can send the bundle to your vendor for assistance.
 
-## Create a Support Bundle Using the CLI
+## Creating a Support Bundle Using the CLI
 
 You can generate a support bundle using the CLI instead of the admin console. For example, if an installation fails when you are using an embedded KURL cluster to install the Replicated admin console or upload the application, the admin console may not be available.
 
+To create a support bundle using the CLI:
+
+1. [Install the `support-bundle` plugin](#install-the-support-bundle-plugin).
+
+1. Create a support bundle using one of the following methods, depending on your environment or situation:
+
+  - [With the Default kots.io Specification](#create-a-bundle-with-the-kots.io-specification)
+  - [On an Air Gap Server](#create-a-bundle-on-an-air-gap-server)
+  - [When the Admin Console and Application are Installed](create-a-bundle-when-the-admin-console-and-application-are-installed)
+  - [When the Application is not Installed](create-a-bundle-when-the-application-is-not-installed)
+
+
 ### Install the Support Bundle Plugin
 
-- If you do not already have the `support-bundle` kubectl plugin installed, run the following command to install the plugin:
+The `support-bundle` kubectl plugin is required to generate a support bundle.
+
+To install the plugin, do one of the following actions:
+
+- Run the following command to install the plugin:
 
     ```
     curl https://krew.sh/support-bundle | bash
     ```
 
-- If you have installed krew, run the following command to install the `support-bundle` plugin:
+- If you have installed krew, run the following command:
 
     ```
     kubectl krew install support-bundle
     ```
 
-### Create a Bundle With the Default kots.io Specification
-To use the default kots.io specification, run the following command to create a support bundle:
+### Create a Support Bundle with the CLI
 
-  ```
-  kubectl support-bundle https://kots.io
-  ```
+Create a support bundle using one of the following methods, depending on your environment or situation:
 
-### Create a Bundle on an Air Gap Server
+  - [With the Default kots.io Specification](#with-the-kots.io-specification)
+  - [On an Air Gap Server](#on-an-air-gap-server)
+  - [When the Admin Console and Application are Installed](when-the-admin-console-and-application-are-installed)
+  - [When the Application is not Installed](when-the-application-is-not-installed)
+
+#### With the Default kots.io Specification
+
+  To use the default kots.io specification, run the following command to create a support bundle:
+
+    ```
+    kubectl support-bundle https://kots.io
+    ```
+
+#### On an Air Gap Server
 If you are on an air gapped server, perform the following steps to create a support bundle:
 
 1. Run the following command from a computer with internet access to download the default kots.io specification:
@@ -62,7 +88,7 @@ If you are on an air gapped server, perform the following steps to create a supp
     kubectl support-bundle /path/to/spec.yaml
     ```
 
-### Create a Bundle When the Admin Console and Application are Installed
+#### When the Admin Console and Application are Installed
 
 If the admin console is running and the application is installed, run the following command to create a support bundle that includes any customization specific to the application from the [support-bundle.yaml manifest file](/vendor/preflight-support-bundle-creating#creating-support-bundles):
 
@@ -70,7 +96,7 @@ If the admin console is running and the application is installed, run the follow
   kubectl support-bundle http://<server-address>:8800/api/v1/troubleshoot/<app-slug>
   ```
 
-### Create a Bundle When an Application is not Installed
+#### When the Application is not Installed
 If the application is not installed but the admin console is running, run the following command to create a support bundle with additional customization from the admin console:
 
   ```
