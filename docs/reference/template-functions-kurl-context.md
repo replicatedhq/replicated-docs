@@ -10,7 +10,7 @@ The Kubernetes installer is based on the open source kURL project, which is main
 
 KurlBool, KurlInt, KurlString, and KurlOption all take a string yamlPath as a param.
 This path is the path from the manifest file, and is delineated between addon and subfield by a period ’.’.
-For example, the kURL Kubernetes version can be accessed as `{{repl KurlString “Kubernetes.Version” }}`.
+For example, the kURL Kubernetes version can be accessed as `{{repl KurlString "Kubernetes.Version" }}`.
 
 KurlBool, KurlInt, KurlString respectively return a bool, integer, and string value.
 If used on a valid field but with the wrong type these will return the falsy value for their type, false, 0, and “string respectively.
@@ -28,7 +28,7 @@ func KurlBool(yamlPath string) bool
 Returns the value at the yamlPath if there is a valid boolean there, or false if there is not.
 
 ```yaml
-‘{{repl KurlBool “Docker.NoCEonEE” }}
+'{{repl KurlBool "Docker.NoCEonEE" }}'
 ```
 
 
@@ -41,7 +41,7 @@ func KurlInt(yamlPath string) int
 Returns the value at the yamlPath if there is a valid integer there, or 0 if there is not.
 
 ```yaml
-‘{{repl KurlInt “Rook.CephReplicaCount” }}'
+'{{repl KurlInt "Rook.CephReplicaCount" }}'
 ```
 
 
@@ -54,7 +54,7 @@ func KurlString(yamlPath string) string
 Returns the value at the yamlPath if there is a valid string there, or "" if there is not.
 
 ```yaml
-‘{{repl KurlString “Kubernetes.Version” }}'
+'{{repl KurlString "Kubernetes.Version" }}'
 ```
 
 
@@ -68,7 +68,7 @@ Returns the value at the yamlPath if there is a valid string, int, or bool value
 Int and Bool values will be converted to string values.
 
 ```yaml
-‘{{repl KurlOption “Rook.CephReplicaCount” }}'
+'{{repl KurlOption "Rook.CephReplicaCount" }}'
 ```
 
 
@@ -81,5 +81,5 @@ func KurlAll() string
 Returns all values in the Installer CRD as key:value pairs, sorted by key.
 
 ```yaml
-‘{{repl KurlAll }}'
+'{{repl KurlAll }}'
 ```
