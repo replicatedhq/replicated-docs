@@ -14,12 +14,12 @@ The offsite data backup add-on is available only to [Replicated Enterprise](http
 
 ## Overview
 
-When the offsite data backup add-on is enabled, data is migrated from Replicated's existing AWS S3 buckets to a dedicated second set of AWS S3 buckets. These buckets are only used for Vendors with this add-on enabled, and all Vendor Data remains logically isolated by Vendor Team. After data is migrated from existing S3 buckets to the secondary buckets,
+When the offsite data backup add-on is enabled, data is migrated from Replicated's existing AWS S3 buckets to a dedicated second set of AWS S3 buckets. These buckets are only used for vendors with this add-on enabled, and all vendor data remains logically isolated by vendor Team. After data is migrated from existing S3 buckets to the secondary buckets,
 all data is deleted from the original S3 buckets.
 
 To ensure customer data in the offsite GCP storage remains up-to-date, the GCP
 account uses the Google Storage Transfer service to synchronize at least daily with the
-enterprise S3 buckets.
+secondary dedicated S3 buckets.
 
 The offsite GCP data backup functions only as secondary data storage and does not serve customer
 data. Customer data continues to be served from the AWS S3 buckets. In the case of an AWS outage, Replicated can use a manual
