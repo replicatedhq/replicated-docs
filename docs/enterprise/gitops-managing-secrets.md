@@ -13,7 +13,7 @@ This secret should be manually deployed to the same namespace as the admin conso
 There is currently no way to automate or use the admin console to configure this functionality.
 The secret can be named anything unique that does not conflict with application secrets.
 The labels in this example YAML file are important and must remain.
-The sealed secret public key is included within the sealed secret controller logs upon startup.
+The sealed secret public key is included in the sealed secret controller logs during startup.
 
 ```yaml
 apiVersion: v1
