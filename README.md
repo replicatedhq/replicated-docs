@@ -114,6 +114,8 @@ If you are adding a new topic to an existing feature category, follow the existi
 
 * Add _alt text_ for all images to provide accessibility. The user will hear the alt text spoken out loud by the screen reader, so it is important to use succinct text that is clear and complete. For more information about alt text formatting, see the following section.
 
+* For images that are difficult to see, add a link below the image where the reader can view a larger version: `[View a larger version of this image](PATH-TO-LARGER-IMAGE-FILE)` where `PATH-TO-LARGER-VERSION` is the path to the larger image in the `static/images` folder. For an example, see the private registry diagram in [Connecting to a Private Image Registry](https://replicated-docs.netlify.app/vendor/packaging-private-images#about-connecting-to-an-external-registry).
+
 
 ## Using Markdown with our Docusaurus CSS
 
