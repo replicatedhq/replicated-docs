@@ -9,7 +9,7 @@ This is especially true for installations on cluster created with the Replicated
     * If restoring from an NFS or a host path storage destination, see [Configuring NFS](snapshots-configuring-nfs) or [Configuring a host path](snapshots-configuring-hostpath) for the configuration steps and how to set up Velero.
     * Otherwise, see [Basic Install](https://velero.netlify.app/docs/v1.5/basic-install/) and [Plugins](https://velero.netlify.app/plugins/) in the Velero documentation.
 
-    **Note**: Restic is required and `--restic` flag must be used with `velero install` command.
+    **Note**: Restic is required and `--use-restic` flag must be used with `velero install` command.
 
 1. Use the kots CLI to list backups and create restores. See [backup ls](../reference/kots-cli-backup-ls/) and [restore](../reference/kots-cli-restore-index/) in the kots CLI documentation.
 
