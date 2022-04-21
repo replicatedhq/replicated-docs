@@ -78,6 +78,7 @@ const sidebars = {
                   'vendor/packaging-using-tls-certs',
                   'vendor/packaging-cleaning-up-jobs',
                   'vendor/packaging-rbac',
+                  'vendor/packaging-air-gap-excluding-minio',
                   'vendor/identity-service-configuring',
                   {
                       type: 'category',
