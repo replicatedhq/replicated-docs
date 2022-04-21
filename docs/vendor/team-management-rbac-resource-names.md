@@ -68,7 +68,7 @@ Grants the holder permission to view the license specified by ID. If this is den
 
 Grants the holder permission to edit the license specified (by ID) for the specified application(s).
 
-#### kots/license/[:licenseId]/archive
+### kots/license/[:licenseId]/archive
 
 Grants the holder permission to archive the specified license (by ID).
 
