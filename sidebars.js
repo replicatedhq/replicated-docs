@@ -158,9 +158,9 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Data Continuity and Availability',
+          label: 'Data Storage',
           items: [
-            'vendor/data-storage',
+            'vendor/data-availability',
             'vendor/offsite-backup'
           ],
         },

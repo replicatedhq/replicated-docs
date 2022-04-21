@@ -1,4 +1,4 @@
-# Vendor Data Storage
+# Data Availability and Continuity
 
 Replicated uses redundancy and a cloud-native architecture in support of availability and continuity of vendor data.
 
@@ -15,6 +15,8 @@ The following diagram shows the flow of air gap build data and registry images f
 [View a larger version of this image](../../static/images/data-storage.png)
 
 As shown in the diagram above, vendors push application images to an image registry. Replicated stores this registry image data in AWS S3 buckets. Instances of the vendor's application installed by enterprise customers pull data from the image registry.
+
+For more information about how Replicated secures images pushed to the Replicated private registry, see [Replicated Private Registry Security](packaging-private-registry-security).
 
 The diagram also shows how enterprise customers access air gap build data from the customer download portal. Replicated stores this air gap build data in AWS S3 buckets.
 
