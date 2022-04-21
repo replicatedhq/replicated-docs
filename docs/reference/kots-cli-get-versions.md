@@ -13,14 +13,15 @@ kubectl kots get versions [app-slug] [flags]
 - _Replace `[app-slug]` with the app slug for your KOTS application (required)._
 - _Provide `[flags]` according to the table below_
 
-| Flag                 | Type   | Description                                                                           |
-| :------------------- | ------ | ------------------------------------------------------------------------------------- |
-| `-h, --help`         |        | Help for `get versions`.                                                              |
-| `-n, --namespace`    | string | (Required) The namespace where the admin console is running.                          |
-| `--current-page`     | int    | Offset, by page size, at which to start retrieving versions. **Default:** 0            |
-| `--page-size`        | int    | Number of versions to return. **Default:** 20                                        |
-| `--pin-latest`       | int    | When set to true, always returns the latest version at the beginning. **Default:** false |
-| `-o, --output`       | string | Output format. **Supported formats:** `json`. **Default:** Plain text                |
+| Flag                      | Type   | Description                                                                                         |
+| :------------------------ | ------ | --------------------------------------------------------------------------------------------------- |
+| `-h, --help`              |        | Help for `get versions`.                                                                            |
+| `-n, --namespace`         | string | (Required) The namespace where the admin console is running.                                        |
+| `--current-page`          | int    | Offset, by page size, at which to start retrieving versions. **Default:** 0                         |
+| `--page-size`             | int    | Number of versions to return. **Default:** 20                                                       |
+| `--pin-latest`            | int    | When set to true, always returns the latest version at the beginning. **Default:** false            |
+| `--pin-latest-deployable` | int    | When set to true, always returns the latest deployable version at the beginning. **Default:** false |
+| `-o, --output`            | string | Output format. **Supported formats:** `json`. **Default:** Plain text                               |
 
 ### Example
 
