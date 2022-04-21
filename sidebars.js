@@ -152,6 +152,14 @@ const sidebars = {
           label: 'Team Management',
           items: [
             'vendor/team-management',
+            {
+                type: 'category',
+                label: 'Configuring Role-based Access Control',
+                items: [
+                  'vendor/team-management-vendor-rbac',
+                  'vendor/team-management-rbac-resource-names',
+              ],
+            },
             'vendor/team-management-google-auth',
             'vendor/team-management-saml-auth',
           ],
