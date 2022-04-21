@@ -314,7 +314,7 @@ The `yamlPath` field of the `template` must denote index position for arrays usi
 
 `yamlPath` **must** end with an array.
 ```yaml
-    template:
+    templates:
     - apiVersion: v1
       kind: Service
       name: my-service
@@ -322,7 +322,7 @@ The `yamlPath` field of the `template` must denote index position for arrays usi
       yamlPath: 'spec.ports[0]'
 ```
 
-If the `yamlPath` field is blank, the entire YAML document matching the `template` will be replaced with a copy for each of the repeatable item entries.  The `metadata.name` field of the new doc will reflect the repeatable item `key`.
+If the `yamlPath` field is not present, the entire YAML document matching the `template` will be replaced with a copy for each of the repeatable item entries.  The `metadata.name` field of the new doc will reflect the repeatable item `key`.
 
 ### Templating
 
@@ -346,7 +346,7 @@ Repeatable items are processed in order of the template targets in the Config Sp
         title: Service Port
         type: text
         repeatable: true
-        template:
+        templates:
         - apiVersion: v1 #processed first
           kind: Service
           name: my-service
@@ -356,13 +356,12 @@ Repeatable items are processed in order of the template targets in the Config Sp
           kind: Service
           name: my-service
           namespace: my-app
-          yamlPath:
         {other item properties ...}
       - name: other_ports
         title: Other Service Port
         type: text
         repeatable: true
-        template:
+        templates:
         - apiVersion: v1 #processed third
           kind: Service
           name: my-other-service
@@ -374,12 +373,11 @@ Repeatable items are processed in order of the template targets in the Config Sp
         title: Deployment Names
         type: text
         repeatable: true
-        template:
+        templates:
         - apiVersion: apps/v1 #processed fourth
           kind: Deployment
           name: my-deployment
           namespace: my-app
-          yamlPath:
         {other item properties ...}
 ```
 
@@ -395,7 +393,7 @@ In these examples, the default service port of "80" is included with the release
         title: Service Port
         type: text
         repeatable: true
-        template:
+        templates:
         - apiVersion: v1
           kind: Service
           name: my-service
@@ -488,12 +486,11 @@ spec:
         title: Service Port
         type: text
         repeatable: true
-        template:
+        templates:
         - apiVersion: v1
           kind: Service
           name: my-service
           namespace: my-app
-          yamlPath: ""
         valuesByGroup:
           ports:
             port-default-1: "80"
