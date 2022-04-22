@@ -14,7 +14,7 @@ The following diagram shows the flow of air gap build data and registry images f
 
 [View a larger version of this image](../../static/images/data-storage.png)
 
-As shown in the diagram above, vendors push application images to an image registry. Replicated stores this registry image data in AWS S3 buckets, which are logically isolated by vendor Team. Instances of the vendor's application installed by enterprise customers pull data from the image registry.
+As shown in the diagram above, vendors push application images to an image registry. Replicated stores this registry image data in AWS S3 buckets, which are logically isolated by vendor Team. Instances of the vendor's application that are installed by enterprise customers pull data from the image registry.
 
 For more information about how Replicated secures images pushed to the Replicated private registry, see [Replicated Private Registry Security](packaging-private-registry-security).
 
@@ -32,4 +32,4 @@ Replicated availability is continuously monitored. For availability reports, see
 
 ## Offsite Data Backup Add-on
 
-For additional data redundancy, an offsite data backup add-on is available to copy customers' data to a separate cloud provider. This add-on mitigates against potential data loss by our primary service provider. For more information, see [Offsite Data Backup](offsite-backup).
+For additional data redundancy, an offsite data backup add-on is available to copy customers data to a separate cloud provider. This add-on mitigates against potential data loss by our primary service provider. For more information, see [Offsite Data Backup](offsite-backup).
