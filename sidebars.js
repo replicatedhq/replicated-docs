@@ -175,13 +175,6 @@ const sidebars = {
             'vendor/tutorial-adding-db-config',
           ],
         },
-        {
-          type: 'category',
-          label: 'Troubleshooting',
-          items: [
-            'vendor/support-bundles-uploading',
-          ],
-        },
       ],
     },
     {
