@@ -8,7 +8,7 @@ You can still retrieve a bundle with MinIO images from the KOTS release page in 
 
 To enable this feature:
 
-1. Contact Replicated Customer Enablement (CE) or Team Account Management (TAM) to have the `Exclude MinIO image from air gap bundle` feature turned on in your Replicated Team account. After this feature is enabled, all `kotsadm.tar.gz` files in the download portal will not include MinIO.
+1. Contact your Replicated representatives to have the `Exclude MinIO image from air gap bundle` feature turned on for your team in Vendor Portal. After this feature is enabled, all `kotsadm.tar.gz` files in the download portal will not include MinIO.
 
 1. Instruct your end users to set the flag `--with-minio=false` with the `kots install` command during an air gap installation. For more information about setting this runtime flag, see [Install the Admin Console Without MinIO](https://docs.replicated.com/enterprise/installing-stateful-component-requirements#install-the-admin-console-without-minio) in _Requirements for Admin Console State_.
 
