@@ -1,4 +1,4 @@
-# Creating RBAC Policies
+# About RBAC Policies
 
 Replicated offers customizable, role-based access control (RBAC) policies that can be used to grant or deny access to users when interacting with the Replicated services in the Replicated vendor portal.
 
@@ -129,3 +129,7 @@ The sales policy grants read-write access to customers and license details and r
   }
 }
 ```
+
+## Additional Resources
+
+[Configuring RBAC Policies](team-management-rbac-configuring)
