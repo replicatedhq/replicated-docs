@@ -1,0 +1,28 @@
+# Submit a Support Request
+
+You can submit a support request and upload a support bundle securely using the Replicated vendor portal. Uploading a supporthelps the Replicated support team troubleshoot your application faster.
+
+If you or your customer are unable to generate a support bundle, you can submit the request and the support team will assist you. For more information about how to generate a support bundle, see [Troubleshooting an application](https://docs.replicated.com/enterprise/troubleshooting-an-app).
+
+To open a support request with or without a support bundle:
+
+1. From the vendor portal, click **Support** in the upper right corner of the page.
+
+  The Vendor Support page opens.
+
+1. Click **Submit a Support Request**.
+
+  The Support Request dialog opens.
+
+1. In section 1, enter your name, and edit the remaining fields, describing the issue, the type of installtion it is impacting, the application name, and the environment. You can also select **I'd like to schedule a video call to resolve**.
+
+1. In section 2, do _one_ of the following actions:
+
+  - Use your pre-selected support bundle from the pick list
+  - Select **Upload and attach a new support bundle**
+  - Select **I'm unable to generate a support bundle**
+
+1. Click **Submit Support Request**.
+
+  :::note
+  Click **Back** to exit without submitting a support request.
