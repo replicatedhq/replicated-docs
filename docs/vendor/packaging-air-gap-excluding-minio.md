@@ -1,5 +1,7 @@
 # Excluding MinIO from Air Gap Bundles (Beta)
 
+> Introduced in Replicated app manager v1.69.0
+
 You can exclude MinIO images from all air gap distributions (`kotsadm.tar.gz`) in the download portal for installations on either an existing cluster or a Kubernetes installer-created cluster. This is useful if you want to prevent MinIO images from appearing in the air gap distribution that your end users download. It also reduces the file size of `kotsadm.tar.gz`.
 
 :::note
