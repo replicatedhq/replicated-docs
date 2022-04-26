@@ -18,7 +18,7 @@ To submit a support request:
     - Select **Upload and attach a new support bundle** and attach a bundle from your file browser
     - Select **I'm unable to generate a support bundle**
 
-1. Click **Submit Support Request**. The Support team will contact you.
+1. Click **Submit Support Request**. You receive a link to your support issue, where you can interact with the support team.
 
   :::note
   Click **Back** to exit without submitting a support request.
