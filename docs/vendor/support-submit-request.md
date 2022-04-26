@@ -14,7 +14,7 @@ To submit a support request:
 
 1. In section 2, do _one_ of the following actions:
 
-    - Use your pre-selected support bundle from the pick list or select a different bundle
+    - Use your pre-selected support bundle or select a different bundle in the pick list
     - Select **Upload and attach a new support bundle** and attach a bundle from your file browser
     - Select **I'm unable to generate a support bundle**
 
