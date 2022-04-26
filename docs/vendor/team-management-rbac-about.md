@@ -8,7 +8,7 @@ Every team has two policies created automatically that are not configurable: **A
 
 A policy is defined in a single JSON document.
 
-**Example:**
+**Example**
 
 ```
 {

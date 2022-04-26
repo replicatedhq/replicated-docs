@@ -12,21 +12,36 @@ To configure RBAC policies:
 
 1. Do _one_ of the following actions:
 
-    - Click **Create Policy** from the RBAC page to create a new policy
-    - Click **View policy** to edit an existing custom policy in the list
+    - Click **Create Policy** from the RBAC page to create a new policy.
+    - Click **View policy** to edit an existing custom policy in the list.
 
-1. Edit the fields in the policy dialog:
-
-    -  In the Definition pane, you must specify the `allow` and `denied` arrays in the resources key to create limits for the role because the default policy allows everything.
-
-    - The Config help pane displays any errors.
+1. Edit the fields in the policy dialog. In the Definition pane, you must specify the `allow` and `denied` arrays in the resources key to create limits for the role because the default policy allows everything. The Config help pane displays any errors.
 
   Resource names are hierarchical, and support wildcards and globs. Rule order and conflicting rules have specific behaviors. For more information about policy definitions, rules, and example, see [About RBAC Policies](team-management-rbac-about). For a list of resource names, see [RBAC Resource Names](team-management-rbac-resource-names).
 
   **Example**
 
-  This example limits...
+  This example limits any user with this role to viewing a specific application and a specific channel for that application.
 
+    - To get the Application ID, use the [`replicated app ls`](..reference/replicated-cli-app-ls) command or click **Settings > Show Application ID (Advanced)** in the vendor portal.
+    - To get the channel ID, use the [`replicated channel ls`](..reference/replicated-cli-channel-ls) command or click **Channels** in the vendor portal. Then click the Release History link for the channel that you want to limit access to. The channel ID displays in your browser URL.
+
+    ```
+    {
+      "v1": {
+        "name": "Policy Name",
+        "resources": {
+          "allowed": [
+            "kots/app/appID/list",
+            "kots/app/appID/read",
+            "kots/app/appID/channel/channelID/list",
+            "kots/app/appID/channel/channelID/read"
+          ],
+          "denied": []
+        }
+      }
+    }
+    ```
 
   1. Click **Create Policy** to create a new policy, or click **Update policy** to update an existing policy.
 
