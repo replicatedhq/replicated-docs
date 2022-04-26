@@ -30,6 +30,7 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 * CA certificates for snapshot storage endpoints can now be uploaded on the snapshot page of the admin console.
 * User sessions expire after 12 hours of inactivity.
 * Removes expired sessions from the store in a daily cleanup job.
+* Adds [`Exclude MinIO from Air Gap Bundles`](/vendor/packaging-air-gap-excluding-minio) (Beta) option for vendors. This allows a vendor to exclude MinIO images from app manager air gap bundle downloads from the download portal. For more information see the [documentation for this feature](/vendor/packaging-air-gap-excluding-minio).
 
 ### Bug Fixes
 * Fixes an issue where the registry image pull secrets were not applied in the additional namespaces specified by the application in minimal RBAC installations.
