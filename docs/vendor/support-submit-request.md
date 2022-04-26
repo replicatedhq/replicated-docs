@@ -8,23 +8,17 @@ For more information about how to generate a support bundle using either the Rep
 
 To submit a support request:
 
-1. From the [vendor portal](https://vendor.replicated.com), click **Support** in the upper right corner of the page.
+1. From the [vendor portal](https://vendor.replicated.com), click **Support > Submit a Support Request** or go directly to the [Support page](https://vendor.replicated.com/support).
 
-  The Vendor Support page opens.
-
-1. Click **Submit a Support Request**.
-
-  The Support Request dialog opens.
-
-1. In section 1, complete the fields with information about your issue.
+1. In section 1 of the Support Request form, complete the fields with information about your issue.
 
 1. In section 2, do _one_ of the following actions:
 
-    - Use your pre-selected support bundle from the pick list
-    - Select **Upload and attach a new support bundle**
+    - Use your pre-selected support bundle from the pick list or select a different bundle
+    - Select **Upload and attach a new support bundle** and attach a bundle from your file browser
     - Select **I'm unable to generate a support bundle**
 
-1. Click **Submit Support Request**.
+1. Click **Submit Support Request**. The Support team will contact you.
 
   :::note
   Click **Back** to exit without submitting a support request.
