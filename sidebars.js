@@ -132,6 +132,7 @@ const sidebars = {
               },
               'vendor/releases-promoting',
               'vendor/releases-updating',
+              'vendor/packaging-air-gap-excluding-minio',
             ],
           },
           {
