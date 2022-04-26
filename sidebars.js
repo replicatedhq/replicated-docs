@@ -148,6 +148,7 @@ const sidebars = {
             ],
           },
           'vendor/releases-sharing-license-install-script',
+          'vendor/support-submit-request',
         {
           type: 'category',
           label: 'Team Management',
