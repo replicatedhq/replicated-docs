@@ -1,8 +1,14 @@
-# Native Helm Charts Installation Order
+# Setting Installation Order for Native Helm Charts
 
-When deploying applications with native Helm charts, your charts are deployed to the cluster in parallel with any other Kubernetes YAML within your application.
-This includes Custom Resource Definitions (CRDs).
-Any custom resources referenced within a native Helm chart must themselves be created by a native Helm chart, and used only within that native Helm chart.
+When you deploy an application with native Helm charts, the Replicated app manager deploys your Helm charts to the cluster along with any other Kubernetes manifest files in your application.
+This includes custom resources.
 
-Helm charts do not have a defined order in which they will be applied.
-If one Helm chart depends on another, Helm [dependencies](https://helm.sh/docs/topics/charts/#chart-dependencies) or subcharts should be used to ensure that the ordering constraints are fulfilled during deployment.
+Any custom resources that you reference in a native Helm chart must themselves be created by a native Helm chart, and used only within that native Helm chart.
+
+You can assign a `weight` to your HelmChart manifest files in Replicated to specify the order in which the app manager deploys each HelmChart.
+
+The `weight` defines the order Helm charts are deployed in ascending order.
+
+If you do not assign a weight to HelmChart manifest files, then the app manager does not deploy Helm charts in a defined order. By default, all HelmChart manifests have `weight` set to `0`. When `weight` is set to `0`, no deployment order is defined.
+
+The app manager also deploys any subcharts and dependencies when deploying a Helm chart. For more information about Helm dependencies, see [dependencies](https://helm.sh/docs/topics/charts/#chart-dependencies) in the Helm documentation.
