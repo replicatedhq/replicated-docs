@@ -19,6 +19,8 @@ To configure custom RBAC policies:
 
   Resource names are hierarchical, and support wildcards and globs. Rule order and conflicting rules have specific behaviors. For more information about policy definitions, rules, and advanced examples, see [About RBAC Policies](team-management-rbac-about). For a list of resource names, see [RBAC Resource Names](team-management-rbac-resource-names).
 
+  ![Create RBAC Policy](/images/policy-create.png)
+
   **Example**
 
   This example limits any user with this role to viewing a specific application and a specific channel for that application.
