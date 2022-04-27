@@ -12,7 +12,7 @@ To change a password:
 1. Click **Change Password** in the lower right corner of any page.
 1. In the Change Admin Console Password dialog, edit the fields.
 
-    - The new password must be at least 6 characters and should not be the same as your current password.
+    - The new password must be at least 6 characters and must not be the same as your current password.
     - The New Password and Confirm New Password fields must match each other.
     - Click **Show** or **Hide** on each field to view or hide the password.
 
