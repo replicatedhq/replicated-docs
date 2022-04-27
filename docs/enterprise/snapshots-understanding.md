@@ -15,7 +15,7 @@ They can be used for full Disaster Recovery; by restoring over the same instance
 
 There are two ways to create a full snapshot. First, make sure that your license has the snapshots feature enabled, then:
 
-1. Using the kots CLI `backup` command. See [backup](../reference/kots-cli-backup-index) in the kots CLI documention.
+1. Using the kots CLI `backup` command. See [backup](../reference/kots-cli-backup-index) in the kots CLI documentation.
 2. Using the admin console (check screenshot below).
 
     ![Instance Backup UI](/images/snapshot-instance-backup.png)
