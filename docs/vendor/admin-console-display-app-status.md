@@ -1,6 +1,6 @@
 # Displaying Application Status
 
-You can configure the Application custom resource to display application status on the dashboard of the admin console.
+You can configure the Application custom resource to display application status on the dashboard of the Replicated admin console.
 
 ![Application Status](/images/kotsadm-dashboard-appstatus.png)
 
@@ -8,7 +8,7 @@ It is necessary to target specific Kubernetes resources for the dashboard to acc
 We suggest at least one resource be added.
 Resources that are currently supported are Deployments, StatefulSets, Services, Ingresses and PersistentVolumeClaims.
 
-## Application manifest file
+## Application Manifest File
 
 To add an informer, include the `statusInformers` property in the Application custom resource manifest file.
 Status informers are in the format `[namespace/]type/name` where namespace is optional and will default to the current namespace.
@@ -35,8 +35,11 @@ statusInformers:
 
 ## Resource Statuses
 
-Possible application statuses are "Missing", "Unavailable", "Degraded", "Ready" and "Updating". "Missing" is a special status that indicates that informers have yet to report back status.
-A [support bundle](../enterprise/troubleshooting-an-app) will include diagnostic information when state "Missing" is encountered.
+Possible application statuses are "Missing", "Unavailable", "Degraded", "Ready" and "Updating".
+
+"Missing" is a special status indicating that informers have yet to report back their status. Users can click the Details link next to the status in the admin console to see which services are missing.
+
+If a user is on version 1.50.2 or earlier, they can either upgrade their version to use the Details link or view the diagnostic information in the `kots/admin_console/kotsadm-/kotsadm.log` in the support bundle. For more information about generating a support bundle, see [Troubleshooting an Application](../enterprise/troubleshooting-an-app).
 
 Below is a table of resources that are supported and conditions that contribute to each status:
 
