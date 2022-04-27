@@ -8,8 +8,8 @@ Users with Identity Provider (IDP) access cannot change their password using thi
 
 To change a password:
 
-1. Log in to the admin console using the your current password.
-1. Click **Change Password** in the lower right corner of the dashboard.
+1. Log in to the admin console using your current password.
+1. Click **Change Password** in the lower right corner of any page.
 1. In the Change Admin Console Password dialog, edit the fields.
 
     - The new password must be at least 6 characters and should not be the same as your current password.
@@ -18,8 +18,8 @@ To change a password:
 
 1. Click **Change Password**.
 
-  If the current password is missing or incorrect, or if the new password fields do not meet the criteria in the previous step, an error message states the specific problem.
+  If there are any issues with changing the password, an error message displays the specific problem.
 
-  When the password change succeeds, the current session closes and the Log In page opens.
+  When the password change succeeds, the current session closes and you are redirected to the Log In page.
 
-  1. Log in with the new password.
+1. Log in with the new password.
