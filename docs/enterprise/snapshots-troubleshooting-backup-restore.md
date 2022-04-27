@@ -68,4 +68,4 @@ example-nginx-77b878b4f-zwv2h         3/3     Running     0          4m15s
 
 We've seen this issue with Velero version 1.5.4 and opened up this issue with the project to inspect the root cause: https://github.com/vmware-tanzu/velero/issues/3686. However we have not experienced this using Velero 1.6.0 or greater.
 
-Summary: Upgrade Velero to 1.6.0. You can upgrade using the Replicated Kubernetes installer. Or, to follow the Velero upgrade instructions, see [Upgrading to Velero 1.6](https://velero.netlify.app/docs/v1.6/upgrade-to-1.6/) in the Velero documentation.
+Summary: Upgrade Velero to 1.6.0. You can upgrade using the Replicated Kubernetes installer. Or, to follow the Velero upgrade instructions, see [Upgrading to Velero 1.6](https://velero.io/docs/v1.6/upgrade-to-1.6/) in the Velero documentation.
