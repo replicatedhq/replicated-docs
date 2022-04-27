@@ -2,7 +2,7 @@
 
 Snapshots is the backup and restore feature for applications. This is an optional feature, and it requires that licenses have the Allow Snapshots feature enabled.
 
-To enable snapshots, the Replicated app manager uses the [Velero open source project](https://velero.netlify.app) on the backend to back up Kubernetes manifests and persistent volumes. Velero is a mature, fully-featured application.
+To enable snapshots, the Replicated app manager uses the Velero open source project on the backend to back up Kubernetes manifests and persistent volumes. Velero is a mature, fully-featured application. For more information, see the [Velero documentation](https://velero.io).
 
 In addition to the default functionality that Velero provides, the app manager provides a detailed interface in the [admin console](../enterprise/snapshots-scheduling) where end users can manage the storage destination and schedule, and perform and monitor the backup process. These details can also be managed using the kots CLI, the CLI for the app manager.
 
