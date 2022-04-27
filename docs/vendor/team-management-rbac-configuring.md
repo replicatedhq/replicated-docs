@@ -41,9 +41,10 @@ To configure custom RBAC policies:
       }
     }
     ```
-The example above uses an application ID and a channel ID to scope the permissions of the RBAC policy. To find your application and channel IDs, do the following:
+  The example above uses an application ID and a channel ID to scope the permissions of the RBAC policy. To find your application and channel IDs, do the following:
 
     - To get the application ID, use the [`replicated app ls`](/../reference/replicated-cli-app-ls) command or click **Settings > Show Application ID (Advanced)** in the vendor portal.
+
     - To get the channel ID, use the [`replicated channel ls`](/../reference/replicated-cli-channel-ls) command or click **Channels** in the vendor portal. Then click the Release History link for the channel that you want to limit access to. The channel ID displays in your browser URL.
 
 1. Click **Create Policy** to create a new policy, or click **Update Policy** to update an existing policy.
