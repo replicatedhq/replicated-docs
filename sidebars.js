@@ -251,6 +251,7 @@ const sidebars = {
           type: 'category',
           label: 'Managing User Access',
           items: [
+            'enterprise/auth-changing-passwords',
             'enterprise/auth-identity-provider',
             'enterprise/auth-configuring-rbac',
           ],
