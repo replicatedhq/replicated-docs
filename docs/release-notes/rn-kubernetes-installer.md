@@ -8,13 +8,13 @@ toc_max_heading_level: 2
 
 Released on April 29, 2022
 
-### ImprovementsCancel changes
+### Improvements
 
-- 
+- Installs an NFS client package as part of the [Velero add-on](https://kurl.sh/docs/add-ons/velero).
 
 ### Bug Fixes
 
-- Fixed an issue that would cause upgrades of two versions of Kubernetes on remote masters to fail with error "docker: executable file not found in $PATH"
+- 
 
 ## Release v2022.04.19-0
 
