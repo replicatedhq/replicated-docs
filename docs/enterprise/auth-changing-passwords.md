@@ -1,6 +1,6 @@
 # Changing an Admin Console Password
 
-When you install an application for the first time, the Replicated admin console is secured with a single shared password for all users. We recommend that you change your password to a unique password for security.
+When you install app manager via the kubernetes installer for the first time, the Replicated admin console is secured with a single shared password that is set automatically for all users. We recommend that you change this to a new, unique password for security.
 
 :::note
 Users with Identity Provider (IDP) access cannot change their password using this procedure. If an attempt is made, IDP users receive a message in the user interface to contact the identity service provider to change their password. For more information about resetting an IDP user password, see [Resetting Authentication](auth-identity-provider#resetting-authentication) in _Using an Identity Provider for User Access (Beta)_.
