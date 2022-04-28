@@ -11,6 +11,7 @@ Released on April 29, 2022
 ### Improvements
 
 - Installs an NFS client package as part of the [Velero add-on](https://kurl.sh/docs/add-ons/velero).
+- Support has been removed for Ubuntu 16.04 (end-of-life April 29, 2021)
 
 ### Bug Fixes
 
