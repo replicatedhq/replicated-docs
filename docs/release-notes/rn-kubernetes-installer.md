@@ -12,6 +12,7 @@ Released on April 29, 2022
 
 - Installs an NFS client package as part of the [Velero add-on](https://kurl.sh/docs/add-ons/velero).
 - Support has been removed for Ubuntu 16.04 (end-of-life April 29, 2021)
+- The [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) will now recommend that the user change the password after installation.
 
 ### Bug Fixes
 
