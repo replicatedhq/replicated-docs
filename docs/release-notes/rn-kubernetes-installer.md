@@ -17,6 +17,7 @@ Released on April 29, 2022
 ### Bug Fixes
 
 - Fixed an issue that would cause upgrades of two versions of Kubernetes on remote masters to fail with error "docker: executable file not found in $PATH"
+- Fixed an issue that would cause a migration from Containerd to Docker to fail on airgapped instances with image pull errors.
 
 ## Release v2022.04.19-0
 
