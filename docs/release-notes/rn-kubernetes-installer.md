@@ -4,6 +4,18 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.04.29-0
+
+Released on April 29, 2022
+
+### Improvements
+
+- 
+
+### Bug Fixes
+
+- 
+
 ## Release v2022.04.19-0
 
 Released on April 19, 2022
