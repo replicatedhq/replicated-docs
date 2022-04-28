@@ -405,7 +405,7 @@ func YamlEscape(input string) string
 ```
 
 YamlEscape returns an escaped and quoted version of the input string, suitable for use within a YAML document.
-This can be useful when dealing with user-uploaded files that may include null bytes and other [nonprintable characters](https://yaml.org/spec/1.2.2/#51-character-set).
+This can be useful when dealing with user-uploaded files that may include null bytes and other nonprintable characters. For more information about printable characters, see [Character Set](https://yaml.org/spec/1.2.2/#51-character-set) in the YAML documentation.
 
 ```yaml
 repl{{ ConfigOptionData "my_file_upload" | YamlEscape }}
