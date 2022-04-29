@@ -31,7 +31,7 @@ To add a `weight` to native Helm charts:
    ```
    Where `INSTALL-WEIGHT` is any negative or positive integer or `0`.
 
-   **For example**:
+   **Example:**:
 
    ```yaml
    apiVersion: kots.io/v1beta1
