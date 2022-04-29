@@ -41,6 +41,8 @@ All applications in your vendor portal Team have access to the external registry
 that you add. This means that you can use the images in the external registry across
 multiple apps in the Team.
 
+To follow a tutorial connecting a sample app to an Amazon Elastic Container Registry (ECR), see [Using ECR for Private Images](tutorial-ecr-private-images).
+
 To configure access to your private images in an external registry:
 
 1. Log in to the [vendor portal](https://vendor.replicated.com) and go to the Images page.
@@ -174,3 +176,7 @@ For more information about the `additionalNamespaces` attribute, see [Defining A
 The app manager supports image tags for applications in all use cases.
 
 The app manager supports image digests only for online (Internet-connected) installation where the app manager can pull all images from the Replicated private registry, a public external registry, or from a private external registry through proxy access.
+
+## Additional Resources
+
+[Using ECR for Private Images](tutorial-ecr-private-images)
