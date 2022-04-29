@@ -39,7 +39,7 @@ Possible application statuses are "Missing", "Unavailable", "Degraded", "Ready" 
 
 "Missing" is a special status indicating that informers have yet to report back their status. Users can click the Details link next to the status in the admin console to see which services are missing.
 
-If a user is on version 1.50.2 or earlier, they can either upgrade their version to use the Details link or view the diagnostic information in the `kots/admin_console/kotsadm-/kotsadm.log` in the support bundle. For more information about generating a support bundle, see [Troubleshooting an Application](../enterprise/troubleshooting-an-app).
+To see the status details, users can click the Details link in the admin console or view the diagnostic information in the `kots/admin_console/kotsadm-/kotsadm.log` in the support bundle. For more information about generating a support bundle, see [Troubleshooting an Application](../enterprise/troubleshooting-an-app).
 
 Below is a table of resources that are supported and conditions that contribute to each status:
 

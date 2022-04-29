@@ -274,8 +274,12 @@ const sidebars = {
           ],
         },
         {
-          type: 'doc',
-          id: 'enterprise/troubleshooting-an-app'
+          type: 'category',
+          label: 'Troubleshooting',
+          items: [
+            'enterprise/status-viewing-details',
+            'enterprise/troubleshooting-an-app',
+          ],
         },
       ],
     },
