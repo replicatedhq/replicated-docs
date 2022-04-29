@@ -61,7 +61,7 @@ To add a `weight` to native Helm charts:
 
 When you add a `weight` property to `HelmChart` custom resources in your application, the app manager instructs Helm to install any dependencies, including subcharts, along with the parent chart.
 
-For example, if you have two native Helm charts in your application, one with a `weight` of `-1` and one with a weight of `0`, then Helm installs the chart with a `weight` of `-1` first, including any subcharts and dependencies listed in the `dependencies` field for that chart.
+For example, if you have two native Helm charts in your application, one with a `weight` of `-1` and one with a `weight` of `0`, then Helm installs the chart with a `weight` of `-1` first, including any subcharts and dependencies listed in the `dependencies` field for that chart.
 
 If you do not add a `weight` to native Helm charts in your application, you can still use dependencies and subcharts to define installation order constraints during application deployment.
 
