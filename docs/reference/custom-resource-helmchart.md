@@ -33,7 +33,7 @@ spec:
   # Replicated Helm installation (false) or native Helm installation (true). Default is false.
   # Native Helm installations are only available for Helm v3 charts.
   useHelmInstall: true
-  
+
   # weight determines the order that charts with "useHelmInstall: true" are applied, with lower weights first.
   weight: 42
 
@@ -84,7 +84,7 @@ Acceptable values are `v2` or `v3`. `v2` is the default when no value is specifi
 
 ## useHelmInstall
 
-Identifies whether this Helm chart will use the Replicated Helm installation (false) or native Helm installation (true). 
+Identifies whether this Helm chart will use the Replicated Helm installation (false) or native Helm installation (true).
 Default is false.
 Native Helm installations are only available for Helm v3 charts.
 
@@ -92,6 +92,8 @@ Native Helm installations are only available for Helm v3 charts.
 
 Determines the order to apply charts that have `useHelmInstall: true`. Charts are applied by weight in ascending order, with lower weights applied first.
 Accetable values are positive and negative integers, with a default value of 0.
+
+For more information, see [Defining Installation Order for Native Helm Charts](../vendor/helm-native-helm-install-order).
 
 ## values
 

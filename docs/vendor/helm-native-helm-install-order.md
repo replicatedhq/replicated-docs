@@ -10,7 +10,7 @@ For native Helm charts, you can add a `weight` property to the `HelmChart` custo
 
 This is useful if you have multiple `HelmChart` custom resources in your application, and it is important that the resources referenced in one or more Helm charts are deployed before one or more other Helm charts.
 
-Assigning a `weight` also helps you avoid relying on Helm dependencies and subcharts to define a chart installation order in Replicated. For more information about how Replicated handles dependencies and subcharts for Helm charts, see [Subcharts and Dependencies](#subcharts-and-dependencies) below.
+Assigning a `weight` also helps you avoid relying on Helm dependencies and subcharts to define a chart installation order in Replicated. This is particularly useful when you include hooks in your native Helm charts, as Helm waits for certain hooks to complete before continuing. For more information about how Replicated handles dependencies and hooks for Helm charts, see [Subcharts and Dependencies](#subcharts-and-dependencies) and [Hooks](#hooks) below.
 
 The app manager directs Helm to install the native Helm charts in your application based on the value of `weight` in ascending order, deploying the chart with the lowest weight first. For example, a chart with a `weight` of `-1` deploys before a chart with a `weight` of `0`.
 
@@ -68,6 +68,8 @@ If you do not add a `weight` to native Helm charts in your application, you can 
 For more information about using Helm dependencies, see [Chart Dependencies](https://helm.sh/docs/topics/charts/#chart-dependencies) in the Helm documentation.
 
 
-## Hooks and Weights
+## Hooks
 
-Helm hooks and weights enable more control over when resources are deployed. Replicated supports using some Helm hooks with native Helm charts. For more information about using hooks and weights with native Helm charts, see [Helm hooks and weights](helm-installing-native-helm#helm-hooks-and-weights) in _Installing with Native Helm_.
+Helm hooks enable more control over when Helm installs the resources in your Helm charts. Replicated supports using some Helm hooks with native Helm charts. For information about using hooks with native Helm charts in Replicated, see [Helm hooks and weights](helm-installing-native-helm#helm-hooks-and-weights) in _Installing with Native Helm_.
+
+If you use hooks in your native Helm charts, you can use the `weight` property to further manage the installation order of resources. For example, if you include a pre-install hook in Helm chart A that requires a resource from Helm chart B, you can add a lower `weight` to chart B to ensure that the app manager directs Helm to install chart B before chart A.
