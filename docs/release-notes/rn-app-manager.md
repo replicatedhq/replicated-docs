@@ -21,6 +21,7 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 ### Improvements
 * When preflight checks are skipped during an initial install, the application is still deployed.
 * License and preflight errors are now displayed when doing an automated install using the CLI.
+* When changing the password via kubectl kots reset-password all active sessions will be terminated and new sessions can be established with the new password.
 
 ### Bug Fixes
 * Fixes an issue where ingress status informers would always report "missing" in Kubernetes 1.22+.
