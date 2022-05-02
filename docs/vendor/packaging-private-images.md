@@ -63,7 +63,7 @@ To configure access to your private images in an external registry:
   </tr>
   <tr>
     <td>Username and Password</td>
-    <td>Provide the username and password to Replicated for an account that has pull access.<br/><br/>Replicated stores your username and password encrypted and securely. Your credentials and the encryption key do not leave Replicated servers.</td>
+    <td>Provide the username and password for an account that has pull access to the private registry.<br/><br/>For Amazon ECR registries, provide the Access Key ID and Secret Key for a Service Account User that has pull access to the registry. See <a href="tutorial-ecr-private-images#setting-up-the-service-account-user">Setting up the Service Account User</a>.<br/><br/>Replicated stores your username and password encrypted and securely. Your credentials and the encryption key do not leave Replicated servers.</td>
   </tr>
 </table>
 
