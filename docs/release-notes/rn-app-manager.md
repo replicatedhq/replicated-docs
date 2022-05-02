@@ -11,22 +11,22 @@ Released on May 2, 2022
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### New Features
-* Adds a `weight` parameter to the [Helm custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](../vendor/helm-installing-native-helm). Charts are applied by weight in ascending order, with lower weights applied first.
-* Adds the ability to change the admin console password from within the admin console via a "Change Password" link in the page footer.
-* Adds the ability to download Config file types for a given application sequence.
-* Adds a template function `YamlEscape` to escape a string for inclusion in a yaml file.
-* Adds the ability to allow uploading new TLS certificates used by kURL proxy using the [reset-tls](/reference/kots-cli-reset-tls) command.
-* Adds the ability to dynamically set the number of results per page when browsing the version history for an application.
+* Adds a `weight` parameter to the [Helm custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](../vendor/helm-installing-native-helm). Charts are applied by weight in ascending order, with lower numbered weights applied first.
+* Adds the ability to change the admin console password from the **Change Password** link in the admin console page footer.
+* Adds the ability to download `Config` file types for a given application sequence.
+* Adds a template function `YamlEscape` to escape a string for inclusion in a YAML file.
+* Adds the ability to allow uploading new TLS certificates used by kURL proxy with the [`reset-tls`](/reference/kots-cli-reset-tls) command.
+* Adds the ability to dynamically set the number of results per page when browsing the application version history.
 
 ### Improvements
-* When preflight checks are skipped during an initial install, the application is still deployed.
-* License and preflight errors are now displayed when doing an automated install using the CLI.
-* When changing the password via `kubectl kots reset-password` all active sessions will be terminated and new sessions can be established with the new password.
+* When preflight checks are skipped during an initial installation, the application is still deployed.
+* License and preflight errors are now displayed when performing an automated installation using the CLI.
+* When changing the password using the `kubectl kots reset-password`, all active sessions are terminated and new sessions can be established with the new password.
 
 ### Bug Fixes
-* Fixes an issue where ingress status informers would always report "missing" in Kubernetes 1.22+.
-* Fixes an issue that caused image garbage collection in embedded clusters to remove images outside of the application's dedicated registry namespace.
-* Fixes an issue where a newer version might not have a "Deploy" button after the config is updated for the currently deployed version.
+* Fixes an issue where ingress status informers always reported as "Missing" in Kubernetes 1.22+.
+* Fixes an issue that caused image garbage collection in Kubernetes installer-created clusters (embedded clusters) to remove images outside of the application's dedicated registry namespace.
+* Fixes an issue where a newer version might not have a **Deploy** button after the configuration is updated from the currently deployed version.
 
 ## 1.69.1
 
