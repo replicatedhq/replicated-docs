@@ -4,6 +4,29 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.70.0
+
+Released on May , 2022
+
+Support for Kubernetes: 1.21, 1.22, and 1.23
+
+### New Features
+* Adds a 'weight' parameter to native helm charts. Higher weights will be applied first.
+* Adds the ability to change your password. Adds a 'Change Password' button to the page footer.
+* Adds the ability to download Config file types for a given application sequence.
+* Adds a template function `YamlEscape` to escape a string for inclusion within a yaml file.
+* Adds the ability to allow uploading new TLS certificates used by kURL proxy using the [reset-tls](/reference/kots-cli-reset-tls) command.
+* Adds the ability to dynamically set the number of results per page when browsing the version history for an application.
+
+### Improvements
+* Automate deployment of application when preflights are ignored on initial install. **
+
+### Bug Fixes
+* Fixes an issue where ingress status informers would always report "missing" in kubernetes 1.22+.
+* Fixes an issue that causes images garbage collection in embedded clusters to remove images outside of the application's dedicated registry namespace.
+* Fixes an issue where automated installs using the CLI were not propagating license and preflight errors to the user. **
+* Fixes an issue where `kubectl kots reset-password` will force the password change by deleting all the user sessions. **
+
 ## 1.69.1
 
 Released on April 19, 2022
