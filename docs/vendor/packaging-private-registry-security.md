@@ -12,7 +12,7 @@ A tenant in the private registry is a team on the Replicated [vendor portal](htt
 
 ## Authentication and Authorization
 
-The private registry supports several methods of authentication. Public authentication is never allowed because the registry only accepts authenticated requests.
+The private registry supports several methods of authentication. Public access is never allowed because the registry only accepts authenticated requests.
 
 
 ### Vendor Authentication
