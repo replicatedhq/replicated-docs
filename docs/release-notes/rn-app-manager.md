@@ -26,7 +26,6 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 ### Bug Fixes
 * Fixes an issue where ingress status informers would always report "missing" in Kubernetes 1.22+.
 * Fixes an issue that caused image garbage collection in embedded clusters to remove images outside of the application's dedicated registry namespace.
-* Fixes an issue where `kubectl kots reset-password` will force the password change by deleting all the user sessions. **
 * Fixes an issue where a newer version might not have a "Deploy" button after the config is updated for the currently deployed version.
 
 ## 1.69.1
