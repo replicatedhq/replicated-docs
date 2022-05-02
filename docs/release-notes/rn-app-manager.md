@@ -11,8 +11,8 @@ Released on May , 2022
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### New Features
-* Adds a 'weight' parameter to native helm charts. Higher weights will be applied first.
-* Adds the ability to change your password. Adds a 'Change Password' button to the page footer.
+* Adds a 'weight' parameter to the [Helm CRD](https://docs.replicated.com/reference/custom-resource-helmchart) when [Installing with Native Helm](https://docs.replicated.com/vendor/helm-installing-native-helm) allowing the control of chart installations in ascending order.
+* Adds the ability to change your password from within the app manager via a 'Change Password' link in the page footer.
 * Adds the ability to download Config file types for a given application sequence.
 * Adds a template function `YamlEscape` to escape a string for inclusion within a yaml file.
 * Adds the ability to allow uploading new TLS certificates used by kURL proxy using the [reset-tls](/reference/kots-cli-reset-tls) command.
