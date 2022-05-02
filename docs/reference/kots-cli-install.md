@@ -42,6 +42,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 | `--skip-preflights`         | bool   | Set to true to skip preflight checks.                                                                                                                                                      |
 | `--strict-security-context` | bool   | Set to explicitly enable strict security contexts for all kots pods and containers (may not work for some storage providers) **Default:** false                                               |
 | `--wait-duration`           | string | Timeout to be used while waiting for individual components to be ready. Must be in [Go duration](https://pkg.go.dev/time#ParseDuration) format (eg: 10s, 2m).                         |
+| `--preflights-wait-duration`| string | Timeout to be used while waiting for preflights to complete. Must be in [Go duration](https://pkg.go.dev/time#ParseDuration) format (eg: 10s, 2m).
 | `--with-minio`              | bool   | When set, kots deploys a local minio instance for storage and use minio for hostpath and NFS snapshot storage. **Default:** true                                                          |
 
 <!-- | `--repo` | string | repo uri to use when installing a helm chart | -->
