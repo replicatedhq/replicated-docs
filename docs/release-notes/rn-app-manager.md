@@ -11,22 +11,22 @@ Released on May , 2022
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### New Features
-* Adds a 'weight' parameter to the [Helm CRD](https://docs.replicated.com/reference/custom-resource-helmchart) when [Installing with Native Helm](https://docs.replicated.com/vendor/helm-installing-native-helm) allowing the control of chart installations in ascending order.
-* Adds the ability to change your password from within the app manager via a 'Change Password' link in the page footer.
+* Adds a `weight` parameter to the [Helm custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](../vendor/helm-installing-native-helm). Charts are applied by weight in ascending order, with lower weights applied first.
+* Adds the ability to change the admin console password from within the admin console via a "Change Password" link in the page footer.
 * Adds the ability to download Config file types for a given application sequence.
-* Adds a template function `YamlEscape` to escape a string for inclusion within a yaml file.
+* Adds a template function `YamlEscape` to escape a string for inclusion in a yaml file.
 * Adds the ability to allow uploading new TLS certificates used by kURL proxy using the [reset-tls](/reference/kots-cli-reset-tls) command.
 * Adds the ability to dynamically set the number of results per page when browsing the version history for an application.
 
 ### Improvements
-* Automate deployment of application when preflights are ignored on initial install. **
+* When preflight checks are skipped during an initial install, the application is still deployed.
+* License and preflight errors are now displayed when doing an automated install using the CLI.
 
 ### Bug Fixes
-* Fixes an issue where ingress status informers would always report "missing" in kubernetes 1.22+.
-* Fixes an issue that causes images garbage collection in embedded clusters to remove images outside of the application's dedicated registry namespace.
-* Fixes an issue where automated installs using the CLI were not propagating license and preflight errors to the user. **
+* Fixes an issue where ingress status informers would always report "missing" in Kubernetes 1.22+.
+* Fixes an issue that caused image garbage collection in embedded clusters to remove images outside of the application's dedicated registry namespace.
 * Fixes an issue where `kubectl kots reset-password` will force the password change by deleting all the user sessions. **
-* Fixes an issue where a newer version may not have a Deploy button after configuration for currently deployed version is updated.
+* Fixes an issue where a newer version might not have a "Deploy" button after the config is updated for the currently deployed version.
 
 ## 1.69.1
 
