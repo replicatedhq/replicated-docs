@@ -26,6 +26,7 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 * Fixes an issue that causes images garbage collection in embedded clusters to remove images outside of the application's dedicated registry namespace.
 * Fixes an issue where automated installs using the CLI were not propagating license and preflight errors to the user. **
 * Fixes an issue where `kubectl kots reset-password` will force the password change by deleting all the user sessions. **
+* Fixes an issue where a newer version may not have a Deploy button after configuration for currently deployed version is updated.
 
 ## 1.69.1
 
