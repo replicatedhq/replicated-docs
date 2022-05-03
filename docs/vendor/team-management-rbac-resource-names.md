@@ -78,7 +78,7 @@ Grants the holder permissions to unarchive the specified license (by ID).
 
 ### kots/app/[:appId]/licensefields/create
 
-Grants the holder permission to create a new license fields in the specified application(s).
+Grants the holder permission to create new license fields in the specified application(s).
 
 ### kots/app/[:appId]/licensefields/read
 
