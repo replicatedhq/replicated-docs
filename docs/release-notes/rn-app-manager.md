@@ -26,7 +26,7 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 ### Bug Fixes
 * Fixes an issue where ingress status informers always reported as "Missing" in Kubernetes 1.22+.
 * Fixes an issue that caused image garbage collection in Kubernetes installer-created clusters (embedded clusters) to remove images outside of the application's dedicated registry namespace.
-* Fixes an issue where a newer version might not have a **Deploy** button after the configuration is updated from the currently deployed version.
+* Fixes an issue where a newer version might not have a **Deploy** button after the configuration is updated for the currently deployed version.
 
 ## 1.69.1
 
