@@ -76,6 +76,22 @@ Grants the holder permission to archive the specified license (by ID).
 
 Grants the holder permissions to unarchive the specified license (by ID).
 
+### kots/app/[:appId]/licensefields/create
+
+Grants the holder permission to create new license fields in the specified application(s).
+
+### kots/app/[:appId]/licensefields/read
+
+Grants the holder permission to view the license fields in the specified application(s).
+
+### kots/app/[:appId]/licensefields/update
+
+Grants the holder permission to edit the license fields for the specified application(s).
+
+### kots/app/[:appId]/licensefields/delete
+
+Grants the holder permission to delete the license fields for the specified application(s).
+
 ### kots/app/[:appId]/release/create
 
 Grants the holder permission to create a new release in the specified application(s).
