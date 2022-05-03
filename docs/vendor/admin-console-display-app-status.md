@@ -33,18 +33,8 @@ statusInformers:
     - '{{repl if ConfigOptionEquals "option" "value"}}deployment/my-worker{{repl else}}{{repl end}}'
 ```
 
-## Resource Statuses
+## Application Statuses
 
-Possible application statuses are "Missing", "Unavailable", "Degraded", "Ready" and "Updating".
+Possible application statuses are "Missing", "Unavailable", "Degraded", "Ready" and "Updating". "Missing" indicates that informers have yet to report back their status.
 
-"Missing" is a special status indicating that informers have yet to report back their status. For more information about viewing status details in the admin console, see [Viewing Status Details](../enterprise/status-viewing-details).
-
-Below is a table of resources that are supported and conditions that contribute to each status:
-
-| | Unavailable | Degraded | Ready | Updating |
-|---|---|---|---|---|
-| **Deployment** | No replicas are ready | At least 1 replica is ready and less than desired | Ready replicas equals desired replicas | The deployed replicas are from a different revision |
-| **StatefulSet** | No replicas are ready | At least 1 replica is ready and less than desired | Ready replicas equals desired replicas | The deployed replicas are from a different revision |
-| **Service** | No endpoints are ready, no load balancer has been assigned | At least one endpoint is ready and less than desired | All desired endpoints are ready, any load balancers have been assigned | n/a |
-| **Ingress** | No backend service endpoints are ready, no load balancer has been assigned | At least one backend service endpoint is ready and less than desired | All desired backend service endpoints are ready, any load balancers have been assigned | n/a |
-| **PersistentVolumeClaim** | Claim is pending or lost | n/a | Claim is bound | n/a |
+For more information about resource statuses and the conditions that contribute to each status, see [Resource Statuses](../enterprise/status-viewing-details#resource-statuses) in _Viewing Status Details_.
