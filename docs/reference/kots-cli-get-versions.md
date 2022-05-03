@@ -20,7 +20,7 @@ kubectl kots get versions [app-slug] [flags]
 | `--current-page`          | int    | Offset, by page size, at which to start retrieving versions. **Default:** 0                         |
 | `--page-size`             | int    | Number of versions to return. **Default:** 20                                                       |
 | `--pin-latest`            | int    | When set to true, always returns the latest version at the beginning. **Default:** false            |
-| `--pin-latest-deployable` | int    | When set to true, always returns the latest deployable version at the beginning. **Default:** false |
+| `--pin-latest-deployable` | int    | When set to true, always returns the latest version that can be deployed. The latest deployable version can differ from the latest version if a required version, which cannot be skipped, is present. **Default:** false |
 | `-o, --output`            | string | Output format. **Supported formats:** `json`. **Default:** Plain text                               |
 
 ### Example
