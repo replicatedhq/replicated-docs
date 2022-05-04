@@ -1,7 +1,7 @@
 # Pushing Updates to a GitOps Workflow in Multi-app Mode
 
 The Replicated admin console default workflow is configured to receive updates, show the changes, and deploy them to the cluster. You can enable a GitOps workflow instead.
-When using a GitOps workflow, changes from the admin console (config changes, upstream updates, license updates) are pushed to a private Git repository, where an existing CI/CD process can execute to deliver the manifests to the cluster.
+When using a GitOps workflow, changes from the admin console (config changes, upstream updates, license updates) are pushed to a private Git repository, where an existing CI/CD process can execute the delivery of manifests to the cluster.
 
 To enable a GitOps deployment workflow:
 
@@ -26,7 +26,7 @@ To enable a GitOps deployment workflow:
 
     1. Select the action to take when there is an update. The admin console can create a new commit to the specified branch.
 
-    1. For **What content will it contain**, select what type of asset to deliver to the Git repository. Using the **Rendered YAML** option results in a single, multi-doc YAML file being committed to the repository.
+    1. For **What content will it contain**, select what type of asset to deliver to the Git repository. Using the **Rendered YAML** option results in a single, multi-document YAML file being committed to the repository.
 
       ![GitOps Action Multi App](/images/gitops-action-new-multi.png)
 
