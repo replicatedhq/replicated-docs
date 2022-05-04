@@ -1,13 +1,24 @@
-# Pushing Updates to a GitOps Workflow in Single-app Mode
+# Pushing Updates to a GitOps Workflow
 
-The Replicated admin console default workflow is configured to receive updates, show the changes, and deploy the updates to the cluster. You can enable a GitOps workflow instead.
-When using a GitOps workflow, changes from the admin console (configuration changes, upstream updates, license updates) are pushed to a private Git repository, where an existing CI/CD process can execute the delivery of manifests to the cluster.
+The Replicated admin console default workflow is configured to receive updates, show the changes, and deploy the updates to the cluster. You can enable a GitOps workflow instead. When using a GitOps workflow, changes from the admin console (configuration changes, upstream updates, license updates) are pushed to a private Git repository, where an existing CI/CD process can execute the delivery of manifests to the cluster.
 
-To push updates to a GitOps workflow in single-app mode:
+If you have more than one applicaiton installed, you can selectively enable a Gitops workflow for each application.
+
+To push updates to a GitOps workflow:
 
 1. Click the GitOps tab at the top of the admin console, and click **Get started**.
 
-1. Choose the Git provider and hostname (if applicable) on the GitOps Provider page, and click **Continue to deployment action**.
+1. If you have a single application installed, choose the Git provider and hostname (if applicable) on the GitOps Provider page, and click **Continue to deployment action**. Then proceeed to step 4.
+
+1. If you have multiple applications installed:
+
+    1. Choose the Git provider and hostname (if applicable), and click **Finish GitOps setup**.
+
+      A list of your applications displays and shows the status of GitOps integration for each application.
+
+    1. Click **Enable** next to the application that you want to enable GitOps for.
+
+      ![GitOps Provider](/images/gitops-apps.png)
 
 1. On the GitOps settings page:
 
