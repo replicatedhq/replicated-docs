@@ -3,7 +3,7 @@
 The Replicated admin console default workflow is configured to receive updates, show the changes, and deploy them to the cluster. You can enable a GitOps workflow instead.
 When using a GitOps workflow, changes from the admin console (config changes, upstream updates, license updates) are pushed to a private Git repository, where an existing CI/CD process can execute the delivery of manifests to the cluster.
 
-To enable a GitOps deployment workflow:
+To push updates to a GitHub workflow in multi-app mode:
 
 1. Click the GitOps tab at the top of the admin console, and click **Get started**.
 
@@ -30,11 +30,17 @@ To enable a GitOps deployment workflow:
 
       ![GitOps Action Multi App](/images/gitops-action-new-multi.png)
 
-      1. Click **Update Settings**.
+    1. Click **Update Settings**.
 
-1. When GitOps is set up, the GitOps subtab displays a public deploy key. The private key is stored securely in the admin console. Click **Copy key > repo settings page** to add the deployment key to the repository settings page. Click **Try again** to verify that the admin console can connect.
+      The GitOps subtab opens and displays a public deployment key. The private key is stored securely in the admin console.
 
-    When the admin console establishes a connection to the repository, the Admin Console Gitops page shows that GitOPs is enabled for the application.
+1. Click **Copy key > repo settings page** to add the public deployment key to the repository settings page.
+
+  ![GitOps Deployment Key](/images/gitops-deployment-key.png)
+
+1. Click **Try again** to verify that the admin console can connect.
+
+    When the admin console establishes a connection to the repository, the main Gitops tab shows that GitOPs is enabled for the application.
 
     ![GitOps Connection](/images/gitops-connected-multi.png)
 
