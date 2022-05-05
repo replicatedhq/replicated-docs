@@ -45,7 +45,7 @@ To push updates to a GitOps workflow:
 
 1. Click **Try again** to verify that the admin console can connect.
 
-    When the admin console establishes a connection to the repository, the main Gitops tab shows that GitOPs is enabled for the application.
+    When the admin console establishes a connection to the repository, the main Gitops tab shows that GitOps is enabled for the application.
 
     ![GitOps Connection](/images/gitops-connected.png)
 
