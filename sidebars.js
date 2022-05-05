@@ -242,7 +242,7 @@ const sidebars = {
           type: 'category',
           label: 'GitOps',
           items: [
-            'enterprise/gitops-single-app-workflow',
+            'enterprise/gitops-workflow',
             'enterprise/gitops-managing-secrets',
           ],
         },
