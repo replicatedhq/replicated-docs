@@ -21,6 +21,7 @@ Released on May 6, 2022
 ### Bug Fixes
 
 - Fixes an issue that could cause a migration from Docker to Containerd to fail from a miscalculation of available disk space.
+- Fixes an issue that would cause an upgrade of Kubernetes to fail when enabling the EKCO [internal load balancer](https://kurl.sh/docs/add-ons/ekco#internal-load-balancer).
 
 ## Release v2022.05.02-0
 
