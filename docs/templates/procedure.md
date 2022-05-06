@@ -20,20 +20,20 @@ To [do this task]: (For example, "To create a customer license:")
 
 1. Edit the fields:
 
-<table>
-  <tr>
-    <th width="30%">Name</th>
-    <th width="70%">Description</th>
-  </tr>
-  <tr>
-    <td>Customer Type</td>
-    <td>The type of customer is used solely for reporting purposes. Their access to your app is not affected by the type you assign to them. **Options:** Development, Trial, Paid, Community **Default:** Trial. For more information, see LINK.</td>
-  </tr>
-  <tr>
-    <td>Another Field Name</td>
-    <td>Specifies the maximum blah blah blah.</td>
-  </tr>
-</table>
+  <table>
+    <tr>
+      <th width="30%">Name</th>
+      <th width="70%">Description</th>
+    </tr>
+    <tr>
+      <td>Customer Type</td>
+      <td>The type of customer is used solely for reporting purposes. Their access to your app is not affected by the type you assign to them. **Options:** Development, Trial, Paid, Community **Default:** Trial. For more information, see LINK.</td>
+    </tr>
+    <tr>
+      <td>Another Field Name</td>
+      <td>Specifies the maximum blah blah blah.</td>
+    </tr>
+  </table>
 
 1. Click **Save Changes**.
 
