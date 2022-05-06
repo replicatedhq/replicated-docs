@@ -15,7 +15,7 @@ Released on May 6, 2022
 ### Improvements
 
 - The “latest” version for the [containerd add-on](https://kurl.sh/docs/add-ons/containerd) is no longer pinned to 1.4.6. The “latest” version was stuck there because newer versions aren’t supported on Ubuntu 16. kURL removed support for Ubuntu 16 in [v2022.04.29-0](#release-v20220429-0).
-- Adds NoExecute toleration to Weave-Net DaemonSet for versions 2.5.2, 2.6.4, and 2.6.5.
+- Adds the `NoExecute` effect to the toleration for the Weave-Net DaemonSet for versions 2.5.2, 2.6.4, and 2.6.5.
 - Ensures that OpenEBS pods run with critical priority so that they aren't evicted before other pods that depend on them.
 
 ### Bug Fixes
