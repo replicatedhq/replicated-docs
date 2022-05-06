@@ -4,6 +4,25 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.05.06-0
+
+Released on May 6, 2022
+
+### New Features
+
+- Adds a `resticTimeout` configuration option to the [Velero add-on](https://kurl.sh/docs/add-ons/velero) to allow users to configure the value that gets passed to the `--restic-timeout` flag in the Velero pod. This can also be set using the [`velero-restic-timeout` flag](https://kurl.sh/docs/install-with-kurl/advanced-options#reference) when running the install script.
+
+### Improvements
+
+- The “latest” version for the [containerd add-on](https://kurl.sh/docs/add-ons/containerd) is no longer pinned to 1.4.6. The “latest” version was pinned to 1.4.6 because later versions of containerd are not supported on Ubuntu 16. kURL removed support for Ubuntu 16 in [v2022.04.29-0](#release-v20220429-0).
+- Adds the `NoExecute` effect to the toleration for the Weave-Net DaemonSet for versions 2.5.2, 2.6.4, and 2.6.5.
+- Ensures that OpenEBS pods run with critical priority so that they are not evicted before other pods that depend on them.
+
+### Bug Fixes
+
+- Fixes an issue that could cause a migration from Docker to containerd to fail from a miscalculation of available disk space.
+- Fixes an issue that caused an upgrade of Kubernetes to fail when enabling the [EKCO internal load balancer](https://kurl.sh/docs/add-ons/ekco#internal-load-balancer).
+
 ## Release v2022.05.02-0
 
 Released on May 2, 2022
