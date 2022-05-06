@@ -85,7 +85,7 @@ An application vendor can limit the role-based access control (RBAC) grants for 
 
 * `requireMinimalRBACPrivileges` - Applicable to existing clusters only. When set to `true`, the app manager creates a Role and RoleBinding, granting the admin console access to all resources in the namespace, but not to any resources outside of the namespace. Use this option if you want all customer installations to use minimal RBAC.
 
-* `supportsMinimalRBACPrivileges` - Applicable to existing clusters only. When set to `true`, the app manager supports creating a Role and RoleBinding, granting the admin console access to all resources in the namespace, but not to any resources outside of the namespace. Minimal RBAC is not used by default. It is used only when the `--use-minimal-rbac` flag is passed to the `kots install` command. Use this option if you want a subset of customer installations to use minimal RBAC.
+* `supportMinimalRBACPrivileges` - Applicable to existing clusters only. When set to `true`, the app manager supports creating a Role and RoleBinding, granting the admin console access to all resources in the namespace, but not to any resources outside of the namespace. Minimal RBAC is not used by default. It is used only when the `--use-minimal-rbac` flag is passed to the `kots install` command. Use this option if you want a subset of customer installations to use minimal RBAC.
 
 ### Strict Preflight Checks
 
@@ -100,7 +100,7 @@ The `kubectl kots velero ensure-permissions` command can be used to create addit
 
 ### Air Gap Installations
 
-Air gap installations honor the `requireMinimalRBACPrivileges` and `supportsMinimalRBACPrivileges` flags in [headless mode only](../enterprise/installing-existing-cluster-automation#airgap-install).
+Air gap installations honor the `requireMinimalRBACPrivileges` and `supportMinimalRBACPrivileges` flags in [headless mode only](../enterprise/installing-existing-cluster-automation#airgap-install).
 Without access to the internet or the application's `.airgap` package as provided in a headless install, the app manager does not have the information required to determine whether minimal RBAC is appropriate and so it defaults to the more permissive RBAC policy.
 
 ### Operators and multiple namespaces
