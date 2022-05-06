@@ -29,8 +29,6 @@ const sidebars = {
       items: [
         'vendor/distributing-workflow',
         'vendor/vendor-portal-creating-account',
-        'templates/procedure',
-        'templates/process-multiple-procedure',
         {
           type: 'category',
           label: 'Quick Start Tutorials with Sample Applications',
