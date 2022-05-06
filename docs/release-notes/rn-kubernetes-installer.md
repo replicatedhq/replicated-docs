@@ -19,12 +19,12 @@ Released on April 29, 2022
 ### Improvements
 
 - Installs an NFS client package as part of the [Velero add-on](https://kurl.sh/docs/add-ons/velero).
-- Removes support for Ubuntu 16.04 (end-of-life April 29, 2021)
+- Removes support for Ubuntu 16.04 (end of life April 29, 2021).
 - The [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) recommends that the user change the password after installation.
 
 ### Bug Fixes
 
-- Fixes an issue that caused upgrades of two versions of Kubernetes on remote masters to fail with error "docker: executable file not found in $PATH"
+- Fixes an issue that caused upgrades of two versions of Kubernetes on remote masters to fail with error "docker: executable file not found in $PATH".
 - Fixes an issue that caused a migration from Containerd to Docker to fail on air gapped instances with image pull errors.
 
 ## Release v2022.04.19-0
