@@ -423,7 +423,7 @@ To install the application:
 
     ![Run Preflight Checks Manually](/images/manual-run-preflights.png)
 
-    When this occurs, a `kubectl preflight` command is displayed that lets the end user manually run the preflight checks and upload the results automatically to the app manager. For more information about configuring RBAC privileges, see [`requireMinimalRBACPrivileges`](../reference/custom-resource-application#requireminimalrbacprivileges) and [`supportsMinimalRBACPrivileges`](../reference/custom-resource-application#supportsminimalrbacprivileges) in the Application custom resource.
+    When this occurs, a `kubectl preflight` command is displayed that lets the end user manually run the preflight checks and upload the results automatically to the app manager. For more information about configuring RBAC privileges, see [`requireMinimalRBACPrivileges`](../reference/custom-resource-application#requireminimalrbacprivileges) and [`supportMinimalRBACPrivileges`](../reference/custom-resource-application#supportminimalrbacprivileges) in the Application custom resource.
 
     After the preflight checks pass, the Version History page opens and displays the initial version that was deployed. Later, you will come back to this page to deploy an update to the application.
 
