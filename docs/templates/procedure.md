@@ -1,37 +1,35 @@
 # Page Title (Use a gerund. For example, "Creating...")
 
-[Introductory paragraph stating the business reason why a user would want to do this procedure. If this procedure is part of a longer workflow (process), then you can tell the user that the previous task must be completed first or use the Prerequisite section that follows this.]
+[Introductory paragraph stating the business reason - what and why - a user would want to do this procedure.]
 
 **Prerequisites**
 
-These actions or items must be complete before you perform this task:
+Complete the following items before you perform this task:
 * First item
 * Second item
 
-[Introductory sentence or two to explain the “what“ and “why“ of the task.]
+To [do this task]: [For example, "To create a customer license:"]
 
-To [do this task]: (For example, "To create a customer license:")
+1. Log in to the [vendor portal](https://vendor.replicated.com), and click **Customer > Create Customer**.
 
-1. Log in to the vendor portal and click **Customer > Create Customer**.
-
-   [Optional: include a results step. Use only when a result is not obvious, such as in a complex UX flow like GitOps. For example, "A list of applications is displayed and shows the status of GitOps enablement."]
+   [Optional: Include a results step. Use only when a result is not obvious, such as in a complex UX flow like GitOps. For example, "A list of your applications displays and shows the status of GitOps integration for each application."]
 
 1. Edit the fields:
 
-<table>
-  <tr>
-    <th width="30%">Name</th>
-    <th width="70%">Description</th>
-  </tr>
-  <tr>
-    <td>Customer Type</td>
-    <td>The type of customer is used solely for reporting purposes. Their access to your app is not affected by the type you assign to them. **Options:** Development, Trial, Paid, Community **Default:** Trial. For more information, see LINK.</td>
-  </tr>
-  <tr>
-    <td>Another Field Name</td>
-    <td>Specifies the maximum blah blah blah.</td>
-  </tr>
-</table>
+  <table>
+    <tr>
+      <th width="30%">Name</th>
+      <th width="70%">Description</th>
+    </tr>
+    <tr>
+      <td>Field Name</td>
+      <td>[Example description: The type of customer is used solely for reporting purposes. Their access to your app is not affected by the type you assign to them. <strong>Options:</strong> Development, Trial, Paid, Community. <strong>Default:</strong> Trial. For more information, see LINK.]</td>
+    </tr>
+    <tr>
+      <td>Another Field Name</td>
+      <td>Specify the maximum blah blah blah.</td>
+    </tr>
+  </table>
 
 1. Run the following command to export the blah blah blah:
 
@@ -53,13 +51,12 @@ To [do this task]: (For example, "To create a customer license:")
     </tr>
   </table>
 
-
 1. Click **Save Changes**.
 
 ## Next Step​
 
-Describe and link to the next task or procedure in the process.
+[Describe and link to the next task.]
 
 ## Additional Resources​
 
-[Bulleted list of one or more links to related resources, such as concepts, web pages, and so on.]
+[Bulleted list of one or more links to related resources, such as concepts, web pages, and so on. Make sure the resource links are truly relevant to the task.]
