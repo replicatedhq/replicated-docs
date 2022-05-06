@@ -4,12 +4,16 @@ The Replicated admin console default workflow is configured to receive updates, 
 
 If you have more than one application installed, you can selectively enable a GitOps workflow for each application.
 
+:::note
+You can change your GitOPs settings or disable a GitOps workflow at any time from the GitOps tab.
+:::
+
 **Prerequisites**
 
 - A Git repository that you have read/write access permissions to.
 - If the repository does not have files or folders committed yet, you must commit one file by any name with simple content (such as "hello, world") so that the connection attempt succeeds with the deployment key when you perform the following task.
 
-To push updates to a GitOps workflow:
+To enable pushing updates to a GitOps workflow:
 
 1. Click the GitOps tab at the top of the admin console, and click **Get started**.
 
@@ -17,7 +21,7 @@ To push updates to a GitOps workflow:
 
 1. If you have multiple applications installed:
 
-    1. Choose the Git provider and hostname (if applicable), and click **Finish GitOps setup**.
+    1. Choose the Git provider and hostname (if applicable) from the dropdown list, and click **Finish GitOps setup**.
 
       A list of your applications displays and shows the status of GitOps integration for each application.
 
@@ -48,9 +52,9 @@ To push updates to a GitOps workflow:
           </tr>
       </table>
 
-    1. Select the action to take when there is an update. By default, the admin console create automatic commits to the branch.
+    1. Select the action for the admin console to take when there is an update available. By default, the admin console create automatic commits to the branch.
 
-    1. For **What content will it contain?**, select what type of asset to deliver to the Git repository. Using the **Rendered YAML** option results in a single, multi-document YAML file being committed to the repository.
+    1. For **What content will it contain?**, select what type of asset to deliver to the Git repository. Using the **Rendered YAML** option results in a single, rendered YAML file being committed to the repository.
 
       ![GitOps Action](/images/gitops-action.png)
 
