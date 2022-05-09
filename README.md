@@ -5,7 +5,7 @@
 * [How to Contribute to the Documentation](#how-to-contribute-to-the-documentation)
 * [Setting Up Your Local Environment](#setting-up-your-local-environment)
 * [Folder Structure and TOC](#folder-structure-and-toc)
-* [Topic Templates](#topic-temlates)
+* [Topic Templates](#topic-templates)
 * [Filenaming](#filenaming)
 * [Images](#images)
 * [Using Markdown with our Docusaurus CSS](#using-markdown-with-our-docusaurus-css)
@@ -77,7 +77,11 @@ The right-hand TOC is created automatically when you add headings to a topic.
 
 ## Topic Templates
 
-Please copy the topic templates that are located in the `templates` folder to create new content. Right now we have a template for creating a procedure (`procedure.md`), which is our main form of content creation.
+Please copy the topic templates that are located in the `templates` folder to create new content. Right now we have a two templates for creating procedures:
+
+- A single procedure/task: `procedure.md`
+
+- A process/workflow that requires multiple procedures/tasks: `process-multiple-procedures.md`
 
 Save the new topic to the correct folder and be sure to follow the [filenaming convention](#filenaming).
 

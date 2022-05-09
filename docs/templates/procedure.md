@@ -1,5 +1,7 @@
 # Page Title (Use a gerund. For example, "Creating...")
 
+<!-- This template is used for a single procedures. For a workflow that contains multiple procedures/tasks, use the process/multiple procedure template.-->
+
 [Introductory paragraph stating the business reason - what and why - a user would want to do this procedure.]
 
 **Prerequisites**
