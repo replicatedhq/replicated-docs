@@ -63,7 +63,7 @@ To [do this task]: [For example, "To create a customer license:"]
 
 <!--Separate each task under a new heading. If there are optional tasks that the user can complete as part of the larger procedure, put “(Optional)“ in the heading.-->
 
-[Introductory sentence or two to explain the “what“ and “why“ of the task. You can tell the user that the previous task must be completed first. For example: "After you create a blah blah, you can configure the abcdefg. This helps you..."]
+[Introductory sentence or two to explain the “what“ and “why“ of the task. You can tell the user that the previous task must be completed first. For example: "After you create a blah blah, you can configure the... This helps you..."]
 
 To [do this task]:
 
@@ -73,7 +73,7 @@ To [do this task]:
 
 ## Task Heading 3
 
-[Introductory sentence or two to explain the “what“ and “why“ of the task. You can tell the user that the previous task must be completed first. For example: "After you create a blah blah, you can configure the abcdefg. This helps you..."]
+[Introductory sentence or two to explain the “what“ and “why“ of the task. You can tell the user that the previous task must be completed first. For example: "After you create a blah blah, you can configure the... This helps you..."]
 
 To [do this task]:
 
@@ -82,4 +82,4 @@ To [do this task]:
 
 ## Additional Resources​
 
-[Bulleted list of one or more links to related resources, such as concepts, web pages, and so on.Make sure the resource links are truly relevant to the task.]
+[Bulleted list of one or more links to related resources, such as concepts, web pages, and so on. Make sure the resource links are truly relevant to the task.]
