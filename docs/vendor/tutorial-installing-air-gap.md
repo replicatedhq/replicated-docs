@@ -68,7 +68,7 @@ To install the Kubernetes installer bundle:
 
       ```shell
       export REPLICATED_APP=<app_slug>
-      curl -LS https://k8s.kurl.sh/bundle/${REPLICATED_APP}.tar.gz -o ${REPLICATED_APP}.tar.gz
+      curl -LS https://k8s.kurl.sh/bundle/$REPLICATED_APP.tar.gz -o $REPLICATED_APP.tar.gz
       ```
 
     * To download the Kubernetes installer bundle for all other channels, use the suffix `-<channel_name>`:
@@ -76,7 +76,7 @@ To install the Kubernetes installer bundle:
       ```shell
       export REPLICATED_APP=<app_slug>
       export REPLICATED_CHANNEL=<channel_name>
-      curl -LS https://k8s.kurl.sh/bundle/${REPLICATED_APP}-${REPLICATED_CHANNEL}.tar.gz -o ${REPLICATED_APP}-{REPLICATED_CHANNEL}.tar.gz
+      curl -LS https://k8s.kurl.sh/bundle/$REPLICATED_APP-$REPLICATED_CHANNEL.tar.gz -o $REPLICATED_APP-$REPLICATED_CHANNEL.tar.gz
         ```
 
 1. Run `scp` for the `.tar.gz` file from the jumpbox to the air gapped node:
