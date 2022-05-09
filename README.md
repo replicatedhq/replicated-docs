@@ -81,7 +81,7 @@ Please copy the topic templates that are located in the `templates` folder to cr
 
 - A single procedure/task: `procedure.md`
 
-- A process/workflow that requires multiple procedures/tasks: `process-multiple-procedures.md`
+- A process/workflow or tutorial that contains multiple procedures/tasks: `process-multiple-procedures.md`
 
 Save the new topic to the correct folder and be sure to follow the [filenaming convention](#filenaming).
 

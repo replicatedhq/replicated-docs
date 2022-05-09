@@ -1,6 +1,6 @@
 # Page Title (Use a gerund. For example, "Creating...")
 
-<!-- This template is used for processes/workflows that require multiple procedures/tasks. For single procedures, use the other template.-->
+<!-- This template is used for processes/workflows or tutorial that require multiple procedures/tasks. For single procedures, use the other template.-->
 
 [Introductory paragraph stating the business reason why a user would want to do this process/workflow or tutorial.]
 
