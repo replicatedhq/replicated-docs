@@ -62,7 +62,7 @@ To enable pushing updates to a GitOps workflow:
 
       The Gitops subtab opens and displays a public deployment key. The private key is stored securely in the admin console.
 
-1. Click **Copy key** to copy the key. Click **repo settings page** and add the public deployment key in the repository settings page. Enable the write access permissions for this key, otherwise the commit fails when KOTS pushes the commit to the repository.
+1. Click **Copy key**. Click **repo settings page** and add the public deployment key in the repository settings page. Enable the write access permissions for this key, otherwise KOTS cannot push the commit to the repository.
 
   ![GitOps Deployment Key](/images/gitops-deployment-key.png)
 
