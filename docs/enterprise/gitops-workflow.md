@@ -5,7 +5,7 @@ The Replicated admin console default workflow is configured to receive updates, 
 If you have more than one application installed, you can selectively enable a GitOps workflow for each application.
 
 :::note
-You can change your GitOPs settings or disable a GitOps workflow at any time from the GitOps tab.
+You can change your GitOps settings or disable a GitOps workflow at any time from the GitOps tab.
 :::
 
 **Prerequisites**
