@@ -100,7 +100,7 @@ The `kubectl kots velero ensure-permissions` command can be used to create addit
 
 ### Air Gap Installations
 
-Air gap installations honor the `requireMinimalRBACPrivileges` and `supportsMinimalRBACPrivileges` flags in [headless mode only](../enterprise/installing-existing-cluster-automation#airgap-install).
+Air gap installations honor the `requireMinimalRBACPrivileges` and `supportMinimalRBACPrivileges` flags in [headless mode only](../enterprise/installing-existing-cluster-automation#airgap-install).
 Without access to the internet or the application's `.airgap` package as provided in a headless install, the app manager does not have the information required to determine whether minimal RBAC is appropriate and so it defaults to the more permissive RBAC policy.
 
 ### Operators and multiple namespaces

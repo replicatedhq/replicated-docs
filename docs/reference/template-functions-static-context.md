@@ -398,3 +398,16 @@ repl{{KotsVersion | semverCompare ">= 1.19"}}
 The above template function will return `true` if `KotsVersion` is greater than `1.19`. **Note**: The app manager is based on the KOTS open source project. The current KOTS version is the same as the current app manager version.
 
 For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
+
+## YamlEscape
+```go
+func YamlEscape(input string) string
+```
+
+YamlEscape returns an escaped and quoted version of the input string, suitable for use within a YAML document.
+This can be useful when dealing with user-uploaded files that may include null bytes and other nonprintable characters. For more information about printable characters, see [Character Set](https://yaml.org/spec/1.2.2/#51-character-set) in the YAML documentation.
+
+```yaml
+repl{{ ConfigOptionData "my_file_upload" | YamlEscape }}
+```
+

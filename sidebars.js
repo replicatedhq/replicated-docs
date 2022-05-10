@@ -158,7 +158,8 @@ const sidebars = {
                 type: 'category',
                 label: 'Configuring Role-based Access Control',
                 items: [
-                  'vendor/team-management-vendor-rbac',
+                  'vendor/team-management-rbac-configuring',
+                  "vendor/team-management-rbac-about",
                   'vendor/team-management-rbac-resource-names',
               ],
             },
@@ -250,6 +251,7 @@ const sidebars = {
           type: 'category',
           label: 'Managing User Access',
           items: [
+            'enterprise/auth-changing-passwords',
             'enterprise/auth-identity-provider',
             'enterprise/auth-configuring-rbac',
           ],
@@ -273,8 +275,12 @@ const sidebars = {
           ],
         },
         {
-          type: 'doc',
-          id: 'enterprise/troubleshooting-an-app'
+          type: 'category',
+          label: 'Troubleshooting',
+          items: [
+            'enterprise/status-viewing-details',
+            'enterprise/troubleshooting-an-app',
+          ],
         },
       ],
     },

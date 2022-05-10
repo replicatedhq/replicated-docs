@@ -1,6 +1,6 @@
 # Displaying Application Status
 
-You can configure the Application custom resource to display application status on the dashboard of the admin console.
+You can configure the Application custom resource to display application status on the dashboard of the Replicated admin console.
 
 ![Application Status](/images/kotsadm-dashboard-appstatus.png)
 
@@ -8,7 +8,7 @@ It is necessary to target specific Kubernetes resources for the dashboard to acc
 We suggest at least one resource be added.
 Resources that are currently supported are Deployments, StatefulSets, Services, Ingresses and PersistentVolumeClaims.
 
-## Application manifest file
+## Application Manifest File
 
 To add an informer, include the `statusInformers` property in the Application custom resource manifest file.
 Status informers are in the format `[namespace/]type/name` where namespace is optional and will default to the current namespace.
@@ -33,17 +33,8 @@ statusInformers:
     - '{{repl if ConfigOptionEquals "option" "value"}}deployment/my-worker{{repl else}}{{repl end}}'
 ```
 
-## Resource Statuses
+## Application Statuses
 
-Possible application statuses are "Missing", "Unavailable", "Degraded", "Ready" and "Updating". "Missing" is a special status that indicates that informers have yet to report back status.
-A [support bundle](../enterprise/troubleshooting-an-app) will include diagnostic information when state "Missing" is encountered.
+Possible application statuses are "Missing", "Unavailable", "Degraded", "Ready" and "Updating". "Missing" indicates that informers have yet to report back their status.
 
-Below is a table of resources that are supported and conditions that contribute to each status:
-
-| | Unavailable | Degraded | Ready | Updating |
-|---|---|---|---|---|
-| **Deployment** | No replicas are ready | At least 1 replica is ready and less than desired | Ready replicas equals desired replicas | The deployed replicas are from a different revision |
-| **StatefulSet** | No replicas are ready | At least 1 replica is ready and less than desired | Ready replicas equals desired replicas | The deployed replicas are from a different revision |
-| **Service** | No endpoints are ready, no load balancer has been assigned | At least one endpoint is ready and less than desired | All desired endpoints are ready, any load balancers have been assigned | n/a |
-| **Ingress** | No backend service endpoints are ready, no load balancer has been assigned | At least one backend service endpoint is ready and less than desired | All desired backend service endpoints are ready, any load balancers have been assigned | n/a |
-| **PersistentVolumeClaim** | Claim is pending or lost | n/a | Claim is bound | n/a |
+For more information about resource statuses and the conditions that contribute to each status, see [Resource Statuses](../enterprise/status-viewing-details#resource-statuses) in _Viewing Status Details_.
