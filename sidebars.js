@@ -75,19 +75,10 @@ const sidebars = {
                         'vendor/config-screen-about',
                         'vendor/admin-console-customize-config-screen',
                         'vendor/config-screen-map-inputs',
-                        'vendor/database-config-adding-options',
-                        {
-                            type: 'category',
-                            label: 'Config Manifest Examples',
-                            items: [
-
-                              'vendor/packaging-ingress',
-                              'vendor/helm-mapping-example',
-                          ],
-                        },
                     ],
                   },
-
+                  'vendor/database-config-adding-options',
+                  'vendor/packaging-ingress',
                   'vendor/packaging-custom-resources',
                   'vendor/packaging-kots-versions',
                   'vendor/packaging-template-functions',
@@ -132,6 +123,7 @@ const sidebars = {
                       'vendor/helm-native-helm-install-order',
                       'vendor/helm-installing-replicated-helm',
                       'vendor/helm-processing',
+                      'vendor/helm-mapping-example',
 
                     ],
                   },

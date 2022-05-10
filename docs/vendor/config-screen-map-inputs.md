@@ -1,21 +1,38 @@
-# Mapping User Inputs
+# Mapping User-Supplied Values
 
-After you add fields to the configuration screen by updating the Config custom resource manifest file, you map the fields from the configuration screen to your application manifest files. This allows you to apply the values that your users supply in the fields in the admin console configuration screen.
+This topic describes how to map the values that your users provide in the Replicated admin console configuration screen within your application.
 
-To map these fields, you use Replicated template functions. For more information about using template functions for mapping configuration values, see [Using Template Functions](packaging-template-functions) and [Config Context](../reference/template-functions-config-context) in the _Template Functions_ section.
+This topic assumes that you have already added custom fields to the admin console configuration screen by editing the Config custom resource. For more information, see [Creating and Editing Configuration Fields](admin-console-customize-config-screen).
 
-Follow one of these procedures below to map user inputs from the configuration screen, depending on if you use a Helm chart for your application in Replicated:
+## Overview of Mapping Values
 
-* **Without Helm**: See [Map User Inputs to Manifest Files](#map-user-inputs-to-manifest-files).
-* **With Helm**: See [Map User Inputs to a Helm Chart](#map-user-inputs-to-a-helm-chart).
+You can use the values that your users provide in the admin console configuration screen to render YAML within your application manifest files.
 
-## Map User Inputs to Manifest Files
-Customer supplied values can be used when generating the YAML for the manifest file by using the `'{{repl ConfigOption ITEM_NAME}}'` syntax.
+Alternatively, if you use a Helm chart for your application in Replicated, you can map these user-supplied values to the Helm chart `values.yaml` file using the Replicated `HelmChart` custom resource.
 
-To map user inputs from the configuration screen to values in other manifest files for your application:
+For example,
 
-1. In the Config custom resource manifest file, locate the name of the field that you want to map.
-1. Open the manifest file for your application where you want to use the user-supplied input from the configuration screen field that you selected. Locate the field where you want to supply the user-provided value.
+You could also use user-supplied values to conditionally include custom resources depending on the user input for a given field. For example, if a customer chooses to use their own database with your application rather than an embedded database option, it is not desirable to deploy the optional database resources such as a StatefulSet and a Service.
+
+In this case, if the user selects the option on the admin console configuration screen to provide their own database, you can use this selection to prevent the app manager from deploying the optional additional database resources.
+
+For more information about including optional resources conditionally based on user-supplied values, see [Including Optional and Conditional Resources](packaging-include-resources).
+
+## Map User-Supplied Values
+
+To map these user-supplied values, you use Replicated template functions. For more information about the syntax of template functions for mapping configuration values, see [Using Template Functions](packaging-template-functions) and [Config Context](../reference/template-functions-config-context) in the _Template Functions_ section.
+
+Follow one of these procedures to map user inputs from the configuration screen, depending on if you use a Helm chart for your application in Replicated:
+
+* **Without Helm**: See [Map Values to Manifest Files](#map-values-to-manifest-files).
+* **With Helm**: See [Map Values to a Helm Chart](#map-values-to-a-helm-chart).
+
+### Map Values to Manifest Files
+
+To map user-supplied values from the configuration screen to manifest files for your application:
+
+1. In the Config custom resource manifest file, locate the name of the user-input field whose value you want to map.
+1. Open the manifest file for your application where you want to use the user-supplied value for the field that you selected. Locate the field where you want to supply the user-provided value.
 1. In the manifest file where you want to use the user-supplied input, use sprig template formatting to map the field name from the Config manifest to the value of the desired field in the manifest file:
    ```yaml
    value: '{{repl ConfigOption "MY_FIELD_NAME"}}'
@@ -25,25 +42,27 @@ To map user inputs from the configuration screen to values in other manifest fil
 
    **Example**:
 
-   For example, to set the `smtp_hostname` value in the above YAML as the value of an environment variable in a PodSpec manfiest file:
+   For example, to set the `smtp_hostname` value in the above YAML as the value of an environment variable in a PodSpec manifest file:
 
    ```yaml
    env:
     name: SMTP_USERNAME
     value: '{{repl ConfigOption "smtp_username"}}'
-    ```
+   ```
 
-1. Save and promote the release to test your changes.
+1. Save and promote the release to a development environment to test your changes.
 
-## Map User Inputs to a Helm Chart
+### Map Values to a Helm Chart
 
-The values.yaml file for a Helm chart is the file that contains values that are specific to the end-user’s environment.
+The `values.yaml` file for a Helm chart is the file that contains values that are specific to the end-user environment.
 
-With Replicated, your end users provide these values through the configuration screen in the admin console, which you customize based on the required and optional fields that you want to expose to your users.
+With Replicated, your users provide these values through the configuration screen in the admin console. You customize the configuration screen based on the required and optional fields that you want to expose to your users.
 
-To map the values that your users provide in the admin console configuration screen to your Helm chart, you update the HelmChart custom resource.
+By allowing your users to provide configuration values in the admin console rather than in the Helm `values.yaml` file directly, you can control which options you expose to your users. It also makes it easier for your users to provide their configuration inputs through a user interface, rather than having to edit YAML.
 
-To follow a tutorial that maps values from the configuration screen to a Helm chart, see Example: Mapping the Configuration Screen to Helm Values.
+To map the values that your users provide in the admin console configuration screen to your Helm chart, you update the Replicated HelmChart custom resource.
+
+To follow a tutorial that maps values from the configuration screen to a Helm chart, see [Example: Mapping the Configuration Screen to Helm Values](helm-mapping-example).
 
 To map user inputs from the configuration screen to values in the Helm chart values.yaml file:
 

@@ -1,4 +1,4 @@
-# Mapping User-Supplied Credentials to Helm Values
+# Example: Mapping the Configuration Screen to Helm Values
 
 The Replicated app manager allows you to map the the Replicated admin console configuration screen to the Helm `values.yaml` file. This example shows a possible configuration for the Grafana platform.
 
