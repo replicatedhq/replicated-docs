@@ -4,7 +4,7 @@ This topic describes how to use the Config custom resource manifest file to add 
 
 ## Overview of the Config Custom Resource
 
-To include a configuration screen in the Replicated admin console for your application, you add a Config custom resource manifest file to a release that contains the field definitions. You define the fields that appear on the configuration screen as an array of `groups` and `items` in the Config custom resource manifest.
+To include a configuration screen in the Replicated admin console for your application, you add a Config custom resource manifest file to the release in the Replicated vendor portal. You define the fields that appear on the configuration screen as an array of `groups` and `items` in the Config custom resource manifest.
 
 There are several types of `items` supported in the Config manifest that allow you to collect different types of user inputs. For example, you can use the `password` input type to create a text field on the configuration screen that hides user input.
 
@@ -14,9 +14,15 @@ For more information about the syntax of the Config custom resource manifest, se
 
 You add and edit fields on the admin console configuration screen by editing the Config custom resource manifest file.
 
+:::note
+If you use a Helm chart for your application in Replicated, you can add custom fields on the admin console configuration screen that correspond to the properties in the Helm chart `values.yaml` file for which you need user-provided values.
+
+You can then map the values that the user provides for these fields on the configuration screen back to the `values.yaml` file using a Replicated HelmChart custom resource. For more information, see [Next Steps](#next-steps) below.
+:::
+
 To add fields to the admin console configuration screen:
 
-1. In the vendor portal, create or open the Config custom resource manifest file in the desired release. The Config custom resource manifest is a YAML file in your release with `kind: Config`.
+1. In the vendor portal, create or open the Config custom resource manifest file in the desired release. A Config custom resource manifest file has `kind: Config`.
 1. Define the desired user-input fields in an array of `groups` and `items`:
    * `groups`: A set of user input fields. Each group must have a `name`, `title`, `description`, and an array of `items`.
    * `items`: An array of user input fields. Each field under `items` must have `name`, `title`, and `type` properties. You can also include several optional properties.
