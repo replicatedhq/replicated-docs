@@ -78,7 +78,7 @@ To configure automatic updates:
 1. In the Configure automatic updates dialog, under Automatically check for updates,
 select a cadence for the admin console to check for updates. To define a custom cadence,
 select **Custom** in the drop-down, then enter a cron expression into the text field.
-1. Under Automatically deploy new versions (as of Replicated app manager v1.67.0):
+1. (Replicated app manager v1.67.0 and later) Under Automatically deploy new versions:
    * **For applications that use semantic versioning**: Select an option in the dropdown
    to specify the versions that the admin console automatically deploys. For example,
    to automatically deploy only new patch and minor versions, select
