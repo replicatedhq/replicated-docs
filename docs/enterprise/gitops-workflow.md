@@ -52,9 +52,9 @@ To enable pushing updates to a GitOps workflow:
           </tr>
       </table>
 
-    1. Select the action for the admin console to take when there is an update available. By default, the admin console create automatic commits to the branch.
+    1. For **When an update is available to the application, how should the updates YAML be delivered to repository?**, the admin console creates automatic commits to the branch. This default setting cannot be changed.
 
-    1. For **What content will it contain?**, select what type of asset to deliver to the Git repository. Using the **Rendered YAML** option results in a single, rendered YAML file being committed to the repository.
+    1. For **What content will it contain?**, the supported type of asset to deliver to the Git repository is rendered YAML, which results in a single, rendered YAML file being committed to the repository. This default setting cannot be changed.
 
       ![GitOps Action](/images/gitops-action.png)
 
@@ -74,5 +74,5 @@ To enable pushing updates to a GitOps workflow:
 
 ## First Commits
 
-After converting to GitOps, the admin console makes your first commit/pull request with the current version that is deployed.
-Subsequently, the admin console makes separate commits (or a single pull request) with any available updates that have not been deployed from the admin console.
+After converting to GitOps, the admin console makes your first commit with the current version that is deployed.
+Subsequently, the admin console makes separate commits with any available updates that have not been deployed from the admin console.
