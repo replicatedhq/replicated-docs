@@ -4,6 +4,10 @@ Applications can include a configuration page in the Replicated admin console. T
 
 You can use the configuration screen to collect values from your users that are required to start your application. You can also collect optional configuration values. For more information about how to add custom fields to the configuration screen, see [Adding and Editing Configuration Fields](admin-console-customize-config-screen).
 
+If you use a Helm chart for your application in Replicated, your users provide any values specific to their environment from the configuration screen, rather than in the Helm chart `values.yaml` file.
+
+By allowing your users to provide configuration values in the admin console rather than in the Helm `values.yaml` file directly, you can control which options you expose to your users. It also makes it easier for your users to provide their inputs through a user interface, rather than having to edit YAML.
+
 For example, you can use the configuration screen to provide database configuration options for your application. Your users could connect your application to an external database by providing required values in the configuration screen, such as the host, port, and a username and password for the database. For a tutorial of this use case, see [Adding Database Configuration Options for your Application](tutorial-adding-db-config).
 
 ## Viewing the Configuration Screen

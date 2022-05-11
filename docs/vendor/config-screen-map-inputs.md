@@ -8,7 +8,7 @@ This topic assumes that you have already added custom fields to the admin consol
 
 You can use the values that your users provide in the admin console configuration screen to render YAML in the custom resource manifest files for your application.
 
-For example, if you provide an embedded database with your application, you might add a field on the admin console configuration screen where users input a password for the embedded database. You can then map the password that your user supplies in this field to the Secret manifest file for the database Service in your application.
+For example, if you provide an embedded database with your application, you might add a field on the admin console configuration screen where users input a password for the embedded database. You can then map the password that your user supplies in this field to the Secret manifest file for the database in your application.
 
 Similarly, you might include fields on the configuration screen where your users can enable a custom ingress controller for the cluster. You can then map these user-supplied values to the Ingress custom resources in your application.
 
@@ -64,7 +64,7 @@ To map user-supplied values from the configuration screen to manifest files in y
    ```yaml
    example_key: '{{repl ConfigOption "CONFIG_SCREEN_FIELD_NAME"}}'
    ```
-   Replace `CONFIG_SCREEN_FIELD_NAME` with the name of the field from the Config manifest file that you selected.
+   Replace `CONFIG_SCREEN_FIELD_NAME` with the name of the field from the Config manifest file.
 
    **Example**:
 
@@ -89,8 +89,6 @@ To map user-supplied values from the configuration screen to manifest files in y
 
 The `values.yaml` file in a Helm chart contains values that are specific to the end-user environment. With Replicated, your users provide these values through the configuration screen in the admin console. You customize the configuration screen based on the required and optional configuration fields that you want to expose to your users.
 
-By allowing your users to provide configuration values in the admin console rather than in the Helm `values.yaml` file directly, you can control which options you expose to your users. It also makes it easier for your users to provide their inputs through a user interface, rather than having to edit YAML.
-
 To map the values that your users provide in the admin console configuration screen to your Helm chart `values.yaml` file, you create a Replicated HelmChart custom resource.
 
 To follow a tutorial that maps values from the configuration screen to a Helm chart, see [Example: Mapping the Configuration Screen to Helm Values](helm-mapping-example).
@@ -99,15 +97,15 @@ To map user inputs from the configuration screen to the `values.yaml` file:
 
 1. In the vendor portal, create a HelmChart custom resource manifest file in the desired release. A HelmChart custom resource manifest file has `kind: HelmChart`.
 
-1. In the HelmChart manifest file, copy and paste the name of the desired property from your `values.yaml` file under the `values:` key:
+1. In the HelmChart manifest file, copy and paste the name of the desired property from your `values.yaml` file under `values`:
 
    ```yaml
    values:
      HELM_VALUE_KEY:
    ```
-   Replace `HELM_VALUE_KEY` with the property name.
+   Replace `HELM_VALUE_KEY` with the property name from the `values.yaml` file.
 
-1. Use the ConfigOption template function to set the property to the user-supplied value of the corresponding field:
+1. Use the ConfigOption template function to set the property to the user-supplied value from the configuration screen:
 
    ```yaml
    values:
@@ -117,4 +115,4 @@ To map user inputs from the configuration screen to the `values.yaml` file:
 
    For more information about the ConfigOption template function, see [Config Context](../reference/template-functions-config-context#configoption) in the _Template Functions_ section.
 
-1. Save and promote the release to a development environment to test the changes.
+1. Save and promote the release to a development environment to test your changes.

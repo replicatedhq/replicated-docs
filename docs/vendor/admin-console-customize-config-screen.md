@@ -21,7 +21,7 @@ To add fields to the admin console configuration screen:
    * `groups`: A set of `items`. Each group must have a `name`, `title`, `description`, and `items`.
    * `items`: An array of user input fields. Each array under `items` must have a `name`, `title`, and `type`. You can also include several optional properties.
 
-   For information about the syntax of the Config custom resource manifest file, including supported properties and examples, see [Config](../reference/custom-resource-config) in the _Custom Resources_ section.
+   For more information about the syntax of the Config custom resource manifest file, including supported properties and examples, see [Config](../reference/custom-resource-config) in the _Custom Resources_ section.
 
    **Example**:
 
