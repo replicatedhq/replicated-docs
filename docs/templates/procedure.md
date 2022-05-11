@@ -55,10 +55,10 @@ To [do this task]: [For example, "To create a customer license:"]
 
 1. Click **Save Changes**.
 
-## Next Step​
+## Next Step
 
 [Describe and link to the next task.]
 
-## Additional Resources​
+## Additional Resources
 
 [Bulleted list of one or more links to related resources, such as concepts, web pages, and so on. Make sure the resource links are truly relevant to the task.]
