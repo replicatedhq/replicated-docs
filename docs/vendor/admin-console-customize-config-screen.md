@@ -14,18 +14,14 @@ For more information about the syntax of the Config custom resource manifest, se
 
 You add and edit fields on the admin console configuration screen by editing the Config custom resource manifest file.
 
-:::note
-If you use a Helm chart for your application in Replicated, you can add custom fields on the admin console configuration screen that correspond to the properties in the Helm chart `values.yaml` file for which you need user-provided values.
-
-You can then map the values that the user provides for these fields on the configuration screen back to the `values.yaml` file using a Replicated HelmChart custom resource. For more information, see [Next Steps](#next-steps) below.
-:::
-
 To add fields to the admin console configuration screen:
 
 1. In the vendor portal, create or open the Config custom resource manifest file in the desired release. A Config custom resource manifest file has `kind: Config`.
-1. Define the desired user-input fields in an array of `groups` and `items`:
-   * `groups`: A set of user input fields. Each group must have a `name`, `title`, `description`, and an array of `items`.
-   * `items`: An array of user input fields. Each field under `items` must have `name`, `title`, and `type` properties. You can also include several optional properties.
+1. Define custom user-input fields in an array of `groups` and `items`:
+   * `groups`: A set of `items`. Each group must have a `name`, `title`, `description`, and `items`.
+   * `items`: An array of user input fields. Each array under `items` must have a `name`, `title`, and `type`. You can also include several optional properties.
+
+   For information about the syntax of the Config custom resource manifest file, including supported properties and examples, see [Config](../reference/custom-resource-config) in the _Custom Resources_ section.
 
    **Example**:
 
@@ -41,18 +37,19 @@ To add fields to the admin console configuration screen:
          description: Configuration to use an external mail server
          items:
            - name: enable_smtp
+             title: "Enable SMTP"
              type: bool
              default: "0"
            - name: smtp_hostname
-             title: SMTP Server Hostname
+             title: "SMTP Server Hostname"
              type: text
              required: true
            - name: smtp_username
-             title: SMTP Username
+             title: "SMTP Username"
              type: text
              required: true
            - name: smtp_password
-             title: SMTP Password
+             title: "SMTP Password"
              type: password
              required: true
    ```
@@ -61,11 +58,9 @@ To add fields to the admin console configuration screen:
 
    The `items` array for the `smtp_settings` group includes four user-input fields: `enable_smtp`, `enable_smtp`, `smtp_username`, and `smtp_password`.
 
-   For information about the syntax of the Config custom resource manifest file, including supported properties and examples, see [Config](../reference/custom-resource-config) in the _Custom Resources_ section.
-
 1. (Optional) Add default values for the fields. You can add default values using one of the following properties:
-   * **With the `default` property**: If you provide a value in the `default` key, the Replicated app manager uses this value when rendering the manifest files for your application. The value then displays as a placeholder on the configuration screen in the admin console for your users. The app manager only uses the default value if the user does not provide a different value.
-   * **With the `value` property**: If you provide a value in the `value` key, the app manager does not overwrite the value during application update. The value that you provide in the `value` key is visually indistinguishable from other values that your user provides in the admin console configuration screen, and the app manager treats them the same.
+   * **With the `default` property**: When you include the `default` key, the Replicated app manager uses this value when rendering the manifest files for your application. The value then displays as a placeholder on the configuration screen in the admin console for your users. The app manager only uses the default value if the user does not provide a different value.
+   * **With the `value` property**: When you include the `value` key, the app manager does not overwrite this value during application update. The value that you provide for the `value` key is visually indistinguishable from other values that your user provides on the admin console configuration screen. The app manager treats user-supplied values and the value that you provide for the `value` key as the same.
 1. (Optional) Mark fields as required by including `required: true`. When there are required fields, the configuration screen displays during application installation, and the user is prevented from proceeding with the installation until they provide a valid value for required fields.
 
    **Example**:
@@ -81,6 +76,6 @@ To add fields to the admin console configuration screen:
 
 ## Next Steps
 
-After you add user input fields to the configuration screen, you use template functions to map the user-supplied values to other manifest files in your release. Or, if you use a Helm chart for your application in Replicated, you map the values to the Helm chart `values.yaml` file using the Replicated `HelmChart` custom resource.
+After you add user input fields to the configuration screen, you use template functions to map the user-supplied values to manifest files in your release. If you use a Helm chart for your application in Replicated, you map the values to the Helm chart `values.yaml` file using the Replicated `HelmChart` custom resource.
 
 For more information, see [Mapping User-Supplied Values](config-screen-map-inputs).

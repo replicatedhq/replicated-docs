@@ -1,22 +1,32 @@
 # Mapping User-Supplied Values
 
-This topic describes how to map the values that your users provide in the Replicated admin console configuration screen within your application.
+This topic describes how to map the values that your users provide in the Replicated admin console configuration screen in your application.
 
 This topic assumes that you have already added custom fields to the admin console configuration screen by editing the Config custom resource. For more information, see [Creating and Editing Configuration Fields](admin-console-customize-config-screen).
 
-## Using Template Functions to Map Values
+## Overview of Mapping Values
 
-You can use the values that your users provide in the admin console configuration screen to render YAML within your application manifest files.
+You can use the values that your users provide in the admin console configuration screen to render YAML in the custom resource manifest files for your application.
 
-To map user-supplied values, you use Replicated template functions. For more information about the syntax of template functions for mapping configuration values, see [Config Context](../reference/template-functions-config-context) in the _Template Functions_ section. For additional template functions use cases and examples, see [Using Template Functions](packaging-template-functions).
+For example, if you provide an embedded database with your application, you might add a field on the admin console configuration screen where users input a password for the embedded database. You can then map the password that your user supplies in this field to the Secret manifest file for the database Service in your application.
 
-For example, if you provide an embedded database with your application, you can add a field on the admin console configuration screens where users input a password for the embedded database. You can then use the user-supplied password in the Kubernetes Secret resource for the database service.
+Similarly, you might include fields on the configuration screen where your users can enable a custom ingress controller for the cluster. You can then map these user-supplied values to the Ingress custom resources in your application.
 
-You could also use user-supplied values to conditionally include custom resources depending on the user input for a given field. For example, if a customer chooses to use their own database with your application rather than an embedded database option, it is not desirable to deploy the optional database resources such as a StatefulSet and a Service.
+For an example of mapping database configuration options in a sample application, see [Adding Database Configuration Options for your Application](tutorial-adding-db-config).
 
-In this case, if the user selects the option on the admin console configuration screen to provide their own database, you can use this selection to prevent the app manager from deploying the optional additional database resources.
+For an example of adding custom Ingress resources based on user-supplied configuration, see [Configuring Cluster Ingress](packaging-ingress).
+
+You can also conditionally deploy custom resources depending on the user input for a given field. For example, if a customer chooses to use their own database with your application rather than an embedded database option, it is not desirable to deploy the optional database resources such as a StatefulSet and a Service.
 
 For more information about including optional resources conditionally based on user-supplied values, see [Including Optional and Conditional Resources](packaging-include-resources).
+
+## Using Template Functions to Map Values
+
+To map user-supplied values, you use Replicated template functions. The template functions are based on the Go text/template libraries. To use template functions, you add them as strings in the custom resource manifest files in your application.
+
+For more information about template functions, including use cases and examples, see [Using Template Functions](packaging-template-functions).
+
+For more information about the syntax of the template functions for mapping configuration values, see [Config Context](../reference/template-functions-config-context) in the _Template Functions_ section.
 
 ## Map User-Supplied Values
 
@@ -27,9 +37,9 @@ Follow one of these procedures to map user inputs from the configuration screen,
 
 ### Map Values to Manifest Files
 
-To map user-supplied values from the configuration screen to manifest files for your application:
+To map user-supplied values from the configuration screen to manifest files in your application:
 
-1. In the vendor portal, open the Config custom resource manifest file in the desired release. In the Config manifest file, locate the name of the user-input field that you want to map.
+1. In the vendor portal, go to the desired release and open the Config custom resource manifest file. In the Config manifest file, locate the name of the user-input field that you want to map.
 
    **Example**:
    ```yaml
@@ -47,31 +57,29 @@ To map user-supplied values from the configuration screen to manifest files for 
 
    In the example above, the field name to map is `example_config_screen_field_name`.
 
-   For information about how to add fields to the configuration screen using Config custom resource, see [Creating and Editing Configuration Fields](admin-console-customize-config-screen).
+1. In the same release in the vendor portal, open the custom resource manifest file where you want to map the value for the field that you selected.
 
-1. In the same release in the vendor portal, open the manifest file where you want to apply the user-supplied value for the field that you selected.
-
-   In the manifest file, create an environment variable that maps the fields using the ConfigOption template function:
+   Use the ConfigOption template function to map the user-supplied value in a key value pair:
 
    ```yaml
-   env:
-     name: ENVIRONMENT_VAR_NAME
-     value: '{{repl ConfigOption "CONFIG_SCREEN_FIELD_NAME"}}'
+   example_key: '{{repl ConfigOption "CONFIG_SCREEN_FIELD_NAME"}}'
    ```
-   <table>
-     <tr>
-       <th>Replace</th>
-       <th>With</th>
-     </tr>
-     <tr>
-       <td>ENVIRONMENT_VAR_NAME</td>
-       <td>A name for the new environment variable in the manifest file.</td>
-     </tr>
-     <tr>
-       <td>CONFIG_SCREEN_FIELD_NAME</td>
-       <td>The name of the field that you created in the Config custom resource.</td>
-     </tr>
-   </table>
+   Replace `CONFIG_SCREEN_FIELD_NAME` with the name of the field from the Config manifest file that you selected.
+
+   **Example**:
+
+   The following example shows mapping user-supplied TLS certificate and TLS private key files to the `tls.cert` and `tls.key` keys in a Secret custom resource manifest file.
+
+   ```yaml
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: tls-secret
+   type: kubernetes.io/tls
+   data:
+     tls.crt: '{{repl ConfigOption "tls_certificate_file" }}'
+     tls.key: '{{repl ConfigOption "tls_private_key_file" }}'
+   ```
 
    For more information about the ConfigOption template function, see [Config Context](../reference/template-functions-config-context#configoption) in the _Template Functions_ section.
 
@@ -79,7 +87,7 @@ To map user-supplied values from the configuration screen to manifest files for 
 
 ### Map Values to a Helm Chart
 
-The `values.yaml` file for a Helm chart is the file that contains values that are specific to the end-user environment. With Replicated, your users provide these values through the configuration screen in the admin console. You customize the configuration screen based on the required and optional configuration fields that you want to expose to your users.
+The `values.yaml` file in a Helm chart contains values that are specific to the end-user environment. With Replicated, your users provide these values through the configuration screen in the admin console. You customize the configuration screen based on the required and optional configuration fields that you want to expose to your users.
 
 By allowing your users to provide configuration values in the admin console rather than in the Helm `values.yaml` file directly, you can control which options you expose to your users. It also makes it easier for your users to provide their inputs through a user interface, rather than having to edit YAML.
 
@@ -95,16 +103,18 @@ To map user inputs from the configuration screen to the `values.yaml` file:
 
    ```yaml
    values:
-     HELM_VALUE_NAME:
+     HELM_VALUE_KEY:
    ```
-   Replace `HELM_VALUE_NAME` with the name of the property.
+   Replace `HELM_VALUE_KEY` with the property name.
 
-1. Set it equal to whatever value the user provides in the corresponding field on the configuration screen in the admin console by using template formatting:
+1. Use the ConfigOption template function to set the property to the user-supplied value of the corresponding field:
 
    ```yaml
    values:
-     HELM_VALUE_NAME: '{{repl ConfigOption "CONFIG_SCREEN_FIELD_NAME" }}'
+     HELM_VALUE_KEY: '{{repl ConfigOption "CONFIG_SCREEN_FIELD_NAME" }}'
    ```
    Replace `CONFIG_SCREEN_FIELD_NAME` with the name of the field that you created in the Config custom resource.
+
+   For more information about the ConfigOption template function, see [Config Context](../reference/template-functions-config-context#configoption) in the _Template Functions_ section.
 
 1. Save and promote the release to a development environment to test the changes.
