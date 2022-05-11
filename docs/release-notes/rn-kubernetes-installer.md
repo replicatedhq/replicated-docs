@@ -4,6 +4,27 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+
+## Release v2022.05.11-0
+
+Released on May 11, 2022
+### Changes
+
+- The AWS addon now creates a storageclass named 'aws-ebs', not 'default'.
+
+## Release v2022.05.10-0
+
+Released on May 10, 2022
+
+### New Features
+
+- Adds a new addon `aws` to setup the AWS cloud provider within a kURL cluster.
+
+
+### Improvements
+
+- OpenEBS has been marked as incompatible with Kubernetes 1.22+.
+
 ## Release v2022.05.06-0
 
 Released on May 6, 2022
