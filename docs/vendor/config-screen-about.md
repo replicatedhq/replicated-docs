@@ -1,6 +1,6 @@
 # About the Configuration Screen
 
-Applications can include a configuration screen in the Replicated admin console to collect required or optional values from your users that are used to start your application.
+Applications can include a configuration screen in the Replicated admin console to collect required or optional values from your users that are used to run your application.
 
 For more information about how to add custom fields to the configuration screen, see [Adding and Editing Configuration Fields](admin-console-customize-config-screen).
 
