@@ -12,7 +12,7 @@ For more information about the syntax of the Config custom resource manifest, se
 
 ## Add Fields to the Configuration Screen
 
-Applications can include a configuration screen in the Replicated admin console to collect required or optional values from your users that are used to start your application.
+Applications can include a configuration screen in the Replicated admin console to collect required or optional values from your users that are used to run your application.
 
 Add and edit fields on the admin console configuration screen by editing the Config custom resource manifest file.
 
