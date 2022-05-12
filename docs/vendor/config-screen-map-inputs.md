@@ -6,7 +6,7 @@ This topic assumes that you have already added custom fields to the admin consol
 
 ## Overview of Mapping Values
 
-You use the values that your users provide in the admin console configuration screen to render YAML in the custom resource manifest files for your application.
+You use the values that your users provide in the admin console configuration screen to render YAML in the manifest files for your application.
 
 For example, if you provide an embedded database with your application, you might add a field on the admin console configuration screen where users input a password for the embedded database. You can then map the password that your user supplies in this field to the Secret manifest file for the database in your application.
 
