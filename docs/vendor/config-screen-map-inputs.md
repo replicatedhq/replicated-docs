@@ -91,7 +91,7 @@ To map user-supplied values from the configuration screen to manifest files in y
 
 ### Map Values to a Helm Chart
 
-The `values.yaml` file in a Helm chart contains values that are specific to the end-user environment. With Replicated, your users provide these values through the configuration screen in the admin console. You customize the configuration screen based on the required and optional configuration fields that you want to expose to your users.
+The `values.yaml` file in a Helm chart defines parameters that are specific to each environment in which the chart will be deployed. With Replicated, your users provide these values through the configuration screen in the admin console. You customize the configuration screen based on the required and optional configuration fields that you want to expose to your users.
 
 To map the values that your users provide in the admin console configuration screen to your Helm chart `values.yaml` file, you create a Replicated HelmChart custom resource.
 
