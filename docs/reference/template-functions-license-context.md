@@ -13,14 +13,19 @@ LicenseFieldValue returns the value of the entitlement with the provided name.
 In addition to custom license fields, `LicenseFieldValue` also accepts the following values:
 
 - `appSlug`
+- `channelID`
 - `channelName`
 - `customerName`
 - `endpoint`
+- `entitlements`
 - `expires_at`
 - `isAirgapSupported`
+- `isGeoaxisSupported`
 - `isGitOpsSupported`
 - `isIdentityServiceSupported`
-- `isGeoaxisSupported`
+- `isSemverRequired`
+- `isSnapshotSupported`
+- `isSupportBundleUploadSupported`
 - `licenseID` or `licenseId`
 - `licenseSequence`
 - `licenseType`
