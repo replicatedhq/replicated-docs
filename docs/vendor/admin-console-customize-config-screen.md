@@ -12,12 +12,17 @@ For more information about the syntax of the Config custom resource manifest, se
 
 ## Add Fields to the Configuration Screen
 
-You add and edit fields on the admin console configuration screen by editing the Config custom resource manifest file.
+Applications can include a configuration screen in the Replicated admin console to collect required or optional values from your users that are used to start your application.
+
+Add and edit fields on the admin console configuration screen by editing the Config custom resource manifest file.
+
+After you create fields in the Config manifest file, you then map the fields to other manifest files in your application to apply the user-supplied values. If you use a Helm chart for your application, you then map the fields that you add to the `values.yaml` file. For more information, see [Next Steps](#next-steps) below.
 
 To add fields to the admin console configuration screen:
 
-1. In the vendor portal, create or open the Config custom resource manifest file in the desired release. A Config custom resource manifest file has `kind: Config`.
-1. Define custom user-input fields in an array of `groups` and `items`:
+1. In the [vendor portal](https://vendor.replicated.com/apps), click **Releases**. Then, either click **Create release** to create a new release, or click **View YAML** to edit an existing release.
+1. Create or open the Config custom resource manifest file in the desired release. A Config custom resource manifest file has `kind: Config`.
+1. In the Config custom resource manifest file, define custom user-input fields in an array of `groups` and `items`:
    * `groups`: A set of `items`. Each group must have a `name`, `title`, `description`, and `items`.
    * `items`: An array of user input fields. Each array under `items` must have a `name`, `title`, and `type`. You can also include several optional properties.
 
@@ -60,8 +65,8 @@ To add fields to the admin console configuration screen:
 
 1. (Optional) Add default values for the fields. You can add default values using one of the following properties:
    * **With the `default` property**: When you include the `default` key, the Replicated app manager uses this value when rendering the manifest files for your application. The value then displays as a placeholder on the configuration screen in the admin console for your users. The app manager only uses the default value if the user does not provide a different value.
-   * **With the `value` property**: When you include the `value` key, the app manager does not overwrite this value during application update. The value that you provide for the `value` key is visually indistinguishable from other values that your user provides on the admin console configuration screen. The app manager treats user-supplied values and the value that you provide for the `value` key as the same.
-1. (Optional) Mark fields as required by including `required: true`. When there are required fields, the configuration screen displays during application installation, and the user is prevented from proceeding with the installation until they provide a valid value for required fields.
+   * **With the `value` property**: When you include the `value` key, the app manager does not overwrite this value during an application update. The value that you provide for the `value` key is visually indistinguishable from other values that your user provides on the admin console configuration screen. The app manager treats user-supplied values and the value that you provide for the `value` key as the same.
+1. (Optional) Mark fields as required by including `required: true`. When there are required fields, the configuration screen displays during the application installation, and the user is prevented from proceeding with the installation until they provide a valid value for required fields.
 
    **Example**:
 

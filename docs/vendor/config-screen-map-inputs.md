@@ -1,18 +1,18 @@
 # Mapping User-Supplied Values
 
-This topic describes how to map the values that your users provide in the Replicated admin console configuration screen in your application.
+This topic describes how to map the values that your users provide in the Replicated admin console configuration screen to your application.
 
 This topic assumes that you have already added custom fields to the admin console configuration screen by editing the Config custom resource. For more information, see [Creating and Editing Configuration Fields](admin-console-customize-config-screen).
 
 ## Overview of Mapping Values
 
-You can use the values that your users provide in the admin console configuration screen to render YAML in the custom resource manifest files for your application.
+You use the values that your users provide in the admin console configuration screen to render YAML in the custom resource manifest files for your application.
 
 For example, if you provide an embedded database with your application, you might add a field on the admin console configuration screen where users input a password for the embedded database. You can then map the password that your user supplies in this field to the Secret manifest file for the database in your application.
 
-Similarly, you might include fields on the configuration screen where your users can enable a custom ingress controller for the cluster. You can then map these user-supplied values to the Ingress custom resources in your application.
+Similarly, you can include fields on the configuration screen where your users can enable a custom ingress controller for the cluster. You then map these user-supplied values to the Ingress custom resources in your application.
 
-For an example of mapping database configuration options in a sample application, see [Adding Database Configuration Options for your Application](tutorial-adding-db-config).
+For a tutorial of mapping database configuration options in a sample application, see [Adding Database Configuration Options for your Application](tutorial-adding-db-config).
 
 For an example of adding custom Ingress resources based on user-supplied configuration, see [Configuring Cluster Ingress](packaging-ingress).
 
@@ -39,7 +39,11 @@ Follow one of these procedures to map user inputs from the configuration screen,
 
 To map user-supplied values from the configuration screen to manifest files in your application:
 
-1. In the vendor portal, go to the desired release and open the Config custom resource manifest file. In the Config manifest file, locate the name of the user-input field that you want to map.
+1. In the [vendor portal](https://vendor.replicated.com/apps), click **Releases**. Then, click **View YAML** next to the desired release.
+
+1. Open the Config custom resource manifest file that you created in the [Add Fields to the Configuration Screen](admin-console-customize-config-screen#add-fields-to-the-configuration-screen) procedure. The Config custom resource manifest file has `kind: Config`.
+
+1. In the Config manifest file, locate the name of the user-input field that you want to map.
 
    **Example**:
    ```yaml
@@ -95,9 +99,31 @@ To follow a tutorial that maps values from the configuration screen to a Helm ch
 
 To map user inputs from the configuration screen to the `values.yaml` file:
 
-1. In the vendor portal, create a HelmChart custom resource manifest file in the desired release. A HelmChart custom resource manifest file has `kind: HelmChart`.
+1. In the [vendor portal](https://vendor.replicated.com/apps), click **Releases**. Then, click **View YAML** next to the desired release.
 
-1. In the HelmChart manifest file, copy and paste the name of the desired property from your `values.yaml` file under `values`:
+1. Open the Config custom resource manifest file that you created in the [Add Fields to the Configuration Screen](admin-console-customize-config-screen#add-fields-to-the-configuration-screen) procedure. The Config custom resource manifest file has `kind: Config`.
+
+1. In the Config manifest file, locate the name of the user-input field that you want to map.
+
+   **Example**:
+   ```yaml
+   spec:
+    groups:
+      - name: example_group_name
+        title: "Example Group Title"
+        description: "An example group of configuration options.""
+        items:
+          - name: example_config_screen_field_name
+            title: "Example Field Title"
+            type: bool
+            default: "0"
+   ```
+
+   In the example above, the field name to map is `example_config_screen_field_name`.
+
+1. In the same release, create a HelmChart custom resource manifest file. A HelmChart custom resource manifest file has `kind: HelmChart`.
+
+1. In the HelmChart manifest file, copy and paste the name of the property from your `values.yaml` file that corresponds to the field that you selected from the Config manifest file under `values`:
 
    ```yaml
    values:
@@ -105,7 +131,7 @@ To map user inputs from the configuration screen to the `values.yaml` file:
    ```
    Replace `HELM_VALUE_KEY` with the property name from the `values.yaml` file.
 
-1. Use the ConfigOption template function to set the property to the user-supplied value from the configuration screen:
+1. Use the ConfigOption template function to set the property from the `values.yaml` file equal to the corresponding configuration screen field:
 
    ```yaml
    values:
