@@ -24,10 +24,10 @@ For information about how to create the configuration screen for your applicatio
 
 The admin console displays the configuration screen when the user installs the application, after they upload their license file.
 
-![configuration screen that displays during application install](../../static/images/initial-config.png)
+![configuration screen that displays during application install](../../static/images/config-screen-sentry-enterprise-app-install.png)
 
 ### Admin Console Config Tab
 
 Users can access the configuration screen any time after they install the application by going to the Config tab in the admin console.
 
-![configuration screen in the Config tab of the admin console](../../static/images/config.png)
+![configuration screen that displays in the Config tab](../../static/images/config-screen-sentry-enterprise.png)
