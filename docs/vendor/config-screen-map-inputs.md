@@ -46,33 +46,41 @@ To map user-supplied values from the configuration screen to manifest files in y
 1. In the Config manifest file, locate the name of the user-input field that you want to map.
 
    **Example**:
+
    ```yaml
+   apiVersion: kots.io/v1beta1
+   kind: Config
+   metadata:
+     name: my-application
    spec:
-    groups:
-      - name: example_group_name
-        title: "Example Group Title"
-        description: "An example group of configuration options.""
-        items:
-          - name: example_config_screen_field_name
-            title: "Example Field Title"
-            type: bool
-            default: "0"
+     groups:
+       - name: smtp_settings
+         title: SMTP Settings
+         description: Configure SMTP Settings
+         items:
+           - name: smtp_host
+             title: SMTP Hostname
+             help_text: Set SMTP Hostname
+             type: text
    ```
 
-   In the example above, the field name to map is `example_config_screen_field_name`.
+   In the example above, the field name to map is `smtp_host`.
 
-1. In the same release in the vendor portal, open the custom resource manifest file where you want to map the value for the field that you selected.
+1. In the same release in the vendor portal, open the manifest file where you want to map the value for the field that you selected.
 
-   Use the ConfigOption template function to map the user-supplied value in a key value pair:
+1. In the manifest file, use the ConfigOption template function to map the user-supplied value in a key value pair. For example:
 
    ```yaml
-   example_key: '{{repl ConfigOption "CONFIG_SCREEN_FIELD_NAME"}}'
+   hostname: '{{repl ConfigOption "smtp_host"}}'
    ```
-   Replace `CONFIG_SCREEN_FIELD_NAME` with the name of the field from the Config manifest file.
+
+   For more information about the ConfigOption template function, see [Config Context](../reference/template-functions-config-context#configoption) in the _Template Functions_ section.
 
    **Example**:
 
    The following example shows mapping user-supplied TLS certificate and TLS private key files to the `tls.cert` and `tls.key` keys in a Secret custom resource manifest file.
+
+   For more information about working with TLS secrets, including a strategy for re-using the certificates uploaded for the admin console itself, see the [Configuring Cluster Ingress](packaging-ingress) example.
 
    ```yaml
    apiVersion: v1
@@ -84,8 +92,6 @@ To map user-supplied values from the configuration screen to manifest files in y
      tls.crt: '{{repl ConfigOption "tls_certificate_file" }}'
      tls.key: '{{repl ConfigOption "tls_private_key_file" }}'
    ```
-
-   For more information about the ConfigOption template function, see [Config Context](../reference/template-functions-config-context#configoption) in the _Template Functions_ section.
 
 1. Save and promote the release to a development environment to test your changes.
 
@@ -106,22 +112,29 @@ To map user inputs from the configuration screen to the `values.yaml` file:
 1. In the Config manifest file, locate the name of the user-input field that you want to map.
 
    **Example**:
+
    ```yaml
+   apiVersion: kots.io/v1beta1
+   kind: Config
+   metadata:
+     name: my-application
    spec:
-    groups:
-      - name: example_group_name
-        title: "Example Group Title"
-        description: "An example group of configuration options.""
-        items:
-          - name: example_config_screen_field_name
-            title: "Example Field Title"
-            type: bool
-            default: "0"
+     groups:
+       - name: smtp_settings
+         title: SMTP Settings
+         description: Configure SMTP Settings
+         items:
+           - name: smtp_host
+             title: SMTP Hostname
+             help_text: Set SMTP Hostname
+             type: text
    ```
 
-   In the example above, the field name to map is `example_config_screen_field_name`.
+   In the example above, the field name to map is `smtp_host`.
 
 1. In the same release, create a HelmChart custom resource manifest file. A HelmChart custom resource manifest file has `kind: HelmChart`.
+
+   For more information about the HelmChart custom resource, see [HelmChart](../reference/custom-resource-helmchart) in the _Custom Resources_ section.
 
 1. In the HelmChart manifest file, copy and paste the name of the property from your `values.yaml` file that corresponds to the field that you selected from the Config manifest file under `values`:
 
@@ -140,5 +153,22 @@ To map user inputs from the configuration screen to the `values.yaml` file:
    Replace `CONFIG_SCREEN_FIELD_NAME` with the name of the field that you created in the Config custom resource.
 
    For more information about the ConfigOption template function, see [Config Context](../reference/template-functions-config-context#configoption) in the _Template Functions_ section.
+
+   **Example:**
+
+   ```yaml
+   apiVersion: kots.io/v1beta1
+   kind: HelmChart
+   metadata:
+     name: samplechart
+   spec:
+    chart:
+      name: samplechart
+      chartVersion: 3.1.7
+   helmVersion: v3
+   useHelmInstall: true  
+   values:
+     hostname: '{{repl ConfigOption "smtp_host" }}'
+   ```
 
 1. Save and promote the release to a development environment to test your changes.
