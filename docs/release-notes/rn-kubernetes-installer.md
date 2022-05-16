@@ -27,7 +27,7 @@ Released on May 10, 2022
 
 ### New Features
 
-- Introduces the AWS add-on, which sets up the AWS cloud provider in a Kubernetes installer-created cluster.
+- Introduces the AWS add-on, which sets up the AWS cloud provider in a Kubernetes installer-created cluster. For more information, see [AWS Add-On](https://kurl.sh/docs/add-ons/aws) in the kURL open source documentation.
 
 ### Improvements
 
