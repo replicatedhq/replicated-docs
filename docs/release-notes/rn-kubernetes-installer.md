@@ -4,6 +4,16 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.05.16-0
+
+Released on May 16, 2022
+
+### Improvements
+
+- Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.70.0.
+- Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.56.2-35.2.0.
+- Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.8.1.
+
 ## Release v2022.05.11-0
 
 Released on May 11, 2022
