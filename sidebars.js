@@ -68,13 +68,23 @@ const sidebars = {
                         'vendor/packaging-private-registry-security',
                     ],
                   },
+                  {
+                      type: 'category',
+                      label: 'Customizing the Configuration Screen',
+                      items: [
+                        'vendor/config-screen-about',
+                        'vendor/admin-console-customize-config-screen',
+                        'vendor/config-screen-map-inputs',
+                    ],
+                  },
                   'vendor/database-config-adding-options',
+                  'vendor/packaging-ingress',
                   'vendor/packaging-custom-resources',
                   'vendor/packaging-kots-versions',
                   'vendor/packaging-template-functions',
                   'vendor/packaging-include-resources',
                   'vendor/namespaces',
-                  'vendor/packaging-ingress',
+
                   'vendor/packaging-using-tls-certs',
                   'vendor/packaging-cleaning-up-jobs',
                   'vendor/packaging-rbac',
@@ -97,7 +107,6 @@ const sidebars = {
                       'vendor/admin-console-display-app-status',
                       'vendor/admin-console-adding-buttons-links',
                       'vendor/admin-console-prometheus-monitoring',
-                      'vendor/admin-console-customize-config-screen',
                     ],
                   },
                   {
@@ -115,6 +124,7 @@ const sidebars = {
                       'vendor/helm-installing-replicated-helm',
                       'vendor/helm-processing',
                       'vendor/helm-mapping-example',
+
                     ],
                   },
                   {
