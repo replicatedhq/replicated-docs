@@ -10,7 +10,7 @@ We recommend that you bookmark the Replicated [vendor portal](https://vendor.rep
 
     - If you are logging in with an existing account and want to create a new application, click **Create new app** from the Applications drop-down list.
 
-    - If you want to update an existing application, you can use the search filter from the Applications drop-down list to find the application.
+    - If you want to update an existing application, select it from the Applications tab. If you have multiple applications, a search filter appears at the top of the list or you can select the application from the drop-down list.
 
   The Channels page for the release opens and displays a list of your release channels, which are logical stacks for you to stage and promote releases to your customers.
 
