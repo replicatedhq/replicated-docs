@@ -1,8 +1,15 @@
 # Storage Destinations
 
-The Replicated snapshot feature supports any compatible Velero storage provider. For more information, see [Providers](https://velero.io/docs/main/supported-providers/) in the Velero documentation.
+You can use compatible Velero storage providers with the Replicated snapshot feature. For more information, see [Providers](https://velero.io/docs/main/supported-providers/) in the Velero documentation.
 
-The Replicated admin console has built-in support for configuring AWS, GCP, Azure, S3-Compatible object store, NFS Server, or local host path as destinations.
+The Replicated admin console has built-in support for using the following as storage destinations for snapshots:
+
+* Amazon Web Services (AWS)
+* Google Cloud Platform (GCP)
+* Microsoft Azure
+* Ceph and MinIO S3-compatible object stores
+* Network File System (NFS) servers
+* Local host paths
 
 Although clusters created by the Replicated Kubernetes installer are preconfigured in the admin console to store backups in the locally-provisioned object store, this is sufficient for only rollbacks and downgrades. It is not a suitable configuration for disaster recovery. We recommend that you configure a storage destination that is external to the cluster in the admin console.
 
@@ -10,7 +17,7 @@ If the admin console is running with minimal role-based-access-control (RBAC) pr
 
 For more information, see [`velero ensure-permissions`](../reference/kots-cli-velero-ensure-permissions/) in the kots CLI documentation.
 
-For more information about RBAC priviledges for the admin console, see [Kubernetes RBAC](../vendor/packaging-rbac).
+For more information about RBAC privileges for the admin console, see [Kubernetes RBAC](../vendor/packaging-rbac).
 
 ## Prerequisites for Cloud Configurations
 
@@ -63,9 +70,13 @@ Only connections with Service Principles are supported at this time.
 
 For more information about authentication methods and setting up Azure, see [Velero plugins for Microsoft Azure](https://github.com/vmware-tanzu/velero-plugin-for-microsoft-azure) in the velero-plugin-for-microsoft-azure GitHub repository.
 
-## S3 Compatible
+## S3-Compatible
 
-When configuring the admin console to store snapshots on an S3-Compatible storage, the following fields are available:
+Replicated supports the following S3-compatible object stores for storing backups with Velero:
+* Ceph RADOS v12.2.7. For more information, see the [Ceph](https://docs.ceph.com/en/quincy/) documentation.
+* MinIO. For more information, see the [MinIO](https://docs.min.io/docs/minio-quickstart-guide.html) documentation.
+
+When configuring the admin console to store snapshots on S3-compatible storage, the following fields are available:
 
 | Name                         | Description                                                                                                     |
 |------------------------------|-----------------------------------------------------------------------------------------------------------------|
