@@ -1,6 +1,6 @@
 # Pushing Updates to a GitOps Workflow
 
-The Replicated admin console default workflow is configured to receive updates, show the changes, and deploy the updates to the cluster. You can enable a GitOps workflow instead. When using a GitOps workflow, changes from the admin console are pushed to a private Git repository, where an existing CI/CD process can execute the delivery of manifests to the cluster. Admin console changes can include local configuration changes and upstream updates from your vendor (such as application and license updates).
+The Replicated admin console default workflow is configured to receive updates, show the changes, and deploy the updates to the cluster. You can enable a GitOps workflow instead. When using a GitOps workflow, changes from the admin console are pushed to a private Git repository, where an existing CI/CD process can execute the delivery of manifests to the cluster. Changes can include local configuration changes and upstream updates from your vendor (such as application and license updates).
 
 If you have more than one application installed, you can selectively enable a GitOps workflow for each application.
 
@@ -79,4 +79,4 @@ Subsequently, the admin console makes separate commits with any available update
 
 ## Automatic updates
 
-If you configure [automatic updates](updating-apps#configure-automatic-updates), any release updates from your vendor are automatically committed to your Git repository and deployed.
+If you configure [automatic updates](updating-apps#configure-automatic-updates), any updates from your vendor are automatically committed to your Git repository and deployed.
