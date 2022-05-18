@@ -2,15 +2,19 @@
 
 We recommend that you bookmark the Replicated [vendor portal](https://vendor.replicated.com) because it is used to manage and deploy application releases.
 
-1. Log in (or create a new team) on the vendor portal and create a new application. After signing up and activating your account, you will be prompted to create a new application. Name your application and click **Create Application**.
+1. Log in (or create a new team) on the vendor portal and do one of the following:
 
-  **Note:** If you are logging in with an existing account, you are not prompted to create a new application. Instead, click https://vendor.replicated.com/new-application to create a new application.
+    - When you first activate your account, you are prompted to create a new application. Name your application and click **Create Application**.
 
-  ![Create Application](/images/guides/kots/create-application.png)
+    ![Create Application](/images/guides/kots/create-application.png)
 
-  The Channels page opens and displays a list of your release channels, which are logical stacks for you to stage and promote releases to your customers.
+    - If you are logging in with an existing account and want to create a new application, click **Create new app** from the Applications drop-down list.
 
-1. Click **Releases** on the left menu, and then click **Create a release**.
+    - If you want to update an existing application, you can use the search filter from the Applications drop-down list to find the application.
+
+  The Channels page for the release opens and displays a list of your release channels, which are logical stacks for you to stage and promote releases to your customers.
+
+1. Click **Releases** on the left menu, and then click **Create release**.
 
   ![Create Release](/images/guides/kots/create-release.png)
 
