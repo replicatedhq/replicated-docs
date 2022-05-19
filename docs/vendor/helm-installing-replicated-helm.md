@@ -45,9 +45,7 @@ For example, the following screenshot shows how a Postgres Helm chart displays i
 
 ## Add a Helm Chart to a Release
 
-To include a Helm chart in a release, first you package the Helm chart, including any of its dependencies, as a `.tgz` file.
-
-Then, you add the `.tgz` Helm chart package to your release.
+To include a Helm chart in a release, first you package the Helm chart, including any of its dependencies, as a `.tgz` file. Then, you add the `.tgz` Helm chart package to your release.
 
 There are different steps for creating the Helm chart package depending on if the Helm chart source is in a remote chart repository such as Artifact Hub, or in a local directory.
 
@@ -100,22 +98,20 @@ To package a Helm chart and add it to a release:
 
    * **From the replicated CLI**:
 
-      1. Copy the Helm chart `.tgz` package to the local directory for the application.
+      1. Copy the Helm chart `.tgz` package to the local directory that contains the manifest files for the release.
 
-      1. Create a new release. Run:
+      1. Create a new release or update an existing release:
 
           ```
           replicated release create --yaml-dir PATH-TO-APP-DIRECTORY
           ```
           Replace `PATH-TO-APP-DIRECTORY` with the path to the local directory where you copied the Helm chart `.tgz`.
 
-          Alternatively, you can update an existing release by running:
-
           ```
           replicated release update SEQUENCE --yaml-dir PATH-TO-APP-DIRECTORY
           ```
           Replace:
-          * `SEQUENCE` with the release sequence number. This identifies the release to be updated.
+          * `SEQUENCE` with the release sequence number. This identifies the existing release to be updated.
           * `PATH-TO-APP-DIRECTORY` with the path to the local directory where you copied the Helm chart `.tgz`.     
 
 1. Save and promote the release to a development environment to test your changes.
