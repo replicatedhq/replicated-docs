@@ -4,13 +4,11 @@ We recommend that you bookmark the Replicated [vendor portal](https://vendor.rep
 
 1. Log in (or create a new team) on the vendor portal and do one of the following:
 
-    - If you are activating a new account, you are prompted to create a new application. Name your application and click **Create Application**.
+    - If you are activating a new account: In the prompt, name your application and click **Create Application**.
 
     ![Create Application](/images/guides/kots/create-application.png)
 
-    - If you are logging in with an existing account and want to create a new application, click **Create new app** from the Applications drop-down list.
-
-    - If you want to update an existing application, select it from the Applications tab. If you have multiple applications, a search filter appears at the top of the list or you can select the application from the drop-down list.
+    - If you are logging in with an existing account: Click **New Application** or select an existing application.
 
   The Channels page for the release opens and displays a list of your release channels, which are logical stacks for you to stage and promote releases to your customers.
 
