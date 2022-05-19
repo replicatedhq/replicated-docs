@@ -4,6 +4,15 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.05.19-0
+
+Released on May 19, 2022
+
+### Improvements
+
+- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.70.1.
+- Does not install Helm unless the experimental Helm charts feature is in use.
+
 ## Release v2022.05.16-0
 
 Released on May 16, 2022
