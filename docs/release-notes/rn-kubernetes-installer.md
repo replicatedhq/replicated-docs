@@ -4,6 +4,20 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.05.19-0
+
+Released on May 19, 2022
+
+### New Features
+
+- Adds `AWS` to Supported add-ons with new category: `Cloud Provider`.
+
+### Improvements
+
+- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.70.1.
+- Make Helm binary delivered with kURL deterministic based on usage of alpha feature when spec.helm is present in the kURL spec.
+- No longer install Helm to the system when spec.helm is present in the kURL spec.
+
 ## Release v2022.05.16-0
 
 Released on May 16, 2022
