@@ -11,20 +11,20 @@ Released on May 19, 2022
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### Improvements
-* When enabling GitOps, the initial commit will now properly translate all labeled secrets to SealedSecrets.
+* When enabling GitOps, the initial commit properly translates all labeled secrets to SealedSecrets.
 * Improves the application dashboard and version history pages when GitOps is enabled.
-* Prevents a user from generating a support bundle while another support bundle is being generated, and allows the user to return to the `/troubleshoot/generate` route to see the progress of the current support bundle generation.
-* It's easier to edit the schedule for automatic snapshots because the cron expression input is always visible.
+* Prevents a user from generating a support bundle while another support bundle is being generated, and lets the user return to the `/troubleshoot/generate` route to see the progress of the current support bundle generation.
+* Improves editing for scheduling automatic snapshots by making the cron expression input always visible.
 * Adds a collector and analyzer for cases when NFS configuration fails because the `mount.nfs` binary is missing on the host.
-* Failed `kotsadm-fs-minio-check` pods will now be cleaned up once the NFS backend for snapshots has been configured successfully.
-* The app manager now includes Helm v3.8.2.
-* Helm installations will be shown when running in Helm managed mode (alpha).
+* Cleans up failed `kotsadm-fs-minio-check` pods after the NFS backend for snapshots has been configured successfully.
+* Supports Helm v3.8.2 in the app manager.
+* Shows Helm installations when running in Helm managed mode (alpha).
 
 ### Bug Fixes
 * Fixes an issue where uploading the airgap bundle using the admin console hangs at 0%.
 * Fixes an issue where applications using semantic versioning did not receive updates when `--app-version-label` was used in the [kots install](/reference/kots-cli-install) command.
 * Fixes an issue where the application was re-deployed when the admin console restarted.
-* Fixes an issue where existing Host Path and NFS snapshots did not show up after migrating away from MinIO. Note, this fix is only applicable to new migrations. Those who have already migrated can continue to take new snapshots, but pre-migration snapshots will be missing.
+* Fixes an issue where existing Host Path and NFS snapshots did not show up after migrating away from MinIO. Note that this fix is only applicable to new migrations. Users who have already migrated away from MinIO can continue to take new snapshots, but pre-migration snapshots will be missing.
 * Fixes an issue where changing the API version for a native Kubernetes object caused that object to be deleted and recreated instead of updated.
 * Fixes an issue where image pull secrets were not created in additional namespaces when only Helm charts were used by the application.
 * Fixes an issue where custom icons did not show on the TLS/cert page on Safari and Chrome.
