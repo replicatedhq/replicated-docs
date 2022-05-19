@@ -59,6 +59,7 @@ const sidebars = {
                 type: 'category',
                 label: 'Packaging Your Application',
                 items: [
+                  'vendor/packaging-workflow',
                   'vendor/repository-workflow-and-tagging-releases',
                   {
                       type: 'category',
