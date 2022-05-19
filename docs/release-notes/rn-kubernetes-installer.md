@@ -11,7 +11,7 @@ Released on May 19, 2022
 ### Improvements
 
 - Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.70.1.
-- Helm is no longer installed unless the experimental Helm charts feature is in use.
+- Does not install Helm unless the experimental Helm charts feature is in use.
 
 ## Release v2022.05.16-0
 
