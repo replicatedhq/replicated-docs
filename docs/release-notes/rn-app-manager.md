@@ -4,6 +4,33 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.70.1
+
+Released on May 19, 2022
+
+Support for Kubernetes: 1.21, 1.22, and 1.23
+
+### Improvements
+* When enabling gitops, the initial commit will now properly translate all labeled secrets to sealedsecrets.
+* UI improvements to the Application Dashboard and Version History page when GitOps is enabled.
+* Prevents user from creating more than one support bundle at a time, and allows the user to see the progress of the current support bundle if you return to the `/troubleshoot/generate` route.
+* When automatic snapshots are enabled an input showing the CRON schedule is always visible and editable to allow for more granular control.
+* Adds a collector and analyzer for cases when NFS configuration fails because the `mount.nfs` binary is missing on the host.
+* Failed `kotsadm-fs-minio-check` pods will now be cleaned up once NFS backend for snapshots has been configured successfully.
+* The app manager now includes Helm v3.8.2.
+* Helm installations will be shown when running in Helm managed mode (beta).
+
+### Bug Fixes
+* Fixes an issue where uploading the airgap bundle using the admin console hangs at 0%.
+* Fixes an issue where applications were not receiving updates when `--app-version-label` was used in the [kots install](/reference/kots-cli-install) command.
+* Fixes an issue where the application was being re-deployed when the admin console restarts.
+* Fixes an issue where existing Host Path and NFS snapshots were not showing up after migrating away from Minio. Note, this fix is only applicable to new migrations. Existing migrations can continue to take new snapshots even if older snapshots are missing.
+* Fixes an issue where changing the api version for a native Kubernetes object caused that object to be deleted and recreated instead of just being updated.
+* Fixes an issue where image pull secrets were not created in additional namespaces when only Helm charts were used by the application.
+* Fixes an issue where custom icons were not showing on the TLS/cert page on Safari and Chrome.
+* Fixes an issue where the admin console was loading resources from the internet.
+* Fixes critical and high CVEs found in KOTS Go binaries.
+
 ## 1.70.0
 
 Released on May 2, 2022
