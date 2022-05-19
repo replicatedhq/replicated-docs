@@ -4,7 +4,7 @@ We recommend that you bookmark the Replicated [vendor portal](https://vendor.rep
 
 1. Log in (or create a new team) on the vendor portal and do one of the following:
 
-    - If you are activating a new account: In the prompt, name your application and click **Create Application**.
+    - If you are activating a new account: In the prompt, name your application and click **Create application**.
 
     ![Create Application](/images/guides/kots/create-application.png)
 
