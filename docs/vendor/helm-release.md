@@ -119,3 +119,12 @@ To package a Helm chart and add it to a release:
     For more information, see [release create](../reference/replicated-cli-release-create) and [release update](../reference/replicated-cli-release-update) in the replicated CLI documentation.     
 
 1. Save and promote the release to a development environment to test your changes.
+
+## Next Steps
+
+After you add one or more Helm charts to a release, Replicated recommends that you update the HelmChart custom resource manifest files to continue configuring your application:
+
+* For information about collecting user-supplied values from the Replicated admin console configuration screen and mapping those values to your Helm chart, see [Creating and Editing Configuration Fields](admin-console-customize-config-screen).
+* For information about how to configure Replicated to install the Helm charts using the native Helm, see [Installing with Native Helm](helm-installing-native-helm).
+* For information about how to use the `builder` attribute to create a Helm chart package for air gap installations, see [Helm Air Gap Builder](helm-airgap-builder).
+* For information about how to control the installation order for Helm charts that install with native Helm, see [Defining Installation Order for Native Helm Charts](helm-native-helm-install-order).
