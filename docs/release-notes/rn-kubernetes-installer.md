@@ -8,15 +8,10 @@ toc_max_heading_level: 2
 
 Released on May 19, 2022
 
-### New Features
-
-- Adds `AWS` to Supported add-ons with new category: `Cloud Provider`.
-
 ### Improvements
 
 - Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.70.1.
-- Make Helm binary delivered with kURL deterministic based on usage of alpha feature when spec.helm is present in the kURL spec.
-- No longer install Helm to the system when spec.helm is present in the kURL spec.
+- Helm is no longer installed unless the experimental Helm charts feature is in use.
 
 ## Release v2022.05.16-0
 
