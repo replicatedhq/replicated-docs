@@ -24,7 +24,7 @@ After you create fields in the Config manifest file, you then map the fields to 
 
 To add fields to the admin console configuration screen:
 
-1. In the [vendor portal](https://vendor.replicated.com/apps), click **Releases**. Then, either click **Create release** to create a new release, or click **View YAML** to edit an existing release.
+1. In the [vendor portal](https://vendor.replicated.com/apps), click **Releases**. Then, either click **Create release** to create a new release, or click **Edit YAML** to edit an existing release.
 1. Create or open the Config custom resource manifest file in the desired release. A Config custom resource manifest file has `kind: Config`.
 1. In the Config custom resource manifest file, define custom user-input fields in an array of `groups` and `items`.
 
