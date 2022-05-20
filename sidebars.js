@@ -114,6 +114,7 @@ const sidebars = {
                     label: 'Packaging an Application Using Helm charts',
                     items: [
                       'vendor/helm-overview',
+                      'vendor/helm-release',
                       'vendor/helm-chart-components',
                       'vendor/helm-applications',
                       'vendor/helm-optional-charts',
@@ -121,7 +122,6 @@ const sidebars = {
                       'vendor/helm-airgap-builder',
                       'vendor/helm-installing-native-helm',
                       'vendor/helm-native-helm-install-order',
-                      'vendor/helm-installing-replicated-helm',
                       'vendor/helm-processing',
                       'vendor/helm-mapping-example',
 
