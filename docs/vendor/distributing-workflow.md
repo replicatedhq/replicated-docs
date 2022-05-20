@@ -6,6 +6,11 @@ to distribute your application with Replicated.
 If you have questions about this workflow, you can contact the Customer Success
 team by emailing success@replicated.com.
 
+**Prerequisites**
+
+- You have a Kubernetes-deployable application.
+- You have set up a development server.
+
 Complete the following procedures to distribute your application to your customers
 with Replicated:
 
@@ -14,22 +19,11 @@ with Replicated:
    * [Managing Releases with the CLI](tutorial-installing-with-cli).
    * [Installing with an Existing Cluster](tutorial-installing-with-existing-cluster).
    * [Installing without an Existing Cluster](tutorial-installing-without-existing-cluster).
-1. (Recommended) Learn about the application packaging process and begin to plan your deployment. See [Creating a Release](releases-creating-releases) and the topics in the _Packaging Your Application_ section.
+1. (Recommended) Learn about the application packaging process and begin to plan your deployment. See [How to Package an Application for Production](packaging-workflow) and the topics in the _Packaging Options_ section.
 1. (Recommended) Send a questionnaire to your customers to gather information about their environments. See [Customer Application Deployment Questionnaire](planning-questionnaire).
 1. (Optional) Create a custom channel or edit the default channels in the vendor portal. See [Creating and Editing Channels](releases-creating-channels).
 1. Do the following to create, test, and edit a release:
     1. Create a release in the vendor portal and write the Kubernetes manifest files to package your application. See [Creating a Release](releases-creating-releases).
-
-       :::note
-       You will create several iterations of a release before you are ready to share the application with your customers.
-
-       Replicated recommends that you begin by connecting your application to an image registry, and writing standard Deployment and Service manifest files. See [Connecting to an Image Registry](packaging-private-images). See also [Deployments](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) and [Service](https://kubernetes.io/docs/concepts/services-networking/service/) in the Kubernetes documentation.
-
-       Then, promote and test the release and make additional updates in your subsequent iterations.
-
-       Alternatively, if your application uses Helm charts, see [Helm Overview](helm-overview) for information about how to begin to package an application with Replicated using Helm.
-       :::
-
     1. Promote the release to a channel. See [Promoting Releases](releases-promoting).
     1. Create a license file in the vendor portal that contains entitlement information for your customer. See [Creating a Customer](releases-creating-customer).
     1. Test your release by installing it in a development environment with the license file that you created.
