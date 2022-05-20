@@ -1,3 +1,5 @@
+> This topic applies to both native Helm and Replicated Helm installations.
+> 
 # Adding Helm Charts to a Release
 
 This topic describes how to add a Helm chart to a release in the Replicated vendor portal. Adding a Helm chart to a release is useful if you want to distribute a Kubernetes application with Replicated that is already packaged using Helm.
@@ -20,7 +22,7 @@ The following table provides more information about these files:
   <th>Description</th>
 </tr>
 <tr>
-  <td>HelmChart custom resource manifest file</td>
+  <td>HelmChart CRD <br> <i>chart-name.yaml</i></td>
   <td>A HelmChart custom resource is a YAML file with <code>kind: HelmChart</code>. Replicated automatically creates a HelmChart custom resource for each Helm chart that you add to a release.
   <br/>
   <br/>
