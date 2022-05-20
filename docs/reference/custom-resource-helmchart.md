@@ -1,6 +1,6 @@
 # HelmChart
 
-A HelmChart custom resource enables the Replicated app manager to process and deploy Helm charts as part of an application. The app manager can process Helm charts using the Replicated Helm installation for existing applications. You can also use a native Helm installation for new applications. For more information, see [Installing with the app manager](../vendor/helm-installing-replicated-helm) and [Installing with native Helm](../vendor/helm-installing-native-helm).
+A HelmChart custom resource enables the Replicated app manager to process and deploy Helm charts as part of an application. The app manager can process Helm charts using the Replicated Helm installation for existing applications. You can also use a native Helm installation for new applications. For more information, see [Helm Overview](../vendor/helm-overview).
 
 HelmChart custom resources are required for the app manager to deploy Helm charts. HelmChart custom resources are not required if only raw Kubernetes manifests are deployed.
 
