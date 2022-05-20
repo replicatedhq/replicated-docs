@@ -1,11 +1,11 @@
 # How to Package an Application for Production
 
-Your application can be packaged as a set of standard Kubernetes manifests or Helm charts.
+Your application can be packaged as a set of standard Kubernetes manifests, Helm charts or Kubernetes Operators.
 These manifests include your application manifests, and can include optional [custom resources](../reference/custom-resource-about) used to invoke various app manager functions.
 
 We recommend packaging your application for production in iterations. It can be helpful to understand the priority order in which to iterate. Some configurations are required or highly recommended. Other configurations are optional and can be done in any order after the required and recommended configurations.
 
-We recommend configuring and testing one feature at a time until the entire application is running as expected.
+You will create and test several iterations of a release before you are ready to share the application with customers.
 
 ## Prerequisites
 
@@ -13,6 +13,19 @@ We recommend configuring and testing one feature at a time until the entire appl
 1. You have set up and activated an account in the [vendor portal](vendor.replicated.com).
 1. You have set up a development server and installed the replicated CLI.
 1. Review the end-to-end workflow for distributing an application. Understanding the overall workflow and doing at least one of the quickstart tutorials with a sample application help make the production release easier.
+
+## Choose Your Path
+
+- For standard manifests, start with [importing the files to Replicated](#importing-the-application-files-to-replicated)
+- For Helm, start [importing the files to Replicated](#importing-the-application-files-to-replicated)
+- For Kubernetes Operators:
+    1. [Package the Kubernetes Operator application](operator-packaging-about)
+    :::note
+    If you are using Kubernetes Operators, you must also pass URLs to the Operator using [template functions](packaging-template-functions).
+    You can skip passing the URLs if you are using OSS or public images, unless you want to use an air gap environment.
+    :::
+    1. [Configure optional features](#configuring-optional-features)
+
 
 ## Importing the Application Files to Replicated
 
@@ -29,6 +42,8 @@ These configuration tasks are either required or highly recommended, depending o
 :::note
 For information about the recommended features for packaging with Kubernetes Operators, see [Packaging a Kubernetes Operator Application](https://docs.replicated.com/vendor/operator-packaging-about) section.
 :::
+
+To configure the recommended features:
 
 1. Connect to a private registry. If your images are open-source or public, skip this step. To connect your private registry, either push the image to Replicated's registry or link your private registry. See [Connecting to an Image Registry](packaging-private-images).
 
