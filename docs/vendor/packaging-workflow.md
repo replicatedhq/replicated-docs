@@ -1,11 +1,11 @@
 # How to Package an Application for Production
 
 Your application can be packaged as a set of standard Kubernetes manifests or Helm charts.
-These manifests include your application manifests, plus several optional [custom resources](../reference/custom-resource-about) used to invoke various app manager functions.
+These manifests include your application manifests, and can include optional [custom resources](../reference/custom-resource-about) used to invoke various app manager functions.
 
-Packaging your application for production can be done more easily in iterations. It can be helpful to understand the priority order in which to iterate. Some configurations are required or highly recommended. Other configurations are optional and can be done in any order after the required and recommended configurations.
+We recommend packaging your application for production in iterations. It can be helpful to understand the priority order in which to iterate. Some configurations are required or highly recommended. Other configurations are optional and can be done in any order after the required and recommended configurations.
 
-We recommend configuring and testing one manifest file at a time until the entire application is running as expected.
+We recommend configuring and testing one feature at a time until the entire application is running as expected.
 
 ## Prerequisites
 
@@ -18,7 +18,7 @@ We recommend configuring and testing one manifest file at a time until the entir
 
 Before you can configure the Replicated features, you must import your application files to Replicated. To import your files, do one of the following:
 
-- If you are using standard manifest files, put the application manifests in a directory and then drag and drop them into the Replicated vendor portal or use the replicated CLI to get them into Replicated. See [Creating a Release](releases-creating-releases).
+- If you are using standard manifest files, put the application manifests in a directory and then drag and drop them into the Replicated vendor portal or use the replicated CLI to get them into Replicated. To use the vendor portal, see [Creating a Release](releases-creating-releases). To use the CLI, see the tutorial [Managing Releases with the CLI](tutorial-installing-with-cli). **Content gap: We don't seem to have a generic CLI topic to tell them how to do it. The CLI tutorial tells them how to use the sample app, but it's not a direct translation. I think they need to make a directory using this command: `mkdir ./manifests` and then move their manifest files to it. Then verify the YAML with `replicated release lint --yaml-dir=manifests`.**
 
 - If you are using Helm, access the application files from the Helm repository. Run the Helm package command to create a binary. Add the binary to either the vendor portal or the replicated CLI. See [Adding Helm Charts to a Release]**(Need to add the link after Paige merges the new content)**
 
