@@ -120,6 +120,7 @@ const sidebars = {
                       'vendor/helm-optional-value-keys',
                       'vendor/helm-airgap-builder',
                       'vendor/helm-installing-native-helm',
+                      'vendor/helm-install',
                       'vendor/helm-native-helm-install-order',
                       'vendor/helm-processing',
                       'vendor/helm-mapping-example',

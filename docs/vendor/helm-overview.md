@@ -8,7 +8,7 @@ If an application does not presently use Helm, there is no requirement to use He
 
 There are two ways to deploy Helm charts within an application:
 
-* With the default workflow, the app manager renders the Helm templates and deploys them as standard Kubernetes manifests. The app manager directly manages the lifecycle of the resources in this workflow, and it supports rendering the templates with both Helm V2 and V3.
+* With the default workflow, the app manager renders the Helm templates and deploys them as standard Kubernetes manifests. The app manager directly manages the lifecycle of the resources in this workflow, and it supports rendering the templates with both Helm V3.
 
 * The native Helm workflow deploys the Helm charts with Helm V3 directly. In this workflow, Helm installs and manages the lifecycle of the chart resources that are part of a given application. For new applications, this workflow is the preferred method because it supports more features of Helm, such as hooks and weights. For more information, see [Installing with Native Helm](helm-installing-native-helm).
 
