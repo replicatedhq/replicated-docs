@@ -1,7 +1,9 @@
-# Configuring Cluster Ingress
+# Adding Cluster Ingress Options
 
-When delivering a configurable application, ingress can be challenging as it is very cluster specific.
-Below is an example of a flexible `ingress.yaml` file designed to work in most Kubernetes clusters including existing and Kubernetes installer-created clusters.
+If your application needs cluster ingress, we recommend adding ingress options toward the end of the process of packaging an application.
+
+Ingress can be challenging as it is cluster specific. Embedded clusters typically can get away without ingress configuration. For existing clusters, customers may have their own ingress configured and, as a vendor, you must decide whether to ship your own ingress and have a possible conflict or to support multiple ingresses. Consider that sometimes you must log in to the application to access the ingress.
+
 
 ## Example
 
