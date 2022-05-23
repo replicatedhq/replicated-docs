@@ -20,7 +20,7 @@ To configure cluster ingress:
 The following example includes an Ingress resource with a single host based routing rule.
 The resource, a flexible `ingress.yaml` file, is designed to work in most existing clusters and Kubernetes installer-created clusters.
 
-### Config
+### Config Custom Resource File
 
 In this `Config.yaml` example, an `annotations` text area has been made available for the end-user to add additional annotations to the ingress.
 Here, cluster specific annotations can be added to support a variety of ingress controllers.
@@ -65,7 +65,7 @@ spec:
           when: repl{{ ConfigOptionEquals "enable_ingress" "1" }}
 ```
 
-### Ingress
+### Ingress Resource File
 
 In the `ingress.yaml` file, two separate resources accommodate the installation types.
 The first of which will be deployed to existing cluster installations, while the second will only be deployed to a Kubernetes installer-created cluster.
