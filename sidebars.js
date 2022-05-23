@@ -28,6 +28,7 @@ const sidebars = {
       collapsed: false,
       items: [
         'vendor/distributing-workflow',
+        'vendor/distributing-workflow-alternate',
         'vendor/vendor-portal-creating-account',
         {
           type: 'category',

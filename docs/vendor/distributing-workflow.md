@@ -29,7 +29,7 @@ with Replicated:
     1. Test your release by installing it in a development environment with the license file that you created.
 
        You can use the environment that you created during one of the recommended tutorials in step 2. Alternatively, you can follow the application installation procedures in the _Enterprise_ documentation. See [Overview of Installing an Application](../enterprise/installing-overview).
-    1. Continue to iterate by updating and promoting releases until you are ready to share the application with your customers.
 
-       After you promote each new release, update the application in the admin console to test the changes. See [Updating Releases](releases-updating) and [Updating an Application](../enterprise/updating-apps).
+    1. Continue to iterate by packing additional features, promoting, and testing releases until you are ready to share the application with your customers. See [Updating Releases](releases-updating) and [Updating an Application](../enterprise/updating-apps).
+
 1. When you are ready to distribute the application to your customers, promote the release to the desired channel in the vendor portal. Share the license file that you created and the installation script available in the vendor portal with each customer. See [Sharing the License File and Installation Script](releases-sharing-license-install-script).
