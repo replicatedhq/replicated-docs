@@ -1,19 +1,28 @@
 # Configuring Cluster Ingress
 
-When delivering a configurable application, ingress can be challenging as it is very cluster specific.
-Below is an example of a flexible `ingress.yaml` file designed to work in most Kubernetes clusters including existing and Kubernetes installer-created clusters.
+Cluster ingress can be configured toward the end of packaging an application, if your application needs it. Ingress can be challenging as it is cluster specific.
+
+Embedded clusters typically can get away without ingress configuration. For existing clusters, customers may have their own ingress configured and, as a vendor, you must decide whether to ship your own ingress and have a possible conflict or to support multiple ingresses. Consider that sometimes you must log in to the application to access the ingress.
+
+## Configure Cluster Ingress
+
+To configure cluster ingress:
+
+
+1. In the Config custom resource manifest file (`Config.yaml`), create an `ingress` group. Enable ingress using the config option `enable_ingress`, which allows the end-user to choose whether or not to enable the Ingress resource.
+
+1. (Optional) You can create a custom Ingress resource (`ingress.yaml`). For example, when an ingress controller is not available, other means of exposing services may be preferred.
+
+1. In the `ingress.yaml` file, you must create two separate resources to accommodate the installation types: existing cluster and Kubernetes-installer created cluster. Selectively exclude both of these resources with the [`exclude` annotation](packaging-include-resources).
 
 ## Example
 
 The following example includes an Ingress resource with a single host based routing rule.
-The resource will work in both existing clusters and Kubernetes installer-created clusters.
+The resource, a flexible `ingress.yaml` file, is designed to work in most existing clusters and Kubernetes installer-created clusters.
 
 ### Config
 
-A config option `enable_ingress` has been provided to allow the end-user to choose whether or not to enable the Ingress resource.
-In some clusters a custom Ingress resource may be desired — when an ingress controller is not available, other means of exposing services may be preferred.
-
-An `annotations` text area has been made available for the end-user to add additional annotations to the ingress.
+In this `Config.yaml` example, an `annotations` text area has been made available for the end-user to add additional annotations to the ingress.
 Here, cluster specific annotations can be added to support a variety of ingress controllers.
 For example, when using the [ALB ingress controller](https://docs.aws.amazon.com/eks/latest/userguide/alb-ingress.html) in AWS, it is necessary to include the `kubernetes.io/ingress.class: alb` annotation on your Ingress resource.
 
@@ -58,7 +67,7 @@ spec:
 
 ### Ingress
 
-For ingress, you must create two separate resources.
+In the `ingress.yaml` file, two separate resources accommodate the installation types.
 The first of which will be deployed to existing cluster installations, while the second will only be deployed to a Kubernetes installer-created cluster.
 Both of these resources are selectively excluded with the [`exclude` annotation](packaging-include-resources).
 
