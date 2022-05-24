@@ -11,7 +11,7 @@ Before you install the kots CLI, install [kubectl](https://kubernetes.io/docs/ta
 If you are using an [embedded Kubernetes installer-created cluster](../enterprise/installing-embedded-cluster), both tools are already pre-installed.
 :::
 
-## Install the kots CLI
+## Install
 
 To install the latest version of the kots CLI, run:
 
@@ -31,7 +31,7 @@ To verify your installation, run:
 kubectl kots --help
 ```
 
-## Install the kots CLI Without Root Access
+## Install without Root Access
 
 For computers without root access or computers that cannot write to the `/usr/local/bin` directory, the `kots` CLI can be downloaded using the following steps:
 
@@ -39,3 +39,30 @@ For computers without root access or computers that cannot write to the `/usr/lo
 1. Unpack the release.
 1. Rename the `kots` executable to `kubectl-kots`.
 1. Copy the renamed `kubectl-kots` to anywhere on the `PATH`.
+
+## Uninstall
+
+The kots CLI is a plugin for the Kubernetes kubectl command line tool. The kots CLI plugin is named `kubectl-kots`.
+
+For more information about working with kubectl, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
+
+To uninstall the kots CLI:
+
+1. Find the location where the `kubectl-kots` plugin is installed on your `PATH`:
+
+   ```
+   kubectl plugin list kubectl-kots cli
+   ```
+
+2. Delete `kubectl-kots`:
+
+   ```
+   sudo rm PATH_TO_KOTS
+   ```
+   Replace `PATH_TO_KOTS` with the location where `kubectl-kots` is installed.
+
+   **Example**:
+
+   ```
+   sudo rm /usr/local/bin/kubectl-kots
+   ```
