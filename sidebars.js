@@ -28,7 +28,6 @@ const sidebars = {
       collapsed: false,
       items: [
         'vendor/distributing-workflow',
-        'vendor/distributing-workflow-alternate',
         'vendor/vendor-portal-creating-account',
         {
           type: 'category',
@@ -54,7 +53,6 @@ const sidebars = {
             type: 'category',
             label: 'Creating and Managing Releases',
             items: [
-              'vendor/packaging-workflow',
               'vendor/repository-workflow-and-tagging-releases',
               'vendor/releases-understanding',
               'vendor/releases-creating-releases',
