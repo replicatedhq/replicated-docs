@@ -8,9 +8,9 @@ For information about how to choose an image file for your custom application ic
 
 To add a custom application icon:
 
-1. In the [vendor portal](https://vendor.replicated.com/apps), click **Releases**. Then, either click **Create release** to create a new release, or click **Edit YAML** to edit an existing release.
-1. Create or open the Application custom resource manifest file in the desired release. An Application custom resource manifest file has `kind: Application`.
-1. In the Application manifest, under `spec`, add an `icons` key that includes a link to the desired image.
+1. In the [vendor portal](https://vendor.replicated.com/apps), click **Releases**. Click **Create release** to create a new release, or click **Edit YAML** to edit an existing release.
+1. Create or open the Application custom resource manifest file. An Application custom resource manifest file has `kind: Application`.
+1. In the Application manifest, under `spec`, add an `icon` key that includes a link to the desired image.
 
    **Example**:
 
@@ -30,7 +30,7 @@ To add a custom application icon:
 For your custom application icon to look best in the admin console, consider the following recommendations:
 
 * Use a PNG or JPG file.
-* Use a square image rather than a rectangular one. Application icons are contained to a bounding box. So, a logo with a rectangular shape may appear small.
+* Use a square image rather than a rectangular one. Application icons are contained to a bounding box, and a logo with a rectangular shape can appear small.
 * Use an image that is at least 250 by 250 pixels.
 * Export the image file at 2x.
 * When possible, use an icon or lettermark as the application icon rather than the full wordmark.
