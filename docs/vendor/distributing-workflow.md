@@ -1,7 +1,7 @@
 # How to Distribute a Production Application
 
 Your application can be packaged and distributed as a set of standard Kubernetes manifests, Helm charts, or Kubernetes Operators.
-These manifests include your application manifests, and can include optional [custom resources](../reference/custom-resource-about) used to invoke various app manager functions.
+These manifests include your application manifests, and can include optional [custom resources](../reference/custom-resource-about) used to invoke various app manager functions. _Packaging_ means that you have configured the manifest files to integrate with Replicated.
 
 We recommend packaging your application for production in iterations. It can be helpful to understand the priority order in which to iterate. Some configurations are required or highly recommended. Other configurations are optional and can be done in any order after the required and recommended configurations.
 
@@ -43,11 +43,12 @@ with Replicated:
 
 1. Configure additional manifest items and iterate as needed. This is a suggested order, but you can configure these items in any order. These items can be used with Kubernetes Operators.
 
+    - [Customizing the admin console and download portal](admin-console-customize-app-icon)
     - [Create preflight checks](preflight-support-bundle-creating)
     - [Enable support bundles](preflight-support-bundle-creating)
+    - [Configuring backup and restore](admin-console-customize-app-icon)
     - [Add database configuration options](database-config-adding-options)
-    - [Add cluster ingress](packaging-ingress)
-    - Port forwarding
+    - [Add cluster ingress](packaging-ingress) and [Port forwarding](admin-console-adding-buttons-links#additional-ports-and-port-forwarding)
 
 1. Create a license file in the vendor portal that contains entitlement information for your customer. See [Creating a Customer](releases-creating-customer).
 

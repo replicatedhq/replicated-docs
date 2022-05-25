@@ -58,7 +58,7 @@ const sidebars = {
               'vendor/releases-creating-releases',
               {
                 type: 'category',
-                label: 'Packaging Features',
+                label: 'Packaging Your Application',
                 items: [
                   {
                       type: 'category',
