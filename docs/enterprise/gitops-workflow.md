@@ -79,4 +79,4 @@ Subsequently, the admin console makes separate commits with any available update
 
 ## Automatic updates
 
-If you configure [automatic updates](updating-apps#configure-automatic-updates), any updates from your vendor are automatically committed to your Git repository and deployed.
+If you configure [automatic updates](updating-apps#configure-automatic-updates), any updates from your vendor are automatically committed to your Git repository.
