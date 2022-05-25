@@ -41,7 +41,7 @@ with Replicated:
         1. [Define custom fields in the Config custom resource manifest file](admin-console-customize-config-screen).
         1. [Map the user-supplied values from the configuration screen to the application](config-screen-map-inputs).
 
-1. Configure additional manifest items and iterate as needed. This is a suggested order, but you can configure these items in any order. These items can be used with Kubernetes Operators.
+1. Configure additional manifest items and iterate as needed. This is a suggested order, but you can configure these items in any order. These items can be used with Kubernetes Operators
 
     - [Add database configuration options](database-config-adding-options)
     - [Customizing the admin console and download portal](admin-console-customize-app-icon)
