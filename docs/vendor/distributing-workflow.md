@@ -43,11 +43,11 @@ with Replicated:
 
 1. Configure additional manifest items and iterate as needed. This is a suggested order, but you can configure these items in any order. These items can be used with Kubernetes Operators.
 
+    - [Add database configuration options](database-config-adding-options)
     - [Customizing the admin console and download portal](admin-console-customize-app-icon)
     - [Create preflight checks](preflight-support-bundle-creating)
     - [Enable support bundles](preflight-support-bundle-creating)
     - [Configuring backup and restore](admin-console-customize-app-icon)
-    - [Add database configuration options](database-config-adding-options)
     - [Add cluster ingress](packaging-ingress) and [Port forwarding](admin-console-adding-buttons-links#additional-ports-and-port-forwarding)
 
 1. Create a license file in the vendor portal that contains entitlement information for your customer. See [Creating a Customer](releases-creating-customer).
