@@ -1,6 +1,6 @@
-# How to Distribute a Production Application - Alternate
+# How to Distribute a Production Application
 
-Your application can be packaged as a set of standard Kubernetes manifests, Helm charts, or Kubernetes Operators.
+Your application can be packaged and distributed as a set of standard Kubernetes manifests, Helm charts, or Kubernetes Operators.
 These manifests include your application manifests, and can include optional [custom resources](../reference/custom-resource-about) used to invoke various app manager functions.
 
 We recommend packaging your application for production in iterations. It can be helpful to understand the priority order in which to iterate. Some configurations are required or highly recommended. Other configurations are optional and can be done in any order after the required and recommended configurations.
@@ -21,9 +21,9 @@ team by emailing success@replicated.com.
   * [Installing without an Existing Cluster](tutorial-installing-without-existing-cluster).
 - (Recommended) Send a questionnaire to your customers to gather information about their environments. See [Customer Application Deployment Questionnaire](planning-questionnaire).
 
-## Packaging Your Application
+## Packaging and Distributing Your Application
 
-Complete the following procedures to distribute your application to your customers
+Complete the following procedures to package and distribute your application to your customers
 with Replicated:
 
 1. Import your application files to Replicated using one of the following types:
@@ -36,11 +36,12 @@ with Replicated:
 
 1. Configure the recommended manifests and iterate as needed. Skip these manifests if you are using Kubernetes Operators.
 
-    1. [Connect to a private registry](packaging-private-images). If your images are open-source or public, skip this step.
-    1. [Define custom fields in the Config custom resource manifest file](admin-console-customize-config-screen). This lets you define fields for the Configuration screen in the Replicated admin console to collect required or optional values from your users that are used to access the application.
-    1. [Map the user-supplied values from the configuration screen to the application](config-screen-map-inputs).
+    1. (Required) [Connect to a private registry](packaging-private-images). If your images are open-source or public, skip this step.
+    1. (Recommended) Create a basic Configuration screen in the Replicated admin console to collect required or optional values from your users that are used to access the application:
+        1. [Define custom fields in the Config custom resource manifest file](admin-console-customize-config-screen).
+        1. [Map the user-supplied values from the configuration screen to the application](config-screen-map-inputs).
 
-1. Configure additional manifests and iterate as needed. These manifests are optional and can be configured in any order, and can be used with Kubernetes Operators.
+1. Configure additional manifest items and iterate as needed. This is a suggested order, but you can configure these items in any order. These items can be used with Kubernetes Operators.
 
     - [Create preflight checks](preflight-support-bundle-creating)
     - [Enable support bundles](preflight-support-bundle-creating)
@@ -49,15 +50,15 @@ with Replicated:
     - Port forwarding
 
 1. Create a license file in the vendor portal that contains entitlement information for your customer. See [Creating a Customer](releases-creating-customer).
+
+1. (Embedded Clusters) [Configure the Kubernetes Installer](packaging-embedded-kubernetes).
+
 1. Test your release by installing it in a development environment with the license file that you created.
 
      You can use the environment that you created during one of the recommended tutorials in step 2. Alternatively, you can follow the application installation procedures in the _Enterprise_ documentation. See [Overview of Installing an Application](../enterprise/installing-overview).
 
 1. Continue to iterate by packing additional features, promoting, and testing releases until you are ready to share the application with your customers. See [Updating Releases](releases-updating) and [Updating an Application](../enterprise/updating-apps).
 
-1. (Embedded Clusters) [Configure the Kubernetes Installer](packaging-embedded-kubernetes).
-
 1. When you are ready to distribute the application to your customers, promote the release to the desired channel in the vendor portal. You can use the default channels or edit them, or create a custom channel. See [Creating and Editing Channels](releases-creating-channels).
-
 
 1. Share the license file that you created and the installation script available in the vendor portal with each customer. See [Sharing the License File and Installation Script](releases-sharing-license-install-script).
