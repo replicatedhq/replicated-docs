@@ -10,12 +10,18 @@ To add a custom application icon:
 
 1. In the [vendor portal](https://vendor.replicated.com/apps), click **Releases**. Click **Create release** to create a new release, or click **Edit YAML** to edit an existing release.
 1. Create or open the Application custom resource manifest file. An Application custom resource manifest file has `kind: Application`.
-1. In the Help pane, click **Show** next to Application icon preview to open the icon preview feature:
+1. In the Help pane, click **Show** next to **Application icon preview**.
 
-    1. Drag and drop an icon image file or paste the path into the text box. Click **Preview**.
-        A preview of the image appears with additional options.
-    1. (Air Gap only) Click **Base64 encode image**. Base64 encoding is required for images used with air gap installations.
-        A base64 encoded URI displays that you can copy and paste into the Application manifest.
+  The preview section expands. If your Application manifest file is already populated with an `icon` key, the icon displays in the preview. Otherwise, the preview is blank.
+
+    1. Drag and drop an icon image file to the drop zone. Alternatively, paste a path, URL, or base64 encoded string in the text box. Click **Preview** or **Preview a different image**. Which button displays depends on whether a preview already exists.
+
+    1. (Air Gap only) If you drop or paste a non-encoded image into the fields, click **Base64 encode image** to convert the image to base64. An encoded URI displays that you can copy and paste into the Application manifest. Base64 encoding is required for images used with air gap installations.
+
+    :::note
+    If you pasted a base64 string into the text box, the **Base64 encode image** button does not display because the image is already encoded.
+    :::
+
     1. Click **Preview a different icon** to preview a different icon if needed.
 
 1. In the Application manifest, under `spec`, add an `icon` key that includes a link or the base64 URI to the desired image.
