@@ -103,7 +103,7 @@ with Replicated:
       </tr>
       <tr>
         <td><a href="packaging-using-tls-certs">Using Kubernetes Installer TLS certificates</a></td>
-        <td>(kURL only) Share the Kubernetes installer TLS certificate with other Kubernetes resources.</td>
+        <td>Share the Kubernetes installer TLS certificate with other Kubernetes resources.</td>
       </tr>
       <tr>
         <td><a href="identity-service-configuring">Enabling and Configuring Identity Service (Beta)</a></td>
