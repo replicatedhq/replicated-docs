@@ -10,7 +10,7 @@ To add a custom application icon:
 
 1. In the [vendor portal](https://vendor.replicated.com/apps), click **Releases**. Click **Create release** to create a new release, or click **Edit YAML** to edit an existing release.
 1. Create or open the Application custom resource manifest file. An Application custom resource manifest file has `kind: Application`.
-1. In the Help pane, next to Application icon preview, click **Show** to open the icon preview feature:
+1. In the Help pane, click **Show** next to Application icon preview to open the icon preview feature:
 
     1. Drag and drop an icon image file or paste the path into the text box. Click **Preview**.
         A preview of the image appears with additional options.
