@@ -10,6 +10,14 @@ To add a custom application icon:
 
 1. In the [vendor portal](https://vendor.replicated.com/apps), click **Releases**. Click **Create release** to create a new release, or click **Edit YAML** to edit an existing release.
 1. Create or open the Application custom resource manifest file. An Application custom resource manifest file has `kind: Application`.
+1. In the Help pane, next to Application icon preview, click **Show** to open the icon preview feature:
+
+    1. Drag and drop an icon image file or paste the path into the text box. Click **Preview**.
+        A preview of the mage appears with additional options.
+    1. For air gap installations, click **Base64 encode image**. Base64 encoding is required for images used with air gap installations.
+        A base64 encoded link displays that you can copy and paste into the Application manifest.
+    1. Click **Preview a different icon** to preview a different icon if needed.
+
 1. In the Application manifest, under `spec`, add an `icon` key that includes a link to the desired image.
 
    **Example**:
