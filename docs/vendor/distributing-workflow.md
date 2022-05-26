@@ -1,14 +1,11 @@
-# How to Distribute a Production Application
+# How to Package and Distribute a Production Application
 
 Your application can be packaged and distributed as a set of standard Kubernetes manifests, Helm charts, or Kubernetes Operators.
-These manifests include your application manifests, and can include optional [custom resources](../reference/custom-resource-about) used to invoke various app manager functions. _Packaging_ means that you have configured the manifest files to integrate with Replicated.
+These manifests include your application manifests, and can include optional [custom resources](../reference/custom-resource-about) used to invoke various app manager functions. _Packaging_ means that you have configured the manifest files for deployment with Replicated.
 
-We recommend packaging your application for production in iterations. It can be helpful to understand the priority order in which to iterate. Some configurations are required or highly recommended. Other configurations are optional and can be done in any order after the required and recommended configurations.
+We recommend packaging and testing your production application in iterations. It can be helpful to understand the priority order in which to iterate. Some configurations are required or highly recommended. Most configurations can be done in any order after the required and recommended configurations.
 
-You will create and test several iterations of a release before you are ready to share the application with customers.
-
-If you have questions about this workflow, you can contact the Customer Success
-team by emailing success@replicated.com.
+If you have questions about this workflow, you can contact the Customer Success team by emailing success@replicated.com.
 
 ## Prerequisites
 
@@ -43,7 +40,7 @@ with Replicated:
       </tr>
       <tr>
         <td>Kubernetes Operators</td>
-        <td>If you are already using Kubernetes Operators, see <a href="operator-packaging-about">Package the Kubernetes Operator Application</a>. Then proceed to step 4.</td>
+        <td>If you are already using Kubernetes Operators, see <a href="operator-packaging-about">Package the Kubernetes Operator Application</a>. <br></br><br></br>Skip connecting to a private registry and skip creating a Configuration screen in the admin console. <br></br><br></br>You can use any of the other packaging functions, depending on your needs. Create a license file, and promote and test each iteration.</td>
       </tr>
     </table>
 
@@ -57,9 +54,7 @@ with Replicated:
 
 1. Create a license file in the vendor portal that contains entitlement information for your customer. You also need a license file to test your application in the admin console. See [Creating a Customer](releases-creating-customer).
 
-1. Promote the release and test it by installing the release in a development environment with the license file that you created.
-
-    You can use the environment that you created during one of the recommended tutorials in step 2. Alternatively, you can follow the application installation procedures in the _Enterprise_ documentation. See [Overview of Installing an Application](../enterprise/installing-overview).
+1. Promote the release and test it by installing the release in a development environment with the license file that you created. You can use the environment that you created during one of the recommended tutorials. For information about installation, see [Overview of Installing an Application](../enterprise/installing-overview).
 
 1. (Recommended) Create a basic Configuration screen in the Replicated admin console to collect required or optional values from your users that are used to access the application:
       1. Define custom fields. See <a href="admin-console-customize-config-screen">Creating and Editing Configuration Fields</a>.
@@ -68,9 +63,11 @@ with Replicated:
     Skip this step if you are using Kubernetes Operators.
     :::
 
-1. Promote the updated release, and update and test the application in your development environment. See [Updating Releases](releases-updating) and [Updating an Application](../enterprise/updating-apps).
+1. Promote the updated release. Update and test the application in your development environment. See [Updating Releases](releases-updating) and [Updating an Application](../enterprise/updating-apps).
 
 1. Configure additional manifest functionality and custom resources, and iterate as needed. This is a suggested order, but you can configure these functions in any order. These functions can be used with Kubernetes Operators.
+
+  Update the release and application, testing it in your development environment after each iteration.
 
     <table>
       <tr>
