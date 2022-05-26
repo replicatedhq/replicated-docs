@@ -18,7 +18,7 @@ To add a custom application icon:
         A base64 encoded URI displays that you can copy and paste into the Application manifest.
     1. Click **Preview a different icon** to preview a different icon if needed.
 
-1. In the Application manifest, under `spec`, add an `icon` key that includes a link to the desired image.
+1. In the Application manifest, under `spec`, add an `icon` key that includes a link or the base64 URI to the desired image.
 
    **Example**:
 
