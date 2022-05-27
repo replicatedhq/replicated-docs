@@ -9,7 +9,7 @@ For information about how to choose an image file for your custom application ic
 To add a custom application icon:
 
 1. In the [vendor portal](https://vendor.replicated.com/apps), click **Releases**. Click **Create release** to create a new release, or click **Edit YAML** to edit an existing release.
-1. Create or open the Application custom resource manifest file. An Application custom resource manifest file has `kind: Application`.
+1. Create or open the Application custom resource manifest file. An Application custom resource manifest file has `apiVersion: kots.io/v1beta1` and `kind: Application`.
 1. In the Help pane, click **Show** next to **Application icon preview**.
 
   The preview section expands. If your Application manifest file is already populated with an `icon` key, the icon displays in the preview. Otherwise, the preview is blank.
