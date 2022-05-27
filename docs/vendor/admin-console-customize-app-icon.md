@@ -19,7 +19,7 @@ To add a custom application icon:
 
       ![Application icon preview](/images/app-icon-preview.png)
 
-    1. (Air gap only) If you paste a link to the image in the text box, click **Preview** and **Base64 encode icon** to convert the image to Base64 encoded data URL. An encoded URL displays that you can copy and paste into the Application manifest. Base64 encoding is required for images used with air gap installations.
+    1. (Air gap only) If you paste a link to the image in the text box, click **Preview** and **Base64 encode icon** to convert the image to a Base64 encoded data URL. An encoded URL displays that you can copy and paste into the Application manifest. Base64 encoding is required for images used with air gap installations.
 
       :::note
       If you pasted a Base64 encoded data URL into the text box, the **Base64 encode icon** button does not display because the image is already encoded. If you drag and drop an icon, the icon is automatically encoded for you.
