@@ -1,9 +1,10 @@
 # How to Package and Distribute a Production Application
 
-Your application can be packaged and distributed as a set of standard Kubernetes manifests, Helm charts, or Kubernetes Operators.
-These manifests include your application manifests, and can include optional [custom resources](../reference/custom-resource-about) used to invoke various app manager functions. _Packaging_ means that you have configured the manifest files for deployment with Replicated.
+Your application can be packaged and distributed as a set of standard Kubernetes manifests, Helm charts, or Kubernetes Operators. (While an operator is technically deployed either using plain Kubernetes manifests or a Helm chart, we list it separately because of the advanced image management work needed to effectively deliver Operators into customer environments.)
 
-We recommend packaging and testing your production application in iterations. It can be helpful to understand the priority order in which to iterate. Some configurations are required or highly recommended. Most configurations can be done in any order after the required and recommended configurations.
+These manifests include your application manifests, and can include [custom resources](../reference/custom-resource-about) used to invoke various app manager functions. _Packaging_ refers to the act of authoring, testing, iterating on, and accepting a set of Kubernetes manifests for release to your customers with Replicated.
+
+Because of the depth and breadth of extensions available in the Replicated platform, we recommend packaging and testing your application in small iterations before releasing to customers. With the interdependencies and synergies among Replicated features, it can be helpful to know which ones to explore first. Some integrations, like image management and preflight checks, are required or highly recommended. From that point, other features can generally be integrated in any order.
 
 If you have questions about this workflow, you can contact the Customer Success team by emailing success@replicated.com.
 
