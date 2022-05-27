@@ -17,15 +17,15 @@ To add a custom application icon:
 
     1. Drag and drop an icon image file to the drop zone. Alternatively, paste a link or Base64 encoded data URL in the text box. Click **Preview**.
 
-    ![Application icon preview](/images/app-icon-preview.png)
+      ![Application icon preview](/images/app-icon-preview.png)
 
-    1. (Air gap only) If you paste a link to the imaged into the text box and click **Preview**, the **Base64 encode icon** button appears to convert the image to Base64 encoded data URL. An encoded URI displays that you can copy and paste into the Application manifest. Base64 encoding is required for images used with air gap installations.
+    1. (Air gap only) If you paste a link to the image in the text box, click **Preview** and **Base64 encode icon** to convert the image to Base64 encoded data URL. An encoded URL displays that you can copy and paste into the Application manifest. Base64 encoding is required for images used with air gap installations.
 
-    ![Base64 encode image button](/images/app-icon-preview-base64.png)
+      :::note
+      If you pasted a Base64 encoded data URL into the text box, the **Base64 encode icon** button does not display because the image is already encoded. If you drag and drop an icon, the icon is automatically encoded for you.
+      :::
 
-    :::note
-    If you pasted a Base64 encoded data URL into the text box, the **Base64 encode icon** button does not display because the image is already encoded. If you drag and drop an icon, the icon is automatically encoded for you.
-    :::
+      ![Base64 encode image button](/images/app-icon-preview-base64.png)
 
     1. Click **Preview a different icon** to preview a different icon if needed.
 
@@ -42,7 +42,7 @@ To add a custom application icon:
      title: My Application
      icon: https://kots.io/images/kotsadm-logo-large@2x.png
    ```
-1. Save and promote the release to a development environment to test your changes.
+1. Click **Save Release**.
 
 ## Icon Image File Recommendations
 
