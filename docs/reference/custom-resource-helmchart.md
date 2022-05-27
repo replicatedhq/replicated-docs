@@ -91,7 +91,7 @@ Native Helm installations are only available for Helm v3 charts.
 ## weight
 
 Determines the order to apply charts that have `useHelmInstall: true`. Charts are applied by weight in ascending order, with lower weights applied first.
-Accetable values are positive and negative integers, with a default value of 0.
+Acceptable values are positive and negative integers, with a default value of 0.
 
 For more information, see [Defining Installation Order for Native Helm Charts](../vendor/helm-native-helm-install-order).
 
