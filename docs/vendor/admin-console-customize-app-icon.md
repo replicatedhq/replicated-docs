@@ -14,7 +14,7 @@ To add a custom application icon:
 
   The preview section expands. If your Application manifest file is already populated with an `icon` key, the icon displays in the preview. Otherwise, the preview is blank.
 
-    1. Drag and drop an icon image file to the drop zone. Alternatively, paste a path, URL, or Base64 encoded string in the text box. Click **Preview** or **Preview a different image**. Which button displays depends on whether a preview already exists.
+    1. Drag and drop an icon image file to the drop zone. Alternatively, paste a link or Base64 encoded string in the text box. Click **Preview** or **Preview a different image**. Which button displays depends on whether a preview already exists.
 
     ![Application icon preview](/images/app-icon-preview.png)
 
