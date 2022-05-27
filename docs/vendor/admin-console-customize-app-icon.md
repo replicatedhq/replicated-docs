@@ -23,7 +23,7 @@ To add a custom application icon:
     ![Base64 encode image button](/images/app-icon-preview-base64.png)
 
     :::note
-    If you pasted a Base64 string into the text box, the **Base64 encode icon** button does not display because the image is already encoded.
+    If you pasted a Base64 encoded data URL into the text box, the **Base64 encode icon** button does not display because the image is already encoded.
     :::
 
     1. Click **Preview a different icon** to preview a different icon if needed.
