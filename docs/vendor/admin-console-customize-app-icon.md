@@ -14,17 +14,21 @@ To add a custom application icon:
 
   The preview section expands. If your Application manifest file is already populated with an `icon` key, the icon displays in the preview. Otherwise, the preview is blank.
 
-    1. Drag and drop an icon image file to the drop zone. Alternatively, paste a path, URL, or base64 encoded string in the text box. Click **Preview** or **Preview a different image**. Which button displays depends on whether a preview already exists.
+    1. Drag and drop an icon image file to the drop zone. Alternatively, paste a path, URL, or Base64 encoded string in the text box. Click **Preview** or **Preview a different image**. Which button displays depends on whether a preview already exists.
 
-    1. (Air Gap only) If you drop or paste a non-encoded image into the fields, click **Base64 encode image** to convert the image to base64. An encoded URI displays that you can copy and paste into the Application manifest. Base64 encoding is required for images used with air gap installations.
+    ![Application icon preview](/images/app-icon-preview.png)
+
+    1. (Air Gap only) If you drop or paste a non-encoded image into the fields, click **Base64 encode image** to convert the image to Base64. An encoded URI displays that you can copy and paste into the Application manifest. Base64 encoding is required for images used with air gap installations.
+
+    ![Base64 encode image button](/images/app-icon-preview-base64.png)
 
     :::note
-    If you pasted a base64 string into the text box, the **Base64 encode image** button does not display because the image is already encoded.
+    If you pasted a Base64 string into the text box, the **Base64 encode image** button does not display because the image is already encoded.
     :::
 
     1. Click **Preview a different icon** to preview a different icon if needed.
 
-1. In the Application manifest, under `spec`, add an `icon` key that includes a link or the base64 URI to the desired image.
+1. In the Application manifest, under `spec`, add an `icon` key that includes a link or the Base64 URI to the desired image.
 
    **Example**:
 
