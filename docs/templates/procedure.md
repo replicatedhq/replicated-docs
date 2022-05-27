@@ -28,8 +28,8 @@ To [do this task]: [For example, "To create a customer license:"]
       <td>[Example description: The type of customer is used solely for reporting purposes. Their access to your app is not affected by the type you assign to them. <strong>Options:</strong> Development, Trial, Paid, Community. <strong>Default:</strong> Trial. For more information, see LINK.]</td>
     </tr>
     <tr>
-      <td>Another Field Name</td>
-      <td>Specify the maximum blah blah blah.</td>
+      <td></td>
+      <td></td>
     </tr>
   </table>
 
