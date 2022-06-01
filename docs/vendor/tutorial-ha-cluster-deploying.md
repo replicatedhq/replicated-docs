@@ -225,7 +225,7 @@ To install the app manager, run SSH into the node, and run the one line installa
 
 ![Channels](/images/guides/kots/ha-cluster-portal-channels.png)
 
-However, to enable high availability, we will add the ``-s ha` [advanced option](https://kurl.sh/docs/install-with-kurl/advanced-options)
+However, to enable high availability, we will add the `-s ha` [advanced option](https://kurl.sh/docs/install-with-kurl/advanced-options)
 
 ```shell
 curl -sSL https://k8s.kurl.sh/appdirect-unstable | sudo bash -s ha
