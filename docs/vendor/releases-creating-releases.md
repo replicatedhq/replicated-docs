@@ -22,9 +22,9 @@ To create a release:
 
 1. In the YAML editor, package your application by providing a set of Kubernetes manifest files or Helm charts. These can include standard manifests such as Deployment and Service resources, as well as several custom resources that invoke app manager functions.
 
-  For more information about how to package and configure manifest files for a production application, see [How to Package an Aplicaiton for Production](packaging-workflow).
+  For more information about how to package and configure manifest files for a production application, see [How to Package and Distribute a Production Application](distributing-workflow).
 
-  For reference information about the custom resources, see [About custom resources](../reference/custom-resource-about).
+  For reference information about the custom resources, see [About Custom Resources](../reference/custom-resource-about).
 
   :::note
   You can manually edit the YAML for each manifest file on this page or use the replicated CLI and API to automate this. For more information about using the CLI, see [Installing the replicated CLI](../reference/replicated-cli-installing).
@@ -40,5 +40,4 @@ To create a release:
 
 ## Additional Resources
 
-[How to Distribute an Application](distributing-workflow)
-[How to Package an Application for Production](packaging-workflow)
+[How to Package and Distribute a Production Application](distributing-workflow)

@@ -10,8 +10,10 @@ If you have questions about this workflow, you can contact the Customer Success 
 
 ## Prerequisites
 
-- You have a Kubernetes-deployable application that contains `deployment.yaml` and `services.yaml` files.
-- You have set up a development server.
+Complete the following items before you perform this task:
+
+- Create a Kubernetes-deployable application that contains `deployment.yaml` and `services.yaml` files.
+- Set up a development server.
 - Create your account in the Replicated vendor portal. See [Creating a Vendor Account](vendor-portal-creating-account).
 - (Recommended) Complete a tutorial to package, distribute, and install a sample application:
   * [Managing Releases with the CLI](tutorial-installing-with-cli).
@@ -37,7 +39,7 @@ with Replicated:
       </tr>
       <tr>
         <td>Helm charts</td>
-        <td>If your application is already packaged using Helm charts, see <a href="helm-installing-replicated-helm">Installing with the App Manager.</a></td>
+        <td>If your application is already packaged using Helm charts, see <a href="helm-release">Adding Helm Charts to a Release</a>.</td>
       </tr>
       <tr>
         <td>Kubernetes Operators</td>
@@ -109,7 +111,7 @@ with Replicated:
       </tr>
       <tr>
         <td><a href="packaging-include-resources">Including Conditional Resources</a></td>
-        <td>Include and exclude resources based on a customer's configuration choices, such as an external database or the embedded database.</td>
+        <td>Include and exclude resources based on a customer's configuration choices, such as an external database or an embedded database.</td>
       </tr>
       <tr>
         <td><a href="packaging-cleaning-up-jobs">Cleaning Up Kubernetes Jobs</a></td>
@@ -123,4 +125,4 @@ with Replicated:
 
 1. When you are ready to distribute the application to your customers, promote the release to the desired channel in the vendor portal. You can use the default channels or edit them, or create a custom channel. See [Creating and Editing Channels](releases-creating-channels).
 
-1. Share the license file that you created and the installation script available in the vendor portal with each customer. See [Sharing the License File and Installation Script](releases-sharing-license-install-script).
+1. Share with each customer the license file that you created and the installation command available in the vendor portal. See [Sharing the License File and Installation Command](releases-sharing-license-install-script).
