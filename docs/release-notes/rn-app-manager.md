@@ -10,12 +10,11 @@ Released on June 1, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
-
 ### New Features
 * Adds a `--port` flag to the `kots install` and `kots admin-console` commands to allow for overriding the local port on which to access the admin console.
 
 ### Improvements
-* Improves initial feedback when a preflight check passes.
+* A temporary success message is displayed if preflight checks pass for a version.
 
 ### Bug Fixes
 * Fixes a nil pointer panic when checking for updates if a file in the new release contains incomplete metadata information.
