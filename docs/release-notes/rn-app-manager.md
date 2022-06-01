@@ -19,8 +19,6 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 ### Bug Fixes
 * Fixes a nil pointer panic when checking for updates if a file in the new release contains incomplete metadata information.
 
-
-
 ## 1.70.1
 
 Released on May 19, 2022
