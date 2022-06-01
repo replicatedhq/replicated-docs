@@ -12,6 +12,7 @@ Released on June 1, 2022
 
 - Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.71
 - Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.19.1
+- In addition to the `ekco.enableInternalLoadBalancer` parameter, the `ekco-enable-internal-load-balancer` flag can now be specified at install time to enable the Ekco [Internal Load Balancer](https://kurl.sh/docs/add-ons/ekco#internal-load-balancer).
 
 ### Bug Fixes
 
