@@ -12,6 +12,10 @@ Released on June 1, 2022
 
 - Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.71
 
+### Bug Fixes
+
+- Fixes issue that caused the less command to break after installing on amazon linux 2.
+
 
 ## Release v2022.05.19-0
 
