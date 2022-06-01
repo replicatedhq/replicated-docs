@@ -10,11 +10,15 @@ Released on June 1, 2022
 
 ### Improvements
 
-- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.71
+- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.71.0
 - Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.19.1
 - Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.5.10, 1.5.11, and 1.6.4
 - In addition to the `ekco.enableInternalLoadBalancer` parameter, the `ekco-enable-internal-load-balancer` flag can now be specified at install time to enable the Ekco [Internal Load Balancer](https://kurl.sh/docs/add-ons/ekco#internal-load-balancer).
 - Upgraded [Velero add-on](https://kurl.sh/docs/add-ons/velero) v1.8.1 replicated/local-volume-provider image to v0.3.4
+- Adds support for Kubernetes versions for 1.21.12, 1.22.9, 1.23.6 and 1.24.0 
+- Adds support for longhorn version 1.2.4
+- Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.19.2
+
 
 ### Bug Fixes
 
