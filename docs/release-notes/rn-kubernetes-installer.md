@@ -19,6 +19,7 @@ Released on June 1, 2022
 
 - Fixes issue that caused the less command to break after installing on amazon linux 2.
 - Fixes issue that caused installations to fail on RHEL based distributions with Velero and the `kotsadm.disableS3` flag set to `true`.
+- Fixes issue that caused pressing `tab` to print `bash: _get_comp_words_by_ref: command not found` when `bash-completion` is not installed. 
 
 ## Release v2022.05.19-0
 
