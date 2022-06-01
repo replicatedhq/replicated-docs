@@ -1,7 +1,8 @@
 # install
 
 Installs the application and the admin console directly to a cluster.
-The `kots install` command pulls Kubernetes manifests from the remote upstream, deploys the manifests to the specified cluster, installs the Replicated admin console, and sets up port forwarding to make the admin console accessible.
+The `kots install` command pulls Kubernetes manifests from the remote upstream, deploys the manifests to the specified cluster, installs the Replicated admin console, and sets up port forwarding to make the admin console accessible on port 8800.
+Alternatively, you can specify the `--port` flag to override the default port.
 
 ### Usage
 
@@ -33,8 +34,9 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 | `--local-path`              | string | Specify a local-path to test the behavior of rendering a replicated application locally _(only supported on replicated app types currently)_.                                                         |
 | `--name`                    | string | Name of the application to use in the admin console.                                                                                                                                                  |
 | `-n, --namespace`           | string | The namespace to deploy to.                                                                                                                                                                           |
-| `--no-port-forward`         | bool   | Set to true to disable automatic port forward. **Default:** false                                                                                                                                  |
+| `--no-port-forward`         | bool   | Set to true to disable automatic port forward. **Default:** false                                                                                                                                     |
 | `--no-proxy`                | string | Sets NO_PROXY environment variable in all admin console components.                                                                                                                                   |
+| `--port`                    | string | Override the local port on which to access the admin console. **Default:** 8800                                                                                                                       |
 | `--preflights-wait-duration`| string | Timeout to be used while waiting for preflights to complete. Must be in [Go duration](https://pkg.go.dev/time#ParseDuration) format (eg: 10s, 2m). **Default:** 15m                                   |
 | `--registry-password`       | string | Password to use to authenticate with the application registry. Used for air gapped installations.                                                                                                     |
 | `--registry-username`       | string | Username to use to authenticate with the application registry. Used for air gapped installations.                                                                                                     |
