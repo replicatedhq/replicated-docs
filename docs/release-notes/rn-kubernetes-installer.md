@@ -18,7 +18,7 @@ Released on June 1, 2022
 ### Bug Fixes
 
 - Fixes issue that caused the less command to break after installing on amazon linux 2.
-
+- Fixed an issue which caused installations to fail on RHEL based distributions with Velero and the `kotsadm.disableS3` flag set to `true`.
 
 ## Release v2022.05.19-0
 
