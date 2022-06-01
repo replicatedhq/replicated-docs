@@ -4,7 +4,7 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
-## 1.71
+## 1.71.0
 
 Released on June 1, 2022
 
@@ -12,13 +12,13 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 
 ### New Features
-
+* Adds a `--port` flag to the `kots install` and `kots admin-console` commands to allow for specifying a local port on which to access the admin console.
 
 ### Improvements
-
+* Improves initial feedback after preflight checks run whether they've passed 
 
 ### Bug Fixes
-
+* Fixes a nil pointer panic when checking for updates if a file in the new release contains incomplete metadata information
 
 
 
