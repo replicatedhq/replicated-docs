@@ -58,8 +58,7 @@ To add the Kubernetes installer manifest to the application release:
 
 ## Create a Kubernetes Installer Specification
 
-You can create a Kubernetes installer specification file to associate
-with your application that allows your customers to use the Kubernetes installer to provision a cluster. This method creates the specification separately from the application release.
+You can create a Kubernetes installer specification file and promote it to the same channel as your application release. This method creates the specification separately from the application release and only lets you have one active Kubernetes installer for a channel at a time. All installations, regardless of the application version, will use the currently promoted installer.
 
 To create a Kubernetes installer specification:
 
