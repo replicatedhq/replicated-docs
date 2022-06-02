@@ -37,7 +37,7 @@ with Replicated:
       </tr>
       <tr>
         <td>Standard manifest files</td>
-        <td>We recommend using standard manifest YAML files unless you are already using Helm or Kubernetes Operators. To drag and drop the application files to the Replicated vendor portal, see [Create a Release](releases-creating-releases). To use the replicated CLI to import your application files, see [Managing Releases with the CLI](tutorial-installing-with-cli).</td>
+        <td>We recommend using standard manifest YAML files unless you are already using Helm or Kubernetes Operators. <br></br><br></br>To drag and drop the application files to the Replicated vendor portal, see <a href="releases-creating-releases">Create a Release</a>. <br></br><br></br>To use the replicated CLI to import your application files, see <a href="tutorial-installing-with-cli">Managing Releases with the CLI</a>.</td>
       </tr>
       <tr>
         <td>Helm charts</td>
