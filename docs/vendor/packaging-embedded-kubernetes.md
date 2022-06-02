@@ -37,7 +37,7 @@ in the kURL open source documentation.
 
 ## Create a Kubernetes Installer in the Application Release
 
-Create a Kubernetes installer as part of the application release to allow your customers to use the Kubernetes installer to provision a cluster.
+You can create a Kubernetes installer specification as part of the application release. This allows multiple Kubernetes installers to be active for a channel at a time, and it ensures that every installation uses the Kubernetes installer that is associated with the version of the application that is being installed.
 
 To add the Kubernetes installer manifest to the application release:
 
