@@ -49,9 +49,7 @@ To add the Kubernetes installer manifest to the application release:
 
   For more information about creating a Kubernetes installer specification file, see [Create An Installer](https://kurl.sh/docs/create-installer/) in the kURL open source documentation.
 
-1. Create an installer YAML manifest file. Copy and paste the installer YAML content to your installer manifest file.
-
-1. Drag and drop the installer manifest file to the YAML editor in the vendor portal.
+1. Create a new file in the YAML editor in the vendor portal. Copy the installer YAML content from [kurl.sh](https://kurl.sh) and paste it in this new file.
 
 1. Save and promote the release to your development environment to test your changes.
 
