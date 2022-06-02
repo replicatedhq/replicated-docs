@@ -64,7 +64,7 @@ To create a Kubernetes installer specification:
 
 1. On the **Kubernetes Installer** page, click **Create Kubernetes installer**.
 
-1. Edit the file. At a minimum, you must add the KOTS add-on to the installer specification to provision the Replicated admin console. For information about creating a Kubernetes installer specification file, see [Create An Installer](https://kurl.sh/docs/create-installer/) in the kURL open source documentation.
+1. Edit the file. Make sure to include the KOTS add-on to provision the Replicated admin console. For information about creating a Kubernetes installer specification file, see [Create An Installer](https://kurl.sh/docs/create-installer/) in the kURL open source documentation.
 
     :::note
        Replicated recommends that you pin specific versions of Kubernetes and Kubernetes add-ons in the Kubernetes installer specification, rather than `latest` versions. This ensures easily-reproducible versions across your customer installations.
