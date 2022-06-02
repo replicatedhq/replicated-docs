@@ -4,27 +4,6 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
-## Release v2022.06.01-0
-
-Released on June 1, 2022
-
-### Improvements
-
-- Adds support for Kubernetes versions for 1.21.12, 1.22.9, 1.23.6 and 1.24.0.
-- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.71.0.
-- Adds [containerd add-on](https://kurl.sh/docs/add-ons/containerd) versions 1.5.10, 1.5.11, and 1.6.4.
-- Adds [Longhorn add-on](https://kurl.sh/docs/add-ons/longhorn) version 1.2.4.
-- Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) versions 0.19.1 and 0.19.2.
-- In addition to the `ekco.enableInternalLoadBalancer` parameter in the installer specification, the `ekco-enable-internal-load-balancer` flag can now be specified at install time to enable the EKCO [internal load balancer](https://kurl.sh/docs/add-ons/ekco#internal-load-balancer).
-- Upgraded the replicated/local-volume-provider image to v0.3.4 for [Velero add-on](https://kurl.sh/docs/add-ons/velero) v1.8.1.
-
-### Bug Fixes
-
-- Fixes an issue that caused the `less` command to break after installing on Amazon Linux 2.
-- Fixes an issue that caused installations with Velero and the `kotsadm.disableS3` flag set to `true` to fail on RHEL-based distributions.
-- Fixes an issue that caused `bash: _get_comp_words_by_ref: command not found` to be printed after pressing tab when `bash-completion` is not installed.
-- Fixes an issue where migrating the object store from Rook to MinIO would fail due to undefined metrics functions.
-
 ## Release v2022.05.19-0
 
 Released on May 19, 2022
