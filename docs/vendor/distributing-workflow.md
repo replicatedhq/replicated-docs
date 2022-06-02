@@ -26,7 +26,7 @@ Complete the following items before you perform this task:
 Complete the following procedures to package and distribute your application to your customers
 with Replicated:
 
-1. Push your images to the Replicated private registry if you plan to host your images there. See [Connecting to an Image Registry](packaging-private-images). Otherwise, proceed to the next step.
+1. Push your images to the Replicated private registry if you plan to host your images that registry. See [Connecting to an Image Registry](packaging-private-images). Otherwise, proceed to the next step.
 
 1. Import your application files to Replicated using one of the following types:
 
@@ -37,7 +37,7 @@ with Replicated:
       </tr>
       <tr>
         <td>Standard manifest files</td>
-        <td>We recommend using standard manifest YAML files unless you are already using Helm or Kubernetes Operators. <br></br><br></br>To drag and drop the application files to the Replicated vendor portal, see <a href="releases-creating-releases">Create a Release</a>. <br></br><br></br>To use the replicated CLI to import your application files, see <a href="tutorial-installing-with-cli">Managing Releases with the CLI</a>.</td>
+        <td>We recommend using standard manifest YAML files unless you are already using Helm or Kubernetes Operators. <br></br><br></br>To import using the Replicated vendor portal, see <a href="releases-creating-releases">Create a Release</a>. To import using the replicated CLI, see <a href="tutorial-installing-with-cli">Managing Releases with the CLI</a>.</td>
       </tr>
       <tr>
         <td>Helm charts</td>
