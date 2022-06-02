@@ -26,6 +26,8 @@ Complete the following items before you perform this task:
 Complete the following procedures to package and distribute your application to your customers
 with Replicated:
 
+1. Push your images to the Replicated private registry if you plan to host your images there. See [Connecting to an Image Registry](packaging-private-images). Otherwise, proceed to the next step.
+
 1. Import your application files to Replicated using one of the following types:
 
     <table>
@@ -35,7 +37,7 @@ with Replicated:
       </tr>
       <tr>
         <td>Standard manifest files</td>
-        <td>We recommend using standard manifest YAML files unless you are already using Helm or Kubernetes Operators. Drag and drop the application files to the Replicated vendor portal or use the replicated CLI to import them.</td>
+        <td>We recommend using standard manifest YAML files unless you are already using Helm or Kubernetes Operators. To drag and drop the application files to the Replicated vendor portal, see [Create a Release](releases-creating-releases). To use the replicated CLI to import your application files, see [Managing Releases with the CLI](tutorial-installing-with-cli).</td>
       </tr>
       <tr>
         <td>Helm charts</td>
@@ -47,17 +49,17 @@ with Replicated:
       </tr>
     </table>
 
-1. (Required) Connect to a private registry if you are using private images. See <a href="packaging-private-images">Connecting to an Image Registry</a>.
+1. (Required) If you are using private images, either connect to an external private registry or update the image tags to point to the Replicated private registry. See [Connecting to an Image Registry](packaging-private-images).
 
   :::note
   Skip this step if your images are open-source or public, or if you are using Kubernetes Operators.
   :::
 
-1. If you are providing your users with a cluster hosted on a VM, you must configure and test a Kubernetes installer. See <a href="packaging-embedded-kubernetes">Configure the Kubernetes Installer</a>.
+1. If you are providing your users with a cluster hosted on a VM, you must configure and test a Kubernetes installer. See [Configure the Kubernetes Installer](packaging-embedded-kubernetes).
 
 1. Create a license file in the vendor portal that contains entitlement information for your customer. You also need a license file to test your application in the admin console. See [Creating a Customer](releases-creating-customer).
 
-1. Promote the release and test it by installing the release in a development environment with the license file that you created. You can use the environment that you created during one of the recommended tutorials. For information about installation, see [Overview of Installing an Application](../enterprise/installing-overview).
+1. Promote the release and test it by installing the release in a development environment with the license file that you created. You can use the environment that you created during one of the recommended tutorials. For information about promoting a release, see [Promoting Releases](releases-promoting). For information about installation, see [Overview of Installing an Application](../enterprise/installing-overview).
 
 1. (Recommended) Create a basic Configuration screen in the Replicated admin console to collect required or optional values from your users that are used to access the application:
       1. Define custom fields. See <a href="admin-console-customize-config-screen">Creating and Editing Configuration Fields</a>.
