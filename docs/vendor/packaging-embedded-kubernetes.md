@@ -58,8 +58,6 @@ To add the Kubernetes installer manifest to the application release:
 
 ## Create a Kubernetes Installer Specification
 
-> Replicated app manager v1.70.1 and earlier
-
 You can create a Kubernetes installer specification file to associate
 with your application that allows your customers to use the Kubernetes installer to provision a cluster. This method creates the specification separately from the application release.
 
