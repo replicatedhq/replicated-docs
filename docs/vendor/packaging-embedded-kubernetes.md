@@ -27,7 +27,7 @@ There are two possible methods for creating a Kubernetes installer:
   </tr>
   <tr>
     <td><a href="packaging-embedded-kubernetes#create-a-kubernetes-installer-specification">As a separate specification</a></td>
-    <td>Available for v1.70.1 and earlier. The installer specification is created separately from the application release. <br></br><br></br> If you have previously used this option, this method remains available to you, in addition to the ability to include the Kubernetes installer with the release.</td>
+    <td>The installer specification is created separately from the application release. <br></br><br></br> With this option, it is only possible to use the Kubernetes installer that is currently promoted to the channel. This poses problems when installing previous versions of the application, since previous versions may not be tested with the currently promoted installer.</td>
   </tr>
 </table>
 
