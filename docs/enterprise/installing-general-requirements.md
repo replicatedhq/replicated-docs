@@ -40,7 +40,8 @@ This includes support against all patch releases of the corresponding Kubernetes
 | v1.48 to v1.59.2 | v1.21, v1.20, and v1.19   |
 | v1.59.3 to v1.60 | v1.22, v1.21, and v1.20   |
 | v1.61 to v1.65 | v1.23, v1.22, v1.21, and v1.20|
-| v1.66 and later | v1.23, v1.22, and v1.21   |
+| v1.66 to v1.70 | v1.23, v1.22, and v1.21   |
+| v1.71 and later | v1.24, v1.23, v1.22, and v1.21   |
 
 ## Firewall Openings for Online Installations
 
