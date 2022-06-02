@@ -45,7 +45,7 @@ To add the Kubernetes installer manifest to the application release:
 
   The YAML editor opens.
 
-1. From the landing page at [kurl.sh](https://kurl.sh/), select add-ons to add to your installer YAML. At a minimum, you must add the KOTS add-on to the installer specification.
+1. From the landing page at [kurl.sh](https://kurl.sh/), configure the add-ons and options for your installer YAML. Make sure to include the KOTS add-on to provision the Replicated admin console.
 
   For more information about creating a Kubernetes installer specification file, see [Create An Installer](https://kurl.sh/docs/create-installer/) in the kURL open source documentation.
 
