@@ -14,7 +14,7 @@ a new cluster on your customer's VM. This allows customers who do not have an
 existing cluster to install your application without manually provisioning a new
 cluster themselves.
 
-There are two possible methods for creating a Kubernetes installer, depending on which version of the Replicated app manager you are using:
+There are two possible methods for creating a Kubernetes installer:
 
 <table>
   <tr>
@@ -22,7 +22,7 @@ There are two possible methods for creating a Kubernetes installer, depending on
     <th width="70%">Description</th>
   </tr>
   <tr>
-    <td><a href="packaging-embedded-kubernetes#create-a-kubernetes-installer-in-the-release-application">Included with the release</a></td>
+    <td><a href="packaging-embedded-kubernetes#create-a-kubernetes-installer-in-the-release-application">Included with the release (Beta)</a></td>
     <td>Available for all versions. The installer manifest file is added to the application release. <br></br><br></br> Lets you manage and test the installer and application together and better facilitate installer updates. <br></br><br></br> Helpful for disaster recovery because the correct version of the Kubernetes installer is included with the restored application.</td>
   </tr>
   <tr>
