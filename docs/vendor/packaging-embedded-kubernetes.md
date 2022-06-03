@@ -82,4 +82,4 @@ To create a Kubernetes installer specification:
 
 1. Click **Save installer**.
 
-1. Save and promote the release to your development environment to test your changes.
+1. Save and promote a release to your development environment to test your changes.
