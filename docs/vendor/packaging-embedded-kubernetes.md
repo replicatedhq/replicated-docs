@@ -22,7 +22,7 @@ There are two possible methods for creating a Kubernetes installer:
     <th width="70%">Description</th>
   </tr>
   <tr>
-    <td><a href="packaging-embedded-kubernetes#create-a-kubernetes-installer-in-the-release-application">Included with the release (Beta)</a></td>
+    <td><a href="packaging-embedded-kubernetes#create-a-kubernetes-installer-in-the-release-application">Included with the release (Alpha)</a></td>
     <td>The installer manifest file is added to the application release. <br></br><br></br> Couples the installer and the application in the release, making them easier to test and use together. <br></br><br></br> Helpful for installing previous versions of the application, because the installer associated with the application release will be used.</td>
   </tr>
   <tr>
