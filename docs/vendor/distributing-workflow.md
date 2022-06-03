@@ -26,7 +26,9 @@ Complete the following items before you perform this task:
 Complete the following procedures to package and distribute your application to your customers
 with Replicated:
 
-1. Push your images to the Replicated private registry if you plan to host your images that registry. See [Connecting to an Image Registry](packaging-private-images). Otherwise, proceed to the next step.
+1. Push your images to the Replicated private registry if you plan to host your images that registry. See [Push Images to the Replicated Private Registry](packaging-private-images#push-images-to-the-replicated-private-registry) in _Connecting to an Image Registry_.
+
+    If you are using a different image option, skip this step and proceed to the next step.
 
 1. Import your application files to Replicated using one of the following types:
 
@@ -80,11 +82,11 @@ with Replicated:
         <th width="70%">Description</th>
       </tr>
       <tr>
-        <td><a href="database-config-adding-options">Add database configuration options</a></td>
+        <td><a href="database-config-adding-options">Add Database Configuration Options</a></td>
         <td>Enable database options and set stateful services.</td>
       </tr>
       <tr>
-        <td><a href="admin-console-customize-app-icon">Customizing the admin console and download portal</a></td>
+        <td><a href="admin-console-customize-app-icon">Customizing the Admin Console and Download Portal</a></td>
         <td>Customize the appearance of the admin console for end users, including branding, application status, URLs, adding ports and port forwarding, and adding custom graphs.</td>
       </tr>
       <tr>
