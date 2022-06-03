@@ -48,11 +48,11 @@ Create a support bundle using one of the following methods, depending on your en
 
 #### With the Default kots.io Specification
 
-  To use the default kots.io specification, run the following command to create a support bundle:
+To use the default kots.io specification, run the following command to create a support bundle:
 
-    ```
-    kubectl support-bundle https://kots.io
-    ```
+  ```
+  kubectl support-bundle https://kots.io
+  ```
 
 #### On an Air Gap Server
 If you are on an air gapped server, perform the following steps to create a support bundle:
