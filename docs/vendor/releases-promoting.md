@@ -1,8 +1,19 @@
 # Promoting Releases
 
-After you create a release, it must be promoted to a channel to be active.
+After a release is ready to be installed, the release can be promoted to one or more release channels.
 
-Releases are not editable after being promoted to a channel. However, release notes, version numbers, and the required status can be edited by visiting the channel’s history.
+Every Replicated license points to a release channel.
+When a license is installed, it pulls down and installs the release that is currently at the top of its channel.
+We recommend creating customer licenses on the Stable channel, and only promoting releases to Stable that are ready for all customers to install.
+
+After an application is installed, the active instance can be updated by promoting a release to the channel that instance is licensed to (likely Stable).
+
+Each instance periodically checks for new releases. When a new release is found, the Replicated installation displays a button that allows end customers managing the instance to read the release notes and install the update. (Customers can also configure automatic updates for online environments.)
+A license only checks its own release channel.
+
+## Promote a Release
+
+Releases are not editable after being promoted to a channel. However, release notes, the version label, and the required status can be edited by visiting the channel’s history.
 
 To promote a release:
 
@@ -35,4 +46,4 @@ To promote a release:
 ## Additional Resources
 
 * [About Releases](releases-understanding)
-* [How to Distribute an Application](distributing-workflow)
+* [How to Package and Distribute a Production Application](distributing-workflow)

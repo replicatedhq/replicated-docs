@@ -53,13 +53,13 @@ const sidebars = {
             type: 'category',
             label: 'Creating and Managing Releases',
             items: [
+              'vendor/repository-workflow-and-tagging-releases',
               'vendor/releases-understanding',
               'vendor/releases-creating-releases',
               {
                 type: 'category',
                 label: 'Packaging Your Application',
                 items: [
-                  'vendor/repository-workflow-and-tagging-releases',
                   {
                       type: 'category',
                       label: 'Using Private Registries',
