@@ -8,8 +8,8 @@ The Kubernetes installer is based on the open source kURL project, which is main
 
 Complete the following items before you perform this task:
 
-- Meet the general system requirements. For more information see, [General System Requirements](installing-general-requirements).
-- Meet the system requirements. For more information, see [Kubernetes installer requirements](installing-embedded-cluster-requirements).
+- Meet the general system requirements. See [General System Requirements](installing-general-requirements).
+- Meet the system requirements for the Kubernetes installer. See [Kubernetes Installer Requirements](installing-embedded-cluster-requirements).
 
 ## Install in an Online Environment
 
@@ -30,7 +30,7 @@ With KOTS v1.67.0 and later, you can install a specific version of the applicati
 
 To install in an air gapped environment:
 
-1. Download and extract the kURL air gap `.tar.gz` file.
+1. Download and extract the kURL air gap `.tar.gz` file. The air gap `.tar.gz` includes only the admin console components, which are required to install the application.
 1. Run the install.sh script:
 
     ```bash
@@ -43,10 +43,6 @@ To install in an air gapped environment:
 
     :::note
     You can construct the URL for the air gap bundle by prefixing the URL path for online installations, as described in [Install in an Online Environment](#install-in-an-online-environment) above, with `/bundle` and adding `.tar.gz` to the end.
-    :::
-
-    :::note
-    The air gap `.tar.gz` includes only the admin console components, which are required to install the application.
     :::
 
 1. Install the application with the application `.airgap` bundle:
@@ -66,26 +62,26 @@ To install in an air gapped environment:
     * `PATH-TO-CONFIG-VALUES` with the path to the ConfigValues manifest file.
     * `PASSWORD` with a shared password.
 
-      For more information about the `kots install` command, see [install](../reference/kots-cli-install) in the kots CLI documentation.
+    For more information about the `kots install` command, see [install](../reference/kots-cli-install) in the kots CLI documentation.
 
-## Install with High Availability
+## Installing with the Kubernetes Installer in High Availability Mode
 
-You can include the `ha` option to install with high availability. Both online and air gapped installations can be configured in high-availability mode.
+Both online and air gap installations can be installed in high availability (HA) mode with the Kubernetes installer.
 
 When installing on a highly available cluster, the script prompts for a load balancer address.
 You can preconfigure the load balancer by passing in the `load-balancer-address=<host:port>` flag.
 
 This load balancer should be:
 - A TCP forwarding load balancer
-- Configured to distribute traffic to all healthy control plane nodes in its target list.
+- Configured to distribute traffic to all healthy control plane nodes in its target list
 
-The health check for an apiserver is a TCP check on the port the kube-apiserver listens on (default value :6443).
+The health check for an apiserver is a TCP check on the port that the kube-apiserver listens on (the default value is `:6443`).
 
-For more information on the kube-apiserver load balancer see [Create load balancer for kube-apiserver](https://kubernetes.io/docs/setup/independent/high-availability/#create-load-balancer-for-kube-apiserver) in the Kubernetes documentation.
+For more information about the kube-apiserver load balancer, see [Create load balancer for kube-apiserver](https://kubernetes.io/docs/setup/independent/high-availability/#create-load-balancer-for-kube-apiserver) in the Kubernetes documentation.
 
-In the absence of a load balancer, all traffic is routed to the first primary.
+In the absence of a load balancer, all traffic is routed to the first primary node.
 
-### Online
+### Install with HA in an Online Environment
 
 To install with high availability in an online environment, run:
 
@@ -94,11 +90,11 @@ curl -sSL https://kurl.sh/APP-SLUG | sudo bash -s ha
 ```
 Replace `APP-SLUG` with the unique slug for the application. The application slug is included in the installation script provided by the vendor.
 
-### Air Gap Environment
+### Install with HA in an Air Gap Environment
 
-To install with high availability in an air gapped environment:
+To install with high availability in an air gap environment:
 
-1. Untar the `.tar.gz` file.
+1. Extract the `.tar.gz` file.
 
 1. Run the following command:
 
@@ -108,6 +104,22 @@ To install with high availability in an air gapped environment:
 
 ## Join Primary and Secondary Nodes
 
-Visit the `/cluster/manage` page in the admin console to generate scripts for joining additional secondary and primary nodes.
+You can generate commands in the admin console to join additional primary and secondary nodes.
 
-For air gapped installations, the `.airgap` bundle must also be downloaded and extracted on the remote node prior to running the join script.
+To add primary and secondary nodes:
+
+1. (Air gap only) Download and extract the `.airgap` bundle on the remote node before running the join command.
+1. In the admin console, click **Cluster > Add Node**.
+1. Copy the command and run it on the node that you are joining to the cluster.
+
+  **Example:**
+
+  ```
+  curl -sSL https://kurl.sh/my-test-app-2-unstable/join.sh | sudo bash -s \
+  kubernetes-master-address=192.0.2.0:6443 \
+  kubeadm-token=8z0hjv.s9wru9z \
+  kubeadm-token-ca-hash=sha256:289f5c0d61775edec20d4e980602deeeeeeeeeeeeeeeeeffffffffffggggggg \
+  docker-registry-ip=198.51.100.3 \
+  kubernetes-version=v1.19.16 \
+  primary-host=203.0.113.6
+  ```
