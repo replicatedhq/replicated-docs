@@ -1,6 +1,6 @@
 # Installing with the Kubernetes Installer
 
-This sections explains how to install an application and the Replicated admin console on a cluster created by the Replicated Kubernetes installer.
+This section explains how to install an application and the Replicated admin console on a cluster created by the Replicated Kubernetes installer.
 
 The Kubernetes installer is based on the open source kURL project, which is maintained by Replicated. For more information about installing with kURL, including advanced installation options, see the [kURL documentation](https://kurl.sh/docs/introduction/).
 
