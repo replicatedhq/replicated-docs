@@ -8,7 +8,7 @@ We recommend that you bookmark the Replicated [vendor portal](https://vendor.rep
 
     ![Create Application](/images/guides/kots/create-application.png)
 
-    - If you are logging in with an existing account: Click **New Application** or select an existing application.
+    - If you are logging in with an existing account: From the Applications drop-down list, click **Create new app** or select an existing application.
 
   The Channels page for the release opens and displays a list of your release channels, which are logical stacks for you to stage and promote releases to your customers.
 
