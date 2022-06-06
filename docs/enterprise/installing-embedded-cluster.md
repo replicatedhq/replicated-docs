@@ -13,7 +13,7 @@ Complete the following items before you perform this task:
 
 ## Install in an Online Environment
 
-To install the admin console on a cluster created by the Kubernetes installer, run the installation script provided by the application vendor.
+To install an application and the admin console on a cluster created by the Kubernetes installer, run the installation script provided by the application vendor.
 
 **Example:**
 
@@ -28,10 +28,10 @@ With KOTS v1.67.0 and later, you can install a specific version of the applicati
 
 ## Install in an Air Gapped Environment
 
-To install in an air gapped environment:
+To install an application and the admin console in an air gapped environment:
 
 1. Download and extract the kURL air gap `.tar.gz` file. The air gap `.tar.gz` includes only the admin console components, which are required to install the application.
-1. Run the install.sh script:
+1. Run the `install.sh` script:
 
     ```bash
     curl -LO https://k8s.kurl.sh/bundle/FILENAME.tar.gz
@@ -42,7 +42,7 @@ To install in an air gapped environment:
     Replace `FILENAME` with the name of the kURL air gap `.tar.gz` file.
 
     :::note
-    You can construct the URL for the air gap bundle by prefixing the URL path for online installations, as described in [Install in an Online Environment](#install-in-an-online-environment) above, with `/bundle` and adding `.tar.gz` to the end.
+    You can construct the URL for the air gap bundle by prefixing the URL path for online installations with `/bundle` and adding `.tar.gz` to the end. For more information, see [Install in an Online Environment](#install-in-an-online-environment).
     :::
 
 1. Install the application with the application `.airgap` bundle:
