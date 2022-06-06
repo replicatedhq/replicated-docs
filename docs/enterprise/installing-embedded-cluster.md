@@ -68,22 +68,21 @@ To install an application and the admin console in an air gapped environment:
 
 Both online and air gap installations can be installed in high availability (HA) mode with the Kubernetes installer.
 
-When installing on a highly available cluster, the script prompts for a load balancer address.
-You can preconfigure the load balancer by passing in the `load-balancer-address=<host:port>` flag.
+When installing on a highly available cluster, the script prompts for a load balancer address. In the absence of a load balancer, all traffic is routed to the first primary node.
 
-This load balancer should be:
+If you decide to use a load balancer, the load balancer should be:
 - A TCP forwarding load balancer
 - Configured to distribute traffic to all healthy control plane nodes in its target list
+
+You can preconfigure the load balancer by passing in the `load-balancer-address=<host:port>` flag.
 
 The health check for an apiserver is a TCP check on the port that the kube-apiserver listens on (the default value is `:6443`).
 
 For more information about the kube-apiserver load balancer, see [Create load balancer for kube-apiserver](https://kubernetes.io/docs/setup/independent/high-availability/#create-load-balancer-for-kube-apiserver) in the Kubernetes documentation.
 
-In the absence of a load balancer, all traffic is routed to the first primary node.
-
 ### Install with HA in an Online Environment
 
-To install with high availability in an online environment, run:
+To install an application and the admin console with high availability in an online environment, run:
 
 ```bash
 curl -sSL https://kurl.sh/APP-SLUG | sudo bash -s ha
@@ -92,7 +91,7 @@ Replace `APP-SLUG` with the unique slug for the application. The application slu
 
 ### Install with HA in an Air Gap Environment
 
-To install with high availability in an air gap environment:
+To install an application and the admin console with high availability in an air gap environment:
 
 1. Extract the `.tar.gz` file.
 
