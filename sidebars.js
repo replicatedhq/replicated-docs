@@ -54,7 +54,6 @@ const sidebars = {
             label: 'Creating and Managing Releases',
             items: [
               'vendor/repository-workflow-and-tagging-releases',
-              'vendor/releases-understanding',
               'vendor/releases-creating-releases',
               {
                 type: 'category',
