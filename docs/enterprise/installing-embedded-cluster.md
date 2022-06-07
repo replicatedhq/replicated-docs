@@ -20,8 +20,8 @@ For more information about the kube-apiserver load balancer, see [Create load ba
 
 Complete the following before you perform this task:
 
-- Meet the general system requirements. See [General System Requirements](installing-general-requirements).
-- Meet the system requirements for the Kubernetes installer. See [Kubernetes Installer Requirements](installing-embedded-cluster-requirements).
+- Meet the general system requirements. See [General System Requirements](installing-general-requirements)
+- Meet the system requirements for the Kubernetes installer. See [Kubernetes Installer Requirements](installing-embedded-cluster-requirements)
 
 Additionally, if you are installing with high availability and want to use a load balancer, ensure that your load balancer is:
 - A TCP forwarding load balancer
