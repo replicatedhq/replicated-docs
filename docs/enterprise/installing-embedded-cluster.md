@@ -6,7 +6,7 @@ The Kubernetes installer is based on the open source kURL project, which is main
 
 ## Prerequisites
 
-Complete the following items before you perform this task:
+Complete the following before you perform this task:
 
 - Meet the general system requirements. See [General System Requirements](installing-general-requirements).
 - Meet the system requirements for the Kubernetes installer. See [Kubernetes Installer Requirements](installing-embedded-cluster-requirements).
@@ -70,13 +70,13 @@ Both online and air gap installations can be installed in high availability (HA)
 
 When installing on a highly available cluster, the script prompts for a load balancer address. In the absence of a load balancer, all traffic is routed to the first primary node.
 
-If you decide to use a load balancer, the load balancer should be:
+If you decide to use a load balancer, the load balancer must be:
 - A TCP forwarding load balancer
 - Configured to distribute traffic to all healthy control plane nodes in its target list
 
 You can preconfigure the load balancer by passing in the `load-balancer-address=<host:port>` flag.
 
-The health check for an apiserver is a TCP check on the port that the kube-apiserver listens on (the default value is `:6443`).
+The health check for an apiserver is a TCP check on the port that the kube-apiserver listens on. The default value is `:6443`.
 
 For more information about the kube-apiserver load balancer, see [Create load balancer for kube-apiserver](https://kubernetes.io/docs/setup/independent/high-availability/#create-load-balancer-for-kube-apiserver) in the Kubernetes documentation.
 
@@ -103,7 +103,7 @@ To install an application and the admin console with high availability in an air
 
 ## Join Primary and Secondary Nodes
 
-You can generate commands in the admin console to join additional primary and secondary nodes.
+You can generate commands in the admin console to join additional primary and secondary nodes to the cluster. Primary nodes run services that control the cluster. Secondary nodes run services that control the pods that host the application containers. Adding nodes can help balance resources to ensure that your application runs smoothly.
 
 To add primary and secondary nodes:
 
