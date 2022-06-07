@@ -98,7 +98,7 @@ To install an application and the admin console in an air gapped environment:
 
 ## Join Primary and Secondary Nodes
 
-You can generate commands in the admin console to join additional primary and secondary nodes to the cluster. Primary nodes run services that control the cluster. Secondary nodes run services that control the pods that host the application containers. Adding nodes can help balance resources to ensure that your application runs smoothly.
+You can generate commands in the admin console to join additional primary and secondary nodes to the cluster. Primary nodes run services that control the cluster. Secondary nodes run services that control the pods that host the application containers. Adding nodes can help manage resources to ensure that your application runs smoothly.
 
 To add primary and secondary nodes:
 
