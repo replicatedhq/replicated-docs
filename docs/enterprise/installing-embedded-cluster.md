@@ -4,6 +4,18 @@ This section explains how to install an application and the Replicated admin con
 
 The Kubernetes installer is based on the open source kURL project, which is maintained by Replicated. For more information about installing with kURL, including advanced installation options, see the [kURL documentation](https://kurl.sh/docs/introduction/).
 
+## About Installing in High Availability Mode
+
+Both online and air gap installations can be installed in high availability (HA) mode with the Kubernetes installer.
+
+When installing on a highly available cluster, the script prompts for a load balancer address. In the absence of a load balancer, all traffic is routed to the first primary node.
+
+If you decide to use a load balancer, the load balancer must be a TCP forwarding load balancer. For more information, see [Prerequisites](#prerequisites)
+
+The health check for an apiserver is a TCP check on the port that the kube-apiserver listens on. The default value is `:6443`.
+
+For more information about the kube-apiserver load balancer, see [Create load balancer for kube-apiserver](https://kubernetes.io/docs/setup/independent/high-availability/#create-load-balancer-for-kube-apiserver) in the Kubernetes documentation.
+
 ## Prerequisites
 
 Complete the following before you perform this task:
@@ -11,16 +23,30 @@ Complete the following before you perform this task:
 - Meet the general system requirements. See [General System Requirements](installing-general-requirements).
 - Meet the system requirements for the Kubernetes installer. See [Kubernetes Installer Requirements](installing-embedded-cluster-requirements).
 
+Additionally, if you are installing with high availability and want to use a load balancer, ensure that your load balancer is:
+- A TCP forwarding load balancer
+- Configured to distribute traffic to all healthy control plane nodes in its target list
+- (Optional) Preconfigured by passing in the `load-balancer-address=<host:port>` flag.
+
 ## Install in an Online Environment
 
-To install an application and the admin console on a cluster created by the Kubernetes installer, run the installation script provided by the application vendor.
+To install in an application and the admin console on a cluster created by the Kubernetes installer, do one of the following:
 
-**Example:**
+- In an online environment, run the installation script provided by the application vendor:
 
-```bash
-curl -sSL https://kurl.sh/APP-SLUG | sudo bash
-```
-Replace `APP-SLUG` with the unique slug for the application. The application slug is included in the installation script provided by the vendor.
+  **Example:**
+
+  ```bash
+  curl -sSL https://kurl.sh/APP-SLUG | sudo bash
+  ```
+  Replace `APP-SLUG` with the unique slug for the application. The application slug is included in the installation script provided by the vendor.
+
+- For high availability in an online environment, run:
+
+  ```bash
+  curl -sSL https://kurl.sh/APP-SLUG | sudo bash -s ha
+  ```
+  Replace `APP-SLUG` with the unique slug for the application. The application slug is included in the installation script provided by the vendor.
 
 :::note
 With KOTS v1.67.0 and later, you can install a specific version of the application. Use the `app-version-label` flag and the version label for a particular version of your vendor's application. For example, `curl https://kurl.sh/supergoodtool | sudo bash -s app-version-label=3.1.0`.
@@ -31,7 +57,9 @@ With KOTS v1.67.0 and later, you can install a specific version of the applicati
 To install an application and the admin console in an air gapped environment:
 
 1. Download and extract the kURL air gap `.tar.gz` file. The air gap `.tar.gz` includes only the admin console components, which are required to install the application.
-1. Run the `install.sh` script:
+1. Do one of the following:
+
+    - Run the `install.sh` script:
 
     ```bash
     curl -LO https://k8s.kurl.sh/bundle/FILENAME.tar.gz
@@ -40,6 +68,12 @@ To install an application and the admin console in an air gapped environment:
     ```
 
     Replace `FILENAME` with the name of the kURL air gap `.tar.gz` file.
+
+    - For high availability in an air gap environment, run:
+
+      ```bash
+      cat install.sh | sudo bash -s airgap ha
+      ```
 
     :::note
     You can construct the URL for the air gap bundle by prefixing the URL path for online installations with `/bundle` and adding `.tar.gz` to the end. For more information, see [Install in an Online Environment](#install-in-an-online-environment).
@@ -63,31 +97,6 @@ To install an application and the admin console in an air gapped environment:
     * `PASSWORD` with a shared password.
 
     For more information about the `kots install` command, see [install](../reference/kots-cli-install) in the kots CLI documentation.
-
-## Installing with the Kubernetes Installer in High Availability Mode
-
-Both online and air gap installations can be installed in high availability (HA) mode with the Kubernetes installer.
-
-When installing on a highly available cluster, the script prompts for a load balancer address. In the absence of a load balancer, all traffic is routed to the first primary node.
-
-If you decide to use a load balancer, the load balancer must be:
-- A TCP forwarding load balancer
-- Configured to distribute traffic to all healthy control plane nodes in its target list
-
-You can preconfigure the load balancer by passing in the `load-balancer-address=<host:port>` flag.
-
-The health check for an apiserver is a TCP check on the port that the kube-apiserver listens on. The default value is `:6443`.
-
-For more information about the kube-apiserver load balancer, see [Create load balancer for kube-apiserver](https://kubernetes.io/docs/setup/independent/high-availability/#create-load-balancer-for-kube-apiserver) in the Kubernetes documentation.
-
-### Install with HA in an Online Environment
-
-To install an application and the admin console with high availability in an online environment, run:
-
-```bash
-curl -sSL https://kurl.sh/APP-SLUG | sudo bash -s ha
-```
-Replace `APP-SLUG` with the unique slug for the application. The application slug is included in the installation script provided by the vendor.
 
 ### Install with HA in an Air Gap Environment
 
