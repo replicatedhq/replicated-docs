@@ -26,7 +26,7 @@ Complete the following items before you perform this task:
 Complete the following procedures to package and distribute your application to your customers
 with Replicated:
 
-1. Push your images to the Replicated private registry if you plan to host your images that registry. See [Push Images to the Replicated Private Registry](packaging-private-images#push-images-to-the-replicated-private-registry) in _Connecting to an Image Registry_.
+1. Push your images to the Replicated private registry if you plan to host your images on that registry. See [Push Images to the Replicated Private Registry](packaging-private-images#push-images-to-the-replicated-private-registry) in _Connecting to an Image Registry_.
 
     If you are using a different image option, skip this step and proceed to the next step.
 
