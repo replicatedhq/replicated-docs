@@ -10,7 +10,7 @@ Both online and air gap installations can be installed in high availability (HA)
 
 When installing on a highly available cluster, the script prompts for a load balancer address. In the absence of a load balancer, all traffic is routed to the first primary node.
 
-If you decide to use a load balancer, the load balancer must be a TCP forwarding load balancer. For more information, see [Prerequisites](#prerequisites)
+If you decide to use a load balancer, the load balancer must be a TCP forwarding load balancer. For more information, see [Prerequisites](#prerequisites).
 
 The health check for an apiserver is a TCP check on the port that the kube-apiserver listens on. The default value is `:6443`.
 
@@ -26,22 +26,20 @@ Complete the following before you perform this task:
 Additionally, if you are installing with high availability and want to use a load balancer, ensure that your load balancer is:
 - A TCP forwarding load balancer
 - Configured to distribute traffic to all healthy control plane nodes in its target list
-- (Optional) Preconfigured by passing in the `load-balancer-address=<host:port>` flag.
+- (Optional) Preconfigured by passing in the `load-balancer-address=<host:port>` flag
 
 ## Install in an Online Environment
 
-To install in an application and the admin console on a cluster created by the Kubernetes installer, do one of the following:
+To install in an application and the admin console in an online environment, do one of the following:
 
-- In an online environment, run the installation script provided by the application vendor:
-
-  **Example:**
+- To install without high availability, run the installation command provided by the application vendor:
 
   ```bash
   curl -sSL https://kurl.sh/APP-SLUG | sudo bash
   ```
-  Replace `APP-SLUG` with the unique slug for the application. The application slug is included in the installation script provided by the vendor.
+  Replace `APP-SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
 
-- For high availability in an online environment, run:
+- To install with high availability, run the installation command with the `-s ha` flag:
 
   ```bash
   curl -sSL https://kurl.sh/APP-SLUG | sudo bash -s ha
@@ -59,25 +57,25 @@ To install an application and the admin console in an air gapped environment:
 1. Download and extract the kURL air gap `.tar.gz` file. The air gap `.tar.gz` includes only the admin console components, which are required to install the application.
 1. Do one of the following:
 
-    - Run the `install.sh` script:
+    - To install without high availability, run:
 
-    ```bash
-    curl -LO https://k8s.kurl.sh/bundle/FILENAME.tar.gz
-    tar xvzf FILENAME.tar.gz
-    cat install.sh | sudo bash -s airgap
-    ```
+      ```bash
+      curl -LO https://k8s.kurl.sh/bundle/FILENAME.tar.gz
+      tar xvzf FILENAME.tar.gz
+      cat install.sh | sudo bash -s airgap
+      ```
 
-    Replace `FILENAME` with the name of the kURL air gap `.tar.gz` file.
+      Replace `FILENAME` with the name of the kURL air gap `.tar.gz` file.
 
-    - For high availability in an air gap environment, run:
+      :::note
+      You can construct the URL for the air gap bundle by prefixing the URL path for online installations with `/bundle` and adding `.tar.gz` to the end. For more information, see [Install in an Online Environment](#install-in-an-online-environment).
+      :::
+
+    - To install with high availability, run:
 
       ```bash
       cat install.sh | sudo bash -s airgap ha
-      ```
-
-    :::note
-    You can construct the URL for the air gap bundle by prefixing the URL path for online installations with `/bundle` and adding `.tar.gz` to the end. For more information, see [Install in an Online Environment](#install-in-an-online-environment).
-    :::
+      ```  
 
 1. Install the application with the application `.airgap` bundle:
 
@@ -97,18 +95,6 @@ To install an application and the admin console in an air gapped environment:
     * `PASSWORD` with a shared password.
 
     For more information about the `kots install` command, see [install](../reference/kots-cli-install) in the kots CLI documentation.
-
-### Install with HA in an Air Gap Environment
-
-To install an application and the admin console with high availability in an air gap environment:
-
-1. Extract the `.tar.gz` file.
-
-1. Run the following command:
-
-    ```bash
-    cat install.sh | sudo bash -s airgap ha
-    ```
 
 ## Join Primary and Secondary Nodes
 
