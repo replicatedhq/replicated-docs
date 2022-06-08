@@ -5,11 +5,10 @@ This topic describes creating a Replicated Kubernetes installer to distribute yo
 ## About installing an application without an existing cluster
 
 When you package and release your application with Replicated, your customers can
-install the application on either an existing Kubernetes cluster or a cluster created
-by the Kubernetes installer.
+install the application with or without an existing Kubernetes cluster.
 
 The Kubernetes installer is a feature of the Replicated product that provisions
-a new cluster on your customer's virtual machine (VM). This allows customers who do not have an
+a new cluster on a virtual machine (VM). This allows customers who do not have an
 existing cluster to install your application without manually provisioning a new
 cluster themselves.
 
@@ -21,12 +20,12 @@ There are two possible methods for creating a Kubernetes installer:
     <th width="70%">Description</th>
   </tr>
   <tr>
-    <td><a href="packaging-embedded-kubernetes#create-a-kubernetes-installer-in-the-release-application">Included with the release (Alpha)</a></td>
+    <td><a href="packaging-embedded-kubernetes#create-a-kubernetes-installer-in-the-release-application">Included with the release (Beta)</a></td>
     <td>The installer manifest file is added to the application release. <br></br><br></br> Couples the installer and the application in the release, making them easier to test and use together. <br></br><br></br> Helpful for installing previous versions of the application, because the installer associated with the application release is used.</td>
   </tr>
   <tr>
     <td><a href="packaging-embedded-kubernetes#create-a-kubernetes-installer-specification">As a separate specification</a></td>
-    <td>The installer specification is created separately from the application release. <br></br><br></br> With this option, it is only possible to use the Kubernetes installer that is currently promoted to the channel. This poses problems when installing previous versions of the application, since previous versions may not be tested with the currently promoted installer.</td>
+    <td>The installer specification is created separately from the application release. <br></br><br></br> This option uses the Kubernetes installer that is currently promoted to the channel. Using a separate installer specification can pose problems when installing previous versions of the application, since previous versions may not be tested with the currently promoted installer.</td>
   </tr>
 </table>
 
@@ -34,7 +33,7 @@ The Kubernetes installer is based on the open source kURL project, which is main
 by Replicated. For more information, see [Introduction to kURL](https://kurl.sh/docs/introduction/)
 in the kURL open source documentation.
 
-### Create a Kubernetes Installer in the Application Release (Alpha)
+### Create a Kubernetes Installer in the Application Release (Beta)
 
 You can create a Kubernetes installer manifest as part of the application release. This allows multiple Kubernetes installers to be active for a channel at a time, and it ensures that every installation uses the Kubernetes installer that is associated with the version of the application that is being installed. We recommend that you use this method, and it is the default method.
 
@@ -82,15 +81,15 @@ To create a Kubernetes installer specification:
 
 1. Save and promote a release to your development environment to test your changes.
 
-## About Using Earlier Release Versions
+## About Using Previous Release Versions
 
-There are two methods of accessing and using version history or the application, depending on which method of Kubernetes installer you have used.
+There are two methods of accessing and using version history or the application, depending on which method of Kubernetes installer you have used: including the installer in the release or creating a separate installer specification.
 
-### Use Earlier Release Versions that Includes the Kubernetes Installer (Alpha)
+### Use Previous Release Versions that Includes the Kubernetes Installer (Beta)
 
-If you created a Kubernetes installer as part of your release, which is the default method, the version of the Kubernetes installer is tied to the version of the application. This makes it easy to provide users with the non-latest version of the installer and application, which is helpful for situations such as disaster recovery.
+If you created a Kubernetes installer as part of your release, which is the default method, the version of the Kubernetes installer is tied to the version of the application. This makes it easy to provide users with a previous version of the installer and application, which is helpful for situations such as disaster recovery.
 
-To use an earlier release version that includes the installer manifest:
+To use an previous release version that includes the installer manifest:
 
 1. From the [vendor portal](https://vendor.replicated.com), select **Channel**.
 1. Click **Version History** next to Latest Release in the channel you want to use.
@@ -113,11 +112,11 @@ To use an earlier release version that includes the installer manifest:
 
   In both examples, replace `APP-SLUG` with the name of your application.
 
-### Use Earlier Release Versions with a Separate Kubernetes Installer
+### Use Previous Release Versions with a Separate Kubernetes Installer
 
-If you created a Kubernetes installer specification that is separate from your application release, you can use an earlier version of the application and the latest Kubernetes installer. In this case, you might not have tested the latest promoted Kubernetes installer with the earlier the application version.
+If you created a Kubernetes installer specification that is separate from your application release, you can use an previous version of the application but the installation command uses the currently promoted Kubernetes installer. In this case, you might not have tested the current Kubernetes installer specification with the earlier the application version.
 
-To use an earlier application release version and a separate Kubernetes installer specification, run:
+To use a previous application release version and a separate Kubernetes installer, run:
 
 ```
 curl -sSL https://k8s.kurl.sh/APP-SLUG-CHANNEL | sudo bash -s app-version-label=VERSION
