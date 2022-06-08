@@ -67,15 +67,20 @@ To install an application and the admin console in an air gapped environment:
 
       Replace `FILENAME` with the name of the kURL air gap `.tar.gz` file.
 
-      :::note
-      You can construct the URL for the air gap bundle by prefixing the URL path for online installations with `/bundle` and adding `.tar.gz` to the end. For more information, see [Install in an Online Environment](#install-in-an-online-environment).
-      :::
-
     - To install with high availability, run:
 
       ```bash
+      curl -LO https://k8s.kurl.sh/bundle/FILENAME.tar.gz
+      tar xvzf FILENAME.tar.gz
       cat install.sh | sudo bash -s airgap ha
-      ```  
+      ```
+
+      Replace `FILENAME` with the name of the kURL air gap `.tar.gz` file.
+
+    :::note
+    For both installation types, you can construct the URL for the air gap bundle by prefixing the URL path for online installations with `/bundle` and adding `.tar.gz` to the end. For more information, see [Install in an Online Environment](#install-in-an-online-environment).
+    :::
+
 
 1. Install the application with the application `.airgap` bundle:
 
