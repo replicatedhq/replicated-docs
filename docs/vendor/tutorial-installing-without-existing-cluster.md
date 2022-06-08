@@ -129,7 +129,7 @@ To create the test server and install the app manager:
 1. Run the installation script:
 
   ```shell
-  curl -sSL https://kurl.sh/<your-app-name-and-channel> | sudo bash
+  curl -sSL https://k8s.kurl.sh/<your-app-name-and-channel> | sudo bash
   ```
 
   This script installs Docker, Kubernetes, and the Replicated admin console containers (kotsadm).
