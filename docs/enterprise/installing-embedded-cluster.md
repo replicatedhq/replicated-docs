@@ -117,7 +117,7 @@ To add primary and secondary nodes:
   curl -sSL https://kurl.sh/my-test-app-2-unstable/join.sh | sudo bash -s \
   kubernetes-master-address=192.0.2.0:6443 \
   kubeadm-token=8z0hjv.s9wru9z \
-  kubeadm-token-ca-hash=sha256:289f5c0d61775edec20d4e980602deeeeeeeeeeeeeeeeeffffffffffggggggg \
+  kubeadm-token-ca-hash=sha256:289f5c0d61775edec20d4e980602deeeeeeeeeeeeeeeeffffffffffggggggg \
   docker-registry-ip=198.51.100.3 \
   kubernetes-version=v1.19.16 \
   primary-host=203.0.113.6
