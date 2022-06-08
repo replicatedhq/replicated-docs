@@ -16,7 +16,7 @@ There are two possible methods for creating a Kubernetes installer:
   </tr>
   <tr>
     <td><a href="packaging-embedded-kubernetes#create-a-kubernetes-installer-in-the-release-application">Included with the release (Beta)</a></td>
-    <td>The installer manifest file is added to the application release. <br></br><br></br> Couples the installer and the application in the release, making them easier to test and use together. <br></br><br></br> Helpful for installing previous versions of the application, because the installer associated with the application release is used.</td>
+    <td>The installer manifest file is added to the application release. <br></br><br></br> Couples the installer and the application in the release, making them easier to test and use together. <br></br><br></br> Helps with installing previous versions of the application because the installer associated with the application release is used.</td>
   </tr>
   <tr>
     <td><a href="packaging-embedded-kubernetes#create-a-kubernetes-installer-specification">As a separate specification</a></td>
@@ -78,7 +78,7 @@ To create a Kubernetes installer specification:
 
 ## About Using Previous Release Versions
 
-There are two methods of accessing and using version history or the application, depending on which method of Kubernetes installer you have used: including the installer in the release or creating a separate installer specification.
+There are two methods of using previous versions of the application, depending on which method of Kubernetes installer you have used: including the installer in the release or creating a separate installer specification.
 
 ### Use Previous Release Versions that Includes the Kubernetes Installer (Beta)
 
