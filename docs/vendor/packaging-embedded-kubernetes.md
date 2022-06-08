@@ -5,12 +5,7 @@ This topic describes creating a Replicated Kubernetes installer to distribute yo
 ## About installing an application without an existing cluster
 
 When you package and release your application with Replicated, your customers can
-install the application with or without an existing Kubernetes cluster.
-
-The Kubernetes installer is a feature of the Replicated product that provisions
-a new cluster on a virtual machine (VM). This allows customers who do not have an
-existing cluster to install your application without manually provisioning a new
-cluster themselves.
+install the application without an existing Kubernetes cluster. You use the Replicated Kubernetes installer to provision a new cluster on a virtual machine (VM). This allows customers who do not have an existing cluster to install your application without provisioning a new cluster themselves.
 
 There are two possible methods for creating a Kubernetes installer:
 
@@ -132,5 +127,5 @@ Replace:
 **Example:**
 
 ```
-curl -sSL https://k8s.kurl.sh/MyGoodApplication-beta | sudo bash -s app-version-label=3.1.0
+curl -sSL https://k8s.kurl.sh/mygoodapplication-beta | sudo bash -s app-version-label=3.1.0
 ```
