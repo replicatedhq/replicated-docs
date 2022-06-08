@@ -13,7 +13,7 @@ Users with Identity Provider (IDP) access cannot change their password using thi
 To change your admin console password:
 
 1. Log in to the admin console using your current password.
-1. In the drop-down in the top right of any page, click **Change Password**.
+1. In the drop-down in the top right of any page, click **Change password**.
 1. In the Change Admin Console Password dialog, edit the fields.
 
     - The new password must be at least 6 characters and must not be the same as your current password.
