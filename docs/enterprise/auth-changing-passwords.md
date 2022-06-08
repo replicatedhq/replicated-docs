@@ -2,9 +2,9 @@
 
 When you install for the first time with the Kubernetes installer, the Replicated admin console is secured with a single shared password that is set automatically for all users. We recommend that you change this to a new, unique password for security purposes as this automated password is displayed to the user in plain text.
 
-The admin console password is hashed using bcrypt in a secret named `kotsadm-password`. The password is not retrievable if lost. If you lose your admin console password, reset your password to access the admin console.
+The admin console password is salted and one-way hashed using bcrypt. The irreversible hash is stored in a secret named `kotsadm-password`. The password is not retrievable if lost. If you lose your admin console password, reset your password to access the admin console.
 
-For more information about bcrypt, see [bcrypt](https://www.npmjs.com/package/bcrypt) on the npm website. 
+For more information about bcrypt, see [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) on Wikipedia. 
 
 :::note
 Users with Identity Provider (IDP) access cannot change their password using this procedure. If an attempt is made, IDP users receive a message in the user interface to contact the identity service provider to change their password. For more information about resetting an IDP user password, see [Resetting Authentication](auth-identity-provider#resetting-authentication) in _Using an Identity Provider for User Access (Beta)_.
