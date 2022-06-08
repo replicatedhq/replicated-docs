@@ -135,7 +135,7 @@ To iterate on the release of your production application:
   Continue to iterate by updating the release and application, and then testing it in the admin console until you are ready to share the application with your customers.
   :::
 
-## Distributing Your application
+## Distributing Your Application
 
 To distribute your production application:
 
