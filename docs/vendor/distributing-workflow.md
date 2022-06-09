@@ -23,10 +23,9 @@ Complete the following items before you perform this task:
 
 ## Creating and Testing Your Initial Release
 
+The following diagram is a visual representation of the steps that follow for creating and testing your first release. You will iterate many times before distributing your application to customers.
 
-DIAGRAM
-
-This diagram is a visual representation of the steps that follow for creating and testing your first release. You will iterate many times before distributing your application to customers.
+![Initial Release Workflow](/images/packaging-first-iteration.png)
 
 Complete the following procedures to import your files, create, and test your first release:
 
