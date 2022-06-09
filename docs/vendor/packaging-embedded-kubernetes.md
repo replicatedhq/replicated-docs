@@ -1,8 +1,8 @@
 # Creating a Kubernetes Installer and Using Previous Versions
 
-This topic describes creating a Replicated Kubernetes installer to distribute your application without an existing cluster and using earlier versions of the application release for situations such as disaster recovery.
+This topic describes creating a Replicated Kubernetes installer to distribute your application without an existing cluster. It also describes providing an installation command for previous versions of the application release, for situations such as disaster recovery.
 
-## About installing an application without an existing cluster
+## About Installing an Application Without an Existing Cluster
 
 When you package and release your application with Replicated, your customers can
 install the application without an existing Kubernetes cluster. You use the Replicated Kubernetes installer to provision a new cluster on a virtual machine (VM). This allows customers who do not have an existing cluster to install your application without provisioning a cluster themselves.
@@ -34,7 +34,7 @@ You can create a Kubernetes installer manifest as part of the application releas
 
 To create the Kubernetes installer manifest in the application release:
 
-1. From the Replicated [vendor portal](https://vendor.replicated.com), select **Releases > Create Release**.
+1. In the Replicated [vendor portal](https://vendor.replicated.com), click **Releases**. Then, either click **Create Release** or click **Edit YAML** to edit an existing release.
 
   The YAML editor opens.
 
