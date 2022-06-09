@@ -82,6 +82,10 @@ To create a Kubernetes installer specification:
 
 There are two methods of using previous versions of the application, depending on which method of Kubernetes installer you have used: including the installer in the release or creating a separate installer specification.
 
+:::note
+Typically you do not need to use these procedures fir air gap installations because you choose which versions to upload or download.
+:::
+
 ### Use Previous Release Versions that Include the Kubernetes Installer (Beta)
 
 If you created a Kubernetes installer as part of your release, the version of the Kubernetes installer is tied to the version of the application. This coupling makes it easy to provide users with a previous version of the installer and application, which is helpful for situations such as disaster recovery.
@@ -89,7 +93,7 @@ If you created a Kubernetes installer as part of your release, the version of th
 To use an previous release version that includes the installer manifest:
 
 1. From the [vendor portal](https://vendor.replicated.com), select **Channel**.
-1. Click **Version History** in the Latest Release pane for the channel you want to use.
+1. Click **Release history** in the Latest Release pane for the channel you want to use.
 1. Copy the installation command for the version that you want to use and share it with your customer.
 
     - The curl command shows the application version with name of the channel if it is not the default channel.
