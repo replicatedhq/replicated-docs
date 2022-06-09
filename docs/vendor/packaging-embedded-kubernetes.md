@@ -83,7 +83,7 @@ To create a Kubernetes installer specification:
 There are two methods of using previous versions of the application, depending on which method of Kubernetes installer you have used: including the installer in the release or creating a separate installer specification.
 
 :::note
-Typically you do not need to use these procedures fir air gap installations because you choose which versions to upload or download.
+Typically you do not need to use these procedures for air gap installations because you choose which versions to upload or download.
 :::
 
 ### Use Previous Release Versions that Include the Kubernetes Installer (Beta)
