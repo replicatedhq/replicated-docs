@@ -8,7 +8,7 @@ The Kubernetes installer is based on the open source kURL project, which is main
 
 Both online and air gap installations can be installed in high availability (HA) mode with the Kubernetes installer.
 
-When installing on a highly available cluster, the script prompts for a load balancer address. In the absence of a load balancer, all traffic is routed to the first primary node.
+When installing a cluster with high availablity, the script prompts for a load balancer address. In the absence of a load balancer, all traffic is routed to the first primary node.
 
 If you decide to use a load balancer, the load balancer must be a TCP forwarding load balancer. For more information, see [Prerequisites](#prerequisites).
 
@@ -30,19 +30,19 @@ Additionally, if you are installing with high availability and want to use a loa
 
 ## Install in an Online Environment
 
-To install in an application and the admin console in an online environment, do one of the following:
+To install an application and the admin console in an online environment, do one of the following:
 
 - To install without high availability, run the installation command provided by the application vendor:
 
   ```bash
-  curl -sSL https://kurl.sh/APP-SLUG | sudo bash
+  curl -sSL https://k8s.kurl.sh/APP-SLUG | sudo bash
   ```
   Replace `APP-SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
 
 - To install with high availability, run the installation command with the `-s ha` flag:
 
   ```bash
-  curl -sSL https://kurl.sh/APP-SLUG | sudo bash -s ha
+  curl -sSL https://k8s.kurl.sh/APP-SLUG | sudo bash -s ha
   ```
   Replace `APP-SLUG` with the unique slug for the application. The application slug is included in the installation script provided by the vendor.
 
