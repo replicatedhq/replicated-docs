@@ -60,7 +60,7 @@ Complete the following procedures to import your files, create, and test your fi
   Skip this step if your images are open-source or public, or if you are using Kubernetes Operators.
   :::
 
-1. If you are providing your users with a cluster hosted on a VM, you must configure and test a Kubernetes installer. See [Configure the Kubernetes Installer](packaging-embedded-kubernetes).
+1. If you are providing your users with a cluster hosted on a VM, you must configure and test a Kubernetes installer. See [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
 
 1. Create a license file in the vendor portal that contains entitlement information for your customer. You also need a license file to test your application in the admin console. See [Creating a Customer](releases-creating-customer).
 
@@ -142,4 +142,4 @@ To distribute your production application:
 
 1. Promote the release to the desired channel in the vendor portal. You can use the default channels or edit them, or create a custom channel. See [Creating and Editing Channels](releases-creating-channels).
 
-1. Share with each customer the license file that you created and the installation command available in the vendor portal. See [Sharing the License File and Installation Command](releases-sharing-license-install-script).
+1. Share with each customer the license file that you created and the installation command available in the vendor portal. See [Sharing the License Files and Application Releases](releases-sharing-license-install-script).
