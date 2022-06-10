@@ -226,6 +226,7 @@ const sidebars = {
                 'enterprise/installing-embedded-cluster',
               ],
             },
+            'enterprise/uninstall-admin-console',
           ],
         },
         {
@@ -291,6 +292,7 @@ const sidebars = {
             'enterprise/troubleshooting-an-app',
           ],
         },
+
       ],
     },
     {
