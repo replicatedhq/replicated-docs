@@ -28,7 +28,7 @@ The Kubernetes installer is based on the open source kURL project, which is main
 by Replicated. For more information, see [Introduction to kURL](https://kurl.sh/docs/introduction/)
 in the kURL open source documentation.
 
-### Create a Kubernetes Installer in the Application Release (Beta)
+## Create a Kubernetes Installer in the Application Release (Beta)
 
 You can create a Kubernetes installer manifest as part of the application release. This allows multiple Kubernetes installers to be active for a channel at the same time. It also ensures that every installation uses the Kubernetes installer that is associated with the version of the application that is being installed. This is the default method.
 
@@ -52,7 +52,7 @@ To create the Kubernetes installer manifest in the application release:
 
 1. Save and promote the release to your development environment to test your changes.
 
-### Create a Kubernetes Installer Specification
+## Create a Kubernetes Installer Specification
 
 > Available for Replicated app manager 1.71.0 and earlier
 
