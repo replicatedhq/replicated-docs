@@ -1,6 +1,6 @@
-# Creating a Kubernetes Installer and Using Previous Versions
+# Creating a Kubernetes Installer
 
-This topic describes creating a Replicated Kubernetes installer to distribute your application without an existing cluster. It also describes providing an installation command for previous versions of the application release, for situations such as disaster recovery.
+This topic describes creating a Replicated Kubernetes installer to distribute your application without an existing cluster.
 
 ## About Installing an Application Without an Existing Cluster
 
@@ -77,61 +77,3 @@ To create a Kubernetes installer specification:
 1. Click **Save installer**.
 
 1. Save and promote a release to your development environment to test your changes.
-
-## About Using Previous Release Versions
-
-There are two methods of using previous versions of the application, depending on which method of Kubernetes installer you have used: including the installer in the release or creating a separate installer specification.
-
-:::note
-Typically you do not need to use these procedures for air gap installations because you choose which versions to upload or download.
-:::
-
-### Use Previous Release Versions that Include the Kubernetes Installer (Beta)
-
-If you created a Kubernetes installer as part of your release, the version of the Kubernetes installer is tied to the version of the application. This coupling makes it easy to provide users with a previous version of the installer and application, which is helpful for situations such as disaster recovery.
-
-To use an previous release version that includes the installer manifest:
-
-1. From the [vendor portal](https://vendor.replicated.com), select **Channel**.
-1. Click **Release history** in the Latest Release pane for the channel you want to use.
-1. Copy the installation command for the version that you want to use and share it with your customer.
-
-    - The curl command shows the application version with name of the channel if it is not the default channel.
-
-      **Example:**
-      ```
-      curl -sSL https://k8s.kurl.sh/APP-SLUG-beta-2.3.30 | sudo bash
-      ```
-
-    - If you are using the default channel, the channel name is not shown in the command.
-
-      **Example:**
-
-      ```
-      curl -sSL https://k8s.kurl.sh/APP-SLUG-2.3.30 | sudo bash
-      ```
-
-  In both examples, replace `APP-SLUG` with the name of your application.
-
-### Use Previous Release Versions with a Separate Kubernetes Installer
-
-If you created a Kubernetes installer specification that is separate from your application release, you can use an previous version of the application but the installation command uses the currently promoted Kubernetes installer. In this case, you might not have tested the current Kubernetes installer specification with the earlier the application version.
-
-To use a previous application release version with a separate Kubernetes installer, run:
-
-```
-curl -sSL https://k8s.kurl.sh/APP-SLUG-CHANNEL | sudo bash -s app-version-label=VERSION
-```
-
-Replace:
-
-- `APP-SLUG` with the name of the application slug.
-- `CHANNEL` with the name of the channel.
-- `VERSION` with the version number.
-
-
-**Example:**
-
-```
-curl -sSL https://k8s.kurl.sh/mygoodapplication-beta | sudo bash -s app-version-label=3.1.0
-```
