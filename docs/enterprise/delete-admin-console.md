@@ -19,7 +19,7 @@ To remove an application reference from the admin console:
    ```
    kubectl kots get apps -n NAMESPACE
    ```
-   Replace `NAMESPACE` with the name of the namespace where the application is installed.
+   Replace `NAMESPACE` with the name of the namespace where the admin console is installed.
 
    In the output of this command, note the application slug that you want to remove.
 
