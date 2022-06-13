@@ -37,7 +37,7 @@ When you install an application with the admin console, Replicated also creates 
 
 For installations where `requireMinimalRBACPriviledges` is _not_ set to `true` in the Application custom resource manifest file, Replicated also creates Kubernetes ClusterRole and ClusterRoleBinding resources that grant permissions to the admin console on the cluster level. These `kotsadm-role` and `kotsadm-rolebinding` resources are managed outside of the namespace where the admin console is installed.
 
-For installations where `requireMinimalRBACPriviledges` is `true`, Replicated creates Role and RoleBinding resources inside the namespace where the admin console is installed.
+For installations where `requireMinimalRBACPriviledges` is set to `true`, Replicated creates Role and RoleBinding resources inside the namespace where the admin console is installed.
 
 If you need to completely delete the admin console and an application installation, such as during testing, follow one of these procedures depending on the type of cluster where you installed the admin console:
 
