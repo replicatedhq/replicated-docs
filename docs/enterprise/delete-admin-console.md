@@ -77,12 +77,15 @@ To delete the admin console from an existing cluster:
    ```
    kubectl delete clusterrolebinding kotsadm-rolebinding
    ```
+   :::note
+   If `requireMinimalRBACPriviledges` is `true`, you deleted the Role and RoleBinding resources for the admin console when you deleted the namespace in the previous step.
+   :::
 
 ### Delete from a Kubernetes Installer Cluster
 
 If you installed on a cluster created by the Kubernetes installer, Replicated installs the admin console in the `default` namespace. Kubernetes does not allow the `default` namespace to be deleted.
 
-To delete the admin console Kubernetes objects and resources on a Kubernetes installer-created cluster, use the kURL `tasks.sh` `reset` command to remove Kubernetes from the system.
+To delete the admin console from a Kubernetes installer-created cluster, use the kURL `tasks.sh` `reset` command to remove Kubernetes from the system.
 
 :::important
 The `reset` command is intended to be used only on development servers. It has the potential to leave your machine in an unrecoverable state. It is not recommended unless you are able to discard this server and provision a new one.
