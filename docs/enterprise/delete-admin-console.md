@@ -78,7 +78,7 @@ To delete the admin console from an existing cluster:
    kubectl delete clusterrolebinding kotsadm-rolebinding
    ```
    :::note
-   If `requireMinimalRBACPriviledges` is `true`, you deleted the Role and RoleBinding resources for the admin console when you deleted the namespace in the previous step.
+   If `requireMinimalRBACPriviledges` is set to `true`, you deleted the Role and RoleBinding resources for the admin console when you deleted the namespace in the previous step.
    :::
 
 ### Delete from a Kubernetes Installer Cluster
