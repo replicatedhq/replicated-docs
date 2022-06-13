@@ -35,7 +35,7 @@ To remove an application reference from the admin console:
 
 When you install an application with the admin console, Replicated also creates the Kubernetes objects for the admin console itself on the cluster. The admin console includes Deployment and Service objects, Secret objects, and other objects such as Services, StatefulSets, and PersistentVolumeClaims.
 
-For installations where `requireMinimalRBACPriviledges` is _not_ set to `true` in the Application custom resource manifest file, Replicated also creates Kubernetes ClusterRole and ClusterRoleBinding resources that grant permissions to the admin console on the cluster. These `kotsadm-role` and `kotsadm-rolebinding` resources are managed outside of the namespace where the the admin console is installed.
+For installations where `requireMinimalRBACPriviledges` is _not_ set to `true` in the Application custom resource manifest file, Replicated also creates Kubernetes ClusterRole and ClusterRoleBinding resources that grant permissions to the admin console on the cluster level. These `kotsadm-role` and `kotsadm-rolebinding` resources are managed outside of the namespace where the admin console is installed.
 
 For installations where `requireMinimalRBACPriviledges` is `true`, Replicated creates Role and RoleBinding resources inside the namespace where the admin console is installed.
 
