@@ -1,6 +1,6 @@
 # Installing with the Kubernetes Installer
 
-This section explains how to install an application and the Replicated admin console on a cluster created by the Replicated Kubernetes installer.
+This document explains how to install an application and the Replicated admin console on a cluster created by the Replicated Kubernetes installer.
 
 The Kubernetes installer is based on the open source kURL project, which is maintained by Replicated. For more information about installing with kURL, including advanced installation options, see the [kURL documentation](https://kurl.sh/docs/introduction/).
 
@@ -8,25 +8,26 @@ The Kubernetes installer is based on the open source kURL project, which is main
 
 Both online and air gap installations can be installed in high availability (HA) mode with the Kubernetes installer.
 
-When installing a cluster with high availablity, the script prompts for a load balancer address. In the absence of a load balancer, all traffic is routed to the first primary node.
+We recommend that you use a load balancer. If your vendor has provided an internal load balancer with the EKCO add-on, you do not need to provide your own external load balancer. An external load balancer can be preferred when clients outside the cluster need access to the cluster's Kubernetes API.
 
-If you decide to use a load balancer, the load balancer must be a TCP forwarding load balancer. For more information, see [Prerequisites](#prerequisites).
+In the absence of any load balancer, all traffic is routed to the first primary node.
 
-The health check for an apiserver is a TCP check on the port that the kube-apiserver listens on. The default value is `:6443`.
+If you decide to use a external load balancer, the external load balancer must be a TCP forwarding load balancer. For more information, see [Prerequisites](#prerequisites).
 
-For more information about the kube-apiserver load balancer, see [Create load balancer for kube-apiserver](https://kubernetes.io/docs/setup/independent/high-availability/#create-load-balancer-for-kube-apiserver) in the Kubernetes documentation.
+The health check for an apiserver is a TCP check on the port that the kube-apiserver listens on. The default value is `:6443`. For more information about the kube-apiserver external load balancer, see [Create load balancer for kube-apiserver](https://kubernetes.io/docs/setup/independent/high-availability/#create-load-balancer-for-kube-apiserver) in the Kubernetes documentation.
 
 ## Prerequisites
 
 Complete the following before you perform this task:
 
-- Meet the general system requirements. See [General System Requirements](installing-general-requirements)
-- Meet the system requirements for the Kubernetes installer. See [Kubernetes Installer Requirements](installing-embedded-cluster-requirements)
+- Meet the general system requirements. See [General System Requirements](installing-general-requirements).
+- Meet the system requirements for the Kubernetes installer. See [Kubernetes Installer Requirements](installing-embedded-cluster-requirements).
+- (Optional) To preconfigure the internal load balancer, pass the `ekco-enable-internal-load-balancer` flag.
+- (Optional) To preconfigure an external load balancer, pass the `load-balancer-address=HOST:PORT` flag.
 
-Additionally, if you are installing with high availability and want to use a load balancer, ensure that your load balancer is:
-- A TCP forwarding load balancer
-- Configured to distribute traffic to all healthy control plane nodes in its target list
-- (Optional) Preconfigured by passing in the `load-balancer-address=<host:port>` flag
+Additionally, if you are installing with high availability and want to use an external load balancer, ensure that your load balancer is:
+- A TCP forwarding external load balancer.
+- Configured to distribute traffic to all healthy control plane nodes in its target list.
 
 ## Install in an Online Environment
 
@@ -35,20 +36,34 @@ To install an application and the admin console in an online environment, do one
 - To install without high availability, run the installation command provided by the application vendor:
 
   ```bash
-  curl -sSL https://k8s.kurl.sh/APP-SLUG | sudo bash
+  curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash
   ```
   Replace `APP-SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
 
-- To install with high availability, run the installation command with the `-s ha` flag:
+- To install with high availability:
 
-  ```bash
-  curl -sSL https://k8s.kurl.sh/APP-SLUG | sudo bash -s ha
-  ```
-  Replace `APP-SLUG` with the unique slug for the application. The application slug is included in the installation script provided by the vendor.
+    1. Run the installation command with the `-s ha` flag:
 
-:::note
-With KOTS v1.67.0 and later, you can install a specific version of the application. Use the `app-version-label` flag and the version label for a particular version of your vendor's application. For example, `curl https://kurl.sh/supergoodtool | sudo bash -s app-version-label=3.1.0`.
-:::
+      ```bash
+      curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash -s ha
+      ```
+      Replace `APP-SLUG` with the unique slug for the application. The application slug is included in the installation script provided by the vendor.
+
+    1. If you did not preconfigure a load balancer, you are prompted during the installation. Do one of the following:
+
+        - If you are using the internal load balancer, pass the following flag:
+
+          ```bash
+          ekco-enable-internal-load-balancer
+          ```
+
+        - If you are using an external load balancer, pass the following flag:
+
+          ```bash
+          load-balancer-address=HOST:PORT
+          ```
+
+          Replace `HOST:PORT` with the host and port number of the external load balancer.
 
 ## Install in an Air Gapped Environment
 
@@ -67,7 +82,9 @@ To install an application and the admin console in an air gapped environment:
 
       Replace `FILENAME` with the name of the kURL air gap `.tar.gz` file.
 
-    - To install with high availability, run:
+    - To install with high availability:
+
+    1. Run the following commands:
 
       ```bash
       curl -LO https://k8s.kurl.sh/bundle/FILENAME.tar.gz
@@ -77,26 +94,42 @@ To install an application and the admin console in an air gapped environment:
 
       Replace `FILENAME` with the name of the kURL air gap `.tar.gz` file.
 
-    :::note
-    For both installation types, you can construct the URL for the air gap bundle by prefixing the URL path for online installations with `/bundle` and adding `.tar.gz` to the end. For more information, see [Install in an Online Environment](#install-in-an-online-environment).
-    :::
+      :::note
+      For both installation types, you can construct the URL for the air gap bundle by prefixing the URL path for online installations with `/bundle` and adding `.tar.gz` to the end. For more information, see [Install in an Online Environment](#install-in-an-online-environment).
+      :::
+
+    1. If you did not preconfigure a load balancer, you are prompted during the installation. Do one of the following:
+
+      - If you are using the internal load balancer, pass the following flag:
+
+        ```bash
+        ekco-enable-internal-load-balancer
+        ```
+
+        - If you are using an external load balancer, pass the following flag:
+
+        ```bash
+        load-balancer-address=HOST:PORT
+        ```
+
+        Replace `HOST:PORT` with the host and port number of the external load balancer.
 
 
 1. Install the application with the application `.airgap` bundle:
 
     ```
-    kubectl kots install APP-NAME \
-      --airgap-bundle PATH-TO-AIRGAP-BUNDLE \
-      --license-file PATH-TO-LICENSE-FILE \
-      --config-values PATH-TO-CONFIG-VALUES \
+    kubectl kots install APP_NAME \
+      --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
+      --license-file PATH_TO_LICENSE_FILE \
+      --config-values PATH_TO_CONFIG_VALUES \
       --namespace default \
       --shared-password PASSWORD
     ```
     Replace:
-    * `APP-NAME` with the name for the application.
-    * `PATH-TO-AIRGAP-BUNDLE` with the path to the `.airgap` bundle file.
-    * `PATH-TO-LICENSE-FILE` with the path to the license file.
-    * `PATH-TO-CONFIG-VALUES` with the path to the ConfigValues manifest file.
+    * `APP_NAME` with the name for the application.
+    * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle file.
+    * `PATH_TO_LICENSE_FILE` with the path to the license file.
+    * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file.
     * `PASSWORD` with a shared password.
 
     For more information about the `kots install` command, see [install](../reference/kots-cli-install) in the kots CLI documentation.
@@ -114,7 +147,7 @@ To add primary and secondary nodes:
   **Example:**
 
   ```
-  curl -sSL https://kurl.sh/my-test-app-2-unstable/join.sh | sudo bash -s \
+  curl -sSL https://k8s.kurl.sh/my-test-app-unstable/join.sh | sudo bash -s \
   kubernetes-master-address=192.0.2.0:6443 \
   kubeadm-token=8z0hjv.s9wru9z \
   kubeadm-token-ca-hash=sha256:289f5c0d61775edec20d4e980602deeeeeeeeeeeeeeeeffffffffffggggggg \
@@ -122,3 +155,9 @@ To add primary and secondary nodes:
   kubernetes-version=v1.19.16 \
   primary-host=203.0.113.6
   ```
+
+## About Installing Previous Versions
+
+This procedures above describe the commands used to install the current version of an application. However, with KOTS v1.67.0 and later, you can install a previous version of the application using the currently available Kubernetes installer. Use the `app-version-label` flag and the version label for a particular version of your vendor's application. For example, `curl https://k8s.kurl.sh/APP_SLUG | sudo bash -s app-version-label=3.1.0`. Replace `APP_SLUG` with the application slug.
+
+With KOTS v1.70.1 and later, your vendor may give you a different command to install a previous version of the applications with the Kubernetes installer that was included in the application release. In this case, you do not use the `app-version-label` flag.
