@@ -27,6 +27,8 @@ The following diagram is a visual representation of the steps that follow for cr
 
 ![Initial Release Workflow](/images/packaging-first-iteration.png)
 
+[View a larger version of this image](../../static/images/packaging-first-iteration.png)
+
 Complete the following procedures to import your files, create, and test your first release:
 
 1. Push your images to the Replicated private registry if you plan to host your images on that registry. See [Push Images to the Replicated Private Registry](packaging-private-images#push-images-to-the-replicated-private-registry) in _Connecting to an Image Registry_.
