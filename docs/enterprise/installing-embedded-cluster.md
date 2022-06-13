@@ -156,8 +156,8 @@ To add primary and secondary nodes:
   primary-host=203.0.113.6
   ```
 
-## About Installing Previous Versions
+## Install Previous Versions in an Online Environment
 
-This procedures above describe the commands used to install the current version of an application. However, with KOTS v1.67.0 and later, you can install a previous version of the application using the currently available Kubernetes installer. Use the `app-version-label` flag and the version label for a particular version of your vendor's application. For example, `curl https://k8s.kurl.sh/APP_SLUG | sudo bash -s app-version-label=3.1.0`. Replace `APP_SLUG` with the application slug.
+This procedures in the online environment section above describe the commands used to install the current version of an application. However, with KOTS v1.67.0 and later, you can install a previous version of the application using the currently available Kubernetes installer. Use the `app-version-label` flag and the version label for a particular version of your vendor's application. For example, `curl https://k8s.kurl.sh/APP_SLUG | sudo bash -s app-version-label=3.1.0`. Replace `APP_SLUG` with the application slug.
 
 With KOTS v1.70.1 and later, your vendor may give you a different command to install a previous version of the applications with the Kubernetes installer that was included in the application release. In this case, you do not use the `app-version-label` flag.
