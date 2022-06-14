@@ -11,19 +11,19 @@ Released on June 14, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### New Features {#new-features-1-72-0}
-* The admin console now shows the chart version and icon for the currently deployed Helm chart when running in Helm-managed mode (alpha).
+* The admin console now shows the chart version and icon for the currently deployed Helm chart when running in Helm-managed mode (Alpha).
 
 ### Improvements {#improvements-1-72-0}
-* Moves "Change password", "Add new application", and "Log out" functionality into a new menu in the top right of the nav bar.
+* Moves **Change password**, **Add new application**, and **Log out** functionality into a new menu in the top right of the navigation bar.
 * Shows a meaningful error message when the license is expired on the dashboard version card.
 
 ### Bug Fixes {#bug-fixes-1-72-0}
 * Fixes a bug that caused the deploy confirmation modal on the dashboard to always show "Redeploy" even if the version was not already deployed.
 * Fixes a discrepancy between the license expiry date in the vendor portal and the expiry date in the admin console.
 * Sets the User-Agent to the KOTS version string in outgoing HTTP requests where missing.
-* Removes the **Registry settings** tab when running in Helm-managed mode (alpha).
-* Removes **Diff versions** links from the application dashboard and version history page when running in Helm-managed mode (alpha).
-* Removes the instructions on how to edit files on the **View files** tab when running in Helm-managed mode (alpha).
+* Removes the **Registry settings** tab when running in Helm-managed mode (Alpha).
+* Removes **Diff versions** links from the application dashboard and version history page when running in Helm-managed mode (Alpha).
+* Removes the instructions on how to edit files on the **View files** tab when running in Helm-managed mode (Alpha).
 
 ## 1.71.0
 
