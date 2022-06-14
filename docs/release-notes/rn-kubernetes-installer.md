@@ -4,6 +4,19 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.06.14-0
+
+Released on June 14, 2022
+
+### New Features {#new-features-v2022-06-14-0}
+
+- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.72.0.
+- Adds [Local Path Provisioner add-on](https://kurl.sh/docs/add-ons/local-path-provisioner) (Beta) as an additional storage provisioner.
+
+### Bug Fixes {#bug-fixes-v2022-06-14-0}
+
+- Fixes an issue where the `HTTPS_PROXY` variable was not set properly for the [containerd add-on](https://kurl.sh/docs/add-ons/containerd) service.
+
 ## Release v2022.06.01-0
 
 Released on June 1, 2022
