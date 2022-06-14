@@ -13,10 +13,6 @@ Released on June 14, 2022
 - Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.72.0.
 - Adds [Local Path Provisioner add-on](https://kurl.sh/docs/add-ons/local-path-provisioner) (Beta) as an additional storage provisioner.
 
-### Improvements
-
-- 
-
 ### Bug Fixes
 
 - Fixes an issue where the HTTPS_PROXY variable was not being set properly for the [containerd add-on](https://kurl.sh/docs/add-ons/containerd) service.
