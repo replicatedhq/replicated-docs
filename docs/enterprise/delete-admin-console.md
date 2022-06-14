@@ -100,7 +100,7 @@ To delete the admin console from a Kubernetes installer-created cluster:
 1. Run the following command to remove Kubernetes from the system:
 
    ```
-   curl -sSL https://kurl.sh/latest/tasks.sh | sudo bash -s reset
+   curl -sSL https://k8s.kurl.sh/latest/tasks.sh | sudo bash -s reset
    ```
 
 1. Follow the instructions in the output of the command to manually remove any files that the `reset` command does not remove.
