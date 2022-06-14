@@ -10,7 +10,7 @@ Released on June 14, 2022
 
 ### New Features
 
-- 
+- Adds [Local Path Provisioner add-on](https://kurl.sh/docs/add-ons/local-path-provisioner) (Beta) as an additional storage provisioner.
 
 ### Improvements
 
@@ -18,7 +18,7 @@ Released on June 14, 2022
 
 ### Bug Fixes
 
-- 
+- Fixes an issue where the HTTPS_PROXY variable was not being set properly for the [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) service.
 
 ## Release v2022.06.01-0
 
