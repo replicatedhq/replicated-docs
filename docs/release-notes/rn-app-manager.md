@@ -20,6 +20,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 ### Bug Fixes
 * Fixes a bug that would cause the confirmation modal to always show "Redeploy" even if the version was not already deployed.
 * Fixes a discrepancy between the license expiry date in Vendor Portal and the expiry date in the Admin Console.
+* Sets the User-Agent to the KOTS version string in outgoing HTTP requests where missing.
 * Removes registry settings tab when running in Helm managed mode (alpha).
 * Removes **View Diff** links from application dashboard and history when running in Helm managed mode (alpha).
 * Removes edit file instructions on **View file tab** when running in Helm managed mode (alpha).
