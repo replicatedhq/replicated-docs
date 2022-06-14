@@ -15,7 +15,7 @@ Released on June 14, 2022
 
 ### Bug Fixes
 
-- Fixes an issue where the `HTTPS_PROXY` variable was not being set properly for the [containerd add-on](https://kurl.sh/docs/add-ons/containerd) service.
+- Fixes an issue where the `HTTPS_PROXY` variable was not set properly for the [containerd add-on](https://kurl.sh/docs/add-ons/containerd) service.
 
 ## Release v2022.06.01-0
 
