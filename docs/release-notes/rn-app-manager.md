@@ -10,20 +10,20 @@ Released on June 14, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
-### New Features
-* Moves "change password", "add new application", and "log out" functionality into a new menu in the top right of the nav bar.
+### New Features (#new-features-1-72-0}
+* Moves "Change password", "Add new application", and "Log out" functionality into a new menu in the top right of the nav bar.
 
-### Improvements
+### Improvements {#improvements-1-72-0}
 * Shows a meaningful error message when the license is expired on the dashboard version card.
-* Shows deployed chart version and icon for helm charts in UI when running in Helm managed mode (alpha).
+* The admin console now shows the chart version and icon for the currently deployed Helm chart when running in Helm-managed mode (alpha).
 
-### Bug Fixes
-* Fixes a bug that would cause the confirmation modal to always show "Redeploy" even if the version was not already deployed.
-* Fixes a discrepancy between the license expiry date in Vendor Portal and the expiry date in the Admin Console.
+### Bug Fixes {#bug-fixes-1-72-0}
+* Fixes a bug that caused the deploy confirmation modal on the dashboard to always show "Redeploy" even if the version was not already deployed.
+* Fixes a discrepancy between the license expiry date in the vendor portal and the expiry date in the admin console.
 * Sets the User-Agent to the KOTS version string in outgoing HTTP requests where missing.
-* Removes registry settings tab when running in Helm managed mode (alpha).
-* Removes **View Diff** links from application dashboard and history when running in Helm managed mode (alpha).
-* Removes edit file instructions on **View file tab** when running in Helm managed mode (alpha).
+* Removes the Registry settings tab when running in Helm-managed mode (alpha).
+* Removes **View Diff** links from the application dashboard and version history page when running in Helm-managed mode (alpha).
+* Removes the instructions on how to edit files on the **View files** tab when running in Helm-0managed mode (alpha).
 
 ## 1.71.0
 
