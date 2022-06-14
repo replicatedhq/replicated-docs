@@ -39,6 +39,10 @@ To install an application and the admin console in an online environment, do one
   ```
   Replace `APP-SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
 
+  :::note
+  With KOTS v1.67.0 and later, you can install a specific version of the application. Use the app-version-label flag and the version label for a particular version of your vendor's application. For example, curl https://kurl.sh/supergoodtool | sudo bash -s app-version-label=3.1.0.
+  :::
+
 - To install with high availability:
 
     1. Run the installation command with the `-s ha` flag:
@@ -47,6 +51,10 @@ To install an application and the admin console in an online environment, do one
       curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash -s ha
       ```
       Replace `APP-SLUG` with the unique slug for the application. The application slug is included in the installation script provided by the vendor.
+
+      :::note
+      With KOTS v1.67.0 and later, you can install a specific version of the application. Use the app-version-label flag and the version label for a particular version of your vendor's application. For example, curl https://kurl.sh/supergoodtool | sudo bash -s app-version-label=3.1.0.
+      :::
 
     1. If you did not preconfigure a load balancer, you are prompted during the installation. Do one of the following:
 
@@ -153,26 +161,3 @@ To add primary and secondary nodes:
   kubernetes-version=v1.19.16 \
   primary-host=203.0.113.6
   ```
-
-## Install Previous Versions in an Online Environment
-
-This procedures in the online environment section above describe the commands used to install the current version of an application. However, you can install specific versions of the application.
-
-### Install Using a Separate Kubernetes Installer
-
-With KOTS v1.67.0 and later, you can install a previous version of the application using a separate Kubernetes installer. This method uses the currently available Kubernetes installer.
-
-Run the following command to install the previous application version using a separate Kubernetes installer:
-
-```
-curl https://k8s.kurl.sh/APP_SLUG | sudo bash -s app-version-label=APP_VERSION_NUMBER
-```
-
-Replace:
-
-- `APP_SLUG` with the application slug.
-- `APP_VERSION_NUMBER` with the particular version of your vendor's application.
-
-### Install Using a Kubernetes Installer Included in the Application Release
-
-With KOTS v1.70.1 and later, if your vendor has created a release that includes the Kubernetes installer, your vendor can give you a specific command to install a previous version of the applications with the Kubernetes installer that was included in the application release. In this case, you do not use the `app-version-label` flag.
