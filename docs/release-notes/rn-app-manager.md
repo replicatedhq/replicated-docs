@@ -10,7 +10,7 @@ Released on June 14, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
-### New Features (#new-features-1-72-0}
+### New Features {#new-features-1-72-0}
 * The admin console now shows the chart version and icon for the currently deployed Helm chart when running in Helm-managed mode (alpha).
 
 ### Improvements {#improvements-1-72-0}
