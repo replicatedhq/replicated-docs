@@ -30,7 +30,7 @@ in the kURL open source documentation.
 
 ## Create a Kubernetes Installer in the Application Release (Beta)
 
-You can create a Kubernetes installer manifest as part of the application release. This allows multiple Kubernetes installers to be active for a channel at the same time. It also ensures that every installation uses the Kubernetes installer that is associated with the version of the application that is being installed. This is the default method.
+You can create a Kubernetes installer manifest as part of the application release. This allows multiple Kubernetes installers to be active for a channel at the same time. It also ensures that every installation uses the Kubernetes installer that is associated with the version of the application that is being installed. We recommend this method.
 
 To create the Kubernetes installer manifest in the application release:
 
@@ -40,21 +40,19 @@ To create the Kubernetes installer manifest in the application release:
 
 1. From the landing page at [kurl.sh](https://kurl.sh/), configure the add-ons and options for your installer YAML. You must include the KOTS add-on to provision the Replicated admin console. For more information about creating a Kubernetes installer specification file, see [Create An Installer](https://kurl.sh/docs/create-installer/) in the kURL open source documentation.
 
+  :::note
+     Replicated recommends that you pin specific versions of Kubernetes and Kubernetes add-ons in the Kubernetes installer specification, rather than `latest` versions. This ensures easily-reproducible versions across your customer installations.
+
+     For example, pin `Kubernetes 1.23.x` in your specification to ensure that v1.23 of Kubernetes is installed along with the latest security and bug patch release for that version.
+
+     For more information about pinning Kubernetes versions, see [Versions](https://kurl.sh/docs/create-installer/#versions) and [Versioned Releases](https://kurl.sh/docs/install-with-kurl/#versioned-releases) in the kURL open source documentation.
+  :::
+
 1. Create a new file in the YAML editor in the vendor portal. Copy the installer YAML content from [kurl.sh](https://kurl.sh) and paste it in this new file.
-
-    :::note
-       Replicated recommends that you pin specific versions of Kubernetes and Kubernetes add-ons in the Kubernetes installer specification, rather than `latest` versions. This ensures easily-reproducible versions across your customer installations.
-
-       For example, pin `Kubernetes 1.23.x` in your specification to ensure that v1.23 of Kubernetes is installed along with the latest security and bug patch release for that version.
-
-       For more information about pinning Kubernetes versions, see [Versions](https://kurl.sh/docs/create-installer/#versions) and [Versioned Releases](https://kurl.sh/docs/install-with-kurl/#versioned-releases) in the kURL open source documentation.
-    :::
 
 1. Save and promote the release to your development environment to test your changes.
 
 ## Create a Kubernetes Installer Specification
-
-> Available for Replicated app manager 1.71.0 and earlier
 
 You can create a Kubernetes installer specification file and promote it to the same channel as your application release. This method creates the specification separately from the application release and only lets you have one active Kubernetes installer for a channel at a time. All installations, regardless of the application version, will use the currently promoted installer.
 

@@ -1,10 +1,10 @@
 # Sharing License Files and Application Releases
 
-This topic describes how to share license files and installation commands for current and previous versions of application releases with
+This topic describes how to share license files and installation commands for currently and previously promoted versions of application releases with
 your customers.
 
 For more information about how customers use license files and installation commands to install your application,
-see [Overview of Installing an Application with the App M](../enterprise/installing-overview).
+see [Overview of Installing an Application with the App Manager](../enterprise/installing-overview).
 
 ## Share License Files
 
@@ -26,8 +26,6 @@ To download and share a license file:
 
 1. In the [vendor portal](https://vendor.replicated.com), on the Customer page, click on the name of the customer.
 1. Click the download license icon on the right side of the row.
-1. In the Opening _filename_ dialog, use the Save File default and click **OK**.
-    The file is saved to your Downloads folder by default.
 1. Share the license file to your customer along with an installation command.
 
 ### Share License Files Through the Download Portal
@@ -45,11 +43,11 @@ and preview your customer's experience.
 1. Send the URL and password for the download portal to your customer.
 
 
-## Share Current Release Versions
+## Share Currently Promoted Releases
 
 Installation commands are unique to each channel. Within each channel, there are installation commands for existing clusters and for Kubernetes installer-created clusters (embedded clusters).
 
-To locate and share an installation command for a current release version:
+To locate and share an installation command for a currently promoted release:
 
 1. In the [vendor portal](https://vendor.replicated.com), on the **Channels** page, find the channel to which the
 customer is assigned.
@@ -60,48 +58,48 @@ customer is assigned.
 1. Copy the command that is displayed in the Install section, and send it to your customer along with their
 license file.
 
-## Share Previous Release Versions
+## Share Specific Release Versions
 
-You can share previous versions of application releases for existing clusters or Kubernetes installer-created clusters for troubleshooting purposes.
+You can share specific versions of application releases for existing clusters or Kubernetes installer provisioned clusters. This is useful when a customer needs to install a particular version or when you need to install and troubleshoot a specific version.
 
-Typically you do not need to use these procedures for air gap installations because you choose which versions to upload or download.
+Typically you do not need to use these procedures for air gap installations because the application version can be selected in the download portal, and the correct assets are available automatically.
 
 ### Use an Existing Cluster Installation Command
 
-To use a previous application release version using an existing cluster installation command, run:
+To use a specific application version for an existing cluster, run:
 
 ```
 curl https://kots.io/install | bash
-kubectl kots install APP-SLUG -s app-version-label=VERSION
+kubectl kots install APP_SLUG --app-version-label=VERSION
 ```
 
 Replace:
 
-- `APP-SLUG` with the name of the application slug.
+- `APP_SLUG` with the name of the application slug.
 - `VERSION` with the version number.
 
 **Example:**
 
 ```
 curl https://kots.io/install | bash
-kubectl kots install my-awesome-app -s app-version-label=3.1.0
+kubectl kots install my-awesome-app --app-version-label=3.1.0
 ```
 
-### Include an Kubernetes Installer (Beta)
+### Use a Kubernetes Installer Included in the Release (Beta)
 
-If you created a Kubernetes installer as part of your release, the version of the Kubernetes installer is included with the version of the application. This coupling makes it easy to provide users with a previous version of the installer and application, which is helpful for situations such as disaster recovery. For more information about Kubernetes installer methods, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
+If you created a Kubernetes installer manifest file as part of your release, this coupling makes it easy to provide users with a specific version of both the installer and the application. For more information about methods for creating Kubernetes installers, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
 
-To use an previous release version that includes the installer manifest:
+To use a specific application version that includes the installer manifest:
 
-1. From the [vendor portal](https://vendor.replicated.com), select **Channel**.
-1. Click **Release history** in the Latest Release pane for the channel you want to use.
+1. From the [vendor portal](https://vendor.replicated.com), select **Channels**.
+1. Click **Release history** in the Latest release pane for the channel you want to use.
 1. Copy the installation command for the version that you want to use and share it with your customer.
 
     - The curl command shows the application version with name of the channel if it is not the default channel.
 
       **Example:**
       ```
-      curl -sSL https://k8s.kurl.sh/APP-SLUG-beta-2.3.30 | sudo bash
+      curl -sSL https://k8s.kurl.sh/my-awesome-app-beta-2.3.30 | sudo bash
       ```
 
     - If you are using the default channel, the channel name is not shown in the command.
@@ -109,24 +107,22 @@ To use an previous release version that includes the installer manifest:
       **Example:**
 
       ```
-      curl -sSL https://k8s.kurl.sh/APP-SLUG-2.3.30 | sudo bash
+      curl -sSL https://k8s.kurl.sh/my-awesome-app-2.3.30 | sudo bash
       ```
 
-  In both examples, replace `APP-SLUG` with the name of your application.
+### Use the Kubernetes Installer Promoted to the Channel
 
-### Use a Separate Kubernetes Installer
+When you share an installation command for a previous application version where the Kubernetes installer specification is separate from the release, the installation command always uses the currently promoted Kubernetes installer. In this case, you might not have tested the latest Kubernetes installer specification with an earlier application version. For more information about Kubernetes installer methods, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
 
-If you created a Kubernetes installer specification that is separate from your application release, you can use an previous version of the application but the installation command uses the currently promoted Kubernetes installer. In this case, you might not have tested the current Kubernetes installer specification with the earlier the application version. For more information about Kubernetes installer methods, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
-
-To use a previous application release version with a separate Kubernetes installer, run:
+To use a specific application version with the Kubernetes installer promoted to the channel, run:
 
 ```
-curl -sSL https://k8s.kurl.sh/APP-SLUG-CHANNEL | sudo bash -s app-version-label=VERSION
+curl -sSL https://k8s.kurl.sh/APP_SLUG-CHANNEL | sudo bash -s app-version-label=VERSION
 ```
 
 Replace:
 
-- `APP-SLUG` with the name of the application slug.
+- `APP_SLUG` with the name of the application slug.
 - `CHANNEL` with the name of the channel.
 - `VERSION` with the version number.
 
