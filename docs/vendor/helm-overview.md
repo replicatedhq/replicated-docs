@@ -12,7 +12,7 @@ There are two ways to deploy Helm charts within an application:
 
 * The newer workflow deploys the Helm charts with Helm V3 directly. In this workflow, Helm installs and manages the lifecycle of the chart resources that are part of a given application. For new applications, this workflow is the preferred method because it supports more features of Helm, such as hooks and weights. For more information, see [Installing with native Helm](helm-installing-native-helm).
 
-> A third installation mention, Direct Helm, is also available as an alpha feature. To learn more, please reach out to your contacts at Replicated. 
+> A third installation mnethod, Direct Helm, is also available as an alpha feature. To learn more, please reach out to your contacts at Replicated. 
 
 :::note
 Migrating existing installations to the native Helm workflow is not supported. However, new Helm charts within an existing application can leverage the workflow and the features that come with it.
