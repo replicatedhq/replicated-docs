@@ -1,10 +1,9 @@
 # remove
 
-Remove application reference from admin console.
-Multiple applications can be installed using the `Add a new application` button in admin console or using the `kots install` command.
-All installed applications will appear in admin console.
-The `kots remove` command can be used to remove them.
-Note that the deployed application will not be removed from the cluster; only its reference will be removed from the admin console.
+Remove application reference from the Replicated admin console.
+
+You can use the `kots remove` command to remove one or more installed applications from the admin console.
+With `kots remove`, the deployed application is not removed from the cluster. Only the reference for the application is removed from the admin console.
 
 ### Usage
 ```bash
