@@ -147,6 +147,8 @@ To install with high availability in an air gapped environment:
 
 You can generate commands in the admin console to join additional primary and secondary nodes to the cluster. Primary nodes run services that control the cluster. Secondary nodes run services that control the pods that host the application containers. Adding nodes can help manage resources to ensure that your application runs smoothly.
 
+For high availability clusters, Kubernetes using at least 3 primary nodes and that you use an odd number. For more information, see [Creating Highly Available Clusters with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/) in the Kubernetes documentation.
+
 To add primary and secondary nodes:
 
 1. (Air gap only) Download and extract the `.tar.gz` bundle on the remote node before running the join command.
