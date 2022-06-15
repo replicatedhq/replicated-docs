@@ -90,7 +90,10 @@ To install with high availability in an online environment:
       load-balancer-address=HOST:PORT
       ```
 
-      Replace `HOST:PORT` with the host and port number of the external load balancer.
+      Replace:
+
+      - `HOST` with the external load balancer host.
+      - `PORT` with the port number of the external load balancer.
 
 1. Using the admin console URL and password that displays when the installation script finishes, upload the license file and install the application.
 
@@ -122,7 +125,10 @@ To install with high availability in an air gapped environment:
       load-balancer-address=HOST:PORT
       ```
 
-      Replace `HOST:PORT` with the host and port number of the external load balancer.
+      Replace:
+
+      - `HOST` with the external load balancer host.
+      - `PORT` with the port number of the external load balancer.
 
 1. Install the application with the application `.airgap` bundle:
 
