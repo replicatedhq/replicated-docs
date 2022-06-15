@@ -26,9 +26,9 @@ Additionally, if you are installing in high availability mode:
 
 ## Install in Online Environments
 
-To install an application and the admin console in an online environment:
+To install the admin console and an application in an online environment:
 
-1. Run the installation command provided by the application vendor to install the cluster and Replicated app manager:
+1. Run the installation command provided by the application vendor to install the admin console:
 
   ```bash
   curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash
@@ -40,7 +40,7 @@ To install an application and the admin console in an online environment:
 
 ## Install in Air Gapped Environments
 
-To install an application and the admin console in an air gapped environment:
+To install the admin console and an application in an air gapped environment:
 
 1. Download and extract the kURL air gap `.tar.gz` file. The file only includes the Kubernetes and admin console components. It does not include the application.
 1. Run the following commands:
@@ -73,7 +73,7 @@ The health check for an apiserver is a TCP check on the port that the kube-apise
 
 To install with high availability in an online environment:
 
-1. Run the installation command with the `-s ha` flag:
+1. Run the installation command with the `-s ha` flag to install the admin console:
 
     ```bash
     curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash -s ha
@@ -127,7 +127,7 @@ To install with high availability in an air gapped environment:
 1. Install the application with the application `.airgap` bundle:
 
   ```
-  kubectl kots install APP_NAME \
+    kubectl kots install APP_NAME \
     --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
     --license-file PATH_TO_LICENSE_FILE \
       --config-values PATH_TO_CONFIG_VALUES \
@@ -135,11 +135,11 @@ To install with high availability in an air gapped environment:
       --shared-password PASSWORD
   ```
   Replace:
-  * `APP_NAME` with the name for the application.
-  * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle file.
-  * `PATH_TO_LICENSE_FILE` with the path to the license file.
-  * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file.
-  * `PASSWORD` with a shared password.
+    * `APP_NAME` with the name for the application.
+    * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle file.
+    * `PATH_TO_LICENSE_FILE` with the path to the license file.
+    * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file.
+    * `PASSWORD` with a shared password.
 
   For more information about the `kots install` command, see [install](../reference/kots-cli-install) in the kots CLI documentation.
 
