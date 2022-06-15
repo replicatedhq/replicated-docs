@@ -59,7 +59,7 @@ To install an application and the admin console in an air gapped environment:
 
     For more information about the `kots install` command, see [install](../reference/kots-cli-install) in the kots CLI documentation.
 
-## Installing in High Availability Mode
+## Installing with High Availability Mode
 
 Both online and air gap installations can be installed in high availability (HA) mode with the Kubernetes installer.
 
