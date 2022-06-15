@@ -24,7 +24,7 @@ Additionally, if you are installing in high availability mode:
     - Configured to distribute traffic to all healthy control plane nodes in its target list.
     - (Optional) Preconfigured with the load balancer address by passing the `load-balancer-address=HOST:PORT` flag.
 
-## Install in an Online Environment
+## Install in Online Environments
 
 To install an application and the admin console in an online environment:
 
@@ -38,7 +38,7 @@ To install an application and the admin console in an online environment:
 1. Using the admin console URL and password that displays when the installation script finishes, upload the license file and install the application.
 
 
-## Install in an Air Gapped Environment
+## Install in Air Gapped Environments
 
 To install an application and the admin console in an air gapped environment:
 
@@ -69,7 +69,7 @@ If you decide to use a external load balancer, the external load balancer must b
 
 The health check for an apiserver is a TCP check on the port that the kube-apiserver listens on. The default value is `:6443`. For more information about the kube-apiserver external load balancer, see [Create load balancer for kube-apiserver](https://kubernetes.io/docs/setup/independent/high-availability/#create-load-balancer-for-kube-apiserver) in the Kubernetes documentation.
 
-### Install with HA in an Online Environment
+### Install with HA in Online Environments
 
 To install with high availability in an online environment:
 
@@ -94,7 +94,7 @@ To install with high availability in an online environment:
 
 1. Using the admin console URL and password that displays when the installation script finishes, upload the license file and install the application.
 
-### Install with HA in an Air Gapped Environment
+### Install with HA in Air Gapped Environments
 
 To install with high availability in an air gapped environment:
 
