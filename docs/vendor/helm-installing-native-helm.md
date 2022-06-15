@@ -1,6 +1,8 @@
 # Installing with Native Helm
 
-With the native Helm installation, you can exercise more control over chart deployment via Helm hooks and weights. 
+With the native Helm installation, you can exercise more control over chart deployment via Helm hooks and weights. This installation workflow will deploy the apps v3 Helm charts directly via a `helm install` command. Considering this, Helm itself will own the installation and lifecycle management of the chart resources. For new applications, this is the preferred method since it supports more Helm features, such as hook and weights, and aligns with some user's desire to have most or all applications installed in their clusters via Helm.
+
+:::note Migrating existing installations to the native Helm workflow is not supported. However, new Helm charts within an existing application can leverage the workflow and the features that come with it. :::
 
 ## Native Helm Limitations
 The native Helm chart support has the following limitations:
