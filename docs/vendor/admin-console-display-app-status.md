@@ -18,7 +18,7 @@ You can target resources of the supported types that are deployed in any of the 
 
 * Deployed directly by the Replicated app manager.
 * Deployed by a Kuberentes Operator that is deployed by the app manager. For more information, see [About Packaging a Kubernetes Operator Application](operator-packaging-about).
-* Deployed by Helm v3 using native Helm. For more information, see [Helm Overview](helm-overview).
+* Deployed by Helm. For more information, see [Helm Overview](helm-overview).
 
 Replicated recommends that you add at least one resource.
 
