@@ -2,7 +2,7 @@
 
 When you include a Backup custom resource in an application, the Replicated admin console enables [snapshots](../vendor/snapshots-overview) for the application.
 
-For more information about the Backup custom resource, including all options for this custom resource, see [Backups](https://velero.io/docs/v1.5/api-types/backup/) in the Velero documentation.
+For more information about the Backup custom resource, including all options for this custom resource, see [Backups](https://velero.io/docs/v1.9/api-types/backup/) in the Velero documentation.
 
 This custom resource supports optional resource installations. For more information, see [Include optional resources](../vendor/packaging-include-resources).
 

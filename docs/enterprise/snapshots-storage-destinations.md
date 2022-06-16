@@ -1,6 +1,6 @@
 # Storage Destinations
 
-You can use compatible Velero storage providers with the Replicated snapshot feature. For more information, see [Providers](https://velero.io/docs/main/supported-providers/) in the Velero documentation.
+You can use compatible Velero storage providers with the Replicated snapshot feature. For more information, see [Providers](https://velero.io/docs/v1.9/supported-providers/) in the Velero documentation.
 
 The Replicated admin console has built-in support for using the following as storage destinations for snapshots:
 
@@ -21,7 +21,7 @@ For more information about RBAC privileges for the admin console, see [Kubernete
 
 ## Prerequisites for Cloud Configurations
 
-* Existing clusters: Customers must install Velero before configuring snapshots. See [Basic Install](https://velero.io/docs/v1.6/basic-install/) in the Velero documentation.
+* Existing clusters: Customers must install Velero before configuring snapshots. See [Basic Install](https://velero.io/docs/v1.9/basic-install/) in the Velero documentation.
 * Kubernetes installer-created clusters: The vendor can provide the Velero add-on in the embedded cluster installation. If it is not provided, the snapshots configuration dialog in the admin console notifies you to install Velero before you can proceed with the configuration.
 
 ## AWS
