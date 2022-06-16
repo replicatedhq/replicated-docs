@@ -8,6 +8,10 @@ It is necessary to target specific Kubernetes resources for the dashboard to acc
 We suggest at least one resource be added.
 Resources that are currently supported are Deployments, StatefulSets, Services, Ingresses and PersistentVolumeClaims.
 
+:::note
+Any Kubernetes resources that are currently supported, such as resources created by an operator deployed by app manager, can be added to properly reflect status.
+:::
+
 ## Application Manifest File
 
 To add an informer, include the `statusInformers` property in the Application custom resource manifest file.
