@@ -22,7 +22,7 @@ Additionally, if you are installing in high availability mode:
   - For an external load balancer, ensure that your load balancer is:
     - A TCP forwarding external load balancer.
     - Configured to distribute traffic to all healthy control plane nodes in its target list.
-    - (Optional) Preconfigured with the load balancer address by passing the `load-balancer-address=HOST:PORT` flag.
+    - (Optional) Preconfigured by passing the `load-balancer-address=HOST:PORT` flag.
 
 ## Install in Online Environments
 
