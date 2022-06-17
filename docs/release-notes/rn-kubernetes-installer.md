@@ -4,6 +4,19 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.06.17-0
+
+Released on June 17, 2022
+
+### Improvements {#improvements-v2022-06-17-0}
+
+- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.72.1.
+- Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version `2022-06-11T19-55-32Z` to address the following critical and high severity CVEs: CVE-2020-14040, CVE-2021-42836, CVE-2020-36067, CVE-2020-36066, CVE-2020-35380, CVE-2020-26521, CVE-2020-26892, CVE-2021-3121, CVE-2020-26160, CVE-2021-28831, CVE-2020-11080, CVE-2021-3450, CVE-2021-23840, CVE-2020-1967, CVE-2020-8286, CVE-2020-8285, CVE-2020-8231, CVE-2020-8177, CVE-2020-8169, CVE-2021-30139, CVE-2021-36159.
+
+### Bug Fixes {#bug-fixes-v2022-06-17-0}
+
+- Fixes CVEs for [Weave add-on](https://kurl.sh/docs/add-ons/weave) version 2.8.1.
+
 ## Release v2022.06.14-0
 
 Released on June 14, 2022
