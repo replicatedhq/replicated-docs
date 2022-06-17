@@ -1,7 +1,7 @@
 # Configuring Backup Hooks
 
 For many application workloads, additional processing or scripts need to be run before and/or after a backup is taken to prepare the system for a backup.
-Velero has support for this, using [Backup Hooks](https://velero.io/docs/v1.9/backup-hooks/).
+Velero has support for this, using backup hooks. For more information, see [Backup Hooks](https://velero.io/docs/v1.9/backup-hooks/) in the Velero documentation.
 
 Some common examples of how a Hook can be used to create successful backups are:
 - Run `pg_dump` to export a postgres database prior to backup
