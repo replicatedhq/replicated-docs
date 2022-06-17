@@ -21,10 +21,10 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 | `--airgap`                  | bool   | Set to true to run install in air gapped mode. Setting `--airgap-bundle` implies `--airgap=true`. For more information, see [Installing in an Air Gapped Environment](../enterprise/installing-existing-cluster-airgapped). |
 | `--airgap-bundle`           | string | Path to the application air gap bundle where application metadata will be loaded from. Setting `--airgap-bundle` implies `--airgap=true`. For more information, see [Installing in an Air Gapped Environment](../enterprise/installing-existing-cluster-airgapped).|
 | `--app-version-label`       | string | The application version label to install. If not specified, the latest version is installed. |
-| `--config-values`           | string | Path to a manifest file containing configuration values. This manifest must be `apiVersion: kots.io/v1beta1` and `kind: ConfigValues`. |
+| `--config-values`           | string | Path to a manifest file containing configuration values. This manifest must be `apiVersion: kots.io/v1beta1` and `kind: ConfigValues`. For more information, see [Define Application Configuration Values](../enterprise/installing-existing-cluster-automation#define-application-configuration-values).|
 | `--copy-proxy-env`          | bool   | Copy proxy environment variables from current environment into all admin console components. |
 | `--disable-image-push`      | bool   | Set to true to disable images from being pushed to private registry. |
-| `--ensure-rbac`             | bool   | When set, KOTS skips RBAC configuration at installation time. **Default:** false. If a role specification is needed, use the [generate-manifests](kots-cli-admin-console-generate-manifests) command. |
+| `--ensure-rbac`             | bool   | When set to true, KOTS skips RBAC configuration at installation time. **Default:** false. If a role specification is needed, use the [generate-manifests](kots-cli-admin-console-generate-manifests) command. |
 | `-h, --help`                |        | Help for install. |
 | `--http-proxy`              | string | Sets HTTP_PROXY environment variable in all admin console components.  |
 | `--https-proxy`             | string | Sets HTTPS_PROXY environment variable in all admin console components. |
@@ -43,7 +43,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 | `--set`                     | strings| Values to pass to Helm when running `helm template` |
 | `--shared-password`         | string | Shared password to use when deploying the admin console.  |
 | `--skip-compatibility-check`| bool   | Set to true to skip compatibility checks between the current KOTS version and the application |
-| `--skip-preflights`         | bool   | Set to true to skip preflight checks |
+| `--skip-preflights`         | bool   | Set to true to skip preflight checks. If any strict preflight checks are configured, the `--skip-preflights` flag is not honored because strict preflight checks must run and contain no failures before the application is deployed. For more information, see [About Preflight Checks and Support Bundles](../vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles).|
 | `--skip-rbac-check`         | bool   | Set to true to bypass RBAC check |
 | `--strict-security-context` | bool   | Set to true to explicitly enable explicit security contexts for all KOTS pods and containers. **Note**: Might not work for some storage providers. |
 | `--use-minimal-rbac`        | bool   | When set to true, KOTS is namespace-scoped if the application supports namespace scoped installations |
