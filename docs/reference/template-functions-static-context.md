@@ -347,7 +347,20 @@ repl{{ IsKurl }}
 ```go
 func Distribution() string
 ```
-Distribution returns the Kubernetes distribution detected, such as `kurl`, `openShift` or `eks`.
+Distribution returns the Kubernetes distribution detected. The possible return values are:
+* microk8s      
+* dockerDesktop
+* eks           
+* gke           
+* digitalOcean  
+* openShift     
+* kurl          
+* aks           
+* ibm           
+* minikube      
+* rke2          
+* k3s  
+
 ```yaml
 repl{{ Distribution }}
 ```
@@ -410,4 +423,3 @@ This can be useful when dealing with user-uploaded files that may include null b
 ```yaml
 repl{{ ConfigOptionData "my_file_upload" | YamlEscape }}
 ```
-
