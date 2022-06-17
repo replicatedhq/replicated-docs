@@ -11,14 +11,14 @@ Released on June 17, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### Improvements {#improvements-1-72-1}
-* Implements config page functionality for KOTS when running in Helm-managed mode (Alpha).
+* Config values are now stored in a secret when the admin console runs in Helm-managed mode (Alpha), so that the values can be rerendered when a user returns to the config page.
 
 ### Bug Fixes {#bug-fixes-1-72-1}
-* Dashboard "Disk Usage" graph will now report metrics for prometheus deployments using the `kubernetes-service-endpoints` job.
-* Shows your configured Prometheus address as the placeholder in the 'Configure Prometheus address' modal.
-* Fixes a bug that caused an application with strict preflights, when those preflights were excluded, to prevent the deploy of an application.
-* Fixes a bug that is caused when top level `templates` folder is not present in an helm chart that also has subcharts and top level charts.
-* Fixes a bug where kubernetes installer manifests included as part of an application release were being applied when deploying the release.
+* Dashboard "Disk Usage" graph now reports metrics for Prometheus deployments using the `kubernetes-service-endpoints` job.
+* The configured Prometheus address shows as the placeholder in the "Configure Prometheus address" modal.
+* Fixes a bug that prevented an application from being deployed if a strict preflight check existed but was excluded.
+* Fixes a bug that is caused when a top-level `templates` folder is not present in a Helm chart that also has subcharts and top-level charts.
+* Fixes a bug where Kubernetes installer manifests included as part of an application release were applied when deploying the release.
 * Updates the MinIO image to address the following critical and high severity CVEs: CVE-2021-42836, CVE-2021-41266, CVE-2020-26160, CVE-2018-25032, CVE-2022-0778, CVE-2022-25235, CVE-2022-25236, CVE-2022-25315, CVE-2022-24407.
 * Updates the Dex image to address the following critical and high severity CVEs: CVE-2020-14040, CVE-2021-42836, CVE-2020-36067, CVE-2020-36066, CVE-2020-35380, CVE-2020-26521, CVE-2020-26892, CVE-2021-3121, CVE-2020-26160, CVE-2021-28831, CVE-2020-11080, CVE-2021-3450, CVE-2021-23840, CVE-2020-1967, CVE-2020-8286, CVE-2020-8285, CVE-2020-8231, CVE-2020-8177, CVE-2020-8169, CVE-2021-30139, CVE-2021-36159.
 * Updates the local-volume-provider image to address CVE-2022-1664 with critical severity.
