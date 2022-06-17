@@ -17,7 +17,7 @@ Complete the following before you perform this task:
 
 Additionally, if you are installing in high availability mode:
 
-  - (Optional) If your vendor has enabled the internal load balancer, you can preconfigure it by passing `| sudo bash -s ha ekco-enable-internal-load-balancer`.
+  - (Optional) If you are going to use the internal load balancer, you can preconfigure it by passing `| sudo bash -s ha ekco-enable-internal-load-balancer`.
 
   - For an external load balancer, ensure that your load balancer is:
     - A TCP forwarding external load balancer.
@@ -42,7 +42,6 @@ To install the admin console and an application in an online environment:
 
 To install the admin console and an application in an air gapped environment:
 
-1. Download and extract the kURL air gap `.tar.gz` file. The file only includes the Kubernetes and admin console components. It does not include the application.
 1. Run the following commands:
 
     ```bash
