@@ -33,10 +33,13 @@ Released on June 17, 2022
   - CVE-2020-8169
   - CVE-2021-30139
   - CVE-2021-36159
+- Adds details to the documentation for the [AWS add-on](https://kurl.sh/docs/add-ons/aws) to include details on applying the appropriate [AWS IAM](https://aws.amazon.com/iam/) roles required for the add-on to function properly and additional specific requirements necessary for integrating with [AWS ELB](https://aws.amazon.com/elasticloadbalancing/) service.
 
 ### Bug Fixes {#bug-fixes-v2022-06-17-0}
 
 - Fixes CVEs for [Weave add-on](https://kurl.sh/docs/add-ons/weave) version 2.8.1.
+- Fixes a bug where the [AWS add-on](https://kurl.sh/docs/add-ons/aws) would fail if `lestest` or `0.1.x` was used.
+- Fixes a bug when `excludeStorageClass` is set to `true` would cause the [AWS add-on](https://kurl.sh/docs/add-ons/aws) to fail. 
 
 ## Release v2022.06.14-0
 
