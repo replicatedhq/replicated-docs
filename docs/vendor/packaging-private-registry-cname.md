@@ -2,7 +2,7 @@
 
 You can use a Canonical Name (CNAME) record to create a custom hostname for the replicated.registry.com and proxy.replicated.com endpoints.
 
-Whether you use the Replicated private registry or the proxy service for your own private registry, these domains are external to your domain and require additional security reviews by your customer. Using custom CNAMEs brings the Replicated registry and proxy registry inside an existing security review and reduces your exposure.
+Whether you use the Replicated private registry or the proxy service for your own private registry, these domains are external to your domain and require additional security reviews by your customer. Using custom CNAMEs can bring the Replicated registry and proxy registry inside an existing security review and reduce your exposure.
 
 You add custom CNAMEs for the Replicated private registry and proxy service in the Replicated vendor portal or in the vendor API.
 
@@ -18,16 +18,16 @@ Additionally, both verification checks must use the same method (TXT or email).
 
 The same hostname can be used for multiple applications, but cannot be used for multiple endpoints. A single hostname can map to registry.replicated.com for any number of applications, but cannot map to both registry.replicated.com and  proxy.replicated.com, even if the applications are different.
 
-If an already configured hostname is entered into a second application, the configured hostname is automatically validated if the verified application belongs to the same team.
+If you configure a second application using an existing, configured hostname, the configured hostname is automatically validated if the verified application belongs to the same team.
 
 ## Limitations
 
-CNAME enablement has the following limitations:
+CNAME enablement currently has the following limitations:
 
-- The kustomization in KOTS always rewrites images to registry.replicated.com or proxy.replicated.com, and does not respect the CNAME.
+- The kustomization in KOTS always rewrites images to registry.replicated.com or proxy.replicated.com, and does not respect the CNAME. Only Helm installations respect the CNAME.
 - The LicenseDockerCfg template function does not respect the CNAME.
 - The CNAME feature does not support a single CNAME record for both registry and proxy endpoints.
-- This does not support CNAMEs for replicated.app (kots manifests), api.replicated.com (platform market API), the download portal, or other services.
+- The APP/APP_ID/CNAME endpoint does not support CNAMEs for replicated.app (kots manifests), api.replicated.com (platform market API), the download portal, or other services.
 
 ## Customize CNAME in the Vendor Portal
 
@@ -232,7 +232,7 @@ To add a custom CNAMEs using the vendor API:
 
   There is a 2-step verification process. This response shows `is_active: false`, meaning that the CNAME is not set up yet and that the `domain_verification_status` is pending.
 
-1. Create the domain TXT record for the application, setting the value to that shown in the previous step:
+1. Create the domain TXT record for the application using your DNS provider's instructions, and setting the value to that shown in the previous step:
 
   ```
   "_cf-custom-hostname.registry.enterprise.myapp.com",
@@ -275,7 +275,7 @@ To add a custom CNAMEs using the vendor API:
   If your DNS is slow, the domain verification status can still show as pending. Wait a few minutes and then send the request again.
   :::
 
-1. Create the TLS TXT record, and then run the GET request:
+1. Create the TLS TXT record using your DNS provider's instructions, and then run the GET request:
 
   ```
   curl –-header "Authorization: 893d6552cc" https://api.replicated.com/vendor/v3/app/2A2MTUE9fj2n9gX2nT6o9yw6RLF/registry/cnames
