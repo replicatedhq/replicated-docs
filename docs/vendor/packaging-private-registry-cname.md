@@ -10,7 +10,7 @@ You add custom CNAMEs for the Replicated private registry and proxy service in t
 
 Verification of the domain is required using either TXT records or email verification. Both methods (TXT and email) undergo two separate verification checks for:
 
-- Domain ownership - This is done when you initially add a record.
+- Domain ownership - This verification is done when you initially add a record.
 - TLS certificate creation - Each new domain must have a new TLS certificate to be verified.
 
 Additionally, both verification checks must use the same method (TXT or email).
@@ -52,7 +52,7 @@ Your changes can take up to 24 hours to propagate.
 
 ## Supported API Methods for CNAME
 
-CNAME supports the following GET and PUT methods and endpoints in the vendor API. For more information about the vendor API, see Using the Vendor API v3.
+CNAME supports the following GET and PUT methods and endpoints in the vendor API. For more information about the vendor API, see [Using the Vendor API v3](../reference/vendor-api-using).
 
 ### GET /v3/app/:appId/registry/cnames
 
