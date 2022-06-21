@@ -8,10 +8,10 @@ You add custom CNAMEs for the Replicated private registry and proxy service in t
 
 ## About Verification
 
-Verification of the domain is required using either TXT records or email verification. Both methods (TXT and email) undergo two separate verification checks:
+Verification of the domain is required using either TXT records or email verification. Both methods (TXT and email) undergo two separate verification checks for:
 
-- Domain ownership. This is done when you initially add a record.
-- TLS certificate creation. Each new domain must have a new TLS certificate to be verified.
+- Domain ownership - This is done when you initially add a record.
+- TLS certificate creation - Each new domain must have a new TLS certificate to be verified.
 
 Additionally, both verification checks must use the same method (TXT or email).
 
@@ -42,9 +42,9 @@ To add a custom CNAME:
 1. Select either **Create a TXT record** or **Verify ownership via email**. Click **Save**.
 
 1. For domain ownership verification, do one of the following, depending on which method of verification you enabled:
-  - For TXT verification, copy the string from the domain ownership verification textbox and create a TXT record in your DNS account. Click **Validate and continue**.
+    - For TXT verification, copy the string from the domain ownership verification textbox and create a TXT record in your DNS account. Click **Validate and continue**.
 
-  - For email verification, enter the email addresses to which you want the verification notification to be sent. Click **Validate and continue**.
+    - For email verification, enter the email addresses to which you want the verification notification to be sent. Click **Validate and continue**.
 
 1. From the TLS cert creation verification text box, copy the string and create a TXT record in your DNS account. **Click Validate and continue**.
 
@@ -58,7 +58,7 @@ CNAME supports the following GET and PUT methods and endpoints in the vendor API
 
 This endpoint returns the configuration for all registry CNAMEs for the application.
 
-**Example response when neither are set:**
+**Example response when neither endpoint is set:**
 
 ```
 {
@@ -67,7 +67,7 @@ This endpoint returns the configuration for all registry CNAMEs for the applicat
 }
 ```
 
-**Example response when registry is configured using TXT but not verified:**
+**Example response when registry is configured using TXT but is not verified:**
 
 ```
 {
@@ -84,7 +84,7 @@ This endpoint returns the configuration for all registry CNAMEs for the applicat
 }
 ```
 
-**Example response when registry is configured using email but not verified:**
+**Example response when registry is configured using email but is not verified:**
 
 ```
 {
@@ -104,7 +104,7 @@ This endpoint returns the configuration for all registry CNAMEs for the applicat
 }
 ```
 
-**Example response when registry is configured using TXT and verified:**
+**Example response when registry is configured using TXT and is verified:**
 
 ```
 {
@@ -123,7 +123,7 @@ This endpoint returns the configuration for all registry CNAMEs for the applicat
 
 ### PUT /v3/app/:appId/registry/cname
 
-This endpoint changes the CNAMEs for the application. It is a PUT request because all applications have these set, but they may be null. If the key is not provided, it will not be overwritten. Supported keys are`registry.replicated.com` and `proxy.replicated.com`.
+This endpoint changes the CNAMEs for the application. It is a PUT request because all applications have these set, but they may be null. If the key is not provided, it will not be overwritten. Supported keys are `registry.replicated.com` and `proxy.replicated.com`.
 
 Clear the configuration for a key by passing `null`.
 
@@ -169,7 +169,7 @@ To add a custom CNAMEs using the vendor API:
 
 1. Generate a user token. See [Generate a User API Token in Using the Vendor API v3](//reference/vendor-api-using#generate-a-user-api-token).
 
-1. Retrieve your AppID:
+1. Retrieve your application ID:
 
   ```
   curl –-header "Authorization: USER_TOKEN" https://api.replicated.com/vendor/v3/apps
@@ -177,7 +177,7 @@ To add a custom CNAMEs using the vendor API:
 
   Replace `USER_TOKEN` with your user API token.
 
-  Your AppID is returned as a numeric string.
+  Your application ID is returned as a numeric string.
 
 1. Review your current CNAME configuration:
 
@@ -185,7 +185,7 @@ To add a custom CNAMEs using the vendor API:
   curl –-header "Authorization: USER_TOKEN" https://api.replicated.com/vendor/v3/app/APP_ID/registry/cnames
   ```
 
-  Replace `APP_ID` with your AppID.
+  Replace `APP_ID` with your application ID.
 
   If your CNAME configuration is not set up, the results show as `null`:
 
@@ -193,7 +193,7 @@ To add a custom CNAMEs using the vendor API:
   {"registry":null,"proxy":null}
   ```
 
-1. Enable the CNAME feature:
+1. Customize the CNAME:
 
   ```
   curl --request PUT \
@@ -233,7 +233,7 @@ To add a custom CNAMEs using the vendor API:
 
   There is a 2-step verification process. This response shows `is_active: false`, meaning that the CNAME is not set up yet and that the `domain_verification_status` is pending.
 
-1. Create the domain TXT record for the application using your DNS provider's instructions, and setting the value to that shown in the previous step:
+1. Create the domain TXT record for the application using your DNS provider's instructions, and set the value to that shown in the previous step:
 
   ```
   "_cf-custom-hostname.registry.enterprise.myapp.com",
@@ -276,7 +276,7 @@ To add a custom CNAMEs using the vendor API:
   If your DNS is slow, the domain verification status can still show as pending. Wait a few minutes and then send the request again.
   :::
 
-1. Create the TLS TXT record using your DNS provider's instructions, and then run the GET request:
+1. Create the TLS TXT record using your DNS provider's instructions, and run the GET request:
 
   ```
   curl –-header "Authorization: 893d6552cc" https://api.replicated.com/vendor/v3/app/2A2MTUE9fj2n9gX2nT6o9yw6RLF/registry/cnames
@@ -309,5 +309,5 @@ To add a custom CNAMEs using the vendor API:
   The TLS verification status is active and CNAME configuration is complete.
 
   :::note
-  You may need to run the request a few times, and getting the response can take approximately 90 seconds.
+  You may need to run the request a few times, and receiving the response can take approximately 90 seconds.
   :::
