@@ -83,16 +83,7 @@ To install with high availability in an online environment:
 
     - If you are using the internal load balancer, leave the prompt blank and proceed with the installation.
 
-    - If you are using an external load balancer, pass the load balancer address:
-
-      ```bash
-      load-balancer-address=HOST:PORT
-      ```
-
-      Replace:
-
-      - `HOST` with the external load balancer host.
-      - `PORT` with the port number of the external load balancer.
+    - If you are using an external load balancer, pass the load balancer address.
 
 1. Using the admin console URL and password that displays when the installation script finishes, upload the license file and install the application.
 
@@ -118,16 +109,7 @@ To install with high availability in an air gapped environment:
 
     - If you are using the internal load balancer, leave the prompt blank and proceed with the installation.
 
-    - If you are using an external load balancer, pass the load balancer address:
-
-      ```bash
-      load-balancer-address=HOST:PORT
-      ```
-
-      Replace:
-
-      - `HOST` with the external load balancer host.
-      - `PORT` with the port number of the external load balancer.
+    - If you are using an external load balancer, pass the load balancer address.
 
 1. Install the application with the application `.airgap` bundle:
 
