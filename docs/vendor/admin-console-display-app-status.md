@@ -4,11 +4,25 @@ You can configure the Application custom resource to display application status 
 
 ![Application Status](/images/kotsadm-dashboard-appstatus.png)
 
-It is necessary to target specific Kubernetes resources for the dashboard to accurately report status.
-We suggest at least one resource be added.
-Resources that are currently supported are Deployments, StatefulSets, Services, Ingresses and PersistentVolumeClaims.
+To display application status on the admin console dashboard, you target specific Kubernetes resources for your application in the `statusInformers` property of the Application custom resource manifest file. See [Add Status Informers](#add-status-informers) below.
 
-## Application Manifest File
+The following resource types are supported for displaying application status:
+
+* Deployment
+* StatefulSet
+* Service
+* Ingress
+* PersistentVolumeClaims
+
+You can target resources of the supported types that are deployed in any of the following ways:
+
+* Deployed directly by the Replicated app manager.
+* Deployed by a Kuberentes Operator that is deployed by the app manager. For more information, see [About Packaging a Kubernetes Operator Application](operator-packaging-about).
+* Deployed by Helm. For more information, see [Helm Overview](helm-overview).
+
+Replicated recommends that you add at least one resource.
+
+## Add Status Informers
 
 To add an informer, include the `statusInformers` property in the Application custom resource manifest file.
 Status informers are in the format `[namespace/]type/name` where namespace is optional and will default to the current namespace.
