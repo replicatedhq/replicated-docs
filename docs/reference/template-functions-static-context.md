@@ -349,11 +349,11 @@ func Distribution() string
 ```
 Distribution returns the Kubernetes distribution detected. The possible return values are:
 * microk8s      
-* dockerDesktop
+* dockerdesktop
 * eks           
 * gke           
-* digitalOcean  
-* openShift     
+* digitalocean  
+* openshift     
 * kurl          
 * aks           
 * ibm           
