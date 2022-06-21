@@ -33,7 +33,7 @@ To install the admin console and an application in an online environment:
   ```bash
   curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash
   ```
-  Replace `APP-SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
+  Replace `APP_SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
 
 1. Using the admin console URL and password that displays when the installation script finishes, upload the license file and install the application.
 
