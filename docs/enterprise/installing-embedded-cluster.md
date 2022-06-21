@@ -77,7 +77,7 @@ To install with high availability in an online environment:
     ```bash
     curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash -s ha
       ```
-    Replace `APP-SLUG` with the unique slug for the application. The application slug is included in the installation script provided by the vendor.
+    Replace `APP_SLUG` with the unique slug for the application. The application slug is included in the installation script provided by the vendor.
 
 1. If you did not preconfigure a load balancer, you are prompted during the installation. Do one of the following:
 
