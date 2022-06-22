@@ -16,7 +16,7 @@ Released on June 17, 2022
 
 ### Bug Fixes {#bug-fixes-v2022-06-17-0}
 
-- Fixes CVEs for [Weave add-on](https://kurl.sh/docs/add-ons/weave) version 2.8.1.
+- Fixes CVEs for [Weave add-on](https://kurl.sh/docs/add-ons/weave) version 2.8.1. CVEs addressed: CVE-2021-36159, CVE-2021-25216, CVE-2021-30139, CVE-2020-8620, CVE-2020-8621, CVE-2020-8623, CVE-2020-8625, CVE-2021-25215, CVE-2021-28831, CVE-2020-8169, CVE-2020-8177, CVE-2020-8231, CVE-2020-8285, CVE-2020-8286, CVE-2020-28196, CVE-2021-23840, CVE-2021-3450, CVE-2021-3517, CVE-2021-3518
 - Fixes a bug where the [AWS add-on](https://kurl.sh/docs/add-ons/aws) would fail if `latest` or `0.1.x` was used.
 - Fixes a bug when `excludeStorageClass` is set to `true` would cause the [AWS add-on](https://kurl.sh/docs/add-ons/aws) to fail. 
 
