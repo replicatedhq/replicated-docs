@@ -25,10 +25,10 @@ If you configure a second application to use an existing, configured hostname, t
 
 CNAME enablement currently has the following limitations:
 
-- The kustomization in KOTS always rewrites images to registry.replicated.com or proxy.replicated.com, and does not respect the CNAME. Only Helm installations that do not use the Replicated app manager respect the CNAME.
+- The kustomization in Replicated app manager always rewrites images to registry.replicated.com or proxy.replicated.com, and does not respect the CNAME. Only Helm installations that do not use the app manager respect the CNAME. This type of Helm installation is an alpha feature.
 - The LicenseDockerCfg template function does not respect the CNAME.
 - A single CNAME record cannot be used for both the registry and proxy endpoints.
-- The endpoints do not support CNAMEs for replicated.app (kots manifests), api.replicated.com (platform market API), the download portal, or other services. For information about the API endpoints, see [Supported API Methods for CNAME](#supported-api-methods-for-cname).
+- The endpoints do not support CNAMEs for replicated.app (release manifests), api.replicated.com (platform market API), the download portal, or other services. For information about the API endpoints, see [Supported API Methods for CNAME](#supported-api-methods-for-cname).
 
 ## Add a Custom CNAME in the Vendor Portal
 
@@ -42,11 +42,15 @@ To add a custom CNAME:
 1. Select either **Create a TXT record** or **Verify ownership via email**. Click **Save**.
 
 1. For domain ownership verification, do one of the following, depending on which method of verification you enabled:
-    - For TXT verification, copy the string from the domain ownership verification textbox and create a TXT record in your DNS account. Click **Validate and continue**.
+    - For TXT verification, copy the string from the domain ownership verification text box and create a TXT record in your DNS account. Click **Validate and continue**.
 
     - For email verification, enter the email addresses to which you want the verification notification to be sent. Click **Validate and continue**.
 
-1. From the TLS cert creation verification text box, copy the string and create a TXT record in your DNS account. **Click Validate and continue**.
+1. For the TLS certification creation verification, do one of the following, depending on which method of verification you enabled:
+
+    - For TXT verification, copy the string from the TLS verification text box and create a TXT record in your DNS account. **Click Validate and continue**.
+
+    - For email verification, enter the email addresses to which you want the verification notification to be sent. Click **Validate and continue**.
 
 Your changes can take up to 24 hours to propagate.
 
@@ -279,7 +283,7 @@ To add a custom CNAMEs using the vendor API:
 1. Create the TLS TXT record using your DNS provider's instructions, and run the GET request:
 
   ```
-  curl –-header "Authorization: 893d6552cc" https://api.replicated.com/vendor/v3/app/2A2MTUE9fj2n9gX2nT6o9yw6RLF/registry/cnames
+  curl –-header "Authorization: USER_TOKEN" https://api.replicated.com/vendor/v3/app/APP_ID/registry/cnames
   ```
 
   **Response:**
