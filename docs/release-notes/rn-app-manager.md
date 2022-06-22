@@ -4,6 +4,15 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.72.2
+
+Released on June 22, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### Bug Fixes {#bug-fixes-1-72-1}
+* Fixed a bug that would cause duplicate Helm installations to be shown when running in helm-managed mode in clusters with open permissions.
+
 ## 1.72.1
 
 Released on June 17, 2022
