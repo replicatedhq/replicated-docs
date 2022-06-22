@@ -4,7 +4,7 @@ You can use Canonical Name (CNAME) records to create custom hostnames for the re
 
 Whether you use the Replicated private registry or the proxy service for your own private registry, these Replicated domains are external to your domain and require additional security reviews by your customer. Using custom CNAMEs can bring the Replicated registry and proxy registry inside an existing security review and reduce your exposure.
 
-You add custom CNAMEs for the Replicated private registry and proxy service in the Replicated vendor portal or in the vendor API.
+You add custom CNAMEs for the Replicated private registry and proxy service in the Replicated vendor portal or with the vendor API.
 
 ## About Verification
 
