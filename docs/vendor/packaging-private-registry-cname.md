@@ -30,7 +30,7 @@ CNAME enablement currently has the following limitations:
 - The CNAME feature does not support a single CNAME record for both the registry and proxy endpoints.
 - The APP/APP_ID/CNAME endpoint does not support CNAMEs for replicated.app (kots manifests), api.replicated.com (platform market API), the download portal, or other services.
 
-## Customize CNAME in the Vendor Portal
+## Add a Custom CNAME in the Vendor Portal
 
 You can add custom CNAMEs for the Replicated private registry and the proxy service in the vendor portal.
 
