@@ -5,16 +5,24 @@ Snapshots is the backup and restore feature for applications. This is an optiona
 To enable snapshots, the Replicated app manager uses the Velero open source project on the backend to back up Kubernetes manifests and persistent volumes. Velero is a mature, fully-featured application. For more information, see the [Velero documentation](https://velero.io/docs/).
 
 In addition to the default functionality that Velero provides, the app manager provides a detailed interface in the [admin console](../enterprise/snapshots-scheduling) where end users can manage the storage destination and schedule, and perform and monitor the backup process. These details can also be managed using the kots CLI, the CLI for the app manager.
-
-**Note**: The restore process is managed through the kots CLI only.
+:::note
+The restore process is managed through the kots CLI only.
+:::
 
 The app manager also exposes hooks that can be used to inject scripts to execute with Snapshots both [before and after a backup](snapshots-configuring-backups) and [before and after a restore](../enterprise/snapshots-understanding).
+
+## About the Velero Add-On for Kubernetes Installers
+
+If you are distributing your application with the Kubernetes installer, we recommend that you include the Velero add-on so that customers do not have to manually install Velero on their cluster. For more information about the Kubernetes installer, see [Creating a Kubernetes Installer Specification](packaging-embedded-kubernetes).
+
 
 ## Velero Version Compatibility
 
 The following table lists which versions of Velero are compatible with each version of the app manager.
 
-**Note**: The app manager is based on the open source KOTS project, which is maintained by Replicated.
+:::note
+The app manager is based on the open source KOTS project, which is maintained by Replicated.
+:::
 
 | App manager and KOTS versions | Velero version |
 |------|-------------|
