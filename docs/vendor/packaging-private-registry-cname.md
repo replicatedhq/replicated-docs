@@ -19,7 +19,7 @@ Additionally, both verification checks must use the same method (TXT or email).
 
 The same hostname can be used for multiple applications, but cannot be used for multiple endpoints. A single hostname can map to registry.replicated.com for any number of applications, but cannot map to both registry.replicated.com and  proxy.replicated.com, even if the applications are different.
 
-If you configure a second application using an existing, configured hostname, the configured hostname is automatically validated if the verified application belongs to the same team.
+If you configure a second application to use an existing, configured hostname, the configured hostname is automatically validated if the verified application belongs to the same team.
 
 ## Limitations
 
