@@ -32,9 +32,7 @@ To customize the graphs that are displayed on the admin console, edit the `graph
   By default, an embedded cluster created by the Kubernetes installer exposes the Prometheus expression browser at NodePort 30900. For more information, see [Expression Browser](https://prometheus.io/docs/visualization/browser/) in the Prometheus documentation.
   :::
 
-For more information about the fields for the `graphs` property, see [graphs](../reference/custom-resource-application#graphs) in _Application_.
-
-## Add or Modify Graphs
+## Add and Modify Graphs
 
 To customize graphs on the admin console dashboard:
 
@@ -42,45 +40,7 @@ To customize graphs on the admin console dashboard:
 
 1. Create or open the Application custom resource manifest file. An Application custom resource manifest file has `kind: Application`.
 
-1. In the Application manifest file, under `spec`, add a `graphs` property:
-
-   ```yaml
-   apiVersion: kots.io/v1beta1
-   kind: Application
-   metadata:
-     name: my-application
-   spec:
-     graphs:
-       ...
-   ```    
-
-1. (Optional) Under `graphs`, copy and paste the specifications for the default Disk Usage, CPU Usage, and Memory Usage admin console graphs provided in the YAML below.
-
-   Adding these default graphs to the Application custom resource manifest ensures that they are not overwritten when you add any custom graphs.
-
-   ```yaml
-   apiVersion: kots.io/v1beta1
-   kind: Application
-   metadata:
-     name: my-application
-   spec:
-     graphs:
-       - title: Disk Usage
-         queries:
-           - query: 'sum((node_filesystem_size_bytes{job="node-exporter",fstype!="",instance!=""} - node_filesystem_avail_bytes{job="node-exporter", fstype!=""})) by (instance)'
-             legend: 'Used: {{ instance }}'
-           - query: 'sum((node_filesystem_avail_bytes{job="node-exporter",fstype!="",instance!=""})) by (instance)'
-             legend: 'Available: {{ instance }}'
-         yAxisFormat: bytes
-       - title: CPU Usage
-         query: 'fmt.Sprintf(`sum(rate(container_cpu_usage_seconds_total{namespace="%s",container!="POD",pod!=""}[5m])) by (pod)`, util.PodNamespace)'
-         legend: '{{ pod }}'
-       - title: Memory Usage
-         query: 'fmt.Sprintf(`sum(container_memory_usage_bytes{namespace="%s",container!="POD",pod!=""}) by (pod)`, util.PodNamespace)'
-         legend: '{{ pod }}'
-         yAxisFormat: bytes
-      ```   
-1. Edit the `graphs` property to modify the existing graphs or add a new custom graph.
+1. In the Application manifest file, under `spec`, add a `graphs` property. Edit the `graphs` property to modify or remove existing graphs or add a new custom graph. For more information about the syntax of the `graphs` property, see [graphs](../reference/custom-resource-application#graphs) in _Application_.
 
    **Example**:
 
@@ -96,4 +56,36 @@ To customize graphs on the admin console dashboard:
        - title: User Signups
          query: 'sum(user_signup_events_total)'        
    ```
+
+1. (Optional) Under `graphs`, copy and paste the specifications for the default Disk Usage, CPU Usage, and Memory Usage admin console graphs provided in the YAML below.
+
+   Adding these default graphs to the Application custom resource manifest ensures that they are not overwritten when you add one or more custom graphs. When the default graphs are included in the Application custom resource, the admin console displays them in addition to any custom graphs.
+
+   Alternatively, you can exclude the YAML specifications for the default graphs to remove them from the admin console dashboard.
+
+   ```yaml
+   apiVersion: kots.io/v1beta1
+   kind: Application
+   metadata:
+     name: my-application
+   spec:
+     graphs:
+       - title: User Signups
+         query: 'sum(user_signup_events_total)'
+       # Disk Usage, CPU Usage, and Memory Usage below are the default graphs
+       - title: Disk Usage
+         queries:
+           - query: 'sum((node_filesystem_size_bytes{job="node-exporter",fstype!="",instance!=""} - node_filesystem_avail_bytes{job="node-exporter", fstype!=""})) by (instance)'
+             legend: 'Used: {{ instance }}'
+           - query: 'sum((node_filesystem_avail_bytes{job="node-exporter",fstype!="",instance!=""})) by (instance)'
+             legend: 'Available: {{ instance }}'
+         yAxisFormat: bytes
+       - title: CPU Usage
+         query: 'fmt.Sprintf(`sum(rate(container_cpu_usage_seconds_total{namespace="%s",container!="POD",pod!=""}[5m])) by (pod)`, util.PodNamespace)'
+         legend: '{{ pod }}'
+       - title: Memory Usage
+         query: 'fmt.Sprintf(`sum(container_memory_usage_bytes{namespace="%s",container!="POD",pod!=""}) by (pod)`, util.PodNamespace)'
+         legend: '{{ pod }}'
+         yAxisFormat: bytes
+      ```   
 1. Save and promote the release to a development environment to test your changes.
