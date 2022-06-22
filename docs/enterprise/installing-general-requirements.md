@@ -58,13 +58,13 @@ No outbound internet access is required for air gapped installations.
 
 ## Minimum System Requirements
 
-This section describes the minimum system requirements for installing the Replicated admin console on an existing cluster or on a cluster created by the Kubernetes installer.
+This section describes the minimum system requirements for installing the Replicated admin console on an existing cluster or on an embedded cluster created by the Replicated Kubernetes installer.
 
 ### Existing Cluster Requirements
 
-To install the Replicated admin console on an existing cluster, the cluster must meet the following requirements:
+To install the admin console on an existing cluster, the cluster must meet the following requirements:
 
-* **Admin console minimum requirements**: The Replicated admin console requires a minimum of 5GB of disk space on the cluster. This includes 4GB for the object store PersistentVolume and 1GB for the PostgreSQL PersistentVolume. For more information, see [Requirements for Admin Console State](installing-stateful-component-requirements).
+* **Admin console minimum requirements**: The admin console requires a minimum of 5GB of disk space on the cluster. This includes 4GB for the object store PersistentVolume and 1GB for the PostgreSQL PersistentVolume. For more information, see [Requirements for Admin Console State](installing-stateful-component-requirements).
 * **Kubernetes version compatibility**: The version of Kubernetes running on the cluster must be compatible with the version of KOTS that you use to install the application. This compatibility requirement does not include any specific and additional requirements defined by the software vendor for the application.
 
    For more information about the versions of Kubernetes that are compatible with each version of KOTS, see [Kubernetes Version Compatibility](#kubernetes-version-compatibility).
@@ -73,24 +73,24 @@ To install the Replicated admin console on an existing cluster, the cluster must
    * An existing namespace and an RBAC binding that permits the user of the kubectl command-line tool to create workloads, ClusterRoles, and ClusterRoleBindings.
    * cluster-admin permissions to create namespaces and assign RBAC roles across the cluster.
 
-   If the `requireMinimalRBACPrivileges` property is set to `true` in the Application custom resource manifest, or if the `supportMinimalRBACPrivileges` property is set to `true` in the Application custom resource manifest and the `--use-minimal-rbac` flag is passed to the `kots install` command, the app manager does not require the ability to create ClusterRoles and ClusterRoleBindings and uses a namespace-scoped Role and RoleBinding instead. For more information about the Application custom resource, see [Application](../reference/custom-resource-application) in _Custom resources_.
+   If the `requireMinimalRBACPrivileges` property is set to `true` in the Application custom resource manifest, or if the `supportMinimalRBACPrivileges` property is set to `true` in the Application custom resource manifest and the `--use-minimal-rbac` flag is passed to the `kots install` command, the app manager does not require the ability to create ClusterRoles and ClusterRoleBindings and uses a namespace-scoped Role and RoleBinding instead. For more information about the Application custom resource, see [Application](../reference/custom-resource-application) in _Custom Resources_.
 
 :::note
 Root access on nodes or workstations is *not* required to install an application on an existing cluster.
 :::
 
-### Kubernetes Installer Requirements
+### Embedded Cluster Requirements
 
-To install the admin console on a cluster created by the Replicated Kubernetes installer, your environment must meet the following requirements:
+To install the admin console on an embedded cluster created by the Replicated Kubernetes installer, your environment must meet the following requirements:
 
 * 4 CPUs or equivalent per machine.
-* 8 GB of RAM per machine.
-* 40 GB of Disk Space per machine.
+* 8GB of RAM per machine.
+* 40GB of disk space per machine.
   :::note
-  10GB of the total 40GB should be available to `/var/lib/rook`. For more information see [Rook Add-On](https://kurl.sh/docs/add-ons/rook) in the kURL documentation.
+  10GB of the total 40GB must be available to `/var/lib/rook`. For more information see [Rook Add-On](https://kurl.sh/docs/add-ons/rook) in the kURL documentation.
   :::
 
 * TCP ports 2379, 2380, 6443, 6783, 10250, 10251 and 10252 open between cluster nodes.
 * UDP ports 6783 and 6784 open between cluster nodes.
-* The Replicated Kubernetes installer is based on the open source kURL project, which is maintained by Replicated. You must meet the additional requirements of the kURL project to use the Kubernetes installer. See [System Requirements](https://kurl.sh/docs/install-with-kurl/system-requirements) in the kURL open source documentation.
+* The Kubernetes installer is based on the open source kURL project, which is maintained by Replicated. You must meet the additional requirements of the kURL project to use the Kubernetes installer. See [System Requirements](https://kurl.sh/docs/install-with-kurl/system-requirements) in the kURL open source documentation.
 * Root access is required.
