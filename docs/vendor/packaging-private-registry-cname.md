@@ -27,7 +27,7 @@ CNAME enablement currently has the following limitations:
 
 - The kustomization in KOTS always rewrites images to registry.replicated.com or proxy.replicated.com, and does not respect the CNAME. Only Helm installations respect the CNAME.
 - The LicenseDockerCfg template function does not respect the CNAME.
-- The CNAME feature does not support a single CNAME record for both registry and proxy endpoints.
+- The CNAME feature does not support a single CNAME record for both the registry and proxy endpoints.
 - The APP/APP_ID/CNAME endpoint does not support CNAMEs for replicated.app (kots manifests), api.replicated.com (platform market API), the download portal, or other services.
 
 ## Customize CNAME in the Vendor Portal
