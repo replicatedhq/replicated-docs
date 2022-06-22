@@ -6,7 +6,7 @@ The Kubernetes installer is based on the open source kURL project, which is main
 
 ## Requirements
 
-Before you install, ensure that you meet the system requirements. For more information, see [Kubernetes installer requirements](installing-embedded-cluster-requirements).
+Before you install, ensure that you meet the system requirements. For more information, see [Embedded Cluster Requirements](installing-general-requirements#embedded-cluster-requirements) in _Installation Requirements_.
 
 ## Install in an Online Environment
 
