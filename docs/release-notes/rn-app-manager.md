@@ -10,7 +10,7 @@ Released on June 22, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
-### Bug Fixes {#bug-fixes-1-72-1}
+### Bug Fixes {#bug-fixes-1-72-2}
 * Fixed a bug that would cause duplicate Helm installations to be shown when running in helm-managed mode in clusters with open permissions.
 
 ## 1.72.1
