@@ -49,7 +49,7 @@ To add the Kubernetes installer manifest to the application release:
 
     - You must include the KOTS add-on to provision the Replicated admin console.
 
-    - Because Velero must be installed on the cluster to use Replicated snapshots, we recommend that you include the Velero add-on in your Kubernetes installer so that your customers do not have to manually install Velero.
+    - To use Replicated snapshots, Velero must be installed on the cluster. We recommend that you include the Velero add-on in your Kubernetes installer so that your customers do not have to manually install Velero.
 
     For more information about creating a Kubernetes installer specification file, see [Create An Installer](https://kurl.sh/docs/create-installer/) in the kURL open source documentation.
 
@@ -82,7 +82,7 @@ To create a Kubernetes installer specification:
 
     - You must include the KOTS add-on to provision the Replicated admin console.
 
-    - Because Velero must be installed on the cluster to use Replicated snapshots, we recommend that you include the Velero add-on in your Kubernetes installer so that your customers do not have to manually install Velero.
+    - To use Replicated snapshots, Velero must be installed on the cluster. We recommend that you include the Velero add-on in your Kubernetes installer so that your customers do not have to manually install Velero.
 
     For information about creating a Kubernetes installer specification file, see [Create An Installer](https://kurl.sh/docs/create-installer/) in the kURL open source documentation.
 
