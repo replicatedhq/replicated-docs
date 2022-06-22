@@ -1,71 +1,99 @@
 # Adding Custom Graphs
 
-This topic describes how to add custom graphs on the Replicated admin console dashboard.
+This topic describes how to customize the graphs that are displayed on the Replicated admin console dashboard.
 
 ## Overview of Monitoring with Prometheus
 
 The admin console uses the open source systems monitoring tool, Prometheus, to collect metrics on an application and the cluster where the application is installed. For more information about Prometheus, see [What is Prometheus?](https://prometheus.io/docs/introduction/overview/) in the Prometheus documentation.
 
-The Prometheus monitoring system also exposes graphs with key metrics on the admin console dashboard. By default, the admin console includes graphs with the following metrics:
+The admin console Prometheus monitoring system also exposes graphs with key metrics on the admin console dashboard. By default, the admin console includes graphs with the following metrics:
 
 * Cluster disk usage
 * Pod CPU usage
 * Pod memory usage
-* Pod health
 
-The screenshot below shows an example of the Monitoring section on the admin console dashboard with Disk Usage, CPU Usage, and Memory Usage graphs.
+The screenshot below shows an example of the Monitoring section on the admin console dashboard with the Disk Usage, CPU Usage, and Memory Usage default graphs.
 
 ![Graphs on the admin console dashboard](/images/kotsadm-dashboard-graph.png)
 
+If your users install your application on an embedded cluster created by the Replicated Kubernetes installer, the Prometheus monitoring system is included by default alongside the installed application. No additional configuration is required to collect metrics and view any default and custom graphs on the admin console dashboard.
+
+If your users install your application on an existing cluster, they must connect the admin console to a Prometheus endpoint on their cluster to collect metrics and view default and custom graphs. For more information about how users connect to a Prometheus endpoint on an existing cluster, see [Monitoring Applications](../enterprise/monitoring-applications) in the _Enterprise_ documentation.
+
 ## About Customizing Graphs
 
-You can customize the graphs that appear on the admin console dashboard by editing the `graphs` property in the Application custom resource manifest file. For example, if your application exposes Prometheus metrics, you can add custom graphs to the admin console dashboard to expose these metrics to your enterprise users.
+If your application exposes Prometheus metrics, you can add custom graphs to the admin console dashboard to expose these metrics to your users. You can also modify or remove the default graphs.
 
-If your enterprise users install your application on an embedded cluster created by the Replicated Kubernetes installer, the Prometheus monitoring system is included by default alongside the installed application. No additional configuration is required to view the graphs that are defined in the Application manifest file, including any default or custom graphs.
+To customize the graphs that are displayed on the admin console, edit the `graphs` property in the Application custom resource manifest file. At a minimum, each graph in the `graphs` property must include the following fields:
+  * `title`: Defines the graph title that is displayed on the admin console.
+  * `query`: A valid PromQL Prometheus query. You can also include a list of multiple queries by using the `queries` property. For more information about querying Prometheus with PromQL, see [Querying Prometheus](https://prometheus.io/docs/prometheus/latest/querying/basics/) in the Prometheus documentation.
 
-If your enterprise users install your application on an existing cluster, they can connect the admin console to a Prometheus endpoint on their cluster to view the graphs defined in the Application manifest file. For more information about how users connect to a Prometheus endpoint, see [Monitoring Applications](../enterprise/monitoring-applications) in the _Enterprise_ documentation.
-
-## Add Custom Graphs
-
-You can add new graphs as well as modify or remove the existing default graphs by editing the Application custom resource manifest file.
-
-A minimal graph includes only a title and a Prometheus query:
-
-```yaml
-apiVersion: kots.io/v1beta1
-kind: Application
-metadata:
-  name: my-application
-spec:
-  graphs:
-    - title: User Signups
-      query: 'sum(user_signup_events_total)'
-```
-
-See below for a more robust example:
-
-```yaml
-apiVersion: kots.io/v1beta1
-kind: Application
-metadata:
-  name: my-application
-spec:
-  graphs:
-    - title: Disk Usage
-      queries:
-        - query: 'sum((node_filesystem_size_bytes{job="node-exporter",fstype!="",instance!=""} - node_filesystem_avail_bytes{job="node-exporter", fstype!=""})) by (instance)'
-          legend: 'Used: {{ instance }}'
-        - query: 'sum((node_filesystem_avail_bytes{job="node-exporter",fstype!="",instance!=""})) by (instance)'
-          legend: 'Available: {{ instance }}'
-      yAxisFormat: bytes
-```
+  :::note
+  By default, an embedded cluster created by the Kubernetes installer exposes the Prometheus expression browser at NodePort 30900. For more information, see [Expression Browser](https://prometheus.io/docs/visualization/browser/) in the Prometheus documentation.
+  :::
 
 For more information about the fields for the `graphs` property, see [graphs](../reference/custom-resource-application#graphs) in _Application_.
 
-### Prometheus Query
+## Add or Modify Graphs
 
-A valid PromQL prometheus query is required in the `query` property.
-By default an embedded cluster exposes the [Prometheus Expression Browser](https://prometheus.io/docs/visualization/browser/) at NodePort 30900.
-This can be used to aid in constructing queries.
+To customize graphs on the admin console dashboard:
 
-For more information on querying Prometheus with PromQL, see [Querying Prometheus](https://prometheus.io/docs/prometheus/latest/querying/basics/).
+1. In the [vendor portal](https://vendor.replicated.com/), click **Releases**. Then, either click **Create release** to create a new release, or click **Edit YAML** to edit an existing release.
+
+1. Create or open the Application custom resource manifest file. An Application custom resource manifest file has `kind: Application`.
+
+1. In the Application manifest file, under `spec`, add a `graphs` property:
+
+   ```yaml
+   apiVersion: kots.io/v1beta1
+   kind: Application
+   metadata:
+     name: my-application
+   spec:
+     graphs:
+       ...
+   ```    
+
+1. (Optional) Under `graphs`, copy and paste the specifications for the default Disk Usage, CPU Usage, and Memory Usage admin console graphs provided in the YAML below.
+
+   Adding these default graphs to the Application custom resource manifest ensures that they are not overwritten when you add any custom graphs.
+
+   ```yaml
+   apiVersion: kots.io/v1beta1
+   kind: Application
+   metadata:
+     name: my-application
+   spec:
+     graphs:
+       - title: Disk Usage
+         queries:
+           - query: 'sum((node_filesystem_size_bytes{job="node-exporter",fstype!="",instance!=""} - node_filesystem_avail_bytes{job="node-exporter", fstype!=""})) by (instance)'
+             legend: 'Used: {{ instance }}'
+           - query: 'sum((node_filesystem_avail_bytes{job="node-exporter",fstype!="",instance!=""})) by (instance)'
+             legend: 'Available: {{ instance }}'
+         yAxisFormat: bytes
+       - title: CPU Usage
+         query: 'fmt.Sprintf(`sum(rate(container_cpu_usage_seconds_total{namespace="%s",container!="POD",pod!=""}[5m])) by (pod)`, util.PodNamespace)'
+         legend: '{{ pod }}'
+       - title: Memory Usage
+         query: 'fmt.Sprintf(`sum(container_memory_usage_bytes{namespace="%s",container!="POD",pod!=""}) by (pod)`, util.PodNamespace)'
+         legend: '{{ pod }}'
+         yAxisFormat: bytes
+      ```   
+1. Edit the `graphs` property to modify the existing graphs or add a new custom graph.
+
+   **Example**:
+
+   The following example shows the YAML for adding a custom graph that displays the total number of user signups for an application.
+
+   ```yaml
+   apiVersion: kots.io/v1beta1
+   kind: Application
+   metadata:
+     name: my-application
+   spec:
+     graphs:
+       - title: User Signups
+         query: 'sum(user_signup_events_total)'        
+   ```
+1. Save and promote the release to a development environment to test your changes.
