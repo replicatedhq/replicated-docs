@@ -160,7 +160,7 @@ Clear the configuration for a key by passing `null`.
 
 This procedure shows an example of:
 
-- Configuring a CNAME from registry.enterprise.myapp.com to use for registry.replicated.com
+- Configuring a CNAME record to point registry.enterprise.myapp.com to registry.replicated.com
 - Replacing registry.replicated.com in your application with registry.enterprise.myapp.com
 - Using a TXT record to validate domain ownership
 
