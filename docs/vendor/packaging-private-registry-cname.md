@@ -156,7 +156,7 @@ Clear the configuration for a key by passing `null`.
   ```
 
 
-## Customize CNAME with the Vendor API
+## Add a Custom CNAME with the Vendor API
 
 This procedure shows an example of:
 
