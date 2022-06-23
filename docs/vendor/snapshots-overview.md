@@ -1,6 +1,14 @@
 # Snapshots Overview
 
-Snapshots is the backup and restore feature for applications. This is an optional feature, and it requires that licenses have the Allow Snapshots feature enabled.
+Snapshots is the backup and restore feature for applications. This is an optional feature.
+
+To implement this feature you must:
+
+- Have access to the snapshots entitlement in your Replicated vendor account. For more information about entitlements, contact the Replicated TAM team.
+- Enable the Allow Snapshot option in customer licenses.
+- Define a manifest for executing snapshots and restoring previous snapshots. For more information, see [Configuring Backups](snapshots-configuring-backups).
+
+Additionally, your end users must install Velero to access the snapshot functionality in the Replicated admin console. For more information about the enterprise snapshots procedures, see [Understanding Snapshots](../enterprise/snapshots-understanding).
 
 To enable snapshots, the Replicated app manager uses the Velero open source project on the backend to back up Kubernetes manifests and persistent volumes. Velero is a mature, fully-featured application. For more information, see the [Velero documentation](https://velero.io/docs/).
 
@@ -10,11 +18,6 @@ The restore process is managed through the kots CLI only.
 :::
 
 The app manager also exposes hooks that can be used to inject scripts to execute with Snapshots both [before and after a backup](snapshots-configuring-backups) and [before and after a restore](../enterprise/snapshots-understanding).
-
-## About the Velero Add-On for Kubernetes Installers
-
-If you are distributing your application with the Kubernetes installer, we recommend that you include the Velero add-on so that customers do not have to manually install Velero on their cluster. For more information about the Kubernetes installer, see [Creating a Kubernetes Installer Specification](packaging-embedded-kubernetes).
-
 
 ## Velero Version Compatibility
 
