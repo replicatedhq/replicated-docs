@@ -1,4 +1,4 @@
-# Overview of Installing an Application With the App Manager
+# Overview of Installing an Application with the App Manager
 
 You can use the Replicated app manager to install applications into various environments and Kubernetes clusters, including air gapped, bare metal Kubernetes installations, managed offerings such as EKS, GKE and AKS, and more.
 
@@ -9,8 +9,8 @@ Before you install an application, consider the following installation options.
 ### Install With or Without an Existing Cluster
 
 With Replicated, you can install an application in one of two ways:
-* **With an existing cluster**: You can install an application onto an existing Kubernetes cluster that meets the system requirements. For more information, see [Cluster requirements](installing-existing-cluster-requirements).
-* **Without an existing cluster**: If you do not have an existing Kubernetes cluster, the Replicated Kubernetes installer can create a new cluster for you on a modern Linux machine. For more information, see [Kubernetes installer requirements](installing-embedded-cluster-requirements).
+* **With an existing cluster**: You can install an application onto an existing Kubernetes cluster that meets the system requirements. For more information, see [Existing Cluster Requirements](installing-general-requirements#existing-cluster-requirements) in _Installation Requirements_.
+* **Without an existing cluster**: If you do not have an existing Kubernetes cluster, the Replicated Kubernetes installer can create a new cluster for you on a modern Linux machine. For more information, see [Embedded Cluster Requirements](installing-general-requirements#embedded-cluster-requirements) in _Installation Requirements_.
 
 Most software vendors support both options and require the customer to determine their preferred method of deployment.
 
