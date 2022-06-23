@@ -15,11 +15,11 @@ The app manager also exposes hooks that can be used to inject scripts to execute
 
 To implement this feature you must:
 
-- Have access to the snapshots entitlement in your Replicated vendor account. For more information about entitlements, contact the Replicated TAM team.
-- Enable the Allow Snapshot option in customer licenses.
+- Have the snapshots entitlement enabled in your Replicated vendor account. For account entitlements, contact the Replicated TAM team.
 - Define a manifest for executing snapshots and restoring previous snapshots. For more information, see [Configuring Backups](snapshots-configuring-backups).
+- Enable the Allow Snapshot option in customer licenses. For more information, see [Creating a Customer](releases-creating-customer).
 
-Additionally, your end users must install Velero to access the snapshot functionality in the Replicated admin console. For more information about the enterprise snapshots procedures, see [Understanding Snapshots](../enterprise/snapshots-understanding).
+Additionally, your end users must install Velero to access the snapshot functionality in the Replicated admin console. For more information about the enterprise snapshots procedures, see [Understanding Snapshots](../enterprise/snapshots-understanding) in the _Enterprise_ documentation.
 
 ## Velero Version Compatibility
 
