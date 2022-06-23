@@ -64,7 +64,7 @@ To install the admin console on an existing cluster, the cluster must meet the f
 Root access on nodes or workstations is *not* required to install an application on an existing cluster.
 :::
 
-### Embedded Cluster Requirements
+### Kubernetes Installer Cluster Requirements {#embedded-cluster-requirements}
 
 To install the admin console on an embedded cluster created by the Replicated Kubernetes installer, your environment must meet the following requirements:
 
@@ -72,10 +72,10 @@ To install the admin console on an embedded cluster created by the Replicated Ku
 * 8GB of RAM per machine.
 * 40GB of disk space per machine.
   :::note
-  10GB of the total 40GB must be available to `/var/lib/rook`. For more information see [Rook Add-On](https://kurl.sh/docs/add-ons/rook) in the kURL documentation.
+  10GB of the total 40GB must be available to `/var/lib/rook`. For more information, see [Rook Add-On](https://kurl.sh/docs/add-ons/rook) in the kURL documentation.
   :::
 
-* TCP ports 2379, 2380, 6443, 6783, 10250, 10251 and 10252 open between cluster nodes.
+* TCP ports 2379, 2380, 6443, 6783, 10250, 10251, and 10252 open between cluster nodes.
 * UDP ports 6783 and 6784 open between cluster nodes.
 * The Kubernetes installer is based on the open source kURL project, which is maintained by Replicated. You must meet the additional requirements of the kURL project to use the Kubernetes installer. See [System Requirements](https://kurl.sh/docs/install-with-kurl/system-requirements) in the kURL open source documentation.
 * Root access is required.
