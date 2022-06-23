@@ -63,7 +63,7 @@ The snapshots feature is a backup and restore option that lets you define a mani
 
     ```
 
-1. Optional: Configure manifest exclusions. By default, Velero also includes snapshots of all of the Kubernetes objects in the namespace.
+1. (Optional) Configure manifest exclusions. By default, Velero also includes snapshots of all of the Kubernetes objects in the namespace.
 To exclude any manifest, add a `velero.io/exclude-from-backup` label to the manifest to be excluded.
 
     Example:
@@ -79,7 +79,7 @@ To exclude any manifest, add a `velero.io/exclude-from-backup` label to the mani
       uri: Secret To Not Include
 
     ```
-1. Optional: If you are distributing your application with the Kubernetes installer, we recommend that you include the Velero add-on so that customers do not have to manually install Velero on their cluster. For more information about the Kubernetes installer, see [Creating a Kubernetes Installer Specification](packaging-embedded-kubernetes).
+1. (Optional) If you are distributing your application with the Kubernetes installer, we recommend that you include the Velero add-on so that customers do not have to manually install Velero on their cluster. For more information about the Kubernetes installer, see [Creating a Kubernetes Installer Specification](packaging-embedded-kubernetes).
 
 
 Next, you can [configure backup hooks](snapshots-backup-hooks/).
