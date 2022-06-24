@@ -10,7 +10,7 @@ Released on June 24, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
-### New Features {#new-features-1-72-0}
+### New Features {#new-features-1-73-0}
 * Adds a `releaseName` parameter to the [Helm custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](../vendor/helm-installing-native-helm). Defaults to the chart name. Specifying a `releaseName` also allows you to deploy multiple instances of the same Helm chart, which was previously impossible.
 
 ### Improvements {#improvements-1-73-0}
