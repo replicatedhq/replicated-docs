@@ -23,6 +23,7 @@ spec:
   chart:
     name: samplechart
     chartVersion: 3.1.7
+    releaseName: samplechart-release-1
 
   exclude: "repl{{ ConfigOptionEquals `include_chart` `include_chart_no`}}"
 
