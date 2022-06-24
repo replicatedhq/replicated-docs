@@ -12,7 +12,7 @@ The Kubernetes installer is based on the open source kURL project, which is main
 
 Complete the following before you perform this task:
 
-- Meet the system requirements. See [Embedded Cluster Requirements](installing-general-requirements#embedded-cluster-requirements) in _Installation Requirements_.
+- Meet the system requirements. See [Kubernetes Installer Cluster Requirements](installing-general-requirements#embedded-cluster-requirements) in _Installation Requirements_.
 
 - If you are installing in high availability mode:
   - (Optional) If you are going to use the internal load balancer, you can preconfigure it by passing `| sudo bash -s ha ekco-enable-internal-load-balancer`.
