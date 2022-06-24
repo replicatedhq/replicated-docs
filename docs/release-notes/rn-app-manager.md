@@ -14,7 +14,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 * Adds a `releaseName` parameter to the [HelmChart custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](../vendor/helm-installing-native-helm). Defaults to the chart name. Specifying a `releaseName` also allows you to deploy multiple instances of the same Helm chart, which was previously impossible.
 
 ### Improvements {#improvements-1-73-0}
-* Improved UX on the version history page when the application is up to date or if there are new available versions.
+* Improved UX on the version history page when the application is up to date or when there are new available versions.
 
 ### Bug Fixes {#bug-fixes-1-73-0}
 * Fixes an issue where the preflight screen was displayed even if no analyzers were run.
