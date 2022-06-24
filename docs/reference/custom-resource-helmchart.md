@@ -84,8 +84,7 @@ This must match the `version` field from a `Chart.yaml` in a `.tgz` chart archiv
 
 Specifies the release name to be used when installing this instance of the Helm chart.
 Defaults to the chart name.
-The release name must be unique across all charts deployed in the namespace.
-Specifying a unique release name allows you to deploy multiple instances of the same Helm chart.
+The release name must be unique across all charts deployed in the namespace if you want to deploy multiple instances of the same Helm chart.
 Must be a valid Helm release name that matches regex `^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$` and is no longer than 53 characters.
 
 ## helmVersion
