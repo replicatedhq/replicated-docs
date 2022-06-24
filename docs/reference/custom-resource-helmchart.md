@@ -77,6 +77,15 @@ This must match the `name` field from a `Chart.yaml` in a `.tgz` chart archive t
 The version of the chart.
 This must match the `version` field from a `Chart.yaml` in a `.tgz` chart archive that's also included in the release.
 
+### `chart.releaseName`
+
+> Introduced in KOTS 1.73.0
+
+The release name to be used when installing this instance of the Helm chart.
+Specifying a release name also allows you to deploy multiple instances of the same Helm chart.
+Must be a valid Helm release name (must match regex `^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$` and the length must not be longer than 53).
+Defaults to the chart name.
+
 ## helmVersion
 
 Identifies the Helm Version used to render the chart.
