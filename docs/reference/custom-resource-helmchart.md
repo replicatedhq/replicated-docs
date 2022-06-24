@@ -79,12 +79,13 @@ This must match the `version` field from a `Chart.yaml` in a `.tgz` chart archiv
 
 ### `chart.releaseName`
 
-> Introduced in KOTS 1.73.0
+> Introduced in Replicated app manager 1.73.0
 
 The release name to be used when installing this instance of the Helm chart.
-Specifying a release name also allows you to deploy multiple instances of the same Helm chart.
-Must be a valid Helm release name (must match regex `^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$` and the length must not be longer than 53).
 Defaults to the chart name.
+The release name must be unique across all charts deployed in the namespace.
+Specifying a release name allows you to deploy multiple instances of the same Helm chart. Otherwise, the chart name will be used for each instance, causing a collision.
+Must be a valid Helm release name (must match regex `^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$` and be no longer than 53).
 
 ## helmVersion
 
