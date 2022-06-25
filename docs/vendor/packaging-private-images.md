@@ -177,6 +177,8 @@ The app manager supports image tags for applications in all use cases.
 
 The app manager supports image digests only for online (Internet-connected) installation where the app manager can pull all images from the Replicated private registry, a public external registry, or from a private external registry through proxy access.
 
+However, image tags & digests can not be used together due to [current upstream limitations](https://community.replicated.com/t/why-do-i-see-the-error-docker-references-with-both-a-tag-and-digest-are-currently-not-supported/825).
+
 ## Additional Resources
 
 [Using ECR for Private Images](tutorial-ecr-private-images)
