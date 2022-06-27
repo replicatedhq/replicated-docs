@@ -7,6 +7,7 @@
 import React from "react";
 import Translate from "@docusaurus/Translate";
 import IconEdit from "@theme/IconEdit";
+import FeedbackIcon from "../../../static/images/feedback-icon.svg";
 import { ThemeClassNames } from "@docusaurus/theme-common";
 export default function EditThisPage({ editUrl }) {
   return (
@@ -32,13 +33,15 @@ export default function EditThisPage({ editUrl }) {
         className={ThemeClassNames.common.editThisPage}
         style={{ textAlign: "right" }}
       >
-        <IconEdit />
-        <Translate
-          id="theme.common.editThisPage"
-          description="The link label to edit the current page"
-        >
-          Provide feedback in GitHub
-        </Translate>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <FeedbackIcon width="28" height="26" style={{ marginRight: "5px" }} />
+          <Translate
+            id="theme.common.editThisPage"
+            description="The link label to edit the current page"
+          >
+            Provide feedback in GitHub
+          </Translate>
+        </div>
       </a>
     </div>
   );
