@@ -46,4 +46,4 @@ For information about using a local image registry, see [Image Registry for Air 
 
 In a GitOps workflow, the app manager pushes changes from the admin console (config changes, upstream updates, license updates) to a private Git repository, where you can use an existing continuous integration and continuous delivery (CI/CD) process to deliver the manifests to the cluster.
 
-For more information, see [Pushing updates to a GitOps workflow in single app mode](gitops-single-app-workflow).
+For more information, see [Pushing Updates to a GitOps Workflow](gitops-workflow).
