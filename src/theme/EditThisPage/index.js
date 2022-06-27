@@ -36,8 +36,8 @@ export default function EditThisPage({ editUrl }) {
         <div style={{ display: "flex", alignItems: "center" }}>
           <FeedbackIcon width="28" height="26" style={{ marginRight: "8px" }} />
           <Translate
-            id="theme.common.editThisPage"
-            description="The link label to edit the current page"
+            id="theme.common.provideFeedback"
+            description="The link label to provide feedback in github"
           >
             Provide feedback in GitHub
           </Translate>
