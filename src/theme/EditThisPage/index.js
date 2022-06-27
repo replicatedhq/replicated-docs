@@ -34,7 +34,7 @@ export default function EditThisPage({ editUrl }) {
         style={{ textAlign: "right" }}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
-          <FeedbackIcon width="28" height="26" style={{ marginRight: "5px" }} />
+          <FeedbackIcon width="28" height="26" style={{ marginRight: "8px" }} />
           <Translate
             id="theme.common.editThisPage"
             description="The link label to edit the current page"
