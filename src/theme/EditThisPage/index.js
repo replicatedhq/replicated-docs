@@ -6,7 +6,6 @@
  */
 import React from "react";
 import Translate from "@docusaurus/Translate";
-import IconEdit from "@theme/IconEdit";
 import { ThemeClassNames } from "@docusaurus/theme-common";
 import ReportIcon from "../../../static/images/report.svg";
 import PullRequestIcon from "../../../static/images/git-pull-request.svg";
