@@ -67,7 +67,9 @@ To add the Kubernetes installer manifest to the application release:
 
 ### Include a Supporting Preflight Check
 
-The Admin Console includes an optional built-in preflight check that will compare the application release installer against the installer that is currently deployed to the cluster. Since this is a preflight check, you can customize the message and URI to inform the customer of any action that needs to be taken to update their Kubernetes installer. Additionally, you can choose make this a [strict preflight check](/vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles) if you want to prevent customers from deploying this version before updating their Kubernetes installer.
+One goal of including a Kubernetes installer in a release is to more tightly couple a particular release with a particular Kubernetes installer. If you want to encourage or ensure that your customers run the updated Kubernetes installer before upgrading to the corresponding release, a preflight check can be used to compare the installer that is included in the release against the installer that is currently deployed.
+
+Since this is a preflight check, you can customize the message and URI for each outcome. For example, you can provide instructions on how to rerun the Kubernetes installer, or link to your documentation on how to do that. Additionally, you can make this a [strict preflight check](/vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles) if you want to prevent customers from deploying a release before appropriately updating their Kubernetes installer.
 
 To invoke this optional preflight check, include a [`yamlCompare`](https://troubleshoot.sh/docs/analyze/yaml-compare/) analyzer in your Preflight spec with the `kots.io/installer: "true"` annotation. The following is an example Preflight spec that utilizes this additional behavior:
 
@@ -84,7 +86,7 @@ spec:
         checkName: Kubernetes Installer
         outcomes:
           - fail:
-              message: The Kubernetes installer for this version is different from what you have installed. It is recommended that you run the updated Kubernetes installer before deploying this version.
+              message: The Kubernetes installer for this version differs from what you have installed. It is recommended that you run the updated Kubernetes installer before deploying this version.
               uri: https://kurl.sh/my-application
           - pass:
               message: The Kubernetes installer for this version matches what is currently installed.
