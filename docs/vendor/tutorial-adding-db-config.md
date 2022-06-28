@@ -556,7 +556,11 @@ psql: could not translate host name "postgres" to address: Name or service not k
 ### Mapping User Inputs
 
 To map the user-supplied configuration, we'll start by expanding our secret we created before, adding fields for additional variables, using `{{repl if ... }}` blocks to switch between embedded/external contexts.
-To start, we'll add a field for hostname, using the yaml `>-` to collapse the multiline string into a single line:
+To start, we'll add a field for hostname:
+
+:::important
+This DB_HOST multiple line string must be a single line in your application, but it is displayed here on multiple lines for readability.
+:::
 
 ```yaml
 apiVersion: v1
@@ -565,7 +569,7 @@ metadata:
   name: postgres
 data:
   DB_PASSWORD: '{{repl ConfigOption "embedded_postgres_password" | Base64Encode }}'
-  DB_HOST: >-
+  DB_HOST:
     {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" }}
       {{repl Base64Encode "postgres" }}
     {{repl else}}
