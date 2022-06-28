@@ -65,6 +65,30 @@ To add the Kubernetes installer manifest to the application release:
 
 1. Save and promote the release to your development environment to test your changes.
 
+### Include a Supporting Preflight Check
+
+The Admin Console includes an optional built-in preflight check that will compare the application release installer against the installer that is currently deployed to the cluster. Since this is a preflight check, you can customize the message and URI to inform the customer of any action that needs to be taken to update their Kubernetes installer. Additionally, you can choose make this a [strict preflight check](/vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles) if you want to prevent customers from deploying this version before updating their Kubernetes installer.
+
+To invoke this optional preflight check, include a [`yamlCompare`](https://troubleshoot.sh/docs/analyze/yaml-compare/) analyzer in your Preflight spec with the `kots.io/installer: "true"` annotation. The following is an example Preflight spec that utilizes this additional behavior:
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+  name: installer-preflight-example
+spec:
+  analyzers:
+    - yamlCompare:
+        annotations:
+          kots.io/installer: "true"
+        checkName: Kubernetes Installer
+        outcomes:
+          - fail:
+              message: The Kubernetes installer for this version is different from what you have installed. It is recommended that you run the updated Kubernetes installer before deploying this version.
+              uri: https://kurl.sh/my-application
+          - pass:
+              message: The Kubernetes installer for this version matches what is currently installed.
+```
 
 ## Create a Kubernetes Installer Specification
 
