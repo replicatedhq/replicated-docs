@@ -53,7 +53,7 @@ Host preflight checks can also vary, depending on whether the installation is ne
 
 ### Customize Host Preflight Checks
 
-Default host preflight checks for Kubernetes installers can be disabled, added to, bypassed, or customized using advanced options. For more information about kURL advanced options, see [Advanced Options](https://kurl.sh/docs/install-with-kurl/advanced-options) in the kURL documentation.
+Default host preflight checks for Kubernetes installers can be disabled, added to, bypassed, or completely customized using advanced options. For more information about kURL advanced options, see [Advanced Options](https://kurl.sh/docs/install-with-kurl/advanced-options) in the kURL documentation.
 
 To customize host preflight checks:
 
