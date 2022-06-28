@@ -1,4 +1,4 @@
-# Creating Preflight Checks and Support Bundles
+# Defining Preflight Checks and Support Bundles
 
 This topic provides information about how to create preflight checks and support
 bundles and include them with your application.
@@ -21,7 +21,7 @@ the cluster before they install and deploy your application. This can reduce the
 
 * **Host preflight checks**: Host preflight checks can be defined for Kubernetes installers to codify your infrastructure requirements and endure that everything needed to run Kubernetes successfully exists before Kubernetes is installed. You can also verify some of your application system requirements in advance of the Kubernetes installation. See [About Host Preflight Checks](#about-host-preflight-checks-for-kubernetes-installers).
 
-### Defining Preflight Checks
+### Define Preflight Checks
 
 You define preflight checks by creating a `preflight.yaml`
 manifest file. This file specifies the cluster data that is collected and redacted as part of the preflight check.
@@ -37,7 +37,7 @@ For more information about creating preflight checks, see
 Troubleshoot documentation. There are also a number of basic examples for checking CPU, memory, and disk capacity under [Node Resources Analyzer](https://troubleshoot.sh/reference/analyzers/node-resources/).
 
 ## About Host Preflight Checks for Kubernetes Installers
-Kubernetes installers can include host preflight checks to verify your infrastructure requirements are met before installing Kubernetes and help ensure the ongoing health of the cluster. Host preflight checks can also verify that minimum requirements are met for kURL add-ons that are included in the installer.
+Kubernetes installers can include host preflight checks to verify that your infrastructure requirements are met before installing Kubernetes and to help ensure the ongoing health of the cluster. Host preflight checks can also verify that minimum requirements are met for kURL add-ons that are included in the installer.
 
 You can codify some of your application requirements as part of the host preflight checks so that users get feedback before installing the application. For example, you can check that there are enough CPUs to run your application before Kubernetes is installed, which saves time and effort for your customer.
 
@@ -59,7 +59,7 @@ To customize host preflight checks:
 
 1. Get the Kubernetes installer YAML (kind: Installer) from [kurl.sh](https://kurl.sh/).
 
-1. Add `kurl` to the installer. The following example shows the `kurl` configuration for an air gap installation, and the default host preflight checks.
+1. Add `kurl` to the installer. The following example shows the `kurl` configuration for an air gap installation and the default host preflight checks.
 
   ```
   apiVersion: "cluster.kurl.sh/v1beta1"
@@ -107,59 +107,84 @@ To customize host preflight checks:
 
 1. (Optional) Set `hostPreflightEnforceWarnings: true` to block an installation by enforcing a warning.
 
-1. (Optional) Add a `hostPreflights` specification to the YAML file to define custom collectors and analyzers. The following example shows host preflight checks for CPUs for an application that requires more CPUs than the default, and a host preflight check to access a website that may be critical to a business.
+1. (Optional) Add a `hostPreflights` specification to the installer YAML file to define custom collectors and analyzers. The following example shows host preflight checks for CPUs for an application that requires more CPUs than the default, and a host preflight check to access a website that may be critical to a business.
 
   ```
-  kurl:
-    airgap: true
-    proxyAddress: http://10.128.0.70:3128
-    additionalNoProxyAddresses:
-    - .corporate.internal
-    noProxy: false
-    licenseURL: https://somecompany.com/license-agreement.txt
-    nameserver: 8.8.8.8
-    skipSystemPackageInstall: false
-    excludeBuiltinHostPreflights: true
-    hostPreflightIgnore: true
-    hostPreflightEnforceWarnings: true
-    hostPreflights:
-      apiVersion: troubleshoot.sh/v1beta2
-      kind: HostPreflight
-      spec:
-        collectors:
-          - cpu: {}
-          - http:
-       collectorName: Can Access A Website
-               get:
-           Url: https://myFavoriteWebsite.com
-        analyzers:
-          - cpu:
-              checkName: Number of CPU check
-              outcomes:
-                - warn:
-                    when: "count < 6"
-                    message: This server has less than 6 CPU cores
-                - fail:
-                    when: "count < 4"
-                    message: This server has less than 4 CPU cores
-                - pass:
-                    when: "count >= 6"
-                    message: This server has at least 6 CPU cores
-          - http:
-              checkName: Can Access A Website
-              collectorName: Can Access A Website
-              outcomes:
-                - warn:
-                    when: "error"
-                    message: Error connecting to https://myFavoriteWebsite.com
-                    - pass:
-                    when: "statuscode == 200"
-                    message: Connected to https://myFavoriteWebsite.com
+  apiVersion: "cluster.kurl.sh/v1beta1"
+  kind: "Installer"
+  metadata:
+    name: "latest"
+  spec:
+    kubernetes:
+      version: "1.23.x"
+    weave:
+      version: "2.6.x"
+    contour:
+      version: "1.21.x"
+    prometheus:
+      version: "0.57.x"
+    registry:
+      version: "2.7.x"
+    containerd:
+      version: "1.5.x"
+    kotsadm:
+        version: "latest"
+    ekco:
+      version: "latest"
+    minio:
+      version: "2022-06-11T19-55-32Z"
+    longhorn:
+      version: "1.2.x"
+    kurl:
+      airgap: true
+      proxyAddress: http://10.128.0.70:3128
+      additionalNoProxyAddresses:
+      - .corporate.internal
+      noProxy: false
+      licenseURL: https://somecompany.com/license-agreement.txt
+      nameserver: 8.8.8.8
+      skipSystemPackageInstall: false
+      excludeBuiltinHostPreflights: true
+      hostPreflightIgnore: true
+      hostPreflightEnforceWarnings: true
+      hostPreflights:
+        apiVersion: troubleshoot.sh/v1beta2
+        kind: HostPreflight
+        spec:
+          collectors:
+            - cpu: {}
+            - http:
+         collectorName: Can Access A Website
+                 get:
+             Url: https://myFavoriteWebsite.com
+          analyzers:
+            - cpu:
+                checkName: Number of CPU check
+                outcomes:
+                  - warn:
+                      when: "count < 6"
+                      message: This server has less than 6 CPU cores
+                  - fail:
+                      when: "count < 4"
+                      message: This server has less than 4 CPU cores
+                  - pass:
+                      when: "count >= 6"
+                      message: This server has at least 6 CPU cores
+            - http:
+                checkName: Can Access A Website
+                collectorName: Can Access A Website
+                outcomes:
+                  - warn:
+                      when: "error"
+                      message: Error connecting to https://myFavoriteWebsite.com
+                      - pass:
+                      when: "statuscode == 200"
+                      message: Connected to https://myFavoriteWebsite.com
       ```
 
-1. Promote and test your release in a development environment before sharing it with customers.
+1. Promote and test your installer in a development environment before sharing it with customers.
 
-## Defining Support Bundles
+## Define Support Bundles
 
 You define support bundles by creating a `support-bundle.yaml` manifest file. This file specifies the cluster data
 that is collected and redacted as part of the support bundle. The manifest file also defines how the collected data is analyzed.
