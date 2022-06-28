@@ -32,7 +32,7 @@ You then add the `preflight.yaml` manifest file to the application that you are 
 For more information about installing the `preflight` plugin,
 see [Getting Started](https://troubleshoot.sh/docs/) in the Troubleshoot documentation.
 
-For more information about creating preflight checks, see
+For more information about defining preflight checks, see
 [Preflight Checks](https://troubleshoot.sh/docs/preflight/introduction/) in the
 Troubleshoot documentation. There are also a number of basic examples for checking CPU, memory, and disk capacity under [Node Resources Analyzer](https://troubleshoot.sh/reference/analyzers/node-resources/).
 
@@ -194,7 +194,7 @@ You then add the `support-bundle.yaml` manifest file to the application that you
 For more information about installing `support-bundle` plugin,
 see [Getting Started](https://troubleshoot.sh/docs/) in the Troubleshoot documentation.
 
-For more information about creating support bundles, see
+For more information about defining support bundles, see
 [Support Bundle](https://troubleshoot.sh/docs/support-bundle/introduction/) in the
 Troubleshoot documentation.
 

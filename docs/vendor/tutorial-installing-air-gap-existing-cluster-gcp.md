@@ -467,7 +467,7 @@ To connect to the app manager:
 
 1. Open `localhost:${PORT}` in your browser to access the Replicated admin console. Proceed with the installation from the the admin console.
 
-  Vendors can optionally configure `strict` preflight checks that cause the application deployment to fail if specific requirements are not met. For more information about preflight checks, see [Creating Preflight Checks and Support Bundles](preflight-support-bundle-creating).
+  Vendors can optionally configure `strict` preflight checks that cause the application deployment to fail if specific requirements are not met. For more information about preflight checks, see [Defining Preflight Checks and Support Bundles](preflight-support-bundle-creating).
 
   Additionally, when installing with minimal role-based access control (RBAC), preflight checks can fail due to insufficient privileges.
 

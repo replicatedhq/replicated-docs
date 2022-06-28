@@ -149,7 +149,7 @@ To upload the bundle and license:
 
   After the bundle is uploaded, the preflight checks begin. After all of the checks pass, the application is automatically deployed.
 
-  Vendors can optionally configure `strict` preflight checks that cause the application deployment to fail if specific requirements are not met. For more information about preflight checks, see [Creating Preflight Checks and Support Bundles](preflight-support-bundle-creating).
+  Vendors can optionally configure `strict` preflight checks that cause the application deployment to fail if specific requirements are not met. For more information about preflight checks, see [Defining Preflight Checks and Support Bundles](preflight-support-bundle-creating).
 
   Additionally, when installing with minimal role-based access control (RBAC), the preflight checks can fail due to insufficient privileges.
 

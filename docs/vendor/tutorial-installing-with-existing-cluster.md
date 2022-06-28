@@ -178,7 +178,7 @@ To install the application:
 
 1. Click **Continue** and ignore the warnings. Preflight checks are designed to ensure this server has the minimum system and software requirements to run the application. By default, we included some preflight checks that are expected to fail so that you can see what failing checks might look like for a customer.
 
-    Vendors can optionally configure `strict` preflight checks that cause the application deployment to fail if specific requirements are not met. For more information about preflight checks, see [Creating Preflight Checks and Support Bundles](preflight-support-bundle-creating).
+    Vendors can optionally configure `strict` preflight checks that cause the application deployment to fail if specific requirements are not met. For more information about preflight checks, see [Defining Preflight Checks and Support Bundles](preflight-support-bundle-creating).
 
     Additionally, when installing with minimal role-based access control (RBAC), the preflight checks can fail due to insufficient privileges.
 
