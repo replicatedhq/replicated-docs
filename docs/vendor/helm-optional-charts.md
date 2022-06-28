@@ -74,10 +74,6 @@ stringData:
 Let's edit this to add a conditional statement, rendering either a connection string to the embedded postgres chart, or the user supplied instance, as needed.
 The logic for this can be thought of as follows:
 
-:::important
-This multiple line string must be a single line in your application, but it is displayed here on multiple lines for readability. Continue reading to see how this is combined into a single line.
-:::
-
 ```shell
 repl{{ if ConfigOptionEquals "postgres_type" "embedded_postgres" }}
   postgres://myapplication:repl{{ ConfigOption "embedded_postgres_password" }}@postgres:5432/mydatabase?sslmode=disable
@@ -85,6 +81,9 @@ repl{{ else }}
   repl{{ ConfigOption "external_postgres_uri" }}
 repl{{ end }}
 ```
+:::important
+The multiple line string above must be a single line in your application, but it is displayed here on multiple lines for readability. Continue reading to see how this is combined into a single line.
+:::
 
 But we need to write it all on a single line.
 For readability, we are using the `stringData` field of the Kubernetes Secret object, which allows us to not base64 encode the value.

@@ -558,10 +558,6 @@ psql: could not translate host name "postgres" to address: Name or service not k
 To map the user-supplied configuration, we'll start by expanding our secret we created before, adding fields for additional variables, using `{{repl if ... }}` blocks to switch between embedded/external contexts.
 To start, we'll add a field for hostname:
 
-:::important
-This DB_HOST multiple line string must be a single line in your application, but it is displayed here on multiple lines for readability.
-:::
-
 ```yaml
 apiVersion: v1
 kind: Secret
@@ -576,6 +572,10 @@ data:
       {{repl ConfigOption "external_postgres_host" | Base64Encode }}
     {{repl end}}
 ```
+
+:::important
+The DB_HOST multiple line string above must be a single line in your application, but it is displayed here on multiple lines for readability.
+:::
 
 Now that we have the value in our Secret, we can modify our deployment to consume it.
 Replace this text:
