@@ -24,7 +24,7 @@ You define preflight checks by creating a `preflight.yaml`
 manifest file. This file specifies the cluster data that is collected and redacted as part of the preflight check.
 The manifest file also defines how the collected data is analyzed.
 
-When an analyzer is marked as [`strict`](https://troubleshoot.sh/docs/analyze/#strict), any `fail` outcomes for that analyzer block the deployment of the release. This can be used to prevent users from deploying a release until vendor-specified requirements are met. When configuring `strict` preflight checks, vendors should consider the app manager [cluster privileges](../reference/custom-resource-application#requireminimalrbacprivileges).
+When an analyzer is marked as [`strict`](https://troubleshoot.sh/docs/analyze/#strict), any `fail` outcomes for that analyzer block the deployment of the release. This can be used to prevent users from deploying a release until vendor-specified requirements are met. When configuring strict preflight checks, vendors should consider the app manager [cluster privileges](../reference/custom-resource-application#requireminimalrbacprivileges).
 
 You then add the `preflight.yaml` manifest file to the application that you are packaging and distributing with Replicated.    
 
