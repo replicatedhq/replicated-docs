@@ -50,7 +50,7 @@ Default host preflight checks verify conditions such as operating system and dis
 
 Host preflight checks run automatically. Default checks can vary, depending on whether the installation is new, an upgrade, joining a node, or an air gap installation. Additionally, some checks only run when certain add-ons are enabled or configured a certain way in the installer. For a complete list of default host preflight checks, see [Default Host Preflights](https://kurl.sh/docs/install-with-kurl/host-preflights#default-host-preflights) in the kURL documentation.
 
-Host preflight checks can be customized. For more information, see [Customize Host Preflight Checks](#customize-host-prefligt-checks).
+Host preflight checks can be customized. For more information, see [Customize Host Preflight Checks](#customize-host-preflight-checks).
 
 
 ### Customize Host Preflight Checks
