@@ -4,6 +4,15 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.06.29-0
+
+Released on June 29, 2022
+
+### New Features {#new-features-v2022-06-29-0}
+
+- Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.9.0.
+- Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) versions 2.12.9 and 3.2.0. Only localpv volumes are supported.
+
 ## Release v2022.06.24-0
 
 Released on June 24, 2022
