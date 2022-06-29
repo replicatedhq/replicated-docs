@@ -59,7 +59,7 @@ You can customize host preflight checks to:
 
 - Bypass failures
 - Block an installation for warnings
-- Exclude preflights under certain conditions, such as special license entitlements
+- Exclude certain preflights under specific conditions, such as when a particular license entitlement is enabled
 - Skip the default host preflight checks and run only custom checks
 - Include unique messaging and links
 
