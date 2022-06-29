@@ -85,9 +85,7 @@ repl{{ end }}
 The multiple line string above must be a single line in your application, but it is displayed here on multiple lines for readability.
 :::
 
-However, we need to write it all on a single line.
-For readability, we are using the `stringData` field of the Kubernetes Secret object, which allows us to not base64 encode the value.
-Replicated has a Base64Encode function available that you can pipe a string through, if desired.
+The following example shows the same YAML file with the `stringData` field of the Kubernetes Secret object as a single line. Optionally, you can use the Replicated Base64Encode function to pipe a string through.
 
 ```yaml
 apiVersion: v1

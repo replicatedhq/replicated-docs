@@ -574,8 +574,22 @@ data:
 ```
 
 :::important
-The DB_HOST multiple line string above must be a single line in your application, but it is displayed here on multiple lines for readability.
+The `DB_HOST` multiple line string above must be a single line in your application, but it is displayed above on multiple lines for readability.
 :::
+
+The following example shows the same YAML file with the `DB_HOST` field as a single line.
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgres
+data:
+  DB_PASSWORD: '{{repl ConfigOption "embedded_postgres_password" | Base64Encode }}'
+  DB_HOST:
+    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" }}{{repl Base64Encode "postgres" }}{{repl else}}{{repl ConfigOption"external_postgres_host" | Base64Encode }}{{repl end}}
+```
+
 
 Now that we have the value in our Secret, we can modify our deployment to consume it.
 Replace this text:
