@@ -82,10 +82,10 @@ repl{{ else }}
 repl{{ end }}
 ```
 :::important
-The multiple line string above must be a single line in your application, but it is displayed here on multiple lines for readability. Continue reading to see how this is combined into a single line.
+The multiple line string above must be a single line in your application, but it is displayed here on multiple lines for readability.
 :::
 
-But we need to write it all on a single line.
+However, we need to write it all on a single line.
 For readability, we are using the `stringData` field of the Kubernetes Secret object, which allows us to not base64 encode the value.
 Replicated has a Base64Encode function available that you can pipe a string through, if desired.
 
