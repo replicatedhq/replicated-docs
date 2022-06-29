@@ -1,31 +1,30 @@
 # Defining Preflight Checks and Support Bundles
 
 This topic provides information about how to create preflight checks and support
-bundles and include them with your application.
+bundles to include with your application, and host preflight checks that you can include with the Kubernetes installer.
 
 ## About Preflight Checks and Support Bundles
 
-Preflight checks and support bundles are both available through the open source
-Replicated Troubleshoot project.
+Preflight checks and support bundles help to improve and troubleshoot customer deployments.
+
+* **Preflight checks**: Preflight checks allow you to define requirements and dependencies for the cluster
+on which a customer installs your application. Preflight checks provide clear
+feedback to your customer about any missing requirements or incompatibilities in
+the cluster before they install and deploy your application. This can reduce the number of support escalations during installation.
 
 * **Support bundles**: Support bundles allow you to collect and analyze troubleshooting data
 from your customers' clusters to help you diagnose problems with application
 deployments.
 
-* **Preflight checks**: Preflight checks allow you to define requirements and dependencies for the cluster
-on which a customer installs your application. Preflight checks provide clear
-feedback to your customer about any missing requirements or incompatibilities in
-the cluster before they install and deploy your application. This can reduce the number of support escaltions during installation.
+Preflight checks and support bundles are based on the open-source Troubleshoot project, which is maintained by Replicated.
 
-* **Strict preflight checks**: When an analyzer is marked as [`strict`](https://troubleshoot.sh/docs/analyze/#strict), any `fail` outcomes for that analyzer block the deployment of the release. This can be used to prevent users from deploying a release until vendor-specified requirements are met. When configuring `strict` preflight checks, vendors should consider the app manager [cluster privileges](../reference/custom-resource-application#requireminimalrbacprivileges).
-
-* **Host preflight checks**: Host preflight checks can be defined for Kubernetes installers to codify your infrastructure requirements and endure that everything needed to run Kubernetes successfully exists before Kubernetes is installed. You can also verify some of your application system requirements in advance of the Kubernetes installation. See [About Host Preflight Checks](#about-host-preflight-checks-for-kubernetes-installers).
-
-### Define Preflight Checks
+## Define Preflight Checks
 
 You define preflight checks by creating a `preflight.yaml`
 manifest file. This file specifies the cluster data that is collected and redacted as part of the preflight check.
 The manifest file also defines how the collected data is analyzed.
+
+When an analyzer is marked as [`strict`](https://troubleshoot.sh/docs/analyze/#strict), any `fail` outcomes for that analyzer block the deployment of the release. This can be used to prevent users from deploying a release until vendor-specified requirements are met. When configuring `strict` preflight checks, vendors should consider the app manager [cluster privileges](../reference/custom-resource-application#requireminimalrbacprivileges).
 
 You then add the `preflight.yaml` manifest file to the application that you are packaging and distributing with Replicated.    
 
@@ -37,29 +36,38 @@ For more information about defining preflight checks, see
 Troubleshoot documentation. There are also a number of basic examples for checking CPU, memory, and disk capacity under [Node Resources Analyzer](https://troubleshoot.sh/reference/analyzers/node-resources/).
 
 ## About Host Preflight Checks for Kubernetes Installers
-Kubernetes installers can include host preflight checks to verify that your infrastructure requirements are met before installing Kubernetes and to help ensure the ongoing health of the cluster. Host preflight checks can also verify that minimum requirements are met for kURL add-ons that are included in the installer.
+You can include host preflight checks with Kubernetes installers to verify that infrastructure requirements are met before installing Kubernetes for:
 
-You can codify some of your application requirements as part of the host preflight checks so that users get feedback before installing the application. For example, you can check that there are enough CPUs to run your application before Kubernetes is installed, which saves time and effort for your customer.
+- Kubernetes
+- kURL add-ons
+- Your application
 
-Default host preflight checks verify conditions such as operating system and disk usage. Default host preflight failures block the installation from continuing and exit with a non-zero return code. Customizations can include:
+This helps to ensure successful installation and the ongoing health of the cluster. You can codify some of your application requirements as part of the host preflight checks so that users get feedback even earlier in the installation process.
 
-- Bypassing failures
-- Blocking an installation for warnings
-- Excluding preflights under certain conditions, such as special license entitlements
-- Skipping the default host preflight checks and running only custom checks
-- Including unique messaging and links
+Default host preflight checks verify conditions such as operating system and disk usage. Default host preflight failures block the installation from continuing and exit with a non-zero return code. Users can then update their environment and re-run the host preflight checks.
 
-Host preflight checks can also vary, depending on whether the installation is new, a joining node, an air gap installation, and so on. For a complete list of default host preflight checks, see [Default Host Preflights](https://kurl.sh/docs/install-with-kurl/host-preflights#default-host-preflights) in the kURL documentation.
+Default host preflight checks run automatically and can vary, depending on whether the installation is new, an upgrade, a joining node, or an air gap installation. Additionally, some checks only run when certain add-ons are enabled or configured a certain way in the installer. For a complete list of default host preflight checks, see [Default Host Preflights](https://kurl.sh/docs/install-with-kurl/host-preflights#default-host-preflights) in the kURL documentation.
+
+Host preflight checks can be customized. For more information, see [Customize Host Preflight Checks](#customize-host-prefligt-checks).
+
 
 ### Customize Host Preflight Checks
 
-Default host preflight checks for Kubernetes installers can be disabled, added to, bypassed, or completely customized using advanced options. For more information about kURL advanced options, see [Advanced Options](https://kurl.sh/docs/install-with-kurl/advanced-options) in the kURL documentation.
+You can customize host preflight checks to:
+
+- Bypass failures
+- Block an installation for warnings
+- Exclude preflights under certain conditions, such as special license entitlements
+- Skip the default host preflight checks and run only custom checks
+- Include unique messaging and links
+
+For more information about kURL host preflight advanced options, see [Install With Kurl - Advanced Options](https://kurl.sh/docs/install-with-kurl/advanced-options) in the kURL documentation.
 
 To customize host preflight checks:
 
-1. Get the Kubernetes installer YAML (kind: Installer) from [kurl.sh](https://kurl.sh/).
+1. Get the Kubernetes installer YAML (kind: "Installer") from the landing page at [kurl.sh](https://kurl.sh/). To use Replicated app manager, you must include the KOTS add-on. The easiest way to do that is to select the KOTS add-on, and any other add-ons that you want to include, on the landing page to automatically add it to the installer YAML.
 
-1. Add `kurl` to the installer. The following example shows the `kurl` configuration for an air gap installation and the default host preflight checks.
+1. Add the `kurl` key to the installer. The following example shows a Kubernetes installer manifest with a `kurl` configuration for an air gap installation and the default host preflight keys set to the default values.
 
   ```
   apiVersion: "cluster.kurl.sh/v1beta1"
@@ -101,13 +109,30 @@ To customize host preflight checks:
       hostPreflightEnforceWarnings: false
   ```
 
-1. (Optional) Set `excludeBuiltinHostPreflights: true` to disable the default host preflights.
+1. (Optional) Set any of the following keys to customize host preflights:
 
-1. (Optional) Set `hostPreflightIgnore: true` to ignore host preflight failures and warnings.
+    <table>
+      <tr>
+        <th width="30%">Key: Value</th>
+        <th width="70%">Description</th>
+      </tr>
+      <tr>
+        <td>`excludeBuiltinHostPreflights: true`</td>
+        <td>Disables the default host preflights</td>
+      </tr>
+      <tr>
+        <td>`hostPreflightIgnore: true`</td>
+        <td>Ignores host preflight failures and warnings</td>
+      </tr>
+      <tr>
+        <td>`hostPreflightEnforceWarnings: true`</td>
+        <td>Blocks an installation by enforcing a warning</td>
+      </tr>
+    </table>
 
-1. (Optional) Set `hostPreflightEnforceWarnings: true` to block an installation by enforcing a warning.
-
-1. (Optional) Add a `hostPreflights` specification to the installer YAML file to define custom collectors and analyzers. The following example shows host preflight checks for CPUs for an application that requires more CPUs than the default, and a host preflight check to access a website that may be critical to a business.
+1. (Optional) Add a `hostPreflights` specification to the Installer YAML file to define custom collectors and analyzers. The following example shows host preflight checks and outcomes for:
+    - CPUs for an application that requires more CPUs than the default
+    - Accessing a website that is critical to the business
 
   ```
   apiVersion: "cluster.kurl.sh/v1beta1"
