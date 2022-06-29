@@ -15,7 +15,19 @@
 .iconTextWrapper { 
   display: flex;
   align-items: center;
+  border: 2px solid #6DD2D2;
+  padding: 8px;
+  border-radius: 8px;
 }
+.iconTextWrapper:hover { 
+  color: #ffffff; 
+  background-color: #6DD2D2;
+  fill:#ffffff;
+}
+.iconTextWrapper:hover .icon { 
+  fill:#ffffff;
+}
+
 .githubLinksWrapper { 
   display:flex;
   justify-content: space-between;

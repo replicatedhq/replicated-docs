@@ -19,6 +19,7 @@ export default function EditThisPage({ editUrl }) {
         target="_blank"
         rel="noreferrer noopener"
         className={ThemeClassNames.common.editThisPage}
+        style={{ textDecoration: "none" }}
       >
         <div className={styles.iconTextWrapper}>
           <PullRequestIcon className={styles.icon} />
@@ -26,7 +27,7 @@ export default function EditThisPage({ editUrl }) {
             id="theme.common.editThisPage"
             description="The link label to edit the current page"
           >
-            Create pull request
+            Propose Changes
           </Translate>
         </div>
       </a>
@@ -35,7 +36,7 @@ export default function EditThisPage({ editUrl }) {
         target="_blank"
         rel="noreferrer noopener"
         className={ThemeClassNames.common.editThisPage}
-        style={{ textAlign: "right" }}
+        style={{ textAlign: "right", textDecoration: "none" }}
       >
         <div className={styles.iconTextWrapper}>
           <ReportIcon className={styles.icon} />
@@ -43,7 +44,7 @@ export default function EditThisPage({ editUrl }) {
             id="theme.common.provideFeedback"
             description="The link label to provide feedback in github"
           >
-            Provide feedback in GitHub
+            Provide feedback
           </Translate>
         </div>
       </a>
