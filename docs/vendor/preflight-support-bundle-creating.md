@@ -197,14 +197,13 @@ To customize host preflight checks:
             - cpu:
                 checkName: Number of CPU check
                 outcomes:
-                  - warn:
-                      when: "count < 6"
-                      message: This server has less than 6 CPU cores
                   - fail:
                       when: "count < 4"
                       message: This server has less than 4 CPU cores
+                  - warn:
+                      when: "count < 6"
+                      message: This server has less than 6 CPU cores
                   - pass:
-                      when: "count >= 6"
                       message: This server has at least 6 CPU cores
             - http:
                 checkName: Can Access A Website
