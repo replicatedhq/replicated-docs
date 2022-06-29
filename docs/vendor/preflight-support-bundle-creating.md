@@ -124,7 +124,7 @@ To customize host preflight checks:
       </tr>
       <tr>
         <td>`excludeBuiltinHostPreflights: true`</td>
-        <td>Disables the default host preflights</td>
+        <td>Disables the default host preflights for Kubernetes and any included add-ons</td>
       </tr>
       <tr>
         <td>`hostPreflightIgnore: true`</td>
