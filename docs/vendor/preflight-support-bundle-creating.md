@@ -137,9 +137,12 @@ To customize host preflight checks:
 
 1. (Optional) Add a `hostPreflights` specification to the Installer YAML file to define custom collectors and analyzers.
 
-  The following example shows custom host preflight checks and outcomes for:
-    - CPUs for an application that requires more CPUs than the default
-    - Accessing a website that is critical to the business
+  The following example shows:
+    - Default host preflight checks are disabled
+    - Preflight failures and warnings will be enforced
+    - Installation will be blocked for warnings
+    - Customized checks for an application that requires more CPUs than the default
+    - Customized checks for accessing a website that is critical to the business
 
   ```
   apiVersion: "cluster.kurl.sh/v1beta1"
@@ -177,7 +180,7 @@ To customize host preflight checks:
       nameserver: 8.8.8.8
       skipSystemPackageInstall: false
       excludeBuiltinHostPreflights: true
-      hostPreflightIgnore: true
+      hostPreflightIgnore: false
       hostPreflightEnforceWarnings: true
       hostPreflights:
         apiVersion: troubleshoot.sh/v1beta2
