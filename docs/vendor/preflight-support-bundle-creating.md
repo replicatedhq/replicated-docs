@@ -212,7 +212,7 @@ To customize host preflight checks:
                   - warn:
                       when: "error"
                       message: Error connecting to https://myFavoriteWebsite.com
-                      - pass:
+                  - pass:
                       when: "statuscode == 200"
                       message: Connected to https://myFavoriteWebsite.com
       ```
