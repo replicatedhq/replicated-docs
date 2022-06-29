@@ -61,7 +61,6 @@ You can customize host preflight checks to:
 - Block an installation for warnings
 - Exclude certain preflights under specific conditions, such as when a particular license entitlement is enabled
 - Skip the default host preflight checks and run only custom checks
-- Include unique messaging and links
 
 For more information about kURL host preflight advanced options, see [Install With Kurl - Advanced Options](https://kurl.sh/docs/install-with-kurl/advanced-options) in the kURL documentation.
 
