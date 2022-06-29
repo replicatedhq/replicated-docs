@@ -42,7 +42,9 @@ You can include host preflight checks with Kubernetes installers to verify that 
 - kURL add-ons
 - Your application
 
-This helps to ensure successful installation and the ongoing health of the cluster. You can codify some of your application requirements as part of the host preflight checks so that users get feedback even earlier in the installation process.
+This helps to ensure successful installation and the ongoing health of the cluster.
+
+While host preflights are intended to ensure requirements are met for running the cluster, you can also use them to codify some of your application requirements so that users get feedback even earlier in the installation process, rather than waiting to run preflights after the cluster is already installed.
 
 Default host preflight checks verify conditions such as operating system and disk usage. Default host preflight failures block the installation from continuing and exit with a non-zero return code. Users can then update their environment and run the Kubernetes installer again to re-run the host preflight checks.
 
