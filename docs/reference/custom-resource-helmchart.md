@@ -46,6 +46,7 @@ spec:
 
   optionalValues:
     - when: "repl{{ ConfigOptionEquals `postgres_type` `external_postgres`}}"
+      recursiveMerge: false
       values:
         postgresql:
           postgresqlDatabase: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_database`}}repl{{ end}}"
@@ -70,15 +71,15 @@ spec:
 The `chart` key allows for a mapping between the data in this definition and the chart archive itself.
 More than one `kind: HelmChart` can reference a single chart archive, if different settings are needed.
 
-### `chart.name`
+### chart.name
 The name of the chart.
 This must match the `name` field from a `Chart.yaml` in a `.tgz` chart archive that's also included in the release.
 
-### `chart.chartVersion`
+### chart.chartVersion
 The version of the chart.
 This must match the `version` field from a `Chart.yaml` in a `.tgz` chart archive that's also included in the release.
 
-### `chart.releaseName`
+### chart.releaseName
 
 > Introduced in Replicated app manager 1.73.0
 
@@ -108,15 +109,16 @@ For more information, see [Defining Installation Order for Native Helm Charts](.
 
 ## values
 
-The `values` key allows for values to be changed in the chart. It also can create a mapping between the Replicated admin console configuration screen and the values. For more information about the configuration screen, see [Customizing the configuration screen](../vendor/admin-console-customize-config-screen).
+The `values` key allows for values to be changed in the chart. It also can create a mapping between the Replicated admin console configuration screen and the values. This makes it possible to use the configuration screen in the admin console to control the Helm `values.yaml` file.
 
-This makes it possible to use the configuration screen in the admin console to control the Helm `values.yaml` file.
+For more information about the configuration screen, see [About the Configuration Screen](../vendor/config-screen-about).
 
-The keys below `values` should map exactly to the keys in your `values.yaml`.
-Only include the keys that you wish to change. These are merged with the `values.yaml` in the chart archive.
+The keys below `values` must map exactly to the keys in your `values.yaml`.
+Only include keys below `values` that you want to change. These are merged with the `values.yaml` in the chart archive.
 
-To exclude a value that's set in the `values.yaml`, set it equal to the string `"null"` (with quotes), in this section.
-For more options, see [Helm pull request](https://github.com/helm/helm/pull/2648).
+To exclude a value that is set in the Helm chart `values.yaml`, set it equal to the string `"null"` (with quotes) in the `values` section of the HelmChart custom resource.
+
+For more options, see the [Allow deletion of a previous values file key](https://github.com/helm/helm/pull/2648) pull request in the Helm repository in GitHub.
 
 ## exclude
 
@@ -128,15 +130,46 @@ For more information about how the app manager processes Helm charts, see [Helm 
 
 ## optionalValues
 
-The `optionalValues` array is provided for advanced use cases to make value overrides completely optional.
-Not all charts treat `""` and missing as the same value.
-If it's required to only optionally have a value set, and an empty string does not provide the same functionality as "not set", then use the values here.
+The `optionalValues` array supports advanced use cases where value overwrites must be dependent on a given condition evaluating to true.
 
-For more information, see [HelmChart optionalValues](../vendor/helm-optional-value-keys).
+Not all Helm charts treat `""` and missing as the same value. If you need to have a value set that is always optional, and an empty string does not provide the same functionality as "not set", use the `optionalValues` key.
 
-### `optionalValues[].when`
+For more information about using `optionalValues`, see [Including Optional Value Keys](../vendor/helm-optional-value-keys).
 
-The `when` field in `optionalValues` provides a string-based method that is evaluated by template functions. The `when` field defers evaluation of the conditional to render time in the customer environment. For more information about template functions, see [About template function contexts](template-functions-about).
+### optionalValues[].when
+
+The `when` field in `optionalValues` provides a string-based method that is evaluated by template functions. The `when` field defers evaluation of the conditional to render time in the customer environment.
+
+For example, in the `samplechart` HelmChart custom resource above, the `when` field includes a conditional statement that evaluates to `true` if the user selects the `external_postgres` option on the admin console configuration screen:
+
+```yaml
+optionalValues:
+  - when: "repl{{ ConfigOptionEquals `postgres_type` `external_postgres`}}"
+```  
+
+For more information about the syntax for template functions, see [About Template Function Contexts](template-functions-about).
+
+### optionalValues[].recursiveMerge
+
+In app manager v1.38.0 and later, the `recursiveMerge` boolean defines how `values` and `optionalValues` are merged if the conditional statement in the `when` field evaluates to `true` and the dataset is recursive.
+
+The following table describes how `values` and `optionalValues` are merged based on the value of the `recursiveMerge` boolean:
+
+<table>
+  <tr>
+    <th width="20%">Value</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><code>false</code> (Default)</td>
+    <td>When <code>recursiveMerge: false</code>, <code>values</code> and <code>optionalValues</code> are <em>not</em> merged recursively.<br/><br/>Any keys in <code>values</code> that do not also exist in <code>optionalValues</code> are not included in the merged dataset. The value of a key in <code>optionalValues</code> always overwrites the value of a matching key in <code>values</code>.</td>
+  </tr>
+  <tr>
+    <td><code>true</code></td>    
+    <td>When <code>recursiveMerge: true</code>, <code>values</code> and <code>optionalValues</code> are merged recursively.<br/><br/>All mutually exclusive keys from <code>values</code> and <code>optionalValues</code> are included in the merged dataset. The value of a key in <code>optionalValues</code> always overwrites the value of a matching key in <code>values</code>.
+    </td>
+  </tr>
+</table>
 
 ## namespace
 
