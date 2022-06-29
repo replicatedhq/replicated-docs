@@ -124,7 +124,7 @@ To customize host preflight checks:
       </tr>
       <tr>
         <td>`excludeBuiltinHostPreflights: true`</td>
-        <td>Disables the default host preflights</td>
+        <td>Disables the default host preflights for Kubernetes and any included add-ons</td>
       </tr>
       <tr>
         <td>`hostPreflightIgnore: true`</td>
@@ -132,7 +132,7 @@ To customize host preflight checks:
       </tr>
       <tr>
         <td>`hostPreflightEnforceWarnings: true`</td>
-        <td>Blocks an installation by enforcing a warning</td>
+        <td>Blocks an installation if the results include a warning</td>
       </tr>
     </table>
 
