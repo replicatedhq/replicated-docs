@@ -65,7 +65,7 @@ For more information about kURL host preflight advanced options, see [Install Wi
 
 To customize host preflight checks:
 
-1. Get the Kubernetes installer YAML (kind: "Installer") from the landing page at [kurl.sh](https://kurl.sh/). To use Replicated app manager, you must include the KOTS add-on. The easiest way to include add-ons is to select them from the list on the landing page, which adds them automatically to the installer YAML.
+1. Get the Kubernetes installer YAML (kind: "Installer") and add-ons from the landing page at [kurl.sh](https://kurl.sh/). To use Replicated app manager, you must include the KOTS add-on.
 
 1. Add the `kurl` key to the installer.
 
