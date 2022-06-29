@@ -48,7 +48,7 @@ While host preflights are intended to ensure requirements are met for running th
 
 Default host preflight checks verify conditions such as operating system and disk usage. Default host preflight failures block the installation from continuing and exit with a non-zero return code. Users can then update their environment and run the Kubernetes installer again to re-run the host preflight checks.
 
-Host preflight checks run automatically. Default checks can vary, depending on whether the installation is new, an upgrade, a joining node, or an air gap installation. Additionally, some checks only run when certain add-ons are enabled or configured a certain way in the installer. For a complete list of default host preflight checks, see [Default Host Preflights](https://kurl.sh/docs/install-with-kurl/host-preflights#default-host-preflights) in the kURL documentation.
+Host preflight checks run automatically. Default checks can vary, depending on whether the installation is new, an upgrade, joining a node, or an air gap installation. Additionally, some checks only run when certain add-ons are enabled or configured a certain way in the installer. For a complete list of default host preflight checks, see [Default Host Preflights](https://kurl.sh/docs/install-with-kurl/host-preflights#default-host-preflights) in the kURL documentation.
 
 Host preflight checks can be customized. For more information, see [Customize Host Preflight Checks](#customize-host-prefligt-checks).
 
