@@ -23,6 +23,7 @@
   color: #ffffff; 
   background-color: #6DD2D2;
   fill:#ffffff;
+  cursor: pointer;
 }
 .iconTextWrapper:hover .icon { 
   fill:#ffffff;
