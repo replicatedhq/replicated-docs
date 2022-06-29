@@ -132,7 +132,7 @@ To customize host preflight checks:
       </tr>
       <tr>
         <td>`hostPreflightEnforceWarnings: true`</td>
-        <td>Blocks an installation by enforcing a warning</td>
+        <td>Blocks an installation if the results include a warning</td>
       </tr>
     </table>
 
