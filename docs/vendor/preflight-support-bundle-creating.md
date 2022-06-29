@@ -36,7 +36,7 @@ For more information about defining preflight checks, see
 Troubleshoot documentation. There are also a number of basic examples for checking CPU, memory, and disk capacity under [Node Resources Analyzer](https://troubleshoot.sh/reference/analyzers/node-resources/).
 
 ## About Host Preflight Checks for Kubernetes Installers
-You can include host preflight checks with Kubernetes installers to verify that infrastructure requirements are met before installing Kubernetes for:
+You can include host preflight checks with Kubernetes installers to verify that infrastructure requirements are met for:
 
 - Kubernetes
 - kURL add-ons
@@ -46,7 +46,7 @@ This helps to ensure successful installation and the ongoing health of the clust
 
 Default host preflight checks verify conditions such as operating system and disk usage. Default host preflight failures block the installation from continuing and exit with a non-zero return code. Users can then update their environment and re-run the host preflight checks.
 
-Default host preflight checks run automatically and can vary, depending on whether the installation is new, an upgrade, a joining node, or an air gap installation. Additionally, some checks only run when certain add-ons are enabled or configured a certain way in the installer. For a complete list of default host preflight checks, see [Default Host Preflights](https://kurl.sh/docs/install-with-kurl/host-preflights#default-host-preflights) in the kURL documentation.
+Host preflight checks run automatically. Default checks can vary, depending on whether the installation is new, an upgrade, a joining node, or an air gap installation. Additionally, some checks only run when certain add-ons are enabled or configured a certain way in the installer. For a complete list of default host preflight checks, see [Default Host Preflights](https://kurl.sh/docs/install-with-kurl/host-preflights#default-host-preflights) in the kURL documentation.
 
 Host preflight checks can be customized. For more information, see [Customize Host Preflight Checks](#customize-host-prefligt-checks).
 
@@ -65,9 +65,14 @@ For more information about kURL host preflight advanced options, see [Install Wi
 
 To customize host preflight checks:
 
-1. Get the Kubernetes installer YAML (kind: "Installer") from the landing page at [kurl.sh](https://kurl.sh/). To use Replicated app manager, you must include the KOTS add-on. The easiest way to do that is to select the KOTS add-on, and any other add-ons that you want to include, on the landing page to automatically add it to the installer YAML.
+1. Get the Kubernetes installer YAML (kind: "Installer") from the landing page at [kurl.sh](https://kurl.sh/). To use Replicated app manager, you must include the KOTS add-on. The easiest way to include add-ons is to select them from the list on the landing page, which adds them automatically to the installer YAML.
 
-1. Add the `kurl` key to the installer. The following example shows a Kubernetes installer manifest with a `kurl` configuration for an air gap installation and the default host preflight keys set to the default values.
+1. Add the `kurl` key to the installer.
+
+  The following example shows a Kubernetes installer manifest with a `kurl` configuration for:
+
+    - An air gap installation
+    - Default host preflight keys set to the default values
 
   ```
   apiVersion: "cluster.kurl.sh/v1beta1"
@@ -130,7 +135,9 @@ To customize host preflight checks:
       </tr>
     </table>
 
-1. (Optional) Add a `hostPreflights` specification to the Installer YAML file to define custom collectors and analyzers. The following example shows host preflight checks and outcomes for:
+1. (Optional) Add a `hostPreflights` specification to the Installer YAML file to define custom collectors and analyzers.
+
+  The following example shows custom host preflight checks and outcomes for:
     - CPUs for an application that requires more CPUs than the default
     - Accessing a website that is critical to the business
 
