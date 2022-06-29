@@ -571,7 +571,7 @@ data:
     {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" }}{{repl Base64Encode "postgres" }}{{repl else}}{{repl ConfigOption"external_postgres_host" | Base64Encode }}{{repl end}}
 ```
 
-The following example shows the same YAML file with the `DB_HOST` field as multiple lines for better readability. However, it must be a single line in your application as shown above.
+The following example shows the same YAML file with the `DB_HOST` field as multiple lines for better readability. However, it must be a single line in your application, as shown above.
 
 ```yaml
 apiVersion: v1
