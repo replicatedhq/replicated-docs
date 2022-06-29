@@ -21,4 +21,4 @@ The Replicated product documentation is divided into the following main sections
  of applications delivered with Replicated. The topics in this section describe
  how enterprise users can install, update, manage, and monitor the application.
 
- To get started as an enterprise user, see [Overview of installing an application with app manager](enterprise/installing-overview).
+ To get started as an enterprise user, see [Overview of Installing an Application with App Manager](enterprise/installing-overview).

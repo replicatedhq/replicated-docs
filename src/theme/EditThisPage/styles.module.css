@@ -1,0 +1,41 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+.icon { 
+  width: 18px;
+  height: 18px;
+  margin-right: 7px;
+  fill:#6DD2D2
+}
+
+.iconTextWrapper { 
+  display: flex;
+  align-items: center;
+  border: 2px solid #6DD2D2;
+  padding: 8px;
+  border-radius: 8px;
+}
+.iconTextWrapper:hover { 
+  color: #ffffff; 
+  background-color: #6DD2D2;
+  fill:#ffffff;
+  cursor: pointer;
+}
+.iconTextWrapper:hover .icon { 
+  fill:#ffffff;
+}
+
+.githubLinksWrapper { 
+  display:flex;
+  gap: 10px;
+}
+
+@media (max-width: 500px) {
+  .githubLinksWrapper {
+    flex-direction: column;
+  }
+}

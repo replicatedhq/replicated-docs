@@ -9,7 +9,7 @@ The HelmChart custom resource manifest file references a required `.tgz` export 
 By default, the HelmChart custom resource uses the Replicated Helm installation, which uses the app manager to render and deploy Helm charts. For new installations, you can set `useHelmInstall: true` in the manifest to use the native Helm installation.
 
 **Deploying multiple instance of the same chart**:
-You must add an additional HelmChart custom resource for each instance of the chart that is to be deployed as part of the application. However, only one `.tgz` of the chart needs to be included in the release.
+You must add an additional HelmChart custom resource with a unique [release name](/reference/custom-resource-helmchart#chartreleasename) for each instance of the chart that is to be deployed as part of the application. However, only one `.tgz` of the chart needs to be included in the release.
 
 The following is an example manifest file for the HelmChart custom resource:
 
@@ -23,6 +23,7 @@ spec:
   chart:
     name: samplechart
     chartVersion: 3.1.7
+    releaseName: samplechart-release-1
 
   exclude: "repl{{ ConfigOptionEquals `include_chart` `include_chart_no`}}"
 
@@ -76,6 +77,16 @@ This must match the `name` field from a `Chart.yaml` in a `.tgz` chart archive t
 ### `chart.chartVersion`
 The version of the chart.
 This must match the `version` field from a `Chart.yaml` in a `.tgz` chart archive that's also included in the release.
+
+### `chart.releaseName`
+
+> Introduced in Replicated app manager 1.73.0
+
+Specifies the release name to be used when installing this instance of the Helm chart.
+Defaults to the chart name.
+The release name must be unique across all charts deployed in the namespace.
+Specifying a unique release name allows you to deploy multiple instances of the same Helm chart.
+Must be a valid Helm release name that matches regex `^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$` and is no longer than 53 characters.
 
 ## helmVersion
 

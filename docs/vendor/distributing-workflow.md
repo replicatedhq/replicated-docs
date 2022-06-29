@@ -21,10 +21,15 @@ Complete the following items before you perform this task:
   * [Installing without an Existing Cluster](tutorial-installing-without-existing-cluster).
 - (Recommended) Send a questionnaire to your customers to gather information about their environments. See [Customer Application Deployment Questionnaire](planning-questionnaire).
 
-## Packaging and Distributing Your Application
+## Creating and Testing Your Initial Release
 
-Complete the following procedures to package and distribute your application to your customers
-with Replicated:
+The following diagram is a visual representation of the steps that follow for creating and testing your first release. You will iterate many times before distributing your application to customers.
+
+![Initial Release Workflow](/images/packaging-first-iteration.png)
+
+[View a larger version of this image](../../static/images/packaging-first-iteration.png)
+
+Complete the following procedures to import your files, create, and test your first release:
 
 1. Push your images to the Replicated private registry if you plan to host your images on that registry. See [Push Images to the Replicated Private Registry](packaging-private-images#push-images-to-the-replicated-private-registry) in _Connecting to an Image Registry_.
 
@@ -57,11 +62,17 @@ with Replicated:
   Skip this step if your images are open-source or public, or if you are using Kubernetes Operators.
   :::
 
-1. If you are providing your users with a cluster hosted on a VM, you must configure and test a Kubernetes installer. See [Configure the Kubernetes Installer](packaging-embedded-kubernetes).
+1. If you are providing your users with a cluster hosted on a VM, you must configure and test a Kubernetes installer. See [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
 
 1. Create a license file in the vendor portal that contains entitlement information for your customer. You also need a license file to test your application in the admin console. See [Creating a Customer](releases-creating-customer).
 
 1. Promote the release and test it by installing the release in a development environment with the license file that you created. You can use the environment that you created during one of the recommended tutorials. For information about promoting a release, see [Promoting Releases](releases-promoting). For information about installation, see [Overview of Installing an Application](../enterprise/installing-overview).
+
+Next, iterate on your release.
+
+## Iterating Your Releases
+
+To iterate on the release of your production application:
 
 1. (Recommended) Create a basic Configuration screen in the Replicated admin console to collect required or optional values from your users that are used to access the application:
       1. Define custom fields. See <a href="admin-console-customize-config-screen">Creating and Editing Configuration Fields</a>.
@@ -127,6 +138,10 @@ with Replicated:
   Continue to iterate by updating the release and application, and then testing it in the admin console until you are ready to share the application with your customers.
   :::
 
-1. When you are ready to distribute the application to your customers, promote the release to the desired channel in the vendor portal. You can use the default channels or edit them, or create a custom channel. See [Creating and Editing Channels](releases-creating-channels).
+## Distributing Your Application
 
-1. Share with each customer the license file that you created and the installation command available in the vendor portal. See [Sharing the License File and Installation Command](releases-sharing-license-install-script).
+To distribute your production application:
+
+1. Promote the release to the desired channel in the vendor portal. You can use the default channels or edit them, or create a custom channel. See [Creating and Editing Channels](releases-creating-channels).
+
+1. Share with each customer the license file that you created and the installation command available in the vendor portal. See [Sharing the License Files and Application Releases](releases-sharing-license-install-script).

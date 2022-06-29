@@ -54,7 +54,6 @@ const sidebars = {
             label: 'Creating and Managing Releases',
             items: [
               'vendor/repository-workflow-and-tagging-releases',
-              'vendor/releases-understanding',
               'vendor/releases-creating-releases',
               {
                 type: 'category',
@@ -213,20 +212,13 @@ const sidebars = {
               type: 'category',
               label: 'Installing on an Existing Cluster',
               items: [
-                'enterprise/installing-existing-cluster-requirements',
                 'enterprise/installing-existing-cluster-online',
                 'enterprise/installing-existing-cluster-airgapped',
                 'enterprise/installing-existing-cluster-automation',
               ],
             },
-            {
-              type: 'category',
-              label: 'Installing Without an Existing Cluster',
-              items: [
-                'enterprise/installing-embedded-cluster-requirements',
-                'enterprise/installing-embedded-cluster',
-              ],
-            },
+            'enterprise/installing-embedded-cluster',
+            'enterprise/delete-admin-console',
           ],
         },
         {
@@ -292,6 +284,7 @@ const sidebars = {
             'enterprise/troubleshooting-an-app',
           ],
         },
+
       ],
     },
     {

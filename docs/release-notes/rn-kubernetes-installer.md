@@ -4,6 +4,67 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.06.29-0
+
+Released on June 29, 2022
+
+### New Features {#new-features-v2022-06-29-0}
+
+- Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.9.0.
+- Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) versions 2.12.9 and 3.2.0. Only localpv volumes are supported.
+
+## Release v2022.06.24-0
+
+Released on June 24, 2022
+
+### New Features {#new-features-v2022-06-24-0}
+
+- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.73.0.
+- Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.57.0-36.2.0 to address the following critical and high severity CVEs: CVE-2022-28391, CVE-2022-0778, CVE-2022-28391, CVE-2022-1271, CVE-2018-25032.
+
+## Release v2022.06.22-0
+
+Released on June 22, 2022
+
+### Improvements {#improvements-v2022-06-22-0}
+
+- Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.21.1.
+- Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.57.0-36.0.3.
+- Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.7.
+
+### Bug Fixes {#bug-fixes-v2022-06-22-0}
+
+- Fixes CVEs for [Weave add-on](https://kurl.sh/docs/add-ons/weave) version 2.8.1. CVEs addressed: CVE-2021-36159, CVE-2021-25216, CVE-2021-30139, CVE-2020-8620, CVE-2020-8621, CVE-2020-8623, CVE-2020-8625, CVE-2021-25215, CVE-2021-28831, CVE-2020-8169, CVE-2020-8177, CVE-2020-8231, CVE-2020-8285, CVE-2020-8286, CVE-2020-28196, CVE-2021-23840, CVE-2021-3450, CVE-2021-3517, CVE-2021-3518.
+- Updates the local-volume-provider image to v0.3.5 for the [Velero add-on](https://kurl.sh/docs/add-ons/velero) to address CVE-2022-1664 with critical severity.
+
+## Release v2022.06.17-0
+
+Released on June 17, 2022
+
+### Improvements {#improvements-v2022-06-17-0}
+
+- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.72.1.
+- Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version 2022-06-11T19-55-32Z to address the following critical and high severity CVEs: CVE-2020-14040, CVE-2021-42836, CVE-2020-36067, CVE-2020-36066, CVE-2020-35380, CVE-2020-26521, CVE-2020-26892, CVE-2021-3121, CVE-2020-26160, CVE-2021-28831, CVE-2020-11080, CVE-2021-3450, CVE-2021-23840, CVE-2020-1967, CVE-2020-8286, CVE-2020-8285, CVE-2020-8231, CVE-2020-8177, CVE-2020-8169, CVE-2021-30139, CVE-2021-36159.
+- Adds details to the documentation for the [AWS add-on](https://kurl.sh/docs/add-ons/aws) to include details on applying the appropriate [AWS IAM](https://aws.amazon.com/iam/) roles required for the add-on to function properly and additional specific requirements necessary for integrating with [AWS ELB](https://aws.amazon.com/elasticloadbalancing/) service.
+
+### Bug Fixes {#bug-fixes-v2022-06-17-0}
+
+- Fixes a bug where the [AWS add-on](https://kurl.sh/docs/add-ons/aws) would fail if `latest` or `0.1.x` was used.
+- Fixes a bug when `excludeStorageClass` is set to `true` would cause the [AWS add-on](https://kurl.sh/docs/add-ons/aws) to fail. 
+
+## Release v2022.06.14-0
+
+Released on June 14, 2022
+
+### New Features {#new-features-v2022-06-14-0}
+
+- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.72.0.
+- Adds [Local Path Provisioner add-on](https://kurl.sh/docs/add-ons/local-path-provisioner) (Beta) as an additional storage provisioner.
+
+### Bug Fixes {#bug-fixes-v2022-06-14-0}
+
+- Fixes an issue where the `HTTPS_PROXY` variable was not set properly for the [containerd add-on](https://kurl.sh/docs/add-ons/containerd) service.
+
 ## Release v2022.06.01-0
 
 Released on June 1, 2022
@@ -40,7 +101,7 @@ Released on May 16, 2022
 
 ### Improvements
 
-- Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.70.0.
+- Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.21.0.
 - Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.56.2-35.2.0.
 - Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.8.1.
 

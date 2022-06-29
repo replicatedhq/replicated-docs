@@ -39,25 +39,25 @@ Replicated will provide support for products per our terms and services until th
     <td>N/A</td>
   </tr>
   <tr>
-    <td><a href="https://help.replicated.com/docs/native/getting-started/overview/">Replicated (Native SDK)</a></td>
+    <td><a href="https://help.replicated.com/docs/native/getting-started/overview/">Replicated Classic (Native SDK)</a></td>
     <td>LA</td>
     <td>N/A</td>
     <td>N/A</td>
   </tr>
   <tr>
-    <td><a href="https://help.replicated.com/docs/kubernetes/getting-started/overview/">Replicated (AKA SDK)</a></td>
+    <td><a href="https://help.replicated.com/docs/kubernetes/getting-started/overview/">Replicated Classic (AKA SDK)</a></td>
     <td>EOA</td>
     <td>2022-02-28</td>
     <td>2022-12-31</td>
   </tr>
   <tr>
-    <td><a href="https://help.replicated.com/docs/ship/getting-started/overview/">Replicated (Ship SDK)</a></td>
+    <td><a href="https://help.replicated.com/docs/ship/getting-started/overview/">Replicated Classic (Ship SDK)</a></td>
     <td>EOA</td>
     <td>2022-02-28</td>
     <td>2022-12-31</td>
   </tr>
   <tr>
-    <td><a href="https://help.replicated.com/docs/swarm/getting-started/overview/">Replicated (Swarm SDK)</a></td>
+    <td><a href="https://help.replicated.com/docs/swarm/getting-started/overview/">Replicated Classic (Swarm SDK)</a></td>
     <td>EOA</td>
     <td>2022-02-28</td>
     <td>2022-12-31</td>

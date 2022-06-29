@@ -4,7 +4,7 @@ When you install for the first time with the Kubernetes installer, the Replicate
 
 The admin console password is salted and one-way hashed using bcrypt. The irreversible hash is stored in a secret named `kotsadm-password`. The password is not retrievable if lost. If you lose your admin console password, reset your password to access the admin console.
 
-For more information about bcrypt, see [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) on Wikipedia. 
+For more information about bcrypt, see [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) on Wikipedia.
 
 :::note
 Users with Identity Provider (IDP) access cannot change their password using this procedure. If an attempt is made, IDP users receive a message in the user interface to contact the identity service provider to change their password. For more information about resetting an IDP user password, see [Resetting Authentication](auth-identity-provider#resetting-authentication) in _Using an Identity Provider for User Access (Beta)_.
@@ -13,7 +13,7 @@ Users with Identity Provider (IDP) access cannot change their password using thi
 To change your admin console password:
 
 1. Log in to the admin console using your current password.
-1. Click **Change Password** in the lower right corner of any page.
+1. In the drop-down in the top right of any page, click **Change password**.
 1. In the Change Admin Console Password dialog, edit the fields.
 
     - The new password must be at least 6 characters and must not be the same as your current password.
