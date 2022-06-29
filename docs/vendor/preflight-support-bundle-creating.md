@@ -5,7 +5,7 @@ bundles to include with your application, and host preflight checks that you can
 
 ## About Preflight Checks and Support Bundles
 
-Preflight checks and support bundles help to improve and troubleshoot customer deployments.
+Preflight checks and support bundles collect and analyze data in the environment to ensure requirements are met and to troubleshoot issues.
 
 * **Preflight checks**: Preflight checks allow you to define requirements and dependencies for the cluster
 on which a customer installs your application. Preflight checks provide clear
