@@ -190,9 +190,9 @@ To customize host preflight checks:
           collectors:
             - cpu: {}
             - http:
-         collectorName: Can Access A Website
-                 get:
-             Url: https://myFavoriteWebsite.com
+                collectorName: Can Access A Website
+                get:
+                 Url: https://myFavoriteWebsite.com
           analyzers:
             - cpu:
                 checkName: Number of CPU check
