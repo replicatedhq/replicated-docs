@@ -50,30 +50,29 @@ Default host preflight checks verify conditions such as operating system and dis
 
 Host preflight checks run automatically. Default checks can vary, depending on whether the installation is new, an upgrade, joining a node, or an air gap installation. Additionally, some checks only run when certain add-ons are enabled or configured a certain way in the installer. For a complete list of default host preflight checks, see [Default Host Preflights](https://kurl.sh/docs/install-with-kurl/host-preflights#default-host-preflights) in the kURL documentation.
 
-Host preflight checks can be customized. For more information, see [Customize Host Preflight Checks](#customize-host-preflight-checks).
+Host preflight checks can be partially or completely customized. For more information about customizing kURL host preflights, see [Customizing Host Preflights](https://kurl.sh/docs/create-installer/host-preflights/) in the kURL documentation.
 
 
-### Customize Host Preflight Checks
+## Include Host Preflight Checks
 
-You can customize host preflight checks to:
+Include the default host preflights in your Kubernetes installer YAML file to retain Replicated best practices. Then, you can customize parts of the specification if needed. Customizations include the ability to:
 
 - Bypass failures
 - Block an installation for warnings
 - Exclude certain preflights under specific conditions, such as when a particular license entitlement is enabled
 - Skip the default host preflight checks and run only custom checks
 
-For more information about customizing kURL host preflights, see [Customizing Host Preflights](https://kurl.sh/docs/create-installer/host-preflights/) in the kURL documentation.
-
-To customize host preflight checks:
+To include host preflight checks:
 
 1. Get the Kubernetes installer YAML (kind: "Installer") and add-ons from the landing page at [kurl.sh](https://kurl.sh/). To use Replicated app manager, you must include the KOTS add-on.
 
+1. Add the default kURL host preflights YAML to the installer YAML. See [host-preflights.yaml](https://github.com/replicatedhq/kURL/blob/main/pkg/preflight/assets/host-preflights.yaml) in the kURL repository.
+
+1. Add the default `host-preflights.yaml` specification for each kURL add-on to the installer YAML. You must add the appropriate version for each add-on. For the links to the YAML files for each add-on, see [Finding the Add=on Host Preflight Checks](https://github.com/replicatedhq/kURL/blob/main/pkg/preflight/assets/host-preflights.yaml) in the kURL documentation.
+
 1. Add the `kurl` key to the installer.
 
-  The following example shows a Kubernetes installer manifest with a `kurl` configuration for:
-
-    - An air gap installation
-    - Default host preflight keys set to the default values
+  The following example shows a Kubernetes installer manifest with a `kurl` configuration for default host preflight keys set to the default values for the kURL add-on>
 
   ```
   apiVersion: "cluster.kurl.sh/v1beta1"
@@ -102,13 +101,6 @@ To customize host preflight checks:
     longhorn:
       version: "1.2.x"
     kurl:
-      airgap: true
-      proxyAddress: http://192.0.2.21:3128
-      additionalNoProxyAddresses:
-      - .corporate.internal
-      noProxy: false
-      licenseURL: https://somecompany.com/license-agreement.txt
-      nameserver: 8.8.8.8
       skipSystemPackageInstall: false
       excludeBuiltinHostPreflights: false
       hostPreflightIgnore: false
