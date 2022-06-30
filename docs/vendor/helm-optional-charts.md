@@ -71,22 +71,9 @@ stringData:
   uri: postgres://username:password@postgresql:5432/database?sslmode=disable
 ```
 
-Let's edit this to add a conditional statement, rendering either a connection string to the embedded postgres chart, or the user supplied instance, as needed.
-The logic for this can be thought of as:
+You can edit this to add a conditional statement, rendering either a connection string to the embedded postgres chart, or the user supplied instance, as needed.
 
-```shell
-## NOTE: This must be all on one line in your application, but it's displayed here on multiple lines for readability.
-## Continue reading to see how this is combined into a single line
-repl{{ if ConfigOptionEquals "postgres_type" "embedded_postgres" }}
-  postgres://myapplication:repl{{ ConfigOption "embedded_postgres_password" }}@postgres:5432/mydatabase?sslmode=disable
-repl{{ else }}
-  repl{{ ConfigOption "external_postgres_uri" }}
-repl{{ end }}
-```
-
-But we need to write it all on a single line.
-For readability, we are using the `stringData` field of the Kubernetes Secret object, which allows us to not base64 encode the value.
-Replicated has a Base64Encode function available that you can pipe a string through, if desired.
+You must use a single line for the conditional statement, shown in the following example with the `stringData` field of the Kubernetes Secret object. Optionally, you can use the Replicated Base64Encode function to pipe a string through.
 
 ```yaml
 apiVersion: v1
