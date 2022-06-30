@@ -71,7 +71,7 @@ stringData:
   uri: postgres://username:password@postgresql:5432/database?sslmode=disable
 ```
 
-Let's edit this to add a conditional statement, rendering either a connection string to the embedded postgres chart, or the user supplied instance, as needed.
+You can edit this to add a conditional statement, rendering either a connection string to the embedded postgres chart, or the user supplied instance, as needed.
 
 You must use a single line for the conditional statement, shown in the following example with the `stringData` field of the Kubernetes Secret object. Optionally, you can use the Replicated Base64Encode function to pipe a string through.
 
