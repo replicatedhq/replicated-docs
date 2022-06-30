@@ -72,20 +72,8 @@ stringData:
 ```
 
 Let's edit this to add a conditional statement, rendering either a connection string to the embedded postgres chart, or the user supplied instance, as needed.
-The logic for this can be thought of as follows:
 
-```shell
-repl{{ if ConfigOptionEquals "postgres_type" "embedded_postgres" }}
-  postgres://myapplication:repl{{ ConfigOption "embedded_postgres_password" }}@postgres:5432/mydatabase?sslmode=disable
-repl{{ else }}
-  repl{{ ConfigOption "external_postgres_uri" }}
-repl{{ end }}
-```
-:::important
-The multiple line string above must be a single line in your application, but it is displayed here on multiple lines for readability.
-:::
-
-The following example shows the same YAML file with the `stringData` field of the Kubernetes Secret object as a single line. Optionally, you can use the Replicated Base64Encode function to pipe a string through.
+You must use a single line for the conditional statement, shown in the following example with the `stringData` field of the Kubernetes Secret object. Optionally, you can use the Replicated Base64Encode function to pipe a string through.
 
 ```yaml
 apiVersion: v1
