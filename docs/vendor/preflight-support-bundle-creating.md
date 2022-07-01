@@ -93,7 +93,7 @@ To customize host preflight checks:
       </tr>
     </table>
 
-1. (Optional) Add a `hostPreflights` specification to the Installer YAML file to define custom collectors and analyzers. The following example for the customized kURL specification shows:
+1. (Optional) Add a host preflight specification (`kind: HostPreflight`) to the Installer YAML file to define custom collectors and analyzers. The following example for the customized kURL specification shows:
 
     - Default host preflight checks are disabled
     - Preflight failures and warnings will block the installation
