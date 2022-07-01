@@ -66,7 +66,7 @@ To include host preflight checks:
 
 1. Get the Kubernetes installer YAML (kind: "Installer") and add-ons from the landing page at [kurl.sh](https://kurl.sh/). To use Replicated app manager, you must include the KOTS add-on.
 
-1. Add the default `host-preflights.yaml` specification for each add-on to the installer YAML. You must add the appropriate version for each add-on. For the links to the YAML files for each add-on, see [Finding the Add-on Host Preflight Checks](https://github.com/replicatedhq/kURL/blob/main/pkg/preflight/assets/host-preflights.yaml) in the kURL documentation.
+1. Add the default `host-preflights.yaml` specification for each add-on to the installer YAML. You must add the appropriate version for each add-on. For the links to the add=on YAML files, see [Finding the Add-on Host Preflight Checks](https://github.com/replicatedhq/kURL/blob/main/pkg/preflight/assets/host-preflights.yaml) in the kURL documentation.
 
 1. Add the default kURL host preflights YAML to the installer YAML. See [host-preflights.yaml](https://github.com/replicatedhq/kURL/blob/main/pkg/preflight/assets/host-preflights.yaml) in the kURL repository.
 
