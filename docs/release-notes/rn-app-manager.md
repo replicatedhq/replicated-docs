@@ -4,6 +4,21 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.74.0
+
+Released on July 1, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### New Features {#new-features-1-74-0}
+* Adds the ability for vendors to include a [preflight check](/vendor/packaging-embedded-kubernetes#include-a-supporting-preflight-check) that will compare the Kubernetes installer for a particular application version against the installer that is currently deployed.
+
+### Bug Fixes {#bug-fixes-1-74-0}
+* Fixes an issue where valid application releases would not deploy and give errors if the previously deployed release resulted in a kustomize error.
+* Fixes an issue where kustomize would fail if a Helm chart and one of its sub-charts had the same name.
+* Fixes an issue that was causing Velero pods to be stuck in a Pending state when using the Internal Storage snapshot setting in kURL clusters.
+* Fixes an issue where the Admin Console would crash if a Helm chart was included in a release with optional values and no values provided.
+
 ## 1.73.0
 
 Released on June 24, 2022
