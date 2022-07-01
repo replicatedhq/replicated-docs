@@ -151,9 +151,11 @@ For more information about the syntax for template functions, see [About Templat
 
 ### optionalValues[].recursiveMerge
 
-In app manager v1.38.0 and later, the `recursiveMerge` boolean defines how `values` and `optionalValues` are merged if the conditional statement in the `when` field evaluates to `true` and the dataset is recursive.
+In the app manager v1.38.0 and later, the `recursiveMerge` boolean defines how `values` and `optionalValues` are merged if the conditional statement in the `when` field of `optionalValues` evaluates to `true`.
 
-The following table describes how `values` and `optionalValues` are merged based on the value of the `recursiveMerge` boolean:
+The admin console then compares this merged dataset to the Helm chart `values.yaml` file.
+
+The following table describes how `values` and `optionalValues` are merged based on the value of the `recursiveMerge` boolean if the conditional statement in the `when` field of `optionalValues` evaluates to `true`:
 
 <table>
   <tr>
@@ -162,14 +164,24 @@ The following table describes how `values` and `optionalValues` are merged based
   </tr>
   <tr>
     <td><code>false</code> (Default)</td>
-    <td>When <code>recursiveMerge: false</code>, <code>values</code> and <code>optionalValues</code> are <em>not</em> merged recursively.<br/><br/>Any keys in <code>values</code> that do not also exist in <code>optionalValues</code> are not included in the merged dataset. The value of a key in <code>optionalValues</code> always overwrites the value of a matching key in <code>values</code>.</td>
+    <td><code>values</code> and <code>optionalValues</code> are <em>not</em> merged recursively.
+    <br/><br/>
+    The merged dataset does not use any key value pairs from <code>values</code>. If a key exists in both <code>values</code> and in the Helm chart <code>values.yaml</code> file, but does not exist in <code>optionalValues</code>, the admin console uses the value of the key from the <code>values.yaml</code> file  when deploying the application.
+    <br/><br/>
+    If a key exists in <code>values</code>, but does not exist in <code>optionalValues</code> or in the Helm chart <code>values.yaml</code> file, then the admin console does not use the key when deploying the application.
+    <br/><br/>
+    The value of a key in <code>optionalValues</code> overwrites the value of a matching key in <code>values</code> or in the <code>values.yaml</code> file.
+    </td>
   </tr>
   <tr>
     <td><code>true</code></td>    
-    <td>When <code>recursiveMerge: true</code>, <code>values</code> and <code>optionalValues</code> are merged recursively.<br/><br/>All mutually exclusive keys from <code>values</code> and <code>optionalValues</code> are included in the merged dataset. The value of a key in <code>optionalValues</code> always overwrites the value of a matching key in <code>values</code>.
+    <td><code>values</code> and <code>optionalValues</code> are merged recursively.<br/><br/>All mutually exclusive keys from <code>values</code> and <code>optionalValues</code> are included in the merged dataset. The value of a key in <code>optionalValues</code> overwrites the value of a matching key in <code>values</code> or in the <code>values.yaml</code> file.
+    <br/><br/>
+    If a key exists in both <code>values</code> and in the Helm chart <code>values.yaml</code> file, but does not exist in <code>optionalValues</code>, the admin console uses the value of the key from <code>values</code> when deploying the application.
     </td>
   </tr>
 </table>
+
 
 ## namespace
 
