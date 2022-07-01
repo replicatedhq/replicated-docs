@@ -53,75 +53,24 @@ Host preflight checks run automatically. Default checks can vary, depending on w
 Host preflight checks can be partially or completely customized. For more information about customizing kURL host preflights, see [Customizing Host Preflights](https://kurl.sh/docs/create-installer/host-preflights/) in the kURL documentation.
 
 
-## Include Host Preflight Checks
+## Customize Host Preflight Checks
 
-Include the default host preflights in your Kubernetes installer YAML file to retain Replicated best practices. Then, you can customize parts of the specification if needed. Customizations include the ability to:
+The default host preflights run automatically as part of your Kubernetes installer. There are general kURL host preflight checks that run with all installers. There are also host preflight checks included with certain add-ons. You can customize any of these host preflights if needed. Customizations include the ability to:
 
 - Bypass failures
 - Block an installation for warnings
 - Exclude certain preflights under specific conditions, such as when a particular license entitlement is enabled
 - Skip the default host preflight checks and run only custom checks
 
-To include host preflight checks:
+To customize host preflight checks:
 
 1. Get the Kubernetes installer YAML (kind: "Installer") and add-ons from the landing page at [kurl.sh](https://kurl.sh/). To use Replicated app manager, you must include the KOTS add-on.
 
-1. Add the default `host-preflights.yaml` specification for each add-on to the installer YAML. You must add the appropriate version for each add-on. For the links to the add=on YAML files, see [Finding the Add-on Host Preflight Checks](https://github.com/replicatedhq/kURL/blob/main/pkg/preflight/assets/host-preflights.yaml) in the kURL documentation.
+1. Copy the default `host-preflights.yaml` specification to the installer YAML for kURL or any add-on that you want to customize. This lets you leverage the Replicated best practices supplied in the add-on code and just customize the parts that you need to.
 
-1. Add the default kURL host preflights YAML to the installer YAML. See [host-preflights.yaml](https://github.com/replicatedhq/kURL/blob/main/pkg/preflight/assets/host-preflights.yaml) in the kURL repository.
+  For the default kURL host preflights YAML, see [host-preflights.yaml](https://github.com/replicatedhq/kURL/blob/main/pkg/preflight/assets/host-preflights.yaml) in the kURL repository.
 
-  The following example shows a Kubernetes installer manifest with a `kurl` configuration for default host preflight flags set to the default values for the kURL add-on. For simplicity, the default host preflights for kURL and the other add-ons are not displayed.
-
-  ```
-  apiVersion: "cluster.kurl.sh/v1beta1"
-  kind: "Installer"
-  metadata:
-    name: "latest"
-  spec:
-    kubernetes:
-      version: "1.23.x"
-    weave:
-      version: "2.6.x"
-    contour:
-      version: "1.21.x"
-    prometheus:
-      version: "0.57.x"
-    registry:
-      version: "2.7.x"
-    containerd:
-      version: "1.5.x"
-    kotsadm:
-        version: "latest"
-    ekco:
-      version: "latest"
-    minio:
-      version: "2022-06-11T19-55-32Z"
-    longhorn:
-      version: "1.2.x"
-    kurl:
-      excludeBuiltinHostPreflights: false
-      hostPreflightIgnore: false
-      hostPreflightEnforceWarnings: false
-      hostPreflights:
-      apiVersion: troubleshoot.sh/v1beta2
-      kind: HostPreflight
-      spec:
-        collectors:
-          - cpu: {}
-        analyzers:
-          - cpu:
-              checkName: Number of CPU check
-              outcomes:
-                - warn:
-                    when: "count < 6"
-                    message: This server has less than 6 CPU cores
-                - fail:
-                    when: "count < 4"
-                    message: This server has less than 4 CPU cores
-                - pass:
-                    when: "count >= 6"
-                    message: This server has at least 6 CPU cores
-  ```
+  For links to the add-on YAML files, see [Finding the Add-on Host Preflight Checks](https://kurl.sh/docs/create-installer/host-preflights/#finding-the-add-on-host-preflight-checks) in the kURL documentation.
 
 1. (Optional) Set any of the following flags to customize host preflights:
 
@@ -144,77 +93,75 @@ To include host preflight checks:
       </tr>
     </table>
 
-1. (Optional) Add a `hostPreflights` specification to the Installer YAML file to define custom collectors and analyzers.
+1. (Optional) Add a `hostPreflights` specification to the Installer YAML file to define custom collectors and analyzers. The following example for the customized kURL specification shows:
 
-  The following example shows:
     - Default host preflight checks are disabled
     - Preflight failures and warnings will block the installation
     - Customized checks for an application that requires more CPUs than the default
     - Customized checks for accessing a website that is critical to the application
 
-  ```
-  apiVersion: "cluster.kurl.sh/v1beta1"
-  kind: "Installer"
-  metadata:
-    name: "latest"
-  spec:
-    kubernetes:
-      version: "1.23.x"
-    weave:
-      version: "2.6.x"
-    contour:
-      version: "1.21.x"
-    prometheus:
-      version: "0.57.x"
-    registry:
-      version: "2.7.x"
-    containerd:
-      version: "1.5.x"
-    kotsadm:
+    ```
+    apiVersion: "cluster.kurl.sh/v1beta1"
+    kind: "Installer"
+    metadata:
+      name: "latest"
+    spec:
+      kubernetes:
+        version: "1.23.x"
+      weave:
+        version: "2.6.x"
+      contour:
+        version: "1.21.x"
+      prometheus:
+        version: "0.57.x"
+      registry:
+        version: "2.7.x"
+      containerd:
+        version: "1.5.x"
+      kotsadm:
+          version: "latest"
+      ekco:
         version: "latest"
-    ekco:
-      version: "latest"
-    minio:
-      version: "2022-06-11T19-55-32Z"
-    longhorn:
-      version: "1.2.x"
-    kurl:
-      excludeBuiltinHostPreflights: true
-      hostPreflightIgnore: false
-      hostPreflightEnforceWarnings: true
-      hostPreflights:
-        apiVersion: troubleshoot.sh/v1beta2
-        kind: HostPreflight
-        spec:
-          collectors:
-            - cpu: {}
-            - http:
-                collectorName: Can Access A Website
-                get:
-                 Url: https://myFavoriteWebsite.com
-          analyzers:
-            - cpu:
-                checkName: Number of CPU check
-                outcomes:
-                  - fail:
-                      when: "count < 4"
-                      message: This server has less than 4 CPU cores
-                  - warn:
-                      when: "count < 6"
-                      message: This server has less than 6 CPU cores
-                  - pass:
-                      message: This server has at least 6 CPU cores
-            - http:
-                checkName: Can Access A Website
-                collectorName: Can Access A Website
-                outcomes:
-                  - warn:
-                      when: "error"
-                      message: Error connecting to https://myFavoriteWebsite.com
-                  - pass:
-                      when: "statuscode == 200"
-                      message: Connected to https://myFavoriteWebsite.com
-      ```
+      minio:
+        version: "2022-06-11T19-55-32Z"
+      longhorn:
+        version: "1.2.x"
+      kurl:
+        excludeBuiltinHostPreflights: true
+        hostPreflightEnforceWarnings: true
+        hostPreflights:
+          apiVersion: troubleshoot.sh/v1beta2
+          kind: HostPreflight
+          spec:
+            collectors:
+              - cpu: {}
+              - http:
+                  collectorName: Can Access A Website
+                  get:
+                   Url: https://myFavoriteWebsite.com
+            analyzers:
+              - cpu:
+                  checkName: Number of CPU check
+                  outcomes:
+                    - fail:
+                        when: "count < 4"
+                        message: This server has less than 4 CPU cores
+                    - warn:
+                        when: "count < 6"
+                        message: This server has less than 6 CPU cores
+                    - pass:
+                        message: This server has at least 6 CPU cores
+              - http:
+                  checkName: Can Access A Website
+                  collectorName: Can Access A Website
+                  outcomes:
+                    - warn:
+                        when: "error"
+                        message: Error connecting to https://myFavoriteWebsite.com
+                    - pass:
+                        when: "statuscode == 200"
+                        message: Connected to https://myFavoriteWebsite.com
+        ```
 
 1. Promote and test your installer in a development environment before sharing it with customers.
 
