@@ -70,9 +70,9 @@ To include host preflight checks:
 
 1. Add the default `host-preflights.yaml` specification for each kURL add-on to the installer YAML. You must add the appropriate version for each add-on. For the links to the YAML files for each add-on, see [Finding the Add=on Host Preflight Checks](https://github.com/replicatedhq/kURL/blob/main/pkg/preflight/assets/host-preflights.yaml) in the kURL documentation.
 
-1. Add the `kurl` key to the installer.
+1. Add the `kurl` specification to the installer. See [Kurl Add-On](https://kurl.sh/docs/add-ons/kurl) in the kURL documentation.
 
-  The following example shows a Kubernetes installer manifest with a `kurl` configuration for default host preflight keys set to the default values for the kURL add-on>
+  The following example shows a Kubernetes installer manifest with a `kurl` configuration for default host preflight flags set to the default values for the kURL add-on. For simplicity, the host preflights for the other add-ons are not displayed.
 
   ```
   apiVersion: "cluster.kurl.sh/v1beta1"
@@ -105,6 +105,25 @@ To include host preflight checks:
       excludeBuiltinHostPreflights: false
       hostPreflightIgnore: false
       hostPreflightEnforceWarnings: false
+      hostPreflights:
+      apiVersion: troubleshoot.sh/v1beta2
+      kind: HostPreflight
+      spec:
+        collectors:
+          - cpu: {}
+        analyzers:
+          - cpu:
+              checkName: Number of CPU check
+              outcomes:
+                - warn:
+                    when: "count < 6"
+                    message: This server has less than 6 CPU cores
+                - fail:
+                    when: "count < 4"
+                    message: This server has less than 4 CPU cores
+                - pass:
+                    when: "count >= 6"
+                    message: This server has at least 6 CPU cores
   ```
 
 1. (Optional) Set any of the following keys to customize host preflights:
@@ -164,13 +183,6 @@ To include host preflight checks:
     longhorn:
       version: "1.2.x"
     kurl:
-      airgap: true
-      proxyAddress: http://10.128.0.70:3128
-      additionalNoProxyAddresses:
-      - .corporate.internal
-      noProxy: false
-      licenseURL: https://somecompany.com/license-agreement.txt
-      nameserver: 8.8.8.8
       skipSystemPackageInstall: false
       excludeBuiltinHostPreflights: true
       hostPreflightIgnore: false
