@@ -71,7 +71,7 @@ One goal of including a Kubernetes installer in a release is to more tightly cou
 
 Since this is a preflight check, you can customize the message and URI for each outcome. For example, you can provide instructions on how to rerun the Kubernetes installer, or link to your documentation on how to do that. Additionally, you can make this a [strict preflight check](/vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles) if you want to prevent customers from deploying a release before appropriately updating their Kubernetes installer.
 
-To invoke this optional preflight check, include a [`yamlCompare`](https://troubleshoot.sh/docs/analyze/yaml-compare/) analyzer in your Preflight spec with the `kots.io/installer: "true"` annotation. The following is an example Preflight spec that utilizes this additional behavior:
+To invoke this optional preflight check, include a [`yamlCompare`](https://troubleshoot.sh/docs/analyze/yaml-compare/) analyzer in your Preflight specification with the `kots.io/installer: "true"` annotation. The following is an example Preflight specification that utilizes this comparison behavior:
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
