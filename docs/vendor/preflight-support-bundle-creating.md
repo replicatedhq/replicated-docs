@@ -101,7 +101,6 @@ To include host preflight checks:
     longhorn:
       version: "1.2.x"
     kurl:
-      skipSystemPackageInstall: false
       excludeBuiltinHostPreflights: false
       hostPreflightIgnore: false
       hostPreflightEnforceWarnings: false
@@ -183,7 +182,6 @@ To include host preflight checks:
     longhorn:
       version: "1.2.x"
     kurl:
-      skipSystemPackageInstall: false
       excludeBuiltinHostPreflights: true
       hostPreflightIgnore: false
       hostPreflightEnforceWarnings: true
