@@ -150,10 +150,9 @@ To include host preflight checks:
 
   The following example shows:
     - Default host preflight checks are disabled
-    - Preflight failures and warnings will be enforced
-    - Installation will be blocked for warnings
+    - Preflight failures and warnings will block the installation
     - Customized checks for an application that requires more CPUs than the default
-    - Customized checks for accessing a website that is critical to the business
+    - Customized checks for accessing a website that is critical to the application
 
   ```
   apiVersion: "cluster.kurl.sh/v1beta1"
