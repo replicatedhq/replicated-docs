@@ -66,13 +66,11 @@ To include host preflight checks:
 
 1. Get the Kubernetes installer YAML (kind: "Installer") and add-ons from the landing page at [kurl.sh](https://kurl.sh/). To use Replicated app manager, you must include the KOTS add-on.
 
+1. Add the default `host-preflights.yaml` specification for each add-on to the installer YAML. You must add the appropriate version for each add-on. For the links to the YAML files for each add-on, see [Finding the Add-on Host Preflight Checks](https://github.com/replicatedhq/kURL/blob/main/pkg/preflight/assets/host-preflights.yaml) in the kURL documentation.
+
 1. Add the default kURL host preflights YAML to the installer YAML. See [host-preflights.yaml](https://github.com/replicatedhq/kURL/blob/main/pkg/preflight/assets/host-preflights.yaml) in the kURL repository.
 
-1. Add the default `host-preflights.yaml` specification for each kURL add-on to the installer YAML. You must add the appropriate version for each add-on. For the links to the YAML files for each add-on, see [Finding the Add=on Host Preflight Checks](https://github.com/replicatedhq/kURL/blob/main/pkg/preflight/assets/host-preflights.yaml) in the kURL documentation.
-
-1. Add the `kurl` specification to the installer. See [Kurl Add-On](https://kurl.sh/docs/add-ons/kurl) in the kURL documentation.
-
-  The following example shows a Kubernetes installer manifest with a `kurl` configuration for default host preflight flags set to the default values for the kURL add-on. For simplicity, the host preflights for the other add-ons are not displayed.
+  The following example shows a Kubernetes installer manifest with a `kurl` configuration for default host preflight flags set to the default values for the kURL add-on. For simplicity, the default host preflights for kURL and the other add-ons are not displayed.
 
   ```
   apiVersion: "cluster.kurl.sh/v1beta1"
@@ -125,11 +123,11 @@ To include host preflight checks:
                     message: This server has at least 6 CPU cores
   ```
 
-1. (Optional) Set any of the following keys to customize host preflights:
+1. (Optional) Set any of the following flags to customize host preflights:
 
     <table>
       <tr>
-        <th width="30%">Key: Value</th>
+        <th width="30%">Flag: Value</th>
         <th width="70%">Description</th>
       </tr>
       <tr>
