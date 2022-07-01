@@ -11,13 +11,13 @@ Released on July 1, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### New Features {#new-features-1-74-0}
-* Adds the ability for vendors to include a [preflight check](/vendor/packaging-embedded-kubernetes#include-a-supporting-preflight-check) that will compare the Kubernetes installer for a particular application version against the installer that is currently deployed.
+* Adds the ability to use a preflight check to compare the Kubernetes installer included in particular application version against the installer that is currently deployed. For more information, see [Include a Supporting Preflight Check](/vendor/packaging-embedded-kubernetes#include-a-supporting-preflight-check) in Creating a Kubernetes Installer Specification.
 
 ### Bug Fixes {#bug-fixes-1-74-0}
-* Fixes an issue where valid application releases would not deploy and give errors if the previously deployed release resulted in a kustomize error.
+* Fixes an issue where you could not deploy valid application releases if the previously deployed version resulted in a kustomize error.
 * Fixes an issue where kustomize would fail if a Helm chart and one of its sub-charts had the same name.
-* Fixes an issue that was causing Velero pods to be stuck in a Pending state when using the Internal Storage snapshot setting in kURL clusters.
-* Fixes an issue where the Admin Console would crash if a Helm chart was included in a release with optional values and no values provided.
+* Fixes an issue that caused Velero pods to be stuck in a Pending state when using the Internal Storage snapshot setting in Kubernetes installer-created clusters.
+* Fixes an issue where the admin console would crash if a Helm chart with optional values but no values provided was included in a release.
 
 ## 1.73.0
 
