@@ -140,20 +140,24 @@ For more information about using `optionalValues`, see [Including Optional Value
 
 The `when` field in `optionalValues` provides a string-based method that is evaluated by template functions. The `when` field defers evaluation of the conditional to render time in the customer environment.
 
-For example, in the `samplechart` HelmChart custom resource above, the `when` field includes a conditional statement that evaluates to `true` if the user selects the `external_postgres` option on the admin console configuration screen:
+To write the `when` conditional statement, use template functions from the Config context. For example, in the `samplechart` HelmChart custom resource above, the `when` field includes a conditional statement that evaluates to `true` if the user selects the `external_postgres` option on the admin console configuration screen:
 
 ```yaml
 optionalValues:
   - when: "repl{{ ConfigOptionEquals `postgres_type` `external_postgres`}}"
 ```  
 
-For more information about the syntax for template functions, see [About Template Function Contexts](template-functions-about).
+For more information about the syntax for template functions in the Config context, see [Config Context](template-functions-config-context).
 
 ### optionalValues[].recursiveMerge
 
-In the app manager v1.38.0 and later, the `recursiveMerge` boolean defines how `values` and `optionalValues` are merged if the conditional statement in the `when` field of `optionalValues` evaluates to `true`.
+:::note
+`recursiveMerge` is available in the app manager v1.38.0 and later.
+:::
 
-The admin console uses the values from this merged dataset and from the Helm chart `values.yaml` file when deploying the application.
+The `recursiveMerge` boolean defines how the app manager merges the `values` and `optionalValues` datasets when the conditional statement in the `when` field of `optionalValues` is `true`.
+
+The admin console uses the values from this merged dataset and from the Helm chart `values.yaml` file when deploying the application.         
 
 The following table describes how `values` and `optionalValues` are merged based on the value of the `recursiveMerge` boolean:
 
@@ -164,24 +168,88 @@ The following table describes how `values` and `optionalValues` are merged based
   </tr>
   <tr>
     <td><code>false</code> (Default)</td>
-    <td>The <code>values</code> and <code>optionalValues</code> fields from the HelmChart custom resource manifest are <em>not</em> merged recursively.
-    <br/><br/>
-    The value of a key in <code>optionalValues</code> overwrites the value of any matching keys in <code>values</code> or in the <code>values.yaml</code> file.
-    <br/><br/>
-    If a key exists in both <code>values</code> and in the Helm chart <code>values.yaml</code> file, but does not exist in <code>optionalValues</code>, then the merged dataset uses the value of the key from the <code>values.yaml</code> file.
-    <br/><br/>
-    If a key exists in <code>values</code>, but does not exist in <code>optionalValues</code> or in the Helm chart <code>values.yaml</code> file, then the value for the key is <code>null</code> in the merged dataset.
+    <td><p>The <code>values</code> and <code>optionalValues</code> fields from the HelmChart custom resource manifest are <em>not</em> merged recursively:</p>
+    <ul>
+      <li>If a key exists in both <code>values</code> and in the Helm chart <code>values.yaml</code> file, but does not exist in <code>optionalValues</code>, then the merged dataset uses the value of the key from the <code>values.yaml</code> file.</li>
+      <li>If a key exists in <code>values</code>, but does not exist in <code>optionalValues</code> or in the Helm chart <code>values.yaml</code> file, then the value for the key is <code>null</code> in the merged dataset.</li>
+      <li>The value of a key in <code>optionalValues</code> always overwrites the value of any matching keys in <code>values</code> or in the <code>values.yaml</code> file. When a key in <code>optionalValues</code> has a missing or <code>null</code> value, then the value of the key is <code>null</code> in the merged dataset.</li>
+    </ul>
     </td>
   </tr>
   <tr>
     <td><code>true</code></td>    
-    <td>The <code>values</code> and <code>optionalValues</code> fields from the HelmChart custom resource manifest are merged recursively.<br/><br/>All mutually exclusive keys from <code>values</code> and <code>optionalValues</code> are included in the merged dataset. The value of a key in <code>optionalValues</code> overwrites the value of any matching keys in <code>values</code> or in the <code>values.yaml</code> file.
-    <br/><br/>
-    If a key exists in both <code>values</code> and in the Helm chart <code>values.yaml</code> file, but does not exist in <code>optionalValues</code>, then the merged dataset uses the value of the key from <code>values</code>.
+    <td><p>The <code>values</code> and <code>optionalValues</code> fields from the HelmChart custom resource manifest are merged recursively:</p>
+    <ul>
+      <li>All mutually exclusive keys from <code>values</code> and <code>optionalValues</code> are included in the merged dataset.</li>
+      <li>If a key exists in both <code>values</code> and in the Helm chart <code>values.yaml</code> file, but does not exist in <code>optionalValues</code>, then the merged dataset includes the value of the key from <code>values</code>.</li>
+      <li>The value of a key in <code>optionalValues</code> always overwrites the value of any matching keys in <code>values</code> or in the <code>values.yaml</code> file. When a key in <code>optionalValues</code> has a missing or <code>null</code> value, then the value of the key is <code>null</code> in the merged dataset.</li>
+    </ul>  
     </td>
   </tr>
 </table>
 
+For example, a HelmChart custom resource manifest file defines the following datasets in the `values` and `optionalValues` fields:
+
+```yaml
+values:
+  favorite:
+    drink:
+      hot: tea
+      cold: soda
+    dessert: ice cream
+    day: saturday
+
+optionalValues:
+  - when: '{{repl ConfigOptionEquals "example_config_option" "1" }}'
+    recursiveMerge: false
+    values:
+      example_config_option:
+        enabled: true
+      favorite:
+        drink:
+          cold: lemonade
+```
+
+The `values.yaml` file for the associated Helm chart defines the following key value pairs:
+
+```yaml
+favorite:
+  drink:
+    hot: coffee
+    cold: soda
+  dessert: pie
+```
+The `templates/configmap.yaml` file for the Helm chart maps these values to the following fields:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-configmap
+data:
+  favorite_day: {{ .Values.favorite.day }}
+  favorite_dessert: {{ .Values.favorite.dessert }}
+  favorite_drink_cold: {{ .Values.favorite.drink.cold }}
+  favorite_drink_hot: {{ .Values.favorite.drink.hot }}
+```
+
+When `recursiveMerge` is set to `false` in the HelmChart custom resource manifest file, the ConfigMap includes the following key value pairs:
+
+```yaml
+favorite_day: null
+favorite_dessert: pie
+favorite_drink_cold: lemonade
+favorite_drink_hot: coffee
+```
+
+When recursiveMerge is set to `true`, the ConfigMap includes the following key value pairs:
+
+```yaml
+favorite_day: saturday
+favorite_dessert: ice cream
+favorite_drink_cold: lemonade
+favorite_drink_hot: tea 
+```
 
 ## namespace
 
