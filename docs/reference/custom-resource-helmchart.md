@@ -233,7 +233,7 @@ data:
   favorite_drink_hot: {{ .Values.favorite.drink.hot }}
 ```
 
-When `recursiveMerge` is set to `false` in the HelmChart custom resource manifest file, the ConfigMap includes the following key value pairs:
+When `recursiveMerge` is set to `false` in the HelmChart custom resource manifest file, the ConfigMap for the deployed application includes the following key value pairs:
 
 ```yaml
 favorite_day: null
@@ -242,13 +242,13 @@ favorite_drink_cold: lemonade
 favorite_drink_hot: coffee
 ```
 
-When recursiveMerge is set to `true`, the ConfigMap includes the following key value pairs:
+When recursiveMerge is set to `true`, the ConfigMap for the deployed application includes the following key value pairs:
 
 ```yaml
 favorite_day: saturday
 favorite_dessert: ice cream
 favorite_drink_cold: lemonade
-favorite_drink_hot: tea 
+favorite_drink_hot: tea
 ```
 
 ## namespace
