@@ -64,36 +64,30 @@ You can share specific versions of application releases for existing clusters or
 
 Typically you do not need to use these procedures for air gap installations because the application version can be selected in the download portal, and the correct assets are available automatically.
 
-### Use an Existing Cluster Installation Command
+### Install on an Existing Cluster
 
-To use a specific application version for an existing cluster, run:
+To install a specific application version on an existing cluster:
 
-```
-curl https://kots.io/install | bash
-kubectl kots install APP_SLUG --app-version-label=VERSION
-```
+From the [vendor portal](https://vendor.replicated.com), select **Channels**.
+1. Click **Release history** for the channel that you want to use.
+1. Click **Install Commands** for a specific version. From the Existing Cluster tab, copy the installation command for the version that you want to use and share it with your customer.
 
-Replace:
+  **Example:**
 
-- `APP_SLUG` with the name of the application slug.
-- `VERSION` with the version number.
+    ```
+    curl https://kots.io/install | bash
+    kubectl kots install my-awesome-app --app-version-label=3.1.0
+    ```
 
-**Example:**
+### Install with an Included Kubernetes Installer (Alpha)
 
-```
-curl https://kots.io/install | bash
-kubectl kots install my-awesome-app --app-version-label=3.1.0
-```
+If you included a Kubernetes installer file as part of your release, this coupling makes it easy to provide users with an installation command that uses the correct version of both the installer and the application. For more information about methods for creating Kubernetes installers, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
 
-### Use a Kubernetes Installer Included in the Release (Beta)
-
-If you created a Kubernetes installer manifest file as part of your release, this coupling makes it easy to provide users with a specific version of both the installer and the application. For more information about methods for creating Kubernetes installers, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
-
-To use a specific application version that includes the installer manifest:
+To install a specific application version that includes a Kubernetes installer:
 
 1. From the [vendor portal](https://vendor.replicated.com), select **Channels**.
-1. Click **Release history** in the Latest release pane for the channel you want to use.
-1. Copy the installation command for the version that you want to use and share it with your customer.
+1. Click **Release history** for the channel that you want to use.
+1. Click **Install Commands** for a specific version. From the Embedded Cluster tab, copy the installation command and share it with your customer.
 
     - The curl command shows the application version with name of the channel if it is not the default channel.
 
@@ -110,11 +104,11 @@ To use a specific application version that includes the installer manifest:
       curl -sSL https://k8s.kurl.sh/my-awesome-app-2.3.30 | sudo bash
       ```
 
-### Use the Kubernetes Installer Promoted to the Channel
+### Install with the Currently Promoted Kubernetes Installer
 
-When you share an installation command for a previous application version where the Kubernetes installer specification is separate from the release, the installation command always uses the currently promoted Kubernetes installer. In this case, you might not have tested the latest Kubernetes installer specification with an earlier application version. For more information about Kubernetes installer methods, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
+When you share an installation command for a previous application version that does not include a Kubernetes installer, the installation command always uses the currently promoted Kubernetes installer. In this case, you might not have tested the latest Kubernetes installer with the earlier application version. For more information about Kubernetes installer methods, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
 
-To use a specific application version with the Kubernetes installer promoted to the channel, run:
+To install a specific application version with the currently promoted Kubernetes installer, run:
 
 ```
 curl -sSL https://k8s.kurl.sh/APP_SLUG-CHANNEL | sudo bash -s app-version-label=VERSION
