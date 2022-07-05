@@ -72,12 +72,7 @@ From the [vendor portal](https://vendor.replicated.com), select **Channels**.
 1. Click **Release history** for the channel that you want to use.
 1. Click **Install Commands** for a specific version. From the Existing Cluster tab, copy the installation command for the version that you want to use and share it with your customer.
 
-  **Example:**
-
-    ```
-    curl https://kots.io/install | bash
-    kubectl kots install my-awesome-app --app-version-label=3.1.0
-    ```
+  ![Existing Cluster Command](/images/existing-cluster-command.png)
 
 ### Install with an Included Kubernetes Installer (Alpha)
 
@@ -89,20 +84,7 @@ To install a specific application version that includes a Kubernetes installer:
 1. Click **Release history** for the channel that you want to use.
 1. Click **Install Commands** for a specific version. From the Embedded Cluster tab, copy the installation command and share it with your customer.
 
-    - The curl command shows the application version with name of the channel if it is not the default channel.
-
-      **Example:**
-      ```
-      curl -sSL https://k8s.kurl.sh/my-awesome-app-beta-2.3.30 | sudo bash
-      ```
-
-    - If you are using the default channel, the channel name is not shown in the command.
-
-      **Example:**
-
-      ```
-      curl -sSL https://k8s.kurl.sh/my-awesome-app-2.3.30 | sudo bash
-      ```
+  ![Existing Cluster Command](/images/embedded-cluster-command.png)
 
 ### Install with the Currently Promoted Kubernetes Installer
 
