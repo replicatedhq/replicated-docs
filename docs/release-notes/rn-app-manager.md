@@ -4,6 +4,19 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.75.0
+
+Released on July 5, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### New Features {#new-features-1-75-0}
+* Adds a `helmUpgradeFlags` parameter to the [Helm custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](/vendor/helm-installing-native-helm). The specified flags will be passed to the Helm upgrade command.
+
+### Bug Fixes {#bug-fixes-1-75-0}
+* Resolves CVE-2022-26945, CVE-2022-30321, CVE-2022-30322, and CVE-2022-30323.
+* Fixes a bug that caused the [push-images](/reference/kots-cli-admin-console-push-images) command to fail when`--registry-password` and `--registry-username` are not specified for use with anonymous registries.
+
 ## 1.74.0
 
 Released on July 1, 2022
