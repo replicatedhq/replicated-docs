@@ -20,7 +20,7 @@ There are two possible methods for creating a Kubernetes installer:
   </tr>
   <tr>
     <td><a href="packaging-embedded-kubernetes#create-a-separate-kubernetes-installer">As a separate installer</a></td>
-    <td>The installer is created separately from the application release. <br></br><br></br> This option uses the Kubernetes installer that is currently promoted to the channel. Using a separate installer can pose problems when installing previous versions of the application, since previous versions may not be tested with the currently promoted installer.</td>
+    <td>The installer is created separately from the application release. <br></br><br></br> This option uses the Kubernetes installer that is currently promoted to the channel. Using the Kubernetes installer that is currently promoted to the channel can pose problems when installing previous versions of the application, since previous versions may not be tested with the currently promoted installer.</td>
   </tr>
 </table>
 
@@ -28,7 +28,7 @@ The Kubernetes installer is based on the open source kURL project, which is main
 by Replicated. For more information, see [Introduction to kURL](https://kurl.sh/docs/introduction/)
 in the kURL open source documentation.
 
-## Create a Kubernetes Installer in the Application Release (Beta)
+## Create a Kubernetes Installer in the Application Release (Alpha)
 
 You can create a Kubernetes installer as part of the application release. This allows multiple Kubernetes installers to be active for a channel at the same time. It also ensures that every installation uses the Kubernetes installer that is associated with the version of the application that is being installed. We recommend this method.
 
