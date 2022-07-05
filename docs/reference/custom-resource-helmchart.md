@@ -235,7 +235,7 @@ favorite_drink_cold: lemonade
 favorite_drink_hot: coffee
 ```
 
-In this case, the top level keys in `optionalValues` overwrite the top level keys in `values`. So, the merged dataset uses `lemonade` for `favorite:` > `drink:` > `cold:`.
+In this case, the top level keys in `optionalValues` overwrite the top level keys in `values`.
 
 Then, the admin console uses the values from the Helm chart `values.yaml` to populate the remaining fields in the ConfigMap: `favorite_day`, `favorite_dessert`, and `favorite_drink_hot`.
 
