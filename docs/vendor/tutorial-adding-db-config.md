@@ -556,7 +556,10 @@ psql: could not translate host name "postgres" to address: Name or service not k
 ### Mapping User Inputs
 
 To map the user-supplied configuration, we'll start by expanding our secret we created before, adding fields for additional variables, using `{{repl if ... }}` blocks to switch between embedded/external contexts.
-To start, we'll add a field for hostname, using the yaml `>-` to collapse the multiline string into a single line:
+
+To start, you can add a field for hostname, using Base64Encode. You must use a single line, as shown in the following example.
+
+
 
 ```yaml
 apiVersion: v1
@@ -565,12 +568,8 @@ metadata:
   name: postgres
 data:
   DB_PASSWORD: '{{repl ConfigOption "embedded_postgres_password" | Base64Encode }}'
-  DB_HOST: >-
-    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" }}
-      {{repl Base64Encode "postgres" }}
-    {{repl else}}
-      {{repl ConfigOption "external_postgres_host" | Base64Encode }}
-    {{repl end}}
+  DB_HOST:
+    {{repl if ConfigOptionEquals "postgres_type" "embedded_postgres" }}{{repl Base64Encode "postgres" }}{{repl else}}{{repl ConfigOption"external_postgres_host" | Base64Encode }}{{repl end}}
 ```
 
 Now that we have the value in our Secret, we can modify our deployment to consume it.
