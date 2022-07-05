@@ -67,6 +67,8 @@ To add the Kubernetes installer manifest to the application release:
 
 ### Include a Supporting Preflight Check
 
+> Introduced in Replicated app manager v1.74.0
+
 One goal of including a Kubernetes installer in a release is to more tightly couple a particular release with a particular Kubernetes installer. If you want to encourage or ensure that your customers run the updated Kubernetes installer before upgrading to the corresponding release, a preflight check can be used to compare the installer that is included in the release against the installer that is currently deployed.
 
 Since this is a preflight check, you can customize the message and URI for each outcome. For example, you can provide instructions on how to rerun the Kubernetes installer, or link to your documentation on how to do that. Additionally, you can make this a [strict preflight check](/vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles) if you want to prevent customers from deploying a release before appropriately updating their Kubernetes installer.
