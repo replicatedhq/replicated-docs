@@ -1,6 +1,6 @@
 # HelmChart
 
-A HelmChart custom resource enables the Replicated app manager to process and deploy Helm charts as part of an application. The app manager can process Helm charts using the Replicated Helm installation for existing applications. You can also use a native Helm installation for new applications. For more information, see [Helm Overview](../vendor/helm-overview).
+A HelmChart custom resource enables the Replicated app manager to process and deploy Helm charts as part of an application. The app manager can process Helm charts using the Replicated Helm installation for existing applications. You can also use a native Helm installation for new applications. For more information, see [Helm Overview](/vendor/helm-overview).
 
 HelmChart custom resources are required for the app manager to deploy Helm charts. HelmChart custom resources are not required if only raw Kubernetes manifests are deployed.
 
@@ -9,7 +9,7 @@ The HelmChart custom resource manifest file references a required `.tgz` export 
 By default, the HelmChart custom resource uses the Replicated Helm installation, which uses the app manager to render and deploy Helm charts. For new installations, you can set `useHelmInstall: true` in the manifest to use the native Helm installation.
 
 **Deploying multiple instance of the same chart**:
-You must add an additional HelmChart custom resource with a unique [release name](/reference/custom-resource-helmchart#chartreleasename) for each instance of the chart that is to be deployed as part of the application. However, only one `.tgz` of the chart needs to be included in the release.
+You must add an additional HelmChart custom resource with a unique [release name](custom-resource-helmchart#chartreleasename) for each instance of the chart that is to be deployed as part of the application. However, only one `.tgz` of the chart needs to be included in the release.
 
 The following is an example manifest file for the HelmChart custom resource:
 
@@ -155,7 +155,7 @@ For more information about the syntax for template functions in the Config conte
 `recursiveMerge` is available in the app manager v1.38.0 and later.
 :::
 
-The `recursiveMerge` boolean defines how the app manager merges the `values` and `optionalValues` datasets when the conditional statement in the `when` field of `optionalValues` is `true`.
+The `recursiveMerge` boolean defines how the app manager merges the `values` and `optionalValues` datasets when the conditional statement in the `when` field is true.
 
 The admin console uses the values from this merged dataset and from the Helm chart `values.yaml` file when deploying the application.         
 
@@ -163,27 +163,20 @@ The following table describes how `values` and `optionalValues` are merged based
 
 <table>
   <tr>
-    <th width="20%">Value</th>
+    <th width="30%">Value</th>
     <th>Description</th>
   </tr>
   <tr>
     <td><code>false</code> (Default)</td>
-    <td><p>The <code>values</code> and <code>optionalValues</code> fields from the HelmChart custom resource manifest are <em>not</em> merged recursively:</p>
-    <ul>
-      <li>If a key exists in both <code>values</code> and in the Helm chart <code>values.yaml</code> file, but does not exist in <code>optionalValues</code>, then the merged dataset uses the value of the key from the <code>values.yaml</code> file.</li>
-      <li>If a key exists in <code>values</code>, but does not exist in <code>optionalValues</code> or in the Helm chart <code>values.yaml</code> file, then the value for the key is <code>null</code> in the merged dataset.</li>
-      <li>The value of a key in <code>optionalValues</code> always overwrites the value of any matching keys in <code>values</code> or in the <code>values.yaml</code> file. When a key in <code>optionalValues</code> has a missing or <code>null</code> value, then the value of the key is <code>null</code> in the merged dataset.</li>
-    </ul>
+    <td><p>The <code>values</code> and <code>optionalValues</code> fields from the HelmChart custom resource manifest are <em>not</em> merged recursively.</p>
+    <p>The top level keys in <code>optionalValues</code> overwrite the top level keys in <code>values</code>. This means that any keys that are included in <code>values</code> but not included in <code>optionalValues</code> are excluded from the merged dataset.</p>
     </td>
   </tr>
   <tr>
     <td><code>true</code></td>    
-    <td><p>The <code>values</code> and <code>optionalValues</code> fields from the HelmChart custom resource manifest are merged recursively:</p>
-    <ul>
-      <li>All mutually exclusive keys from <code>values</code> and <code>optionalValues</code> are included in the merged dataset.</li>
-      <li>If a key exists in both <code>values</code> and in the Helm chart <code>values.yaml</code> file, but does not exist in <code>optionalValues</code>, then the merged dataset includes the value of the key from <code>values</code>.</li>
-      <li>The value of a key in <code>optionalValues</code> always overwrites the value of any matching keys in <code>values</code> or in the <code>values.yaml</code> file. When a key in <code>optionalValues</code> has a missing or <code>null</code> value, then the value of the key is <code>null</code> in the merged dataset.</li>
-    </ul>  
+    <td><p>The <code>values</code> and <code>optionalValues</code> fields from the HelmChart custom resource manifest are merged recursively.</p>
+    <p>All keys from <code>values</code> and <code>optionalValues</code> are included in the merged dataset.</p>
+    <p>In the case of a conflict where there is a matching key in <code>optionalValues</code> and <code>values</code>, the merged dataset uses the value of the key from <code>optionalValues</code>.</p>
     </td>
   </tr>
 </table>
@@ -242,7 +235,11 @@ favorite_drink_cold: lemonade
 favorite_drink_hot: coffee
 ```
 
-When recursiveMerge is set to `true`, the ConfigMap for the deployed application includes the following key value pairs:
+In this case, the top level keys in `optionalValues` overwrite the top level keys in `values`. So, the merged dataset uses `lemonade` for `favorite:` > `drink:` > `cold:`.
+
+Then, the admin console uses the values from the Helm chart `values.yaml` to populate the remaining fields in the ConfigMap: `favorite_day`, `favorite_dessert`, and `favorite_drink_hot`.
+
+When `recursiveMerge` is set to `true`, the ConfigMap for the deployed application includes the following key value pairs:
 
 ```yaml
 favorite_day: saturday
@@ -250,6 +247,8 @@ favorite_dessert: ice cream
 favorite_drink_cold: lemonade
 favorite_drink_hot: tea
 ```
+
+In this case, all keys from `values` and `optionalValues` are included in the merged dataset. Both include `favorite:` > `drink:` > `cold:`, so the merged dataset uses `lemonade` from `optionalValues`.
 
 ## namespace
 
