@@ -28,7 +28,7 @@ You must retrieve the metadata and .509 public certificate files from your SAML 
 
 Replicated tests several SAML providers, but the service should be compatible with any SAML 2.0 compliant service provider. We provide full support for the following SAML providers:
 
-* Okta (For more information about integrating Okta with Replicated, see [Configure Okta](#configure-okta).
+* Okta (For more information about integrating Okta with Replicated, see [Configure Okta](#configure-okta))
 
 * OneLogin
 
