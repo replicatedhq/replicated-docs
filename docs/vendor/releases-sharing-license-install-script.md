@@ -45,7 +45,7 @@ and preview your customer's experience.
 
 ## Share Currently Promoted Releases
 
-Installation commands are unique to each channel. Within each channel, there are installation commands for existing clusters and for Kubernetes installer-created clusters (embedded clusters).
+Installation commands are unique to each channel. Within each channel, there are installation commands for existing clusters and for Kubernetes installer provisioned clusters (embedded clusters).
 
 To locate and share an installation command for a currently promoted release:
 
@@ -70,7 +70,7 @@ To install a specific application version on an existing cluster:
 
 From the [vendor portal](https://vendor.replicated.com), select **Channels**.
 1. Click **Release history** for the channel that you want to use.
-1. Click **Install Commands** for a specific version. From the Existing Cluster tab, copy the installation command for the version that you want to use and share it with your customer.
+1. Click **Install Commands** for a specific version. From the Existing Cluster tab, click **Copy command** and share it with your customer.
 
   ![Existing Cluster Command](/images/existing-cluster-command.png)
 
@@ -82,7 +82,7 @@ To install a specific application version that includes a Kubernetes installer:
 
 1. From the [vendor portal](https://vendor.replicated.com), select **Channels**.
 1. Click **Release history** for the channel that you want to use.
-1. Click **Install Commands** for a specific version. From the Embedded Cluster tab, copy the installation command and share it with your customer.
+1. Click **Install Commands** for a specific version. From the Embedded Cluster tab, click **Copy command** and share it with your customer.
 
   ![Existing Cluster Command](/images/embedded-cluster-command.png)
 
