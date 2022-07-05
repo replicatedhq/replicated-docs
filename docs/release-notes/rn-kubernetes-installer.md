@@ -4,6 +4,14 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.07.05-0
+
+Released on July 5, 2022
+
+### New Features {#new-features-v2022-07-05-0}
+
+- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.75.0.
+
 ## Release v2022.07.01-1
 
 Released on July 1, 2022
@@ -70,7 +78,7 @@ Released on June 17, 2022
 ### Bug Fixes {#bug-fixes-v2022-06-17-0}
 
 - Fixes a bug where the [AWS add-on](https://kurl.sh/docs/add-ons/aws) would fail if `latest` or `0.1.x` was used.
-- Fixes a bug when `excludeStorageClass` is set to `true` would cause the [AWS add-on](https://kurl.sh/docs/add-ons/aws) to fail. 
+- Fixes a bug when `excludeStorageClass` is set to `true` would cause the [AWS add-on](https://kurl.sh/docs/add-ons/aws) to fail.
 
 ## Release v2022.06.14-0
 
