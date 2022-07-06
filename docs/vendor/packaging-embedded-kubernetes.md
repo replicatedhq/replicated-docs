@@ -87,6 +87,8 @@ spec:
               message: The Kubernetes installer for this version matches what is currently installed.
 ```
 
+## Create a Separate Kubernetes Installer
+
 You can create a Kubernetes installer and promote it to the same channel as your application release. This method creates the installer separately from the application release and only lets you have one active Kubernetes installer for a channel at a time. All installations, regardless of the application version, will use the currently promoted installer.
 
 To create a separate Kubernetes installer:
