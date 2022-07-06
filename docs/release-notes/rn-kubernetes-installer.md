@@ -28,7 +28,7 @@ Released on July 01, 2022
 
 - Adds [Goldpinger add-on](https://kurl.sh/docs/add-ons/goldpinger) version 3.5.1.
 - Adds support for RHEL and Oracle Linux 8.6.
-- Adds support for upgrading OpenEBS 1.x directly to 2.12+.
+- Adds support for upgrading OpenEBS 1.x directly to 2.12+ or 3.2+.
 - The default [RKE2](https://kurl.sh/docs/add-ons/rke2) spec now includes the latest version of the [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs)
 
 
