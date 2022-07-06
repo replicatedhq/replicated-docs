@@ -8,7 +8,7 @@ The HelmChart custom resource manifest file references a required `.tgz` export 
 
 By default, the HelmChart custom resource uses the Replicated Helm installation, which uses the app manager to render and deploy Helm charts. For new installations, you can set `useHelmInstall: true` in the manifest to use the native Helm installation.
 
-**Deploying multiple instance of the same chart**:
+**Deploying multiple instances of the same chart**:
 You must add an additional HelmChart custom resource with a unique [release name](custom-resource-helmchart#chartreleasename) for each instance of the chart that is to be deployed as part of the application. However, only one `.tgz` of the chart needs to be included in the release.
 
 The following is an example manifest file for the HelmChart custom resource:
