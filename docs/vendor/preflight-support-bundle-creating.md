@@ -48,7 +48,7 @@ While host preflights are intended to ensure requirements are met for running th
 
 Default host preflight checks verify conditions such as operating system and disk usage. Default host preflight failures block the installation from continuing and exit with a non-zero return code. Users can then update their environment and run the Kubernetes installer again to re-run the host preflight checks.
 
-Host preflight checks run automatically. Default checks can vary, depending on whether the installation is new, an upgrade, joining a node, or an air gap installation. Additionally, some checks only run when certain add-ons are enabled or configured a certain way in the installer. For a complete list of default host preflight checks, see [Default Host Preflights](https://kurl.sh/docs/install-with-kurl/host-preflights#default-host-preflights) in the kURL documentation.
+Host preflight checks run automatically. The default host preflight checks that run can vary, depending on whether the installation is new, an upgrade, joining a node, or an air gap installation. Additionally, some checks only run when certain add-ons are enabled or configured a certain way in the installer. For a complete list of default host preflight checks, see [Default Host Preflights](https://kurl.sh/docs/install-with-kurl/host-preflights#default-host-preflights) in the kURL documentation.
 
 There are general kURL host preflight checks that run with all installers. There are also host preflight checks included with certain add-ons. You can partially or completely customize any of these host preflights. For more information about customizing host preflights, see [Customize Host Preflight Checks](#customize-host-preflight-checks).
 
@@ -64,9 +64,9 @@ The default host preflights run automatically as part of your Kubernetes install
 
 To customize host preflight checks:
 
-1. Get the Kubernetes installer YAML (kind: "Installer") and add-ons from the landing page at [kurl.sh](https://kurl.sh/). To use Replicated app manager, you must include the KOTS add-on.
+1. Create a Kubernetes installer. For more information, see [Creating a Kubernetes Installer](https://docs.replicated.com/vendor/packaging-embedded-kubernetes).
 
-1. Copy the default kURL `host-preflights.yaml` specification or the add-on specification that you want to customize to the installer YAML. Copying the default specifications lets you leverage the best practices provided by Replicated and just customize the parts that you need to.
+1. From the kurl.sh site, copy the default `host-preflights.yaml` specification for kURL or an add-on to the Installer YAML in the vendor portal. Copying the default specifications lets you use the best practices provided by Replicated and customize the parts that you need to.
 
   For the default kURL host preflights YAML, see [host-preflights.yaml](https://github.com/replicatedhq/kURL/blob/main/pkg/preflight/assets/host-preflights.yaml) in the kURL repository.
 
@@ -80,15 +80,15 @@ To customize host preflight checks:
         <th width="70%">Description</th>
       </tr>
       <tr>
-        <td>`excludeBuiltinHostPreflights: true`</td>
+        <td><code>`excludeBuiltinHostPreflights: true`</code></td>
         <td>Disables the default host preflights for Kubernetes and any included add-ons</td>
       </tr>
       <tr>
-        <td>`hostPreflightIgnore: true`</td>
+        <td><code>`hostPreflightIgnore: true`</code></td>
         <td>Ignores host preflight failures and warnings</td>
       </tr>
       <tr>
-        <td>`hostPreflightEnforceWarnings: true`</td>
+        <td><code>`hostPreflightEnforceWarnings: true`</code></td>
         <td>Blocks an installation if the results include a warning</td>
       </tr>
     </table>
@@ -100,7 +100,7 @@ To customize host preflight checks:
     - Customized checks for an application that requires more CPUs than the default
     - Customized checks for accessing a website that is critical to the application
 
-    ```
+    ```yaml
     apiVersion: "cluster.kurl.sh/v1beta1"
     kind: "Installer"
     metadata:
@@ -161,7 +161,7 @@ To customize host preflight checks:
                     - pass:
                         when: "statuscode == 200"
                         message: Connected to https://myFavoriteWebsite.com
-        ```
+    ```
 
 1. Promote and test your installer in a development environment before sharing it with customers.
 

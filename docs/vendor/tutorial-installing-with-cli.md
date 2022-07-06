@@ -417,7 +417,7 @@ To install the application:
 
 1. Click **Continue**. If there are failing checks, dismiss the warning to continue. Preflight checks are designed to help ensure this server has the minimum system and software requirements to run the application. Depending on your YAML configuration in `preflight.yaml`, you can see some of the example preflight checks fail.
 
-    Vendors can optionally configure `strict` preflight checks that cause the application deployment to fail if specific requirements are not met. For more information about preflight checks, see [Defining Preflight Checks and Support Bundles](preflight-support-bundle-creating).
+    Vendors can optionally configure strict preflight checks that cause the application deployment to fail if specific requirements are not met. For more information about preflight checks, see [Defining Preflight Checks and Support Bundles](preflight-support-bundle-creating).
 
     Additionally, when installing with minimal role-based access control (RBAC), the preflight checks can fail due to insufficient privileges.
 
