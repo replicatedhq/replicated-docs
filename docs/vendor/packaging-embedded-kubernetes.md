@@ -20,7 +20,7 @@ There are two possible methods for creating a Kubernetes installer:
   </tr>
   <tr>
     <td><a href="packaging-embedded-kubernetes#create-a-separate-kubernetes-installer">Create a separate Kubernetes installer</a></td>
-    <td>The installer is created and promoted to a channel separately from an application release. <br></br><br></br> The installation command uses the Kubernetes installer that is currently promoted to the channel. Problems can occur when you install previous versions of the application with the currently promoted Kubernetes installer because the application version might not have been tested with the current installer.</td>
+    <td>The installer is created and promoted to a channel separately from an application release. <br></br><br></br> The installation command uses the Kubernetes installer that is currently promoted to the channel. When you install a previous application version with the currently promoted Kubernetes installer, problems can occur because the application version might not have been tested with the current installer.</td>
   </tr>
 </table>
 
