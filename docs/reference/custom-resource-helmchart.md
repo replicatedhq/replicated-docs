@@ -38,9 +38,7 @@ spec:
   # weight determines the order that charts with "useHelmInstall: true" are applied, with lower weights first.
   weight: 42
 
-  # helmUpgradeFlags specifies additional flags to be passed to the `helm upgrade` CLI command.
-  # The "--install, -i" flag is already specified by KOTS in order to install the helm chart if it's not already installed.
-  # Flag values must be preceded by a `=` or written on a new line.
+  # helmUpgradeFlags specifies additional flags to pass to the `helm upgrade` command.
   helmUpgradeFlags:
     - --skip-crds
     - --no-hooks
@@ -118,9 +116,9 @@ For more information, see [Defining Installation Order for Native Helm Charts](.
 
 ## helmUpgradeFlags
 
-Can be used to specify additional flags to be passed to the `helm upgrade` CLI command.
-The "--install, -i" flag is already specified by KOTS in order to install the helm chart if it's not already installed.
-Flag values must be preceded by a `=` or written on a new line. For example:
+Specifies additional flags to pass to the `helm upgrade` command.
+The app manager uses `helm upgrade` for all deployments of an application (not just upgrades) by specifying the `--install` flag.
+For non-boolean flags that require an additional argument (e.g., `--timeout 1200s`), you must use an equals sign or specify the additional argument separately in the array. For example:
 
 ```yaml
 helmUpgradeFlags:
