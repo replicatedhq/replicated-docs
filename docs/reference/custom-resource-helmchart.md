@@ -38,6 +38,16 @@ spec:
   # weight determines the order that charts with "useHelmInstall: true" are applied, with lower weights first.
   weight: 42
 
+  # helmUpgradeFlags specifies additional flags to be passed to the `helm upgrade` CLI command.
+  # The "--install, -i" flag is already specified by KOTS in order to install the helm chart if it's not already installed.
+  # Flag values must be preceded by a `=` or written on a new line.
+  helmUpgradeFlags:
+    - --skip-crds
+    - --no-hooks
+    - --timeout
+    - 1200s
+    - --history-max=15
+
   # values are used in the customer environment, as a pre-render step
   # these values will be supplied to helm template
   values:
@@ -105,6 +115,19 @@ Determines the order to apply charts that have `useHelmInstall: true`. Charts ar
 Acceptable values are positive and negative integers, with a default value of 0.
 
 For more information, see [Defining Installation Order for Native Helm Charts](../vendor/helm-native-helm-install-order).
+
+## helmUpgradeFlags
+
+Can be used to specify additional flags to be passed to the `helm upgrade` CLI command.
+The "--install, -i" flag is already specified by KOTS in order to install the helm chart if it's not already installed.
+Flag values must be preceded by a `=` or written on a new line. For example:
+
+```yaml
+helmUpgradeFlags:
+  - --timeout
+  - 1200s
+  - --history-max=15
+```
 
 ## values
 
