@@ -76,7 +76,7 @@ From the [vendor portal](https://vendor.replicated.com), select **Channels**.
 
 ### Install with an Included Kubernetes Installer (Alpha)
 
-If you included a Kubernetes installer file as part of your release, this coupling makes it easy to provide users with an installation command that uses the correct version of both the installer and the application. For more information about methods for creating Kubernetes installers, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
+If you included a Kubernetes installer as part of your application release, this coupling makes it easy to provide users with an installation command that uses the correct version of both the installer and the application. For more information about methods for creating Kubernetes installers, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
 
 To install a specific application version that includes a Kubernetes installer:
 
@@ -86,9 +86,9 @@ To install a specific application version that includes a Kubernetes installer:
 
   ![Existing Cluster Command](/images/embedded-cluster-command.png)
 
-### Install with the Currently Promoted Kubernetes Installer
+### Install with a Separate Kubernetes Installer
 
-When you share an installation command for a previous application version that does not include a Kubernetes installer, the installation command always uses the currently promoted Kubernetes installer. In this case, you might not have tested the latest Kubernetes installer with the earlier application version. For more information about Kubernetes installer methods, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
+When you share an installation command for a previous application version that uses a separate Kubernetes installer, the installation command always uses the currently promoted Kubernetes installer. In this case, you might not have tested the latest Kubernetes installer with the earlier application version. For more information about Kubernetes installer methods, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
 
 To install a specific application version with the currently promoted Kubernetes installer, run:
 
