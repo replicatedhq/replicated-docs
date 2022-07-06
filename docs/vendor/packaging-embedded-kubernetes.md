@@ -15,12 +15,12 @@ There are two possible methods for creating a Kubernetes installer:
     <th width="70%">Description</th>
   </tr>
   <tr>
-    <td><a href="packaging-embedded-kubernetes#create-a-kubernetes-installer-in-the-release-application">Included with a release (Alpha)</a></td>
-    <td>The installer is included with an application release. <br></br><br></br> Couples the installer and the application in the release, making them easier to test and use together. <br></br><br></br> Helps with installing previous versions of the application because the installer associated with the application release is used.</td>
+    <td><a href="packaging-embedded-kubernetes#create-a-kubernetes-installer-in-the-release-application">Include a Kubernetes installer in an application release (Alpha)</a></td>
+    <td>The installer is included in an application release. <br></br><br></br> Couples the installer and the application in the release, making them easier to test and use together. <br></br><br></br> Helps with installing previous versions of the application because the installation command uses the installer that is associated with the application release.</td>
   </tr>
   <tr>
-    <td><a href="packaging-embedded-kubernetes#create-a-separate-kubernetes-installer">As a separate installer</a></td>
-    <td>The installer is created separately from an application release. <br></br><br></br> This option uses the Kubernetes installer that is currently promoted to the channel. Using the Kubernetes installer that is currently promoted to the channel can pose problems when installing previous versions of the application, since previous versions may not be tested with the currently promoted installer.</td>
+    <td><a href="packaging-embedded-kubernetes#create-a-separate-kubernetes-installer">Create a separate Kubernetes installer</a></td>
+    <td>The installer is created and promoted to a channel separately from an application release. <br></br><br></br> The installation command uses the Kubernetes installer that is currently promoted to the channel. Problems can occur when you install previous versions of the application with the currently promoted Kubernetes installer because the application version might not have been tested with the current installer.</td>
   </tr>
 </table>
 
