@@ -84,7 +84,7 @@ To customize host preflight checks:
         <td>Disables the default host preflights for Kubernetes and any included add-ons</td>
       </tr>
       <tr>
-        <td><code>`hostPreflightIgnore: true`</code></td>
+        <td><code>hostPreflightIgnore: true</code></td>
         <td>Ignores host preflight failures and warnings</td>
       </tr>
       <tr>
