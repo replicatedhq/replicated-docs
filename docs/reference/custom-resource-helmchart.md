@@ -1,6 +1,6 @@
 # HelmChart
 
-A HelmChart custom resource enables the Replicated app manager to process and deploy Helm charts as part of an application. The app manager can process Helm charts using the Replicated Helm installation for existing applications. You can also use a native Helm installation for new applications. For more information, see [Helm Overview](/vendor/helm-overview).
+A HelmChart custom resource enables the Replicated app manager to process and deploy Helm charts as part of an application. The app manager can process Helm charts using the Replicated Helm installation for existing applications. You can also use a native Helm installation for new applications or newly added Helm charts. For more information, see [Helm Overview](/vendor/helm-overview).
 
 HelmChart custom resources are required for the app manager to deploy Helm charts. HelmChart custom resources are not required if only raw Kubernetes manifests are deployed.
 
@@ -140,14 +140,14 @@ For more information about using `optionalValues`, see [Including Optional Value
 
 The `when` field in `optionalValues` provides a string-based method that is evaluated by template functions. The `when` field defers evaluation of the conditional to render time in the customer environment.
 
-To write the `when` conditional statement, use template functions from the Config context. For example, in the `samplechart` HelmChart custom resource above, the `when` field includes a conditional statement that evaluates to `true` if the user selects the `external_postgres` option on the admin console configuration screen:
+To write the `when` conditional statement, use template functions. For example, in the `samplechart` HelmChart custom resource above, the `when` field includes a conditional statement that evaluates to `true` if the user selects the `external_postgres` option on the admin console configuration screen:
 
 ```yaml
 optionalValues:
   - when: "repl{{ ConfigOptionEquals `postgres_type` `external_postgres`}}"
 ```  
 
-For more information about the syntax for template functions in the Config context, see [Config Context](template-functions-config-context).
+For more information about the syntax for template functions, see [About Template Function Contexts](template-functions-about).
 
 ### optionalValues[].recursiveMerge
 
@@ -169,7 +169,7 @@ The following table describes how `values` and `optionalValues` are merged based
   <tr>
     <td><code>false</code> (Default)</td>
     <td><p>The <code>values</code> and <code>optionalValues</code> fields from the HelmChart custom resource manifest are <em>not</em> merged recursively.</p>
-    <p>The top level keys in <code>optionalValues</code> overwrite the top level keys in <code>values</code>. This means that any keys that are included in <code>values</code> but not included in <code>optionalValues</code> are excluded from the merged dataset.</p>
+    <p>The top level keys in <code>optionalValues</code> overwrite the top level keys in <code>values</code>.</p>
     </td>
   </tr>
   <tr>
