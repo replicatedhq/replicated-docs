@@ -88,7 +88,7 @@ To customize host preflight checks:
         <td>Ignores host preflight failures and warnings</td>
       </tr>
       <tr>
-        <td><code>`hostPreflightEnforceWarnings: true`</code></td>
+        <td><code>hostPreflightEnforceWarnings: true</code></td>
         <td>Blocks an installation if the results include a warning</td>
       </tr>
     </table>
