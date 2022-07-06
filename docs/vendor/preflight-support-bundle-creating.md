@@ -80,7 +80,7 @@ To customize host preflight checks:
         <th width="70%">Description</th>
       </tr>
       <tr>
-        <td><code>`excludeBuiltinHostPreflights: true`</code></td>
+        <td><code>excludeBuiltinHostPreflights: true</code></td>
         <td>Disables the default host preflights for Kubernetes and any included add-ons</td>
       </tr>
       <tr>
