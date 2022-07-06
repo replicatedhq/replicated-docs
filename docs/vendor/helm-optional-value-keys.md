@@ -15,7 +15,7 @@ For more information, see [Deleting a Default Key](https://helm.sh/docs/chart_te
 
 Some advanced use cases involve writing values to a values file only if there is a value to apply.
 
-Helm charts like Postgres do not treat an empty value (`""`) in the same way as if the key were missing from the chart. This can be necessary for applications packaged as a Helm chart that include a reference to another chart in the `requirements.yaml`.
+Helm charts such as Postgres do not treat an empty value (`""`) in the same way as if the key were missing from the chart. This can be necessary for applications packaged as a Helm chart that include a reference to another chart in the `requirements.yaml`.
 
 For example, in the [requirements.yaml](https://github.com/helm/charts/blob/e64112e0913db99227926b49fa0ae59158c9c9d9/stable/sentry/requirements.yaml) of the [Sentry](https://github.com/helm/charts/tree/master/stable/sentry) chart, there is a reference to postgres. This is configured through the [Sentry chart values.yaml](https://github.com/helm/charts/blob/e64112e0913db99227926b49fa0ae59158c9c9d9/stable/sentry/values.yaml#L192):
 
