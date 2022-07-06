@@ -38,6 +38,14 @@ spec:
   # weight determines the order that charts with "useHelmInstall: true" are applied, with lower weights first.
   weight: 42
 
+  # helmUpgradeFlags specifies additional flags to pass to the `helm upgrade` command.
+  helmUpgradeFlags:
+    - --skip-crds
+    - --no-hooks
+    - --timeout
+    - 1200s
+    - --history-max=15
+
   # values are used in the customer environment, as a pre-render step
   # these values will be supplied to helm template
   values:
@@ -106,6 +114,20 @@ Determines the order to apply charts that have `useHelmInstall: true`. Charts ar
 Acceptable values are positive and negative integers, with a default value of 0.
 
 For more information, see [Defining Installation Order for Native Helm Charts](../vendor/helm-native-helm-install-order).
+
+## helmUpgradeFlags
+
+Specifies additional flags to pass to the `helm upgrade` command for charts that have `useHelmInstall: true`.
+
+The app manager uses `helm upgrade` for all deployments of an application (not just upgrades) by specifying the `--install` flag.
+For non-boolean flags that require an additional argument, such as `--timeout 1200s`, you must use an equals sign or specify the additional argument separately in the array. For example:
+
+```yaml
+helmUpgradeFlags:
+  - --timeout
+  - 1200s
+  - --history-max=15
+```
 
 ## values
 
