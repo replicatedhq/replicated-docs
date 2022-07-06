@@ -66,7 +66,7 @@ To customize host preflight checks:
 
 1. Create a Kubernetes installer. For more information, see [Creating a Kubernetes Installer](https://docs.replicated.com/vendor/packaging-embedded-kubernetes).
 
-1. From the kurl.sh site, copy the default `host-preflights.yaml` specification for kURL or an add-on to the Installer YAML in the vendor portal. Copying the default specifications lets you use the best practices provided by Replicated and customize the parts that you need to.
+1. Copy the default `host-preflights.yaml` specification for kURL or an add-on from GitHub to the Installer YAML in the vendor portal. Copying the default specifications lets you use the best practices provided by Replicated and customize the parts that you need to.
 
   For the default kURL host preflights YAML, see [host-preflights.yaml](https://github.com/replicatedhq/kURL/blob/main/pkg/preflight/assets/host-preflights.yaml) in the kURL repository.
 
