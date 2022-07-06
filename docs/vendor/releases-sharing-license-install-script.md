@@ -78,7 +78,7 @@ From the [vendor portal](https://vendor.replicated.com), select **Channels**.
 
 If you included a Kubernetes installer as part of your application release, this coupling makes it easy to provide users with an installation command that uses the correct version of both the installer and the application. For more information about methods for creating Kubernetes installers, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
 
-To install a specific application version that includes a Kubernetes installer:
+To install a specific application version that includes a Kubernetes installer in the application release:
 
 1. From the [vendor portal](https://vendor.replicated.com), select **Channels**.
 1. Click **Release history** for the channel that you want to use.
@@ -90,7 +90,7 @@ To install a specific application version that includes a Kubernetes installer:
 
 When you share an installation command for a previous application version that uses a separate Kubernetes installer, the installation command always uses the currently promoted Kubernetes installer. In this case, you might not have tested the latest Kubernetes installer with the earlier application version. For more information about Kubernetes installer methods, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
 
-To install a specific application version with the currently promoted Kubernetes installer, run:
+To install a specific application version with a separate Kubernetes installer, run:
 
 ```
 curl -sSL https://k8s.kurl.sh/APP_SLUG-CHANNEL | sudo bash -s app-version-label=VERSION
