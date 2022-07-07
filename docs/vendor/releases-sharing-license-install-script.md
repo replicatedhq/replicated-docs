@@ -1,7 +1,7 @@
 # Sharing License Files and Application Releases
 
-This topic describes how to share license files and installation commands for currently and previously promoted versions of application releases with
-your customers.
+This topic describes how to share license files and installation commands with
+your customers so that they can install your application.
 
 For more information about how customers use license files and installation commands to install your application,
 see [Overview of Installing an Application with the App Manager](../enterprise/installing-overview).
@@ -24,9 +24,8 @@ the license file. See [Share Licenses Files Through the Download Portal](#share-
 
 To download and share a license file:
 
-1. In the [vendor portal](https://vendor.replicated.com), on the Customer page, click on the name of the customer.
-1. Click the download license icon on the right side of the row.
-1. Share the license file to your customer along with an installation command.
+1. In the [vendor portal](https://vendor.replicated.com), on the Customers page, click the download license icon on the right side of a customer row.
+1. Share the license file with your customer, along with an installation command.
 
 ### Share License Files Through the Download Portal
 
@@ -43,7 +42,7 @@ and preview your customer's experience.
 1. Send the URL and password for the download portal to your customer.
 
 
-## Share Currently Promoted Releases
+## Share the Latest Promoted Release
 
 Installation commands are unique to each channel. Within each channel, there are installation commands for existing clusters and for Kubernetes installer provisioned clusters (embedded clusters).
 
