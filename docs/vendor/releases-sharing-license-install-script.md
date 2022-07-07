@@ -66,7 +66,7 @@ Typically you do not need to use these procedures for air gap installations beca
 
 To share an installation command for a specific application release version:
 
-From the [vendor portal](https://vendor.replicated.com), select **Channels**.
+1. From the [vendor portal](https://vendor.replicated.com), select **Channels**.
 1. Click **Release history** for the channel that you want to use.
 1. Click **Install Commands** for a specific version.
 1. From either the the Existing Cluster or Embedded Cluster tab, click **Copy command** and share the it with your customer.
