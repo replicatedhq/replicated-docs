@@ -52,7 +52,7 @@ To share an installation command for the latest application release:
 customer is assigned.
 1. Under **Install**:
    * Click **Existing Cluster** for installations on an existing Kubernetes cluster.
-   * Click **Embedded Cluster** to install the application on a cluster created by the Kubernetes
+   * Click **Embedded Cluster** to install the application on a cluster created by a Kubernetes
    installer.
 1. Copy the command that is displayed in the Install section and share it with your customer.
 
