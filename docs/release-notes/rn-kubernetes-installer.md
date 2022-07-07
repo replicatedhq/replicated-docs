@@ -10,7 +10,7 @@ Released on July 7, 2022
 
 ### Improvements {#improvements-v2022-07-07-0}
 
-- Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.6.
+- Adds [containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.6.
 - Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.8.
 
 ## Release v2022.07.05-0
