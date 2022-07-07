@@ -25,7 +25,7 @@ the license file. See [Share Licenses Files Through the Download Portal](#share-
 To download and share a license file:
 
 1. In the [vendor portal](https://vendor.replicated.com), on the Customers page, click the download license icon on the right side of a customer row.
-1. Share the license file with your customer, along with an installation command.
+1. Share the license file with your customer.
 
 ### Share License Files Through the Download Portal
 
@@ -54,60 +54,26 @@ customer is assigned.
    * Click **Existing Cluster** for installations on an existing Kubernetes cluster.
    * Click **Embedded Cluster** to install the application on a cluster created by the Kubernetes
    installer.
-1. Copy the command that is displayed in the Install section, and send it to your customer along with their
-license file.
+1. Copy the command that is displayed in the Install section and share it with your customer.
 
 ## Share Specific Release Versions
 
-You can share specific versions of application releases for existing clusters or Kubernetes installer provisioned clusters. This is useful when a customer needs to install a particular version or when you need to install and troubleshoot a specific version.
+You can share specific versions of application releases for existing clusters or Kubernetes installer provisioned clusters.  This is useful when a customer needs to install a particular version or when you need to install and troubleshoot a specific version.
+
+If you used a Kubernetes installer, the correct installation command displays whether or not the installer is included in the application release.
 
 Typically you do not need to use these procedures for air gap installations because the application version can be selected in the download portal, and the correct assets are available automatically.
 
-### Install on an Existing Cluster
-
-To install a specific application version on an existing cluster:
+To install a specific application version:
 
 From the [vendor portal](https://vendor.replicated.com), select **Channels**.
 1. Click **Release history** for the channel that you want to use.
-1. Click **Install Commands** for a specific version. From the Existing Cluster tab, click **Copy command** and share it with your customer.
+1. Click **Install Commands** for a specific version.
+1. From either the the Existing Cluster or Embedded Cluster tab, click **Copy command** and share it with your customer.
 
   ![Existing Cluster Command](/images/existing-cluster-command.png)
 
-### Install with an Included Kubernetes Installer (Alpha)
-
-If you included a Kubernetes installer as part of your application release, this coupling makes it easy to provide users with an installation command that uses the correct version of both the installer and the application. For more information about methods for creating Kubernetes installers, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
-
-To install a specific application version that includes a Kubernetes installer in the application release:
-
-1. From the [vendor portal](https://vendor.replicated.com), select **Channels**.
-1. Click **Release history** for the channel that you want to use.
-1. Click **Install Commands** for a specific version. From the Embedded Cluster tab, click **Copy command** and share it with your customer.
-
-  ![Existing Cluster Command](/images/embedded-cluster-command.png)
-
-### Install with a Separate Kubernetes Installer
-
-When you share an installation command for a previous application version that uses a separate Kubernetes installer, the installation command always uses the currently promoted Kubernetes installer. In this case, you might not have tested the latest Kubernetes installer with the earlier application version. For more information about Kubernetes installer methods, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
-
-To install a specific application version with a separate Kubernetes installer, run:
-
-```
-curl -sSL https://k8s.kurl.sh/APP_SLUG-CHANNEL | sudo bash -s app-version-label=VERSION
-```
-
-Replace:
-
-- `APP_SLUG` with the name of the application slug.
-- `CHANNEL` with the name of the channel.
-- `VERSION` with the version number.
-
-
-**Example:**
-
-```
-curl -sSL https://k8s.kurl.sh/mygoodapplication-beta | sudo bash -s app-version-label=3.1.0
-```
-
 ## Additional Resources
 
-[How to Package and Distribute an Application](distributing-workflow)
+- [How to Package and Distribute an Application](distributing-workflow)
+- [Creating a Kubernetes Installer](packaging-embedded-kubernetes)
