@@ -47,7 +47,7 @@ and preview your customer's experience.
 
 Installation commands are unique to each channel. Within each channel, there are installation commands for existing clusters and for Kubernetes installer provisioned clusters (embedded clusters).
 
-To locate and share an installation command for a currently promoted release:
+To locate and share an installation command for the most recently promoted release:
 
 1. In the [vendor portal](https://vendor.replicated.com), on the **Channels** page, find the channel to which the
 customer is assigned.
