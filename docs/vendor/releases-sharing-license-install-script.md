@@ -1,7 +1,7 @@
 # Sharing License Files and Application Releases
 
-This topic describes how to share license files and installation commands with
-your customers so that they can install your application.
+This topic describes how to share license files and installation commands for any promoted application version with
+your customers.
 
 For more information about how customers use license files and installation commands to install your application,
 see [Overview of Installing an Application with the App Manager](../enterprise/installing-overview).
@@ -42,11 +42,11 @@ and preview your customer's experience.
 1. Send the URL and password for the download portal to your customer.
 
 
-## Share the Latest Promoted Release
+## Share the Latest Application Release
 
 Installation commands are unique to each channel. Within each channel, there are installation commands for existing clusters and for Kubernetes installer provisioned clusters (embedded clusters).
 
-To locate and share an installation command for the most recently promoted release:
+To share an installation command for the latest promoted application release:
 
 1. In the [vendor portal](https://vendor.replicated.com), on the **Channels** page, find the channel to which the
 customer is assigned.
@@ -64,12 +64,12 @@ If you used a Kubernetes installer, the correct installation command displays wh
 
 Typically you do not need to use these procedures for air gap installations because the application version can be selected in the download portal, and the correct assets are available automatically.
 
-To install a specific application version:
+To share an installation command for a specific application release version:
 
 From the [vendor portal](https://vendor.replicated.com), select **Channels**.
 1. Click **Release history** for the channel that you want to use.
 1. Click **Install Commands** for a specific version.
-1. From either the the Existing Cluster or Embedded Cluster tab, click **Copy command** and share it with your customer.
+1. From either the the Existing Cluster or Embedded Cluster tab, click **Copy command** and share the it with your customer.
 
   ![Existing Cluster Command](/images/existing-cluster-command.png)
 
