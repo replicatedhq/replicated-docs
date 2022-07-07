@@ -60,8 +60,6 @@ customer is assigned.
 
 You can share specific versions of application releases for existing clusters or Kubernetes installer provisioned clusters.  This is useful when a customer needs to install a particular version or when you need to install and troubleshoot a specific version.
 
-If you used a Kubernetes installer, the correct installation command displays whether or not the installer is included in the application release.
-
 Typically you do not need to use these procedures for air gap installations because the application version can be selected in the download portal, and the correct assets are available automatically.
 
 To share an installation command for a specific application release version:
@@ -70,6 +68,7 @@ To share an installation command for a specific application release version:
 1. Click **Release history** for the channel that you want to use.
 1. Click **Install Commands** for a specific version.
 1. From either the the Existing Cluster or Embedded Cluster tab, click **Copy command** and share the it with your customer.
+
 
   ![Existing Cluster Command](/images/existing-cluster-command.png)
 
