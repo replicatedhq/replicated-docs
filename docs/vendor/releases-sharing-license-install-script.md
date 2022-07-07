@@ -42,11 +42,11 @@ and preview your customer's experience.
 1. Send the URL and password for the download portal to your customer.
 
 
-## Share the Latest Application Release
+## Share the Latest Release
 
 Installation commands are unique to each channel. Within each channel, there are installation commands for existing clusters and for Kubernetes installer provisioned clusters (embedded clusters).
 
-To share an installation command for the latest promoted application release:
+To share an installation command for the latest application release:
 
 1. In the [vendor portal](https://vendor.replicated.com), on the **Channels** page, find the channel to which the
 customer is assigned.
