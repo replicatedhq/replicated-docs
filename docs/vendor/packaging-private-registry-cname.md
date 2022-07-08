@@ -36,23 +36,14 @@ You can add custom CNAMEs for the Replicated private registry and the proxy serv
 
 To add a custom CNAME:
 
-1. Log in to the vendor portal, and click **Images**.
-1. In the Custom CNAME Registry pane, on either the registry.replicated.com or proxy.replicated.com tab, enable the **Use a custom hostname instead of registry.replicated.com** checkbox.
-1. Enter the custom CNAME in the textbox.
-1. Select either **Create a TXT record** or **Verify ownership via email**. Click **Save**.
+1. Log in to the [vendor portal](https://vendor.replicated.com), and click **Images**.
+1. In the Custom Registry Domain Name pane, on either the registry.replicated.com or proxy.replicated.com tab, select **Use a custom hostname instead of ENDPOINT_NAME**.
+1. Enter the custom CNAME in the textbox, and click **Save**.
+1. From Create a CNAME record, copy the text string and create the CNAME record in your DNS account. Click **Continue**.
+1. From Domain name ownership verification, copy the text string and create a TXT record in your DNS account. Click **Verify and continue**.
+1. From TLS cert creation verification, copy the text string and create a TXT record in your DNS account. Click **Verify and finish**.
 
-1. For domain ownership verification, do one of the following, depending on which method of verification you enabled:
-    - For TXT verification, copy the string from the domain ownership verification text box and create a TXT record in your DNS account. Click **Validate and continue**.
-
-    - For email verification, enter the email addresses to which you want the verification notification to be sent. Click **Validate and continue**.
-
-1. For the TLS certification creation verification, do one of the following, depending on which method of verification you enabled:
-
-    - For TXT verification, copy the string from the TLS verification text box and create a TXT record in your DNS account. **Click Validate and continue**.
-
-    - For email verification, enter the email addresses to which you want the verification notification to be sent. Click **Validate and continue**.
-
-Your changes can take up to 24 hours to propagate.
+  Your changes can take up to 24 hours to propagate.
 
 ## Supported API Methods for CNAME
 
