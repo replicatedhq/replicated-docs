@@ -8,12 +8,10 @@ You add custom CNAMEs for the Replicated private registry and proxy service in t
 
 ## About Verification
 
-Verification of the domain is required using either TXT records or email verification. Both methods (TXT and email) undergo two separate verification checks for:
+Verification of the domain is required using a TXT record that undergoes separate verification checks for:
 
 - Domain ownership - This verification is done when you initially add a record.
 - TLS certificate creation - Each new domain must have a new TLS certificate to be verified.
-
-Additionally, both verification checks must use the same method (TXT or email).
 
 ## About Hostname Mapping
 
@@ -74,26 +72,6 @@ This endpoint returns the configuration for all registry CNAMEs for the applicat
       "name": "abcdef",
       "value": "txt_verification_abcdef"
     }
-  },
-  "proxy.replicated.com": null
-}
-```
-
-**Example response when registry is configured using email but is not verified:**
-
-```
-{
-  "registry.replicated.com": {
-    "hostname": "registry.enterprise.vendor.com",
-    "is_verified": false,
-    "verification_type": "email",
-    "email_addresses": [
-      "admin@vendor.com",
-      "administrator@vendor.com",
-      "hostmaster@vendor.com",
-      "postmaster@vendor.com",
-      "webmaster@vendor.com",
-    ]
   },
   "proxy.replicated.com": null
 }
@@ -228,11 +206,11 @@ To add a custom CNAMEs using the vendor API:
 
   There is a 2-step verification process. This response shows `is_active: false`, meaning that the CNAME is not set up yet and that the `domain_verification_status` is pending.
 
-1. Create the domain TXT record for the application using your DNS provider's instructions, and set the value to that shown in the previous step:
+1. Create the domain TXT record for the application using your DNS provider's instructions, and set the value to the randomly generated value shown in the previous step:
 
   ```
-  "_cf-custom-hostname.registry.enterprise.myapp.com",
-              "value": "00b3b205-3bce-41fa-abfb-7852b438be80"
+  "name": "_cf-custom-hostname.registry.enterprise.myapp.com",
+  "value": "00b3b205-3bce-41fa-abfb-7852b438be80"
   ```
 
 1. To see the updated status, refresh the Replicated API by listing the values again:
