@@ -17,6 +17,8 @@ If your application images are available in a private image registry exposed to 
 
 With proxy access, the app manager can use the Replicated registry proxy service to pull private images from an external registry. Instances of your application can then pull private images from the proxy service at `proxy.replicated.com` during deployment.
 
+App manager determines what images are private by attempting to fetch image metadata. If the request is forbidden, the image will be pulled via `proxy.replicated.com` instead of directly.
+
 Connecting the app manager to your external registry through a proxy is useful and recommended because it prevents you from having to modify the process you use to build and push application images in order to deploy your application with Replicated.
 
 It also allows you to revoke a customer’s ability to pull private images without having to manage image access through separate identity or authentication systems. For example, when you connect the app manager to your external image registry, a customer's ability to pull private images is revoked when their trial license expires.
