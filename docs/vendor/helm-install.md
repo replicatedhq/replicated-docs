@@ -1,7 +1,7 @@
 # Using Helm to Install an Application (Alpha)
 
 :::note
-Allowing customers to install with the Helm CLI is an Alpha feature. To enable this feature on your account, please contact your customer success representative.
+Allowing customers to install with the Helm CLI is an Alpha feature. To enable this feature on your account, please log in to your [Vendor Portal](https://vendor.replicated.com/support) account and submit a feature request for "Helm CLI Install option".
 :::
 
 Some enterprise customers prefer or require a Helm chart to install using the `helm` CLI. This is often because Helm is already approved and the customer has a custom CI pipeline that is compatible with Helm charts. Replicated has introduced Alpha support to enable these customers to use Helm to install your application.
