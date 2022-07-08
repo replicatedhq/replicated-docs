@@ -1,48 +1,50 @@
-# Using Helm to install
+# Using Helm to Install an Application (Alpha)
 
 :::note
-This is a beta feature. To enable this feature on your account, please contact your customer success representative.
+Allowing customers to install with the Helm CLI is an Alpha feature. To enable this feature on your account, please contact your customer success representative.
 :::
 
-Some customers prefer or even require a Helm chart to install using the `helm` CLI. This is often because Helm is already approved and the customer has a custom CI pipeline that's compatible with Helm charts. Replicated has introduced beta support to enable these customers to use Helm to install your application.
+Some enterprise customers prefer or require a Helm chart to install using the `helm` CLI. This is often because Helm is already approved and the customer has a custom CI pipeline that is compatible with Helm charts. Replicated has introduced Alpha support to enable these customers to use Helm to install your application.
 
-## Requirements
+## About Installing with the Helm CLI
 
-Not all KOTS applications are compatible with `helm install`. To use this feature, your application must contain one or more Helm charts. If this feature is needed, it's recommended to package your application using Helm and create a release with your Helm charts. This allows you to package your application one time and deliver with an embedded cluster (kURL), the UI-based KOTS method, and now `helm install`.
+When you promote an application to a release channel, Replicated looks at the release and extracts any Helm charts included. These charts are pushed as OCI objects to our built-in private registry  at `registry.replicated.com`. The Helm chart is pushed to the _channel_.
 
-## How it works
+For example, if your app is named "app", you create a channel named "nightly", and the release promoted contains a Helm chart with `name: my-chart` in the `Chart.yaml`, then the chart is pushed to `oci://registry.replicated.com/app/nightly/my-chart`. The chart version (tag) is read from the `Chart.yaml`.
 
-When you promote an application to a release channel, Replicated will look at the release and extract any Helm charts included. These charts will be pushed as OCI objects to our built-in private registry (registry.replicated.com). The chart will be pushed to the _channel_. For example, if your app is named "app", and you create a channel named "nightly", and the release promoted contains a Helm chart with `name: my-chart` in the `Chart.yaml`, the chart will be pushed to `oci://registry.replicated.com/app/nightly/my-chart`. The chart version (tag) is read from the `Chart.yaml`.
+This feature supports multiple charts. If your application release contains more than a single chart, all charts are uploaded to the registry.
 
-When a new version of a chart is uploaded, Replicated will render and cache that version for each license when it's pulled the first time.
+When a new version of a chart is uploaded, Replicated renders and cache that version for each license when it is pulled the first time.
 
-When a license field changes for a customer, Replicated will invalidate all rendered and cached charts. This will cause the charts to be re-built the next time they are pulled.
+When a license field changes for a customer, Replicated invalidates all rendered and cached charts. This causes the charts to be rebuilt the next time they are pulled.
 
-The `values.yaml` in your Chart will be rendered with the customer provided license. This creates a way to pass custom license fields and other customer-specific data into the values.yaml as defaults, and consume them in Helm templates. When Replicated renders the `values.yaml`, it's not assumed to be a valid YAML format yet in order to allow flow-control and conditional template functions to optionally write some fields to the values.yaml file.
+The `values.yaml` in your Chart is rendered with the customer provided license. This creates a way to pass custom license fields and other customer-specific data into the `values.yaml` as defaults, and consume them in Helm templates. When Replicated renders the `values.yaml`, it is not assumed to be a valid YAML format in order to allow flow-control and conditional template functions to optionally write some fields to the `values.yaml` file.
+
+## Requirement
+
+Not all applications packaged with Replicated are able to be installed with `helm install`. To use the `helm install` feature, your application must contain one or more Helm charts.
+
+If you want to allow your customers to install your application with `helm install`, Replicated recommendeds that you package your application using Helm and create a release with your Helm charts. This allows you to package your application one time and deliver with an embedded cluster created by the Kubernetes installer (kURL), the UI-based KOTS method, and the `helm install` method.
 
 ## Limitations
 
-A lot of functionality exists in the KOTS CLI that isn't present with the `helm install` method:
+The `helm install` method is Alpha and has the following limitations:
 
-1. No "last mile" kustomization support. All confguration and customization should be done using Helm.
-1. No support for blocking preflights because helm doesn't automatically run preflights. Preflight checks are still supported, but must be run manually.
+* No "last mile" kustomization support. All confguration and customization must be done using Helm.
+* No support for `strict` preflights that block application installation. This is because Helm does not automatically run preflight checks. Preflight checks are supported with `helm install`, but your customers must run the preflight checks manually before installing your application.
+* No support for air gap installations. Replicated has documented a workaround solution for installing into air gap environments.
+* Customer adoption is not reported to the vendor portal.
+* This feature support multiple charts and Replicated does not wrap or provide any special tooling to manage multiple charts. Replicated recommends that you provide installation instructions with sequenced steps for customers to follow to install each chart in the required order.
 
-## Beta limitations
+## About Delivering the Admin Console
 
-This functionality is currently in Beta and has some additional limitations we plan to address before this feature is GA:
+To allow your customers to use the Replicated admin console when they install your application using `helm install`, Replicated recommends delivering the admin console as a subchart to your application's chart.
 
-1. No support for airgap installations. We've documented a solution that will work for these environments today, but plan to make this better.
-1. Customer adoption is not reported to the vendor portal. 
+When you include the admin console as a dependency, Replicated injects some Replicated values into the `values.yaml` when the chart is pulled by end customers. These values enable the admin console to authenticate with the registry and check for updates.
 
-## Delivering the admin console experience
+It is possible to make the admin-console Helm chart an optional dependency that your customers can exclude.
 
-We recommend delivering the admin console as a subchart to your application's chart.
-
-When the admin console is included as a dependency, Replicated will inject some Replicated values into the `values.yaml` when the chart is pulled by end customers. These values enable the admin console to authenticate with the registry and check for updates.
-
-It's possible to make the admin-console helm chart an optional dependency that end-customers can exclude.
-
-The values that are injected will look like:
+The following shows the formatting of the values that are injected:
 
 `values.yaml`
 
@@ -51,15 +53,11 @@ replicated:
   license_id: abcdef123
 ```
 
-## Multiple charts
+## About Customer Values and Private Images
 
-This feature supports multiple charts. If your application release contains more than a single chart, all charts will be uploaded to the registry. Replicated does not wrap or provide any special tooling to manage multiple charts. We recommend your instructions provide sequenced steps for customers to follow to get each chart installed and running in the order you need.
+Replicated renders template functions in the `values.yaml` for each customer, as the Helm chart is served to the customer. Each customer license logs in with unique credentials, and our registry is able to identify which customer is pulling the chart. The registry does not render the chart, but it replaces your `values.yaml` with a rendered version.
 
-## Customer values and private images
-
-Replicated will render template functions in the values.yaml for each customer, as the chart is served to the customer. Each customer license logs in with unique credentials, and our registry is able to identify which customer is pulling the chart. The registry will not render the chart, but it will replace your values.yaml with a rendered version.
-
-#### Example of delivering image pull secrets for private images
+### Example: Delivering Image Pull Secrets for Private Images
 
 `values.yaml`
 
@@ -105,7 +103,7 @@ data:
           name: http
 ```          
 
-#### Example of delivering custom license fields
+### Example: Delivering Custom License Fields
 
 `values.yaml`
 
