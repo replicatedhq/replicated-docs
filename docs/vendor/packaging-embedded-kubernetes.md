@@ -15,7 +15,7 @@ There are two possible methods for creating a Kubernetes installer:
     <th width="70%">Description</th>
   </tr>
   <tr>
-    <td><a href="packaging-embedded-kubernetes#create-a-kubernetes-installer-in-the-release-application">Include a Kubernetes installer in an application release (Alpha)</a></td>
+    <td><a href="packaging-embedded-kubernetes#include-a-kubernetes-installer-in-an-application-release-beta">Include a Kubernetes installer in an application release (Beta)</a></td>
     <td>The installer is included in an application release. <br></br><br></br> Couples the installer and the application in the release, making them easier to test and use together. <br></br><br></br> Helps with installing previous versions of the application because the installation command uses the installer that is associated with the application release.</td>
   </tr>
   <tr>
@@ -28,7 +28,7 @@ The Kubernetes installer is based on the open source kURL project, which is main
 by Replicated. For more information, see [Introduction to kURL](https://kurl.sh/docs/introduction/)
 in the kURL open source documentation.
 
-## Include a Kubernetes Installer in an Application Release (Alpha)
+## Include a Kubernetes Installer in an Application Release (Beta)
 
 You can include a Kubernetes installer with an application release. This allows multiple Kubernetes installers to be active for a channel at the same time. It also ensures that every installation uses the Kubernetes installer that is associated with the version of the application that is being installed. We recommend this method.
 
@@ -44,17 +44,9 @@ To include the Kubernetes installer in the application release:
 
     - To use Replicated snapshots, Velero must be installed on the cluster. We recommend that you include the Velero add-on in your Kubernetes installer manifest so that your customers do not have to manually install Velero.
 
+    - Kubernetes installers that are included in releases must pin specific add-on versions and cannot pin `latest` versions or x-ranges (such as 1.2.x). Pinning specific versions ensures the most testable and reproducible installations.
+
     For more information about creating a Kubernetes installer and the available add-ons, see [Create An Installer](https://kurl.sh/docs/create-installer/) in the kURL open source documentation.
-
-1. Create a new file in the YAML editor in the vendor portal. Copy the Installer YAML content from [kurl.sh](https://kurl.sh) and paste it in this new file.
-
-    :::note
-    Replicated recommends that you pin specific versions of Kubernetes and Kubernetes add-ons in the Kubernetes installer manifest, rather than use `latest` or x-ranges (such as 1.2.x). This ensures easily-reproducible versions across your customer installations.
-
-    For example, pin `Kubernetes 1.23.0` in your manifest to ensure that v1.23 of Kubernetes is installed along with the latest security and bug patch release for that version.
-
-    For more information about pinning versions, see [Versions](https://kurl.sh/docs/create-installer/#versions) and [Versioned Releases](https://kurl.sh/docs/install-with-kurl/#versioned-releases) in the kURL open source documentation.
-    :::
 
 1. Save and promote the release to your development environment to test your changes.
 
