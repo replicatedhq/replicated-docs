@@ -107,7 +107,7 @@ To customize host preflight checks:
       excludeBuiltinHostPreflights: true
   ```
 
-1. (Optional) To keep the default host preflight checks and add customized host preflights, add a `hostPreflights` field to the `kurl` or add-on specification in the Installer manifest. Under the `hostPreflights` field, add a host preflight specification (`kind: HostPreflight`) with your customizations. You only need to specify your customizations because the default host preflights will run automatically.
+1. (Optional) To keep the default host preflight checks and add customized host preflights, add a `hostPreflights` field to the `kurl` or add-on specification in the Installer manifest. Under the `hostPreflights` field, add a host preflight specification (`kind: HostPreflight`) with your customizations. You only need to specify your customizations because the default host preflights run automatically.
 
   The following example shows customized `kurl` host preflight checks for:
 
@@ -188,7 +188,7 @@ To customize host preflight checks:
       </tr>
       <tr>
         <td><code>hostPreflightIgnore: true</code></td>
-        <td>Ignores host preflight failures and warnings. The installation will proceed.</td>
+        <td>Ignores host preflight failures and warnings. The installation proceeds.</td>
       </tr>
       <tr>
         <td><code>hostPreflightEnforceWarnings: true</code></td>
@@ -199,8 +199,8 @@ To customize host preflight checks:
     The following example shows:
 
     - Default host preflights checks are disabled
-    - Customized host preflight checks will run
-    - The installation will be blocked if there is a warning
+    - Customized host preflight checks run
+    - The installation is blocked if there is a warning
 
     ```yaml
     apiVersion: "cluster.kurl.sh/v1beta1"
@@ -285,13 +285,13 @@ Troubleshoot documentation.
 
 A robust support bundle is essential to minimizing back-and-forth when things go wrong.
 At a very minimum, every app's support bundle should contain logs for an application's core pods.
-Usually this will be done with label selectors. To get the labels for an application, either inspect the YAML, or run the following YAML against a running instance to see what labels are used:
+Usually this is done with label selectors. To get the labels for an application, either inspect the YAML, or run the following YAML against a running instance to see what labels are used:
 
 ```shell
 kubectl get pods --show-labels
 ```
 
-Once the labels are discovered, a [logs collector](https://troubleshoot.sh/reference/collectors/pod-logs/) can be used to include logs from these pods in a bundle.
+After the labels are discovered, a [logs collector](https://troubleshoot.sh/reference/collectors/pod-logs/) can be used to include logs from these pods in a bundle.
 Depending on the complexity of an app's labeling schema, you may need a few different declarations of the `logs` collector.
 
-As common issues are encountered in the field, it will make sense to add not only collectors but also analyzers to an app's troubleshooting stack. For example, when an error in a log file is discovered that should be surfaced to an end user in the future, a simple [Text Analyzer](https://troubleshoot.sh/reference/analyzers/regex/) can detect specific log lines and inform an end user of remediation steps.
+As common issues are encountered in the field, it makes sense to add not only collectors but also analyzers to an app's troubleshooting stack. For example, when an error in a log file is discovered that should be surfaced to an end user in the future, a simple [Text Analyzer](https://troubleshoot.sh/reference/analyzers/regex/) can detect specific log lines and inform an end user of remediation steps.
