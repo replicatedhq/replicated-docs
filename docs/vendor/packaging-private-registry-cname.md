@@ -87,7 +87,7 @@ To add a custom domain name using the https://docs.google.com/document/d/1Nky2tC
   ```
 
   :::note
-  If you get a 403 Forbidden error, the token could be read-only or the account does not have the feature toggle enabled.
+  If you get a 403 Forbidden error, the token could be read-only or your team account in the Replicated vendor portal does not have the feature toggle enabled.
   :::
 
   **Response:**
