@@ -1,4 +1,4 @@
-# Using CNAME Records with Private Registries (Alpha)
+# Using a Custom Registry Domain Name (Alpha)
 
 You can use Canonical Name (CNAME) records to create custom hostnames for the replicated.registry.com and proxy.replicated.com endpoints.
 
