@@ -475,6 +475,11 @@ const sidebars = {
         'vendor/policies-vulnerability-patch',
         'vendor/policies-support-lifecycle',
         'vendor/policies-data-transmission',
+        {
+          type: 'link',
+          label: 'Security at Replicated',
+          href: 'https://www.replicated.com/security/'
+        },
       ],
     },
     {
