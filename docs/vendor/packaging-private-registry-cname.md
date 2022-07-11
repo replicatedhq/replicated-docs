@@ -129,7 +129,7 @@ Clear the configuration for a key by passing `null`.
   ```
 
 
-## Add a Custom CNAME with the Vendor API
+## Add a Custom Domain Name with the Vendor API
 
 This procedure shows an example of:
 
