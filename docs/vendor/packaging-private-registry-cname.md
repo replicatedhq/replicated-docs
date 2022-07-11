@@ -138,7 +138,7 @@ This procedure shows an example of:
 - Using a TXT record to validate domain ownership
 
 
-To add a custom CNAMEs using the vendor API:
+To add a custom domain name using the vendor API:
 
 1. Generate a user token. See [Generate a User API Token in Using the Vendor API v3](//reference/vendor-api-using#generate-a-user-api-token).
 
