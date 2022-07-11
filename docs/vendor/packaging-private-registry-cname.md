@@ -13,7 +13,7 @@ Verification of the domain is required using a TXT record that undergoes separat
 - Domain ownership - This verification is done when you initially add a record.
 - TLS certificate creation - Each new domain must have a new TLS certificate to be verified.
 
-## About Hostname Mapping
+## About Domain Name Mapping
 
 The same hostname can be used for multiple applications, but cannot be used for multiple endpoints. A single hostname can map to registry.replicated.com for any number of applications, but cannot map to both registry.replicated.com and  proxy.replicated.com, even if the applications are different.
 
