@@ -12,8 +12,11 @@ import PullRequestIcon from "../../../static/images/git-pull-request.svg";
 import styles from "./styles.module.css";
 
 export default function EditThisPage({ editUrl }) {
-  const url = window.location.href;
-  const issueTitle = url.substring(url.lastIndexOf("/") + 1);
+  const url = typeof window !== "undefined" ? window.location.href : "";
+  const issueTitle =
+    typeof window !== "undefined"
+      ? url.substring(url.lastIndexOf("/") + 1)
+      : "";
 
   return (
     <div className={styles.githubLinksWrapper}>
