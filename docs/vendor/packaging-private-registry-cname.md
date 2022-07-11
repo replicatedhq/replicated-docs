@@ -13,11 +13,7 @@ Verification of the domain is required using a TXT record that undergoes separat
 - Domain ownership: This verification is done when you initially add a record.
 - TLS certificate creation: Each new domain must have a new TLS certificate to be verified.
 
-## About Domain Name Mapping
-
-The same hostname can be used for multiple applications, but cannot be used for multiple endpoints. A single hostname can map to registry.replicated.com for any number of applications, but cannot map to both registry.replicated.com and  proxy.replicated.com, even if the applications are different.
-
-If you configure a second application to use an existing, configured hostname, the configured hostname is automatically validated if the verified application belongs to the same team.
+If you configure a second application to use an existing, configured domain name, the configured domain name is automatically validated if the verified application belongs to the same team.
 
 ## Limitations
 
@@ -25,8 +21,8 @@ CNAME enablement has the following limitations:
 
 - The kustomization in the Replicated app manager always rewrites images to registry.replicated.com or proxy.replicated.com, and does not respect the CNAME. Only Helm installations that do not use the app manager respect the CNAME. This type of Helm installation is an Alpha feature. For more information, see [Using Helm to Install an Application (Alpha)](helm-install).
 - The LicenseDockerCfg template function does not respect the CNAME.
-- A single CNAME record cannot be used for both the registry and proxy endpoints.
-- The endpoints do not support CNAMEs for replicated.app (release manifests), api.replicated.com (platform market API), the download portal, or other services. For information about the API endpoints, see [Supported API Methods for CNAME](#supported-api-methods-for-cname).
+- A single CNAME record cannot be used for both the registry and proxy endpoints. A single domain name can map to registry.replicated.com for any number of applications, but cannot map to both registry.replicated.com and  proxy.replicated.com, even if the applications are different.
+- The endpoints do not support CNAMEs for replicated.app (release manifests), api.replicated.com (platform market API), the download portal, or other services.
 
 ## Add a Custom CNAME in the Vendor Portal
 
@@ -43,102 +39,16 @@ To add a custom CNAME:
 
   Your changes can take up to 24 hours to propagate.
 
-## Supported API Methods for CNAME
-
-CNAME supports the following GET and PUT methods and endpoints in the vendor API. For more information about the vendor API, see [Using the Vendor API v3](../reference/vendor-api-using).
-
-### GET /v3/app/:appId/registry/cnames
-
-This endpoint returns the configuration for all registry CNAMEs for the application.
-
-**Example response when neither endpoint is set:**
-
-```
-{
-  "registry.replicated.com": null,
-  "proxy.replicated.com": null
-}
-```
-
-**Example response when registry is configured using TXT but is not verified:**
-
-```
-{
-  "registry.replicated.com": {
-    "hostname": "registry.enterprise.vendor.com",
-    "is_verified": false,
-    "verification_type": "txt",
-    "txt_record": {
-      "name": "abcdef",
-      "value": "txt_verification_abcdef"
-    }
-  },
-  "proxy.replicated.com": null
-}
-```
-
-**Example response when registry is configured using TXT and is verified:**
-
-```
-{
-  "registry.replicated.com": {
-    "hostname": "registry.enterprise.vendor.com",
-    "is_verified": true,
-    "verification_type": "txt",
-    "txt_record": {
-      "name": "abcdef",
-      "value": "txt_verification_abcdef"
-    }
-  },
-  "proxy.replicated.com": null
-}
-```
-
-### PUT /v3/app/:appId/registry/cname
-
-This endpoint changes the CNAMEs for the application. It is a PUT request because all applications have these set, but they may be null. If the key is not provided, it will not be overwritten. Supported keys are `registry.replicated.com` and `proxy.replicated.com`.
-
-Clear the configuration for a key by passing `null`.
-
-**Example payload to set registry to a custom hostname using a TXT verification format:**
-
-```
-{
-  "registry.replicated.com": {
-    "hostname": "registry.enterprise.vendor.com",
-    "verification_type": "txt",
-  },
-}
-```
-
-**Response:**
-
-```
-{
-  "registry.replicated.com": {
-    "hostname": "registry.enterprise.vendor.com",
-    "is_verified": false,
-    "verification_type": "txt",
-    "txt_record": {
-      "name": "abcdef",
-      "value": "txt_verification_abcdef"
-    }
-  },
-  "proxy.replicated.com": null
-  }
-  ```
-
-
 ## Add a Custom Domain Name with the Vendor API
 
-This procedure shows an example of:
+This procedure shows how to:
 
-- Configuring a CNAME record to point registry.enterprise.myapp.com to registry.replicated.com
-- Replacing registry.replicated.com in your application with registry.enterprise.myapp.com
-- Using a TXT record to validate domain ownership
+- Configure a CNAME record to point registry.enterprise.myapp.com to registry.replicated.com
+- Replace registry.replicated.com in your application with registry.enterprise.myapp.com
+- Use a TXT record to validate domain ownership
 
 
-To add a custom domain name using the vendor API:
+To add a custom domain name using the https://docs.google.com/document/d/1Nky2tC3OSQ4qNHAVbjzKrNaHBjFEr9Lu2c2ocsFZiyk/editendor API:
 
 1. Generate a user token. See [Generate a User API Token in Using the Vendor API v3](//reference/vendor-api-using#generate-a-user-api-token).
 
