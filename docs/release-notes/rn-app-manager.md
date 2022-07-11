@@ -4,6 +4,19 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.76.0
+
+Released on July 12, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### New Features {#new-features-1-76-0}
+* Displays license information on the admin console Dashboard and License page for Helm charts when running in Helm-managed mode (Alpha). For more information, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install)
+
+### Bug Fixes {#bug-fixes-1-76-0}
+* Fixes a bug that causes links defined in the [SIG Application custom resource](/reference/custom-resource-sig-application) to not be rewritten to the hostname used in the browser.
+
+
 ## 1.75.0
 
 Released on July 5, 2022
