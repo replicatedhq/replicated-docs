@@ -35,7 +35,7 @@ You can add custom CNAMEs for the Replicated private registry and the proxy serv
 To add a custom CNAME:
 
 1. Log in to the [vendor portal](https://vendor.replicated.com), and click **Images**.
-1. In the Custom Registry Domain Name pane, on either the registry.replicated.com or proxy.replicated.com tab, select **Use a custom hostname instead of ENDPOINT_NAME**.
+1. In the Custom Registry Domain Name pane, on either the registry.replicated.com or proxy.replicated.com tab, select **Use a custom domain name instead of ENDPOINT_NAME**.
 1. Enter the custom CNAME in the textbox, and click **Save**.
 1. From Create a CNAME record, copy the text string and create the CNAME record in your DNS account. Click **Continue**.
 1. From Domain name ownership verification, copy the text string and create a TXT record in your DNS account. Click **Verify and continue**.
