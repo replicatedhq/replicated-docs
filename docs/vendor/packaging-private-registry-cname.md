@@ -10,8 +10,8 @@ You configure custom domains for the Replicated private registry and proxy servi
 
 Verification of the domain is required using a TXT record that undergoes separate verification checks for:
 
-- Domain ownership - This verification is done when you initially add a record.
-- TLS certificate creation - Each new domain must have a new TLS certificate to be verified.
+- Domain ownership: This verification is done when you initially add a record.
+- TLS certificate creation: Each new domain must have a new TLS certificate to be verified.
 
 ## About Domain Name Mapping
 
@@ -21,9 +21,9 @@ If you configure a second application to use an existing, configured hostname, t
 
 ## Limitations
 
-CNAME enablement currently has the following limitations:
+CNAME enablement has the following limitations:
 
-- The kustomization in Replicated app manager always rewrites images to registry.replicated.com or proxy.replicated.com, and does not respect the CNAME. Only Helm installations that do not use the app manager respect the CNAME. This type of Helm installation is an alpha feature.
+- The kustomization in the Replicated app manager always rewrites images to registry.replicated.com or proxy.replicated.com, and does not respect the CNAME. Only Helm installations that do not use the app manager respect the CNAME. This type of Helm installation is an Alpha feature. For more information, see [Using Helm to Install an Application (Alpha)](helm-install).
 - The LicenseDockerCfg template function does not respect the CNAME.
 - A single CNAME record cannot be used for both the registry and proxy endpoints.
 - The endpoints do not support CNAMEs for replicated.app (release manifests), api.replicated.com (platform market API), the download portal, or other services. For information about the API endpoints, see [Supported API Methods for CNAME](#supported-api-methods-for-cname).
