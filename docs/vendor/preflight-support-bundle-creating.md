@@ -105,9 +105,9 @@ To customize host preflight checks:
       version: "1.2.x"
     kurl:
       excludeBuiltinHostPreflights: true
-      ```
+  ```
 
-1. (Optional) To keep the default host preflight checks and add customized host preflights, you add a `hostPreflights` field to the `kurl` or add-on specification in the Installer manifest. Then add a host preflight specification (`kind: HostPreflight`) with your customizations. You only need to specify your customizations because the default host preflights will run automatically.
+1. (Optional) To keep the default host preflight checks and add customized host preflights, add a `hostPreflights` field to the `kurl` or add-on specification in the Installer manifest. Under the `hostPreflights` field, add a host preflight specification (`kind: HostPreflight`) with your customizations. You only need to specify your customizations because the default host preflights will run automatically.
 
   The following example shows customized `kurl` host preflight checks for:
 
@@ -172,8 +172,8 @@ To customize host preflight checks:
 
 1. (Optional) To completely customize your host preflight collectors and analyzers:
 
-    - Disable the default host preflight checks using `excludeBuiltinHostPreflights: true`
-    - Copy the default `host-preflights.yaml` specification for kURL or an add-on from GitHub to the Installer YAML in the vendor portal. Copying the default specifications lets you use the best practices provided by Replicated as a template to help ensure that your customizations run successfully.
+    1. Disable the default host preflight checks using `excludeBuiltinHostPreflights: true`
+    1. Copy the default `host-preflights.yaml` specification for kURL or an add-on from GitHub to the Installer YAML in the vendor portal. Copying the default specifications lets you use the best practices provided by Replicated as a template to help ensure that your customizations run successfully.
 
       For the default kURL host preflights YAML, see [host-preflights.yaml](https://github.com/replicatedhq/kURL/blob/main/pkg/preflight/assets/host-preflights.yaml) in the kURL repository.
 
@@ -198,9 +198,9 @@ To customize host preflight checks:
 
     The following example shows:
 
-    - The default host preflights checks are disabled
-    - The installation will be blocked if there is a warning
+    - Default host preflights checks are disabled
     - Customized host preflight checks will run
+    - The installation will be blocked if there is a warning
 
     ```yaml
     apiVersion: "cluster.kurl.sh/v1beta1"
