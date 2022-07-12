@@ -32,8 +32,8 @@ To [do this task]: [For example, "To create a customer license:"]
       <td>[Example description: The type of customer is used solely for reporting purposes. Their access to your app is not affected by the type you assign to them. <strong>Options:</strong> Development, Trial, Paid, Community. <strong>Default:</strong> Trial. For more information, see LINK.]</td>
     </tr>
     <tr>
-      <td>Another Field Name</td>
-      <td>Specifies the maximum blah blah blah.</td>
+      <td>Field Name</td>
+      <td>Specifies the...</td>
     </tr>
   </table>
 
@@ -48,7 +48,7 @@ To [do this task]: [For example, "To create a customer license:"]
     - CLUSTER_NAME: With the name of the kubeconfig cluster.
 
 
-    [Use a bulleted list for the parameter definitions unless you feel the list is too long and that table would be cleaner. If you need to use a table, use the following table format:
+    [Use a bulleted list for the parameter input definitions unless you feel the list is too long and that a table would be cleaner. If you need to use a table, use the following table format:
 
     <table>
       <tr>
