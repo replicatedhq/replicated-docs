@@ -105,7 +105,7 @@ To iterate on the release of your production application:
         <td>Limit access to a single namespace in a cluster.</td>
       </tr>
       <tr>
-        <td><a href="preflight-support-bundle-creating">Creating Preflight Checks and Support Bundles</a></td>
+        <td><a href="preflight-support-bundle-creating">Defining Preflight Checks and Support Bundles</a></td>
         <td>Define preflight checks to test for system compliance during the installation process and reduce the number of support escalations. <br></br><br></br>Enable support bundles to collect and analyze troubleshooting data from your customers' clusters to help you diagnose problems with application deployments.</td>
       </tr>
       <tr>

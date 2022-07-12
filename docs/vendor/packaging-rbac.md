@@ -89,7 +89,7 @@ An application vendor can limit the role-based access control (RBAC) grants for 
 
 ### Strict Preflight Checks
 
-Without access to cluster-scoped resources, some preflight checks are not be able to read the resources. These tools continue to function, but return less data. For more information, see [Creating Preflight Checks and Support Bundles](../vendor/preflight-support-bundle-creating).
+Without access to cluster-scoped resources, some preflight checks are not be able to read the resources. These tools continue to function, but return less data. For more information, see [Define Preflight Checks and Support Bundles](../vendor/preflight-support-bundle-creating#define-preflight-checks).
 
 ### Velero Namespace Access
 
