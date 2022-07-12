@@ -45,7 +45,7 @@ To [do this task]: [For example, "To create a customer license:"]
   - CLUSTER_NAME: With the name of the kubeconfig cluster.
 
 
-  [Use a bulleted list for the parameter input definitions unless you feel the list is too long and that a table would be cleaner. If you need to use a table, use the following table format:
+  [Use a bulleted list for the placeholder text definitions unless you feel the list is too long and that a table would be cleaner. If you need to use a table, use the following table format:
 
   <table>
     <tr>
