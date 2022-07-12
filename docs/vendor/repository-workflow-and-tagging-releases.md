@@ -15,6 +15,6 @@ The recommended workflow is:
 * On pushing a git tag, create a release on the beta branch, using the name `Beta-${TAG}` for the release version.
 * Our recommendation is that these tags be tested, and then the release be manually promoted to the `Stable` channel using the  [vendor portal](https://vendor.replicated.com). Using manual promotion allows you to restrict which team members can publish new versions to go out to users via RBAC roles in the vendor portal.
 
-## Additional Resources
+## Related Topic
 
-* [Integrating with an Existing CI/CD Platform](tutorial-ci-cd-integration)
+[Integrating with an Existing CI/CD Platform](tutorial-ci-cd-integration)

@@ -28,6 +28,6 @@ To update a release:
 
 1. Click **Deploy** to apply the new YAML files. This should only take a few seconds to deploy.
 
-## Additional resources
+## Related Topic
 
-[How to Distribute an Application](distributing-workflow)
+[How to Package and Distribute an Application](distributing-workflow)

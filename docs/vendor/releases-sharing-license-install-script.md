@@ -71,7 +71,7 @@ To share an installation command for a specific application release version:
 
   ![Existing Cluster Command](/images/existing-cluster-command.png)
 
-## Additional Resources
+## Related Topics
 
 - [How to Package and Distribute an Application](distributing-workflow)
 - [Creating a Kubernetes Installer](packaging-embedded-kubernetes)

@@ -43,7 +43,7 @@ To promote a release:
 
 [Creating customers and downloading licenses](releases-creating-customer)
 
-## Additional Resources
+## Related Topics
 
 * [About Releases](releases-understanding)
 * [How to Package and Distribute a Production Application](distributing-workflow)

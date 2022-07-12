@@ -38,6 +38,15 @@ To [do this task]: [For example, "To create a customer license:"]
   ```
   kubectl kots pull UPSTREAM_URI --cluster CLUSTER_NAME
   ```
+
+  Replace:
+
+  - UPSTREAM_URI: With the URI for the application.
+  - CLUSTER_NAME: With the name of the kubeconfig cluster.
+
+
+  [Use a bulleted list for the parameter definitions unless you feel the list is too long and that table would be cleaner. If you need to use a table, use the following table format:
+
   <table>
     <tr>
       <th width="30%">Replace</th>
@@ -59,6 +68,15 @@ To [do this task]: [For example, "To create a customer license:"]
 
 [Describe and link to the next task.]
 
-## Additional Resources
+## Related Topics
 
-[Bulleted list of one or more links to related resources, such as concepts, web pages, and so on. Make sure the resource links are truly relevant to the task.]
+<!-- Be judicious. Only include this section if the topics are truly related to this procedure and have a specific purpose/goal for including it here instead of as a cross-reference.
+
+* Do not use an intro sentence
+* Should be a bulleted list only if there is more than one link
+* Use the actual topic name with a hyperlink
+* Keep the list short
+* Should only link to topics on docs.replicated.com, or Replicated blogs/articles
+-->
+
+[My Topic Title](my-topic-title)

@@ -27,6 +27,6 @@ To create a customer:
 
 1. Click **Save Changes**.
 
-## Additional Resources
+## Related Topic
 
-[How to Distribute an Application](distributing-workflow)
+[How to Package and Distribute an Application](distributing-workflow)
