@@ -10,9 +10,12 @@ Released on July 12, 2022
 
 ### New Features {#new-features-v2022-07-12-0}
 
-- Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version 2022-07-06T20-29-49Z.
+- Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version 2022-07-06T20-29-49Z to address the following high severity CVE: CVE-2022-1271.
 - Adds [Docker Registry add-on](https://kurl.sh/docs/add-ons/registry) version 2.8.1.
 - Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.76.0.
+
+### Improvements {#improvements-v2022-07-12-0}
+- Updates kurlsh/s3cmd image to tag 20220711-9578884 for latest [Registry](https://kurl.sh/docs/add-ons/registry) and [Velero](https://kurl.sh/docs/add-ons/velero) add-on versions to address the following critical and high severity CVEs: CVE-2018-25032, CVE-2021-30139, CVE-2021-36159, CVE-2021-3711, CVE-2021-3712, CVE-2021-42378, CVE-2021-42379, CVE-2021-42380, CVE-2021-42381, CVE-2021-42382, CVE-2021-42383, CVE-2021-42384, CVE-2021-42385, CVE-2021-42386, CVE-2021-45960, CVE-2021-46143, CVE-2022-0778, CVE-2022-1271, CVE-2022-22822, CVE-2022-22823, CVE-2022-22824, CVE-2022-22825, CVE-2022-22826, CVE-2022-22827, CVE-2022-23852, CVE-2022-23990, CVE-2022-25235, CVE-2022-25236, CVE-2022-25314, CVE-2022-25315, CVE-2022-28391.
 
 ## Release v2022.07.07-0
 
