@@ -12,6 +12,12 @@ import PullRequestIcon from "../../../static/images/git-pull-request.svg";
 import styles from "./styles.module.css";
 
 export default function EditThisPage({ editUrl }) {
+  const url = typeof window !== "undefined" ? window.location.href : "";
+  const issueTitle =
+    typeof window !== "undefined"
+      ? url.substring(url.lastIndexOf("/") + 1)
+      : "";
+
   return (
     <div className={styles.githubLinksWrapper}>
       <a
@@ -32,7 +38,7 @@ export default function EditThisPage({ editUrl }) {
         </div>
       </a>
       <a
-        href={"https://github.com/replicatedhq/replicated-docs/issues/new"}
+        href={`https://github.com/replicatedhq/replicated-docs/issues/new?title=Docs%20feedback%20on%20${issueTitle}&body=URL:%20${url}%0AFeedback%20details:`}
         target="_blank"
         rel="noreferrer noopener"
         className={ThemeClassNames.common.editThisPage}
