@@ -28,7 +28,7 @@ CNAME enablement has the following limitations:
 
 You can add custom CNAMEs for the Replicated private registry and the proxy service in the vendor portal.
 
-To add a custom CNAME:
+To configure a custom domain name:
 
 1. Log in to the [vendor portal](https://vendor.replicated.com), and click **Images**.
 1. In the Custom Registry Domain Name pane, on either the registry.replicated.com or proxy.replicated.com tab, select **Use a custom domain name instead of ENDPOINT_NAME**.
