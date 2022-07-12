@@ -4,6 +4,16 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.07.12-0
+
+Released on July 12, 2022
+
+### New Features {#new-features-v2022-07-12-0}
+
+- Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version 2022-07-06T20-29-49Z.
+- Adds [Docker Registry add-on](https://kurl.sh/docs/add-ons/registry) version 2.8.1.
+- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.76.0.
+
 ## Release v2022.07.07-0
 
 Released on July 7, 2022
