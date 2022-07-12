@@ -17,7 +17,7 @@ If you configure a second application to use an existing, configured domain name
 
 ## Limitations
 
-CNAME enablement has the following limitations:
+Configuring a custom domain name has the following limitations:
 
 - The kustomization in the Replicated app manager always rewrites images to registry.replicated.com or proxy.replicated.com, and does not respect the CNAME. Only Helm installations that do not use the app manager respect the CNAME. This type of Helm installation is an Alpha feature. For more information, see [Using Helm to Install an Application (Alpha)](helm-install).
 - The LicenseDockerCfg template function does not respect the CNAME.
