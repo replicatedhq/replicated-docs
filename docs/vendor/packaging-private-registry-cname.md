@@ -26,7 +26,7 @@ CNAME enablement has the following limitations:
 
 ## Add a Custom CNAME in the Vendor Portal
 
-You can add custom CNAMEs for the Replicated private registry and the proxy service in the vendor portal.
+You can configure custom domain names for the Replicated private registry and the proxy service in the vendor portal.
 
 To configure a custom domain name:
 
