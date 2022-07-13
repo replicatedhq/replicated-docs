@@ -1,56 +1,77 @@
 # Monitoring Applications
 
-The Replicated app manager includes built-in monitoring functionality for all applications.
-By default, the app manager displays cluster disk usage, pod cpu usage, pod memory usage, and pod health graphs on the dashboard page of the Replicated admin console.
+This topic describes monitoring applications and clusters with Prometheus, including information about how to configure Prometheus monitoring for applications installed on an existing Kubernetes cluster.
 
-Additionally, application developers can choose to expose business and application level metrics and alerts.
-In order to take advantage of the monitoring functionality, Prometheus will need to be installed in the cluster.
+## About Prometheus
 
-If Prometheus is already installed, see [Configure the Prometheus address](#configure-the-prometheus-address) below for more information on configuring an existing Prometheus installation.
+The Replicated admin console uses the open source systems monitoring tool, Prometheus, to collect metrics on an application and the cluster where the application is installed.
 
-![Admin Console Dashboard](/images/kotsadm-dashboard-graph.png)
+Prometheus uses a multi-dimensional data model with time series data and a flexible query language. Prometheus components include the main Prometheus server, which scrapes and stores time series data, and an Alertmanager for alerting on metrics.
 
-### About Prometheus
+For more information about Prometheus, see [What is Prometheus?](https://prometheus.io/docs/introduction/overview/) in the Prometheus documentation.
 
-Prometheus is an open-source systems monitoring and alerting toolkit.
-Prometheus features a multi-dimensional data model with time series data and a flexible query language to leverage this dimensionality.
+## Overview of Monitoring with Prometheus
 
-Prometheus's components include the main Prometheus server which scrapes and stores time series data, and an alertmanager to handle alerts.
+The admin console exposes graphs with key metrics collected by Prometheus in the Monitoring section of the dashboard. By default, the admin console includes the following graphs:
 
-For more information about Prometheus, see the [Prometheus documentation](https://prometheus.io/docs/introduction/overview/).
+* Cluster disk usage
+* Pod CPU usage
+* Pod memory usage
 
-### Installing Prometheus
+In addition to these default graphs, application developers can also expose business and application level metrics and alerts on the dashboard.
 
-We recommend using CoreOS's Kube-Prometheus distribution for installing and configuring highly available Prometheus in an existing Kubernetes cluster. For more information, see the [kube-prometheus](https://github.com/coreos/kube-prometheus) GitHub repository.
+The following screenshot shows an example of the Monitoring section on the admin console dashboard with the Disk Usage, CPU Usage, and Memory Usage default graphs.
+
+![Graphs on the admin console dashboard](/images/kotsadm-dashboard-graph.png)
+
+Prometheus is included by default on clusters provisioned by the Replicated Kubernetes installer, and no additional configuration is required to monitor the application and cluster.
+
+If you installed on an existing cluster, see [Configure Monitoring on an Existing Cluster](#configure-monitoring-on-an-existing-cluster) below for information about how to monitor the application and cluster with Prometheus.
+
+## Configure Monitoring on an Existing Cluster
+
+To configure Prometheus monitoring for applications installed on an existing cluster, you must connect the admin console to the endpoint of an installed instance of Prometheus on the cluster. See:
+
+* [Install Prometheus](#install-prometheus)
+* [Connect to a Prometheus Endpoint](#connect-to-a-prometheus-endpoint)
+
+### Install Prometheus
+
+Replicated recommends that you use CoreOS's Kube-Prometheus distribution for installing and configuring highly available Prometheus on an existing cluster. For more information, see the [kube-prometheus](https://github.com/coreos/kube-prometheus) GitHub repository.
 
 This repository collects Kubernetes manifests, Grafana dashboards, and Prometheus rules combined with documentation and scripts to provide easy to operate end-to-end Kubernetes cluster monitoring with Prometheus using the Prometheus Operator.
 
-To quickly get Prometheus running, clone the repo to the device from where there is access to the cluster via `kubectl`. `kubectl` can then be used to create the resources in the cluster.
+To install Prometheus using the recommended Kube-Prometheus distribution:
 
-```bash
-# Create the namespace and CRDs, and then wait for them to be available before creating the remaining resources
-kubectl create -f manifests/setup
-until kubectl get servicemonitors --all-namespaces ; do date; sleep 1; echo ""; done
-kubectl create -f manifests/
-```
+1. Clone the [kube-prometheus](https://github.com/coreos/kube-prometheus) repository to the device where there is access to the cluster.
 
-For more advanced and cluster-specific configuration, you can customize Kube-Prometheus by compiling the manifests using jsonnet. For more information, see the [jsonnet website](https://jsonnet.org/).
+1. Use `kubectl` to create the resources on the cluster:
 
-For more information about advanced configuration, see [Customizing Kube-Prometheus](https://github.com/coreos/kube-prometheus#customizing-kube-prometheus) in the kube-prometheus GitHub repository.
+   ```bash
+   # Create the namespace and CRDs, and then wait for them to be available before creating the remaining resources
+   kubectl create -f manifests/setup
+   until kubectl get servicemonitors --all-namespaces ; do date; sleep 1; echo ""; done
+   kubectl create -f manifests/
+   ```
 
-### Configure the Prometheus Address
+For advanced and cluster-specific configuration, you can customize Kube-Prometheus by compiling the manifests using jsonnet. For more information, see the [jsonnet website](https://jsonnet.org/).
 
-The app manager needs to be made aware of the address of the Prometheus instance within the cluster in which it is installed.
+For more information about advanced Kube-Prometheus configuration options, see [Customizing Kube-Prometheus](https://github.com/coreos/kube-prometheus#customizing-kube-prometheus) in the kube-prometheus GitHub repository.
 
-You can configure the address on the admin console dashboard page by clicking **Configure Prometheus Address**, entering the address in the text box, and clicking **Save**.
+### Connect to a Prometheus Endpoint
 
-Graphs appear on the dashboard shortly after saving the address.
+To view graphs on the admin console dashboard, you must provide the address of the Prometheus instance that you installed on the cluster.
 
-A support bundle may include more information when troubleshooting configuration of the Prometheus address. For more information about using support bundles to troubleshoot, see [Troubleshooting an application](troubleshooting-an-app).
+To connect the admin console to a Prometheus endpoint:
 
-![Configuring Prometheus](/images/kotsadm-dashboard-configureprometheus.png)
+1. On the admin console dashboard, under Monitoring, click **Configure Prometheus Address**.
+1. Enter the address for the Prometheus endpoint in the text box and click **Save**.
 
-### Access the Dashboards
+   ![Configuring Prometheus](/images/kotsadm-dashboard-configureprometheus.png)
+
+   Graphs appear on the dashboard shortly after saving the address.
+
+## Access the Dashboards with kubectl Port-Forward
 
 You can use the commands below to access Prometheus, Grafana, and Alertmanager dashboards using kubectl port-forward after you install the manifests.
 
@@ -74,14 +95,14 @@ $ kubectl --namespace monitoring port-forward svc/grafana 3000
 Then access via http://localhost:3000 and use the default grafana user:password of admin:admin.
 ```
 
-##### Alert Manager
+##### Alertmanager
 
 ```bash
 $ kubectl --namespace monitoring port-forward svc/alertmanager-main 9093
 Then access via http://localhost:9093
 ```
 
-### Visualization
+## About Visualizing Metrics with Grafana
 
 In addition to the Prometheus Expression Browser, Grafana and some preconfigured dashboards are included with Kube-Prometheus for advanced visualization.
 
@@ -92,7 +113,7 @@ For information about constructing Prometheus queries, see the [Querying Prometh
 For information about the Prometheus Expression Browser, see [Expression Browser](https://prometheus.io/docs/visualization/browser/) in the Prometheus documentation.
 
 
-### Alerting
+## About Altering with Prometheus
 
 Alerting with Prometheus has two phases:
 
