@@ -46,23 +46,6 @@ $ yarn start
 
 If `yarn start` refuses to start, try reinstalling the `yarn` CLI. You do not need to uninstall `yarn` before reinstalling it. However, if you get build errors from your content, such as broken links, the Preview itself fails and error messages appear in the terminal that can help you troubleshoot the problems in the content.
 
-
-### Build
-
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-```
-$ yarn build
-```
-
-### Deployment
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
-
-```
-$ GIT_USER=<Your GitHub username> USE_SSH=true yarn deploy
-```
-
 ## Folder Structure and TOC
 
 The folder structure is broken into several high-level categories under the main `docs` folder: vendor, enterprise, reference, release notes.
