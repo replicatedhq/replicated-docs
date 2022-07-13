@@ -38,6 +38,6 @@ To create a release:
 
 [Promoting releases](releases-promoting)
 
-## Additional Resources
+## Related Topic
 
 [How to Package and Distribute a Production Application](distributing-workflow)

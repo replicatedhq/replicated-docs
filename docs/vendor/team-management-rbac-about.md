@@ -130,6 +130,6 @@ The sales policy grants read-write access to customers and license details and r
 }
 ```
 
-## Additional Resources
+## Related Topic
 
 [Configuring RBAC Policies](team-management-rbac-configuring)

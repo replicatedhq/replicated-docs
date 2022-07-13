@@ -301,9 +301,9 @@ The install of the new version should have created a new pod. If we run `kubectl
 
 * * *
 
-## Additional resources
+## Related Topics
 
-- [Using private image registries](packaging-private-images/)
+- [Using Private Image Registries](packaging-private-images/)
 
 - [Replicated Community Thread on AWS Roles and Permissions](https://help.replicated.com/community/t/what-are-the-minimal-aws-iam-permissions-needed-to-proxy-images-from-elastic-container-registry-ecr/267)
 

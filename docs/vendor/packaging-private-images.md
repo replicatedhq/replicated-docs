@@ -179,6 +179,6 @@ The app manager supports image digests only for online (Internet-connected) inst
 
 However, image tags and digests cannot be used together due to upstream limitations. For more information, see [Why do i see the error 'Docker references with both a tag and digest are currently not supported'?](https://community.replicated.com/t/why-do-i-see-the-error-docker-references-with-both-a-tag-and-digest-are-currently-not-supported/825) on the Replicated Community website.
 
-## Additional Resources
+## Related Topic
 
 [Using ECR for Private Images](tutorial-ecr-private-images)

@@ -30,6 +30,6 @@ Migrated accounts maintain the same role-based access control (RBAC) permissions
 ## Compatibility with MFA
 Google authentication is not entirely compatible with the Replicated MFA implementation because Google authentication bypasses account-based MFA, relying on your Google Authentication MFA instead. However, the vendor portal continues to enforce MFA on all email/password-based authentication, even for the same user, if both options are enabled.
 
-## Additional Resources
+## Related Topic
 
-* [Managing Team Members](team-management)
+[Managing Team Members](team-management)

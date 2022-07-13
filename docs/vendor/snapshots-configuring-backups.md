@@ -84,7 +84,7 @@ To exclude any manifest, add a `velero.io/exclude-from-backup` label to the mani
 
 Next, you can [configure backup hooks](snapshots-backup-hooks/).
 
-## Additional resources
-  * [Snapshots overview](snapshots-overview/)
-  * [Including and excluding resources](packaging-include-resources/)
+## Related Topics
+  * [Snapshots Overview](snapshots-overview/)
+  * [Including and Excluding Resources](packaging-include-resources/)
   * [Backup](../reference/custom-resource-backup)

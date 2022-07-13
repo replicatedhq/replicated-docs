@@ -48,6 +48,6 @@ To edit an existing channel:
 
 [Creating a release](releases-creating-releases)
 
-## Additional Resources
+## Related Topic
 
-[How to Distribute an Application](distributing-workflow)
+[How to Package and Distribute an Application](distributing-workflow)
