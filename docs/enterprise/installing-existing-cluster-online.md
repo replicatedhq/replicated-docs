@@ -1,107 +1,141 @@
-# Installing in an Online (Internet-connected) Environment
+# Installing on an Existing Cluster
+
+This topic describes how to use Replicated to install an application on an existing Kubernetes cluster. It includes procedures for installing in online and air gap environments.
+
+## Prerequisite
+
+Before installing on an existing cluster, ensure that your cluster meets the minimum system requirements. See [Existing Cluster Requirements](installing-general-requirements#existing-cluster-requirements).
+
+## Install in an Online Environemnt
 
 You can install an application to an existing Kubernetes cluster that contains nodes that can access the internet.
 In an online installation, the Replicated app manager pulls container images from the upstream registries directly.
 
-## Install with the App Manager
+To install on an existing cluster in an online environment:
 
-To start, run the command that was provided by the application vendor:
+1. Run the command that was provided by the application vendor to install the kots CLI, the Replicated admin console, and the application on the cluster:
 
-```shell
-kubectl kots install application-name
-```
-:::note
-With KOTS v1.67.0 and later, you can install a specific version of the application. Use the `app-version-label` flag and the version label for a particular version of your vendor's application. Example: `kubectl kots install application-name --app-version-label=3.1.0`.
-:::
+   * **Install the latest version of the application**:
 
-The kubectl plugin will walk you through the necessary steps to install the application:
+      ```shell
+      curl https://kots.io/install | bash
+      kubectl kots install APP_SLUG
+      ```
+      Replace `APP_SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
 
-```shell
-$ kubectl kots install application-name
-Enter the namespace to deploy to: application-name
-  • Deploying Admin Console
-    • Creating namespace ✓
-    • Waiting for datastore to be ready ✓
-Enter a new password to be used for the Admin Console: ••••••••
-  • Waiting for Admin Console to be ready ✓
+   * **(App manager v1.67.0 and later) Install a specific version of the application**: With the app manager v1.67.0 and later, you can install a specific version of the application. Use the `app-version-label` flag and the version label for a particular version of your vendor's application.
 
-  • Press Ctrl+C to exit
-  • Go to http://localhost:8800 to access the Admin Console
+      ```shell
+      curl https://kots.io/install | bash
+      kubectl kots install APP_SLUG --app-version-label=VERSION_LABEL
+      ```
+      Replace:
+      * `APP_SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
+      * `VERSION_LABEL` with the label for the version of the application to install. For example, `--app-version-label=3.0.1`.
 
-```
+   For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the _kots CLI_ documentation.
 
-After this has completed, the kots CLI plugin will create a port-forward to the Replicated admin console interface.
-The admin console API and Web server are exposed over a ClusterIP service in the namespace provided.
-The port-forward will be active as long as the CLI is running. Pressing Ctrl+C will end the port forward.
+1. When prompted by the `kots install` command:
+   1. Provide the namespace where you want to deploy the application and the admin console.
+   1. Create a new password for logging in to the admin console.
 
-After this has completed, click the link, or visit `http://localhost:8800` to complete the setup using the admin console web-based UI.
+     **Example**:
 
-## Set up the Application
+     ```shell
+     $ kubectl kots install application-name
+     Enter the namespace to deploy to: application-name
+       • Deploying Admin Console
+         • Creating namespace ✓
+         • Waiting for datastore to be ready ✓
+     Enter a new password to be used for the Admin Console: ••••••••
+       • Waiting for Admin Console to be ready ✓
 
-At this point, visit `http://localhost:8800` to complete the setup of the application.
+       • Press Ctrl+C to exit
+       • Go to http://localhost:8800 to access the Admin Console
 
-### Unlock the Admin Console
-![Secure Console](/images/secure-console.png)
+     ```
 
-Enter the password provided during the setup, and you'll be redirected to the "Upload License" screen.
+After the `kots install` command installs the admin console and the application on the cluster, it creates a port forward to the admin console. The admin console is exposed internally on the cluster and can only be accessed using a port forward.
 
-### Provide a License File
-At this point, the admin console is still just an admin console without an application.
-Providing a license file will include the entitlements necessary to pull the manifest and images and start the application.
-If the license is outdated, the latest license will be fetched and used instead.
+You log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
 
-![Upload License](/images/upload-license.png)
+## Install in an Air Gapped Environment
 
-After the license file is installed, if air gapped installations are enabled, an option will be presented to proceed with an air gapped setup.
+When installing an application with the Replicated app manager from a `.airgap` package, the container images and application manifests are provided by the application vendor in an archive that can be used to deliver the artifacts into the cluster.
 
-### Configure the Application
+This feature is only available for licenses that have the air gapped feature enabled.
 
-Most applications include some required and some optional configuration.
-This is used to build the final deployable Kubernetes manifests for the application.
+You can install the admin console using the kots CLI plugin for the kubectl command-line tool. To install the admin console, you use the admin console binary bundle, `kotsadm.tar.gz`.
 
-The admin console configuration screen prompts for initial values to use in the application.
-These can be changed later, but must be completed to continue.
+To push images and install:
 
-![Initial Config](/images/initial-config.png)
+1. Download `kotsadm.tar.gz` from the kots release page on GitHub. See [Releases](https://github.com/replicatedhq/kots/releases) in the kots GitHub repository.
 
-### Pass Preflight Checks
+1. Run the following command to confirm that the asset version matches the kots CLI version:
 
-The app manager runs preflight checks (conformance tests) against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application.
+  ```shell
+  kubectl kots version
+  ```
 
-![Preflight Checks](/images/preflight-checks.png)
+1. Run the following command to extract admin console container images and push them into a private registry:
 
-#### Resolve strict preflight checks
+   ```shell
+   kubectl kots admin-console push-images ./kotsadm.tar.gz private.registry.host/app-name \
+     --registry-username RW-USERNAME \
+     --registry-password RW-PASSWORD
+   ```
 
-When one or more strict preflight checks are present, the application deployment is blocked until these strict checks are run. Strict preflight checks must not contain failures and block the release from being deployed until the failures are resolved. Strict preflight checks help enforce that vendor-specific requirements are met before the application is deployed.
+   Where:
 
-#### Resolve role-based access control checks
+   * `RW-USERNAME` is the username for an account that has read and write access to the private image registry.
 
-When the installation uses [minimal role-based access control (RBAC)](../reference/custom-resource-application#requireminimalrbacprivileges), the app manager recognizes if the preflight checks failed due to insufficient privileges.
+   * `RW-PASSWORD` is the password for the account with read and write access.
+   :::note
+   Replicated does not store or reuse these credentials.
+   :::
 
-![Run Preflight Checks Manually](/images/manual-run-preflights.png)
+1. Install the admin console using the images that you pushed in the previous step:
 
-When this occurs, a `kubectl preflight` command is displayed that you must run manually in the cluster to run the preflight checks. When the command runs and completes, the results are automatically uploaded to the app manager.
+   ```shell
+   kubectl kots install app-name \
+     --kotsadm-namespace app-name \
+     --kotsadm-registry private.registry.host \
+     --registry-username RO-USERNAME \
+     --registry-password RO-PASSWORD
+   ```
 
-**Example:**
+   Where:
 
-```bash
-curl https://krew.sh/preflight | bash
-kubectl preflight secret/<namespace>/kotsadm-<appslug>-preflight
-```
+   * `RO-USERNAME` is the username for an account that has read-only access to the private image registry.
 
-### Specify proxies
+   * `RO-PASSWORD` is the password for the read-only account.
 
-When installing behind a proxy, the admin console needs to be able to use the proxy to communicate with the APIs on the internet as well as local services.
+   :::note
+   Replicated stores these read-only credentials in a Kubernetes secret in the same namespace where the admin console is installed.
 
-Both the `kots install` and `kots pull` CLI commands provide arguments to specify proxy settings for the admin console containers.
+   Replicated uses these credentials to pull the images. To allow Replicated to pull images, the credentials are automatically created as an imagePullSecret on all of the admin console Pods.
+   :::
 
-If either `http-proxy` or `https-proxy` is specified, `no-proxy` should also be specified. The `no-proxy` string should include all localhost addresses as well as the local network and Kubernetes cluster CIDRs.
+1. When prompted by the `kots install` command:
+   1. Provide the namespace where you want to deploy the application and the admin console.
+   1. Create a new password for logging in to the admin console.
 
-For example:
-```bash
-kubectl kots install app --http-proxy http://10.128.0.3:3128 \
-  --no-proxy localhost,127.0.0.1,10.0.0.0/8,10.138.0.82
-```
-If the `copy-proxy-env` flag is specified, proxy settings will be read from the environment of the shell where the kots command is running.
+     **Example**:
 
-For more information, see [install](../reference/kots-cli-install) and [pull](../reference/kots-cli-pull) in the kots CLI documentation.
+     ```shell
+     $ kubectl kots install application-name
+     Enter the namespace to deploy to: application-name
+       • Deploying Admin Console
+         • Creating namespace ✓
+         • Waiting for datastore to be ready ✓
+     Enter a new password to be used for the Admin Console: ••••••••
+       • Waiting for Admin Console to be ready ✓
+
+       • Press Ctrl+C to exit
+       • Go to http://localhost:8800 to access the Admin Console
+
+     ```   
+
+After the `kots install` command installs the admin console and the application on the cluster, it creates a port forward to the admin console. The admin console is exposed internally on the cluster and can only be accessed using a port forward.
+
+You log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).

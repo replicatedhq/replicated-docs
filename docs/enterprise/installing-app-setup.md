@@ -1,28 +1,6 @@
-# Deploying the Application from the Admin Console
+# Completing Application Setup and Deploying
 
-This topic describes how to access the Replicated admin console to complete the application setup and deploy.
-
-## About Setting Up and Deploying the Application from the Admin Console
-
-After you install the admin console and application components on the cluster, the `kots install` kots CLI command opens a port forward to the admin console on port 8800 by default. The admin console is exposed internally in the cluster and can only be accessed using a port forward.
-
-The following example shows the kots CLI output of the `kots install` command:
-
-```shell
-$ kubectl kots install application-name
-Enter the namespace to deploy to: namespace-name
-  • Deploying Admin Console
-    • Creating namespace ✓
-    • Waiting for datastore to be ready ✓
-Enter a new password to be used for the Admin Console: ••••••••
-  • Waiting for Admin Console to be ready ✓
-
-  • Press Ctrl+C to exit
-  • Go to http://localhost:8800 to access the Admin Console
-
-```
-
-To finish installing the application, you log in to the admin console on port 8800, complete the application setup, and deploy the application.
+This topic describes how to access the Replicated admin console to complete the application setup, run preflight checks, and deploy.
 
 ## Prerequisite
 
@@ -32,35 +10,74 @@ For more information, see [Installing on an Existing Cluster](installing-existin
 
 ## Access the Admin Console and Deploy the Application
 
-To complete application installation in the admin console:
+To complete application setup and deploy from the admin console:
 
-1. If the port forward is active, go to [http://localhost:8800](http://localhost:8800) to access the admin console.
+1. Access the admin console on port 8800:
+   * **Existing cluster**: If the port forward is active, go to [http://localhost:8800](http://localhost:8800) to access the admin console.
 
-   If you need to reopen the admin console port forward, run the following command:
+      If you need to reopen the port forward to the admin console, run the following command:
 
-   ```
-   kubectl kots admin-console -n APP_NAMESPACE
-   ```
-   Replace `APP_NAMESPACE` with the namespace on the cluster where you installed the application.
+      ```
+      kubectl kots admin-console -n APP_NAMESPACE
+      ```
+      Replace `APP_NAMESPACE` with the namespace on the cluster where you installed the application.
 
-1. Log in to the admin console using the password that you created when you installed the admin console on the cluster.
+   * **Kubernetes installer cluster**: Go to the address provided in the `Kotsadm` field in the output of the installation command. For example, `Kotsadm: http://34.171.140.123:8800`.
 
-1. Upload the YAML license file provided by your application vendor.
+1. (Kubernetes Installer Cluster Only) On the Bypass Browser TLS warning page, review the information about how to bypass the browser TLS warning, and then click **Continue to Setup**.
+
+1. (Kubernetes Installer Cluster Only) On the HTTPS page, upload a private key and SSL certificate to secure communication between your browser and the admin console. Then, click **Upload & continue**. Alternatively, click **Skip & continue** to use the self-signed TLS certificate.
+
+1. Log in to the admin console:
+   * **Existing cluster**: Log in with the password that you created during installation.
+   * **Kubernetes installer provisioned cluster**: Log in with the password that was provided in the `Login with password (will not be shown again):` field in the output of the installation command.
+
+1. Upload the license file provided by your application vendor.
 
 1. (Air Gap Only) Upload the `.airgap` air gap bundle provided by your application vendor.
 
-1. If there are configurations specific to the application, complete the fields on the configuration screen. The required and optional configuration fields on this screen are used to build the final deployable Kubernetes manifests for the application.
+1. If there are configurations specific to the application, complete the fields on the configuration screen then click **Continue**. The required and optional configuration fields on this screen are used to build the final deployable Kubernetes manifests for the application.
 
    If the application vendor did not include any configuration options for the application, this screen is not displayed.
 
-1. Complete the preflight checks. The admin console runs preflight checks (conformance tests) against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application.
+1. Complete the preflight checks. The admin console automatically runs preflight checks (conformance tests) against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application.
 
-   Do the following to resolve or dismiss any preflight warnings and failures:
+   * If there are no preflight check warnings or failures, continue with deployment.
+   * If there are any preflight check warnings and failures:
+      * Resolve the warnings and failures, then click **Re-run** to run the preflight checks again.
+      * If there are no failures that prevent application deployment, you can choose to dismiss the preflight check warnings to continue.
+      * If you are installing with minimal role-based access control (RBAC), the admin console recognizes if the preflight checks have failed due to insufficient privileges.
 
-   * If you are not prevented from proceeding, you can the dismiss the preflight checks to continue with deployment.
-   * If you are prevented from proceeding, resolve the failures, then click **Re-run** to run the preflight checks.
-   * If you are installing with minimal role-based access control (RBAC), the admin console recognizes if the preflight checks have failed due to insufficient privileges.
+      When this occurs, a kubectl preflight command displays that lets you manually run the preflight checks. The results are then automatically uploaded to the admin console.
 
-      When this occurs, a kubectl preflight command is displayed that lets you manually run the preflight checks and upload the results.
+  After preflight checks are complete, Replicated deploys the admin console and the application, and the admin console dashboard opens in the browser.     
 
-After the preflight checks are complete, the admin console dashboard opens.
+1. (Recommended) Change the admin console login password:
+   1. Click the menu in the top right corner of the admin console, then click **Change password**.
+   1. Enter a new password in the dialog then click **Change Password** to save.
+
+   Replicated strongly recommends that you change the password from the default provided during installation on a Kubernetes installer provisioned cluster. For more information, see [Changing an Admin Console Password](auth-changing-passwords).
+
+## Join Primary and Secondary Nodes
+
+You can generate commands in the admin console to join additional primary and secondary nodes to the cluster. Primary nodes run services that control the cluster. Secondary nodes run services that control the pods that host the application containers. Adding nodes can help manage resources to ensure that your application runs smoothly.
+
+For high availability clusters, Kubernetes recommends using at least 3 primary nodes, and that you use an odd number of nodes to help with leader selection if machine or zone failure occurs. For more information, see [Creating Highly Available Clusters with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/) in the Kubernetes documentation.
+
+To add primary and secondary nodes:
+
+1. (Air gap only) Download and extract the `.tar.gz` bundle on the remote node before running the join command.
+1. In the admin console, click **Cluster > Add Node**.
+1. Copy the command and run it on the node that you are joining to the cluster.
+
+  **Example:**
+
+  ```
+  curl -sSL https://k8s.kurl.sh/my-test-app-unstable/join.sh | sudo bash -s \
+  kubernetes-master-address=192.0.2.0:6443 \
+  kubeadm-token=8z0hjv.s9wru9z \
+  kubeadm-token-ca-hash=sha256:289f5c0d61775edec20d4e980602deeeeeeeeeeeeeeeeffffffffffggggggg \
+  docker-registry-ip=198.51.100.3 \
+  kubernetes-version=v1.19.16 \
+  primary-host=203.0.113.6
+  ```
