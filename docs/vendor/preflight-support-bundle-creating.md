@@ -7,14 +7,14 @@ bundles to include with your application. It also describes host preflight check
 
 Preflight checks and support bundles collect and analyze data in the environment to ensure requirements are met and to troubleshoot issues.
 
-* **Preflight checks**: Preflight checks allow you to define requirements and dependencies for the cluster
+* **Preflight checks**: Preflight checks let you define requirements and dependencies for the cluster
 on which a customer installs your application. Preflight checks provide clear
 feedback to your customer about any missing requirements or incompatibilities in
 the cluster before they install and deploy your application. This can reduce the number of support escalations during installation.
 
-* **Support bundles**: Support bundles allow you to collect and analyze troubleshooting data
+* **Support bundles**: Support bundles let you collect and analyze troubleshooting data
 from your customers' clusters to help you diagnose problems with application
-deployments. Customers generate support bundles from the Replicated admin console and automatically upload them to your support site. Your support team can review support bundles to troubleshoot application and cluster issues. Additionally, if you are unable to troubleshoot a Kubernetes cluster issue, you can upload the related support bundle to the Replicated vendor portal to open a support ticket with Replicated.
+deployments. Customers generate support bundles from the Replicated admin console and can share them with your support team. You can then review the bundles to troubleshoot application and cluster issues. Additionally, if you are unable to troubleshoot a non-application related, you can upload the related support bundle to the Replicated vendor portal to open a support ticket with Replicated.
 
 The following diagram illustrates the workflow for preflight checks and support bundles:
 
@@ -24,13 +24,6 @@ The following diagram illustrates the workflow for preflight checks and support 
 Collectors are defined in a YAML manifest file that identifies what to collect and any post-processing steps that should be executed before or after creating the support bundle.
 By default, preflight checks and support bundles contain a large number of commonly used, best-practice collectors. The default collectors gather a large amount of data that is useful when remotely installing or debugging a Kubernetes application.
 You can edit or add that can change or supplement the default collectors.
-
-### Analyzers
-Preflight checks and support bundles use analyzers, but the outcomes are different in each. Preflight checks use analyzers to determine outcomes and send messages to a customer during installation, depending on whether the preflight check passes, fails, or optionally produces a warning.
-
-When a support bundle is uploaded to the Replicated vendor portal, it is extracted and automatically analyzed. The goal of this process is to find insights that are known issues or hints of what might be a problem. Analyzers are designed to program the debugging and log reading skills into an application that is quick and easy to run for any support bundle collected.
-
-Insights are specific items that the analyzer process finds and surfaces. Insights can contain custom messages and levels, and are specific to the output of the analysis step on each support bundle.
 
 ### Redactors
 Redactors censor sensitive customer information from all collectors before the analysis phase. By default, the following information is redacted:
@@ -43,6 +36,13 @@ Redactors censor sensitive customer information from all collectors before the a
 - URLs that include usernames and passwords
 
 This functionality can be turned off (not recommended) or customized.
+
+### Analyzers
+Preflight checks and support bundles use analyzers, but the outcomes are different for each. Preflight checks use analyzers to determine outcomes and send messages to a customer during installation, depending on whether the preflight check passes, fails, or produces a warning.
+
+When a support bundle is uploaded to the Replicated vendor portal, it is extracted and automatically analyzed. The goal of this process is to find insights that are known issues or hints of what might be a problem. Analyzers are designed to program the debugging and log reading skills into an application that is quick and easy to run for any support bundle collected.
+
+Insights are specific items that the analyzer process finds and surfaces. Insights can contain custom messages and levels, and are specific to the output of the analysis step on each support bundle.
 
 ### Default Files
 
@@ -58,7 +58,7 @@ These custom resource files contain default specifications for the Kubernetes cl
 
 If you are using the vendor portal to create a release using standard manifest files, the preflight and support bundle YAML files are automatically included as part of the Replicated manifest files. If you want to include redactors, you manually add the Redactor custom resource file to the release.
 
-If you are using the replicated CLI, you manually add the `preflight.yaml`, `support-bundle.yaml`, and optionally the `redactor.yaml`.
+If you are using the replicated CLI, you manually add the Preflight, Support Bundle, or Redactor custom resource manifests to your release.
 
 Preflight checks and support bundles are based on the open-source Troubleshoot project, which is maintained by Replicated. For more information about individual Kubernetes collectors, analyzers, and redactors, see the [Troubleshoot](https://troubleshoot.sh/) documentation.
 
@@ -87,7 +87,7 @@ To customize a support bundle:
 
 1. Start with either YAML file option and add custom collectors to the file:
 
-    - If you want to add collectors to the default collectors, you can start with a basic support bundle manifest file (kind: SupportBundle). The brackets for the collectors field  indicate that all of the default collectors are included.
+    - If you want to add collectors to the default collectors, you can start with a basic support bundle manifest file (`kind: SupportBundle`). The brackets for the collectors field indicate that all of the default collectors are included.
 
       ```yaml
       apiVersion: troubleshoot.sh/v1beta2
@@ -99,17 +99,21 @@ To customize a support bundle:
      ```
     - If you want to fully customize the support bundle, copy the default `spec.yaml` file to your manifest file. For the default YAML file, see [spec.yaml](https://github.com/replicatedhq/kots/blob/main/pkg/supportbundle/defaultspec/spec.yaml) in the kots repository.
 
-1. (Recommended) Add application pod logs to check the retention options for the number of lines logged. Typically the selector attribute is matched to labels.
+      :::note
+      The default collectors `clusterInfo` and `clusterResources` do not accept any parameters.
+      :::
 
-    1. To get the labels for an application, either inspect the YAML, or run the following command a running instance to see what labels are used:
+1. (Recommended) Add application pod logs to check the retention options for the number of lines logged. Typically the selector attribute is matched to the labels.
+
+    1. To get the labels for an application, either inspect the YAML or run the following command a running instance to see what labels are used:
 
       ```
       $ kubectl get pods --show-labels
       ```
 
-    1. After the labels are discovered, create collectors to include logs from these pods in a bundle. Depending on the complexity of an app's labeling schema, you might need a few different declarations of the logs collector. You can include the `logs` collector specification multiple times.
+    1. After the labels are discovered, create collectors to include logs from these pods in a bundle. Depending on the complexity of an application's labeling schema, you might need a few different declarations of the logs collector. You can include the `logs` collector specification multiple times.
 
-      The limits field can support one or both of `maxAge` and `maxLines`. This  limits the output to the constraints provided. Defaults: `maxAge` is unset (all), and `maxLines` is 10,000 lines.
+      The limits field can support one or both of `maxAge` and `maxLines`. This  limits the output to the constraints provided. **Defaults:** `maxAge` is unset (all), and `maxLines` is 10,000 lines.
 
       **Example**
 
@@ -129,7 +133,7 @@ To customize a support bundle:
                   maxLines: 1000
       ```            
 
-1. Additional custom collectors that you might want to include are:
+1. Additional custom collectors that Replicated recommends considering are:
 
     - Host collectors to check if the host is able to run Kubernetes
     - Collectors to check if the cluster is able to run the application
@@ -144,17 +148,13 @@ To customize a support bundle:
 
 1. Add custom analyzers for each customized collector. Good analyzers clearly identify failure modes. At a minimum, include application log analyzers. For example, a simple Text Analyzer can detect specific log lines and inform an end user of remediation steps.
 
-  Additional custom analyzers that you might want to include are:
+  Additional custom analyzers that Replicated recommends considering are:
 
     - Resource Statuses
     - Regular Expressions
     - Databases
 
-1. To customize the default redactors or add redactors for your application, you must manually add the `redactor.yaml` (kind: Redactor) to your release.
-
-  :::note
-  You can turn off this functionality by passing `--redact=false` to the troubleshoot command, although Replicated recommends leaving this functionality turned on to protect your customers’ data.
-  :::
+1. To customize the default redactors or add redactors for your application, you must manually add the Redactor custom resource manifest (`kind: Redactor`) to your release. Edit the redactors as needed.
 
   The basic redactor manifest file uses brackets for the collectors field, which indicates that all of the default collectors are included.
 
@@ -168,6 +168,10 @@ To customize a support bundle:
     spec:
        collectors: []
     ```
+
+  :::note
+  You can turn off this functionality by passing `--redact=false` to the troubleshoot command, although Replicated recommends leaving this functionality turned on to protect your customers’ data.
+  :::
 
 5. Generate a support bundle from the Troubleshoot tab in the admin console and do one of the following:
 
