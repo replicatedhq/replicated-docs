@@ -16,6 +16,19 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 ### Bug Fixes {#bug-fixes-1-76-0}
 * Fixes a bug that causes links defined in the [SIG Application custom resource](/reference/custom-resource-sig-application) to not be rewritten to the hostname used in the browser.
 
+## 1.76.1
+
+Released on July 15, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### Bug Fixes {#bug-fixes-1-76-1}
+* Fixes an issue that caused private images in some collectors to not be rewritten during preflight checks.
+* Fixes an issue where the [Distribution](/reference/template-functions-static-context#distribution) template function returns an empty string in minimal RBAC installations running on OpenShift clusters.
+* Updates the golang.org/x/text go module to address CVE-2021-38561 with high severity.
+* Updates the local-volume-provider image to address CVE-2021-38561 with high severity.
+* Updates the MinIO image to address CVE-2022-1271 with high severity.
+
 
 ## 1.75.0
 
