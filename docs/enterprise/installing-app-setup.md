@@ -58,8 +58,8 @@ To complete application setup and deploy from the admin console:
 
    Replicated strongly recommends that you change the password from the default provided during installation on a Kubernetes installer provisioned cluster. For more information, see [Changing an Admin Console Password](auth-changing-passwords).
 
-1. (Kubernetes Installer Clusters Only) Optionally, add primary and secondary nodes to the cluster:
+1. (Kubernetes Installer Cluster Only) Optionally, add primary and secondary nodes to the cluster:
    1. In the admin console, click **Cluster Management > Add Node**.
    1. Copy the command and run it on the node that you are joining to the cluster.
 
-   For more information, see [Adding Nodes to Kubernetes Installer Clusters](cluster-management-add-nodes). 
+   For more information, see [Adding Nodes to Kubernetes Installer Clusters](cluster-management-add-nodes).
