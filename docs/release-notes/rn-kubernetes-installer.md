@@ -4,6 +4,14 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.07.15-0
+
+Released on July 15, 2022
+
+### Improvements {#improvements-v2022-07-15-0}
+
+- Improved health checks for [MinIO](https://kurl.sh/docs/add-ons/minio), [OpenEBS](https://kurl.sh/docs/add-ons/openebs), and [GoldPinger](https://kurl.sh/docs/add-ons/goldpinger) add-ons.
+
 ## Release v2022.07.12-0
 
 Released on July 12, 2022
