@@ -6,7 +6,7 @@ This topic describes how to use Replicated to install an application on an exist
 
 Before installing on an existing cluster, ensure that your cluster meets the minimum system requirements. See [Existing Cluster Requirements](installing-general-requirements#existing-cluster-requirements).
 
-## Install in an Online Environemnt
+## Install in an Online Environment
 
 You can install an application to an existing Kubernetes cluster that contains nodes that can access the internet.
 In an online installation, the Replicated app manager pulls container images from the upstream registries directly.

@@ -216,6 +216,7 @@ const sidebars = {
             'enterprise/delete-admin-console',
           ],
         },
+        'enterprise/cluster-management-add-nodes',
         {
           type: 'category',
           label: 'Using Self-hosted Image Registries',
