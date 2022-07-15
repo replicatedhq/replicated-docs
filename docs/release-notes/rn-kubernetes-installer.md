@@ -11,7 +11,7 @@ Released on July 15, 2022
 ### New Features {#new-features-v2022-07-15-1}
 
 - Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.76.1.
-- Adds [Kubernetes add-on](https://kurl.sh/docs/add-ons/kubernetes) versions 1.24.3 1.23.9 1.22.12 1.21.14.
+- Adds [Kubernetes add-on](https://kurl.sh/docs/add-ons/kubernetes) versions 1.24.3, 1.23.9, 1.22.12 and 1.21.14.
 - Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.6.5-20220616 and 2.8.1-20220616 with Replicated-created security patches.
 
 ### Improvements {#improvements-v2022-07-15-1}
