@@ -1,4 +1,4 @@
-# Defining Preflight Checks and Support Bundles
+# Customizing Preflight Checks and Support Bundles
 
 This topic provides information about how to create preflight checks and support
 bundles to include with your application. It also describes host preflight checks that you can include with the Kubernetes installer.
