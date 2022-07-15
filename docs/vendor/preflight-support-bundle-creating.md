@@ -1,7 +1,7 @@
 # Defining Preflight Checks and Support Bundles
 
 This topic provides information about how to create preflight checks and support
-bundles to include with your application, and host preflight checks that you can include with the Kubernetes installer.
+bundles to include with your application. It also describes host preflight checks that you can include with the Kubernetes installer.
 
 ## About Preflight Checks and Support Bundles
 
@@ -14,11 +14,55 @@ the cluster before they install and deploy your application. This can reduce the
 
 * **Support bundles**: Support bundles allow you to collect and analyze troubleshooting data
 from your customers' clusters to help you diagnose problems with application
-deployments.
+deployments. Customers generate support bundles from the Replicated admin console and automatically upload them to your support site. Your support team can review support bundles to troubleshoot application and cluster issues. Additionally, if you are unable to troubleshoot a Kubernetes cluster issue, you can upload the related support bundle to the Replicated vendor portal to open a support ticket with Replicated.
 
-Preflight checks and support bundles are based on the open-source Troubleshoot project, which is maintained by Replicated.
+The following diagram illustrates the workflow for preflight checks and support bundles:
 
-## Define Preflight Checks
+![Troubleshoot Workflow Diagram](/images/troubleshoot-workflow-diagram.png)
+
+### Collectors
+Collectors are defined in a YAML manifest file that identifies what to collect and any post-processing steps that should be executed before or after creating the support bundle.
+By default, preflight checks and support bundles contain a large number of commonly used, best-practice collectors. The default collectors gather a large amount of data that is useful when remotely installing or debugging a Kubernetes application.
+You can edit or add that can change or supplement the default collectors.
+
+### Analyzers
+Preflight checks and support bundles use analyzers, but the outcomes are different in each. Preflight checks use analyzers to determine outcomes and send messages to a customer during installation, depending on whether the preflight check passes, fails, or optionally produces a warning.
+
+When a support bundle is uploaded to the Replicated vendor portal, it is extracted and automatically analyzed. The goal of this process is to find insights that are known issues or hints of what might be a problem. Analyzers are designed to program the debugging and log reading skills into an application that is quick and easy to run for any support bundle collected.
+
+Insights are specific items that the analyzer process finds and surfaces. Insights can contain custom messages and levels, and are specific to the output of the analysis step on each support bundle.
+
+### Redactors
+Redactors censor sensitive customer information from all collectors before the analysis phase. By default, the following information is redacted:
+
+- Passwords
+- Tokens
+- AWS secrets
+- IP addresses
+- Database connection strings
+- URLs that include usernames and passwords
+
+This functionality can be turned off (not recommended) or customized.
+
+### Default Files
+
+You configure preflight checks and support bundles in custom resource manifest files that you include with release manifests. There are three custom resource manifest files available for troubleshooting functionality:
+
+- **Preflight** - Contains the collectors and analyzers used for preflight checks. `kind: Preflight`
+
+- **Support Bundle** - Contains the collectors and analyzers used for support bundle generation. `kind: SupportBundle`
+
+- **Redactor** - Enables custom redaction during preflight checks and support bundle generation. `kind: Redactor`
+
+These custom resource files contain default specifications for the Kubernetes cluster. You can customize these files and add collectors, analyzers, and redactors for your application. For more information, see [Customize Preflight Checks](#customize-preflight-checks) and [Customize Support Bundles](#customize-support-bundles).
+
+If you are using the vendor portal to create a release using standard manifest files, the preflight and support bundle YAML files are automatically included as part of the Replicated manifest files. If you want to include redactors, you manually add the Redactor custom resource file to the release.
+
+If you are using the replicated CLI, you manually add the `preflight.yaml`, `support-bundle.yaml`, and optionally the `redactor.yaml`.
+
+Preflight checks and support bundles are based on the open-source Troubleshoot project, which is maintained by Replicated. For more information about individual Kubernetes collectors, analyzers, and redactors, see the [Troubleshoot](https://troubleshoot.sh/) documentation.
+
+## Customize Preflight Checks
 
 You define preflight checks by creating a `preflight.yaml`
 manifest file. This file specifies the cluster data that is collected and redacted as part of the preflight check.
@@ -34,6 +78,102 @@ see [Getting Started](https://troubleshoot.sh/docs/) in the Troubleshoot documen
 For more information about defining preflight checks, see
 [Preflight Checks](https://troubleshoot.sh/docs/preflight/introduction/) in the
 Troubleshoot documentation. There are also a number of basic examples for checking CPU, memory, and disk capacity under [Node Resources Analyzer](https://troubleshoot.sh/reference/analyzers/node-resources/).
+
+## Customize a Support Bundle
+
+Customizing a support bundle is unique to your application. This procedure provides a basic understanding and some key considerations to help guide you.
+
+To customize a support bundle:
+
+1. Start with either YAML file option and add custom collectors to the file:
+
+    - If you want to add collectors to the default collectors, you can start with a basic support bundle manifest file (kind: SupportBundle). The brackets for the collectors field  indicate that all of the default collectors are included.
+
+      ```yaml
+      apiVersion: troubleshoot.sh/v1beta2
+      kind: SupportBundle
+      metadata:
+         name: collectors
+      spec:
+         collectors: []
+     ```
+    - If you want to fully customize the support bundle, copy the default `spec.yaml` file to your manifest file. For the default YAML file, see [spec.yaml](https://github.com/replicatedhq/kots/blob/main/pkg/supportbundle/defaultspec/spec.yaml) in the kots repository.
+
+1. (Recommended) Add application pod logs to check the retention options for the number of lines logged. Typically the selector attribute is matched to labels.
+
+    1. To get the labels for an application, either inspect the YAML, or run the following command a running instance to see what labels are used:
+
+      ```
+      $ kubectl get pods --show-labels
+      ```
+
+    1. After the labels are discovered, create collectors to include logs from these pods in a bundle. Depending on the complexity of an app's labeling schema, you might need a few different declarations of the logs collector. You can include the `logs` collector specification multiple times.
+
+      The limits field can support one or both of `maxAge` and `maxLines`. This  limits the output to the constraints provided. Defaults: `maxAge` is unset (all), and `maxLines` is 10,000 lines.
+
+      **Example**
+
+      ```yaml
+      apiVersion: troubleshoot.sh/v1beta2
+      kind: SupportBundle
+      metadata:
+         name: collectors
+      spec:
+         collectors: []
+            - logs:
+               selector:
+                   - app=api
+               namespace: default
+               limits:
+                  maxAge: 30d
+                  maxLines: 1000
+      ```            
+
+1. Additional custom collectors that you might want to include are:
+
+    - Host collectors to check if the host is able to run Kubernetes
+    - Collectors to check if the cluster is able to run the application
+    - Databases
+    - Volumes
+    - Kubernetes resources such as secrets and ConfigMaps
+    - Run a pod from a custom image
+    - Copy files from pods/hosts
+    - Consume your own application APIs with HTTP:
+      - If your application has /status or /metrics or /health_check endpoints you can consume with HTTP, this is the most powerful way to get introspection
+      - If your application has its own API that serves status, metrics, performance data, and so on, this information can be collected and analyzed
+
+1. Add custom analyzers for each customized collector. Good analyzers clearly identify failure modes. At a minimum, include application log analyzers. For example, a simple Text Analyzer can detect specific log lines and inform an end user of remediation steps.
+
+  Additional custom analyzers that you might want to include are:
+
+    - Resource Statuses
+    - Regular Expressions
+    - Databases
+
+1. To customize the default redactors or add redactors for your application, you must manually add the `redactor.yaml` (kind: Redactor) to your release.
+
+  :::note
+  You can turn off this functionality by passing `--redact=false` to the troubleshoot command, although Replicated recommends leaving this functionality turned on to protect your customers’ data.
+  :::
+
+  The basic redactor manifest file uses brackets for the collectors field, which indicates that all of the default collectors are included.
+
+  **Example:**
+
+    ```yaml
+    apiVersion: troubleshoot.sh/v1beta2
+    kind: Redactor
+    metadata:
+       name: collectors
+    spec:
+       collectors: []
+    ```
+
+5. Generate a support bundle from the Troubleshoot tab in the admin console and do one of the following:
+
+    - Click **Send bundle to vendor** and open the tar bundle to review the files.
+    - Download the `support-bundle.tar.gz` bundle and copy it to the Troubleshoot tab in the [vendor portal](https://vendor.replicated.com) to see the analysis and use the file inspector.
+
 
 ## About Host Preflight Checks for Kubernetes Installers
 You can include host preflight checks with Kubernetes installers to verify that infrastructure requirements are met for:
@@ -266,32 +406,3 @@ To customize host preflight checks:
     ```
 
 1. Promote and test your installer in a development environment before sharing it with customers.
-
-## Define Support Bundles
-
-You define support bundles by creating a `support-bundle.yaml` manifest file. This file specifies the cluster data
-that is collected and redacted as part of the support bundle. The manifest file also defines how the collected data is analyzed.
-
-You then add the `support-bundle.yaml` manifest file to the application that you are packaging and distributing with Replicated.    
-
-For more information about installing `support-bundle` plugin,
-see [Getting Started](https://troubleshoot.sh/docs/) in the Troubleshoot documentation.
-
-For more information about defining support bundles, see
-[Support Bundle](https://troubleshoot.sh/docs/support-bundle/introduction/) in the
-Troubleshoot documentation.
-
-### Bundling and Analyzing Logs with Support Bundle
-
-A robust support bundle is essential to minimizing back-and-forth when things go wrong.
-At a very minimum, every app's support bundle should contain logs for an application's core pods.
-Usually this is done with label selectors. To get the labels for an application, either inspect the YAML, or run the following YAML against a running instance to see what labels are used:
-
-```shell
-kubectl get pods --show-labels
-```
-
-After the labels are discovered, a [logs collector](https://troubleshoot.sh/reference/collectors/pod-logs/) can be used to include logs from these pods in a bundle.
-Depending on the complexity of an app's labeling schema, you may need a few different declarations of the `logs` collector.
-
-As common issues are encountered in the field, it makes sense to add not only collectors but also analyzers to an app's troubleshooting stack. For example, when an error in a log file is discovered that should be surfaced to an end user in the future, a simple [Text Analyzer](https://troubleshoot.sh/reference/analyzers/regex/) can detect specific log lines and inform an end user of remediation steps.
