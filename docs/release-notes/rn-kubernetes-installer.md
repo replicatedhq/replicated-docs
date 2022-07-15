@@ -8,17 +8,9 @@ toc_max_heading_level: 2
 
 Released on July 15, 2022
 
-### New Features {#new-features-v2022-07-15-0}
-
-- 
-
 ### Improvements {#improvements-v2022-07-15-0}
 
-- 
-
-### Bug Fixes {#bug-fixes-v2022-07-15-0}
-
-- 
+- Improved health checks for [MinIO](https://kurl.sh/docs/add-ons/minio), [OpenEBS](https://kurl.sh/docs/add-ons/openebs), and [GoldPinger](https://kurl.sh/docs/add-ons/goldpinger) add-ons.
 
 ## Release v2022.07.12-0
 
