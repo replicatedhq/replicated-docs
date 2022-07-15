@@ -4,6 +4,24 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.07.15-1
+
+Released on July 15, 2022
+
+### New Features {#new-features-v2022-07-15-1}
+
+- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.76.1.
+- Adds [Kubernetes add-on](https://kurl.sh/docs/add-ons/kubernetes) versions 1.24.3, 1.23.9, 1.22.12 and 1.21.14.
+- Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.6.5-20220616 and 2.8.1-20220616 with Replicated-created security patches.
+
+### Improvements {#improvements-v2022-07-15-1}
+
+- Changes Weave version 2.6.5 and 2.8.1 to once again use upstream weave images.
+
+### Bug Fixes {#bug-fixes-v2022-07-15-1}
+
+- Fixes an issue that caused Rook to Longhorn migration failures due to Ceph claiming Longhorn devices.
+
 ## Release v2022.07.15-0
 
 Released on July 15, 2022
