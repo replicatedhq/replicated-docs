@@ -4,6 +4,14 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.07.15-2
+
+Released on July 15, 2022
+
+### Improvements {#improvements-v2022-07-15-2}
+
+- Updates the local-volume-provider image to v0.3.6 for the [Velero add-on](https://kurl.sh/docs/add-ons/velero) to address CVE-2021-38561 with high severity.
+
 ## Release v2022.07.15-1
 
 Released on July 15, 2022
