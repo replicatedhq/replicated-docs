@@ -17,7 +17,7 @@ To complete application setup and deploy from the admin console:
 
       If you need to reopen the port forward to the admin console, run the following command:
 
-      ```
+      ```shell
       kubectl kots admin-console -n APP_NAMESPACE
       ```
       Replace `APP_NAMESPACE` with the namespace on the cluster where you installed the application.
@@ -32,6 +32,8 @@ To complete application setup and deploy from the admin console:
    * **Existing cluster**: Log in with the password that you created during installation.
    * **Kubernetes installer provisioned cluster**: Log in with the password that was provided in the `Login with password (will not be shown again):` field in the output of the installation command.
 
+   ![Secure Console](/images/secure-console.png)
+
 1. Upload the license file provided by your application vendor.
 
 1. (Air Gap Only) Upload the `.airgap` air gap bundle provided by your application vendor.
@@ -40,17 +42,24 @@ To complete application setup and deploy from the admin console:
 
    If the application vendor did not include any configuration options for the application, this screen is not displayed.
 
+   ![Initial Config](/images/initial-config.png)
+
 1. Complete the preflight checks. The admin console automatically runs preflight checks (conformance tests) against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application.
 
    * If there are no preflight check warnings or failures, continue with deployment.
    * If there are any preflight check warnings and failures:
       * Resolve the warnings and failures, then click **Re-run** to run the preflight checks again.
       * If there are no failures that prevent application deployment, you can choose to dismiss the preflight check warnings to continue.
+      :::note
+      Replicated recommends that you address any warnings or failures, rather than dismissing them. Preflight checks help ensure that your environment meets the requirements for application deployment.
+      :::
       * If you are installing with minimal role-based access control (RBAC), the admin console recognizes if the preflight checks have failed due to insufficient privileges.
 
       When this occurs, a kubectl preflight command displays that lets you manually run the preflight checks. The results are then automatically uploaded to the admin console.
 
-  After preflight checks are complete, Replicated deploys the admin console and the application, and the admin console dashboard opens in the browser.     
+  After preflight checks are complete, Replicated deploys the admin console and the application, and the admin console dashboard opens:
+
+  ![Graphs on the admin console dashboard](/images/kotsadm-dashboard-graph.png)     
 
 1. (Recommended) Change the admin console login password:
    1. Click the menu in the top right corner of the admin console, then click **Change password**.
@@ -58,8 +67,9 @@ To complete application setup and deploy from the admin console:
 
    Replicated strongly recommends that you change the password from the default provided during installation on a Kubernetes installer provisioned cluster. For more information, see [Changing an Admin Console Password](auth-changing-passwords).
 
-1. (Kubernetes Installer Cluster Only) Optionally, add primary and secondary nodes to the cluster:
-   1. In the admin console, click **Cluster Management > Add Node**.
-   1. Copy the command and run it on the node that you are joining to the cluster.
+## Next Steps
 
-   For more information, see [Adding Nodes to Kubernetes Installer Clusters](cluster-management-add-nodes).
+The following are recommended next steps after you complete installation:
+
+* (Kubernetes Installer Cluster Only) Add primary and secondary nodes to the cluster. See [Adding Nodes to Kubernetes Installer Clusters](cluster-management-add-nodes).
+* (Existing Cluster Only) Configure application and cluster monitoring. See [Monitoring Applications](monitoring-applications).
