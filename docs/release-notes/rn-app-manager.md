@@ -246,7 +246,7 @@ Released on March 21, 2022
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### New Features
-* Adds support for installing a specific application version. For more information about installing a specific application version, see [Installing in an Online (Internet-connected) Environment](/enterprise/installing-existing-cluster-online) and [Installing with the Kubernetes Installer](/enterprise/installing-embedded-cluster).
+* Adds support for installing a specific application version. For more information about installing a specific application version, see [Install in an Online Environment](/enterprise/installing-existing-cluster#online) in _Installing on an Existing Cluster_ and [Installing with the Kubernetes Installer](/enterprise/installing-embedded-cluster).
 * Extends the ability of status informers to detect if the application is being updated.
 * Adds the ability to provide a strict preflight, which cannot be skipped and must not have any failure outcomes. Any failure outcomes will prevent the user from deploying the application. For more information on strict preflights, see [About preflight checks and support bundles​](/vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles) in Creating Preflight Checks and Support Bundles.
 * New versions can automatically be deployed in the admin console, regardless of whether the vendor uses semantic versioning. For more information about automatically deploying new versions, see [Configure Automatic Updates​](/enterprise/updating-apps#configure-automatic-updates) in Updating an Application.
@@ -373,7 +373,7 @@ Supported on Kubernetes: 1.20, 1.21, and 1.22
 * Updates Postgres to version 10.19.
 
 ### Bug Fixes
-* Fixes an issue that caused images to be pushed multiple times during an [airgap installation](../enterprise/installing-existing-cluster-airgapped#upload-the-airgap-bundle) when the [Native Helm](../vendor/helm-processing/#native-helm) feature is enabled.
+* Fixes an issue that caused images to be pushed multiple times during an [airgap installation](/enterprise/installing-existing-cluster#air-gap) when the [Native Helm](/vendor/helm-processing/#native-helm) feature is enabled.
 * Fixes an issue that prevented the deployment status labels from breaking into multiple lines on small displays.
 
 ## 1.59.3

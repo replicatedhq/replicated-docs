@@ -6,7 +6,7 @@ This topic describes how to use Replicated to install an application on an exist
 
 Before installing on an existing cluster, ensure that your cluster meets the minimum system requirements. See [Existing Cluster Requirements](installing-general-requirements#existing-cluster-requirements).
 
-## Install in an Online Environment
+## Install in an Online Environment {#online}
 
 You can install an application to an existing Kubernetes cluster that contains nodes that can access the internet.
 In an online installation, the Replicated app manager pulls container images from the upstream registries directly.
@@ -59,7 +59,7 @@ After the `kots install` command installs the admin console and the application 
 
 Log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
 
-## Install in an Air Gapped Environment
+## Install in an Air Gapped Environment {#air-gap}
 
 When installing an application with the Replicated app manager from a `.airgap` package, the container images and application manifests are provided by the application vendor in an archive that can be used to deliver the artifacts into the cluster.
 

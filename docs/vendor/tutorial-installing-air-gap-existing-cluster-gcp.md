@@ -338,7 +338,7 @@ To access the `admin.conf` from the cluster and run a few `kubectl` commands to 
 
 ### Install the Application
 
-This procedure follows the instructions at [Installing in an Air Gapped Environment](../enterprise/installing-existing-cluster-airgapped) in the _Enterprise_ section.
+This procedure follows the instructions at [Install in an Air Gapped Environment](../enterprise/installing-existing-cluster#air-gap) in _Installing on an Existing Cluster_.
 
 1. Download the `kots` plugin and the air gap bundle to your workstation:
 

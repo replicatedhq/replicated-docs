@@ -17,7 +17,7 @@ Complete the following before you perform this task:
     - Configured to distribute traffic to all healthy control plane nodes in its target list.
     - (Optional) Preconfigured by passing the `load-balancer-address=HOST:PORT` flag.
 
-## Install in an Online Environment
+## Install in an Online Environment {#online}
 
 To install an application in an online environment:
 
@@ -42,7 +42,7 @@ Run the installation command provided by the application vendor to provision the
 
 After the installation command finishes, note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the installation command. Then, log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
 
-## Install in an Air Gapped Environment
+## Install in an Air Gapped Environment {#air-gap}
 
 To install an application in an air gapped environment:
 
@@ -57,7 +57,7 @@ To install an application in an air gapped environment:
     Replace `FILENAME` with the name of the kURL air gap `.tar.gz` file.
 
     :::note
-    You can construct the URL for the air gap bundle by prefixing the URL path for online installations with `/bundle` and adding `.tar.gz` to the end. For more information, see [Install in an Online Environment](#install-in-an-online-environment).
+    You can construct the URL for the air gap bundle by prefixing the URL path for online installations with `/bundle` and adding `.tar.gz` to the end. For more information, see [Install in an Online Environment](#online).
     :::
 
   1. Install the application with the application `.airgap` bundle:
@@ -125,7 +125,7 @@ To install with high availability in an air gapped environment:
   Replace `FILENAME` with the name of the kURL air gap `.tar.gz` file.
 
   :::note
-  You can construct the URL for the air gap bundle by prefixing the URL path for online installations with `/bundle` and adding `.tar.gz` to the end. For more information, see [Install in an Online Environment](#install-in-an-online-environment).
+  You can construct the URL for the air gap bundle by prefixing the URL path for online installations with `/bundle` and adding `.tar.gz` to the end. For more information, see [Install in an Online Environment](#online).
   :::
 
 1. If you did not preconfigure a load balancer, you are prompted during the installation. Do one of the following:

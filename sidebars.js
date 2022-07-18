@@ -209,7 +209,7 @@ const sidebars = {
             'enterprise/installing-overview',
             'enterprise/installing-general-requirements',
             'enterprise/installing-stateful-component-requirements',
-            'enterprise/installing-existing-cluster-online',
+            'enterprise/installing-existing-cluster',
             'enterprise/installing-embedded-cluster',
             'enterprise/installing-app-setup',
             'enterprise/installing-existing-cluster-automation',

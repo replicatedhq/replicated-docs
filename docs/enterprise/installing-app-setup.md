@@ -6,7 +6,7 @@ This topic describes how to access the Replicated admin console to complete the 
 
 This procedure assumes that you have already installed the admin console on either an existing cluster or on a cluster provisioned by the Replicated Kubernetes installer.
 
-For more information, see [Installing on an Existing Cluster](installing-existing-cluster-online) or [Installing with the Kubernetes Installer](installing-embedded-cluster).
+For more information, see [Installing on an Existing Cluster](installing-existing-cluster) or [Installing with the Kubernetes Installer](installing-embedded-cluster).
 
 ## Access the Admin Console and Deploy the Application
 
