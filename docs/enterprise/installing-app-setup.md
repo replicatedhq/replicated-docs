@@ -67,9 +67,8 @@ To complete application setup and deploy from the admin console:
 
    Replicated strongly recommends that you change the password from the default provided during installation on a Kubernetes installer provisioned cluster. For more information, see [Changing an Admin Console Password](auth-changing-passwords).
 
-## Next Steps
-
-The following are recommended next steps after you complete installation:
-
-* (Kubernetes Installer Cluster Only) Add primary and secondary nodes to the cluster. See [Adding Nodes to Kubernetes Installer Clusters](cluster-management-add-nodes).
-* (Existing Cluster Only) Configure application and cluster monitoring. See [Monitoring Applications](monitoring-applications).
+1. (Kubernetes Installer Cluster Only) Add primary and secondary nodes to the cluster. You might add nodes to either meet application requirements defined by the vendor or to support your usage of the application. See [Adding Nodes to Kubernetes Installer Clusters](cluster-management-add-nodes).
+   :::note
+   Reach out to your application vendor for information about any node requirements.
+   :::
+1. (Existing Cluster Only) Configure application and cluster monitoring. This allows you to view graphs on the admin console dashboard with key metrics collected by Prometheus. See [Monitoring Applications](monitoring-applications).
