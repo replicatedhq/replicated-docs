@@ -16,19 +16,19 @@ To submit a support request:
 
     - Use your pre-selected support bundle or select a different bundle in the pick list
     - Select **Upload and attach a new support bundle** and attach a bundle from your file browser
-    - Select **I'm unable to generate a support bundle** and :
+    - Select **I'm unable to generate a support bundle** and do the following in the user interface:
 
       - Describe any procedures that led to the failure, including playbooks or scripts that were used
 
-      - Attach information that you have manually gathered using kubectl commands:
+      - Attach the following information that you have manually gathered using kubectl commands:
         - Logs from the failed support bundle collection
         - Output from `kubectl get po -A`
         - Kubernetes installer information using `kubectl get installers -o yaml`
         - Logs from all pods that are not in Ready status
-        - Logs from Ceph Operator pod or Longhorn Operator
+        - Logs from any Ceph Operator or Longhorn  pods
         - Logs from all pods in the kube-system namespace
 
-      - Attach cluster node information that you have manually gathered using various commands for:
+      - Attach the followingcluster node information that you have manually gathered using various commands for:
         - uptime
         - cat /etc/*-release
         - uname -a
