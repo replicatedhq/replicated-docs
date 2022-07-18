@@ -211,12 +211,12 @@ const sidebars = {
             'enterprise/installing-stateful-component-requirements',
             'enterprise/installing-existing-cluster',
             'enterprise/installing-embedded-cluster',
+            'enterprise/cluster-management-add-nodes',
             'enterprise/installing-app-setup',
             'enterprise/installing-existing-cluster-automation',
             'enterprise/delete-admin-console',
           ],
         },
-        'enterprise/cluster-management-add-nodes',
         {
           type: 'category',
           label: 'Using Self-hosted Image Registries',
