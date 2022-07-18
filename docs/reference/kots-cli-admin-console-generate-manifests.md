@@ -27,3 +27,7 @@ kubectl kots admin-console generate-manifests
 kubectl kots admin-console generate-manifests --rootdir ./manifests
 kubectl kots admin-console generate-manifests --namespace kotsadm --minimal-rbac=true --additional-namespaces="app1,app3"
 ```
+
+### Known Limitations
+
+`generate-manifests` does not currently support generating manifests for Openshift clusters.
