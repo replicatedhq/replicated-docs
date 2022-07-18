@@ -1,7 +1,7 @@
 # Customizing Preflight Checks and Support Bundles
 
-This topic provides information about how to create preflight checks and support
-bundles to include with your application. It also describes host preflight checks that you can include with the Kubernetes installer.
+This topic provides information about how to customize preflight checks and support
+bundles for your application release. It also describes host preflight checks that you can include with the Kubernetes installer.
 
 ## About Preflight Checks and Support Bundles
 
@@ -44,9 +44,9 @@ When a support bundle is uploaded to the Replicated vendor portal, it is extract
 
 Insights are specific items that the analyzer process finds and surfaces. Insights can contain custom messages and levels, and are specific to the output of the analysis step on each support bundle.
 
-### Default Files
+## About Default Files
 
-You configure preflight checks and support bundles in custom resource manifest files that you include with release manifests. There are three custom resource manifest files available for troubleshooting functionality:
+You configure preflight checks and support bundles in custom resource manifest files that you include with release manifests. There are three custom resources available for troubleshooting:
 
 - **Preflight** - Contains the collectors and analyzers used for preflight checks. `kind: Preflight`
 
