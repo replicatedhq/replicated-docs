@@ -30,7 +30,7 @@ To complete application setup and deploy from the admin console:
 
 1. Log in to the admin console:
    * **Existing cluster**: Log in with the password that you created during installation.
-   * **Kubernetes installer provisioned cluster**: Log in with the password that was provided in the `Login with password (will not be shown again):` field in the output of the installation command.
+   * **Kubernetes installer cluster**: Log in with the password that was provided in the `Login with password (will not be shown again):` field in the output of the installation command.
 
    ![Secure Console](/images/secure-console.png)
 
@@ -40,7 +40,7 @@ To complete application setup and deploy from the admin console:
 
 1. If there are configurations specific to the application, complete the fields on the configuration screen then click **Continue**. The required and optional configuration fields on this screen are used to build the final deployable Kubernetes manifests for the application.
 
-   If the application vendor did not include any configuration options for the application, this screen is not displayed.
+   If the application vendor did not include any configuration options for the application, this screen does not display.
 
    ![Initial Config](/images/initial-config.png)
 
@@ -48,12 +48,12 @@ To complete application setup and deploy from the admin console:
 
    * If there are no preflight check warnings or failures, continue with deployment.
    * If there are any preflight check warnings and failures:
-      * Resolve the warnings and failures, then click **Re-run** to run the preflight checks again.
+      * Resolve the warnings and failures, and click **Re-run** to run the preflight checks again.
       * If there are no failures that prevent application deployment, you can choose to dismiss the preflight check warnings to continue.
       :::note
       Replicated recommends that you address any warnings or failures, rather than dismissing them. Preflight checks help ensure that your environment meets the requirements for application deployment.
       :::
-      * If you are installing with minimal role-based access control (RBAC), the admin console recognizes if the preflight checks have failed due to insufficient privileges.
+      * If you are installing with minimal role-based access control (RBAC), the admin console recognizes if the preflight checks failed due to insufficient privileges.
 
       When this occurs, a kubectl preflight command displays that lets you manually run the preflight checks. The results are then automatically uploaded to the admin console.
 
@@ -63,7 +63,7 @@ To complete application setup and deploy from the admin console:
 
 1. (Recommended) Change the admin console login password:
    1. Click the menu in the top right corner of the admin console, then click **Change password**.
-   1. Enter a new password in the dialog then click **Change Password** to save.
+   1. Enter a new password in the dialog, and click **Change Password** to save.
 
    Replicated strongly recommends that you change the password from the default provided during installation on a Kubernetes installer provisioned cluster. For more information, see [Changing an Admin Console Password](auth-changing-passwords).
 

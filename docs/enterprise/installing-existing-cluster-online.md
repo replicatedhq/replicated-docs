@@ -57,7 +57,7 @@ To install on an existing cluster in an online environment:
 
 After the `kots install` command installs the admin console and the application on the cluster, it creates a port forward to the admin console. The admin console is exposed internally on the cluster and can only be accessed using a port forward.
 
-You log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
+Log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
 
 ## Install in an Air Gapped Environment
 
@@ -81,15 +81,15 @@ To push images and install:
 
    ```shell
    kubectl kots admin-console push-images ./kotsadm.tar.gz private.registry.host/app-name \
-     --registry-username RW-USERNAME \
-     --registry-password RW-PASSWORD
+     --registry-username RW_USERNAME \
+     --registry-password RW_PASSWORD
    ```
 
-   Where:
+   Replace:
 
-   * `RW-USERNAME` is the username for an account that has read and write access to the private image registry.
+   * `RW_USERNAME` with the username for an account that has read and write access to the private image registry.
 
-   * `RW-PASSWORD` is the password for the account with read and write access.
+   * `RW_PASSWORD` with the password for the account with read and write access.
    :::note
    Replicated does not store or reuse these credentials.
    :::
@@ -104,11 +104,11 @@ To push images and install:
      --registry-password RO-PASSWORD
    ```
 
-   Where:
+   Replace:
 
-   * `RO-USERNAME` is the username for an account that has read-only access to the private image registry.
+   * `RO_USERNAME` with the username for an account that has read-only access to the private image registry.
 
-   * `RO-PASSWORD` is the password for the read-only account.
+   * `RO_PASSWORD` with the password for the read-only account.
 
    :::note
    Replicated stores these read-only credentials in a Kubernetes secret in the same namespace where the admin console is installed.
@@ -138,4 +138,4 @@ To push images and install:
 
 After the `kots install` command installs the admin console and the application on the cluster, it creates a port forward to the admin console. The admin console is exposed internally on the cluster and can only be accessed using a port forward.
 
-You log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
+Log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
