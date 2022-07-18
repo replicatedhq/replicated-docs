@@ -173,7 +173,7 @@ To customize a support bundle:
   You can turn off this functionality by passing `--redact=false` to the troubleshoot command, although Replicated recommends leaving this functionality turned on to protect your customers’ data.
   :::
 
-5. Generate a support bundle from the Troubleshoot tab in the admin console and do one of the following:
+5. Save and promote your release. To test this feature, generate a support bundle from the Troubleshoot tab in the admin console and do one of the following:
 
     - Click **Send bundle to vendor** and open the tar bundle to review the files.
     - Download the `support-bundle.tar.gz` bundle and copy it to the Troubleshoot tab in the [vendor portal](https://vendor.replicated.com) to see the analysis and use the file inspector.
