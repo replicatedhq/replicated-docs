@@ -3,7 +3,7 @@
 This topic provides information about how to customize preflight checks and support
 bundles for your application release.
 
-Host preflight checks are supported for Kubernetes installers. For more information about host preflight checks, see [Customizing Host Preflight Checks for Kubernetes Installers](preflight-host-preflights).
+Host preflight checks are also supported for Kubernetes installers. For more information about host preflight checks, see [Customizing Host Preflight Checks for Kubernetes Installers](preflight-host-preflights).
 
 
 ## About Preflight Checks and Support Bundles
@@ -23,11 +23,11 @@ The following diagram illustrates the workflow for preflight checks and support 
 
 ![Troubleshoot Workflow Diagram](/images/troubleshoot-workflow-diagram.png)
 
-Preflight checks and support bundles are based on the open-source Troubleshoot project, which is maintained by Replicated. For more information about individual Kubernetes collectors, analyzers, and redactors, see the [Troubleshoot](https://troubleshoot.sh/) documentation.
+Preflight checks and support bundles are based on the open-source Troubleshoot project, which is maintained by Replicated. For more information about specific types of Kubernetes collectors, analyzers, and redactors, see the [Troubleshoot](https://troubleshoot.sh/) documentation.
 
 ### Collectors
-Collectors are defined in a YAML manifest file that identifies what to collect and any post-processing steps that should be executed before or after creating the support bundle.
-By default, preflight checks and support bundles contain a large number of commonly used, best-practice collectors. The default `clusterInfo` and `clusterResources` collectors gather a large amount of data that is useful when remotely installing or debugging a Kubernetes application.
+Collectors are defined in a YAML manifest file that identifies what to collect and specifies any post-processing steps that should be executed before or after creating the support bundle.
+By default, preflight checks and support bundles contain a large number of commonly used, best practice collectors. The default `clusterInfo` and `clusterResources` collectors gather a large amount of data that is useful when remotely installing or debugging a Kubernetes application.
 You can edit or add that can change or supplement the default collectors.
 
 ### Redactors
@@ -116,9 +116,9 @@ To customize a support bundle:
 
     1. After the labels are discovered, create collectors to include logs from these pods in a bundle. Depending on the complexity of an application's labeling schema, you might need a few different declarations of the logs collector. You can include the `logs` collector specification multiple times.
 
-      The limits field can support `maxAge` or `maxLines`. This  limits the output to the constraints provided. **Defaults:** `maxLines`= 10,000
+      The limits field can support `maxAge` or `maxLines`. This limits the output to the constraints provided. **Default:** `maxLines`= 10,000
 
-      **Example**
+      **Example:**
 
       ```yaml
       apiVersion: troubleshoot.sh/v1beta2
@@ -132,21 +132,21 @@ To customize a support bundle:
                    - app=api
                namespace: default
                limits:
-                  maxAge: 30d
+                  maxLines: 10,000
       ```            
 
 1. Additional collectors that Replicated recommends considering are:
 
-    - **Kubernetes resources** - For custom resource definitions (CRDs), secrets, and ConfigMaps, if they are required for your application to work.
-    - **Databases** - To return a selection of rows or entire tables.
-    - **Volumes** - To ensure that an application's persistent state files exist, are readable/writeable, and have the right permissions.
+    - **Kubernetes resources** - Use for custom resource definitions (CRDs), secrets, and ConfigMaps, if they are required for your application to work.
+    - **Databases** - Return a selection of rows or entire tables.
+    - **Volumes** - Ensure that an application's persistent state files exist, are readable/writeable, and have the right permissions.
     - **Pods** - Run a pod from a custom image.
     - **Files** - Copy files from pods and hosts.
     - **HTTP** - Consume your own application APIs with HTTP requests. If your application has its own API that serves status, metrics, performance data, and so on, this information can be collected and analyzed.
 
-1. Add analyzers based on conditions you expect for your application. You might require that a cluster have 2 CPUs available to your application, or have a minimum of 4GB memory available. Good analyzers clearly identify failure modes. For example, if you can identify a log message from your database component that indicates a problem, you should write an analyzer that checks for that log.
+1. Add analyzers based on conditions that you expect for your application. You might require that a cluster have 2 CPUs available to your application or have a minimum of 4GB memory available. Good analyzers clearly identify failure modes. For example, if you can identify a log message from your database component that indicates a problem, you should write an analyzer that checks for that log.
 
-  At a minimum, include application log analyzers. For example, a simple text analyzer can detect specific log lines and inform an end user of remediation steps.
+  At a minimum, include application log analyzers. A simple text analyzer can detect specific log lines and inform an end user of remediation steps.
 
   Additional analyzers that Replicated recommends considering are:
 
@@ -156,7 +156,7 @@ To customize a support bundle:
 
 1. To customize the default redactors or add redactors for your application, you must manually add the Redactor custom resource manifest (`kind: Redactor`) to your release. Edit the redactors as needed.
 
-  The basic redactor manifest file uses brackets for the collectors field, which s that all of the default collectors are included.
+  In the following example, the collectors field is empty, so only the default collectors will run.
 
   **Example:**
 
