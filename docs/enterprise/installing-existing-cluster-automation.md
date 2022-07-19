@@ -94,7 +94,7 @@ After this has completed, you can go to http://localhost:8800 will show the conf
 
 ## Air Gap Installation
 
-As the first step, admin console images must be pushed to a private registry using `kubectl kots admin-console push-images` command. For more information, see [Installing in an air gapped environment](installing-existing-cluster-airgapped/).
+As the first step, admin console images must be pushed to a private registry using `kubectl kots admin-console push-images` command. For more information, see [Install in an Air Gapped Environment](installing-existing-cluster#air-gap) in _Installing on an Existing Cluster_.
 
 ```shell
 kubectl kots install app-name \
