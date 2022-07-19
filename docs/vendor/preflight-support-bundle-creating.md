@@ -18,18 +18,74 @@ deployments.
 
 Preflight checks and support bundles are based on the open-source Troubleshoot project, which is maintained by Replicated.
 
-## Define Preflight Checks
+## Customize Preflight Checks
 
-You define preflight checks by creating a `preflight.yaml`
-manifest file. This file specifies the cluster data that is collected and redacted as part of the preflight check.
-The manifest file also defines how the collected data is analyzed.
+Customizing preflight checks is unique to your application. This procedure provides a basic understanding and some key considerations to help guide you.
 
-When an analyzer is marked as [`strict`](https://troubleshoot.sh/docs/analyze/#strict), any `fail` outcomes for that analyzer block the deployment of the release. This can be used to prevent users from deploying a release until vendor-specified requirements are met. When configuring strict preflight checks, vendors should consider the app manager [cluster privileges](../reference/custom-resource-application#requireminimalrbacprivileges).
+To customize preflight checks:
 
-You then add the `preflight.yaml` manifest file to the application that you are packaging and distributing with Replicated.    
+1. Start with either YAML file option and add custom collectors to the file:
 
-For more information about installing the `preflight` plugin,
-see [Getting Started](https://troubleshoot.sh/docs/) in the Troubleshoot documentation.
+    - If you want to add collectors to the default collectors, you can start with a basic support bundle manifest file (`kind: SupportBundle`). In the following example, the collectors field is empty, so only the default collectors will run.
+
+      ```yaml
+      apiVersion: troubleshoot.sh/v1beta2
+      kind: Preflight
+      metadata:
+         name: collectors
+      spec:
+         collectors: []
+     ```
+    - If you want to fully customize the support bundle, copy the default preflight YAML file to your manifest file. For the default YAML file, see [kots-preflight.yaml](https://github.com/replicatedhq/kots-default-yaml/blob/main/kots-preflight.yaml) in the kots repository.
+
+      :::note
+      The default collectors `clusterInfo` and `clusterResources` do not accept any parameters.
+      :::
+
+1. Add collectors and analyzers based on conditions that you expect for your application. For example, you can collect information about the MySQL version that is running in a cluster, then specify outcomes in an analyzer. Optionally, you can set the `strict` flag to `true` to ensure that the installation does not proceed with an unsupported version of MySQL.
+
+  ```yaml
+  apiVersion: troubleshoot.sh/v1beta2
+  kind: Preflight
+  metadata:
+    name: supported-mysql-version
+    spec:
+      collectors:
+        - mysql:
+          collectorName: mysql
+          uri: '<user>:<password>@tcp(<host>:<port>)/<dbname>'
+          ```
+1. Add an analyzer specification to analyze the collected data and provide outcomes. For example, you can set `fail` outcomes if the MySQL version is less than the minimum version and specify an message informing your customer of the reasons for the failure and steps they can take to fix the issue.
+
+  You can optionally set strict preflight checks. When an analyzer is marked as [`strict`](https://troubleshoot.sh/docs/analyze/#strict), any `fail` outcomes for that analyzer block the deployment of the release. This can be used to prevent users from deploying a release until vendor-specified requirements are met. When configuring strict preflight checks, vendors should consider the app manager [cluster privileges](../reference/custom-resource-application#requireminimalrbacprivileges).
+
+    ```yaml
+    apiVersion: troubleshoot.sh/v1beta2
+    kind: Preflight
+    metadata:
+      name: supported-mysql-version
+      spec:
+        collectors:
+          - mysql:
+            collectorName: mysql
+            uri: '<user>:<password>@tcp(<host>:<port>)/<dbname>'
+        analyzers:
+          - mysql:
+            strict: true
+            checkName: Must be MySQL 8.x or later
+            collectorName: mysql
+            outcomes:
+              - fail:
+                  when: connected == false
+                  message: Cannot connect to MySQL server
+              - fail:
+                  when: version < 8.x
+                  message: The MySQL server must be at least version 8
+              - pass:
+                  message: The MySQL server is ready
+    ```
+
+1. Save and promote the release to a development environment to test your changes.
 
 For more information about defining preflight checks, see
 [Preflight Checks](https://troubleshoot.sh/docs/preflight/introduction/) in the
