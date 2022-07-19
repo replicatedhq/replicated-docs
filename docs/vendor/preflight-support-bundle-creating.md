@@ -24,7 +24,7 @@ Customizing preflight checks is unique to your application. This procedure provi
 
 To customize preflight checks:
 
-1. Start with either YAML file option and add custom collectors to the file:
+1. Start with either YAML file option:
 
     - If you want to add collectors to the default collectors, you can start with a basic support bundle manifest file (`kind: SupportBundle`). In the following example, the collectors field is empty, so only the default collectors will run.
 
@@ -57,7 +57,7 @@ To customize preflight checks:
           ```
 1. Add an analyzer specification to analyze the collected data and provide outcomes. For example, you can set `fail` outcomes if the MySQL version is less than the minimum version and specify an message informing your customer of the reasons for the failure and steps they can take to fix the issue.
 
-  You can optionally set strict preflight checks. When an analyzer is marked as [`strict`](https://troubleshoot.sh/docs/analyze/#strict), any `fail` outcomes for that analyzer block the deployment of the release. This can be used to prevent users from deploying a release until vendor-specified requirements are met. When configuring strict preflight checks, vendors should consider the app manager [cluster privileges](../reference/custom-resource-application#requireminimalrbacprivileges).
+  You can optionally set strict preflight checks. When an analyzer is marked as [`strict`](https://troubleshoot.sh/docs/analyze/#strict), any `fail` outcomes for that analyzer block the deployment of the release (unless an `exclude` flag is also being used). This can be used to prevent users from deploying a release until vendor-specified requirements are met. When configuring strict preflight checks, vendors should consider the app manager [cluster privileges](../reference/custom-resource-application#requireminimalrbacprivileges).
 
     ```yaml
     apiVersion: troubleshoot.sh/v1beta2
