@@ -2,6 +2,10 @@
 
 Running this command will create a directory on the workstation containing the Replicated admin console manifests. These assets can be used to deploy KOTS to a cluster through other workflows, such as kubectl, to provide additional customization of the admin console before deploying.
 
+### Limitations
+
+`generate-manifests` does not support generating manifests for Red Hat OpenShift clusters.
+
 ### Usage
 ```bash
 kubectl kots admin-console generate-manifests [flags]
@@ -27,7 +31,3 @@ kubectl kots admin-console generate-manifests
 kubectl kots admin-console generate-manifests --rootdir ./manifests
 kubectl kots admin-console generate-manifests --namespace kotsadm --minimal-rbac=true --additional-namespaces="app1,app3"
 ```
-
-### Known Limitations
-
-`generate-manifests` does not currently support generating manifests for Openshift clusters.
