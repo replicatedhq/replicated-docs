@@ -15,7 +15,7 @@ Released on July 20, 2022
 
 ### Bug Fixes {#bug-fixes-v2022-07-20-0}
 
-- Fixes an issue that causes iptables commands run on the host to report error `table `filter' is incompatible, use 'nft' tool` when using [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.6.5-20220616 and 2.8.1-20220616.
+- Fixes an issue that causes iptables commands run on the host to report error `table "filter" is incompatible, use 'nft' tool` when using [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.6.5-20220616 and 2.8.1-20220616.
 
 ## Release v2022.07.15-2
 
