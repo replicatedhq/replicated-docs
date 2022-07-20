@@ -63,8 +63,7 @@ for and downloads new versions.
 You can also configure the admin console to automatically deploy new versions of
 the application after it downloads them. The admin console only deploys new versions
 automatically if preflight checks pass. By default, the admin console does not
-automatically deploy any version of an application. The admin console also never
-automatically deploys a version that you manually download by clicking **Check for update**.
+automatically deploy any version of an application.
 
 You cannot configure automatic updates for applications installed in air gapped
 environments.
