@@ -22,6 +22,10 @@ Preflight checks and support bundles are based on the open-source Troubleshoot p
 
 Customizing preflight checks is unique to your application. This procedure provides a basic understanding and some key considerations to help guide you.
 
+For more information about defining preflight checks, see
+[Preflight Checks](https://troubleshoot.sh/docs/preflight/introduction/) in the
+Troubleshoot documentation. For basic examples for checking CPU, memory, and disk capacity, see [Node Resources Analyzer](https://troubleshoot.sh/reference/analyzers/node-resources/) in the Troubleshoot documentation.
+
 To customize preflight checks:
 
 1. Start with either YAML file option:
@@ -66,9 +70,7 @@ To customize preflight checks:
 
 1. Add an analyzer specification to analyze the collected data and provide outcomes. For example, you can set `fail` outcomes if the MySQL version is less than the minimum version and specify a messages informing your customer of the reasons for the failures and steps they can take to fix the issues.
 
-  If you set a preflight analyzer to `strict: true`, any `fail` outcomes for that analyzer block the deployment of the release until your specified requirements are met. Consider the Replicated app manager cluster privileges when you enable the `strict` flag. Note that strict preflight analyzers are overwritten if the `exclude` flag is also being used.
-
-  For more information about strict preflight checks, see [`strict`](https://troubleshoot.sh/docs/analyze/#strict) in the Troubleshoot documentation. For more information about cluster privileges, see [requireMinimalRBACPrivileges](https://troubleshoot.sh/docs/analyze/#strict).
+  If you set a preflight analyzer to `strict: true`, any `fail` outcomes for that analyzer block the deployment of the release until your specified requirements are met. Consider the Replicated app manager cluster privileges when you enable the `strict` flag. Note that strict preflight analyzers are overwritten if the `exclude` flag is also being used. For more information about strict preflight checks, see [`strict`](https://troubleshoot.sh/docs/analyze/#strict) in the Troubleshoot documentation. For more information about cluster privileges, see [requireMinimalRBACPrivileges](https://troubleshoot.sh/docs/analyze/#strict).
 
     ```yaml
     apiVersion: troubleshoot.sh/v1beta2
@@ -97,10 +99,6 @@ To customize preflight checks:
     ```
 
 1. Save and promote the release to a development environment to test your changes.
-
-For more information about defining preflight checks, see
-[Preflight Checks](https://troubleshoot.sh/docs/preflight/introduction/) in the
-Troubleshoot documentation. There are also a number of basic examples for checking CPU, memory, and disk capacity under [Node Resources Analyzer](https://troubleshoot.sh/reference/analyzers/node-resources/).
 
 ## About Host Preflight Checks for Kubernetes Installers
 You can include host preflight checks with Kubernetes installers to verify that infrastructure requirements are met for:
