@@ -26,7 +26,7 @@ To customize preflight checks:
 
 1. Start with either YAML file option:
 
-    - If you want to add collectors to the default collectors, you can start with a basic support bundle manifest file (`kind: SupportBundle`). In the following example, the collectors field is empty, so only the default collectors will run.
+    - If you want to add collectors to the default collectors, you can start with a basic support bundle manifest file (`kind: SupportBundle`). In the following example, the collectors field is empty, so only the default collectors run.
 
       ```yaml
       apiVersion: troubleshoot.sh/v1beta2
@@ -42,7 +42,7 @@ To customize preflight checks:
       The default collectors `clusterInfo` and `clusterResources` do not accept any parameters.
       :::
 
-1. Add collectors and analyzers based on conditions that you expect for your application. For example, you can collect information about the MySQL version that is running in a cluster, then specify outcomes in an analyzer. Optionally, you can set the `strict` flag to `true` to ensure that the installation does not proceed with an unsupported version of MySQL.
+1. Add collectors based on conditions that you expect for your application. For example, you can collect information about the MySQL version that is running in a cluster.
 
   ```yaml
   apiVersion: troubleshoot.sh/v1beta2
@@ -53,11 +53,22 @@ To customize preflight checks:
       collectors:
         - mysql:
           collectorName: mysql
-          uri: '<user>:<password>@tcp(<host>:<port>)/<dbname>'
-          ```
-1. Add an analyzer specification to analyze the collected data and provide outcomes. For example, you can set `fail` outcomes if the MySQL version is less than the minimum version and specify an message informing your customer of the reasons for the failure and steps they can take to fix the issue.
+          uri: 'USER:PASSWORD@tcp(HOST:PORT)/DB_NAME'
+    ```
 
-  You can optionally set strict preflight checks. When an analyzer is marked as [`strict`](https://troubleshoot.sh/docs/analyze/#strict), any `fail` outcomes for that analyzer block the deployment of the release (unless an `exclude` flag is also being used). This can be used to prevent users from deploying a release until vendor-specified requirements are met. When configuring strict preflight checks, vendors should consider the app manager [cluster privileges](../reference/custom-resource-application#requireminimalrbacprivileges).
+    Replace:
+
+    - USER with the username
+    - PASSWORD with the user password
+    - HOST with the host or domain name
+    - PORT with the port number
+    - DB_NAME with the database name
+
+1. Add an analyzer specification to analyze the collected data and provide outcomes. For example, you can set `fail` outcomes if the MySQL version is less than the minimum version and specify a messages informing your customer of the reasons for the failures and steps they can take to fix the issues.
+
+  If you set a preflight analyzer to `strict: true`, any `fail` outcomes for that analyzer block the deployment of the release until your specified requirements are met. Consider the Replicated app manager cluster privileges when you enable the `strict` flag. Note that strict preflight analyzers are overwritten if the `exclude` flag is also being used.
+
+  For more information about strict preflight checks, see [`strict`](https://troubleshoot.sh/docs/analyze/#strict) in the Troubleshoot documentation. For more information about cluster privileges, see [requireMinimalRBACPrivileges](https://troubleshoot.sh/docs/analyze/#strict).
 
     ```yaml
     apiVersion: troubleshoot.sh/v1beta2
@@ -68,7 +79,7 @@ To customize preflight checks:
         collectors:
           - mysql:
             collectorName: mysql
-            uri: '<user>:<password>@tcp(<host>:<port>)/<dbname>'
+            uri: 'USER:PASSWORD@tcp(HOST:PORT)/DB_NAME'
         analyzers:
           - mysql:
             strict: true
