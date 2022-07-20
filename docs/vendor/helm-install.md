@@ -8,7 +8,7 @@ Some enterprise customers prefer or require a Helm chart to install using the `h
 
 ## About Installing with the Helm CLI
 
-When you promote an application to a release channel, Replicated looks at the release and extracts any Helm charts included. These charts are pushed as OCI objects to our built-in private registry  at `registry.replicated.com`. The Helm chart is pushed to the _channel_.
+When you promote an application to a release channel, Replicated looks at the release and extracts any Helm charts included. These charts are pushed as OCI objects to our built-in private registry at `registry.replicated.com`. The Helm chart is pushed to the _channel_.
 
 For example, if your app is named "app", you create a channel named "nightly", and the release promoted contains a Helm chart with `name: my-chart` in the `Chart.yaml`, then the chart is pushed to `oci://registry.replicated.com/app/nightly/my-chart`. The chart version (tag) is read from the `Chart.yaml`.
 
@@ -24,17 +24,17 @@ The `values.yaml` in your Chart is rendered with the customer provided license. 
 
 Not all applications packaged with Replicated are able to be installed with `helm install`. To use the `helm install` feature, your application must contain one or more Helm charts.
 
-If you want to allow your customers to install your application with `helm install`, Replicated recommendeds that you package your application using Helm and create a release with your Helm charts. This allows you to package your application one time and deliver with an embedded cluster created by the Kubernetes installer (kURL), the UI-based KOTS method, and the `helm install` method.
+If you want to allow your customers to install your application with `helm install`, Replicated recommends that you package your application using Helm and create a release with your Helm charts. This allows you to package your application one time and deliver with an embedded cluster created by the Kubernetes installer (kURL), the UI-based KOTS method, and the `helm install` method.
 
 ## Limitations
 
 The `helm install` method is Alpha and has the following limitations:
 
-* No "last mile" kustomization support. All confguration and customization must be done using Helm.
+* No "last mile" kustomization support. All configuration and customization must be done using Helm.
 * No support for `strict` preflights that block application installation. This is because Helm does not automatically run preflight checks. Preflight checks are supported with `helm install`, but your customers must run the preflight checks manually before installing your application.
 * No support for air gap installations. Replicated has documented a workaround solution for installing into air gap environments.
 * Customer adoption is not reported to the vendor portal.
-* This feature support multiple charts and Replicated does not wrap or provide any special tooling to manage multiple charts. Replicated recommends that you provide installation instructions with sequenced steps for customers to follow to install each chart in the required order.
+* This feature supports multiple charts and Replicated does not wrap or provide any special tooling to manage multiple charts. Replicated recommends that you provide installation instructions with sequenced steps for customers to follow to install each chart in the required order.
 
 ## About Delivering the Admin Console
 
