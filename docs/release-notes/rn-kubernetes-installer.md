@@ -10,15 +10,12 @@ Released on July 20, 2022
 
 ### New Features {#new-features-v2022-07-20-0}
 
-- 
-
-### Improvements {#improvements-v2022-07-20-0}
-
-- 
+- Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.6.5-20220720 and 2.8.1-20220720 with a fix for broken iptables command on the host.
+- Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-07-17T15-43-14Z.
 
 ### Bug Fixes {#bug-fixes-v2022-07-20-0}
 
-- 
+- Fixes an issue that causes iptables commands run on the host to report error `table `filter' is incompatible, use 'nft' tool`.
 
 ## Release v2022.07.15-2
 
