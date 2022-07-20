@@ -88,7 +88,7 @@ To access the Prometheus dashboard with a port foward:
 1. Run the following command to create the port forward:
 
    ```bash
-   $ kubectl --namespace monitoring port-forward svc/prometheus-k8s 9090
+   kubectl --namespace monitoring port-forward svc/prometheus-k8s 9090
    ```
 
 1. Access the dashboard at http://localhost:9090.
@@ -100,7 +100,7 @@ To access the Grafana dashboard with a port foward:
 1. Run the following command to create the port forward:
 
    ```bash
-   $ kubectl --namespace monitoring port-forward deployment/grafana 3000
+   kubectl --namespace monitoring port-forward deployment/grafana 3000
    ```
 1. Access the dashboard at http://localhost:3000.
 1. Log in to Grafana:
@@ -120,7 +120,7 @@ To access the Alertmanager dashboard with a port foward:
 1. Run the following command to create the port forward:
 
    ```bash
-   $ kubectl --namespace monitoring port-forward svc/alertmanager-main 9093
+   kubectl --namespace monitoring port-forward svc/alertmanager-main 9093
    ```
 
 1. Access the dashboard at http://localhost:9093.
