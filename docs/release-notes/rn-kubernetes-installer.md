@@ -4,6 +4,19 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.07.20-0
+
+Released on July 20, 2022
+
+### New Features {#new-features-v2022-07-20-0}
+
+- Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.6.5-20220720 and 2.8.1-20220720 with a fix for broken iptables command on RHEL 8 based distributions.
+- Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-07-17T15-43-14Z.
+
+### Bug Fixes {#bug-fixes-v2022-07-20-0}
+
+- Fixes an issue on RHEL 8 based distributions that causes the iptables command to report error `table "filter" is incompatible, use 'nft' tool` when using [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.6.5-20220616 and 2.8.1-20220616.
+
 ## Release v2022.07.15-2
 
 Released on July 15, 2022
