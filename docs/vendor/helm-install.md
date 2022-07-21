@@ -60,7 +60,7 @@ This procedure shows how to add the `admin-console` Helm chart as a conditional 
 
 It also shows how to conditionally exclude the `admin-console` Helm chart when your customers install with either the kots CLI or with the Kubernetes installer. It is important to exclude the `admin-console` chart in this scenario because both the kots CLI and the Kubernetes installer already install the admin console by default.
 
-To conditionally include or exclude the `admin-console` Helm chart:
+To conditionally include and exclude the `admin-console` Helm chart:
 
 1.  In the Helm chart `Chart.yaml` file, add the `admin-console` Helm chart to the `dependencies` field:
 
@@ -121,7 +121,7 @@ To conditionally include or exclude the `admin-console` Helm chart:
 
    The Replicated HelmChart custom resource allows Replicated to process and deploy Helm charts when customers install with the kots CLI or with the Kubernetes installer.
 
-   For more information, see [HelmChart](reference/custom-resource-helmchart) in the _References_ section.
+   For more information, see [HelmChart](/reference/custom-resource-helmchart) in the _References_ section.
 
 1. Edit the HelmChart manifest file to exclude the `admin-console` Helm chart when customers install your application with the kots CLI or with the Kubernetes installer:
 
