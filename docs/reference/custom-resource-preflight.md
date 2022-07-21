@@ -1,16 +1,14 @@
 # Preflight and Support Bundle
 
-Preflight checks and support bundles can be customized using custom resource manifest files.
+Preflight checks use collectors and analyzers to provide cluster operators with clear feedback for any missing requirements or incompatibilities in the target environment before an application is deployed.
 
-You can include a Preflight custom resource with your application release to provide cluster operators with clear feedback for any missing requirements or incompatibilities in the target environment before an application is deployed.
+Support bundles collect, redact, and analyze troubleshooting data from a cluster and help diagnose problems with application deployments.
 
-A Support Bundle custom resource can be added to your application release to collect, redact, and analyze troubleshooting data from a cluster and help diagnose problems with application deployments.
+Default preflight checks and support bundle features are automatically included with releases. To customize these features uniquely for your application release, add any of the optional collectors and analyzers to `kind: Preflight` and `kind: SupportBundle` custom resource manifest files. For more information about these troubleshoot features and how to customize them, see [Customizing Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-creating/).
 
-For more information about preflight checks, support bundles, and how the collectors and analyzers can be customized for each of them, see [Customizing Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-creating/).
+## Basic Manifest Files
 
-## Base Manifest Files
-
-The following are the base manifest files for the Preflight and Support Bundle custom resource files, which include all of the default collectors and analyzers. You edit the base manifest files by adding custom collector and analyzer specifications:
+The following are basic manifest files for the Preflight and Support Bundle custom resources, which include all of the default collectors and analyzers (indicated by `[]`). You edit the manifest files by adding custom collector and analyzer specifications:
 
 **Preflight:**
 
@@ -38,7 +36,7 @@ spec:
 
 ## Collector Global Fields
 
-The following fields are supported on all collectors:
+The following fields are supported on all optional collectors for preflights and support bundles:
 
 <table>
   <tr>
@@ -47,18 +45,18 @@ The following fields are supported on all collectors:
   </tr>
   <tr>
     <td>`collectorName`</td>
-    <td>Optionally, a collector can specify the `collectorName` property. In some collectors, this controls the path where result files are stored in the support bundle.</td>
+    <td>(Optional) A collector can specify the `collectorName` field. In some collectors, this field controls the path where result files are stored in the support bundle.</td>
   </tr>
   <tr>
     <td>`exclude`</td>
-    <td>For collectors that are optional, based on runtime available configuration, the conditional can be specified in the `exclude` property. This is useful for deployment techniques that allow templating for Replicated app manager and the optional Helm component. When this value is `false`, the collector is not included.</td>
+    <td>(Optional) Based on the runtime available configuration, a conditional can be specified in the `exclude` field. This is useful for deployment techniques that allow templating for Replicated app manager and the optional Helm component. When this value is `false`, the collector is not included.</td>
   </tr>
 </table>
 
 
 ## Analyzer Global Fields
 
-The following fields are supported on all analyzers:
+The following fields are supported on all optional analyzers for preflights and support bundles:
 
 <table>
   <tr>
@@ -67,15 +65,15 @@ The following fields are supported on all analyzers:
   </tr>
   <tr>
     <td>`collectorName`</td>
-    <td>Optionally, an analyzer can specify the `collectorName` property. </td>
+    <td>(Optional) An analyzer can specify the `collectorName` field.</td>
   </tr>
   <tr>
     <td>`exclude`</td>
-    <td>For analyzers that are optional, based on runtime available configuration, the conditional can be specified in the `exclude` property. This is useful for deployment techniques that allow templating for Replicated app manager and the optional Helm component. When this value is `true`, the analyzer is not included.</td>
+    <td>(Optional) Based on the runtime available configuration, a conditional can be specified in the `exclude` field. This is useful for deployment techniques that allow templating for Replicated app manager and the optional Helm component. When this value is `true`, the analyzer is not included.</td>
   </tr>
   <tr>
     <td>`strict`</td>
-    <td>Optionally, an analyzer can be set to `strict: true` to prevent that particular analyzer must not . When `exclude: true` is also specified, `exclude` overrides `strict` and the analyzer is not executed.</td>
+    <td>(Optional) An analyzer can be set to `strict: true` so that `fail` outcomes for that analyzer prevent the release from deploying until the vendor-specified requirements are met. When `exclude: true` is also specified, `exclude` overrides `strict` and the analyzer is not executed.</td>
   </tr>
 </table>
 
