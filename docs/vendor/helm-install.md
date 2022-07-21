@@ -84,7 +84,7 @@ To conditionally include and exclude the `admin-console` Helm chart:
      </tr>
      <tr>
        <td><code>version</code></td>
-       <td>The version of the admin-console to deliver with your application. Replicated recommends that you use the latest version. For more information about the available versions, see the <a href="/release-notes/rn-app-manager">App Manager Release Notes</a>.</td>
+       <td>The version of the admin console to deliver with your application. Replicated recommends that you use the latest version. For more information about the available versions, see the <a href="/release-notes/rn-app-manager">App Manager Release Notes</a>.</td>
      </tr>
      <tr>
        <td><code>repository</code></td>
