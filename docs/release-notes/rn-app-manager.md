@@ -17,12 +17,12 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### Improvements {#improvements-1-77-0}
 * Better handling for network errors on the Helm install modal in Helm-managed mode (Alpha).
-* Helm install command now include authentication in Helm-managed mode (Alpha).
-* Resolves high severity CVE-2022-28946, CVE-2022-29162, and CVE-2022-1996.
+* Helm install command now includes authentication in Helm-managed mode (Alpha).
+* Adresses the following high severity CVEs: CVE-2022-28946, CVE-2022-29162, and CVE-2022-1996.
 
 ### Bug Fixes {#bug-fixes-1-77-0}
 * Fixes an issue that caused errors after the admin console pod restart until the Dashboard tab is visited in Helm-managed mode (Alpha).
-* Fixes an issue that caused file permissions for temporary files in Helm-managed mode (Alpha).
+* Begins using a temp directory instead of the current directory, to avoid file permissions issues when generating the helm upgrade command after editing the config. For more information, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install).
 
 ## 1.76.1
 
