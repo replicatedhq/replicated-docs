@@ -18,19 +18,17 @@ deployments.
 
 Preflight checks and support bundles are based on the open-source Troubleshoot project, which is maintained by Replicated.
 
-## Customize Preflight Checks
+## Define Preflight Checks
 
-Customizing preflight checks is unique to your application. This procedure provides a basic understanding and some key considerations to help guide you.
+You define preflight checks based on your application needs. Preflight checks are not included by default. This procedure provides a basic understanding and some key considerations to help guide you.
 
 For more information about defining preflight checks, see
 [Preflight Checks](https://troubleshoot.sh/docs/preflight/introduction/) in the
 Troubleshoot documentation. For basic examples for checking CPU, memory, and disk capacity, see [Node Resources Analyzer](https://troubleshoot.sh/reference/analyzers/node-resources/) in the Troubleshoot documentation.
 
-To customize preflight checks:
+To define preflight checks:
 
-1. Start with either YAML file option:
-
-    - If you want to add collectors to the default collectors, you can start with a basic support bundle manifest file (`kind: SupportBundle`). In the following example, the collectors field is empty, so only the default collectors run.
+1. Create a Preflight manifest file (`kind: Preflight`).
 
       ```yaml
       apiVersion: troubleshoot.sh/v1beta2
@@ -40,12 +38,6 @@ To customize preflight checks:
       spec:
          collectors: []
      ```
-    - If you want to fully customize the support bundle, copy the default preflight YAML file to your manifest file. For the default YAML file, see [kots-preflight.yaml](https://github.com/replicatedhq/kots-default-yaml/blob/main/kots-preflight.yaml) in the kots repository.
-
-      :::note
-      The default collectors `clusterInfo` and `clusterResources` do not accept any parameters.
-      :::
-
 1. Add collectors based on conditions that you expect for your application. For example, you can collect information about the MySQL version that is running in a cluster.
 
   ```yaml
@@ -68,7 +60,7 @@ To customize preflight checks:
     - PORT with the port number
     - DB_NAME with the database name
 
-1. Add an analyzer specification to analyze the collected data and provide outcomes. For example, you can set `fail` outcomes if the MySQL version is less than the minimum version and specify a messages informing your customer of the reasons for the failures and steps they can take to fix the issues.
+1. Add an analyzer specification to analyze the data from the collectors you specified and provide outcomes. For example, you can set `fail` outcomes if the MySQL version is less than the minimum version and specify a messages informing your customer of the reasons for the failures and steps they can take to fix the issues.
 
   If you set a preflight analyzer to `strict: true`, any `fail` outcomes for that analyzer block the deployment of the release until your specified requirements are met. Consider the Replicated app manager cluster privileges when you enable the `strict` flag. Note that strict preflight analyzers are overwritten if the `exclude` flag is also being used. For more information about strict preflight checks, see [`strict`](https://troubleshoot.sh/docs/analyze/#strict) in the Troubleshoot documentation. For more information about cluster privileges, see [requireMinimalRBACPrivileges](https://troubleshoot.sh/docs/analyze/#strict).
 
