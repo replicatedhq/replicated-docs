@@ -191,6 +191,8 @@ To customize a support bundle:
     - **Files** - Copy files from pods and hosts.
     - **HTTP** - Consume your own application APIs with HTTP requests. If your application has its own API that serves status, metrics, performance data, and so on, this information can be collected and analyzed.
 
+  For more information about collectors, see [All Collectors](https://troubleshoot.sh/docs/collect/all/) in the Troubleshoot documentation.
+
 1. Add analyzers based on conditions that you expect for your application. You might require that a cluster have 2 CPUs available to your application or have a minimum of 4GB memory available. Good analyzers clearly identify failure modes. For example, if you can identify a log message from your database component that indicates a problem, you should write an analyzer that checks for that log.
 
   At a minimum, include application log analyzers. A simple text analyzer can detect specific log lines and inform an end user of remediation steps.
@@ -201,27 +203,17 @@ To customize a support bundle:
     - **Regular expressions** - Analyze arbitrary data.
     - **Databases** - Check the version and connection status.
 
+  For more information about analyzers, see [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the troubleshoot documentation.
+
 1. To add redactors to the default redactors that are automatically provided by the app manager, add the Redactor custom resource manifest (`kind: Redactor`) to your release. Then add additional Redactor custom resources as needed.
-
-  In the following example, the redactors field is empty, so only the default redactors will run.
-
-  **Example:**
-
-    ```yaml
-    apiVersion: troubleshoot.sh/v1beta2
-    kind: Redactor
-    metadata:
-       name: collectors
-    spec:
-       redactors: []
-    ```
 
   :::note
   The default redactors included with Replicated app manager cannot be disabled.
   :::
 
-1. Add the manifest file to the application that you are packaging and distributing with Replicated.
+  For more information about configuring redactors, see [Redactors](https://troubleshoot.sh/docs/redact/redactors/) in the Troubleshoot documentation.
 
+1. Add the manifest file to the application that you are packaging and distributing with Replicated.
 
 1. Save and promote your release. To test this feature, generate a support bundle from the Troubleshoot tab in the admin console and do one of the following:
 
