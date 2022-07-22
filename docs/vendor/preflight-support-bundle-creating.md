@@ -26,12 +26,13 @@ The following diagram illustrates the workflow for preflight checks and support 
 Preflight checks and support bundles are based on the open-source Troubleshoot project, which is maintained by Replicated. For more information about specific types of Kubernetes collectors, analyzers, and redactors, see the [Troubleshoot](https://troubleshoot.sh/) documentation.
 
 ### Collectors
-Collectors are defined in a YAML manifest file that identifies what to collect and specifies any post-processing steps that should be executed before or after creating the support bundle.
-By default, preflight checks and support bundles contain a large number of commonly used, best practice collectors. The default `clusterInfo` and `clusterResources` collectors gather a large amount of data that is useful when remotely installing or debugging a Kubernetes application.
+Collectors identify what data to collect for analysis for preflight checks and support bundles. During the collection phase, information is colllected from the cluster, the environment, the application, and other sources to be used later during the analysis phase.
+
+By default, support bundles contain a large number of commonly used, best practice collectors. The default `clusterInfo` and `clusterResources` collectors gather a large amount of data that is useful when remotely installing or debugging a Kubernetes application.
 You can edit or add that can change or supplement the default collectors.
 
 ### Redactors
-Redactors censor sensitive customer information from all collectors before the analysis phase. By default, the following information is redacted:
+Redactors censor sensitive customer information from all collectors before the analysis phase for preflight checks and support bundles. By default, the following information is redacted:
 
 - Passwords
 - Tokens
@@ -43,44 +44,91 @@ Redactors censor sensitive customer information from all collectors before the a
 This functionality can be turned off (not recommended) or customized.
 
 ### Analyzers
-Preflight checks and support bundles use analyzers, but the outcomes are different for each. Preflight checks use analyzers to determine outcomes and send messages to a customer during installation, depending on whether the preflight check passes, fails, or produces a warning.
+The analysis phase uses the output from the collection phase to identify issues and. Preflight checks and support bundles use analyzers, but the outcomes are different for each. Preflight checks use analyzers to determine outcomes and send messages to a customer during installation, depending on whether the preflight check passes, fails, or produces a warning.
 
 When a support bundle is uploaded to the Replicated vendor portal, it is extracted and automatically analyzed. The goal of this process is to find insights that are known issues or hints of what might be a problem. Analyzers are designed to program the debugging and log reading skills into an application that is quick and easy to run for any support bundle collected.
 
 Insights are specific items that the analyzer process finds and surfaces. Insights can contain custom messages and levels, and are specific to the output of the analysis step on each support bundle.
 
-## About Default Files
-
-You configure preflight checks and support bundles in custom resource manifest files that you include with release manifests. There are three custom resources available for troubleshooting:
-
-- **Preflight** - Contains the collectors and analyzers used for preflight checks. `kind: Preflight`
-
-- **Support Bundle** - Contains the collectors and analyzers used for support bundle generation. `kind: SupportBundle`
-
-- **Redactor** - Enables custom redaction during preflight checks and support bundle generation. `kind: Redactor`
-
-These custom resource files contain default specifications for the Kubernetes cluster. You can customize these files and add collectors, analyzers, and redactors for your application. For more information, see [Customize Preflight Checks](#customize-preflight-checks) and [Customize Support Bundles](#customize-support-bundles).
-
-If you are using the vendor portal to create a release using standard manifest files, the preflight and support bundle YAML files are automatically included as part of the Replicated manifest files. If you want to include redactors, you manually add the Redactor custom resource file to the release.
-
-If you are using the replicated CLI, you manually add the Preflight, Support Bundle, or Redactor custom resource manifests to your release.
-
-## Customize Preflight Checks
+## Define Preflight Checks
 
 You define preflight checks by creating a `preflight.yaml`
 manifest file. This file specifies the cluster data that is collected and redacted as part of the preflight check.
 The manifest file also defines how the collected data is analyzed.
 
-When an analyzer is marked as [`strict`](https://troubleshoot.sh/docs/analyze/#strict), any `fail` outcomes for that analyzer block the deployment of the release. This can be used to prevent users from deploying a release until vendor-specified requirements are met. When configuring strict preflight checks, vendors should consider the app manager [cluster privileges](../reference/custom-resource-application#requireminimalrbacprivileges).
-
-You then add the `preflight.yaml` manifest file to the application that you are packaging and distributing with Replicated.    
-
-For more information about installing the `preflight` plugin,
-see [Getting Started](https://troubleshoot.sh/docs/) in the Troubleshoot documentation.
+You define preflight checks based on your application needs. Preflight checks are not included by default. This procedure provides a basic understanding and some key considerations to help guide you.
 
 For more information about defining preflight checks, see
 [Preflight Checks](https://troubleshoot.sh/docs/preflight/introduction/) in the
-Troubleshoot documentation. There are also a number of basic examples for checking CPU, memory, and disk capacity under [Node Resources Analyzer](https://troubleshoot.sh/reference/analyzers/node-resources/).
+Troubleshoot documentation. For basic examples for checking CPU, memory, and disk capacity, see [Node Resources Analyzer](https://troubleshoot.sh/reference/analyzers/node-resources/) in the Troubleshoot documentation.
+
+To define preflight checks:
+
+1. Create a Preflight manifest file (`kind: Preflight`).
+
+      ```yaml
+      apiVersion: troubleshoot.sh/v1beta2
+      kind: Preflight
+      metadata:
+         name: collectors
+      spec:
+         collectors: []
+     ```
+1. Add collectors based on conditions that you expect for your application. For example, you can collect information about the MySQL version that is running in a cluster.
+
+  ```yaml
+  apiVersion: troubleshoot.sh/v1beta2
+  kind: Preflight
+  metadata:
+    name: supported-mysql-version
+    spec:
+      collectors:
+        - mysql:
+          collectorName: mysql
+          uri: 'USER:PASSWORD@tcp(HOST:PORT)/DB_NAME'
+    ```
+
+    Replace:
+
+    - USER with the username
+    - PASSWORD with the user password
+    - HOST with the host or domain name
+    - PORT with the port number
+    - DB_NAME with the database name
+
+1. Add an analyzer specification to analyze the data from the collectors you specified and provide outcomes. For example, you can set `fail` outcomes if the MySQL version is less than the minimum version and specify a messages informing your customer of the reasons for the failures and steps they can take to fix the issues.
+
+  If you set a preflight analyzer to `strict: true`, any `fail` outcomes for that analyzer block the deployment of the release until your specified requirements are met. Consider the Replicated app manager cluster privileges when you enable the `strict` flag. Note that strict preflight analyzers are overwritten if the `exclude` flag is also being used. For more information about strict preflight checks, see [`strict`](https://troubleshoot.sh/docs/analyze/#strict) in the Troubleshoot documentation. For more information about cluster privileges, see [requireMinimalRBACPrivileges](https://troubleshoot.sh/docs/analyze/#strict).
+
+    ```yaml
+    apiVersion: troubleshoot.sh/v1beta2
+    kind: Preflight
+    metadata:
+      name: supported-mysql-version
+      spec:
+        collectors:
+          - mysql:
+            collectorName: mysql
+            uri: 'USER:PASSWORD@tcp(HOST:PORT)/DB_NAME'
+        analyzers:
+          - mysql:
+            strict: true
+            checkName: Must be MySQL 8.x or later
+            collectorName: mysql
+            outcomes:
+              - fail:
+                  when: connected == false
+                  message: Cannot connect to MySQL server
+              - fail:
+                  when: version < 8.x
+                  message: The MySQL server must be at least version 8
+              - pass:
+                  message: The MySQL server is ready
+    ```
+1. Add the manifest file to the application that you are packaging and distributing with Replicated.
+
+1. Save and promote the release to a development environment to test your changes.
+
 
 ## Customize a Support Bundle
 
@@ -173,7 +221,10 @@ To customize a support bundle:
   You can turn off this functionality by passing `--redact=false` to the troubleshoot command, although Replicated recommends leaving this functionality turned on to protect your customers’ data.
   :::
 
-5. Save and promote your release. To test this feature, generate a support bundle from the Troubleshoot tab in the admin console and do one of the following:
+1. Add the manifest file to the application that you are packaging and distributing with Replicated.
+
+
+1. Save and promote your release. To test this feature, generate a support bundle from the Troubleshoot tab in the admin console and do one of the following:
 
     - Click **Send bundle to vendor** and open the tar bundle to review the files.
     - Download the `support-bundle.tar.gz` bundle and copy it to the Troubleshoot tab in the [vendor portal](https://vendor.replicated.com) to see the analysis and use the file inspector.
