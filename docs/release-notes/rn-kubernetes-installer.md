@@ -4,6 +4,18 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.07.22-0
+
+Released on July 22, 2022
+
+### New Features {#new-features-v2022-07-22-0}
+
+- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.77.0.
+
+### Improvements {#improvements-v2022-07-22-0}
+
+- Updates kurlsh/s3cmd image to tag 20220722-4585dda for latest [Registry](https://kurl.sh/docs/add-ons/registry) and [Velero](https://kurl.sh/docs/add-ons/velero) add-on versions to address the following high severity CVEs: CVE-2022-30065, CVE-2022-2097, CVE-2022-30065.
+
 ## Release v2022.07.20-0
 
 Released on July 20, 2022
