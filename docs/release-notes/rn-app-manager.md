@@ -21,7 +21,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 * Adresses the following high severity CVEs: CVE-2022-28946, CVE-2022-29162, and CVE-2022-1996.
 
 ### Bug Fixes {#bug-fixes-1-77-0}
-* Fixes an issue where non-semantic version automatic deployments do not work when version labels are not valid [SemVer](https://semver.org/).
+* Fixes an issue that caused automatic deployments not to work on channels where semantic versioning was disabled, unless the version labels were valid [semantic versions](https://semver.org/).
 * Fixes an issue that caused errors after the admin console pod restart until the Dashboard tab is visited in Helm-managed mode (Alpha).
 * Begins using a temp directory instead of the current directory, to avoid file permissions issues when generating the `helm upgrade` command after editing the config. For more information, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install).
 
