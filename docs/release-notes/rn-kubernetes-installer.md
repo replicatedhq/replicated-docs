@@ -14,7 +14,7 @@ Released on July 22, 2022
 
 ### Improvements {#improvements-v2022-07-22-0}
 
-- Updates kurlsh/s3cmd image to tag 20220722-4585dda for latest [Registry](https://kurl.sh/docs/add-ons/registry) and [Velero](https://kurl.sh/docs/add-ons/velero) add-on versions to address the following high severity CVEs: CVE-2022-30065, CVE-2022-2097, CVE-2022-30065.
+- Updates the kurlsh/s3cmd image to tag 20220722-4585dda for the latest [Registry](https://kurl.sh/docs/add-ons/registry) and [Velero](https://kurl.sh/docs/add-ons/velero) add-on versions, to address the following high severity CVEs: CVE-2022-30065, CVE-2022-2097, CVE-2022-30065.
 
 ## Release v2022.07.20-0
 
