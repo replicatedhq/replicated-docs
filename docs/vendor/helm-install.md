@@ -1,14 +1,14 @@
 # Using Helm to Install an Application (Alpha)
 
 :::note
-Allowing customers to install with the Helm CLI is an Alpha feature. To enable this feature on your account, please log in to your [Vendor Portal](https://vendor.replicated.com/support) account and submit a feature request for "Helm CLI Install option".
+Allowing users to install with the helm CLI is an Alpha feature. To enable this feature on your account, log in to your [Vendor Portal](https://vendor.replicated.com/support) account and submit a feature request for "Helm CLI Install option".
 :::
 
-Some enterprise customers prefer or require a Helm chart to install using the `helm` CLI. This is often because Helm is already approved and the customer has a custom CI pipeline that is compatible with Helm charts. Replicated has introduced Alpha support to enable these customers to use Helm to install your application.
+Some enterprise users prefer or require a Helm chart to install using the `helm` CLI. This is often because Helm is already approved and the customer has a custom CI pipeline that is compatible with Helm charts. Replicated has introduced Alpha support to enable these users to use Helm to install your application.
 
 ## About Installing with the Helm CLI
 
-When you promote an application to a release channel, Replicated looks at the release and extracts any Helm charts included. These charts are pushed as OCI objects to our built-in private registry at `registry.replicated.com`. The Helm chart is pushed to the _channel_.
+When you promote an application to a release channel, Replicated extracts any Helm charts included in the release. These charts are pushed as OCI objects to the Replicated private registry at `registry.replicated.com`. The Helm chart is pushed to the _channel_.
 
 For example, if your app is named "app", you create a channel named "nightly", and the release promoted contains a Helm chart with `name: my-chart` in the `Chart.yaml`, then the chart is pushed to `oci://registry.replicated.com/app/nightly/my-chart`. The chart version (tag) is read from the `Chart.yaml`.
 
@@ -24,41 +24,45 @@ The `values.yaml` in your Chart is rendered with the customer provided license. 
 
 Not all applications packaged with Replicated are able to be installed with `helm install`. To use the `helm install` feature, your application must contain one or more Helm charts.
 
-If you want to allow your customers to install your application with `helm install`, Replicated recommends that you package your application using Helm and create a release with your Helm charts. This allows you to package your application one time and deliver with an embedded cluster created by the Kubernetes installer (kURL), the UI-based KOTS method, and the `helm install` method.
+If you want to allow your users to install your application with `helm install`, Replicated recommends that you package your application using Helm and create a release with your Helm charts. This allows you to package your application one time and deliver with an embedded cluster created by the Kubernetes installer (kURL), the UI-based KOTS method, and the `helm install` method.
 
 ## Limitations
 
 The `helm install` method is Alpha and has the following limitations:
 
-* No "last mile" kustomization support. All configuration and customization must be done using Helm.
-* No support for `strict` preflights that block application installation. This is because Helm does not automatically run preflight checks. Preflight checks are supported with `helm install`, but your customers must run the preflight checks manually before installing your application.
+* No support for "last mile" changes with Kustomize. All configuration and customization must be done using Helm.
+* No support for `strict` preflights that block application installation. This is because Helm does not automatically run preflight checks. Preflight checks are supported with `helm install`, but your users must run the preflight checks manually before installing your application.
 * No support for air gap installations. Replicated has documented a workaround solution for installing into air gap environments.
 * Customer adoption is not reported to the vendor portal.
-* This feature supports multiple charts and Replicated does not wrap or provide any special tooling to manage multiple charts. Replicated recommends that you provide installation instructions with sequenced steps for customers to follow to install each chart in the required order.
-* The Replicated admin console is not included by default when your customers install using the helm CLI. For more information, see [Delivering the Admin Console with your Application](#deliver-admin-console) below.
+* This feature supports multiple charts and Replicated does not wrap or provide any special tooling to manage multiple charts. Replicated recommends that you provide installation instructions with sequenced steps for users to follow to install each chart in the required order.
+* The Replicated admin console is not included by default when your users install using the helm CLI. For more information, see [Delivering the Admin Console with your Application](#deliver-admin-console) below.
 
 ## Delivering the Admin Console with your Application {#deliver-admin-console}
 
-By default, when your customers install your application using the helm CLI, the admin console is not included. This section describes how to deliver the admin console alongside your application.
+By default, when your users install your application using the helm CLI, the admin console is not included. This section describes how to deliver the admin console alongside your application.
 
 ### Overview of Delivering the Admin Console
 
-To deliver the admin console with your application when customers install with the helm CLI, include the `admin-console` Helm chart in the `dependencies` field of your `Chart.yaml` file.
+To deliver the admin console with your application when users install with the helm CLI, include the `admin-console` Helm chart in the `dependencies` field of your `Chart.yaml` file.
 
-When you include the `admin-console` Helm chart as a dependency, Replicated injects values into the Helm chart `values.yaml` file when the chart is pulled by your customers. These values provide the license ID for the customer, which enables the admin console to authenticate with the image registry and check for updates.
+When you include the `admin-console` Helm chart as a dependency, Replicated injects values into the Helm chart `values.yaml` file when the chart is pulled by your users. These values provide the license ID for the customer, which enables the admin console to authenticate with the image registry and check for updates.
 
-The following shows the formatting of the `replicated` and `license_id` fields Replicated adds to the `values.yaml` file:
+The following shows the formatting of the `replicated` and `license_id` fields that  Replicated adds to the `values.yaml` file:
 
 ```
 replicated:
   license_id: abcdef123
 ```
 
+The functionality of the admin console delivered by the `admin-console` Helm chart differs from that of the admin console available when your users install with the kots CLI or with the Kubernetes installer.
+
+This is because Helm, rather than the admin console, manages the lifecycle of the application when users install with the helm CLI. For example, instead of including an Upgrade button, the admin console delivered by the `admin-console` Helm chart provides the correct `helm upgrade` commands for users.
+
 ### Add the admin-console Chart
 
-This procedure shows how to add the `admin-console` Helm chart as a conditional dependency of your Helm chart when your customers install with the helm CLI.
+This procedure shows how to add the `admin-console` Helm chart as a conditional dependency of your Helm chart.
 
-It also shows how to conditionally exclude the `admin-console` Helm chart when your customers install with either the kots CLI or with the Kubernetes installer. It is important to exclude the `admin-console` chart in this scenario because both the kots CLI and the Kubernetes installer already install the admin console by default.
+It also shows how to conditionally exclude the `admin-console` Helm chart when your users install with either the kots CLI or with the Kubernetes installer. It is important to exclude the `admin-console` chart in this scenario because both the kots CLI and the Kubernetes installer already install the admin console by default.
 
 To conditionally include and exclude the `admin-console` Helm chart:
 
@@ -106,7 +110,7 @@ To conditionally include and exclude the `admin-console` Helm chart:
 
 1. Package your Helm chart, and add the packaged chart to a release in the Replicated vendor portal. For more information, see [Add a Helm Chart to a Release](helm-release#add-a-helm-chart-to-a-release).
 
-1. In the release, create or open the HelmChart custom resource manifest file. A HelmChart custom resource manifest file has `kind: HelmChart`.
+1. In the release, create or open the HelmChart custom resource manifest file. A HelmChart custom resource manifest file has `kind: HelmChart` and `apiVersion: kots.io/v1beta1`.
 
    **Template:**
 
@@ -119,11 +123,11 @@ To conditionally include and exclude the `admin-console` Helm chart:
      ...
    ```
 
-   The Replicated HelmChart custom resource allows Replicated to process and deploy Helm charts when customers install with the kots CLI or with the Kubernetes installer.
+   The Replicated HelmChart custom resource allows Replicated to process and deploy Helm charts when users install with the kots CLI or with the Kubernetes installer.
 
    For more information, see [HelmChart](/reference/custom-resource-helmchart) in the _References_ section.
 
-1. Edit the HelmChart manifest file to exclude the `admin-console` Helm chart when customers install your application with the kots CLI or with the Kubernetes installer:
+1. Edit the HelmChart manifest file to exclude the `admin-console` Helm chart when users install your application with the kots CLI or with the Kubernetes installer:
 
    1. Add the following to the `values` field:
 
