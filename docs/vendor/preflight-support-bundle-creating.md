@@ -1,6 +1,6 @@
-# Customizing Preflight Checks and Support Bundles
+# Configuring Preflight Checks and Support Bundles
 
-This topic provides information about how to customize preflight checks and support
+This topic provides information about how to define preflight checks and customize support
 bundles for your application release.
 
 Host preflight checks are also supported for Kubernetes installers. For more information about host preflight checks, see [Customizing Host Preflight Checks for Kubernetes Installers](preflight-host-preflights).
@@ -28,9 +28,6 @@ Preflight checks and support bundles are based on the open-source Troubleshoot p
 ### Collectors
 Collectors identify what data to collect for analysis for preflight checks and support bundles. During the collection phase, information is collected from the cluster, the environment, the application, and other sources to be used later during the analysis phase.
 
-By default, support bundles contain a large number of commonly used, best practice collectors. The default `clusterInfo` and `clusterResources` collectors gather a large amount of data that is useful when remotely installing or debugging a Kubernetes application.
-You can edit or add that can change or supplement the default collectors.
-
 ### Redactors
 Redactors censor sensitive customer information from all collectors before the analysis phase for preflight checks and support bundles. By default, the following information is redacted:
 
@@ -44,11 +41,13 @@ Redactors censor sensitive customer information from all collectors before the a
 This functionality can be turned off (not recommended) or customized.
 
 ### Analyzers
-The analysis phase uses the output from the collection phase to identify issues and. Preflight checks and support bundles use analyzers, but the outcomes are different for each. Preflight checks use analyzers to determine outcomes and send messages to a customer during installation, depending on whether the preflight check passes, fails, or produces a warning.
+The analysis phase uses the data from the collection phase to identify issues and execute the outcomes that you specify. Preflight checks and support bundles use analyzers, but the outcomes are different for each:
 
-When a support bundle is uploaded to the Replicated vendor portal, it is extracted and automatically analyzed. The goal of this process is to find insights that are known issues or hints of what might be a problem. Analyzers are designed to program the debugging and log reading skills into an application that is quick and easy to run for any support bundle collected.
+- Preflight checks use analyzers to determine outcomes and send messages to a customer during installation, depending on whether the preflight check passes, fails, or produces a warning.
 
-Insights are specific items that the analyzer process finds and surfaces. Insights can contain custom messages and levels, and are specific to the output of the analysis step on each support bundle.
+- When a support bundle is uploaded to the Replicated vendor portal, it is extracted and automatically analyzed. The goal of this process is to find insights that are known issues or hints of what might be a problem.
+Insights are specific items that the analyzer process finds and surfaces. Insights can contain custom messages and statuses, and are specific to the output of the analysis step on each support bundle.
+
 
 ## Define Preflight Checks
 
@@ -132,7 +131,7 @@ To define preflight checks:
 
 ## Customize a Support Bundle
 
-Customizing a support bundle is unique to your application. This procedure provides a basic understanding and some key considerations to help guide you.
+Customizing a support bundle is unique to your application. By default, support bundles contain a large number of commonly used, best practice collectors. The default `clusterInfo` and `clusterResources` collectors gather a large amount of data that is useful when remotely installing or debugging a Kubernetes application. You can supplement the default collectors. This procedure provides a basic understanding and some key considerations to help guide you.
 
 To customize a support bundle:
 
@@ -198,13 +197,13 @@ To customize a support bundle:
 
   Additional analyzers that Replicated recommends considering are:
 
-    - Resource statuses
-    - Regular expressions
-    - Databases
+    - **Resource statuses** - Check the status of various resources, such as deployment, Kubernetes StatefulSet, jobs, and so on.
+    - **Regular expressions** - Analyze arbitrary data.
+    - **Databases** - Check the version and connection status.
 
-1. To customize the default redactors or add redactors for your application, you must manually add the Redactor custom resource manifest (`kind: Redactor`) to your release. Edit the redactors as needed.
+1. To add redactors to the default redactors that are automatically provided by the app manager, add the Redactor custom resource manifest (`kind: Redactor`) to your release. Then add additional Redactor custom resources as needed.
 
-  In the following example, the collectors field is empty, so only the default collectors will run.
+  In the following example, the redactors field is empty, so only the default redactors will run.
 
   **Example:**
 
@@ -214,11 +213,11 @@ To customize a support bundle:
     metadata:
        name: collectors
     spec:
-       collectors: []
+       redactors: []
     ```
 
   :::note
-  You can turn off this functionality by passing `--redact=false` to the troubleshoot command, although Replicated recommends leaving this functionality turned on to protect your customers’ data.
+  The default redactors included with Replicated app manager cannot be disabled.
   :::
 
 1. Add the manifest file to the application that you are packaging and distributing with Replicated.
