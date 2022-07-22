@@ -26,7 +26,7 @@ The following diagram illustrates the workflow for preflight checks and support 
 Preflight checks and support bundles are based on the open-source Troubleshoot project, which is maintained by Replicated. For more information about specific types of Kubernetes collectors, analyzers, and redactors, see the [Troubleshoot](https://troubleshoot.sh/) documentation.
 
 ### Collectors
-Collectors identify what data to collect for analysis for preflight checks and support bundles. During the collection phase, information is colllected from the cluster, the environment, the application, and other sources to be used later during the analysis phase.
+Collectors identify what data to collect for analysis for preflight checks and support bundles. During the collection phase, information is collected from the cluster, the environment, the application, and other sources to be used later during the analysis phase.
 
 By default, support bundles contain a large number of commonly used, best practice collectors. The default `clusterInfo` and `clusterResources` collectors gather a large amount of data that is useful when remotely installing or debugging a Kubernetes application.
 You can edit or add that can change or supplement the default collectors.
