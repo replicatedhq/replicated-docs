@@ -22,7 +22,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### Bug Fixes {#bug-fixes-1-77-0}
 * Fixes an issue that caused errors after the admin console pod restart until the Dashboard tab is visited in Helm-managed mode (Alpha).
-* Begins using a temp directory instead of the current directory, to avoid file permissions issues when generating the helm upgrade command after editing the config. For more information, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install).
+* Begins using a temp directory instead of the current directory, to avoid file permissions issues when generating the `helm upgrade` command after editing the config. For more information, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install).
 
 ## 1.76.1
 
