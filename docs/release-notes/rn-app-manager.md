@@ -4,6 +4,26 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.77.0
+
+Released on July 22, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### New Features {#new-features-1-77-0}
+* Displays version history information for Helm charts when running in Helm-managed mode (Alpha). For more information, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install)
+* License information can now be synced from the admin console's Dashboard and License pages for Helm charts when running in Helm-managed mode (Alpha). For more information, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install)
+* Admin console now supports limited RBAC mode when running in Helm-managed mode (Alpha). For more information, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install)
+
+### Improvements {#improvements-1-77-0}
+* Better handling for network errors on the Helm install modal in Helm-managed mode (Alpha).
+* Helm install command now include authentication in Helm-managed mode (Alpha).
+* Resolves high severity CVE-2022-28946, CVE-2022-29162, and CVE-2022-1996.
+
+### Bug Fixes {#bug-fixes-1-77-0}
+* Fixes an issue that caused errors after the admin console pod restart until the Dashboard tab is visited in Helm-managed mode (Alpha).
+* Fixes an issue that caused file permissions for temporary files in Helm-managed mode (Alpha).
+
 ## 1.76.1
 
 Released on July 15, 2022
