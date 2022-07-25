@@ -72,7 +72,7 @@ To conditionally include and exclude the `admin-console` Helm chart:
     dependencies:
     - name: admin-console
       version: "1.72.1"
-      repository: "oci://registry.replicated.com/library/"
+      repository: "oci://registry.replicated.com/library"
       condition: admin-console.enabled
    ```
 
