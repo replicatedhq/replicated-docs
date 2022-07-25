@@ -20,7 +20,7 @@ To submit a support request:
 
       - Describe any procedures that led to the failure, including playbooks or scripts that were used
 
-      - Attach the following information that you have manually gathered using kubectl commands:
+      - Gather the following information using kubectl, and attach it to the support request:
         - Logs from the failed support bundle collection
         - Output from `kubectl get po -A`
         - Kubernetes installer information using `kubectl get installers -o yaml`
@@ -28,7 +28,7 @@ To submit a support request:
         - Logs from any Ceph Operator or Longhorn  pods
         - Logs from all pods in the kube-system namespace
 
-      - Attach the followingcluster node information that you have manually gathered using various commands for:
+      - Gather the following cluster node information and attach it to the support request:
         - uptime
         - cat /etc/*-release
         - uname -a
@@ -42,9 +42,9 @@ To submit a support request:
         - systemctl status docker
         - crictl ps -a
         - docker ps -a
-        - Journalctl -u kubelet –no-pager
-        - Journalctl -u docker –no-pager
-        - Iptables -L -v
+        - journalctl -u kubelet –no-pager
+        - journalctl -u docker –no-pager
+        - iptables -L -v
 
 1. Click **Submit Support Request**. You receive a link to your support issue, where you can interact with the support team.
 
