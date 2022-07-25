@@ -20,7 +20,7 @@ To submit a support request:
 
       - Describe any procedures that led to the failure, including playbooks or scripts that were used
 
-      - Gather the following information using kubectl, and attach it to the support request:
+      - Gather the following information using kubectl and attach it to the support request:
         - Logs from the failed support bundle collection
         - Output from `kubectl get po -A`
         - Kubernetes installer information using `kubectl get installers -o yaml`
