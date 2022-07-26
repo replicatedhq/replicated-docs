@@ -14,8 +14,6 @@ The following are requirements for configuring a NFS as the storage destination:
 
    Ensure that you configure the user:group 1001:1001 permissions for the directory on the NFS server.
 
-   You cannot change the permissions of a mounted NFS directory from the client side. To reassign the user:group to 1001:1001 on a NFS directory that is already mounted, you must remount the directory.
-
 * All the nodes in the cluster must have the necessary NFS client packages installed to be able to communicate with the NFS server.
 For example, the `nfs-common` package is a common package used on Ubuntu.
 
