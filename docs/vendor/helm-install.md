@@ -207,11 +207,13 @@ To conditionally include and exclude the `admin-console` Helm chart:
 
 ## Deliver Image Pull Secrets for a Private Registry {#private-images}
 
-Using a private image registry for your application requires that the customer has an image pull secret to authenticate to the registry. When users install with the kots CLI, Replicated automatically generates this image pull secret.
+Using a private image registry for your application requires an image pull secret to access the registry. The unique license file for each customer can grant access to the private registry without exposing registry credentials to the customer.
 
-For users who install with the helm CLI, Replicated cannot automatically inject the image pull secret into the Helm chart for your application.
+When users install with the kots CLI or the Kubernetes installer, Replicated automatically uses the customer license to create and inject an image pull secret that grants proxy access to a private registry. Instances of your application can then pull private images through the Replicated proxy service. For more information, see [About Connecting to an External Registry](packaging-private-images#about-connecting-to-an-external-registry).
 
-To support private images for helm CLI installations, create a `pullSecrets` field in the Helm chart `values.yaml` file where you can use a Replicated template function to pass the unique customer license. This allows you to then consume this customer-specific pull secret from the `values.yaml` file in the templates for your Helm chart.
+For installations with the helm CLI, Replicated cannot automatically inject an image pull secret into the Helm chart for your application. To support the use of private images for helm CLI installations, use the Replicated `LicenseDockerCfg` template function to render a value based on the unique customer license file. Write the value to a pull secret, then reference the pull secret in the `templates/deployment.yaml` file for the Helm chart.
+
+For more information about the `LicenseDockerCfg` template function, see [LicenseDockerCfg](/reference/template-functions-license-context#licensedockercfg) in _License Context_.
 
 To deliver customer-specific image pull secrets for a private registry:
 
@@ -219,14 +221,29 @@ To deliver customer-specific image pull secrets for a private registry:
 
    ```yaml
    images:
-    pullSecrets:
-      replicated:
-        dockerconfigjson: "repl{{ LicenseDockerCfg }}"
+     pullSecrets:
+       replicated:
+         dockerconfigjson: {{repl LicenseDockerCfg }}
+   ```   
+   Replicated renders the `LicenseDockerCfg` template function on `helm install` or `helm pull`. This allows the customer's license-specific credentials to be injected into `values.yaml`.
+
+   **Example:**
+
+   The following example shows the `LicenseDockerCfg` template function in a `values.yaml` that also defines the URL for the image registry, the image tag, and a pull policy.    
+
+   ```yaml
+   images:
+     pullSecrets:
+       replicated:
+         dockerconfigjson: {{repl LicenseDockerCfg }}
+     myapp:
+       repository: registry.replicated.com/my-app/my-image
+       tag: 0.0.1
+       pullPolicy: IfNotPresent
+       pullSecret: replicated
    ```
 
-   Replicated renders the `LicenseDockerCfg` template function on `helm install` or `helm pull`. This allows the customer's license-specific credentials to be injected into the `values.yaml`.
-
-1. In the `templates` directory of your Helm chart, create a  `imagepullsecret.yaml` file that writes the pull secret that you added to the `values.yaml` into a Secret on the cluster:
+1. In the `templates` directory of your Helm chart, create a  `imagepullsecret.yaml` file that writes the value from the `.Values.images.pullSecrets.replicated.dockerconfigjson` field into a secret on the cluster:
 
    ```yaml
    {{ if .Values.images.pullSecrets.replicated.dockerconfigjson }}
@@ -240,17 +257,37 @@ To deliver customer-specific image pull secrets for a private registry:
    {{ end }}
    ```
 
-1. Add the following to the Pod `spec`:
+1. Add the following to the `templates/deployment.yaml` to inject the pull secret that you created in the previous step when the `.Values.images.pullSecrets.replicated` field is present:
 
    ```yaml
-   spec:
-    template:
-      spec:
+        ...
         {{ if .Values.images.pullSecrets.replicated }}
         imagePullSecrets:
           - name: replicated
         {{ end }}
    ```
+
+   **Example:**
+
+   The following example shows the `imagePullSecrets` field in a `templates/deployment.yaml` file that also injects values for the image registry URL, image tag, and `imagePullPolicy`.
+
+    ```yaml
+        ...
+        image: {{ .Values.images.myapp.repository }}{{ .Values.images.myapp.tag }}
+        imagePullPolicy: {{ .Values.images.myapp.pullPolicy }}
+        {{ if .Values.images.pullSecrets.replicated }}
+        imagePullSecrets:
+          - name: replicated
+        {{ end }}
+        name: myapp
+        ports:
+        - containerPort: 3000
+          name: http
+    ```
+
+1. Package your Helm chart, and add the packaged chart to a release in the Replicated vendor portal. For more information, see [Add a Helm Chart to a Release](helm-release#add-a-helm-chart-to-a-release).
+
+1. Save and promote the release to a development environment to test your changes.  
 
 ### Example: Delivering Image Pull Secrets for Private Images
 
