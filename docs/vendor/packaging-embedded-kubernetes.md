@@ -30,7 +30,7 @@ in the kURL open source documentation.
 
 ## Include a Kubernetes Installer in an Application Release (Beta)
 
-You can include a Kubernetes installer with an application release. This allows multiple Kubernetes installers to be active for a channel at the same time. It also ensures that every installation uses the Kubernetes installer that is associated with the version of the application that is being installed. We recommend this method.
+You can include a Kubernetes installer with an application release. This ensures that every installation uses the Kubernetes installer that is associated with the version of the application that is being installed. We recommend this method.
 
 To include the Kubernetes installer in the application release:
 
@@ -47,6 +47,8 @@ To include the Kubernetes installer in the application release:
     - Kubernetes installers that are included in releases must pin specific add-on versions and cannot pin `latest` versions or x-ranges (such as 1.2.x). Pinning specific versions ensures the most testable and reproducible installations.
 
     For more information about creating a Kubernetes installer and the available add-ons, see [Create An Installer](https://kurl.sh/docs/create-installer/) in the kURL open source documentation.
+
+1. Copy the installer YAML from the kURL website and paste it into a new file in your release.
 
 1. Save and promote the release to your development environment to test your changes.
 
