@@ -20,20 +20,77 @@ Preflight checks and support bundles are based on the open-source Troubleshoot p
 
 ## Define Preflight Checks
 
-You define preflight checks by creating a `preflight.yaml`
-manifest file. This file specifies the cluster data that is collected and redacted as part of the preflight check.
-The manifest file also defines how the collected data is analyzed.
-
-When an analyzer is marked as [`strict`](https://troubleshoot.sh/docs/analyze/#strict), any `fail` outcomes for that analyzer block the deployment of the release. This can be used to prevent users from deploying a release until vendor-specified requirements are met. When configuring strict preflight checks, vendors should consider the app manager [cluster privileges](../reference/custom-resource-application#requireminimalrbacprivileges).
-
-You then add the `preflight.yaml` manifest file to the application that you are packaging and distributing with Replicated.    
-
-For more information about installing the `preflight` plugin,
-see [Getting Started](https://troubleshoot.sh/docs/) in the Troubleshoot documentation.
+You define preflight checks based on your application needs. Preflight checks are not included by default. This procedure provides a basic understanding and some key considerations to help guide you.
 
 For more information about defining preflight checks, see
 [Preflight Checks](https://troubleshoot.sh/docs/preflight/introduction/) in the
-Troubleshoot documentation. There are also a number of basic examples for checking CPU, memory, and disk capacity under [Node Resources Analyzer](https://troubleshoot.sh/reference/analyzers/node-resources/).
+Troubleshoot documentation. For basic examples for checking CPU, memory, and disk capacity, see [Node Resources Analyzer](https://troubleshoot.sh/reference/analyzers/node-resources/) in the Troubleshoot documentation.
+
+To define preflight checks:
+
+1. Create a Preflight manifest file (`kind: Preflight`).
+
+      ```yaml
+      apiVersion: troubleshoot.sh/v1beta2
+      kind: Preflight
+      metadata:
+         name: collectors
+      spec:
+         collectors: []
+     ```
+1. Add collectors based on conditions that you expect for your application. For example, you can collect information about the MySQL version that is running in a cluster.
+
+  ```yaml
+  apiVersion: troubleshoot.sh/v1beta2
+  kind: Preflight
+  metadata:
+    name: supported-mysql-version
+    spec:
+      collectors:
+        - mysql:
+          collectorName: mysql
+          uri: 'USER:PASSWORD@tcp(HOST:PORT)/DB_NAME'
+    ```
+
+    Replace:
+
+    - USER with the username
+    - PASSWORD with the user password
+    - HOST with the host or domain name
+    - PORT with the port number
+    - DB_NAME with the database name
+
+1. Add an analyzer specification to analyze the data from the collectors you specified and provide outcomes. For example, you can set `fail` outcomes if the MySQL version is less than the minimum version and specify a messages informing your customer of the reasons for the failures and steps they can take to fix the issues.
+
+  If you set a preflight analyzer to `strict: true`, any `fail` outcomes for that analyzer block the deployment of the release until your specified requirements are met. Consider the Replicated app manager cluster privileges when you enable the `strict` flag. Note that strict preflight analyzers are overwritten if the `exclude` flag is also being used. For more information about strict preflight checks, see [`strict`](https://troubleshoot.sh/docs/analyze/#strict) in the Troubleshoot documentation. For more information about cluster privileges, see [requireMinimalRBACPrivileges](https://troubleshoot.sh/docs/analyze/#strict).
+
+    ```yaml
+    apiVersion: troubleshoot.sh/v1beta2
+    kind: Preflight
+    metadata:
+      name: supported-mysql-version
+      spec:
+        collectors:
+          - mysql:
+            collectorName: mysql
+            uri: 'USER:PASSWORD@tcp(HOST:PORT)/DB_NAME'
+        analyzers:
+          - mysql:
+            strict: true
+            checkName: Must be MySQL 8.x or later
+            collectorName: mysql
+            outcomes:
+              - fail:
+                  when: connected == false
+                  message: Cannot connect to MySQL server
+              - fail:
+                  when: version < 8.x
+                  message: The MySQL server must be at least version 8
+              - pass:
+                  message: The MySQL server is ready
+    ```
+
+1. Save and promote the release to a development environment to test your changes.
 
 ## About Host Preflight Checks for Kubernetes Installers
 You can include host preflight checks with Kubernetes installers to verify that infrastructure requirements are met for:
