@@ -289,52 +289,6 @@ To deliver customer-specific image pull secrets for a private registry:
 
 1. Save and promote the release to a development environment to test your changes.  
 
-### Example: Delivering Image Pull Secrets for Private Images
-
-   `values.yaml`
-
-   ```yaml
-   images:
-     pullSecrets:
-       replicated:
-         dockerconfigjson: {{repl LicenseDockerCfg }}
-     myapp:
-       repository: registry.replicated.com/my-app/my-image
-       tag: 0.0.1
-       pullPolicy: IfNotPresent
-       pullSecret: replicated
-   ```
-
-   `templates/imagepullsecret.yaml`
-
-   ```yaml
-   {{ if .Values.images.pullSecrets.replicated.dockerconfigjson }}
-   apiVersion: v1
-   kind: Secret
-   metadata:
-     name: replicated
-   type: kubernetes.io/dockerconfigjson
-   data:
-     .dockerconfigjson: {{ .Values.images.pullSecrets.replicated.dockerconfigjson }}
-   {{ end }}
-   ```
-
-   `templates/deployment.yaml`
-
-   ```yaml
-           ...
-           image: {{ .Values.images.myapp.repository }}{{ .Values.images.myapp.tag }}
-           imagePullPolicy: {{ .Values.images.myapp.pullPolicy }}
-           {{ if .Values.images.pullSecrets.replicated }}
-           imagePullSecrets:
-             - name: replicated
-           {{ end }}
-           name: myapp
-           ports:
-           - containerPort: 3000
-             name: http
-   ```          
-
 ## Example: Delivering Custom License Fields
 
 `values.yaml`
