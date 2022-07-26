@@ -18,7 +18,9 @@ When a new version of a chart is uploaded, Replicated renders and cache that ver
 
 When a license field changes for a customer, Replicated invalidates all rendered and cached charts. This causes the charts to be rebuilt the next time they are pulled.
 
-The `values.yaml` in your Chart is rendered with the customer provided license. This creates a way to pass custom license fields and other customer-specific data into the `values.yaml` as defaults, and consume them in Helm templates. When Replicated renders the `values.yaml`, it is not assumed to be a valid YAML format in order to allow flow-control and conditional template functions to optionally write some fields to the `values.yaml` file.
+The `values.yaml` in your Chart is rendered with the customer provided license. Each customer logs in with unique credentials, and our registry is able to identify which customer is pulling the chart. This creates a way to pass custom license fields and other customer-specific data into the `values.yaml` as defaults, and consume them in Helm templates.
+
+When Replicated renders the `values.yaml`, it is not assumed to be a valid YAML format in order to allow flow-control and conditional template functions to optionally write some fields to the `values.yaml` file. Replicated renders template functions in the `values.yaml` for each customer, as the Helm chart is served to the customer.
 
 ## Requirement
 
@@ -47,7 +49,7 @@ To deliver the admin console with your application when users install with the h
 
 When you include the `admin-console` Helm chart as a dependency, Replicated injects values into the Helm chart `values.yaml` file when the chart is pulled by your users. These values provide the license ID for the customer, which enables the admin console to authenticate with the image registry and check for updates.
 
-The following shows the formatting of the `replicated` and `license_id` fields that  Replicated adds to the `values.yaml` file:
+The following shows the formatting of the `replicated` and `license_id` fields that Replicated adds to the `values.yaml` file:
 
 ```
 replicated:
@@ -203,58 +205,100 @@ To conditionally include and exclude the `admin-console` Helm chart:
       ```
   1. Save and promote the release to a development environment to test your changes.      
 
+## Deliver Image Pull Secrets for a Private Registry {#private-images}
 
-## About Customer Values and Private Images
+Using a private image registry for your application requires that the customer has an image pull secret to authenticate to the registry. When users install with the kots CLI, Replicated automatically generates this image pull secret.
 
-Replicated renders template functions in the `values.yaml` for each customer, as the Helm chart is served to the customer. Each customer license logs in with unique credentials, and our registry is able to identify which customer is pulling the chart. The registry does not render the chart, but it replaces your `values.yaml` with a rendered version.
+For users who install with the helm CLI, Replicated cannot automatically inject the image pull secret into the Helm chart for your application.
 
-### Example: Delivering Image Pull Secrets for Private Images
+To support private images for helm CLI installations, create a `pullSecrets` field in the Helm chart `values.yaml` file where you can use a Replicated template function to pass the unique customer license. This allows you to then consume this customer-specific pull secret from the `values.yaml` file in the templates for your Helm chart.
 
-`values.yaml`
+To deliver customer-specific image pull secrets for a private registry:
 
-```
-images:
-  pullSecrets:
-    replicated:
-      dockerconfigjson: {{repl LicenseDockerCfg }}
-  myapp:
-    repository: registry.replicated.com/my-app/my-image
-    tag: 0.0.1
-    pullPolicy: IfNotPresent
-    pullSecret: replicated
-```
+1. Add the following to the `values.yaml` file for your Helm chart:
 
-`templates/imagepullsecret.yaml`
+   ```yaml
+   images:
+    pullSecrets:
+      replicated:
+        dockerconfigjson: "repl{{ LicenseDockerCfg }}"
+   ```
 
-```
-{{ if .Values.images.pullSecrets.replicated.dockerconfigjson }}
-apiVersion: v1
-kind: Secret
-metadata:
-  name: replicated
-type: kubernetes.io/dockerconfigjson
-data:
-  .dockerconfigjson: {{ .Values.images.pullSecrets.replicated.dockerconfigjson }}
-{{ end }}
-```
+   Replicated renders the `LicenseDockerCfg` template function on `helm install` or `helm pull`. This allows the customer's license-specific credentials to be injected into the `values.yaml`.
 
-`templates/deployment.yaml`
+1. In the `templates` directory of your Helm chart, create a  `imagepullsecret.yaml` file that writes the pull secret that you added to the `values.yaml` into a Secret on the cluster:
 
-```
-        ...
-        image: {{ .Values.images.myapp.repository }}{{ .Values.images.myapp.tag }}
-        imagePullPolicy: {{ .Values.images.myapp.pullPolicy }}
+   ```yaml
+   {{ if .Values.images.pullSecrets.replicated.dockerconfigjson }}
+   apiVersion: v1
+   kind: Secret
+   metadata:
+    name: replicated
+   type: kubernetes.io/dockerconfigjson
+   data:
+    .dockerconfigjson: {{ .Values.images.pullSecrets.replicated.dockerconfigjson }}
+   {{ end }}
+   ```
+
+1. Add the following to the Pod `spec`:
+
+   ```yaml
+   spec:
+    template:
+      spec:
         {{ if .Values.images.pullSecrets.replicated }}
         imagePullSecrets:
           - name: replicated
         {{ end }}
-        name: myapp
-        ports:
-        - containerPort: 3000
-          name: http
-```          
+   ```
 
-### Example: Delivering Custom License Fields
+### Example: Delivering Image Pull Secrets for Private Images
+
+   `values.yaml`
+
+   ```yaml
+   images:
+     pullSecrets:
+       replicated:
+         dockerconfigjson: {{repl LicenseDockerCfg }}
+     myapp:
+       repository: registry.replicated.com/my-app/my-image
+       tag: 0.0.1
+       pullPolicy: IfNotPresent
+       pullSecret: replicated
+   ```
+
+   `templates/imagepullsecret.yaml`
+
+   ```yaml
+   {{ if .Values.images.pullSecrets.replicated.dockerconfigjson }}
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: replicated
+   type: kubernetes.io/dockerconfigjson
+   data:
+     .dockerconfigjson: {{ .Values.images.pullSecrets.replicated.dockerconfigjson }}
+   {{ end }}
+   ```
+
+   `templates/deployment.yaml`
+
+   ```yaml
+           ...
+           image: {{ .Values.images.myapp.repository }}{{ .Values.images.myapp.tag }}
+           imagePullPolicy: {{ .Values.images.myapp.pullPolicy }}
+           {{ if .Values.images.pullSecrets.replicated }}
+           imagePullSecrets:
+             - name: replicated
+           {{ end }}
+           name: myapp
+           ports:
+           - containerPort: 3000
+             name: http
+   ```          
+
+## Example: Delivering Custom License Fields
 
 `values.yaml`
 
