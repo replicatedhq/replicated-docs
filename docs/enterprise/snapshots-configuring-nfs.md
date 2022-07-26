@@ -12,7 +12,7 @@ The following are requirements for configuring a NFS as the storage destination:
 
 * The NFS directory must be writable by the user:group 1001:1001 on all nodes in the cluster.
 
-   Ensure that you configure the user:group 1001:1001 permissions on the NFS server and not from the mounted directory on the client side.
+   Ensure that you configure the user:group 1001:1001 permissions for the directory on the NFS server.
 
    You cannot change the permissions of a mounted NFS directory from the client side. To reassign the user:group to 1001:1001 on a NFS directory that is already mounted, you must remount the directory.
 
