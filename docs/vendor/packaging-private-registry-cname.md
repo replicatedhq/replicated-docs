@@ -24,7 +24,7 @@ Configuring a custom domain name has the following limitations:
 - A single CNAME record cannot be used for both the registry and proxy endpoints. A single domain name can map to registry.replicated.com for any number of applications, but cannot map to both registry.replicated.com and  proxy.replicated.com, even if the applications are different.
 - The endpoints do not support CNAMEs for replicated.app (release manifests), api.replicated.com (platform market API), the download portal, or other services.
 
-## Add a Custom CNAME in the Vendor Portal
+## Configure a Custom Domain Name in the Vendor Portal
 
 You can configure custom domain names for the Replicated private registry and the proxy service in the vendor portal.
 
