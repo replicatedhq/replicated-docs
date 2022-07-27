@@ -223,7 +223,7 @@ To deliver customer-specific image pull secrets for a private registry:
    images:
      pullSecrets:
        replicated:
-         dockerconfigjson: {{repl LicenseDockerCfg }}
+         dockerconfigjson: "repl{{ LicenseDockerCfg }}"
    ```   
    Replicated renders the `LicenseDockerCfg` template function on `helm install` or `helm pull`. This allows the customer's license-specific credentials to be injected into `values.yaml`.
 
