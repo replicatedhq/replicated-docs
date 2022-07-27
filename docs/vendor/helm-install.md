@@ -235,7 +235,7 @@ To deliver customer-specific image pull secrets for a private registry:
    images:
      pullSecrets:
        replicated:
-         dockerconfigjson: {{repl LicenseDockerCfg }}
+         dockerconfigjson: "repl{{ LicenseDockerCfg }}"
      myapp:
        repository: registry.replicated.com/my-app/my-image
        tag: 0.0.1
