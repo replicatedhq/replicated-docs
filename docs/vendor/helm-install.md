@@ -18,7 +18,7 @@ When a new version of a chart is uploaded, Replicated renders and cache that ver
 
 When a license field changes for a customer, Replicated invalidates all rendered and cached charts. This causes the charts to be rebuilt the next time they are pulled.
 
-The `values.yaml` in your Chart is rendered with the customer provided license. Each customer logs in with unique credentials, and our registry is able to identify which customer is pulling the chart. This creates a way to pass custom license fields and other customer-specific data into the `values.yaml` as defaults, and consume them in Helm templates.
+The `values.yaml` in your Chart is rendered with a customer-specific license. Each customer logs in with unique credentials, and our registry is able to identify which customer is pulling the chart. This creates a way to pass custom license fields and other customer-specific data into the `values.yaml` as defaults, and consume them in Helm templates.
 
 When Replicated renders the `values.yaml`, it is not assumed to be a valid YAML format in order to allow flow-control and conditional template functions to optionally write some fields to the `values.yaml` file. Replicated renders template functions in the `values.yaml` for each customer, as the Helm chart is served to the customer.
 
