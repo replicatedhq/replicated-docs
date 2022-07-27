@@ -257,7 +257,7 @@ To deliver customer-specific image pull secrets for a private registry:
    {{ end }}
    ```
 
-1. Add the following to the `templates/deployment.yaml` to inject the pull secret that you created in the previous step when the `.Values.images.pullSecrets.replicated` field is present:
+1. Add the following to any manifests in the `templates` directory that reference private images, to inject the pull secret that you created in the previous step when the `.Values.images.pullSecrets.replicated` field is present. Ensure that the name of the pull secret matches.
 
    ```yaml
         ...
