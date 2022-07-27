@@ -39,7 +39,7 @@ To configure a custom domain name:
 
   Your changes can take up to 24 hours to propagate.
 
-## Add a Custom Domain Name with the Vendor API
+## Configure a Custom Domain Name with the Vendor API
 
 This procedure shows how to:
 
