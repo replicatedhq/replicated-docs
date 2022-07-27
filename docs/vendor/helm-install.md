@@ -211,7 +211,7 @@ Using a private image registry for your application requires an image pull secre
 
 When users install with the kots CLI or the Kubernetes installer, Replicated automatically uses the customer license to create and inject an image pull secret that grants proxy access to a private registry. Instances of your application can then pull private images through the Replicated proxy service. For more information, see [About Connecting to an External Registry](packaging-private-images#about-connecting-to-an-external-registry).
 
-For installations with the helm CLI, Replicated cannot automatically inject an image pull secret into the Helm chart for your application. To support the use of private images for helm CLI installations, use the Replicated `LicenseDockerCfg` template function to render a value based on the unique customer license file. Write the value to a pull secret, then reference the pull secret in the `templates/deployment.yaml` file for the Helm chart.
+For installations with the helm CLI, Replicated cannot automatically inject an image pull secret into the Helm chart for your application. To support the use of private images for helm CLI installations, use the Replicated `LicenseDockerCfg` template function to render a value based on the unique customer license file. Write the value to a pull secret, then reference the pull secret in the necessary template files for the Helm chart.
 
 For more information about the `LicenseDockerCfg` template function, see [LicenseDockerCfg](/reference/template-functions-license-context#licensedockercfg) in _License Context_.
 
