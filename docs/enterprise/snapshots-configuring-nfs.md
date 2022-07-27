@@ -10,7 +10,7 @@ The following are requirements for configuring a NFS as the storage destination:
 
 * The NFS server must be configured to allow access from all the nodes in the cluster.
 
-* The NFS directory must be writable by the user:group 1001:1001 on all nodes in the cluster.
+* The NFS directory must be writable by the user:group 1001:1001.
 
    Ensure that you configure the user:group 1001:1001 permissions for the directory on the NFS server.
 
