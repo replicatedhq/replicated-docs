@@ -250,10 +250,10 @@ To deliver customer-specific image pull secrets for a private registry:
    apiVersion: v1
    kind: Secret
    metadata:
-    name: replicated
+     name: replicated
    type: kubernetes.io/dockerconfigjson
    data:
-    .dockerconfigjson: {{ .Values.images.pullSecrets.replicated.dockerconfigjson }}
+     .dockerconfigjson: {{ .Values.images.pullSecrets.replicated.dockerconfigjson }}
    {{ end }}
    ```
 
