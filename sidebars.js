@@ -260,12 +260,18 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Snapshots',
+          label: 'Managing Backup and Restore',
           items: [
             'enterprise/snapshots-understanding',
-            'enterprise/snapshots-storage-destinations',
-            'enterprise/snapshots-configuring-nfs',
-            'enterprise/snapshots-configuring-hostpath',
+            {
+              type: 'category',
+              label: 'Configuring Storage Destinations',
+              items: [
+                'enterprise/snapshots-storage-destinations',
+                'enterprise/snapshots-configuring-nfs',
+                'enterprise/snapshots-configuring-hostpath',
+              ],
+            },
             'enterprise/snapshots-scheduling',
             'enterprise/snapshots-restoring-full',
             'enterprise/snapshots-restoring-partial',
