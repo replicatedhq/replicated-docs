@@ -11,6 +11,7 @@ Released on July 28, 2022
 ### New Features {#new-features-v2022-07-28-0}
 
 - Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.19.3.
+- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.78.0.
 
 ### Improvements {#improvements-v2022-07-28-0}
 
