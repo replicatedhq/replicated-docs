@@ -4,6 +4,24 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.78.0
+
+Released on July 28, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### New Features {#new-features-1-78-0}
+* The analyze application button on the [Troubleshoot tab](/enterprise/troubleshooting-an-app) now works in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Adds a deploy modal for versions on the [version history](/enterprise/updating-apps#update-an-application-in-the-admin-console) page in [Helm managed mode (Alpha)](/vendor/helm-install).
+
+### Improvements {#improvements-1-78-0}
+* Upgrades the internal database (Postgres) used by the admin console from `10.21-alpine` to `14.4-alpine`.
+
+### Bug Fixes {#bug-fixes-1-78-0}
+* Fixes an issue where all [dashboard links](/vendor/admin-console-adding-buttons-links) were rewritten to use the admin console hostname instead of the hostname provided in the application manifest.
+* Fixes a bug that caused errors when trying to generate `helm upgrade` commands from the [config page](/vendor/config-screen-about#admin-console-config-tab) in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Fixes a bug where the same version could be listed twice on the [version history](/enterprise/updating-apps#update-an-application-in-the-admin-console) page in [Helm managed mode (Alpha)](/vendor/helm-install).
+
 ## 1.77.0
 
 Released on July 22, 2022
