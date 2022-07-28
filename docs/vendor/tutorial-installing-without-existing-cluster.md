@@ -185,7 +185,7 @@ At this point, Kubernetes and the Replicated admin console are running, but the 
 
 To install the application:
 
-1. In a browser, enter the URL that the installation script displayed previously when it finished. Notice that the [Kubernetes installer](https://kurl.sh) cluster has provisioned a self-signed certificate.
+1. In a browser, enter the URL from the `Kotsadm:` field in the CLI output of the installation script. Notice that the [Kubernetes installer](https://kurl.sh) cluster has provisioned a self-signed certificate.
 
 1. Bypass the insecure certificate warning. You have the option of uploading a trusted certificate and key.
   For production installations, we recommend using a trusted certificate. For this tutorial, use the self-signed certificate.
@@ -194,7 +194,7 @@ To install the application:
 
   You are prompted for a password.
 
-1. Enter the password from the CLI output to log in to the admin console.
+1. Enter the password from the `Login with password (will not be shown again):` field in the CLI output of the installation script to log in to the admin console.
 
   The Upload license page opens. Until this point, this server is running only Docker, Kubernetes, and the admin console containers.
 
