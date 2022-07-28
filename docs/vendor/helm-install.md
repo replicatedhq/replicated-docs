@@ -278,7 +278,7 @@ To deliver customer-specific image pull secrets for a private registry:
    ```
    Replace:
    * `FIELD_NAME` with the name of the field where you where you added `"repl{{ LicenseDockerCfg }}"`.
-   * `SECRET_NAME` with the `name:` of the Secret that you created in the previous step.
+   * `SECRET_NAME` with the name of the Secret that you created in the previous step.
 
    **Example:**
 
