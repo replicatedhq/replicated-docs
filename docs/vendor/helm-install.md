@@ -211,7 +211,7 @@ Using an external private image registry or the Replicated private registry for 
 
 When users install with the kots CLI or the Kubernetes installer, Replicated automatically uses the customer license to create and inject an image pull secret. For more information about this process, see [Connecting to an External Registry](packaging-private-images).
 
-For installations with the helm CLI, Replicated cannot automatically inject an image pull secret into the Helm chart for your application. To support the use of private images for helm CLI installations, use the Replicated `LicenseDockerCfg` template function to render a value based on the unique customer license file. Replicated renders the `LicenseDockerCfg` template function when the chart is pulled. This allows the customer's license-specific credentials to be injected into `values.yaml`. Write the value from the the `LicenseDockerCfg` template function to a pull secret, then reference the pull secret in the necessary template files for the Helm chart.
+For installations with the helm CLI, Replicated cannot automatically inject an image pull secret into the Helm chart for your application. To support the use of private images for helm CLI installations, add the Replicated `LicenseDockerCfg` template function to the Helm chart `values.yaml` file. The `LicenseDockerCfg` template function renders a value based on the unique customer license file when the Helm chart is pulled. Write this rendered value to a pull secret, then reference the pull secret in the necessary template files for the Helm chart.
 
 For more information about the `LicenseDockerCfg` template function, see [LicenseDockerCfg](/reference/template-functions-license-context#licensedockercfg) in _License Context_.
 
@@ -241,7 +241,8 @@ To deliver customer-specific image pull secrets for a private registry:
    kind: Secret
    metadata:
      name: SECRET_NAME
-   # Kubernetes clusters use the kubernetes.io/dockerconfigjson Secret type to authenticate with a private image registry.
+   # Kubernetes clusters use the kubernetes.io/dockerconfigjson Secret type
+   # to authenticate with a private image registry.
    type: kubernetes.io/dockerconfigjson
    data:
      .dockerconfigjson: {{ .Values.FIELD_NAME }}
@@ -276,8 +277,8 @@ To deliver customer-specific image pull secrets for a private registry:
         {{ end }}
    ```
    Replace:
-   * `FIELD_NAME` with the name of the field where you where you added `"repl{{ LicenseDockerCfg }}"`. 
-   * `SECRET_NAME` with the same name that you created in the previous step.
+   * `FIELD_NAME` with the name of the field where you where you added `"repl{{ LicenseDockerCfg }}"`.
+   * `SECRET_NAME` with the `name:` of the Secret that you created in the previous step.
 
    **Example:**
 
@@ -297,7 +298,7 @@ To deliver customer-specific image pull secrets for a private registry:
           name: http
     ```
 
-1. Package your Helm chart, and add the packaged chart to a release in the Replicated vendor portal. For more information, see [Add a Helm Chart to a Release](helm-release#add-a-helm-chart-to-a-release).
+1. Package your Helm chart and add the packaged chart to a release in the Replicated vendor portal. For more information, see [Add a Helm Chart to a Release](helm-release#add-a-helm-chart-to-a-release).
 
 1. Save and promote the release to a development environment to test your changes.  
 
