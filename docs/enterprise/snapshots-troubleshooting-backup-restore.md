@@ -7,10 +7,11 @@ Because this is a point-in-time collection of all logs and system state at the t
 
 If Velero is crashing and not starting, some common causes are:
 
-#### Invalid Cloud Credentials
+### Invalid Cloud Credentials
 
-If the cloud access credentials are invalid or do not have access to the location in the configuration, Velero will crashloop. The Velero logs will be included in a support bundle, and the message will look like this.
-If this is the case, Replicated recommends that you validate the access key / secret or service account json.
+#### Symptom
+
+You see the following error message from Velero when trying to configure a snapshot.
 
 ```shell
 time="2020-04-10T14:22:24Z" level=info msg="Checking existence of namespace" logSource="pkg/cmd/server/server.go:337" namespace=velero
@@ -22,8 +23,16 @@ An error occurred: some backup storage locations are invalid: backup store for l
         status code: 404, request id: BEFAE2B9B05A2DCF, host id: YdlejsorQrn667ziO6Xr6gzwKJJ3jpZzZBMwwMIMpWj18Phfii6Za+dQ4AgfzRcxavQXYcgxRJI=
 ```
 
+#### Cause
 
-#### Invalid Top-level Directories
+If the cloud access credentials are invalid or do not have access to the location in the configuration, Velero will crashloop. The Velero logs will be included in a support bundle, and the message will look like this.
+
+#### Solution
+
+If this is the case, Replicated recommends that you validate the access key / secret or service account json.
+
+
+### Invalid Top-level Directories
 
 Another commonly seen problem in Velero starting is a reconfigured or re-used bucket.
 When configuring Velero to use a bucket, the bucket cannot contain other data, or Velero will crash.  
@@ -40,19 +49,27 @@ An error occurred: some backup storage locations are invalid: backup store for l
 
 ## Snapshot Restore is Failing
 
-#### Service NodePort is Already Allocated
+### Service NodePort is Already Allocated
+
+#### Symptom
 
 Example error message:
 
 ![Snapshot Troubleshoot Service NodePort](/images/snapshot-troubleshoot-service-nodeport.png)
 
+#### Cause
+
 There is a known issue in older Kubernetes versions (earlier than v1.19) where using a static NodePort for services can collide in multi-primary high availability setup when recreating the services. You can find more details about the issue here: https://github.com/kubernetes/kubernetes/issues/85894.
+
+#### Solution
 
 This issue has been fixed in Kubernetes version 1.19. You can find more details about the fix here: https://github.com/kubernetes/kubernetes/pull/89937.
 
-Summary: upgrading to Kubernetes version v1.19 or later should resolve the issue.
+Upgrading to Kubernetes version v1.19 or later should resolve the issue.
 
-#### Partial Snapshot Restore is Stuck in Progress
+### Partial Snapshot Restore is Stuck in Progress
+
+#### Symptom
 
 In the Replicated admin console, you see at least one volume restore progress bar frozen at 0%. Example admin console display:
 
@@ -66,6 +83,37 @@ example-mysql-0                       0/1     Init:0/2    0          4m15s  #<- 
 example-nginx-77b878b4f-zwv2h         3/3     Running     0          4m15s
 ```
 
+#### Cause
+
 We've seen this issue with Velero version 1.5.4 and opened up this issue with the project to inspect the root cause: https://github.com/vmware-tanzu/velero/issues/3686. However we have not experienced this using Velero 1.6.0 or greater.
 
-Summary: Upgrade Velero to 1.6.0. You can upgrade using the Replicated Kubernetes installer. Or, to follow the Velero upgrade instructions, see [Upgrading to Velero 1.6](https://velero.io/docs/v1.6/upgrade-to-1.6/) in the Velero documentation.
+#### Solution
+
+Upgrade Velero to 1.6.0. You can upgrade using the Replicated Kubernetes installer. Or, to follow the Velero upgrade instructions, see [Upgrading to Velero 1.6](https://velero.io/docs/v1.6/upgrade-to-1.6/) in the Velero documentation.
+
+## Timeout Error when Creating a Snapshot
+
+#### Symptom
+
+You see a backup error that includes a timeout message when attempting to create a snapshot. For example:
+
+```bash
+Error backing up item
+timed out after 12h0m0s
+```
+
+#### Cause
+
+This error message appears when the restic Pod operation timeout limit is reached. In Velero v1.4.2 and later, the default restic timeout is 240 minutes.
+
+Restic is an open-source backup tool. Velero integrates with restic to provide a solution for backing up and restoring Kubernetes volumes. For more information about the Velero restic integration, see [Restic Integration](https://velero.io/docs/v1.9/restic/) in the Velero documentation.
+
+#### Solution
+
+Use the kubectl Kubernetes command-line tool to patch the Velero deployment to increase the restic timeout:
+
+```bash
+kubectl patch deployment velero -n velero --type json -p '[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--restic-timeout=TIMEOUT_LIMIT"}]'
+```
+
+Replace `TIMEOUT_LIMIT` with a length of time for the restic Pod operation timeout in hours, minutes, and seconds. Use the format `0h0m0s`. For example, `48h30m0s`.
