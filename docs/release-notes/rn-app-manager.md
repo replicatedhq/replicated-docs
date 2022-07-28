@@ -15,10 +15,10 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 * Adds deploy modal on the [Version History](/enterprise/updating-apps#update-an-application-in-the-admin-console) page in [Helm managed mode (Alpha)](/vendor/helm-install).
 
 ### Improvements {#improvements-1-78-0}
-* Upgrades the internal database (Postgres) used by the KOTS admin console four major versions, from `10.21-alpine` to `14.4-alpine`.
+* Upgrades the internal database (Postgres) used by the admin console from `10.21-alpine` to `14.4-alpine`.
 
 ### Bug Fixes {#bug-fixes-1-78-0}
-* Fixes an issue where [dashboard links](/vendor/admin-console-adding-buttons-links) were being re-written to use the admin console hostname instead of the hostname provided in the application manifest.
+* Fixes an issue where [dashboard links](/vendor/admin-console-adding-buttons-links) were being rewritten to use the admin console hostname instead of the hostname provided in the application manifest.
 * Fixes a bug that caused errors when trying to generate upgrade commands from the [Config page](/vendor/config-screen-about#admin-console-config-tab) in [Helm managed mode (Alpha)](/vendor/helm-install).
 * Fixes a bug where the same version could be listed twice on the [Version History](/enterprise/updating-apps#update-an-application-in-the-admin-console) page in [Helm managed mode (Alpha)](/vendor/helm-install).
 
