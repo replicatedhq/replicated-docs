@@ -10,15 +10,16 @@ Released on July 28, 2022
 
 ### New Features {#new-features-v2022-07-28-0}
 
-- 
+- Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.19.3.
 
 ### Improvements {#improvements-v2022-07-28-0}
 
-- 
+- Updates the haproxy image to tag 2.6.2-alpine3.16 for [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.19.3 to address the following critical severity CVEs: CVE-2022-1586, CVE-2022-1587.
+- The property `kubernetes.loadBalancerUseFirstPrimary`, and equivalent flag `kubernetes-load-balancer-use-first-primary`, has been added to automatically use the first primary address as the cluster control plane endpoint. It is recommended to enable the [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) use the property `ekco.enableInternalLoadBalancer` instead.
 
 ### Bug Fixes {#bug-fixes-v2022-07-28-0}
 
-- 
+- Fixes an issue with [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) versions prior to 0.19.3 which causes registry certificates generated to be expired upon renewal.
 
 ## Release v2022.07.22-0
 
