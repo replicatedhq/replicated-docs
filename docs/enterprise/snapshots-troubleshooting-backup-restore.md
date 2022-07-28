@@ -34,9 +34,9 @@ If this is the case, Replicated recommends that you validate the access key / se
 
 ### Invalid Top-level Directories
 
-Another commonly seen problem in Velero starting is a reconfigured or re-used bucket.
-When configuring Velero to use a bucket, the bucket cannot contain other data, or Velero will crash.  
-In this case, the error in the Velero logs will be:
+#### Symptom
+
+You see the following error message when Velero is starting:
 
 ```shell
 time="2020-04-10T14:12:42Z" level=info msg="Checking existence of namespace" logSource="pkg/cmd/server/server.go:337" namespace=velero
@@ -46,6 +46,16 @@ time="2020-04-10T14:12:44Z" level=info msg="All Velero custom resource definitio
 time="2020-04-10T14:12:44Z" level=info msg="Checking that all backup storage locations are valid" logSource="pkg/cmd/server/server.go:413"
 An error occurred: some backup storage locations are invalid: backup store for location "default" is invalid: Backup store contains invalid top-level directories: [other-directory]
 ```
+
+#### Cause
+
+This error message is caused when Velero is attempting to start, and it is configured to use a reconfigured or re-used bucket.
+
+When configuring Velero to use a bucket, the bucket cannot contain other data, or Velero will crash.
+
+#### Solution
+
+Configure Velero to use a bucket that does not contain other data.
 
 ## Snapshot Restore is Failing
 
