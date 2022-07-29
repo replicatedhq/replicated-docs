@@ -143,6 +143,10 @@ To create the test server and install the app manager:
   Kotsadm: http://[ip-address]:8800
   Login with password (will not be shown again): [password]
   ```
+  
+  :::note
+  The login password displayed in the CLI output of the installation command is not shown again. Copy this password so that you can log in to the admin console in a later step of the installation process.
+  ::: 
 
 1. Reload your shell to access the cluster with `kubectl`:
 
@@ -185,7 +189,7 @@ At this point, Kubernetes and the Replicated admin console are running, but the 
 
 To install the application:
 
-1. In a browser, enter the URL from the `Kotsadm:` field in the CLI output of the installation script. Notice that the [Kubernetes installer](https://kurl.sh) cluster has provisioned a self-signed certificate.
+1. In a browser, enter the URL from the `Kotsadm:` field in the CLI output of the installation script. For more information about the installation script, see [Create a Test Server and Install the App Manager](#create-a-test-server-and-install-the-app-manager) above. Notice that the [Kubernetes installer](https://kurl.sh) cluster has provisioned a self-signed certificate.
 
 1. Bypass the insecure certificate warning. You have the option of uploading a trusted certificate and key.
   For production installations, we recommend using a trusted certificate. For this tutorial, use the self-signed certificate.
@@ -194,7 +198,7 @@ To install the application:
 
   You are prompted for a password.
 
-1. Enter the password from the `Login with password (will not be shown again):` field in the CLI output of the installation script to log in to the admin console.
+1. Enter the password from the `Login with password (will not be shown again):` field in the CLI output of the installation script to log in to the admin console. For more information about the installation script, see [Create a Test Server and Install the App Manager](#create-a-test-server-and-install-the-app-manager) above.
 
   The Upload license page opens. Until this point, this server is running only Docker, Kubernetes, and the admin console containers.
 
