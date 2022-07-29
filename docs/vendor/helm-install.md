@@ -288,7 +288,7 @@ To deliver customer-specific image pull secrets for a private registry:
         ...
         image: {{ .Values.images.myapp.repository }}{{ .Values.images.myapp.tag }}
         imagePullPolicy: {{ .Values.images.myapp.pullPolicy }}
-        {{ if .Values.images.pullSecrets.replicated }}
+        {{ if .Values.images.pullSecrets.replicated.dockerconfigjson }}
         imagePullSecrets:
           - name: replicated
         {{ end }}
