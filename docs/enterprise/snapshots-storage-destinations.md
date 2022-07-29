@@ -1,28 +1,52 @@
 # Storage Destinations
 
-You can use compatible Velero storage providers with the Replicated snapshot feature. For more information, see [Providers](https://velero.io/docs/v1.9/supported-providers/) in the Velero documentation.
+This topic describes the supported storage destinations for backups with the Replicated snapshots feature. It includes the requirements for configuring storage destinations for snapshots, and lists the available fields for cloud storage destinations.
 
-The Replicated admin console has built-in support for using the following as storage destinations for snapshots:
+Replicated recommends that you configure a snapshots storage destination for Kubernetes installer provisioned clusters in addition to the locally-provisioned object store on these clusters.
 
-* Amazon Web Services (AWS)
-* Google Cloud Platform (GCP)
-* Microsoft Azure
-* Ceph and MinIO S3-compatible object stores
-* Network File System (NFS) servers
-* Local host paths
+Although Kubernetes installer clusters are preconfigured in the admin console to store backups in the locally-provisioned object store, this is sufficient for only rollbacks and downgrades and is not a suitable configuration for disaster recovery. Replicated recommends that you configure a storage destination that is external to the cluster in the admin console.
 
-Although clusters created by the Replicated Kubernetes installer are preconfigured in the admin console to store backups in the locally-provisioned object store, this is sufficient for only rollbacks and downgrades. It is not a suitable configuration for disaster recovery. We recommend that you configure a storage destination that is external to the cluster in the admin console.
+## Supported Storage Destinations
 
-If the admin console is running with minimal role-based-access-control (RBAC) privileges, you must use the `kots velero ensure-permissions` command because the admin console requires access to the namespace in which Velero is installed.
+You can use any storage provider that is compatible with Velero as the storage destination for backups created with the snapshots feature. For a list of the compatible storage providers, see [Providers](https://velero.io/docs/v1.9/supported-providers/) in the Velero documentation.
 
-For more information, see [`velero ensure-permissions`](../reference/kots-cli-velero-ensure-permissions/) in the kots CLI documentation.
+The Replicated admin console has built-in support for using the following as storage destinations for backups with the snapshots feature:
 
-For more information about RBAC privileges for the admin console, see [Kubernetes RBAC](../vendor/packaging-rbac).
+* Amazon Web Services (AWS). See [AWS](#aws).
+* Google Cloud Platform (GCP). See [GCP](#gcp).
+* Microsoft Azure. See [Azure](#azure).
+* Ceph and MinIO S3-compatible object stores. See [S3-Compatible](#s3-compatible).
+* Network File System (NFS) servers. See [Configuring a NFS](snapshots-configuring-nfs).
+* Local host paths. See [Configuring a Host Path](snapshots-configuring-hostpath).
 
-## Prerequisites for Cloud Configurations
+## Prerequisites
 
-* Existing clusters: Customers must install Velero before configuring snapshots. See [Basic Install](https://velero.io/docs/v1.9/basic-install/) in the Velero documentation.
-* Kubernetes installer-created clusters: The vendor can provide the Velero add-on in the embedded cluster installation. If it is not provided, the snapshots configuration dialog in the admin console notifies you to install Velero before you can proceed with the configuration.
+* Velero must be installed on the cluster to use snapshots. Do one of the following:
+   * (Existing clusters) You must install Velero before configuring snapshots. See [Basic Install](https://velero.io/docs/v1.9/basic-install/) in the Velero documentation.
+   * (Kubernetes installer clusters) The vendor can provide the Velero add-on in the embedded cluster installation. If it is not provided, the snapshots configuration dialog in the admin console notifies you to install Velero before you can proceed with the configuration.
+
+* If the resources that you need to back up with snapshots exceed 100GB in total size, you must increase the default CPU and memory limits for the restic Pod on the Velero deployment.
+
+   Velero sets default limits for the Velero Pod and the restic Pod during installation. The default Velero and restic resource requests and limits are tested to be sufficient when backing up and restoring 1000 or fewer resources with a total size of 100GB or less.
+
+   Run the following kubectl command to increase the memory limits on the restic daemon set on the Velero deployment:
+
+   ```
+   kubectl -n velero set env daemonset/restic GOGC=1
+   ```
+
+   For more information, see [Customize resource requests and limits](https://velero.io/docs/main/customize-installation/#customize-resource-requests-and-limits) in the Velero documentation.
+
+* The admin console requires access to the namespace where Velero is installed. If the admin console is running with minimal role-based-access-control (RBAC) privileges, you must run `kots velero ensure-permissions` to enable the admin console to access Velero:
+
+   ```
+   kubectl kots velero ensure-permissions --namespace ADMIN_CONSOLE_NAMESPACE --velero-namespace VELERO_NAMESPACE
+   ```
+   Replace:
+   * `ADMIN_CONSOLE_NAMESPACE` with the namespace on the cluster where the admin console is running.
+   * `VELERO_NAMESPACE` with the namespace on the cluster where Velero is installed.
+
+  For more information, see [`velero ensure-permissions`](/reference/kots-cli-velero-ensure-permissions/) in the kots CLI documentation. For more information about RBAC privileges for the admin console, see [Kubernetes RBAC](../vendor/packaging-rbac).
 
 ## AWS
 
@@ -89,7 +113,7 @@ When configuring the admin console to store snapshots on S3-compatible storage, 
 | Use Instance Role            | When enabled, instead of providing an Access Key ID and Secret Access Key, Velero will use an instance IAM role |
 | Add a CA Certificate         | (Optional) Upload a third-party issued (proxy) CA certificate used for trusting the authenticity of the snapshot storage endpoint. Only one file can be uploaded. However, it is possible to concatenate multiple certificates into one file. **Formats:** PEM, CER, CRT, CA, and KEY          |
 
-## Network File System (NFS)
+## Network File System (NFS) {#nfs}
 
 > Introduced in the Replicated app manager v1.33.0
 
