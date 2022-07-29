@@ -127,3 +127,7 @@ kubectl patch deployment velero -n velero --type json -p '[{"op":"add","path":"/
 ```
 
 Replace `TIMEOUT_LIMIT` with a length of time for the restic Pod operation timeout in hours, minutes, and seconds. Use the format `0h0m0s`. For example, `48h30m0s`.
+
+:::note
+Application install overwrites the restic timeout that you set with the `kubectl patch deployment velero` command.
+:::
