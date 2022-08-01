@@ -233,7 +233,7 @@ To deliver customer-specific image pull secrets for a private registry:
          dockerconfigjson: "repl{{ LicenseDockerCfg }}"
    ```   
 
-1. In the `templates` directory of your Helm chart, create a Kubernetes Secret manifest file (`kind: Secret`). Add the following YAML to the file to evaluate if the `LicenseDockerCfg` template function renders a value for the customer, then write the rendered value into a Secret on the cluster:
+1. In the `templates` directory of your Helm chart, create a Kubernetes Secret manifest file (`kind: Secret`). Add the following YAML to the file to evaluate if the secret value is set, and then write the rendered value into a Secret on the cluster:
 
    ```yaml
    {{ if .Values.FIELD_NAME }}
