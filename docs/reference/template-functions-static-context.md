@@ -374,6 +374,15 @@ NodeCount returns the number of nodes detected within the Kubernetes cluster.
 repl{{ NodeCount }}
 ```
 
+## HTTPSProxy
+```go
+func HTTPSProxy() string
+```
+HTTPSProxy returns the address of the proxy that the Replicated admin console is configured to use.
+```yaml
+repl{{ HTTPSProxy }}
+```
+
 ## HTTPProxy
 ```go
 func HTTPProxy() string
