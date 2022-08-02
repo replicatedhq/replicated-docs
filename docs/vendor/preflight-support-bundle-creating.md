@@ -38,22 +38,18 @@ Redactors censor sensitive customer information from all collectors before the a
 - Database connection strings
 - URLs that include usernames and passwords
 
-This functionality can be turned off (not recommended) or customized.
+This functionality cannot be disabled in the Replicated app manager, but you can add custom redactors.
 
 ### Analyzers
-The analysis phase uses the data from the collection phase to identify issues and execute the outcomes that you specify. Preflight checks and support bundles use analyzers, but the outcomes are different for each:
+The analysis phase uses the data from the collection phase to identify issues or compliance, and execute the outcomes that you specify. Preflight checks and support bundles use analyzers, but the outcomes are different for each:
 
-- Preflight checks use analyzers to determine outcomes and send messages to a customer during installation, depending on whether the preflight check passes, fails, or produces a warning.
+- Preflight checks use analyzers to determine pass, fail, and warning outcomes, and send messages to a customer during installation.
 
 - When a support bundle is uploaded to the Replicated vendor portal, it is extracted and automatically analyzed. The goal of this process is to find insights that are known issues or hints of what might be a problem.
 Insights are specific items that the analyzer process finds and surfaces. Insights can contain custom messages and statuses, and are specific to the output of the analysis step on each support bundle.
 
 
 ## Define Preflight Checks
-
-You define preflight checks by creating a `preflight.yaml`
-manifest file. This file specifies the cluster data that is collected and redacted as part of the preflight check.
-The manifest file also defines how the collected data is analyzed.
 
 You define preflight checks based on your application needs. Preflight checks are not included by default. This procedure provides a basic understanding and some key considerations to help guide you.
 
@@ -131,13 +127,15 @@ To define preflight checks:
 
 ## Customize a Support Bundle
 
-Customizing a support bundle is unique to your application. By default, support bundles contain a large number of commonly used, best practice collectors. The default `clusterInfo` and `clusterResources` collectors gather a large amount of data that is useful when remotely installing or debugging a Kubernetes application. You can supplement the default collectors. This procedure provides a basic understanding and some key considerations to help guide you.
+Customizing a support bundle is unique to your application. By default, support bundles contain a large number of commonly used, best practice collectors. The default `clusterInfo` and `clusterResources` collectors gather a large amount of data that is useful when remotely installing or debugging a Kubernetes application. You can supplement the default collectors.
+
+This procedure provides a basic understanding and some key considerations to help guide you. For more information about support bundles, see [Support Bundle Introducton](https://troubleshoot.sh/docs/support-bundle/introduction/) in the Troubleshoot documentation.
 
 To customize a support bundle:
 
 1. Start with either YAML file option and add custom collectors to the file:
 
-    - If you want to add collectors to the default collectors, you can start with a basic support bundle manifest file (`kind: SupportBundle`). In the following example, the collectors field is empty, so only the default collectors will run.
+    - If you want to add collectors to the default collectors, you can start with a basic support bundle manifest file (`kind: SupportBundle`). In the following basic manifest, the collectors field is empty, so only the default collectors run.
 
       ```yaml
       apiVersion: troubleshoot.sh/v1beta2
@@ -150,7 +148,7 @@ To customize a support bundle:
     - If you want to fully customize the support bundle, copy the default `spec.yaml` file to your manifest file. For the default YAML file, see [spec.yaml](https://github.com/replicatedhq/kots/blob/main/pkg/supportbundle/defaultspec/spec.yaml) in the kots repository.
 
       :::note
-      The default collectors `clusterInfo` and `clusterResources` do not accept any parameters.
+      To help ensure best practices, Replicated app manager does not allow any changes to the parameters in the default collectors `clusterInfo` and `clusterResources`.
       :::
 
 1. (Recommended) Add application pod logs and set the retention options for the number of lines logged. Typically the selector attribute is matched to the labels.
@@ -191,8 +189,6 @@ To customize a support bundle:
     - **Files** - Copy files from pods and hosts.
     - **HTTP** - Consume your own application APIs with HTTP requests. If your application has its own API that serves status, metrics, performance data, and so on, this information can be collected and analyzed.
 
-  For more information about collectors, see [All Collectors](https://troubleshoot.sh/docs/collect/all/) in the Troubleshoot documentation.
-
 1. Add analyzers based on conditions that you expect for your application. You might require that a cluster have 2 CPUs available to your application or have a minimum of 4GB memory available. Good analyzers clearly identify failure modes. For example, if you can identify a log message from your database component that indicates a problem, you should write an analyzer that checks for that log.
 
   At a minimum, include application log analyzers. A simple text analyzer can detect specific log lines and inform an end user of remediation steps.
@@ -203,17 +199,13 @@ To customize a support bundle:
     - **Regular expressions** - Analyze arbitrary data.
     - **Databases** - Check the version and connection status.
 
-  For more information about analyzers, see [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the troubleshoot documentation.
-
-1. To add redactors to the default redactors that are automatically provided by the app manager, add the Redactor custom resource manifest (`kind: Redactor`) to your release. Then add additional Redactor custom resources as needed.
+1. (Optional) To add redactors to the default redactors that are automatically provided by the app manager, add the Redactor custom resource manifest (`kind: Redactor`) to your release. Then add additional Redactor custom resources to the manifest as needed.
 
   :::note
   The default redactors included with Replicated app manager cannot be disabled.
   :::
 
-  For more information about configuring redactors, see [Redactors](https://troubleshoot.sh/docs/redact/redactors/) in the Troubleshoot documentation.
-
-1. Add the manifest file to the application that you are packaging and distributing with Replicated.
+1. Add the manifest files to the application that you are packaging and distributing with Replicated.
 
 1. Save and promote your release. To test this feature, generate a support bundle from the Troubleshoot tab in the admin console and do one of the following:
 
