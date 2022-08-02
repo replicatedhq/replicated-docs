@@ -18,7 +18,7 @@ For more information about configuring snapshot storage destinations with the ko
 
 * Replicated recommends that you increase the default memory limit for the restic Pod on the Velero deployment.
 
-   Velero sets default limits for the Velero Pod and the restic Pod during installation. There is a known issue with restic that causes high memory usage on the restic Pod, which can result in failures during snapshot creation when the restic Pod reaches the memory limit.
+   Velero sets default limits for the Velero Pod and the restic Pod during installation. There is a known issue with restic that causes high memory usage on the restic Pod, which can result in failures during snapshot creation when the restic Pod reaches the memory limit. For more information, see the [Restic backup — OOM-killed on raspberry pi after backing up another computer to same repo](https://github.com/restic/restic/issues/1988) issue in the restic GitHub repository.
 
    To avoid the restic Pod reaching the memory limit during snapshot creation, run the following kubectl command to increase the memory limit on the restic daemon set on the Velero deployment:
 
