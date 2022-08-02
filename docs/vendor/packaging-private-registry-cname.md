@@ -41,14 +41,9 @@ To configure a custom domain name:
 
 ## Configure a Custom Domain Name with the Vendor API
 
-This procedure shows how to:
+You can configure custom domain names for the Replicated private registry and the proxy service using the vendor API.
 
-- Configure a CNAME record to point registry.enterprise.myapp.com to registry.replicated.com
-- Replace registry.replicated.com in your application with registry.enterprise.myapp.com
-- Use a TXT record to validate domain ownership
-
-
-To add a custom domain name using the https://docs.google.com/document/d/1Nky2tC3OSQ4qNHAVbjzKrNaHBjFEr9Lu2c2ocsFZiyk/editendor API:
+To configure a custom domain name using the vendor API:
 
 1. Generate a user token. See [Generate a User API Token in Using the Vendor API v3](//reference/vendor-api-using#generate-a-user-api-token).
 
@@ -76,7 +71,7 @@ To add a custom domain name using the https://docs.google.com/document/d/1Nky2tC
   {"registry":null,"proxy":null}
   ```
 
-1. Customize the CNAME:
+1. Customize the CNAME. For the "hostname" field, replace the host name in the following example with your host name:
 
   ```
   curl --request PUT \
@@ -90,7 +85,7 @@ To add a custom domain name using the https://docs.google.com/document/d/1Nky2tC
   If you get a 403 Forbidden error, the token could be read-only or your team account in the Replicated vendor portal does not have the feature toggle enabled.
   :::
 
-  **Response:**
+  **Eaxmple Response:**
 
   ```
   {
@@ -116,7 +111,9 @@ To add a custom domain name using the https://docs.google.com/document/d/1Nky2tC
 
   There is a 2-step verification process. This response shows `is_active: false`, meaning that the CNAME is not set up yet and that the `domain_verification_status` is pending.
 
-1. Create the domain TXT record for the application using your DNS provider's instructions, and set the value to the randomly generated value shown in the previous step:
+1. Create the domain TXT record for the application using your DNS provider's instructions, and set the value to the randomly generated value shown in the previous step.
+
+  **Example:**
 
   ```
   "name": "_cf-custom-hostname.registry.enterprise.myapp.com",
@@ -129,7 +126,7 @@ To add a custom domain name using the https://docs.google.com/document/d/1Nky2tC
   curl –-header "Authorization: USER_TOKEN" https://api.replicated.com/vendor/v3/app/APP_ID/registry/cnames
   ```
 
-  **Response:**
+  **Example Response:**
 
   ```
   {
@@ -153,7 +150,7 @@ To add a custom domain name using the https://docs.google.com/document/d/1Nky2tC
   }
   ```
 
-  You can see that the domain verification status is active, but the TLS TXT record needs to be completed.
+  In this example, you can see that the domain verification status is active, but the TLS TXT record needs to be completed.
 
   :::note
   If your DNS is slow, the domain verification status can still show as pending. Wait a few minutes and then send the request again.
@@ -165,7 +162,7 @@ To add a custom domain name using the https://docs.google.com/document/d/1Nky2tC
   curl –-header "Authorization: USER_TOKEN" https://api.replicated.com/vendor/v3/app/APP_ID/registry/cnames
   ```
 
-  **Response:**
+  **Example Response:**
 
   ```
   {
