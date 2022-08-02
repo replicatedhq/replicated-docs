@@ -16,11 +16,11 @@ For more information about configuring snapshot storage destinations with the ko
    * Existing clusters: Install Velero on the cluster. See [Basic Install](https://velero.io/docs/v1.9/basic-install/) in the Velero documentation.
    * Kubernetes installer clusters: Your application vendor can provide the Velero add-on in the Kubernetes installer cluster. If Velero is not already installed on the Kubernetes installer cluster, the snapshots configuration dialog in the admin console notifies you to install Velero before you can proceed with the configuration.
 
-* If the resources that you need to back up exceed 100GB in total size, you must increase the default memory limit for the restic Pod on the Velero deployment.
+* Replicated recommends that you increase the default memory limit for the restic Pod on the Velero deployment.
 
-   Velero sets default limits for the Velero Pod and the restic Pod during installation. The default Velero and restic resource requests and limits are tested to be sufficient when backing up and restoring 1000 or fewer resources with a total size of 100GB or less.
+   Velero sets default limits for the Velero Pod and the restic Pod during installation. There is a known issue with restic that causes high memory usage on the restic Pod, which can result in failures during snapshot creation when the restic Pod reaches the memory limit.
 
-   Run the following kubectl command to increase the memory limit on the restic daemon set on the Velero deployment:
+   To avoid the restic Pod reaching the memory limit during snapshot creation, run the following kubectl command to increase the memory limit on the restic daemon set on the Velero deployment:
 
    ```
    kubectl -n velero set env daemonset/restic GOGC=1

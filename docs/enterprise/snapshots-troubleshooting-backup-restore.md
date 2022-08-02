@@ -101,7 +101,9 @@ We've seen this issue with Velero version 1.5.4 and opened up this issue with th
 
 Upgrade Velero to 1.6.0. You can upgrade using the Replicated Kubernetes installer. Or, to follow the Velero upgrade instructions, see [Upgrading to Velero 1.6](https://velero.io/docs/v1.6/upgrade-to-1.6/) in the Velero documentation.
 
-## Timeout Error when Creating a Snapshot
+## Snapshot Creation is Failing
+
+### Timeout Error when Creating a Snapshot
 
 #### Symptom
 
@@ -131,3 +133,23 @@ Replace `TIMEOUT_LIMIT` with a length of time for the restic Pod operation timeo
 :::note
 Application install overwrites the restic timeout that you set with the `kubectl patch deployment velero` command.
 :::
+
+### Memory Limit Reached on the Restic pod
+
+#### Symptom
+
+The restic Pod is killed by the Linux kernel Out Off Memory (OOM) killer.
+
+#### Cause
+
+Velero sets default limits for the Velero Pod and the restic Pod during installation. There is a known issue with restic that causes high memory usage on the restic Pod, which can result in failures during snapshot creation when the restic Pod reaches the memory limit.
+
+For more information, see the [Restic backup — OOM-killed on raspberry pi after backing up another computer to same repo](https://github.com/restic/restic/issues/1988) issue in the restic GitHub repository.
+
+#### Solution
+
+To avoid the restic Pod reaching the memory limit during snapshot creation, run the following kubectl command to increase the memory limit on the restic daemon set on the Velero deployment:
+
+```
+kubectl -n velero set env daemonset/restic GOGC=1
+```
