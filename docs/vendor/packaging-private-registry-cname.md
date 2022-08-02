@@ -32,7 +32,7 @@ To configure a custom domain name:
 
 1. Log in to the [vendor portal](https://vendor.replicated.com), and click **Images**.
 1. In the Custom Registry Domain Name pane, on either the registry.replicated.com or proxy.replicated.com tab, select **Use a custom domain name instead of ENDPOINT_NAME**.
-1. Enter the custom domain name in the textbox, and click **Save**.
+1. Enter the custom domain name in the text box, and click **Save**.
 1. From Create CNAME record, copy the text string and create the CNAME record in your DNS account. Click **Continue**.
 1. From Domain name ownership verification, copy the text string and create a TXT record in your DNS account. Click **Verify and continue**.
 1. From TLS cert creation verification, copy the text string and create a TXT record in your DNS account. Click **Verify and finish**.
@@ -43,7 +43,7 @@ To configure a custom domain name:
 
 You can configure custom domain names for the Replicated private registry and the proxy service using the vendor API.
 
-To configure a custom domain name using the vendor API:
+To configure a custom domain name:
 
 1. Generate a user token. See [Generate a User API Token in Using the Vendor API v3](//reference/vendor-api-using#generate-a-user-api-token).
 
@@ -71,7 +71,7 @@ To configure a custom domain name using the vendor API:
   {"registry":null,"proxy":null}
   ```
 
-1. Customize the CNAME. For the "hostname" field, replace the host name in the following example with your host name:
+1. Customize the CNAME. For the "hostname" field, replace the hostname value in the following example with your host name:
 
   ```
   curl --request PUT \
@@ -85,7 +85,7 @@ To configure a custom domain name using the vendor API:
   If you get a 403 Forbidden error, the token could be read-only or your team account in the Replicated vendor portal does not have the feature toggle enabled.
   :::
 
-  **Eaxmple Response:**
+  **Example Response:**
 
   ```
   {
@@ -113,7 +113,7 @@ To configure a custom domain name using the vendor API:
 
 1. Create the domain TXT record for the application using your DNS provider's instructions, and set the value to the randomly generated value shown in the previous step.
 
-  **Example:**
+  **Example Input:**
 
   ```
   "name": "_cf-custom-hostname.registry.enterprise.myapp.com",
