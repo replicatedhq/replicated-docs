@@ -134,7 +134,7 @@ Replace `TIMEOUT_LIMIT` with a length of time for the restic Pod operation timeo
 Application install overwrites the restic timeout that you set with the `kubectl patch deployment velero` command.
 :::
 
-### Memory Limit Reached on the Restic pod
+### Memory Limit Reached on the Restic Pod
 
 #### Symptom
 
