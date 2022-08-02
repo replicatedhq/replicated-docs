@@ -64,6 +64,7 @@ const sidebars = {
                       label: 'Using Private Registries',
                       items: [
                         'vendor/packaging-private-images',
+                        'vendor/packaging-private-registry-cname',
                         'vendor/packaging-private-registry-security',
                     ],
                   },
