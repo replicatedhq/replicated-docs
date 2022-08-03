@@ -136,7 +136,7 @@ For information about constructing Prometheus queries, see the [Querying Prometh
 For information about the Prometheus Expression Browser, see [Expression Browser](https://prometheus.io/docs/visualization/browser/) in the Prometheus documentation.
 
 
-## About Altering with Prometheus
+## About Alerting with Prometheus
 
 Alerting with Prometheus has two phases:
 
