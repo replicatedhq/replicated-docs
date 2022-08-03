@@ -205,13 +205,27 @@ To conditionally include and exclude the `admin-console` Helm chart:
       ```
   1. Save and promote the release to a development environment to test your changes.      
 
-## Deliver Image Pull Secrets for a Private Registry {#private-images}
+## Using Private Registries {#private-images}
+
+This section describes the steps required to connect to an external private registry or the internal Replicated private registry when your users install your application with the helm CLI.
+
+### Overview of Using Private Registries
 
 Using an external private image registry or the Replicated private registry for your application requires an image pull secret for access. The unique license file for each customer can grant access to the Replicated private registry, or grant proxy access to an external registry without exposing registry credentials to the customer.
 
-When users install with the kots CLI or the Kubernetes installer, Replicated automatically uses the customer license to create and inject an image pull secret. For more information about this process, see [Connecting to an External Registry](packaging-private-images).
+Using an external private registry also requires that Replicated can access the private image through the Replicated proxy service.
 
-For installations with the helm CLI, Replicated cannot automatically inject an image pull secret into the Helm chart for your application. To support the use of private images for helm CLI installations, add the Replicated `LicenseDockerCfg` template function to the Helm chart `values.yaml` file. The `LicenseDockerCfg` template function renders a value based on the unique customer license file when the Helm chart is pulled. Write this rendered value to a pull secret, then reference the pull secret in the necessary template files for the Helm chart.
+When users install with the kots CLI or the Kubernetes installer, Replicated automatically uses the customer license to create and inject an image pull secret. For external private registries, Replicated also automatically patches the image URL to reference the proxy service at `proxy.replicated.com`. For more information about this process, see [How the App Manager Accesses Private Images](packaging-private-images#how-the-app-manager-accesses-private-images) in _Connecting to an Image Registry_.
+
+For installations with the helm CLI, Replicated cannot automatically inject an image pull secret nor patch the image name to reference the proxy service in the Helm chart for your application.
+
+To use private images with your application for helm CLI installations, use Replicated template functions to inject an image pull secret into the Helm chart for your application. For information, see [Deliver Image Pull Secrets for a Private Registry](#pull-secret) below.
+
+If you are using an external private registry, you must also update the image location URL in the PodSpec in your Helm chart to reference the Replicated proxy service. For information, see [Update the Image URL to Reference the Proxy Service](#proxy-service) below.
+
+### Deliver Image Pull Secrets for a Private Registry {#pull-secret}
+
+To inject an image pull secret for an external private registry or the Replicated private registry, first add the Replicated `LicenseDockerCfg` template function to the Helm chart `values.yaml` file. The `LicenseDockerCfg` template function renders a value based on the unique customer license file when the Helm chart is pulled. Write this rendered value to a pull secret, then reference the pull secret in the necessary template files for the Helm chart.
 
 For more information about the `LicenseDockerCfg` template function, see [LicenseDockerCfg](/reference/template-functions-license-context#licensedockercfg) in _License Context_.
 
@@ -301,6 +315,51 @@ To deliver customer-specific image pull secrets for a private registry:
 1. Package your Helm chart and add the packaged chart to a release in the Replicated vendor portal. For more information, see [Add a Helm Chart to a Release](helm-release#add-a-helm-chart-to-a-release).
 
 1. Save and promote the release to a development environment to test your changes.  
+
+### Update the Image URL to Reference the Proxy Service {#proxy-service}
+
+If you are using an external private registry, you must update the location of the private image in the Helm chart to reference the Replicated proxy service at `proxy.replicated.com`. This, along with the image pull secret for the customer, allows Replicated to access the private image for your application when your users install with the helm CLI.
+
+:::note
+This procedure is not required if you are using the Replicated private registry.
+:::
+
+To update the location of the external private registry to reference the proxy service:
+
+1. Create fields in the `values.yaml` file with the location of the private image on `proxy.replicated.com`:
+
+   **Example:**
+
+   ```yaml
+   apiImageRepository: proxy.replicated.com/proxy/my-kots-app ...
+   apiImageTag: v1.0.1
+   ```
+1. In the Replicated HelmChart custom resource `values` field, create a field for the location of the private image on the external registry:
+
+   **Example:**
+
+   ```yaml
+   values:
+     apiImageRepository: quay.io/my-org/api:v1.0.1
+   ```
+   The field name must be the same as the field name that you added to the `values.yaml` file.
+
+1. In the PodSpec in the Deployment manifest file, update the `image` field with template functions that reference the fields you created in the `values.yaml` file:
+
+   **Example:**
+
+   ```yaml
+   apiVersion: apps/v1
+   kind: Deployment
+   metadata:
+     name: example
+   spec:
+     template:
+       spec:
+         containers:
+           - name: api
+             image: '{{ .Values.apiImageRepository }}:{{ .Values.apiImageTag }}'
+   ```   
 
 ## Example: Delivering Custom License Fields
 
