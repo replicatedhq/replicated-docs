@@ -23,12 +23,12 @@ The following diagram illustrates the workflow for preflight checks and support 
 
 ![Troubleshoot Workflow Diagram](/images/troubleshoot-workflow-diagram.png)
 
-As shown in the diagram above, preflight checks and support bundles first use collectors to collect data from various sources, including the environment and application. Then, built-in redactors censor any sensitive information from the collected data. Finally, analyzers review the non-redacted data to identify common problems and execute outcomes. For more information, see [Collectors](#collectors), [Redactors](#redactors), and [Analyzers](#analyzers).
+As shown in the diagram above, preflight checks and support bundles first use collectors to collect data from various sources, including the cluster environment and application. Then, built-in redactors censor any sensitive information from the collected data. Finally, analyzers review the non-redacted data to identify common problems and execute outcomes. For more information, see [Collectors](#collectors), [Redactors](#redactors), and [Analyzers](#analyzers).
 
 Preflight checks and support bundles are based on the open-source Troubleshoot project, which is maintained by Replicated. For more information about specific types of Kubernetes collectors, analyzers, and redactors, see the [Troubleshoot](https://troubleshoot.sh/) documentation.
 
 ### Collectors
-Collectors identify what data to collect for analysis for preflight checks and support bundles. During the collection phase, information is collected from the cluster, the environment, the application, and other sources to be used later during the analysis phase. For example, you can collect data about the version of Kubernetes that is running in the cluster, logs from pods, information related to a database server, and so on.
+Collectors identify what data to collect for analysis for preflight checks and support bundles. During the collection phase, information is collected from the cluster, the environment, the application, and other sources to be used later during the analysis phase. For example, you can collect information about the Kubernetes version that is running in the cluster, information related to a database server, logs form pods, and so on.
 
 ### Redactors
 Redactors censor sensitive customer information from the data gathered by the collectors, before the preflight checks and support bundles analyze the data. By default, the following information is redacted:
@@ -43,7 +43,7 @@ Redactors censor sensitive customer information from the data gathered by the co
 This functionality cannot be disabled in the Replicated app manager, but you can add custom redactors.
 
 ### Analyzers
-Analyzers use the non-redacted the data from the collectors to identify issues or compliance, and execute the outcomes that you specify. For example, you can define an outcome if the Kubernetes version on the cluster does not meet the minimum version that your application supports.
+Analyzers use the non-redacted data from the collectors to identify issues and execute the outcomes that you specify. For example, you can define an outcome if the Kubernetes version on the cluster does not meet the minimum version that your application supports.
 
 Analyzer outcomes for preflight checks differ from the outcomes for support bundles:
 
@@ -94,7 +94,7 @@ To define preflight checks:
 
 1. Add an analyzer specification to analyze the data from the collectors you specified and provide outcomes. For example, you can set a `fail` outcome if the MySQL version is less than the minimum version. Then, specify a message to display that informs your customer of the reasons for the failure and steps they can take to fix the issues.
 
-  If you set a preflight analyzer to `strict: true`, any `fail` outcomes for that analyzer block the deployment of the release until your specified requirements are met. Consider the Replicated app manager cluster privileges when you enable the `strict` flag. Note that strict preflight analyzers are overwritten if the `exclude` flag is also being used. For more information about strict preflight checks, see [`strict`](https://troubleshoot.sh/docs/analyze/#strict) in the Troubleshoot documentation. For more information about cluster privileges, see [requireMinimalRBACPrivileges](https://troubleshoot.sh/docs/analyze/#strict).
+  If you set a preflight analyzer to `strict: true`, any `fail` outcomes for that analyzer block the deployment of the release until your specified requirements are met. Consider the Replicated app manager cluster privileges when you enable the `strict` flag. Also note that strict preflight analyzers are overwritten if the `exclude` flag is also being used. For more information about strict preflight checks, see [`strict`](https://troubleshoot.sh/docs/analyze/#strict) in the Troubleshoot documentation. For more information about cluster privileges, see `requireMinimalRBACPrivileges` for name-scoped access in [Configuring Role-Based Access](packaging-rbac#namespace-scoped-access).
 
     ```yaml
     apiVersion: troubleshoot.sh/v1beta2
@@ -205,9 +205,9 @@ To customize a support bundle:
 
   Additional analyzers that Replicated recommends considering are:
 
-    - **Resource statuses** - Check the status of various resources, such as deployment, Kubernetes StatefulSet, jobs, and so on.
-    - **Regular expressions** - Analyze arbitrary data.
-    - **Databases** - Check the version and connection status.
+    - **Resource statuses:** Check the status of various resources, such as deployment, Kubernetes StatefulSet, jobs, and so on.
+    - **Regular expressions:** Analyze arbitrary data.
+    - **Databases:** Check the version and connection status.
 
 1. (Optional) To add redactors to the default redactors that are automatically provided by the app manager, add the Redactor custom resource manifest (`kind: Redactor`) to your release. Then add additional Redactor custom resources to the manifest as needed.
 
