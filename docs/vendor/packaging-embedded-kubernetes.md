@@ -102,7 +102,7 @@ To create a separate Kubernetes installer:
     :::note
     Replicated recommends that you pin specific versions of Kubernetes and Kubernetes add-ons in the Kubernetes installer manifest, rather than use `latest` or x-ranges (such as 1.2.x). This ensures easily-reproducible versions across your customer installations.
 
-    For example, pin `Kubernetes 1.23.0` in your manifest to ensure that v1.23 of Kubernetes is installed along with the latest security and bug patch release for that version.
+    For example, pin `Kubernetes 1.23.0` in your manifest to ensure that version 1.23.0 of Kubernetes is installed.
 
     For more information about pinning Kubernetes versions, see [Versions](https://kurl.sh/docs/create-installer/#versions) and [Versioned Releases](https://kurl.sh/docs/install-with-kurl/#versioned-releases) in the kURL open source documentation.
     :::
