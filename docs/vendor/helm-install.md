@@ -323,7 +323,7 @@ To deliver customer-specific image pull secrets for a private registry:
 
 If you are using an external private registry, you must update the location of the private image in the Helm chart to reference the Replicated proxy service at `proxy.replicated.com`. This, along with the customer-specific image pull secret, allows Replicated to access the private image for your application when your users install with the helm CLI.
 
-To reference the proxy service, first create a field in the Helm chart `values.yaml` file with the URL of the location of the private image on `proxy.replicated.com`. Use template functions to reference this field from the Pod spec in the Helm chart. This ensures that Replicated can access the external registry through the proxy service when your users install with the helm CLI.
+To reference the proxy service, first create a field in the Helm chart `values.yaml` file with the URL of the location of the private image on `proxy.replicated.com`. Use template functions to reference this field from the Pod spec in the Helm chart. This allows Replicated to access the external registry through the proxy service when your users install with the helm CLI.
 
 Then, update the Replicated HelmChart custom resource manifest file with the URL for the image on your external registry. This ensures that the Replicated proxy service can automatically patch the image URL to reference `proxy.replicated.com` for installations with the kots CLI or Kubernetes installer.
 
