@@ -176,9 +176,9 @@ To customize host preflight checks:
                       message: Connected to https://myFavoriteWebsite.com
   ```
 
-1. (Optional) To disable the default host preflight checks and only run completely customized host preflight collectors and analyzers, it is recommended that you copy the default host preflight checks and make your customizations there. Many of the default host preflight checks are essential to the health and operability of the Kubernetes cluster, so removing them completely is ill-advised.
+1. (Optional) To disable the default host preflight checks and only run completely customized host preflight collectors and analyzers, Replicated recommends that you copy the default host preflight checks and make your customizations there. Many of the default host preflight checks are essential to the health and operability of the Kubernetes cluster, so removing them completely is ill-advised.
 
-  This procedure shows how to completely customize host preflights, using the default host preflights as a starting point.
+  This step shows how to completely customize host preflights, using the default host preflights as a starting point.
 
     1. Disable the default host preflight checks using `excludeBuiltinHostPreflights: true`.
     1. Copy the default `host-preflights.yaml` specification for kURL. To copy the default kURL host preflights YAML, see [host-preflights.yaml](https://github.com/replicatedhq/kURL/blob/main/pkg/preflight/assets/host-preflights.yaml) in the kURL repository.
