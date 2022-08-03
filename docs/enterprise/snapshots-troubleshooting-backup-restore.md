@@ -138,7 +138,7 @@ Application install overwrites the restic timeout that you set with the `kubectl
 
 #### Symptom
 
-The restic Pod is killed by the Linux kernel Out Off Memory (OOM) killer.
+The restic Pod is killed by the Linux kernel Out Of Memory (OOM) killer.
 
 #### Cause
 
