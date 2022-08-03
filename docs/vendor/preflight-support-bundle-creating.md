@@ -143,17 +143,17 @@ To customize a support bundle:
 1. Create a support bundle manifest file (`kind: SupportBundle`) in your release.
 1. Use one of the following support bundle template options to start populating your manifest file:
 
-    - To add collectors to the default collectors, copy the following basic support bundle template to your manifest file. In this template, the collectors field is empty, so only the default collectors run until you customize this file.
+      - To add collectors to the default collectors, copy the following basic support bundle template to your manifest file. In this template, the collectors field is empty, so only the default collectors run until you customize this file.
 
-      ```yaml
-      apiVersion: troubleshoot.sh/v1beta2
-      kind: SupportBundle
-      metadata:
-         name: collectors
-      spec:
-         collectors: []
-     ```
-    - To fully customize the support bundle, including editing or removing the default collectors and analyzers, copy the default `spec.yaml` file to your manifest file. For the default YAML file, see [spec.yaml](https://github.com/replicatedhq/kots/blob/main/pkg/supportbundle/defaultspec/spec.yaml) in the kots repository.
+        ```yaml
+        apiVersion: troubleshoot.sh/v1beta2
+        kind: SupportBundle
+        metadata:
+           name: collectors
+        spec:
+           collectors: []
+       ```
+      - To fully customize the support bundle, including editing or removing the default collectors and analyzers, copy the default `spec.yaml` file to your manifest file. For the default YAML file, see [spec.yaml](https://github.com/replicatedhq/kots/blob/main/pkg/supportbundle/defaultspec/spec.yaml) in the kots repository.
 
       :::note
       To help ensure best practices, Replicated app manager does not allow any changes to the parameters in the default `clusterInfo` and `clusterResources` collectors.
