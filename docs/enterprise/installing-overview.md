@@ -23,9 +23,9 @@ If the target cluster does not have outbound internet access, the application ca
 
 To install an application in an air gapped environment, the cluster must have access to an image registry. In this case, the app manager retags and pushes all images to the target registry. Replicated supports installations in air gapped environments on both existing clusters and on clusters created by the Kubernetes installer.
 
-For information about installing in an online environment, see [Installing in an online environment](installing-existing-cluster-online).
-
-For information about installing in an air gap environment, see [Installing in an air gapped environment](installing-existing-cluster-airgapped).
+For information about installing in air gapped environments, see:
+* **Existing cluster**: [Install in an Air Gapped Environment](installing-existing-cluster#air-gap) in _Installing on an Existing Cluster_
+* **Kubernetes installer provisioned cluster**: [Install in an Air Gapped Environment](installing-embedded-cluster#air-gap) in _Installing with the Kubernetes Installer_.
 
 ### Provide Access to the Target Namespaces
 

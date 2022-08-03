@@ -210,16 +210,11 @@ const sidebars = {
             'enterprise/installing-overview',
             'enterprise/installing-general-requirements',
             'enterprise/installing-stateful-component-requirements',
-            {
-              type: 'category',
-              label: 'Installing on an Existing Cluster',
-              items: [
-                'enterprise/installing-existing-cluster-online',
-                'enterprise/installing-existing-cluster-airgapped',
-                'enterprise/installing-existing-cluster-automation',
-              ],
-            },
+            'enterprise/installing-existing-cluster',
             'enterprise/installing-embedded-cluster',
+            'enterprise/cluster-management-add-nodes',
+            'enterprise/installing-app-setup',
+            'enterprise/installing-existing-cluster-automation',
             'enterprise/delete-admin-console',
           ],
         },
@@ -266,12 +261,18 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Snapshots',
+          label: 'Managing Backup and Restore',
           items: [
             'enterprise/snapshots-understanding',
-            'enterprise/snapshots-storage-destinations',
-            'enterprise/snapshots-configuring-nfs',
-            'enterprise/snapshots-configuring-hostpath',
+            {
+              type: 'category',
+              label: 'Configuring Storage Destinations',
+              items: [
+                'enterprise/snapshots-storage-destinations',
+                'enterprise/snapshots-configuring-nfs',
+                'enterprise/snapshots-configuring-hostpath',
+              ],
+            },
             'enterprise/snapshots-scheduling',
             'enterprise/snapshots-restoring-full',
             'enterprise/snapshots-restoring-partial',

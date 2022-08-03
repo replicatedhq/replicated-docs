@@ -163,6 +163,7 @@ To customize a support bundle:
 
 1. (Recommended) Add application Pod logs and set the retention options for the number of lines logged. Typically the selector attribute is matched to the labels.
 
+
     1. To get the labels for an application, either inspect the YAML or run the following command a running instance to see what labels are used:
 
       ```

@@ -34,7 +34,7 @@ The `admin-console garbage-collect-images` command can be used to trigger it man
 ### Restoring Deleted Images
 Deleted images may be reloaded from application and the Replicated admin console air gap bundles using the `admin-console push-images` command. For more information, see [admin-console push-images](../reference/kots-cli-admin-console-push-images/) in the kots CLI documentation.
 
-For an example of using the `admin-console push-images` command, see [Installing in an air gapped environment](installing-existing-cluster-airgapped).
+For an example of using the `admin-console push-images` command, see [Install in an Air Gapped Environment](installing-existing-cluster#air-gap) in _Installing on an Existing Cluster_.
 
 Registry address and namespace can be found on the Registry Settings page in the admin console.
 Registry username and password can be found in the `registry-creds` secret in the default namespace.

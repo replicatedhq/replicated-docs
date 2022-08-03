@@ -4,6 +4,106 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.08.03-0
+
+Released on August 3, 2022
+
+### New Features {#new-features-v2022-08-03-0}
+
+- Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) version 1.6.11.
+- Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.19.9.
+
+### Bug Fixes {#bug-fixes-v2022-08-03-0}
+
+- Fixes an issue in [Rook add-on](https://kurl.sh/docs/add-ons/rook) versions 1.5.11 and 1.5.12 that could cause Rook upgrades to fail from versions prior to 1.5.11 due to `auth_allow_insecure_global_id_reclaim` improperly set to `false` for [unpatched Ceph versions](https://docs.ceph.com/en/quincy/security/CVE-2021-20288/).
+- Fixes an issue in [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) versions prior to 0.19.9 that could cause Ceph to remain in `HEALTH_WARN` state for as long as an hour on a new installation.
+
+## Release v2022.07.29-0
+
+Released on July 29, 2022
+
+### New Features {#new-features-v2022-07-29-0}
+
+- Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.19.6.
+
+### Improvements {#improvements-v2022-07-29-0}
+
+- kURL is now [CIS Kubernetes Benchmark](https://www.cisecurity.org/benchmark/kubernetes) compliant using the latest [github.com/aquasecurity/kube-bench](https://github.com/aquasecurity/kube-bench) version v0.6.8 when property `kubernetes.cisCompliance` is set to `true`.
+
+### Bug Fixes {#bug-fixes-v2022-07-29-0}
+
+- Fixes an issue in [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) versions prior to 0.19.6 that causes unnecessary downtime when adding additional primary nodes and using the EKCO [internal load balancer](https://kurl.sh/docs/add-ons/ekco#internal-load-balancer).
+- Fixes an issue in [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) versions prior to 0.19.6 that causes long running kubectl commands such as `kubectl logs` or `kubectl exec` to timeout after 20 seconds of inactivity when using the EKCO [internal load balancer](https://kurl.sh/docs/add-ons/ekco#internal-load-balancer).
+
+## Release v2022.07.28-0
+
+Released on July 28, 2022
+
+### New Features {#new-features-v2022-07-28-0}
+
+- Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.19.3.
+- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.78.0.
+
+### Improvements {#improvements-v2022-07-28-0}
+
+- Updates the haproxy image to tag 2.6.2-alpine3.16 for [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.19.3 to address the following critical severity CVEs: CVE-2022-1586, CVE-2022-1587.
+- The property `kubernetes.loadBalancerUseFirstPrimary`, and equivalent flag `kubernetes-load-balancer-use-first-primary`, has been added to automatically use the first primary address as the cluster control plane endpoint. This settings is not recommended. Enable the [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) and use the property `ekco.enableInternalLoadBalancer` instead.
+
+### Bug Fixes {#bug-fixes-v2022-07-28-0}
+
+- Fixes an issue with [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) versions prior to 0.19.3 which causes registry certificates generated to be expired upon renewal.
+
+## Release v2022.07.22-0
+
+Released on July 22, 2022
+
+### New Features {#new-features-v2022-07-22-0}
+
+- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.77.0.
+
+### Improvements {#improvements-v2022-07-22-0}
+
+- Updates the kurlsh/s3cmd image to tag 20220722-4585dda for the latest [Registry](https://kurl.sh/docs/add-ons/registry) and [Velero](https://kurl.sh/docs/add-ons/velero) add-on versions, to address the following high severity CVEs: CVE-2022-30065, CVE-2022-2097, CVE-2022-30065.
+
+## Release v2022.07.20-0
+
+Released on July 20, 2022
+
+### New Features {#new-features-v2022-07-20-0}
+
+- Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.6.5-20220720 and 2.8.1-20220720 with a fix for broken iptables command on RHEL 8 based distributions.
+- Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-07-17T15-43-14Z.
+
+### Bug Fixes {#bug-fixes-v2022-07-20-0}
+
+- Fixes an issue on RHEL 8 based distributions that causes the iptables command to report error `table "filter" is incompatible, use 'nft' tool` when using [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.6.5-20220616 and 2.8.1-20220616.
+
+## Release v2022.07.15-2
+
+Released on July 15, 2022
+
+### Improvements {#improvements-v2022-07-15-2}
+
+- Updates the local-volume-provider image to v0.3.6 for the [Velero add-on](https://kurl.sh/docs/add-ons/velero) to address CVE-2021-38561 with high severity.
+
+## Release v2022.07.15-1
+
+Released on July 15, 2022
+
+### New Features {#new-features-v2022-07-15-1}
+
+- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.76.1.
+- Adds [Kubernetes add-on](https://kurl.sh/docs/add-ons/kubernetes) versions 1.24.3, 1.23.9, 1.22.12 and 1.21.14.
+- Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.6.5-20220616 and 2.8.1-20220616 with Replicated-created security patches.
+
+### Improvements {#improvements-v2022-07-15-1}
+
+- Changes Weave version 2.6.5 and 2.8.1 to once again use upstream weave images.
+
+### Bug Fixes {#bug-fixes-v2022-07-15-1}
+
+- Fixes an issue that caused Rook to Longhorn migration failures due to Ceph claiming Longhorn devices.
+
 ## Release v2022.07.15-0
 
 Released on July 15, 2022

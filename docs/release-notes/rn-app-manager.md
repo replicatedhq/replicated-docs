@@ -4,6 +4,58 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.78.0
+
+Released on July 28, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### New Features {#new-features-1-78-0}
+* The analyze application button on the [Troubleshoot tab](/enterprise/troubleshooting-an-app) now works in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Adds a deploy modal for versions on the [version history](/enterprise/updating-apps#update-an-application-in-the-admin-console) page in [Helm managed mode (Alpha)](/vendor/helm-install).
+
+### Improvements {#improvements-1-78-0}
+* Upgrades the internal database (Postgres) used by the admin console from `10.21-alpine` to `14.4-alpine`.
+
+### Bug Fixes {#bug-fixes-1-78-0}
+* Fixes an issue where all [dashboard links](/vendor/admin-console-adding-buttons-links) were rewritten to use the admin console hostname instead of the hostname provided in the application manifest.
+* Fixes a bug that caused errors when trying to generate `helm upgrade` commands from the [config page](/vendor/config-screen-about#admin-console-config-tab) in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Fixes a bug where the same version could be listed twice on the [version history](/enterprise/updating-apps#update-an-application-in-the-admin-console) page in [Helm managed mode (Alpha)](/vendor/helm-install).
+
+## 1.77.0
+
+Released on July 22, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### New Features {#new-features-1-77-0}
+* Displays version history information for Helm charts when running in Helm-managed mode (Alpha). For more information, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install)
+* License information can now be synced from the admin console's Dashboard and License pages for Helm charts when running in Helm-managed mode (Alpha). For more information, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install)
+* Admin console now supports limited RBAC mode when running in Helm-managed mode (Alpha). For more information, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install)
+
+### Improvements {#improvements-1-77-0}
+* Better handling for network errors on the Helm install modal in Helm-managed mode (Alpha).
+* Helm install command now includes authentication in Helm-managed mode (Alpha).
+* Adresses the following high severity CVEs: CVE-2022-28946, CVE-2022-29162, and CVE-2022-1996.
+
+### Bug Fixes {#bug-fixes-1-77-0}
+* Fixes an issue that caused automatic deployments not to work on channels where semantic versioning was disabled, unless the version labels were valid [semantic versions](https://semver.org/).
+* Fixes an issue that caused errors after the admin console pod restart until the Dashboard tab is visited in Helm-managed mode (Alpha).
+* Begins using a temp directory instead of the current directory, to avoid file permissions issues when generating the `helm upgrade` command after editing the config. For more information, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install).
+
+## 1.76.1
+
+Released on July 15, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### Bug Fixes {#bug-fixes-1-76-1}
+* Fixes an issue that caused private images in some collectors to not be rewritten during preflight checks.
+* Fixes an issue where the [Distribution](/reference/template-functions-static-context#distribution) template function returns an empty string in minimal RBAC installations running on OpenShift clusters.
+* Updates the golang.org/x/text go module to address CVE-2021-38561 with high severity.
+* Updates the local-volume-provider image to address CVE-2021-38561 with high severity.
+* Updates the MinIO image to address CVE-2022-1271 with high severity.
+
 ## 1.76.0
 
 Released on July 12, 2022
@@ -15,7 +67,6 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### Bug Fixes {#bug-fixes-1-76-0}
 * Fixes a bug that causes links defined in the [SIG Application custom resource](/reference/custom-resource-sig-application) to not be rewritten to the hostname used in the browser.
-
 
 ## 1.75.0
 
@@ -246,7 +297,7 @@ Released on March 21, 2022
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### New Features
-* Adds support for installing a specific application version. For more information about installing a specific application version, see [Installing in an Online (Internet-connected) Environment](/enterprise/installing-existing-cluster-online) and [Installing with the Kubernetes Installer](/enterprise/installing-embedded-cluster).
+* Adds support for installing a specific application version. For more information about installing a specific application version, see [Install in an Online Environment](/enterprise/installing-existing-cluster#online) in _Installing on an Existing Cluster_ and [Installing with the Kubernetes Installer](/enterprise/installing-embedded-cluster).
 * Extends the ability of status informers to detect if the application is being updated.
 * Adds the ability to provide a strict preflight, which cannot be skipped and must not have any failure outcomes. Any failure outcomes will prevent the user from deploying the application. For more information on strict preflights, see [About preflight checks and support bundles​](/vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles) in Creating Preflight Checks and Support Bundles.
 * New versions can automatically be deployed in the admin console, regardless of whether the vendor uses semantic versioning. For more information about automatically deploying new versions, see [Configure Automatic Updates​](/enterprise/updating-apps#configure-automatic-updates) in Updating an Application.
@@ -373,7 +424,7 @@ Supported on Kubernetes: 1.20, 1.21, and 1.22
 * Updates Postgres to version 10.19.
 
 ### Bug Fixes
-* Fixes an issue that caused images to be pushed multiple times during an [airgap installation](../enterprise/installing-existing-cluster-airgapped#upload-the-airgap-bundle) when the [Native Helm](../vendor/helm-processing/#native-helm) feature is enabled.
+* Fixes an issue that caused images to be pushed multiple times during an [airgap installation](/enterprise/installing-existing-cluster#air-gap) when the [Native Helm](/vendor/helm-processing/#native-helm) feature is enabled.
 * Fixes an issue that prevented the deployment status labels from breaking into multiple lines on small displays.
 
 ## 1.59.3
