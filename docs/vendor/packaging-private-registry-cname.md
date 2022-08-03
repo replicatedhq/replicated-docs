@@ -8,7 +8,7 @@ You configure custom domains for the Replicated private registry and proxy servi
 
 ## About Verification
 
-Verification of the domain is required using a TXT record that undergoes separate verification checks for:
+Verification of the domain is required using TXT records that undergo separate verification checks for:
 
 - Domain ownership: This verification is done when you initially add a record.
 - TLS certificate creation: Each new domain must have a new TLS certificate to be verified.
