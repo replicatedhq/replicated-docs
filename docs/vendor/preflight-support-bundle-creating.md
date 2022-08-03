@@ -70,9 +70,9 @@ To customize host preflight checks:
 
 1. Create a Kubernetes installer (`kind: Installer`). For more information, see [Creating a Kubernetes Installer](https://docs.replicated.com/vendor/packaging-embedded-kubernetes).
 
-1. (Optional) To disable the default host preflight checks for Kubernetes and all included add-ons, add the `kurl` field to your Installer manifest and add the `excludeBuiltinHostPreflights` set to `true`. In this case, no host preflight checks will occur.
+1. (Optional) To disable the default host preflight checks for Kubernetes and all included add-ons, add the `kurl.excludeBuiltinHostPreflights: true` to your Installer manifest. In this case, no host preflight checks are run.
 
-  `excludeBuiltinHostPreflights` is an aggregate flag, so setting it will disable the default host preflights for Kubernetes as well as any included add-ons.
+  `excludeBuiltinHostPreflights` is an aggregate flag, so setting it to `true` disables the default host preflights for Kubernetes and all included add-ons.
 
   **Example:**
 
@@ -108,7 +108,7 @@ To customize host preflight checks:
 
 1. (Optional) To run customized host preflight checks in addition to the default host preflight checks, add a `hostPreflights` field to the `kurl` field in your Installer manifest. Under the `hostPreflights` field, add a host preflight specification (`kind: HostPreflight`) with your customizations.
 
-  Customized host preflight checks run in addition to default host preflight checks, if the default host preflight checks are enabled. If you only want to make the default host preflight checks more restrictive, add your more restrictive host preflight checks to `kurl.hostPreflights`, and do not set `excludeBuiltinHostPreflights`. For example, if your application requires 8 CPUs but the default host preflight check requires 4 CPUs, running the default host preflight checks will check that there are at least 4 CPUs, and the custom host preflight will check that there are at least 8 CPUs.
+  Customized host preflight checks run in addition to default host preflight checks, if the default host preflight checks are enabled. If you only want to make the default host preflight checks more restrictive, add your more restrictive host preflight checks to `kurl.hostPreflights`, and do not set `excludeBuiltinHostPreflights`. For example, if your application requires 6 CPUs but the default host preflight check requires 4 CPUs, you can simply add a custom host preflight check for 6 CPUs, since the default host preflight must pass if the more restrictive custom check passes.
 
   The following example shows customized host preflight checks for:
 
@@ -116,6 +116,11 @@ To customize host preflight checks:
     - Accessing a website that is critical to the application
 
   ```yaml
+  apiVersion: "cluster.kurl.sh/v1beta1"
+  kind: "Installer"
+  metadata:
+    name: "latest"
+  spec:
     kubernetes:
       version: "1.23.x"
     weave:
@@ -171,9 +176,9 @@ To customize host preflight checks:
                       message: Connected to https://myFavoriteWebsite.com
   ```
 
-1. (Optional) To disable the default host preflights and only run completely customized host preflight collectors and analyzers, it is recommended that you copy the default host preflight checks and make your customizations there. Many of the default host preflight checks are essential to the health and operability of the Kubernetes cluster, so removing them completely comes with risks.
+1. (Optional) To disable the default host preflight checks and only run completely customized host preflight collectors and analyzers, it is recommended that you copy the default host preflight checks and make your customizations there. Many of the default host preflight checks are essential to the health and operability of the Kubernetes cluster, so removing them completely is ill-advised.
 
-  The following example shows how to completely customize host preflights, using the default host preflights as a starting point.
+  This procedure shows how to completely customize host preflights, using the default host preflights as a starting point.
 
     1. Disable the default host preflight checks using `excludeBuiltinHostPreflights: true`.
     1. Copy the default `host-preflights.yaml` specification for kURL. To copy the default kURL host preflights YAML, see [host-preflights.yaml](https://github.com/replicatedhq/kURL/blob/main/pkg/preflight/assets/host-preflights.yaml) in the kURL repository.
