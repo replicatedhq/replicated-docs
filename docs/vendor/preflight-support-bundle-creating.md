@@ -200,7 +200,9 @@ To customize a support bundle:
     - **Files:** Copy files from pods and hosts.
     - **HTTP:** Consume your own application APIs with HTTP requests. If your application has its own API that serves status, metrics, performance data, and so on, this information can be collected and analyzed.
 
-1. Add analyzers based on conditions that you expect for your application. You might require that a cluster have 2 CPUs available to your application or have a minimum of 4GB memory available. Good analyzers clearly identify failure modes. For example, if you can identify a log message from your database component that indicates a problem, you should write an analyzer that checks for that log.
+1. Add analyzers based on conditions that you expect for your application. You might require that a cluster have 2 CPUs available to your application or have a minimum of 4GB memory available.
+
+  Good analyzers clearly identify failure modes. For example, if you can identify a log message from your database component that indicates a problem, you should write an analyzer that checks for that log.
 
   At a minimum, include application log analyzers. A simple text analyzer can detect specific log lines and inform an end user of remediation steps.
 
