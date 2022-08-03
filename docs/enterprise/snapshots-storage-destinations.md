@@ -2,7 +2,7 @@
 
 This topic describes the supported storage destinations for backups with the Replicated snapshots feature. It includes the prerequisites for configuring storage destinations for snapshots, and lists the available fields for cloud storage destinations.
 
-## Overview of Configuring Storage destinations
+## Overview of Configuring Storage Destinations
 
 You configure the snapshots feature to store backups on a supported storage provider backend using the kots CLI or the Snapshots page in the admin console. You configure a storage destination for both existing clusters and clusters provisioned by the Replicated Kubernetes installer.
 
