@@ -17,7 +17,7 @@ the cluster before they install and upgrade your application. Thorough preflight
 
 * **Support bundles**: Support bundles let you collect and analyze troubleshooting data
 from your customers' clusters to help you diagnose problems with application
-deployments. Customers generate support bundles from the Replicated admin console, where analyzers can immediately suggest solutions to common . CUstomers can also share support bundles with your support team from the admin console. Your support team can upload the support bundle to the Replicated vendor portal for further diagnosis using Replicated analyzers.
+deployments. Customers generate support bundles from the Replicated admin console, where analyzers can immediately suggest solutions to common problems. Customers can also share support bundles with your support team from the admin console. Your support team can upload the support bundle to the Replicated vendor portal for further diagnosis using Replicated analyzers.
 
 The following diagram illustrates the workflow for preflight checks and support bundles:
 
@@ -28,7 +28,7 @@ As shown in the diagram above, preflight checks and support bundles first use co
 Preflight checks and support bundles are based on the open-source Troubleshoot project, which is maintained by Replicated. For more information about specific types of Kubernetes collectors, analyzers, and redactors, see the [Troubleshoot](https://troubleshoot.sh/) documentation.
 
 ### Collectors
-Collectors identify what data to collect for analysis for preflight checks and support bundles. During the collection phase, information is collected from the cluster, the environment, the application, and other sources to be used later during the analysis phase. For example, you can collect information about the Kubernetes version that is running in the cluster, information related to a database server, logs form pods, and so on.
+Collectors identify what data to collect for analysis for preflight checks and support bundles. During the collection phase, information is collected from the cluster, the environment, the application, and other sources to be used later during the analysis phase. For example, you can collect information about the Kubernetes version that is running in the cluster, information related to a database server, logs from pods, and so on.
 
 ### Redactors
 Redactors censor sensitive customer information from the data gathered by the collectors, before the preflight checks and support bundles analyze the data. By default, the following information is redacted:
@@ -121,7 +121,7 @@ To define preflight checks:
               - pass:
                   message: The MySQL server is ready
     ```
-1. (Optional) To add redactors to the default redactors that are automatically provided by the app manager, add the Redactor custom resource manifest (`kind: Redactor`) to your release. Then add additional Redactor custom resources to the manifest as needed.
+1. (Optional) To add redactors to the default redactors that are automatically provided by the app manager, add the Redactor custom resource manifest (`kind: Redactor`) to your release. Then add Redactor custom resource fields to the manifest as needed.
 
     :::note
     The default redactors included with Replicated app manager cannot be disabled.
@@ -209,7 +209,7 @@ To customize a support bundle:
     - **Regular expressions:** Analyze arbitrary data.
     - **Databases:** Check the version and connection status.
 
-1. (Optional) To add redactors to the default redactors that are automatically provided by the app manager, add the Redactor custom resource manifest (`kind: Redactor`) to your release. Then add additional Redactor custom resources to the manifest as needed.
+1. (Optional) To add redactors to the default redactors that are automatically provided by the app manager, add the Redactor custom resource manifest (`kind: Redactor`) to your release. Then add Redactor custom resource fields to the manifest as needed.
 
   :::note
   The default redactors included with Replicated app manager cannot be disabled.
