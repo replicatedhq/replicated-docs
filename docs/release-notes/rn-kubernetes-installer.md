@@ -24,7 +24,7 @@ Released on July 29, 2022
 
 ### New Features {#new-features-v2022-07-29-0}
 
-- Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version v0.19.6.
+- Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.19.6.
 
 ### Improvements {#improvements-v2022-07-29-0}
 
@@ -32,8 +32,8 @@ Released on July 29, 2022
 
 ### Bug Fixes {#bug-fixes-v2022-07-29-0}
 
-- Fixes an issue in [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) versions prior to v0.19.6 that causes unnecessary downtime when adding additional primary nodes and using the EKCO [internal load balancer](https://kurl.sh/docs/add-ons/ekco#internal-load-balancer).
-- Fixes an issue in [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) versions prior to v0.19.6 that causes long running kubectl commands such as `kubectl logs` or `kubectl exec` to timeout after 20 seconds of inactivity when using the EKCO [internal load balancer](https://kurl.sh/docs/add-ons/ekco#internal-load-balancer).
+- Fixes an issue in [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) versions prior to 0.19.6 that causes unnecessary downtime when adding additional primary nodes and using the EKCO [internal load balancer](https://kurl.sh/docs/add-ons/ekco#internal-load-balancer).
+- Fixes an issue in [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) versions prior to 0.19.6 that causes long running kubectl commands such as `kubectl logs` or `kubectl exec` to timeout after 20 seconds of inactivity when using the EKCO [internal load balancer](https://kurl.sh/docs/add-ons/ekco#internal-load-balancer).
 
 ## Release v2022.07.28-0
 
