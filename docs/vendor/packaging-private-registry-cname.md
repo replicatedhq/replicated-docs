@@ -131,7 +131,7 @@ To configure a custom domain name:
   ```
   {
       "registry": {
-          "hostname": "registry.enterprise.ttl.sh",
+          "hostname": "registry.enterprise.myapp.com",
           "is_active": false,
           "verification_type": "",
           "domain_verification_status": "active",
