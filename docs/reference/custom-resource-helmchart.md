@@ -117,7 +117,11 @@ For more information, see [Defining Installation Order for Native Helm Charts](.
 
 ## helmUpgradeFlags
 
-Specifies additional flags to pass to the `helm upgrade` command for charts that have `useHelmInstall: true`.
+:::note
+`helmUpgradeFlags` is available in the app manager v1.75.0 and later.
+:::
+
+Specifies additional flags to pass to the `helm upgrade` command for charts that have `useHelmInstall: true`. These flags are passed in addition to any flags the app manager passes by default. The values specified here take precedence if the app manager already passes the same flag.
 
 The app manager uses `helm upgrade` for all deployments of an application (not just upgrades) by specifying the `--install` flag.
 For non-boolean flags that require an additional argument, such as `--timeout 1200s`, you must use an equals sign or specify the additional argument separately in the array. For example:

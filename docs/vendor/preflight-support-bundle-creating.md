@@ -143,6 +143,7 @@ To customize a support bundle:
 1. Create a support bundle manifest file (`kind: SupportBundle`) in your release.
 1. Use one of the following support bundle template options to start populating your manifest file:
 
+
     - To add collectors to the default collectors, copy the following basic support bundle template to your manifest file. In this template, the collectors field is empty, so only the default collectors run until you customize this file.
 
       ```yaml
@@ -162,6 +163,7 @@ To customize a support bundle:
 1. Add, edit, or remove any collectors in the file.
 
 1. (Recommended) Add application Pod logs and set the retention options for the number of lines logged. Typically the selector attribute is matched to the labels.
+
 
     1. To get the labels for an application, either inspect the YAML or run the following command a running instance to see what labels are used:
 

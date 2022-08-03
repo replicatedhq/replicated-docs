@@ -52,7 +52,8 @@ To install the admin console on an existing cluster, the cluster must meet the f
 * **Admin console minimum requirements**: The admin console requires a minimum of 5GB of disk space on the cluster. This includes 4GB for the object store PersistentVolume and 1GB for the PostgreSQL PersistentVolume. For more information, see [Requirements for Admin Console State](installing-stateful-component-requirements).
 * **Kubernetes version compatibility**: The version of Kubernetes running on the cluster must be compatible with the version of KOTS that you use to install the application. This compatibility requirement does not include any specific and additional requirements defined by the software vendor for the application.
 
-   For more information about the versions of Kubernetes that are compatible with each version of KOTS, see [Kubernetes Version Compatibility](#kubernetes-version-compatibility).
+   For more information about the versions of Kubernetes that are compatible with each version of KOTS, see [Kubernetes Version Compatibility](#kubernetes-version-compatibility) above.
+* **OpenShift version compatibility**: For Red Hat OpenShift clusters, the version of OpenShift must use a supported Kubernetes version. For more information about supported Kubernetes versions, see [Kubernetes Version Compatibility](#kubernetes-version-compatibility) above.
 * **Storage class**: The cluster must have an existing storage class available. For more information, see [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) in the Kubernetes documentation.
 * **Role-based access control (RBAC)**: Replicated requires the following RBAC permissions on the cluster:
    * An existing namespace and an RBAC binding that permits the user of the kubectl command-line tool to create workloads, ClusterRoles, and ClusterRoleBindings.

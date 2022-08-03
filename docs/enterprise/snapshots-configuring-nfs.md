@@ -1,15 +1,23 @@
-# Configuring NFS
+# Configuring a NFS
 
 > Introduced in the Replicated app manager v1.33.0
 
 You can configure a Network File System (NFS) as your snapshots storage destination. For more information about snapshot storage destinations, see [Storage destinations](snapshots-storage-destinations).
 
-Prerequisites:
+## Requirements
 
-* Make sure that you have the NFS server already set up and configured to allow access from all the nodes in the cluster.
-* Make sure all the nodes in the cluster have the necessary NFS client packages installed to be able to communicate with the NFS server.
+The following are requirements for configuring a NFS as the storage destination:
+
+* The NFS server must be configured to allow access from all the nodes in the cluster.
+
+* The NFS directory must be writable by the user:group 1001:1001.
+
+   Ensure that you configure the user:group 1001:1001 permissions for the directory on the NFS server.
+
+* All the nodes in the cluster must have the necessary NFS client packages installed to be able to communicate with the NFS server.
 For example, the `nfs-common` package is a common package used on Ubuntu.
-* Make sure that any firewalls are properly configured to allow traffic between the NFS server and clients (cluster nodes).
+
+* Any firewalls must be properly configured to allow traffic between the NFS server and clients (cluster nodes).
 
 ## Configure NFS on Kubernetes Installer-created Clusters
 

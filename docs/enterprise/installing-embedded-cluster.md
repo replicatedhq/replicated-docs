@@ -1,10 +1,6 @@
 # Installing with the Kubernetes Installer
 
-This document explains how to install an application and the Replicated admin console on a cluster created by the Replicated Kubernetes installer.
-
-:::note
-With KOTS v1.67.0 and later, you can install a specific version of the application. Use the `app-version-label` flag and the version label for a particular version of your vendor's application. For example, `curl https://kurl.sh/supergoodtool | sudo bash -s app-version-label=3.1.0`.
-:::
+This topic explains how to install an application on a cluster provisioned by the Replicated Kubernetes installer.
 
 The Kubernetes installer is based on the open source kURL project, which is maintained by Replicated. For more information about installing with kURL, including advanced installation options, see the [kURL documentation](https://kurl.sh/docs/introduction/).
 
@@ -21,23 +17,34 @@ Complete the following before you perform this task:
     - Configured to distribute traffic to all healthy control plane nodes in its target list.
     - (Optional) Preconfigured by passing the `load-balancer-address=HOST:PORT` flag.
 
-## Install in Online Environments
+## Install in an Online Environment {#online}
 
-To install the admin console and an application in an online environment:
+To install an application in an online environment:
 
-1. Run the installation command provided by the application vendor to install the admin console:
+Run the installation command provided by the application vendor to provision the cluster and install the kots CLI, the Replicated admin console, and the application on the cluster:
+   * **Install the latest version of the application**:
 
-  ```bash
-  curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash
-  ```
-  Replace `APP_SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
+   ```bash
+   curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash
+   ```
 
-1. Using the admin console URL and password that displays when the installation script finishes, upload the license file and install the application.
+   Replace `APP_SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
 
+   * **(App manager v1.67.0 and later) Install a specific version of the application**:
+     With the app manager v1.67.0 and later, you can install a specific version of the application. Use the `app-version-label` flag and the version label for a particular version of your vendor's application.
 
-## Install in Air Gapped Environments
+     ```shell
+     curl https://k8s.kurl.sh/APP_SLUG | sudo bash -s app-version-label=VERSION_LABEL
+     ```
+     Replace:
+     * `APP_SLUG` with the unique slug for the application.
+     * `VERSION_LABEL` with the label for the version of the application to install. For example, `--app-version-label=3.0.1`.
 
-To install the admin console and an application in an air gapped environment:
+After the installation command finishes, note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the installation command. Then, log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
+
+## Install in an Air Gapped Environment {#air-gap}
+
+To install an application in an air gapped environment:
 
 1. Run the following commands:
 
@@ -50,7 +57,7 @@ To install the admin console and an application in an air gapped environment:
     Replace `FILENAME` with the name of the kURL air gap `.tar.gz` file.
 
     :::note
-    You can construct the URL for the air gap bundle by prefixing the URL path for online installations with `/bundle` and adding `.tar.gz` to the end. For more information, see [Install in an Online Environment](#install-in-an-online-environment).
+    You can construct the URL for the air gap bundle by prefixing the URL path for online installations with `/bundle` and adding `.tar.gz` to the end. For more information, see [Install in an Online Environment](#online).
     :::
 
   1. Install the application with the application `.airgap` bundle:
@@ -71,6 +78,8 @@ To install the admin console and an application in an air gapped environment:
       * `PASSWORD` with a shared password.
 
     For more information about the `kots install` command, see [install](../reference/kots-cli-install) in the kots CLI documentation.
+
+After the installation command finishes, note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the installation command. Then, log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
 
 ## Installing with High Availability Mode
 
@@ -99,7 +108,7 @@ To install with high availability in an online environment:
 
     - If you are using an external load balancer, pass the load balancer address.
 
-1. Using the admin console URL and password that displays when the installation script finishes, upload the license file and install the application.
+After the installation command finishes, note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the installation command. Then, log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
 
 ### Install with HA in Air Gapped Environments
 
@@ -116,7 +125,7 @@ To install with high availability in an air gapped environment:
   Replace `FILENAME` with the name of the kURL air gap `.tar.gz` file.
 
   :::note
-  You can construct the URL for the air gap bundle by prefixing the URL path for online installations with `/bundle` and adding `.tar.gz` to the end. For more information, see [Install in an Online Environment](#install-in-an-online-environment).
+  You can construct the URL for the air gap bundle by prefixing the URL path for online installations with `/bundle` and adding `.tar.gz` to the end. For more information, see [Install in an Online Environment](#online).
   :::
 
 1. If you did not preconfigure a load balancer, you are prompted during the installation. Do one of the following:
@@ -144,26 +153,4 @@ To install with high availability in an air gapped environment:
 
   For more information about the `kots install` command, see [install](../reference/kots-cli-install) in the kots CLI documentation.
 
-## Join Primary and Secondary Nodes
-
-You can generate commands in the admin console to join additional primary and secondary nodes to the cluster. Primary nodes run services that control the cluster. Secondary nodes run services that control the pods that host the application containers. Adding nodes can help manage resources to ensure that your application runs smoothly.
-
-For high availability clusters, Kubernetes recommends using at least 3 primary nodes, and that you use an odd number of nodes to help with leader selection if machine or zone failure occurs. For more information, see [Creating Highly Available Clusters with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/) in the Kubernetes documentation.
-
-To add primary and secondary nodes:
-
-1. (Air gap only) Download and extract the `.tar.gz` bundle on the remote node before running the join command.
-1. In the admin console, click **Cluster > Add Node**.
-1. Copy the command and run it on the node that you are joining to the cluster.
-
-  **Example:**
-
-  ```
-  curl -sSL https://k8s.kurl.sh/my-test-app-unstable/join.sh | sudo bash -s \
-  kubernetes-master-address=192.0.2.0:6443 \
-  kubeadm-token=8z0hjv.s9wru9z \
-  kubeadm-token-ca-hash=sha256:289f5c0d61775edec20d4e980602deeeeeeeeeeeeeeeeffffffffffggggggg \
-  docker-registry-ip=198.51.100.3 \
-  kubernetes-version=v1.19.16 \
-  primary-host=203.0.113.6
-  ```
+After the installation command finishes, note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the installation command. Then, log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).

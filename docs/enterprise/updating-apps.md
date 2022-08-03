@@ -43,10 +43,7 @@ the changes between them by clicking **Diff releases** in the right corner.
 the application vendor.
 
    [![Preflight Checks](/images/preflight-checks.png)](/images/preflight-checks.png)
-:::note
-Not all preflight failures and warnings prevent the upgrade to a new version. Unless the admin console blocks you from continuing due to a failed preflight check, you can decide to ignore these failures and proceed with the upgrade.
-For more information about preflight checks that prevent application deployment, see [Resolving Strict Preflight Checks](../enterprise/installing-existing-cluster-online#resolve-strict-preflight-checks).
-:::
+
 1. To update the application, return to the Version History tab
 and click **Deploy** next to the target version.
 
@@ -66,8 +63,7 @@ for and downloads new versions.
 You can also configure the admin console to automatically deploy new versions of
 the application after it downloads them. The admin console only deploys new versions
 automatically if preflight checks pass. By default, the admin console does not
-automatically deploy any version of an application. The admin console also never
-automatically deploys a version that you manually download by clicking **Check for update**.
+automatically deploy any version of an application.
 
 You cannot configure automatic updates for applications installed in air gapped
 environments.
