@@ -4,13 +4,27 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.08.03-0
+
+Released on August 3, 2022
+
+### New Features {#new-features-v2022-08-03-0}
+
+- Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) version 1.6.11.
+- Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.19.9.
+
+### Bug Fixes {#bug-fixes-v2022-08-03-0}
+
+- Fixes an issue in [Rook add-on](https://kurl.sh/docs/add-ons/rook) versions 1.5.11 and 1.5.12 that could cause Rook upgrades to fail from versions prior to 1.5.11 due to `auth_allow_insecure_global_id_reclaim` improperly set to `false` for [unpatched Ceph versions](https://docs.ceph.com/en/quincy/security/CVE-2021-20288/).
+- Fixes an issue in [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) versions prior to 0.19.9 that could cause Ceph to remain in `HEALTH_WARN` state for as long as an hour on a new installation.
+
 ## Release v2022.07.29-0
 
 Released on July 29, 2022
 
 ### New Features {#new-features-v2022-07-29-0}
 
-- Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version v0.19.6.
+- Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.19.6.
 
 ### Improvements {#improvements-v2022-07-29-0}
 
@@ -18,8 +32,8 @@ Released on July 29, 2022
 
 ### Bug Fixes {#bug-fixes-v2022-07-29-0}
 
-- Fixes an issue in [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) versions prior to v0.19.6 that causes unnecessary downtime when adding additional primary nodes and using the EKCO [internal load balancer](https://kurl.sh/docs/add-ons/ekco#internal-load-balancer).
-- Fixes an issue in [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) versions prior to v0.19.6 that causes long running kubectl commands such as `kubectl logs` or `kubectl exec` to timeout after 20 seconds of inactivity when using the EKCO [internal load balancer](https://kurl.sh/docs/add-ons/ekco#internal-load-balancer).
+- Fixes an issue in [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) versions prior to 0.19.6 that causes unnecessary downtime when adding additional primary nodes and using the EKCO [internal load balancer](https://kurl.sh/docs/add-ons/ekco#internal-load-balancer).
+- Fixes an issue in [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) versions prior to 0.19.6 that causes long running kubectl commands such as `kubectl logs` or `kubectl exec` to timeout after 20 seconds of inactivity when using the EKCO [internal load balancer](https://kurl.sh/docs/add-ons/ekco#internal-load-balancer).
 
 ## Release v2022.07.28-0
 
