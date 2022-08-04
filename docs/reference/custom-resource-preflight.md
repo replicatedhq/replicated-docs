@@ -44,6 +44,12 @@ spec:
   analyzers: []
 ```
 
+## Global Fields
+
+Global fields, also known as shared properties, are fields that are supported on all collectors or all analyzers. The following sections list the global fields for collectors and analyzers respectively.
+
+Additionally, each collector and analyzer has its own fields. For more information about collector- and analyzer-specific fields, see the [Troubleshoot documentation](https://troubleshoot.sh/docs/).
+
 ### Collector Global Fields
 
 The following fields are supported on all optional collectors for preflights and support bundles. For a list of collectors, see [All Collectors](https://troubleshoot.sh/docs/collect/all/) in the Troubleshoot documentation.
