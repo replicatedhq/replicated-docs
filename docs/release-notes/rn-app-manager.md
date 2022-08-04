@@ -4,7 +4,7 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
-## 1.78.0
+## 1.79.0
 
 Released on August 4, 2022
 
@@ -23,6 +23,8 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 * Fixes versions ordering on the [version history](/enterprise/updating-apps#update-an-application-in-the-admin-console) page in [Helm managed mode (Alpha)](/vendor/helm-install).
 * Fixes an issue that cause the [help_text](/reference/custom-resource-config#help_text) property of config items to be ignored.
 * Fix the display of node statistics in the [Cluster Management](https://docs.replicated.com/vendor/tutorial-ha-cluster-deploying#adding-remaining-nodes-to-cluster) tab.
+* Fixes an issue where legacy encryption keys were not being loaded properly during snapshot restores.
+* Fixes an issue where snapshots would fail if a wildcard (`"*"`) was listed in the `additionalNamespaces` of an Application manifest.
 
 ## 1.78.0
 
