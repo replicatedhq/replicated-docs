@@ -6,6 +6,26 @@ toc_max_heading_level: 2
 
 ## 1.78.0
 
+Released on August 4, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### New Features {#new-features-1-79-0}
+* Adds a [HTTPSProxy](/reference/template-functions-static-context#httpsproxy) template function which returns the address of the proxy that the Replicated admin console is configured to use.
+* Adds dynamic kots collectors, analyzers, and custom redactors when collecting support bundles from the [troubleshoot](/enterprise/troubleshooting-an-app#create-a-support-bundle-using-the-admin-console) page in [Helm managed mode (Alpha)](/vendor/helm-install).
+
+### Improvements {#improvements-1-79-0}
+* Removes the `Add new application` option when running Admin Console in [Helm managed mode (Alpha)](/vendor/helm-install).
+
+### Bug Fixes {#bug-fixes-1-79-0}
+* Fixes an issue that cause the [affix](/reference/custom-resource-config#affix) property of config items to be ignored.
+* Fixes an issue that casued license card to not be updated when switching applications in Admin Console.
+* Fixes versions ordering on the [version history](/enterprise/updating-apps#update-an-application-in-the-admin-console) page in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Fixes an issue that cause the [help_text](/reference/custom-resource-config#help_text) property of config items to be ignored.
+* Fix the display of node statistics in the [Cluster Management](https://docs.replicated.com/vendor/tutorial-ha-cluster-deploying#adding-remaining-nodes-to-cluster) tab.
+
+## 1.78.0
+
 Released on July 28, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
