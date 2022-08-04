@@ -46,7 +46,7 @@ spec:
 
 ## Global Fields
 
-Global fields, also known as shared properties, are fields that are supported on all collectors or all analyzers. The following sections list the global fields for [collectors](#collectors) and [analyzers](#analyzers) respectively.
+Global fields, also known as shared properties, are fields that are supported on all collectors or all analyzers. The following sections list the global fields for [collectors](#collector-global-fields) and [analyzers](#analyzer-global-fields) respectively.
 
 Additionally, each collector and analyzer has its own fields. For more information about collector- and analyzer-specific fields, see the [Troubleshoot documentation](https://troubleshoot.sh/docs/).
 
