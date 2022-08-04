@@ -25,7 +25,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 * Fixes the display of node statistics in the [Cluster Management](https://docs.replicated.com/vendor/tutorial-ha-cluster-deploying#adding-remaining-nodes-to-cluster) tab.
 * Fixes an issue where legacy encryption keys were not loaded properly during snapshot restores.
 * Fixes an issue where snapshots would fail if a wildcard (`"*"`) was listed in the `additionalNamespaces` field of an Application manifest.
-* Fixes an issue where generating the diff for a version fails when excluding a Helm chart that was previously included.
+* Fixes an issue where the diff fails to generate for a version that excludes a Helm chart that was previously included.
 
 ## 1.78.0
 
