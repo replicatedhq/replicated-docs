@@ -4,13 +4,19 @@ Preflight checks use collectors and analyzers to provide cluster operators with 
 
 Support bundles collect, redact, and analyze troubleshooting data from a cluster and help diagnose problems with application deployments.
 
-Default preflight checks and support bundle features are automatically included with releases. To customize these features uniquely for your application release, add any of the optional collectors and analyzers to `kind: Preflight` and `kind: SupportBundle` custom resource manifest files. For more information about these troubleshoot features and how to customize them, see [Customizing Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-creating/).
+:::note
+Built-in redactors run by default to protect customers' sensitive information. To add custom redactors, use the Redactor custom manifest file. For more information about the Redactor custom manifest file, see [Redactor](custom-resource-redactor).
+:::
 
 ## Basic Manifest Files
 
-The following are basic manifest files for the Preflight and Support Bundle custom resources, which include all of the default collectors and analyzers (indicated by `[]`). You edit the manifest files by adding custom collector and analyzer specifications:
+Default support bundles are automatically included with releases. To add preflights or customize the default support bundle settings, add Preflight and Support Bundle custom resource manifest files. Then add or edit collectors and analyzers. For more information about these troubleshoot features and how to customize them, see [Customizing Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-creating/).
 
-**Preflight:**
+The following sections show basic manifest files for the Preflight and Support Bundle custom resources. You edit the manifest files by adding custom collector and analyzer specifications.
+
+### Preflight
+
+The Preflight manifest file uses `kind: Preflight`. All of the default collectors and analyzers are included, indicated by `[]`.
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -22,7 +28,9 @@ spec:
   analyzers: []
 ```
 
-**Support Bundle:**
+### Support Bundle
+
+The Support Bundle manifest file uses `kind: SupportBundle`. All of the default collectors and analyzers are included, indicated by `[]`.
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -34,29 +42,9 @@ spec:
   analyzers: []
 ```
 
-## Collector Global Fields
+### Collector Global Fields
 
-The following fields are supported on all optional collectors for preflights and support bundles:
-
-<table>
-  <tr>
-    <th width="30%">Field Name</th>
-    <th width="70%">Description</th>
-  </tr>
-  <tr>
-    <td>`collectorName`</td>
-    <td>(Optional) A collector can specify the `collectorName` field. In some collectors, this field controls the path where result files are stored in the support bundle.</td>
-  </tr>
-  <tr>
-    <td>`exclude`</td>
-    <td>(Optional) Based on the runtime available configuration, a conditional can be specified in the `exclude` field. This is useful for deployment techniques that allow templating for Replicated app manager and the optional Helm component. When this value is `false`, the collector is not included.</td>
-  </tr>
-</table>
-
-
-## Analyzer Global Fields
-
-The following fields are supported on all optional analyzers for preflights and support bundles:
+The following fields are supported on all optional collectors for preflights and support bundles. For a list of collectors, see [All Collectors](https://troubleshoot.sh/docs/collect/all/) in the Troubleshoot documentation.
 
 <table>
   <tr>
@@ -64,17 +52,80 @@ The following fields are supported on all optional analyzers for preflights and 
     <th width="70%">Description</th>
   </tr>
   <tr>
-    <td>`collectorName`</td>
-    <td>(Optional) An analyzer can specify the `collectorName` field.</td>
+    <td><code>collectorName</code></td>
+    <td>(Optional) A collector can specify the <code>collectorName</code> field. In some collectors, this field controls the path where result files are stored in the support bundle.</td>
   </tr>
   <tr>
-    <td>`exclude`</td>
-    <td>(Optional) Based on the runtime available configuration, a conditional can be specified in the `exclude` field. This is useful for deployment techniques that allow templating for Replicated app manager and the optional Helm component. When this value is `true`, the analyzer is not included.</td>
-  </tr>
-  <tr>
-    <td>`strict`</td>
-    <td>(Optional) An analyzer can be set to `strict: true` so that `fail` outcomes for that analyzer prevent the release from deploying until the vendor-specified requirements are met. When `exclude: true` is also specified, `exclude` overrides `strict` and the analyzer is not executed.</td>
+    <td><code>exclude</code></td>
+    <td>(Optional) Based on the runtime available configuration, a conditional can be specified in the <code>exclude</code> field. This is useful for deployment techniques that allow templating for Replicated app manager and the optional Helm component. When this value is <code>false</code>, the collector is not included.</td>
   </tr>
 </table>
 
-For a list of collectors and analyzers, see [All Collectors](https://troubleshoot.sh/docs/collect/all/) and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation.
+**Example: Collector Definition for a Support Bundle**
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: SupportBundle
+metadata:
+  name: sample
+spec:
+  collectors:
+    - collectd:
+        collectorName: "collectd"
+        image: busybox:1
+        namespace: default
+        hostPath: "/var/lib/collectd/rrd"
+        imagePullPolicy: IfNotPresent
+        imagePullSecret:
+           name: my-temporary-secret
+           data:
+             .dockerconfigjson: ewoJICJhdXRocyI6IHsKzCQksHR0cHM6Ly9pbmRleC5kb2NrZXIuaW8vdjEvIjoge30KCX0sCgkiSHR0cEhlYWRlcnMiOiB7CgkJIlVzZXItQWdlbnQiOiAiRG9ja2VyLUNsaWVudC8xOS4wMy4xMiAoZGFyd2luKSIKCX0sCgkiY3JlZHNTdG9yZSI6ICJkZXNrdG9wIiwKCSJleHBlcmltZW50YWwiOiAiZGlzYWJsZWQiLAoJInN0YWNrT3JjaGVzdHJhdG9yIjogInN3YXJtIgp9
+           type: kubernetes.io/dockerconfigjson
+```
+
+### Analyzer Global Fields
+
+The following fields are supported on all optional analyzers for preflights and support bundles. For a list of analyzers, see [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation.
+
+<table>
+  <tr>
+    <th width="30%">Field Name</th>
+    <th width="70%">Description</th>
+  </tr>
+  <tr>
+    <td><code>collectorName</code></td>
+    <td>(Optional) An analyzer can specify the <code>collectorName</code> field.</td>
+  </tr>
+  <tr>
+    <td><code>exclude</code></td>
+    <td>(Optional) Based on the runtime available configuration, a conditional can be specified in the <code>exclude</code> field. This is useful for deployment techniques that allow templating for Replicated app manager and the optional Helm component. When this value is <code>true</code>, the analyzer is not included.</td>
+  </tr>
+  <tr>
+    <td><code>strict</code></td>
+    <td>(Optional) An analyzer can be set to <code>strict: true</code> so that <code>fail</code> outcomes for that analyzer prevent the release from deploying until the vendor-specified requirements are met. When <code>exclude: true</code> is also specified, <code>exclude</code> overrides <code>strict</code> and the analyzer is not executed.</td>
+  </tr>
+</table>
+
+**Example: Analyzer Definition with a Strict Preflight Check**
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+  name: check-kubernetes-version
+spec:
+  analyzers:
+    - clusterVersion:
+        strict: true
+        outcomes:
+          - fail:
+              when: "< 1.16.0"
+              message: The application requires Kubernetes 1.16.0 or later
+              uri: https://kubernetes.io
+          - warn:
+              when: "< 1.17.0"
+              message: Your cluster meets the minimum version of Kubernetes, but we recommend you update to 1.17.0 or later.
+              uri: https://kubernetes.io
+          - pass:
+              message: Your cluster meets the recommended and required versions of Kubernetes.
+```
