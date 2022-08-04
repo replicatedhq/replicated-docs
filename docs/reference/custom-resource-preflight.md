@@ -1,18 +1,20 @@
 # Preflight and Support Bundle
 
-Preflight checks use collectors and analyzers to provide cluster operators with clear feedback for any missing requirements or incompatibilities in the target environment before an application is deployed.
+Preflight checks use collectors and analyzers to provide cluster operators with clear feedback for any missing requirements or incompatibilities in the target environment before an application is deployed. Preflight checks are not automatically included in releases, so you must define them if you want to include them with a release.
 
-Support bundles collect, redact, and analyze troubleshooting data from a cluster and help diagnose problems with application deployments.
+Support bundles collect and analyze troubleshooting data from a cluster and help diagnose problems with application deployments. Default support bundles are automatically included with releases, and can be customized.
+
+Collectors and analyzers are configured in the Preflight and Support Bundle custom resource manifest files.
 
 :::note
-Built-in redactors run by default to protect customers' sensitive information. To add custom redactors, use the Redactor custom manifest file. For more information about the Redactor custom manifest file, see [Redactor](custom-resource-redactor).
+Built-in redactors run by default for preflight checks and support bundles to protect customers' sensitive information. To add custom redactors, use the Redactor custom manifest file. For more information about the Redactor custom manifest file, see [Redactor](custom-resource-redactor).
 :::
 
 ## Basic Manifest Files
 
-Default support bundles are automatically included with releases. To add preflights or customize the default support bundle settings, add Preflight and Support Bundle custom resource manifest files. Then add or edit collectors and analyzers. For more information about these troubleshoot features and how to customize them, see [Customizing Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-creating/).
+To define preflight checks or customize the default support bundle settings, add Preflight and Support Bundle custom resource manifest files to your release. You edit the manifest files by adding custom collector and analyzer specifications to those manifest files. For more information about these troubleshoot features and how to configure them, see [Configuring Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-creating/).
 
-The following sections show basic manifest files for the Preflight and Support Bundle custom resources. You edit the manifest files by adding custom collector and analyzer specifications.
+The following sections show basic manifest files for the Preflight and Support Bundle custom resources that you can start with.
 
 ### Preflight
 
