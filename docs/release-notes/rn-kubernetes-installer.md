@@ -10,6 +10,7 @@ Released on August 4, 2022
 
 ### New Features {#new-features-v2022-08-04-0}
 
+- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.79.0.
 - Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.22.0.
 - Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.58.0-39.4.0.
 - Adds [Minio add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-08-02T23-59-16Z.
@@ -20,7 +21,7 @@ Released on August 4, 2022
 
 ### Bug Fixes {#bug-fixes-v2022-08-04-0}
 
-- 
+- Fixes an issue as of kURL version v2022.08.03-0 that improperly sets auth_allow_insecure_global_id_reclaim to true for new installations.
 
 ## Release v2022.08.03-0
 
