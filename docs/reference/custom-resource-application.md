@@ -91,9 +91,9 @@ When an exact version is specified, the app manager will choose the matching maj
 The app manager maintains up-to-date minor and patch versions of all supported Kustomize major versions.
 When unspecified, the app manager will use the newest version from the list of supported versions below.
 
-- 3.x.x
+- 4.x.x
 
-An optional SemVer range can be specified, as defined in [blang SemVer range](https://github.com/blang/semver#ranges) (like `3.x.x` or `>=3.0.0 <4.0.0`).
+An optional SemVer range can be specified, as defined in [blang SemVer range](https://github.com/blang/semver#ranges) (like `4.x.x` or `>=4.0.0 <5.0.0`).
 The latest version within the provided range will be used.
 If the specified version or range does not match any supported versions, the latest version from the above list will be used.
 
