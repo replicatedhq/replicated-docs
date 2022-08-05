@@ -16,14 +16,14 @@ feedback to your customer about any missing requirements or incompatibilities in
 the cluster before they install and upgrade your application. Thorough preflight checks provide increased confidence that an installation or upgrade will succeed and help prevent support escalations.
 
 * **Support bundles**: Support bundles let you collect and analyze troubleshooting data
-from your customers' environments to help you diagnose problems with application
-deployments. Customers generate support bundles from the Replicated admin console, where analyzers can immediately suggest solutions to common problems. Customers can also share support bundles with your support team from the admin console. Your support team can upload the support bundle to the Replicated vendor portal to view and interpret the support bundle analysis.
+from customer environments to help you diagnose problems with application
+deployments. Customers generate support bundles from the Replicated admin console, where analyzers can immediately suggest solutions to common problems. Customers can also share support bundles with your support team from the admin console. Your support team can upload the support bundle to the Replicated vendor portal to view and interpret the analysis.
 
 The following diagram illustrates the workflow for preflight checks and support bundles:
 
 ![Troubleshoot Workflow Diagram](/images/troubleshoot-workflow-diagram.png)
 
-As shown in the diagram above, preflight checks and support bundles first use collectors to collect data from various sources, including the cluster environment and application. Then, built-in redactors censor any sensitive information from the collected data. Finally, analyzers review the non-redacted data to identify common problems. For more information, see [Collectors](#collectors), [Redactors](#redactors), and [Analyzers](#analyzers).
+As shown in the diagram above, preflight checks and support bundles first use collectors to collect data from various sources, including the cluster environment and the application. Then, built-in redactors censor any sensitive information from the collected data. Finally, analyzers review the non-redacted data to identify common problems. For more information, see [Collectors](#collectors), [Redactors](#redactors), and [Analyzers](#analyzers).
 
 Preflight checks and support bundles are based on the open-source Troubleshoot project, which is maintained by Replicated. For more information about specific types of collectors, analyzers, and redactors, see the [Troubleshoot](https://troubleshoot.sh/) documentation.
 
@@ -43,11 +43,11 @@ Redactors censor sensitive customer information from the data gathered by the co
 This functionality cannot be disabled in the Replicated app manager. You can add custom redactors to support bundles only.
 
 ### Analyzers
-Analyzers use the non-redacted data from the collectors to identify issues. The outcomes that you specify are displayed to the customer. For example, you can define an outcome if the Kubernetes version on the cluster does not meet the minimum version that your application supports.
+Analyzers use the non-redacted data from the collectors to identify issues. The outcomes that you specify are displayed to customers.
 
 Analyzer outcomes for preflight checks differ from the outcomes for support bundles:
 
-- Preflight checks use analyzers to determine pass, fail, and warning outcomes, and display messages to a customer during installation.
+- Preflight checks use analyzers to determine pass, fail, and warning outcomes, and display messages to a customer during installation. For example, you can define a fail or warning outcome if the Kubernetes version on the cluster does not meet the minimum version that your application supports.
 
 - Support bundles use analyzers to help identify potential problems. When a support bundle is uploaded to the Replicated vendor portal, it is extracted and automatically analyzed. The goal of this process is to surface known issues or hints of what might be a problem. Analyzers produce outcomes that contain custom messages to explain what the problem might be.
 
@@ -56,7 +56,7 @@ Analyzer outcomes for preflight checks differ from the outcomes for support bund
 
 You define preflight checks based on your application needs. Preflight checks are not included by default. This procedure provides a basic understanding and some key considerations to help guide you.
 
-For more information about defining preflight checks, see [Preflight Checks](https://troubleshoot.sh/docs/preflight/introduction/), [Collecting Data](https://troubleshoot.sh/docs/collect/), [Redacting Data](https://troubleshoot.sh/docs/redact/), and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation. For basic examples of checking CPU, memory, and disk capacity, see [Node Resources Analyzer](https://troubleshoot.sh/reference/analyzers/node-resources/) in the Troubleshoot documentation.
+For more information about defining preflight checks, see [Preflight Checks](https://troubleshoot.sh/docs/preflight/introduction/), [Collecting Data](https://troubleshoot.sh/docs/collect/), and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation. For basic examples of checking CPU, memory, and disk capacity, see [Node Resources Analyzer](https://troubleshoot.sh/reference/analyzers/node-resources/) in the Troubleshoot documentation.
 
 To define preflight checks:
 
@@ -94,8 +94,12 @@ To define preflight checks:
 
 1. Add analyzers to analyze the data from the collectors that you specified. Define the criteria for the pass, fail, and/or warn outcomes and specify custom messages for each. For example, you can set a `fail` outcome if the MySQL version is less than the minimum required. Then, specify a message to display that informs your customer of the reasons for the failure and steps they can take to fix the issue.
 
-  If you set a preflight analyzer to `strict: true`, any `fail` outcomes for that analyzer block the deployment of the release until your specified requirement is met. Consider the Replicated app manager cluster privileges when you enable the `strict` flag. If a collector that requires cluster scope cannot run in minimal RBAC mode, then the collector is skipped. Also note that strict preflight analyzers are ignored if the `exclude` flag is also used. For more information about strict preflight checks, see [`strict`](https://troubleshoot.sh/docs/analyze/#strict) in the Troubleshoot documentation. For more information about cluster privileges, see `requireMinimalRBACPrivileges` for name-scoped access in [Configuring Role-Based Access](packaging-rbac#namespace-scoped-access).
+1. (Optional) Set any preflight analyzers to `strict: true` as needed. Note the following considerations:
+    - Any `fail` outcomes for that analyzer block the deployment of the release until your specified requirement is met.
+    -  If a `strict` collector requires cluster scope and minimal RBAC mode is set, then the collector is skipped during the preflight check.
+    - Strict preflight analyzers are ignored if the `exclude` flag is also used.
 
+    For more information about strict preflight checks, see [`strict`](https://troubleshoot.sh/docs/analyze/#strict) in the Troubleshoot documentation. For more information about cluster privileges, see `requireMinimalRBACPrivileges` for name-scoped access in [Configuring Role-Based Access](packaging-rbac#namespace-scoped-access).
     ```yaml
     apiVersion: troubleshoot.sh/v1beta2
     kind: Preflight
@@ -194,7 +198,7 @@ To customize a support bundle:
     - **Files:** Copy files from pods and hosts.
     - **HTTP:** Consume your own application APIs with HTTP requests. If your application has its own API that serves status, metrics, performance data, and so on, this information can be collected and analyzed.
 
-1. Add analyzers based on conditions that you expect for your application. You might require that a cluster have at least 2 CPUs and 4GB memory available.
+1. Add analyzers based on conditions that you expect for your application. For example, you might require that a cluster have at least 2 CPUs and 4GB memory available.
 
   Good analyzers clearly identify failure modes. For example, if you can identify a log message from your database component that indicates a problem, you should write an analyzer that checks for that log.
 
@@ -211,6 +215,23 @@ To customize a support bundle:
   :::note
   The default redactors included with Replicated app manager cannot be disabled.
   :::
+
+  **Example:**
+
+  ```YAML
+  apiVersion: troubleshoot.sh/v1beta2
+  kind: Redactor
+  metadata:
+    name: my-redactor-name
+    spec:
+      redactors:
+        - name: replace password # names are not used internally, but are useful for recordkeeping
+          fileSelector:
+            file: data/my-password-dump # this targets a single file
+          removals:
+            values:
+              - abc123 # this value is my password, and should never appear in a support bundle
+    ```
 
 1. Add the manifest files to the application that you are packaging and distributing with Replicated.
 
