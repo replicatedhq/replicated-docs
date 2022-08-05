@@ -175,9 +175,7 @@ For more information about the `additionalNamespaces` attribute, see [Defining A
 
 The app manager supports image tags for applications in all use cases.
 
-The app manager supports image digests only for online (Internet-connected) installations where the app manager can pull all images from the Replicated private registry, a public external registry, or from a private external registry through proxy access.
-
-However, image tags and digests cannot be used together due to upstream limitations. For more information, see [Why do i see the error 'Docker references with both a tag and digest are currently not supported'?](https://community.replicated.com/t/why-do-i-see-the-error-docker-references-with-both-a-tag-and-digest-are-currently-not-supported/825) on the Replicated Community website.
+The app manager supports image digests only for online (Internet-connected) installations where the app manager can pull all images from the Replicated private registry, a public external registry, or from a private external registry through proxy access.  Image tags and digests can also be used together for online installations.
 
 ## Related Topic
 
