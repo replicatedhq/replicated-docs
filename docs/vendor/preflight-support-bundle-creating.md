@@ -70,7 +70,7 @@ To define preflight checks:
       spec:
          collectors: []
      ```
-1. Add collectors based on conditions that you expect for your application. For example, you can collect information about the MySQL version that is running in a cluster.
+1. Add collectors to define information to be collected for analysis during the analyze phase. For example, you can collect information about the MySQL version that is running in a cluster.
 
   ```yaml
   apiVersion: troubleshoot.sh/v1beta2
