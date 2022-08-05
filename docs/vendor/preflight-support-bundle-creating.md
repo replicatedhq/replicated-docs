@@ -17,13 +17,13 @@ the cluster before they install and upgrade your application. Thorough preflight
 
 * **Support bundles**: Support bundles let you collect and analyze troubleshooting data
 from your customers' environments to help you diagnose problems with application
-deployments. Customers generate support bundles from the Replicated admin console, where analyzers can immediately suggest solutions to common problems. Customers can also share support bundles with your support team from the admin console. Your support team can upload the support bundle to the Replicated vendor portal for further diagnosis using Replicated analyzers.
+deployments. Customers generate support bundles from the Replicated admin console, where analyzers can immediately suggest solutions to common problems. Customers can also share support bundles with your support team from the admin console. Your support team can upload the support bundle to the Replicated vendor portal to view and interpret the support bundle analysis.
 
 The following diagram illustrates the workflow for preflight checks and support bundles:
 
 ![Troubleshoot Workflow Diagram](/images/troubleshoot-workflow-diagram.png)
 
-As shown in the diagram above, preflight checks and support bundles first use collectors to collect data from various sources, including the cluster environment and application. Then, built-in redactors censor any sensitive information from the collected data. Finally, analyzers review the non-redacted data to identify common problems and execute outcomes. For more information, see [Collectors](#collectors), [Redactors](#redactors), and [Analyzers](#analyzers).
+As shown in the diagram above, preflight checks and support bundles first use collectors to collect data from various sources, including the cluster environment and application. Then, built-in redactors censor any sensitive information from the collected data. Finally, analyzers review the non-redacted data to identify common problems. For more information, see [Collectors](#collectors), [Redactors](#redactors), and [Analyzers](#analyzers).
 
 Preflight checks and support bundles are based on the open-source Troubleshoot project, which is maintained by Replicated. For more information about specific types of collectors, analyzers, and redactors, see the [Troubleshoot](https://troubleshoot.sh/) documentation.
 
@@ -40,16 +40,16 @@ Redactors censor sensitive customer information from the data gathered by the co
 - Database connection strings
 - URLs that include usernames and passwords
 
-This functionality cannot be disabled in the Replicated app manager, but you can add custom redactors.
+This functionality cannot be disabled in the Replicated app manager. You can add custom redactors to support bundles only.
 
 ### Analyzers
-Analyzers use the non-redacted data from the collectors to identify issues and execute the outcomes that you specify. For example, you can define an outcome if the Kubernetes version on the cluster does not meet the minimum version that your application supports.
+Analyzers use the non-redacted data from the collectors to identify issues. The outcomes that you specify are displayed to the customer. For example, you can define an outcome if the Kubernetes version on the cluster does not meet the minimum version that your application supports.
 
 Analyzer outcomes for preflight checks differ from the outcomes for support bundles:
 
 - Preflight checks use analyzers to determine pass, fail, and warning outcomes, and display messages to a customer during installation.
 
-- Support bundles use analyzers to help identify potential problems. When a support bundle is uploaded to the Replicated vendor portal, it is extracted and automatically analyzed. The goal of this process is to surface known issues or hints of what might be a problem. Analyzers produce outcomes, which contain custom messages to explain what the problem might be.
+- Support bundles use analyzers to help identify potential problems. When a support bundle is uploaded to the Replicated vendor portal, it is extracted and automatically analyzed. The goal of this process is to surface known issues or hints of what might be a problem. Analyzers produce outcomes that contain custom messages to explain what the problem might be.
 
 
 ## Define Preflight Checks
@@ -92,9 +92,9 @@ To define preflight checks:
     - PORT with the port number
     - DB_NAME with the database name
 
-1. Add an analyzer specification to analyze the data from the collectors you specified and provide outcomes. For example, you can set a `fail` outcome if the MySQL version is less than the minimum version. Then, specify a message to display that informs your customer of the reasons for the failure and steps they can take to fix the issues.
+1. Add analyzers to analyze the data from the collectors that you specified. Define the criteria for the pass, fail, and/or warn outcomes and specify custom messages for each. For example, you can set a `fail` outcome if the MySQL version is less than the minimum required. Then, specify a message to display that informs your customer of the reasons for the failure and steps they can take to fix the issue.
 
-  If you set a preflight analyzer to `strict: true`, any `fail` outcomes for that analyzer block the deployment of the release until your specified requirement is met. Consider the Replicated app manager cluster privileges when you enable the `strict` flag. Also note that strict preflight analyzers are ignored if the `exclude` flag is also used. For more information about strict preflight checks, see [`strict`](https://troubleshoot.sh/docs/analyze/#strict) in the Troubleshoot documentation. For more information about cluster privileges, see `requireMinimalRBACPrivileges` for name-scoped access in [Configuring Role-Based Access](packaging-rbac#namespace-scoped-access).
+  If you set a preflight analyzer to `strict: true`, any `fail` outcomes for that analyzer block the deployment of the release until your specified requirement is met. Consider the Replicated app manager cluster privileges when you enable the `strict` flag. If a collector that requires cluster scope cannot run in minimal RBAC mode, then the collector is skipped. Also note that strict preflight analyzers are ignored if the `exclude` flag is also used. For more information about strict preflight checks, see [`strict`](https://troubleshoot.sh/docs/analyze/#strict) in the Troubleshoot documentation. For more information about cluster privileges, see `requireMinimalRBACPrivileges` for name-scoped access in [Configuring Role-Based Access](packaging-rbac#namespace-scoped-access).
 
     ```yaml
     apiVersion: troubleshoot.sh/v1beta2
@@ -121,11 +121,6 @@ To define preflight checks:
               - pass:
                   message: The MySQL server is ready
     ```
-1. (Optional) To add redactors to the default redactors that are automatically provided by the app manager, add the Redactor custom resource manifest (`kind: Redactor`) to your release. Then add Redactor custom resource fields to the manifest as needed.
-
-    :::note
-    The default redactors included with Replicated app manager cannot be disabled.
-    :::
 
 1. Add the manifest files to the application that you are packaging and distributing with Replicated.
 
@@ -162,7 +157,6 @@ To customize a support bundle:
 1. Add, edit, or remove any collectors in the file.
 
 1. (Recommended) Add application Pod logs and set the retention options for the number of lines logged. Typically the selector attribute is matched to the labels.
-
 
     1. To get the labels for an application, either inspect the YAML or run the following command to see what labels are used:
 
@@ -222,5 +216,5 @@ To customize a support bundle:
 
 1. Save and promote your release. To test this feature, generate a support bundle from the Troubleshoot tab in the admin console and do one of the following:
 
-    - Click **Send bundle to vendor** and open the tar bundle to review the files.
-    - Download the `support-bundle.tar.gz` bundle and copy it to the Troubleshoot tab in the [vendor portal](https://vendor.replicated.com) to see the analysis and use the file inspector.
+    - If you have a license entitlement, click **Send bundle to vendor**. You can also open the TAR file to review the files. For more information about license entitlements, see [Create a Customer](releases-creating-customer#create-a-customer).
+    - Download the `support-bundle.tar.gz` file. Copy the file to the Troubleshoot tab in the [vendor portal](https://vendor.replicated.com) to see the analysis and use the file inspector.
