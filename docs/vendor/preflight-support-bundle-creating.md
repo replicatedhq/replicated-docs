@@ -172,7 +172,7 @@ To customize a support bundle:
 
     1. After the labels are discovered, create collectors to include logs from these pods in a bundle. Depending on the complexity of an application's labeling schema, you might need a few different declarations of the logs collector. You can include the `logs` collector specification multiple times.
 
-      The limits field can support `maxAge` or `maxLines`. This limits the output to the constraints provided. **Default:** `maxLines`= 10,000
+      The limits field can support `maxAge` or `maxLines`. This limits the output to the constraints provided. **Default:** `maxLines: 10000`
 
       **Example:**
 
