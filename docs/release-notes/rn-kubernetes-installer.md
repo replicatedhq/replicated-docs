@@ -13,7 +13,7 @@ Released on August 4, 2022
 - Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.79.0.
 - Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.22.0.
 - Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.58.0-39.4.0.
-- Adds [Minio add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-08-02T23-59-16Z.
+- Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-08-02T23-59-16Z.
 
 ### Improvements {#improvements-v2022-08-04-0}
 
