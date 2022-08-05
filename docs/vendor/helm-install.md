@@ -219,7 +219,7 @@ When users install with the kots CLI or the Kubernetes installer, Replicated aut
 
 For installations with the helm CLI, Replicated cannot automatically inject an image pull secret nor patch the image URL to reference the proxy service in the Helm chart for your application.
 
-To use private images with your application for helm CLI installations, use template functions to inject an image pull secret into the Helm chart. If you are using an external private registry, you must also update the image location URL in the Pod spec in your Helm chart to reference the Replicated proxy service.
+To use private images with your application for helm CLI installations, use Helm's template functions to inject an image pull secret into the Helm chart. If you are using an external private registry, you must also update the image location URL in the Pod spec in your Helm chart to reference the Replicated proxy service.
 
 For more information, see [Deliver Image Pull Secrets for a Private Registry](#pull-secret) and [Update the Image URL to Reference the Proxy Service](#proxy-service) below.
 
