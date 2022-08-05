@@ -25,7 +25,7 @@ The following diagram illustrates the workflow for preflight checks and support 
 
 As shown in the diagram above, preflight checks and support bundles first use collectors to collect data from various sources, including the cluster environment and application. Then, built-in redactors censor any sensitive information from the collected data. Finally, analyzers review the non-redacted data to identify common problems and execute outcomes. For more information, see [Collectors](#collectors), [Redactors](#redactors), and [Analyzers](#analyzers).
 
-Preflight checks and support bundles are based on the open-source Troubleshoot project, which is maintained by Replicated. For more information about specific types of Kubernetes collectors, analyzers, and redactors, see the [Troubleshoot](https://troubleshoot.sh/) documentation.
+Preflight checks and support bundles are based on the open-source Troubleshoot project, which is maintained by Replicated. For more information about specific types of collectors, analyzers, and redactors, see the [Troubleshoot](https://troubleshoot.sh/) documentation.
 
 ### Collectors
 Collectors identify what data to collect for analysis for preflight checks and support bundles. During the collection phase, information is collected from the cluster, the environment, the application, and other sources to be used later during the analysis phase. For example, you can collect information about the Kubernetes version that is running in the cluster, information related to a database server, logs from pods, and so on.
