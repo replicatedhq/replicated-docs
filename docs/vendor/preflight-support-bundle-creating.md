@@ -16,7 +16,7 @@ feedback to your customer about any missing requirements or incompatibilities in
 the cluster before they install and upgrade your application. Thorough preflight checks provide increased confidence that an installation or upgrade will succeed and help prevent support escalations.
 
 * **Support bundles**: Support bundles let you collect and analyze troubleshooting data
-from your customers' clusters to help you diagnose problems with application
+from your customers' environments to help you diagnose problems with application
 deployments. Customers generate support bundles from the Replicated admin console, where analyzers can immediately suggest solutions to common problems. Customers can also share support bundles with your support team from the admin console. Your support team can upload the support bundle to the Replicated vendor portal for further diagnosis using Replicated analyzers.
 
 The following diagram illustrates the workflow for preflight checks and support bundles:
