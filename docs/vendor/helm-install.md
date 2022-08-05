@@ -225,7 +225,7 @@ For more information, see [Deliver Image Pull Secrets for a Private Registry](#p
 
 ### Deliver Image Pull Secrets for a Private Registry {#pull-secret}
 
-To inject an image pull secret for an external private registry or the Replicated private registry, first add the Replicated `LicenseDockerCfg` template function to the Helm chart `values.yaml` file. The `LicenseDockerCfg` template function renders a value based on the unique customer license file when the Helm chart is pulled. Write this rendered value to a pull secret, then reference the pull secret in the necessary template files for the Helm chart.
+To inject an image pull secret for an external private registry or the Replicated private registry, first add the Replicated `LicenseDockerCfg` template function to the Helm chart `values.yaml` file. The `LicenseDockerCfg` template function renders a value based on the unique customer license when the Helm chart is pulled. Write this rendered value to a pull secret, then reference the pull secret in the necessary template files for the Helm chart.
 
 For more information about the `LicenseDockerCfg` template function, see [LicenseDockerCfg](/reference/template-functions-license-context#licensedockercfg) in _License Context_.
 
