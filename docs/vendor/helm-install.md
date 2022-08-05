@@ -211,7 +211,7 @@ This section describes the steps required to connect to an external private regi
 
 ### Overview of Using Private Registries
 
-Using an external private image registry or the Replicated private registry for your application requires an image pull secret for access. The unique license file for each customer can grant access to the Replicated private registry, or grant proxy access to an external registry without exposing registry credentials to the customer.
+Using an external private image registry or the Replicated private registry for your application requires an image pull secret for access. The unique license for each customer can grant access to the Replicated private registry, or grant proxy access to an external registry without exposing registry credentials to the customer.
 
 In addition to the image pull secret, using an external private registry also requires that Replicated can access the private image through the Replicated proxy service.
 
