@@ -207,7 +207,7 @@ To conditionally include and exclude the `admin-console` Helm chart:
 
 ## Using Private Registries {#private-images}
 
-This section describes the steps required to connect to an external private registry or the internal Replicated private registry when your users install your application with the helm CLI.
+This section describes the steps required to connect to an external private registry or the Replicated private registry when your users install your application with the helm CLI.
 
 ### Overview of Using Private Registries
 
