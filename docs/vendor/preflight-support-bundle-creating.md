@@ -208,7 +208,7 @@ To customize a support bundle:
 
   Additional analyzers that Replicated recommends considering are:
 
-    - **Resource statuses:** Check the status of various resources, such as deployment, Kubernetes StatefulSet, jobs, and so on.
+    - **Resource statuses:** Check the status of various resources, such as Deployments, StatefulSets, Jobs, and so on.
     - **Regular expressions:** Analyze arbitrary data.
     - **Databases:** Check the version and connection status.
 
