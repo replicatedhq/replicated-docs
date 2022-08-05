@@ -188,7 +188,7 @@ To customize a support bundle:
                    - app=api
                namespace: default
                limits:
-                  maxLines: 10,000
+                  maxLines: 10000
       ```            
 
 1. Additional collectors that Replicated recommends considering are:
