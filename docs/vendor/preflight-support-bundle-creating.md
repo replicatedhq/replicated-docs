@@ -49,7 +49,7 @@ Analyzer outcomes for preflight checks differ from the outcomes for support bund
 
 - Preflight checks use analyzers to determine pass, fail, and warning outcomes, and display messages to a customer during installation.
 
-- Support bundles use analyzers to help identify potential problems. When a support bundle is uploaded to the Replicated vendor portal, it is extracted and automatically analyzed. The goal of this process is to find insights that are known issues or hints of what might be a problem. Insights are specific items that the analyzer process finds and surfaces. Insights can contain custom messages and statuses, and are specific to the output of the analysis step on each support bundle.
+- Support bundles use analyzers to help identify potential problems. When a support bundle is uploaded to the Replicated vendor portal, it is extracted and automatically analyzed. The goal of this process is to surface known issues or hints of what might be a problem. Analyzers produce outcomes, which contain custom messages to explain what the problem might be.
 
 
 ## Define Preflight Checks
