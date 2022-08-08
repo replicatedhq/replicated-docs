@@ -22,7 +22,7 @@ spec:
   releaseNotes: These are our release notes
   allowRollback: false
   kubectlVersion: latest
-  kustomizeVersion: latest
+  kustomizeVersion: ">= 4.0.0"
   targetKotsVersion: "1.60.0"
   minKotsVersion: "1.40.0"
   requireMinimalRBACPrivileges: false
@@ -82,23 +82,23 @@ When unspecified, the app manager uses the newest version from the list of suppo
 
 An optional Semantic Versioning (SemVer) range can be specified, as defined in [blang SemVer range](https://github.com/blang/semver#ranges) (like `1.16.x` or `>=1.16.0 <1.17.0`).
 The latest version within the provided range will be used.
-If the specified version or range does not match any supported versions, the latest version from the above list will be used.
+If the specified version or range does not match any supported versions, the latest version from the above list is used.
 
 For backwards compatibility, exact versions are also supported.
-When an exact version is specified, the app manager will choose the matching major and minor version.
+When an exact version is specified, the app manager chooses the matching major and minor version.
 
 ## kustomizeVersion
-The app manager maintains up-to-date minor and patch versions of all supported Kustomize major versions.
-When unspecified, the app manager will use the newest version from the list of supported versions below.
+The app manager maintains up-to-date minor and patch versions of all Kustomize major versions that the app manager supports.
+When unspecified, the app manager uses the latest supported version. The following major versions are supported.
 
-- 3.x.x
+- 4.x.x
 
-An optional SemVer range can be specified, as defined in [blang SemVer range](https://github.com/blang/semver#ranges) (like `3.x.x` or `>=3.0.0 <4.0.0`).
-The latest version within the provided range will be used.
-If the specified version or range does not match any supported versions, the latest version from the above list will be used.
+An optional semantic version range can be specified, as defined in [blang SemVer range](https://github.com/blang/semver#ranges) (like `4.x.x` or `>=4.0.0 <5.0.0`).
+The latest supported version within the provided range is used.
+If the specified version or range does not match any supported versions, the latest version from the above list of supported versions is used.
 
 For backwards compatibility, exact versions are also supported.
-When an exact version is specified, the app manager will choose the matching major and minor version.
+When an exact version is specified, the app manager chooses the matching version if it is supported. If the specific version is not supported, the app manager chooses the latest supported minor and patch version for the specified major version.
 
 ## requireMinimalRBACPrivileges
 
