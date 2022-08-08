@@ -7,7 +7,7 @@ Support bundles collect and analyze troubleshooting data from a cluster and help
 Collectors and analyzers are configured in the Preflight and Support Bundle custom resource manifest files.
 
 :::note
-Built-in redactors run by default for preflight checks and support bundles to protect customers' sensitive information. To add custom redactors, use the Redactor custom manifest file. For more information about the Redactor custom manifest file, see [Redactor](custom-resource-redactor).
+Built-in redactors run by default for preflight checks and support bundles to protect customers' sensitive information. To add custom redactors to a support bundle, use the Redactor custom manifest file. For more information about the Redactor custom manifest file, see [Redactor](custom-resource-redactor).
 :::
 
 ## Basic Manifest Files
