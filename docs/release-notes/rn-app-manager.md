@@ -15,7 +15,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### Improvements {#improvements-1-80-0}
 * Password complexity rules will now be shown when changing the password in the admin console.
-* Updates Kustomize from 3.5.4 to 4.5.7. Kustomize v4.5.7 does not allow duplicate YAML keys to be present in your application manifests.
+* Updates Kustomize from 3.5.4 to 4.5.7. Note that Kustomize v4.5.7 does not allow duplicate YAML keys to be present in your application manifests, whereas v3.5.4 did. Kustomize v4.5.7 is a bit slower than v3.5.4, so fetching and deploying new versions will take a bit more time. Our benchmarking didn't show this performance degradation to be significant, and updating Kustomize resolves several critical and high severity CVEs and unblocks additional feature work in the app manager.
 
 ### Bug Fixes {#bug-fixes-1-80-0}
 * Fixes an issue where an ambiguous error message was shown when the endpoint field had been modified in the license.
