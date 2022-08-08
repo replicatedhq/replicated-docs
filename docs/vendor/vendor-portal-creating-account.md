@@ -36,7 +36,7 @@ To create a vendor account:
    :::
 
 # Next steps
-
+* [Invite team members](https://docs.replicated.com/vendor/team-management#invite-members) to collaborate with you in vendor portal.
 * Complete a tutorial to package, distribute, and install a sample application. See:
    * [Installing a Sample Application with the CLI](tutorial-installing-with-cli).
    * [Installing a Sample Application on an Existing Cluster](tutorial-installing-with-existing-cluster).
