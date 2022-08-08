@@ -186,8 +186,6 @@ To customize a support bundle:
   ```
   Replace `APP_NAMESPACE` with the name of the namespace.
 
-1. Add any custom collectors to the file.
-
 1. (Recommended) Add application Pod logs and set the retention options for the number of lines logged. Typically the selector attribute is matched to the labels.
 
     1. To get the labels for an application, either inspect the YAML or run the following command to see what labels are used:
@@ -217,7 +215,7 @@ To customize a support bundle:
                   maxLines: 10000
       ```            
 
-1. Additional collectors that Replicated recommends considering are:
+1. Add any custom collectors to the file. Collectors that Replicated recommends considering are:
 
     - **Kubernetes resources:** Use for custom resource definitions (CRDs), secrets, and ConfigMaps, if they are required for your application to work.
     - **Databases:** Return a selection of rows or entire tables.
@@ -232,7 +230,7 @@ To customize a support bundle:
 
   At a minimum, include application log analyzers. A simple text analyzer can detect specific log lines and inform an end user of remediation steps.
 
-  Additional analyzers that Replicated recommends considering are:
+  Analyzers that Replicated recommends considering are:
 
     - **Resource statuses:** Check the status of various resources, such as Deployments, StatefulSets, Jobs, and so on.
     - **Regular expressions:** Analyze arbitrary data.
