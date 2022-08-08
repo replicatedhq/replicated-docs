@@ -4,6 +4,24 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.80.0
+
+Released on August 8, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### New Features {#new-features-1-80-0}
+* Displays the `helm rollback` command when deploying previous revisions from the version history page in [Helm-managed mode (Alpha)](/vendor/helm-install).
+
+### Improvements {#improvements-1-80-0}
+* Password complexity rules will now be shown when changing the password in the admin console.
+* Updates Kustomize from 3.5.4 to 4.5.7. Note that Kustomize v4.5.7 does not allow duplicate YAML keys to be present in your application manifests, whereas v3.5.4 did. Kustomize v4.5.7 is a bit slower than v3.5.4, so fetching and deploying new versions takes a bit more time. Our benchmarking did not show this performance degradation to be significant. Updating Kustomize resolves several critical and high severity CVEs, and unblocks additional feature work in the app manager.
+
+### Bug Fixes {#bug-fixes-1-80-0}
+* Fixes an issue where an ambiguous error message was shown when the endpoint field was modified in the license.
+* Fixes a bug that caused values from the HelmChart custom resource that did not use Replicated template functions to be rendered into the downloaded values.yaml file after updating the configuration in Helm-managed mode. For more information about Helm-managed mode, see [Helm-managed mode (Alpha)](/vendor/helm-install).
+* Fixes an issue in Helm-managed mode that caused an error when clicking the **Analyze application** button on the Troubleshoot page in the admin console for an application that did not include a support bundle specification. For more information about Helm-managed mode, see [Helm-managed mode (Alpha)](/vendor/helm-install). For more information about analyzing an application, see [Create a Support Bundle Using the Admin Console]/enterprise/troubleshooting-an-app#create-a-support-bundle-using-the-admin-console).
+
 ## 1.79.0
 
 Released on August 4, 2022
