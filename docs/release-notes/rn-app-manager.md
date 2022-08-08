@@ -11,16 +11,16 @@ Released on August 8, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### New Features {#new-features-1-80-0}
-* Password complexity rules will now be shown when changing the password in the admin console.
-* (alpha) For helm managed installations, add rollback label to deployment button and rollback command to helm modal on version history page.
+* Displays the `helm rollback` command when deploying previous revisions from the version history page in [Helm-managed mode (Alpha)](/vendor/helm-install).
 
 ### Improvements {#improvements-1-80-0}
-* Updates Kustomize version from 3.5.4 to 4.5.7. Note: Kustomize version 4.5.7 does not allow duplicate YAML keys.
+* Password complexity rules will now be shown when changing the password in the admin console.
+* Updates Kustomize from 3.5.4 to 4.5.7. Kustomize v4.5.7 does not allow duplicate YAML keys to be present in your application manifests.
 
 ### Bug Fixes {#bug-fixes-1-80-0}
-* Fixes an issue where an ambiguous error message is shown when the endpoint field has been modified in the license.
-* Fixes a bug caused values that did not use repl templating to be rendered into values.yaml on a config update in [Helm managed mode (Alpha)](/vendor/helm-install).
-* Fixes an issue that caused an error when clicking the Analyze application button on the [Troubleshoot page](/enterprise/troubleshooting-an-app#create-a-support-bundle-using-the-admin-console) when application does not include a support bundle spec in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Fixes an issue where an ambiguous error message was shown when the endpoint field had been modified in the license.
+* Fixes a bug that caused values from the HelmChart custom resource that did not use Replicated template functions to be rendered into the downloaded values.yaml file after updating the config in [Helm-managed mode (Alpha)](/vendor/helm-install).
+* Fixes an issue in [Helm-managed mode (Alpha)](/vendor/helm-install) that caused an error when clicking the "Analyze application" button on the [Troubleshoot page](/enterprise/troubleshooting-an-app#create-a-support-bundle-using-the-admin-console) for an application that did not include a support bundle spec.
 
 ## 1.79.0
 
