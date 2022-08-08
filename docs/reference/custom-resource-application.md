@@ -98,7 +98,7 @@ The latest supported version within the provided range will be used.
 If the specified version or range does not match any supported versions, the latest version from the above list of supported versions will be used.
 
 For backwards compatibility, exact versions are also supported.
-When an exact version is specified, the app manager will choose the matching version if it is supported, or it will choose the latest support minor and patch version for the specified major version.
+When an exact version is specified, the app manager will choose the matching version if it is supported. If the specific version is not supported, the app manager will choose the latest supported minor and patch version for the specified major version.
 
 ## requireMinimalRBACPrivileges
 
