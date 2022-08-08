@@ -21,7 +21,7 @@ spec:
   icon: https://support.io/img/logo.png
   releaseNotes: These are our release notes
   allowRollback: false
-  kubectlVersion: latest
+  kubectlVersion: ">=1.22.0 <1.25.0"
   kustomizeVersion: ">= 4.0.0"
   targetKotsVersion: "1.60.0"
   minKotsVersion: "1.40.0"
@@ -67,25 +67,26 @@ An optional array of strings that reference images to be included in air gap bun
 While the Replicated app manager detects images from the PodSpecs in the application, some applications (Operators) may need to include additional images that will not be referenced until runtime.
 
 ## kubectlVersion
-The app manager maintains up-to-date patch versions of all supported kubelet minor versions.
-When unspecified, the app manager uses the newest version from the list of supported versions below.
+The app manager maintains up-to-date patch versions of all kubectl minor versions that the app manager supports.
+When unspecified, the app manager uses the latest supported version. The following minor versions are supported.
 
-- 1.23.x (added in [App manager 1.61.0](https://kots.io/release-notes/1.61.0/))
-- 1.22.x (added in [App manager 1.59.3](https://kots.io/release-notes/1.59.3/))
-- 1.21.x (added in [App manager 1.48.0](https://kots.io/release-notes/1.48.0/))
-- 1.20.x (added in [App manager 1.48.0](https://kots.io/release-notes/1.48.0/))
-- 1.19.x (added in [App manager 1.22.0](https://kots.io/release-notes/1.22.0/))
-- 1.18.x (added in [App manager 1.22.0](https://kots.io/release-notes/1.22.0/))
-- 1.17.x (added in [App manager 1.22.0](https://kots.io/release-notes/1.22.0/))
+- 1.24.x (added in [app manager 1.71.0](/release-notes/rn-app-manager#1710))
+- 1.23.x (added in [app manager 1.61.0](/release-notes/rn-app-manager#1610))
+- 1.22.x (added in [app manager 1.59.3](/release-notes/rn-app-manager#1593))
+- 1.21.x (added in [app manager 1.48.0](/release-notes/rn-app-manager#1570-and-earlier))
+- 1.20.x (added in [app manager 1.48.0](/release-notes/rn-app-manager#1570-and-earlier))
+- 1.19.x (added in [app manager 1.22.0](/release-notes/rn-app-manager#1570-and-earlier))
+- 1.18.x (added in [app manager 1.22.0](/release-notes/rn-app-manager#1570-and-earlier))
+- 1.17.x (added in [app manager 1.22.0](/release-notes/rn-app-manager#1570-and-earlier))
 - 1.16.x
 - 1.14.x
 
-An optional Semantic Versioning (SemVer) range can be specified, as defined in [blang SemVer range](https://github.com/blang/semver#ranges) (like `1.16.x` or `>=1.16.0 <1.17.0`).
-The latest version within the provided range will be used.
-If the specified version or range does not match any supported versions, the latest version from the above list is used.
+An optional semantic version range can be specified, as defined in [blang SemVer range](https://github.com/blang/semver#ranges) (like `1.24.x` or `>=1.22.0 <1.25.0`).
+The latest supported version in the provided range is used.
+If the specified version or range does not match any supported versions, the latest version from the above list of supported versions is used.
 
 For backwards compatibility, exact versions are also supported.
-When an exact version is specified, the app manager chooses the matching major and minor version.
+When an exact version is specified, the app manager chooses the matching version if it is supported. If the specific version is not supported, the app manager chooses the latest supported minor and patch version for the specified major version.
 
 ## kustomizeVersion
 The app manager maintains up-to-date minor and patch versions of all Kustomize major versions that the app manager supports.
@@ -94,7 +95,7 @@ When unspecified, the app manager uses the latest supported version. The followi
 - 4.x.x
 
 An optional semantic version range can be specified, as defined in [blang SemVer range](https://github.com/blang/semver#ranges) (like `4.x.x` or `>=4.0.0 <5.0.0`).
-The latest supported version within the provided range is used.
+The latest supported version in the provided range is used.
 If the specified version or range does not match any supported versions, the latest version from the above list of supported versions is used.
 
 For backwards compatibility, exact versions are also supported.
