@@ -21,7 +21,7 @@ spec:
   icon: https://support.io/img/logo.png
   releaseNotes: These are our release notes
   allowRollback: false
-  kubectlVersion: latest
+  kubectlVersion: ">=1.22.0 <1.25.0"
   kustomizeVersion: ">= 4.0.0"
   targetKotsVersion: "1.60.0"
   minKotsVersion: "1.40.0"
