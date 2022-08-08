@@ -152,13 +152,41 @@ To customize a support bundle:
         spec:
            collectors: []
        ```
-      - To fully customize the support bundle, including editing or removing the default collectors and analyzers, copy the default `spec.yaml` file to your manifest file. For the default YAML file, see [spec.yaml](https://github.com/replicatedhq/kots/blob/main/pkg/supportbundle/defaultspec/spec.yaml) in the kots repository.
+      - To fully customize the support bundle, including editing or excluding the default collectors and analyzers, copy the default `spec.yaml` file to your manifest file. For the default YAML file, see [spec.yaml](https://github.com/replicatedhq/kots/blob/main/pkg/supportbundle/defaultspec/spec.yaml) in the kots repository.
 
-      :::note
-      To help ensure best practices, Replicated app manager does not allow any changes to the parameters in the default `clusterInfo` and `clusterResources` collectors.
-      :::
+1. (Optional) Although Replicated recommends including the default `clusterInfo` and `clusterResources` collectors because they collect a large amount of data to help with installation and debugging, you can set the `exclude` field to `true` to exclude them:
 
-1. Add, edit, or remove any collectors in the file.
+  ```yaml
+  apiVersion: troubleshoot.sh/v1beta2
+  kind: SupportBundle
+  metadata:
+     name: collectors
+  spec:
+     collectors:
+       - clusterInfo:
+          exclude: true
+       - clusterResources:
+          exclude: true
+  ```
+1. (Optional) You can edit the default collector properties. If  `clusterResources` is defined in your specification, the default namespace cannot be removed, but you can add a namespace to the `namespaces` field.
+
+  ```yaml
+  apiVersion: troubleshoot.sh/v1beta2
+  kind: SupportBundle
+  metadata:
+     name: collectors
+  spec:
+     collectors:
+       - clusterInfo:
+          exclude: false
+       - clusterResources:
+          namespaces:
+          - default
+          - APP_NAMESPACE
+  ```
+  Replace `APP_NAMESPACE` with the name of the namespace.
+
+1. Add any custom collectors to the file.
 
 1. (Recommended) Add application Pod logs and set the retention options for the number of lines logged. Typically the selector attribute is matched to the labels.
 
