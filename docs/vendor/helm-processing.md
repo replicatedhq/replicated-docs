@@ -110,6 +110,10 @@ In both online and air gap scenarios, the resulting deployment is comprised of r
 
 ## Replicated App Manager Versioning Considerations
 
-To determine if Helm v3 is necessary, the app manager will check the apiVersion supplied in the `Chart.yaml` file of the Helm Chart. By default (if **Chart.yaml** is not supplied or apiVersion is not present), the app manager will use Helm V2 to process all Helm Charts to create deployable YAML.
+To determine if Helm v2 is necessary, the app manager will check the `apiVersion` supplied in the `Chart.yaml` file of the Helm chart. If `Chart.yaml` is not supplied or `apiVersion` is not present, the app manager will use Helm v3 to process all Helm charts to create deployable YAML.
 
-Optionally, you can specify an API version in the HelmChart custom resource. When the `helmVersion` property is set to `"v3"`, the app manager will use Helm v3 to process the Helm Chart. For more information, see [HelmChart](../reference/custom-resource-helmchart) in the _Custom resources_ section.
+Optionally, you can specify the Helm version in the HelmChart custom resource. Valid options are `v2` and `v3`. For more information, see [HelmChart](../reference/custom-resource-helmchart) in the _Custom resources_ section.
+
+:::note
+Support for Helm v2, including security patches, ended on November 13, 2020. If you specify `helmVersion: v2` in any HelmChart custom resources, update your references to `v3`. Replicated will remove support for Helm v2 .
+:::
