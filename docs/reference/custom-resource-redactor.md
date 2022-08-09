@@ -17,7 +17,7 @@ spec:
 
 ## Objects and Fields
 
-Each redactor must contain the two objects: `fileSelector` and `removals`.
+Each redactor must contain the `fileSelector` and `removals` objects.
 
 Redactors also consist of fields that define a:
 
@@ -45,11 +45,11 @@ The following objects and fields are used to define custom redactors:
   </tr>
   <tr>
     <td><code>file</code> or <code>files</code></td>
-    <td>(Optional) This field specifies a file or set of files that the redactor is applied to. Globbing is used to match files. For example, <code>/my/test/glob/*</code> matches <code>/my/test/glob/file</code> but does not match <code>/my/test/glob/subdir/file</code>. If neither <code>file</code> nor <code>files</code> are specified, then the redactor is applied to all files.</td>
+    <td>(Optional) This field specifies a file or set of files that the redactor is applied to. Globbing is used to match files. For example, <code>/my/test/glob/*</code> matches <code>/my/test/glob/file</code>, but does not match <code>/my/test/glob/subdir/file</code>. If neither <code>file</code> nor <code>files</code> are specified, then the redactor is applied to all files.</td>
   </tr>
   <tr>
     <td><code>regex</code></td>
-    <td>(Optional) This field allows applying a regex to lines following a line that matches a filter. Regex uses the <code>selector</code> subfield to identify a line, and then the redactor is run on the next line. If <code>selector</code> is empty, the redactor runs on every line. This can be useful for removing values, such as secrets, from an S3 endpoint. <br></br><br></br>Matches to entries in regex are removed or redacted, depending on how the regex is constructed. Any portion of a match not contained within a capturing group is removed entirely. The contents of capturing groups tagged mask are masked with the string <code>***HIDDEN***</code>.</td>
+    <td>(Optional) This field allows applying a regex to lines following a line that matches a filter. Regex uses the <code>selector</code> subfield to identify a line to filter, and then the redactor is run on the next line. If <code>selector</code> is empty, the redactor runs on every line. This can be useful for removing values from prettyprinted JSON or removing secrets from an S3 endpoint, among other things. <br></br><br></br>Matches to entries in regex are removed or redacted, depending on how the regex is constructed. Any portion of a match not contained within a capturing group is removed entirely. The contents of capturing groups tagged mask are masked with the string <code>***HIDDEN***</code>.</td>
   </tr>
   <tr>
     <td><code>values</code></td>
