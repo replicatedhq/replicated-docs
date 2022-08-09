@@ -4,6 +4,23 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.08.08-0
+
+Released on August 4, 2022
+
+### New Features {#new-features-v2022-08-08-0}
+
+- Add Ubuntu 22.04 support.
+- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.78.0.
+
+### Improvements {#improvements-v2022-08-08-0}
+
+- New preflight check to disallow Docker add-on install on Ubuntu 22.04.
+
+### Bug Fixes {#bug-fixes-v2022-08-08-0}
+
+- Fixes an issue that could cause add-on package downloads to fail with tar error.
+
 ## Release v2022.08.04-0
 
 Released on August 4, 2022
