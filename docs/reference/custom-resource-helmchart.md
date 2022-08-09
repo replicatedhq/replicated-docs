@@ -27,8 +27,8 @@ spec:
 
   exclude: "repl{{ ConfigOptionEquals `include_chart` `include_chart_no`}}"
 
-  # helmVersion identifies the Helm Version used to render the chart. Default is v2.
-  helmVersion: v2
+  # helmVersion identifies the Helm Version used to render the chart. Default is v3.
+  helmVersion: v3
 
   # useHelmInstall identifies whether this Helm chart will use the
   # Replicated Helm installation (false) or native Helm installation (true). Default is false.
