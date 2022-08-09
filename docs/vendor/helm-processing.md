@@ -115,5 +115,5 @@ To determine if Helm v2 is necessary, the app manager will check the `apiVersion
 Optionally, you can specify the Helm version in the HelmChart custom resource. Valid options are `v2` and `v3`. For more information, see [HelmChart](../reference/custom-resource-helmchart) in the _Custom resources_ section.
 
 :::note
-Support for Helm v2 ended on November 13, 2020. This includes security patching. If you specify `helmVersion: v2` in any HelmChart custom resources, update your references to `v3`. Replicated will remove support for Helm v2 in the coming months.
+Support for Helm v2, including security patches, ended on November 13, 2020. If you specify `helmVersion: v2` in any HelmChart custom resources, update your references to `v3`. Replicated will remove support for Helm v2 .
 :::
