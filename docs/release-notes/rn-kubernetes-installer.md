@@ -10,16 +10,16 @@ Released on August 8, 2022
 
 ### New Features {#new-features-v2022-08-08-0}
 
-- Add Ubuntu 22.04 support.
-- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.78.0.
+- Adds Ubuntu 22.04 support.
+- Adds KOTS add-on version 1.78.0. See [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm).
 
 ### Improvements {#improvements-v2022-08-08-0}
 
-- New preflight check to disallow Docker add-on install on Ubuntu 22.04.
+- Adds a new preflight check to disallow the Docker add-on installation on Ubuntu 22.04.
 
 ### Bug Fixes {#bug-fixes-v2022-08-08-0}
 
-- Fixes an issue that could cause add-on package downloads to fail with tar error.
+- Fixes an issue that could cause downloading add-on packages to fail with a TAR error.
 
 ## Release v2022.08.04-0
 
