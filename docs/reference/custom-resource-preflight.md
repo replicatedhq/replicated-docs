@@ -69,7 +69,9 @@ The following fields are supported on all optional collectors for preflights and
   </tr>
 </table>
 
-**Example: Collector Definition for a Support Bundle**
+#### Example
+
+This is an example of collector definition for a support bundle:
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -114,7 +116,9 @@ The following fields are supported on all optional analyzers for preflights and 
   </tr>
 </table>
 
-**Example: Analyzer Definition with a Strict Preflight Check**
+#### Example
+
+This is an example of an analyzer definition with a strict preflight check:
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
