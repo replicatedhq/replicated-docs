@@ -21,23 +21,40 @@ spec:
   redactors: []
 ```
 
-## Fields and Examples
+## Sub-objects, Fields, and Examples
 
-The following fields are used to add custom redactors.
+Each redactor consists of a set of files that it can apply to, a set of string literals to replace, a set of regex replacements to run, and a list of YAML paths to redact. Any of these four can be omitted.
+
+The following sub-objects and fields are used to define custom redactors.
 
 <table>
   <tr>
-    <th width="30%">Field Name</th>
+    <th width="30%">Sub-object or Field Name</th>
     <th width="70%">Description</th>
   </tr>
   <tr>
-    <td><code>collectorName</code></td>
-    <td>(Optional) A collector can specify the <code>collectorName</code> field. In some collectors, this field controls the path where result files are stored in the support bundle.</td>
+    <td><code>fileSelector</code></td>
+    <td>(Required)The <code>fileSelector</code> sub-object...</td>
   </tr>
   <tr>
-    <td><code>exclude</code></td>
-    <td>(Optional) Based on the runtime available configuration, a conditional can be specified in the <code>exclude</code> field. This is useful for deployment techniques that allow templating for Replicated app manager and the optional Helm component. When this value is <code>false</code>, the collector is not included.</td>
+    <td><code>removals</code></td>
+    <td>(Required) The <code>removals</code> sub-object...</td>
   </tr>
 </table>
 
-**Example: Collector Definition for a Support Bundle**
+**Example: Password Redaction for a Support Bundle**
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Redactor
+metadata:
+  name: my-redactor-name
+spec:
+  redactors:
+  - name: replace password # names are not used internally, but are useful for recordkeeping
+    fileSelector:
+      file: data/my-password-dump # this targets a single file
+    removals:
+      values:
+      - abc123 # this value is my password, and should never appear in a support bundle
+```
