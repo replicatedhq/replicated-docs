@@ -1,16 +1,15 @@
 # Redactor
 
-The Redactor custom resource enables custom redactions during support bundle generation.
+Preflight checks and support bundles include built-in redactors that hide sensitive customer data after it is collected and before it is analyzed. These default redactors hide passwords, tokens, AWS secrets, IP addresses, database connection strings, and URLS that contain usernames and passwords. These cannot be disabled, but any additional Redactor custom resources are added to the defaults.
 
-Vendors can use this to hide sensitive information like API keys, credentials, or account numbers in support bundles.
 
-The Redactor custom resource is optional, but the app manager includes all of the pre-configured redactors described in Troubleshoot by default in support bundle generation. For more information, see [Redacting Data](https://troubleshoot.sh/docs/redact/) in the Troubleshoot documentation.
+You can add custom redactors to the default redactors for use with support bundles. For example, you can redact API keys or account numbers, depending on your customer needs.
 
-These cannot be disabled by the vendor, but any additional Redactor custom resources are added to the defaults.
+The Redactor custom resource is optional. You can customize the collectors and analyzers in support bundles without configuring any custom redactors, and the support bundles will simply use the default redactors. For more information about the support bundle workflow, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles) in Configuring Preflight Checks and Support Bundles. For more information about the redacotr, see [Redacting Data](https://troubleshoot.sh/docs/redact/) in the Troubleshoot documentation.
 
 ## Basic Manifest File
 
-The following is an example manifest file for the Redactor custom resource:
+To define custom redactors, add the Redactor custom resource to your release. The following is an example manifest file for the Redactor custom resource (`kind: Redactor`):
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
