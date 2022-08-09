@@ -1,10 +1,10 @@
 # Redactor
 
-Preflight checks and support bundles include built-in redactors that hide sensitive customer data after it is collected and before it is analyzed. These default redactors hide passwords, tokens, AWS secrets, IP addresses, database connection strings, and URLS that contain usernames and passwords. The default redactors cannot be disabled, but you can add custom redactors to support bundles using the Redactor custom resource manifest file. For example, you can redact API keys or account numbers, depending on your customer needs. For more information about redactors, see [Redacting Data](https://troubleshoot.sh/docs/redact/) in the Troubleshoot documentation.
+Preflight checks and support bundles include built-in redactors that hide sensitive customer data before it is analyzed. These default redactors hide passwords, tokens, AWS secrets, IP addresses, database connection strings, and URLS that contain usernames and passwords. The default redactors cannot be disabled, but you can add custom redactors to support bundles using the Redactor custom resource manifest file. For example, you can redact API keys or account numbers, depending on your customer needs. For more information about redactors, see [Redacting Data](https://troubleshoot.sh/docs/redact/) in the Troubleshoot documentation.
 
 ## Basic Manifest File
 
-To define custom redactors, add the Redactor custom resource to your release and then add redactors. The following is a basic Redactor custom resource manifest file (`kind: Redactor`):
+To define custom redactors, add the Redactor custom resource to your release and then add redactors. The following YAML is a basic Redactor custom resource manifest file (`kind: Redactor`) that you can start with:
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -15,42 +15,49 @@ spec:
   redactors: []
 ```
 
-## Sub-objects and Fields
+## Objects and Fields
 
-Each redactor must contain the two sub-objects: `fileSelector` and `removals`.
+Each redactor must contain the two objects: `fileSelector` and `removals`.
 
-Redactors also consist of fields that define a set of files that it can apply to, a set of string literals to replace, a set of regex replacements to run, and a list of YAML paths to redact. Any of the four fields can be omitted. For more information and examples of these fields, see [Redactors](https://troubleshoot.sh/docs/redact/redactors/) in the Troubleshoot documentation.
+Redactors also consist of fields that define a:
 
-The following sub-objects and fields are used to define custom redactors:
+- Set of files that the redactor can apply to
+- Set of string literals to replace
+- Set of regex replacements to run
+- List of YAML paths to redact
+
+Any of the four fields can be omitted. For more information and examples of these fields, see [Redactors](https://troubleshoot.sh/docs/redact/redactors/) in the Troubleshoot documentation.
+
+The following objects and fields are used to define custom redactors:
 
 <table>
   <tr>
-    <th width="30%">Sub-object or Field Name</th>
+    <th width="30%">Object or Field Name</th>
     <th width="70%">Description</th>
   </tr>
   <tr>
     <td><code>fileSelector</code></td>
-    <td>(Required)The <code>fileSelector</code> sub-object determines which files the redactor is applied to.</td>
+    <td>(Required) This object determines which files the redactor is applied to.</td>
   </tr>
   <tr>
     <td><code>removals</code></td>
-    <td>(Required) The <code>removals</code> sub-object determines which files are removed.</td>
+    <td>(Required) This object determines which files are removed.</td>
   </tr>
   <tr>
     <td><code>file</code> or <code>files</code></td>
-    <td>Specifies a file or set of files that the redactor is applied to. Globbing is used to match files. For example, <code>/my/test/glob/*</code> matches <code>/my/test/glob/file</code> but does not match <code>/my/test/glob/subdir/file</code>. If neither <code>file</code> nor <code>files</code> are specified, then the redactor is applied to all files.</td>
+    <td>(Optional) This field specifies a file or set of files that the redactor is applied to. Globbing is used to match files. For example, <code>/my/test/glob/*</code> matches <code>/my/test/glob/file</code> but does not match <code>/my/test/glob/subdir/file</code>. If neither <code>file</code> nor <code>files</code> are specified, then the redactor is applied to all files.</td>
   </tr>
   <tr>
     <td><code>regex</code></td>
-    <td>Regex allows applying a regex to lines following a line that matches a filter. <code>selector</code> is used to identify lines, and then the redactor is run on the next line. If <code>selector</code> is empty, the redactor runs on every line. This can be useful for removing values, such as secrets, from an S3 endpoint. <br></br><br></br>Matches to entries in regex are removed or redacted, depending on how the regex is constructed. Any portion of a match not contained within a capturing group is removed entirely. The contents of capturing groups tagged mask are masked with the string <code>***HIDDEN***</code>.</td>
+    <td>(Optional) This field allows applying a regex to lines following a line that matches a filter. Regex uses the <code>selector</code> subfield to identify a line, and then the redactor is run on the next line. If <code>selector</code> is empty, the redactor runs on every line. This can be useful for removing values, such as secrets, from an S3 endpoint. <br></br><br></br>Matches to entries in regex are removed or redacted, depending on how the regex is constructed. Any portion of a match not contained within a capturing group is removed entirely. The contents of capturing groups tagged mask are masked with the string <code>***HIDDEN***</code>.</td>
   </tr>
   <tr>
     <td><code>values</code></td>
-    <td>Specifies which entries to replace with the string <code>***HIDDEN***</code>.</td>
+    <td>(Optional) This field specifies which entries to replace with the string <code>***HIDDEN***</code>.</td>
   </tr>
   <tr>
     <td><code>yamlPath</code></td>
-    <td>Specifies which items within YAML documents are redacted. Input is a <code>.</code> -delimited path to the items to be redacted. If an item in the path is the literal string <code>*</code>, the redactor is applied to all options at that level. <br></br><br></br>Files that fail to parse as YAML or that do not contain any matches are not be modified by this redactor. Files that do contain matches are re-rendered, which removes comments and custom formatting. Multi-document YAML is not fully supported. Only the first document is checked for matches, and if a match is found, later documents are discarded entirely.</td>
+    <td>(Optional) This field specifies which items within YAML documents are redacted. Input is a <code>.</code> -delimited path to the items to be redacted. If an item in the path is the literal string <code>*</code>, the redactor is applied to all options at that level. <br></br><br></br>Files that fail to parse as YAML or that do not contain any matches are not be modified by this redactor. Files that do contain matches are re-rendered, which removes comments and custom formatting. Multi-document YAML is not fully supported. Only the first document is checked for matches, and if a match is found, later documents are discarded entirely.</td>
   </tr>
 </table>
 
@@ -69,4 +76,12 @@ spec:
     removals:
       values:
       - abc123 # this value is my password, and should never appear in a support bundle
+  - name: all files # as no file is specified, this redactor will run against all files
+    removals:
+      regex:
+      - redactor: (another)(?P<mask>.*)(here) # this will replace anything between the strings `another` and `here` with `***HIDDEN***`
+      - selector: 'S3_ENDPOINT' # remove the value in lines following those that contain the string S3_ENDPOINT
+        redactor: '("value": ").*(")'
+      yamlPath:
+      - "abc.xyz.*" # redact all items in the array at key xyz within key abc in yaml documents
 ```
