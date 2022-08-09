@@ -61,7 +61,9 @@ The following objects and fields are used to define custom redactors:
   </tr>
 </table>
 
-**Example: Password Redaction for a Support Bundle**
+## example
+
+This is an example of password redaction for a support bundle:
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
