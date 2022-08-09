@@ -100,7 +100,7 @@ Must be a valid Helm release name that matches regex `^[a-z0-9]([-a-z0-9]*[a-z0-
 ## helmVersion
 
 Identifies the Helm Version used to render the chart.
-Acceptable values are `v2` or `v3`. `v2` is the default when no value is specified.
+Acceptable values are `v2` or `v3`. `v3` is the default when no value is specified.
 
 ## useHelmInstall
 
