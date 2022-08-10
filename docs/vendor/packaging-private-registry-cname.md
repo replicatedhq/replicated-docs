@@ -1,6 +1,6 @@
-# Using a Custom Registry Domain Name (Alpha)
+# Using a Custom Registry Hostname (Alpha)
 
-You can use custom domain names as aliases for the replicated.registry.com and proxy.replicated.com endpoints, by creating Canonical Name (CNAME) records for your domains.
+You can use custom hostnames as aliases for the replicated.registry.com and proxy.replicated.com endpoints, by creating Canonical Name (CNAME) records for your domains.
 
 Whether you use the Replicated private registry or the proxy service for your own private registry, these Replicated domains are external to your domain and require additional security reviews by your customer. Using custom domains as aliases for Replicated domains can bring the Replicated registry and proxy service inside an existing security review and reduce your exposure.
 
@@ -13,37 +13,39 @@ Verification of the domain is required using TXT records that undergo separate v
 - Domain ownership: This verification is done when you initially add a record.
 - TLS certificate creation: Each new domain must have a new TLS certificate to be verified.
 
-If you configure a second application to use an existing, configured domain name, the configured domain name is automatically validated if the verified application belongs to the same team.
+The TXT records can be removed once verification is complete.
+
+If you configure a second application to use an existing, configured hostname, the configured hostname is automatically validated if both applications belongs to the same team.
 
 ## Limitations
 
-Configuring a custom domain name has the following limitations:
+Configuring a custom hostname has the following limitations:
 
 - The kustomization in the Replicated app manager always rewrites images to registry.replicated.com or proxy.replicated.com, and does not respect the CNAME. Only Helm installations that do not use the app manager respect the CNAME. This type of Helm installation is an Alpha feature. For more information, see [Using Helm to Install an Application (Alpha)](helm-install).
 - The LicenseDockerCfg template function does not respect the CNAME.
-- A single CNAME record cannot be used for both the registry and proxy endpoints. A single domain name can map to registry.replicated.com for any number of applications, but cannot map to both registry.replicated.com and  proxy.replicated.com, even if the applications are different.
-- Custom domain names cannot be used to alias replicated.app (release manifests), api.replicated.com (platform market API), the download portal, or other services.
+- A single CNAME record cannot be used for both the registry and proxy endpoints. A single hostname can map to registry.replicated.com for any number of applications, but cannot map to both registry.replicated.com and  proxy.replicated.com, even if the applications are different.
+- Custom hostnames cannot be used to alias replicated.app (release manifests), api.replicated.com (platform market API), the download portal, or other services.
 
-## Configure a Custom Domain Name in the Vendor Portal
+## Configure a Custom Hostname in the Vendor Portal
 
-You can configure custom domain names for the Replicated private registry and the proxy service in the vendor portal.
+You can configure custom hostnames for the Replicated private registry and the proxy service in the vendor portal.
 
-To configure a custom domain name:
+To configure a custom hostname:
 
 1. Log in to the [vendor portal](https://vendor.replicated.com), and click **Images**.
-1. In the Custom Registry Domain Name pane, on either the registry.replicated.com or proxy.replicated.com tab, select **Use a custom domain name instead of ENDPOINT_NAME**.
-1. Enter the custom domain name in the text box, and click **Save**.
+1. In the Custom Registry Hostname pane, on either the registry.replicated.com or proxy.replicated.com tab, select **Use a custom hostname instead of ENDPOINT_NAME**.
+1. Enter the custom hostname in the text box, and click **Save**.
 1. From Create CNAME record, copy the text string and create the CNAME record in your DNS account. Click **Continue**.
-1. From Domain name ownership verification, copy the text string and create a TXT record in your DNS account. Click **Verify and continue**.
+1. From Hostname ownership verification, copy the text string and create a TXT record in your DNS account. Click **Verify and continue**.
 1. From TLS cert creation verification, copy the text string and create a TXT record in your DNS account. Click **Verify and finish**.
 
   Your changes can take up to 24 hours to propagate.
 
-## Configure a Custom Domain Name with the Vendor API
+## Configure a Custom Hostname with the Vendor API
 
-You can configure custom domain names for the Replicated private registry and the proxy service using the vendor API.
+You can configure custom hostnames for the Replicated private registry and the proxy service using the vendor API.
 
-To configure a custom domain name:
+To configure a custom hostname:
 
 1. Generate a user token. See [Generate a User API Token in Using the Vendor API v3](//reference/vendor-api-using#generate-a-user-api-token).
 
