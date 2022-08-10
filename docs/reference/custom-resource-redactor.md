@@ -6,7 +6,7 @@ The default redactors cannot be disabled, but you can add custom redactors to su
 
 ## Basic Manifest File
 
-To define custom redactors, add the Redactor custom resource to your release and then add redactors. The following YAML is a basic Redactor custom resource manifest file (`kind: Redactor`) that you can start with:
+You can add custom redactors to the following basic Redactor custom resource manifest file (`kind: Redactor`):
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
