@@ -23,7 +23,7 @@ The following diagram illustrates the workflow for preflight checks and support 
 
 ![Troubleshoot Workflow Diagram](/images/troubleshoot-workflow-diagram.png)
 
-As shown in the diagram above, preflight checks and support bundles first use collectors to collect data from various sources, including the cluster environment and the application. Then, built-in redactors censor any sensitive information from the collected data. Finally, analyzers review the non-redacted data to identify common problems. For more information, see [Collectors](#collectors), [Redactors](#redactors), and [Analyzers](#analyzers).
+As shown in the diagram above, preflight checks and support bundles first use collectors to collect data from various sources, including the cluster environment and the application. Then, built-in redactors censor any sensitive information from the collected data. Finally, analyzers review the post-redacted data to identify common problems. For more information, see [Collectors](#collectors), [Redactors](#redactors), and [Analyzers](#analyzers).
 
 Host collectors and analyzers also available and can be helpful to use for debugging when a Kubernetes cluster is down. For more information about host collectors and analyzers, see [Overview](https://troubleshoot.sh/docs/host-collect-analyze/overview/) in the Troubleshoot documentation.
 
@@ -47,7 +47,7 @@ This functionality cannot be disabled in the Replicated app manager. You can add
 ### Analyzers
 Analyzers use the non-redacted data from the collectors to identify issues. The outcomes that you specify are displayed to customers.
 
-Analyzer outcomes for preflight checks differ from the outcomes for support bundles:
+Analyzer outcomes for preflight checks differ from the outcomes for support bundles in terms of how they are used:
 
 - Preflight checks use analyzers to determine pass, fail, and warning outcomes, and display messages to a customer during installation. For example, you can define a fail or warning outcome if the Kubernetes version on the cluster does not meet the minimum version that your application supports.
 
@@ -82,17 +82,11 @@ To define preflight checks:
     spec:
       collectors:
         - mysql:
-          collectorName: mysql
-          uri: 'USER:PASSWORD@tcp(HOST:PORT)/DB_NAME'
+            collectorName: mysql
+            uri: 'USER:PASSWORD@tcp(HOST:PORT)/DB_NAME'
     ```
 
-    Replace:
-
-    - USER with the username
-    - PASSWORD with the user password
-    - HOST with the host or domain name
-    - PORT with the port number
-    - DB_NAME with the database name
+    Replicated recommends replacing the 'USER:PASSWORD@tcp(HOST:PORT)/DB_NAME' URI with a template function to avoid exposing sensitive information.
 
 1. Add analyzers to analyze the data from the collectors that you specified. Define the criteria for the pass, fail, and/or warn outcomes and specify custom messages for each. For example, you can set a `fail` outcome if the MySQL version is less than the minimum required. Then, specify a message to display that informs your customer of the reasons for the failure and steps they can take to fix the issue.
 
@@ -102,6 +96,7 @@ To define preflight checks:
     - Strict preflight analyzers are ignored if the `exclude` flag is also used.
 
     For more information about strict preflight checks, see [`strict`](https://troubleshoot.sh/docs/analyze/#strict) in the Troubleshoot documentation. For more information about cluster privileges, see `requireMinimalRBACPrivileges` for name-scoped access in [Configuring Role-Based Access](packaging-rbac#namespace-scoped-access).
+
     ```yaml
     apiVersion: troubleshoot.sh/v1beta2
     kind: Preflight
@@ -110,23 +105,23 @@ To define preflight checks:
       spec:
         collectors:
           - mysql:
-            collectorName: mysql
-            uri: 'USER:PASSWORD@tcp(HOST:PORT)/DB_NAME'
+              collectorName: mysql
+              uri: 'USER:PASSWORD@tcp(HOST:PORT)/DB_NAME'
         analyzers:
           - mysql:
-            strict: true
-            checkName: Must be MySQL 8.x or later
-            collectorName: mysql
-            outcomes:
-              - fail:
-                  when: connected == false
-                  message: Cannot connect to MySQL server
-              - fail:
-                  when: version < 8.x
-                  message: The MySQL server must be at least version 8
-              - pass:
-                  message: The MySQL server is ready
-    ```
+              strict: true
+              checkName: Must be MySQL 8.x or later
+              collectorName: mysql
+              outcomes:
+                - fail:
+                    when: connected == false
+                    message: Cannot connect to MySQL server
+                - fail:
+                    when: version < 8.x
+                    message: The MySQL server must be at least version 8
+                - pass:
+                    message: The MySQL server is ready
+      ```
 
 1. Add the manifest files to the application that you are packaging and distributing with Replicated.
 
@@ -190,7 +185,7 @@ To customize a support bundle:
   ```
   Replace `APP_NAMESPACE` with the name of the namespace.
 
-1. (Recommended) Add application Pod logs and set the retention options for the number of lines logged. Typically the selector attribute is matched to the labels.
+1. (Recommended) Add application Pod logs and set the collection limits for the number of lines logged. Typically the selector attribute is matched to the labels.
 
     1. To get the labels for an application, either inspect the YAML or run the following command to see what labels are used:
 
@@ -267,5 +262,5 @@ To customize a support bundle:
 
 1. Save and promote your release. To test this feature, generate a support bundle from the Troubleshoot tab in the admin console and do one of the following:
 
-    - If you have a license entitlement, click **Send bundle to vendor**. You can also open the TAR file to review the files. For more information about license entitlements, see [Create a Customer](releases-creating-customer#create-a-customer).
+    - If you have the Support Bundle Upload Enabled license entitlement, click **Send bundle to vendor**. You can also open the TAR file to review the files. For more information about license entitlements, see [Create a Customer](releases-creating-customer#create-a-customer).
     - Download the `support-bundle.tar.gz` file. Copy the file to the Troubleshoot tab in the [vendor portal](https://vendor.replicated.com) to see the analysis and use the file inspector.
