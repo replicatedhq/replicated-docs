@@ -83,10 +83,10 @@ To define preflight checks:
       collectors:
         - mysql:
             collectorName: mysql
-            uri: 'USER:PASSWORD@tcp(HOST:PORT)/DB_NAME'
+            uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
     ```
 
-    Replicated recommends replacing the 'USER:PASSWORD@tcp(HOST:PORT)/DB_NAME' URI with a template function to avoid exposing sensitive information.
+    Replicated recommends replacing using a template function for the URI to avoid exposing sensitive information. For more information about template functions, see [Using Template Functions](packaging-template-functions).
 
 1. Add analyzers to analyze the data from the collectors that you specified. Define the criteria for the pass, fail, and/or warn outcomes and specify custom messages for each. For example, you can set a `fail` outcome if the MySQL version is less than the minimum required. Then, specify a message to display that informs your customer of the reasons for the failure and steps they can take to fix the issue.
 
@@ -106,7 +106,7 @@ To define preflight checks:
         collectors:
           - mysql:
               collectorName: mysql
-              uri: 'USER:PASSWORD@tcp(HOST:PORT)/DB_NAME'
+              uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
         analyzers:
           - mysql:
               strict: true
