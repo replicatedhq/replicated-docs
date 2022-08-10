@@ -1,6 +1,8 @@
 # Redactor
 
-Preflight checks and support bundles include built-in redactors that hide sensitive customer data before it is analyzed. These default redactors hide passwords, tokens, AWS secrets, IP addresses, database connection strings, and URLS that contain usernames and passwords. The default redactors cannot be disabled, but you can add custom redactors to support bundles using the Redactor custom resource manifest file. For example, you can redact API keys or account numbers, depending on your customer needs. For more information about redactors, see [Redacting Data](https://troubleshoot.sh/docs/redact/) in the Troubleshoot documentation.
+Preflight checks and support bundles include built-in redactors that hide sensitive customer data before it is analyzed. These default redactors hide passwords, tokens, AWS secrets, IP addresses, database connection strings, and URLS that contain usernames and passwords.
+
+The default redactors cannot be disabled, but you can add custom redactors to support bundles using the Redactor custom resource manifest file. For example, you can redact API keys or account numbers, depending on your customer needs. For more information about redactors, see [Redacting Data](https://troubleshoot.sh/docs/redact/) in the Troubleshoot documentation.
 
 ## Basic Manifest File
 
@@ -61,7 +63,7 @@ The following objects and fields are used to define custom redactors:
   </tr>
 </table>
 
-## example
+## Example
 
 This is an example of password redaction for a support bundle:
 
