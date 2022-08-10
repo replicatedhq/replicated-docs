@@ -18,7 +18,7 @@ The following sections show basic manifest files for the Preflight and Support B
 
 ### Preflight
 
-The Preflight manifest file uses `kind: Preflight`. All of the default collectors and analyzers are included, indicated by `[]`.
+The Preflight manifest file uses `kind: Preflight`.
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -32,7 +32,7 @@ spec:
 
 ### Support Bundle
 
-The Support Bundle manifest file uses `kind: SupportBundle`. All of the default collectors and analyzers are included, indicated by `[]`.
+The Support Bundle manifest file uses `kind: SupportBundle`.
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -118,7 +118,7 @@ The following fields are supported on all optional analyzers for preflights and 
 
 #### Example
 
-This is an example of an analyzer definition with a strict preflight check:
+This is an example of an analyzer definition with a strict preflight check and `exclude` set for installations that do not use the Kubernetes installer. In this case, the strict preflight is enforced on a Kubernetes installer cluster but not on an existing cluster or air gap cluster.
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -128,6 +128,7 @@ metadata:
 spec:
   analyzers:
     - clusterVersion:
+        exclude: 'repl{{ (not IsKurl) }}'
         strict: true
         outcomes:
           - fail:
