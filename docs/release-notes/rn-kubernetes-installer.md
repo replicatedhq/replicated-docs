@@ -4,6 +4,16 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.08.11-0
+
+Released on August 11, 2022
+
+### Improvements {#improvements-v2022-08-11-0}
+
+- Add Collectd Ubuntu 22.04 compatibility to host preflight checks
+- Add additional no proxy addresses to the join the command
+
+
 ## Release v2022.08.08-0
 
 Released on August 8, 2022
