@@ -175,7 +175,7 @@ For more information about the `additionalNamespaces` attribute, see [Defining A
 
 The app manager supports image tags for applications in all use cases.
 
-The app manager supports image digests only for online (Internet-connected) installations where the app manager can pull all images from the Replicated private registry, a public external registry, or from a private external registry through proxy access. Image tags and digests can also be used together in these use-cases. Image digests are not supported for airgap installations or for online installations that are configured, via the **Registry Settings** tab, to push images to a private registry.
+The app manager supports image digests only for online (Internet-connected) installations where the app manager can pull all images from the Replicated private registry, a public external registry, or from a private external registry through proxy access. Image tags and digests can be used together for these installations too. Image digests are not supported for airgap installations or for online installations that are configured to push images to a private registry.
 
 ## Related Topic
 
