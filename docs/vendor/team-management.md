@@ -8,8 +8,12 @@ The [Team](https://vendor.replicated.com/team/members) page provides a list of a
 ## Invite Members
 By default, team administrators can invite more team members to collaborate.
 
+::: note
+Users invited to a team will always join the team that they were invited to. This flow for joining a team supercedes all other methods for being added to an existing team. 
+:::
+
 :::note
-SAML-only enforced teams do not use the email invitation flow.
+SAML-only enforced teams do not use the email invitation flow. These teams and their users should login via their SAML provider's App dashboard.
 :::
 
 To invite a new team member:
