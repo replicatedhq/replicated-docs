@@ -6,10 +6,10 @@ This topic describes how to manage team members in the Replicated vendor portal,
 The [Team](https://vendor.replicated.com/team/members) page provides a list of all accounts currently associated with or invited to your team. Each row contains information about the user, including their multi-factor authentication (MFA) status and role-based access control (RBAC) role, and lets administrators take additional actions, such as remove, re-invite, and edit permissions.
 
 ## Invite Members
-By default, team administrators can invite more team members to collaborate.
+By default, team administrators can invite more team members to collaborate. Invited team members will receive an email to activate their account. This activiation link is unique to the invited user and will guarantee that they join the team where the invite originated from. 
 
 ::: note
-Users invited to a team will always join the team that they were invited to. This flow for joining a team supercedes all other methods for being added to an existing team. 
+If a user's email address is already a member of another team, they will be notified about the invitation and provided details on either joining this team or remaining on their existing team. 
 :::
 
 :::note
