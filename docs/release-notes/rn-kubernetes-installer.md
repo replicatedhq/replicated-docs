@@ -11,7 +11,7 @@ Released on August 11, 2022
 ### Improvements {#improvements-v2022-08-11-0}
 
 - Add Collectd Ubuntu 22.04 compatibility to host preflight checks
-- Add additional no proxy addresses to the join the command
+- Add `additional noproxy` addresses to the join command
 
 
 ## Release v2022.08.08-0
