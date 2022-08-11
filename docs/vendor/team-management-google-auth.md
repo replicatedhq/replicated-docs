@@ -1,4 +1,4 @@
-# Google Authentication
+# Google Authentication 
 
 This topic describes the Replicated supported functionality for Google authentication and how to configure it.
 
