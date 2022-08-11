@@ -19,7 +19,7 @@ spec:
 
 ## Objects and Fields
 
-Each redactor must contain the `fileSelector` and `removals` objects.
+Each redactor contains two objects: `fileSelector` and `removals`.
 
 Redactors also consist of fields that define a:
 
@@ -30,7 +30,7 @@ Redactors also consist of fields that define a:
 
 Any of the four fields can be omitted. For more information and examples of these fields, see [Redactors](https://troubleshoot.sh/docs/redact/redactors/) in the Troubleshoot documentation.
 
-The following objects and fields are used to define custom redactors:
+The following objects and fields are nested together in the Redactor custom resource manifest file:
 
 <table>
   <tr>
@@ -39,15 +39,24 @@ The following objects and fields are used to define custom redactors:
   </tr>
   <tr>
     <td><code>fileSelector</code></td>
-    <td>(Required) This object determines which files the redactor is applied to.</td>
-  </tr>
-  <tr>
-    <td><code>removals</code></td>
-    <td>(Required) This object determines which files are removed.</td>
+    <td>(Optional) This object determines which files the redactor is applied to. If this object is omitted from the manifest file, the redactor is applied to all files.</td>
   </tr>
   <tr>
     <td><code>file</code> or <code>files</code></td>
     <td>(Optional) This field specifies a file or set of files that the redactor is applied to. Globbing is used to match files. For example, <code>/my/test/glob/*</code> matches <code>/my/test/glob/file</code>, but does not match <code>/my/test/glob/subdir/file</code>. If neither <code>file</code> nor <code>files</code> are specified, then the redactor is applied to all files.</td>
+  </tr>
+</table>
+
+The following object and fields are nested together in the Redactor custom resource manifest file:
+
+<table>
+  <tr>
+    <th width="30%">Object or Field Name</th>
+    <th width="70%">Description</th>
+  </tr>
+  <tr>
+    <td><code>removals</code></td>
+    <td>(Required) This object determines which strings in each file are redacted.</td>
   </tr>
   <tr>
     <td><code>regex</code></td>
