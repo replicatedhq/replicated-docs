@@ -15,14 +15,14 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 * Adds support for image tags and digests to be used together for most online installations. For more information, see [Support for Image Tags and Digests](/vendor/packaging-private-images#support-for-image-tags-and-digests) in *Connecting to an Image Registry*.
 
 ### Improvements {#improvements-1-81-0}
-* Helm v2 will only be used if `helmVersion` is set to `v2` in the [HelmChart](/reference/custom-resource-helmchart) custom resource.
+* Helm v2 will only be used if `helmVersion` is set to `v2` in the [HelmChart](/reference/custom-resource-helmchart) custom resource. Support for Helm v2, including security patches, ended on November 13, 2020, and support for Helm v2 in the app manager will be removed in the near future.
 * Improves the UI responsiveness on the Config page.
 
 ### Bug Fixes {#bug-fixes-1-81-0}
 * Fixes an issuse where the license tab didn't show for Helm-managed installations.
 * Fixes an issue that could cause `Namespace` manifests packaged in Helm charts to be excluded from deployment, causing namespaces to not be created when [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) is set to `true` and [namespace](/reference/custom-resource-helmchart#usehelminstall) is an empty string.
 * Fixes an issue where GitOps was enabled before the deploy key was added to the git provider.
-* Hide copy command on modals in the admin console when clipboard is not available.
+* Hides copy commands on modals in the admin console when clipboard is not available.
 
 ## 1.80.0
 
