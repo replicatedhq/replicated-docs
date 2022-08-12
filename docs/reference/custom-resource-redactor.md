@@ -53,7 +53,7 @@ The `removals` object is required and defines the redactions that occur. This ob
   </tr>
   <tr>
     <td><code>regex</code></td>
-    <td>(Optional) Allows a regular expression to be applied for removal and redaction on lines that immediately follow a line that matches a filter. The <code>selector</code> field is used to identify lines, and the <code>regex</code> field specifies a regular expression that runs on the line after any line identified by <code>selector</code>. If <code>selector</code> is empty, the redactor runs on every line. Using a <code>selector</code> is useful for removing values from pretty-printed JSON, where the value to be redacted is pretty-printed on the line beneath another value.<br></br><br></br>Matches to the regex are removed or redacted, depending on the construction of the regex. Any portion of a match not contained within a capturing group will be removed entirely. The contents of capturing groups tagged <code>mask</code> will be masked with <code>***HIDDEN***</code>. Capturing groups tagged <code>drop</code> will be dropped.</td>
+    <td>(Optional) Allows a regular expression to be applied for removal and redaction on lines that immediately follow a line that matches a filter. The <code>selector</code> field is used to identify lines, and the <code>redactor</code> field specifies a regular expression that runs on the line after any line identified by <code>selector</code>. If <code>selector</code> is empty, the redactor runs on every line. Using a <code>selector</code> is useful for removing values from pretty-printed JSON, where the value to be redacted is pretty-printed on the line beneath another value.<br></br><br></br>Matches to the regex are removed or redacted, depending on the construction of the regex. Any portion of a match not contained within a capturing group is removed entirely. The contents of capturing groups tagged <code>mask</code> are masked with <code>***HIDDEN***</code>. Capturing groups tagged <code>drop</code> are dropped.</td>
   </tr>
   <tr>
     <td><code>values</code></td>
@@ -61,7 +61,7 @@ The `removals` object is required and defines the redactions that occur. This ob
   </tr>
   <tr>
     <td><code>yamlPath</code></td>
-    <td>(Optional) Specifies a <code>.</code>-delimited path to the items to be redacted from a YAML document. If an item in the path is the literal string <code>*</code>, the redactor is applied to all options at that level.<br></br><br></br>Files that fail to parse as YAML or that do not contain any matches are not be modified. Files that do contain matches are re-rendered, which removes comments and custom formatting. Multi-document YAML is not fully supported. Only the first document is checked for matches, and if a match is found, later documents are discarded entirely.</td>
+    <td>(Optional) Specifies a <code>.</code>-delimited path to the items to be redacted from a YAML document. If an item in the path is the literal string <code>*</code>, the redactor is applied to all options at that level.<br></br><br></br>Files that fail to parse as YAML or do not contain any matches are not modified. Files that do contain matches are re-rendered, which removes comments and custom formatting. Multi-document YAML is not fully supported. Only the first document is checked for matches, and if a match is found, later documents are discarded entirely.</td>
   </tr>
 </table>
 
