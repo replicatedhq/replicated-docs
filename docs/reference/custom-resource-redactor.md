@@ -1,6 +1,6 @@
 # Redactor
 
-Preflight checks and support bundles include built-in redactors that hide sensitive customer data before it is analyzed. These default redactors hide passwords, tokens, AWS secrets, IP addresses, database connection strings, and URLS that contain usernames and passwords.
+Preflight checks and support bundles include built-in redactors that hide sensitive customer data before it is analyzed. These default redactors hide passwords, tokens, AWS secrets, IP addresses, database connection strings, and URLs that contain usernames and passwords.
 
 The default redactors cannot be disabled, but you can add custom redactors to support bundles using the Redactor custom resource manifest file. For example, you can redact API keys or account numbers, depending on your customer needs. For more information about redactors, see [Redacting Data](https://troubleshoot.sh/docs/redact/) in the Troubleshoot documentation.
 
@@ -19,7 +19,7 @@ spec:
 
 ## Objects and Fields
 
-Each redactor support two objects: `fileSelector` and `removals`. Each object is supported by fields that specify what is redacted and how the redactions should occur. For more information and examples of these fields, see [Example Redactors](#example-redactors) below and [Redactors](https://troubleshoot.sh/docs/redact/redactors/) in the Troubleshoot documentation.
+A redactor supports two objects: `fileSelector` and `removals`. Each object is supported by fields that specify what is redacted and how the redactions should occur. For more information and examples of these fields, see [Example Redactors](#example-redactors) below and [Redactors](https://troubleshoot.sh/docs/redact/redactors/) in the Troubleshoot documentation.
 
 ### fileSelector
 
@@ -44,7 +44,7 @@ Globbing is used to match files. For example, <code>/my/test/glob/*</code> match
 
 ### removals
 
-The `removals` object is required and it defines the redactions that should occur. This object supports the following fields. At least one of these fields must be specified:
+The `removals` object is required and defines the redactions that occur. This object supports the following fields. At least one of these fields must be specified:
 
 <table>
   <tr>
@@ -53,15 +53,15 @@ The `removals` object is required and it defines the redactions that should occu
   </tr>
   <tr>
     <td><code>regex</code></td>
-    <td>(Optional) This field allows applying a regex to lines following a line that matches a filter. Regex uses the <code>selector</code> subfield to identify a line to filter, and then the redactor is run on the next line. If <code>selector</code> is empty, the redactor runs on every line. This can be useful for removing values from prettyprinted JSON or removing secrets from an S3 endpoint, among other things. <br></br><br></br>Matches to entries in regex are removed or redacted, depending on how the regex is constructed. Any portion of a match not contained within a capturing group is removed entirely. The contents of capturing groups tagged mask are masked with the string <code>***HIDDEN***</code>.</td>
+    <td>(Optional) Allows a regular expression to be applied for removal and redaction on lines that immediately follow a line that matches a filter. The <code>selector</code> field is used to identify lines, and the <code>regex</code> field specifies a regular expression that runs on the line after any line identified by <code>selector</code>. If <code>selector</code> is empty, the redactor runs on every line. Using a <code>selector</code> is useful for removing values from pretty-printed JSON, where the value to be redacted is pretty-printed on the line beneath another value.<br></br><br></br>Matches to the regex are removed or redacted, depending on the construction of the regex. Any portion of a match not contained within a capturing group will be removed entirely. The contents of capturing groups tagged <code>mask</code> will be masked with <code>***HIDDEN***</code>. Capturing groups tagged <code>drop</code> will be dropped.</td>
   </tr>
   <tr>
     <td><code>values</code></td>
-    <td>(Optional) This field specifies which entries to replace with the string <code>***HIDDEN***</code>.</td>
+    <td>(Optional) Specifies values to replace with the string <code>***HIDDEN***</code>.</td>
   </tr>
   <tr>
     <td><code>yamlPath</code></td>
-    <td>(Optional) This field specifies which items within YAML documents are redacted. Input is a <code>.</code> -delimited path to the items to be redacted. If an item in the path is the literal string <code>*</code>, the redactor is applied to all options at that level. <br></br><br></br>Files that fail to parse as YAML or that do not contain any matches are not be modified by this redactor. Files that do contain matches are re-rendered, which removes comments and custom formatting. Multi-document YAML is not fully supported. Only the first document is checked for matches, and if a match is found, later documents are discarded entirely.</td>
+    <td>(Optional) Specifies a <code>.</code>-delimited path to the items to be redacted from a YAML document. If an item in the path is the literal string <code>*</code>, the redactor is applied to all options at that level.<br></br><br></br>Files that fail to parse as YAML or that do not contain any matches are not be modified. Files that do contain matches are re-rendered, which removes comments and custom formatting. Multi-document YAML is not fully supported. Only the first document is checked for matches, and if a match is found, later documents are discarded entirely.</td>
   </tr>
 </table>
 
@@ -86,8 +86,8 @@ spec:
     removals:
       regex:
       - redactor: (another)(?P<mask>.*)(here) # this will replace anything between the strings `another` and `here` with `***HIDDEN***`
-      - selector: 'S3_ENDPOINT' # remove the value in lines following those that contain the string S3_ENDPOINT
+      - selector: 'S3_ENDPOINT' # remove the value in lines immediately following those that contain the string `S3_ENDPOINT`
         redactor: '("value": ").*(")'
       yamlPath:
-      - "abc.xyz.*" # redact all items in the array at key xyz within key abc in yaml documents
+      - "abc.xyz.*" # redact all items in the array at key `xyz` within key `abc` in YAML documents
 ```
