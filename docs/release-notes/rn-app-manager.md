@@ -19,8 +19,8 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 * Improves the UI responsiveness on the Config page.
 
 ### Bug Fixes {#bug-fixes-1-81-0}
-* Fixes an issuse where the license tab didn't show for Helm-managed installations.
-* Fixes an issue that could cause `Namespace` manifests packaged in Helm charts to be excluded from deployment, causing namespaces to not be created when [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) is set to `true` and [namespace](/reference/custom-resource-helmchart#usehelminstall) is an empty string.
+* Fixes an issuse where the license tab did not show for Helm-managed installations.
+* Fixes an issue that could cause `Namespace` manifests packaged in Helm charts to be excluded from deployment, causing namespaces to not be created when `useHelmInstall` is set to `true` and `namespace` is an empty string. For more information, see [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) and [namespace](/reference/custom-resource-helmchart#usehelminstall) in *HelmChart*.
 * Fixes an issue where GitOps was enabled before the deploy key was added to the git provider.
 * Hides copy commands on modals in the admin console when clipboard is not available.
 
