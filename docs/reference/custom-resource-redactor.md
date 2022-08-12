@@ -67,7 +67,7 @@ The `removals` object is required and defines the redactions that occur. This ob
 
 ## Example Redactors
 
-The following example shows `file`, `regex`, and `yamlPath` redaction for a support bundle:
+The following example shows `values`, `regex`, and `yamlPath` redaction for a support bundle:
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
