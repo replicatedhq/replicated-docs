@@ -12,7 +12,7 @@ Released on August 12, 2022
 
 ### Bug Fixes {#bug-fixes-v2022-08-12-0}
 
-- Fixes an issue that causes Snapshots to fail after rook to minio migration
+- Fixes an issue that causes snapshots to fail after Rook to MinIO migration.
 
 
 
