@@ -174,7 +174,7 @@ Grants the holder permission to create RBAC policies for the team.
 
 ### team/authentication/update
 
-Grants the holder permission to manage the following team authentication settings: Multifactor Authentication, Google Authentication, SAML Authentication, 
+Grants the holder permission to manage the following team authentication settings: Multifactor Authentication, Google Authentication, and SAML Authentication. 
 
 ### team/security/update
 
