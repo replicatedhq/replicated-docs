@@ -12,17 +12,17 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### New Features {#new-features-1-81-0}
 * Adds support for the `alias` field in Helm chart dependencies.
-* Adds support for image tags and digests to be used together for online installations.
+* Adds support for image tags and digests to be used together for most online installations. For more information, see [Support for Image Tags and Digests](/vendor/packaging-private-images#support-for-image-tags-and-digests) in *Connecting to an Image Registry*.
 
 ### Improvements {#improvements-1-81-0}
-* Changes the default value for `helmVersion` from `v2` to `v3` for the [HelmChart](/reference/custom-resource-helmchart) custom resource.
-* Improves the UI responsiveness on the configuration page.
+* Helm v2 will only be used if `helmVersion` is set to `v2` in the [HelmChart](/reference/custom-resource-helmchart) custom resource.
+* Improves the UI responsiveness on the Config page.
 
 ### Bug Fixes {#bug-fixes-1-81-0}
-* (alpha) Fixes an issuse where license tab would not show for helm managed applications.
-* Fixes an issue that can cause `Namespace` manifests packaged in Helm charts to be excluded from deployment, causing namespaces to not be created when [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) is set to `true` and [namespace](/reference/custom-resource-helmchart#usehelminstall) is an empty string.
-* Fixes an issue where GitOps was being enabled before the deploy key was added to the git provider.
-* (alpha) Hide copy command in UI when clipboard is not available.
+* Fixes an issuse where the license tab didn't show for Helm-managed installations.
+* Fixes an issue that could cause `Namespace` manifests packaged in Helm charts to be excluded from deployment, causing namespaces to not be created when [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) is set to `true` and [namespace](/reference/custom-resource-helmchart#usehelminstall) is an empty string.
+* Fixes an issue where GitOps was enabled before the deploy key was added to the git provider.
+* Hide copy command on modals in the admin console when clipboard is not available.
 
 ## 1.80.0
 
@@ -40,7 +40,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 ### Bug Fixes {#bug-fixes-1-80-0}
 * Fixes an issue where an ambiguous error message was shown when the endpoint field was modified in the license.
 * Fixes a bug that caused values from the HelmChart custom resource that did not use Replicated template functions to be rendered into the downloaded values.yaml file after updating the configuration in Helm-managed mode. For more information about Helm-managed mode, see [Helm-managed mode (Alpha)](/vendor/helm-install).
-* Fixes an issue in Helm-managed mode that caused an error when clicking the **Analyze application** button on the Troubleshoot page in the admin console for an application that did not include a support bundle specification. For more information about Helm-managed mode, see [Helm-managed mode (Alpha)](/vendor/helm-install). For more information about analyzing an application, see [Create a Support Bundle Using the Admin Console]/enterprise/troubleshooting-an-app#create-a-support-bundle-using-the-admin-console).
+* Fixes an issue in Helm-managed mode that caused an error when clicking the **Analyze application** button on the Troubleshoot page in the admin console for an application that did not include a support bundle specification. For more information about Helm-managed mode, see [Helm-managed mode (Alpha)](/vendor/helm-install). For more information about analyzing an application, see [Create a Support Bundle Using the Admin Console](/enterprise/troubleshooting-an-app#create-a-support-bundle-using-the-admin-console).
 
 ## 1.79.0
 
