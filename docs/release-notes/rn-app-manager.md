@@ -4,6 +4,26 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.81.0
+
+Released on August 12, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### New Features {#new-features-1-81-0}
+* Adds support for the `alias` field in Helm chart dependencies.
+* Adds support for image tags and digests to be used together for most online installations. For more information, see [Support for Image Tags and Digests](/vendor/packaging-private-images#support-for-image-tags-and-digests) in *Connecting to an Image Registry*.
+
+### Improvements {#improvements-1-81-0}
+* Helm v2 will only be used if `helmVersion` is set to `v2` in the HelmChart custom resource. Support for Helm v2, including security patches, ended on November 13, 2020, and support for Helm v2 in the app manager will be removed in the near future. For more information about the HelmChart custom resource, see [HelmChart](/reference/custom-resource-helmchart).
+* Improves the UI responsiveness on the Config page.
+
+### Bug Fixes {#bug-fixes-1-81-0}
+* Fixes an issuse where the license tab did not show for Helm-managed installations.
+* Fixes an issue that could cause `Namespace` manifests packaged in Helm charts to be excluded from deployment, causing namespaces to not be created when `useHelmInstall` is set to `true` and `namespace` is an empty string. For more information about these fields, see [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) and [namespace](/reference/custom-resource-helmchart#usehelminstall) in *HelmChart*.
+* Fixes an issue where GitOps was enabled before the deploy key was added to the git provider.
+* Hides copy commands on modals in the admin console when clipboard is not available.
+
 ## 1.80.0
 
 Released on August 8, 2022
@@ -11,7 +31,7 @@ Released on August 8, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### New Features {#new-features-1-80-0}
-* Displays the `helm rollback` command when deploying previous revisions from the version history page in [Helm-managed mode (Alpha)](/vendor/helm-install).
+* Displays the `helm rollback` command when deploying previous revisions from the version history page in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install).
 
 ### Improvements {#improvements-1-80-0}
 * Password complexity rules will now be shown when changing the password in the admin console.
@@ -19,8 +39,8 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### Bug Fixes {#bug-fixes-1-80-0}
 * Fixes an issue where an ambiguous error message was shown when the endpoint field was modified in the license.
-* Fixes a bug that caused values from the HelmChart custom resource that did not use Replicated template functions to be rendered into the downloaded values.yaml file after updating the configuration in Helm-managed mode. For more information about Helm-managed mode, see [Helm-managed mode (Alpha)](/vendor/helm-install).
-* Fixes an issue in Helm-managed mode that caused an error when clicking the **Analyze application** button on the Troubleshoot page in the admin console for an application that did not include a support bundle specification. For more information about Helm-managed mode, see [Helm-managed mode (Alpha)](/vendor/helm-install). For more information about analyzing an application, see [Create a Support Bundle Using the Admin Console]/enterprise/troubleshooting-an-app#create-a-support-bundle-using-the-admin-console).
+* Fixes a bug that caused values from the HelmChart custom resource that did not use Replicated template functions to be rendered into the downloaded values.yaml file after updating the configuration in Helm-managed mode. For more information about Helm-managed mode, see [Using Helm to Install an Application (Alpha)](/vendor/helm-install).
+* Fixes an issue in Helm-managed mode that caused an error when clicking the **Analyze application** button on the Troubleshoot page in the admin console for an application that did not include a support bundle specification. For more information about Helm-managed mode, see [Helm-managed mode (Alpha)](/vendor/helm-install). For more information about analyzing an application, see [Create a Support Bundle Using the Admin Console](/enterprise/troubleshooting-an-app#create-a-support-bundle-using-the-admin-console) in *Troubleshooting an Application*.
 
 ## 1.79.0
 
