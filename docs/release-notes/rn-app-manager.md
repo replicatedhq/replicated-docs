@@ -4,6 +4,26 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.81.0
+
+Released on August 12, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### New Features {#new-features-1-81-0}
+* Adds support for the `alias` field in Helm chart dependencies.
+* Adds support for image tags and digests to be used together for online installations.
+
+### Improvements {#improvements-1-81-0}
+* Changes the default value for `helmVersion` from `v2` to `v3` for the [HelmChart](/reference/custom-resource-helmchart) custom resource.
+* Improves the UI responsiveness on the configuration page.
+
+### Bug Fixes {#bug-fixes-1-81-0}
+* (alpha) Fixes an issuse where license tab would not show for helm managed applications.
+* Fixes an issue that can cause `Namespace` manifests packaged in Helm charts to be excluded from deployment, causing namespaces to not be created when [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) is set to `true` and [namespace](/reference/custom-resource-helmchart#usehelminstall) is an empty string.
+* Fixes an issue where GitOps was being enabled before the deploy key was added to the git provider.
+* (alpha) Hide copy command in UI when clipboard is not available.
+
 ## 1.80.0
 
 Released on August 8, 2022
