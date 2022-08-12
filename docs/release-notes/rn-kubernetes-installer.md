@@ -4,6 +4,18 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+# Kubernetes Installer Release Notes
+
+## Release v2022.08.12-0
+
+Released on August 12, 2022
+
+### Bug Fixes {#bug-fixes-v2022-08-12-0}
+
+- Fixes an issue that causes snapshots to fail after Rook to MinIO migration.
+
+
+
 ## Release v2022.08.11-0
 
 Released on August 11, 2022
