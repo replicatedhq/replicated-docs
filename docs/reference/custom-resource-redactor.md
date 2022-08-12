@@ -19,44 +19,37 @@ spec:
 
 ## Objects and Fields
 
-Each redactor contains two objects: `fileSelector` and `removals`.
+Each redactor support two objects: `fileSelector` and `removals`. Each object is supported by fields that specify what is redacted and how the redactions should occur. For more information and examples of these fields, see [Example Redactors](#example-redactors) below and [Redactors](https://troubleshoot.sh/docs/redact/redactors/) in the Troubleshoot documentation.
 
-Redactors also consist of fields that define a:
+### fileSelector
 
-- Set of files that the redactor can apply to
-- Set of string literals to replace
-- Set of regex replacements to run
-- List of YAML paths to redact
-
-Any of the four fields can be omitted. For more information and examples of these fields, see [Redactors](https://troubleshoot.sh/docs/redact/redactors/) in the Troubleshoot documentation.
-
-The following objects and fields are nested together in the Redactor custom resource manifest file:
+The `fileSelector` object determines which files the redactor is applied to. If this object is omitted from the manifest file, the redactor is applied to all files. This object supports the following optional fields:
 
 <table>
   <tr>
-    <th width="30%">Object or Field Name</th>
+    <th width="30%">Field Name</th>
     <th width="70%">Description</th>
   </tr>
   <tr>
-    <td><code>fileSelector</code></td>
-    <td>(Optional) This object determines which files the redactor is applied to. If this object is omitted from the manifest file, the redactor is applied to all files.</td>
+    <td><code>file</code></td>
+    <td>(Optional) Specifies a single file for redaction.</td>
   </tr>
   <tr>
-    <td><code>file</code> or <code>files</code></td>
-    <td>(Optional) This field specifies a file or set of files that the redactor is applied to. Globbing is used to match files. For example, <code>/my/test/glob/*</code> matches <code>/my/test/glob/file</code>, but does not match <code>/my/test/glob/subdir/file</code>. If neither <code>file</code> nor <code>files</code> are specified, then the redactor is applied to all files.</td>
+    <td><code>files</code></td>
+    <td>(Optional) Specifies multiple files for redaction.</td>
   </tr>
 </table>
 
-The following object and fields are nested together in the Redactor custom resource manifest file:
+Globbing is used to match files. For example, <code>/my/test/glob/*</code> matches <code>/my/test/glob/file</code>, but does not match <code>/my/test/glob/subdir/file</code>.
+
+### removals
+
+The `removals` object is required and it defines the redactions that should occur. This object supports the following fields. At least one of these fields must be specified:
 
 <table>
   <tr>
-    <th width="30%">Object or Field Name</th>
+    <th width="30%">Field Name</th>
     <th width="70%">Description</th>
-  </tr>
-  <tr>
-    <td><code>removals</code></td>
-    <td>(Required) This object determines which strings in each file are redacted.</td>
   </tr>
   <tr>
     <td><code>regex</code></td>
@@ -72,9 +65,9 @@ The following object and fields are nested together in the Redactor custom resou
   </tr>
 </table>
 
-## Example
+## Example Redactors
 
-This is an example of password redaction for a support bundle:
+The following example shows `file`, `regex`, and `yamlPath` redaction for a support bundle:
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
