@@ -1,9 +1,9 @@
 # Managing Application Namespaces
 
 It is *strongly* advised that applications be architected to deploy a single application into a single namespace when possible. This will give the most flexibility when deploying to end user environments.
-If you are deploying with Replicated's App Manager (KOTS), this means leaving the namespace blank in your manifests, which will cause the `kotsadm` process to deploy to whatever namepsace it's already running in.
+If you are deploying with Replicated app manager (KOTS), this means leaving the namespace blank in your manifests, which will cause the kotsadm process to deploy to whatever namepsace it is already running in.
 Most notably, it allows you to run with minimal Kubernetes permissions, which can reduce friction when an app runs as a tenant in a large cluster.
-Don't specify a namespace in your YAML resources, or try to make this user-configurable using the `kots.io` `Config` object, just leave namespace blank.
+Do not specify a namespace in your YAML resources, or try to make this user-configurable using the `kots.io` `Config` object, just leave namespace blank.
 
 Letting the end user manage namespaces is the easiest way to reduce friction.
 
