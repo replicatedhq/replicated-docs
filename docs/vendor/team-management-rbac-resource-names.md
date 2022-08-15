@@ -1,4 +1,4 @@
-# RBAC Resource Names
+# RBAC Resource Names 
 
 This a list of all available resource names for the Replicated vendor role-based access control (RBAC) policy:
 
