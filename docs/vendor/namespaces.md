@@ -1,11 +1,14 @@
 # Managing Application Namespaces
 
-It is *strongly* advised that applications be architected to deploy a single application into a single namespace when possible. This will give the most flexibility when deploying to end user environments.
-If you are deploying with Replicated app manager (KOTS), this means leaving the namespace blank in your manifests, which will cause the kotsadm process to deploy to whatever namepsace it is already running in.
-Most notably, it allows you to run with minimal Kubernetes permissions, which can reduce friction when an app runs as a tenant in a large cluster.
-Do not specify a namespace in your YAML resources, or try to make this user-configurable using the `kots.io` `Config` object, just leave namespace blank.
+Replicated strongly recommends that applications are architected to deploy a single application into a single namespace when possible. 
 
-Letting the end user manage namespaces is the easiest way to reduce friction.
+To use an architecture in which a single application is deployed into a single namespace, if you are distributing your application with the Replicated app manager (KOTS), do not include the namespace in the application manifests. Also, do not use the Config custom resource object to make the namespace user-configurable.
+
+When you do not specify a namespace in the application manifests, the kotsadm process deploys to whatever namepsace it is already running in. This gives the most flexibility when deploying to end user environments. This also allows you to run with minimal Kubernetes permissions, which can reduce friction when an application runs as a tenant in a large cluster. Letting the end user manage namespaces is the easiest way to reduce friction.
+
+The following examples demonstrate the recommended approach of excluding the namespace from the application manifests, as well as the incorrect approaches of hardcoding the namespace or injecting the namespace as a user-supplied value:
+
+**Recommended**
 
 ```yaml
 # good, namespace absent
@@ -15,6 +18,8 @@ metadata:
   name: spline-reticulator
 spec:
 ```
+
+**Not Recommended**
 
 ```yaml
 # bad, hardcoded
