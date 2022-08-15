@@ -104,9 +104,10 @@ Acceptable values are `v2` or `v3`. `v3` is the default when no value is specifi
 
 ## useHelmInstall
 
-Identifies whether this Helm chart will use the Replicated Helm installation (false) or native Helm installation (true).
-Default is false.
-Native Helm installations are only available for Helm v3 charts.
+Identifies whether this Helm chart will use the Replicated Helm installation (`false`) or native Helm installation (`true`).
+Default is `false`.
+It is recommended that you set this to `true`, because native Helm is preferred and Replicated Helm will be removed at some point.
+Native Helm installations always deploy using Helm v3.
 
 ## weight
 
