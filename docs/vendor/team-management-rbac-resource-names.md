@@ -1,4 +1,4 @@
-# RBAC Resource Names
+# RBAC Resource Names 
 
 This a list of all available resource names for the Replicated vendor role-based access control (RBAC) policy:
 
@@ -174,7 +174,7 @@ Grants the holder permission to create RBAC policies for the team.
 
 ### team/authentication/update
 
-Grants the holder permission to manage the following team authentication settings: Multifactor Authentication, Google Authentication, and SAML Authentication. 
+Grants the holder permission to manage the following team authentication settings: multifactor authentication, Google authentication, and SAML authentication. 
 
 ### team/security/update
 
