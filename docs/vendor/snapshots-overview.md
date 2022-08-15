@@ -16,7 +16,7 @@ The app manager also exposes hooks that can be used to inject scripts to execute
 
 ## What Data is Backed Up
 
-There are two types of snapshots available that backup different types of data:
+There are two types of snapshots available that back up different types of data:
 
 * **Full snapshots (Recommended)**: Backs up the admin console and all application data, including kots-specific object-stored data. For embedded clusters, this also backs up the Docker registry, which is required for air gapped installations.
 
