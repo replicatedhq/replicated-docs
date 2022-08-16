@@ -19,7 +19,7 @@ Snapshots are useful for rollback and disaster recovery scenarios. They are not 
 
 ## Limitations and Considerations
 
-- By default, snapshots are stored locally on the cluster. For production environments, Replicated recommends storing snapshots externally to prevent losing snapshots during a complete cluster outage.
+- By default, Kubernetes installer provisioned clusters are preconfigured in the admin console to store backups in a locally-provisioned object store. This object store is sufficient for only rollbacks and downgrades and is not a suitable configuration for disaster recovery. Replicated recommends that you configure a snapshots storage destination that is external to the cluster in the admin console for Kubernetes installer clusters.
 
 - Only full snapshots are usable in disaster recovery scenarios.
 
