@@ -1,4 +1,4 @@
-# Managing Team Members 
+# Managing Team Members
 
 This topic describes how to manage team members in the Replicated vendor portal, such as inviting and removing members, and editing permissions.
 
@@ -31,6 +31,9 @@ To re-invite a prospective member:
 1. Click **Reinvite** below the user's email address on the Team Members page.
 
 1. Click **Reinvite** in the confirmation dialog.
+
+## Allow Users From a Domain to Join Your Team
+By default, users must be invited to your team. Team administrators may choose to allow users from the same email domain to join their team automatically. Users who join with this method will be automatically assigned the RBAC policy specified when enabling this feature. When enabled, users must validate that they have access to the email address used when signing up on vendor portal by providing an activation code. After validation, the user may either create their own independent team or join your team.  
 
 ## Remove Members and End Sessions
 As a team administrator, you can remove team members, except for the account you are currently logged in with.
