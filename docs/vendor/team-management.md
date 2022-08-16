@@ -1,4 +1,4 @@
-# Managing Team Members
+# Managing Team Members 
 
 This topic describes how to manage team members in the Replicated vendor portal, such as inviting and removing members, and editing permissions.
 
