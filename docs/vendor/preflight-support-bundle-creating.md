@@ -1,304 +1,266 @@
-# Defining Preflight Checks and Support Bundles
+# Configuring Preflight Checks and Support Bundles
 
-This topic provides information about how to create preflight checks and support
-bundles to include with your application, and host preflight checks that you can include with the Kubernetes installer.
+This topic provides information about how to define preflight checks and customize support
+bundles for your application release.
+
+Host preflight checks are also supported for Kubernetes installers. For more information about host preflight checks, see [Customizing Host Preflight Checks for Kubernetes Installers](preflight-host-preflights).
+
 
 ## About Preflight Checks and Support Bundles
 
-Preflight checks and support bundles collect and analyze data in the environment to ensure requirements are met and to troubleshoot issues.
+Preflight checks and support bundles collect and analyze data in the environment to ensure requirements are met and to help users troubleshoot issues.
 
-* **Preflight checks**: Preflight checks allow you to define requirements and dependencies for the cluster
-on which a customer installs your application. Preflight checks provide clear
+* **Preflight checks**: Preflight checks let you define requirements and dependencies for the cluster
+where your application is installed. Preflight checks provide clear
 feedback to your customer about any missing requirements or incompatibilities in
-the cluster before they install and deploy your application. This can reduce the number of support escalations during installation.
+the cluster before they install and upgrade your application. Thorough preflight checks provide increased confidence that an installation or upgrade will succeed and help prevent support escalations.
 
-* **Support bundles**: Support bundles allow you to collect and analyze troubleshooting data
-from your customers' clusters to help you diagnose problems with application
-deployments.
+* **Support bundles**: Support bundles let you collect and analyze troubleshooting data
+from customer environments to help you diagnose problems with application
+deployments. Customers generate support bundles from the Replicated admin console, where analyzers can immediately suggest solutions to common problems. Customers can also share support bundles with your support team from the admin console. Your support team can upload the support bundle to the Replicated vendor portal to view and interpret the analysis.
 
-Preflight checks and support bundles are based on the open-source Troubleshoot project, which is maintained by Replicated.
+The following diagram illustrates the workflow for preflight checks and support bundles:
+
+![Troubleshoot Workflow Diagram](/images/troubleshoot-workflow-diagram.png)
+
+As shown in the diagram above, preflight checks and support bundles first use collectors to collect data from various sources, including the cluster environment and the application. Then, built-in redactors censor any sensitive information from the collected data. Finally, analyzers review the post-redacted data to identify common problems. For more information, see [Collectors](#collectors), [Redactors](#redactors), and [Analyzers](#analyzers).
+
+Host collectors and analyzers also available and can be helpful to use for debugging when a Kubernetes cluster is down. For more information about host collectors and analyzers, see [Overview](https://troubleshoot.sh/docs/host-collect-analyze/overview/) in the Troubleshoot documentation.
+
+Preflight checks and support bundles are based on the open-source Troubleshoot project, which is maintained by Replicated. For more information about specific types of collectors, analyzers, and redactors, see the [Troubleshoot](https://troubleshoot.sh/) documentation.
+
+### Collectors
+Collectors identify what data to collect for analysis for preflight checks and support bundles. During the collection phase, information is collected from the cluster, the environment, the application, and other sources to be used later during the analysis phase. For example, you can collect information about the Kubernetes version that is running in the cluster, information related to a database server, logs from pods, and so on.
+
+### Redactors
+Redactors censor sensitive customer information from the data gathered by the collectors, before the preflight checks and support bundles analyze the data. By default, the following information is redacted:
+
+- Passwords
+- Tokens
+- AWS secrets
+- IP addresses
+- Database connection strings
+- URLs that include usernames and passwords
+
+This functionality cannot be disabled in the Replicated app manager. You can add custom redactors to support bundles only.
+
+### Analyzers
+Analyzers use the non-redacted data from the collectors to identify issues. The outcomes that you specify are displayed to customers.
+
+Analyzer outcomes for preflight checks differ from the outcomes for support bundles in terms of how they are used:
+
+- Preflight checks use analyzers to determine pass, fail, and warning outcomes, and display messages to a customer during installation. For example, you can define a fail or warning outcome if the Kubernetes version on the cluster does not meet the minimum version that your application supports.
+
+- Support bundles use analyzers to help identify potential problems. When a support bundle is uploaded to the Replicated vendor portal, it is extracted and automatically analyzed. The goal of this process is to surface known issues or hints of what might be a problem. Analyzers produce outcomes that contain custom messages to explain what the problem might be.
+
 
 ## Define Preflight Checks
 
-You define preflight checks by creating a `preflight.yaml`
-manifest file. This file specifies the cluster data that is collected and redacted as part of the preflight check.
-The manifest file also defines how the collected data is analyzed.
+You define preflight checks based on your application needs. Preflight checks are not included by default. This procedure provides a basic understanding and some key considerations to help guide you.
 
-When an analyzer is marked as [`strict`](https://troubleshoot.sh/docs/analyze/#strict), any `fail` outcomes for that analyzer block the deployment of the release. This can be used to prevent users from deploying a release until vendor-specified requirements are met. When configuring strict preflight checks, vendors should consider the app manager [cluster privileges](../reference/custom-resource-application#requireminimalrbacprivileges).
+For more information about defining preflight checks, see [Preflight Checks](https://troubleshoot.sh/docs/preflight/introduction/), [Collecting Data](https://troubleshoot.sh/docs/collect/), and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation. For basic examples of checking CPU, memory, and disk capacity, see [Node Resources Analyzer](https://troubleshoot.sh/reference/analyzers/node-resources/) in the Troubleshoot documentation.
 
-You then add the `preflight.yaml` manifest file to the application that you are packaging and distributing with Replicated.    
+To define preflight checks:
 
-For more information about installing the `preflight` plugin,
-see [Getting Started](https://troubleshoot.sh/docs/) in the Troubleshoot documentation.
+1. Create a Preflight custom resource manifest file (`kind: Preflight`).
 
-For more information about defining preflight checks, see
-[Preflight Checks](https://troubleshoot.sh/docs/preflight/introduction/) in the
-Troubleshoot documentation. There are also a number of basic examples for checking CPU, memory, and disk capacity under [Node Resources Analyzer](https://troubleshoot.sh/reference/analyzers/node-resources/).
+      ```yaml
+      apiVersion: troubleshoot.sh/v1beta2
+      kind: Preflight
+      metadata:
+         name: collectors
+      spec:
+         collectors: []
+     ```
+1. Add collectors to define information to be collected for analysis during the analyze phase. For example, you can collect information about the MySQL version that is running in a cluster.
 
-## About Host Preflight Checks for Kubernetes Installers
-You can include host preflight checks with Kubernetes installers to verify that infrastructure requirements are met for:
+  ```yaml
+  apiVersion: troubleshoot.sh/v1beta2
+  kind: Preflight
+  metadata:
+    name: supported-mysql-version
+    spec:
+      collectors:
+        - mysql:
+            collectorName: mysql
+            uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
+    ```
 
-- Kubernetes
-- Kubernetes installer add-ons
-- Your application
+    Replicated recommends replacing using a template function for the URI to avoid exposing sensitive information. For more information about template functions, see [Using Template Functions](packaging-template-functions).
 
-This helps to ensure successful installation and the ongoing health of the cluster.
+1. Add analyzers to analyze the data from the collectors that you specified. Define the criteria for the pass, fail, and/or warn outcomes and specify custom messages for each. For example, you can set a `fail` outcome if the MySQL version is less than the minimum required. Then, specify a message to display that informs your customer of the reasons for the failure and steps they can take to fix the issue.
 
-While host preflights are intended to ensure requirements are met for running the cluster, you can also use them to codify some of your application requirements so that users get feedback even earlier in the installation process, rather than waiting to run preflights after the cluster is already installed.
+1. (Optional) Set any preflight analyzers to `strict: true` as needed. Note the following considerations:
+    - Any `fail` outcomes for that analyzer block the deployment of the release until your specified requirement is met.
+    -  If a `strict` collector requires cluster scope and minimal RBAC mode is set, then the collector is skipped during the preflight check.
+    - Strict preflight analyzers are ignored if the `exclude` flag is also used.
 
-Default host preflight checks verify conditions such as operating system and disk usage. Default host preflight failures block the installation from continuing and exit with a non-zero return code. Users can then update their environment and run the Kubernetes installer again to re-run the host preflight checks.
+    For more information about strict preflight checks, see [`strict`](https://troubleshoot.sh/docs/analyze/#strict) in the Troubleshoot documentation. For more information about cluster privileges, see `requireMinimalRBACPrivileges` for name-scoped access in [Configuring Role-Based Access](packaging-rbac#namespace-scoped-access).
 
-Host preflight checks run automatically. The default host preflight checks that run can vary, depending on whether the installation is new, an upgrade, joining a node, or an air gap installation. Additionally, some checks only run when certain add-ons are enabled in the installer. For a complete list of default host preflight checks, see [Default Host Preflights](https://kurl.sh/docs/install-with-kurl/host-preflights#default-host-preflights) in the kURL documentation.
+    ```yaml
+    apiVersion: troubleshoot.sh/v1beta2
+    kind: Preflight
+    metadata:
+      name: supported-mysql-version
+      spec:
+        collectors:
+          - mysql:
+              collectorName: mysql
+              uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
+        analyzers:
+          - mysql:
+              strict: true
+              checkName: Must be MySQL 8.x or later
+              collectorName: mysql
+              outcomes:
+                - fail:
+                    when: connected == false
+                    message: Cannot connect to MySQL server
+                - fail:
+                    when: version < 8.x
+                    message: The MySQL server must be at least version 8
+                - pass:
+                    message: The MySQL server is ready
+      ```
 
-There are general kURL host preflight checks that run with all installers. There are also host preflight checks included with certain add-ons. Customizations include the ability to:
+1. Add the manifest files to the application that you are packaging and distributing with Replicated.
 
-  - Bypass failures
-  - Block an installation for warnings
-  - Skip the default host preflight checks and run only custom checks (or no checks at all)
-  - Add custom checks that run in addition to the default host preflight checks
-
-For more information about customizing host preflights, see [Customize Host Preflight Checks](#customize-host-preflight-checks).
+1. Save and promote the release to a development environment to test your changes.
 
 
-## Customize Host Preflight Checks
+## Customize a Support Bundle
 
-The default host preflights run automatically as part of your Kubernetes installer. You can customize the host preflight checks by disabling them entirely, adding customizations to the default checks to make them more restrictive, or completely customizing them. You can also customize the outcomes to enforce warnings or ignore failures.
+Customizing a support bundle is unique to your application. Replicated app manager provides the ability to generate support bundles from the admin console without vendors needing to configure anything. However, there may be application-related data that you want to collect and analyze for troubleshooting.
 
-This procedure gives examples of the customization options.
+By default, support bundles contain a large number of commonly used, best practice collectors. The default `clusterInfo` and `clusterResources` collectors gather a large amount of data that is useful when remotely installing or debugging a Kubernetes application. You can supplement, edit, or exclude the default collectors and analyzers. You can also add redactors to the default redactors.
 
-To customize host preflight checks:
+This procedure provides a basic understanding and some key considerations to help guide you. For more information about configuring support bundles, see [Collecting Data](https://troubleshoot.sh/docs/collect/), [Redacting Data](https://troubleshoot.sh/docs/redact/), and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation.
 
-1. Create a Kubernetes installer (`kind: Installer`). For more information, see [Creating a Kubernetes Installer](https://docs.replicated.com/vendor/packaging-embedded-kubernetes).
+To customize a support bundle:
 
-1. (Optional) To disable the default host preflight checks for Kubernetes and all included add-ons, add the `kurl.excludeBuiltinHostPreflights: true` to your Installer manifest. In this case, no host preflight checks are run.
+1. Create a support bundle manifest file (`kind: SupportBundle`) in your release.
+1. Use one of the following support bundle template options to start populating your manifest file:
 
-  `excludeBuiltinHostPreflights` is an aggregate flag, so setting it to `true` disables the default host preflights for Kubernetes and all included add-ons.
+      - To add collectors to the default collectors, copy the following basic support bundle template to your manifest file. In this template, the collectors field is empty, so only the default collectors run until you customize this file.
+
+        ```yaml
+        apiVersion: troubleshoot.sh/v1beta2
+        kind: SupportBundle
+        metadata:
+           name: collectors
+        spec:
+           collectors: []
+       ```
+      - To fully customize the support bundle, including editing or excluding the default collectors and analyzers, copy the default `spec.yaml` file to your manifest file. For the default YAML file, see [spec.yaml](https://github.com/replicatedhq/kots/blob/main/pkg/supportbundle/defaultspec/spec.yaml) in the kots repository.
+
+1. (Optional) Although Replicated recommends including the default `clusterInfo` and `clusterResources` collectors because they collect a large amount of data to help with installation and debugging, you can set the `exclude` field to `true` to exclude them:
+
+  ```yaml
+  apiVersion: troubleshoot.sh/v1beta2
+  kind: SupportBundle
+  metadata:
+     name: collectors
+  spec:
+     collectors:
+       - clusterInfo:
+          exclude: true
+       - clusterResources:
+          exclude: true
+  ```
+1. (Optional) You can edit the default collector properties. If  `clusterResources` is defined in your specification, the default namespace cannot be removed, but you can add a namespace to the `namespaces` field.
+
+  ```yaml
+  apiVersion: troubleshoot.sh/v1beta2
+  kind: SupportBundle
+  metadata:
+     name: collectors
+  spec:
+     collectors:
+       - clusterInfo:
+          exclude: false
+       - clusterResources:
+          namespaces:
+          - default
+          - APP_NAMESPACE
+  ```
+  Replace `APP_NAMESPACE` with the name of the namespace.
+
+1. (Recommended) Add application Pod logs and set the collection limits for the number of lines logged. Typically the selector attribute is matched to the labels.
+
+    1. To get the labels for an application, either inspect the YAML or run the following command to see what labels are used:
+
+      ```
+      kubectl get pods --show-labels
+      ```
+
+    1. After the labels are discovered, create collectors to include logs from these pods in a bundle. Depending on the complexity of an application's labeling schema, you might need a few different declarations of the logs collector. You can include the `logs` collector specification multiple times.
+
+      The limits field can support `maxAge` or `maxLines`. This limits the output to the constraints provided. **Default:** `maxLines: 10000`
+
+      **Example:**
+
+      ```yaml
+      apiVersion: troubleshoot.sh/v1beta2
+      kind: SupportBundle
+      metadata:
+         name: collectors
+      spec:
+         collectors:
+            - logs:
+               selector:
+                   - app=api
+               namespace: default
+               limits:
+                  maxLines: 10000
+      ```            
+
+1. Add any custom collectors to the file. Collectors that Replicated recommends considering are:
+
+    - **Kubernetes resources:** Use for custom resource definitions (CRDs), secrets, and ConfigMaps, if they are required for your application to work.
+    - **Databases:** Return a selection of rows or entire tables.
+    - **Volumes:** Ensure that an application's persistent state files exist, are readable/writeable, and have the right permissions.
+    - **Pods:** Run a pod from a custom image.
+    - **Files:** Copy files from pods and hosts.
+    - **HTTP:** Consume your own application APIs with HTTP requests. If your application has its own API that serves status, metrics, performance data, and so on, this information can be collected and analyzed.
+
+1. Add analyzers based on conditions that you expect for your application. For example, you might require that a cluster have at least 2 CPUs and 4GB memory available.
+
+  Good analyzers clearly identify failure modes. For example, if you can identify a log message from your database component that indicates a problem, you should write an analyzer that checks for that log.
+
+  At a minimum, include application log analyzers. A simple text analyzer can detect specific log lines and inform an end user of remediation steps.
+
+  Analyzers that Replicated recommends considering are:
+
+    - **Resource statuses:** Check the status of various resources, such as Deployments, StatefulSets, Jobs, and so on.
+    - **Regular expressions:** Analyze arbitrary data.
+    - **Databases:** Check the version and connection status.
+
+1. (Optional) To add redactors to the default redactors that are automatically provided by the app manager, add the Redactor custom resource manifest (`kind: Redactor`) to your release. Then add Redactor custom resource fields to the manifest as needed.
+
+  :::note
+  The default redactors included with Replicated app manager cannot be disabled.
+  :::
 
   **Example:**
 
-  ```yaml
-  apiVersion: "cluster.kurl.sh/v1beta1"
-  kind: "Installer"
+  ```YAML
+  apiVersion: troubleshoot.sh/v1beta2
+  kind: Redactor
   metadata:
-    name: "latest"
-  spec:
-    kubernetes:
-      version: "1.23.x"
-    weave:
-      version: "2.6.x"
-    contour:
-      version: "1.21.x"
-    prometheus:
-      version: "0.57.x"
-    registry:
-      version: "2.7.x"
-    containerd:
-      version: "1.5.x"
-    kotsadm:
-        version: "latest"
-    ekco:
-      version: "latest"
-    minio:
-      version: "2022-06-11T19-55-32Z"
-    longhorn:
-      version: "1.2.x"
-    kurl:
-      excludeBuiltinHostPreflights: true
-  ```
-
-1. (Optional) To run customized host preflight checks in addition to the default host preflight checks, add a `hostPreflights` field to the `kurl` field in your Installer manifest. Under the `hostPreflights` field, add a host preflight specification (`kind: HostPreflight`) with your customizations.
-
-  Customized host preflight checks run in addition to default host preflight checks, if the default host preflight checks are enabled. If you only want to make the default host preflight checks more restrictive, add your more restrictive host preflight checks to `kurl.hostPreflights`, and do not set `excludeBuiltinHostPreflights`. For example, if your application requires 6 CPUs but the default host preflight check requires 4 CPUs, you can simply add a custom host preflight check for 6 CPUs, since the default host preflight must pass if the more restrictive custom check passes.
-
-  The following example shows customized host preflight checks for:
-
-    - An application that requires more CPUs than the default
-    - Accessing a website that is critical to the application
-
-  ```yaml
-  apiVersion: "cluster.kurl.sh/v1beta1"
-  kind: "Installer"
-  metadata:
-    name: "latest"
-  spec:
-    kubernetes:
-      version: "1.23.x"
-    weave:
-      version: "2.6.x"
-    contour:
-      version: "1.21.x"
-    prometheus:
-      version: "0.57.x"
-    registry:
-      version: "2.7.x"
-    containerd:
-      version: "1.5.x"
-    kotsadm:
-        version: "latest"
-    ekco:
-      version: "latest"
-    minio:
-      version: "2022-06-11T19-55-32Z"
-    longhorn:
-      version: "1.2.x"
-    kurl:
-      hostPreflights:
-        apiVersion: troubleshoot.sh/v1beta2
-        kind: HostPreflight
-        spec:
-          collectors:
-            - cpu: {}
-            - http:
-                collectorName: Can Access A Website
-                get:
-                 Url: https://myFavoriteWebsite.com
-          analyzers:
-            - cpu:
-                checkName: Number of CPU check
-                outcomes:
-                  - fail:
-                      when: "count < 4"
-                      message: This server has less than 4 CPU cores
-                  - warn:
-                      when: "count < 6"
-                      message: This server has less than 6 CPU cores
-                  - pass:
-                      message: This server has at least 6 CPU cores
-            - http:
-                checkName: Can Access A Website
-                collectorName: Can Access A Website
-                outcomes:
-                  - warn:
-                      when: "error"
-                      message: Error connecting to https://myFavoriteWebsite.com
-                  - pass:
-                      when: "statuscode == 200"
-                      message: Connected to https://myFavoriteWebsite.com
-  ```
-
-1. (Optional) To disable the default host preflight checks and only run completely customized host preflight collectors and analyzers, Replicated recommends that you copy the default host preflight checks and make your customizations there. Many of the default host preflight checks are essential to the health and operability of the Kubernetes cluster, so removing them completely is ill-advised.
-
-  This step shows how to completely customize host preflights, using the default host preflights as a starting point.
-
-    1. Disable the default host preflight checks using `excludeBuiltinHostPreflights: true`.
-    1. Copy the default `host-preflights.yaml` specification for kURL. To copy the default kURL host preflights YAML, see [host-preflights.yaml](https://github.com/replicatedhq/kURL/blob/main/pkg/preflight/assets/host-preflights.yaml) in the kURL repository.
-    1. Copy the default `host-preflight.yaml` specification for any and all add-ons that are included in your specification and have default host preflights. For links to the add-on host preflight YAML files, see [Finding the Add-on Host Preflight Checks](https://kurl.sh/docs/create-installer/host-preflights/#finding-the-add-on-host-preflight-checks) in the kURL documentation.
-    1. Merge the copied host preflight specifications into one host preflight specification, and paste it to the `kurl.hostPreflights` field in the Installer YAML in the vendor portal.
-    1. Make any desired changes to these defaults.
-
-1. (Optional) Set either of the following flags to customize the outcome of your host preflight checks:
-
-    <table>
-      <tr>
-        <th width="30%">Flag: Value</th>
-        <th width="70%">Description</th>
-      </tr>
-      <tr>
-        <td><code>hostPreflightIgnore: true</code></td>
-        <td>Ignores host preflight failures and warnings. The installation proceeds regardless of host preflight outcomes.</td>
-      </tr>
-      <tr>
-        <td><code>hostPreflightEnforceWarnings: true</code></td>
-        <td>Blocks an installation if the results include a warning.</td>
-      </tr>
-    </table>
-
-    The following example shows:
-
-    - Default host preflights checks are disabled
-    - Customized host preflight checks run
-    - The installation is blocked if there is a warning
-
-    ```yaml
-    apiVersion: "cluster.kurl.sh/v1beta1"
-    kind: "Installer"
-    metadata:
-      name: "latest"
+    name: my-redactor-name
     spec:
-      kubernetes:
-        version: "1.23.x"
-      weave:
-        version: "2.6.x"
-      contour:
-        version: "1.21.x"
-      prometheus:
-        version: "0.57.x"
-      registry:
-        version: "2.7.x"
-      containerd:
-        version: "1.5.x"
-      kotsadm:
-          version: "latest"
-      ekco:
-        version: "latest"
-      minio:
-        version: "2022-06-11T19-55-32Z"
-      longhorn:
-        version: "1.2.x"
-      kurl:
-        excludeBuiltinHostPreflights: true
-        hostPreflightEnforceWarnings: true
-        hostPreflights:
-          apiVersion: troubleshoot.sh/v1beta2
-          kind: HostPreflight
-          spec:
-            collectors:
-              - cpu: {}
-              - http:
-                  collectorName: Can Access A Website
-                  get:
-                   Url: https://myFavoriteWebsite.com
-            analyzers:
-              - cpu:
-                  checkName: Number of CPU check
-                  outcomes:
-                    - fail:
-                        when: "count < 4"
-                        message: This server has less than 4 CPU cores
-                    - warn:
-                        when: "count < 6"
-                        message: This server has less than 6 CPU cores
-                    - pass:
-                        message: This server has at least 6 CPU cores
-              - http:
-                  checkName: Can Access A Website
-                  collectorName: Can Access A Website
-                  outcomes:
-                    - warn:
-                        when: "error"
-                        message: Error connecting to https://myFavoriteWebsite.com
-                    - pass:
-                        when: "statuscode == 200"
-                        message: Connected to https://myFavoriteWebsite.com
+      redactors:
+        - name: replace password # names are not used internally, but are useful for recordkeeping
+          fileSelector:
+            file: data/my-password-dump # this targets a single file
+          removals:
+            values:
+              - abc123 # this value is my password, and should never appear in a support bundle
     ```
 
-1. Promote and test your installer in a development environment before sharing it with customers.
+1. Add the manifest files to the application that you are packaging and distributing with Replicated.
 
-## Define Support Bundles
+1. Save and promote your release. To test this feature, generate a support bundle from the Troubleshoot tab in the admin console and do one of the following:
 
-You define support bundles by creating a `support-bundle.yaml` manifest file. This file specifies the cluster data
-that is collected and redacted as part of the support bundle. The manifest file also defines how the collected data is analyzed.
-
-You then add the `support-bundle.yaml` manifest file to the application that you are packaging and distributing with Replicated.    
-
-For more information about installing `support-bundle` plugin,
-see [Getting Started](https://troubleshoot.sh/docs/) in the Troubleshoot documentation.
-
-For more information about defining support bundles, see
-[Support Bundle](https://troubleshoot.sh/docs/support-bundle/introduction/) in the
-Troubleshoot documentation.
-
-### Bundling and Analyzing Logs with Support Bundle
-
-A robust support bundle is essential to minimizing back-and-forth when things go wrong.
-At a very minimum, every app's support bundle should contain logs for an application's core pods.
-Usually this is done with label selectors. To get the labels for an application, either inspect the YAML, or run the following YAML against a running instance to see what labels are used:
-
-```shell
-kubectl get pods --show-labels
-```
-
-After the labels are discovered, a [logs collector](https://troubleshoot.sh/reference/collectors/pod-logs/) can be used to include logs from these pods in a bundle.
-Depending on the complexity of an app's labeling schema, you may need a few different declarations of the `logs` collector.
-
-As common issues are encountered in the field, it makes sense to add not only collectors but also analyzers to an app's troubleshooting stack. For example, when an error in a log file is discovered that should be surfaced to an end user in the future, a simple [Text Analyzer](https://troubleshoot.sh/reference/analyzers/regex/) can detect specific log lines and inform an end user of remediation steps.
+    - If you have the Support Bundle Upload Enabled license entitlement, click **Send bundle to vendor**. You can also open the TAR file to review the files. For more information about license entitlements, see [Create a Customer](releases-creating-customer#create-a-customer).
+    - Download the `support-bundle.tar.gz` file. Copy the file to the Troubleshoot tab in the [vendor portal](https://vendor.replicated.com) to see the analysis and use the file inspector.

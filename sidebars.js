@@ -99,6 +99,7 @@ const sidebars = {
                     ],
                   },
                   'vendor/preflight-support-bundle-creating',
+                  'vendor/preflight-host-preflights',
                   {
                     type: 'category',
                     label: 'Customizing the Admin Console and Download Portal',
