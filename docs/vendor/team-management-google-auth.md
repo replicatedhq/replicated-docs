@@ -4,7 +4,7 @@ This topic describes the Replicated supported functionality for Google authentic
 
 ## Manage Google Authentication Options
 
-As a team administrator, you can enable, disable, or require Google authentication for all accounts in the team. Additionally, you can allow all users from your Google Workspace to join your team automatically.
+As a team administrator, you can enable, disable, or require Google authentication for all accounts in the team.
 
 A core benefit of using Google authentication is that when the user's Google account is suspended or deleted, Replicated logs that user out of all Google authenticated vendor portal sessions within 10 minutes. The user remains in the team list, but they cannot log into the vendor portal, unless the username and password is also allowed. Requiring Google authentication is an effective way of centrally removing access to the Replicated vendor portal.
 
