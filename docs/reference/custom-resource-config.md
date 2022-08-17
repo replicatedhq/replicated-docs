@@ -273,8 +273,8 @@ Items can be readonly.
 ```
 
 When used in conjunction with a function that generates value, for example [RandomString](template-functions-static-context#randomstring)
-- If set to `true`, the `value` is **ephemeral** between Config changes. It **cannot** be modified because it is greyed out in HTML.
-- If not set or set to `false`, the `value` is **persistent** between Config changes. It **can** be modified because it is not greyed out in HTML.
+- If set to `true`, the `value` is **ephemeral** between Config changes. It **cannot** be modified because it is grayed out in HTML.
+- If not set or set to `false`, the `value` is **persistent** between Config changes. It **can** be modified because it is not grayed out in HTML.
 
 ### `affix`
 Items can be affixed left or right.

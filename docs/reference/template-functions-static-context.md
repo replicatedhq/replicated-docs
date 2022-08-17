@@ -154,10 +154,10 @@ Or for a total of 64 `a`s and `b`s:
 '{{repl RandomString 64 "[ab]" }}'
 ```
 
-Each time that this function is called, the behavior changes based on the `hidden` and `readonly` properties in the Config custom resource. For more information, see [hidden](custom-resource-config#hidden) and [readonly](custom-resource-config#hidden#readonly) in _Config_.
+Each time that this function is called, the behavior changes based on the `hidden` and `readonly` properties in the Config custom resource. For more information, see [hidden](custom-resource-config#hidden) and [readonly](custom-resource-config#readonly) in _Config_.
 
-- To generate a `RandomString` value that is **persistent** between Config changes, use it in conjunction with `hidden` property set to `true`. The `value` is not shown in HTML, hence it cannot be modified.
-- To generate a `RandomString` value that is **ephemeral** between Config changes, use it in conjunction with `readonly` property set to `true`. The `value` is shown in HTML but the it cannot be modified.
+- To generate a `RandomString` value that is **persistent** between Config changes, use it in conjunction with the `hidden` property set to `true`. The `value` is not shown in HTML, hence it cannot be modified.
+- To generate a `RandomString` value that is **ephemeral** between Config changes, use it in conjunction with the `readonly` property set to `true`. The `value` is shown in HTML but it cannot be modified.
 - If `hidden` and `readonly` are not set or set to `false`, the `value` is **persistent** between Config changes but it can also be modified in HTML.
 - If both `hidden` and `readonly` are set to `true`, the `value` is not shown in HTML but it is **ephemeral** between Config changes and not modifiable.
 
