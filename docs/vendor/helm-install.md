@@ -1,4 +1,4 @@
-# Using Helm to Install an Application (Alpha)
+# Supporting helm CLI Installations (Alpha)
 
 :::note
 Allowing users to install with the helm CLI is an Alpha feature. To enable this feature on your account, log in to your [Vendor Portal](https://vendor.replicated.com/support) account and submit a feature request for "Helm CLI Install option".
