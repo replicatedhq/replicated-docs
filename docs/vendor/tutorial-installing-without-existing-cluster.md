@@ -114,12 +114,16 @@ The app manager can be installed either into an existing Kubernetes cluster or a
 
 To create the test server and install the app manager:
 
-1. Create a server using any cloud provider (GCP, AWS, etc.) or a local virtual machine. Ensure the following criteria:
+1. Create a server using any cloud provider (such as GCP or AWS). Or, use a local virtual machine. The server must meet the following criteria:
 
     * Ubuntu 18.04
     * At least 8 GB of RAM
     * 4 CPU cores
     * At least 50GB of disk space
+
+    :::note
+    If you use a virtual machine that is behind a firewall, make sure that port 8800 (and any other ports you attempt to access through the internet) are allowed to accept traffic. GCP and AWS typically require firewall rule creation to expose ports.
+    :::
 
 1. Use SSH to access the server you just created.
 1. Run the installation script:
@@ -173,7 +177,7 @@ To install the application:
 1. In a browser, enter the URL from the `Kotsadm:` field in the CLI output of the installation script. For more information about the installation script, see [Create a Test Server and Install the App Manager](#create-a-test-server-and-install-the-app-manager) above. Notice that the [Kubernetes installer](https://kurl.sh) cluster has provisioned a self-signed certificate.
 
   :::note
-  If your virtual machine is behind a firewall, make sure port 8800 (and any other ports you attempt to access through the internet) are allowed to accept traffic. GCP and AWS typically require firewall rule creation to expose ports.
+  If your virtual machine is behind a firewall, make sure that port 8800 (and any other ports you attempt to access through the internet) are allowed to accept traffic. GCP and AWS typically require firewall rule creation to expose ports.
   :::
 
 1. Bypass the insecure certificate warning. You have the option of uploading a trusted certificate and key.
