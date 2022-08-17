@@ -18,8 +18,8 @@ To manage Google authentication settings:
 
   | Field                  | Instructions           |
   |-----------------------|------------------------|
-  | Allow Google Authentication for team members | Enables team members to log in using a Google account. |
-  | Restrict login to only allow to Google Authentication | Requires new users to accept an invitation and sign up with a Google account that exactly matches the email address that was invited to the team. The email address can be a gmail.com address or user from another domain, but it must match the email address from the invitation exactly. Disabling this setting requires users to accept the invitation by creating a username and password (or use the SAML workflow). |
+  | Allow Google authentication for team members | Enables team members to log in using a Google account. |
+  | Restrict login to only allow to Google authentication | Requires new users to accept an invitation and sign up with a Google account that exactly matches the email address that was invited to the team. The email address can be a gmail.com address or user from another domain, but it must match the email address from the invitation exactly. Disabling this setting requires users to accept the invitation by creating a username and password (or use the SAML workflow). |
   
 
 ## Migrating Existing Accounts
