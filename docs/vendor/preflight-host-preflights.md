@@ -6,7 +6,7 @@ This topic provides information about how to customize host preflight checks for
 You can include host preflight checks with Kubernetes installers to verify that infrastructure requirements are met for:
 
 - Kubernetes
-- kubernetes installer add-ons
+- Kubernetes installer add-ons
 - Your application
 
 This helps to ensure successful installation and the ongoing health of the cluster.
