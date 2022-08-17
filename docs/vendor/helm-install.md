@@ -6,7 +6,18 @@ Allowing users to install with the helm CLI is an Alpha feature. To enable this 
 
 Some enterprise users prefer or require a Helm chart to install using the `helm` CLI. This is often because Helm is already approved and the customer has a custom CI pipeline that is compatible with Helm charts. Replicated has introduced Alpha support to enable these users to use Helm to install your application.
 
-## About Installing with the Helm CLI
+## Prerequisite
+
+To support installations with the helm CLI, you must have an application that contains one or more Helm charts.
+
+For information about how to package an application in the Replicated vendor portal using an existing Helm chart, see [Adding Helm Charts to a Release](helm-release).
+
+Using Helm charts to create a release in the vendor portal allows you to package your application one time and support the following application installation methods:
+* Installing on a cluster provisioned by the Replicated Kubernetes installer (kURL)
+* Installing on an existing cluster using the kots CLI
+* Installing on an existing cluster using the helm CLI
+
+## About Installing with the helm CLI
 
 When you promote an application to a release channel, Replicated extracts any Helm charts included in the release. These charts are pushed as OCI objects to the Replicated private registry at `registry.replicated.com`. The Helm chart is pushed to the _channel_.
 
@@ -21,12 +32,6 @@ When a license field changes for a customer, Replicated invalidates all rendered
 The `values.yaml` in your Chart is rendered with a customer-specific license. Each customer logs in with unique credentials, and our registry is able to identify which customer is pulling the chart. This creates a way to pass custom license fields and other customer-specific data into the `values.yaml` as defaults, and consume them in Helm templates.
 
 Before Replicated renders the `values.yaml`, it is not assumed to be a valid YAML format in order to allow flow control and conditional template functions to optionally write some fields to the `values.yaml` file. Replicated renders template functions in the `values.yaml` for each customer, as the Helm chart is served to the customer.
-
-## Requirement
-
-Not all applications packaged with Replicated are able to be installed with `helm install`. To use the `helm install` feature, your application must contain one or more Helm charts.
-
-If you want to allow your users to install your application with `helm install`, Replicated recommends that you package your application using Helm and create a release with your Helm charts. This allows you to package your application one time and deliver with an embedded cluster created by the Kubernetes installer (kURL), the UI-based KOTS method, and the `helm install` method.
 
 ## Limitations
 
