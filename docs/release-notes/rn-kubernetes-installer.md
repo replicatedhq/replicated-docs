@@ -4,6 +4,15 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.08.16-0
+
+Released on August 16, 2022
+
+### New Features {#new-features-v2022-08-16-0}
+
+- Adds [Longhorn add-on](https://kurl.sh/docs/add-ons/longhorn) version 1.3.1.
+- Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.7.
+
 ## Release v2022.08.12-1
 
 Released on August 12, 2022
