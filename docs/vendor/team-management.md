@@ -33,7 +33,7 @@ To re-invite a prospective member:
 1. Click **Reinvite** in the confirmation dialog.
 
 ## Allow Users From a Domain to Join Your Team
-By default, users must be invited to your team. Team administrators may choose to allow users from the same email domain to join their team automatically. Users who join with this method will be automatically assigned the RBAC policy specified when enabling this feature. When enabled, users must validate that they have access to the email address used when signing up on vendor portal by providing an activation code. After validation, the user may either create their own independent team or join your team.  
+By default, users must be invited to your team. Team administrators may choose to allow users from the same email domain to join their team automatically after they have registered their email address and password or when authenticating with Google authentication. Users who join with this method will be automatically assigned the RBAC policy specified when this feature is enabled. By default, the RBAC policy field for auto-join users is set to the built-in read-only policy. Once enabled, email/password users must validate that they have access to the email address used when signing up on vendor portal by providing an activation code; after validation, the user will be added as a team member to this team.  
 
 ## Remove Members and End Sessions
 As a team administrator, you can remove team members, except for the account you are currently logged in with.
