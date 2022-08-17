@@ -114,16 +114,16 @@ The app manager can be installed either into an existing Kubernetes cluster or a
 
 To create the test server and install the app manager:
 
-1. Create a server using Google Cloud and the following criteria:
+1. Create a server using any cloud provider (such as GCP or AWS). Or, use a local virtual machine. The server must meet the following criteria:
 
     * Ubuntu 18.04
     * At least 8 GB of RAM
     * 4 CPU cores
     * At least 50GB of disk space
 
-  :::note
-  You can also use any cloud provider or local virtual machine.
-  :::
+    :::note
+    If you use a virtual machine that is behind a firewall, make sure that port 8800 (and any other ports you attempt to access through the internet) are allowed to accept traffic. GCP and AWS typically require firewall rule creation to expose ports.
+    :::
 
 1. Use SSH to access the server you just created.
 1. Run the installation script:
@@ -139,7 +139,6 @@ To create the test server and install the app manager:
   After the installation script completes the initial installation, the output displays the connection URL and password that you must use in a later step of the installation process:
 
   ```text
-
   Kotsadm: http://[ip-address]:8800
   Login with password (will not be shown again): [password]
   ```
@@ -151,36 +150,22 @@ To create the test server and install the app manager:
 1. Reload your shell to access the cluster with `kubectl`:
 
   ```
-    bash -l
+  bash -l
   ```
 
-    The UIs of Prometheus, Grafana and Alertmanager have been exposed on NodePorts 30900, 30902 and 30903 respectively.
-
-1. Use the generated user:password of admin:[password] to access Grafana.
-
-1. Run the following script on your other nodes to add worker nodes to this installation:
-
-  ```
-    curl -sSL https://kurl.sh/starter-kots-demo-unstable/join.sh | sudo bash -s kubernetes-master-address=[ip-address]:6443 kubeadm-token=[token] kubeadm-token-ca-hash=sha256:[sha] kubernetes-version=1.16.4 docker-registry-ip=[ip-address]
-
-    ```
-
-1. Reload the shell, following the instructions on the screen, to make `kubectl` now work:
+1. Run a `kubectl` command to test that `kubectl` is working:
 
   ```bash
-  user@kots-guide:~$ kubectl get pods
+  kubectl get pods
   ```
 
   **Example output:**
 
   ```
-  NAME                                  READY   STATUS      RESTARTS   AGE
-  kotsadm-585579b884-v4s8m              1/1     Running     0          4m47s
-  kotsadm-migrations                    0/1     Completed   2          4m47s
-  kotsadm-operator-fd9d5d5d7-8rrqg      1/1     Running     0          4m47s
-  kotsadm-postgres-0                    1/1     Running     0          4m47s
-  kurl-proxy-kotsadm-77c59cddc5-qs5bm   1/1     Running     0          4m46s
-  user@kots-guide:~$
+  NAME                                  READY   STATUS    RESTARTS   AGE
+  kotsadm-79dcb4dc7d-2xh85              1/1     Running   0          60m
+  kotsadm-postgres-0                    1/1     Running   0          60m
+  kurl-proxy-kotsadm-5f7fb75f47-b7jbz   1/1     Running   0          60m
   ```
 
 ### Install the Application
@@ -190,6 +175,10 @@ At this point, Kubernetes and the Replicated admin console are running, but the 
 To install the application:
 
 1. In a browser, enter the URL from the `Kotsadm:` field in the CLI output of the installation script. For more information about the installation script, see [Create a Test Server and Install the App Manager](#create-a-test-server-and-install-the-app-manager) above. Notice that the [Kubernetes installer](https://kurl.sh) cluster has provisioned a self-signed certificate.
+
+  :::note
+  If your virtual machine is behind a firewall, make sure that port 8800 (and any other ports you attempt to access through the internet) are allowed to accept traffic. GCP and AWS typically require firewall rule creation to expose ports.
+  :::
 
 1. Bypass the insecure certificate warning. You have the option of uploading a trusted certificate and key.
   For production installations, we recommend using a trusted certificate. For this tutorial, use the self-signed certificate.
