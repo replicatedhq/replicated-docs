@@ -153,7 +153,7 @@ To create the test server and install the app manager:
   bash -l
   ```
 
-1. Run a `kubectl` command to test:
+1. Run a `kubectl` command to test that `kubectl` is working:
 
   ```bash
   kubectl get pods
