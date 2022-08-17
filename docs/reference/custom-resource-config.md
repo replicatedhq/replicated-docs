@@ -42,13 +42,17 @@ Specific item types can including new types.
 ### `bool`
 The `bool` input type should use a "0" or "1" to set the value
 ```yaml
-    - name: toggles
+    - name: group_title
+      title: Group Title
       items:
       - name: http_enabled
         title: HTTP Enabled
         type: bool
         default: "0"
 ```
+
+![Boolean selector on the configuration screen](../../static/images/config-screen-bool.png)
+
 ### `file`
 A `file` is a special type of form field that renders an [`<input type="file" />`](https://www.w3schools.com/tags/tag_input.asp) HTML element.
 Only the contents of the file, not the name, are captured.
@@ -65,6 +69,9 @@ See the [`ConfigOptionData`](template-functions-config-context#configoptiondata)
         title: Certificate
         type: file
 ```
+
+![File input field on the configuration screen](../../static/images/config-screen-file.png)
+
 ### `heading`
 The `heading` type allows you to display a group heading as a subelement within a group.
 This is useful when you would like to group items all in one config group but would like to separate the items visually, for instance when using a config group test proc.
@@ -82,10 +89,13 @@ This is useful when you would like to group items all in one config group but wo
       ...
 ```
 
+![Heading on the configuration screen](../../static/images/config-screen-heading.png)
+
 ### `label`
 The `label` type allows you to display an input label.
 ```yaml
-    - name: Email
+    - name: email
+      title: Email
       items:
       - name: email-address
         title: Email Address
@@ -94,6 +104,7 @@ The `label` type allows you to display an input label.
         type: label
         title: "Note: The system will send you an email every hour."
 ```
+![Email address label on the configuration screen](../../static/images/config-screen-label.png)
 
 ### `password`
 The `password` type is a text field that hides the character input.
@@ -104,6 +115,8 @@ The `password` type is a text field that hides the character input.
       type: password
       value: "{{repl RandomString 10}}"
 ```
+
+![Password text field on the configuration screen](../../static/images/config-screen-password.png)
 
 ### `select_one`
 The `select_one` type is a special case.
@@ -124,6 +137,9 @@ This type is displayed as radio buttons in the admin console.
         - name: authentication_type_password
           title: Password
 ```
+
+![Select one field on the configuration screen](../../static/images/config-screen-selectone.png)
+
 ### `text`
 A `text` input field allows users to enter a string value.
 Optionally, all additional properties are available for this input type.
@@ -133,6 +149,8 @@ Optionally, all additional properties are available for this input type.
       title: Example Text Input
       type: text
 ```
+
+![Text field on the configuration screen](../../static/images/config-screen-text.png)
 
 ### `textarea`
 A `textarea` can specify a `props` that will map into the HTML element directly.
@@ -153,6 +171,8 @@ For more information, see [HTML `<textarea/>` Tag](https://www.w3schools.com/tag
         title: Hostname
         type: text
 ```
+![Text area field on the configuration screen](../../static/images/config-screen-textarea.png)
+
 
 ## Properties
 
@@ -218,7 +238,8 @@ This item will bear the tag "recommended" in the admin console.
 **Note:** Only works for boolean and text field types.
 
 ```yaml
-    - name: toggles
+    - name: group_title
+      title: Group Title
       items:
       - name: http_enabled
         title: HTTP Enabled
