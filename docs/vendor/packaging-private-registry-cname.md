@@ -21,7 +21,7 @@ If you configure a second application to use an existing, configured hostname, t
 
 Configuring a custom hostname has the following limitations:
 
-- The kustomization in the Replicated app manager always rewrites images to registry.replicated.com or proxy.replicated.com, and does not respect the CNAME. Only Helm installations that do not use the app manager respect the CNAME. This type of Helm installation is an Alpha feature. For more information, see [Using Helm to Install an Application (Alpha)](helm-install).
+- The kustomization in the Replicated app manager always rewrites images to registry.replicated.com or proxy.replicated.com, and does not respect the CNAME. Only Helm installations that do not use the app manager respect the CNAME. This type of Helm installation is an Alpha feature. For more information, see [Supporting helm CLI Installations (Alpha)](helm-install).
 - The LicenseDockerCfg template function does not respect the CNAME.
 - A single CNAME record cannot be used for both the registry and proxy endpoints. A single hostname can map to registry.replicated.com for any number of applications, but cannot map to both registry.replicated.com and  proxy.replicated.com, even if the applications are different.
 - Custom hostnames cannot be used to alias replicated.app (release manifests), api.replicated.com (platform market API), the download portal, or other services.
