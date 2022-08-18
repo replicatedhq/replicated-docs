@@ -8,21 +8,21 @@ To package an application with Helm, start by adding an existing Helm chart to a
 
 ## How Replicated Deploys Helm Charts
 
-When you distribute an application packaged with Helm, your customers can install and manage the application with the Replicated kots CLI or with the helm CLI.
+When you distribute an application packaged with Helm, your customers can install and manage the application with the Replicated app manager or with the helm CLI.
 
-### Using the kots CLI
+### Using the App Manager
 
-Users can install an application packaged with Helm charts using the kots CLI on an existing cluster or on a cluster provisioned by the Kubernetes installer.
+Users can install an application packaged with Helm charts using the app manager on an existing cluster or on a cluster provisioned by the Kubernetes installer. When installing with the app manager, users can either use the Replicated admin console UI or the kots CLI.
 
-The kots CLI installs applications packaged with Helm charts using either the "Native Helm" or "Replicated KOTS" deployment method. You specify the deployment method in the Replicated HelmChart custom resource manifest file with the `useHelmInstall` flag. For more information, see [useHelmInstall](/reference/helmchart#usehelminstall) in _HelmChart_.
+The app manager installs applications packaged with Helm charts using either the "Native Helm" or "Replicated KOTS" deployment method. You specify the deployment method in the Replicated HelmChart custom resource manifest file with the `useHelmInstall` flag. For more information, see [useHelmInstall](/reference/helmchart#usehelminstall) in _HelmChart_.
 
 The following describes the Native Helm and Replicated KOTS deployment methods:
 
-* **Native Helm (Recommended)**: The kots CLI uses the Helm binary to install and manage the lifecycle of the chart resources that are part of the application. This is the preferred method because it supports more features of Helm, such as hooks and weights.
+* **Native Helm (Recommended)**: The app manager uses the Helm binary to install and manage the lifecycle of the chart resources that are part of the application. This is the preferred method because it supports more features of Helm, such as hooks and weights.
 
    For more information, see see [Native Helm](helm-processing#native-helm) in _How the App Manager Processes Helm Charts_. See also [Enabling and Using Native Helm Charts](helm-installing-native-helm#enabling-and-using-native-helm-charts) in _Installing with Native Helm_.
 
-* **Replicated KOTS**: The kots CLI renders the Helm templates and deploys them as standard Kubernetes manifests using `kubectl apply`. The kots CLI manages the lifecycle of the resources.
+* **Replicated KOTS**: The app manager renders the Helm templates and deploys them as standard Kubernetes manifests using `kubectl apply`. The app manager manages the lifecycle of the resources.
 
    For more information, see [Replicated KOTS](helm-processing#replicated-kots) in _How the App Manager Processes Helm Charts_.
 
@@ -30,8 +30,8 @@ The following describes the Native Helm and Replicated KOTS deployment methods:
 
 Users can install an application packaged with a Helm chart into an existing cluster using the helm CLI. When users install with the helm CLI directly, Helm, rather than the app manager, manages the lifecycle of the application.
 
-Deploying an application with the helm CLI differs from the kots CLI "Native Helm" deployment method described above because, when users install with the helm CLI directly, they have access to all Helm functionality. Some enterprise users also prefer or require using the helm CLI because their existing CI/CD pipeline or policies are already compatible with Helm charts.
+Deploying an application with the helm CLI differs from the "Native Helm" deployment method described above because, when users install with the helm CLI directly, they have access to all Helm functionality. Some enterprise users also prefer or require using the helm CLI because their existing CI/CD pipeline is already compatible with Helm charts. Similarly, enterprise users might have organizational policies that require using Helm to manage applications.
 
-Users do not have access to certain Replicated features when they install and manage the application with the helm CLI directly. This is because the kots CLI does not manage the lifecycle of the application. For example, users must update the application using the `helm upgrade` command, rather than using the admin console UI or the kots CLI.
+Users do not have access to certain Replicated features when they install and manage the application with the helm CLI directly. This is because the app manager does not manage the lifecycle of the application. For example, users must update the application using the `helm upgrade` command, rather than using the admin console UI or the kots CLI.
 
-For more information about how to package an application so that users can install using the helm CLI, see [Using Helm to Install an Application (Alpha)](helm-install).
+For more information about how to package an application so that users can install using the helm CLI, see [Supporting helm CLI Installations (Alpha)](helm-install).
