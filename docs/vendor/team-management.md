@@ -6,14 +6,10 @@ This topic describes how to manage team members in the Replicated vendor portal,
 The [Team](https://vendor.replicated.com/team/members) page provides a list of all accounts currently associated with or invited to your team. Each row contains information about the user, including their multi-factor authentication (MFA) status and role-based access control (RBAC) role, and lets administrators take additional actions, such as remove, re-invite, and edit permissions.
 
 ## Invite Members
-By default, team administrators can invite more team members to collaborate. Invited team members will receive an email to activate their account. This activiation link is unique to the invited user and will guarantee that they join the team where the invite originated from. 
-
-::: note
-If a user's email address is already a member of another team, they will be notified about the invitation and provided details on either joining this team or remaining on their existing team. 
-:::
+By default, team administrators can invite more team members to collaborate. Invited users receive an email to activate their account. The activiation link in the email is unique to the invited user. Following the activation link in the email also ensures that the invited user joins the team from which the invitation originated. 
 
 :::note
-SAML-only enforced teams do not use the email invitation flow. These teams and their users should login via their SAML provider's App dashboard.
+Teams that have enforced SAML-only authentication do not use the email invitation flow described in this procedure. These teams and their users must log in through their SAML provider.
 :::
 
 To invite a new team member:
