@@ -32,6 +32,6 @@ Users can install an application packaged with a Helm chart into an existing clu
 
 Deploying an application with the helm CLI differs from the kots CLI "Native Helm" deployment method described above because, when users install with the helm CLI directly, they have access to all Helm functionality. Some enterprise users also prefer or require using the helm CLI because their existing CI pipeline is already compatible with Helm charts.
 
-Users do not have access to certain Replicated features when they install and manage the application with the helm CLI directly. This is cecause the kots CLI does not manage the lifecycle of the application. For example, users must update the application using the `helm upgrade` command, rather than using the admin console UI or the kots CLI.
+Users do not have access to certain Replicated features when they install and manage the application with the helm CLI directly. This is because the kots CLI does not manage the lifecycle of the application. For example, users must update the application using the `helm upgrade` command, rather than using the admin console UI or the kots CLI.
 
 For more information about how to package an application so that users can install using the helm CLI, see [Using Helm to Install an Application (Alpha)](helm-install).
