@@ -14,7 +14,7 @@ Released on August 19, 2022
   - Upgrades Ceph cluster from Octopus to [Pacific](https://docs.ceph.com/en/quincy/releases/pacific/).
 - Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.20.0 with support for [Rook add-on](https://kurl.sh/docs/add-ons/rook) version 1.7.11.
 - Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.9.1.
-- Adds a new tasks.sh command, `rook-10-to-14`, that upgrades Rook 1.0 installations to Rook 1.4.9. This command only works for online installations.
+- Adds a new tasks.sh command, [`rook-10-to-14`](https://kurl.sh/docs/add-ons/rook#upgrades), that upgrades Rook 1.0 installations to Rook 1.4.9. This command only works for online installations.
 
 ### Improvements {#improvements-v2022-08-19-0}
 
