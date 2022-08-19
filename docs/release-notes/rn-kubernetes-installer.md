@@ -4,6 +4,22 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.08.19-0
+
+Released on August 19, 2022
+
+### New Features {#new-features-v2022-08-19-0}
+
+- 
+
+### Improvements {#improvements-v2022-08-19-0}
+
+- 
+
+### Bug Fixes {#bug-fixes-v2022-08-08-0}
+
+- 
+
 ## Release v2022.08.16-0
 
 Released on August 16, 2022
@@ -29,8 +45,6 @@ Released on August 12, 2022
 
 - Fixes an issue that causes snapshots to fail after Rook to MinIO migration.
 
-
-
 ## Release v2022.08.11-0
 
 Released on August 11, 2022
@@ -39,7 +53,6 @@ Released on August 11, 2022
 
 - Add Collectd Ubuntu 22.04 compatibility to host preflight checks
 - Add `additional noproxy` addresses to the join command
-
 
 ## Release v2022.08.08-0
 
