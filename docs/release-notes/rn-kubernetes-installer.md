@@ -4,6 +4,27 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.08.19-0
+
+Released on August 19, 2022
+
+### New Features {#new-features-v2022-08-19-0}
+
+- Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) version 1.7.11.
+  - Upgrades Ceph cluster from Octopus to [Pacific](https://docs.ceph.com/en/quincy/releases/pacific/).
+- Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.20.0 with support for [Rook add-on](https://kurl.sh/docs/add-ons/rook) version 1.7.11.
+- Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.9.1.
+- Adds a new tasks.sh command, [`rook-10-to-14`](https://kurl.sh/docs/add-ons/rook#upgrades), that upgrades Rook 1.0 installations to Rook 1.4.9. This command only works for online installations.
+
+### Improvements {#improvements-v2022-08-19-0}
+
+- The [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) auto-upgrades experimental feature is no longer supported as of EKCO version 0.20.0.
+
+### Bug Fixes {#bug-fixes-v2022-08-08-0}
+
+- Fixes an issue that causes Rook upgrades to fail on single node installations because of Rook MDS pod anti-affinity rules.
+- Fixes an issue that can cause a migration from Docker to Containerd to fail due to listing nodes using the incorrect Kubernetes api resource group. 
+
 ## Release v2022.08.16-0
 
 Released on August 16, 2022
@@ -29,8 +50,6 @@ Released on August 12, 2022
 
 - Fixes an issue that causes snapshots to fail after Rook to MinIO migration.
 
-
-
 ## Release v2022.08.11-0
 
 Released on August 11, 2022
@@ -39,7 +58,6 @@ Released on August 11, 2022
 
 - Add Collectd Ubuntu 22.04 compatibility to host preflight checks
 - Add `additional noproxy` addresses to the join command
-
 
 ## Release v2022.08.08-0
 
