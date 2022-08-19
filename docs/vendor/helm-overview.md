@@ -20,7 +20,7 @@ The following describes the Native Helm and Replicated KOTS deployment methods:
 
 * **Native Helm (Recommended)**: The app manager uses the Helm binary to install and manage the lifecycle of the chart resources that are part of the application. This is the preferred method because it supports more features of Helm, such as hooks and weights.
 
-   For more information, see see [Native Helm](helm-processing#native-helm) in _How the App Manager Processes Helm Charts_. See also [Enabling and Using Native Helm Charts](helm-installing-native-helm#enabling-and-using-native-helm-charts) in _Installing with Native Helm_.
+   For more information, see [Native Helm](helm-processing#native-helm) in _How the App Manager Processes Helm Charts_. See also [Enabling and Using Native Helm Charts](helm-installing-native-helm#enabling-and-using-native-helm-charts) in _Installing with Native Helm_.
 
 * **Replicated KOTS**: The app manager renders the Helm templates and deploys them as standard Kubernetes manifests using `kubectl apply`. The app manager manages the lifecycle of the resources.
 
