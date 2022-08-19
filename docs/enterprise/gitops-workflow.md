@@ -1,36 +1,44 @@
 # Pushing Updates to a GitOps Workflow
 
+This topic describes how to enable a GitOps workflow for your application. In a GitOps workflow, the admin console pushes all updates to the application to a Git repository that you specify.
+
+## Overview of the GitOps Workflow
+
 The Replicated admin console default workflow is configured to receive updates, show the changes, and deploy the updates to the cluster. You can enable a GitOps workflow instead. When using a GitOps workflow, changes from the admin console are pushed to a private Git repository, where an existing CI/CD process can execute the delivery of manifests to the cluster. Changes can include local configuration changes and upstream updates from your vendor (such as application and license updates).
 
 If you have more than one application installed, you can selectively enable a GitOps workflow for each application.
 
-:::note
-You can change your GitOps settings or disable a GitOps workflow at any time from the GitOps tab.
-:::
+After enabling the GitOps workflow for an application, the admin console makes your first commit with the current version that is deployed.
+Subsequently, the admin console makes separate commits with any available updates that have not been deployed from the admin console.
 
-**Prerequisites**
+If you configure automatic updates for the application, any updates from your vendor are automatically committed to your Git repository. For more information about configuring automatic updates, see [Configure Automatic Updates](updating-apps#configure-automatic-updates) in _Updating an Application_.
+
+You can change your GitOps settings or disable a GitOps workflow at any time from the GitOps tab.
+
+## Limitation
+
+To enable pushing updates through the GitOps workflow, you must first deploy the application with Replicated using either the admin console or the kots CLI.
+
+After you have deployed at least one version of the application, you can enable GitOps for all subsequent application updates.
+
+When you enable GitOps, the admin console sends all versions of the application, including the version that you initially deployed before GitOps was enabled, to the GitHub repository that you specify.
+
+If your organization has security requirements that prevent you from deploying the application first with the admin console or kots CLI, you cannot enable the GitOps workflow.
+
+## Prerequisites
 
 - A Git repository that you have read/write access permissions to.
 - If the repository does not have files or folders committed yet, you must commit one file by any name with simple content (such as "hello, world") so that the connection attempt succeeds with the deployment key when you perform the following task.
 
+## Enable GitOps
+
 To enable pushing updates to a GitOps workflow:
 
-1. Click the GitOps tab at the top of the admin console, and click **Get started**.
+1. Click the GitOps tab at the top of the admin console.
 
-1. If you have a single application installed, choose the Git provider and hostname (if applicable) on the GitOps Provider page, and click **Continue to deployment action**. Proceed to step 4.
+1. On the GitOps Configuration page:
 
-1. If you have multiple applications installed:
-
-    1. Choose the Git provider and hostname (if applicable) from the dropdown list, and click **Finish GitOps setup**.
-
-      A list of your applications displays and shows the status of GitOps integration for each application.
-
-    1. Click **Enable** next to the application that you want to enable GitOps for.
-
-      ![GitOps Provider](/images/gitops-apps.png)
-
-1. On the GitOps settings page:
-
+    1. Select the application and the Git provider.
     1. Enter the repository details:
 
       <table>
@@ -52,31 +60,11 @@ To enable pushing updates to a GitOps workflow:
           </tr>
       </table>
 
-    1. For **When an update is available to the application, how should the updates YAML be delivered to repository?**, the admin console creates automatic commits to the branch. This default setting cannot be changed.
+    1. Click **Generate SSH Key**, and then **Copy key**.
+    1. Click **repository settings page**. On the settings page for your Git repository:
+       1. Paste the public deployment key that you copied in the previous step.
+       1. Enable the write access permissions for the key. This allows the admin console to push commits to the repository.
 
-    1. For **What content will it contain?**, the supported type of asset to deliver to the Git repository is rendered YAML, which results in a single, rendered YAML file being committed to the repository. This default setting cannot be changed.
+1. On the GitOps Configuration page, click **Test connection to repository** to verify that the admin console can connect.
 
-      ![GitOps Action](/images/gitops-action.png)
-
-    1. Click **Finish setup** if this is a first time setup. For subsequent edits, click **Update settings**.
-
-      The Gitops subtab opens and displays a public deployment key. The private key is stored securely in the admin console.
-
-1. Click **Copy key**. Click **repo settings page** and add the public deployment key in the repository settings page. Enable the write access permissions for this key, otherwise KOTS cannot push the commit to the repository.
-
-  ![GitOps Deployment Key](/images/gitops-deployment-key.png)
-
-1. Click **Try again** to verify that the admin console can connect.
-
-    When the admin console establishes a connection to the repository, the main GitOps tab shows that GitOps is enabled for the application.
-
-    ![GitOps Connection](/images/gitops-connected.png)
-
-## First Commits
-
-After converting to GitOps, the admin console makes your first commit with the current version that is deployed.
-Subsequently, the admin console makes separate commits with any available updates that have not been deployed from the admin console.
-
-## Automatic updates
-
-If you configure [automatic updates](updating-apps#configure-automatic-updates), any updates from your vendor are automatically committed to your Git repository.
+    When the admin console establishes a connection to the repository, a dialog displays that says GitOps is enabled.
