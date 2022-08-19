@@ -1,6 +1,6 @@
 # About Packaging with Helm
 
-Helm is a popular package manager for Kubernetes applications. If your application is already packaged using Helm, you can use Replicated to more easily distribute and manage your application. Using Replicated to distribute applications packaged with Helm provides additional functionality not available through Helm, such as preflight checks, support bundles, a user interface for collecting user configuration values, and more.
+Helm is a popular package manager for Kubernetes applications. If your application is already packaged using Helm, you can use Replicated to more easily distribute and manage your application. Using Replicated to distribute applications packaged with Helm provides additional functionality not available through Helm, such as preflight checks, support bundles, a user interface for collecting user configuration values, support for using private images, and more.
 
 Replicated supports delivering an enterprise application as Helm charts, or including Helm charts as components of an application. An application can use more than one Helm chart, and can use more than a single instance of any Helm chart.
 
