@@ -224,6 +224,7 @@ const sidebars = {
           items: [
             'enterprise/image-registry-airgap',
             'enterprise/image-registry-embedded-cluster',
+            'enterprise/image-registry-configuring-settings',
             'enterprise/image-registry-rate-limits',
           ],
         },
