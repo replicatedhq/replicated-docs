@@ -4,6 +4,22 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.81.1
+
+Released on August 22, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### Improvements {#improvements-1-81-1}
+* Show deploy logs for Helm charts when running in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Updates the Helm binary included in the kotsadm image from 3.8.2 to 3.9.3 to resolve CVE-2022-21698 and CVE-2022-27191 with high severity.
+* Updates the golang.org/x/net module in the kurl-proxy image used for embedded cluster installations, to resolve CVE-2021-44716 with high severity.
+* Updates the dex image from 2.32.0 to 2.33.0 to resolve CVE-2022-30065, CVE-2022-2097, and CVE-2022-27191 with high severity.
+
+### Bug Fixes {#bug-fixes-1-81-1}
+* Fixes an issue where starting a manual snapshot resulted in an error dialog when using Firefox or Safari.
+* Fixes an issue that caused images formatted as `docker.io/image:tag` to not be rewritten when upgrading applications in airgapped environments. For more information about rewriting images, see [Patching the Image Location with Kustomize](/vendor/packaging-private-images#patching-the-image-location-with-kustomize) in _Connecting to an Image Registry_.
+
 ## 1.81.0
 
 Released on August 12, 2022
