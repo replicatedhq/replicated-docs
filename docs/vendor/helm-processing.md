@@ -97,9 +97,9 @@ When deploying the application, Replicated walks the `overlays/downstream/charts
 
 The app manager finally runs `helm upgrade -i chart.tar.gz`. The helm binary processes hooks and weights, applies manifests to the Kubernetes cluster, and saves a release secret similar to `sh.helm.release.v1.chart-name.v1`. This secret is how Helm tracks upgrades and rollbacks of applications.
 
-## Replicated app manager
+## Replicated KOTS
 
-The Replicated Helm installation is compatible with both Helm v2 and Helm v3 as it does not rely on Tiller to deploy the chart into the cluster. Instead, the Replicated app manager treats a Helm Chart as the packaging spec rather than the deployment tool. The Replicated Helm installation creates deployable YAML by leveraging the same functionality that the `helm template` command uses, with some extended functionality for [specific Helm hooks](packaging-cleaning-up-jobs#helm-charts).
+The Replicated KOTS Helm installation is compatible with both Helm v2 and Helm v3 as it does not rely on Tiller to deploy the chart into the cluster. Instead, the Replicated app manager treats a Helm Chart as the packaging spec rather than the deployment tool. The Replicated Helm installation creates deployable YAML by leveraging the same functionality that the `helm template` command uses, with some extended functionality for [specific Helm hooks](packaging-cleaning-up-jobs#helm-charts).
 
 Replicated finally runs the following command: `helm upgrade -i chart.tar.gz --timeout 60m -n {namespace}`. The helm binary processes hooks and weights, applies manifests to the Kubernetes cluster, and saves a Release secret similar to `sh.helm.release.v1.chart-name.v1`. This secret is how Helm tracks upgrades and rollbacks of applications.
 
