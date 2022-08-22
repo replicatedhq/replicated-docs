@@ -11,7 +11,7 @@ Released on August 22, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### Improvements {#improvements-1-81-1}
-* Show deploy logs for Helm charts when running in [Helm-managed mode (Alpha)](/vendor/helm-install).
+* Show deploy logs for Helm charts when running in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
 * Updates the Helm binary included in the kotsadm image from 3.8.2 to 3.9.3 to resolve CVE-2022-21698 and CVE-2022-27191 with high severity.
 * Updates the golang.org/x/net module in the kurl-proxy image used for embedded cluster installations, to resolve CVE-2021-44716 with high severity.
 * Updates the dex image from 2.32.0 to 2.33.0 to resolve CVE-2022-30065, CVE-2022-2097, and CVE-2022-27191 with high severity.
