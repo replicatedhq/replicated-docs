@@ -304,7 +304,6 @@ const sidebars = {
             'reference/custom-resource-config',
             'reference/custom-resource-preflight',
             'reference/custom-resource-redactor',
-            'reference/custom-resource-support-bundle',
             'reference/custom-resource-sig-application',
             'reference/custom-resource-helmchart',
             'reference/custom-resource-backup',
