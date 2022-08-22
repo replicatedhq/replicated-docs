@@ -4,6 +4,15 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.08.22-0
+
+Released on August 22, 2022
+
+### New Features {#new-features-v2022-08-22-0}
+
+- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kots) version 1.81.1
+- Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.10.
+
 ## Release v2022.08.19-0
 
 Released on August 19, 2022
@@ -20,7 +29,7 @@ Released on August 19, 2022
 
 - The [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) auto-upgrades experimental feature is no longer supported as of EKCO version 0.20.0.
 
-### Bug Fixes {#bug-fixes-v2022-08-08-0}
+### Bug Fixes {#bug-fixes-v2022-08-19-0}
 
 - Fixes an issue that causes Rook upgrades to fail on single node installations because of Rook MDS pod anti-affinity rules.
 - Fixes an issue that can cause a migration from Docker to Containerd to fail due to listing nodes using the incorrect Kubernetes api resource group. 
