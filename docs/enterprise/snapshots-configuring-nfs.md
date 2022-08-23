@@ -96,3 +96,12 @@ Once the configuration is successful, you'll be presented with a different dialo
 ![Snapshot Provider File System Next Steps](/images/snapshot-provider-fs-next-steps.png)
 
 After following the instructions from the above CLI command and successfully installing Velero, you can go back to the admin console and either click on the "Check for Velero" button to retry detecting Velero, or refresh the page.
+
+## Next Step
+
+After you configure an external storage destination, you must create or schedule snapshots. For more information, see [Creating Snapshots](snapshots-creating) and [Scheduling Snapshots](snapshots-scheduling).
+
+## Additional Resources
+
+* [How to Set Up and Use Snapshots](snapshots-understanding)
+* [Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)

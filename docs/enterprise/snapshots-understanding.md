@@ -1,6 +1,6 @@
-# Creating Snapshots
+# How to Set Up and Use Snapshots
 
-This topic describes the Replicated snapshots feature that provides backup and restore capabilities. This topic also describes how to create snapshots.
+This topic describes the process of setting up Replicated snapshots feature that provides backup and restore capabilities. This topic also describes any limitations, considerations, and overall prerequisites.
 
 ## About Backup and Restore
 
@@ -31,31 +31,30 @@ Snapshots are useful for rollback and disaster recovery scenarios. They are not 
 
 - Use the Snapshots tab in the admin console to cleanup and remove snapshots. Otherwise, removing data from the snapshot storage itself results in data corruption and the loss of snapshots.
 
-## Full Snapshots (Recommended) {#full}
 
-Full snapshots back up the admin console and all application data.
-They can be used for full Disaster Recovery by restoring over the same instance or into a new cluster. For limitations, see [Limitations and Considerations](#limitations-and-considerations).
+## Configuring and Using Snapshots
 
-There are two ways to create a full snapshot. First, make sure that your license has the snapshots feature enabled, then:
+Several steps are needed to set up the snapshots feature before backups can be created.
 
-1. Using the kots CLI `backup` command. See [backup](../reference/kots-cli-backup-index) in the kots CLI documentation.
-2. Using the admin console (check screenshot below).
+Complete the following procedures to configure snapshots (backup):
 
-    ![Instance Backup UI](/images/snapshot-instance-backup.png)
+1. Review the limitations and considerations. See [Limitations and Considerations](#limitations-and-considerations).
 
-After a full snapshot has been created, you can get a command to do a restore by clicking the restore icon (check screenshot below).
-There are two available options for doing a restore. You can either do a full restore which will restore the admin console and the application with all of its data, or you can choose to do a partial restore of just your application and its data.
+1. Install and configure Velero. See [Installing and Configuring Velero](snapshots-velero-installing-config).
 
-![Instance Restore UI](/images/snapshot-instance-restore.png)
+1. Configure an external storage destination. See [Storage Destinations](snapshots-storage-destinations).
 
-If you have multiple applications within the admin console, each application should have a backup resource in order to be included in the full snapshot backup. For more information, see [Backup](../reference/custom-resource-backup) in the _Custom resources_ section.
+1. Create full snapshots using one of the following methods:
 
-## Partial Snapshots {#partial}
+  * Configure snapshots manually. See [Creating Snapshots](snapshots-creating).
+  * Schedule automatic snapshots. See [Scheduling Snapshots](snapshots-scheduling).
 
-Partial snapshots only back up application volumes and application manifests; they do not back up the admin console or the metadata about an application.
-They are useful for capturing information before deploying a new release, in case you need to roll back, but they are not suitable for full disaster recovery.
-For backups that give you the ability to do full disaster recovery, use full snapshots. For more information, see [Full snapshots (recommended)](#full-snapshots-recommended) above.
+  :::note
+  Replicated does not recommend using partial snapshots because it is not suitable for backup and recovery.
+  :::
 
-Partial snapshots can only be created via the admin console (check screenshot below).
+1. (Optional) Restore full snapshots. See [Restoring Full Snapshots](snapshots-restoring-full).
 
-![Application Backup UI](/images/snapshot-application-backup.png)
+## Additional Resources
+
+[Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)

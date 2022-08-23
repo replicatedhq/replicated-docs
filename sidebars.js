@@ -280,6 +280,7 @@ const sidebars = {
           label: 'Managing Backup and Restore',
           items: [
             'enterprise/snapshots-understanding',
+            'enterprise/snapshots-velero-installing-config',
             {
               type: 'category',
               label: 'Configuring Storage Destinations',
@@ -289,6 +290,7 @@ const sidebars = {
                 'enterprise/snapshots-configuring-hostpath',
               ],
             },
+            'enterprise/snapshots-creating',
             'enterprise/snapshots-scheduling',
             'enterprise/snapshots-restoring-full',
             'enterprise/snapshots-restoring-partial',
