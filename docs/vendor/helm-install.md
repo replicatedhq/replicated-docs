@@ -279,7 +279,7 @@ To deliver customer-specific image pull secrets for a private registry:
    {{ end }}
    ```
 
-1. Add the following to any manifests in the Helm chart `templates` directory that reference private images to inject the pull secret that you created in the previous step:
+1. Add the following to any manifests in the Helm chart `templates` directory that reference private images, to inject the pull secret that you created in the previous step:
 
    ```yaml
         ...
