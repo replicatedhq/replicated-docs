@@ -34,9 +34,7 @@ Snapshots are useful for rollback and disaster recovery scenarios. They are not 
 
 ## Configuring and Using Snapshots
 
-Several steps are needed to set up the snapshots feature before backups can be created.
-
-Complete the following procedures to configure snapshots (backup):
+Complete the following procedures to configure and use snapshots backup and restore:
 
 1. Review the limitations and considerations. See [Limitations and Considerations](#limitations-and-considerations).
 
@@ -46,12 +44,12 @@ Complete the following procedures to configure snapshots (backup):
 
 1. Create full snapshots using one of the following methods:
 
-  * Configure snapshots manually. See [Creating Snapshots](snapshots-creating).
-  * Schedule automatic snapshots. See [Scheduling Snapshots](snapshots-scheduling).
+    * Configure snapshots manually. See [Creating Snapshots](snapshots-creating).
+    * Schedule automatic snapshots. See [Scheduling Snapshots](snapshots-scheduling).
 
-  :::note
-  Replicated does not recommend using partial snapshots because it is not suitable for backup and recovery.
-  :::
+    :::note
+    Replicated does not recommend using partial snapshots because it is not suitable for backup and recovery.
+    :::
 
 1. (Optional) Restore full snapshots. See [Restoring Full Snapshots](snapshots-restoring-full).
 

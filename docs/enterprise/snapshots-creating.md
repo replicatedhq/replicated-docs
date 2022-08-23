@@ -5,7 +5,7 @@ For full disaster recovery, Replicated recommends creating full snapshots.
 ## Full Snapshots (Recommended) {#full}
 
 Full snapshots back up the admin console and all application data.
-They can be used for full Disaster Recovery by restoring over the same instance or into a new cluster. For limitations, see [Limitations and Considerations](snapshots-understanding#limitations-and-considerations).
+They can be used for full Disaster Recovery by restoring over the same instance or into a new cluster. For limitations, see [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _How to Set Up and Use Snapshots_.
 
 There are two ways to create a full snapshot. First, make sure that your license has the snapshots feature enabled, then:
 
@@ -25,7 +25,7 @@ If you have multiple applications within the admin console, each application sho
 
 Partial snapshots only back up application volumes and application manifests; they do not back up the admin console or the metadata about an application.
 They are useful for capturing information before deploying a new release, in case you need to roll back, but they are not suitable for full disaster recovery.
-For backups that give you the ability to do full disaster recovery, use full snapshots. For more information, see [Full snapshots (recommended)](#full-snapshots-recommended) above.
+For backups that give you the ability to do full disaster recovery, use full snapshots. For more information about full snapshots, see [Full snapshots (recommended)](#full-snapshots-recommended).
 
 Partial snapshots can only be created via the admin console (check screenshot below).
 
