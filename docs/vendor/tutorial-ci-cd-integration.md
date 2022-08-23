@@ -4,7 +4,7 @@ This tutorial demonstrates how you can package and release an application with R
 
 This is an advanced workflow that allows you to use your own internal git repository and CI/CD systems like GitHub, GitLab, CircleCI, TravisCI, and Jenkins.
 
-For a similar workflow that uses GitHub Actions, see [Replicated Kubernetes Starter GitHub Actions](https://github.com/replicatedhq/replicated-starter-kots/blob/main/.github/workflows/main.yml#L21).
+For a similar workflow that uses GitHub Actions, see [Replicated Kubernetes Starter GitHub Actions](https://github.com/replicatedhq/replicated-starter-kots/blob/main/.github/workflows/main.yml).
 
 ## Environment Variables
 
