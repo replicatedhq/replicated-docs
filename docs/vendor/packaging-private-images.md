@@ -171,11 +171,65 @@ For more information about the `additionalNamespaces` attribute, see [Defining A
 :::
 
 
-## Support for Image Tags and Digests
+## About Using Image Tags and Digests
 
-The app manager supports image tags for applications in all use cases.
+This section describes using image tags and digests with application images, including when image tags and digests are supported as well as key considerations.
 
-The app manager supports image digests only for online (Internet-connected) installations where the app manager can pull all images from the Replicated private registry, a public external registry, or from a private external registry through proxy access. Image tags and digests can be used together for these installations too. Image digests are not supported for airgap installations or for online installations that are configured to push images to a private registry.
+### Support for Image Tags and Digests
+
+The following table describes the use cases in which image tags and digests are supported by default, or supported at a per-channel level with the **TOGGLE NAME** toggle.
+
+<table>
+  <tr>
+    <th width="10%">Installation</th>
+    <th width="30%">Registry Location</th>
+    <th width="30%">Support for Image Tags</th>
+    <th width="30%">Support for Image Digests</th>
+  </tr>
+  <tr>
+    <td>Online</td>
+    <td>Replicated private registry</td>
+    <td>Supported by default</td>
+    <td>Supported by default</td>
+  </tr>
+  <tr>
+    <td>Online</td>
+    <td>External private registry accessible through the Replicated proxy service</td>
+    <td>Supported by default</td>
+    <td>Supported by default</td>
+  </tr>
+  <tr>
+    <td>Online</td>
+    <td>External private registry configured on the admin console Registry Settings page.</td>
+    <td>Supported by default</td>
+    <td>(Beta) Supported when the **TOGGLE NAME** toggle is enabled on the channel and users are on v VERSION NUMBER or later of the Replicated app manager. For more information, see [(Beta) About Enabling TOGGLE](#enable-toggle) below.</td>
+  </tr>
+  <tr>
+    <td>Online</td>
+    <td>External public registry</td>
+    <td>Supported by default</td>
+    <td>Supported by default</td>
+  </tr>
+  <tr>
+    <td>Air Gap</td>
+    <td>Any</td>
+    <td>Supported by default</td>
+    <td>(Beta) Supported when the **TOGGLE NAME** toggle is enabled on the channel and users are on v VERSION NUMBER or later of the Replicated app manager. For more information, see [(Beta) About Enabling TOGGLE](#enable-toggle) below.</td>
+  </tr>
+</table>
+
+### (Beta) About Enabling TOGGLE {#enable-toggle}
+
+When you enable the **TOGGLE NAME** toggle on a channel, all air gap bundles that you build or re-build on that channel use the updated air gap bundle format specified by **TOGGLE NAME**.
+
+If any users have previously installed
+
+To avoid any upgrade failures for customers installing and upgrading in an air gap environment, Replicated recommends that you:
+* Avoid re-building any existing air gap bundles on the channel where you enable **TOGGLE NAME**:
+   * Disable **Automatically create airgap builds for all releases in this channel** in the channel settings.
+   * 
+* Set `minKOTSVersion` to v VERSION NUMBER to enforce a minimum required version of the app manager.
+
 
 ## Related Topic
 
