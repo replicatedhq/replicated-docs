@@ -4,6 +4,19 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.08.23-0
+
+Released on August 23, 2022
+
+### New Features {#new-features-v2022-08-23-0}
+
+- Adds new [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) version 3.3.0.
+
+### Bug Fixes {#bug-fixes-v2022-08-23-0}
+
+- Fixes an issue that causes Weave 2.6.x and 2.8.x versions of Weave to resolve to the incorrect versions without the latest CVE fixes.
+- Updates the replicatedhq/local-volume-provider image to v0.3.7 for [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.9.1 to address CVE-2021-44716, CVE-2021-33194, and CVE-2022-21221 with high severity.
+
 ## Release v2022.08.22-0
 
 Released on August 22, 2022
