@@ -192,7 +192,7 @@ To install the application:
 
 ### View the Deployed Application
 
-Because you used the default NGINX application, you can view the application by clicking the "Open App" button.
+To view the default NGINX application, click **Open App** on the Dashboard page.
 
 ![Open App](/images/guides/kots/open-app.png)
 
@@ -223,7 +223,7 @@ Now that you have an application running, a common task is to deliver updates. Y
      labels:
        app: nginx
    spec:
-  +  replicas: 2
+     replicas: 2
      selector:
        matchLabels:
          app: nginx
@@ -268,4 +268,4 @@ To check for updates manually:
 
 Now that you are familiar with the basics, we recommend that you run through the [CLI Quickstart Tutorial](tutorial-installing-with-cli) to start managing your release YAML in a git repository.
 
-You can also head over to [How to Distribute a Production Application](distributing-workflow) to learn how to integrate your application with other app manager features.
+You can also head over to [How to Package and Distribute a Production Application](distributing-workflow) to learn how to integrate your application with other app manager features.
