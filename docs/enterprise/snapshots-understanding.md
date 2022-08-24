@@ -46,7 +46,7 @@ Complete the following procedures to configure the snapshots feature, and then c
 
 1. Install and configure Velero. If you are using an Kubernetes installer cluster (embedded cluster) and your application vendor included the Velero add-on, you do not have to install Velero. However, you must configure the memory limit and namespace. See [Installing and Configuring Velero](snapshots-velero-installing-config).
 
-1. Configure an external storage destination. See [Storage Destinations](snapshots-storage-destinations).
+1. Configure a storage destination. See [Storage Destinations](snapshots-storage-destinations).
 
 1. After the snapshots feature is configured, you create a full snapshot backup using one of the following methods:
 
