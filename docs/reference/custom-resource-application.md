@@ -7,7 +7,7 @@ When [statusInformers](../vendor/admin-console-display-app-status) are specified
 
 The Application custom resource is optional.
 
-**Note**: There is some overlap between the Application custom resource manifest file and the [Kubernetes SIG Application manifest](https://github.com/kubernetes-sigs/application#application-objects). Enabling features such as [adding a button to the dashboard](../vendor/admin-console-adding-buttons-links) requires the use of both the Application and SIG Application custom resources.
+**Note**: There is some overlap between the Application custom resource manifest file and the [Kubernetes SIG Application custom resource](https://github.com/kubernetes-sigs/application/blob/master/docs/api.md). Enabling features such as [adding a button to the dashboard](/vendor/admin-console-adding-buttons-links) requires the use of both the Application and SIG Application custom resources.
 
 The following is an example manifest file for the Application custom resource:
 
