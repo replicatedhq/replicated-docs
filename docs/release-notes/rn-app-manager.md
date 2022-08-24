@@ -4,6 +4,25 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.82.0
+
+Released on August 25, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### New Features {#new-features-1-82-0}
+* Adds support for using image digests in airgapped mode.
+* Adds support for using image digests in online mode when configuring a target registry.
+* Adds support for displaying application configuration values the [config page](/vendor/config-screen-about#admin-console-config-tab) for all revisions revision in [Helm managed mode (Alpha)](/vendor/helm-install).
+
+### Improvements {#improvements-1-82-0}
+* Updates the local-volume-provider image to address CVE-2021-44716, CVE-2021-33194, and CVE-2022-21221 with high severity.
+
+### Bug Fixes {#bug-fixes-1-82-0}
+* Fixes an issue in the UI where typing in the `path` field for other S3-compatible storage snapshot destination did not work.
+* Fixes an issue where the [LicenseFieldValue](https://docs.replicated.com/reference/template-functions-license-context#licensefieldvalue) template function in the License Context was always returning an empty string for the `isSnapshotSupported` value.
+* UI updates to the GitOps workflow to improve ease of use.
+
 ## 1.81.1
 
 Released on August 22, 2022
