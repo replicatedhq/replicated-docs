@@ -192,18 +192,13 @@ To install the application:
 
 ### View the Deployed Application
 
-To view the running NGINX application:
+Because you used the default NGINX application, you can view the application by clicking the "Open App" button.
 
-1. Port-forward the NGINX service port to localhost `8080`:
+![Open App](/images/guides/kots/open-app.png)
 
-  ```shell
-  kubectl port-forward service/<service-name> 8080:80
-  ```
-  You can also add a link on the admin console dashboard and port-forward the NGINX port to your localhost as part of the [Application custom resource manifest](admin-console-adding-buttons-links#additional-ports-and-port-forwarding).
+You should see an example application.
 
-1. From your browser, go to `http://localhost:8080/`, and you should see a basic NGINX server running.
-
-  ![Cluster](/images/guides/kots/example-nginx.png)
+![Cluster](/images/guides/kots/example-app.png)
 
 Next, you will create and deliver an update to the sample application.
 

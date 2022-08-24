@@ -223,9 +223,13 @@ To install the application:
 
 ### View the Deployed Application
 
-Because you used the default NGINX application and enabled the ingress object, you can view the application at `http://${INSTANCE_IP}/` without a port and see a basic NGINX server running:
+Because you used the default NGINX application, you can view the application by clicking the "Open App" button.
 
-![Cluster](/images/guides/kots/example-nginx.png)
+![Open App](/images/guides/kots/open-app.png)
+
+You should see a simple web page.
+
+![Cluster](/images/guides/kots/example-app.png)
 
 Next, you will create and deliver an update to the sample application.
 
@@ -283,7 +287,7 @@ To check for updates manually:
 1. Run the following command to verify the deployment on the server:
 
   ```
-  kubectl get pod -l component=nginx
+  kubectl get pod -l app=nginx
   ```
 
   You should see two pods running.
