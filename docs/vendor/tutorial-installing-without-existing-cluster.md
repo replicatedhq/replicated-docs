@@ -223,7 +223,7 @@ To install the application:
 
 ### View the Deployed Application
 
-Because you used the default NGINX application, you can view the application by clicking the "Open App" button.
+To view the default NGINX application, click **Open App** on the Dashboard page.
 
 ![Open App](/images/guides/kots/open-app.png)
 
@@ -255,7 +255,7 @@ To create a new release:
      labels:
        app: nginx
    spec:
-  +  replicas: 2
+     replicas: 2
      selector:
        matchLabels:
          app: nginx
@@ -302,6 +302,6 @@ To check for updates manually:
   You should see two pods running.
 
 
-## Next Steps: Manage YAML in your Git Repo
+## Next Step
 
 Now that you are familiar with the basics, we recommend that you run through the tutorial for [installing with the CLI](tutorial-installing-with-cli) to start [managing your release YAML in a git repo](repository-workflow-and-tagging-releases).
