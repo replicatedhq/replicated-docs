@@ -43,7 +43,6 @@ spec:
       extraVolumes:
         - name: backup
           emptyDir:
-            medium: Memory
             sizeLimit: 1Gi
       extraVolumeMounts:
         - name: backup
@@ -92,5 +91,5 @@ Run backup hooks inside the container that contains the data to back up.
      </tr>
    </table>
 
-* `spec.master.extraVolumes`: A new volume that is injected into the postgres Pod. The new volume is an empty volume, stored in memory. Meaning, it does not require a PVC or storage.
+* `spec.master.extraVolumes`: A new volume that is injected into the postgres Pod. The new volume is an empty volume that uses ephemeral storage. The ephemeral storage must have enough space to accommodate the size of the exported data.
 The `extraVolumeMounts` field mounts the volume into the `/scratch` directory of the master Pod. The volume is used as a destination when the backup hook command described above runs `pg_dump`. This is the only volume that is backed up.
