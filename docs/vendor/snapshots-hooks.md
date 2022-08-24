@@ -63,7 +63,7 @@ The following describes key fields from the example above:
 
 * `spec.exclude`: A common and recommended pattern for applications. On the Replicated admin console Configuration screen, the customer can choose to bring an external Postgres instance instead of running it in-cluster. The Replicated template function in `spec.exclude` evaluates to true when the user selects the external database option on the Configuration screen. This means that the internal Postgres database is not included in the deployment.
 
-* `spec.values.master.podannotations`: Adds annotations to the postgres master PodSpec. Velero backup and restore hooks are included in the PodSpec annotations. The following table describes the annotations:
+* `spec.values.master.podannotations`: Adds annotations to the postgres master PodSpec. Velero backup and restore hooks are included in the podAnnotations. The following table describes the podAnnotations:
 :::note
 Run backup hooks inside the container that contains the data to back up.
 :::
@@ -75,7 +75,7 @@ Run backup hooks inside the container that contains the data to back up.
      </tr>
      <tr>
        <td><code>backup.velero.io/backup-volumes</code></td>
-       <td>A comma-separated list of volumes from the Pod to include in the backup. The primary data volume is not included in this field.</td>
+       <td>A comma-separated list of volumes from the Pod to include in the backup. The primary data volume is not included in this field because data is exported using the backup hook.</td>
      </tr>
      <tr>
        <td><code>pre.hook.backup.velero.io/command</code></td>
