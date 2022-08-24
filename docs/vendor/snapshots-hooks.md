@@ -7,7 +7,7 @@ Velero supports this through backup hooks and restore hooks.
 Some common examples of how to use a hook to create successful backups are:
 - Run `pg_dump` to export a postgres database prior to backup
 - Lock a file before running a backup, and unlock immediately after
-- Delete tmp files that should not be backed up
+- Delete TMP files that should not be backed up
 - Restore a database file only if that file exists
 - Perform required setup tasks in a restored Pod before the application containers can start
 
@@ -75,22 +75,22 @@ Run backup hooks inside the container that contains the data to back up.
      </tr>
      <tr>
        <td><code>backup.velero.io/backup-volumes</code></td>
-       <td>a comma separated list of volumes from the Pod to include in the backup. The primary data volume is not included in this field.</td>
+       <td>A comma-separated list of volumes from the Pod to include in the backup. The primary data volume is not included in this field.</td>
      </tr>
      <tr>
        <td><code>pre.hook.backup.velero.io/command</code></td>
-       <td>A stringified JSON array containing the pre backup hook command.
+       <td>A stringified JSON array containing the command for the backup hook.
        This command is a <code>pg_dump</code> from the running database to the backup volume.</td>
      </tr>
      <tr>
        <td><code>pre.hook.backup.velero.io/timeout</code></td>
-       <td>a duration for the maximum time to let this script run for</td>
+       <td>A duration for the maximum time to let this script run.</td>
      </tr>
      <tr>
        <td><code>post.hook.restore.velero.io/command</code></td>
-       <td>A Velero exec restore hook that runs a script to checks if the database file exists, and restore only if it exists. Then, the script deletes the file when the operation is complete.</td>
+       <td>A Velero exec restore hook that runs a script to check if the database file exists, and restores only if it exists. Then, the script deletes the file after the operation is complete.</td>
      </tr>
    </table>
 
 * `spec.master.extraVolumes`: A new volume that is injected into the postgres Pod. The new volume is an empty volume, stored in memory. Meaning, it does not require a PVC or storage.
-We mount the volume into the `/scratch` directory of the master Pod, and use it as a destination when running `pg_dump` from the backup hook described above. This is the only volume that is backed up.
+The `extraVolumeMounts` field mounts the volume into the `/scratch` directory of the master Pod. The volume is used as a destination when the backup hook command described above runs `pg_dump`. This is the only volume that is backed up.
