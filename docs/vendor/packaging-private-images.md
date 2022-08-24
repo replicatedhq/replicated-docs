@@ -202,7 +202,7 @@ The following table describes the use cases in which image tags and digests are 
     <td>Online</td>
     <td>External private registry configured on the admin console Registry Settings page.</td>
     <td>Supported by default</td>
-    <td>(Beta) Supported when the **TOGGLE NAME** toggle is enabled on the channel and users are on v VERSION NUMBER or later of the Replicated app manager. For more information, see [(Beta) About Enabling TOGGLE](#enable-toggle) below.</td>
+    <td>Supported by default.</td>
   </tr>
   <tr>
     <td>Online</td>
@@ -214,21 +214,38 @@ The following table describes the use cases in which image tags and digests are 
     <td>Air Gap</td>
     <td>Any</td>
     <td>Supported by default</td>
-    <td>(Beta) Supported when the **TOGGLE NAME** toggle is enabled on the channel and users are on v VERSION NUMBER or later of the Replicated app manager. For more information, see [(Beta) About Enabling TOGGLE](#enable-toggle) below.</td>
+    <td>(Beta) Supported when the **TOGGLE NAME** toggle is enabled on the channel and users are on v VERSION NUMBER or later of the Replicated app manager. For more information, see [(Beta) About Enabling TOGGLE](#digests-air-gap) below.</td>
   </tr>
 </table>
 
-### (Beta) About Enabling TOGGLE {#enable-toggle}
+### Using Image Digests for Air Gap Installations {#digests-air-gap}
 
-When you enable the **TOGGLE NAME** toggle on a channel, all air gap bundles that you build or re-build on that channel use the updated air gap bundle format specified by **TOGGLE NAME**.
+For applications installed with the app manager VERSION NUMBER or later, you can enable a format for air gap bundles that supports the use of image digests for private images. This air gap bundle format also ensures that identical image layers are not duplicated, resulting in a smaller air gap bundle size.
 
-If any users have previously installed
+You can enable or disable this air gap bundle format using the **Enable new air gap bundle** toggle in the settings for any channel in the vendor portal.
 
-To avoid any upgrade failures for customers installing and upgrading in an air gap environment, Replicated recommends that you:
-* Avoid re-building any existing air gap bundles on the channel where you enable **TOGGLE NAME**:
-   * Disable **Automatically create airgap builds for all releases in this channel** in the channel settings.
-   * 
-* Set `minKOTSVersion` to v VERSION NUMBER to enforce a minimum required version of the app manager.
+When you enable **Enable new air gap bundle** on a channel, all air gap bundles that you build or rebuild on that channel use the updated air gap bundle format. This means that if you rebuild an air gap bundle from an earlier release by clicking **Rebuild** on the vendor portal Release History page, then the rebuilt bundle uses the updated format.
+
+To enable the new air gap bundle format on a channel:
+
+1. In the Replicated [vendor portal](https://vendor.replicated.com/channels), go to **Channels** and click the **edit** icon in the top right of the channel where you want to use the new air gap bundle format.
+1. Enable the **Enable new air gap bundle** toggle.
+1. (Recommended) To ensure that users do not attempt to upgrade their application using an air gap bundle in the new format if they are on a version of the app manager (KOTS) earlier than VERSION NUMBER, set `minKOTSVersion` to VERSION NUMBER in the Application custom resource manifest file.
+
+   The `minKotsVersion` field defines the minimum version of the app manager required by the application release. This prevents users from installing or upgrading the application unless they are on the minimum version or later.
+
+   ```yaml
+   apiVersion: kots.io/v1beta1
+   kind: Application
+   metadata:
+     name: my-application
+   spec:
+     title: My Application
+     icon: https://support.io/img/logo.png
+     minKotsVersion: "VERSION NUMBER"
+   ```
+
+   For more information, see [Setting Minimum and Target Versions for KOTS](packaging-kots-versions).
 
 
 ## Related Topic
