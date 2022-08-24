@@ -246,10 +246,19 @@ To create a new release:
 
   The YAML editor opens and shows the contents of the most recently created release. This gives you everything that you have done so far, and the next task is to write the changes needed to increase the number of NGINX replicas.
 
-1. In the release YAML, find the NGINX image to change. The line is in the `deployment.yaml` file and looks like:
+1. In the release YAML, find the NGINX deployment to change. You'll want to add a `replicas` line in the `example-deployment.yaml` file:
 
-  ```yaml
-  replicas: 1
+  ```diff
+  --- example-deployment.yaml	2022-08-23 16:54:45.000000000 -0500
+  +++ example-deployment-2.yaml	2022-08-23 19:30:47.000000000 -0500
+  @@ -6,6 +6,7 @@
+     labels:
+       app: nginx
+   spec:
+  +  replicas: 2
+     selector:
+       matchLabels:
+         app: nginx
   ```
 
 1. Change the number of replicas to `2` or more.
