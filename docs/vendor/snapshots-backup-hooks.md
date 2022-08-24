@@ -1,6 +1,6 @@
 # Using Backup and Restore Hooks
 
-For many application workloads, additional processing or scripts must be run before or after creating a backup to prepare the system for a backup. Many application workloads also require additional processing or scripts to run before or after restoring from a backup.
+For many application workloads, additional processing or scripts must be run before or after creating a backup to prepare the system for a backup. Many application workloads also require additional processing or scripts to run during or after the restore process.
 
 Velero supports this through backup hooks and restore hooks.
 
@@ -9,6 +9,7 @@ Some common examples of how to use a hook to create successful backups are:
 - Lock a file before running a backup, and unlock immediately after
 - Delete tmp files that should not be backed up
 - Restore a database file only if that file exists
+- Perform required setup tasks in a restored Pod before the application containers can start
 
 For more information, see [Backup Hooks](https://velero.io/docs/v1.9/backup-hooks/) and [Restore Hooks](https://velero.io/docs/v1.9/restore-hooks) in the Velero documentation.
 
