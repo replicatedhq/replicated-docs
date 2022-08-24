@@ -30,13 +30,26 @@ When you submit a PR in GitHub, Netlify builds a preview automatically. However,
 
 ### Install yarn
 
-Run this command to install the `yarn` CLI:
+The Yarn documentation recommends installing Yarn through the npm package manager, which comes bundled with Node.js when you install it on your system.
+
+Once you have npm installed, you can run the following both to install and upgrade Yarn:
 
 ```
-$ yarn
+npm install --global yarn
+```
+
+If you use Homebrew, you can also run this command to install Yarn:
+
+```
+$ brew install yarn
 ```
 
 ### Create a Local Development Server and WYSIWYG Preview
+Install the docusaurus package using Yarn:
+
+```
+yarn add docusaurus
+```
 
 Run the following command to start a local development server and open up a browser window. Most changes are reflected live without having to restart the server. This preview shows the formatting and styles as they would render on the live site (also known as what-you-see-is-what-you-get or WYSIWYG), which can be more helpful than viewing content in a VS Code preview.
 
