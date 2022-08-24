@@ -6,7 +6,7 @@ You can configure a host path as your snapshots storage destination. For more in
 
 ## Prerequisites
 
-The following prerequisites must be met to configure a host path as the storage destination:
+Complete the following items before you perform this task:
 
 * Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _How to Set Up and Use Snapshots_.
 * Install and configure Velero. See [Installing and Configuring Velero](snapshots-venerlo-installing-config).

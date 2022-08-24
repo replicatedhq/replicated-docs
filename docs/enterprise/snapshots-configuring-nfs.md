@@ -6,7 +6,7 @@ You can configure a Network File System (NFS) as your snapshots storage destinat
 
 ## Requirements
 
-The following prerequisites must be met to configure NFS as the storage destination:
+Complete the following items before you perform this task:
 
 * Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _How to Set Up and Use Snapshots_.
 * Install and configure Velero. See [Installing and Configuring Velero](snapshots-venerlo-installing-config).

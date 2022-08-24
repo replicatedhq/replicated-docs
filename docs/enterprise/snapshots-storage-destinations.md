@@ -1,15 +1,6 @@
 # Storage Destinations
 
-This topic describes the supported storage destinations for backups with the Replicated snapshots feature.
-
-## About Storage Destinations
-
-You configure the snapshots feature to store backups on a supported storage provider backend using the kots CLI or the Snapshots page in the admin console. You configure a storage destination for both existing clusters and clusters provisioned by the Replicated Kubernetes installer.
-
-Kubernetes installer provisioned clusters include a locally-provisioned object store. By default, Kubernetes installer clusters are preconfigured in the admin console to store backups in the locally-provisioned object store. This object store is sufficient for only rollbacks and downgrades and is not a suitable configuration for disaster recovery. Replicated recommends that you configure a snapshots storage destination that is external to the cluster in the admin console for Kubernetes installer clusters.
-
-For more information about configuring snapshot storage destinations with the kots CLI, see the [velero](/reference/kots-cli-velero-index) section in the _kots CLI_ documentation.
-
+This topic describes the supported storage destinations for use with the snapshots backup feature.
 
 ## Supported Storage Providers
 

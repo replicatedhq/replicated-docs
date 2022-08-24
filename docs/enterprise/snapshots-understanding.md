@@ -11,15 +11,21 @@ The admin console backup and restore feature is called snapshots. The snapshots 
 There are two types of snapshots:
   * **Full snapshots (Recommended)**: Backs up the admin console and all application data. For embedded clusters, this also backs up the Docker registry, which is required for air gapped installations.
 
-    Object-stored data that does not use PVCs, such as Rook and Ceph, require custom hooks for backups. Custom hooks are configured by your vendor. See [Full Snapshots](snapshots-creating#full) in _Creating Snapshots_.
+    Object-stored data that does not use PVCs, such as Rook and Ceph, require custom hooks for backups. Custom hooks are configured by your vendor. See [Full Snapshots](snapshots-creating#full) in _Creating Snapshot Backups_.
 
-  * **Partial snapshots**: Backs up the application volumes and manifest files. See [Partial Snapshots](snapshots-creating#partial) in _Creating Snapshots_.
+  * **Partial snapshots**: Backs up the application volumes and manifest files only. See [Partial Snapshots](snapshots-creating#partial) in _Creating Snapshot Backups_.
 
-Snapshots are useful for rollback and disaster recovery scenarios. They are not intended to be used for application migration scenarios.
+## About Storage Destinations
+
+You configure the snapshots feature to store backups on a supported storage provider backend using the kots CLI or the Snapshots page in the admin console. You configure a storage destination for both existing clusters and clusters provisioned by the Replicated Kubernetes installer.
+
+Kubernetes installer provisioned clusters include a locally-provisioned object store. By default, Kubernetes installer clusters are preconfigured in the admin console to store backups in the locally-provisioned object store. This object store is sufficient for only rollbacks and downgrades and is not a suitable configuration for disaster recovery. Replicated recommends that you configure a snapshots storage destination that is external to the cluster in the admin console for Kubernetes installer clusters.
+
+For more information about storage destinations, see [Storage Destinations](snapshots-storage-destinations). For more information about configuring snapshot storage destinations with the kots CLI, see the [velero](/reference/kots-cli-velero-index) section in the _kots CLI_ documentation.
 
 ## Limitations and Considerations
 
-- By default, Kubernetes installer provisioned clusters are preconfigured to store backups in a locally-provisioned object store that is sufficient for only rollbacks and downgrades, but not suitable for disaster recovery. Replicated recommends that you configure an external storage destination in the admin console for Kubernetes installer cluster snapshots.
+- Snapshots are useful for rollback and disaster recovery scenarios. They are not intended to be used for application migration scenarios.
 
 - Only full snapshots are usable in disaster recovery scenarios.
 
@@ -34,7 +40,7 @@ Snapshots are useful for rollback and disaster recovery scenarios. They are not 
 
 ## Configuring and Using Snapshots
 
-Complete the following procedures to configure and use snapshots to backup and restore:
+Complete the following procedures to configure the snapshots feature, and then create and restore snapshot backups:
 
 1. Review the limitations and considerations. See [Limitations and Considerations](#limitations-and-considerations).
 
@@ -42,16 +48,16 @@ Complete the following procedures to configure and use snapshots to backup and r
 
 1. Configure an external storage destination. See [Storage Destinations](snapshots-storage-destinations).
 
-1. Create full snapshots using one of the following methods:
+1. After the snapshots feature is configured, you create a full snapshot backup using one of the following methods:
 
-    * Configure snapshots manually. See [Creating Snapshots](snapshots-creating).
-    * Schedule automatic snapshots. See [Scheduling Snapshots](snapshots-scheduling).
+    * Create snapshots manually. See [Creating Snapshots](snapshots-creating).
+    * Schedule automatic snapshots. See [Scheduling Automatic Snapshots](snapshots-scheduling).
 
     :::note
     Replicated does not recommend using partial snapshots because it is not suitable for backup and recovery.
     :::
 
-1. (Optional) Restore full snapshots. See [Restoring Full Snapshots](snapshots-restoring-full).
+1. (Optional) Restore a full snapshot backup. See [Restoring Full Snapshots](snapshots-restoring-full).
 
 ## Additional Resources
 

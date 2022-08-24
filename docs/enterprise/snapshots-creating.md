@@ -1,6 +1,14 @@
-# Creating Snapshots
+# Creating Snapshot Backups
 
 For full disaster recovery, Replicated recommends creating full snapshots.
+
+## Prerequisites
+
+Complete the following items before you perform this task:
+
+* Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _How to Set Up and Use Snapshots_.
+* Install and configure Velero. See [Installing and Configuring Velero](snapshots-venerlo-installing-config).
+* Configure a storage destination. See [Storage Destinations](snapshots-storage-destinations).
 
 ## Full Snapshots (Recommended) {#full}
 
@@ -30,3 +38,8 @@ For backups that give you the ability to do full disaster recovery, use full sna
 Partial snapshots can only be created via the admin console (check screenshot below).
 
 ![Application Backup UI](/images/snapshot-application-backup.png)
+
+## Additional Resources
+
+* [How to Set Up and Use Snapshots](snapshots-understanding)
+* [Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)
