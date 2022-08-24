@@ -3,7 +3,7 @@
 ## Table of Contents:
 
 * [How to Contribute to the Documentation](#how-to-contribute-to-the-documentation)
-* [Setting Up Your Local Environment](#setting-up-your-local-environment)
+* [Setting Up Local WYSIWYG Previews](#setting-up-local-wysiwyg-previews)
 * [Folder Structure and TOC](#folder-structure-and-toc)
 * [Topic Templates](#topic-templates)
 * [Filenaming](#filenaming)
