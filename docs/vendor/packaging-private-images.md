@@ -220,7 +220,7 @@ To enable the new air gap bundle format on a channel:
 1. Enable the **Enable new air gap bundle** toggle.
 1. (Recommended) To prevent users on a version of the app manager earlier than VERSION NUMBER from attempting to upgrade with an air gap bundle that uses the **Enable new air gap bundle** format, set `minKOTSVersion` to VERSION NUMBER in the Application custom resource manifest file.
 
-   `minKotsVersion` defines the minimum version of the app manager required by the application release. Including `minKotsVersion` prevents users from installing or upgrading the application unless they are on the specified minimum version or later. For more information, see [Setting Minimum and Target Versions for KOTS](packaging-kots-versions).
+   `minKotsVersion` defines the minimum version of the app manager required by the application release. Including `minKotsVersion` displays a warning in the admin console when users attempt to install or upgrade the application if they are not on the specified minimum version or later. For more information, see [Setting Minimum and Target Versions for KOTS](packaging-kots-versions).
 
    **Example**:
 
