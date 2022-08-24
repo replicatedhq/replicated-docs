@@ -121,7 +121,7 @@ const sidebars = {
                       items: [
                         'vendor/snapshots-overview',
                         'vendor/snapshots-configuring-backups',
-                        'vendor/snapshots-backup-hooks',
+                        'vendor/snapshots-hooks',
                     ],
                   },
                   {
