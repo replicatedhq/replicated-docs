@@ -1,6 +1,6 @@
 # How to Set Up and Use Snapshots
 
-This topic describes the process of setting up Replicated snapshots feature that provides backup and restore capabilities. This topic also describes any limitations, considerations, and overall prerequisites.
+This topic describes the process of setting up Replicated snapshots feature that provides backup and restore capabilities. This topic also describes any limitations and considerations.
 
 ## About Backup and Restore
 
@@ -11,15 +11,15 @@ The admin console backup and restore feature is called snapshots. The snapshots 
 There are two types of snapshots:
   * **Full snapshots (Recommended)**: Backs up the admin console and all application data. For embedded clusters, this also backs up the Docker registry, which is required for air gapped installations.
 
-    Object-stored data that does not use PVCs, such as Rook and Ceph, require custom hooks for backups. Custom hooks are configured by your vendor. See [Full Snapshots](#full).
+    Object-stored data that does not use PVCs, such as Rook and Ceph, require custom hooks for backups. Custom hooks are configured by your vendor. See [Full Snapshots](snapshots-creating#full) in _Creating Snapshots_.
 
-  * **Partial snapshots**: Backs up the application volumes and manifest files. See [Partial Snapshots](#partial).
+  * **Partial snapshots**: Backs up the application volumes and manifest files. See [Partial Snapshots](snapshots-creating#partial) in _Creating Snapshots_.
 
 Snapshots are useful for rollback and disaster recovery scenarios. They are not intended to be used for application migration scenarios.
 
 ## Limitations and Considerations
 
-- By default, Kubernetes installer provisioned clusters are preconfigured in the admin console to store backups in a locally-provisioned object store. This object store is sufficient for only rollbacks and downgrades and is not a suitable configuration for disaster recovery. Replicated recommends that you configure a snapshots storage destination that is external to the cluster in the admin console for Kubernetes installer clusters.
+- By default, Kubernetes installer provisioned clusters are preconfigured to store backups in a locally-provisioned object store that is sufficient for only rollbacks and downgrades, but not suitable for disaster recovery. Replicated recommends that you configure an external storage destination in the admin console for Kubernetes installer cluster snapshots.
 
 - Only full snapshots are usable in disaster recovery scenarios.
 
@@ -34,7 +34,7 @@ Snapshots are useful for rollback and disaster recovery scenarios. They are not 
 
 ## Configuring and Using Snapshots
 
-Complete the following procedures to configure and use snapshots backup and restore:
+Complete the following procedures to configure and use snapshots to backup and restore:
 
 1. Review the limitations and considerations. See [Limitations and Considerations](#limitations-and-considerations).
 
