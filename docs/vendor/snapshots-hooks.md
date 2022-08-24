@@ -1,4 +1,4 @@
-# Using Backup and Restore Hooks
+# Configuring Backup and Restore Hooks
 
 For many application workloads, additional processing or scripts must be run before or after creating a backup to prepare the system for a backup. Many application workloads also require additional processing or scripts to run during or after the restore process.
 
