@@ -4,9 +4,12 @@ Before you can configure a storage destination and use the snapshots feature, yo
 
 ## Install Velero
 
-Velero must be installed on the cluster to use snapshots:
-  * Existing clusters: Install Velero on the cluster. See [Basic Install](https://velero.io/docs/v1.9/basic-install/) in the Velero documentation.
-  * Kubernetes installer clusters: Your application vendor can provide the Velero add-on in the Kubernetes installer cluster. If Velero is not already installed on the Kubernetes installer cluster, the snapshots configuration dialog in the admin console notifies you to install Velero before you can proceed with the configuration.
+Velero must be installed on the cluster to use snapshots.
+
+  * **Existing clusters:** Install Velero on the cluster. See [Basic Install](https://velero.io/docs/v1.9/basic-install/) in the Velero documentation.
+  * **Kubernetes installer clusters:** If your application vendor provided the Velero add-on in the Kubernetes installer, Velero is installed in the cluster automatically and you only need to configure Velero.
+
+    If Velero is not already installed on the Kubernetes installer cluster, the snapshots configuration dialog in the admin console notifies you to install Velero before you can proceed with the configuration.
 
 
 ## Configure Velero

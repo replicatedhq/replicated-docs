@@ -38,7 +38,7 @@ Complete the following procedures to configure and use snapshots backup and rest
 
 1. Review the limitations and considerations. See [Limitations and Considerations](#limitations-and-considerations).
 
-1. Install and configure Velero. See [Installing and Configuring Velero](snapshots-velero-installing-config).
+1. Install and configure Velero. If you are using an (embedded cluster) Kubernetes installer cluster and your application vendor included the Velero add-on, you do not have to install Velero. However, you must configure the memory limit and namespace. See [Installing and Configuring Velero](snapshots-velero-installing-config).
 
 1. Configure an external storage destination. See [Storage Destinations](snapshots-storage-destinations).
 

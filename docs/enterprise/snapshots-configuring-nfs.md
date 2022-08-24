@@ -1,4 +1,4 @@
-# Configuring a NFS
+# Configuring an NFS Storage Destination
 
 > Introduced in the Replicated app manager v1.33.0
 
@@ -6,8 +6,10 @@ You can configure a Network File System (NFS) as your snapshots storage destinat
 
 ## Requirements
 
-The following are requirements for configuring a NFS as the storage destination:
+The following prerequisites must be met to configure NFS as the storage destination:
 
+* Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _How to Set Up and Use Snapshots_.
+* Install and configure Velero. See [Installing and Configuring Velero](snapshots-venerlo-installing-config).
 * The NFS server must be configured to allow access from all the nodes in the cluster.
 
 * The NFS directory must be writable by the user:group 1001:1001.
