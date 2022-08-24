@@ -17,7 +17,7 @@ There are two types of snapshots:
 
 ## About Storage Destinations
 
-You configure the snapshots feature to store backups on a supported storage provider backend using the kots CLI or the Snapshots page in the admin console. You configure a storage destination for both existing clusters and clusters provisioned by the Replicated Kubernetes installer.
+You can configure the snapshots feature to store backups on a supported storage provider backend using the kots CLI or the Snapshots page in the admin console. You can configure a storage destination for both existing clusters and clusters provisioned by the Replicated Kubernetes installer.
 
 Kubernetes installer provisioned clusters include a locally-provisioned object store. By default, Kubernetes installer clusters are preconfigured in the admin console to store backups in the locally-provisioned object store. This object store is sufficient for only rollbacks and downgrades and is not a suitable configuration for disaster recovery. Replicated recommends that you configure a snapshots storage destination that is external to the cluster in the admin console for Kubernetes installer clusters.
 
