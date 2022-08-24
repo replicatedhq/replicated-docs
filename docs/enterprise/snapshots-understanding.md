@@ -40,17 +40,17 @@ For more information about storage destinations, see [Storage Destinations](snap
 
 ## Configuring and Using Snapshots
 
-Complete the following procedures to configure the snapshots feature, and then create and restore snapshot backups:
+Complete the following procedures to configure the snapshots feature, and then create and restore backups:
 
 1. Review the limitations and considerations. See [Limitations and Considerations](#limitations-and-considerations).
 
-1. Install and configure Velero. If you are using an (embedded cluster) Kubernetes installer cluster and your application vendor included the Velero add-on, you do not have to install Velero. However, you must configure the memory limit and namespace. See [Installing and Configuring Velero](snapshots-velero-installing-config).
+1. Install and configure Velero. If you are using an Kubernetes installer cluster (embedded cluster) and your application vendor included the Velero add-on, you do not have to install Velero. However, you must configure the memory limit and namespace. See [Installing and Configuring Velero](snapshots-velero-installing-config).
 
 1. Configure an external storage destination. See [Storage Destinations](snapshots-storage-destinations).
 
 1. After the snapshots feature is configured, you create a full snapshot backup using one of the following methods:
 
-    * Create snapshots manually. See [Creating Snapshots](snapshots-creating).
+    * Create snapshots manually. See [Creating Snapshot Backups](snapshots-creating).
     * Schedule automatic snapshots. See [Scheduling Automatic Snapshots](snapshots-scheduling).
 
     :::note

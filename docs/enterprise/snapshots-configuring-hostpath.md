@@ -97,7 +97,7 @@ After following the instructions from the above CLI command and successfully ins
 
 ## Next Step
 
-After you configure an external storage destination, you must create or schedule snapshots. For more information, see [Creating Snapshots](snapshots-creating) and [Scheduling Snapshots](snapshots-scheduling).
+After you configure an external storage destination, you must create or schedule snapshots. For more information, see [Creating Snapshot Backups](snapshots-creating) and [Scheduling Automatic Snapshots](snapshots-scheduling).
 
 ## Additional Resources
 
