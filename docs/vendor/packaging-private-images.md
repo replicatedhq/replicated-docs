@@ -171,68 +171,58 @@ For more information about the `additionalNamespaces` attribute, see [Defining A
 :::
 
 
-## About Using Image Tags and Digests
+## Using Image Tags and Digests
 
-This section describes using image tags and digests with application images, including when image tags and digests are supported as well as key considerations.
+This section describes using image tags and digests with your application images. It includes information about when image tags and digests are supported, as well how to enable support for image digests in air gap bundles.
 
 ### Support for Image Tags and Digests
 
-The following table describes the use cases in which image tags and digests are supported by default, or supported at a per-channel level with the **TOGGLE NAME** toggle.
+The following table describes the use cases in which image tags and digests are supported:
 
 <table>
   <tr>
     <th width="10%">Installation</th>
-    <th width="30%">Registry Location</th>
     <th width="30%">Support for Image Tags</th>
     <th width="30%">Support for Image Digests</th>
   </tr>
   <tr>
     <td>Online</td>
-    <td>Replicated private registry</td>
-    <td>Supported by default</td>
-    <td>Supported by default</td>
-  </tr>
-  <tr>
-    <td>Online</td>
-    <td>External private registry accessible through the Replicated proxy service</td>
-    <td>Supported by default</td>
-    <td>Supported by default</td>
-  </tr>
-  <tr>
-    <td>Online</td>
-    <td>External private registry configured on the admin console Registry Settings page.</td>
-    <td>Supported by default</td>
-    <td>Supported by default.</td>
-  </tr>
-  <tr>
-    <td>Online</td>
-    <td>External public registry</td>
     <td>Supported by default</td>
     <td>Supported by default</td>
   </tr>
   <tr>
     <td>Air Gap</td>
-    <td>Any</td>
     <td>Supported by default</td>
-    <td>(Beta) Supported when the **TOGGLE NAME** toggle is enabled on the channel and users are on v VERSION NUMBER or later of the Replicated app manager. For more information, see [(Beta) About Enabling TOGGLE](#digests-air-gap) below.</td>
+    <td>
+    <p>Supported for applications on the app manager VERSION NUMBER and later when the <b>Enable new air gap bundle</b> toggle is enabled on the channel.</p>
+    <p>For more information, see <a href="#digests-air-gap">Using Image Digests in Air Gap Installations</a> below.</p>
+    </td>
   </tr>
 </table>
 
-### Using Image Digests for Air Gap Installations {#digests-air-gap}
+:::note
+You can use image tags and image digests together in any case where both are supported.
+:::
+
+### Using Image Digests in Air Gap Installations {#digests-air-gap}
 
 For applications installed with the app manager VERSION NUMBER or later, you can enable a format for air gap bundles that supports the use of image digests for private images. This air gap bundle format also ensures that identical image layers are not duplicated, resulting in a smaller air gap bundle size.
 
 You can enable or disable this air gap bundle format using the **Enable new air gap bundle** toggle in the settings for any channel in the vendor portal.
 
-When you enable **Enable new air gap bundle** on a channel, all air gap bundles that you build or rebuild on that channel use the updated air gap bundle format. This means that if you rebuild an air gap bundle from an earlier release by clicking **Rebuild** on the vendor portal Release History page, then the rebuilt bundle uses the updated format.
+When you enable **Enable new air gap bundle** on a channel, all air gap bundles that you build or rebuild on that channel use the updated air gap bundle format.
+
+If users on a version of the app manager earlier than VERSION NUMBER attempt to install or upgrade an application with an air gap bundle that uses the **Enable new air gap bundle** format, then the admin console displays an error message when they attempt to upload the bundle.
 
 To enable the new air gap bundle format on a channel:
 
 1. In the Replicated [vendor portal](https://vendor.replicated.com/channels), go to **Channels** and click the **edit** icon in the top right of the channel where you want to use the new air gap bundle format.
 1. Enable the **Enable new air gap bundle** toggle.
-1. (Recommended) To ensure that users do not attempt to upgrade their application using an air gap bundle in the new format if they are on a version of the app manager (KOTS) earlier than VERSION NUMBER, set `minKOTSVersion` to VERSION NUMBER in the Application custom resource manifest file.
+1. (Recommended) To prevent users on a version of the app manager earlier than VERSION NUMBER from attempting to upgrade with an air gap bundle that uses the **Enable new air gap bundle** format, set `minKOTSVersion` to VERSION NUMBER in the Application custom resource manifest file.
 
-   The `minKotsVersion` field defines the minimum version of the app manager required by the application release. This prevents users from installing or upgrading the application unless they are on the minimum version or later.
+   `minKotsVersion` defines the minimum version of the app manager required by the application release. Including `minKotsVersion` prevents users from installing or upgrading the application unless they are on the specified minimum version or later. For more information, see [Setting Minimum and Target Versions for KOTS](packaging-kots-versions).
+
+   **Example**:
 
    ```yaml
    apiVersion: kots.io/v1beta1
@@ -240,13 +230,10 @@ To enable the new air gap bundle format on a channel:
    metadata:
      name: my-application
    spec:
-     title: My Application
-     icon: https://support.io/img/logo.png
+     ...
      minKotsVersion: "VERSION NUMBER"
+     ...
    ```
-
-   For more information, see [Setting Minimum and Target Versions for KOTS](packaging-kots-versions).
-
 
 ## Related Topic
 
