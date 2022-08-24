@@ -195,13 +195,11 @@ To install the application:
 
   The Settings page opens with the default configuration items.
 
-1. If you are using the defaults, select the **Enable Ingress** checkbox. You can leave the Ingress Hostname field blank.
+1. There are some example configuration options on this page -- feel free to explore and toggle some of the options. You'll be able to see the results of your changes later.
 
   :::note
-  For production, you can customize what appears on this screen to collect the configuration that your application needs from the customer.
+  For production, you can customize what appears on this screen to collect the configuration that your application needs from the customer. Values will be available to your app as text templates or input values to Helm Charts.
   :::
-
-  ![Settings Page](/images/guides/kots/configuration.png)
 
   The Preflight page opens.
 

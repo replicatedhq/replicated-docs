@@ -162,17 +162,13 @@ To install the application:
 
   The Upload license page opens.
 
-1. Click Upload. Select your customer license YAML file to continue, or drag and drop the license file from your desktop. The admin console can pull the application YAML and containers now.
+1. There are some example configuration options on this page -- feel free to explore and toggle some of the options. You'll be able to see the results of your changes later.
 
-  The Settings page opens with the default configuration items.
-
-  :::note
-  The appearance of this page can be configured in the `config.yaml` file.
-  :::
+    :::note
+    For production, you can customize what appears on this screen to collect the configuration that your application needs from the customer. Values will be available to your app as text templates or input values to Helm Charts.
+    :::
 
 1. Proceed with the default settings.
-
-  ![Settings Page](/images/guides/kots/configuration.png)
 
   The Preflight page opens.
 
