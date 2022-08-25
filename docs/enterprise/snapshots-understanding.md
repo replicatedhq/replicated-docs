@@ -38,9 +38,9 @@ For more information about storage destinations, see [Configuring Storage Destin
 - Use the Snapshots tab in the admin console to cleanup and remove snapshots. Otherwise, removing data from the snapshot storage itself results in data corruption and the loss of snapshots.
 
 
-## Configuring and Using Snapshots
+## Configuring Snapshots
 
-Complete the following procedures to configure the snapshots feature, and then create and restore backups:
+You must configure the snapshots feature before you can create backups. Complete the following procedures to configure the snapshots feature:
 
 1. Review the limitations and considerations. See [Limitations and Considerations](#limitations-and-considerations).
 
@@ -48,7 +48,7 @@ Complete the following procedures to configure the snapshots feature, and then c
 
 1. Configure a storage destination. See [Configuring Storage Destinations](snapshots-storage-destinations).
 
-## Next Steps
+## Next Step
 
 You can create a full backup using one of the following methods:
 
