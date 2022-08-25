@@ -218,7 +218,7 @@ To enable the new air gap bundle format on a channel:
 
 1. In the Replicated [vendor portal](https://vendor.replicated.com/channels), go to **Channels** and click the **edit** icon in the top right of the channel where you want to use the new air gap bundle format.
 1. Enable the **Enable new air gap bundle** toggle.
-1. (Recommended) To prevent users on a version of the app manager earlier than VERSION NUMBER from attempting to upgrade with an air gap bundle that uses the **Enable new air gap bundle** format, set `minKOTSVersion` to VERSION NUMBER in the Application custom resource manifest file.
+1. (Recommended) To prevent users on a version of the app manager earlier than v1.82.0 from attempting to upgrade with an air gap bundle that uses the **Enable new air gap bundle** format, set `minKOTSVersion` to "1.82.0" in the Application custom resource manifest file.
 
    `minKotsVersion` defines the minimum version of the app manager required by the application release. Including `minKotsVersion` displays a warning in the admin console when users attempt to install or upgrade the application if they are not on the specified minimum version or later. For more information, see [Setting Minimum and Target Versions for KOTS](packaging-kots-versions).
 
