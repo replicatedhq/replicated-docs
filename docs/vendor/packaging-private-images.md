@@ -231,7 +231,7 @@ To enable the new air gap bundle format on a channel:
      name: my-application
    spec:
      ...
-     minKotsVersion: "VERSION NUMBER"
+     minKotsVersion: "1.82.0"
      ...
    ```
 
