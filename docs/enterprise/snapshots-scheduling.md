@@ -1,4 +1,4 @@
-# Scheduling Automatic Snapshots
+# Scheduling Automatic Backups
 
 The Replicated admin console lets you schedule automatic snapshots for routine backup.
 
@@ -8,7 +8,7 @@ Complete the following items before you perform this task:
 
 * Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _How to Set Up and Use Snapshots_.
 * Install and configure Velero. See [Installing and Configuring Velero](snapshots-venerlo-installing-config).
-* Configure a storage destination. See [Storage Destinations](snapshots-storage-destinations).
+* Configure a storage destination. See [Configuring Storage Destinations](snapshots-storage-destinations).
 
 ## Retention
 
@@ -24,5 +24,4 @@ Check out the screenshot below for instructions on how to enable and configure a
 
 ## Additional Resources
 
-* [How to Set Up and Use Snapshots](snapshots-understanding)
-* [Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)
+[Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)

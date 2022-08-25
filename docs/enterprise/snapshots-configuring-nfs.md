@@ -2,9 +2,9 @@
 
 > Introduced in the Replicated app manager v1.33.0
 
-You can configure a Network File System (NFS) as your snapshots storage destination. For more information about snapshot storage destinations, see [Storage destinations](snapshots-storage-destinations).
+You can configure a Network File System (NFS) as your snapshots storage destination. For more information about snapshot storage destinations, see [Configuring Storage Destinations](snapshots-storage-destinations).
 
-## Requirements
+## Prerequisites
 
 Complete the following items before you perform this task:
 
@@ -49,7 +49,7 @@ When configuring the admin console to store snapshots on an NFS server, the foll
 
 ## Existing Clusters
 
-If Velero is already installed in the cluster, follow the instructions in the [Configure NFS on Kubernetes installer-created clusters](#configure-nfs-on-kubernetes-installer-created-clusters) section above.
+If Velero is already installed in the cluster, follow the instructions in the [Configure NFS on Kubernetes Installer-created Clusters](#configure-nfs-on-kubernetes-installer-created-clusters) section above.
 
 If Velero is not yet installed in the cluster, then the first step would be to set up and deploy the necessary components that are going to be used to install and set up Velero with NFS.
 This can be done in two ways:
@@ -101,9 +101,9 @@ After following the instructions from the above CLI command and successfully ins
 
 ## Next Step
 
-After you configure a storage destination, you must create or schedule snapshots. For more information, see [Creating Snapshot Backups](snapshots-creating) and [Scheduling Automatic Snapshots](snapshots-scheduling).
+After you configure a storage destination, you can create or schedule backups. For more information, see [Creating Backups](snapshots-creating) and [Scheduling Automatic Backups](snapshots-scheduling).
 
 ## Additional Resources
 
-* [How to Set Up and Use Snapshots](snapshots-understanding)
+* [How to Set Up Snapshots](snapshots-understanding)
 * [Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)

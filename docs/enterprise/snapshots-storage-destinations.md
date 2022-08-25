@@ -1,6 +1,6 @@
-# Storage Destinations
+# Configuring Storage Destinations
 
-This topic describes the supported storage destinations for use with the snapshots backup feature.
+This topic describes the supported storage destinations and how to configure them for use with the snapshots backup feature.
 
 ## Supported Storage Providers
 
@@ -12,8 +12,8 @@ The Replicated admin console has built-in support for using the following as sto
 * Google Cloud Platform (GCP). See [GCP](#gcp).
 * Microsoft Azure. See [Azure](#azure).
 * Ceph and MinIO S3-compatible object stores. See [S3-Compatible](#s3-compatible).
-* Network File System (NFS) servers. See [Configuring a NFS](snapshots-configuring-nfs).
-* Local host paths. See [Configuring a Host Path](snapshots-configuring-hostpath).
+* Network File System (NFS) servers. See [Configuring an NFS Storage Destination](snapshots-configuring-nfs).
+* Local host paths. See [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath).
 
 ### AWS
 
@@ -84,19 +84,19 @@ When configuring the admin console to store snapshots on S3-compatible storage, 
 
 > Introduced in the Replicated app manager v1.33.0
 
-* [Configuring NFS](snapshots-configuring-nfs)
+* [Configuring an NFS Storage Destination](snapshots-configuring-nfs)
 
 ### Host Path
 
 > Introduced in the app manager v1.33.0
 
-* [Configuring a host path](snapshots-configuring-hostpath)
+* [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath)
 
 ## Next Step
 
-After you configure a storage destination, you must create or schedule snapshots. For more information, see [Creating Snapshot Backups](snapshots-creating) and [Scheduling Automatic Snapshots](snapshots-scheduling).
+After you configure a storage destination, you can create or schedule backups. For more information, see [Creating Backups](snapshots-creating) and [Scheduling Automatic Backups](snapshots-scheduling).
 
 ## Additional Resources
 
-* [How to Set Up and Use Snapshots](snapshots-understanding)
+* [How to Set Up Snapshots](snapshots-understanding)
 * [Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)

@@ -1,4 +1,4 @@
-# How to Set Up and Use Snapshots
+# How to Set Up Snapshots
 
 This topic describes the process of setting up Replicated snapshots feature that provides backup and restore capabilities. This topic also describes any limitations and considerations.
 
@@ -21,7 +21,7 @@ You can configure the snapshots feature to store backups on a supported storage 
 
 Kubernetes installer provisioned clusters include a locally-provisioned object store. By default, Kubernetes installer clusters are preconfigured in the admin console to store backups in the locally-provisioned object store. This object store is sufficient for only rollbacks and downgrades and is not a suitable configuration for disaster recovery. Replicated recommends that you configure a snapshots storage destination that is external to the cluster in the admin console for Kubernetes installer clusters.
 
-For more information about storage destinations, see [Storage Destinations](snapshots-storage-destinations). For more information about configuring snapshot storage destinations with the kots CLI, see the [velero](/reference/kots-cli-velero-index) section in the _kots CLI_ documentation.
+For more information about storage destinations, see [Configuring Storage Destinations](snapshots-storage-destinations). For more information about configuring snapshot storage destinations with the kots CLI, see the [velero](/reference/kots-cli-velero-index) section in the _kots CLI_ documentation.
 
 ## Limitations and Considerations
 
@@ -44,21 +44,18 @@ Complete the following procedures to configure the snapshots feature, and then c
 
 1. Review the limitations and considerations. See [Limitations and Considerations](#limitations-and-considerations).
 
-1. Install and configure Velero. If you are using an Kubernetes installer cluster (embedded cluster) and your application vendor included the Velero add-on, you do not have to install Velero. However, you must configure the memory limit and namespace. See [Installing and Configuring Velero](snapshots-velero-installing-config).
+1. Install and configure Velero. If you are using an Kubernetes installer cluster (embedded cluster) that includes the Velero add-on, you only have to configure Velero. See [Installing and Configuring Velero](snapshots-velero-installing-config).
 
-1. Configure a storage destination. See [Storage Destinations](snapshots-storage-destinations).
+1. Configure a storage destination. See [Configuring Storage Destinations](snapshots-storage-destinations).
 
-1. After the snapshots feature is configured, you create a full snapshot backup using one of the following methods:
+## Next Steps
 
-    * Create snapshots manually. See [Creating Snapshot Backups](snapshots-creating).
-    * Schedule automatic snapshots. See [Scheduling Automatic Snapshots](snapshots-scheduling).
+You can create a full backup using one of the following methods:
 
-    :::note
-    Replicated does not recommend using partial snapshots because it is not suitable for backup and recovery.
-    :::
-
-1. (Optional) Restore a full snapshot backup. See [Restoring Full Snapshots](snapshots-restoring-full).
+  * Create backups manually. See [Creating Backups](snapshots-creating).
+  * Schedule automatic backups. See [Scheduling Automatic Backups](snapshots-scheduling).
 
 ## Additional Resources
 
-[Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)
+* [Restoring Full Backups](snapshots-restoring-full)
+* [Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)

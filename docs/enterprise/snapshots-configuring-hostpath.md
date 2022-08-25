@@ -97,9 +97,9 @@ After following the instructions from the above CLI command and successfully ins
 
 ## Next Step
 
-After you configure a storage destination, you must create or schedule snapshots. For more information, see [Creating Snapshot Backups](snapshots-creating) and [Scheduling Automatic Snapshots](snapshots-scheduling).
+After you configure a storage destination, you can create or schedule backups. For more information, see [Creating Backups](snapshots-creating) and [Scheduling Automatic Backups](snapshots-scheduling).
 
 ## Additional Resources
 
-* [How to Set Up and Use Snapshots](snapshots-understanding)
+* [How to Set Up Snapshots](snapshots-understanding)
 * [Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)
