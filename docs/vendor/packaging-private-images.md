@@ -241,7 +241,7 @@ To enable the new air gap bundle format on a channel:
 
       ![Vendor portal release history page](../../static/images/airgap-download-bundle.png)
 
-   1. Install or upgrade the application using the admin console. Upload the new air gap bundle to confirm that the installation or upgrade completes successfully.
+   1. Install or upgrade the application with version 1.82.0 or later of the admin console or the kots CLI. Upload the new air gap bundle to confirm that the installation or upgrade completes successfully.
 
 ## Related Topic
 
