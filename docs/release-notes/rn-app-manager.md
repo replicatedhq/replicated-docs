@@ -11,17 +11,17 @@ Released on August 25, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### New Features {#new-features-1-82-0}
-* Adds support for using image digests in airgapped mode.
-* Adds support for using image digests in online mode when configuring a target registry.
-* Adds support for displaying application configuration values the [config page](/vendor/config-screen-about#admin-console-config-tab) for all revisions revision in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Adds support for a new air gap bundle format that supports image digests and deduplication of image layers shared across images in the bundle. The new air gap bundle format is in beta. To enable this feature on your account, log in to your vendor portal account and submit a feature request for "New air gap bundle format".
+* Adds support for deploying images that are referenced by digest or by digest and tag, rather than by tag alone, in online installations that have a private registry configured.
+* Adds support for displaying the config values for each revision deployed in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
 
 ### Improvements {#improvements-1-82-0}
 * Updates the local-volume-provider image to address CVE-2021-44716, CVE-2021-33194, and CVE-2022-21221 with high severity.
+* Updates the configuration pages for the GitOps workflow, making it easier to set up.
 
 ### Bug Fixes {#bug-fixes-1-82-0}
-* Fixes an issue in the UI where typing in the `path` field for other S3-compatible storage snapshot destination did not work.
-* Fixes an issue where the [LicenseFieldValue](https://docs.replicated.com/reference/template-functions-license-context#licensefieldvalue) template function in the License Context was always returning an empty string for the `isSnapshotSupported` value.
-* UI updates to the GitOps workflow to improve ease of use.
+* Fixes an issue that prevented you from typing in the "Path" field when "Other S3-Compatible Storage" was set as the snapshot storage destination.
+* Fixes an issue where the [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) template function always returned an empty string for the `isSnapshotSupported` value.
 
 ## 1.81.1
 
