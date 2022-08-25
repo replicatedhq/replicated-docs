@@ -24,7 +24,7 @@ Released on August 25, 2022
 
 ### Bug Fixes {#bug-fixes-v2022-08-25-0}
 
-- Fixes the [reset task](https://kurl.sh/docs/install-with-kurl/adding-nodes#resetting-a-node) which fails unable to find the kurlsh/weaveexec image.
+- Fixes the [reset task](https://kurl.sh/docs/install-with-kurl/adding-nodes#resetting-a-node) which fails when unable to find the kurlsh/weaveexec image.
 - Fixes the [Rook 1.0 to 1.4 task](https://kurl.sh/docs/add-ons/rook#upgrades) which would wait for health indefinitely after upgrading to 1.4.9 on single-node installations.
 
 ## Release v2022.08.23-0
