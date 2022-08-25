@@ -14,10 +14,18 @@ Released on August 25, 2022
 - Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kots) version 1.82.0
 - Adds [Minio add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-08-22T23-53-06Z.
 - Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.58.0-39.9.0.
+- Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.6.5-20220825 and 2.8.1-20220825 to address the following critical severity CVE: CVE-2022-37434.
 
 ### Improvements {#improvements-v2022-08-25-0}
 
 - Removes support for the BETA Local Path Provisioner Add-On. It is recommended to use the [OpenEBS](https://kurl.sh/docs/add-ons/openEBS#localpv) add-on for the LocalPV use case. 
+- The Rook [1.0 to 1.4 task](https://kurl.sh/docs/add-ons/rook#upgrades) will now print new lines when waiting for pods to be rolled out, OSDs to be added, or certain migrations to complete. Previously, one line was printed and then overwritten with updates. 
+- Updates kurlsh/s3cmd image to tag 20220825-237c19d for latest [Registry](https://kurl.sh/docs/add-ons/registry) and [Velero](https://kurl.sh/docs/add-ons/velero) add-on versions to address the following critical and high severity CVEs: CVE-2022-37434
+
+### Bug Fixes {#bug-fixes-v2022-08-25-0}
+
+- Fixes the [reset task](https://kurl.sh/docs/install-with-kurl/adding-nodes#resetting-a-node) which fails when unable to find the kurlsh/weaveexec image.
+- Fixes the [Rook 1.0 to 1.4 task](https://kurl.sh/docs/add-ons/rook#upgrades) which would wait for health indefinitely after upgrading to 1.4.9 on single-node installations.
 
 ## Release v2022.08.23-0
 
