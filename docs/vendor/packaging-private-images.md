@@ -206,7 +206,7 @@ You can use image tags and image digests together in any case where both are sup
 
 ### Using Image Digests in Air Gap Installations {#digests-air-gap}
 
-For applications installed with the app manager VERSION NUMBER or later, you can enable a format for air gap bundles that supports the use of image digests for private images. This air gap bundle format also ensures that identical image layers are not duplicated, resulting in a smaller air gap bundle size.
+For applications installed with the app manager v1.82.0 or later, you can enable a format for air gap bundles that supports the use of image digests. This air gap bundle format also ensures that identical image layers are not duplicated, resulting in a smaller air gap bundle size.
 
 You can enable or disable this air gap bundle format using the **Enable new air gap bundle** toggle in the settings for any channel in the vendor portal.
 
