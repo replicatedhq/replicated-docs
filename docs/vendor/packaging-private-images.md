@@ -175,7 +175,7 @@ For more information about the `additionalNamespaces` attribute, see [Defining A
 
 The app manager supports image tags for applications in all use cases.
 
-The app manager supports image digests only for online (Internet-connected) installations. Image tags and digests can be used together for these installations too. Image digests are not supported for air gap installations.
+The app manager supports image digests only for online (Internet-connected) installations. You can also use image tags and digests together for online installations. Image digests are not supported for air gap installations.
 
 ## Related Topic
 
