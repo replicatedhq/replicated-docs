@@ -10,11 +10,14 @@ Released on August 25, 2022
 
 ### New Features {#new-features-v2022-08-25-0}
 
+- Adds [Kubernetes add-on](https://kurl.sh/docs/add-ons/kubernetes) versions 1.24.4, 1.23.10, 1.22.13 and 1.21.14.
 - Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kots) version 1.82.0
+- Adds [Minio add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-08-22T23-53-06Z.
+- Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.58.0-39.9.0.
 
-### Bug Fixes {#bug-fixes-v2022-08-25-0}
+### Improvements {#improvements-v2022-08-25-0}
 
-- 
+- Removes support for the BETA Local Path Provisioner Add-On. It is recommended to use the [OpenEBS](https://kurl.sh/docs/add-ons/openEBS#localpv) add-on for the LocalPV use case. 
 
 ## Release v2022.08.23-0
 
