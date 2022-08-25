@@ -8,7 +8,7 @@ The Replicated admin console default workflow is configured to receive updates, 
 
 If you have more than one application installed, you can selectively enable a GitOps workflow for each application.
 
-After enabling the GitOps workflow for an application, the admin console makes your first commit with the latest available version in the admin console.
+After enabling the GitOps workflow for an application, the admin console makes your first commit with the latest available version in the admin console. The latest available version is often the current version that is deployed. Subsequently, the admin console makes separate commits with any available updates.
 
 If you configure automatic updates for the application, any updates from your vendor are automatically committed to your Git repository. For more information about configuring automatic updates, see [Configure Automatic Updates](updating-apps#configure-automatic-updates) in _Updating an Application_.
 
