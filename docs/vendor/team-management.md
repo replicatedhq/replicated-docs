@@ -33,7 +33,10 @@ To re-invite a prospective member:
 1. Click **Reinvite** in the confirmation dialog.
 
 ## Allow Users to Auto-join Your Team
-By default, users must be invited to your team. Team administrators may choose to allow users from the same email domain to join their team automatically after they have registered their email address and password or when authenticating with Google authentication. Users who join with this method will be automatically assigned the RBAC policy specified on the enabled feature. By default, the RBAC policy field for auto-join users is set to the built-in 'Read Only' policy. Once enabled, email/password users must validate that they have access to the email address used when signing up on vendor portal by providing an activation code; after validation, the user will be added as a team member to this team.  
+By default, users must be invited to your team. Team administrators may choose to allow users from the same email domain to join their team automatically. When enabled, this setting allows a user to automatically join a team once they have signed up in vendor portal and activated their account. Users who join a team via Auto-join will be automatically assigned the RBAC policy configured on this setting. By default, the RBAC policy field for auto-join users is set to the built-in 'Read Only' policy. This feature does not apply to SAML authentication as SAML users should authenticate via their SAML provider's application portal. 
+
+### Auto-join and Google Authentication
+Auto-join can also apply to teams that have allowed, or require, the use of Google authentication. When a new user to vendor portal authenticates via Google authentication, they will have the option to choose to auto-join an eligible team or create a new team. 
 
 ## Remove Members and End Sessions
 As a team administrator, you can remove team members, except for the account you are currently logged in with.
