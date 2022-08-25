@@ -56,7 +56,7 @@ To enable pushing updates to a GitOps workflow:
         </tr>
         <tr>
           <td>Path</td>
-          <td>Enter the folder name in the repository where the application deployment file will be stored. If you leave this field blank, the Replicated app manager creates a folder for you. However, the best practice is to manually create a folder in the repository labeled with the application name and dedicated for the deployment file only.</td>
+          <td>Enter the folder name in the repository where the application deployment file will be committed. If you leave this field blank, the Replicated app manager creates a folder for you. However, the best practice is to manually create a folder in the repository labeled with the application name and dedicated for the deployment file only.</td>
           </tr>
       </table>
 
