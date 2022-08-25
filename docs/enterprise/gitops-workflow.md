@@ -27,7 +27,7 @@ If your organization has security requirements that prevent you from completing 
 ## Prerequisites
 
 - A Git repository that you have read/write access to.
-- If the repository does not have files or folders committed yet, you must make at least one commit with any content so that the connection attempt succeeds with the deployment key when you perform the following task.
+- If the repository does not have files or folders committed yet, you must make at least one commit with any content so that the connection attempt succeeds with the SSH key when you perform the following task.
 
 ## Enable GitOps
 
