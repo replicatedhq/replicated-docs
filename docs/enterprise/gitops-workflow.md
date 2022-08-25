@@ -62,7 +62,7 @@ To enable pushing updates to a GitOps workflow:
 
     1. Click **Generate SSH Key**, and then **Copy key**.
     1. Go to your Git repository and open the settings page. On the settings page:
-       1. Add the public deployment key that you copied in the previous step.
+       1. Add the SSH public key that you copied in the previous step.
        1. Enable write access for the key. This allows the admin console to push commits to the repository.
 
 1. On the GitOps Configuration page, click **Test connection to repository** to verify that the admin console can connect.
