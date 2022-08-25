@@ -212,7 +212,7 @@ You can enable or disable this air gap bundle format using the **Enable new air 
 
 When you enable **Enable new air gap bundle** on a channel, all air gap bundles that you build or rebuild on that channel use the updated air gap bundle format.
 
-If users on a version of the app manager earlier than VERSION NUMBER attempt to install or upgrade an application with an air gap bundle that uses the **Enable new air gap bundle** format, then the admin console displays an error message when they attempt to upload the bundle.
+If users on a version of the app manager earlier than v1.82.0 attempt to install or upgrade an application with an air gap bundle that uses the **Enable new air gap bundle** format, then the admin console displays an error message when they attempt to upload the bundle.
 
 To enable the new air gap bundle format on a channel:
 
