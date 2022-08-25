@@ -194,7 +194,7 @@ The following table describes the use cases in which image tags and digests are 
     <td>Air Gap</td>
     <td>Supported by default</td>
     <td>
-    <p>Supported for applications on the app manager VERSION NUMBER and later when the <b>Enable new air gap bundle</b> toggle is enabled on the channel.</p>
+    <p>Supported for applications on the app manager v1.82.0 and later when the <b>Enable new air gap bundle</b> toggle is enabled on the channel.</p>
     <p>For more information, see <a href="#digests-air-gap">Using Image Digests in Air Gap Installations</a> below.</p>
     </td>
   </tr>
