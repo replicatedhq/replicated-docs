@@ -41,7 +41,7 @@ To configure Velero:
 
 ## Next Step
 
-After you install and configure Velero, you must configure an external storage destination. For more information, see [Storage Destinations](snapshots-storage-destinations).
+After you install and configure Velero, you must configure a storage destination. For more information, see [Configuring Storage Destinations](snapshots-storage-destinations).
 
 ## Additional Resources
 
