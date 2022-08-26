@@ -3,7 +3,7 @@
 ## Table of Contents:
 
 * [How to Contribute to the Documentation](#how-to-contribute-to-the-documentation)
-* [Setting Up Your Local Environment](#setting-up-your-local-environment)
+* [Setting Up Local WYSIWYG Previews](#setting-up-local-wysiwyg-previews)
 * [Folder Structure and TOC](#folder-structure-and-toc)
 * [Topic Templates](#topic-templates)
 * [Filenaming](#filenaming)
@@ -30,21 +30,35 @@ When you submit a PR in GitHub, Netlify builds a preview automatically. However,
 
 ### Install yarn
 
-Run this command to install the `yarn` CLI:
+The Yarn documentation recommends installing Yarn using the npm package manager, which comes bundled with Node.js when you install it on your system.
+
+After you install npm, you can run the following both to install and upgrade Yarn:
 
 ```
-$ yarn
+npm install --global yarn
+```
+
+If you use Homebrew, you can run this command to install Yarn:
+
+```
+$ brew install yarn
 ```
 
 ### Create a Local Development Server and WYSIWYG Preview
 
-Run the following command to start a local development server and open up a browser window. Most changes are reflected live without having to restart the server. This preview shows the formatting and styles as they would render on the live site (also known as what-you-see-is-what-you-get or WYSIWYG), which can be more helpful than viewing content in a VS Code preview.
+1. Install the docusaurus package using Yarn:
 
-```
-$ yarn start
-```
+  ```
+  yarn add docusaurus
+  ```
 
-If `yarn start` refuses to start, try reinstalling the `yarn` CLI. You do not need to uninstall `yarn` before reinstalling it. However, if you get build errors from your content, such as broken links, the Preview itself fails and error messages appear in the terminal that can help you troubleshoot the problems in the content.
+1. Run the following command to start a local development server and open up a browser window. Most changes are reflected live without having to restart the server. This preview shows the formatting and styles as they would render on the live site (also known as what-you-see-is-what-you-get or WYSIWYG), which can be more helpful than viewing content in a VS Code preview.
+
+  ```
+  $ yarn start
+  ```
+
+  If `yarn start` refuses to start, try reinstalling the `yarn` CLI. You do not need to uninstall `yarn` before reinstalling it. However, if you get build errors from your content, such as broken links, the Preview itself fails and error messages appear in the terminal that can help you troubleshoot the problems in the content.
 
 ## Folder Structure and TOC
 

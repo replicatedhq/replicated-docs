@@ -4,6 +4,42 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## Release v2022.08.25-0
+
+Released on August 25, 2022
+
+### New Features {#new-features-v2022-08-25-0}
+
+- Adds [Kubernetes add-on](https://kurl.sh/docs/add-ons/kubernetes) versions 1.24.4, 1.23.10, 1.22.13 and 1.21.14.
+- Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kots) version 1.82.0
+- Adds [Minio add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-08-22T23-53-06Z.
+- Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.58.0-39.9.0.
+- Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.6.5-20220825 and 2.8.1-20220825 to address the following critical severity CVE: CVE-2022-37434.
+
+### Improvements {#improvements-v2022-08-25-0}
+
+- Removes support for the BETA Local Path Provisioner Add-On. It is recommended to use the [OpenEBS](https://kurl.sh/docs/add-ons/openEBS#localpv) add-on for the LocalPV use case. 
+- The Rook [1.0 to 1.4 task](https://kurl.sh/docs/add-ons/rook#upgrades) will now print new lines when waiting for pods to be rolled out, OSDs to be added, or certain migrations to complete. Previously, one line was printed and then overwritten with updates. 
+- Updates kurlsh/s3cmd image to tag 20220825-237c19d for latest [Registry](https://kurl.sh/docs/add-ons/registry) and [Velero](https://kurl.sh/docs/add-ons/velero) add-on versions to address the following critical and high severity CVEs: CVE-2022-37434
+
+### Bug Fixes {#bug-fixes-v2022-08-25-0}
+
+- Fixes the [reset task](https://kurl.sh/docs/install-with-kurl/adding-nodes#resetting-a-node) which fails when unable to find the kurlsh/weaveexec image.
+- Fixes the [Rook 1.0 to 1.4 task](https://kurl.sh/docs/add-ons/rook#upgrades) which would wait for health indefinitely after upgrading to 1.4.9 on single-node installations.
+
+## Release v2022.08.23-0
+
+Released on August 23, 2022
+
+### New Features {#new-features-v2022-08-23-0}
+
+- Adds new [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) version 3.3.0.
+
+### Bug Fixes {#bug-fixes-v2022-08-23-0}
+
+- Fixes an issue that causes Weave 2.6.x and 2.8.x versions of Weave to resolve to the incorrect versions without the latest CVE fixes.
+- Updates the replicatedhq/local-volume-provider image to v0.3.7 for [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.9.1 to address CVE-2021-44716, CVE-2021-33194, and CVE-2022-21221 with high severity.
+
 ## Release v2022.08.22-0
 
 Released on August 22, 2022

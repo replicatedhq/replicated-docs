@@ -9,7 +9,7 @@ To export a port and a button on the admin console dashboard to the application,
 
 ## Add a button to the dashboard
 
-It’s recommended that every application include an application custom resource as defined by [Kubernetes-sigs](https://github.com/kubernetes-sigs/application).
+It’s recommended that every application include an application custom resource as defined by [Kubernetes SIG Apps](https://github.com/kubernetes-sigs/application).
 The app manager uses this as metadata and will not require or use an in-cluster controller to handle this custom resource.
 An application that follows best practices will never require cluster admin privileges or any cluster-wide components to be installed.
 

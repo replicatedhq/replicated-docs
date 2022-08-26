@@ -82,7 +82,7 @@ To exclude any manifest, add a `velero.io/exclude-from-backup` label to the mani
 1. (Optional) If you are distributing your application with the Kubernetes installer, we recommend that you include the Velero add-on so that customers do not have to manually install Velero on their cluster. For more information about the Kubernetes installer, see [Creating a Kubernetes Installer Specification](packaging-embedded-kubernetes).
 
 
-Next, you can [configure backup hooks](snapshots-backup-hooks/).
+Next, you can configure backup and restore hooks. See [Configuring Backup and Restore Hooks](snapshots-hooks).
 
 ## Related Topics
   * [Snapshots Overview](snapshots-overview/)
