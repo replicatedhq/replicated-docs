@@ -1,13 +1,15 @@
-# Configuring a Host Path
+# Configuring a Host Path Storage Destination
 
 > Introduced in the Replicated app manager v1.33.0
 
 You can configure a host path as your snapshots storage destination. For more information about snapshot storage destinations, see [Storage destinations](snapshots-storage-destinations).
 
-## Requirements
+## Prerequisites
 
-The following are requirements for using a host path as the storage destination:
+Complete the following items before you perform this task:
 
+* Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _How to Set Up and Use Snapshots_.
+* Install and configure Velero. See [Installing and Configuring Velero](snapshots-venerlo-installing-config).
 * The host path must be a dedicated directory. Do not use a partition used by a service like Docker or Kubernetes for ephemeral storage.
 * The host path must exist and be writable by the user:group 1001:1001 on all nodes in the cluster.
 
@@ -16,9 +18,9 @@ The following are requirements for using a host path as the storage destination:
    You cannot change the permissions of a mounted network shared filesystem from the client side. To reassign the user:group to 1001:1001 for a directory that is already mounted, you must remount the directory. For example, for a CIFS mounted directory, specify the `uid=1001,gid=1001` mount options in the CIFS mount command.
 
 
-## Configure a Host Path on Kubernetes Installer-created Clusters
+## Configure a Host Path on Kubernetes Installer Clusters
 
-Clusters created by the Replicated Kubernetes installer that include the Velero add-on store snapshots internally in the cluster by default. For more information about the Velero add-on, see [Velero Add-On](https://kurl.sh/docs/add-ons/velero) in the open source kURL documentation.
+Clusters created by the Replicated Kubernetes installer can include the Velero add-on store snapshots internally in the cluster by default. For more information about the Velero add-on, see [Velero Add-On](https://kurl.sh/docs/add-ons/velero) in the open source kURL documentation.
 
 There are two ways to change this snapshots storage destination to use a host path:
 
@@ -92,3 +94,12 @@ Once the configuration is successful, you'll be presented with a different dialo
 ![Snapshot Provider File System Next Steps](/images/snapshot-provider-fs-next-steps.png)
 
 After following the instructions from the above CLI command and successfully installing Velero, you can go back to the admin console and either click on the "Check for Velero" button to retry detecting Velero, or refresh the page.
+
+## Next Step
+
+After you configure a storage destination, you can create or schedule backups. For more information, see [Creating Backups](snapshots-creating) and [Scheduling Automatic Backups](snapshots-scheduling).
+
+## Additional Resources
+
+* [How to Set Up Snapshots](snapshots-understanding)
+* [Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)
