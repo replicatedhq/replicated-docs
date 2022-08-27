@@ -4,6 +4,10 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## main
+
+Released on August 27, 2022
+
 ## Release v2022.08.25-0
 
 Released on August 25, 2022
