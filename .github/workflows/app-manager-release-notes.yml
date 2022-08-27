@@ -1,0 +1,50 @@
+name: app-manager-release-notes
+on:
+  repository_dispatch:
+    types: [app-manager-release-notes]
+
+jobs:
+  generate-release-notes-pr:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Generate Release Notes
+      id: release-notes
+      env:
+        KOTS_VERSION: ${{ github.event.client_payload.version }}
+      uses: replicatedhq/release-notes-generator@main
+      with:
+        owner-repo: replicatedhq/kots
+        head: $KOTS_VERSION
+        title: ${KOTS_VERSION#v}
+        description: 'Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24'
+        include-pr-links: false
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Create Release Notes
+      env:
+        PATTERN: "# App Manager Release Notes"
+      run: |
+        echo "" >> tmp-release-notes.txt
+        echo '${{ steps.release-notes.outputs.release-notes }}' >> tmp-release-notes.txt
+        sed -i -e "/$PATTERN/r tmp-release-notes.txt" docs/release-notes/rn-app-manager.md
+
+    - name: Create Pull Request # creates a PR if there are differences
+      uses: peter-evans/create-pull-request@v3
+      id: cpr
+      env:
+        KOTS_VERSION: ${{ github.event.client_payload.version }}
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: $KOTS_VERSION Application manager release notes
+        title: $KOTS_VERSION Application manager release notes
+        branch: automation/app-manager-release-notes-$KOTS_VERSION
+        delete-branch: true
+        base: "main"
+        body: "Automated changes by the [app-manager-release-notes](https://github.com/replicatedhq/replicated-docs/blob/main/.github/workflows/app-manager-release-notes.yml) GitHub action"
+
+    - name: Check outputs
+      run: |
+        echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+        echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
