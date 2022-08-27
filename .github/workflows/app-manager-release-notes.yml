@@ -30,8 +30,10 @@ jobs:
       env:
         PATTERN: "# App Manager Release Notes"
       run: |
-        echo "" >> tmp-release-notes.txt
-        echo '${{ steps.release-notes.outputs.release-notes }}' >> tmp-release-notes.txt
+        cat <<EOT >> greetings.txt
+
+        ${{ steps.release-notes.outputs.release-notes }}
+        EOT
         sed -i -e "/$PATTERN/r tmp-release-notes.txt" docs/release-notes/rn-app-manager.md
 
     - name: Create Pull Request # creates a PR if there are differences
