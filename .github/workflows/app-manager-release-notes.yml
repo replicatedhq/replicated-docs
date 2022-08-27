@@ -2,6 +2,10 @@ name: app-manager-release-notes
 on:
   repository_dispatch:
     types: [app-manager-release-notes]
+    inputs:
+      version:
+        description: KOTS version
+        required: true
 
 jobs:
   generate-release-notes-pr:
