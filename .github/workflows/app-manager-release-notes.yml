@@ -30,7 +30,7 @@ jobs:
       env:
         PATTERN: "# App Manager Release Notes"
       run: |
-        cat <<EOT >> greetings.txt
+        cat <<EOT >> tmp-release-notes.txt
 
         ${{ steps.release-notes.outputs.release-notes }}
         EOT
