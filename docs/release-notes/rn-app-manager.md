@@ -4,6 +4,22 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## main
+
+Released on August 27, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### New Features {#new-features-main}
+* Allows vendors to use square or circular logos.
+
+### Bug Fixes {#bug-fixes-main}
+* Fixes an issue that caused inadvertent application upgrades while redeploying or updating the config of the currently installed release in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Fixes an issue that caused namespace to be omitted from the `helm upgrade` command in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Removed unsupported options from the ["Configure automatic updates"](/enterprise/updating-apps#configure-automatic-updates) dialog because it's not supported in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Fixes an issue where updating the registry settings fails due to permission issues even when the provided credentials do have access to the registry.
+* Fixed an issue that could cause templates to be shown on the [config page](/vendor/config-screen-about#admin-console-config-tab) instead of actual rendered values in [Helm managed mode (Alpha)](/vendor/helm-install).
+
 ## 1.82.0
 
 Released on August 25, 2022
