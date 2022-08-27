@@ -29,11 +29,12 @@ jobs:
       env:
         PATTERN: "# Kubernetes Installer Release Notes"
       run: |
-        cat <<EOT >> tmp-release-notes.txt
+        cat <<EOT >> /tmp/release-notes.txt
 
         ${{ steps.release-notes.outputs.release-notes }}
         EOT
-        sed -i -e "/$PATTERN/r tmp-release-notes.txt" docs/release-notes/rn-kubernetes-installer.md
+        sed -i -e "/$PATTERN/r /tmp/release-notes.txt" docs/release-notes/rn-kubernetes-installer.md
+        rm -rf /tmp/release-notes.txt
 
     - name: Create Pull Request # creates a PR if there are differences
       uses: peter-evans/create-pull-request@v3
