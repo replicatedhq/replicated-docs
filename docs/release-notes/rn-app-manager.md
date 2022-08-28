@@ -6,6 +6,12 @@ toc_max_heading_level: 2
 
 ## 1.82.0
 
+Released on August 28, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+## 1.82.0
+
 Released on August 25, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
