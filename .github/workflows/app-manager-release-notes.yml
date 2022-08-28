@@ -59,7 +59,8 @@ jobs:
       with: 
         payload: |
           {
-            "message": "Release notes for KOTS ${{ github.event.client_payload.version }} are available at: ${{steps.cpr.outputs.pull-request-url}}"
+            "version": "${{ github.event.client_payload.version }}",
+            "pull_request_url": "${{steps.cpr.outputs.pull-request-url}}"
           }
       env:
-        SLACK_WEBHOOK_URL: ${{ secrets.KOTS_RELEASE_SLACK_WEBHOOK }}
+        SLACK_WEBHOOK_URL: ${{ secrets.KOTS_RELEASE_NOTES_SLACK_WEBHOOK }}
