@@ -53,3 +53,13 @@ jobs:
       run: |
         echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+
+    - name: Slack Notification
+      uses: slackapi/slack-github-action@v1.16.0
+      with: 
+        payload: |
+          {
+            "message": "Release notes for KOTS ${{ github.event.client_payload.version }} are available at: ${{steps.cpr.outputs.pull-request-url}}"
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.KOTS_RELEASE_SLACK_WEBHOOK }}
