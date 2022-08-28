@@ -41,8 +41,8 @@ jobs:
       id: cpr
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        commit-message: ${{ github.event.client_payload.version }} Kubernetes installer release notes
-        title: ${{ github.event.client_payload.version }} Kubernetes installer release notes
+        commit-message: Kubernetes Installer ${{ github.event.client_payload.version }} release notes
+        title: Kubernetes Installer ${{ github.event.client_payload.version }} release notes
         branch: automation/kubernetes-installer-release-notes-${{ github.event.client_payload.version }}
         delete-branch: true
         base: "main"
@@ -52,3 +52,14 @@ jobs:
       run: |
         echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
         echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+
+    - name: Slack Notification
+      uses: slackapi/slack-github-action@v1.16.0
+      with: 
+        payload: |
+          {
+            "version": "${{ github.event.client_payload.version }}",
+            "pull_request_url": "${{steps.cpr.outputs.pull-request-url}}"
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.KURL_RELEASE_NOTES_SLACK_WEBHOOK }}

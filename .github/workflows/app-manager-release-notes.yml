@@ -42,8 +42,8 @@ jobs:
       id: cpr
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        commit-message: ${{ github.event.client_payload.version }} Application manager release notes
-        title: ${{ github.event.client_payload.version }} Application manager release notes
+        commit-message: App Manager ${{ github.event.client_payload.version }} release notes
+        title: App Manager ${{ github.event.client_payload.version }} release notes
         branch: automation/app-manager-release-notes-${{ github.event.client_payload.version }}
         delete-branch: true
         base: "main"
