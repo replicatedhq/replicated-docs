@@ -20,7 +20,7 @@ Using Helm charts to create a release in the vendor portal allows you to package
 * **Embedded Cluster**: Installing on a cluster provisioned by the Replicated Kubernetes installer (kURL)
 * **Helm Install**: Installing on an existing cluster using the helm CLI
 
-To support all installation methods from a single application release, you must be able to conditionally include or exclude values and resources in the release depending on the installation method. This is because Replicated delivers built-in functionality when users install with the kots CLI or the admin console that cannot be delivered automatically when users install with the helm CLI. So, you must explicitly include the desired functionality for helm CLI installations.
+To support all installation methods from a single application release, you must be able to conditionally include or exclude values and resources in the release depending on the installation method. This is because Replicated delivers built-in functionality when users install with the KOTS Install or Embedded Cluster methods that cannot be delivered automatically when users install with the helm CLI. So, you must explicitly include the desired functionality for helm CLI installations.
 
 For example, when users install with the KOTS Install or Embedded Cluster installation methods, Replicated automatically delivers the admin console with the application. To deliver the admin console with your application for helm CLI installations, you must include the `admin-console` Helm chart as a dependency. Then, to prevent Replicated from attempting to deploy this `admin-console` dependency for KOTS Install or Embedded Cluster installations, you must conditionally exclude the `admin-console` Helm chart from these installations.
 
@@ -30,7 +30,9 @@ The `values` field in the HelmChart custom resource lets you edit the Helm chart
 
 Replicated injects any templated values from the HelmChart custom resource `values` field into the Helm chart `values.yaml` file, but does not inject any static, or _hardcoded_, values into the `values.yaml` file. This means that any static values that you include in the `values` field are used for KOTS Install and Embedded Cluster installations, and ignored for Helm Install installations.
 
-For example, if you include the `admin-console` Helm chart as a conditional dependency in your application `Chart.yaml` file, you can write a static key value pair in the `values` section of the HelmChart custom resource to make the condition evaluate to false only for KOTS Install and Embedded Cluster installations. This would prevent Replicated from attempting to deploy the `admin-console` Helm chart for KOTS Install or Embedded Cluster installations. For more information about how to deliver the admin console for helm CLI installations, see [Delivering the Admin Console with your Application](#deliver-admin-console) below.
+For example, if you include the `admin-console` Helm chart as a conditional dependency in your application `Chart.yaml` file, you can write a static key value pair in the `values` section of the HelmChart custom resource to make the condition evaluate to false only for KOTS Install and Embedded Cluster installations. This would prevent Replicated from attempting to deploy the `admin-console` Helm chart for KOTS Install or Embedded Cluster installations.
+
+You use this method of including static values in the HelmChart custom resource manifest file in any case where it is required to conditionally include or exclude values or resources depending on the installation method. For more information about how to use this method to deliver Replicated functionality for helm CLI installations, see [Delivering the Admin Console with your Application](#deliver-admin-console) and [Using Private Registries](#private-images) below.
 
 ## About Installing with the helm CLI
 
