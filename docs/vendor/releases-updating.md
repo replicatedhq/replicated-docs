@@ -28,6 +28,19 @@ To update a release:
 
 1. Click **Deploy** to apply the new YAML files. This should only take a few seconds to deploy.
 
+## Archiving Releases
+
+You can archive releases and remove them from view on the Releases page. Any archived releases will still be visible on the Channel's Release History page. 
+
+**Note:** Archiving a release that has been promoted will note remove the release from the Channel's Release History page or prevent app manager from downloading the archived release. 
+
+To archive one or more releases: 
+
+1. Click the 'Archive Multiple Release Icon' on the 'Releases' page.
+1. Select one or more releases to be archived.
+1. Click the 'Archive Releases' button. 
+1. Confirm the archive action. Alternatively, you can click 'Cancel' to go back. 
+
 ## Related Topic
 
 [How to Package and Distribute an Application](distributing-workflow)
