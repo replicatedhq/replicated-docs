@@ -12,10 +12,23 @@ To support installations with the helm CLI, you must have an application that co
 
 For information about how to package an application in the Replicated vendor portal using an existing Helm chart, see [Adding Helm Charts to a Release](helm-release).
 
+## About Supporting helm CLI installations
+
 Using Helm charts to create a release in the vendor portal allows you to package your application one time and support the following application installation methods:
-* Installing on a cluster provisioned by the Replicated Kubernetes installer (kURL)
-* Installing on an existing cluster using the kots CLI
-* Installing on an existing cluster using the helm CLI
+
+* **KOTS Install**: Installing on an existing cluster using the kots CLI or the admin console
+* **Embedded Cluster**: Installing on a cluster provisioned by the Replicated Kubernetes installer (kURL)
+* **Helm Install**: Installing on an existing cluster using the helm CLI
+
+To support each of these installation methods, you must include a Replicated HelmChart custom resource manifest file when packaging your application. The HelmChart custom resource includes several fields that allow Replicated to process and deploy Helm charts.
+
+You can use the HelmChart custom resource `values` field to conditionally include or exclude resources from your application depending on the installation method. Replicated injects any templated values that you include in the `values` field into the Helm chart `values.yaml` file. Replicated does not inject any plain text values that you write to the `values` field into the Helm chart `values.yaml` file.
+
+For example, when users install with the KOTS Install or Embedded Cluster installation method, Replicated automatically delivers the admin console with the application. To deliver the admin console with your application when users install with the helm CLI,
+
+The HelmChart custom resource `values` field allows you to change values in the Helm chart. A common use case for the `values` field in the HelmChart custom resource is to use Replicated template functions to map user-provided values from the Replicated admin console Configuration screen to the Helm chart `values.yaml` field.
+
+For more information, see [HelmChart](/reference/custom-resource-helmchart) in the _References_ section.
 
 ## About Installing with the helm CLI
 
