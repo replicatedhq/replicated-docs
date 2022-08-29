@@ -420,8 +420,8 @@ const sidebars = {
                   'reference/kots-cli-velero-configure-other-s3',
                   'reference/kots-cli-velero-configure-nfs',
                   'reference/kots-cli-velero-configure-hostpath',
-                  'reference/kots-cli-velero-print-fs-instructions',
                   'reference/kots-cli-velero-ensure-permissions',
+                  'reference/kots-cli-velero-print-fs-instructions',
               ],
             },
             {
