@@ -237,10 +237,11 @@ To enable the new air gap bundle format on a channel:
 
 1. Test your changes:
    1. Save and promote the release to a development environment.
-   1. On the channel where you enabled **Enable new air gap bundle**, click **Release history**. On the Release History page, click **Build** or **Rebuild** to create an air gap bundle with the new format.
+   1. On the channel where you enabled **Enable new air gap bundle**, click **Release history**. On the Release History page, click **Build** next to the latest release to create an air gap bundle with the new format.
 
       ![Vendor portal release history page](../../static/images/airgap-download-bundle.png)
 
+   1. Click **Download Airgap Bundle**.
    1. Install or upgrade the application with version 1.82.0 or later of the admin console or the kots CLI. Upload the new air gap bundle to confirm that the installation or upgrade completes successfully.
 
 ## Related Topic
