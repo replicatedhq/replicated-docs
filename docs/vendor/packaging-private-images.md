@@ -173,7 +173,7 @@ For more information about the `additionalNamespaces` attribute, see [Defining A
 
 ## Using Image Tags and Digests
 
-This section describes using image tags and digests with your application images. It includes information about when image tags and digests are supported, as well how to enable support for image digests in air gap bundles.
+This section describes using image tags and digests with your application images. It includes information about when image tags and digests are supported, and how to enable support for image digests in air gap bundles.
 
 ### Support for Image Tags and Digests
 
@@ -216,7 +216,7 @@ If users on a version of the app manager earlier than v1.82.0 attempt to install
 
 To enable the new air gap bundle format on a channel:
 
-1. In the Replicated [vendor portal](https://vendor.replicated.com/channels), go to **Channels** and click the edit icon in the top right of the channel where you want to use the new air gap bundle format.
+1. In the Replicated [vendor portal](https://vendor.replicated.com/channels), go to the Channels page and click the edit icon in the top right of the channel where you want to use the new air gap bundle format.
 1. Enable the **Enable new air gap bundle** toggle.
 1. (Recommended) To prevent users on a version of the app manager earlier than v1.82.0 from attempting to upgrade with an air gap bundle that uses the **Enable new air gap bundle** format, set `minKotsVersion` to "1.82.0" in the Application custom resource manifest file.
 
