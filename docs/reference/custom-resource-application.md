@@ -121,7 +121,7 @@ You can use the `ports` field to create a port-forward to a service that has a `
 For more information about configuring a custom link in Kubernetes installer clusters to a `NodePort` type service, see [Adding Buttons and Links](/vendor/admin-console-adding-buttons-links).
 
 ### serviceName
-The name of the service that has a `ClusterIP` type that should receive the traffic.
+The name of the service that has a `ClusterIP` type or `NodePort` type if using the Kubernetes installer, that should receive the traffic.
 
 ### servicePort
 The `ClusterIP` port to forward traffic to.
