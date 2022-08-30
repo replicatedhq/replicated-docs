@@ -10,9 +10,7 @@ kubectl kots velero [command] [global flags]
 
 This command supports all [global flags](kots-cli-global-flags).
 
-#### Available Commands
-
-The following `kots velero` commands are supported. For more information about these commands, see the listing for a specific command:
+The following `kots velero` commands are supported:
 
 - [`configure-aws-s3`](kots-cli-velero-configure-aws-s3): Configures an AWS S3 bucket as the storage destination.
 - [`configure-azure`](kots-cli-velero-configure-azure): Configures an Azure Blob Storage Container as the storage destination.
