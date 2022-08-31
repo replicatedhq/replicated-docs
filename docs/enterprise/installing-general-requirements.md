@@ -25,7 +25,7 @@ Each release of the open source KOTS project maintains compatibility with the cu
 
 Kubernetes versions 1.21 and earlier are end-of-life (EOL). For more information about Kubernetes versions, see [Release History](https://kubernetes.io/releases/) in the Kubernetes documentation.
 
-It is recommended to upgrade to a KOTS version that is compatible with Kubernetes 1.22 and higher. 
+Replicated recommends upgrading to a KOTS version that is compatible with Kubernetes 1.22 and higher. 
 
 :::note
 The app manager is based on the open source KOTS project. The app manager version is the same as the KOTS version. For example, KOTS v1.48 is the same as the app manager v1.48.
