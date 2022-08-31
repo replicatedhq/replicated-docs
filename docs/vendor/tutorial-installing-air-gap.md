@@ -80,9 +80,9 @@ To install the Kubernetes installer bundle:
           ```
           Replace `CHANNEL_NAME` with the exact name of the channel, which can include uppercase letters or special characters, such as `Unstable` or `my-custom-channel`.
 
-          The output shows valid URLs for all three installation types. Copy the `curl` command with the air gap URL to use in the next step.
+          The output shows valid URLs for all three installation types. Copy the `curl` command with the air gap URL.
 
-        1. Run the air gap URL that you copied in the previous step:
+        1. Run the `curl` command with the air gap URL that you copied in the previous step:
 
           **Example:**
 
