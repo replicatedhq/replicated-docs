@@ -78,25 +78,17 @@ To install the Kubernetes installer bundle:
           ```shell
           replicated channel inspect CHANNEL_NAME
           ```
-          Replace `CHANNEL_NAME` with the exact name of the channel, which can include uppercase letters, such as `Unstable`.
+          Replace `CHANNEL_NAME` with the exact name of the channel, which can include uppercase letters or special characters, such as `Unstable` or `my-custom-channel`.
 
-          The output shows valid URLs for all three installation types. Copy the air gap URL to use in the next step.
+          The output shows valid URLs for all three installation types. Copy the `curl` command with the air gap URL to use in the next step.
 
-        1. Run the following commands to download the bundle, using the air gap URL that you copied in the previous step:
-
-          ```shell
-          export REPLICATED_APP=<app_slug>
-          export REPLICATED_CHANNEL=<channel_name>
-          curl -LS https://k8s.kurl.sh/bundle/$REPLICATED_APP-$REPLICATED_CHANNEL.tar.gz -o $REPLICATED_APP-$REPLICATED_CHANNEL.tar.gz
-          ```
+        1. Run the air gap URL that you copied in the previous step:
 
           **Example:**
 
           ```shell
-          export REPLICATED_APP=my-app-slug
-          export REPLICATED_CHANNEL=Unstable
           curl -fSL https://k8s.kurl.sh/bundle/my-app-slug-unstable.tar.gz -o my-app-slug-unstable.tar.gz
-
+          ```
 
 1. Run `scp` for the `.tar.gz` file from the jumpbox to the air gapped node:
 
