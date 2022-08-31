@@ -24,7 +24,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 | `--config-values`           | string | Path to a manifest file containing configuration values. This manifest must be `apiVersion: kots.io/v1beta1` and `kind: ConfigValues`. For more information, see [Define Application Configuration Values](../enterprise/installing-existing-cluster-automation#define-application-configuration-values).|
 | `--copy-proxy-env`          | bool   | Copy proxy environment variables from current environment into all admin console components. **Default:** `false`|
 | `--disable-image-push`      | bool   | Set to `true` to disable images from being pushed to private registry. **Default:** `false`|
-| `--ensure-rbac`             | bool   | When set to `true`, KOTS skips RBAC configuration at installation time. **Default:** `false`. If a role specification is needed, use the [generate-manifests](kots-cli-admin-console-generate-manifests) command. |
+| `--ensure-rbac`             | bool   | When set to `true`, KOTS configures RBAC at installation time. **Default:** `true`. If a role specification is needed, use the [generate-manifests](kots-cli-admin-console-generate-manifests) command. |
 | `-h, --help`                |        | Help for install. |
 | `--http-proxy`              | string | Sets HTTP_PROXY environment variable in all admin console components.  |
 | `--https-proxy`             | string | Sets HTTPS_PROXY environment variable in all admin console components. |
