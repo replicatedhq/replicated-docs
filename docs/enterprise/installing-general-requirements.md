@@ -21,9 +21,9 @@ The following table lists the browser requirements for the latest Replicated adm
 
 ## Kubernetes Version Compatibility
 
-Each release of the open source KOTS project maintains compatibility with the current Kubernetes version, and the two most recent versions at the time of its release.
+Each release of the open source KOTS project maintains compatibility with the current Kubernetes version, and the two most recent versions at the time of its release. This includes support against all patch releases of the corresponding Kubernetes version.
 
-This includes support against all patch releases of the corresponding Kubernetes version.
+Kubernetes versions 1.21 and earlier are end-of-life (EOL), however Replicated still maintains KOTS support for the EOL Kubernetes versions listed in the following table. For more information about Kubernetes versions, see [Release History](https://kubernetes.io/releases/) in the Kubernetes documentation.
 
 :::note
 The app manager is based on the open source KOTS project. The app manager version is the same as the KOTS version. For example, KOTS v1.48 is the same as the app manager v1.48.
@@ -40,10 +40,6 @@ The app manager is based on the open source KOTS project. The app manager versio
 | v1.20 to v1.35  | v1.19, v1.18, and v1.17 |
 | v1.15 to v1.19  | v1.18, v1.17, and v1.16 |
 | v1.11 to v1.14  | v1.17, v1.16, and v1.15 |
-
-:::note
-Kubernetes versions 1.21 and earlier are end-of-life, however Replicated still maintains KOTS support for these Kubernetes versions. For more information about Kubernetes versions, see [Release History](https://kubernetes.io/releases/) in the Kubernetes documentation.
-:::
 
 ## Minimum System Requirements
 
