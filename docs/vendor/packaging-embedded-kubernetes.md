@@ -52,13 +52,13 @@ To include the Kubernetes installer in the application release:
 
 1. Save and promote the release to your development environment to test your changes.
 
-### Include a Supporting Preflight Check
+### Include Supporting Preflight Checks
 
 > Introduced in Replicated app manager v1.74.0
 
 One goal of including a Kubernetes installer in a release is to more tightly couple a particular release with a particular Kubernetes installer. If you want to encourage or ensure that your customers run the updated Kubernetes installer before upgrading to the corresponding release, a preflight check can be used to compare the installer that is included in the release against the installer that is currently deployed.
 
-Since this is a preflight check, you can customize the message and URI for each outcome. For example, you can provide instructions on how to rerun the Kubernetes installer, or link to your documentation on how to do that. Additionally, you can make this a [strict preflight check](/vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles) if you want to prevent customers from deploying a release before appropriately updating their Kubernetes installer.
+Since this is a preflight check, you can customize the message and URI for each outcome. For example, you can provide instructions on how to rerun the Kubernetes installer, or link to your documentation on how to do that. Additionally, you can make this a strict preflight check if you want to prevent customers from deploying a release before appropriately updating their Kubernetes installer. For more information about defining preflight checks and strict preflight checks, see [Define Preflight Checks](preflight-support-bundle).
 
 To invoke this optional preflight check, include a [`yamlCompare`](https://troubleshoot.sh/docs/analyze/yaml-compare/) analyzer in your Preflight specification with the `kots.io/installer: "true"` annotation. The following is an example Preflight specification that utilizes this comparison behavior:
 
@@ -80,6 +80,15 @@ spec:
           - pass:
               message: The Kubernetes installer for this version matches what is currently installed.
 ```
+
+### Customize Host Preflight Checks
+
+> Introduced in Kubernetes installer v2021.09.24-0
+
+Host preflight checks with Kubernetes installers to verify that infrastructure requirements are met for Kubernetes, Kubernetes installer add-ons, and your application before the installation is run. These checks help ensure successful installation and the ongoing health of the cluster.
+
+In addition to the default host preflight checks that run automatically, you can customize host preflight checks. For more information about customizing host preflight checks, see [Customizing Host Preflight Checks for Kubernetes Installers](preflight-host-oredflights).
+
 
 ## Create a Separate Kubernetes Installer
 

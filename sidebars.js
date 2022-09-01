@@ -113,8 +113,8 @@ const sidebars = {
                     ],
                   },
                   'vendor/packaging-embedded-kubernetes',
-                  'vendor/preflight-support-bundle-creating',
                   'vendor/preflight-host-preflights',
+                  'vendor/preflight-support-bundle-creating',
                   {
                       type: 'category',
                       label: 'Configuring Backup and Restore',
