@@ -11,18 +11,18 @@ Released on September 1, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### New Features {#new-features-1-83-0}
-* Adds support for custom branding of the Admin Console.
+* Adds support for custom branding of the admin console using CSS (Alpha).
 
 ### Improvements {#improvements-1-83-0}
-* Allows vendors to use square or circular logos.
+* Icons supplied in the `icon` field of the Application custom resource can be square or circular.
 
 ### Bug Fixes {#bug-fixes-1-83-0}
-* Fixes an issue that caused inadvertent application upgrades while redeploying or updating the config of the currently installed release in [Helm managed mode (Alpha)](/vendor/helm-install).
-* Fixes an issue that caused namespace to be omitted from the `helm upgrade` command in [Helm managed mode (Alpha)](/vendor/helm-install).
-* Removed unsupported options from the ["Configure automatic updates"](/enterprise/updating-apps#configure-automatic-updates) dialog because it's not supported in [Helm managed mode (Alpha)](/vendor/helm-install).
-* Fixes an issue where updating the registry settings fails due to permission issues even when the provided credentials do have access to the registry.
-* Fixed an issue that could cause templates to be shown on the [config page](/vendor/config-screen-about#admin-console-config-tab) instead of actual rendered values in [Helm managed mode (Alpha)](/vendor/helm-install).
-* Fixes an issue where trailing line breaks were being removed during Helm chart rendering.
+* Fixes an issue that could cause inadvertent application upgrades when redeploying or updating the config of the currently installed revision in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Fixes an issue where the namespace was omitted from `helm upgrade` commands displayed in the admin console in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Removes the checkbox to automatically deploy updates in Helm-managed mode, because this is unsupported. For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Fixes an issue where updating the registry settings fails due to permission issues even when the provided credentials have access to the registry.
+* Fixes an issue in Helm-managed mode that could cause Replicated templates to show on the config page instead of the rendered values. For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Fixes an issue where trailing line breaks were removed during Helm chart rendering.
 
 ## 1.82.0
 
