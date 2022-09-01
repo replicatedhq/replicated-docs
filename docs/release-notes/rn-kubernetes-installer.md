@@ -11,7 +11,7 @@ Released on September 1, 2022
 ### New Features {#new-features-v2022-09-01-0}
 * Rook can now be upgraded from 1.0 to 1.4 during the install script.
 * Adds [Docker add-on](https://kurl.sh/docs/add-ons/docker) version 20.10.17. 
-  Note ubuntu-22.04 supports the latest docker version (20.10.17) and not the older versions.
+  Note ubuntu-22.04 only supports docker version 20.10.17 and greater
 
 ### Bug Fixes {#bug-fixes-v2022-09-01-0}
 * Fixes an issue that causes migrations from docker to containerd fail due to uninstalled `docker-scan-plugin` package.
