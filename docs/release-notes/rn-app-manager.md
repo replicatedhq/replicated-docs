@@ -4,6 +4,26 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.83.0
+
+Released on September 1, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### New Features {#new-features-1-83-0}
+* Adds support for custom branding of the admin console using CSS (Alpha).
+
+### Improvements {#improvements-1-83-0}
+* Icons supplied in the `icon` field of the Application custom resource can be square or circular.
+
+### Bug Fixes {#bug-fixes-1-83-0}
+* Fixes an issue that could cause inadvertent application upgrades when redeploying or updating the config of the currently installed revision in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Fixes an issue where the namespace was omitted from `helm upgrade` commands displayed in the admin console in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Removes the checkbox to automatically deploy updates in Helm-managed mode, because this is unsupported. For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Fixes an issue where updating the registry settings fails due to permission issues even when the provided credentials have access to the registry.
+* Fixes an issue in Helm-managed mode that could cause Replicated templates to show on the config page instead of the rendered values. For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Fixes an issue where trailing line breaks were removed during Helm chart rendering.
+
 ## 1.82.0
 
 Released on August 25, 2022
