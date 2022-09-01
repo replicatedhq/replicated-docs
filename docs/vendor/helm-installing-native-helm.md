@@ -39,7 +39,7 @@ For more information about Helm hooks and weights, see the [Helm docs](https://h
 
 To leverage this option, set `useHelmInstall: true` in the `HelmChart` custom resource. Then promote these changes to a channel and install new instances of the application with the native Helm installation. For any existing installations of the application, you can update these in the Replicated admin console or using the kots CLI. After they are updated, any new Helm charts added to the application are deployed with the native Helm installation.
 
-For more information about adding charts to applications, see [optional charts](helm-optional-charts) and the [Helm docs](https://helm.sh/docs/topics/charts/). For information on ordering the Helm chart installations, see[Defining Installation Order for Native Helm Charts](https://docs.replicated.com/vendor/helm-native-helm-install-order).
+For more information about adding charts to applications, see [optional charts](helm-optional-charts) and the [Helm docs](https://helm.sh/docs/topics/charts/). For information on ordering the Helm chart installations, see [Defining Installation Order for Native Helm Charts](https://docs.replicated.com/vendor/helm-native-helm-install-order).
 
 ![Use Helm Install Flag](/images/vendor-use-helm-install-flag.png)
 
