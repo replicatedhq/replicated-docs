@@ -78,7 +78,7 @@ Int and Bool values will be converted to string values.
 func KurlAll() string
 ```
 
-Returns all values in the Installer CRD as key:value pairs, sorted by key.
+Returns all values in the Installer custom resource as key:value pairs, sorted by key.
 
 ```yaml
 '{{repl KurlAll }}'
