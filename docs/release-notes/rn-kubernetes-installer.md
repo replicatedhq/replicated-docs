@@ -10,10 +10,10 @@ Released on September 1, 2022
 
 ### New Features {#new-features-v2022-09-01-0}
 * Rook can now be upgraded from 1.0 to 1.4 during the install script.
-* Added latest version of docker (20.10.17) to kURL.
+* Added latest version of docker (20.10.17) to kURL. Note ubuntu-22.04 supports the latest docker version (20.10.17) and not the older versions.
 
 ### Bug Fixes {#bug-fixes-v2022-09-01-0}
-* Fixed a bug that caused docker to containerd upgrade failure. `docker-scan-plugin` package was not uninstalled as part of docker uninstall.
+* Fixes an issue that causes migrations from docker to containerd fail due to uninstalled `docker-scan-plugin` package.
 * Fixes an issue that causes migrations from Rook to Longhorn 1.3.1 to fail with 2 conflicting default storage classes.
 
 ## Release v2022.08.25-0
