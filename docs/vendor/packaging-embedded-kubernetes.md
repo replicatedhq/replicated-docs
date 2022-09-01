@@ -111,7 +111,7 @@ To create a separate Kubernetes installer:
 
 1. Save and promote a release to your development environment to test your changes.
 
-## Customize Host Preflight Checks in Either Installer Type
+## Customize Host Preflight Checks
 
 > Introduced in Kubernetes installer v2021.09.24-0
 
