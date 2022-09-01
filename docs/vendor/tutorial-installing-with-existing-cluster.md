@@ -210,7 +210,7 @@ Now that you have an application running, a common task is to deliver updates. Y
 
   The YAML editor opens and shows the contents of the most recently created release. This gives you everything that you have done so far, and the next task is to increase the number of NGINX replicas.
 
-1. In the release YAML, find the NGINX deployment to change. You'll want to add a `replicas` line in the `example-deployment.yaml` file:
+1. In the release YAML, find the NGINX deployment to change. Add a `replicas` line in the `example-deployment.yaml` file:
 
   ```diff
   --- example-deployment.yaml	2022-08-23 16:54:45.000000000 -0500
