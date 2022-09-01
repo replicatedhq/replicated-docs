@@ -81,13 +81,6 @@ spec:
               message: The Kubernetes installer for this version matches what is currently installed.
 ```
 
-### Customize Host Preflight Checks
-
-> Introduced in Kubernetes installer v2021.09.24-0
-
-Default host preflight checks run automatically with Kubernetes installers to verify that infrastructure requirements are met for Kubernetes and Kubernetes installer add-ons. You can customize the host preflight checks and include checks for your application. Host preflight checks help ensure successful installation and the ongoing health of the cluster. For more information about customizing host preflight checks, see [Customizing Host Preflight Checks for Kubernetes Installers](preflight-host-oredflights).
-
-
 ## Create a Separate Kubernetes Installer
 
 You can create a Kubernetes installer and promote it to the same channel as your application release. This method creates the installer separately from the application release and only lets you have one active Kubernetes installer for a channel at a time. All installations, regardless of the application version, will use the currently promoted installer.
@@ -117,3 +110,10 @@ To create a separate Kubernetes installer:
 1. Click **Save installer**.
 
 1. Save and promote a release to your development environment to test your changes.
+
+## Customize Host Preflight Checks in Either Installer Type
+
+> Introduced in Kubernetes installer v2021.09.24-0
+
+Default host preflight checks run automatically with both Kubernetes installer types to verify that infrastructure requirements are met for Kubernetes and Kubernetes installer add-ons.
+You can customize the host preflight checks and include checks for your application. Host preflight checks help ensure successful installation and the ongoing health of the cluster. For more information about customizing host preflight checks, see [Customizing Host Preflight Checks for Kubernetes Installers](preflight-host-oredflights).
