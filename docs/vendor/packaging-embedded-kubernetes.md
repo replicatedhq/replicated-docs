@@ -85,9 +85,7 @@ spec:
 
 > Introduced in Kubernetes installer v2021.09.24-0
 
-Host preflight checks with Kubernetes installers to verify that infrastructure requirements are met for Kubernetes, Kubernetes installer add-ons, and your application before the installation is run. These checks help ensure successful installation and the ongoing health of the cluster.
-
-In addition to the default host preflight checks that run automatically, you can customize host preflight checks. For more information about customizing host preflight checks, see [Customizing Host Preflight Checks for Kubernetes Installers](preflight-host-oredflights).
+Default host preflight checks run atoomatically with Kubernetes installers to verify that infrastructure requirements are met for Kubernetes and Kubernetes installer add-ons. You can customize the host preflight checks and include checks for your application. Host preflight checks help ensure successful installation and the ongoing health of the cluster. For more information about customizing host preflight checks, see [Customizing Host Preflight Checks for Kubernetes Installers](preflight-host-oredflights).
 
 
 ## Create a Separate Kubernetes Installer
