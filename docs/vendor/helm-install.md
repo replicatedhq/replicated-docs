@@ -16,13 +16,13 @@ For information about how to package an application in the Replicated vendor por
 
 Using Helm charts to create a release in the vendor portal allows you to package your application one time and support the following application installation methods:
 
-* **KOTS Install**: Installing on an existing cluster using the kots CLI or the admin console
-* **Embedded Cluster**: Installing on a cluster provisioned by the Replicated Kubernetes installer (kURL)
-* **Helm Install**: Installing on an existing cluster using the helm CLI
+* **KOTS Install**: Install on an existing cluster using the kots CLI or the admin console UI
+* **Embedded Cluster**: Install on a cluster provisioned by the Replicated Kubernetes installer (kURL)
+* **Helm Install**: Install on an existing cluster using the helm CLI
 
-To support all installation methods from a single application release, you must be able to conditionally include or exclude values and resources in the release depending on the installation method. This is because Replicated delivers built-in functionality when users install with the KOTS Install or Embedded Cluster methods that cannot be delivered automatically when users install with the helm CLI. So, you must explicitly include the desired functionality for helm CLI installations.
+To support all installation methods from a single application release, you must be able to conditionally include or exclude values and resources in the release depending on the installation method. This is because Replicated delivers built-in functionality with the KOTS Install or Embedded Cluster methods that cannot be delivered automatically with the helm CLI method. So, you must explicitly include the desired functionality for helm CLI installations.
 
-For example, when users install with the KOTS Install or Embedded Cluster installation methods, Replicated automatically delivers the admin console with the application. To deliver the admin console with your application for helm CLI installations, you must include the `admin-console` Helm chart as a dependency. Then, to prevent Replicated from attempting to deploy this `admin-console` dependency for KOTS Install or Embedded Cluster installations, you must conditionally exclude the `admin-console` Helm chart from these installations.
+For example, Replicated automatically delivers the admin console with the KOTS Install or Embedded Cluster installation methods. To deliver the admin console with your application for helm CLI installations, you must include the `admin-console` Helm chart as a dependency. Then, to prevent Replicated from attempting to deploy this `admin-console` dependency for KOTS Install or Embedded Cluster installations, you must conditionally exclude the `admin-console` Helm chart from these installations.
 
 To control which values and resources are included in your application release for each installation method, you create a Replicated HelmChart custom resource manifest file in the release. The HelmChart custom resource includes several fields that allow Replicated to process and deploy Helm charts. For more information, see [HelmChart](/reference/custom-resource-helmchart) in the _References_ section.
 
