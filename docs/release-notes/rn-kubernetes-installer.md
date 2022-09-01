@@ -4,6 +4,18 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2022.09.01-0
+
+Released on September 1, 2022
+
+### New Features {#new-features-v2022-09-01-0}
+* Rook can now be upgraded from 1.0 to 1.4 during the install script.
+* Added latest version of docker (20.10.17) to kURL.
+
+### Bug Fixes {#bug-fixes-v2022-09-01-0}
+* Fixed a bug that caused docker to containerd upgrade failure. `docker-scan-plugin` package was not uninstalled as part of docker uninstall.
+* Fixes an issue that causes migrations from Rook to Longhorn 1.3.1 to fail with 2 conflicting default storage classes.
+
 ## Release v2022.08.25-0
 
 Released on August 25, 2022
