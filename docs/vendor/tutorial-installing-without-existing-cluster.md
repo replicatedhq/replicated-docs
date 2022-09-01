@@ -198,7 +198,7 @@ To install the application:
 1. There are some example configuration options on this page. Feel free to explore and toggle some of the options. You can see the results of your changes later.
 
   :::note
-  For production, you can customize what appears on this screen to collect the configuration that your application needs from the customer. Values will be available to your app as text templates or input values to Helm Charts.
+  For production, you can customize what appears on this screen to collect the configuration that your application needs from the customer. Values are available to your app as text templates or input values to Helm Charts.
   :::
 
   The Preflight page opens.
