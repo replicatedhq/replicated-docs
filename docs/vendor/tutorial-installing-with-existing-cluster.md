@@ -162,10 +162,10 @@ To install the application:
 
   The Upload license page opens.
 1. Click Upload. Select your customer license YAML file to continue, or drag and drop the license file from your desktop. The admin console can pull the application YAML and containers now.
-1. There are some example configuration options on this page -- feel free to explore and toggle some of the options. You'll be able to see the results of your changes later.
+1. There are some example configuration options on this page. Feel free to explore and toggle some of the options. You can see the results of your changes later.
 
     :::note
-    For production, you can customize what appears on this screen to collect the configuration that your application needs from the customer. Values will be available to your app as text templates or input values to Helm Charts.
+    For production, you can customize what appears on this screen to collect the configuration that your application needs from the customer. Values are available to your app as text templates or input values to Helm Charts.
     :::
 
 1. Proceed with the default settings.
