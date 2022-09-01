@@ -15,7 +15,7 @@ The native Helm chart support has the following limitations:
 * The test hook is not supported.
 * Hook weights below -9999. All hook weights must be set to a value above -9999 to ensure the Replicated image pull secret is deployed before any resources are pulled.
 * Not supported with the [GitOps workflows](../enterprise/gitops-single-app-workflow).
-* The name specified in the [HelmChart CRD](/reference/custom-resource-helmchart) must be an exact match to the actual Helm Chart name that is provided to Replicated; failure to do this will result in errored installations. 
+* The name specified in the [HelmChart custom resource](/reference/custom-resource-helmchart) must be an exact match to the actual Helm Chart name that is provided to Replicated; failure to do this will result in errored installations.
 
 ### Helm Hooks and Weights
 
@@ -37,9 +37,9 @@ For more information about Helm hooks and weights, see the [Helm docs](https://h
 
 ## Enabling and Using Native Helm Charts
 
-To leverage this option, set `useHelmInstall: true` in the `HelmChart` CRD. Then promote these changes to a channel and install new instances of the application with the native Helm installation. For any existing installations of the application, you can update these in the Replicated admin console or using the kots CLI. After they are updated, any new Helm charts added to the application are deployed with the native Helm installation.
+To leverage this option, set `useHelmInstall: true` in the `HelmChart` custom resource. Then promote these changes to a channel and install new instances of the application with the native Helm installation. For any existing installations of the application, you can update these in the Replicated admin console or using the kots CLI. After they are updated, any new Helm charts added to the application are deployed with the native Helm installation.
 
-For more information about adding charts to applications, see [optional charts](helm-optional-charts) and the [Helm docs](https://helm.sh/docs/topics/charts/). For information on ordering the Helm chart installations, see[Defining Installation Order for Native Helm Charts](https://docs.replicated.com/vendor/helm-native-helm-install-order).
+For more information about adding charts to applications, see [optional charts](helm-optional-charts) and the [Helm docs](https://helm.sh/docs/topics/charts/). For information on ordering the Helm chart installations, see [Defining Installation Order for Native Helm Charts](https://docs.replicated.com/vendor/helm-native-helm-install-order).
 
 ![Use Helm Install Flag](/images/vendor-use-helm-install-flag.png)
 
