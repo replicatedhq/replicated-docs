@@ -11,7 +11,7 @@ Released on September 1, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### New Features {#new-features-1-83-0}
-* Adds support for custom branding of the admin console using CSS (Alpha). To enable this feature on your account, log in to your Vendor Portal account and submit a feature request for "admin console branding".
+* Adds support for custom branding of the admin console using CSS (Alpha). To enable this feature on your account, log in to your vendor portal account. Select **Support** > **Request a feature**, and submit a feature request for "admin console branding".
 
 ### Improvements {#improvements-1-83-0}
 * Icons supplied in the `icon` field of the Application custom resource can be square or circular.
