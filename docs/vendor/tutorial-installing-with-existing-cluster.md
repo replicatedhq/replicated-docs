@@ -161,18 +161,14 @@ To install the application:
 1. In a browser, enter the URL `http://localhost:8800` and password to access the admin console.
 
   The Upload license page opens.
-
 1. Click Upload. Select your customer license YAML file to continue, or drag and drop the license file from your desktop. The admin console can pull the application YAML and containers now.
+1. There are some example configuration options on this page. Feel free to explore and toggle some of the options. You can see the results of your changes later.
 
-  The Settings page opens with the default configuration items.
-
-  :::note
-  The appearance of this page can be configured in the `config.yaml` file.
-  :::
+    :::note
+    For production, you can customize what appears on this screen to collect the configuration that your application needs from the customer. Values are available to your app as text templates or input values to Helm Charts.
+    :::
 
 1. Proceed with the default settings.
-
-  ![Settings Page](/images/guides/kots/configuration.png)
 
   The Preflight page opens.
 
@@ -192,18 +188,13 @@ To install the application:
 
 ### View the Deployed Application
 
-To view the running NGINX application:
+To view the default NGINX application, click **Open App** on the Dashboard page.
 
-1. Port-forward the NGINX service port to localhost `8080`:
+![Open App](/images/guides/kots/open-app.png)
 
-  ```shell
-  kubectl port-forward service/<service-name> 8080:80
-  ```
-  You can also add a link on the admin console dashboard and port-forward the NGINX port to your localhost as part of the [Application custom resource manifest](admin-console-adding-buttons-links#additional-ports-and-port-forwarding).
+You should see an example application.
 
-1. From your browser, go to `http://localhost:8080/`, and you should see a basic NGINX server running.
-
-  ![Cluster](/images/guides/kots/example-nginx.png)
+![Cluster](/images/guides/kots/example-app.png)
 
 Next, you will create and deliver an update to the sample application.
 
@@ -219,10 +210,19 @@ Now that you have an application running, a common task is to deliver updates. Y
 
   The YAML editor opens and shows the contents of the most recently created release. This gives you everything that you have done so far, and the next task is to increase the number of NGINX replicas.
 
-1. In the release YAML, find the NGINX image to change. The line is in the `deployment.yaml` file and looks like:
+1. In the release YAML, find the NGINX deployment to change. Add a `replicas` line in the `example-deployment.yaml` file:
 
-  ```yaml
-  replicas: 1
+  ```diff
+  --- example-deployment.yaml	2022-08-23 16:54:45.000000000 -0500
+  +++ example-deployment-2.yaml	2022-08-23 19:30:47.000000000 -0500
+  @@ -6,6 +6,7 @@
+     labels:
+       app: nginx
+   spec:
+     replicas: 2
+     selector:
+       matchLabels:
+         app: nginx
   ```
 
 1. Change the number to `2` or more.
@@ -264,4 +264,4 @@ To check for updates manually:
 
 Now that you are familiar with the basics, we recommend that you run through the [CLI Quickstart Tutorial](tutorial-installing-with-cli) to start managing your release YAML in a git repository.
 
-You can also head over to [How to Distribute a Production Application](distributing-workflow) to learn how to integrate your application with other app manager features.
+You can also head over to [How to Package and Distribute a Production Application](distributing-workflow) to learn how to integrate your application with other app manager features.

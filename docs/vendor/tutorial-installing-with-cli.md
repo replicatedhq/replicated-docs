@@ -496,7 +496,7 @@ To check for updates manually:
 1. Run the following command to verify the deployment on the server:
 
   ```shell script
-  kubectl get pod -l component=nginx
+  kubectl get pod -l app=nginx
   ```
 
   You should see two pods running.
