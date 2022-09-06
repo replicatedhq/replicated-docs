@@ -6,12 +6,12 @@ The vendor portal is the user interface where vendors define Kubernetes manifest
 
 To create a vendor account:
 
-1. Go to the [vendor portal](https://vendor.replicated.com), where you can log in or create an account.
-1. To create an account, select **Create a new team**.
+1. Go to the [vendor portal](https://vendor.replicated.com), where you can log in to your account or create an account.
+1. To create an account, select **Create or join a new team**.
 
-    The Start a trial page opens.
-1. Enter your name, email, and contact information.
-1. Create a password, and click **Getting Started**.
+    The sign up page opens.
+1. Enter your email address or continue with Google authentication.
+ 1. If registering with an email, you will receive an activation code.  .
 
     An activation code is sent to the email address you registered with, and the Activate account page opens.
 
@@ -19,9 +19,18 @@ To create a vendor account:
     To resend the code, click **Resend it**.
     :::
 
-1. Copy and paste the activation code into the text box, and click **Activate**.
+ 1. Copy and paste the activation code into the text box, and click **Activate**. Your account is now activated. 
 
-    The Create application page opens.
+
+1. The **Create your team** page is displayed. 
+
+    Enter you first, last, and company name and click **Continue** to complete setup. 
+    
+    :::note
+    The company name you provide will be used as your team name in vendor portal.
+    :::
+
+     The Create application page opens.
 
 1. Enter a name for the application, such as `My-Application-Demo`. Click **Create application**.
 
