@@ -175,7 +175,7 @@ For more information about the `additionalNamespaces` attribute, see [Defining A
 
 The app manager supports image tags for applications in all use cases.
 
-The app manager supports image digests only for online (Internet-connected) installations. You can also use image tags and digests together for online installations. Support for image digests is currently in Beta for air gap installations, but requires a feature flag be turned on for your account. Please submit a featur request via [vendor.replicated.com/support](https://vendor.replicated.com/support) requesting access to this feature.
+The app manager supports image digests only for online (Internet-connected) installations. You can also use image tags and digests together for online installations. Support for image digests is currently in Beta for air gap installations, but requires a feature flag be turned on for your account. Please submit a feature request via [vendor.replicated.com/support](https://vendor.replicated.com/support) requesting access to this feature.
 
 ## Related Topic
 
