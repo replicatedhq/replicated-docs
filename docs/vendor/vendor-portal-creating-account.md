@@ -1,4 +1,4 @@
-# Creating a Vendor Account
+# Creating a Vendor Account 
 
 To get started with Replicated, you must create a Replicated vendor account. When you create your account, you are also prompted to create an application. To create additional applications in the future, log in to the vendor portal and select **Create new app** from the Applications drop-down list.
 
