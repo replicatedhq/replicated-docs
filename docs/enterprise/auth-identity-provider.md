@@ -15,7 +15,7 @@ The identity service has the following limitations:
 
 ## Prerequisites
 
-Configure the hostname used to access the admin console. This is done during installation of the admin console, when you are setting up TLS certificates on the HTTPS page. Hostname is required whether you are using identity service with either a self-signed certificate or a custom certificate. Fo more information about configuring the hostname field, see [Completing Application Setup and Deploying](installing-app-setup).
+Configure the hostname used to access the admin console. This is done during installation of the admin console, when you are setting up TLS certificates on the HTTPS page. Hostname is required whether you are using identity service with either a self-signed certificate or a custom certificate. For more information about configuring the hostname field, see [Completing Application Setup and Deploying](installing-app-setup).
 
 ## Configuration
 
