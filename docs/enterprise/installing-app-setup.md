@@ -28,8 +28,8 @@ To complete application setup and deploy from the admin console:
 
 1. (Kubernetes Installer Cluster Only) On the HTTPS page, do one of the following:
 
-    - To use the self-signed TLS certificate only, enter the hostname (required) if you are using identity service. If you are not using identity service, the hostname is optional. Click **Skip & continue**.
-    - To use a custom certificate only, enter the hostname (required) if you are using identity service. If you are not using identity service, the hostname is optional. Then upload a private key and SSL certificate to secure communication between your browser and the admin console. Click **Upload & continue**.
+    - To use the self-signed TLS certificate only, enter the hostname (required) if you are using the identity service. If you are not using the identity service, the hostname is optional. Click **Skip & continue**.
+    - To use a custom certificate only, enter the hostname (required) if you are using the identity service. If you are not using the identity service, the hostname is optional. Then upload a private key and SSL certificate to secure communication between your browser and the admin console. Click **Upload & continue**.
 
 1. Log in to the admin console:
    * **Existing cluster**: Log in with the password that you created during installation.
