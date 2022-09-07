@@ -26,12 +26,10 @@ To complete application setup and deploy from the admin console:
 
 1. (Kubernetes Installer Cluster Only) On the Bypass Browser TLS warning page, review the information about how to bypass the browser TLS warning, and then click **Continue to Setup**.
 
-1. (Kubernetes Installer Cluster Only) On the HTTPS page, do one of the following. Using identity service with either certificate type is optional.
+1. (Kubernetes Installer Cluster Only) On the HTTPS page, do one of the following:
 
-    - To use the self-signed TLS certificate only, click **Skip & continue**.
-    - To use a custom certificate only, upload a private key and SSL certificate to secure communication between your browser and the admin console. Then, click **Upload & continue**.
-    - To use identity service with the self-signed certificate, enter the hostname and click **Skip & continue**.
-    -  To use identity service with a custom certificate, enter the hostname. Then, upload a private key and SSL certificate, and click **Upload & continue**.
+    - To use the self-signed TLS certificate only, enter the hostname (required) if you are using identity service. If you are not using identity service, hostname is optional. Click **Skip & continue**.
+    - To use a custom certificate only, enter the hostname (required) if you are using identity service. If you are not using identity service, hostname is optional. Then upload a private key and SSL certificate to secure communication between your browser and the admin console. Click **Upload & continue**.
 
 1. Log in to the admin console:
    * **Existing cluster**: Log in with the password that you created during installation.
