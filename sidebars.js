@@ -283,7 +283,7 @@ const sidebars = {
             'enterprise/snapshots-velero-cli-installing',
             {
               type: 'category',
-              label: 'Storage Destinations',
+              label: 'Configuring Storage Destinations',
               items: [
                 'enterprise/snapshots-storage-destinations',
                 'enterprise/snapshots-configuring-nfs',

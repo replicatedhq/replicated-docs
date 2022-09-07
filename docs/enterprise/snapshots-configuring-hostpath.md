@@ -2,20 +2,31 @@
 
 > Introduced in the Replicated app manager v1.33.0
 
-You can configure a host path as your snapshots storage destination. For more information about snapshot storage destinations, see [Storage destinations](snapshots-storage-destinations).
+You can configure a host path as your snapshots storage destination.
 
 ## Prerequisites
 
 Complete the following items before you perform this task:
 
 * Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _How to Set Up and Use Snapshots_.
-* Install and configure Velero. See [Installing and Configuring Velero](snapshots-venerlo-installing-config).
+* Install the Velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).
 * The host path must be a dedicated directory. Do not use a partition used by a service like Docker or Kubernetes for ephemeral storage.
 * The host path must exist and be writable by the user:group 1001:1001 on all nodes in the cluster.
 
    If you use a mounted directory for the storage destination, such as one that is created with the Common Internet File System (CIFS) or Server Message Block (SMB) protocols, ensure that you configure the user:group 1001:1001 permissions on all nodes in the cluster and from the server side as well.
 
    You cannot change the permissions of a mounted network shared filesystem from the client side. To reassign the user:group to 1001:1001 for a directory that is already mounted, you must remount the directory. For example, for a CIFS mounted directory, specify the `uid=1001,gid=1001` mount options in the CIFS mount command.
+
+## Install Velero and Configure Host Path Storage
+
+If you have not yet installed Velero and configured any type of storage destination, you use the the Velero CLI to install Velero and kots CLI to configure the storage destination. Follow this procedure to do this because the Velero install command requires flags that are specific to the storage destination type.
+
+:::note
+If you already have Velero installed and want to change from another type of storage destination to a host path storage destination, you can use either the Replicated admin console or the kots CLI. For more information about using the admin console to change to a host path storage destination, see [Changing to Host Path Storage using the Admin Console](changing-to-host-path-storage-using-the-admin-console).
+:::
+
+
+
 
 
 ## Configure a Host Path on Kubernetes Installer Clusters
@@ -42,6 +53,9 @@ When configuring the admin console to store snapshots on a local host path, the 
 | Name      | Description                   |
 |-----------|-------------------------------|
 | Host Path | A local host path on the node |
+
+
+
 
 
 ## Configure a Host Path on Existing Clusters
@@ -95,9 +109,10 @@ Once the configuration is successful, you'll be presented with a different dialo
 
 After following the instructions from the above CLI command and successfully installing Velero, you can go back to the admin console and either click on the "Check for Velero" button to retry detecting Velero, or refresh the page.
 
-## Next Step
+## Next Steps
 
-After you configure a storage destination, you can create or schedule backups. For more information, see [Creating Backups](snapshots-creating) and [Scheduling Automatic Backups](snapshots-scheduling).
+- Configure Velero namespace access and default memory limits, if needed. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
+- Create or schedule backups. See [Creating Backups](snapshots-creating) and [Scheduling Automatic Backups](snapshots-scheduling).
 
 ## Additional Resources
 

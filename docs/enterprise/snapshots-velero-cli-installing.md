@@ -59,9 +59,11 @@ curl -LO https://github.com/vmware-tanzu/velero/releases/download/VERSION/velero
   velero version
   ```
 
-  When checking the version, you might get an error message stating that there are no matches for the server version. This is ok, as long as you get a confirmation for the client version. After the Velero installation, you should see the server version also.
+  You might get an error message stating that there are no matches for the server version. This is fine, as long as you get a confirmation for the client version. After the Velero installation, you should see the server version also.
 
+## Next Step
 
+Install Velero and configure a storage destination. The Velero installation commands include different flags for the different storage destinations. For more information about this step, see the Velero installation procedure for the storage destination that you want to use.
 
 
 ## Additional resources
