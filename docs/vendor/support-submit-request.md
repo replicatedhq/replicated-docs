@@ -39,7 +39,8 @@ To submit a support request:
         - systemctl status firewalld
         - systemctl status kubelet
         - systemctl status k3s
-        - systemctl status docker
+        - systemctl status docker (if you use Docker as the container runtime)
+        - systemctl status containerd (if you use Containerd as the container runtime)
         - crictl ps -a
         - docker ps -a
         - journalctl -u kubelet –no-pager
