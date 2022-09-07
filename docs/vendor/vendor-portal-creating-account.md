@@ -1,4 +1,4 @@
-# Creating a Vendor Account 
+# Creating a Vendor Account
 
 To get started with Replicated, you must create a Replicated vendor account. When you create your account, you are also prompted to create an application. To create additional applications in the future, log in to the vendor portal and select **Create new app** from the Applications drop-down list.
 
@@ -11,7 +11,7 @@ To create a vendor account:
 
     The sign up page opens.
 3. Enter your email address or continue with Google authentication.
-    3a. If registering with an email, you will receive an activation code.
+    a. If registering with an email, you will receive an activation code.
 
         An activation code is sent to the email address you registered with, and the Activate account page opens.
 
@@ -19,7 +19,7 @@ To create a vendor account:
         To resend the code, click **Resend it**.
         :::
 
-    3b. Copy and paste the activation code into the text box, and click **Activate**. Your account is now activated. 
+    b. Copy and paste the activation code into the text box, and click **Activate**. Your account is now activated. 
 
 
 4. The Create your team page is displayed. 
