@@ -23,10 +23,10 @@ To create a vendor account:
 
 4. The Create your team page is displayed. 
 
-    Enter you first, last, and company name and click **Continue** to complete setup. 
+    Enter you first name, last name, and company name. Click **Continue** to complete the setup. 
     
     :::note
-    The company name you provide will be used as your team name in vendor portal.
+    The company name you provide is used as your team name in vendor portal.
     :::
 
      The Create application page opens.
@@ -38,7 +38,7 @@ To create a vendor account:
    :::important
    Replicated recommends that you use a temporary name for the application at this time such as `My-Application-Demo` or `My-Application-Test`.
 
-   Only use an official name for your application, such as `My-Application`, when you have completed testing and are ready to distribute the application to your customers.
+   Only use an official name for your application when you have completed testing and are ready to distribute the application to your customers.
 
    Replicated recommends that you use a temporary application name for testing because you are not able to restore or modify previously-used application names or application slugs in the vendor portal.
    :::
@@ -49,4 +49,4 @@ To create a vendor account:
    * [Installing a Sample Application with the CLI](tutorial-installing-with-cli).
    * [Installing a Sample Application on an Existing Cluster](tutorial-installing-with-existing-cluster).
    * [Installing a Sample Application Without an Existing Cluster](tutorial-installing-without-existing-cluster).
-* Learn about how to package, test, iterate, and distribute your production application. See [How to Distribute a Production Application](distributing-workflow).
+* Learn about how to package, test, iterate, and distribute your production application. See [How to Package and Distribute a Production Application](distributing-workflow).
