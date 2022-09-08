@@ -4,6 +4,14 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2022.09.08-0
+
+Released on September 8, 2022
+
+### New Features {#new-features-v2022-09-08-0}
+* Added Host Preflight check for supported docker versions on Ubuntu 22.04.
+* Add cert-manager 1.9.1.
+
 ## v2022.09.01-1
 
 Released on September 1, 2022
