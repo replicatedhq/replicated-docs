@@ -4,6 +4,14 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2022.09.08-1
+
+Released on September 8, 2022
+
+### New Features {#new-features-v2022-09-08-1}
+* Allows upgrading cert-manager 1.0.3 to 1.9.1.
+* The Rook 1.0 to 1.4 migration will now prompt the user to load images used by the migration on other nodes before starting.
+
 ## Release v2022.09.08-0
 
 Released on September 8, 2022
