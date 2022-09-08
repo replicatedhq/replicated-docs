@@ -1,4 +1,4 @@
-# Adding Database Configuration Options for your Application
+# Tutorial: Adding Database Configuration Options
 
 In this tutorial, we'll explore ways to give your end user the option to either embed a database instance with the application, or connect your application to an external database instance that they will manage.
 We'll use a PostgreSQL database as an example, configuring an example app to connect.

@@ -93,8 +93,8 @@ To iterate on the release of your production application:
         <th width="70%">Description</th>
       </tr>
       <tr>
-        <td><a href="database-config-adding-options">Add Database Configuration Options</a></td>
-        <td>Enable database options and set stateful services.</td>
+        <td><a href="database-config-adding-options">Adding Persistent Data Stores</a></td>
+        <td><p>Integrate persistent stores, such as databases, queues, and caches. </p><p>Add options for your users to either embed a database instance with the application, or connect your application to an external database instance that they manage.</p></td>
       </tr>
       <tr>
         <td><a href="admin-console-customize-app-icon">Customizing the Admin Console and Download Portal</a></td>

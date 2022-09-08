@@ -127,6 +127,14 @@ const sidebars = {
                   },
                   {
                     type: 'category',
+                    label: 'Adding Persistent Data Stores',
+                    items: [
+                      'vendor/database-config-adding-options',
+                      'vendor/tutorial-adding-db-config',
+                    ]
+                  },
+                  {
+                    type: 'category',
                     label: 'Customizing the Admin Console and Download Portal',
                     items: [
                       'vendor/admin-console-customize-app-icon',
@@ -135,7 +143,7 @@ const sidebars = {
                       'vendor/admin-console-prometheus-monitoring',
                     ],
                   },
-                  'vendor/database-config-adding-options',
+
                   'vendor/packaging-ingress',
                   'vendor/packaging-custom-resources',
                   'vendor/packaging-kots-versions',
@@ -160,6 +168,7 @@ const sidebars = {
               },
               'vendor/releases-promoting',
               'vendor/releases-updating',
+              'vendor/tutorial-ci-cd-integration',
               'vendor/packaging-air-gap-excluding-minio',
             ],
           },
@@ -208,10 +217,7 @@ const sidebars = {
           label: 'Tutorials',
           items: [
             'vendor/tutorial-installing-air-gap-existing-cluster-gcp',
-
             'vendor/tutorial-ha-cluster-deploying',
-            'vendor/tutorial-ci-cd-integration',
-            'vendor/tutorial-adding-db-config',
           ],
         },
       ],
