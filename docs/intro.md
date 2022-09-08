@@ -10,15 +10,17 @@ For information about the Replicated product, see [What is Replicated?](intro-re
 
 The Replicated product documentation is divided into the following main sections:
 
- * **Vendor**: The Vendor section includes information for software providers, or
- _vendors_. The topics in this section guide vendors through packaging,
- distributing, and managing their application with Replicated.
+ * **Getting Started**: The Getting Started section includes an overview of the Replicated product as well as tutorials that help vendors learn how to use Replicated by completing common tasks with sample applications. To get started, see [What is Replicated?](intro-replicated).
 
- To get started as a
- vendor, see [How to Distribute an Application](vendor/distributing-workflow).
+ * **Vendor**: The Vendor section guides vendors through packaging,
+ distributing, and updating their application with Replicated.
 
- * **Enterprise**: The Enterprise section includes information for the _enterprise users_
+ To begin packaging your application with Replicated, see [How to Package and Distribute a Production Application](vendor/distributing-workflow).
+
+ * **Enterprise**: The Enterprise section includes information for the enterprise users
  of applications delivered with Replicated. The topics in this section describe
- how enterprise users can install, update, manage, and monitor the application.
+ how enterprise users can install, update, manage, backup and restore, and monitor the application.
 
- To get started as an enterprise user, see [Overview of Installing an Application with App Manager](enterprise/installing-overview).
+   Vendors can reference the documentation in the Enterprise section to test the process of installing and managing their application with Replicated.
+
+   For more information, see [Overview of Installing an Application with App Manager](enterprise/installing-overview).

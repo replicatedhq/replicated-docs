@@ -20,8 +20,18 @@ const sidebars = {
 
   tutorialSidebar: [
     'intro',
-    'intro-replicated',
 
+    {
+      type: 'category',
+      label: 'Getting Started',
+      items: [
+        'intro-replicated',
+        'vendor/tutorial-installing-without-existing-cluster',
+        'vendor/tutorial-installing-with-existing-cluster',
+        'vendor/tutorial-installing-with-cli',
+        'vendor/tutorial-installing-air-gap',
+      ]
+    },
     {
       type: 'category',
       label: 'Vendor',
@@ -29,16 +39,6 @@ const sidebars = {
       items: [
         'vendor/distributing-workflow',
         'vendor/vendor-portal-creating-account',
-        {
-          type: 'category',
-          label: 'Quick Start Tutorials with Sample Applications',
-          items: [
-            'vendor/tutorial-installing-without-existing-cluster',
-            'vendor/tutorial-installing-with-existing-cluster',
-            'vendor/tutorial-installing-with-cli',
-            'vendor/tutorial-installing-air-gap',
-          ]
-        },
         'vendor/planning-questionnaire',
           {
             type: 'category',
@@ -113,6 +113,14 @@ const sidebars = {
                       'vendor/helm-airgap-builder',
                     ],
                   },
+                  {
+                    type: 'category',
+                    label: 'Adding Persistent Data Stores',
+                    items: [
+                      'vendor/database-config-adding-options',
+                      'vendor/tutorial-adding-db-config',
+                    ]
+                  },
                   'vendor/packaging-embedded-kubernetes',
                   'vendor/preflight-host-preflights',
                   'vendor/preflight-support-bundle-creating',
@@ -124,14 +132,6 @@ const sidebars = {
                         'vendor/snapshots-configuring-backups',
                         'vendor/snapshots-hooks',
                     ],
-                  },
-                  {
-                    type: 'category',
-                    label: 'Adding Persistent Data Stores',
-                    items: [
-                      'vendor/database-config-adding-options',
-                      'vendor/tutorial-adding-db-config',
-                    ]
                   },
                   {
                     type: 'category',
