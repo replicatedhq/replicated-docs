@@ -24,9 +24,9 @@ To support each of these installations methods from a single release, you use th
 
 Replicated injects any templated values from the HelmChart custom resource `values` field into the Helm chart `values.yaml` file. For example, you can use template functions in the HelmChart custom resource to map user-specific values such as license fields or configuration values to the `values.yaml` file.
 
-Replicated does _not_ inject any static values from the HelmChart custom resource `values` field into the Helm chart `values.yaml` file. So, any static values in the `values` field affect only KOTS Install and Embedded Cluster installations, and are ignored for Helm Install installations.
+Replicated does _not_ inject any static values from the HelmChart custom resource `values` field into the Helm chart `values.yaml` file. Any static values in the `values` field affect only KOTS Install and Embedded Cluster installations, and are ignored for Helm Install installations.
 
-Because Replicated injects only templated values into the Helm chart `values.yaml` file, you can include templated values in the HelmChart custom resource when it is required to make a change that affects only Helm Install installations. And, you can include static values when it is required to make a change that affects only KOTS Install and Embedded Cluster installations.
+This means that you can include static values in the `values` field when it is required to make a change in the release that affects only KOTS Install and Embedded Cluster installations. For example, you might need to deliver a Helm chart dependency with your application for only helm CLI installations. You can use static values in the HelmChart custom resource `values` field to ensure that the dependency is excluded from the release for KOTS Install and Embedded Cluster installations.
 
 For steps on how to use templated and static values in the HelmChart custom resource `values` field to support all installation methods, see the following procedures:
 * [Delivering the Admin Console with your Application](#deliver-admin-console)
