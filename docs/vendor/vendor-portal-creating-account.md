@@ -20,6 +20,7 @@ To create a vendor account:
         :::
 
     
+    
     b. Copy and paste the activation code into the text box and click **Activate**. Your account is now activated. 
 
 
