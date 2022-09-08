@@ -6,7 +6,7 @@ The vendor portal is the user interface where vendors define Kubernetes manifest
 
 To create a vendor account:
 
-1. Go to the [vendor portal](https://vendor.replicated.com), where you can log in to your account or create an account.
+1. Go to the [vendor portal](https://vendor.replicated.com).
 2. To create an account, select **Sign up**.
 
     The sign up page opens.
