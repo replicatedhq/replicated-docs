@@ -29,10 +29,10 @@ Released on September 1, 2022
 
 ### New Features {#new-features-v2022-09-01-0}
 * The [Rook add-on](https://kurl.sh/docs/add-ons/rook) can now be upgraded from version 1.0.x to 1.4.x or 1.5.x as part of the installation script for internet-connected installations only.
-  Upgrading from version 1.0.x to 1.4.x or 1.5.x migrates data off of any hostpath-based OSDs in favor of block device-based OSDs, and performs a rolling upgrade through Rook version 1.1.9, 1.2.7 and 1.3.11 before installing 1.4.9 (and 1.5.12 if applicable).
+  Upgrading from version 1.0.x to 1.4.x or 1.5.x migrates data off of any hostpath-based OSDs in favor of block device-based OSDs, and performs a rolling upgrade through Rook versions 1.1.9, 1.2.7 and 1.3.11 before installing 1.4.9 (and 1.5.12 if applicable).
   The upstream Rook project introduced a requirement for block storage in versions 1.3.x and later.
 * Adds [Docker add-on](https://kurl.sh/docs/add-ons/docker) version 20.10.17.
-  Note that Ubuntu-22.04 only supports Docker version 20.10.17 and later.
+  Note that Ubuntu version 22.04 only supports Docker version 20.10.17 and later.
 
 ### Bug Fixes {#bug-fixes-v2022-09-01-0}
 * Fixes an issue that causes migrations to fail from Docker to containerd due to uninstalled `docker-scan-plugin` package.
