@@ -9,7 +9,11 @@ toc_max_heading_level: 2
 Released on September 8, 2022
 
 ### New Features {#new-features-v2022-09-08-1}
-* Allows upgrading cert-manager 1.0.3 to 1.9.1.
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.22.1.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-09-07T22-25-02Z.
+
+### Improvements {#improvements-v2022-09-08-1}
+* The [Cert Manager add-on](https://kurl.sh/docs/add-ons/cert-manager) now supports upgrading from 1.0.3 to 1.9.1.
 * The Rook 1.0 to 1.4 migration will now prompt the user to load images used by the migration on other nodes before starting.
 
 ## Release v2022.09.08-0
