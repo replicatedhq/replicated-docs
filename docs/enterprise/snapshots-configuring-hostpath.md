@@ -4,9 +4,9 @@
 
 You can configure a host path as your snapshots storage destination.
 
-:::note
+## About Kubernetes Installers
+
 Clusters provisioned by a Replicated Kubernetes installer can include the Velero add-on. If your vendor has provided this add-on, you do not need to install Velero and you can configure the storage destination in the admin console. For more information about using the admin console to configure host path storage, see [Changing to Host Path Storage using the Admin Console](changing-to-host-path-storage-using-the-admin-console).
-:::
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ Complete the following items before you perform this task:
 In this procedure, you install Velero and configure your first storage destination.
 
 :::note
-If you already have Velero installed and want to update or change your storage destination, you can use either the Replicated admin console or the kots CLI. For more information about using the admin console to update a storage destination, see [Changing to Host Path Storage using the Admin Console](changing-to-host-path-storage-using-the-admin-console).
+If you already have Velero installed and want to update your storage destination, you can use the Replicated admin console. For more information about updating with the admin console, see [Changing to Host Path Storage using the Admin Console](changing-to-host-path-storage-using-the-admin-console).
 :::
 
 To configure your first storage destination:
@@ -75,7 +75,7 @@ To configure your first storage destination:
 
 1. Copy and paste the `velero install` command that displays earlier in the terminal into a notepad.
 
-  **Example:**
+  **Example: Online Installation**
 
   ```
   velero install \
@@ -86,10 +86,22 @@ To configure your first storage destination:
     --backup-location-config region=minio,s3ForcePathStyle=true,s3Url=http://kotsadm-fs-minio.default:9000,publicUrl=http://10.96.0.243:9000 \
     --snapshot-location-config region=minio \
     --use-restic
-    ```
+  ```
+  **Example: Air Gapped Installation**
+
+  ```bash
+  kubectl kots velero configure-hostpath \
+    --hostpath /path/to/directory \
+    --namespace <namespace> \
+    --kotsadm-registry private.registry.host \
+    --kotsadm-namespace application-name \
+    --registry-username ro-username \
+    --registry-password ro-password
+  ```
+
 1. Replace `<path/to/credentials-file>` with the path to the credentials file. Then copy and paste this entire command from the notepad to the terminal, and run the command:
 
-  **Example:**
+  **Example: Online Installation**
 
   ```
   velero install \
@@ -102,79 +114,33 @@ To configure your first storage destination:
       --use-restic
   ```
 
-
-\\! **Air gapped Installations**
-
-\\!  ```bash
-  kubectl kots velero configure-hostpath \
-    --hostpath /path/to/directory \
-    --namespace <namespace> \
-    --kotsadm-registry private.registry.host \
-    --kotsadm-namespace application-name \
-    --registry-username ro-username \
-    --registry-password ro-password
-  ```
-
   A confirmation message displays that the installation is successful. You can go to the Snapshots tab admin console and see the storage destination is configured.
 
 1. Configure Velero namespace access and default memory limits, if needed. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
 
 
-## Configure a Host Path on Kubernetes Installer Clusters
+## Change to Host Path Storage using the Admin Console
 
+If you want to make changes to an existing host path storage configuration or want to change to the host path type from another storage type, you can use the admin console.
 
+If you used a Kubernetes installer that included the Velero add-on, then an internal storage destination was created for you by default during the installation. However, the internal storage is not sufficient for full backups and Replicated recommends that you configure a storage destination. You can do this in the admin console.
 
+To update or change to host path storage:
 
+1. Ensure that you meet the host path prerequisites. See [Prerequisites](snapshots-configuring-hostpath#prerequisites).
 
-First, head to the "Snapshots" tab.
-From there, head to the "Settings and Schedule" tab and choose the "Host Path" dropdown option.
+1. In the admin console, select **Snapshots** > **Settings and Schedule**.
 
-![Snapshot Destination Dropdown Host Path](/images/snapshot-destination-dropdown-hostpath.png)
+1. From the **Destonation** dropdown list, select to **Host Path**.
 
-Enter the path to the directory on the node and click "Update storage settings".
-This step might take a couple of minutes.
+  ![Snapshot Destination Dropdown Host Path](/images/snapshot-destination-dropdown-hostpath.png)
 
-![Snapshot Destination Host Path Fields](/images/snapshot-destination-hostpath-field.png)
+1. Enter the path to the directory on the node. Although the path can be local, Replicated recommends that you use an external host path.
 
-When configuring the admin console to store snapshots on a local host path, the following fields are available:
+  ![Snapshot Destination Host Path Fields](/images/snapshot-destination-hostpath-field.png)
 
-| Name      | Description                   |
-|-----------|-------------------------------|
-| Host Path | A local host path on the node |
+1. Click **Update storage settings**. This update can take a couple of minutes.
 
-
-
-
-
-## Configure a Host Path on Existing Clusters
-
-If Velero is already installed in the cluster, follow the instructions in the [Configure a host path on Kubernetes installer-created clusters](#configure-a-host-path-on-kubernetes-installer-created-clusters) section above.
-
-If Velero is not installed in the cluster, then the first step is to set up and deploy the necessary components that are going to be used to install and set up Velero with the provided host path.
-This can be done in two ways:
-
-
-
-### Using the Admin Console
-
-First, head to the “Snapshots” tab.
-From there, head to the “Settings and Schedule” tab.
-Then, you'll be presented with a dialog which contains instructions for setting up Velero with different providers.
-Click on the "Host Path" provider option (check screenshot below).
-
-![Snapshot Provider Host Path](/images/snapshot-provider-hostpath.png)
-
-Then, you'll be presented with another dialog for configuring the host path.
-Enter the path to the directory on the node and click "Configure".
-
-![Snapshot Provider Host Path Fields](/images/snapshot-provider-hostpath-field.png)
-
-This step might take a few minutes.
-Once the configuration is successful, you'll be presented with a different dialog which contains a CLI command that will print out instructions on how to set up Velero with the deployed host path configuration/components.
-
-![Snapshot Provider File System Next Steps](/images/snapshot-provider-fs-next-steps.png)
-
-After following the instructions from the above CLI command and successfully installing Velero, you can go back to the admin console and either click on the "Check for Velero" button to retry detecting Velero, or refresh the page.
 
 ## Next Steps
 
