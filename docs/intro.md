@@ -1,7 +1,7 @@
 ---
 slug: /
 ---
-# Welcome to Replicated Docs
+# Welcome
 
 Welcome! This topic describes how to get started with Replicated as a software vendor. It also includes information on how to navigate the Replicated product documentation site.
 
