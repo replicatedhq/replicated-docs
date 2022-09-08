@@ -66,6 +66,7 @@ const sidebars = {
                         'vendor/packaging-private-images',
                         'vendor/packaging-private-registry-cname',
                         'vendor/packaging-private-registry-security',
+                        'vendor/tutorial-ecr-private-images',
                     ],
                   },
                   {
@@ -207,7 +208,7 @@ const sidebars = {
           label: 'Tutorials',
           items: [
             'vendor/tutorial-installing-air-gap-existing-cluster-gcp',
-            'vendor/tutorial-ecr-private-images',
+
             'vendor/tutorial-ha-cluster-deploying',
             'vendor/tutorial-ci-cd-integration',
             'vendor/tutorial-adding-db-config',

@@ -41,7 +41,7 @@ All applications in your vendor portal Team have access to the external registry
 that you add. This means that you can use the images in the external registry across
 multiple apps in the Team.
 
-To follow a tutorial connecting a sample app to an Amazon Elastic Container Registry (ECR), see [Using ECR for Private Images](tutorial-ecr-private-images).
+To follow a tutorial connecting a sample app to an Amazon Elastic Container Registry (ECR), see [Tutorial: Using ECR for Private Images](tutorial-ecr-private-images).
 
 To configure access to your private images in an external registry:
 
@@ -179,4 +179,4 @@ The app manager supports image digests only for online (Internet-connected) inst
 
 ## Related Topic
 
-[Using ECR for Private Images](tutorial-ecr-private-images)
+[Tutoiral: Using ECR for Private Images](tutorial-ecr-private-images)
