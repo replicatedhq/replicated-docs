@@ -19,12 +19,13 @@ const sidebars = {
   // But you can create a sidebar manually
 
   tutorialSidebar: [
-    'intro',
+
 
     {
       type: 'category',
       label: 'Getting Started',
       items: [
+        'intro',
         'intro-replicated',
         'vendor/tutorial-installing-without-existing-cluster',
         'vendor/tutorial-installing-with-existing-cluster',
