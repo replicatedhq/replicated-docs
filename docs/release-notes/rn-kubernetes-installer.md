@@ -10,9 +10,9 @@ Released on September 8, 2022
 
 ### New Features {#new-features-v2022-09-08-0}
 * Adds support for [Docker add-on](https://kurl.sh/docs/add-ons/docker) on Ubuntu 22.04.
-* Adds [Cert-Manager add-on](https://kurl.sh/docs/add-ons/cert-manager) 1.9.1.
+* Adds [Cert Manager add-on](https://kurl.sh/docs/add-ons/cert-manager) 1.9.1.
 * Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) 1.6.8.
-* Adds [Minio add-on](https://kurl.sh/docs/add-ons/minio) 2022-09-01T23-53-36Z.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) 2022-09-01T23-53-36Z.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) 0.58.0-39.11.0.
 
 ## v2022.09.01-1
