@@ -14,11 +14,10 @@ To create a vendor account:
     
     a. If registering with an email, the Activate account page opens and you will receive an activation code in your email.
 
-
-        :::note
-        To resend the code, click **Resend it**.
-        :::
-<br>  
+    :::note
+    To resend the code, click **Resend it**.
+    :::
+  
     b. Copy and paste the activation code into the text box and click **Activate**. Your account is now activated. 
 
 
