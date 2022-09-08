@@ -28,7 +28,7 @@ Replicated does _not_ inject any static values from the HelmChart custom resourc
 
 Because Replicated injects only templated values into the Helm chart `values.yaml` file, you can include templated values in the HelmChart custom resource when it is required to make a change that affects only Helm Install installations. And, you can include static values when it is required to make a change that affects only KOTS Install and Embedded Cluster installations.
 
-For steps on how to use templated and static values in the HelmChart custom resource `values` field, see the following procedures below:
+For steps on how to use templated and static values in the HelmChart custom resource `values` field to support all installation methods, see the following procedures:
 * [Delivering the Admin Console with your Application](#deliver-admin-console)
 * [Using Private Registries](#private-images)
 
