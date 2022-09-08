@@ -12,7 +12,6 @@ Released on September 8, 2022
 * Added Host Preflight check for supported Docker versions on Ubuntu 22.04.
 * Add [Cert-Manager add-on](https://kurl.sh/docs/add-ons/cert-manager) 1.9.1.
 * Add [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) 1.6.8.
-* Add [Contour add-on](https://kurl.sh/docs/add-ons/contour) 1.23.1.
 * Add [Minio add-on](https://kurl.sh/docs/add-ons/minio) 2022-09-01T23-53-36Z.
 * Add [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) 0.58.0-39.11.0.
 
