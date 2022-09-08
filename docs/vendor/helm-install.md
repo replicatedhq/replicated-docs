@@ -28,7 +28,7 @@ Replicated does _not_ inject any static values from the HelmChart custom resourc
 
 This means that you can include static values in the `values` field when it is required to make a change in the release that affects only KOTS Install and Embedded Cluster installations. For example, you might need to deliver a Helm chart dependency with your application for only helm CLI installations. You can use static values in the HelmChart custom resource `values` field to ensure that the dependency is excluded from the release for KOTS Install and Embedded Cluster installations.
 
-For steps on how to use templated and static values in the HelmChart custom resource `values` field to support all installation methods, see the following procedures:
+For examples of how to use templated and static values in the HelmChart custom resource `values` field to support all installation methods, see the following procedures:
 * [Delivering the Admin Console with your Application](#deliver-admin-console)
 * [Using Private Registries](#private-images)
 
