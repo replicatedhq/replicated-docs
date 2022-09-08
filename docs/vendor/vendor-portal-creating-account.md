@@ -11,15 +11,15 @@ To create a vendor account:
 
     The sign up page opens.
 3. Enter your email address or continue with Google authentication.
-    a. If registering with an email, you will receive an activation code.
+    
+    a. If registering with an email, the Activate account page opens and you will receive an activation code in your email.
 
-        An activation code is sent to the email address you registered with, and the Activate account page opens.
 
         :::note
         To resend the code, click **Resend it**.
         :::
 
-    b. Copy and paste the activation code into the text box, and click **Activate**. Your account is now activated. 
+    b. Copy and paste the activation code into the text box and click **Activate**. Your account is now activated. 
 
 
 4. The Create your team page is displayed. 
