@@ -20,13 +20,12 @@ const sidebars = {
 
   tutorialSidebar: [
 
-
+    'intro',
+    'intro-replicated',
     {
       type: 'category',
-      label: 'Getting Started',
+      label: 'Getting Started Tutorials',
       items: [
-        'intro',
-        'intro-replicated',
         'vendor/tutorial-installing-without-existing-cluster',
         'vendor/tutorial-installing-with-existing-cluster',
         'vendor/tutorial-installing-with-cli',
@@ -54,7 +53,6 @@ const sidebars = {
             type: 'category',
             label: 'Creating and Managing Releases',
             items: [
-              'vendor/repository-workflow-and-tagging-releases',
               'vendor/releases-creating-releases',
               {
                 type: 'category',
@@ -169,7 +167,14 @@ const sidebars = {
               },
               'vendor/releases-promoting',
               'vendor/releases-updating',
-              'vendor/tutorial-ci-cd-integration',
+              {
+                type: 'category',
+                label: 'Integrating with CI/CD',
+                items: [
+                  'vendor/repository-workflow-and-tagging-releases',
+                  'vendor/tutorial-ci-cd-integration',
+                ],
+              },
               'vendor/packaging-air-gap-excluding-minio',
             ],
           },
@@ -215,7 +220,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Tutorials',
+          label: 'Advanced Tutorials',
           items: [
             'vendor/tutorial-installing-air-gap-existing-cluster-gcp',
             'vendor/tutorial-ha-cluster-deploying',
