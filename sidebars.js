@@ -280,17 +280,18 @@ const sidebars = {
           label: 'Managing Backup and Restore',
           items: [
             'enterprise/snapshots-understanding',
-            'enterprise/snapshots-velero-cli-installing',
             {
               type: 'category',
-              label: 'Configuring Storage Destinations',
+              label: 'Configuring Backup Storage',
               items: [
-                'enterprise/snapshots-storage-destinations',
-                'enterprise/snapshots-configuring-nfs',
+                'enterprise/snapshots-config-workflow',
+                'enterprise/snapshots-velero-cli-installing',
                 'enterprise/snapshots-configuring-hostpath',
+                'enterprise/snapshots-configuring-nfs',
+                'enterprise/snapshots-storage-destinations',
+                'enterprise/snapshots-velero-installing-config',
               ],
             },
-            'enterprise/snapshots-velero-installing-config',
             'enterprise/snapshots-creating',
             'enterprise/snapshots-scheduling',
             'enterprise/snapshots-restoring-full',

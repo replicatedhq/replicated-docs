@@ -1,4 +1,4 @@
-# Configuring Storage Destinations
+# Configuring Other Storage Destinations
 
 This topic describes the supported storage destinations and how to configure them for use with the snapshots backup feature.
 

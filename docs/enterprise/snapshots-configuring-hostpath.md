@@ -2,11 +2,7 @@
 
 > Introduced in the Replicated app manager v1.33.0
 
-You can configure a host path as your snapshots storage destination.
-
-## About Kubernetes Installers
-
-Clusters provisioned by a Replicated Kubernetes installer can include the Velero add-on. If your vendor has provided this add-on, you do not need to install Velero and you can configure the storage destination in the admin console. For more information about using the admin console to configure host path storage, see [Changing to Host Path Storage using the Admin Console](changing-to-host-path-storage-using-the-admin-console).
+You can configure a host path as your storage destination for backups.
 
 ## Prerequisites
 
@@ -23,13 +19,13 @@ Complete the following items before you perform this task:
 
 ## Install Velero and Configure Host Path Storage
 
-In this procedure, you install Velero and configure your first storage destination.
+In this procedure, you install Velero and configure your initial storage destination.
 
 :::note
-If you already have Velero installed and want to update your storage destination, you can use the Replicated admin console. For more information about updating with the admin console, see [Changing to Host Path Storage using the Admin Console](changing-to-host-path-storage-using-the-admin-console).
+If you already have Velero installed and want to update your storage destination, you can update settings in admin console. For more information about updating settings, see [Updating Host Path Settings in the Admin Console](#updating-host-path-settings-in-the-admin-console).
 :::
 
-To configure your first storage destination:
+To install Velero and configure a host path storage destination:
 
 1. Run the following command to run Velero with restic in the Velero namespace:
 
@@ -37,24 +33,24 @@ To configure your first storage destination:
   kubectl get pods -n velero
   ```
 
-  **Example output:**
-
-
 1. Run the following command to configure the Velero namespace and storage destination in the application. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
 
   ```
   kubectl kots velero configure-hostpath --namespace NAME --hostpath /PATH
   ```
 
-  Replace PATH with the path to the location where the backups will be stored.
+    Replace:
 
-  **Example:**
+    - NAME with the name of the namespace where the admin console is installed and running
+    - PATH with the path to the location where the backups will be stored
 
-  ```
-  kubectl kots velero configure-hostpath --namespace default --hostpath /backups
-  ```
+    **Example:**
 
-  You will get a message that the file system configuration for the admin console is successful, but that no Velero installation has been detected. Creadentials and instructions are displayed for installing Velero.
+    ```
+    kubectl kots velero configure-hostpath --namespace default --hostpath /backups
+    ```
+
+  You will get a message that the file system configuration for the admin console is successful, but that no Velero installation has been detected. Credentials and instructions are displayed for installing Velero.
 
 1. Run the following commands on the cluster to make the credentials available:
 
@@ -119,19 +115,19 @@ To configure your first storage destination:
 1. Configure Velero namespace access and default memory limits, if needed. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
 
 
-## Change to Host Path Storage using the Admin Console
+## Updating Host Path Settings in the Admin Console
 
-If you want to make changes to an existing host path storage configuration or want to change to the host path type from another storage type, you can use the admin console.
+If you want to update your host path settings or want to change to another storage destination, you can use the admin console.
 
-If you used a Kubernetes installer that included the Velero add-on, then an internal storage destination was created for you by default during the installation. However, the internal storage is not sufficient for full backups and Replicated recommends that you configure a storage destination. You can do this in the admin console.
+If you used a Kubernetes installer that included the Velero add-on, then an internal storage destination was created by default during the installation. However, the internal storage is not sufficient for full backups and you must configure a storage destination.
 
-To update or change to host path storage:
+To update host path settings:
 
 1. Ensure that you meet the host path prerequisites. See [Prerequisites](snapshots-configuring-hostpath#prerequisites).
 
 1. In the admin console, select **Snapshots** > **Settings and Schedule**.
 
-1. From the **Destonation** dropdown list, select to **Host Path**.
+1. From the **Destination** dropdown list, select **Host Path**.
 
   ![Snapshot Destination Dropdown Host Path](/images/snapshot-destination-dropdown-hostpath.png)
 
@@ -144,10 +140,9 @@ To update or change to host path storage:
 
 ## Next Steps
 
-- Configure Velero namespace access and default memory limits, if needed. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
-- Create or schedule backups. See [Creating Backups](snapshots-creating) and [Scheduling Automatic Backups](snapshots-scheduling).
+Next, you can create or schedule backups. See [Creating Backups](snapshots-creating) and [Scheduling Automatic Backups](snapshots-scheduling).
 
 ## Additional Resources
 
-* [How to Set Up Snapshots](snapshots-understanding)
+* [How to Set Up Backup Storage](snapshots-understanding)
 * [Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)

@@ -1,6 +1,6 @@
 # Installing the Velero CLI
 
-Before you install Velero and configure a storage destination for Replicated backup and restore, you must install the Velero CLI.
+You install the Velero CLI before installing Velero and configuring a storage destination for backups. If your installation used a Kubernetes installer with a Velero add-on, you can skip ahead to configuring a storage destination.
 
 ## Prerequisites
 
@@ -8,7 +8,7 @@ Before you install Velero and configure a storage destination for Replicated bac
 
 ## Install the Velero CLI in an Online Cluster
 
-Online environments include admin console installation in existing clusters and Kubernetes installer provisioned clusters.
+Online environments include installation on existing clusters and clusters provisioned by a Kubernetes installer.
 
 To install the Velero CLI in an online cluster:
 
@@ -42,8 +42,9 @@ curl -LO https://github.com/vmware-tanzu/velero/releases/download/VERSION/velero
   ```
 
   **Example:**
-
+  ```
   tar zxvf velero-v1.9.1-linux-amd64.tar.gz
+  ```
 
 1. Run the following command to install the Velero CLI:
 
