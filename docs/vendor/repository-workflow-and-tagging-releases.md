@@ -17,4 +17,4 @@ The recommended workflow is:
 
 ## Related Topic
 
-[Integrating with an Existing CI/CD Platform](tutorial-ci-cd-integration)
+[Tutorial: Integrating with an Existing CI/CD Platform](tutorial-ci-cd-integration)
