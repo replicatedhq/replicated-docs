@@ -2,19 +2,6 @@
 
 This topic describes the supported storage destinations and how to configure them for use with the snapshots backup feature.
 
-## Supported Storage Providers
-
-You can use a storage provider that is compatible with Velero as the storage destination for backups created with the Replicated snapshots feature. For a list of the compatible storage providers, see [Providers](https://velero.io/docs/v1.9/supported-providers/) in the Velero documentation.
-
-The Replicated admin console has built-in support for using the following as storage destinations for backups with the snapshots feature:
-
-* Amazon Web Services (AWS). See [AWS](#aws).
-* Google Cloud Platform (GCP). See [GCP](#gcp).
-* Microsoft Azure. See [Azure](#azure).
-* Ceph and MinIO S3-compatible object stores. See [S3-Compatible](#s3-compatible).
-* Network File System (NFS) servers. See [Configuring an NFS Storage Destination](snapshots-configuring-nfs).
-* Local host paths. See [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath).
-
 ### AWS
 
 When configuring the admin console to store snapshots on AWS, the following fields are available:
