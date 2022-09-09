@@ -4,7 +4,7 @@ The Replicated app manager supports working with private images stored in Amazon
 
 ## Objective
 
-The purpose of this tutorial is to walk you through a hello-world example on how to configure Replicated to pull images from a private registry in Amazon's Elastic Container Registry (ECR). This tutorial demonstrates the differences between using public and private images in Replicated. 
+The purpose of this tutorial is to walk you through how to configure Replicated to pull images from a private registry in Amazon's Elastic Container Registry (ECR). This tutorial demonstrates the differences between using public and private images in Replicated.
 
 ## Prerequisites
 
@@ -38,7 +38,12 @@ We are going to use the default NGINX deployment to create our application and t
 
 ### Create Sample Application and deploy the first release
 
-In this section, we cover at a high level the steps to create a new application and install it on a VM. As mentioned earlier, it is assumed that you have completed the Replicated product installation tutorials [without an existing cluster](tutorial-installing-without-existing-cluster) or the [using the CLI](tutorial-installing-with-cli), which cover these steps in detail.
+In this section, we cover at a high level the steps to create a new application and install it on a VM.
+
+For more detailed information about how to create and install an application, follow one of the following getting started tutorials:
+* [Packaging and Installing on an Existing Cluster](tutorial-installing-with-existing-cluster)
+* [Packaging and Installing on a Kubernetes Installer Cluster](tutorial-installing-without-existing-cluster)
+* [Managing Releases with the CLI](tutorial-installing-with-cli)
 
 To create our sample application follow these steps:
 

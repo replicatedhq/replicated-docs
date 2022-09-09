@@ -11,8 +11,8 @@ The Getting Started section includes an overview of the Replicated product as we
 
 To get started, see [What is Replicated?](intro-replicated) and complete the following introductory tutorials designed to help you learn the product:
 * [Managing Releases with the CLI](tutorial-installing-with-cli)
-* [Installing with an Existing Cluster](tutorial-installing-with-existing-cluster)
-* [Installing without an Existing Cluster](tutorial-installing-without-existing-cluster)
+* [Packaging and Installing on an Existing Cluster](tutorial-installing-with-existing-cluster)
+* [Packaging and Installing on a Kubernetes Installer Cluster](tutorial-installing-without-existing-cluster)
 
 ## About the Replicated Documentation
 

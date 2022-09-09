@@ -302,4 +302,4 @@ To check for updates manually:
 
 ## Next Step
 
-Now that you are familiar with the basics, we recommend that you run through the tutorial for [installing with the CLI](tutorial-installing-with-cli) to start [managing your release YAML in a git repo](repository-workflow-and-tagging-releases).
+Now that you are familiar with the basics, we recommend that you run through the tutorial for [managing releases with the CLI](tutorial-installing-with-cli) to start [managing your release YAML in a git repo](repository-workflow-and-tagging-releases).

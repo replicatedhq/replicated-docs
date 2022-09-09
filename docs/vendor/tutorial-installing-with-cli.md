@@ -2,7 +2,7 @@
 
 This tutorial helps you use Replicated app manager to quickly deploy, install, and iterate with a sample Kubernetes application using a CLI-based workflow.
 
-For a more conceptual overview before using the CLI tools, you can start with the tutorial for [installing a sample application without an existing cluster](tutorial-installing-without-existing-cluster).
+For a more conceptual overview before using the CLI tools, you can start with the [Packaging and Installing on a Kubernetes Cluster](tutorial-installing-without-existing-cluster) tutorial.
 
 To deploy the sample application, follow these steps:
 
