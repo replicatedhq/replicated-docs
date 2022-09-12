@@ -11,16 +11,16 @@ Released on September 12, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### New Features {#new-features-1-84-0}
-* Added ability to configure and deploy pending updates when Admin Console is running in [Helm managed mode (Alpha)](/vendor/helm-install).
-* Added support for including custom font files in an application release (Alpha). To enable this feature on your account, log in to your vendor portal account. Select Support > Request a feature, and submit a feature request for "admin console branding".
+* Adds ability to configure and deploy pending updates when Admin Console is running in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Adds support for including custom font files in an application release (Alpha). To enable this feature on your account, log in to your vendor portal account. Select Support > Request a feature, and submit a feature request for "admin console branding".
 
 ### Improvements {#improvements-1-84-0}
-* Updated the MinIO image to address CVE-2022-2526 with high severity.
-* Updated the github.com/gin-gonic/gin module in the kurl-proxy image used for embedded cluster installations, to resolve CVE-2020-28483 with high severity.
-* Updated SchemaHero to v0.13.2 to resolve CVE-2022-21698.
+* Updates the MinIO image to address CVE-2022-2526 with high severity.
+* Updates the github.com/gin-gonic/gin module in the kurl-proxy image used for embedded cluster installations, to resolve CVE-2020-28483 with high severity.
+* Updates SchemaHero to v0.13.2 to resolve CVE-2022-21698.
 
 ### Bug Fixes {#bug-fixes-1-84-0}
-* Updated the provided support-bundle CLI command to use the generated Kubernetes resources instead of raw upstream spec when running in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Updates the provided support-bundle CLI command to use the generated Kubernetes resources instead of raw upstream spec when running in [Helm managed mode (Alpha)](/vendor/helm-install).
 * Fixes an issue that caused secrets and config maps created outside of Helm to be left over in the namespace after Helm chart is uninstalled in [Helm managed mode (Alpha)](/vendor/helm-install).
 * Fixes an issue where application [status informers](/vendor/admin-console-display-app-status) would not update if the Admin Console pod was restarted.
 * Fixes an issue where a user could navigate to `/secure-console` when already logged in.
