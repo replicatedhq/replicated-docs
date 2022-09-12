@@ -16,9 +16,9 @@ To update storage destination settings:
 
 1. In the admin console, select **Snapshots** > **Settings and Schedule**.
 
-![Snapshot Destination Dropdown Host Path](/images/snapshot-destination-dropdown-hostpath.png)
-
 1. Under storage, you can edit the existing settings or click **Add a new storage destination** and select a storage destination type.
+
+  ![Snapshot Destination Dropdown Host Path](/images/snapshot-destination-dropdown-hostpath.png)
 
   The fields that display depend on the type of storage destination. See the following storage destination sections for field descriptions:
 
