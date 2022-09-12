@@ -138,7 +138,7 @@ To update host path settings:
 1. Click **Update storage settings**. This update can take a couple of minutes.
 
 
-## Next Steps
+## Next Step
 
 Next, you can create or schedule backups. See [Creating Backups](snapshots-creating) and [Scheduling Automatic Backups](snapshots-scheduling).
 

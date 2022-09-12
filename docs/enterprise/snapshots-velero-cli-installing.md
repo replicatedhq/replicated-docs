@@ -64,7 +64,11 @@ curl -LO https://github.com/vmware-tanzu/velero/releases/download/VERSION/velero
 
 ## Next Step
 
-Install Velero and configure a storage destination. The Velero installation commands include different flags for the different storage destinations. For more information about this step, see the Velero installation procedure for the storage destination that you want to use.
+Install Velero and configure a storage destination using one of the following procedures:
+
+- [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath)
+- [Configuring an NFS Storage Destination](snapshots-configuring-nfs)
+- [Configuring Other Storage Destinations](snapshots-storage-destinations)
 
 
 ## Additional resources
