@@ -23,7 +23,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 * Updates the provided support-bundle CLI command to use the generated Kubernetes resources instead of raw upstream spec when running in [Helm managed mode (Alpha)](/vendor/helm-install).
 * Fixes an issue that caused secrets and config maps created outside of Helm to be left over in the namespace after Helm chart is uninstalled in [Helm managed mode (Alpha)](/vendor/helm-install).
 * Fixes an issue where application [status informers](/vendor/admin-console-display-app-status) would not update if the Admin Console pod was restarted.
-* Fixes an issue where a user could navigate to `/secure-console` when already logged in.
+* Fixes an issue where a user that is logged in could navigate to `/secure-console` instead of being redirected to `/apps`.
 * Fixes an issue where KOTS fails to render Helm charts that have subcharts referenced as local file repositories.
 
 ## 1.83.0
