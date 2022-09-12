@@ -4,6 +4,18 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2022.09.12-0
+
+Released on September 12, 2022
+
+### New Features {#new-features-v2022-09-12-0}
+* Rook 1.0.x to 1.4.9 upgrades can now be completed in airgap clusters.
+* Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.84.0.
+
+### Bug Fixes {#bug-fixes-v2022-09-12-0}
+* [FEATURE] Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.21.0.
+* [BUG] [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) versions 0.21.0 or greater will now forcefully delete Envoy pods that change from a ready state to one where the Envoy container is not ready and have been in that state for at least 5 minutes. This has been added to work around a [known issue](https://github.com/projectcontour/contour/issues/3192) that may be caused by resource contention.
+
 ## Release v2022.09.08-1
 
 Released on September 8, 2022
