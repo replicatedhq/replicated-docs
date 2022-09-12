@@ -20,9 +20,9 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 * Updates SchemaHero to v0.13.2 to resolve CVE-2022-21698.
 
 ### Bug Fixes {#bug-fixes-1-84-0}
-* Updates the support-bundle CLI command provided in the admin console to use the generated Kubernetes resources instead of the raw upstream spec when running in Helm-managed mode (Alpha).
+* Updates the `support-bundle` CLI command provided in the admin console to use the generated Kubernetes resources instead of the raw upstream specification when running in Helm-managed mode (Alpha).
 * Fixes an issue that caused Secrets and ConfigMaps created by the admin console to be left in the namespace after a Helm chart is uninstalled in Helm-managed mode (Alpha).
-* Fixes an issue where application status informers did not update if the admin console pod was restarted.
+* Fixes an issue where application status informers did not update if the admin console Pod was restarted.
 * Fixes an issue where a user that is logged in could navigate to the login page instead of being redirected to the application dashboard.
 * Fixes an issue where the app manager failed to render Helm charts that have subcharts referenced as local file repositories.
 
