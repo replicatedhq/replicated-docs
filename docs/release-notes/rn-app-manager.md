@@ -4,6 +4,29 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.84.0
+
+Released on September 12, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### New Features {#new-features-1-84-0}
+* Adds ability to configure and deploy pending updates when Admin Console is running in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Adds support for including custom font files in an application release (Alpha). To enable this feature on your account, log in to your vendor portal account. Select Support > Request a feature, and submit a feature request for "admin console branding".
+
+### Improvements {#improvements-1-84-0}
+* Updates the MinIO image to address CVE-2022-2526 with high severity.
+* Updates the github.com/gin-gonic/gin module in the kurl-proxy image used for embedded cluster installations, to resolve CVE-2020-28483 with high severity.
+* Updates SchemaHero to v0.13.2 to resolve CVE-2022-21698.
+
+### Bug Fixes {#bug-fixes-1-84-0}
+* fix error handling bug frontend dashboard.
+* Updated the provided support-bundle CLI command to use the generated Kubernetes resources instead of raw upstream spec when running in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Fixes an issue that caused secrets and config maps created outside of Helm to be left over in the namespace after Helm chart is uninstalled in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Fixes an issue where application [status informers](/vendor/admin-console-display-app-status) would not update if the Admin Console pod was restarted.
+* Redirects user to /apps if they are already logged in.
+* Fixes an issue where KOTS fails to render Helm charts that have subcharts referenced as local file repositories.
+
 ## 1.83.0
 
 Released on September 1, 2022
