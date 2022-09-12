@@ -6,31 +6,35 @@ The vendor portal is the user interface where vendors define Kubernetes manifest
 
 To create a vendor account:
 
-1. Go to the [vendor portal](https://vendor.replicated.com), where you can log in or create an account.
-1. To create an account, select **Create a new team**.
+1. Go to the [vendor portal](https://vendor.replicated.com), and select **Sign up**.
 
-    The Start a trial page opens.
-1. Enter your name, email, and contact information.
-1. Create a password, and click **Getting Started**.
+    The sign up page opens.
+3. Enter your email address or continue with Google authentication.
+    
+    - If registering with an email, the Activate account page opens and you will receive an activation code in your email.
 
-    An activation code is sent to the email address you registered with, and the Activate account page opens.
+      :::note
+      To resend the code, click **Resend it**.
+      :::
+  
+    - Copy and paste the activation code into the text box and click **Activate**. Your account is now activated.
 
+4. On the Create your team page, enter you first name, last name, and company name. Click **Continue** to complete the setup. 
+    
     :::note
-    To resend the code, click **Resend it**.
+    The company name you provide is used as your team name in vendor portal.
     :::
 
-1. Copy and paste the activation code into the text box, and click **Activate**.
+     The Create application page opens.
 
-    The Create application page opens.
-
-1. Enter a name for the application, such as `My-Application-Demo`. Click **Create application**.
+5. Enter a name for the application, such as `My-Application-Demo`. Click **Create application**.
 
     The application is created and the Channels page opens.
 
    :::important
    Replicated recommends that you use a temporary name for the application at this time such as `My-Application-Demo` or `My-Application-Test`.
 
-   Only use an official name for your application, such as `My-Application`, when you have completed testing and are ready to distribute the application to your customers.
+   Only use an official name for your application when you have completed testing and are ready to distribute the application to your customers.
 
    Replicated recommends that you use a temporary application name for testing because you are not able to restore or modify previously-used application names or application slugs in the vendor portal.
    :::
@@ -38,6 +42,7 @@ To create a vendor account:
 # Next steps
 * Invite team members to collaborate with you in vendor portal. See [Invite Members](team-management#invite-members).
 * Complete a tutorial to package, distribute, and install a sample application. See:
+
    * [Managing Releases with the CLI](tutorial-installing-with-cli).
    * [Packaging and Installing on an Existing Cluster](tutorial-installing-with-existing-cluster).
    * [Packaging and Installing on a Kubernetes Installer Cluster](tutorial-installing-without-existing-cluster).

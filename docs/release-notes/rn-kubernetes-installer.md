@@ -4,7 +4,30 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
-## v2022.09.01-1
+## Release v2022.09.08-1
+
+Released on September 8, 2022
+
+### New Features {#new-features-v2022-09-08-1}
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.22.1.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-09-07T22-25-02Z.
+
+### Improvements {#improvements-v2022-09-08-1}
+* The [Cert Manager add-on](https://kurl.sh/docs/add-ons/cert-manager) now supports upgrading from 1.0.3 to 1.9.1.
+* The Rook 1.0 to 1.4 migration will now prompt the user to load images used by the migration on other nodes before starting.
+
+## Release v2022.09.08-0
+
+Released on September 8, 2022
+
+### New Features {#new-features-v2022-09-08-0}
+* Adds support for [Docker add-on](https://kurl.sh/docs/add-ons/docker) on Ubuntu version 22.04.
+* Adds [Cert Manager add-on](https://kurl.sh/docs/add-ons/cert-manager) version 1.9.1.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.8.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version 2022-09-01T23-53-36Z.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.58.0-39.11.0.
+
+## Release v2022.09.01-1
 
 Released on September 1, 2022
 
@@ -12,16 +35,16 @@ Released on September 1, 2022
 
 * Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.83.0.
 
-## v2022.09.01-0
+## Release v2022.09.01-0
 
 Released on September 1, 2022
 
 ### New Features {#new-features-v2022-09-01-0}
-* The [Rook add-on](https://kurl.sh/docs/add-ons/rook) can now be upgraded from 1.0.x to 1.4.x or 1.5.x as part of the installation script for internet-connected installations only. 
-  Upgrading from 1.0.x to 1.4.x or 1.5.x migrates data off of any hostpath-based OSDs in favor of block device-based OSDs, and performs a rolling upgrade through Rook 1.1.9, 1.2.7 and 1.3.11 before installing 1.4.9 (and 1.5.12 if applicable). 
-  The upstream Rook project introduced a requirement for block storage in versions 1.3.x and later. 
-* Adds [Docker add-on](https://kurl.sh/docs/add-ons/docker) version 20.10.17. 
-  Note that Ubuntu-22.04 only supports Docker version 20.10.17 and later.
+* The [Rook add-on](https://kurl.sh/docs/add-ons/rook) can now be upgraded from version 1.0.x to 1.4.x or 1.5.x as part of the installation script for internet-connected installations only.
+  Upgrading from version 1.0.x to 1.4.x or 1.5.x migrates data off of any hostpath-based OSDs in favor of block device-based OSDs, and performs a rolling upgrade through Rook versions 1.1.9, 1.2.7 and 1.3.11 before installing 1.4.9 (and 1.5.12 if applicable).
+  The upstream Rook project introduced a requirement for block storage in versions 1.3.x and later.
+* Adds [Docker add-on](https://kurl.sh/docs/add-ons/docker) version 20.10.17.
+  Note that Ubuntu version 22.04 only supports Docker version 20.10.17 and later.
 
 ### Bug Fixes {#bug-fixes-v2022-09-01-0}
 * Fixes an issue that causes migrations to fail from Docker to containerd due to uninstalled `docker-scan-plugin` package.
@@ -41,8 +64,8 @@ Released on August 25, 2022
 
 ### Improvements {#improvements-v2022-08-25-0}
 
-- Removes support for the BETA Local Path Provisioner Add-On. It is recommended to use the [OpenEBS](https://kurl.sh/docs/add-ons/openEBS#localpv) add-on for the LocalPV use case. 
-- The Rook [1.0 to 1.4 task](https://kurl.sh/docs/add-ons/rook#upgrades) will now print new lines when waiting for pods to be rolled out, OSDs to be added, or certain migrations to complete. Previously, one line was printed and then overwritten with updates. 
+- Removes support for the BETA Local Path Provisioner Add-On. It is recommended to use the [OpenEBS](https://kurl.sh/docs/add-ons/openEBS#localpv) add-on for the LocalPV use case.
+- The Rook [1.0 to 1.4 task](https://kurl.sh/docs/add-ons/rook#upgrades) will now print new lines when waiting for pods to be rolled out, OSDs to be added, or certain migrations to complete. Previously, one line was printed and then overwritten with updates.
 - Updates kurlsh/s3cmd image to tag 20220825-237c19d for latest [Registry](https://kurl.sh/docs/add-ons/registry) and [Velero](https://kurl.sh/docs/add-ons/velero) add-on versions to address the following critical and high severity CVEs: CVE-2022-37434
 
 ### Bug Fixes {#bug-fixes-v2022-08-25-0}
@@ -91,7 +114,7 @@ Released on August 19, 2022
 ### Bug Fixes {#bug-fixes-v2022-08-19-0}
 
 - Fixes an issue that causes Rook upgrades to fail on single node installations because of Rook MDS pod anti-affinity rules.
-- Fixes an issue that can cause a migration from Docker to Containerd to fail due to listing nodes using the incorrect Kubernetes api resource group. 
+- Fixes an issue that can cause a migration from Docker to Containerd to fail due to listing nodes using the incorrect Kubernetes api resource group.
 
 ## Release v2022.08.16-0
 
