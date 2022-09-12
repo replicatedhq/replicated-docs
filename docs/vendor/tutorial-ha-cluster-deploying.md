@@ -1,10 +1,10 @@
 # Deploying a High Availability Cluster
 
-In this guide, we will walk through the steps needed to enable Kubernetes high availability capabilities with a cluster installed by the Replicated Kubernetes installer and managed by the Replicated app manager. This only applies to Kubernetes installer-created cluster (embedded cluster) installations. (The Kubernetes installer is our commercial distribution of the kURL open source project).
+In this guide, we will walk through the steps needed to enable Kubernetes high availability capabilities with a cluster installed by the Replicated Kubernetes installer and managed by the Replicated app manager. This only applies to Kubernetes installer-created cluster (embedded cluster) installations. The Kubernetes installer is our commercial distribution of the kURL open source project.
 
 ## Objective
 
-As with the rest of the guides, this is meant as a 'hello world' example to help get you familiarized with the process of standing up a highly available Kubernetes cluster using the Replicated toolset. The architecture we will follow is presented below:
+This is meant to help get you familiarized with the process of standing up a highly available Kubernetes cluster using the Replicated toolset. The architecture we will follow is presented below:
 
 ![Architecture](/images/guides/kots/ha-cluster-architecture.png)
 
@@ -26,7 +26,7 @@ There are a few things to keep in mind about this guide:
 
 - In the example commands and screenshots, we are using a sample application called `AppDirect`. For more information, see [Sample Application](#sample-application).
 
-- This is an advanced topic, and assumes that you have already completed one of the Replicated installation tutorials, such as [Installing without an existing cluster](tutorial-installing-without-existing-cluster), and have already a level of familiarity with Replicated.
+- This is an advanced topic that assumes you have a level of familiarity with Replicated. If you are not yet familiar with Replicated, first complete one of the getting started tutorials, such as [Packaging and Installing on a Kubernetes Installer Cluster](tutorial-installing-without-existing-cluster).
 
 
 ### Sample application

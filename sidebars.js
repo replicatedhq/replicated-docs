@@ -19,9 +19,19 @@ const sidebars = {
   // But you can create a sidebar manually
 
   tutorialSidebar: [
+
     'intro',
     'intro-replicated',
-
+    {
+      type: 'category',
+      label: 'Getting Started Tutorials',
+      items: [
+        'vendor/tutorial-installing-without-existing-cluster',
+        'vendor/tutorial-installing-with-existing-cluster',
+        'vendor/tutorial-installing-with-cli',
+        'vendor/tutorial-installing-air-gap',
+      ]
+    },
     {
       type: 'category',
       label: 'Vendor',
@@ -29,16 +39,6 @@ const sidebars = {
       items: [
         'vendor/distributing-workflow',
         'vendor/vendor-portal-creating-account',
-        {
-          type: 'category',
-          label: 'Quick Start Tutorials with Sample Applications',
-          items: [
-            'vendor/tutorial-installing-without-existing-cluster',
-            'vendor/tutorial-installing-with-existing-cluster',
-            'vendor/tutorial-installing-with-cli',
-            'vendor/tutorial-installing-air-gap',
-          ]
-        },
         'vendor/planning-questionnaire',
           {
             type: 'category',
@@ -53,7 +53,6 @@ const sidebars = {
             type: 'category',
             label: 'Creating and Managing Releases',
             items: [
-              'vendor/repository-workflow-and-tagging-releases',
               'vendor/releases-creating-releases',
               {
                 type: 'category',
@@ -66,6 +65,7 @@ const sidebars = {
                         'vendor/packaging-private-images',
                         'vendor/packaging-private-registry-cname',
                         'vendor/packaging-private-registry-security',
+                        'vendor/tutorial-ecr-private-images',
                     ],
                   },
                   {
@@ -112,6 +112,14 @@ const sidebars = {
                       'vendor/helm-airgap-builder',
                     ],
                   },
+                  {
+                    type: 'category',
+                    label: 'Adding Persistent Data Stores',
+                    items: [
+                      'vendor/database-config-adding-options',
+                      'vendor/tutorial-adding-db-config',
+                    ]
+                  },
                   'vendor/packaging-embedded-kubernetes',
                   'vendor/preflight-host-preflights',
                   'vendor/preflight-support-bundle-creating',
@@ -134,7 +142,7 @@ const sidebars = {
                       'vendor/admin-console-prometheus-monitoring',
                     ],
                   },
-                  'vendor/database-config-adding-options',
+
                   'vendor/packaging-ingress',
                   'vendor/packaging-custom-resources',
                   'vendor/packaging-kots-versions',
@@ -159,6 +167,14 @@ const sidebars = {
               },
               'vendor/releases-promoting',
               'vendor/releases-updating',
+              {
+                type: 'category',
+                label: 'Integrating with CI/CD',
+                items: [
+                  'vendor/repository-workflow-and-tagging-releases',
+                  'vendor/tutorial-ci-cd-integration',
+                ],
+              },
               'vendor/packaging-air-gap-excluding-minio',
             ],
           },
@@ -204,13 +220,10 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Tutorials',
+          label: 'Advanced Tutorials',
           items: [
             'vendor/tutorial-installing-air-gap-existing-cluster-gcp',
-            'vendor/tutorial-ecr-private-images',
             'vendor/tutorial-ha-cluster-deploying',
-            'vendor/tutorial-ci-cd-integration',
-            'vendor/tutorial-adding-db-config',
           ],
         },
       ],

@@ -1,8 +1,8 @@
-# Adding Database Configuration Options
+# About Adding Persistent Data Stores
 
 You can integrate persistent stores, such as databases, queues, and caches. There are options to give an end user, such as  embedding an instance alongside the application or connecting an application to an external instance that they will manage.
 
-For more information about integrating persistent datastores, see the the [persistent datastores tutorial](tutorial-adding-db-config).
+For more information about integrating persistent datastores, see [Tutorial: Adding Database Configuration Options](tutorial-adding-db-config).
 
 ## Managing Stateful Services
 

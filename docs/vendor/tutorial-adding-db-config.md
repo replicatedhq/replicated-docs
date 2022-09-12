@@ -1,4 +1,4 @@
-# Adding Database Configuration Options for your Application
+# Tutorial: Adding Database Configuration Options
 
 In this tutorial, we'll explore ways to give your end user the option to either embed a database instance with the application, or connect your application to an external database instance that they will manage.
 We'll use a PostgreSQL database as an example, configuring an example app to connect.
@@ -14,7 +14,12 @@ It is split into 5 sections:
 
 ### Prerequisites
 
-You should have completed one of the installation tutorials, such as [installing without an existing cluster](tutorial-installing-without-existing-cluster), as this guide assumes you have a running instance of `kotsadm` to iterate against in either an existing cluster or Replicated Kubernetes installer-created cluster, and a local git checkout of your application manifests.
+This guide assumes you have:
+
+* A running instance of the Replicated admin console (`kotsadm`) to iterate against in either an existing cluster or a Replicated Kubernetes installer-created cluster. If you do not have a running instance of the admin console on an existing or Kubernetes installer cluster, complete one of the following getting started tutorials to package and install a sample application:
+   * [Packaging and Installing on an Existing Cluster](tutorial-installing-with-existing-cluster)
+   * [Packaging and Installing on a Kubernetes Installer Cluster](tutorial-installing-without-existing-cluster)
+* A local git checkout of your application manifests.
 
 ### Accompanying Code Examples
 

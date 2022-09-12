@@ -1,4 +1,4 @@
-# Installing without an Existing Cluster
+# Packaging and Installing on a Kubernetes Installer Cluster
 
 This tutorial demonstrates packaging and installing a sample NGINX application in Kubernetes using a single virtual machine (VM).
 
@@ -142,10 +142,10 @@ To create the test server and install the app manager:
   Kotsadm: http://[ip-address]:8800
   Login with password (will not be shown again): [password]
   ```
-  
+
   :::note
   The login password displayed in the CLI output of the installation command is not shown again. Copy this password so that you can log in to the admin console in a later step of the installation process.
-  ::: 
+  :::
 
 1. Reload your shell to access the cluster with `kubectl`:
 
@@ -302,4 +302,4 @@ To check for updates manually:
 
 ## Next Step
 
-Now that you are familiar with the basics, we recommend that you run through the tutorial for [installing with the CLI](tutorial-installing-with-cli) to start [managing your release YAML in a git repo](repository-workflow-and-tagging-releases).
+Now that you are familiar with the basics, we recommend that you run through the tutorial for [managing releases with the CLI](tutorial-installing-with-cli) to start [managing your release YAML in a git repo](repository-workflow-and-tagging-releases).

@@ -2,9 +2,9 @@
 
 This tutorial shows how to install the Replicated app manager in an air gapped environment.
 
-The tutorial assumes that you have already completed one of the quick start tutorials and set up a non-air gapped cluster. See:
-* [Installing without an Existing Cluster](tutorial-installing-without-existing-cluster)
-* [Installing with an Existing Cluster](tutorial-installing-with-existing-cluster)
+The tutorial assumes that you have already completed one of the getting started tutorials and set up a non-air gapped cluster. See:
+* [Packaging and Installing on a Kubernetes Installer Cluster](tutorial-installing-without-existing-cluster)
+* [Packaging and Installing on an Existing Cluster](tutorial-installing-with-existing-cluster)
 * [Managing Releases with the CLI](tutorial-installing-with-cli)
 
 The air gap installation follows this process:
