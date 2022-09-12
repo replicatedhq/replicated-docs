@@ -46,4 +46,4 @@ To create a vendor account:
    * [Managing Releases with the CLI](tutorial-installing-with-cli).
    * [Packaging and Installing on an Existing Cluster](tutorial-installing-with-existing-cluster).
    * [Packaging and Installing on a Kubernetes Installer Cluster](tutorial-installing-without-existing-cluster).
-* Learn about how to package, test, iterate, and distribute your production application. See [How to Distribute a Production Application](distributing-workflow).
+* Learn about how to package, test, iterate, and distribute your production application. See [How to Package and Distribute a Production Application](distributing-workflow).
