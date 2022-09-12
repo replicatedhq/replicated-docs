@@ -52,7 +52,7 @@ To install Velero and configure a host path storage destination:
 
   You will get a message that the file system configuration for the admin console is successful, but that no Velero installation has been detected. Credentials and instructions are displayed for installing Velero.
 
-1. Run the following commands on the cluster to make the credentials available:
+1. Copy the credentials to a notepad. Then run the following commands on the cluster to make the credentials available:
 
     1. Copy the credentials into a notepad.
     1. Create a text file using a VIM editor and give it a name.

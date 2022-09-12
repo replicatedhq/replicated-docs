@@ -1,102 +1,69 @@
-# Configuring Other Storage Destinations
+# Updating Settings in the Admin Console
 
-This topic describes the supported storage destinations and how to configure them for use with the snapshots backup feature.
+This topic describes how to update existing storage destination settings using the Replicated admin console.
 
-## Install Velero on AWS
+## Prerequisite
 
-1. Following the instructions for [installing the AWS plug-in](https://github.com/vmware-tanzu/velero-plugin-for-aws#setup) in the AWS documentation.
+Make sure that you meet the prerequisites for the storage destination if you are changing from one provider to another provider.
 
-  The credentials look similar to this format:
+## Update Storage Settings
 
-  ```
-  [default]
-  aws_access_key_id = <access-key-id>
-  aws_secret_access_key = <secret-access-key>
-  ```
+After your initial configuration of a storage destination with the CLI, you can update storage destination settings at any time using the admin console.
 
-1. Copy the credentials to a notepad. Then run the following commands on the cluster to make the credentials available:
+Additionally, if you used a Kubernetes installer that included the Velero add-on, Replicated recommends that you change the default internal storage because it is not sufficient for full backups.
 
-    1. Create a text file using a VIM editor and give it a name.
+To update storage destination settings:
 
-      **Example:**
+1. In the admin console, select **Snapshots** > **Settings and Schedule**.
 
-      ```
-      vi cred.txt
-      ```
+![Snapshot Destination Dropdown Host Path](/images/snapshot-destination-dropdown-hostpath.png)
 
-    1. Copy and paste the credentials into the VIM editor, and enter:
+1. Under storage, you can edit the existing settings or click **Add a new storage destination** and select a storage destination type.
 
-      ```
-      :wq
-      ```
+  The fields that display depend on the type of storage destination. See the following storage destination sections for field descriptions:
 
-1. For the `velero install` command, use this command:
+    - [AWS](#aws-fields)
+    - [GCP](#gcp-fields)
+    - [Azure](#azure-fields)
+    - [S3-compatible](#s3-compatible-fields)
+    - [NFS](#nfs-fields)
+    - [Host Path](#host-path-fields)
 
-  ```
-  velero install
-     --provider aws
-     --plugins velero/velero-plugin-for-aws:v1.2.0
-     --bucket <bucket-name>
-     --backup-location-config region=<region>
-     --secret-file <aws-creds-file>
-     --use-restic --use-volume-snapshots=false
-  ```
-  Replace:
+1. Click **Update storage settings**. This update can take a couple of minutes.
 
-  - `<bucket-name>` with the name of the S3 bucket
-  - `<aws-cred-file>` with the credentials file name you created in the previous step
+### AWS Fields
 
-
-## Install Velero on GCP
-
-https://github.com/vmware-tanzu/velero-plugin-for-gcp#setup
-
-
-## Install Velero on Microsoft Azure
-
-https://github.com/vmware-tanzu/velero-plugin-for-microsoft-azure#setup
-
-
-
-## Install Velero on Another Storage Provider
-
-https://velero.io/docs/v1.6/supported-providers/
-
-
-
-### AWS
-
-When configuring the admin console to store snapshots on AWS, the following fields are available:
+When configuring the admin console to store backups on Amazon Web Services (AWS), the following fields are available:
 
 | Name                         | Description                                                                                                     |
 |------------------------------|-----------------------------------------------------------------------------------------------------------------|
 | Region                       | The AWS region that the S3 bucket is available in                                                               |
 | Bucket                       | The name of the S3 bucket to use                                                                                |
-| Path (Optional)              | The path in the bucket to store all snapshots in                                                                |
+| Path (Optional)              | The path in the bucket to store all backups in                                                                |
 | Access Key ID (Optional)     | The AWS IAM Access Key ID that can read from and write to the bucket                                            |
 | Secret Access Key (Optional) | The AWS IAM Secret Access Key that is associated with the Access Key ID                                         |
 | Use Instance Role            | When enabled, instead of providing an Access Key ID and Secret Access Key, Velero will use an instance IAM role |
 | Add a CA Certificate         | (Optional) Upload a third-party issued (proxy) CA certificate used for trusting the authenticity of the snapshot storage endpoint. Only one file can be uploaded. However, it is possible to concatenate multiple certificates into one file. **Formats:** PEM, CER, CRT, CA, and KEY          |
 
-### GCP
+### GCP Fields
 
-When configuring the admin console to store snapshots on GCP, the following fields are available:
+When configuring the admin console to store backups on Google Cloud Provide (GCP), the following fields are available:
 
 | Name            | Description                                                                                               |
 |-----------------|-----------------------------------------------------------------------------------------------------------|
 | Bucket          | The name of the GCP storage bucket to use                                                                 |
-| Path (Optional) | The path in the bucket to store all snapshots in                                                          |
+| Path (Optional) | The path in the bucket to store all backups in                                                          |
 | Service Account | The GCP IAM Service Account JSON file that has permissions to read from and write to the storage location |
 | Add a CA Certificate         | (Optional) Upload a third-party issued (proxy) CA certificate used for trusting the authenticity of the snapshot storage endpoint. Only one file can be uploaded. However, it is possible to concatenate multiple certificates into one file. **Formats:** PEM, CER, CRT, CA, and KEY          |
 
-### Azure
+### Azure Fields
 
-When configuring the admin console to store snapshots on a Azure, the following fields are available:
+When configuring the admin console to store backups on Microsoft Azure, the following fields are available:
 
 | Name                       | Description                                                                                                                                |
 |----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------|
 | Bucket                     | The name of the Azure Blob Storage Container to use                                                                                        |
-| Path (Optional)            | The path in the Blob Storage Container to store all snapshots in                                                                           |
+| Path (Optional)            | The path in the Blob Storage Container to store all backups in                                                                           |
 | Resource Group             | The Resource Group name of the target Blob Storage Container                                                                               |
 | Storage Account            | The Storage Account Name of the target Blob Storage Container                                                                              |
 | Subscription ID            | The Subscription ID associated with the target Blob Storage Container (required only for access via Service Principle or AAD Pod Identity) |
@@ -110,42 +77,37 @@ Only connections with Service Principles are supported at this time.
 
 For more information about authentication methods and setting up Azure, see [Velero plugins for Microsoft Azure](https://github.com/vmware-tanzu/velero-plugin-for-microsoft-azure) in the velero-plugin-for-microsoft-azure GitHub repository.
 
-### S3-Compatible
+### S3-Compatible Fields
 
 Replicated supports the following S3-compatible object stores for storing backups with Velero:
+
 * Ceph RADOS v12.2.7. For more information, see the [Ceph](https://docs.ceph.com/en/quincy/) documentation.
 * MinIO. For more information, see the [MinIO](https://docs.min.io/docs/minio-quickstart-guide.html) documentation.
 
-When configuring the admin console to store snapshots on S3-compatible storage, the following fields are available:
+When configuring the admin console to store backups on S3-compatible storage, the following fields are available:
 
 | Name                         | Description                                                                                                     |
 |------------------------------|-----------------------------------------------------------------------------------------------------------------|
 | Region                       | The AWS region that the S3 bucket is available in                                                               |
 | Endpoint                     | The endpoint to use to connect to the bucket                                                                    |
 | Bucket                       | The name of the S3 bucket to use                                                                                |
-| Path (Optional)              | The path in the bucket to store all snapshots in                                                                |
+| Path (Optional)              | The path in the bucket to store all backups in                                                                |
 | Access Key ID (Optional)     | The AWS IAM Access Key ID that can read from and write to the bucket                                            |
 | Secret Access Key (Optional) | The AWS IAM Secret Access Key that is associated with the Access Key ID                                         |
 | Use Instance Role            | When enabled, instead of providing an Access Key ID and Secret Access Key, Velero will use an instance IAM role |
 | Add a CA Certificate         | (Optional) Upload a third-party issued (proxy) CA certificate used for trusting the authenticity of the snapshot storage endpoint. Only one file can be uploaded. However, it is possible to concatenate multiple certificates into one file. **Formats:** PEM, CER, CRT, CA, and KEY          |
 
-### Network File System (NFS) {#nfs}
+### NFS Fields
 
-> Introduced in the Replicated app manager v1.33.0
+When configuring the admin console to store backups on network file system (NFS) storage, the following fields are available:
 
-* [Configuring an NFS Storage Destination](snapshots-configuring-nfs)
+| Name   | Description                                  |
+|--------|----------------------------------------------|
+| Server | The hostname or IP address of the NFS server |
+| Path   | The path that is exported by the NFS server  |
 
-### Host Path
+### Host Path Fields
 
-> Introduced in the app manager v1.33.0
+When configuring the admin console to store backups on host path storage, the following fields are available:
 
-* [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath)
-
-## Next Step
-
-After you configure a storage destination, you can create or schedule backups. For more information, see [Creating Backups](snapshots-creating) and [Scheduling Automatic Backups](snapshots-scheduling).
-
-## Additional Resources
-
-* [How to Set Up Snapshots](snapshots-understanding)
-* [Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)
+**Host path**: Enter the path to the directory on the node. Although the path can be local, Replicated recommends that you use an external host path.

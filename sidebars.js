@@ -289,6 +289,7 @@ const sidebars = {
                 'enterprise/snapshots-configuring-hostpath',
                 'enterprise/snapshots-configuring-nfs',
                 'enterprise/snapshots-storage-destinations',
+                `enterprise/snapshots-updating-with-admin-console`,
                 'enterprise/snapshots-velero-installing-config',
               ],
             },

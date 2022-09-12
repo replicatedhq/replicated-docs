@@ -26,7 +26,7 @@ You initially configure backups on a supported storage provider backend using th
 - Microsoft Azure
 - S3-Compatible
 - Network File System (NFS)
-- Hostpath
+- Host Path
 
 Kubernetes installers that include the Velero add-on also include a locally-provisioned object store. By default, Kubernetes installer clusters are preconfigured in the admin console to store backups in the locally-provisioned object store. This object store is sufficient for only rollbacks and downgrades and is not a suitable configuration for disaster recovery. Replicated recommends that you configure a snapshots storage destination that is external to the cluster in the admin console for Kubernetes installer clusters.
 

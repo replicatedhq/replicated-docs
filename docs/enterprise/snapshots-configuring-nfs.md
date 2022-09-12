@@ -11,14 +11,9 @@ Complete the following items before you perform this task:
 * Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _How to Set Up and Use Snapshots_.
 * Install the Velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).
 * The NFS server must be configured to allow access from all the nodes in the cluster.
-
 * The NFS directory must be writable by the user:group 1001:1001.
-
-   Ensure that you configure the user:group 1001:1001 permissions for the directory on the NFS server.
-
-* All the nodes in the cluster must have the necessary NFS client packages installed to be able to communicate with the NFS server.
-For example, the `nfs-common` package is a common package used on Ubuntu.
-
+* Ensure that you configure the user:group 1001:1001 permissions for the directory on the NFS server.
+* All the nodes in the cluster must have the necessary NFS client packages installed to be able to communicate with the NFS server. For example, the `nfs-common` package is a common package used on Ubuntu.
 * Any firewalls must be properly configured to allow traffic between the NFS server and clients (cluster nodes).
 
 ## Install Velero and Configure NFS Storage
@@ -51,9 +46,8 @@ To install Velero and configure an NFS storage destination:
 
     You will get a message that the file system configuration for the admin console is successful, but that no Velero installation has been detected. Credentials and instructions are displayed for installing Velero.
 
-1. Run the following commands on the cluster to make the credentials available:
+1. Copy the credentials to a notepad. Then run the following commands on the cluster to make the credentials available:
 
-    1. Copy the credentials into a notepad.
     1. Create a text file using a VIM editor and give it a name.
 
       **Example:**

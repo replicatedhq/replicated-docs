@@ -16,11 +16,11 @@ Complete the following procedures to configure the snapshots feature:
 
 1. Install the Velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).
 
-1. Install Velero and configure a storage destination using one of the following procedures. These procedures also explain how to update the storage destination if Velero is already installed.
+1. Install Velero and configure a storage destination using one of the following procedures.
 
     - [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath)
     - [Configuring an NFS Storage Destination](snapshots-configuring-nfs)
-    - [Configuring Other Storage Destinations](snapshots-storage destinations)
+    - [Configuring Other Storage Destinations](snapshots-storage-destinations)
 
 1. Enable access to the Velero namespace and optionally increase the default memory for the restic Pod. See [Configure Velero](snapshots-velero-installing-config).
 
