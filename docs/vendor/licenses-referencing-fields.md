@@ -40,8 +40,8 @@ You could define this limit by creating a `node_count` custom license field:
 To enforce the node count when a customer installs or updates your application,
 you can create a preflight check that references the `node_count` field:
 
-```
-apiVersion: troubleshoot.replicated.com/v1beta1
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
 kind: Preflight
 metadata:
   name: example-preflight-checks
