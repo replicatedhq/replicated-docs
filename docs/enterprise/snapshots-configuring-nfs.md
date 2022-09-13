@@ -40,7 +40,7 @@ To install Velero and configure an NFS storage destination:
     kubectl kots velero configure-nfs --namespace NAME --nfs-path PATH --nfs-server HOST
     ```
 
-    **Air Gap Command:**
+    <!--- **Air Gap Command:**
 
       ```bash
       kubectl kots velero configure-nfs \
@@ -52,35 +52,18 @@ To install Velero and configure an NFS storage destination:
         --registry-username ro-username \
         --registry-password ro-password
 
-      ```
+      ``` --->
     Replace:
 
     - NAME with the name of the namespace where the admin console is installed and running
     - PATH with the path that is exported by the NFS server
     - HOST with the hostname or IP address of the NFS server
-    - NAMESPACE with the name of the admin console namespace
 
     You get a message that the file system configuration for the admin console is successful, but that no Velero installation has been detected. Credentials and instructions are displayed for installing Velero.
 
-1. Copy the credentials to a notepad. Then run the following commands on the cluster to make the credentials available:
+1. Run the `velero install` command that displays in the previous step:
 
-    1. Create a text file using a VIM editor and give it a name.
-
-      **Example:**
-
-      ```
-      vi cred.txt
-      ```
-
-    1. Copy and paste the credentials into the VIM editor, and enter:
-
-      ```
-      :wq
-      ```
-
-1. Copy the `velero install` command that displays earlier in the terminal and paste it in a notepad.
-
-  **Example: Online Installation**
+  **Example:**
 
   ```
   velero install \
@@ -94,21 +77,6 @@ To install Velero and configure an NFS storage destination:
   ```
 
   Replace `PATH/TO/CREDENTIALS_FILE` with the path to the credentials file.
-
-1. Copy and paste the entire command from the notepad to the terminal, and run the command:
-
-  **Example: Online Installation**
-
-  ```
-  velero install \
-      --secret-file creds.txt \
-      --provider aws \
-      --plugins velero/velero-plugin-for-aws:v1.2.0 \
-      --bucket velero \
-      --backup-location-config region=minio,s3ForcePathStyle=true,s3Url=http://kotsadm-fs-minio.default:9000,publicUrl=http://HOST:PORT \
-      --snapshot-location-config region=minio \
-      --use-restic
-  ```
 
   A confirmation message displays that the installation is successful. You can go to the Snapshots tab admin console and see the storage destination is configured.
 
