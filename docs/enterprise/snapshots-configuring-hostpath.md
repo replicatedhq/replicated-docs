@@ -17,9 +17,9 @@ Complete the following items before you perform this task:
 
    You cannot change the permissions of a mounted network shared filesystem from the client side. To reassign the user:group to 1001:1001 for a directory that is already mounted, you must remount the directory. For example, for a CIFS mounted directory, specify the `uid=1001,gid=1001` mount options in the CIFS mount command.
 
-## Configure Host Path Storage
+## Configure Host Path Storage for Online Environments
 
-In this procedure, you install Velero and configure your initial storage destination.
+In this procedure, you install Velero and configure your initial storage destination in online environments.
 
 :::note
 If you already have Velero installed and want to update your storage destination, you can use the admin console instead. For more information, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).

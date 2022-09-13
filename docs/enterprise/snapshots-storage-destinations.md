@@ -6,9 +6,9 @@ This topic describes installing Velero and configuring storage for Amazon Web Se
 To configure host path or NFS as a storage destination, see [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath) and [Configuring an NFS Storage Destination](snapshots-configuring-nfs).
 :::
 
-## Configure AWS Storage
+## Configure AWS Storage for Online Environments
 
-In this procedure, you install Velero and configure your initial storage destination.
+In this procedure, you install Velero and configure your initial storage destination in online environments.
 
 :::note
 If you already have Velero installed and want to update your storage destination, you can use the admin console instead. For more information, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
@@ -35,9 +35,9 @@ To install Velero and configure an AWS storage destination:
 1. Configure Velero namespace access and default memory limits, if needed. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
 
 
-## Configure GCP Storage
+## Configure GCP Storage for Online Environments
 
-In this procedure, you install Velero and configure your initial storage destination.
+In this procedure, you install Velero and configure your initial storage destination in online environments.
 
 :::note
 If you already have Velero installed and want to update your storage destination, you can use the admin console instead. For more information, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
@@ -62,9 +62,9 @@ To install Velero and configure a GCP storage destination:
 
 1. Configure Velero namespace access and default memory limits, if needed. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
 
-## Configure Azure Storage
+## Configure Azure Storage for Online Environments
 
-In this procedure, you install Velero and configure your initial storage destination.
+In this procedure, you install Velero and configure your initial storage destination in online environments.
 
 :::note
 If you already have Velero installed and want to update your storage destination, you can use the admin console instead. For more information, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
@@ -91,14 +91,14 @@ To install Velero and configure an Azure storage destination:
 
 1. Configure Velero namespace access and default memory limits, if needed. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
 
-## Configure S3-Compatible Storage
+## Configure S3-Compatible Storage for Online Environments
 
 Replicated supports the following S3-compatible object stores for storing backups with Velero:
 
 - Ceph RADOS v12.2.7
 - MinIO
 
-In this procedure, you install Velero and configure your initial storage destination.
+In this procedure, you install Velero and configure your initial storage destination in online environments.
 
 :::note
 If you already have Velero installed and want to update your storage destination, you can use the admin console instead. For more information, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
