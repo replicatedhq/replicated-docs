@@ -4,7 +4,11 @@ This topic describes how to update existing storage destination settings using t
 
 ## Prerequisite
 
-Make sure that you meet the prerequisites for the storage destination if you are changing from one provider to another provider.
+Make sure that you meet the prerequisites for the storage destination if you are changing from one provider to another provider. For information about prerequisites, see:
+
+- [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath)
+- [Configuring an NFS Storage Destination](snapshots-configuring-nfs)
+- [Configuring Other Storage Destinations](snapshots-storage-destinations)
 
 ## Update Storage Settings
 

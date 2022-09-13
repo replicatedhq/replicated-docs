@@ -17,12 +17,12 @@ Complete the following items before you perform this task:
 
    You cannot change the permissions of a mounted network shared filesystem from the client side. To reassign the user:group to 1001:1001 for a directory that is already mounted, you must remount the directory. For example, for a CIFS mounted directory, specify the `uid=1001,gid=1001` mount options in the CIFS mount command.
 
-## Install Velero and Configure Host Path Storage
+## Configure Host Path Storage
 
 In this procedure, you install Velero and configure your initial storage destination.
 
 :::note
-If you already have Velero installed and want to update your storage destination, you can update settings in admin console. For more information about updating settings, see [Updating Host Path Settings in the Admin Console](#updating-host-path-settings-in-the-admin-console).
+If you already have Velero installed and want to update your storage destination, you can use the admin console instead. For more information, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
 :::
 
 To install Velero and configure a host path storage destination:
@@ -113,30 +113,6 @@ To install Velero and configure a host path storage destination:
   A confirmation message displays that the installation is successful. You can go to the Snapshots tab admin console and see the storage destination is configured.
 
 1. Configure Velero namespace access and default memory limits, if needed. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
-
-
-## Updating Host Path Settings in the Admin Console
-
-If you want to update your host path settings or want to change to another storage destination, you can use the admin console.
-
-If you used a Kubernetes installer that included the Velero add-on, then an internal storage destination was created by default during the installation. However, the internal storage is not sufficient for full backups and you must configure a storage destination.
-
-To update host path settings:
-
-1. Ensure that you meet the host path prerequisites. See [Prerequisites](snapshots-configuring-hostpath#prerequisites).
-
-1. In the admin console, select **Snapshots** > **Settings and Schedule**.
-
-1. From the **Destination** dropdown list, select **Host Path**.
-
-  ![Snapshot Destination Dropdown Host Path](/images/snapshot-destination-dropdown-hostpath.png)
-
-1. Enter the path to the directory on the node. Although the path can be local, Replicated recommends that you use an external host path.
-
-  ![Snapshot Destination Host Path Fields](/images/snapshot-destination-hostpath-field.png)
-
-1. Click **Update storage settings**. This update can take a couple of minutes.
-
 
 ## Next Step
 
