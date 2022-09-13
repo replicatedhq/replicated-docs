@@ -28,8 +28,6 @@ To install Velero and configure an NFS storage destination:
 
 1. Run the following command to configure the Velero namespace and storage destination in the application. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
 
-    **Online Command:**
-
     ```
     kubectl kots velero configure-nfs --namespace NAME --nfs-path PATH --nfs-server HOST
     ```
