@@ -21,6 +21,17 @@ spec:
   icon: https://support.io/img/logo.png
   releaseNotes: These are our release notes
   allowRollback: false
+  branding:
+    css:
+      body {
+        background-color: blue;
+        font-family: Disney, Verdana;    
+      }
+    fontFamily: Disney
+    sources:
+    - format: truetype
+       # data is a base64 encoded string
+       data: "AAEEAAALAI..."  
   kubectlVersion: ">=1.22.0 <1.25.0"
   kustomizeVersion: ">= 4.0.0"
   targetKotsVersion: "1.60.0"
@@ -54,6 +65,56 @@ The release notes for this version. These can also be set when promoting a relea
 
 ## allowRollback
 This defaults to `false`. Enable this flag to create a Rollback button on the end-customer Version History page. If an application is guaranteed not to introduce backwards-incompatible versions (such as through database migrations), the `allowRollback` flag can allow end users to easily roll back to previous versions. This will not revert any state, just the YAML manifests that are applied to the cluster.
+
+## branding
+
+The `branding` field includes fields that allow you to apply custom CSS and font families to the admin console.
+
+### css
+
+An optional string of valid CSS. This field supports a single line or multiline string.
+
+Any valid CSS in the `branding` field takes precedence over the default stylesheets included in the admin console.
+
+Replicated supports custom CSS branding for the following elements in the admin console:
+* [SUPPORTED CLASS]
+* [SUPPORTED CLASS]
+* [SUPPORTED CLASS]
+
+#### SUPPORTED CLASS NAME
+
+Customize CLASS NAME to edit the CSS for the following HTLM elements in the admin console:
+
+<table>
+  <tr>
+    <th>Element</th>
+    <th>Screenshot</th>
+  </tr>
+  <tr>
+    <td><code>p</code></td>
+    <td>Screenshot</td>
+  </tr>
+</table>
+
+#### SUPPORTED CLASS NAME
+
+Customize CLASS NAME to edit the CSS for the following HTLM elements in the admin console:
+
+<table>
+  <tr>
+    <th>Element</th>
+    <th>Screenshot</th>
+  </tr>
+  <tr>
+    <td><code>p</code></td>
+    <td>Screenshot</td>
+  </tr>
+</table>
+
+### fontFamily
+
+Include the source for custom font files. You can reference the font family included here in the custom CSS in the `branding.css` field to use fonts that may not be available on users’ systems.
+
 
 ## additionalNamespaces
 An optional array of namespaces as strings.
