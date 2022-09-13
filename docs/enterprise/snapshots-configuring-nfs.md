@@ -8,7 +8,7 @@ You can configure a Network File System (NFS) as your storage destination for ba
 
 Complete the following items before you perform this task:
 
-* Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _How to Set Up and Use Snapshots_.
+* Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _How to Set Up Backup Storage_.
 * Install the Velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).
 * The NFS server must be configured to allow access from all the nodes in the cluster.
 * The NFS directory must be writable by the user:group 1001:1001.
@@ -34,17 +34,33 @@ To install Velero and configure an NFS storage destination:
 
 1. Run the following command to configure the Velero namespace and storage destination in the application. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
 
+    **Online Command:**
+
     ```
     kubectl kots velero configure-nfs --namespace NAME --nfs-path PATH --nfs-server HOST
     ```
 
+    **Air Gap Command:**
+
+      ```bash
+      kubectl kots velero configure-nfs \
+        --nfs-server HOST \
+        --nfs-path PATH \
+        --namespace NAMESPACE \
+        --kotsadm-registry private.registry.host \
+        --kotsadm-namespace application-name \
+        --registry-username ro-username \
+        --registry-password ro-password
+
+      ```
     Replace:
 
     - NAME with the name of the namespace where the admin console is installed and running
     - PATH with the path that is exported by the NFS server
     - HOST with the hostname or IP address of the NFS server
+    - NAMESPACE with the name of the admin console namespace
 
-    You will get a message that the file system configuration for the admin console is successful, but that no Velero installation has been detected. Credentials and instructions are displayed for installing Velero.
+    You get a message that the file system configuration for the admin console is successful, but that no Velero installation has been detected. Credentials and instructions are displayed for installing Velero.
 
 1. Copy the credentials to a notepad. Then run the following commands on the cluster to make the credentials available:
 
@@ -62,13 +78,13 @@ To install Velero and configure an NFS storage destination:
       :wq
       ```
 
-1. Copy and paste the `velero install` command that displays earlier in the terminal into a notepad.
+1. Copy the `velero install` command that displays earlier in the terminal and paste it in a notepad.
 
   **Example: Online Installation**
 
   ```
   velero install \
-    --secret-file <path/to/credentials-file> \
+    --secret-file PATH/TO/CREDENTIALS_FILE \
     --provider aws \
     --plugins velero/velero-plugin-for-aws:v1.2.0 \
     --bucket velero \
@@ -76,19 +92,10 @@ To install Velero and configure an NFS storage destination:
     --snapshot-location-config region=minio \
     --use-restic
   ```
-  **Example: Air Gapped Installation**
 
-    ```bash
-    kubectl kots velero configure-nfs \
-      --nfs-server <hostname-or-ip> \
-      --nfs-path /path/to/directory \
-      --namespace <namespace> \
-      --kotsadm-registry private.registry.host \
-      --kotsadm-namespace application-name \
-      --registry-username ro-username \
-      --registry-password ro-password
-    ```
-1. Replace `<path/to/credentials-file>` with the path to the credentials file. Then copy and paste this entire command from the notepad to the terminal, and run the command:
+  Replace `PATH/TO/CREDENTIALS_FILE` with the path to the credentials file.
+
+1. Copy and paste the entire command from the notepad to the terminal, and run the command:
 
   **Example: Online Installation**
 

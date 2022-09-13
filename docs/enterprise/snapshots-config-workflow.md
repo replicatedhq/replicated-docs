@@ -7,7 +7,7 @@ This topic describes the process of setting up backup storage for the Replicated
 You must configure backup storage before you can create backups.
 
 :::note
-If your Kubernetes installer cluster includes the Velero add-on, you only have to configure the storage destination in the admin console and potentially configure the Velero installation. For more information, see step 3 and step 4 below.
+If your Kubernetes installer cluster was configures to install Velero for you, then you only have to configure the storage destination in the admin console and potentially configure the Velero. For more information, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console) and [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
 :::
 
 Complete the following procedures to configure the snapshots feature:

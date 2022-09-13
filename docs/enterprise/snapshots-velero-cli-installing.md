@@ -1,18 +1,22 @@
 # Installing the Velero CLI
 
-You install the Velero CLI before installing Velero and configuring a storage destination for backups. If your installation used a Kubernetes installer with a Velero add-on, you can skip ahead to configuring a storage destination.
+You install the Velero CLI before installing Velero and configuring a storage destination for backups.
+
+:::note
+If your Kubernetes installer cluster was configures to install Velero for you, then you only have to configure the storage destination in the admin console and potentially configure the Velero. For more information, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console) and [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
+:::
 
 ## Prerequisites
 
-- Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations).
+- Review the limitations and considerations. See [Limitations and Considerations](snapshots-config-workflow#limitations-and-considerations).
 
 ## Install the Velero CLI in an Online Cluster
 
-Online environments include installation on existing clusters and clusters provisioned by a Kubernetes installer.
+Online environments include installation on existing clusters and Kubernetes installer provisioned clusters.
 
 To install the Velero CLI in an online cluster:
 
-1. From a terminal, run an SSH command to access and authenticate to your cluster:
+1. From a terminal, run an SSH command to access and authenticate to your cluster.
 
     **Example: GKE Hosting**
 
@@ -25,7 +29,10 @@ To install the Velero CLI in an online cluster:
     Note the version number for the next step.
 
 1. Run the following command to download the latest Velero CLI version for the **Linux AMD 64** operating system to the cluster:
-curl -LO https://github.com/vmware-tanzu/velero/releases/download/VERSION/velero-VERSION-linux-amd64.tar.gz
+
+  ```
+  curl -LO https://github.com/vmware-tanzu/velero/releases/download/VERSION/velero-VERSION-linux-amd64.tar.gz
+  ```
 
   Replace VERSION with the version number using the format `vx.x.x`
 
@@ -60,7 +67,7 @@ curl -LO https://github.com/vmware-tanzu/velero/releases/download/VERSION/velero
   velero version
   ```
 
-  You might get an error message stating that there are no matches for the server version. This is fine, as long as you get a confirmation for the client version. After the Velero installation, you should see the server version also.
+  Using the `version` command, you can get an error message stating that there are no matches for the server version. This is acceptable, as long as you get a confirmation for the client version. After the Velero installation, you should see the server version also.
 
 ## Next Step
 
@@ -72,4 +79,4 @@ Install Velero and configure a storage destination using one of the following pr
 
 
 ## Additional resources
-- [How to Set Up Snapshots](snapshots-understanding)
+- [How to Set Up Backup Storage](snapshots-config-workflow)
