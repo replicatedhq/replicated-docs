@@ -24,7 +24,7 @@ To update storage destination settings:
 
   ![Snapshot Destination Dropdown Host Path](/images/snapshot-destination-dropdown-hostpath.png)
 
-  The fields that display depend on the type of storage destination. See the following storage destination sections for field descriptions:
+  The configuration fields that display depend on the type of storage destination. See the following storage destination sections for field descriptions:
 
     - [AWS](#aws-fields)
     - [GCP](#gcp-fields)
