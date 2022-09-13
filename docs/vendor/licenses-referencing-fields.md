@@ -41,7 +41,7 @@ To enforce the node count when a customer installs or updates your application,
 you can create a preflight check that references the `node_count` field:
 
 ```
-apiVersion: troubleshoot.replicated.com/v1beta1
+apiVersion: troubleshoot.sh/v1beta2
 kind: Preflight
 metadata:
   name: example-preflight-checks
