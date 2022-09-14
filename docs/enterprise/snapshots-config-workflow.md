@@ -2,19 +2,19 @@
 
 This topic describes the process of setting up backup storage for the Replicated snapshots feature.
 
-## Configuring Backup Storage
+## Configuring a Backup Storage Destination
 
-You must configure backup storage before you can create backups.
+You must configure a backup storage destination before you can create backups.
 
 Complete the following procedures to configure the snapshots feature:
 
 1. Review the limitations and considerations below. See [Limitations and Considerations](#limitations-and-considerations).
 
-1. (Kubernetes installer clusters) Go to the admin console Snapshots tab and check to see whether Velero was installed by the Kubernetes installer. Then do one of the following:
+1. (Kubernetes installer clusters) Go to the admin console Snapshots tab to see whether Velero was installed by the Kubernetes installer. Then do one of the following:
 
-    1. If Velero was installed, do the following steps only:
+    1. If Velero was installed, do the following two steps only to configure a storage destination:
 
-        - Update the default internasl storage settings in the admin console because internal storage is insufficient for full backups. See [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
+        - Update the default internal storage settings in the admin console because internal storage is insufficient for full backups. See [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
 
         - Enable access to the Velero namespace if you are using RBAC and optionally increase the default memory for the restic Pod. See [Configure Velero](snapshots-velero-installing-config).
 

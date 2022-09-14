@@ -18,10 +18,10 @@ Complete the following items before you perform this task:
 
 ## Configure NFS Storage for Online Environments
 
-In this procedure, you install Velero and configure your initial storage destination in online environments for either existing clusters or a Kubernetes installer clusters. In this procedure, you use the kots CLI to install Velero and configure your initial storage destination.
+In this procedure, you install Velero and configure your initial storage destination in online environments for either existing clusters or a Kubernetes installer clusters. This procedure uses the kots CLI to install Velero and configure your initial storage destination.
 
 :::note
-If you already have Velero installed and just want to update your storage destination, you can use the admin console instead. For more information about using the admin console to update storage settings, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
+If you already have Velero installed and just want to update your storage destination settings, you can use the admin console instead. For more information about using the admin console to update storage settings, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
 :::
 
 To install Velero and configure an NFS storage destination:
@@ -72,41 +72,40 @@ To install Velero and configure an NFS storage destination:
 
   A confirmation message displays that the installation is successful. You can go to the Snapshots tab admin console and see the storage destination is configured.
 
-1. Configure Velero namespace access and default memory limits, if needed. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
-
 ## Configure NFS Storage in the Admin Console
 
-For existing clusters, when the admin console and application are already installed, you can start in the admin console to install Velero and configure NFS storage. This alternative method gives print instructions to use the command line for the Velero installation.
+Alternatively, when the admin console and application are already installed, you can start in the admin console to install Velero and configure NFS storage.
 
 To install Velero and configure NFS storage for existing clusters:
 
-1. From the admin console, select the **Snapshots** > **Settings and Schedule**.
+1. From the admin console, click **Snapshots > Settings and Schedule**.
 
 1. Click **Add a new storage destination**.
 
   The Add a new destination dialog opens and shows instructions for setting up Velero with different providers.
 
-1. Click **NFS** as the storage provider.
+1. Click **NFS**.
 
   ![Snapshot Provider NFS](/images/snapshot-provider-nfs.png)
 
-  The Configure NFS dialog opens.
-
-1. Enter the NFS server hostname or IP Address, and the path that is exported by the NFS server. Click **Configure**.
+1. In the Configure NFS dialog, enter the NFS server hostname or IP Address, and the path that is exported by the NFS server. Click **Configure**.
 
   ![Snapshot Provider NFS Fields](/images/snapshot-provider-nfs-fields.png)
 
-  This step can take a few minutes. When the configuration is successful, the Next Steps dialog opens with a CLI command that will print out instructions on how to set up Velero with the deployed NFS configuration/components.
+  This step can take a few minutes. When the configuration is successful, the Next Steps dialog opens with a CLI command to print out instructions on how to set up Velero with the deployed NFS configuration/components.
+
+1. Run the command that displays in the previous step and follow the instructions to install Velero.
 
   ![Snapshot Provider File System Next Steps](/images/snapshot-provider-fs-next-steps.png)
 
-1. Follow the instructions from the CLI command in the previous step to install Velero.
 1. Return to the admin console and either click **Check for Velero** or refresh the page to verify that the Velero installation is detected.
 
+## Next Steps
 
-## Next Step
+Next, you can:
 
-Next, you can create or schedule backups. For more information, see [Creating Backups](snapshots-creating) and [Scheduling Automatic Backups](snapshots-scheduling).
+* Configure Velero namespace access and default memory limits, if needed. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
+* Create or schedule backups. See [Creating Backups](snapshots-creating) and [Scheduling Automatic Backups](snapshots-scheduling).
 
 ## Additional Resources
 

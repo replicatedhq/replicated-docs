@@ -79,11 +79,41 @@ To install Velero and configure a host path storage destination:
 
   A confirmation message displays that the installation is successful. You can go to the Snapshots tab admin console and see the storage destination is configured.
 
-1. Configure Velero namespace access and default memory limits, if needed. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
+## Configure Host Path Storage in the Admin Console
 
-## Next Step
+Alternatively, when the admin console and application are already installed, you can start in the admin console to install Velero and configure Host Path storage.
 
-Next, you can create or schedule backups. See [Creating Backups](snapshots-creating) and [Scheduling Automatic Backups](snapshots-scheduling).
+To install Velero and configure Host Path storage for existing clusters:
+
+1. From the admin console, click **Snapshots > Settings and Schedule**.
+
+1. Click **Add a new storage destination**.
+
+  The Add a new destination dialog opens and shows instructions for setting up Velero with different providers.
+
+1. Click **Host Path**.
+
+  ![Snapshot Provider NFS](/images/snapshot-provider-hostpath.png)
+
+1. In the Configure Host Path dialog, enter the path to the directory where the backups will be stored. Click **Configure**.
+
+  ![Snapshot Provider NFS Fields](/images/snapshot-provider-hostpath-field.png)
+
+  This step can take a few minutes. When the configuration is successful, the Next Steps dialog opens with a CLI command to print out instructions on how to set up Velero with the deployed host path configuration.
+
+1. Run the command that displays in the previous step and follow the instructions to install Velero.
+
+  ![Snapshot Provider File System Next Steps](/images/snapshot-provider-fs-next-steps.png)
+
+1. Return to the admin console and either click **Check for Velero** or refresh the page to verify that the Velero installation is detected.
+
+
+## Next Steps
+
+Next, you can:
+
+* Configure Velero namespace access and default memory limits, if needed. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
+* Create or schedule backups. See [Creating Backups](snapshots-creating) and [Scheduling Automatic Backups](snapshots-scheduling).
 
 ## Additional Resources
 
