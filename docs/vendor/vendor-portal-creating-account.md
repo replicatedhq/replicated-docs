@@ -19,6 +19,10 @@ To create a vendor account:
   
     - Copy and paste the activation code into the text box and click **Activate**. Your account is now activated.
 
+      :::note
+      Once your account is activated, you may have the option to join a team that you have an existing invite for or to [Auto-Join](/vendor/team-management#enable-users-to-auto-join-your-team) an existing team.
+      :::
+
 4. On the Create your team page, enter you first name, last name, and company name. Click **Continue** to complete the setup. 
     
     :::note
