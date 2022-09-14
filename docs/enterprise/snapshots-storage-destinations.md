@@ -16,7 +16,7 @@ Snapshots does not support Amazon Simple Storage Service (Amazon S3) buckets tha
 
 To install Velero and configure an AWS storage destination:
 
-1. Follow the instructions for [installing Velero with the AWS](https://github.com/vmware-tanzu/velero-plugin-for-aws#setup) in the Velero documentation.
+1. Follow the instructions for [installing Velero on AWS](https://github.com/vmware-tanzu/velero-plugin-for-aws#setup) in the Velero documentation.
 
 1. Run the `velero install` command with the additional flags `--use-restic` and `--use-volume-snapshots=false`:
 
@@ -41,7 +41,7 @@ In this procedure, you install Velero and configure your initial storage destina
 
 To install Velero and configure a GCP storage destination:
 
-1. Follow the instructions for [installing Velero with the GCP](https://github.com/vmware-tanzu/velero-plugin-for-gcp#setup) in the Velero documentation.
+1. Follow the instructions for [installing Velero on GCP](https://github.com/vmware-tanzu/velero-plugin-for-gcp#setup) in the Velero documentation.
 
 1. Run the `velero install` command with the additional flags `--use-restic` and `--use-volume-snapshots=false`:
 
@@ -64,7 +64,7 @@ In this procedure, you install Velero and configure your initial storage destina
 
 To install Velero and configure an Azure storage destination:
 
-1. Follow the instructions for [installing Velero with Azure](https://github.com/vmware-tanzu/velero-plugin-for-microsoft-azure#setup) in the Velero documentation.
+1. Follow the instructions for [installing Velero on Azure](https://github.com/vmware-tanzu/velero-plugin-for-microsoft-azure#setup) in the Velero documentation.
 
 1. Run the `velero install` command with the additional flags `--use-restic` and `--use-volume-snapshots=false`:
 

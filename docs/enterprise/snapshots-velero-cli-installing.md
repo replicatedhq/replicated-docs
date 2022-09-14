@@ -3,18 +3,18 @@
 You install the Velero CLI before installing Velero and configuring a storage destination for backups.
 
 :::note
-If your Kubernetes installer cluster was configures to install Velero for you, then you only have to configure the storage destination in the admin console and potentially configure the Velero. For more information, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console) and [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
+If your Kubernetes installer cluster was configures to install Velero for you, then you only have to configure the storage destination in the admin console and potentially configure Velero. For more information, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console) and [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
 :::
 
 ## Install the Velero CLI in an Online Cluster
 
-Online environments include installation on existing clusters and Kubernetes installer provisioned clusters.
+Online environments include installations on existing clusters and Kubernetes installer provisioned clusters.
 
 To install the Velero CLI in an online cluster:
 
 1. From a terminal, run an SSH command to access and authenticate to your cluster.
 
-    **Example: GKE Hosting**
+    **Example: GCP**
 
     ```
     gcloud compute ssh -–project PROJECT_NAME -–zone CLUSTER_ZONE CLUSTER_NAME
