@@ -2,9 +2,7 @@
 
 You can submit a support request with or without a support bundle using the Replicated vendor portal. Uploading a support bundle is secure and helps the Replicated support team troubleshoot your application faster.
 
-:::note
-Severity 1 issues are resolved 3 times faster when you submit a support bundle with your support request.
-:::
+Severity 1 issues are resolved three times faster when you submit a support bundle with your support request.
 
 If you or your customer are unable to generate a support bundle, you can submit the request without a support bundle and the support team will assist you.
 
