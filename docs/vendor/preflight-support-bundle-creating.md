@@ -17,7 +17,11 @@ the cluster before they install and upgrade your application. Thorough preflight
 
 * **Support bundles**: Support bundles let you collect and analyze troubleshooting data
 from customer environments to help you diagnose problems with application
-deployments. Customers generate support bundles from the Replicated admin console, where analyzers can immediately suggest solutions to common problems. Customers can also share support bundles with your support team from the admin console. Your support team can upload the support bundle to the Replicated vendor portal to view and interpret the analysis.
+deployments.
+
+  Customers generate support bundles from the Replicated admin console, where analyzers can immediately suggest solutions to common problems. Customers can also share support bundles with your support team from the admin console.
+
+  Your support team can upload the support bundle to the Replicated vendor portal to view and interpret the analysis, and open a support request ticket if needed. Severity 1 issues are resolved three times faster when submitted with support bundles.
 
 The following diagram illustrates the workflow for preflight checks and support bundles:
 
