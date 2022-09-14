@@ -58,6 +58,19 @@ Analyzer outcomes for preflight checks differ from the outcomes for support bund
 - Support bundles use analyzers to help identify potential problems. When a support bundle is uploaded to the Replicated vendor portal, it is extracted and automatically analyzed. The goal of this process is to surface known issues or hints of what might be a problem. Analyzers produce outcomes that contain custom messages to explain what the problem might be.
 
 
+## About Host Collectors and Analyzers in Support Bundles
+
+Host collectors and analyzers are designed to collect information that is not available from in-cluster collectors. Host collectors gather information directly from the host they are run on and do not have Kubernetes as a dependency. They gather information about the environment, such as CPU, memory, available block devices, and the operating system, which can be useful for debugging a Kubernetes cluster that is down. Host collectors and analyzers can also be useful for testing network connectivity and gathering the output of provided commands.
+
+### Known Limitations and Considerations
+
+- Although host collectors can technically be included in vendor support bundle specifications, Replicated recommends that you create a separate support bundle manifest file to specify host collectors and analyzers because host collectors are intended to run directly on the host using the CLI and not with KOTS. If host collectors run from KOTS, they are likely not to produce the desired result as they run in the context of the Kotsadm pod.
+
+- Root access is not required to run any of the host collectors. However, depending on what you want to collect, you must run the binary with elevated permissions. For example, if you run the `filesystemPerformance` host collector against `/var/lib/etcd` and the user running the binary does not have permissions on this directory, the collection process fails.
+
+- There is no method in Troubleshoot to run host collectors on remote nodes. If you have a multi-node Kubernetes cluster, you must run the support bundle binary on each node and generate a bundle for each.
+
+
 ## Define Preflight Checks
 
 You define preflight checks based on your application needs. Preflight checks are not included by default. This procedure provides a basic understanding and some key considerations to help guide you.
@@ -66,7 +79,7 @@ For more information about defining preflight checks, see [Preflight Checks](htt
 
 To define preflight checks:
 
-1. Create a Preflight custom resource manifest file (`kind: Preflight`).
+1. Create a Preflight custom resource manifest file (`kind: Preflight`) in your release.
 
       ```yaml
       apiVersion: troubleshoot.sh/v1beta2
@@ -142,7 +155,7 @@ This procedure provides a basic understanding and some key considerations to hel
 
 To customize a support bundle:
 
-1. Create a support bundle manifest file (`kind: SupportBundle`) in your release.
+1. Create a SupportBundle custom resource manifest file (`kind: SupportBundle`) in your release.
 1. Use one of the following support bundle template options to start populating your manifest file:
 
       - To add collectors to the default collectors, copy the following basic support bundle template to your manifest file. In this template, the collectors field is empty, so only the default collectors run until you customize this file.
