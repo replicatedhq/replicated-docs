@@ -29,7 +29,7 @@ The following diagram illustrates the workflow for preflight checks and support 
 
 As shown in the diagram above, preflight checks and support bundles first use collectors to collect data from various sources, including the cluster environment and the application. Then, built-in redactors censor any sensitive information from the collected data. Finally, analyzers review the post-redacted data to identify common problems. For more information, see [Collectors](#collectors), [Redactors](#redactors), and [Analyzers](#analyzers).
 
-Host collectors and analyzers also available and can be helpful to use for debugging when a Kubernetes cluster is down. For more information about host collectors and analyzers, see [Overview](https://troubleshoot.sh/docs/host-collect-analyze/overview/) in the Troubleshoot documentation.
+Host collectors and analyzers also available and can be helpful to use for debugging when a Kubernetes cluster is down. For more information, see [About Host Collectors and Analyzers in Support Bundles](#about-host-collectors-and-analyzers).
 
 Preflight checks and support bundles are based on the open-source Troubleshoot project, which is maintained by Replicated. For more information about specific types of collectors, analyzers, and redactors, see the [Troubleshoot](https://troubleshoot.sh/) documentation.
 
@@ -61,6 +61,8 @@ Analyzer outcomes for preflight checks differ from the outcomes for support bund
 ## About Host Collectors and Analyzers in Support Bundles
 
 Host collectors and analyzers are designed to collect information that is not available from in-cluster collectors. Host collectors gather information directly from the host they are run on and do not have Kubernetes as a dependency. They gather information about the environment, such as CPU, memory, available block devices, and the operating system, which can be useful for debugging a Kubernetes cluster that is down. Host collectors and analyzers can also be useful for testing network connectivity and gathering the output of provided commands.
+
+For more information, see [Overview](https://troubleshoot.sh/docs/host-collect-analyze/overview/) in the Troubleshoot documentation.
 
 ### Known Limitations and Considerations
 
