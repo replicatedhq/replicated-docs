@@ -44,6 +44,7 @@ To add a custom application icon:
    ```
 1. Click **Save Release**.
 
+
 ## Icon Image File Recommendations
 
 For your custom application icon to look best in the admin console, consider the following recommendations:
