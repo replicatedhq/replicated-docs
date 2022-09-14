@@ -49,17 +49,5 @@ To add a custom application icon:
 For your custom application icon to look best in the admin console, consider the following recommendations:
 
 * Use a PNG or JPG file.
-* Use a square image rather than a rectangular one. Application icons are contained to a bounding box, and a logo with a rectangular shape can appear small.
 * Use an image that is at least 250 by 250 pixels.
 * Export the image file at 2x.
-* When possible, use an icon or lettermark as the application icon rather than the full wordmark.
-
-   The following screenshot shows the full admin console wordmark logo that displays on the the login screen:
-
-   ![Kotsadm logo](/images/login-icon-large.png)
-
-    In the screenshot above, although the entire logo is visible it appears small because it is contained to the circle. Note that the admin console also displays this icon at about half of this size on other pages.
-
-    Instead, Replicated recommends that you use the smaller lettermark as the application icon. This smaller lettermark appears larger in the bounding boxes, as shown in the following screenshot:
-
-   ![Kotsadm lettermark logo](/images/login-icon-small.png)
