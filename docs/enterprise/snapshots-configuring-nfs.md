@@ -74,7 +74,7 @@ To install Velero and configure an NFS storage destination:
 
 1. Configure Velero namespace access and default memory limits, if needed. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
 
-## Configure NFS Storage for Existing Clusters in the Admin Console
+## Configure NFS Storage in the Admin Console
 
 For existing clusters, when the admin console and application are already installed, you can start in the admin console to install Velero and configure NFS storage. This alternative method gives print instructions to use the command line for the Velero installation.
 
@@ -82,19 +82,21 @@ To install Velero and configure NFS storage for existing clusters:
 
 1. From the admin console, select the **Snapshots** > **Settings and Schedule**.
 
-  A dialog opens and shows instructions for setting up Velero with different providers.
+1. Click **Add a new storage destination**.
 
-1. Click **NFS**as the storage provider.
+  The Add a new destination dialog opens and shows instructions for setting up Velero with different providers.
+
+1. Click **NFS** as the storage provider.
 
   ![Snapshot Provider NFS](/images/snapshot-provider-nfs.png)
 
-  A configuration dialog opens.
+  The Configure NFS dialog opens.
 
 1. Enter the NFS server hostname or IP Address, and the path that is exported by the NFS server. Click **Configure**.
 
   ![Snapshot Provider NFS Fields](/images/snapshot-provider-nfs-fields.png)
 
-  This step might take a few minutes, so please be patient. When the configuration is successful, a different dialog opens with a CLI command that will print out instructions on how to set up Velero with the deployed NFS configuration/components.
+  This step can take a few minutes. When the configuration is successful, the Next Steps dialog opens with a CLI command that will print out instructions on how to set up Velero with the deployed NFS configuration/components.
 
   ![Snapshot Provider File System Next Steps](/images/snapshot-provider-fs-next-steps.png)
 
