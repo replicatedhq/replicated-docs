@@ -10,14 +10,14 @@ see [Overview of Installing an Application with the App Manager](../enterprise/i
 
 To install your application, your customer must upload a valid license file. This section describes how to download a license file for online or air gap installations so that you can share it with your customer.
 
-### Download Online License
+### Download Online Licenses
 
 To download a license file for online installations:
 
 1. In the [vendor portal](https://vendor.replicated.com), open the Customers page.
 1. Click the download license icon on the right side of a customer row.
 
-### Download Air Gap License {#air-gap-license}
+### Download Air Gap Licenses {#air-gap-license}
 
 The air gap license option lets you install the `.airgap` bundle. Without this enabled, you cannot use the `.airgap` bundle.
 
