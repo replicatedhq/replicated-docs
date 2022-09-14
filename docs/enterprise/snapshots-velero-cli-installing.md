@@ -6,10 +6,6 @@ You install the Velero CLI before installing Velero and configuring a storage de
 If your Kubernetes installer cluster was configures to install Velero for you, then you only have to configure the storage destination in the admin console and potentially configure the Velero. For more information, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console) and [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
 :::
 
-## Prerequisites
-
-- Review the limitations and considerations. See [Limitations and Considerations](snapshots-config-workflow#limitations-and-considerations).
-
 ## Install the Velero CLI in an Online Cluster
 
 Online environments include installation on existing clusters and Kubernetes installer provisioned clusters.

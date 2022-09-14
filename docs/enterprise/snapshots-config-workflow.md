@@ -7,12 +7,12 @@ This topic describes the process of setting up backup storage for the Replicated
 You must configure backup storage before you can create backups.
 
 :::note
-If your Kubernetes installer cluster was configures to install Velero for you, then you only have to configure the storage destination in the admin console and potentially configure the Velero. For more information, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console) and [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
+If your Kubernetes installer cluster was configured to install Velero for you, then you only have to configure the storage destination in the admin console and potentially configure the Velero. For more information, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console) and [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
 :::
 
 Complete the following procedures to configure the snapshots feature:
 
-1. Review the limitations and considerations. See [Limitations and Considerations](#limitations-and-considerations).
+1. Review the limitations and considerations below. See [Limitations and Considerations](#limitations-and-considerations).
 
 1. Install the Velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).
 
@@ -34,7 +34,7 @@ Complete the following procedures to configure the snapshots feature:
 
 - Snapshots can be restored only to clusters that use the same installation method as the cluster the snapshot was taken from. For example, online cluster snapshots must be restored to an online cluster.
 
-- Snapshots does not support AWS S3 buckets that have a bucket policy requiring the server-side encryption header. If you want to require server-side encryption for objects, you can enable default encryption on the bucket instead.
+- Snapshots does not support Amazon Simple Storage Service (Amazon S3) buckets that have a bucket policy requiring the server-side encryption header. If you want to require server-side encryption for objects, you can enable default encryption on the bucket instead. For more information about Amazon S3, see the [Amazon S3](https://docs.aws.amazon.com/s3/?icmpid=docs_homepage_featuredsvcs) documentation.
 
 - Use the Snapshots tab in the admin console to cleanup and remove snapshots. Otherwise, removing data from the snapshot storage itself results in data corruption and the loss of snapshots.
 

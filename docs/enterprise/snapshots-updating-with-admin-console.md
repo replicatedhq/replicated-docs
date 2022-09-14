@@ -3,8 +3,7 @@
 This topic describes how to update existing storage destination settings using the Replicated admin console.
 
 ## Prerequisite
-
-Make sure that you meet the prerequisites for the storage destination if you are changing from one provider to another provider. For information about prerequisites, see:
+If you are changing from one provider to another provider, make sure that you meet the prerequisites for the storage destination. For information about prerequisites, see:
 
 - [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath)
 - [Configuring an NFS Storage Destination](snapshots-configuring-nfs)
@@ -12,9 +11,9 @@ Make sure that you meet the prerequisites for the storage destination if you are
 
 ## Update Storage Settings
 
-After your initial configuration of a storage destination with the CLI, you can update storage destination settings at any time using the admin console.
+After your installation of Velero and initial configuration of a storage destination with the CLI, you can update storage destination settings using the admin console.
 
-Additionally, if you used a Kubernetes installer that included the Velero add-on, Replicated recommends that you change the default internal storage because it is not sufficient for full backups.
+If you used a Kubernetes installer that included the Velero installation automatically, Replicated recommends that you change the default internal storage because it is not sufficient for full backups.
 
 To update storage destination settings:
 

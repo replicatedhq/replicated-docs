@@ -22,7 +22,7 @@ Complete the following items before you perform this task:
 In this procedure, you install Velero and configure your initial storage destination in online environments.
 
 :::note
-If you already have Velero installed and want to update your storage destination, you can use the admin console instead. For more information, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
+If you already have Velero installed and want to update your storage destination, you can use the admin console instead. In this procedure, you use the kots CLI to install Velero and configure your initial storage destination in online environments. For more information about using the admin console to update storage settings, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
 :::
 
 To install Velero and configure a host path storage destination:

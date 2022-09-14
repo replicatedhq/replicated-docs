@@ -2,17 +2,17 @@
 
 This topic describes installing Velero and configuring storage for Amazon Web Service (AWS), Google Cloud Provide (GCP), Microsoft Azure, and S3-compatible providers.
 
-:::note
 To configure host path or NFS as a storage destination, see [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath) and [Configuring an NFS Storage Destination](snapshots-configuring-nfs).
+
+:::note
+If you already have Velero installed and want to update your storage destination, you can use the admin console instead. In these procedures, you use the kots CLI to install Velero and configure your initial storage destination in online environments. For more information about using the admin console to update storage settings, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
 :::
 
 ## Configure AWS Storage for Online Environments
 
 In this procedure, you install Velero and configure your initial storage destination in online environments.
 
-:::note
-If you already have Velero installed and want to update your storage destination, you can use the admin console instead. For more information, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
-:::
+Snapshots does not support Amazon Simple Storage Service (Amazon S3) buckets that have a bucket policy requiring the server-side encryption header. If you want to require server-side encryption for objects, you can enable default encryption on the bucket instead. For more information about Amazon S3, see the [Amazon S3](https://docs.aws.amazon.com/s3/?icmpid=docs_homepage_featuredsvcs) documentation.
 
 To install Velero and configure an AWS storage destination:
 
@@ -39,10 +39,6 @@ To install Velero and configure an AWS storage destination:
 
 In this procedure, you install Velero and configure your initial storage destination in online environments.
 
-:::note
-If you already have Velero installed and want to update your storage destination, you can use the admin console instead. For more information, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
-:::
-
 To install Velero and configure a GCP storage destination:
 
 1. Follow the instructions for [installing Velero with the GCP](https://github.com/vmware-tanzu/velero-plugin-for-gcp#setup) in the Velero documentation.
@@ -65,10 +61,6 @@ To install Velero and configure a GCP storage destination:
 ## Configure Azure Storage for Online Environments
 
 In this procedure, you install Velero and configure your initial storage destination in online environments.
-
-:::note
-If you already have Velero installed and want to update your storage destination, you can use the admin console instead. For more information, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
-:::
 
 To install Velero and configure an Azure storage destination:
 
@@ -99,10 +91,6 @@ Replicated supports the following S3-compatible object stores for storing backup
 - MinIO
 
 In this procedure, you install Velero and configure your initial storage destination in online environments.
-
-:::note
-If you already have Velero installed and want to update your storage destination, you can use the admin console instead. For more information, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
-:::
 
 To install Velero and configure an S3-compatible storage destination:
 
