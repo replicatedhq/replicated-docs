@@ -2,9 +2,9 @@
 
 This tutorial shows how to install the Replicated app manager in an air gapped environment.
 
-The tutorial assumes that you have already completed one of the quick start tutorials and set up a non-air gapped cluster. See:
-* [Installing without an Existing Cluster](tutorial-installing-without-existing-cluster)
-* [Installing with an Existing Cluster](tutorial-installing-with-existing-cluster)
+The tutorial assumes that you have already completed one of the getting started tutorials and set up a non-air gapped cluster. See:
+* [Packaging and Installing on a Kubernetes Installer Cluster](tutorial-installing-without-existing-cluster)
+* [Packaging and Installing on an Existing Cluster](tutorial-installing-with-existing-cluster)
 * [Managing Releases with the CLI](tutorial-installing-with-cli)
 
 The air gap installation follows this process:
@@ -71,13 +71,24 @@ To install the Kubernetes installer bundle:
       curl -LS https://k8s.kurl.sh/bundle/$REPLICATED_APP.tar.gz -o $REPLICATED_APP.tar.gz
       ```
 
-    * To download the Kubernetes installer bundle for all other channels, use the suffix `-<channel_name>`:
+    * To download the Kubernetes installer bundle for all other channels:
+        1. Install the replicated CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
+        1. Run the following command to get the air gap URL:
 
-      ```shell
-      export REPLICATED_APP=<app_slug>
-      export REPLICATED_CHANNEL=<channel_name>
-      curl -LS https://k8s.kurl.sh/bundle/$REPLICATED_APP-$REPLICATED_CHANNEL.tar.gz -o $REPLICATED_APP-$REPLICATED_CHANNEL.tar.gz
-        ```
+          ```shell
+          replicated channel inspect CHANNEL_NAME
+          ```
+          Replace `CHANNEL_NAME` with the exact name of the channel, which can include uppercase letters or special characters, such as `Unstable` or `my-custom-channel`.
+
+          The output shows valid URLs for all three installation types. Copy the `curl` command with the air gap URL.
+
+        1. Run the `curl` command with the air gap URL that you copied in the previous step:
+
+          **Example:**
+
+          ```shell
+          curl -fSL https://k8s.kurl.sh/bundle/my-app-slug-unstable.tar.gz -o my-app-slug-unstable.tar.gz
+          ```
 
 1. Run `scp` for the `.tar.gz` file from the jumpbox to the air gapped node:
 

@@ -114,10 +114,14 @@ This option is applicable to existing clusters only.
 Allows minimal role-based access control (RBAC) to be used for a subset of customer installations. When set to `true`, the app manager supports creating a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding. Minimal RBAC is not used by default. It is only used when the `--use-minimal-rbac` flag is passed to the `kots install` command. For more information about RBAC, see [Namespace-scoped Access](../vendor/packaging-rbac/#namespace-scoped-access) in _Configuring Role-based Access Control_.
 
 ## ports
-These are extra ports (additional to the :8800 admin console port) that should be port-forwarded when running the `kots admin-console` command.
+These are extra ports (additional to the :8800 admin console port) that are port-forwarded when running the `kots admin-console` command.
+
+You can use the `ports` field to create a port-forward to a service that has a `ClusterIP` type. For clusters provisioned by the Kubernetes installer, you can also create a custom link to a service that has a `NodePort` type.
+
+For more information about configuring a custom link in Kubernetes installer clusters to a `NodePort` type service, see [Adding Buttons and Links](/vendor/admin-console-adding-buttons-links).
 
 ### serviceName
-The name of the service that has a `ClusterIP` type that should receive the traffic.
+The name of the service that has a `ClusterIP` type or `NodePort` type if using the Kubernetes installer, that should receive the traffic.
 
 ### servicePort
 The `ClusterIP` port to forward traffic to.

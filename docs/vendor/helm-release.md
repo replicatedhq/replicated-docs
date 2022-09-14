@@ -122,9 +122,9 @@ To package a Helm chart and add it to a release:
          # chart identifies the Helm chart from the .tgz
          # Replace CHART_NAME with the name of the chart from the .tgz
          # Replace CHART_VERSION with the version of the chart from the .tgz
-         chart:
-           name: CHART_NAME
-           chartVersion: CHART_VERSION
+           chart:
+             name: CHART_NAME
+             chartVersion: CHART_VERSION
 
            # helmVersion identifies the version of Helm used to render the chart.
            # Possible values are v2 or v3.

@@ -1,4 +1,4 @@
-# RBAC Resource Names 
+# RBAC Resource Names
 
 This a list of all available resource names for the Replicated vendor role-based access control (RBAC) policy:
 
@@ -55,6 +55,18 @@ Grants the holder permission to trigger airgap builds for the specified channel.
 ### kots/app/[:appId]/channel/[:channelId]/releases/airgap/download-url
 
 Grants the holder permission to get an airgap bundle download URL for any release on the specified channel.
+
+### kots/app/[:appId]/installers
+
+Grants the holder permission to view and create Kubernetes installers. For more information, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
+
+### kots/app/[:appId]/installer/promote
+
+Grants the holder permission to promote Kubernetes installers to a channel. For more information, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
+
+:::note
+The `kots/app/[:appId]/installer/promote` policy does not grant the holder permission to view and create installers. Users must be assigned both the `kots/app/[:appId]/installers` and `kots/app/[:appId]/installer/promote` policies to have permissions to view, create, and promote installers.
+:::  
 
 ### kots/app/[:appId]/license/create
 
@@ -173,6 +185,7 @@ Grants the holder permission to delete RBAC policies for the team.
 Grants the holder permission to create RBAC policies for the team.
 
 ### team/authentication/update
+
 
 Grants the holder permission to manage the following team authentication settings: multifactor authentication, Google authentication, Auto-join, and SAML authentication. 
 

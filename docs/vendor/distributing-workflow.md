@@ -17,8 +17,8 @@ Complete the following items before you perform this task:
 - Create your account in the Replicated vendor portal. See [Creating a Vendor Account](vendor-portal-creating-account).
 - (Recommended) Complete a tutorial to package, distribute, and install a sample application:
   * [Managing Releases with the CLI](tutorial-installing-with-cli).
-  * [Installing with an Existing Cluster](tutorial-installing-with-existing-cluster).
-  * [Installing without an Existing Cluster](tutorial-installing-without-existing-cluster).
+  * [Packaging and Installing on an Existing Cluster](tutorial-installing-with-existing-cluster).
+  * [Packaging and Installing on a Kubernetes Installer Cluster](tutorial-installing-without-existing-cluster).
 - (Recommended) Send a questionnaire to your customers to gather information about their environments. See [Customer Application Deployment Questionnaire](planning-questionnaire).
 
 ## Creating and Testing Your Initial Release
@@ -93,8 +93,8 @@ To iterate on the release of your production application:
         <th width="70%">Description</th>
       </tr>
       <tr>
-        <td><a href="database-config-adding-options">Add Database Configuration Options</a></td>
-        <td>Enable database options and set stateful services.</td>
+        <td><a href="database-config-adding-options">Adding Persistent Data Stores</a></td>
+        <td><p>Integrate persistent stores, such as databases, queues, and caches. </p><p>Add options for your users to either embed a database instance with the application, or connect your application to an external database instance that they manage.</p></td>
       </tr>
       <tr>
         <td><a href="admin-console-customize-app-icon">Customizing the Admin Console and Download Portal</a></td>

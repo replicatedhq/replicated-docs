@@ -1,13 +1,15 @@
-# Configuring a NFS
+# Configuring an NFS Storage Destination
 
 > Introduced in the Replicated app manager v1.33.0
 
-You can configure a Network File System (NFS) as your snapshots storage destination. For more information about snapshot storage destinations, see [Storage destinations](snapshots-storage-destinations).
+You can configure a Network File System (NFS) as your snapshots storage destination. For more information about snapshot storage destinations, see [Configuring Storage Destinations](snapshots-storage-destinations).
 
-## Requirements
+## Prerequisites
 
-The following are requirements for configuring a NFS as the storage destination:
+Complete the following items before you perform this task:
 
+* Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _How to Set Up and Use Snapshots_.
+* Install and configure Velero. See [Installing and Configuring Velero](snapshots-venerlo-installing-config).
 * The NFS server must be configured to allow access from all the nodes in the cluster.
 
 * The NFS directory must be writable by the user:group 1001:1001.
@@ -47,7 +49,7 @@ When configuring the admin console to store snapshots on an NFS server, the foll
 
 ## Existing Clusters
 
-If Velero is already installed in the cluster, follow the instructions in the [Configure NFS on Kubernetes installer-created clusters](#configure-nfs-on-kubernetes-installer-created-clusters) section above.
+If Velero is already installed in the cluster, follow the instructions in the [Configure NFS on Kubernetes Installer-created Clusters](#configure-nfs-on-kubernetes-installer-created-clusters) section above.
 
 If Velero is not yet installed in the cluster, then the first step would be to set up and deploy the necessary components that are going to be used to install and set up Velero with NFS.
 This can be done in two ways:
@@ -96,3 +98,12 @@ Once the configuration is successful, you'll be presented with a different dialo
 ![Snapshot Provider File System Next Steps](/images/snapshot-provider-fs-next-steps.png)
 
 After following the instructions from the above CLI command and successfully installing Velero, you can go back to the admin console and either click on the "Check for Velero" button to retry detecting Velero, or refresh the page.
+
+## Next Step
+
+After you configure a storage destination, you can create or schedule backups. For more information, see [Creating Backups](snapshots-creating) and [Scheduling Automatic Backups](snapshots-scheduling).
+
+## Additional Resources
+
+* [How to Set Up Snapshots](snapshots-understanding)
+* [Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)

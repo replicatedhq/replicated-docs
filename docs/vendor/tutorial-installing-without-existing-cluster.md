@@ -1,4 +1,4 @@
-# Installing without an Existing Cluster
+# Packaging and Installing on a Kubernetes Installer Cluster
 
 This tutorial demonstrates packaging and installing a sample NGINX application in Kubernetes using a single virtual machine (VM).
 
@@ -142,10 +142,10 @@ To create the test server and install the app manager:
   Kotsadm: http://[ip-address]:8800
   Login with password (will not be shown again): [password]
   ```
-  
+
   :::note
   The login password displayed in the CLI output of the installation command is not shown again. Copy this password so that you can log in to the admin console in a later step of the installation process.
-  ::: 
+  :::
 
 1. Reload your shell to access the cluster with `kubectl`:
 
@@ -195,13 +195,11 @@ To install the application:
 
   The Settings page opens with the default configuration items.
 
-1. If you are using the defaults, select the **Enable Ingress** checkbox. You can leave the Ingress Hostname field blank.
+1. There are some example configuration options on this page. Feel free to explore and toggle some of the options. You can see the results of your changes later.
 
   :::note
-  For production, you can customize what appears on this screen to collect the configuration that your application needs from the customer.
+  For production, you can customize what appears on this screen to collect the configuration that your application needs from the customer. Values are available to your app as text templates or input values to Helm Charts.
   :::
-
-  ![Settings Page](/images/guides/kots/configuration.png)
 
   The Preflight page opens.
 
@@ -223,9 +221,13 @@ To install the application:
 
 ### View the Deployed Application
 
-Because you used the default NGINX application and enabled the ingress object, you can view the application at `http://${INSTANCE_IP}/` without a port and see a basic NGINX server running:
+To view the default NGINX application, click **Open App** on the Dashboard page.
 
-![Cluster](/images/guides/kots/example-nginx.png)
+![Open App](/images/guides/kots/open-app.png)
+
+You should see a simple web page.
+
+![Cluster](/images/guides/kots/example-app.png)
 
 Next, you will create and deliver an update to the sample application.
 
@@ -242,10 +244,19 @@ To create a new release:
 
   The YAML editor opens and shows the contents of the most recently created release. This gives you everything that you have done so far, and the next task is to write the changes needed to increase the number of NGINX replicas.
 
-1. In the release YAML, find the NGINX image to change. The line is in the `deployment.yaml` file and looks like:
+1. In the release YAML, find the NGINX deployment to change. Add a `replicas` line in the `example-deployment.yaml` file:
 
-  ```yaml
-  replicas: 1
+  ```diff
+  --- example-deployment.yaml	2022-08-23 16:54:45.000000000 -0500
+  +++ example-deployment-2.yaml	2022-08-23 19:30:47.000000000 -0500
+  @@ -6,6 +6,7 @@
+     labels:
+       app: nginx
+   spec:
+     replicas: 2
+     selector:
+       matchLabels:
+         app: nginx
   ```
 
 1. Change the number of replicas to `2` or more.
@@ -283,12 +294,12 @@ To check for updates manually:
 1. Run the following command to verify the deployment on the server:
 
   ```
-  kubectl get pod -l component=nginx
+  kubectl get pod -l app=nginx
   ```
 
   You should see two pods running.
 
 
-## Next Steps: Manage YAML in your Git Repo
+## Next Step
 
-Now that you are familiar with the basics, we recommend that you run through the tutorial for [installing with the CLI](tutorial-installing-with-cli) to start [managing your release YAML in a git repo](repository-workflow-and-tagging-releases).
+Now that you are familiar with the basics, we recommend that you run through the tutorial for [managing releases with the CLI](tutorial-installing-with-cli) to start [managing your release YAML in a git repo](repository-workflow-and-tagging-releases).

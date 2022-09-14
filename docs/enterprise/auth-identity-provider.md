@@ -13,6 +13,10 @@ The identity service has the following limitations:
 * Only available for installations onto a cluster created by the Kubernetes installer.
 * Only available through the admin console.
 
+## Prerequisite
+
+When you are installing the admin console and setting up TLS certificates on the HTTPS page, you must configure the hostname to use to access the admin console. The hostname is required whether you are using the identity service with either a self-signed certificate or a custom certificate. For more information about configuring the hostname field, see [Completing Application Setup and Deploying](installing-app-setup).
+
 ## Configuration
 
 To begin, click the **Access** tab at the top of the admin console.

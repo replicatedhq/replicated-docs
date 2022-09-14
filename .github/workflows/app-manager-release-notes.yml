@@ -1,0 +1,66 @@
+name: app-manager-release-notes
+on:
+  repository_dispatch:
+    types: [app-manager-release-notes]
+    inputs:
+      version:
+        description: KOTS version
+        required: true
+
+jobs:
+  generate-release-notes-pr:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Generate Release Notes
+      id: release-notes
+      env:
+        KOTS_VERSION: ${{ github.event.client_payload.version }}
+      uses: replicatedhq/release-notes-generator@main
+      with:
+        owner-repo: replicatedhq/kots
+        head: $KOTS_VERSION
+        title: ${KOTS_VERSION#v}
+        description: 'Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24'
+        include-pr-links: false
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Update Release Notes
+      env:
+        PATTERN: "# App Manager Release Notes"
+      run: |
+        cat <<EOT >> /tmp/release-notes.txt
+
+        ${{ steps.release-notes.outputs.release-notes }}
+        EOT
+        sed -i -e "/$PATTERN/r /tmp/release-notes.txt" docs/release-notes/rn-app-manager.md
+        rm -rf /tmp/release-notes.txt
+
+    - name: Create Pull Request # creates a PR if there are differences
+      uses: peter-evans/create-pull-request@v3
+      id: cpr
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: App Manager ${{ github.event.client_payload.version }} release notes
+        title: App Manager ${{ github.event.client_payload.version }} release notes
+        branch: automation/app-manager-release-notes-${{ github.event.client_payload.version }}
+        delete-branch: true
+        base: "main"
+        body: "Automated changes by the [app-manager-release-notes](https://github.com/replicatedhq/replicated-docs/blob/main/.github/workflows/app-manager-release-notes.yml) GitHub action"
+
+    - name: Check outputs
+      run: |
+        echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+        echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+
+    - name: Slack Notification
+      uses: slackapi/slack-github-action@v1.16.0
+      with: 
+        payload: |
+          {
+            "version": "${{ github.event.client_payload.version }}",
+            "pull_request_url": "${{steps.cpr.outputs.pull-request-url}}"
+          }
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.KOTS_RELEASE_NOTES_SLACK_WEBHOOK }}

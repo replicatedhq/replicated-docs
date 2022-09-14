@@ -4,6 +4,67 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.84.0
+
+Released on September 12, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### New Features {#new-features-1-84-0}
+* Adds the ability to configure and deploy new Helm chart versions when the admin console is running in Helm-managed mode (Alpha).
+* Adds support for including custom font files in an application release, which can be used when branding the admin console (Alpha). To enable this feature on your account, log in to your vendor portal account. Select **Support** > **Request a feature**, and submit a feature request for "admin console branding".
+
+### Improvements {#improvements-1-84-0}
+* Updates the MinIO image to address CVE-2022-2526 with high severity.
+* Updates the github.com/gin-gonic/gin module in the kurl-proxy image used for embedded cluster installations, to resolve CVE-2020-28483 with high severity.
+* Updates SchemaHero to v0.13.2 to resolve CVE-2022-21698.
+
+### Bug Fixes {#bug-fixes-1-84-0}
+* Updates the `support-bundle` CLI command provided in the admin console to use the generated Kubernetes resources instead of the raw upstream specification when running in Helm-managed mode (Alpha).
+* Fixes an issue that caused Secrets and ConfigMaps created by the admin console to be left in the namespace after a Helm chart is uninstalled in Helm-managed mode (Alpha).
+* Fixes an issue where application status informers did not update if the admin console Pod was restarted.
+* Fixes an issue where a user that is logged in could navigate to the login page instead of being redirected to the application dashboard.
+* Fixes an issue where the app manager failed to render Helm charts that have subcharts referenced as local file repositories.
+
+## 1.83.0
+
+Released on September 1, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### New Features {#new-features-1-83-0}
+* Adds support for custom branding of the admin console using CSS (Alpha). To enable this feature on your account, log in to your vendor portal account. Select **Support** > **Request a feature**, and submit a feature request for "admin console branding".
+
+### Improvements {#improvements-1-83-0}
+* Icons supplied in the `icon` field of the Application custom resource can be square or circular.
+
+### Bug Fixes {#bug-fixes-1-83-0}
+* Fixes an issue that could cause inadvertent application upgrades when redeploying or updating the config of the currently installed revision in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Fixes an issue where the namespace was omitted from `helm upgrade` commands displayed in the admin console in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Removes the checkbox to automatically deploy updates in Helm-managed mode, because this is unsupported. For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Fixes an issue where updating the registry settings fails due to permission issues even when the provided credentials have access to the registry.
+* Fixes an issue in Helm-managed mode that could cause Replicated templates to show on the config page instead of the rendered values. For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Fixes an issue where trailing line breaks were removed during Helm chart rendering.
+
+## 1.82.0
+
+Released on August 25, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### New Features {#new-features-1-82-0}
+* Adds support for a new air gap bundle format that supports image digests and deduplication of image layers shared across images in the bundle. The new air gap bundle format is in Beta. To enable this feature on your account, log in to your vendor portal account. Select **Support** > **Request a feature**, and submit a feature request for "new air gap bundle format".
+* Adds support for deploying images that are referenced by digest or by digest and tag, rather than by tag alone, in online installations that have a private registry configured.
+* Adds support for displaying the config values for each revision deployed in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+
+### Improvements {#improvements-1-82-0}
+* Updates the `local-volume-provider image` to address CVE-2021-44716, CVE-2021-33194, and CVE-2022-21221 with high severity.
+* Updates the configuration pages for the GitOps workflow, making it easier to set up.
+
+### Bug Fixes {#bug-fixes-1-82-0}
+* Fixes an issue that prevented you from typing in the **Path** field when **Other S3-Compatible Storage** was set as the snapshot storage destination.
+* Fixes an issue where the `LicenseFieldValue` template function always returned an empty string for the `isSnapshotSupported` value. For more information about the `LicenseFieldValue` template function, see [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue).
+
 ## 1.81.1
 
 Released on August 22, 2022

@@ -2,7 +2,7 @@
 
 This tutorial helps you use Replicated app manager to quickly deploy, install, and iterate with a sample Kubernetes application using a CLI-based workflow.
 
-For a more conceptual overview before using the CLI tools, you can start with the tutorial for [installing a sample application without an existing cluster](tutorial-installing-without-existing-cluster).
+For a more conceptual overview before using the CLI tools, you can start with the [Packaging and Installing on a Kubernetes Cluster](tutorial-installing-without-existing-cluster) tutorial.
 
 To deploy the sample application, follow these steps:
 
@@ -496,7 +496,7 @@ To check for updates manually:
 1. Run the following command to verify the deployment on the server:
 
   ```shell script
-  kubectl get pod -l component=nginx
+  kubectl get pod -l app=nginx
   ```
 
   You should see two pods running.
@@ -508,8 +508,8 @@ You can iterate further on your application. Continue making changes and using `
 
 To learn more about the app manager features, you can explore some of the tutorials and packaging options, such as:
 
-* [Integrating with an existing CI/CD platform](tutorial-ci-cd-integration)
-* [Integrating a Helm chart](helm-overview)
+* Integrating with a CI/CD platform. See [Tutorial: Integrating with an existing CI/CD platform](tutorial-ci-cd-integration).
+* Packaging an application from a Helm chart. See [About Packaging with Helm](helm-overview).
 
 If you already have a release published in the vendor portal that you want to use as a starting point, run the following command to access the help docs for `replicated release download`:
 

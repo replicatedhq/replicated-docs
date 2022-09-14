@@ -1,34 +1,24 @@
-# Using ECR for Private Images
+# Tutorial: Using ECR for Private Images
 
 The Replicated app manager supports working with private images stored in Amazon's Elastic Container Registry (ECR).
 
 ## Objective
 
-The purpose of this guide is to walk you through a hello-world example on how to configure Replicated to pull images from a private registry in Amazon's Elastic Container Registry (ECR).
+The purpose of this tutorial is to walk you through how to configure Replicated to pull images from a private registry in Amazon's Elastic Container Registry (ECR). This tutorial demonstrates the differences between using public and private images in Replicated.
 
-## Prerequisites & Assumptions
+## Prerequisites
 
-This power-user's guide assumes you have completed the Replicated product installation tutorials [without an existing cluster](tutorial-installing-without-existing-cluster) or the [using the CLI](tutorial-installing-with-cli), as this guide is a continuation of those tutorials.
+* To install the application in this tutorial, you must have a virtual machine (VM) that meets the following minimum requirements:
+   * Ubuntu 18.04
+   * At least 8 GB of RAM
+   * 4 CPU cores
+   * At least 40GB of disk space
 
-As with the previous tutorials, we will also need a virtual machine (VM) to install the application with the following minimum requirements:
-
-* Ubuntu 18.04
-* At least 8 GB of RAM
-* 4 CPU cores
-* At least 40GB of disk space
-
-We are going to focus on the difference between using a public image versus a private image in Replicated.
-To do this, we'll pull the public NGINX container and then push it to a private repository in ECR.
-
-This means we'll need:
-
-* An ECR Repository
-* An AWS Account to use with Docker to pull and push the public NGINX image to the ECR repository
-* Docker
-* The AWS CLI
-
-Later in the guide we will configure Replicated to pull from the ECR repository using a read-only account.
-To do this we'll need to make sure the above AWS account can also create this user.
+* To pull a public NGINX container and push it to a private repository in ECR as part of this tutorial, you must have the following:
+   * An ECR Repository
+   * An AWS account to use with Docker to pull and push the public NGINX image to the ECR repository. The AWS account must be able to create a read-only user.
+   * Docker
+   * The AWS CLI
 
 ## Overview
 
@@ -48,7 +38,12 @@ We are going to use the default NGINX deployment to create our application and t
 
 ### Create Sample Application and deploy the first release
 
-In this section, we cover at a high level the steps to create a new application and install it on a VM. As mentioned earlier, it is assumed that you have completed the Replicated product installation tutorials [without an existing cluster](tutorial-installing-without-existing-cluster) or the [using the CLI](tutorial-installing-with-cli), which cover these steps in detail.
+In this section, we cover at a high level the steps to create a new application and install it on a VM.
+
+For more detailed information about how to create and install an application, follow one of the following getting started tutorials:
+* [Packaging and Installing on an Existing Cluster](tutorial-installing-with-existing-cluster)
+* [Packaging and Installing on a Kubernetes Installer Cluster](tutorial-installing-without-existing-cluster)
+* [Managing Releases with the CLI](tutorial-installing-with-cli)
 
 To create our sample application follow these steps:
 

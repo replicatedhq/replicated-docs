@@ -14,7 +14,7 @@ If you are planning to deploy your application to air gapped Amazon EKS, Red Hat
 
 ## Prerequisites
 
-* Complete the [existing cluster quick start](tutorial-installing-with-existing-cluster) to set up a non-air gapped cluster.
+* Complete the [Packaging and Installing on an Existing Cluster](tutorial-installing-with-existing-cluster) tutorial to set up a non-air gapped cluster.
 
 ## End to End GCP Example
 

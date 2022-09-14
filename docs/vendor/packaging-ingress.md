@@ -31,7 +31,7 @@ spec:
           type: bool
           title: Enable Kubernetes Ingress
           help_text: |
-            Uncheck this box to disable the Kubernetes Ingress resource.
+            When checked, deploy the provided Kubernetes Ingress resource.
           default: "1"
         - name: hostname
           type: text
@@ -63,7 +63,7 @@ The first of which will be deployed to existing cluster installations, while the
 Both of these resources are selectively excluded with the [`exclude` annotation](packaging-include-resources).
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: example-application-ingress
@@ -84,7 +84,7 @@ spec:
 ```
 
 ```yaml
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: example-application-ingress-embedded

@@ -12,7 +12,7 @@ For example, if you provide an embedded database with your application, you migh
 
 Similarly, you can include fields on the configuration screen where your users can enable a custom ingress controller for the cluster. You then map these user-supplied values to the Ingress custom resources in your application.
 
-For a tutorial of mapping database configuration options in a sample application, see [Adding Database Configuration Options for your Application](tutorial-adding-db-config).
+For a tutorial of mapping database configuration options in a sample application, see [Tutorial: Adding Database Configuration Options](tutorial-adding-db-config).
 
 For an example of adding custom Ingress resources based on user-supplied configuration, see [Configuring Cluster Ingress](packaging-ingress).
 
