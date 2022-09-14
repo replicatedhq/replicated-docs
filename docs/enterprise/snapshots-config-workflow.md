@@ -6,13 +6,19 @@ This topic describes the process of setting up backup storage for the Replicated
 
 You must configure backup storage before you can create backups.
 
-:::note
-If your Kubernetes installer cluster was configured to install Velero for you, then you only have to configure the storage destination in the admin console and potentially configure the Velero. For more information, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console) and [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
-:::
-
 Complete the following procedures to configure the snapshots feature:
 
 1. Review the limitations and considerations below. See [Limitations and Considerations](#limitations-and-considerations).
+
+1. (Kubernetes installer clusters) Go to the admin console Snapshots tab and check to see whether Velero was installed by the Kubernetes installer. Then do one of the following:
+
+    1. If Velero was installed, do the following steps only:
+
+        - Update the default internasl storage settings in the admin console because internal storage is insufficient for full backups. See [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
+
+        - Enable access to the Velero namespace if you are using RBAC and optionally increase the default memory for the restic Pod. See [Configure Velero](snapshots-velero-installing-config).
+
+    1. If Velero was not installed, proceed with the rest of this process to install Velero and configure a storage destination.
 
 1. Install the Velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).
 
@@ -22,7 +28,7 @@ Complete the following procedures to configure the snapshots feature:
     - [Configuring an NFS Storage Destination](snapshots-configuring-nfs)
     - [Configuring Other Storage Destinations](snapshots-storage-destinations)
 
-1. Enable access to the Velero namespace and optionally increase the default memory for the restic Pod. See [Configure Velero](snapshots-velero-installing-config).
+1. Enable access to the Velero namespace if you are using RBAC and optionally increase the default memory for the restic Pod. See [Configure Velero](snapshots-velero-installing-config).
 
 ## Limitations and Considerations
 
