@@ -10,21 +10,21 @@ To create a vendor account:
 
     The sign up page opens.
 3. Enter your email address or continue with Google authentication.
-    
+
     - If registering with an email, the Activate account page opens and you will receive an activation code in your email.
 
       :::note
       To resend the code, click **Resend it**.
       :::
-  
+
     - Copy and paste the activation code into the text box and click **Activate**. Your account is now activated.
 
       :::note
-      Once your account is activated, you may have the option to accept a pending invite, or to [Auto-Join](/vendor/team-management#enable-users-to-auto-join-your-team) an existing team.
+      After your account is activated, you can have the option to accept a pending invitation or to automatically join an existing team if the auto-join feature is enabled by your administrator. For more information about enabling the auto-join feature, see [Enable Users to Auto-join Your Team](https://docs.replicated.com/vendor/team-management#enable-users-to-auto-join-your-team).
       :::
 
-4. On the Create your team page, enter you first name, last name, and company name. Click **Continue** to complete the setup. 
-    
+4. On the Create your team page, enter you first name, last name, and company name. Click **Continue** to complete the setup.
+
     :::note
     The company name you provide is used as your team name in vendor portal.
     :::
