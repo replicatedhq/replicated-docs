@@ -6,7 +6,7 @@ Additionally, if the application uses a large amount of memory, you can configur
 
 To configure Velero:
 
-1. Run the following command to enable access to the Velero namespace, if your admin console is running with minimal role-based-access-control (RBAC) privileges:
+1. (Existing clusters only) Run the following command to enable access to the Velero namespace, if your admin console is running with minimal role-based-access-control (RBAC) privileges:
 
    ```
    kubectl kots velero ensure-permissions --namespace ADMIN_CONSOLE_NAMESPACE --velero-namespace VELERO_NAMESPACE

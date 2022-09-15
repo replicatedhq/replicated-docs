@@ -1,4 +1,4 @@
-# Updating Settings in the Admin Console
+# Updating Storage Settings in the Admin Console
 
 This topic describes how to update existing storage destination settings using the Replicated admin console.
 

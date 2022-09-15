@@ -71,6 +71,10 @@ To install Velero and configure a host path storage destination:
 
 The kots CLI can be used to configure host path storage in air gapped environments.
 
+:::note
+If you already have Velero installed and want to update your storage destination, you can use the admin console instead. In this procedure, you use the kots CLI to install Velero and configure your initial storage destination in online environments. For more information about using the admin console to update storage settings, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
+:::
+
 To configure host path storage in an air gapped environment, run the following command:
 
 ```bash
@@ -89,7 +93,7 @@ After this command runs successfully, it detects whether Velero is already insta
 
 Alternatively, when the admin console and application are already installed, you can start in the admin console to install Velero and configure Host Path storage.
 
-To install Velero and configure Host Path storage for existing clusters:
+To install Velero and configure host path storage for existing clusters:
 
 1. From the admin console, click **Snapshots > Settings and Schedule**.
 

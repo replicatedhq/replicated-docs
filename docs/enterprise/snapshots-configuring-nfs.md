@@ -32,19 +32,6 @@ To install Velero and configure an NFS storage destination:
     kubectl kots velero configure-nfs --namespace NAME --nfs-path PATH --nfs-server HOST
     ```
 
-    <!--- **Air Gap Command:**
-
-      ```bash
-      kubectl kots velero configure-nfs \
-        --nfs-server HOST \
-        --nfs-path PATH \
-        --namespace NAMESPACE \
-        --kotsadm-registry private.registry.host \
-        --kotsadm-namespace application-name \
-        --registry-username ro-username \
-        --registry-password ro-password
-
-      ``` --->
     Replace:
 
     - NAME with the name of the namespace where the admin console is installed and running
@@ -75,6 +62,10 @@ To install Velero and configure an NFS storage destination:
 ## Configure NFS Storage in Air Gapped Environments
 
 The kots CLI can be used to configure NFS in air gapped environments.
+
+:::note
+If you already have Velero installed and want to update your storage destination, you can use the admin console instead. In this procedure, you use the kots CLI to install Velero and configure your initial storage destination in online environments. For more information about using the admin console to update storage settings, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
+:::
 
 To configure NFS in an air gapped environment, run the following command:
 
