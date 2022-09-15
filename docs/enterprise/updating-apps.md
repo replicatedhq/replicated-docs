@@ -17,12 +17,9 @@ on a custom cadence. For more information, see
 To manually update an application:
 
 1. In the admin console, go to the Version History tab.
-1. Click **Check for updates** to manually check for new versions of the application.
-
-   :::note
-   For air gapped installations, click **Upload a new version** to upload a new
-   version of the application.
-   :::
+1. Do one of the following, depending on if you are in an online or air gap environment:
+   * (Online) Click **Check for updates** to manually check for new versions of the application.
+   * (Air gap) Click **Upload a new version** to upload a new version of the application.
 
    When the admin console downloads an update (for online), or when you upload an update (for air gap),
    a new upstream version displays in the list of available versions.

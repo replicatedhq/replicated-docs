@@ -29,7 +29,6 @@ const sidebars = {
         'vendor/tutorial-installing-without-existing-cluster',
         'vendor/tutorial-installing-with-existing-cluster',
         'vendor/tutorial-installing-with-cli',
-        'vendor/tutorial-installing-air-gap',
       ]
     },
     {
