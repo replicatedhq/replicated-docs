@@ -1,3 +1,5 @@
+<!-- This topic is removed from the table of contents because it has not been updated. -->
+
 # Installing in an Air Gapped Existing Cluster using GCP
 
 This tutorial shows how to install the Replicated app manager in an existing cluster in an _air gapped_ environment, where the workstation and the cluster have no outbound internet connectivity.
