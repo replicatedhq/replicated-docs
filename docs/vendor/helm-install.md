@@ -65,7 +65,7 @@ By default, when your users install your application using the helm CLI, the adm
 
 ### Overview of Delivering the Admin Console
 
-To deliver the admin console with your application when users install with the helm CLI, include the `admin-console` Helm chart in the `dependencies` field of your `Chart.yaml` file.
+To deliver the admin console with your application for Helm Install installations, include the `admin-console` Helm chart in the `dependencies` field of your `Chart.yaml` file.
 
 When you include the `admin-console` Helm chart as a dependency, Replicated injects values into the Helm chart `values.yaml` file when the chart is pulled by your users. These values provide the license ID for the customer, which enables the admin console to authenticate with the image registry and check for updates.
 
@@ -76,7 +76,7 @@ replicated:
   license_id: abcdef123
 ```
 
-The functionality of the admin console delivered by the `admin-console` Helm chart differs from that of the admin console available when your users install with the kots CLI or with the Kubernetes installer.
+The functionality of the admin console delivered by the `admin-console` Helm chart differs from that of the admin console available for KOTS Install or Embedded Cluster installations.
 
 This is because Helm, rather than the admin console, manages the lifecycle of the application when users install with the helm CLI. For example, instead of including an Upgrade button, the admin console delivered by the `admin-console` Helm chart provides the correct `helm upgrade` commands for users.
 
@@ -229,7 +229,7 @@ This section describes the steps required to connect to an external private regi
 
 ### Overview of Using Private Registries
 
-Using an external private image registry or the Replicated private registry for your application requires an image pull secret for access. The unique license for each customer can grant access to the Replicated private registry, or grant proxy access to an external registry without exposing registry credentials to the customer. When users install with the kots CLI or the Kubernetes installer, Replicated automatically uses the customer license to create and inject an image pull secret.
+Using an external private image registry or the Replicated private registry for your application requires an image pull secret for access. The unique license for each customer can grant access to the Replicated private registry, or grant proxy access to an external registry without exposing registry credentials to the customer. During KOTS Install or Embedded Cluster installations, Replicated automatically uses the customer license to create and inject an image pull secret.
 
 In addition to the image pull secret, using an external private registry also requires that you add credentials for the registry to the vendor portal so that Replicated can access the image through the Replicated proxy service. For kots CLI and Kubernetes installer installations, Replicated automatically patches the image name to reference the location of the image on the proxy service at `proxy.replicated.com`. For more information about this process, see [How the App Manager Accesses Private Images](packaging-private-images#how-the-app-manager-accesses-private-images) in _Connecting to an Image Registry_.
 
@@ -337,11 +337,11 @@ To deliver customer-specific image pull secrets for a private registry:
 
 ### Update the Image Name to Reference the Proxy Service {#proxy-service}
 
-If you are using an external private registry, you must update the location of the private image in the Helm chart to reference the Replicated proxy service at `proxy.replicated.com`. This, along with the customer-specific image pull secret, allows Replicated to access the private image for your application when your users install with the helm CLI.
+If you are using an external private registry, you must update the location of the private image in the Helm chart to reference the Replicated proxy service at `proxy.replicated.com`. This, along with the customer-specific image pull secret, allows Replicated to access the private image for your application during Helm Install installations.
 
 To reference the proxy service, first create a field in the Helm chart `values.yaml` file with the URL of the location of the private image on `proxy.replicated.com`. Use template functions to reference this field from the Pod spec in the Helm chart. This allows Replicated to access the external registry through the proxy service when your users install with the helm CLI.
 
-Then, update the Replicated HelmChart custom resource manifest file with the URL for the image on your external registry. Adding this URL to the HelmChart custom resource ensures that the Replicated proxy service can automatically patch the image name to reference `proxy.replicated.com` during installations with the kots CLI or Kubernetes installer.
+Then, update the Replicated HelmChart custom resource manifest file with the URL for the image on your external registry. Adding this URL to the HelmChart custom resource ensures that the Replicated proxy service can automatically patch the image name to reference `proxy.replicated.com` during KOTS Install or Embedded Cluster installations.
 
 :::note
 This procedure is not required if you are using the Replicated private registry.
