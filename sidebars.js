@@ -217,14 +217,6 @@ const sidebars = {
             'vendor/offsite-backup'
           ],
         },
-        {
-          type: 'category',
-          label: 'Advanced Tutorials',
-          items: [
-            'vendor/tutorial-installing-air-gap-existing-cluster-gcp',
-            'vendor/tutorial-ha-cluster-deploying',
-          ],
-        },
       ],
     },
     {
