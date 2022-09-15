@@ -74,7 +74,7 @@ To install Velero and configure an NFS storage destination:
 
 ## Configure NFS Storage in Air Gapped Environments
 
-The `velero configure-nfs` CLI command can be used to configure NFS in air gapped environments.
+The kots CLI can be used to configure NFS in air gapped environments.
 
 To configure NFS in an air gapped environment, run the following command:
 

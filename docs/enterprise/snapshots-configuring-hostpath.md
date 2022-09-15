@@ -69,7 +69,7 @@ To install Velero and configure a host path storage destination:
 
 ## Configure Host Path Storage in Air Gapped Environments
 
-The `velero configure-hostpath` CLI command can be used to configure NFS in air gapped environments.
+The kots CLI can be used to configure host path storage in air gapped environments.
 
 To configure host path storage in an air gapped environment, run the following command:
 
