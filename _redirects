@@ -1,0 +1,12 @@
+# For syntax, see https://docs.netlify.com/routing/redirects/#syntax-for-the-redirects-file
+#
+# In a _redirects file, each redirect rule must be listed on
+# a separate line, with the original path followed by the new
+# path or URL. Any line beginning with # will be ignored as a
+# comment.
+#
+# Example:
+# /home              /
+# /blog/my-post.php  /blog/my-post
+# /news              /blog
+# /cuties            https://www.petsofnetlify.com
