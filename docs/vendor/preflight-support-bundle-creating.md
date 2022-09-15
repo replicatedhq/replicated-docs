@@ -269,7 +269,7 @@ To customize a support bundle:
     - If you have the Support Bundle Upload Enabled license entitlement, click **Send bundle to vendor**. You can also open the TAR file to review the files. For more information about license entitlements, see [Create a Customer](releases-creating-customer#create-a-customer).
     - Download the `support-bundle.tar.gz` file. Copy the file to the Troubleshoot tab in the [vendor portal](https://vendor.replicated.com) to see the analysis and use the file inspector.
 
-## About Host Collectors and Analyzers in Support Bundles
+## About Host Collectors and Analyzers
 
 Host collectors and analyzers are designed to collect information that is not available from in-cluster collectors. Host collectors gather information directly from the host they are run on and do not have Kubernetes as a dependency. They gather information about the environment, such as CPU, memory, available block devices, and the operating system, which can be useful for debugging a Kubernetes cluster that is down. Host collectors and analyzers can also be useful for testing network connectivity and gathering the output of provided commands.
 
@@ -282,3 +282,48 @@ For more information, see [Overview](https://troubleshoot.sh/docs/host-collect-a
 - Root access is not required to run any of the host collectors. However, depending on what you want to collect, you must run the binary with elevated permissions. For example, if you run the `filesystemPerformance` host collector against `/var/lib/etcd` and the user running the binary does not have permissions on this directory, the collection process fails.
 
 - There is no method in Troubleshoot to run host collectors on remote nodes. If you have a multi-node Kubernetes cluster, you must run the support bundle binary on each node and generate a bundle for each.
+
+## Define and Run Custom Host Collectors and Analyzers
+
+Create a separate support bundle manifest file to specify host collectors and analyzers because host collectors are intended to run directly on the host using the CLI and not with KOTS.
+
+To define and run host collectors and analyzers:
+
+1. Create a SupportBundle custom resource manifest file (`kind: SupportBundle`) in your release that is a separate file than your in-cluster support bundle manifest.
+
+1. Add collectors to define information to be collected for analysis during the analyze phase. Define all of your host collectors and analyzers in one manifest file.
+
+
+  **Example:**
+
+  ```
+  apiVersion: troubleshoot.sh/v1beta2
+  kind: SupportBundle
+  metadata:
+    name: host-collectors
+  spec:
+    hostCollectors:
+      - cpu: {}
+      - memory: {}
+    hostAnalyzers:
+      - cpu:
+          checkName: "Number of CPUs"
+          outcomes:
+            - fail:
+                when: "count < 2"
+                message: At least 2 CPU cores are required, and 4 CPU cores are recommended
+            - pass:
+                message: This server has at least 4 CPU cores
+      - memory:
+          checkName: "Amount of Memory"
+          outcomes:
+            - fail:
+                when: "< 4G"
+            - pass:
+                message: The system has at least 8G of memory
+  ```
+1. When a cluster is down, run the following command on the host to genreate a support bundle:
+
+  ```
+  ./support-bundle --interactive=false support-bundle.yaml
+  ```
