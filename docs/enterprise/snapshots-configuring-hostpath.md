@@ -17,7 +17,7 @@ Complete the following items before you perform this task:
 
    You cannot change the permissions of a mounted network shared filesystem from the client side. To reassign the user:group to 1001:1001 for a directory that is already mounted, you must remount the directory. For example, for a CIFS mounted directory, specify the `uid=1001,gid=1001` mount options in the CIFS mount command.
 
-## Configure Host Path Storage for Online Environments
+## Configure Host Path Storage in Online Environments
 
 In this procedure, you install Velero and configure your initial storage destination in online environments.
 
@@ -32,18 +32,6 @@ To install Velero and configure a host path storage destination:
   ```
   kubectl kots velero configure-hostpath --namespace NAME --hostpath /PATH
   ```
-
-  <!--- **Air Gap Command:**
-
-  ```bash
-  kubectl kots velero configure-hostpath \
-    --hostpath /PATH \
-    --namespace NAMESPACE \
-    --kotsadm-registry private.registry.host \
-    --kotsadm-namespace application-name \
-    --registry-username ro-username \
-    --registry-password ro-password
-  ``` --->
 
     Replace:
 
@@ -78,6 +66,24 @@ To install Velero and configure a host path storage destination:
    `PATH/TO/CREDENTIALS_FILE` with the path to the credentials file.
 
   A confirmation message displays that the installation is successful. You can go to the Snapshots tab admin console and see the storage destination is configured.
+
+## Configure Host Path Storage in Air Gapped Environments
+
+The `velero configure-hostpath` CLI command can be used to configure NFS in air gapped environments.
+
+To configure host path storage in an air gapped environment, run the following command:
+
+```bash
+kubectl kots velero configure-hostpath \
+  --hostpath /PATH \
+  --namespace NAMESPACE \
+  --kotsadm-registry private.registry.host \
+  --kotsadm-namespace application-name \
+  --registry-username ro-username \
+  --registry-password ro-password
+```
+
+After this command runs successfully, it detects whether Velero is already installed. If Velero is not installed, the command output provides specific instructions on how to install and set up Velero.
 
 ## Configure Host Path Storage in the Admin Console
 

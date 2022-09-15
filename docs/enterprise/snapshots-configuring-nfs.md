@@ -16,7 +16,7 @@ Complete the following items before you perform this task:
 * All the nodes in the cluster must have the necessary NFS client packages installed to be able to communicate with the NFS server. For example, the `nfs-common` package is a common package used on Ubuntu.
 * Any firewalls must be properly configured to allow traffic between the NFS server and clients (cluster nodes).
 
-## Configure NFS Storage for Online Environments
+## Configure NFS Storage in Online Environments
 
 In this procedure, you install Velero and configure your initial storage destination in online environments for either existing clusters or a Kubernetes installer clusters. This procedure uses the kots CLI to install Velero and configure your initial storage destination.
 
@@ -71,6 +71,25 @@ To install Velero and configure an NFS storage destination:
   Replace `PATH/TO/CREDENTIALS_FILE` with the path to the credentials file.
 
   A confirmation message displays that the installation is successful. You can go to the Snapshots tab admin console and see the storage destination is configured.
+
+## Configure NFS Storage in Air Gapped Environments
+
+The `velero configure-nfs` CLI command can be used to configure NFS in air gapped environments.
+
+To configure NFS in an air gapped environment, run the following command:
+
+  ```bash
+  kubectl kots velero configure-nfs \
+    --nfs-server HOST \
+    --nfs-path PATH \
+    --namespace NAMESPACE \
+    --kotsadm-registry private.registry.host \
+    --kotsadm-namespace application-name \
+    --registry-username ro-username \
+    --registry-password ro-password
+  ```
+After this command runs successfully, it detects whether Velero is already installed. If Velero is not installed, the command output provides specific instructions on how to install and set up Velero.
+
 
 ## Configure NFS Storage in the Admin Console
 
