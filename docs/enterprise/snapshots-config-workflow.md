@@ -36,7 +36,7 @@ Follow this process to configure the snapshots feature:
         - [Configuring an NFS Storage Destination](snapshots-configuring-nfs)
         - [Configuring Other Storage Destinations](snapshots-storage-destinations)
 
-1. Optionally increase the default memory for the restic Pod. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
+1. Optionally increase the default memory for the restic Pod. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
 
 ## Configuring Backup Storage for Existing Clusters
 
@@ -52,7 +52,7 @@ Follow this process to install Velero and configure the snapshots feature:
     - [Configuring an NFS Storage Destination](snapshots-configuring-nfs)
     - [Configuring Other Storage Destinations](snapshots-storage-destinations)
 
-1. Enable access to the Velero namespace if you are using RBAC and optionally increase the default memory for the restic Pod. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
+1. Enable access to the Velero namespace if you are using RBAC and optionally increase the default memory for the restic Pod. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
 
 ## Next Step
 

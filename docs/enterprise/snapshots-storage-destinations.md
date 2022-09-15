@@ -32,7 +32,7 @@ To install Velero and configure an AWS storage destination:
      --use-restic --use-volume-snapshots=false
   ```
 
-1. Configure Velero namespace access and default memory limits, if needed. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
+1. Configure Velero namespace access and default memory limits, if needed. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
 
 
 ## Configure GCP Storage for Online Environments
@@ -56,7 +56,7 @@ To install Velero and configure a GCP storage destination:
     --use-restic --use-volume-snapshots=false
   ```
 
-1. Configure Velero namespace access and default memory limits, if needed. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
+1. Configure Velero namespace access and default memory limits, if needed. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
 
 ## Configure Azure Storage for Online Environments
 
@@ -81,7 +81,7 @@ To install Velero and configure an Azure storage destination:
     --use-restic --use-volume-snapshots=false
   ```
 
-1. Configure Velero namespace access and default memory limits, if needed. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
+1. Configure Velero namespace access and default memory limits, if needed. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
 
 ## Configure S3-Compatible Storage for Online Environments
 
@@ -98,7 +98,7 @@ To install Velero and configure an S3-compatible storage destination:
 
 1. Run the appropriate `velero install` command with the additional flags `--use-restic` and `--use-volume-snapshots=false`.
 
-1. Configure Velero namespace access and default memory limits, if needed. See [Configure Namespace Access and Memory Limit](snapshots-velero-installing-config).
+1. Configure Velero namespace access and default memory limits, if needed. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
 
 ## Next Step
 

@@ -1,4 +1,4 @@
-# Configure Namespace Access and Memory Limit
+# Configuring Namespace Access and Memory Limit
 
 The Replicated admin console requires access to the namespace where Velero is installed. If your admin console is running with minimal role-based-access-control (RBAC) privileges, you must enable the admin console to access Velero.
 
