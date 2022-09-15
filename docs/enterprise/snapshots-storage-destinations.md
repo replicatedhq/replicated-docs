@@ -32,8 +32,7 @@ To install Velero and configure an AWS storage destination:
      --use-restic --use-volume-snapshots=false
   ```
 
-1. Configure Velero namespace access and default memory limits, if needed. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
-
+1. Configure the storage destination using the `kots velero` command or using the admin console. For more information, see [`velero`](/reference/kots-cli-velero-index) or [Updating Storage Settings in the Admin Console](snapshots-updating-with-admin-console).
 
 ## Configure GCP Storage for Online Environments
 
@@ -55,8 +54,8 @@ To install Velero and configure a GCP storage destination:
     --secret-file ./CREDS_FILE
     --use-restic --use-volume-snapshots=false
   ```
+1. Configure the storage destination using the `kots velero` command or using the admin console. For more information, see [`velero`](/reference/kots-cli-velero-index) or [Updating Storage Settings in the Admin Console](snapshots-updating-with-admin-console).
 
-1. Configure Velero namespace access and default memory limits, if needed. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
 
 ## Configure Azure Storage for Online Environments
 
@@ -80,8 +79,8 @@ To install Velero and configure an Azure storage destination:
     --snapshot-location-config apiTimeout=<YOUR_TIMEOUT>[,resourceGroup=$AZURE_BACKUP_RESOURCE_GROUP,subscriptionId=$AZURE_BACKUP_SUBSCRIPTION_ID]
     --use-restic --use-volume-snapshots=false
   ```
+1. Configure the storage destination using the `kots velero` command or using the admin console. For more information, see [`velero`](/reference/kots-cli-velero-index) or [Updating Storage Settings in the Admin Console](snapshots-updating-with-admin-console).
 
-1. Configure Velero namespace access and default memory limits, if needed. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
 
 ## Configure S3-Compatible Storage for Online Environments
 
@@ -98,11 +97,12 @@ To install Velero and configure an S3-compatible storage destination:
 
 1. Run the appropriate `velero install` command with the additional flags `--use-restic` and `--use-volume-snapshots=false`.
 
-1. Configure Velero namespace access and default memory limits, if needed. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
+1. Configure the storage destination using the `kots velero` command or using the admin console. For more information, see [`velero`](/reference/kots-cli-velero-index) or [Updating Storage Settings in the Admin Console](snapshots-updating-with-admin-console).
 
-## Next Step
+## Next Steps
 
-Next, you can create or schedule backups. For more information, see [Creating Backups](snapshots-creating) and [Scheduling Automatic Backups](snapshots-scheduling).
+* (Existing clusters only) Configure Velero namespace access if you are using RBAC and optionally increase the default memory limits. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
+* You can create or schedule backups. For more information, see [Creating Backups](snapshots-creating) and [Scheduling Automatic Backups](snapshots-scheduling).
 
 ## Additional Resources
 
