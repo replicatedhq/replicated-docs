@@ -12,7 +12,7 @@ To support installations with the helm CLI, you must have an application that co
 
 For information about how to package an application in the Replicated vendor portal using an existing Helm chart, see [Adding Helm Charts to a Release](helm-release).
 
-## About Supporting helm CLI installations
+## About Supporting helm CLI installations {#about}
 
 Using Helm charts to create a release in the vendor portal allows you to package your application one time and support the following application installation methods:
 
@@ -84,7 +84,7 @@ This is because Helm, rather than the admin console, manages the lifecycle of th
 
 This procedure shows how to add the `admin-console` Helm chart as a conditional dependency of your Helm chart.
 
-It also shows how to conditionally exclude the `admin-console` Helm chart when your users install with either the kots CLI or with the Kubernetes installer. It is important to exclude the `admin-console` chart in this scenario because both the kots CLI and the Kubernetes installer already install the admin console by default.
+It also shows how to exclude the `admin-console` Helm chart when your users install with either the KOTS Install or Embedded Cluster installation methods. It is important to exclude the `admin-console` chart in this scenario because both the kots CLI and the Kubernetes installer already install the admin console by default.
 
 To conditionally include and exclude the `admin-console` Helm chart:
 
@@ -130,9 +130,11 @@ To conditionally include and exclude the `admin-console` Helm chart:
     enabled: true
    ```
 
+   Helm Install installations read this `true` value from the `values.yaml` file and include the `admin-console` Helm chart in the deployment.
+
 1. Package your Helm chart, and add the packaged chart to a release in the Replicated vendor portal. For more information, see [Add a Helm Chart to a Release](helm-release#add-a-helm-chart-to-a-release).
 
-1. In the release, create or open the HelmChart custom resource manifest file. A HelmChart custom resource manifest file has `kind: HelmChart` and `apiVersion: kots.io/v1beta1`.
+1. In the release, create or open the HelmChart custom resource manifest file. A HelmChart custom resource manifest file has `kind: HelmChart` and `apiVersion: kots.io/v1beta1`. For more information, see [HelmChart](/reference/custom-resource-helmchart) in the _References_ section.
 
    **Template:**
 
@@ -145,11 +147,7 @@ To conditionally include and exclude the `admin-console` Helm chart:
      ...
    ```
 
-   The Replicated HelmChart custom resource allows Replicated to process and deploy Helm charts when users install with the kots CLI or with the Kubernetes installer.
-
-   For more information, see [HelmChart](/reference/custom-resource-helmchart) in the _References_ section.
-
-1. Edit the HelmChart manifest file to exclude the `admin-console` Helm chart when users install your application with the kots CLI or with the Kubernetes installer:
+1. Edit the HelmChart manifest file to exclude the `admin-console` Helm chart during KOTS Install and Embedded Cluster installations:
 
    1. Add the following to the `values` field:
 
@@ -159,7 +157,7 @@ To conditionally include and exclude the `admin-console` Helm chart:
          enabled: false
       ```
 
-      The `values` field lets you map user-supplied configuration values from the admin console to the Helm chart `/templates`. For more information, see [values](/reference/custom-resource-helmchart#values) in _HelmChart_.
+      KOTS Install and Embedded Cluster installations read this static value of `false` from the HelmChart custom resource, which prevents the `admin-console` Helm chart from deploying. Helm Install installations ignore this static value, and instead read the value of `true` from the `values.yaml` file that you added in a previous step.
 
       **Example:**
 
@@ -358,7 +356,7 @@ To update the image name to reference the proxy service:
    ```
    Replace:
    * `FIELD_NAME` with any name for the field.
-   * `PROXY_SERVICE_IMAGE_URL` with the URL for the private image on `proxy.replicated.com`.
+   * `PROXY_SERVICE_IMAGE_URL` with the URL for the private image on `proxy.replicated.com`. Helm Install installations use this proxy service URL that you add to the `values.yaml` file.
 
       The proxy service URL uses the following format: `proxy.replicated.com/proxy/APP_NAME/EXTERNAL_REGISTRY_IMAGE_URL`, where `APP_NAME` is the name of your application and `EXTERNAL_REGISTRY_IMAGE_URL` is the path to the private image on your external registry.
 
@@ -370,7 +368,9 @@ To update the image name to reference the proxy service:
    ```  
    The example above shows a field for the image name and a separate field for the image tag.
 
-1. In any manifest files in your Helm chart that reference the proxied image, set the image name to the field that you created in the `values.yaml` file. Use the following Helm template function format:
+1. In any manifest files in your Helm chart that reference the proxied image, set the image name to the field that you created in the `values.yaml` file in the preious step. This ensures that Helm Install installations use the proxy service URL from the `values.yaml` file for the location of the private image.
+
+   Use the following Helm template function format:
 
    ```yaml
    image: '{{ .Values.FIELD_NAME }}'
@@ -410,7 +410,7 @@ To update the image name to reference the proxy service:
 
    The Replicated HelmChart custom resource allows Replicated to process and deploy Helm charts. For more information, see [HelmChart](/reference/custom-resource-helmchart) in the _References_ section.
 
-1. Under the HelmChart custom resource `values` field, create a new field and add the location of the private image on the external registry:
+1. Under the HelmChart custom resource `values` field, create a new field and add a static key value pair with the location of the private image on the external registry:
 
    ```yaml
    values:
@@ -420,7 +420,9 @@ To update the image name to reference the proxy service:
    * `FIELD_NAME` with the same field name that you created in the previous step in the `values.yaml` file. For example, `apiImageRepository`.
    * `REGISTRY_URL` with the URL for the image on your external registry.
 
-   Adding this external registry URL to the HelmChart custom resource ensures that the Replicated proxy service can automatically patch the image name to reference `proxy.replicated.com` during installations with the kots CLI or Kubernetes installer.
+      KOTS Install and Embedded Cluster installations use this static value from HelmChart custom resource for the registry URL. This allows the Replicated proxy service to automatically patch the image name to reference `proxy.replicated.com` for KOTS Install and Embedded Cluster installations.
+
+      Helm Install installations ignore this static value, and instead use the `proxy.replicated.com` URL that you added to the `values.yaml` file in a previous step.
 
    **Example:**
 
