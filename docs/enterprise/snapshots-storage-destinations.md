@@ -32,8 +32,6 @@ To install Velero and configure an AWS storage destination:
      --use-restic --use-volume-snapshots=false
   ```
 
-1. Configure the storage destination using the admin console or the `kots velero` command. For more information, see [Updating Storage Settings in the Admin Console](snapshots-updating-with-admin-console) or see [`velero`](/reference/kots-cli-velero-index) in the kots CLI reference section.
-
 ## Configure GCP Storage for Online Environments
 
 In this procedure, you install Velero and configure your initial storage destination in online environments.
@@ -54,7 +52,6 @@ To install Velero and configure a GCP storage destination:
     --secret-file ./CREDS_FILE
     --use-restic --use-volume-snapshots=false
   ```
-  1. Configure the storage destination using the admin console or the `kots velero` command. For more information, see [Updating Storage Settings in the Admin Console](snapshots-updating-with-admin-console) or see [`velero`](/reference/kots-cli-velero-index) in the kots CLI reference section.
 
 ## Configure Azure Storage for Online Environments
 
@@ -78,7 +75,6 @@ To install Velero and configure an Azure storage destination:
     --snapshot-location-config apiTimeout=<YOUR_TIMEOUT>[,resourceGroup=$AZURE_BACKUP_RESOURCE_GROUP,subscriptionId=$AZURE_BACKUP_SUBSCRIPTION_ID]
     --use-restic --use-volume-snapshots=false
   ```
-  1. Configure the storage destination using the admin console or the `kots velero` command. For more information, see [Updating Storage Settings in the Admin Console](snapshots-updating-with-admin-console) or see [`velero`](/reference/kots-cli-velero-index) in the kots CLI reference section.
 
 ## Configure S3-Compatible Storage for Online Environments
 
@@ -95,7 +91,6 @@ To install Velero and configure an S3-compatible storage destination:
 
 1. Run the appropriate `velero install` command with the additional flags `--use-restic` and `--use-volume-snapshots=false`.
 
-1. Configure the storage destination using the admin console or the `kots velero` command. For more information, see [Updating Storage Settings in the Admin Console](snapshots-updating-with-admin-console) or see [`velero`](/reference/kots-cli-velero-index) in the kots CLI reference section.
 
 ## Next Steps
 
