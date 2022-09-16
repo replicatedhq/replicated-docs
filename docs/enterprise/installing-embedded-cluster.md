@@ -56,6 +56,8 @@ To install an application in an air gapped environment:
 
     Replace `FILENAME` with the name of the kURL air gap `.tar.gz` file.
 
+    After the installation command finishes, note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the installation command.
+
     :::note
     You can construct the URL for the air gap bundle by prefixing the URL path for online installations with `/bundle` and adding `.tar.gz` to the end. For more information, see [Install in an Online Environment](#online).
     :::
@@ -77,9 +79,7 @@ To install an application in an air gapped environment:
       * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file.
       * `PASSWORD` with a shared password.
 
-    For more information about the `kots install` command, see [install](../reference/kots-cli-install) in the kots CLI documentation.
-
-After the installation command finishes, note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the installation command. Then, log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
+    You can use either the kots CLI or the admin console to install the application. For more information about the `kots install` command, see [install](../reference/kots-cli-install) in the kots CLI documentation. For information about using the admin console, see [Completing Application Setup and Deploying](installing-app-setup).
 
 ## Installing with High Availability Mode
 
@@ -124,6 +124,8 @@ To install with high availability in an air gapped environment:
 
   Replace `FILENAME` with the name of the kURL air gap `.tar.gz` file.
 
+  After the installation command finishes, note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the installation command.
+
   :::note
   You can construct the URL for the air gap bundle by prefixing the URL path for online installations with `/bundle` and adding `.tar.gz` to the end. For more information, see [Install in an Online Environment](#online).
   :::
@@ -151,6 +153,4 @@ To install with high availability in an air gapped environment:
     * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file.
     * `PASSWORD` with a shared password.
 
-  For more information about the `kots install` command, see [install](../reference/kots-cli-install) in the kots CLI documentation.
-
-After the installation command finishes, note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the installation command. Then, log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
+  You can use either the kots CLI or the admin console to install the application. For more information about the `kots install` command, see [install](../reference/kots-cli-install) in the kots CLI documentation. For information about using the admin console, see [Completing Application Setup and Deploying](installing-app-setup).
