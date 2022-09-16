@@ -18,7 +18,7 @@ Released on September 16, 2022
 
 ### Bug Fixes {#bug-fixes-v2022-09-16-0}
 * Fixes an issue that prevents upgrading Kubernetes to 1.24.x if the CRI has previously been migrated from Docker to Containerd.
-* Fixes `kubectl drain` from timing out on single node clusters.
+* Fixes an issue that causes statefulset pods which mount PVs to get stuck in `Terminating` state when upgrading single node Kubernetes clusters and using the Longhorn add-on.
 
 ## v2022.09.12-0
 
