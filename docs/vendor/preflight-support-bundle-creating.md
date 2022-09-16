@@ -271,7 +271,9 @@ To customize a support bundle:
 
 ## About Host Collectors and Analyzers
 
-Host collectors and analyzers are designed to collect information that is not available from in-cluster collectors. Host collectors gather information directly from the host they are run on and do not have Kubernetes as a dependency. They gather information about the environment, such as CPU, memory, available block devices, and the operating system, which can be useful for debugging a Kubernetes cluster that is down. Host collectors and analyzers can also be useful for testing network connectivity and gathering the output of provided commands.
+
+
+Host collectors and analyzers are designed to collect information that is not available from in-cluster collectors. Host collectors gather information directly from the host they are run on and do not have Kubernetes as a dependency. They gather information about the environment, such as CPU, memory, available block devices, and the operating system, which can be useful for debugging a Kubernetes cluster that is down. Host collectors and analyzers can also be useful for testing network connectivity,  gathering the output of provided commands. These are useful when you need to debug a Kubernetes cluster that is offline, troubleshoot a Kubernetes installer that failed before the control plane was initialized, or if you need to collect and analyze information that is not available with in-cluster collectors.
 
 Although host collectors can technically be included in vendor support bundle specifications, Replicated recommends that you create a separate support bundle manifest file to specify host collectors and analyzers because host collectors are intended to run directly on the host using the CLI and not with KOTS. If host collectors run from KOTS, they are likely not to produce the desired result as they run in the context of the Kotsadm pod.
 
@@ -280,17 +282,11 @@ Although host collectors can technically be included in vendor support bundle sp
 
 Create a separate support bundle manifest file to specify host collectors and analyzers because host collectors are intended to run directly on the host using the CLI and not with KOTS.
 
-To define and run host collectors and analyzers:
-
-1. Download the binary for the latest Troubleshoot release. For more information, see the [Troubleshoot](https://github.com/replicatedhq/troubleshoot/releases) repository in GitHub.
-
-  ```
-  curl -L https://github.com/replicatedhq/troubleshoot/releases/download/VERSION/support-bundle_linux_amd64.tar.gz | tar xzvf -
-  ```
-
-  Replace `VERSION` with `v` and the version number. For example, `v0.40.0`.
+To define host collectors and analyzers:
 
 1. Create a SupportBundle custom resource manifest file (`kind: SupportBundle`) in your release that is a separate file than your in-cluster support bundle manifest.
+
+  You can access sample specifications in the the Replicated troubleshoot-specs repository that provides aggregate specifications for supporting your customers. For more information, see [troubleshoot-specs](https://github.com/replicatedhq/troubleshoot-specs) in GitHub.
 
 1. Add collectors and analyzers to define information to be collected for analysis during the analyze phase. Define all of your host collectors and analyzers in one manifest file. For a list and details of the available host collectors and analyzers, see [All Host Collectors and Analyzers](https://troubleshoot.sh/docs/host-collect-analyze/all/) in the Troubleshoot documentation.
 
@@ -325,16 +321,24 @@ To define and run host collectors and analyzers:
 
 ## Run Host Collectors and Analyzers
 
-When a cluster is down, you run host collectors and analyzers to help troubleshoot the problem.
+You can run host collectors and analyzers to help troubleshoot a Kubernetes installer cluster that is down or to gather information from the host.
 
 Root access is not required to run any of the host collectors. However, depending on what you want to collect, you must run the binary with elevated permissions. For example, if you run the `filesystemPerformance` host collector against `/var/lib/etcd` and the user running the binary does not have permissions on this directory, the collection process fails.
 
-Run the following command on the host to generate a support bundle:
+1. Run the following command to download the binary and install the support bundle binary on a host in the cluster you need to debug. To get the latest release version, see the [Troubleshoot](https://github.com/replicatedhq/troubleshoot/releases) repository in GitHub.
+
+  ```
+  curl -L https://github.com/replicatedhq/troubleshoot/releases/download/VERSION/support-bundle_linux_amd64.tar.gz | tar xzvf -
+  ```
+
+  Replace `VERSION` with `v` and the version number. For example, `v0.40.0`.
+
+  :::note
+  There is no method in Troubleshoot to run host collectors on remote nodes. If you have a multi-node Kubernetes cluster, you must run the support bundle binary on each node and generate a bundle for each.
+  :::
+
+1. Run the following command on the host to generate a support bundle:
 
 ```
 ./support-bundle --interactive=false support-bundle.yaml
 ```
-
-:::note
-There is no method in Troubleshoot to run host collectors on remote nodes. If you have a multi-node Kubernetes cluster, you must run the support bundle binary on each node and generate a bundle for each.
-:::
