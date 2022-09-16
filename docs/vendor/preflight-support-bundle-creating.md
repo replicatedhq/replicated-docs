@@ -271,7 +271,7 @@ To customize a support bundle:
 
 ## About Host Collectors and Analyzers
 
-Host collectors and analyzers are designed to collect information from Kubernets installer-created clusters (embedded clusters) that is not available from in-cluster collectors. Host collectors gather information directly from the host they are run on and do not have Kubernetes as a dependency.
+Host collectors and analyzers are designed to collect information from Kubernetes installer-created clusters (embedded clusters) that is not available from in-cluster collectors. Host collectors gather information directly from the host they are run on and do not have Kubernetes as a dependency.
 
 You can gather information about the environment, such as CPU, memory, available block devices, and the operating system. Host collectors can also be used for testing network connectivity and gathering the output of provided commands.
 
