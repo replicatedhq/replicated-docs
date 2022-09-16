@@ -18,7 +18,7 @@ Released on September 16, 2022
 
 ### Bug Fixes {#bug-fixes-v2022-09-16-0}
 * Fixes an issue that prevents upgrading Kubernetes to 1.24.x if the CRI has previously been migrated from Docker to Containerd.
-* Fixes an issue that causes statefuls pods mounting Persistent Volumes to get stuck in a `Terminating` state when upgrading single node Kubernetes clusters and using the [Longhorn add-on](https://kurl.sh/docs/add-ons/longhorn).
+* Fixes an issue that causes stateful pods mounting Persistent Volumes to get stuck in a `Terminating` state when upgrading single node Kubernetes clusters and using the [Longhorn add-on](https://kurl.sh/docs/add-ons/longhorn).
 
 ## v2022.09.12-0
 
