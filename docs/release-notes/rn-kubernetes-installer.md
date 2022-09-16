@@ -4,6 +4,22 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2022.09.16-0
+
+Released on September 16, 2022
+
+### New Features {#new-features-v2022-09-16-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.25.1 1.25.0 1.24.5 1.23.11 1.22.14.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.58.0-39.12.1.
+* Improved output when waiting for rook-ceph to become healthy.
+
+### Improvements {#improvements-v2022-09-16-0}
+* Updates the replicatedhq/local-volume-provider image to v0.3.8 for [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.9.1 to address CVE-2022-2509 with high severity.
+
+### Bug Fixes {#bug-fixes-v2022-09-16-0}
+* Fixes an issue that prevents upgrading Kubernetes to 1.24.x if the CRI has previously been migrated from Docker to Containerd.
+* Fixes an issue that causes stateful pods mounting Persistent Volumes to get stuck in a `Terminating` state when upgrading single node Kubernetes clusters and using the [Longhorn add-on](https://kurl.sh/docs/add-ons/longhorn).
+
 ## v2022.09.12-0
 
 Released on September 12, 2022
