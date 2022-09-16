@@ -4,6 +4,20 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2022.09.16-0
+
+Released on September 16, 2022
+
+### New Features {#new-features-v2022-09-16-0}
+* Improved output when waiting for rook-ceph to become healthy.
+
+### Improvements {#improvements-v2022-09-16-0}
+* Updates the replicatedhq/local-volume-provider image to v0.3.8 for [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.9.1 to address CVE-2022-2509 with high severity.
+
+### Bug Fixes {#bug-fixes-v2022-09-16-0}
+* Fixes an issue that prevents upgrading Kubernetes to 1.24.x if the CRI has previously been migrated from Docker to Containerd.
+* Fix `kubectl drain` from timing out on single node clusters.
+
 ## v2022.09.12-0
 
 Released on September 12, 2022
