@@ -33,7 +33,7 @@ If you have multiple applications within the admin console, each application sho
 
 Partial snapshots only back up application volumes and application manifests; they do not back up the admin console or the metadata about an application.
 They are useful for capturing information before deploying a new release, in case you need to roll back, but they are not suitable for full disaster recovery.
-For backups that give you the ability to do full disaster recovery, use full snapshots. For more information about full snapshots, see [Full Snapshots (recommended)](#full-snapshots-recommended).
+For backups that give you the ability to do full disaster recovery, use full snapshots. For more information about full snapshots, see [Full Snapshots (recommended)](#full).
 
 Partial snapshots can only be created via the admin console (check screenshot below).
 
