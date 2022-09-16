@@ -9,6 +9,8 @@ toc_max_heading_level: 2
 Released on September 16, 2022
 
 ### New Features {#new-features-v2022-09-16-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.25.1 1.25.0 1.24.5 1.23.11 1.23.10 1.22.14 1.22.13.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.58.0-39.12.1.
 * Improved output when waiting for rook-ceph to become healthy.
 
 ### Improvements {#improvements-v2022-09-16-0}
@@ -16,7 +18,7 @@ Released on September 16, 2022
 
 ### Bug Fixes {#bug-fixes-v2022-09-16-0}
 * Fixes an issue that prevents upgrading Kubernetes to 1.24.x if the CRI has previously been migrated from Docker to Containerd.
-* Fix `kubectl drain` from timing out on single node clusters.
+* Fixes `kubectl drain` from timing out on single node clusters.
 
 ## v2022.09.12-0
 
