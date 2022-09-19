@@ -16,4 +16,4 @@
 
 [[redirects]]
   from = "https://docs.replicated.com/release-notes"
-  tp = "https://docs.replicated.com/release-notes/rn-whats-new"
+  to = "https://docs.replicated.com/release-notes/rn-whats-new"
