@@ -277,9 +277,9 @@ You can gather information about the environment, such as CPU, memory, available
 
 This information is useful when you need to debug a Kubernetes installer cluster that is offline, troubleshoot a Kubernetes installer that failed before the control plane was initialized, or if you need to collect and analyze information that is not available with in-cluster collectors.
 
-## Define Custom Host Collectors and Analyzers
+## Define Host Collectors and Analyzers
 
-Create a separate support bundle manifest file to specify host collectors and analyzers because host collectors are intended to run directly on the host using the CLI and not with KOTS. If host collectors run from KOTS, they are unlikely to produce the desired results because they run in the context of the Kotsadm pod.
+Create a separate SupportBundle custom resource to specify host collectors and analyzers because host collectors are intended to run directly on the host using the CLI and not with KOTS. If KOTS runs host collectors, the collectors are unlikely to produce the desired results because they run in the context of the kotsadm Pod. The support-bundle CLI is used to run the host collectors and analyzers on the host.
 
 To define host collectors and analyzers:
 
@@ -292,6 +292,8 @@ To define host collectors and analyzers:
     - View a list and details of the available host collectors and analyzers. See [All Host Collectors and Analyzers](https://troubleshoot.sh/docs/host-collect-analyze/all/) in the Troubleshoot documentation.
 
     **Example:**
+
+    The following example shows host collectors and analyzers for the number of CPUs and the amount of memory.
 
     ```
     apiVersion: troubleshoot.sh/v1beta2
@@ -324,7 +326,7 @@ To define host collectors and analyzers:
 
 You run host collectors and analyzers to generate a support bundle to help with troubleshooting or to gather information about the environment.
 
-Root access is not required to run any of the host collectors. However, depending on what you want to collect, you must run the binary with elevated permissions. For example, if you run the `filesystemPerformance` host collector against `/var/lib/etcd` and the user running the binary does not have permissions on this directory, the collection process fails.
+Root access is typically not required to run the host collectors. However, depending on what you want to collect, you might need to run the binary with elevated permissions. For example, if you run the `filesystemPerformance` host collector against `/var/lib/etcd` and the user running the binary does not have permissions on this directory, the collection process fails.
 
 To run host collectors and analyzers:
 
