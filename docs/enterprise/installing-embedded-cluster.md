@@ -56,30 +56,32 @@ To install an application in an air gapped environment:
 
     Replace `FILENAME` with the name of the kURL air gap `.tar.gz` file.
 
-    After the installation command finishes, note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the installation command.
+    After the installation command finishes, note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the installation command. You can use these in the next step to log in to the admin console and install the application.
 
     :::note
     You can construct the URL for the air gap bundle by prefixing the URL path for online installations with `/bundle` and adding `.tar.gz` to the end. For more information, see [Install in an Online Environment](#online).
     :::
 
-  1. Install the application with the application `.airgap` bundle:
+  1. Install the application with one of the following methods:
 
-    ```
-      kubectl kots install APP_NAME \
-      --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
-      --license-file PATH_TO_LICENSE_FILE \
-        --config-values PATH_TO_CONFIG_VALUES \
-        --namespace default \
-        --shared-password PASSWORD
-    ```
-    Replace:
-      * `APP_NAME` with the name for the application.
-      * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle file.
-      * `PATH_TO_LICENSE_FILE` with the path to the license file.
-      * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file.
-      * `PASSWORD` with a shared password.
+      - **Admin console:** Use the `kotsadm` and password from the previous step to log into the admin console. For information about using the admin console, see [Completing Application Setup and Deploying](installing-app-setup).
 
-    You can use either the kots CLI or the admin console to install the application. For more information about the `kots install` command, see [install](../reference/kots-cli-install) in the kots CLI documentation. For information about using the admin console, see [Completing Application Setup and Deploying](installing-app-setup).
+      - **kots CLI:** Use the following command to install the application `.airgap` bundle. For more information about the `kots install` command, see [install](../reference/kots-cli-install) in the kots CLI documentation.
+
+        ```
+          kubectl kots install APP_NAME \
+          --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
+          --license-file PATH_TO_LICENSE_FILE \
+            --config-values PATH_TO_CONFIG_VALUES \
+            --namespace default \
+            --shared-password PASSWORD
+        ```
+        Replace:
+          * `APP_NAME` with the name for the application.
+          * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle file.
+          * `PATH_TO_LICENSE_FILE` with the path to the license file.
+          * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file.
+          * `PASSWORD` with a shared password.
 
 ## Installing with High Availability Mode
 
@@ -124,7 +126,7 @@ To install with high availability in an air gapped environment:
 
   Replace `FILENAME` with the name of the kURL air gap `.tar.gz` file.
 
-  After the installation command finishes, note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the installation command.
+  After the installation command finishes, note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the installation command. You can use these in a later step to log in to the admin console and install the application.
 
   :::note
   You can construct the URL for the air gap bundle by prefixing the URL path for online installations with `/bundle` and adding `.tar.gz` to the end. For more information, see [Install in an Online Environment](#online).
@@ -136,21 +138,23 @@ To install with high availability in an air gapped environment:
 
     - If you are using an external load balancer, pass the load balancer address.
 
-1. Install the application with the application `.airgap` bundle:
+1. Install the application with one of the following methods:
 
-  ```
-    kubectl kots install APP_NAME \
-    --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
-    --license-file PATH_TO_LICENSE_FILE \
-      --config-values PATH_TO_CONFIG_VALUES \
-      --namespace default \
-      --shared-password PASSWORD
-  ```
-  Replace:
-    * `APP_NAME` with the name for the application.
-    * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle file.
-    * `PATH_TO_LICENSE_FILE` with the path to the license file.
-    * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file.
-    * `PASSWORD` with a shared password.
+    - **Admin console:** Use the `kotsadm` and password from the previous step to log into the admin console. For information about using the admin console, see [Completing Application Setup and Deploying](installing-app-setup).
 
-  You can use either the kots CLI or the admin console to install the application. For more information about the `kots install` command, see [install](../reference/kots-cli-install) in the kots CLI documentation. For information about using the admin console, see [Completing Application Setup and Deploying](installing-app-setup).
+    - **kots CLI:** Use the following command to install the application `.airgap` bundle. For more information about the `kots install` command, see [install](../reference/kots-cli-install) in the kots CLI documentation.
+
+    ```
+      kubectl kots install APP_NAME \
+      --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
+      --license-file PATH_TO_LICENSE_FILE \
+        --config-values PATH_TO_CONFIG_VALUES \
+        --namespace default \
+        --shared-password PASSWORD
+    ```
+    Replace:
+      * `APP_NAME` with the name for the application.
+      * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle file.
+      * `PATH_TO_LICENSE_FILE` with the path to the license file.
+      * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file.
+      * `PASSWORD` with a shared password.
