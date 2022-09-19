@@ -14,8 +14,8 @@ To install the Velero CLI in an online cluster:
 
 1. Do one of the following:
 
-    - (Kubernetes installer cluster) From a terminal, run an SSH command to access and authenticate to your cluster.
-    - (Existing cluster) Ensure that kubectl is installed on your local machine because that is  where you install the Velero CLI.
+    - (Kubernetes installer cluster) Run an SSH command to access and authenticate to your cluster node.
+    - (Existing cluster) Access the environment that you manage the cluster from, which can be a local machine that has kubectl installed.
 
 1. Check for the latest release of the Velero CLI for **Linux AMD 64** in the Velero GitHub repo at https://github.com/vmware-tanzu/velero/releases. Although earlier versions of Velero are supported, Replicated recommends using the latest Velero version.
 
