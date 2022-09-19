@@ -62,7 +62,7 @@ To install an application in an air gapped environment:
     You can construct the URL for the air gap bundle by prefixing the URL path for online installations with `/bundle` and adding `.tar.gz` to the end. For more information, see [Install in an Online Environment](#online).
     :::
 
-  1. Install the application with one of the following methods:
+  1. Install the application using one of the following methods:
 
       - **Admin console:** Use the `kotsadm` and password from the previous step to log into the admin console. For information about using the admin console, see [Completing Application Setup and Deploying](installing-app-setup).
 
@@ -138,7 +138,7 @@ To install with high availability in an air gapped environment:
 
     - If you are using an external load balancer, pass the load balancer address.
 
-1. Install the application with one of the following methods:
+1. Install the application using one of the following methods:
 
     - **Admin console:** Use the `kotsadm` and password from the previous step to log into the admin console. For information about using the admin console, see [Completing Application Setup and Deploying](installing-app-setup).
 
