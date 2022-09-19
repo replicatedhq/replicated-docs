@@ -4,6 +4,16 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2022.09.19-0
+
+Released on September 19, 2022
+
+### New Features {#new-features-v2022-09-19-0}
+* Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.85.0.
+
+### Bug Fixes {#bug-fixes-v2022-09-19-0}
+* Fixes an issue that could cause air gapped Kubernetes upgrades to fail Sonobuoy tests with a missing image.
+
 ## v2022.09.16-0
 
 Released on September 16, 2022
