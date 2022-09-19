@@ -12,7 +12,7 @@ Released on September 19, 2022
 * Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.85.0.
 
 ### Bug Fixes {#bug-fixes-v2022-09-19-0}
-* Fixes an issue that could cause airgapped Kuberentes upgrades to fail Sonobuoy tests with a missing image.
+* Fixes an issue that could cause air gapped Kubernetes upgrades to fail Sonobuoy tests with a missing image.
 
 ## v2022.09.16-0
 
