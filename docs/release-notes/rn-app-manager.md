@@ -11,11 +11,11 @@ Released on September 19, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### New Features {#new-features-1-85-0}
-* Adds the ability to automatically check for new chart versions that are available when running in Helm-managed mode (Alpha). For more information on Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Adds the ability to automatically check for new chart versions that are available when running in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
 * In Helm-managed mode, new Helm chart versions that introduce a required configuration value must now be configured before they can be deployed.
 
 ### Improvements {#improvements-1-85-0}
-* Improves how license fields display in the admin console, especially when there are lots of license fields or when the value of a field is very long.
+* Improves how license fields display in the admin console, especially when there are multiple license fields or when the value of a field is long.
 * Updates the replicated/local-volume-provider image to v0.3.8 to resolve CVE-2022-2509 with high severity.
 * Updates the github.com/open-policy-agent/opa module to resolve CVE-2022-36085 with critical severity.
 * Updates the kotsadm/dex image to v2.34.0 to resolve CVE-2022-37434 with critical severity and CVE-2021-43565, CVE-2022-27191, and CVE-2021-44716 with high severity.
@@ -23,10 +23,10 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 ### Bug Fixes {#bug-fixes-1-85-0}
 * Fixes an issue in embedded clusters where image garbage collection deletes images that are still in use by the application.
 * Increases the memory limit for the `kotsadm-minio` StatefulSet from 200Mi to 512Mi.
-* Fixes an issue where headless/unattended installs hang in embedded clusters with recent Kubernetes versions.
+* Fixes an issue where headless/unattended installations hang in embedded clusters with recent Kubernetes versions.
 * Fixes an issue that caused values to be missing on the config page for pending updates in Helm-managed mode (Alpha).
 * Fixes checkbox alignment on the config page.
-* Fixes a bug that didn't display errors on the config page when values for required config items are missing in Helm-managed mode (Alpha).
+* Fixes a bug that did not display errors on the config page when values for required config items were missing in Helm-managed mode (Alpha).
 
 ## 1.84.0
 
