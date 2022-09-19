@@ -490,6 +490,7 @@ const sidebars = {
               label: 'Vendor API v3 Documentation',
               href: 'https://replicated-vendor-api.readme.io/v3/'
             },
+            'reference/kots-lint-rules',
           ],
         },
       ],
