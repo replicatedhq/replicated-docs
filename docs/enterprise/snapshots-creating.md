@@ -4,21 +4,17 @@ For full disaster recovery, Replicated recommends creating full snapshots.
 
 ## Prerequisites
 
-Complete the following items before you perform this task:
-
-* Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _How to Set Up and Use Snapshots_.
-* Install and configure Velero. See [Installing and Configuring Velero](snapshots-venerlo-installing-config).
-* Configure a storage destination. See [Configuring Storage Destinations](snapshots-storage-destinations).
+Configure a storage destination for your backups. See [How to Set Up Backup Storage](snapshots-config-workflow).
 
 ## Full Snapshots (Recommended) {#full}
 
 Full snapshots back up the admin console and all application data.
-They can be used for full Disaster Recovery by restoring over the same instance or into a new cluster. For limitations, see [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _How to Set Up and Use Snapshots_.
+They can be used for full Disaster Recovery by restoring over the same instance or into a new cluster. For limitations, see [Limitations and Considerations](snapshots-config-workflow#limitations-and-considerations) in _How to Set Up Backup Storage_.
 
 There are two ways to create a full snapshot. First, make sure that your license has the snapshots feature enabled, then:
 
 1. Using the kots CLI `backup` command. See [backup](../reference/kots-cli-backup-index) in the kots CLI documentation.
-2. Using the admin console (check screenshot below).
+2. Using the admin console:
 
     ![Instance Backup UI](/images/snapshot-instance-backup.png)
 
