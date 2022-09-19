@@ -4,6 +4,30 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.85.0
+
+Released on September 19, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### New Features {#new-features-1-85-0}
+* Adds ability to automatically check for new chart versions that are available when running in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Fixes an issue that allowed new Helm releases to be deploying without configuring them first when there is a missing required configuration value in [Helm managed mode (Alpha)](/vendor/helm-install).
+
+### Improvements {#improvements-1-85-0}
+* Updates the replicated/local-volume-provider image to v0.3.8 to resolve CVE-2022-2509 with high severity.
+* Updates the github.com/open-policy-agent/opa module to resolve CVE-2022-36085 with critical severity.
+* Updates the kotsadm/dex image to v2.34.0 to resolve CVE-2022-37434 with critical severity and CVE-2021-43565, CVE-2022-27191, and CVE-2021-44716 with high severity.
+
+### Bug Fixes {#bug-fixes-1-85-0}
+* Fixes an issue in embedded clusters where image garbage collection deletes images that are still in use by application.
+* Increases the memory limit for the `kotsadm-minio` statefulset from 200Mi to 512Mi.
+* Updates the UI for customer license entitlements to provide better visibility.
+* Fixes an issue where headless/unattended installs hang in embedded clusters with recent Kubernetes versions.
+* Fixes an issue that caused values to be missing on the [config page](/vendor/config-screen-about#admin-console-config-tab) for pending updates in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Fixes checkbox alignment in config page.
+* Fixes a bug that caused errors to be not displayed on the [config page](/vendor/config-screen-about#admin-console-config-tab) when values for required config items are missing in [Helm managed mode (Alpha)](/vendor/helm-install).
+
 ## 1.84.0
 
 Released on September 12, 2022
