@@ -1,8 +1,8 @@
 # Submitting a Support Request
 
-You can submit a support request with a support bundle using the Replicated vendor portal. Uploading a support bundle is secure and helps the Replicated support team troubleshoot your application faster. Severity 1 issues are resolved three times faster when you submit a support bundle with your support request.
+You can submit a support request and a support bundle using the Replicated vendor portal. Uploading a support bundle is secure and helps the Replicated support team troubleshoot your application faster. Severity 1 issues are resolved three times faster when you submit a support bundle with your support request.
 
-For more information about how to generate a support bundle using either the Replicated admin console or the kubectl CLI, see [Troubleshooting an Application](https://docs.replicated.com/enterprise/troubleshooting-an-app).
+For more information about how to generate a support bundle, see [Generating Support Bundles](/enterprise/troubleshooting-an-app).
 
 To submit a support request:
 
@@ -15,11 +15,7 @@ To submit a support request:
     - Use your pre-selected support bundle or select a different bundle in the pick list
     - Select **Upload and attach a new support bundle** and attach a bundle from your file browser
 
-    If your customer cannot generate a support bundle using the admin console, see the next step for alternative methods.
-
-1. Update your support-bundle binary using on of the following methods if a support bundle cannot be generated using the admin console:
-
-
+    If your customer cannot generate a support bundle using the admin console and needs an alternative method, see [Generating Support Bundles](/enterprise/troubleshooting-an-app) in the Enterprise documentation.
 
 <!-- - Select **I'm unable to generate a support bundle** and do the following in the user interface:
 

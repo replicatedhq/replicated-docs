@@ -1,8 +1,8 @@
-# Troubleshooting an Application
+# Generating Support Bundles
 
 The Replicated admin console includes a Troubleshoot page where you can generate an analysis and review remediation suggestions for troubleshooting an application. You can also download a support bundle to share with your vendor.
 
-## Create a Support Bundle using the Admin Console
+## Generate a Bundle using the Admin Console
 
 1. From the admin console, select the Troubleshoot tab.
 
@@ -20,13 +20,13 @@ The Replicated admin console includes a Troubleshoot page where you can generate
 
 1. (Optional) Click **Download bundle** to download the support bundle. You can send the bundle to your vendor for assistance.
 
-## Creating a Support Bundle Using the CLI
+## Generating a Bundle Using the CLI
 
-You can generate a support bundle using the CLI instead of the admin console. For example, if an installation fails when you are using an embedded KURL cluster to install the Replicated admin console or upload the application, the admin console may not be available.
+You can generate a support bundle using the CLI instead of the admin console. For example, the admin console may not be available if you are using a Kubernetes installer (embedded installer) and the installation fails.
 
-### Prerequisite: Install the Support Bundle Plugin
+### Prerequisite
 
-The `support-bundle` kubectl plugin is required to generate a support bundle.
+The `support-bundle` binary (a kubectl plugin) is required to generate a support bundle. Install or update the binary before generating a support bundle using the CLI.
 
 To install the plugin, do one of the following actions:
 
@@ -44,7 +44,7 @@ To install the plugin, do one of the following actions:
 
 ### Create a Support Bundle with the CLI
 
-Create a support bundle using one of the following methods, depending on your environment or situation.
+After you install or update the support-bundle binary, generate a support bundle using one of the following methods, depending on your environment or situation.
 
 #### With the Default kots.io Specification
 
