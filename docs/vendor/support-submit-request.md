@@ -1,10 +1,6 @@
 # Submitting a Support Request
 
-You can submit a support request with or without a support bundle using the Replicated vendor portal. Uploading a support bundle is secure and helps the Replicated support team troubleshoot your application faster.
-
-Severity 1 issues are resolved three times faster when you submit a support bundle with your support request.
-
-If you or your customer are unable to generate a support bundle, you can submit the request without a support bundle and the support team will assist you.
+You can submit a support request with a support bundle using the Replicated vendor portal. Uploading a support bundle is secure and helps the Replicated support team troubleshoot your application faster. Severity 1 issues are resolved three times faster when you submit a support bundle with your support request.
 
 For more information about how to generate a support bundle using either the Replicated admin console or the kubectl CLI, see [Troubleshooting an Application](https://docs.replicated.com/enterprise/troubleshooting-an-app).
 
@@ -18,7 +14,14 @@ To submit a support request:
 
     - Use your pre-selected support bundle or select a different bundle in the pick list
     - Select **Upload and attach a new support bundle** and attach a bundle from your file browser
-    - Select **I'm unable to generate a support bundle** and do the following in the user interface:
+
+    If your customer cannot generate a support bundle using the admin console, see the next step for alternative methods.
+
+1. Update your support-bundle binary using on of the following methods if a support bundle cannot be generated using the admin console:
+
+
+
+<!-- - Select **I'm unable to generate a support bundle** and do the following in the user interface:
 
       - Describe any procedures that led to the failure, including playbooks or scripts that were used
 
@@ -47,7 +50,9 @@ To submit a support request:
         - docker ps -a
         - journalctl -u kubelet –no-pager
         - journalctl -u docker –no-pager
-        - iptables -L -v
+        - iptables -L -v  -->
+
+
 
 1. Click **Submit Support Request**. You receive a link to your support issue, where you can interact with the support team.
 
