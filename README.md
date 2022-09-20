@@ -2,6 +2,7 @@
 
 ## Table of Contents:
 
+* [For Vendors: How to Create Enterprise Documentation](#vendors)
 * [How to Contribute to the Documentation](#how-to-contribute-to-the-documentation)
 * [Setting Up Local WYSIWYG Previews](#setting-up-local-wysiwyg-previews)
 * [Folder Structure and TOC](#folder-structure-and-toc)
@@ -12,9 +13,20 @@
 * [Style Guidelines](#style-guidelines)
 * [SME and Editorial Reviews](#sme-and-editorial-reviews)
 
-## How to Contribute to the Documentation
-
 Welcome to the repository for the [Replicated documentation site](https://docs.replicated.com/).
+
+## For Software Vendors: Using this Repository to Create Your Documentation {#vendors}
+
+Software vendors using Replicated to distribute their application can copy the documentation in this repository to create docs for their own users.
+
+The following directories in this repository contain documentation about how to use the Replicated admin console and the kots CLI:
+
+* **docs/enterprise**: The `docs/enterprise` directory includes documentation for installing, updating, monitoring, and managing applications with the admin console and the kots CLI. See [`docs/enterprise`](https://github.com/replicatedhq/replicated-docs/tree/main/docs/enterprise).
+* **docs/reference**: The `docs/reference` directory includes reference documentation for the kots CLI commands. This includes details on each of the kots CLI commands and associated flags. See [`docs/reference`](https://github.com/replicatedhq/replicated-docs/tree/main/docs/reference).
+
+To create your own documentation based on the content in the `docs/enterprise` and `docs/reference` directories, 
+
+## How to Contribute to the Documentation
 
 This repository has been made public so that vendors and the open-source community can contribute to the content using the following methods:
 
