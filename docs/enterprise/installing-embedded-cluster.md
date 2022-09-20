@@ -144,17 +144,17 @@ To install with high availability in an air gapped environment:
 
     - **kots CLI:** Use the following command to install the application `.airgap` bundle. For more information about the `kots install` command, see [install](../reference/kots-cli-install) in the kots CLI documentation.
 
-    ```
-      kubectl kots install APP_NAME \
-      --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
-      --license-file PATH_TO_LICENSE_FILE \
-        --config-values PATH_TO_CONFIG_VALUES \
-        --namespace default \
-        --shared-password PASSWORD
-    ```
-    Replace:
-      * `APP_NAME` with the name for the application.
-      * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle file.
-      * `PATH_TO_LICENSE_FILE` with the path to the license file.
-      * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file.
-      * `PASSWORD` with a shared password.
+      ```
+        kubectl kots install APP_NAME \
+        --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
+        --license-file PATH_TO_LICENSE_FILE \
+          --config-values PATH_TO_CONFIG_VALUES \
+          --namespace default \
+          --shared-password PASSWORD
+      ```
+      Replace:
+        * `APP_NAME` with the name for the application.
+        * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle file.
+        * `PATH_TO_LICENSE_FILE` with the path to the license file.
+        * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file.
+        * `PASSWORD` with a shared password.
