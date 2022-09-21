@@ -34,16 +34,16 @@ To update a release:
 
 ## Archive Releases
 
-You can archive releases and remove them from view on the Releases page. Any archived releases are still visible on the channel's Release History page. 
+You can archive releases and remove them from view on the Releases page. 
 
-**Note:** Archiving a release that has been promoted does not remove the release from the channel's Release History page or prevent app manager from downloading the archived release. 
+Archiving a release that has been promoted does not remove the release from the channel's Release History page or prevent the app manager from downloading the archived release. 
 
 To archive one or more releases: 
 
-1. From the Release page, click the trach can icon in the upper right corner.
-1. Select one or more releases to be archived.
+1. From the Releases page, click the trash can icon in the upper right corner.
+1. Select one or more releases.
 1. Click **Archive Releases**. 
-1. Confirm the archive action. Alternatively, click **Cancel** to cancel the archiving action. 
+1. Confirm the archive action when prompted. Alternatively, click **Cancel** to cancel the archiving action. 
 
 ## Related Topic
 
