@@ -1,0 +1,19 @@
+[[redirects]]
+  #from = "/*"
+  #to = "/blog/:splat"
+  # See https://docs.netlify.com/configure-builds/file-based-configuration/#redirects
+
+  from = "https://docs.replicated.com/vendor"
+  to = "https://docs.replicated.com/vendor/distributing-workflow"
+
+[[redirects]]
+  from = "https://docs.replicated.com/enterprise"
+  to = "https://docs.replicated.com/enterprise/installing-overview"
+
+[[redirects]]
+  from = "https://docs.replicated.com/reference"
+  to = "https://docs.replicated.com/reference/custom-resource-about"
+
+[[redirects]]
+  from = "https://docs.replicated.com/release-notes"
+  to = "https://docs.replicated.com/release-notes/rn-whats-new"

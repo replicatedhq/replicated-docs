@@ -2,108 +2,122 @@
 
 > Introduced in the Replicated app manager v1.33.0
 
-You can configure a Network File System (NFS) as your snapshots storage destination. For more information about snapshot storage destinations, see [Configuring Storage Destinations](snapshots-storage-destinations).
+You can configure a Network File System (NFS) as your storage destination for backups.
 
 ## Prerequisites
 
 Complete the following items before you perform this task:
 
-* Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _How to Set Up and Use Snapshots_.
-* Install and configure Velero. See [Installing and Configuring Velero](snapshots-venerlo-installing-config).
+* Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _How to Set Up Backup Storage_.
+* Install the Velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).
 * The NFS server must be configured to allow access from all the nodes in the cluster.
-
 * The NFS directory must be writable by the user:group 1001:1001.
-
-   Ensure that you configure the user:group 1001:1001 permissions for the directory on the NFS server.
-
-* All the nodes in the cluster must have the necessary NFS client packages installed to be able to communicate with the NFS server.
-For example, the `nfs-common` package is a common package used on Ubuntu.
-
+* Ensure that you configure the user:group 1001:1001 permissions for the directory on the NFS server.
+* All the nodes in the cluster must have the necessary NFS client packages installed to be able to communicate with the NFS server. For example, the `nfs-common` package is a common package used on Ubuntu.
 * Any firewalls must be properly configured to allow traffic between the NFS server and clients (cluster nodes).
 
-## Configure NFS on Kubernetes Installer-created Clusters
+## Configure NFS Storage in Online Environments
 
-Clusters created by the Replicated Kubernetes installer that include the Velero add-on store snapshots internally in the cluster by default. For more information about the Velero add-on, see [Velero Add-On](https://kurl.sh/docs/add-ons/velero) in the kURL documentation.
+In this procedure, you install Velero and configure your initial storage destination in online environments for either existing clusters or a Kubernetes installer clusters. This procedure uses the kots CLI to install Velero and configure your initial storage destination.
 
-There are two ways to change this configuration to use NFS:
+:::note
+If you already have Velero installed and just want to update your storage destination settings, you can use the admin console instead. For more information about using the admin console to update storage settings, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
+:::
 
-* Using the kots CLI `velero configure-nfs` command. See [`velero configure-nfs`](../reference/kots-cli-velero-configure-nfs/) in the kots CLI documentation.
-* Using the Replicated admin console. See the instructions below.
+To install Velero and configure an NFS storage destination:
 
-First, head to the "Snapshots" tab.
-From there, head to the "Settings and Schedule" tab and choose the "Network File System (NFS)" dropdown option.
+1. Run the following command to configure the Velero namespace and storage destination in the application. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
 
-![Snapshot Destination Dropdown NFS](/images/snapshot-destination-dropdown-nfs.png)
+    ```
+    kubectl kots velero configure-nfs --namespace NAME --nfs-path PATH --nfs-server HOST
+    ```
 
-Enter the NFS server hostname or IP Address, and the path that is exported by the NFS server and click "Update storage settings".
-This step might take a couple of minutes.
+    Replace:
 
-![Snapshot Destination NFS Fields](/images/snapshot-destination-nfs-fields.png)
+    - NAME with the name of the namespace where the admin console is installed and running
+    - PATH with the path that is exported by the NFS server
+    - HOST with the hostname or IP address of the NFS server
 
-When configuring the admin console to store snapshots on an NFS server, the following fields are available:
+    You get a message that the file system configuration for the admin console is successful, but that no Velero installation has been detected. Credentials and instructions are displayed for installing Velero.
 
-| Name   | Description                                  |
-|--------|----------------------------------------------|
-| Server | The hostname or IP address of the NFS server |
-| Path   | The path that is exported by the NFS server  |
+1. Run the `velero install` command that displays in the previous step:
 
-## Existing Clusters
+  **Example:**
 
-If Velero is already installed in the cluster, follow the instructions in the [Configure NFS on Kubernetes Installer-created Clusters](#configure-nfs-on-kubernetes-installer-created-clusters) section above.
+  ```
+  velero install \
+    --secret-file PATH/TO/CREDENTIALS_FILE \
+    --provider aws \
+    --plugins velero/velero-plugin-for-aws:v1.2.0 \
+    --bucket velero \
+    --backup-location-config region=minio,s3ForcePathStyle=true,s3Url=http://kotsadm-fs-minio.default:9000,publicUrl=http://10.96.0.243:9000 \
+    --snapshot-location-config region=minio \
+    --use-restic
+  ```
 
-If Velero is not yet installed in the cluster, then the first step would be to set up and deploy the necessary components that are going to be used to install and set up Velero with NFS.
-This can be done in two ways:
+  Replace `PATH/TO/CREDENTIALS_FILE` with the path to the credentials file.
 
-### Using the kots CLI
+  A confirmation message displays that the installation is successful. You can go to the Snapshots tab admin console and see the storage destination is configured.
 
-The `velero configure-nfs` CLI command can be used to configure NFS for either online or air gapped installations.
-After this command has run and completed successfully, it will detect if Velero is not installed and print out specific instructions on how to install and set up Velero.
+## Configure NFS Storage in Air Gapped Environments
 
-**Online installations**
+The kots CLI can be used to configure NFS in air gapped environments.
 
-```bash
-kubectl kots velero configure-nfs --nfs-server <hostname-or-ip> --nfs-path /path/to/directory --namespace <namespace>
-```
+:::note
+If you already have Velero installed and want to update your storage destination, you can use the admin console instead. In this procedure, you use the kots CLI to install Velero and configure your initial storage destination in online environments. For more information about using the admin console to update storage settings, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
+:::
 
-**Air gapped installations**
+To configure NFS in an air gapped environment, run the following command:
 
-```bash
-kubectl kots velero configure-nfs \
-  --nfs-server <hostname-or-ip> \
-  --nfs-path /path/to/directory \
-  --namespace <namespace> \
-  --kotsadm-registry private.registry.host \
-  --kotsadm-namespace application-name \
-  --registry-username ro-username \
-  --registry-password ro-password
-```
+  ```bash
+  kubectl kots velero configure-nfs \
+    --nfs-server HOST \
+    --nfs-path PATH \
+    --namespace NAMESPACE \
+    --kotsadm-registry private.registry.host \
+    --kotsadm-namespace application-name \
+    --registry-username ro-username \
+    --registry-password ro-password
+  ```
+After this command runs successfully, it detects whether Velero is already installed. If Velero is not installed, the command output provides specific instructions on how to install and set up Velero.
 
-### Using the Admin Console
 
-First, head to the “Snapshots” tab.
-From there, head to the “Settings and Schedule” tab.
-Then, you'll be presented with a dialog which contains instructions for setting up Velero with different providers.
-Click on the "NFS" provider option (check screenshot below).
+## Configure NFS Storage in the Admin Console
 
-![Snapshot Provider NFS](/images/snapshot-provider-nfs.png)
+Alternatively, when the admin console and application are already installed, you can start in the admin console to install Velero and configure NFS storage.
 
-Then, you'll be presented with another dialog for configuring NFS.
-Enter the NFS server hostname or IP Address, and the path that is exported by the NFS server and click "Configure".
+To install Velero and configure NFS storage for existing clusters:
 
-![Snapshot Provider NFS Fields](/images/snapshot-provider-nfs-fields.png)
+1. From the admin console, click **Snapshots > Settings and Schedule**.
 
-This step might take a few minutes, so please be patient.
-Once the configuration is successful, you'll be presented with a different dialog which contains a CLI command that will print out instructions on how to set up Velero with the deployed NFS configuration/components.
+1. Click **Add a new storage destination**.
 
-![Snapshot Provider File System Next Steps](/images/snapshot-provider-fs-next-steps.png)
+  The Add a new destination dialog opens and shows instructions for setting up Velero with different providers.
 
-After following the instructions from the above CLI command and successfully installing Velero, you can go back to the admin console and either click on the "Check for Velero" button to retry detecting Velero, or refresh the page.
+1. Click **NFS**.
 
-## Next Step
+  ![Snapshot Provider NFS](/images/snapshot-provider-nfs.png)
 
-After you configure a storage destination, you can create or schedule backups. For more information, see [Creating Backups](snapshots-creating) and [Scheduling Automatic Backups](snapshots-scheduling).
+1. In the Configure NFS dialog, enter the NFS server hostname or IP Address, and the path that is exported by the NFS server. Click **Configure**.
+
+  ![Snapshot Provider NFS Fields](/images/snapshot-provider-nfs-fields.png)
+
+  This step can take a few minutes. When the configuration is successful, the Next Steps dialog opens with a CLI command to print out instructions on how to set up Velero with the deployed NFS configuration/components.
+
+1. Run the command that displays in the previous step and follow the instructions to install Velero.
+
+  ![Snapshot Provider File System Next Steps](/images/snapshot-provider-fs-next-steps.png)
+
+1. Return to the admin console and either click **Check for Velero** or refresh the page to verify that the Velero installation is detected.
+
+## Next Steps
+
+Next, you can:
+
+* Configure Velero namespace access and default memory limits, if needed. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
+* Create or schedule backups. See [Creating Backups](snapshots-creating) and [Scheduling Automatic Backups](snapshots-scheduling).
 
 ## Additional Resources
 
-* [How to Set Up Snapshots](snapshots-understanding)
+* [How to Set Up Backup Storage](snapshots-understanding)
 * [Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)

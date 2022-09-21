@@ -29,7 +29,6 @@ const sidebars = {
         'vendor/tutorial-installing-without-existing-cluster',
         'vendor/tutorial-installing-with-existing-cluster',
         'vendor/tutorial-installing-with-cli',
-        'vendor/tutorial-installing-air-gap',
       ]
     },
     {
@@ -300,20 +299,23 @@ const sidebars = {
           label: 'Managing Backup and Restore',
           items: [
             'enterprise/snapshots-understanding',
-            'enterprise/snapshots-velero-installing-config',
             {
               type: 'category',
-              label: 'Storage Destinations',
+              label: 'Configuring Backup Storage',
               items: [
-                'enterprise/snapshots-storage-destinations',
-                'enterprise/snapshots-configuring-nfs',
+                'enterprise/snapshots-config-workflow',
+                'enterprise/snapshots-velero-cli-installing',
                 'enterprise/snapshots-configuring-hostpath',
+                'enterprise/snapshots-configuring-nfs',
+                'enterprise/snapshots-storage-destinations',
+                'enterprise/snapshots-velero-installing-config',
               ],
             },
             'enterprise/snapshots-creating',
             'enterprise/snapshots-scheduling',
             'enterprise/snapshots-restoring-full',
             'enterprise/snapshots-restoring-partial',
+            `enterprise/snapshots-updating-with-admin-console`,
             'enterprise/snapshots-troubleshooting-backup-restore',
           ],
         },
