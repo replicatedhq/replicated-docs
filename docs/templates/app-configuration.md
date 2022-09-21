@@ -46,7 +46,7 @@ To configure [Section 1]:
 1. (Optional) For **[Field Name]**, enter [information].
   <!-- Put (Optional) at the start to denote optional fields.-->
 
-### Configuration Section 2
+### Configure [Section 2]
 
 To configure [Section 2]:
 
@@ -70,7 +70,7 @@ use the following table format-->
      </tr>
    </table>
 
-### (Optional) Configuration Section 3 <!-- Put (Optional) at the start to denote optional sections.-->
+### (Optional) Configure [Section 3] <!-- Put (Optional) at the start to denote optional sections.-->
 
 To configure [Section 3]:
 
@@ -82,7 +82,7 @@ To configure [Section 3]:
    <!-- Use this bulleted list format if the user needs to
    select between multiple options.-->
 
-<!-- ## Next Steps
+<!-- ## Next Step (or ## Next Steps)
 
 After you configure [App Name], [do this next step]. See [link to more information].
 
