@@ -1,4 +1,8 @@
-# Updating Releases
+# Updating and Archiving Releases
+
+This topic describes how to update or archive releases.
+
+## Update Releases
 
 You can deliver an update to an application after it has been released.
 
@@ -28,6 +32,15 @@ To update a release:
 
 1. Click **Deploy** to apply the new YAML files. This should only take a few seconds to deploy.
 
-## Related Topic
+## Archive Releases
 
-[How to Package and Distribute an Application](distributing-workflow)
+You can archive releases to remove them from view on the Releases page. 
+
+Archiving a release that has been promoted does not remove the release from the channel's Release History page or prevent the app manager from downloading the archived release. 
+
+To archive one or more releases: 
+
+1. From the Releases page, click the trash can icon in the upper right corner.
+1. Select one or more releases.
+1. Click **Archive Releases**. 
+1. Confirm the archive action when prompted. Alternatively, click **Cancel** to cancel the archiving action. 
