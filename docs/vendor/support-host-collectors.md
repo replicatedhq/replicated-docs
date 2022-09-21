@@ -1,16 +1,16 @@
 # Configuring Host Collectors and Analyzers
 
-This topic describes how to use host collectors and analyzers to help customers gather information and troubleshoot from the cluster host.
+This topic describes how to use host collectors and analyzers to help customers gather information and troubleshoot from hosts for Kubernetes installer provisioned clusters (embedded clusters).
 
 ## About Host Collectors and Analyzers
 
-Host collectors and analyzers are designed to collect information from Kubernetes installer-created clusters (embedded clusters) that is not available from in-cluster collectors. Host collectors gather information directly from the host they are run on and do not have Kubernetes as a dependency.
+Host collectors and analyzers are designed to collect information from hosts that is not available from in-cluster collectors. Host collectors are available only for Kubernetes installer clusters. These host collectors gather information directly from the host they are run on and do not have Kubernetes as a dependency.
 
 You can gather information about the environment, such as CPU, memory, available block devices, and the operating system. Host collectors can also be used for testing network connectivity and gathering the output of provided commands.
 
 This information is useful when you need to debug a Kubernetes installer cluster that is offline, troubleshoot a Kubernetes installer that failed before the control plane was initialized, or if you need to collect and analyze information that is not available with in-cluster collectors.
 
-You create the host collector bundle separately from your application package. Share the host collector YAML file with customers to run on their host using the support-bundle CLI. For more information about how customers run the host collector bundle, see [Generating Support Bundles](troubleshooting-an-app#run-host-collectors-and-analyzers).
+You create the host collectors file separately from your application package. Share the host s YAML file with customers to run on their host using the support-bundle CLI. For more information about how customers run the host collector bundle, see [Generating Support Bundles](troubleshooting-an-app#run-host-collectors-and-analyzers).
 
 ## Define Host Collectors and Analyzers
 
@@ -56,3 +56,4 @@ To define host collectors and analyzers:
               - pass:
                   message: The system has at least 8G of memory
     ```
+1. Share the SupportBundle custom resource file with your customers, as needed.
