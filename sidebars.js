@@ -191,7 +191,6 @@ const sidebars = {
             ],
           },
           'vendor/releases-sharing-license-install-script',
-          'vendor/support-submit-request',
         {
           type: 'category',
           label: 'Team Management',
@@ -216,6 +215,14 @@ const sidebars = {
           items: [
             'vendor/data-availability',
             'vendor/offsite-backup'
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Support Options',
+          items: [
+            'vendor/support-submit-request',
+            'vendor/support-host-collectors',
           ],
         },
         {
