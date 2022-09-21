@@ -1,4 +1,8 @@
-# Updating Releases
+# Updating and Archiving Releases
+
+This topic describes how to update or archive releases.
+
+## Update Releases
 
 You can deliver an update to an application after it has been released.
 
@@ -28,7 +32,7 @@ To update a release:
 
 1. Click **Deploy** to apply the new YAML files. This should only take a few seconds to deploy.
 
-## Archiving Releases
+## Archive Releases
 
 You can archive releases and remove them from view on the Releases page. Any archived releases are still visible on the channel's Release History page. 
 
