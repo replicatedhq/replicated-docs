@@ -68,7 +68,7 @@ use the following table format-->
        <td>(Optional) [Field Name]</td>
        <td>Enter [information].</td>
      </tr>
-   <table/>
+   </table>
 
 ### (Optional) Configuration Section 3 <!-- Put (Optional) at the start to denote optional sections.-->
 
