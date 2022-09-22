@@ -24,7 +24,7 @@ The Replicated admin console includes a Troubleshoot page where you can generate
 
 You can generate a support bundle using the CLI instead of the admin console. For example, if an installation fails when you are using an embedded KURL cluster to install the Replicated admin console or upload the application, the admin console may not be available.
 
-## Install the Support Bundle Plugin {#plugin}
+### Install the Support Bundle Plugin {#plugin}
 
 The `support-bundle` kubectl plugin is required to generate a support bundle.
 
@@ -50,7 +50,7 @@ To install the plugin, do one of the following actions:
 
   Replace `VERSION` with `v` and the version number. For example, `v0.40.0`. To get the latest release version, see the [Troubleshoot](https://github.com/replicatedhq/troubleshoot/releases) repository in GitHub.
 
-## Create a Support Bundle with the CLI
+### Create a Support Bundle with the CLI
 
 Create a support bundle using one of the following methods, depending on your environment or situation.
 
@@ -94,7 +94,7 @@ If the application is not installed but the admin console is running, run the fo
   kubectl support-bundle http://<server-address>:8800/api/v1/troubleshoot
   ```
 
-## Generate a Host Collectors and Analyzers Bundle
+### Generate a Host Collectors and Analyzers Bundle
 
 For Kubernetes installer provisioned clusters (embedded clusters), you can run host collectors and analyzers to help with troubleshooting a cluster that is down. Your vendor provides you with a host collectors YAML file (`kind: SupportBundle`) that you run with a command to generate the support bundle on the host.
 
