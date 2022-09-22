@@ -5,6 +5,8 @@ This topic describes how to manage team members in the Replicated vendor portal,
 ## Viewing Team Members
 The [Team](https://vendor.replicated.com/team/members) page provides a list of all accounts currently associated with or invited to your team. Each row contains information about the user, including their multi-factor authentication (MFA) status and role-based access control (RBAC) role, and lets administrators take additional actions, such as remove, re-invite, and edit permissions.
 
+All users, including read-only, can see the name of the RBAC role assigned to each team member. When SAML authentication is enabled, users with the built-in read-only policy cannot see the RBAC role assigned to team members.
+
 ## Invite Members
 By default, team administrators can invite more team members to collaborate. Invited users receive an email to activate their account. The activiation link in the email is unique to the invited user. Following the activation link in the email also ensures that the invited user joins the team from which the invitation originated. 
 
