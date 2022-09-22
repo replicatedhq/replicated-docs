@@ -17,7 +17,7 @@ Welcome to the repository for the [Replicated documentation site](https://docs.r
 
 ## For Software Vendors: Using this Repository to Create Your Documentation {#vendors}
 
-Software vendors using Replicated to distribute their application can copy the documentation in this repository to create docs for their own users.The following directories contain documentation for enterprise users about how to use the Replicated admin console and the kots CLI:
+Software vendors using Replicated to distribute their application can copy the documentation in this repository to create docs for their own users. The following directories contain documentation for enterprise users about how to use the Replicated admin console and the kots CLI:
 
 * **docs/enterprise**: The `docs/enterprise` directory includes documentation for installing, updating, monitoring, and managing applications with the admin console and the kots CLI. See [`docs/enterprise`](https://github.com/replicatedhq/replicated-docs/tree/main/docs/enterprise). For the published version of the enterprise content, see [https://docs.replicated.com/enterprise](https://docs.replicated.com/enterprise/installing-overview).
 * **docs/reference**: The `docs/reference` directory includes reference documentation for the kots CLI commands. This includes details on each of the kots CLI commands and associated flags. See [`docs/reference`](https://github.com/replicatedhq/replicated-docs/tree/main/docs/reference). For the published version of the kots CLI reference content, see [Installing the kots CLI](https://docs.replicated.com/reference/kots-cli-getting-started).
