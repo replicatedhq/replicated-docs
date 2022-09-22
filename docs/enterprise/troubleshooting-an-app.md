@@ -90,7 +90,7 @@ If the application is not installed but the admin console is running, run the fo
 
 For Kubernetes installer provisioned clusters (embedded clusters), you can run host collectors and analyzers to help with troubleshooting a cluster that is down. Your vendor provides you with a host collector YAML file (`kind: SupportBundle`) that you run with a command to generate the support bundle on the host.
 
-Root access is typically not required to run the host collectors. However, depending on what you want to collect, you might need to run the binary with elevated permissions. For example, if you run the `filesystemPerformance` host collector against `/var/lib/etcd` and the user running the binary does not have permissions on this directory, the collection process fails.
+Root access is typically not required to run the host collectors. However, depending on what is being collected, you might need to run the binary with elevated permissions. For example, if you run the `filesystemPerformance` host collector against `/var/lib/etcd` and the user running the binary does not have permissions on this directory, the collection process fails.
 
 To run host collectors and analyzers:
 
