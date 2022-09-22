@@ -2,11 +2,15 @@
 
 The topic lists the requirements and prerequisites for installing [App Name]. Before you can install [App Name], you must complete the prerequisites and ensure that your environment meets the requirements.
 
+<!-- Optional Overview section. Remove if not needed
+
 ## Overview of Installing [App Name]
 
-When you install [App Name], your first install the admin console and the application installer components. Then, you  
+When you install [App Name], your first install the admin console and the application installer components. Then, you  configure [App Name] and deploy.
 
+[You can include additional information here about key concepts or terminology that users must know about your app.]
 
+-->
 
 ## Requirements
 
