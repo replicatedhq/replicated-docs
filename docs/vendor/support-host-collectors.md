@@ -1,6 +1,6 @@
-# Configuring Host Collectors and Analyzers
+# Collecting Support Bundles from Hosts
 
-This topic describes how to use host collectors and analyzers to help customers gather information and troubleshoot from hosts for Kubernetes installer provisioned clusters (embedded clusters).
+This topic describes how to use host collectors and analyzers to help customers generate support bundles from hosts to troubleshoot Kubernetes installer provisioned clusters (embedded clusters).
 
 ## About Host Collectors and Analyzers
 
@@ -10,11 +10,11 @@ You can gather information about the environment, such as CPU, memory, available
 
 This information is useful when you need to debug a Kubernetes installer cluster that is offline, troubleshoot a Kubernetes installer that failed before the control plane was initialized, or if you need to collect and analyze information that is not available with in-cluster collectors.
 
-You create the host collectors file separately from your application package and share the host collector file with customers to run on their host. For more information about how customers run the host collector bundle, see [Generating Support Bundles](troubleshooting-an-app#run-host-collectors-and-analyzers).
+You create the host collectors file separately from your application package and share the file with customers to run on their hosts. This file is separate from a support bundle manifest file that you include inside your application package because host collectors are intended to run directly on the host using the support-bundle CLI and not with KOTS. If KOTS runs host collectors, the collectors are unlikely to produce the desired results because they run in the context of the kotsadm Pod. For more information about how customers run the host collector bundle, see [Generating Support Bundles](troubleshooting-an-app#run-host-collectors-and-analyzers).
 
 ## Define Host Collectors and Analyzers
 
-Create a SupportBundle custom resource to specify host collectors and analyzers. This file is separate from a support bundle manifest file that you include inside your application package because host collectors are intended to run directly on the host using the support-bundle CLI and not with KOTS. If KOTS runs host collectors, the collectors are unlikely to produce the desired results because they run in the context of the kotsadm Pod.
+Define a SupportBundle custom resource to specify host collectors and analyzers to gather information from a host.
 
 To define host collectors and analyzers:
 
