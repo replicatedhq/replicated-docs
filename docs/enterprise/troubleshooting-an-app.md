@@ -50,7 +50,7 @@ To install the plugin, do one of the following actions:
 
   Replace `VERSION` with `v` and the version number. For example, `v0.40.0`. To get the latest release version, see the [Troubleshoot](https://github.com/replicatedhq/troubleshoot/releases) repository in GitHub.
 
-### Create a Support Bundle with the CLI
+## Create a Support Bundle with the CLI
 
 Create a support bundle using one of the following methods, depending on your environment or situation.
 
@@ -96,28 +96,28 @@ If the application is not installed but the admin console is running, run the fo
 
 ## Generate a Host Collectors and Analyzers Bundle
 
-For Kubernetes installer provisioned clusters (embedded clusters), you can run host collectors and analyzers to help with troubleshooting a cluster that is down. Your vendor provides you with a host collector YAML file (`kind: SupportBundle`) that you run with a command to generate the support bundle on the host.
+For Kubernetes installer provisioned clusters (embedded clusters), you can run host collectors and analyzers to help with troubleshooting a cluster that is down. Your vendor provides you with a host collectors YAML file (`kind: SupportBundle`) that you run with a command to generate the support bundle on the host.
 
 Root access is typically not required to run the host collectors. However, depending on what is being collected, you might need to run the support-bundle binary with elevated permissions. For example, if you run the `filesystemPerformance` host collector against `/var/lib/etcd` and the user running the binary does not have permissions on this directory, the collection process fails.
 
 :::note
-There is no method to run host collectors on remote nodes. If you have a multi-node Kubernetes cluster, you must run the support-bundle binary on each node and generate a host collector support bundle for each node.
+There is no method to run host collectors on remote nodes. If you have a multi-node Kubernetes cluster, you must run the support-bundle binary on each node and generate a host collectors support bundle for each node.
 :::
 
 To run host collectors and analyzers:
 
 1. Install the support-bundle plugin. See [Install the Support Bundle Plugin]({#plugin}).
 
-1. Save the host collector YAML file from your vendor on the host node. For air gap environments, download the file and copy it to the air gap machine.
+1. Save the host collectors YAML file from your vendor on the host node. For air gap environments, download the file and copy it to the air gap machine.
 
-1. Run the following command on the host to generate a support bundle:
+1. Run the following command on the host to generate a host collectors support bundle:
 
   ```
   ./support-bundle --interactive=false PATH/FILE.yaml
   ```
   Replace:
 
-    - `PATH` with the path to the host collector YAML file.
-    - `FILE` with the name of the host collector YAML file from your vendor.
+    - `PATH` with the path to the host collectors YAML file.
+    - `FILE` with the name of the host collectors YAML file from your vendor.
 
-1. If needed, share the results with your vendor's support team.
+1. If needed, share the support bundle with your vendor's support team.
