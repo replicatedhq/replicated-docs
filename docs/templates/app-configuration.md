@@ -1,4 +1,4 @@
-# Configuring [App Name]
+# Configuring and Deploying [App Name]
 
 <!-- Provide a topic sentence, such as the one below -->
 
@@ -15,11 +15,10 @@ For example, you can include descriptions of terminology, provide any
 recommendations, or describe why completing the configuration procedures
 is important.-->
 
-## Prerequisites
+## Prerequisites <!-- Remove this Prerequisites section if not needed. -->
 
-<!-- Include a Prerequisites section is there are tasks a user
-must do or information a user must gather before beginning the
-configuration procedures. -->
+<!-- Include an optional Prerequisites section is there are tasks a user
+must do or information a user must gather before configuring. -->
 
 Before you configure [App Name], do the following:
 
@@ -82,14 +81,30 @@ To configure [Section 3]:
    <!-- Use this bulleted list format if the user needs to
    select between multiple options.-->
 
-<!-- ## Next Step (or ## Next Steps)
+When you complete the fields on the configuration screen, click **Continue** to proceed to the next step.
 
-After you configure [App Name], [do this next step]. See [link to more information].
+## Pass Preflight Checks and Deploy
 
-[Include an optional Next Steps section if there is another task users must complete
-directly after they finish configuring the app.]
+<!-- Review the content in this section and make any edits for your use cases as needed. -->
 
--->
+After you save the configuration for [App Name], you can run the preflight checks and deploy.
+
+Preflight checks are conformance tests that the admin console automatically runs to ensure the cluster meets minimum requirements. Preflight checks provide clear feedback about any missing requirements or incompatibilities in the cluster before you deploy.
+
+To complete the preflight checks and deploy [App Name]:
+
+1. If there are no preflight check warnings or failures, continue with deployment.
+2. If there are any preflight check warnings and failures:
+    * Resolve the warnings and failures, and click **Re-run** to run the preflight checks again.
+    * If there are no failures that prevent application deployment, you can choose to dismiss the preflight check warnings to continue.
+
+      We recommend that you address any warnings or failures, rather than dismissing them. Preflight checks help ensure that your environment meets the requirements for application deployment.
+
+    * If you are installing with minimal role-based access control (RBAC), the admin console recognizes if the preflight checks failed due to insufficient privileges.
+
+      When this occurs, a kubectl preflight command displays that lets you manually run the preflight checks. The results are then automatically uploaded to the admin console.
+
+  After preflight checks are complete, the application is deployed, and the admin console dashboard opens.
 
 <!-- ## Additional Resources
 
