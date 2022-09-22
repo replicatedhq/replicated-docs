@@ -10,7 +10,7 @@ You can gather information about the environment, such as CPU, memory, available
 
 This information is useful when you need to debug a Kubernetes installer cluster that is offline, troubleshoot a Kubernetes installer that failed before the control plane was initialized, or if you need to collect and analyze information that is not available with in-cluster collectors.
 
-You create the host collectors file separately from your application package and share the file with customers to run on their hosts. This file is separate  from your application package because host collectors are intended to run directly on the host using the support-bundle CLI, and not with KOTS. If KOTS runs host collectors, the collectors are unlikely to produce the desired results because they run in the context of the kotsadm Pod. For more information about how customers generate a host collectors support bundle, see [Generating a Host Collectors and Analyzers Bundle](troubleshooting-an-app#run-host-collectors-and-analyzers).
+You create the host collectors file separately from your application package and share the file with customers to run on their hosts. This file is separate  from your application package because host collectors are intended to run directly on the host and not with KOTS. If KOTS runs host collectors, the collectors are unlikely to produce the desired results because they run in the context of the kotsadm Pod. For more information about how customers generate a host collectors support bundle, see [Generate a Host Collectors and Analyzers Bundle](troubleshooting-an-app#run-host-collectors-and-analyzers).
 
 ## Define Host Collectors and Analyzers
 
