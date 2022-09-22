@@ -22,7 +22,9 @@ Software vendors using Replicated to distribute their application can copy the d
 * **docs/enterprise**: The `docs/enterprise` directory includes documentation for installing, updating, monitoring, and managing applications with the admin console and the kots CLI. See [`docs/enterprise`](https://github.com/replicatedhq/replicated-docs/tree/main/docs/enterprise). For the published version of the enterprise content, see [https://docs.replicated.com/enterprise](https://docs.replicated.com/enterprise/installing-overview).
 * **docs/reference**: The `docs/reference` directory includes reference documentation for the kots CLI commands. This includes details on each of the kots CLI commands and associated flags. See [`docs/reference`](https://github.com/replicatedhq/replicated-docs/tree/main/docs/reference). For the published version of the kots CLI reference content, see [Installing the kots CLI](https://docs.replicated.com/reference/kots-cli-getting-started).
 
-To create your own documentation, review the content in these directories and copy and paste the markdown files into your own repository. Edit the content as necessary to add content and terminology specific to your application, and to remove content that does not apply for your use cases.
+To create your own documentation, review the content in these directories and copy and paste the markdown files into your own repository. Edit the content as necessary to add information and terminology specific to your application, and remove content that does not apply for your use cases.
+
+For help getting started, see [Topic Templates](#topic-templates) below.
 
 ## How to Contribute to the Documentation
 
@@ -84,13 +86,9 @@ The right-hand TOC is created automatically when you add headings to a topic.
 
 ## Topic Templates
 
-Please copy the topic templates that are located in the `templates` folder to create new content. Right now we have a two templates for creating procedures:
+You can find several topic templates in the `docs/templates` folder. These templates are useful for anyone creating a new topic in this repository, or for software vendors getting started with writing their own documentation.
 
-- A single procedure/task: `procedure.md`
-
-- A process/workflow or tutorial that contains multiple procedures/tasks: `process-multiple-procedures.md`
-
-Save the new topic to the correct folder and be sure to follow the [filenaming convention](#filenaming).
+If you are using the templates to create a new topic in this repository, save the new file to the correct folder (`docs/vendor`, `docs/enterprise`, `docs/reference`, etc) and be sure to follow the [filenaming convention](#filenaming).
 
 ## Filenaming
 
