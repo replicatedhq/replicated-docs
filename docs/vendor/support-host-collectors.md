@@ -10,15 +10,15 @@ You can gather information about the environment, such as CPU, memory, available
 
 This information is useful when you need to debug a Kubernetes installer cluster that is offline, troubleshoot a Kubernetes installer that failed before the control plane was initialized, or if you need to collect and analyze information that is not available with in-cluster collectors.
 
-You create the host collectors file separately from your application package. Share the host s YAML file with customers to run on their host using the support-bundle CLI. For more information about how customers run the host collector bundle, see [Generating Support Bundles](troubleshooting-an-app#run-host-collectors-and-analyzers).
+You create the host collectors file separately from your application package and share the host collector file with customers to run on their host. For more information about how customers run the host collector bundle, see [Generating Support Bundles](troubleshooting-an-app#run-host-collectors-and-analyzers).
 
 ## Define Host Collectors and Analyzers
 
-Create a separate SupportBundle custom resource to specify host collectors and analyzers because host collectors are intended to run directly on the host using the CLI and not with KOTS. If KOTS runs host collectors, the collectors are unlikely to produce the desired results because they run in the context of the kotsadm Pod. The support-bundle CLI is used to run the host collectors and analyzers on the host.
+Create a SupportBundle custom resource to specify host collectors and analyzers. This file is separate from a support bundle manifest file that you include inside your application package because host collectors are intended to run directly on the host using the support-bundle CLI and not with KOTS. If KOTS runs host collectors, the collectors are unlikely to produce the desired results because they run in the context of the kotsadm Pod.
 
 To define host collectors and analyzers:
 
-1. Create a SupportBundle custom resource manifest file (`kind: SupportBundle`) in your release that is a separate file than your in-cluster support bundle manifest.
+1. Create a SupportBundle custom resource manifest file (`kind: SupportBundle`).
 
 1. Define all of your host collectors and analyzers in one manifest file. You can use the following resources to help create your specification:
 
@@ -56,4 +56,4 @@ To define host collectors and analyzers:
               - pass:
                   message: The system has at least 8G of memory
     ```
-1. Share the SupportBundle custom resource file with your customers, as needed.
+1. Share the SupportBundle custom resource file with your customers to run on their host.
