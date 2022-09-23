@@ -4,6 +4,15 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2022.09.23-0
+
+Released on September 23, 2022
+
+### New Features {#new-features-v2022-09-23-0}
+* Messaging while upgrading Rook-Ceph to newer versions has been improved.
+* When run on an unsupported OS, kURL will now link to the list of supported OSes.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.59.1-40.1.0.
+
 ## v2022.09.19-0
 
 Released on September 19, 2022
