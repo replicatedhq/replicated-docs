@@ -14,8 +14,8 @@ Released on September 23, 2022
 * Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.25.2 1.24.6 1.23.12 1.22.15.
 
 ### Improvements {#improvements-v2022-09-23-0}
-* Messaging while upgrading Rook-Ceph to newer versions has been improved.
-* When run on an unsupported OS, kURL will now link to the list of supported OSes.
+* Messaging while upgrading Rook-Ceph add-on to newer versions has been improved.
+* When run on an unsupported Operating System, kURL will now link to the [list of supported systems](https://kurl.sh/docs/install-with-kurl/system-requirements#supported-operating-systems).
 * Online installations will download files from kurl.sh instead of Amazon S3.
 
 ## v2022.09.19-0
