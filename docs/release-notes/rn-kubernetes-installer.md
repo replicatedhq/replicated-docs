@@ -4,6 +4,20 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2022.09.23-0
+
+Released on September 23, 2022
+
+### New Features {#new-features-v2022-09-23-0}
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.59.1-40.1.0.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-09-17T00-09-45Z.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.25.2 1.24.6 1.23.12 1.22.15.
+
+### Improvements {#improvements-v2022-09-23-0}
+* Messaging while upgrading Rook-Ceph add-on to newer versions has been improved.
+* When run on an unsupported Operating System, kURL will now link to the [list of supported systems](https://kurl.sh/docs/install-with-kurl/system-requirements#supported-operating-systems).
+* Online installations will download files from kurl.sh instead of Amazon S3.
+
 ## v2022.09.19-0
 
 Released on September 19, 2022
