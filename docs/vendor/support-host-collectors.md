@@ -1,6 +1,6 @@
-# Collecting Support Bundles from Hosts
+# Configuring Host Collectors and Analyzers
 
-This topic describes how to define host collectors and analyzers to help customers generate support bundles from hosts to troubleshoot Kubernetes installer provisioned clusters (embedded clusters).
+This topic describes how to configure host collectors and analyzers to help customers generate support bundles from hosts to troubleshoot Kubernetes installer provisioned clusters (embedded clusters).
 
 ## About Host Collectors and Analyzers
 
@@ -12,15 +12,15 @@ This information is useful when you need to debug a Kubernetes installer cluster
 
 You create the host collectors file separately from your application package and share the file with customers to run on their hosts. This file is separate  from your application package because host collectors are intended to run directly on the host and not with KOTS. If KOTS runs host collectors, the collectors are unlikely to produce the desired results because they run in the context of the kotsadm Pod. For more information about how customers generate a host collectors support bundle, see [Generate a Host Collectors and Analyzers Bundle](troubleshooting-an-app#run-host-collectors-and-analyzers).
 
-## Define Host Collectors and Analyzers
+## Configure Host Collectors and Analyzers
 
-Define a SupportBundle custom resource to specify host collectors and analyzers to gather information from a host.
+Configure a SupportBundle custom resource to specify host collectors and analyzers to gather information from a host.
 
 To define host collectors and analyzers:
 
 1. Create a SupportBundle custom resource manifest file (`kind: SupportBundle`).
 
-1. Define all of your host collectors and analyzers in one manifest file. You can use the following resources to help create your specification:
+1. Configure all of your host collectors and analyzers in one manifest file. You can use the following resources to help create your specification:
 
     - Access sample specifications in the the Replicated troubleshoot-specs repository, which provides aggregate specifications for supporting your customers. See [troubleshoot-specs](https://github.com/replicatedhq/troubleshoot-specs) in GitHub.
 
