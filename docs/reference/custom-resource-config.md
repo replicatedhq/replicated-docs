@@ -74,7 +74,7 @@ See the [`ConfigOptionData`](template-functions-config-context#configoptiondata)
 
 ### `heading`
 The `heading` type allows you to display a group heading as a sub-element within a group.
-This is useful when you would like to use a config group to group config items together, but still separate the config items visually.
+This is useful when you would like to use a config group to group items together, but still separate the items visually.
 
 **Note**: The `heading` item type is not supported.
 
