@@ -738,7 +738,7 @@ spec:
 
 ### repeat-option-malformed-yamlpath
 
-Enforce `yamlPath` ending with square brackets denoting index position.
+Enforce ConfigOption `yamlPath` ending with square brackets denoting index position.
 
 Level: "error"
 
@@ -755,6 +755,84 @@ spec:
     - name: ports
       items:
       - name: service_port
-        - apiVersion: v1
-          yamlPath: 'spec.ports[0]'
+        yamlPath: 'spec.ports[0]'
 ```
+
+
+### config-option-password-type
+
+Require ConfigOption items with names including `password`, `secret`, or `token` to have `type` set to `password`.
+
+Level: "warn"
+
+Applies to all files.
+
+Example of **correct** yaml for this rule:
+
+```yaml
+spec:
+  groups:
+    - name: ports
+      items:
+      - name: my_secret
+        type: password
+```
+
+
+### config-option-not-found
+
+Require all used `ConfigOption`s to be defined in `Config` yaml.
+
+Level: "warn"
+
+Applies to all files.
+
+
+### config-option-is-circular
+
+Enforce `ConfigOption`s do not reference themselves.
+
+Level: "error"
+
+Applies to `apiVersion`:
+ - `kots.io/v1beta1`
+
+Applies to `kind`:
+ - `Config`
+
+Example of **incorrect** yaml for this rule:
+
+```yaml
+spec:
+  groups:
+  - name: example_settings
+    items:
+    - name: example_default_value
+      type: text
+      value: repl{{ ConfigOption "example_default_value" }}
+```
+
+
+### config-option-not-repeatable
+
+Enforce sub-templated `ConfigOption` must be repeatable.
+
+Level: "error"
+
+Applies to all files.
+
+
+### config-option-when-is-invalid
+
+Enforce valid `ConfigOption.when`.
+
+Level: "error"
+
+Applies to `apiVersion`:
+ - `kots.io/v1beta1`
+
+Applies to `kind`:
+ - `Config`
+
+Related docs:
+- [Config Properties - `when`](/reference/custom-resource-config#when)
