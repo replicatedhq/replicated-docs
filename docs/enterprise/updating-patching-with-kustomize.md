@@ -1,106 +1,107 @@
 # Patching with Kustomize
 
-Kustomize allows for last-mile patches (such as modifications) to the application that are otherwise not configurable using the `Config` page. For more information, see the [Kustomize website](https://kustomize.io).
+Kustomize allows you to make last-mile patches to an application outside of the options available in the Replicated admin console Configuration page.
 
-## Directory Structure
+For more information about Kustomize, see the [Kustomize website](https://kustomize.io).
 
-Click **View files** and lets take a look at the directory structure.
+## About the Directory Structure
+
+The **View files** page in the admin console shows the Kubernetes manifests files for the application.
+
+The following image shows an example of the file directory on the **View files** page:
 
 ![Kustomize Dir Structure](/images/kustomize-dir-structure.png)
 
-### Upstream
+[View a larger version of this image](/images/kustomize-dir-structure.png)
 
-The `upstream` directory mirrors exactly the content pushed to a release.
-This includes the template functions, preflight checks, support-bundle, config options, license, and so on.
-In addition, it has a `userdata` directory which includes the license file, config file, and so on.
+<table>
+  <tr>
+    <th width="25%">Directory</th>
+    <th width="75%">Description</th>
+  </tr>
+  <tr>
+    <td>upstream</td>
+    <td><p>The <code>upstream</code> directory mirrors exactly the content pushed to a release.</p>
+    <p>This includes the template functions, preflight checks, support-bundle, config options, license, and so on.
+    In addition, it has a <code>userdata</code> directory which includes the license file, config file, and so on.</p>
+    <p><strong>Note:</strong> With the exception of <code>upstream/userdata</code>, no changes should be made in the <code>upstream</code> directory as they are overwritten on each new release.</p></td>
+  </tr>
+  <tr>
+    <td>base</td>
+    <td><p>After the Replicated app manager processes and renders the <code>upstream</code>, it puts those files in the <code>base</code> directory.</p>
+    <p>Any non-deployable manifests such as template functions, preflight checks, config options, and so on are removed, and only the deployable application (such as, deployable with <code>kubectl apply</code>) will be placed here.</p>
+    <p><strong>Note:</strong> No changes should be made in the <code>base</code> directory as they are overwritten on each new release.</p></td>
+  </tr>
+  <tr>
+    <td>overlays</td>
+    <td><p>The <code>overlays</code> directory references the <code>base</code> directory, and this is where your local Kustomize patches should be placed.</p>
+    <p>Unlike <code>upstream</code> and <code>base</code>, any changes made here will persist between releases.</p></td>
+  </tr>
+</table>
 
-**Note:** With the exception of `upstream/userdata`, no changes should be made in the `upstream` directory as they are overwritten on each new release.
+## Patch the Overlays Directory
 
-### Base
+To use Kustomize to patch the application that persists between application updates, you can edit the files in the `overlays/downstream/` directory.
 
-After the Replicated app manager processes and renders the `upstream`, it puts those files in the `base` directory.
-Any non-deployable manifests such as template functions, preflight checks, config options, and so on are removed, and only the deployable application (such as, deployable with `kubectl apply`) will be placed here.
+The admin console overwrites the `upstream` and `base` directories each time you upgrade the application to a later version.
 
-**Note:** No changes should be made in the `base` directory as they are overwritten on each new release.
+1. Go to **View files** and click **Need to edit these files? Click here to learn how**.
 
-### Overlays
+   ![edit-patches-kots-app](/images/edit-patches-kots-app.png)
 
-The `overlays` directory references the `base` directory, and this is where your local Kustomize patches should be placed.
-Unlike `upstream` and `base`, any changes made here will persist between releases.
+1. To download the application bundle locally:
 
-* * *
+   ```shell
+   kubectl kots download --namespace APP_NAMESPACE --slug APP_SLUG --dest ~/my-kots-app
+     • Connecting to cluster ✓
+   ```
+   Replace:
+   * `APP_NAMESPACE` with the namespace on the cluster where the application is deployed.
+   * `APP_SLUG` with the unique slug for the application.
 
-## Patching the Overlays
+   You can copy these values from the dialog that appears when you click **Need to edit these files? Click here to learn how**.
 
-Since `upstream` and `base` are ephemeral, let's make a Kustomize patch in `overlays/downstreams/this-cluster/` so it persists between releases.
+1. Create a Kubernetes manifest YAML file and make any desired edits.
 
-Go to View Files and click **Need to edit these files? Click here to learn how**.
+   **Example**:
 
-![edit-patches-kots-app](/images/edit-patches-kots-app.png)
+   ```yaml
+   apiVersion: apps/v1
+   kind: Deployment
+   metadata:
+     name: example-nginx
+   spec:
+     replicas: 2
+   ```
 
-To download the app manager locally:
+   The example above shows editing the `replicas` count by creating a file in `~/my-kots-app/overlays/downstreams/this-cluster/kustomization.yaml` with the following contents:
 
-```shell
-export APP_NAMESPACE=app-namespace
-export APP_SLUG=app-slug
-kubectl kots download --namespace ${APP_NAMESPACE} --slug ${APP_SLUG} --dest ~/my-kots-app
-  • Connecting to cluster ✓
-```
+1. Add the file that you created in the previous step to the Kustomization file in the `overlays` directory at `~/my-kots-app/overlays/downstreams/this-cluster/kustomization.yaml`:
 
-Let's patch something simple like the `replicas` count:
-Create a file in `~/my-kots-app/overlays/downstreams/this-cluster/patch-deployment.yaml` with the following:
+   ```diff
+   @@ -2,3 +2,5 @@
+    apiVersion: kustomize.config.k8s.io/v1beta1
+    bases:
+    - ../../midstream
+    kind: Kustomization
+   +patches:
+   +- ./FILENAME.yaml
+   ```
+   Replace `FILENAME` with the name of the manifest file that you created in the previous step.
 
-```shell
-cat <<EOF >>~/my-kots-app/overlays/downstreams/this-cluster/patch-deployment.yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: example-nginx
-spec:
-  replicas: 2
-EOF
-```
+1. Upload your changes to the cluster:
 
-Don't forget to add this file under `patches` in `~/my-kots-app/overlays/downstreams/this-cluster/kustomization.yaml`:
+   ```shell
+   export APP_NAMESPACE=app-namespace
+   export APP_SLUG=app-slug
+   kubectl kots upload --namespace ${APP_NAMESPACE} --slug ${APP_SLUG} ~/my-kots-app
+     • Uploading local application to Admin Console ✓
+   ```
 
-```diff
-@@ -2,3 +2,5 @@
- apiVersion: kustomize.config.k8s.io/v1beta1
- bases:
- - ../../midstream
- kind: Kustomization
-+patches:
-+- ./patch-deployment.yaml
-```
+1. In the admin console, click **View History** to see the new version of the application with the diff of the changes that you uploaded.
 
-Upload the app manager to the cluster:
+   ![kustomize-view-history-diff](/images/kustomize-view-history-diff.png)
 
-```shell
-export APP_NAMESPACE=app-namespace
-export APP_SLUG=app-slug
-kubectl kots upload --namespace ${APP_NAMESPACE} --slug ${APP_SLUG} ~/my-kots-app
-  • Uploading local application to Admin Console ✓
-```
+1. Click **Deploy** to apply the changes.
 
-Under View History, you should see a new version ready to deploy along with the diff of the changes we pushed in the last few steps.
-
-![kustomize-view-history-diff](/images/kustomize-view-history-diff.png)
-
-Before deploying, ensure there is only 1 NGINX pod running:
-
-```shell
-$ kubectl get po | grep example-nginx
-example-nginx-f5c49fdf6-bf584         1/1     Running     0          1h
-```
-
-Click **Deploy** to apply the changes.
-
-![kustomize-view-history-deploy](/images/kustomize-view-history-deploy.png)
-
-You should now see 2 NGINX pods running:
-
-```shell
-$ kubectl get po | grep example-nginx
-example-nginx-f5c49fdf6-bf584         1/1     Running     0          1h
-example-nginx-t6ght74jr-58fhr         1/1     Running     0          1m
-```
+   ![kustomize-view-history-deploy](/images/kustomize-view-history-deploy.png)
