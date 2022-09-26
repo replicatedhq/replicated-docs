@@ -2,7 +2,7 @@
 
 ## Table of Contents:
 
-* [For Vendors: How to Create Enterprise Documentation](#vendors)
+* [For Vendors: How to Create Enterprise Documentation](#for-software-vendors-using-this-repository-to-create-your-documentation)
 * [How to Contribute to the Documentation](#how-to-contribute-to-the-documentation)
 * [Setting Up Local WYSIWYG Previews](#setting-up-local-wysiwyg-previews)
 * [Folder Structure and TOC](#folder-structure-and-toc)
@@ -15,7 +15,7 @@
 
 Welcome to the repository for the [Replicated documentation site](https://docs.replicated.com/).
 
-## For Software Vendors: Using this Repository to Create Your Documentation {#vendors}
+## For Software Vendors: Using this Repository to Create Your Documentation
 
 Software vendors using Replicated to distribute their application can copy the documentation in this repository to create docs for their own users. The following directories contain documentation for enterprise users about how to use the Replicated admin console and the kots CLI:
 
