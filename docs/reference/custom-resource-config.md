@@ -73,8 +73,8 @@ See the [`ConfigOptionData`](template-functions-config-context#configoptiondata)
 ![File input field on the configuration screen](../../static/images/config-screen-file.png)
 
 ### `heading`
-The `heading` type allows you to display a group heading as a subelement within a group.
-This is useful when you would like to group items all in one config group but would like to separate the items visually, for instance when using a config group test proc.
+The `heading` type allows you to display a group heading as a sub-element within a group.
+This is useful when you would like to use a config group to group items together, but still separate the items visually.
 
 **Note**: The `heading` item type is not supported.
 
