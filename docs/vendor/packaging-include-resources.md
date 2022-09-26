@@ -16,9 +16,7 @@ The app manager uses placeholder annotations as a way to provide an annotation t
 
 Use case: Providing custom Ingress annotations for a customer-provided Ingress controller.
 
-When the placeholder evaluates to `true`, it will be replaced with the value of the desired annotation in the final rendered YAML.
-
-When the placeholder evaluates to `false`, the annotation will not appear at all in the final rendered YAML.
+Example:
 
 ```
 apiVersion: extensions/v1beta1
@@ -27,10 +25,10 @@ metadata:
   name: example-annotation
   annotations:
     kots.io/placeholder: |-
-      repl{{ printf "true" }}repl{{ printf "my.custom/annotation.class: somevalue" | nindent 4 }}
+      repl{{if ConfigOptionEquals "custom_annotation" "1" }}repl{{ printf "my.custom/annotation.class: somevalue" | nindent 4 }}repl{{end}}
 ```
 
-will result in the final rendered YAML:
+When the condition evaluates to `true`, it is replaced with the value of the desired annotation in the final rendered YAML:
 
 ```
 apiVersion: extensions/v1beta1
@@ -38,10 +36,11 @@ kind: Ingress
 metadata:
   name: example-annotation
   annotations:
+    kots.io/placeholder: |-
     my.custom/annotation.class: somevalue
 ```
 
-Similarly:
+When the condition evaluates to `false`, the annotation does not appear in the final rendered YAML:
 
 ```
 apiVersion: extensions/v1beta1
@@ -50,10 +49,9 @@ metadata:
   name: example-annotation
   annotations:
     kots.io/placeholder: |-
-      repl{{ printf "false" }}repl{{ printf "my.custom/annotation.class: somevalue" | nindent 4 }}
 ```
 
-will result in no annotations appearing in the final rendered YAML:
+A config option value can be used as part of the annotation value, for example:
 
 ```
 apiVersion: extensions/v1beta1
@@ -61,7 +59,23 @@ kind: Ingress
 metadata:
   name: example-annotation
   annotations:
+    kots.io/placeholder: |-
+      repl{{if ConfigOptionEquals "custom_annotation" "1" }}repl{{ printf "my.custom/annotation.class: %s" (ConfigOption "annotation_class") | nindent 4 }}repl{{end}}
 ```
+
+You can specify multiple annotations using the same placeholder annotation:
+
+```
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: example-annotation
+  annotations:
+    kots.io/placeholder: |-
+      repl{{if ConfigOptionEquals "custom_annotation" "1" }}repl{{ printf "my.custom/annotation.class: somevalue" | nindent 4 }}repl{{end}}
+      repl{{if ConfigOptionEquals "enable_ingress" "1" }}repl{{ printf "my.custom/annotation.ingress.hostname: %s" (ConfigOption "ingress_hostname") | nindent 4 }}repl{{end}}
+```
+
 #### Please Note
 
 By default, if neither `kots.io/exclude` nor `kots.io/when` annotations are present on a resource, the resource will be included.
