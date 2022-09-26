@@ -492,6 +492,7 @@ const sidebars = {
             },
           ],
         },
+        'reference/kots-lint',
       ],
     },
     {
