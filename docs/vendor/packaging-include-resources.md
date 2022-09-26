@@ -28,7 +28,7 @@ metadata:
       repl{{if ConfigOptionEquals "custom_annotation" "1" }}repl{{ printf "my.custom/annotation.class: somevalue" | nindent 4 }}repl{{end}}
 ```
 
-When the condition evaluates to `true`, it will be replaced with the value of the desired annotation in the final rendered YAML:
+When the condition evaluates to `true`, it is replaced with the value of the desired annotation in the final rendered YAML:
 
 ```
 apiVersion: extensions/v1beta1
@@ -40,7 +40,7 @@ metadata:
     my.custom/annotation.class: somevalue
 ```
 
-When the condition evaluates to `false`, the annotation will not appear at all in the final rendered YAML:
+When the condition evaluates to `false`, the annotation does not appear in the final rendered YAML:
 
 ```
 apiVersion: extensions/v1beta1
@@ -51,7 +51,7 @@ metadata:
     kots.io/placeholder: |-
 ```
 
-A config option value can be used as part of the annotation value like so:
+A config option value can be used as part of the annotation value, for example:
 
 ```
 apiVersion: extensions/v1beta1
@@ -63,7 +63,7 @@ metadata:
       repl{{if ConfigOptionEquals "custom_annotation" "1" }}repl{{ printf "my.custom/annotation.class: %s" (ConfigOption "annotation_class") | nindent 4 }}repl{{end}}
 ```
 
-Also, multiple annotations can be specified using the same placeholder annotation:
+You can specify multiple annotations using the same placeholder annotation:
 
 ```
 apiVersion: extensions/v1beta1
