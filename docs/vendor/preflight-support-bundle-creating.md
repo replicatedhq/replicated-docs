@@ -15,7 +15,7 @@ where your application is installed. Preflight checks provide clear
 feedback to your customer about any missing requirements or incompatibilities in
 the cluster before they install and upgrade your application. Thorough preflight checks provide increased confidence that an installation or upgrade will succeed and help prevent support escalations.
 
-  Setting the `strict` flag on preflight analyzers helps enforce that requirements, such as supported Kubernetes versions, are met on initial installations or on updates for releases that have new requirements. This prevents your customers from deploying in an unsupported configuration.
+  Setting the `strict` flag on preflight analyzers helps enforce that requirements, such as supported Kubernetes versions, are met on initial installations or on updates for releases that might have new requirements.
 
 * **Support bundles**: Support bundles let you collect and analyze troubleshooting data
 from customer environments to help you diagnose problems with application
