@@ -1,5 +1,11 @@
 # KOTS Lint Rules
 
+This topic describes the rules for the KOTS lint service. The KOTS lint service lints the manifest files for applications packaged with Replicated to ensure that there are no YAML syntax errors, that all required manifest files are present in the release, and more.
+
+The KOTS lint service runs automatically against releases that you create in the Replicated vendor portal, and displays any error or warning messages in the vendor portal UI.
+
+To use the KOTS lint service to lint your application manifest files, you can run the replicated CLI `replicated release lint` command against the root directory of your application manifest files. You can also use the `--lint` flag when you create a release with the `replicated release create` command. For more information, see [release lint](/reference/replicated-cli-release-lint) and [release create](/reference/replicated-cli-release-create) in the _replicated CLI_ section.
+
 ### missing-kind-field
 
 Require “kind” field in all files.
