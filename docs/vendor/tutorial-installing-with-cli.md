@@ -417,13 +417,7 @@ To install the application:
 
 1. Click **Continue**. If there are failing checks, dismiss the warning to continue. Preflight checks are designed to help ensure this server has the minimum system and software requirements to run the application. Depending on your YAML configuration in `preflight.yaml`, you can see some of the example preflight checks fail.
 
-    Vendors can optionally configure strict preflight checks that cause the application deployment to fail if specific requirements are not met. For more information about preflight checks, see [Defining Preflight Checks and Support Bundles](preflight-support-bundle-creating).
-
-    Additionally, when installing with minimal role-based access control (RBAC), the preflight checks can fail due to insufficient privileges.
-
-    ![Run Preflight Checks Manually](/images/manual-run-preflights.png)
-
-    When this occurs, a `kubectl preflight` command is displayed that lets the end user manually run the preflight checks and upload the results automatically to the app manager. For more information about configuring RBAC privileges, see [`requireMinimalRBACPrivileges`](../reference/custom-resource-application#requireminimalrbacprivileges) and [`supportMinimalRBACPrivileges`](../reference/custom-resource-application#supportminimalrbacprivileges) in the Application custom resource.
+    ![Preflight Checks](/images/preflight-warnings.png)
 
     After the preflight checks pass, the Version History page opens and displays the initial version that was deployed. Later, you will come back to this page to deploy an update to the application.
 
