@@ -221,7 +221,7 @@ const sidebars = {
           label: 'Support Options',
           items: [
             'vendor/support-submit-request',
-            'vendor/support-host-collectors',
+            'vendor/support-host-support-bundles',
           ],
         },
         {
