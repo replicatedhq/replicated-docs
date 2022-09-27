@@ -15,6 +15,8 @@ where your application is installed. Preflight checks provide clear
 feedback to your customer about any missing requirements or incompatibilities in
 the cluster before they install and upgrade your application. Thorough preflight checks provide increased confidence that an installation or upgrade will succeed and help prevent support escalations.
 
+  You can set the `strict` flag on preflight analyzers to enforce that requirements, such as supported Kubernetes versions, are met for initial installations or updated releases.
+
 * **Support bundles**: Support bundles let you collect and analyze troubleshooting data
 from customer environments to help you diagnose problems with application
 deployments.
@@ -94,7 +96,7 @@ To define preflight checks:
 
 1. Add analyzers to analyze the data from the collectors that you specified. Define the criteria for the pass, fail, and/or warn outcomes and specify custom messages for each. For example, you can set a `fail` outcome if the MySQL version is less than the minimum required. Then, specify a message to display that informs your customer of the reasons for the failure and steps they can take to fix the issue.
 
-1. (Optional) Set any preflight analyzers to `strict: true` as needed. Note the following considerations:
+1. (Optional) Set any preflight analyzers to `strict: true` if you want to enforce requirements for the chosen analyzers. Note the following considerations:
     - Any `fail` outcomes for that analyzer block the deployment of the release until your specified requirement is met.
     -  If a `strict` collector requires cluster scope and minimal RBAC mode is set, then the collector is skipped during the preflight check.
     - Strict preflight analyzers are ignored if the `exclude` flag is also used.
