@@ -96,19 +96,15 @@ If the application is not installed but the admin console is running, run the fo
 
 ### Generate a Host Support Bundle
 
-For Kubernetes installer provisioned clusters (embedded clusters), you can run host collectors and analyzers to help with troubleshooting a cluster that is down. Your vendor provides you with a host support bundle YAML file that you run with a command to generate the host support bundle.
+For Kubernetes installer provisioned clusters (embedded clusters), you can generate a host support bundle to help troubleshoot a cluster that is down. Your vendor provides you with a host support bundle YAML file that you run with a command to generate the host support bundle.
 
-Root access is typically not required to run the host collectors and analyzers. However, depending on what is being collected, you might need to run the support-bundle binary with elevated permissions. For example, if you run the `filesystemPerformance` host collector against `/var/lib/etcd` and the user running the binary does not have permissions on this directory, the collection process fails.
-
-:::note
-There is no method to run host collectors and analyzers on remote hosts. If you have a multi-node Kubernetes cluster, you must run the support-bundle binary on each node and generate a host support bundle for each node.
-:::
+Root access is typically not required to run the host support bundle and analyzers. However, depending on what is being collected, you might need to run the support-bundle binary with elevated permissions. For example, if you run the `filesystemPerformance` host collector against `/var/lib/etcd` and the user running the binary does not have permissions on this directory, the collection process fails.
 
 To generate a host support bundle:
 
 1. Install the support-bundle plugin. See [Install the Support Bundle Plugin]({#plugin}).
 
-1. Save the host collectors YAML file from your vendor on the host. For air gap environments, download the file and copy it to the air gap machine.
+1. Save the host support bundle YAML file from your vendor on the host. For air gap environments, download the file and copy it to the air gap machine.
 
 1. Run the following command on the host to generate a host support bundle:
 
@@ -117,7 +113,9 @@ To generate a host support bundle:
   ```
   Replace:
 
-    - `PATH` with the path to the host collectors YAML file.
-    - `FILE` with the name of the host collectors YAML file from your vendor.
+    - `PATH` with the path to the host support bundle YAML file.
+    - `FILE` with the name of the host support bundle YAML file from your vendor.
 
 1. Share the host support bundle with your vendor's support team.
+
+1. Repeat these steps for each node because there is no method to generate host support bundles on remote hosts. If you have a multi-node Kubernetes cluster, you must run the support-bundle binary on each node and generate a host support bundle for each node.

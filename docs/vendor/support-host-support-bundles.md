@@ -1,28 +1,28 @@
-# Configuring Host Support Bundles
+# Configuring Host Support Bundle Manifest Files
 
 This topic describes how to configure host collectors and analyzers to help customers generate host support bundles to troubleshoot Kubernetes installer provisioned clusters (embedded clusters).
 
 ## About Host Collectors and Analyzers
 
-Host collectors and analyzers are designed to collect information from hosts that is not available from in-cluster collectors. Host collectors are available only for Kubernetes installer clusters. These host collectors gather information directly from the host they are run on and do not have Kubernetes as a dependency.
+Host collectors and analyzers are configured in a manifest file that is designed to generate host support bundles. Host support bundles collect information from hosts that is not available from in-cluster collectors. Host support bundles are available only for Kubernetes installer clusters. These host support bundles gather information directly from the host they are run on and do not have Kubernetes as a dependency.
 
-You can gather information about the environment, such as CPU, memory, available block devices, and the operating system. Host collectors can also be used for testing network connectivity and gathering the output of provided commands.
+You can gather information about the environment, such as CPU, memory, available block devices, and the operating system. Host support bundles can also be used for testing network connectivity and gathering the output of provided commands.
 
 This information is useful when you need to debug a Kubernetes installer cluster that is offline, troubleshoot a Kubernetes installer that failed before the control plane was initialized, or if you need to collect and analyze information that is not available with in-cluster collectors.
 
-You create the host support bundle specification separately from your application release and share the file with customers to run on their hosts. This file is separate from your application release because host collectors are intended to run directly on the host and not with KOTS. If KOTS runs host collectors, the collectors are unlikely to produce the desired results because they run in the context of the kotsadm Pod. For more information about how customers generate a host support bundle, see [Generate a Host Bundle](troubleshooting-an-app#generate-a-host-support-bundle.
+You create the host support bundle manifest file separately from your application release and share the file with customers to run on their hosts. This file is separate from your application release because host collectors and analyzers are intended to run directly on the host and not with KOTS. If KOTS runs host collectors, the collectors are unlikely to produce the desired results because they run in the context of the kotsadm Pod. For more information about how customers generate a host support bundle, see [Generate a Host Bundle](troubleshooting-an-app#generate-a-host-support-bundle).
 
-## Configure Host Collectors and Analyzers
+## Configure a Host Support Bundle Manifest File
 
 Configure a SupportBundle custom resource to specify host collectors and analyzers to gather information from a host.
 
-To define host collectors and analyzers:
+To configure a host support bundle manifest file:
 
 1. Create a SupportBundle custom resource manifest file (`kind: SupportBundle`).
 
 1. Configure all of your host collectors and analyzers in one manifest file. You can use the following resources to help create your specification:
 
-    - Access sample specifications in the the Replicated troubleshoot-specs repository, which provides aggregate specifications for supporting your customers. See [troubleshoot-specs](https://github.com/replicatedhq/troubleshoot-specs) in GitHub.
+    - Access sample specifications in the the Replicated troubleshoot-specs repository, which provides specifications for supporting your customers. See [troubleshoot-specs/host](https://github.com/replicatedhq/troubleshoot-specs/tree/main/host) in GitHub.
 
     - View a list and details of the available host collectors and analyzers. See [All Host Collectors and Analyzers](https://troubleshoot.sh/docs/host-collect-analyze/all/) in the Troubleshoot documentation.
 
@@ -53,7 +53,8 @@ To define host collectors and analyzers:
             outcomes:
               - fail:
                   when: "< 4G"
+                  message: At least 4G of memory is required, and 8G is recommended.
               - pass:
                   message: The system has at least 8G of memory
     ```
-1. Share the SupportBundle custom resource file with your customers to run on their host.
+1. Share the SupportBundle custom resource file with your customers to run on their hosts.
