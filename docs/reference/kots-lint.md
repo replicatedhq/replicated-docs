@@ -95,7 +95,7 @@ Example of **matching** yaml for this rule:
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
-kind: Collector
+kind: SupportBundle
 ```
 
 
