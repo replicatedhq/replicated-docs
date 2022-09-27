@@ -218,7 +218,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Support Options',
+          label: 'Support and Troubleshooting',
           items: [
             'vendor/support-submit-request',
             'vendor/support-host-support-bundles',

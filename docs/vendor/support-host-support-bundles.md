@@ -2,9 +2,9 @@
 
 This topic describes how to configure host collectors and analyzers to help customers generate host support bundles to troubleshoot Kubernetes installer provisioned clusters (embedded clusters).
 
-## About Host Collectors and Analyzers
+## About Host Support Bundles
 
-Host collectors and analyzers are configured in a manifest file that is designed to generate host support bundles. Host support bundles collect information from hosts that is not available from in-cluster collectors. Host support bundles are available only for Kubernetes installer clusters. These host support bundles gather information directly from the host they are run on and do not have Kubernetes as a dependency.
+Host collectors and analyzers are configured in a manifest file that is used to generate host support bundles. Host support bundles collect information from hosts that is not available from in-cluster collectors. Host support bundles are available only for Kubernetes installer clusters. These host support bundles gather information directly from the host they are run on and do not have Kubernetes as a dependency.
 
 You can gather information about the environment, such as CPU, memory, available block devices, and the operating system. Host support bundles can also be used for testing network connectivity and gathering the output of provided commands.
 
