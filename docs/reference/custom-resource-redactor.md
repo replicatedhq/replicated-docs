@@ -76,12 +76,10 @@ metadata:
   name: my-redactor-name
 spec:
   redactors:
-  - name: replace password # names are not used internally, but are useful for recordkeeping
-    fileSelector:
-      file: data/my-password-dump # this targets a single file
+  - name: hostname # this is a basic hostname redactor
     removals:
-      values:
-      - abc123 # this value is my password, and should never appear in a support bundle
+      regex:
+      - redactor: (?P<mask>[a-zA-Z0-9]+\.[a-zA-Z0-9]+\.[a-zA-Z0-9]+\.[a-zA-Z0-9]+)
   - name: all files # as no file is specified, this redactor will run against all files
     removals:
       regex:

@@ -249,20 +249,18 @@ To customize a support bundle:
 
   **Example:**
 
-  ```YAML
+  ```yaml
   apiVersion: troubleshoot.sh/v1beta2
   kind: Redactor
   metadata:
     name: my-redactor-name
     spec:
       redactors:
-        - name: replace password # names are not used internally, but are useful for recordkeeping
-          fileSelector:
-            file: data/my-password-dump # this targets a single file
-          removals:
-            values:
-              - abc123 # this value is my password, and should never appear in a support bundle
-    ```
+      - name: hostname # this is a basic hostname redactor
+        removals:
+          regex:
+          - redactor: (?P<mask>[a-zA-Z0-9]+\.[a-zA-Z0-9]+\.[a-zA-Z0-9]+\.[a-zA-Z0-9]+)
+  ```
 
 1. Add the manifest files to the application that you are packaging and distributing with Replicated.
 
