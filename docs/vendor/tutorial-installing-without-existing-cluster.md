@@ -205,7 +205,7 @@ To install the application:
 
 1. Click **Continue**. If you have failing checks, dismiss the warning to continue. Preflight checks are designed to help ensure that this server has the minimum system and software requirements to run the application. Depending on your YAML configuration in the `preflight.yaml` file, you can see some of the example preflight checks fail.
 
-  ![Preflight Checks](/images/preflight-checks.png)
+  ![Preflight Checks](/images/preflight-warnings.png)
 
   The Version History page opens and displays the initial version that was deployed. Later, you will come back to this page to deploy an update to the application.
 
