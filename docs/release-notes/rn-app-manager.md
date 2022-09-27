@@ -11,21 +11,23 @@ Released on September 27, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### New Features {#new-features-1-86-0}
-* (alpha) Show alternate to license upload screen for helm installs when no helm installed app is in cluster.
-* Allows users to change the colors of icons.
+* Allows icon colors to be changed with CSS when branding the admin console (Alpha). To enable this feature on your account, log in to your vendor portal account. Select **Support** > **Request a feature**, and submit a feature request for "admin console branding".
+
+### Improvements {#improvements-1-86-0}
+* Removes the license upload page when the admin-console Helm chart is installed without a Replicated app also being installed.
+* Makes port forward reconnecting a little bit faster.
 
 ### Bug Fixes {#bug-fixes-1-86-0}
-* Fixes message alignment when a strict preflight check fails.
-* Fixes an issue that caused config templates to be applied to the wrong values.yaml file in [Helm managed mode (Alpha)](/vendor/helm-install).
-* Fixes an issue that caused the license to not be synced when checking for application updates in [Helm managed mode (Alpha)](/vendor/helm-install).
-* Fixes a bug that caused the config screen to be displayed for a new version with required config items even if all config values had been set in a previously deployed version in [Helm managed mode (Alpha)](/vendor/helm-install).
-* Fixes a bug that caused currently deployed version to be temporarily shown as a new update while an update check is running in [Helm managed mode (Alpha)](/vendor/helm-install).
-* (alpha) fix styling on <pre> elements in helm install modal so that their heights match the content.
-* Fixes a bug where versions with `pending_download` status would not be shown correctly on the Version History page.
-* Fixes a bug where versions with `pending_download` would cause the `View Files` tab to navigate to a version that has not been downloaded yet and result in a UI error.
-* Fixes a bug where downloading a version incompatible with the current Admin Console version would make it impossible to check for updates until the Admin Console pod is restarted.
-* Fixes a bug that would cause CLI feedback spinners to be left spinning indefinitely.
-* Makes port forward reconnecting a little bit faster.
+* Fixes the message alignment when a strict preflight check fails.
+* Fixes a bug where versions with `pending_download` status were shown incorrectly on the version history page.
+* Fixes a bug where versions with `pending_download` status caused the `View files` tab to navigate to a version that has not yet been downloaded, resulting in a UI error.
+* Fixes a bug where downloading an application version that is incompatible with the current admin console version made it impossible to check for updates until the admin console pod was restarted.
+* Fixes a bug that caused CLI feedback spinners to spin indefinitely.
+* Fixes an issue that caused config templates to be applied to the wrong values.yaml file in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Fixes an issue where the license was not synced when checking for application updates in Helm-managed mode (Alpha).
+* Fixes a bug in Helm-managed mode (Alpha) that required you to visit the config screen to deploy a new version with required config items even if all config values had been set in a previously deployed version.
+* Fixes a bug that caused the currently deployed version to temporarily appear as a newly available version while an update check runs in Helm-managed mode (Alpha).
+* Fixes styling on `<pre>` elements in the Helm install modals (Alpha) so that their heights match the content.
 
 ## 1.85.0
 
