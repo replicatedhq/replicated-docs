@@ -101,7 +101,7 @@ For Kubernetes installer provisioned clusters (embedded clusters), you can run h
 Root access is typically not required to run the host collectors and analyzers. However, depending on what is being collected, you might need to run the support-bundle binary with elevated permissions. For example, if you run the `filesystemPerformance` host collector against `/var/lib/etcd` and the user running the binary does not have permissions on this directory, the collection process fails.
 
 :::note
-There is no method to run host collectors and analyzers on remote hosts. If you have a multiple host Kubernetes cluster, you must run the support-bundle binary on each host and generate a host support bundle for each host.
+There is no method to run host collectors and analyzers on remote hosts. If you have a multi-node Kubernetes cluster, you must run the support-bundle binary on each node and generate a host support bundle for each node.
 :::
 
 To generate a host support bundle:
