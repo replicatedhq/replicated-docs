@@ -20,7 +20,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 ### Bug Fixes {#bug-fixes-1-86-0}
 * Fixes the message alignment when a strict preflight check fails.
 * Fixes a bug where versions with `pending_download` status were shown incorrectly on the version history page.
-* Fixes a bug where versions with `pending_download` status caused the `View files` tab to navigate to a version that has not yet been downloaded, resulting in a UI error.
+* Fixes a bug where versions with `pending_download` status caused the `View files` tab to navigate to a version that had not been downloaded yet, resulting in a UI error.
 * Fixes a bug where downloading an application version that is incompatible with the current admin console version made it impossible to check for updates until the admin console pod was restarted.
 * Fixes a bug that caused CLI feedback spinners to spin indefinitely.
 * Fixes an issue that caused config templates to be applied to the wrong values.yaml file in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
