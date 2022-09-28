@@ -8,7 +8,23 @@ import InvalidTargetKOTS from "../partials/kots-lint-rules/_invalid-target-kots-
 import InvalidMinKOTS from "../partials/kots-lint-rules/_invalid-min-kots-version.mdx"
 import InvalidKubernetesInstaller from "../partials/kots-lint-rules/_invalid-kubernetes-installer.mdx"
 import DeprecatedKubernetesInstallerVersion from "../partials/kots-lint-rules/_deprecated-kubernetes-installer-version.mdx"
-
+import InvalidHelmReleaseName from "../partials/kots-lint-rules/_invalid-helm-release-name.mdx"
+import Replicas1 from "../partials/kots-lint-rules/_replicas-1.mdx"
+import Privileged from "../partials/kots-lint-rules/_privileged.mdx"
+import AllowPrivilegeEscalation from "../partials/kots-lint-rules/_allow-privilege-escalation.mdx"
+import ContainerImageLatestTag from "../partials/kots-lint-rules/_container-image-latest-tag.mdx"
+import ContainerImageLocalImageName from "../partials/kots-lint-rules/_container-image-local-image-name.mdx"
+import ContainerResources from "../partials/kots-lint-rules/_container-resources.mdx"
+import ContainerResourceLimits from "../partials/kots-lint-rules/_container-resource-limits.mdx"
+import ContainerResourceRequests from "../partials/kots-lint-rules/_container-resource-requests.mdx"
+import ResourceLimitsCPU from "../partials/kots-lint-rules/_resource-limits-cpu.mdx"
+import ResourceLimitsMemory from "../partials/kots-lint-rules/_resource-limits-memory.mdx"
+import ResourceRequestsCPU from "../partials/kots-lint-rules/_resource-requests-cpu.mdx"
+import ResourceRequestsMemory from "../partials/kots-lint-rules/_resource-requests-memory.mdx"
+import VolumesHostPaths from "../partials/kots-lint-rules/_volumes-host-paths.mdx"
+import VolumeDockerSock from "../partials/kots-lint-rules/_volume-docker-sock.mdx"
+import HardcodedNamespace from "../partials/kots-lint-rules/_hardcoded-namespace.mdx"
+import ConfigOptionInvalidType from "../partials/kots-lint-rules/_config-option-invalid-type.mdx"
 
 # KOTS Lint Rules
 
@@ -351,403 +367,471 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 
 ### duplicate-kots-kind
 
-Disallow duplicate KOTS kinds.
-
-A release can only include one of each kind of resource. This rule disallows inclusion of more than
-one file with:
-- the same `kind` and `apiVersion`
-- `kind: Troubleshoot` and any Troubleshoot `apiVersion`
-- `kind: Installer` and any Installer `apiVersion`
-
-Level: “error”
-
-Applies to all files.
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Disallow duplicate Replicated custom resources.
+      A release can only include one of each <code>kind</code> of custom resource.</p>
+      <p>This rule disallows inclusion of more than one file with:</p>
+        <ul>
+          <li>The same <code>kind</code> and <code>apiVersion</code></li>
+          <li><code>kind: Troubleshoot</code> and any Troubleshoot <code>apiVersion</code></li>
+          <li><code>kind: Installer</code> and any Installer <code>apiVersion</code></li>
+        </ul>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+    All files
+    </td>
+  </tr>
+</table>
 
 
 ### invalid-helm-release-name
 
-Enforce valid `releaseName` on HelmChart CRD.
-
-`spec.chart.releaseName` should:
-- begin and end with a lowercase letter or number
-- contain only lowercase letters, numbers, periods, and hyphens (`-`)
-- have a lowercase letter or number between any two symbols (periods or hypens)
-
-Level: “warn”
-
-Applies to `apiVersion`:
- - `kots.io/v1beta1`
-
-Applies to `kind`:
- - `HelmChart`
-
-Example of **correct** yaml for this rule:
-
-```yaml
-apiVersion: kots.io/v1beta1
-kind: HelmChart
-spec:
-  chart:
-    releaseName: samplechart-release-1
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Enforce valid <code>spec.chart.releaseName</code> in the Replicated HelmChart custom resource manifest file.</p>
+      <p><code>spec.chart.releaseName</code> must meet the following requirements:</p>
+      <ul>
+        <li>Begin and end with a lowercase letter or number</li>
+        <li>Contain only lowercase letters, numbers, periods, and hyphens (<code>-</code>)</li>
+        <li>Contain a lowercase letter or number between any two symbols (periods or hyphens)</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Warn</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+    <p>Files with:</p>
+    <ul>
+      <li><code>kind: HelmChart</code></li>
+      <li><code>apiVersion: kots.io/v1beta1</code></li>
+    </ul>
+    </td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of correct YAML for this rule:</p><InvalidHelmReleaseName/></td>
+  </tr>
+</table>
 
 
 ### duplicate-helm-release-name
 
-Enforce unique `releaseName` across all HelmChart CRDs.
-
-Level: “error"
-
-Applies to `apiVersion`:
- - `kots.io/v1beta1`
-
-Applies to `kind`:
- - `HelmChart`
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Enforce unique <code>spec.chart.releaseName</code>
+      across all Replicated HelmChart custom resource manifest files.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+    <p>Files with:</p>
+    <ul>
+      <li><code>kind: HelmChart</code></li>
+      <li><code>apiVersion: kots.io/v1beta1</code></li>
+    </ul>
+    </td>
+  </tr>
+</table>
 
 
 ### replicas-1
 
-Notify if any spec has `replicas` set to `1`.
-
-Level: "info"
-
-Applies to all files.
-
-Example of **matching** yaml for this rule:
-
-```yaml
-spec:
-  replicas: 1
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td>Notify if any manifest file has <code>replicas</code> set to <code>1</code>.</td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Info</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><Replicas1/></td>
+  </tr>
+</table>
 
 
 ### privileged
 
-Notify if any spec has `privileged` set to `true`.
-
-Level: "info"
-
-Applies to all files.
-
-Example of **matching** yaml for this rule:
-
-```yaml
-spec:
-  privileged: true
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td>Notify if any manifest file has <code>privileged</code> set to <code>true</code>.</td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Info</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><Privileged/></td>
+  </tr>
+</table>
 
 
 ### allow-privilege-escalation
 
-Notify if any spec has `allowPrivilegeEscalation` set to `true`.
-
-Level: "info"
-
-Applies to all files.
-
-Example of **matching** yaml for this rule:
-
-```yaml
-spec:
-  allowPrivilegeEscalation: true
-```
-
+<table>
+  <tr>
+    <th>Description</th>
+    <td>Notify if any manifest file has <code>allowPrivilegeEscalation</code> set to <code>true</code>.</td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Info</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><AllowPrivilegeEscalation/></td>
+  </tr>
+</table>
 
 ### container-image-latest-tag
 
-Notify if any spec has a container image tag appended with `:latest`.
-
-Level: "info"
-
-Applies to all files.
-
-Example of **matching** yaml for this rule:
-
-```yaml
-spec:
-  containers:
-    - image: nginx:latest
-```
-
+<table>
+  <tr>
+    <th>Description</th>
+    <td>Notify if any manifest file has a container image tag appended with
+    <code>:latest</code>.</td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Info</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><ContainerImageLatestTag/></td>
+  </tr>
+</table>
 
 ### container-image-local-image-name
 
-Disallow a spec having a container image tag that includes "LocalImageName".
-
-Level: "error"
-
-Applies to all files.
-
-Example of **matching** yaml for this rule:
-
-```yaml
-spec:
-  containers:
-    - image: LocalImageName
-```
-
+<table>
+  <tr>
+    <th>Description</th>
+    <td>Disallow any manifest file having a container image tag that includes <code>LocalImageName</code>.</td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><ContainerImageLocalImageName/></td>
+  </tr>
+</table>
 
 ### container-resources
 
-Notify if a spec container has no `resources` field.
-
-Level: "info"
-
-Applies to all files.
-
-Example of **matching** yaml for this rule:
-
-```yaml
-spec:
-  containers:
-    - name: nginx
-      # note the lack of a resources field
-```
-
+<table>
+  <tr>
+    <th>Description</th>
+    <td>Notify if a manifest file has no <code>resources</code> field.</td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Info</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><ContainerResources/></td>
+  </tr>
+</table>
 
 ### container-resource-limits
 
-Notify if a spec container has no `resources.limits` field.
-
-Level: "info"
-
-Applies to all files.
-
-Example of **matching** yaml for this rule:
-
-```yaml
-spec:
-  containers:
-    - name: nginx
-      resources:
-        requests:
-          memory: '32Mi'
-          cpu: '100m'
-        # note the lack of a limit field
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td>Notify if a <code>spec.container</code> has no <code>resources.limits</code> field.</td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Info</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><ContainerResourceLimits/></td>
+  </tr>
+</table>
 
 
 ### container-resource-requests
 
-Notify if a spec container has no `resources.requests` field.
-
-Level: "info"
-
-Applies to all files.
-
-Example of **matching** yaml for this rule:
-
-```yaml
-spec:
-  containers:
-    - name: nginx
-      resources:
-        limits:
-          memory: '256Mi'
-          cpu: '500m'
-        # note the lack of a requests field
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td>Notify if a <code>spec.container</code> has no <code>resources.requests</code> field.</td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Info</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><ContainerResourceRequests/></td>
+  </tr>
+</table>
 
 
 ### resource-limits-cpu
 
-Notify if a spec container has no `resources.limits.cpu` field.
-
-Level: "info"
-
-Applies to all files.
-
-Example of **matching** yaml for this rule:
-
-```yaml
-spec:
-  containers:
-    - name: nginx
-      resources:
-        limits:
-          memory: '256Mi'
-          # note the lack of a cpu field
-```
-
+<table>
+  <tr>
+    <th>Description</th>
+    <td>Notify if a <code>spec.container</code> has no <code>resources.limits.cpu</code> field.</td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Info</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><ResourceLimitsCPU/></td>
+  </tr>
+</table>
 
 ### resource-limits-memory
 
-Notify if a spec container has no `resources.limits.memory` field.
-
-Level: "info"
-
-Applies to all files.
-
-Example of **matching** yaml for this rule:
-
-```yaml
-spec:
-  containers:
-    - name: nginx
-      resources:
-        limits:
-          cpu: '500m'
-          # note the lack of a memory field
-```
-
+<table>
+  <tr>
+    <th>Description</th>
+    <td>Notify if a <code>spec.container</code> has no <code>resources.limits.memory</code> field.</td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Info</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><ResourceLimitsMemory/></td>
+  </tr>
+</table>
 
 ### resource-requests-cpu
 
-Notify if a spec container has no `resources.requests.cpu` field.
-
-Level: "info"
-
-Applies to all files.
-
-Example of **matching** yaml for this rule:
-
-```yaml
-spec:
-  containers:
-    - name: nginx
-      resources:
-        requests:
-          memory: '32Mi'
-          # note the lack of a memory field
-```
-
+<table>
+  <tr>
+    <th>Description</th>
+    <td>Notify if a <code>spec.container</code> has no <code>resources.requests.cpu</code> field.</td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Info</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><ResourceRequestsCPU/></td>
+  </tr>
+</table>
 
 ### resource-requests-memory
 
-Notify if a spec container has no `resources.requests.memory` field.
-
-Level: "info"
-
-Applies to all files.
-
-Example of **matching** yaml for this rule:
-
-```yaml
-spec:
-  containers:
-    - name: nginx
-      resources:
-        requests:
-          cpu: '100m'
-          # note the lack of a memory field
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td>Notify if a <code>spec.container</code> has no <code>resources.requests.memory</code> field.</td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Info</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><ResourceRequestsMemory/></td>
+  </tr>
+</table>
 
 
 ### volumes-host-paths
 
-Notify if a spec volume has defined a `hostPath`.
-
-Level: "info"
-
-Applies to all files.
-
-Example of **matching** yaml for this rule:
-
-```yaml
-spec:
-  volumes:
-    - hostPath:
-      path: /data
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td>Notify if a <code>spec.volumes</code> has defined a <code>hostPath</code>.</td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Info</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><VolumesHostPaths/></td>
+  </tr>
+</table>
 
 ### volume-docker-sock
 
-Notify if a spec volume has `hostPath` set to `/var/run/docker.sock`.
-
-Level: "info"
-
-Applies to all files.
-
-Example of **matching** yaml for this rule:
-
-```yaml
-spec:
-  volumes:
-    - hostPath:
-      path: /var/run/docker.sock
-```
-
+<table>
+  <tr>
+    <th>Description</th>
+    <td>Notify if a <code>spec.volumes</code> has <code>hostPath</code>
+    set to <code>/var/run/docker.sock</code>.</td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Info</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><VolumeDockerSock/></td>
+  </tr>
+</table>
 
 ### hardcoded-namespace
 
-Notify if any file has a `metadata.namespace` set to a static value.
-
-We strongly recommended not specifying a namespace to allow maximum flexibility when deploying into end user environments.
-
-Level: "info"
-
-Applies to all files.
-
-Related docs:
-- [Managing Application Namespaces](/vendor/namespaces)
-
-Example of **matching** yaml for this rule:
-
-```yaml
-metadata:
-  name: spline-reticulator
-  namespace: graphviz-pro
-```
-
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Notify if any manifest file has a <code>metadata.namespace</code> set
+       to a static field.</p>
+      <p>Replicated strongly recommends not specifying a namespace to allow
+       for flexibility when deploying into end user environments.</p>
+      <p>For more information, see <a href="/vendor/namespaces">Managing Application Namespaces</a>.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Info</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><HardcodedNamespace/></td>
+  </tr>
+</table>
 
 ### may-contain-secrets
 
-Notify if any file may contain secrets.
 
-Level: "info"
-
-Applies to all files.
-
-Example of **matching** yaml for this rule:
-
-```yaml
-data:
-    ENV_VAR_1: "y2X4hPiAKn0Pbo24/i5nlInNpvrL/HJhlSCueq9csamAN8g5y1QUjQnNL7btQ=="
-```
-
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      Notify if any manifest file may contain secrets.
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Info</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><MayContainSecrets/></td>
+  </tr>
+</table>
 
 ### config-option-invalid-type
 
-Enforce valid types for Config items.
-
-Level: "error"
-
-Applies to all files.
-
-Related docs:
-- [Config Item types](/reference/custom-resource-config#available-item-types)
-
-Example of **correct** yaml for this rule:
-
-```yaml
-spec:
-  groups:
-  - name: authentication
-    title: Authentication
-    description: Configure application authentication below.
-    - name: group_title
-      title: Group Title
-      items:
-      - name: http_enabled
-        title: HTTP Enabled
-        type: bool # bool is a valid type
-```
-
-Example of **incorrect** yaml for this rule:
-
-```yaml
-spec:
-  groups:
-  - name: authentication
-    title: Authentication
-    description: Configure application authentication below.
-    - name: group_title
-      title: Group Title
-      items:
-      - name: http_enabled
-        title: HTTP Enabled
-        type: unknown_type # unknown_type is not a valid type
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Enforce valid types for Config items.</p>
+      <p>For more information, see <a href="/reference/custom-resource-config#items">Items</a> in <em>Config</em>.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><ConfigOptionInvalidType/></td>
+  </tr>
+</table>
 
 ### repeat-option-missing-template
 
