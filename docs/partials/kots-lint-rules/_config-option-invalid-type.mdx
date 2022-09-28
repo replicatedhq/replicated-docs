@@ -1,0 +1,31 @@
+**Correct**:
+
+```yaml
+spec:
+  groups:
+  - name: authentication
+    title: Authentication
+    description: Configure application authentication below.
+    - name: group_title
+      title: Group Title
+      items:
+      - name: http_enabled
+        title: HTTP Enabled
+        type: bool # bool is a valid type
+```
+
+**Incorrect**::
+
+```yaml
+spec:
+  groups:
+  - name: authentication
+    title: Authentication
+    description: Configure application authentication below.
+    - name: group_title
+      title: Group Title
+      items:
+      - name: http_enabled
+        title: HTTP Enabled
+        type: unknown_type # unknown_type is not a valid type
+```

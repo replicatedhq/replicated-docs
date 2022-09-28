@@ -1,0 +1,21 @@
+**Correct**:
+
+```yaml
+apiVersion: cluster.kurl.sh/v1beta1
+kind: Installer
+spec:
+  kubernetes:
+      version: 1.24.5
+```
+
+**Incorrect**:
+
+```yaml
+apiVersion: cluster.kurl.sh/v1beta1
+kind: Installer
+spec:
+  kubernetes:
+      version: 1.24.x
+  ekco:
+      version: latest
+```

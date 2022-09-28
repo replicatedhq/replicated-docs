@@ -1,3 +1,15 @@
+import PreflightSpec from "../partials/kots-lint-rules/_preflight-spec.mdx"
+import ConfigSpec from "../partials/kots-lint-rules/_config-spec.mdx"
+import TroubleshootSpec from "../partials/kots-lint-rules/_troubleshoot-spec.mdx"
+import ApplicationSpec from "../partials/kots-lint-rules/_application-spec.mdx"
+import ApplicationIcon from "../partials/kots-lint-rules/_application-icon.mdx"
+import ApplicationStatusInformers from "../partials/kots-lint-rules/_application-statusInformers.mdx"
+import InvalidTargetKOTS from "../partials/kots-lint-rules/_invalid-target-kots-version.mdx"
+import InvalidMinKOTS from "../partials/kots-lint-rules/_invalid-min-kots-version.mdx"
+import InvalidKubernetesInstaller from "../partials/kots-lint-rules/_invalid-kubernetes-installer.mdx"
+import DeprecatedKubernetesInstallerVersion from "../partials/kots-lint-rules/_deprecated-kubernetes-installer-version.mdx"
+
+
 # KOTS Lint Rules
 
 This topic describes the rules for the KOTS lint service. The KOTS lint service lints the manifest files for applications packaged with Replicated to ensure that there are no YAML syntax errors, that all required manifest files are present in the release, and more.
@@ -16,6 +28,10 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Level</th>
     <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
   </tr>
   <tr>
     <th>Example</th>
@@ -40,6 +56,10 @@ To use the KOTS lint service to lint your application manifest files, you can ru
     <td>Error</td>
   </tr>
   <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
     <th>Example</th>
     <td><p>Example of correct YAML for this rule:</p>
     <pre><code>
@@ -55,13 +75,13 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 <table>
   <tr>
     <th>Description</th>
-    <td width="75%"><p>Require a custom resource manifest file with:</p>
+    <td><p>Require a custom resource manifest file with:</p>
       <p><code>kind: Preflight</code></p>
       <p>and one of the following:</p>
       <ul>
         <li><code>apiVersion: troubleshoot.replicated.com/v1beta1</code></li>
         <li><code>apiVersion: troubleshoot.sh/v1beta2</code></li>
-      </ul>  
+      </ul>
     </td>
   </tr>
   <tr>
@@ -69,234 +89,264 @@ To use the KOTS lint service to lint your application manifest files, you can ru
     <td>Warn</td>
   </tr>
   <tr>
-    <th>Level</th>
-    <td><p>Example of matching YAML for this rule:</p><pre>apiVersion: troubleshoot.sh/v1beta2
-    kind: Preflight</pre></td>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><PreflightSpec/></td>
   </tr>
 </table>
 
 
-
 ### config-spec
 
-Require a Config spec.
-
-Level: “warn”
-
-Accepted `apiVersion`:
-- `kots.io/v1beta1`
-
-Accepted `kind`:
-- `Config`
-
-Example of **matching** yaml for this rule:
-
-```yaml
-apiVersion: kots.io/v1beta1
-kind: Config
-```
-
+<table>
+  <tr>
+    <th>Description</th>
+    <td><p>Require a Config custom resource manifest file.</p>
+      <p>Accepted value for <code>kind</code>: <code>Config</code></p>
+      <p>Accepted value for <code>apiVersion</code>: <code>kots.io/v1beta1</code></p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Warn</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><ConfigSpec/></td>
+  </tr>
+</table>
 
 ### troubleshoot-spec
 
-Require a Troubleshoot spec.
-
-Level: “warn”
-
-Accepted `apiVersion`:
-- `troubleshoot.replicated.com/v1beta1`
-- `troubleshoot.sh/v1beta2`
-
-Accepted `kind`:
-- `Collector`
-- `SupportBundle`
-
-Example of **matching** yaml for this rule:
-
-```yaml
-apiVersion: troubleshoot.sh/v1beta2
-kind: SupportBundle
-```
-
+<table>
+  <tr>
+    <th>Description</th>
+    <td><p>Require a Troubleshoot manifest file.</p>
+      <p>Accepted values for <code>kind</code>:</p>
+      <ul>
+        <li><code>Collector</code></li>
+        <li><code>SupportBundle</code></li>
+      </ul>
+      <p>Accepted values for <code>apiVersion</code>:</p>
+      <ul>
+        <li><code>troubleshoot.replicated.com/v1beta1</code></li>
+        <li><code>troubleshoot.sh/v1beta2</code></li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Warn</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><TroubleshootSpec/></td>
+  </tr>
+</table>
 
 ### application-spec
 
-Require an Application spec.
-
-Level: “warn”
-
-Accepted `apiVersion`:
-- `kots.io/v1beta1`
-
-Accepted `kind`:
-- `Application`
-
-Example of **matching** yaml for this rule:
-
-```yaml
-apiVersion: kots.io/v1beta1
-kind: Application
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td><p>Require an Application custom resource manifest file.</p>
+      <p>Accepted value for <code>kind</code>: <code>Application</code></p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Warn</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><ApplicationSpec/></td>
+  </tr>
+</table>
 
 
 ### application-icon
 
-Require an Application icon.
-
-Level: “warn”
-
-Applies to `apiVersion`:
-- `kots.io/v1beta1`
-
-Applies to `kind`:
-- `Application`
-
-Example of **correct** yaml for this rule:
-
-```yaml
-apiVersion: kots.io/v1beta1
-kind: Application
-spec:
-  icon: https://example.com/app-icon.png
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      Require an application icon.
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Warn</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+      <p>Files with:</p>
+      <ul>
+        <li><code>kind: Application</code></li>
+        <li><code>apiVersion: kots.io/v1beta1</code></li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of correct YAML for this rule:</p><ApplicationIcon/></td>
+  </tr>
+</table>
 
 
 ### application-statusInformers
 
-Require Application statusInformers.
-
-Level: “warn”
-
-Applies to `apiVersion`:
-- `kots.io/v1beta1`
-
-Applies to `kind`:
-- `Application`
-
-Example of **correct** yaml for this rule:
-
-```yaml
-apiVersion: kots.io/v1beta1
-kind: Application
-spec:
-  statusInformers:
-    - deployment/example-nginx
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      Require statusInformers.
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Warn</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+      <p>Files with:</p>
+      <ul>
+        <li><code>kind: Application</code></li>
+        <li><code>apiVersion: kots.io/v1beta1</code></li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of correct YAML for this rule:</p><ApplicationStatusInformers/></td>
+  </tr>
+</table>
 
 
 ### invalid-target-kots-version
 
-Require Application targetKotsVersion to be [valid semver](https://semver.org/).
-
-Optionally accepts a `v` prefix, so both `1.0.0` and `v1.0.0` are valid.
-
-Level: “error”
-
-Applies to `apiVersion`:
-- `kots.io/v1beta1`
-
-Applies to `kind`:
-- `Application`
-
-Example of **correct** yaml for this rule:
-
-```yaml
-apiVersion: kots.io/v1beta1
-kind: Application
-spec:
-  targetKotsVersion: 1.0.0
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Require Application targetKotsVersion to use valid SemVer.
+      See <a href="https://semver.org/">Semantic Versioning 2.0.0</a>.</p>
+      <p>Accepts a <code>v</code> as an optional prefix, so both `1.0.0` and `v1.0.0` are valid.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+      <p>Files with:</p>
+      <ul>
+        <li><code>kind: Application</code></li>
+        <li><code>apiVersion: kots.io/v1beta1</code></li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of correct YAML for this rule:</p><InvalidTargetKOTS/></td>
+  </tr>
+</table>
 
 
 ### invalid-min-kots-version
 
-Require Application minKotsVersion to be [valid semver](https://semver.org/).
-
-Optionally accepts a `v` prefix, so both `1.0.0` and `v1.0.0` are valid.
-
-Level: “error”
-
-Applies to `apiVersion`:
-- `kots.io/v1beta1`
-
-Applies to `kind`:
-- `Application`
-
-Example of **correct** yaml for this rule:
-
-```yaml
-apiVersion: kots.io/v1beta1
-kind: Application
-spec:
-  minKotsVersion: 1.0.0
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Require Application minKotsVersion to use valid SemVer.
+      See <a href="https://semver.org/">Semantic Versioning 2.0.0</a>.</p>
+      <p>Accepts a <code>v</code> as an optional prefix, so both `1.0.0` and `v1.0.0` are valid.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+      <p>Files with:</p>
+      <ul>
+        <li><code>kind: Application</code></li>
+        <li><code>apiVersion: kots.io/v1beta1</code></li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of correct YAML for this rule:</p><InvalidMinKOTS/></td>
+  </tr>
+</table>
 
 
 ### invalid-kubernetes-installer
 
-Enforce valid Kubernetes installer addon versions.
-
-Add-ons included in the Kubernetes installer must pin specific versions rather than 'latest' or x-ranges (1.2.x).
-
-Level: “error”
-
-Applies to `apiVersion`:
- - `cluster.kurl.sh/v1beta1`
- - `kurl.sh/v1beta1`
-
-Applies to `kind`:
- - `Installer`
-
-Example of **correct** yaml for this rule:
-
-```yaml
-apiVersion: cluster.kurl.sh/v1beta1
-kind: Installer
-spec:
-  kubernetes:
-      version: 1.24.5
-```
-
-Example of **incorrect** yaml for this rule:
-
-```yaml
-apiVersion: cluster.kurl.sh/v1beta1
-kind: Installer
-spec:
-  kubernetes:
-      version: 1.24.x
-  ekco:
-      version: latest
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Enforce valid Kubernetes installer add-on versions.</p>
+      <p>Add-ons included in the Kubernetes installer must pin specific versions rather than <code>latest</code> or x-ranges (1.2.x).</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+    <p>Files with <code>kind: Installer</code> and one of the following values for <code>apiVersion</code>:</p>
+    <ul>
+      <li><code>cluster.kurl.sh/v1beta1</code></li>
+      <li><code>kurl.sh/v1beta1</code></li>
+    </ul>
+    </td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><InvalidKubernetesInstaller/></td>
+  </tr>
+</table>
 
 
 ### deprecated-kubernetes-installer-version
 
-Disallow using deprecated Kubernetes installer `apiVersion`.
-
-`kurl.sh/v1beta1` is deprecated, use `cluster.kurl.sh/v1beta1` instead.
-
-Level: “warn”
-
-Applies to `apiVersion`:
- - `kurl.sh/v1beta1`
-
-Applies to `kind`:
- - `Installer`
-
-Example of **correct** yaml for this rule:
-
-```yaml
-apiVersion: cluster.kurl.sh/v1beta1
-kind: Installer
-```
-
-Example of **incorrect** yaml for this rule:
-
-```yaml
-apiVersion: kurl.sh/v1beta1
-kind: Installer
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Disallow using the deprecated Kubernetes installer <code>apiVersion</code>.</p>
+      <p><code>kurl.sh/v1beta1</code> is deprecated. Use <code>cluster.kurl.sh/v1beta1</code> instead.</p>
+      </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Warn</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+    <p>Files with:</p>
+    <ul>
+      <li><code>kind: Installer</code></li>
+      <li><code>apiVersion: kurl.sh/v1beta1</code></li>
+    </ul>
+    </td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><DeprecatedKubernetesInstallerVersion/></td>
+  </tr>
+</table>
 
 
 ### duplicate-kots-kind
