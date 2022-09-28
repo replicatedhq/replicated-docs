@@ -8,53 +8,73 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 
 ### missing-kind-field
 
-Require “kind” field in all files.
-
-Level: “error”
-
-Applies to all files.
-
-Example of **correct** yaml for this rule:
-
-```yaml
-kind: Config
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td>Require the <code>kind:</code> field in all files.</td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of correct YAML for this rule:</p>
+    <pre><code>
+    kind: Config
+    </code></pre>
+    </td>
+  </tr>
+</table>
 
 
 ### missing-api-version-field
 
-Require “apiVersion” field in all files.
-
-Level: “error”
-
-Applies to all files.
-
-Example of **correct** yaml for this rule:
-
-```yaml
-apiVersion: kots.io/v1beta1
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td>Require the <code>apiVersion:</code> field in all files.</td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of correct YAML for this rule:</p>
+    <pre><code>
+    apiVersion: kots.io/v1beta1
+    </code></pre>
+    </td>
+  </tr>
+</table>
 
 
 ### preflight-spec
 
-Require a Preflight spec.
+<table>
+  <tr>
+    <th>Description</th>
+    <td width="75%"><p>Require a custom resource manifest file with:</p>
+      <p><code>kind: Preflight</code></p>
+      <p>and one of the following:</p>
+      <ul>
+        <li><code>apiVersion: troubleshoot.replicated.com/v1beta1</code></li>
+        <li><code>apiVersion: troubleshoot.sh/v1beta2</code></li>
+      </ul>  
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Warn</td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td><p>Example of matching YAML for this rule:</p><pre>apiVersion: troubleshoot.sh/v1beta2
+    kind: Preflight</pre></td>
+  </tr>
+</table>
 
-Level: “warn”
-
-Accepted `apiVersion`:
-- `troubleshoot.replicated.com/v1beta1`
-- `troubleshoot.sh/v1beta2`
-
-Accepted `kind`:
-- `Preflight`
-
-Example of **matching** yaml for this rule:
-
-```yaml
-apiVersion: troubleshoot.sh/v1beta2
-kind: Preflight
-```
 
 
 ### config-spec
