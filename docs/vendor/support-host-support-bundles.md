@@ -10,7 +10,7 @@ You can gather information about the environment, such as CPU, memory, available
 
 This information is useful when you need to debug a Kubernetes installer cluster that is offline, troubleshoot a Kubernetes installer that failed before the control plane was initialized, or if you need to collect and analyze information that is not available with in-cluster collectors.
 
-You create the host support bundle manifest file separately from your application release and share the file with customers to run on their hosts. This file is separate from your application release because host collectors and analyzers are intended to run directly on the host and not with KOTS. If KOTS runs host collectors, the collectors are unlikely to produce the desired results because they run in the context of the kotsadm Pod. For more information about how customers generate a host support bundle, see [Generate a Host Bundle](troubleshooting-an-app#generate-a-host-support-bundle).
+You create the host support bundle manifest file separately from your application release and share the file with customers to run on their hosts. This file is separate from your application release because host collectors and analyzers are intended to run directly on the host and not with the app manager. If the app manager runs host collectors, the collectors are unlikely to produce the desired results because they run in the context of the kotsadm Pod. For more information about how customers generate a host support bundle, see [Generate a Host Bundle](troubleshooting-an-app#generate-a-host-support-bundle).
 
 ## Configure a Host Support Bundle Manifest File
 
@@ -45,9 +45,9 @@ To configure a host support bundle manifest file:
             outcomes:
               - fail:
                   when: "count < 2"
-                  message: At least 2 CPU cores are required, and 4 CPU cores are recommended
+                  message: At least 2 CPU cores are required, and 4 CPU cores are recommended.
               - pass:
-                  message: This server has at least 4 CPU cores
+                  message: This server has at least 4 CPU cores.
         - memory:
             checkName: "Amount of Memory"
             outcomes:
@@ -55,6 +55,6 @@ To configure a host support bundle manifest file:
                   when: "< 4G"
                   message: At least 4G of memory is required, and 8G is recommended.
               - pass:
-                  message: The system has at least 8G of memory
+                  message: The system has at least 8G of memory.
     ```
 1. Share the SupportBundle custom resource file with your customers to run on their hosts.

@@ -26,7 +26,7 @@ You can generate a support bundle using the CLI instead of the admin console. Fo
 
 ### Install the Support Bundle Plugin {#plugin}
 
-The `support-bundle` kubectl plugin is required to generate a support bundle from the command line.
+The support-bundle kubectl plugin is required to generate a support bundle from the command line.
 
 To install the plugin, do one of the following actions:
 
