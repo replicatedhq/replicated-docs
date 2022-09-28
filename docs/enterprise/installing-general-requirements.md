@@ -25,7 +25,7 @@ Each release of the open source KOTS project maintains compatibility with the cu
 
 Kubernetes versions 1.21 and earlier are end-of-life (EOL). For more information about Kubernetes versions, see [Release History](https://kubernetes.io/releases/) in the Kubernetes documentation.
 
-Replicated recommends upgrading to a KOTS version that is compatible with Kubernetes 1.22 and higher. 
+Replicated recommends upgrading to a KOTS version that is compatible with Kubernetes 1.22 and higher.
 
 :::note
 The app manager is based on the open source KOTS project. The app manager version is the same as the KOTS version. For example, KOTS v1.48 is the same as the app manager v1.48.
@@ -69,7 +69,11 @@ Root access on nodes or workstations is *not* required to install an application
 
 ### Kubernetes Installer Cluster Requirements {#embedded-cluster-requirements}
 
-To install the admin console on an embedded cluster created by the Replicated Kubernetes installer, your environment must meet the following requirements:
+To install the admin console on an embedded cluster created by the Replicated Kubernetes installer, your environment must meet the following requirements.
+
+The Kubernetes installer is based on the open source kURL project, which is maintained by Replicated.
+
+#### Minimum System Requirements
 
 * 4 CPUs or equivalent per machine.
 * 8GB of RAM per machine.
@@ -80,8 +84,28 @@ To install the admin console on an embedded cluster created by the Replicated Ku
 
 * TCP ports 2379, 2380, 6443, 6783, 10250, 10251, and 10252 open between cluster nodes.
 * UDP ports 6783 and 6784 open between cluster nodes.
-* The Kubernetes installer is based on the open source kURL project, which is maintained by Replicated. You must meet the additional requirements of the kURL project to use the Kubernetes installer. See [System Requirements](https://kurl.sh/docs/install-with-kurl/system-requirements) in the kURL open source documentation.
 * Root access is required.
+
+#### Supported Operating Systems
+
+To use the Kubernetes installer, you must use a supported operating system. See [Supported Operating Systems](https://kurl.sh/docs/install-with-kurl/system-requirements#supported-operating-systems) in the kURL documentation.
+
+#### kURL Dependencies Directory
+
+kURL installs additional dependencies in the directory /var/lib/kurl/, which is also used by the Kubernetes installer. See [kURL Dependencies Directory](https://kurl.sh/docs/install-with-kurl/system-requirements#kurl-dependencies-directory) in the kURL documentation.
+
+#### Networking Requirements
+
+The Kubernetes installer has networking requirements for firewall openings, host firewall rules, and ports. See [Networking Requirements](https://kurl.sh/docs/install-with-kurl/system-requirements#networking-requirements) in the kURL documentation.
+
+#### High Availability Requirements
+
+In addition to the networking requirements, operating a cluster with high availability has constraints that must be met. See [High Availability Requirements](https://kurl.sh/docs/install-with-kurl/system-requirements#high-availability-requirements) in the kURL documentation.
+
+#### Cloud Disk Performance
+
+For a list of cloud VM instance and disk combinations that are known to provide sufficient performance for etcd and pass the write latency preflight, see [Cloud Disk Performance](https://kurl.sh/docs/install-with-kurl/system-requirements#cloud-disk-performance) in the kURL documentation.
+
 
 ## Firewall Openings for Online Installations
 
