@@ -71,8 +71,6 @@ Root access on nodes or workstations is *not* required to install an application
 
 To install the admin console on an embedded cluster created by the Replicated Kubernetes installer, your environment must meet the following requirements.
 
-The Kubernetes installer is based on the open source kURL project, which is maintained by Replicated.
-
 #### Minimum System Requirements
 
 * 4 CPUs or equivalent per machine.
@@ -85,6 +83,11 @@ The Kubernetes installer is based on the open source kURL project, which is main
 * TCP ports 2379, 2380, 6443, 6783, 10250, 10251, and 10252 open between cluster nodes.
 * UDP ports 6783 and 6784 open between cluster nodes.
 * Root access is required.
+
+#### Additional System Requirements
+
+Because the Kubernetes installer is based on the open source kURL project, which is maintained by Replicated, you must meet all of the kURL system requirements for kURL, such as supported operating systems, networking requirements, and so on. For a complete list of system requirements, see [System Requirements](https://kurl.sh/docs/install-with-kurl/system-requirements) in the kURL documentation.
+
 
 #### Supported Operating Systems
 
