@@ -52,3 +52,5 @@ To configure custom RBAC policies:
   :::note
   Click **Cancel** to exit without saving changes.
   :::
+
+1. Assign the policy to team members. This can be done by inviting individual invitations or assigning a policy to a team using the auto-join feature. For more information, see [Managing Team Members](team-management).

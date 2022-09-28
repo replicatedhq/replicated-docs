@@ -8,7 +8,7 @@ The [Team](https://vendor.replicated.com/team/members) page provides a list of a
 All users, including read-only, can see the name of the RBAC role assigned to each team member. When SAML authentication is enabled, users with the built-in read-only policy cannot see the RBAC role assigned to team members.
 
 ## Invite Members
-By default, team administrators can invite more team members to collaborate. Invited users receive an email to activate their account. The activiation link in the email is unique to the invited user. Following the activation link in the email also ensures that the invited user joins the team from which the invitation originated. 
+By default, team administrators can invite more team members to collaborate. Invited users receive an email to activate their account. The activiation link in the email is unique to the invited user. Following the activation link in the email also ensures that the invited user joins the team from which the invitation originated.
 
 :::note
 Teams that have enforced SAML-only authentication do not use the email invitation flow described in this procedure. These teams and their users must log in through their SAML provider.
@@ -20,7 +20,15 @@ To invite a new team member:
 
   The Invite team member dialog opens.
 
-1. Enter the email address of the member and their assigned RBAC policy, and click **Invite Member**.
+1. Enter the email address of the member.
+
+1. In the **Permissions** field, assign an RBAC policy from the dropdown list.
+
+  :::note
+  You can edit permissions at any time by clicking **Edit permissions** next to a team member's name.
+  :::
+
+1. Click **Invite Member**.
 
   People invited to join your team receive an email notification to accept the invitation. They must follow the link in the email to accept the invitation and join the team. If they do not have a Replicated account already, they can create one that complies with your password policies, MFA, and Google authentication requirements. If an invited user's email address is already associated with a Replicated account, by accepting your invitation, they automatically leave their current team and join the team that you have invited them to.
 
