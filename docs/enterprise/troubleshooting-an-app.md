@@ -1,4 +1,4 @@
-# Troubleshooting an Application
+# Generating Support Bundles
 
 The Replicated admin console includes a Troubleshoot page where you can generate an analysis and review remediation suggestions for troubleshooting an application. You can also download a support bundle to share with your vendor.
 
@@ -24,9 +24,9 @@ The Replicated admin console includes a Troubleshoot page where you can generate
 
 You can generate a support bundle using the CLI instead of the admin console. For example, if an installation fails when you are using an embedded KURL cluster to install the Replicated admin console or upload the application, the admin console may not be available.
 
-### Prerequisite: Install the Support Bundle Plugin
+### Install the Support Bundle Plugin {#plugin}
 
-The `support-bundle` kubectl plugin is required to generate a support bundle.
+The support-bundle kubectl plugin is required to generate a support bundle from the command line.
 
 To install the plugin, do one of the following actions:
 
@@ -41,6 +41,14 @@ To install the plugin, do one of the following actions:
     ```
     kubectl krew install support-bundle
     ```
+
+- If you do not want to install the plugin using krew or want an easier way to install the plugin in an air gapped environment, run the following command:
+
+  ```
+  curl -L https://github.com/replicatedhq/troubleshoot/releases/download/VERSION/support-bundle_linux_amd64.tar.gz | tar xzvf -
+  ```
+
+  Replace `VERSION` with `v` and the version number. For example, `v0.40.0`. To get the latest release version, see the [Troubleshoot](https://github.com/replicatedhq/troubleshoot/releases) repository in GitHub.
 
 ### Create a Support Bundle with the CLI
 
@@ -85,3 +93,29 @@ If the application is not installed but the admin console is running, run the fo
   ```
   kubectl support-bundle http://<server-address>:8800/api/v1/troubleshoot
   ```
+
+### Generate a Host Support Bundle
+
+For Kubernetes installer provisioned clusters (embedded clusters), you can generate a host support bundle to help troubleshoot a cluster that is down. Your vendor provides you with a host support bundle YAML file that you run with a command to generate the host support bundle.
+
+Root access is typically not required to run the host collectors and analyzers. However, depending on what is being collected, you might need to run the support-bundle binary with elevated permissions. For example, if you run the `filesystemPerformance` host collector against `/var/lib/etcd` and the user running the binary does not have permissions on this directory, the collection process fails.
+
+To generate a host support bundle:
+
+1. Install the support-bundle plugin. See [Install the Support Bundle Plugin]({#plugin}).
+
+1. Save the host support bundle YAML file from your vendor on the host. For air gap environments, download the file and copy it to the air gap machine.
+
+1. Run the following command on the host to generate a host support bundle:
+
+  ```
+  ./support-bundle --interactive=false PATH/FILE.yaml
+  ```
+  Replace:
+
+    - `PATH` with the path to the host support bundle YAML file.
+    - `FILE` with the name of the host support bundle YAML file from your vendor.
+
+1. Share the host support bundle with your vendor's support team.
+
+1. Repeat these steps for each node because there is no method to generate host support bundles on remote hosts. If you have a multi-node Kubernetes cluster, you must run the support-bundle binary on each node and generate a host support bundle for each node.

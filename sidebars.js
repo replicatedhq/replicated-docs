@@ -190,7 +190,6 @@ const sidebars = {
             ],
           },
           'vendor/releases-sharing-license-install-script',
-          'vendor/support-submit-request',
         {
           type: 'category',
           label: 'Team Management',
@@ -215,6 +214,22 @@ const sidebars = {
           items: [
             'vendor/data-availability',
             'vendor/offsite-backup'
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Support and Troubleshooting',
+          items: [
+            'vendor/support-submit-request',
+            'vendor/support-host-support-bundles',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Advanced Tutorials',
+          items: [
+            'vendor/tutorial-installing-air-gap-existing-cluster-gcp',
+            'vendor/tutorial-ha-cluster-deploying',
           ],
         },
       ],
