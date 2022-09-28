@@ -1,3 +1,5 @@
+import MissingKindField from "../partials/kots-lint-rules/_missing-kind-field.mdx"
+import MissingAPIVersionField from "../partials/kots-lint-rules/_missing-api-version-field.mdx"
 import PreflightSpec from "../partials/kots-lint-rules/_preflight-spec.mdx"
 import ConfigSpec from "../partials/kots-lint-rules/_config-spec.mdx"
 import TroubleshootSpec from "../partials/kots-lint-rules/_troubleshoot-spec.mdx"
@@ -25,6 +27,11 @@ import VolumesHostPaths from "../partials/kots-lint-rules/_volumes-host-paths.md
 import VolumeDockerSock from "../partials/kots-lint-rules/_volume-docker-sock.mdx"
 import HardcodedNamespace from "../partials/kots-lint-rules/_hardcoded-namespace.mdx"
 import ConfigOptionInvalidType from "../partials/kots-lint-rules/_config-option-invalid-type.mdx"
+import RepeatOptionMissingTemplate from "../partials/kots-lint-rules/_repeat-option-missing-template.mdx"
+import RepeatOptionMissingValuesByGroup from "../partials/kots-lint-rules/_repeat-option-missing-valuesByGroup.mdx"
+import RepeatOptionMalformedYAMLPath from "../partials/kots-lint-rules/_repeat-option-malformed-yamlpath.mdx"
+import ConfigOptionPasswordType from "../partials/kots-lint-rules/_config-option-password-type.mdx"
+import ConfigOptionIsCircular from "../partials/kots-lint-rules/_config-option-is-circular.mdx"
 
 # KOTS Lint Rules
 
@@ -52,9 +59,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Example</th>
     <td><p>Example of correct YAML for this rule:</p>
-    <pre><code>
-    kind: Config
-    </code></pre>
+    <MissingKindField/>
     </td>
   </tr>
 </table>
@@ -78,9 +83,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Example</th>
     <td><p>Example of correct YAML for this rule:</p>
-    <pre><code>
-    apiVersion: kots.io/v1beta1
-    </code></pre>
+    <MissingAPIVersionField/>
     </td>
   </tr>
 </table>
@@ -91,7 +94,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 <table>
   <tr>
     <th>Description</th>
-    <td><p>Require a custom resource manifest file with:</p>
+    <td><p>Require a Preflight custom resource manifest file with:</p>
       <p><code>kind: Preflight</code></p>
       <p>and one of the following:</p>
       <ul>
@@ -195,11 +198,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Applies To</th>
     <td>
-      <p>Files with:</p>
-      <ul>
-        <li><code>kind: Application</code></li>
-        <li><code>apiVersion: kots.io/v1beta1</code></li>
-      </ul>
+      Files with <code>kind: Application</code> and <code>apiVersion: kots.io/v1beta1</code>.
     </td>
   </tr>
   <tr>
@@ -225,11 +224,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Applies To</th>
     <td>
-      <p>Files with:</p>
-      <ul>
-        <li><code>kind: Application</code></li>
-        <li><code>apiVersion: kots.io/v1beta1</code></li>
-      </ul>
+      Files with <code>kind: Application</code> and <code>apiVersion: kots.io/v1beta1</code>.
     </td>
   </tr>
   <tr>
@@ -247,7 +242,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
     <td>
       <p>Require Application targetKotsVersion to use valid SemVer.
       See <a href="https://semver.org/">Semantic Versioning 2.0.0</a>.</p>
-      <p>Accepts a <code>v</code> as an optional prefix, so both `1.0.0` and `v1.0.0` are valid.</p>
+      <p>Accepts a <code>v</code> as an optional prefix, so both <code>1.0.0</code> and <code>v1.0.0</code> are valid.</p>
     </td>
   </tr>
   <tr>
@@ -257,11 +252,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Applies To</th>
     <td>
-      <p>Files with:</p>
-      <ul>
-        <li><code>kind: Application</code></li>
-        <li><code>apiVersion: kots.io/v1beta1</code></li>
-      </ul>
+      Files with <code>kind: Application</code> and <code>apiVersion: kots.io/v1beta1</code>.
     </td>
   </tr>
   <tr>
@@ -279,7 +270,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
     <td>
       <p>Require Application minKotsVersion to use valid SemVer.
       See <a href="https://semver.org/">Semantic Versioning 2.0.0</a>.</p>
-      <p>Accepts a <code>v</code> as an optional prefix, so both `1.0.0` and `v1.0.0` are valid.</p>
+      <p>Accepts a <code>v</code> as an optional prefix, so both <code>1.0.0</code> and <code>v1.0.0</code> are valid.</p>
     </td>
   </tr>
   <tr>
@@ -289,11 +280,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Applies To</th>
     <td>
-      <p>Files with:</p>
-      <ul>
-        <li><code>kind: Application</code></li>
-        <li><code>apiVersion: kots.io/v1beta1</code></li>
-      </ul>
+      Files with <code>kind: Application</code> and <code>apiVersion: kots.io/v1beta1</code>.
     </td>
   </tr>
   <tr>
@@ -351,11 +338,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Applies To</th>
     <td>
-    <p>Files with:</p>
-    <ul>
-      <li><code>kind: Installer</code></li>
-      <li><code>apiVersion: kurl.sh/v1beta1</code></li>
-    </ul>
+    Files with <code>kind: Installer</code> and <code>apiVersion: kurl.sh/v1beta1</code>.
     </td>
   </tr>
   <tr>
@@ -416,11 +399,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Applies To</th>
     <td>
-    <p>Files with:</p>
-    <ul>
-      <li><code>kind: HelmChart</code></li>
-      <li><code>apiVersion: kots.io/v1beta1</code></li>
-    </ul>
+    Files with <code>kind: HelmChart</code> and <code>apiVersion: kots.io/v1beta1</code>.
     </td>
   </tr>
   <tr>
@@ -447,11 +426,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Applies To</th>
     <td>
-    <p>Files with:</p>
-    <ul>
-      <li><code>kind: HelmChart</code></li>
-      <li><code>apiVersion: kots.io/v1beta1</code></li>
-    </ul>
+    Files with <code>kind: HelmChart</code> and <code>apiVersion: kots.io/v1beta1</code>.
     </td>
   </tr>
 </table>
@@ -835,164 +810,191 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 
 ### repeat-option-missing-template
 
-Disallow repeating Config item with undefined `item.templates`.
-
-Level: "error"
-
-Applies to all files.
-
-Related docs:
-- [Repeatable Item Template Targets](/reference/custom-resource-config#template-targets)
-
-Example of **correct** yaml for this rule:
-
-```yaml
-spec:
-  groups:
-    - name: ports
-      items:
-      - name: service_port
-        title: Service Port
-        type: text
-        repeatable: true
-        templates:
-        - apiVersion: v1
-          kind: Service
-          name: my-service
-          namespace: my-app
-          yamlPath: 'spec.ports[0]'
-        - apiVersion: v1
-          kind: Service
-          name: my-service
-          namespace: my-app
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Disallow repeating Config item with undefined <code>item.templates</code>.</p>
+      <p>For more information, see <a href="/reference/custom-resource-config#template-targets">Repeatable Item Template Targets</a> in <em>Config</em>.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of correct YAML for this rule:</p><RepeatOptionMissingTemplate/></td>
+  </tr>
+</table>
 
 
 ### repeat-option-missing-valuesByGroup
 
-Disallow repeating Config item with undefined `item.valuesByGroup`.
-
-Level: "error"
-
-Applies to all files.
-
-Related docs:
-- [Repeatable Items](/reference/custom-resource-config#repeatable-items)
-
-Example of **correct** yaml for this rule:
-
-```yaml
-spec:
-  groups:
-    - name: ports
-      items:
-      - name: service_port
-        title: Service Port
-        type: text
-        repeatable: true
-        valuesByGroup:
-          ports:
-            port-default-1: "80"
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Disallow repeating Config item with undefined <code>item.valuesByGroup</code>.</p>
+      <p>For more information, see <a href="/reference/custom-resource-config#repeatable-items">Repeatable Items</a> in <em>Config</em>.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of correct YAML for this rule:</p><RepeatOptionMissingValuesByGroup/></td>
+  </tr>
+</table>
 
 
 ### repeat-option-malformed-yamlpath
 
-Enforce ConfigOption `yamlPath` ending with square brackets denoting index position.
-
-Level: "error"
-
-Applies to all files.
-
-Related docs:
-- [Repeatable Item Template Targets](/reference/custom-resource-config#template-targets)
-
-Example of **correct** yaml for this rule:
-
-```yaml
-spec:
-  groups:
-    - name: ports
-      items:
-      - name: service_port
-        yamlPath: 'spec.ports[0]'
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Enforce ConfigOption <code>yamlPath</code> ending with square brackets denoting index position.</p>
+      <p>For more information, see <a href="/reference/custom-resource-config#template-targets">Repeatable Item Template Targets</a> in <em>Config</em>.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of correct YAML for this rule:</p><RepeatOptionMalformedYAMLPath/></td>
+  </tr>
+</table>
 
 
 ### config-option-password-type
 
-Require ConfigOption items with names including `password`, `secret`, or `token` to have `type` set to `password`.
-
-Level: "warn"
-
-Applies to all files.
-
-Example of **correct** yaml for this rule:
-
-```yaml
-spec:
-  groups:
-    - name: ports
-      items:
-      - name: my_secret
-        type: password
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Require ConfigOption items with any of the following names to have <code>type</code> set to <code>password</code>:</p>
+      <ul>
+        <li><code>password</code></li>
+        <li><code>secret</code></li>
+        <li><code>token</code></li>
+      </ul>
+  </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Warn</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of correct YAML for this rule:</p><ConfigOptionPasswordType/></td>
+  </tr>
+</table>
 
 
 ### config-option-not-found
 
-Require all used `ConfigOption`s to be defined in `Config` yaml.
-
-Level: "warn"
-
-Applies to all files.
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      Require all ConfigOption items to be defined in the <code>Config</code> custom resource manifest file.
+  </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Warn</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+</table>
 
 
 ### config-option-is-circular
 
-Enforce `ConfigOption`s do not reference themselves.
-
-Level: "error"
-
-Applies to `apiVersion`:
- - `kots.io/v1beta1`
-
-Applies to `kind`:
- - `Config`
-
-Example of **incorrect** yaml for this rule:
-
-```yaml
-spec:
-  groups:
-  - name: example_settings
-    items:
-    - name: example_default_value
-      type: text
-      value: repl{{ ConfigOption "example_default_value" }}
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      Enforce that all ConfigOption items do not reference themselves.
+  </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+      Files with <code>kind: Config</code> and <code>apiVersion: kots.io/v1beta1</code>.
+    </td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><ConfigOptionIsCircular/></td>
+  </tr>
+</table>
 
 
 ### config-option-not-repeatable
 
-Enforce sub-templated `ConfigOption` must be repeatable.
-
-Level: "error"
-
-Applies to all files.
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      Enforce that sub-templated ConfigOption items must be repeatable.
+  </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+</table>
 
 
 ### config-option-when-is-invalid
 
-Enforce valid `ConfigOption.when`.
-
-Level: "error"
-
-Applies to `apiVersion`:
- - `kots.io/v1beta1`
-
-Applies to `kind`:
- - `Config`
-
-Related docs:
-- [Config Properties - `when`](/reference/custom-resource-config#when)
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Enforce valid <code>ConfigOption.when</code>.</p>
+      <p>For more information, see <a href="/reference/custom-resource-config#when">when</a> in <em>Config</em>.</p>
+  </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>Files with <code>kind: Config</code> and <code>apiVersion: kots.io/v1beta1</code>.
+    </td>
+  </tr>
+</table>
