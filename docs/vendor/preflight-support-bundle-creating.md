@@ -241,7 +241,7 @@ To customize a support bundle:
     - **Regular expressions:** Analyze arbitrary data.
     - **Databases:** Check the version and connection status.
 
-1. (Optional) To add redactors to the default redactors that are automatically provided by the app manager, add the Redactor custom resource manifest (`kind: Redactor`) to your release. Then add Redactor custom resource fields to the manifest as needed. For more information about using redactors, see [Redactor](custom-resource-redactor) in the Reference section.
+1. (Optional) To add redactors to the default redactors that are automatically provided by the app manager, add the Redactor custom resource manifest (`kind: Redactor`) to your release. Then add Redactor custom resource fields to the manifest as needed. For more information, see [Redactor](custom-resource-redactor) in the Reference section.
 
   :::note
   The default redactors included with Replicated app manager cannot be disabled.
