@@ -86,24 +86,15 @@ To install the admin console on an embedded cluster created by the Replicated Ku
 
 #### Additional System Requirements
 
-Because the Kubernetes installer is based on the open source kURL project, which is maintained by Replicated, you must meet all of the kURL system requirements for kURL, such as supported operating systems, networking requirements, and so on. For a complete list of system requirements, see [System Requirements](https://kurl.sh/docs/install-with-kurl/system-requirements) in the kURL documentation.
+Because the Kubernetes installer is based on the open source kURL project, which is maintained by Replicated, you must meet all of the additional kURL system requirements:
 
+- Supported Operating Systems. See [Supported Operating Systems](https://kurl.sh/docs/install-with-kurl/system-requirements#supported-operating-systems) in the kURL documentation.
 
-#### Supported Operating Systems
+- kURL Dependencies Directory. See [kURL Dependencies Directory](https://kurl.sh/docs/install-with-kurl/system-requirements#kurl-dependencies-directory) in the kURL documentation.
 
-To use the Kubernetes installer, you must use a supported operating system. See [Supported Operating Systems](https://kurl.sh/docs/install-with-kurl/system-requirements#supported-operating-systems) in the kURL documentation.
+- Networking Requirements. See [Networking Requirements](https://kurl.sh/docs/install-with-kurl/system-requirements#networking-requirements) in the kURL documentation.
 
-#### kURL Dependencies Directory
-
-kURL installs additional dependencies in the directory /var/lib/kurl/, which is also used by the Kubernetes installer. See [kURL Dependencies Directory](https://kurl.sh/docs/install-with-kurl/system-requirements#kurl-dependencies-directory) in the kURL documentation.
-
-#### Networking Requirements
-
-The Kubernetes installer has networking requirements for firewall openings, host firewall rules, and ports. See [Networking Requirements](https://kurl.sh/docs/install-with-kurl/system-requirements#networking-requirements) in the kURL documentation.
-
-#### High Availability Requirements
-
-In addition to the networking requirements, operating a cluster with high availability has constraints that must be met. See [High Availability Requirements](https://kurl.sh/docs/install-with-kurl/system-requirements#high-availability-requirements) in the kURL documentation.
+- High Availability Requirements. If you are using hSee [High Availability Requirements](https://kurl.sh/docs/install-with-kurl/system-requirements#high-availability-requirements) in the kURL documentation.
 
 #### Cloud Disk Performance
 
