@@ -76,10 +76,6 @@ metadata:
   name: my-redactor-name
 spec:
   redactors:
-  - name: hostname # this is a basic hostname redactor
-    removals:
-      regex:
-      - redactor: (?P<mask>[a-zA-Z0-9]+\.[a-zA-Z0-9]+\.[a-zA-Z0-9]+\.[a-zA-Z0-9]+)
   - name: all files # as no file is specified, this redactor will run against all files
     removals:
       regex:

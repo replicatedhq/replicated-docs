@@ -241,26 +241,11 @@ To customize a support bundle:
     - **Regular expressions:** Analyze arbitrary data.
     - **Databases:** Check the version and connection status.
 
-1. (Optional) To add redactors to the default redactors that are automatically provided by the app manager, add the Redactor custom resource manifest (`kind: Redactor`) to your release. Then add Redactor custom resource fields to the manifest as needed.
+1. (Optional) To add redactors to the default redactors that are automatically provided by the app manager, add the Redactor custom resource manifest (`kind: Redactor`) to your release. Then add Redactor custom resource fields to the manifest as needed. For more information about using redactors, see [Redactor](custom-resource-redactor) in the Reference section.
 
   :::note
   The default redactors included with Replicated app manager cannot be disabled.
   :::
-
-  **Example:**
-
-  ```yaml
-  apiVersion: troubleshoot.sh/v1beta2
-  kind: Redactor
-  metadata:
-    name: my-redactor-name
-    spec:
-      redactors:
-      - name: hostname # this is a basic hostname redactor
-        removals:
-          regex:
-          - redactor: (?P<mask>[a-zA-Z0-9]+\.[a-zA-Z0-9]+\.[a-zA-Z0-9]+\.[a-zA-Z0-9]+)
-  ```
 
 1. Add the manifest files to the application that you are packaging and distributing with Replicated.
 
