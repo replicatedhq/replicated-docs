@@ -4,6 +4,31 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.86.0
+
+Released on September 27, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### New Features {#new-features-1-86-0}
+* Allows icon colors to be changed with the CSS when branding the admin console (Alpha). To enable this feature on your account, log in to your vendor portal account. Select **Support** > **Request a feature**, and submit a feature request for "admin console branding".
+
+### Improvements {#improvements-1-86-0}
+* Removes the license upload page when the admin-console Helm chart is installed without installing a Replicated application.
+* Makes port forward reconnections faster.
+
+### Bug Fixes {#bug-fixes-1-86-0}
+* Fixes the message alignment when a strict preflight check fails.
+* Fixes a bug where versions with `pending_download` status were shown incorrectly on the version history page.
+* Fixes a bug where versions with `pending_download` status caused the `View files` tab to navigate to a version that had not been downloaded yet, resulting in a UI error.
+* Fixes a bug where downloading an application version that is incompatible with the current admin console version made it impossible to check for updates until the admin console pod was restarted.
+* Fixes a bug that caused CLI feedback spinners to spin indefinitely.
+* Fixes an issue that caused config templates to be applied to the wrong values.yaml file in Helm-managed mode (Alpha). For more information about Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Fixes an issue where the license was not synced when checking for application updates in Helm-managed mode (Alpha).
+* Fixes a bug in Helm-managed mode (Alpha) that required you to visit the config screen to deploy a new version with required config items, even if all of the config values had been set in a previously deployed version.
+* Fixes a bug that caused the currently deployed version to temporarily appear as a newly available version when an update check ran in Helm-managed mode (Alpha).
+* Fixes styling on `<pre>` elements in the Helm install modals (Alpha) so that their heights match the content.
+
 ## 1.85.0
 
 Released on September 19, 2022

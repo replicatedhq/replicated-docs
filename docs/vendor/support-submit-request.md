@@ -6,7 +6,7 @@ Severity 1 issues are resolved three times faster when you submit a support bund
 
 If you or your customer are unable to generate a support bundle, you can submit the request without a support bundle and the support team will assist you.
 
-For more information about how to generate a support bundle using either the Replicated admin console or the kubectl CLI, see [Troubleshooting an Application](https://docs.replicated.com/enterprise/troubleshooting-an-app).
+For more information about how to generate a support bundle using either the Replicated admin console or the kubectl CLI, see [Generating Support Bundles](https://docs.replicated.com/enterprise/troubleshooting-an-app).
 
 To submit a support request:
 

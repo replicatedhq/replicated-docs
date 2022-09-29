@@ -31,8 +31,6 @@ The following diagram illustrates the workflow for preflight checks and support 
 
 As shown in the diagram above, preflight checks and support bundles first use collectors to collect data from various sources, including the cluster environment and the application. Then, built-in redactors censor any sensitive information from the collected data. Finally, analyzers review the post-redacted data to identify common problems. For more information, see [Collectors](#collectors), [Redactors](#redactors), and [Analyzers](#analyzers).
 
-Host collectors and analyzers also available and can be helpful to use for debugging when a Kubernetes cluster is down. For more information about host collectors and analyzers, see [Overview](https://troubleshoot.sh/docs/host-collect-analyze/overview/) in the Troubleshoot documentation.
-
 Preflight checks and support bundles are based on the open-source Troubleshoot project, which is maintained by Replicated. For more information about specific types of collectors, analyzers, and redactors, see the [Troubleshoot](https://troubleshoot.sh/) documentation.
 
 ### Collectors
@@ -68,7 +66,7 @@ For more information about defining preflight checks, see [Preflight Checks](htt
 
 To define preflight checks:
 
-1. Create a Preflight custom resource manifest file (`kind: Preflight`).
+1. Create a Preflight custom resource manifest file (`kind: Preflight`) in your release.
 
       ```yaml
       apiVersion: troubleshoot.sh/v1beta2
@@ -144,7 +142,7 @@ This procedure provides a basic understanding and some key considerations to hel
 
 To customize a support bundle:
 
-1. Create a support bundle manifest file (`kind: SupportBundle`) in your release.
+1. Create a SupportBundle custom resource manifest file (`kind: SupportBundle`) in your release.
 1. Use one of the following support bundle template options to start populating your manifest file:
 
       - To add collectors to the default collectors, copy the following basic support bundle template to your manifest file. In this template, the collectors field is empty, so only the default collectors run until you customize this file.

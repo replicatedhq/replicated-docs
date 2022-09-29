@@ -8,7 +8,7 @@ There are two ways to view the status details, depending on your admin console v
 
   ![Status Details](/images/kotsadm-dashboard-appstatus.png)
 
-- (Version 1.50.2 and earlier) Review the diagnostic information in `kots/admin_console/kotsadm-/kotsadm.log` in the support bundle. For more information about generating a support bundle, see [Troubleshooting an Application](troubleshooting-an-app).
+- (Version 1.50.2 and earlier) Review the diagnostic information in `kots/admin_console/kotsadm-/kotsadm.log` in the support bundle. For more information about generating a support bundle, see [Generating Support Bundles](troubleshooting-an-app).
 
 ## Resource Statuses
 
