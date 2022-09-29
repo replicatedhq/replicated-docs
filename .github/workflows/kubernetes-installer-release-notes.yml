@@ -24,6 +24,7 @@ jobs:
         title: $KURL_VERSION
         include-pr-links: false
         github-token: ${{ secrets.GITHUB_TOKEN }}
+        feature-type-labels: type::feature,kurl::type::feature
 
     - name: Update Release Notes
       env:
