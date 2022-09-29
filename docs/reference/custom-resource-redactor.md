@@ -65,7 +65,7 @@ The `removals` object is required and defines the redactions that occur. This ob
   </tr>
 </table>
 
-## Example Redactors
+## Example Redactor
 
 The following example shows `values`, `regex`, and `yamlPath` redaction for a support bundle:
 
