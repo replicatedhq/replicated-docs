@@ -4,6 +4,12 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.86.1
+
+Released on September 30, 2022
+
+Support
+
 ## 1.86.0
 
 :::important
