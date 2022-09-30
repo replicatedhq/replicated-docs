@@ -146,10 +146,15 @@ Returns a random string with the desired length and charset.
 Provided charsets must be Perl formatted and match individual characters.
 If no charset is provided, `[_A-Za-z0-9]` will be used.
 
+**Example**
+
+The following example generates a 64-character random string:
+
 ```yaml
 '{{repl RandomString 64}}'
 ```
-Or for a total of 64 `a`s and `b`s:
+The following example generates a 64-character random string that contains `a`s and `b`s:
+
 ```yaml
 '{{repl RandomString 64 "[ab]" }}'
 ```
