@@ -1,0 +1,20 @@
+```yaml
+spec:
+  groups:
+    - name: ports
+      items:
+      - name: service_port
+        title: Service Port
+        type: text
+        repeatable: true
+        templates:
+        - apiVersion: v1
+          kind: Service
+          name: my-service
+          namespace: my-app
+          yamlPath: 'spec.ports[0]'
+        - apiVersion: v1
+          kind: Service
+          name: my-service
+          namespace: my-app
+```

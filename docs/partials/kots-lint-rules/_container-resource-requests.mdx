@@ -1,0 +1,10 @@
+```yaml
+spec:
+  containers:
+    - name: nginx
+      resources:
+        limits:
+          memory: '256Mi'
+          cpu: '500m'
+        # note the lack of a requests field
+```
