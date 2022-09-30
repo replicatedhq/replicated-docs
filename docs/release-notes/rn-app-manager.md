@@ -37,13 +37,13 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### Known Issue {#known-issues-1-86-0}
 
-There is a known issue in the app manager v1.86.0 that causes the application icon in the Replicated admin console to display incorrectly in Firefox browsers. The icon displays in a very large size, preventing users from accessing the fields on many of the admin console screens.
+There is a known issue in the app manager v1.86.0 that causes certain icons in the Replicated admin console to display incorrectly in Firefox browsers. The icons display in a very large size, making it difficult for users to access the fields on several of the admin console screens.
 
-To use the admin console on v1.86.0, users must open the admin console in a supported browser other than Firefox, such as Google Chrome. For more information about supported browsers, see [Supported Browsers](/enterprise/installing-general-requirements#supported-browsers) in _Installation Requirements_.
+To use the admin console on v1.86.0, users should open the admin console in a supported browser other than Firefox, such as Google Chrome. For more information about supported browsers, see [Supported Browsers](/enterprise/installing-general-requirements#supported-browsers) in _Installation Requirements_.
 
 If users are unable to use a browser other than Firefox to access the admin console, Replicated recommends that they do not upgrade to the app manager v1.86.0.
 
-To prevent users from upgrading to v1.86.0, define a `targetKotsVersion` of `"1.85.0"` in your Application custom resource manifest file. For more information about adding a target version for KOTS, see [Using Target KOTS Versions](/vendor/packaging-kots-versions#using-target-kots-versions) in _Setting Minimum and Target Versions for KOTS_.
+Until a new version of the app manager is available, Replicated recommends defining a `targetKotsVersion` of `"1.85.0"` in your Application custom resource manifest file if you have customers using Firefox. For more information about adding a target version for KOTS, see [Using Target KOTS Versions](/vendor/packaging-kots-versions#using-target-kots-versions) in _Setting Minimum and Target Versions for KOTS_.
 
 ## 1.85.0
 
