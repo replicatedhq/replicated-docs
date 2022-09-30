@@ -49,7 +49,7 @@ To enable users to auto-join your team:
 
 1. From the Team Members page, click **Auto-join** from the left navigation.
 1. Enable the **Allow all users from my domain to be added to my team** toggle.
-1. For ** Default RBAC policy level for new accounts**, you can use the default Read Only policy or select another policy from the list. This RBAC policy is applied to all users who join the team with the auto-join feature.
+1. For **Default RBAC policy level for new accounts**, you can use the default Read Only policy or select another policy from the list. This RBAC policy is applied to all users who join the team with the auto-join feature.
 
   :::note
   To add, edit, or delete custom RBAC policies, see [Configuring Custom RBAC Policies](team-management-rbac-configuring).
