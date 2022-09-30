@@ -4,6 +4,17 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2022.09.30-0
+
+Released on September 30, 2022
+
+### New Features {#new-features-v2022-09-30-0}
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.21.1.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-09-25T15-44-53Z.
+* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.9.2.
+* Adds [Goldpinger add-on](https://kurl.sh/docs/add-ons/goldpinger) version 3.6.1-5.4.2.
+* Adds [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.86.1.
+
 ## v2022.09.28-0
 
 Released on September 28, 2022
