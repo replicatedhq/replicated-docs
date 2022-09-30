@@ -11,15 +11,15 @@ Released on September 30, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### Improvements {#improvements-1-86-1}
-* Update tabs on deployment logs to show only tabs relevant to helm-managed or non-helm-managed deployments.
+* Only show relevant tabs on the deployment logs modal depending on whether or not the admin console is in Helm-managed mode.
+* Standardizes all page titles.
 
 ### Bug Fixes {#bug-fixes-1-86-1}
-* Fixes an issue where automatic update checks fail when the interval is too short for pending updates to be fetched.
-* Fixes an issue that caused custom automatic update schedule to not be shown after it's saved on the [Configure automatic updates](https://docs.replicated.com/enterprise/updating-apps#configure-automatic-updates).
-* Fixes an issue where checking for updates from the [version history](/enterprise/updating-apps#update-an-application-in-the-admin-console) page would not show the "License is expired" error when the check fails due to an expired license in [Helm managed mode (Alpha)](/vendor/helm-install).
-* standardized all page titles.
-* Fixes an issue where icon sizes were not displaying properly on Firefox.
-* Fixes an issue where in some cases the specified registry namespace is ignored for KOTS images if the specified registry hostname already includes a namespace.
+* Fixes an issue where automatic update checks failed when the interval is too short for pending updates to be fetched.
+* Fixes an issue where the automatic update checks modal didn't show custom schedules after they were saved. See [Configure Automatic Updates](/enterprise/updating-apps#configure-automatic-updates).
+* Fixes an issue in Helm-managed mode where checking for updates from the version history page did not show the "License is expired" error when the check failed due to an expired license. For more information on Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Fixes an issue where some icons displayed in a very large size on Firefox.
+* Fixes an issue where the specified registry namespace was sometimes ignored for KOTS images if the specified registry hostname already included a namespace.
 
 ## 1.86.0
 
@@ -59,8 +59,6 @@ There is a known issue in the app manager v1.86.0 that causes certain icons in t
 To use the admin console on v1.86.0, users should open the admin console in a supported browser other than Firefox, such as Google Chrome. For more information about supported browsers, see [Supported Browsers](/enterprise/installing-general-requirements#supported-browsers) in _Installation Requirements_.
 
 If users are unable to use a browser other than Firefox to access the admin console, Replicated recommends that they do not upgrade to the app manager v1.86.0.
-
-Replicated recommends defining a `targetKotsVersion` of `"1.85.0"` in your Application custom resource manifest file if you have customers using Firefox. For more information about adding a target version for KOTS, see [Using Target KOTS Versions](/vendor/packaging-kots-versions#using-target-kots-versions) in _Setting Minimum and Target Versions for KOTS_.
 
 ## 1.85.0
 
