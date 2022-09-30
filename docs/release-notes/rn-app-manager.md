@@ -18,14 +18,15 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 * Fixes an issue where automatic update checks failed when the interval is too short for pending updates to be fetched.
 * Fixes an issue where the automatic update checks modal didn't show custom schedules after they were saved. See [Configure Automatic Updates](/enterprise/updating-apps#configure-automatic-updates).
 * Fixes an issue in Helm-managed mode where checking for updates from the version history page did not show the "License is expired" error when the check failed due to an expired license. For more information on Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
-* Fixes an issue where some icons displayed in a very large size on Firefox.
+* Fixes an issue where some icons displayed in a very large size on Firefox. See [Known Issue](#known-issues-1-86-0) under _1.86.0_.
 * Fixes an issue where the specified registry namespace was sometimes ignored for KOTS images if the specified registry hostname already included a namespace.
 
 ## 1.86.0
 
 :::important
 The app manager v1.86.0 contains a known issue that affects the use of
-the Replicated admin console in Firefox browsers.
+the Replicated admin console in Firefox browsers. This issue is resolved
+in the app manager v1.86.1.
 See [Known Issue](#known-issues-1-86-0) below.
 :::
 
@@ -53,6 +54,8 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 * Fixes styling on `<pre>` elements in the Helm install modals (Alpha) so that their heights match the content.
 
 ### Known Issue {#known-issues-1-86-0}
+
+This issue is resolved in the app manager v1.86.1.
 
 There is a known issue in the app manager v1.86.0 that causes certain icons in the Replicated admin console to display incorrectly in Firefox browsers. The icons display in a very large size, making it difficult for users to access the fields on several of the admin console screens.
 
