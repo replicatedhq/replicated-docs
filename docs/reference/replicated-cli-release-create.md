@@ -15,6 +15,7 @@ replicated release create --yaml-dir YAML_DIR [flags]
 | `--yaml-dir` | path | The directory containing multiple manifests for a release. (**required**) |
 | `--promote` | string |    Channel name to promote this release to (**case sensitive**)|
 | `--ensure-channel` |  |    When used with --promote _channel_, will create the channel if it doesn't exist |
+| `--lint` | | Lint a manifest directory prior to creation of the release. For more information, see [KOTS Lint Rules](kots-lint). |
 | `--release-notes` | string |  When used with --promote _channel_, sets the **markdown** release notes |
 | `--version` string | When used with --promote _channel_, sets the version label for the release in this channel |
 | `-h, --help`   |  |          Help for the admin-console |

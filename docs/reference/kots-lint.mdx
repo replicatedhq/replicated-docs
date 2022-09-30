@@ -46,7 +46,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 <table>
   <tr>
     <th>Description</th>
-    <td>Require the <code>kind:</code> field in all files.</td>
+    <td>Requires the <code>kind:</code> field in all files.</td>
   </tr>
   <tr>
     <th>Level</th>
@@ -70,7 +70,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 <table>
   <tr>
     <th>Description</th>
-    <td>Require the <code>apiVersion:</code> field in all files.</td>
+    <td>Requires the <code>apiVersion:</code> field in all files.</td>
   </tr>
   <tr>
     <th>Level</th>
@@ -94,7 +94,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 <table>
   <tr>
     <th>Description</th>
-    <td><p>Require a Preflight custom resource manifest file with:</p>
+    <td><p>Requires a Preflight custom resource manifest file with:</p>
       <p><code>kind: Preflight</code></p>
       <p>and one of the following:</p>
       <ul>
@@ -119,7 +119,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 <table>
   <tr>
     <th>Description</th>
-    <td><p>Require a Config custom resource manifest file.</p>
+    <td><p>Requires a Config custom resource manifest file.</p>
       <p>Accepted value for <code>kind</code>: <code>Config</code></p>
       <p>Accepted value for <code>apiVersion</code>: <code>kots.io/v1beta1</code></p>
     </td>
@@ -139,7 +139,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 <table>
   <tr>
     <th>Description</th>
-    <td><p>Require a Troubleshoot manifest file.</p>
+    <td><p>Requires a Troubleshoot manifest file.</p>
       <p>Accepted values for <code>kind</code>:</p>
       <ul>
         <li><code>Collector</code></li>
@@ -167,7 +167,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 <table>
   <tr>
     <th>Description</th>
-    <td><p>Require an Application custom resource manifest file.</p>
+    <td><p>Requires an Application custom resource manifest file.</p>
       <p>Accepted value for <code>kind</code>: <code>Application</code></p>
     </td>
   </tr>
@@ -188,7 +188,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Description</th>
     <td>
-      Require an application icon.
+      Requires an application icon.
     </td>
   </tr>
   <tr>
@@ -214,7 +214,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Description</th>
     <td>
-      Require statusInformers.
+      Requires <code>statusInformers</code>.
     </td>
   </tr>
   <tr>
@@ -240,7 +240,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Description</th>
     <td>
-      <p>Require Application targetKotsVersion to use valid SemVer.
+      <p>Requires <code>targetKotsVersion</code> in the Application custom resource to use valid Semantic Versioning.
       See <a href="https://semver.org/">Semantic Versioning 2.0.0</a>.</p>
       <p>Accepts a <code>v</code> as an optional prefix, so both <code>1.0.0</code> and <code>v1.0.0</code> are valid.</p>
     </td>
@@ -252,7 +252,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Applies To</th>
     <td>
-      Files with <code>kind: Application</code> and <code>apiVersion: kots.io/v1beta1</code>.
+      Files with <code>kind: Application</code> and <code>apiVersion: kots.io/v1beta1</code>
     </td>
   </tr>
   <tr>
@@ -268,7 +268,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Description</th>
     <td>
-      <p>Require Application minKotsVersion to use valid SemVer.
+      <p>Requires <code>minKotsVersion</code> in the Application custom resource to use valid Semantic Versioning.
       See <a href="https://semver.org/">Semantic Versioning 2.0.0</a>.</p>
       <p>Accepts a <code>v</code> as an optional prefix, so both <code>1.0.0</code> and <code>v1.0.0</code> are valid.</p>
     </td>
@@ -383,7 +383,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Description</th>
     <td>
-      <p>Enforce valid <code>spec.chart.releaseName</code> in the Replicated HelmChart custom resource manifest file.</p>
+      <p>Enforce valid <code>spec.chart.releaseName</code> in the HelmChart custom resource manifest file.</p>
       <p><code>spec.chart.releaseName</code> must meet the following requirements:</p>
       <ul>
         <li>Begin and end with a lowercase letter or number</li>
@@ -416,7 +416,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
     <th>Description</th>
     <td>
       <p>Enforce unique <code>spec.chart.releaseName</code>
-      across all Replicated HelmChart custom resource manifest files.</p>
+      across all HelmChart custom resource manifest files.</p>
     </td>
   </tr>
   <tr>
@@ -889,7 +889,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Description</th>
     <td>
-      <p>Require ConfigOption items with any of the following names to have <code>type</code> set to <code>password</code>:</p>
+      <p>Requires ConfigOption items with any of the following names to have <code>type</code> set to <code>password</code>:</p>
       <ul>
         <li><code>password</code></li>
         <li><code>secret</code></li>
@@ -918,7 +918,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Description</th>
     <td>
-      Require all ConfigOption items to be defined in the <code>Config</code> custom resource manifest file.
+      Requires all ConfigOption items to be defined in the <code>Config</code> custom resource manifest file.
   </td>
   </tr>
   <tr>
@@ -953,7 +953,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   </tr>
   <tr>
     <th>Example</th>
-    <td><ConfigOptionIsCircular/></td>
+    <td> <ConfigOptionIsCircular/> </td>
   </tr>
 </table>
 

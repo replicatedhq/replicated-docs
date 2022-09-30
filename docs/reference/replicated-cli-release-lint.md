@@ -1,6 +1,6 @@
 # release lint
 
-Lint a directory of application manifest files.
+Lint a directory of application manifest files. The `release lint` command uses the KOTS lint service. For more information, see [KOTS Lint Rules](kots-lint).
 
 ## Usage
 ```bash
