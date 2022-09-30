@@ -7,7 +7,7 @@ toc_max_heading_level: 2
 ## 1.86.0
 
 :::important
-The app manager v1.86.0 contains a known issue that prevents the use of
+The app manager v1.86.0 contains a known issue that affects the use of
 the Replicated admin console in Firefox browsers.
 See [Known Issue](#known-issues-1-86-0) below.
 :::
@@ -43,7 +43,7 @@ To use the admin console on v1.86.0, users should open the admin console in a su
 
 If users are unable to use a browser other than Firefox to access the admin console, Replicated recommends that they do not upgrade to the app manager v1.86.0.
 
-Until a new version of the app manager is available, Replicated recommends defining a `targetKotsVersion` of `"1.85.0"` in your Application custom resource manifest file if you have customers using Firefox. For more information about adding a target version for KOTS, see [Using Target KOTS Versions](/vendor/packaging-kots-versions#using-target-kots-versions) in _Setting Minimum and Target Versions for KOTS_.
+Replicated recommends defining a `targetKotsVersion` of `"1.85.0"` in your Application custom resource manifest file if you have customers using Firefox. For more information about adding a target version for KOTS, see [Using Target KOTS Versions](/vendor/packaging-kots-versions#using-target-kots-versions) in _Setting Minimum and Target Versions for KOTS_.
 
 ## 1.85.0
 
