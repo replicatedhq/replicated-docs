@@ -6,6 +6,12 @@ toc_max_heading_level: 2
 
 ## 1.86.0
 
+:::important
+The app manager v1.86.0 contains a known issue that affects the use of
+the Replicated admin console in Firefox browsers.
+See [Known Issue](#known-issues-1-86-0) below.
+:::
+
 Released on September 27, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
@@ -28,6 +34,16 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 * Fixes a bug in Helm-managed mode (Alpha) that required you to visit the config screen to deploy a new version with required config items, even if all of the config values had been set in a previously deployed version.
 * Fixes a bug that caused the currently deployed version to temporarily appear as a newly available version when an update check ran in Helm-managed mode (Alpha).
 * Fixes styling on `<pre>` elements in the Helm install modals (Alpha) so that their heights match the content.
+
+### Known Issue {#known-issues-1-86-0}
+
+There is a known issue in the app manager v1.86.0 that causes certain icons in the Replicated admin console to display incorrectly in Firefox browsers. The icons display in a very large size, making it difficult for users to access the fields on several of the admin console screens.
+
+To use the admin console on v1.86.0, users should open the admin console in a supported browser other than Firefox, such as Google Chrome. For more information about supported browsers, see [Supported Browsers](/enterprise/installing-general-requirements#supported-browsers) in _Installation Requirements_.
+
+If users are unable to use a browser other than Firefox to access the admin console, Replicated recommends that they do not upgrade to the app manager v1.86.0.
+
+Replicated recommends defining a `targetKotsVersion` of `"1.85.0"` in your Application custom resource manifest file if you have customers using Firefox. For more information about adding a target version for KOTS, see [Using Target KOTS Versions](/vendor/packaging-kots-versions#using-target-kots-versions) in _Setting Minimum and Target Versions for KOTS_.
 
 ## 1.85.0
 
