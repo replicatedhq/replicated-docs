@@ -41,9 +41,9 @@ There is a known issue in the app manager v1.86.0 that causes the application ic
 
 To use the admin console on v1.86.0, users must open the admin console in a supported browser other than Firefox, such as Google Chrome. For more information about supported browsers, see [Supported Browsers](/enterprise/installing-general-requirements#supported-browsers) in _Installation Requirements_.
 
-If users are unable to use a browser other than Firefox to access the admin console, Replicated recommends that they do not upgrade to the app manager v1.8.6.
+If users are unable to use a browser other than Firefox to access the admin console, Replicated recommends that they do not upgrade to the app manager v1.86.0.
 
-To prevent users from upgrading to v1.8.6, define a `targetKotsVersion` of `"1.85.0"` in your Application custom resource manifest file. For more information about adding a target version for KOTS, see [Using Target KOTS Versions](/vendor/packaging-kots-versions#using-target-kots-versions) in _Setting Minimum and Target Versions for KOTS_.
+To prevent users from upgrading to v1.86.0, define a `targetKotsVersion` of `"1.85.0"` in your Application custom resource manifest file. For more information about adding a target version for KOTS, see [Using Target KOTS Versions](/vendor/packaging-kots-versions#using-target-kots-versions) in _Setting Minimum and Target Versions for KOTS_.
 
 ## 1.85.0
 
