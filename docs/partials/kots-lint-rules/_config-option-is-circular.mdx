@@ -1,0 +1,11 @@
+**Incorrect**:
+
+```yaml
+spec:
+  groups:
+  - name: example_settings
+    items:
+    - name: example_default_value
+      type: text
+      value: repl{{ ConfigOption "example_default_value" }}
+```

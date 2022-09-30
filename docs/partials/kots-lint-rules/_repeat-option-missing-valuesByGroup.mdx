@@ -1,0 +1,13 @@
+```yaml
+spec:
+  groups:
+    - name: ports
+      items:
+      - name: service_port
+        title: Service Port
+        type: text
+        repeatable: true
+        valuesByGroup:
+          ports:
+            port-default-1: "80"
+```
