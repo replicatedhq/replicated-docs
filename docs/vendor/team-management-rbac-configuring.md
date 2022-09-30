@@ -56,7 +56,7 @@ To configure custom RBAC policies:
 1. To use RBAC policies, you can:
 
     - Assign policies to existing team members.
-    - Assign policies to the invitations for new team members.
-    - Set the policy as the default for the auto-join feature.
+    - Specify a policy when inviting new team members.
+    - Set a default policy for auto-joining a team.
 
   For more information about managing team members and assigning policies, see [Managing Team Members](team-management).
