@@ -42,6 +42,15 @@ To re-invite a prospective member:
 
 1. Click **Reinvite** in the confirmation dialog.
 
+## Edit Permissions
+
+You can edit the policy that is assigned to a member at any time. For example, you can assign a different policy that gives access to additional resources.
+
+To edit permissions for individual team members:
+
+1. From the the Team Members list, click **Edit permissions** next to a members name.
+1. Select an RBAC policy from the dropdown list, and click **Save**.
+
 ## Enable Users to Auto-join Your Team
 By default, users must be invited to your team. Team administrators can use the auto-join feature to allow users from the same email domain to join their team automatically. This applies to users registering with an email, or with Google authentication if it is enabled for the team. The auto-join feature does not apply to SAML authentication because SAML users log in using their SAML provider's application portal instead of the vendor portal.
 
