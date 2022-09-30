@@ -296,7 +296,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Description</th>
     <td>
-      <p>Enforce valid Kubernetes installer add-on versions.</p>
+      <p>Enforces valid Kubernetes installer add-on versions.</p>
       <p>Add-ons included in the Kubernetes installer must pin specific versions rather than <code>latest</code> or x-ranges (1.2.x).</p>
     </td>
   </tr>
@@ -327,7 +327,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Description</th>
     <td>
-      <p>Disallow using the deprecated Kubernetes installer <code>apiVersion</code>.</p>
+      <p>Disallows using the deprecated Kubernetes installer <code>apiVersion</code>.</p>
       <p><code>kurl.sh/v1beta1</code> is deprecated. Use <code>cluster.kurl.sh/v1beta1</code> instead.</p>
       </td>
   </tr>
@@ -354,7 +354,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Description</th>
     <td>
-      <p>Disallow duplicate Replicated custom resources.
+      <p>Disallows duplicate Replicated custom resources.
       A release can only include one of each <code>kind</code> of custom resource.</p>
       <p>This rule disallows inclusion of more than one file with:</p>
         <ul>
@@ -383,7 +383,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Description</th>
     <td>
-      <p>Enforce valid <code>spec.chart.releaseName</code> in the HelmChart custom resource manifest file.</p>
+      <p>Enforces valid <code>spec.chart.releaseName</code> in the HelmChart custom resource manifest file.</p>
       <p><code>spec.chart.releaseName</code> must meet the following requirements:</p>
       <ul>
         <li>Begin and end with a lowercase letter or number</li>
@@ -415,7 +415,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Description</th>
     <td>
-      <p>Enforce unique <code>spec.chart.releaseName</code>
+      <p>Enforces unique <code>spec.chart.releaseName</code>
       across all HelmChart custom resource manifest files.</p>
     </td>
   </tr>
@@ -437,7 +437,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 <table>
   <tr>
     <th>Description</th>
-    <td>Notify if any manifest file has <code>replicas</code> set to <code>1</code>.</td>
+    <td>Notifies if any manifest file has <code>replicas</code> set to <code>1</code>.</td>
   </tr>
   <tr>
     <th>Level</th>
@@ -459,7 +459,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 <table>
   <tr>
     <th>Description</th>
-    <td>Notify if any manifest file has <code>privileged</code> set to <code>true</code>.</td>
+    <td>Notifies if any manifest file has <code>privileged</code> set to <code>true</code>.</td>
   </tr>
   <tr>
     <th>Level</th>
@@ -481,7 +481,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 <table>
   <tr>
     <th>Description</th>
-    <td>Notify if any manifest file has <code>allowPrivilegeEscalation</code> set to <code>true</code>.</td>
+    <td>Notifies if any manifest file has <code>allowPrivilegeEscalation</code> set to <code>true</code>.</td>
   </tr>
   <tr>
     <th>Level</th>
@@ -502,7 +502,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 <table>
   <tr>
     <th>Description</th>
-    <td>Notify if any manifest file has a container image tag appended with
+    <td>Notifies if any manifest file has a container image tag appended with
     <code>:latest</code>.</td>
   </tr>
   <tr>
@@ -524,7 +524,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 <table>
   <tr>
     <th>Description</th>
-    <td>Disallow any manifest file having a container image tag that includes <code>LocalImageName</code>.</td>
+    <td>Disallows any manifest file having a container image tag that includes <code>LocalImageName</code>.</td>
   </tr>
   <tr>
     <th>Level</th>
@@ -545,7 +545,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 <table>
   <tr>
     <th>Description</th>
-    <td>Notify if a manifest file has no <code>resources</code> field.</td>
+    <td>Notifies if a manifest file has no <code>resources</code> field.</td>
   </tr>
   <tr>
     <th>Level</th>
@@ -566,7 +566,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 <table>
   <tr>
     <th>Description</th>
-    <td>Notify if a <code>spec.container</code> has no <code>resources.limits</code> field.</td>
+    <td>Notifies if a <code>spec.container</code> has no <code>resources.limits</code> field.</td>
   </tr>
   <tr>
     <th>Level</th>
@@ -588,7 +588,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 <table>
   <tr>
     <th>Description</th>
-    <td>Notify if a <code>spec.container</code> has no <code>resources.requests</code> field.</td>
+    <td>Notifies if a <code>spec.container</code> has no <code>resources.requests</code> field.</td>
   </tr>
   <tr>
     <th>Level</th>
@@ -610,7 +610,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 <table>
   <tr>
     <th>Description</th>
-    <td>Notify if a <code>spec.container</code> has no <code>resources.limits.cpu</code> field.</td>
+    <td>Notifies if a <code>spec.container</code> has no <code>resources.limits.cpu</code> field.</td>
   </tr>
   <tr>
     <th>Level</th>
@@ -631,7 +631,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 <table>
   <tr>
     <th>Description</th>
-    <td>Notify if a <code>spec.container</code> has no <code>resources.limits.memory</code> field.</td>
+    <td>Notifies if a <code>spec.container</code> has no <code>resources.limits.memory</code> field.</td>
   </tr>
   <tr>
     <th>Level</th>
@@ -652,7 +652,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 <table>
   <tr>
     <th>Description</th>
-    <td>Notify if a <code>spec.container</code> has no <code>resources.requests.cpu</code> field.</td>
+    <td>Notifies if a <code>spec.container</code> has no <code>resources.requests.cpu</code> field.</td>
   </tr>
   <tr>
     <th>Level</th>
@@ -673,7 +673,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 <table>
   <tr>
     <th>Description</th>
-    <td>Notify if a <code>spec.container</code> has no <code>resources.requests.memory</code> field.</td>
+    <td>Notifies if a <code>spec.container</code> has no <code>resources.requests.memory</code> field.</td>
   </tr>
   <tr>
     <th>Level</th>
@@ -695,7 +695,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 <table>
   <tr>
     <th>Description</th>
-    <td>Notify if a <code>spec.volumes</code> has defined a <code>hostPath</code>.</td>
+    <td>Notifies if a <code>spec.volumes</code> has defined a <code>hostPath</code>.</td>
   </tr>
   <tr>
     <th>Level</th>
@@ -716,7 +716,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
 <table>
   <tr>
     <th>Description</th>
-    <td>Notify if a <code>spec.volumes</code> has <code>hostPath</code>
+    <td>Notifies if a <code>spec.volumes</code> has <code>hostPath</code>
     set to <code>/var/run/docker.sock</code>.</td>
   </tr>
   <tr>
@@ -739,7 +739,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Description</th>
     <td>
-      <p>Notify if any manifest file has a <code>metadata.namespace</code> set
+      <p>Notifies if any manifest file has a <code>metadata.namespace</code> set
        to a static field.</p>
       <p>Replicated strongly recommends not specifying a namespace to allow
        for flexibility when deploying into end user environments.</p>
@@ -767,7 +767,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Description</th>
     <td>
-      Notify if any manifest file may contain secrets.
+      Notifies if any manifest file may contain secrets.
     </td>
   </tr>
   <tr>
@@ -790,7 +790,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Description</th>
     <td>
-      <p>Enforce valid types for Config items.</p>
+      <p>Enforces valid types for Config items.</p>
       <p>For more information, see <a href="/reference/custom-resource-config#items">Items</a> in <em>Config</em>.</p>
     </td>
   </tr>
@@ -814,7 +814,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Description</th>
     <td>
-      <p>Disallow repeating Config item with undefined <code>item.templates</code>.</p>
+      <p>Disallows repeating Config item with undefined <code>item.templates</code>.</p>
       <p>For more information, see <a href="/reference/custom-resource-config#template-targets">Repeatable Item Template Targets</a> in <em>Config</em>.</p>
     </td>
   </tr>
@@ -839,7 +839,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Description</th>
     <td>
-      <p>Disallow repeating Config item with undefined <code>item.valuesByGroup</code>.</p>
+      <p>Disallows repeating Config item with undefined <code>item.valuesByGroup</code>.</p>
       <p>For more information, see <a href="/reference/custom-resource-config#repeatable-items">Repeatable Items</a> in <em>Config</em>.</p>
     </td>
   </tr>
@@ -864,7 +864,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Description</th>
     <td>
-      <p>Enforce ConfigOption <code>yamlPath</code> ending with square brackets denoting index position.</p>
+      <p>Enforces ConfigOption <code>yamlPath</code> ending with square brackets denoting index position.</p>
       <p>For more information, see <a href="/reference/custom-resource-config#template-targets">Repeatable Item Template Targets</a> in <em>Config</em>.</p>
     </td>
   </tr>
@@ -938,7 +938,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Description</th>
     <td>
-      Enforce that all ConfigOption items do not reference themselves.
+      Enforces that all ConfigOption items do not reference themselves.
   </td>
   </tr>
   <tr>
@@ -964,7 +964,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Description</th>
     <td>
-      Enforce that sub-templated ConfigOption items must be repeatable.
+      Enforces that sub-templated ConfigOption items must be repeatable.
   </td>
   </tr>
   <tr>
@@ -984,7 +984,7 @@ To use the KOTS lint service to lint your application manifest files, you can ru
   <tr>
     <th>Description</th>
     <td>
-      <p>Enforce valid <code>ConfigOption.when</code>.</p>
+      <p>Enforces valid <code>ConfigOption.when</code>.</p>
       <p>For more information, see <a href="/reference/custom-resource-config#when">when</a> in <em>Config</em>.</p>
   </td>
   </tr>
