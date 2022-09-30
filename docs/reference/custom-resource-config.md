@@ -270,7 +270,7 @@ Items can be readonly.
           readonly: true
 ```
 
-You can use the `hidden` property with a function that generates a value, such as `RandomString`, to define whether or not the generated value is ephemeral or persistent between changes to the configuration settings for the application. For more information, see [RandomString](template-functions-static-context#randomstring) in _Static Context_.
+You can use the `readonly` property with a function that generates a value, such as `RandomString`, to define whether or not the generated value is ephemeral or persistent between changes to the configuration settings for the application. For more information, see [RandomString](template-functions-static-context#randomstring) in _Static Context_.
 
 ### `affix`
 Items can be affixed left or right.
