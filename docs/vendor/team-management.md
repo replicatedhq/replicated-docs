@@ -8,7 +8,7 @@ The [Team](https://vendor.replicated.com/team/members) page provides a list of a
 All users, including read-only, can see the name of the RBAC role assigned to each team member. When SAML authentication is enabled, users with the built-in read-only policy cannot see the RBAC role assigned to team members.
 
 ## Invite Members
-By default, team administrators can invite more team members to collaborate. Invited users receive an email to activate their account. The activiation link in the email is unique to the invited user. Following the activation link in the email also ensures that the invited user joins the team from which the invitation originated. 
+By default, team administrators can invite more team members to collaborate. Invited users receive an email to activate their account. The activation link in the email is unique to the invited user. Following the activation link in the email also ensures that the invited user joins the team from which the invitation originated.
 
 :::note
 Teams that have enforced SAML-only authentication do not use the email invitation flow described in this procedure. These teams and their users must log in through their SAML provider.
@@ -20,7 +20,11 @@ To invite a new team member:
 
   The Invite team member dialog opens.
 
-1. Enter the email address of the member and their assigned RBAC policy, and click **Invite Member**.
+1. Enter the email address of the member.
+
+1. In the **Permissions** field, assign an RBAC policy from the dropdown list.
+
+1. Click **Invite Member**.
 
   People invited to join your team receive an email notification to accept the invitation. They must follow the link in the email to accept the invitation and join the team. If they do not have a Replicated account already, they can create one that complies with your password policies, MFA, and Google authentication requirements. If an invited user's email address is already associated with a Replicated account, by accepting your invitation, they automatically leave their current team and join the team that you have invited them to.
 
@@ -34,6 +38,15 @@ To re-invite a prospective member:
 
 1. Click **Reinvite** in the confirmation dialog.
 
+## Edit Permissions
+
+You can edit the policy that is assigned to a member at any time. For example, you can assign a different policy that gives access to additional resources.
+
+To edit permissions for individual team members:
+
+1. From the the Team Members list, click **Edit permissions** next to a members name.
+1. Select an RBAC policy from the dropdown list, and click **Save**.
+
 ## Enable Users to Auto-join Your Team
 By default, users must be invited to your team. Team administrators can use the auto-join feature to allow users from the same email domain to join their team automatically. This applies to users registering with an email, or with Google authentication if it is enabled for the team. The auto-join feature does not apply to SAML authentication because SAML users log in using their SAML provider's application portal instead of the vendor portal.
 
@@ -41,7 +54,7 @@ To enable users to auto-join your team:
 
 1. From the Team Members page, click **Auto-join** from the left navigation.
 1. Enable the **Allow all users from my domain to be added to my team** toggle.
-1. For ** Default RBAC policy level for new accounts**, you can use the default Read Only policy or select another policy from the list. This RBAC policy is applied to all users who join the team with the auto-join feature.
+1. For **Default RBAC policy level for new accounts**, you can use the default Read Only policy or select another policy from the list. This RBAC policy is applied to all users who join the team with the auto-join feature.
 
   :::note
   To add, edit, or delete custom RBAC policies, see [Configuring Custom RBAC Policies](team-management-rbac-configuring).
