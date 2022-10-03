@@ -88,15 +88,15 @@ To install the admin console on an embedded cluster created by the Replicated Ku
 
 Because the Kubernetes installer is based on the open source kURL project, which is maintained by Replicated, you must meet the additional kURL system requirements when applicable:
 
-- **Supported Operating Systems** - For supported operating systems, see [Supported Operating Systems](https://kurl.sh/docs/install-with-kurl/system-requirements#supported-operating-systems) in the kURL documentation.
+- **Supported Operating Systems**: For supported operating systems, see [Supported Operating Systems](https://kurl.sh/docs/install-with-kurl/system-requirements#supported-operating-systems) in the kURL documentation.
 
-- **kURL Dependencies Directory** - kURL installs additional dependencies in the directory /var/lib/kurl and the directory requirements must be met. See [kURL Dependencies Directory](https://kurl.sh/docs/install-with-kurl/system-requirements#kurl-dependencies-directory) in the kURL documentation.
+- **kURL Dependencies Directory**: kURL installs additional dependencies in the directory /var/lib/kurl and the directory requirements must be met. See [kURL Dependencies Directory](https://kurl.sh/docs/install-with-kurl/system-requirements#kurl-dependencies-directory) in the kURL documentation.
 
-- **Networking Requirements** - Networking requirements include firewall openings, host firewalls rules, and port availability. See [Networking Requirements](https://kurl.sh/docs/install-with-kurl/system-requirements#networking-requirements) in the kURL documentation.
+- **Networking Requirements**: Networking requirements include firewall openings, host firewalls rules, and port availability. See [Networking Requirements](https://kurl.sh/docs/install-with-kurl/system-requirements#networking-requirements) in the kURL documentation.
 
-- **High Availability Requirements** - If you are operating a cluster with high availability, see [High Availability Requirements](https://kurl.sh/docs/install-with-kurl/system-requirements#high-availability-requirements) in the kURL documentation.
+- **High Availability Requirements**: If you are operating a cluster with high availability, see [High Availability Requirements](https://kurl.sh/docs/install-with-kurl/system-requirements#high-availability-requirements) in the kURL documentation.
 
-- **Cloud Disk Performance** - For a list of cloud VM instance and disk combinations that are known to provide sufficient performance for etcd and pass the write latency preflight, see [Cloud Disk Performance](https://kurl.sh/docs/install-with-kurl/system-requirements#cloud-disk-performance) in the kURL documentation.
+- **Cloud Disk Performance**: For a list of cloud VM instance and disk combinations that are known to provide sufficient performance for etcd and pass the write latency preflight, see [Cloud Disk Performance](https://kurl.sh/docs/install-with-kurl/system-requirements#cloud-disk-performance) in the kURL documentation.
 
 
 ## Firewall Openings for Online Installations
