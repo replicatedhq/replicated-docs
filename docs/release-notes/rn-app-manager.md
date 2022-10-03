@@ -12,7 +12,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### Improvements {#improvements-1-86-1}
 * Only show relevant tabs on the deployment logs modal depending on whether or not the admin console is in Helm-managed mode.
-* Standardizes all page titles.
+* Standardizes all page titles using the format **Page Name | App Slug | Admin Console**. The page title is the text that shows in the browser tab.
 
 ### Bug Fixes {#bug-fixes-1-86-1}
 * Fixes an issue where automatic update checks failed when the interval is too short for pending updates to be fetched.
