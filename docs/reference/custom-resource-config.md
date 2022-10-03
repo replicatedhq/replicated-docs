@@ -258,9 +258,7 @@ Items can be hidden. They will not be visible if hidden.
           value: "{{repl RandomString 40}}"
 ```
 
-When used in conjunction with a function that generates a value, for example [RandomString](template-functions-static-context#randomstring)
-- If set to `true`, the `value` is **persistent** between Config changes but it **cannot** be modified because its not visible in HTML.
-- If not set or set to `false`, the `value` is **persistent** between Config changes. It **can** be modified because it is visible in HTML.
+You can use the `hidden` property with a function that generates a value, such as `RandomString`, to define whether or not the generated value is ephemeral or persistent between changes to the configuration settings for the application. For more information, see [RandomString](template-functions-static-context#randomstring) in _Static Context_.
 
 ### `readonly`
 Items can be readonly.
@@ -272,9 +270,7 @@ Items can be readonly.
           readonly: true
 ```
 
-When used in conjunction with a function that generates value, for example [RandomString](template-functions-static-context#randomstring)
-- If set to `true`, the `value` is **ephemeral** between Config changes. It **cannot** be modified because it is grayed out in HTML.
-- If not set or set to `false`, the `value` is **persistent** between Config changes. It **can** be modified because it is not grayed out in HTML.
+You can use the `readonly` property with a function that generates a value, such as `RandomString`, to define whether or not the generated value is ephemeral or persistent between changes to the configuration settings for the application. For more information, see [RandomString](template-functions-static-context#randomstring) in _Static Context_.
 
 ### `affix`
 Items can be affixed left or right.
