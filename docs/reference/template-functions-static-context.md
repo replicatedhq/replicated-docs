@@ -187,7 +187,7 @@ The following table describes the behavior of the RandomString template function
       <p>Set <code>readonly</code> to <code>false</code> and <code>hidden</code> to <code>true</code> if:</p>
       <ul>
         <li>The random string must <em>not</em> change each time the user deploys a change to the application's configuration settings.</li>
-        <li>The user does <em>not</em> need to see or change, or must be preventing from seeing or changing, the value of the random string.</li>
+        <li>The user does <em>not</em> need to see or change, or must be prevented from seeing or changing, the value of the random string.</li>
       </ul>
     </td>
   </tr>
