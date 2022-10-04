@@ -65,9 +65,9 @@ The `removals` object is required and defines the redactions that occur. This ob
   </tr>
 </table>
 
-## Example Redactors
+## Example Redactor
 
-The following example shows `values`, `regex`, and `yamlPath` redaction for a support bundle:
+The following example shows `regex` and `yamlPath` redaction for a support bundle:
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -76,12 +76,6 @@ metadata:
   name: my-redactor-name
 spec:
   redactors:
-  - name: replace password # names are not used internally, but are useful for recordkeeping
-    fileSelector:
-      file: data/my-password-dump # this targets a single file
-    removals:
-      values:
-      - abc123 # this value is my password, and should never appear in a support bundle
   - name: all files # as no file is specified, this redactor will run against all files
     removals:
       regex:

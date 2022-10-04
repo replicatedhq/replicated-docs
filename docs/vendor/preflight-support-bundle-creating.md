@@ -239,28 +239,11 @@ To customize a support bundle:
     - **Regular expressions:** Analyze arbitrary data.
     - **Databases:** Check the version and connection status.
 
-1. (Optional) To add redactors to the default redactors that are automatically provided by the app manager, add the Redactor custom resource manifest (`kind: Redactor`) to your release. Then add Redactor custom resource fields to the manifest as needed.
+1. (Optional) To add redactors to the default redactors that are automatically provided by the app manager, add the Redactor custom resource manifest (`kind: Redactor`) to your release. Then add Redactor custom resource fields to the manifest as needed. For more information, see [Redactor](/reference/custom-resource-redactor) in the Reference section.
 
   :::note
   The default redactors included with Replicated app manager cannot be disabled.
   :::
-
-  **Example:**
-
-  ```YAML
-  apiVersion: troubleshoot.sh/v1beta2
-  kind: Redactor
-  metadata:
-    name: my-redactor-name
-    spec:
-      redactors:
-        - name: replace password # names are not used internally, but are useful for record keeping
-          fileSelector:
-            file: data/my-password-dump # this targets a single file
-          removals:
-            values:
-              - abc123 # this value is my password, and should never appear in a support bundle
-    ```
 
 1. Add the manifest files to the application that you are packaging and distributing with Replicated.
 
