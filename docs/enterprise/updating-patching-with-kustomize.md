@@ -1,36 +1,72 @@
 # Patching with Kustomize
 
-Kustomize allows for last-mile patches (such as modifications) to the application that are otherwise not configurable using the `Config` page. For more information, see the [Kustomize website](https://kustomize.io).
+Kustomize lets you make last-mile patches to an application outside of the options available in the Replicated admin console Configuration page.
 
-## Directory Structure
+For more information, see the [Kustomize website](https://kustomize.io).
 
-Click **View files** and lets take a look at the directory structure.
+## About the Directory Structure
+
+The View files page in the admin console shows the Kubernetes manifest files for the application.
+
+The following images shows an example of the file directory on the View files page:
 
 ![Kustomize Dir Structure](/images/kustomize-dir-structure.png)
 
+[View a larger version of this image](/images/kustomize-dir-structure.png)
+
+The following table describes the directories and subdirectories:
+
+<table>
+  <tr>
+    <th width="25%">Directory</th>
+    <th width="25%">Subdirectory</th>
+    <th width="50%">Description</th>
+  </tr>
+  <tr>
+    <td>upstream</td>
+    <td></td>
+    <td><p>The <code>upstream</code> directory mirrors exactly the content pushed to a release.</p>
+    <p>This includes the template functions, preflight checks, support-bundle, config options, license, and so on.
+    In addition, it has a <code>userdata</code> directory which includes the license file, config file, and so on.</p>
+    <p><strong>Note:</strong> With the exception of <code>upstream/userdata</code>, no changes should be made in the <code>upstream</code> directory because it is overwritten on each new release.</p></td>
+  </tr>
+</table>
 ### Upstream
 
 The `upstream` directory mirrors exactly the content pushed to a release.
 This includes the template functions, preflight checks, support-bundle, config options, license, and so on.
 In addition, it has a `userdata` directory which includes the license file, config file, and so on.
 
-**Note:** With the exception of `upstream/userdata`, no changes should be made in the `upstream` directory as they are overwritten on each new release.
+**Note:** With the exception of `upstream/userdata`, no changes should be made in the `upstream` directory because it is overwritten on each new release.
 
 ### Base
 
 After the Replicated app manager processes and renders the `upstream`, it puts those files in the `base` directory.
-Any non-deployable manifests such as template functions, preflight checks, config options, and so on are removed, and only the deployable application (such as, deployable with `kubectl apply`) will be placed here.
+Any non-deployable manifests such as template functions, preflight checks, config options, and so on are removed, and only the deployable application (such as, deployable with `kubectl apply`) is placed here.
 
-**Note:** No changes should be made in the `base` directory as they are overwritten on each new release.
+**Note:** No changes should be made in the `base` directory because it is overwritten on each new release.
 
 ### Overlays
 
-The `overlays` directory references the `base` directory, and this is where your local Kustomize patches should be placed.
-Unlike `upstream` and `base`, any changes made here will persist between releases.
+The `overlays` directory contains subdirectories that apply specific kustomizations to the base directory when you deploy a version to the cluster.
 
-* * *
+#### Midstream
 
-## Patching the Overlays
+The `midstream` subdirectory contains app manager-specific kustomizations that do not persist when you upgrade.
+
+Kustomize patches in this subdirectory include backup labels that are used to configure Velero when you create backups.
+
+It also contains the YAML definitions for image pull secrets that pulls images from the relevant registry and injects the imagePullSecret field into the applications manifests such as deployments, stateful sets, jobs, and so on.
+
+**Note:** No changes should be made in the `midstream` subdirectory because it is overwritten on each new release.
+
+#### Charts
+
+The `charts` subdirectory only exists if a native Helm installation workflow is being used. This subdirectory contains
+
+
+
+## Patch the Downstream Overlay
 
 Since `upstream` and `base` are ephemeral, let's make a Kustomize patch in `overlays/downstreams/this-cluster/` so it persists between releases.
 
