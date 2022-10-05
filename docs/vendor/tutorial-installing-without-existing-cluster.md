@@ -9,8 +9,6 @@ It is broken into four sections:
 - [Iterating and Updating](#iterating-and-updating)
 - [Next Steps](#next-steps-manage-yaml-in-your-git-repo)
 
-* * *
-
 ## Creating a Release
 
 When you work with the Replicated platform, the Replicated vendor portal is the primary user interface (UI) that you use to package your application. This tutorial is designed to help you get familiar with the concepts and ideas that are important to successfully deploy your application with the Replicated app manager.
