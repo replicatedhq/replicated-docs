@@ -119,8 +119,8 @@ To access the Alertmanager dashboard with a port foward:
 
 1. Run the following command to create the port forward:
 
-   ```bash
-   kubectl --namespace monitoring port-forward svc/alertmanager-main 9093
+   ```
+   kubectl --namespace monitoring port-forward svc/prometheus-alertmanager 9093
    ```
 
 1. Access the dashboard at http://localhost:9093.
