@@ -896,7 +896,7 @@ We'll use a `hidden`, `readonly` field to store this in our config screen:
 
 The `hidden` flag will hide it from the UI, and the `readonly` flag in this case will cause the value to be re-computed any time an upstream `ConfigOption` value changes.
 
-Next, let's add this as an annotation to our deployment's pod template at `spec.template.metdata.annotations`:
+Next, let's add this as an annotation to our deployment's pod template at `spec.template.metadata.annotations`:
 
 ```yaml
 annotations:
