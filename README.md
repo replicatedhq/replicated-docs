@@ -24,7 +24,9 @@ Software vendors using Replicated to distribute their application can copy the d
 
 To create your own documentation, review the content in these directories and copy and paste the markdown files into your own repository. Edit the content as necessary to add information and terminology specific to your application, and remove content that does not apply for your use cases.
 
-For help getting started, see [Topic Templates](#topic-templates) below.
+After copying the generic content from the above directories in this repository, you can then add your own application-specific content. For example, there are likely prerequisites, configuration options, and troubleshooting steps that are unique to your application.
+
+For help getting started with writing documentation that is specific to your application, see the [vendor-docs-starter](https://github.com/replicatedhq/vendor-docs-starter) repository. The `vendor-docs-starter` repository contains templates, guidance, and examples that you can use to write the end user documentation for your application.
 
 ## How to Contribute to the Documentation
 
@@ -86,9 +88,11 @@ The right-hand TOC is created automatically when you add headings to a topic.
 
 ## Topic Templates
 
-You can find several topic templates in the `docs/templates` folder. These templates are useful for anyone creating a new topic in this repository, or for software vendors getting started with writing their own documentation.
+You can find topic templates in the `docs/templates` folder. These templates are useful for anyone creating a new topic in this repository.
 
 If you are using the templates to create a new topic in this repository, save the new file to the correct folder (`docs/vendor`, `docs/enterprise`, `docs/reference`, etc) and be sure to follow the [filenaming convention](#filenaming).
+
+For additional templates designed for software vendors writing the end user documentation for their applications, see the [vendor-docs-starter](https://github.com/replicatedhq/vendor-docs-starter) repository.
 
 ## Filenaming
 
