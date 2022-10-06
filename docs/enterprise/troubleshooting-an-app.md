@@ -22,13 +22,17 @@ The Replicated admin console includes a Troubleshoot page where you can generate
 
 ## Generating a Bundle Using the CLI
 
-You can generate a support bundle using the CLI instead of the admin console. For example, the admin console may not be available if you are using a Kubernetes installer (embedded installer) and the installation fails.
+You can generate a support bundle using the CLI instead of the admin console. For example, the admin console might not be available if you are using a Kubernetes installer (embedded installer) and the installation fails. Or perhaps you need to use a more recent version of the support-bundle plugin than what is embedded in the admin console.
 
-### Prerequisite
+### Install the support-bundle Plugin
 
-The `support-bundle` binary (a kubectl plugin) is required to generate a support bundle. Install or update the binary before generating a support bundle using the CLI.
+Install or update the support-bundle plugin (a kubectl plugin) before you generate a support bundle using the CLI. The plugin is required to generate a support bundle.
 
-To install the plugin, do one of the following actions:
+You can install the support-bundle plugin using krew or install it manually from the release archives.
+
+#### Install using krew
+
+To install the support-bundle plugin using krew, do one of the following actions:
 
 - If krew is _not_ installed, run the following command:
 
@@ -41,10 +45,30 @@ To install the plugin, do one of the following actions:
     ```
     kubectl krew install support-bundle
     ```
+#### Install Manually from the Release Archives
+
+To manually install the latest version of the plugin manually from the release archives:
+
+1. Run the following command to download and unarchive the latest release and move the plugin into your $PATH:
+
+  ```
+  curl -L https://github.com/replicatedhq/troubleshoot/releases/latest/download/support-bundle_linux_amd64.tar.gz | tar xzvf -
+  sudo mv ./support-bundle /usr/local/bin/kubectl-support-bundle
+  ```
+
+  :::note
+  If you do not have root access, or choose not to add the support-bundle plugin to your path, you can run the binary directly from where you unzipped it by executing `./support-bundle`.  If you choose not to put the plugin into your $PATH, then replace all instances of `kubectl support-bundle` in these instructions with `./support-bundle` or with the absolute path to the binary.
+  :::
+
+1. Run the following command to install the plugin:
+
+  ```
+  kubectl support-bundle
+  ```
 
 ### Create a Support Bundle with the CLI
 
-After you install or update the support-bundle binary, generate a support bundle using one of the following methods, depending on your environment or situation.
+After you install or update the support-bundle plugin, generate a support bundle using one of the following methods, depending on your environment or situation.
 
 #### With the Default kots.io Specification
 
