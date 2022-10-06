@@ -1,6 +1,6 @@
 # Patching with Kustomize
 
-Kustomize lets you make last-mile patches to an application outside of the options available in the Replicated admin console Configuration page.
+Kustomize lets you make customization patches to an application outside of the options available in the Replicated admin console Configuration page. These patches overlay the application resource files and can persist after release updates. For example, you can customize the number of replicas that you want to continually use in your environment or specify what `nodeSelectors` to use for a deployment.
 
 For more information, see the [Kustomize website](https://kustomize.io).
 
@@ -17,60 +17,61 @@ The following images shows an example of the file directory on the View files pa
 ### Upstream
 
 The `upstream` directory exactly mirrors the content pushed to a release.
-This includes the template functions, preflight checks, support-bundle, config options, license, and so on.
-It also has a `userdata` directory which includes the license file, the config file, and so on.
+This directory includes the template functions, preflight checks, support bundle, config options, license, and so on.
+It also has a `userdata` directory that includes user data files such as the license file and the config file.
 
 **Note:** With the exception of `upstream/userdata`, no changes should be made in the `upstream` directory because it is overwritten on each new release.
 
 ### Base
 
-After the Replicated app manager processes and renders the `upstream`, it puts those files in the `base` directory.
-Any non-deployable manifests such as template functions, preflight checks, config options, and so on are removed, and only the deployable application (such as, deployable with `kubectl apply`) is placed here.
+After the Replicated app manager processes and renders the `upstream`, it puts those files in the `base` directory. Only the deployable application files, such as deployable with `kubectl apply`, are placed here. Any non-deployable manifests, such as template functions, preflight checks, and config options, are removed.
 
-**Note:** No changes should be made in the `base` directory because it is overwritten on each new release.
+**Note:** The `base` directory is overwritten on each new release.
 
 ### Overlays
 
-The `overlays` directory contains subdirectories that apply specific kustomizations to the `base` directory when deploying a version to the cluster. Only the `downstream` subdirectory contains user-defined kustomizations.
+The `overlays` directory contains the following subdirectories that apply specific kustomizations to the `base` directory when deploying a version to the cluster.
 
-<table>
-  <tr>
-    <th width="20%">Subdirectory</th>
-    <th width="10%">Changes Persist?</th>
-    <th width="70%">Description</th>
-  </tr>
-  <tr>
-    <td>midstream</td>
-    <td>No</td>
-    <td><p>Contains app manager-specific kustomizations, such as:</p><p>- Backup labels, such as those used to configure Velero.</p><p>- Image pull secret definitions and patches to inject the <code>imagePullSecret</code> field into relevant manifests (such as deployments, stateful sets, and jobs).</p></td>
-  </tr>
-  <tr>
-    <td>downstream</td>
-    <td>Yes</td>
-    <td><p>Contains user-defined kustomizations that are applied to the <code>midstream</code> directory and deployed to the cluster.</p><p>Only one <code>downstream</code> subdirectory is supported. It is automatically created and named <code>this-cluster</code> when the admin console is installed.</p><p>To add kustomizations, see <a href="#kustomize-your-application">Kustomize Your Application</a>.</p></td>
-  </tr>
-  <tr>
-    <td>charts</td>
-    <td>Yes</td>
-    <td><p><code>Charts</code> only appears if a native Helm installation workflow is used.</p><p>Contains a subdirectory for each Helm chart. Each Helm chart has its own kustomizations because each chart is rendered and deployed separately from other charts and manifests.</p><p>The subcharts of each Helm chart also have their own kustomizations and are rendered separately. However, these subcharts are included and deployed as part of the parent chart.</p></td>
-  </tr>
-</table>
+  <table>
+    <thead>
+      <tr>
+        <th width="20%">Subdirectory</th>
+        <th width="10%">Changes Persist?</th>
+        <th width="70%">Description</th>
+      </tr>
+    </thead>
+      <tr>
+        <td>midstream</td>
+        <td>No</td>
+        <td><p>Contains app manager-specific kustomizations, such as:</p><p>- Backup labels, such as those used to configure Velero.</p><p>- Image pull secret definitions and patches to inject the <code>imagePullSecret</code> field into relevant manifests (such as deployments, stateful sets, and jobs).</p></td>
+      </tr>
+      <tr>
+        <td>downstream</td>
+        <td>Yes</td>
+        <td><p>Contains user-defined kustomizations that are applied to the <code>midstream</code> directory and deployed to the cluster.</p><p>Only one <code>downstream</code> subdirectory is supported. It is automatically created and named <code>this-cluster</code> when the admin console is installed.</p><p>To add kustomizations, see <a href="#patch-your-application">Patch Your Application</a>.</p></td>
+      </tr>
+      <tr>
+        <td>charts</td>
+        <td>Yes</td>
+        <td><p><code>Charts</code> only appears if a native Helm installation workflow is used.</p><p>Contains a subdirectory for each Helm chart. Each Helm chart has its own kustomizations because each chart is rendered and deployed separately from other charts and manifests.</p><p>The subcharts of each Helm chart also have their own kustomizations and are rendered separately. However, these subcharts are included and deployed as part of the parent chart.</p></td>
+      </tr>
+  </table>
 
 ### skippedFiles
 
-The `skippedFiles` directory lists files that the app manager was not able to process or render, such as invalid YAML files.
+The `skippedFiles` directory lists files that the app manager is not able to process or render, such as invalid YAML files.
 
-The `_index.yaml` file continas metadata and details about the errors, such as which files they were found in and sometimes the line number of the error.
+The `_index.yaml` file contais metadata and details about the errors, such as which files they were found in and sometimes the line number of the error.
 
-## Kustomize Your Application
+## Patch Your Application
 
-To use Kustomize to patch the application so that your changes persist between updates, edit the files in the `overlays/downstream/` directory.
+To patch the application with Kustomize so that your changes persist between updates, edit the files in the `overlays/downstream/` directory.
 
 The admin console overwrites the `upstream` and `base` directories each time you upgrade the application to a later version.
 
-To kustomize your application:
+To patch your application:
 
-1. On the View Files tab, click **Need to edit these files? Click here to learn how**.
+1. On the View Files tab in the admin console, click **Need to edit these files? Click here to learn how**.
 
    ![edit-patches-kots-app](/images/edit-patches-kots-app.png)
 
@@ -99,7 +100,7 @@ To kustomize your application:
      replicas: 2
    ```
 
-1. Add the file that you created in the previous step to the `kustomization.yaml` file in the `overlays/downstreams/this-cluster` directory, located at `~/my-kots-app/overlays/downstreams/this-cluster/kustomization.yaml`:
+1. Add the file that you created in the previous step to the `kustomization.yaml` file located in `~/my-kots-app/overlays/downstreams/this-cluster/kustomization.yaml`:
 
    ```diff
    @@ -2,3 +2,5 @@
@@ -110,7 +111,7 @@ To kustomize your application:
    +patches:
    +- ./FILENAME.yaml
    ```
-   Replace `FILENAME` with the name of the manifest file that you created in the previous step.
+   Replace `FILENAME` with the name of the manifest file that you created.
 
 1. Upload your changes to the cluster:
 
@@ -121,7 +122,7 @@ To kustomize your application:
      • Uploading local application to Admin Console ✓
    ```
 
-1. In the admin console, go to the Version History tab and click **Diff** to see the new version of the application with the diff of the changes that you uploaded.
+1. On the Version History tab in the admin console, click **Diff** to see the new version of the application with the diff of the changes that you uploaded.
 
    ![kustomize-view-history-diff](/images/kustomize-view-history-diff.png)
 
