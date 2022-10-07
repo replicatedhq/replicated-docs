@@ -4,6 +4,19 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2022.10.07-0
+
+Released on October 7, 2022
+
+### New Features {#new-features-v2022-10-07-0}
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-10-02T19-29-29Z.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-10-05T14-58-27Z.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.22.0.
+
+### Improvements {#improvements-v2022-10-07-0}
+* Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.6.5-20221006 and 2.8.1-20221006 to address the following critical CVEs: CVE-2022-2795, CVE-2022-2881, CVE-2022-2906, CVE-2022-3080, CVE-2022-38177, CVE-2022-38178.
+* Updates kurlsh/s3cmd image to tag 20221006-27d5371 for latest [Registry](https://kurl.sh/docs/add-ons/registry) and [Velero](https://kurl.sh/docs/add-ons/velero) add-on versions to address the following critical CVE: CVE-2022-40674.
+
 ## v2022.09.30-0
 
 Released on September 30, 2022
