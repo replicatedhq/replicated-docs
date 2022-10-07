@@ -30,11 +30,11 @@ You can generate a support bundle using the command line (CLI) instead of the ad
 
 Install or update the support-bundle plugin (a kubectl plugin) before you generate a support bundle using the CLI. The plugin is required to generate a support bundle.
 
+You can install the support-bundle plugin using krew or install it manually from the release archives.
+
 :::note
 If your application was installed using a Kubernetes installer script, then `kubectl` and the `support-bundle` plugin should already be present on all of the control plane nodes.
 :::
-
-You can install the support-bundle plugin using krew or install it manually from the release archives.
 
 #### Install using krew
 
@@ -75,7 +75,7 @@ To install the support-bundle plugin manually:
 
 ### Generate a Bundle on a Running Cluster
 
-If the admin console is running and the application is installed, run the following command to generate a support bundle that includes customizations provided by the software vendor:
+If the admin console is running and the application is installed, run the following command to generate a support bundle that includes customizations provided by your vendor:
 
   ```
   kubectl support-bundle secrets/NAMESPACE/APP_NAMEkotsadm-supportbundle
@@ -83,8 +83,8 @@ If the admin console is running and the application is installed, run the follow
 
 Replace:
 
-- NAMESPACE with the name of the namespace.
-- APP_NAME with the name of the application.
+- NAMESPACE with the name of the namespace
+- APP_NAME with the name of the application
 
 ### Generate a Host Support Bundle
 
@@ -95,7 +95,7 @@ For Kubernetes installer provisioned clusters (embedded clusters), you can gener
 - The admin console is not working
 - To debug a host-specific performance and configuration problems even when the cluster is running
 
-Your vendor typically provides you with a host support bundle YAML file that you run with a command to generate the host support bundle. You can also create a your own host support bundle YAML file. For more information about creating a YAML file, see [All Host Collectors and Analyzers](https://troubleshoot.sh/docs/host-collect-analyze/all/) in the Troubleshoot documentation.
+Your vendor typically provides a host support bundle YAML file that you run with a command to generate the host support bundle. You can also create a your own host support bundle YAML file. For more information about creating a YAML file, see [All Host Collectors and Analyzers](https://troubleshoot.sh/docs/host-collect-analyze/all/) in the Troubleshoot documentation.
 
 If you want to use a default YAML file from the Troubleshoot.sh repository for troubleshooting a degraded cluster, follow the command in the steps below.
 
