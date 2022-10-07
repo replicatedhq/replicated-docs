@@ -11,7 +11,7 @@ Released on October 7, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### Improvements {#improvements-1-86-2}
-* Changes the way CSS and font files are included for custom admin console branding (Alpha). If you have early access to this feature, check out the alpha documentation for more information.
+* Changes the way CSS and font files are included for custom admin console branding (Alpha). If you have early access to this feature, see the Alpha documentation for more information.
 
 ### Bug Fixes {#bug-fixes-1-86-2}
 * Fixes an issue where large font files for custom admin console branding (Alpha) caused the admin console to fail to create a new application version.
