@@ -42,15 +42,15 @@ The KOTS lint service runs automatically against releases that you create in the
 To use the KOTS lint service to lint your application manifest files, you can run the replicated CLI `replicated release lint` command against the root directory of your application manifest files. You can also use the `--lint` flag when you create a release with the `replicated release create` command. For more information, see [release lint](/reference/replicated-cli-release-lint) and [release create](/reference/replicated-cli-release-create) in the _replicated CLI_ section.
 
 ## Configuring lint rules
-Linting rules can be configured to use levels by including a lint-config.yaml file as part of the release. In the lint-config.yaml you can specify the rule name and level you want the rule to have. The levels supported are:
+Linting rules can be configured to use levels by including a kots-lint-config.yaml file as part of the release. In the kots-lint-config.yaml you can specify the rule name and level you want the rule to have. The levels supported are:
 - "error" - the rule is enabled and shown as an error
 - "warn" - the rule is enabled and shown as a warning
 - "info" - the rule is enabled and shown as an info message
 - "off" - the rule is disabled
 
-Rules that are not included in the lint-config.yaml will keep their default level. Linting rules and their default level are listed below.
+Rules that are not included in the kots-lint-config.yaml will keep their default level. Linting rules and their default level are listed below.
 
-Here is an example of what the `lint-config.yaml` should look like:
+Here is an example of what the `kots-lint-config.yaml` should look like:
 ```yaml
 apiVersion: kots.io/v1beta1
 kind: LintConfig
