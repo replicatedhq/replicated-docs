@@ -4,6 +4,22 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.86.2
+
+Released on October 7, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### Improvements {#improvements-1-86-2}
+* Changes the way CSS and font files are included for custom admin console branding (Alpha). If you have early access to this feature, see the Alpha documentation for more information.
+
+### Bug Fixes {#bug-fixes-1-86-2}
+* Fixes an issue where large font files for custom admin console branding (Alpha) caused the admin console to fail to create a new application version.
+* Fixes an issue where the identity service login redirected to the login page after a successful login.
+* Fixes an issue in the **Cluster Management** tab where the button for adding a primary node stopped working if the original join token expired.
+* Fixes a bug that allowed the identity service route to be accessed even if the feature was not enabled.
+* Fixes a bug that caused the admin console Pod to terminate with an error due to a panic when checking for application updates in Helm-managed mode (Alpha). For more information on Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+
 ## 1.86.1
 
 Released on September 30, 2022
