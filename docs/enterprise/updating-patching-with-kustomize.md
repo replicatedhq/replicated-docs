@@ -41,19 +41,19 @@ The `overlays` directory contains the following subdirectories that apply specif
       </tr>
     </thead>
       <tr>
-        <td>midstream</td>
+        <td><code>midstream</code></td>
         <td>No</td>
         <td><p>Contains app manager-specific kustomizations, such as:</p><p>- Backup labels, such as those used to configure Velero.</p><p>- Image pull secret definitions and patches to inject the <code>imagePullSecret</code> field into relevant manifests (such as deployments, stateful sets, and jobs).</p></td>
       </tr>
       <tr>
-        <td>downstream</td>
+        <td><code>downstream</code></td>
         <td>Yes</td>
         <td><p>Contains user-defined kustomizations that are applied to the <code>midstream</code> directory and deployed to the cluster.</p><p>Only one <code>downstream</code> subdirectory is supported. It is automatically created and named <code>this-cluster</code> when the admin console is installed.</p><p>To add kustomizations, see <a href="#patch-your-application">Patch Your Application</a>.</p></td>
       </tr>
       <tr>
-        <td>charts</td>
-        <td>Yes</td>
-        <td><p><code>Charts</code> only appears if a native Helm installation workflow is used.</p><p>Contains a subdirectory for each Helm chart. Each Helm chart has its own kustomizations because each chart is rendered and deployed separately from other charts and manifests.</p><p>The subcharts of each Helm chart also have their own kustomizations and are rendered separately. However, these subcharts are included and deployed as part of the parent chart.</p></td>
+        <td><code>charts</code></td>
+        <td>Persists only in downstream</td>
+        <td><p>The <code>charts</code> subdirectory appears in <code>midstream</code> and <code>downstream</code> only when a native Helm installation workflow is used.</p><p>Contains a subdirectory for each Helm chart. Each Helm chart has its own kustomizations because each chart is rendered and deployed separately from other charts and manifests.</p><p>The subcharts of each Helm chart also have their own kustomizations and are rendered separately. However, these subcharts are included and deployed as part of the parent chart.</p></td>
       </tr>
   </table>
 
@@ -61,7 +61,7 @@ The `overlays` directory contains the following subdirectories that apply specif
 
 The `skippedFiles` directory lists files that the app manager is not able to process or render, such as invalid YAML files.
 
-The `_index.yaml` file contais metadata and details about the errors, such as which files they were found in and sometimes the line number of the error.
+The `_index.yaml` file contains metadata and details about the errors, such as which files they were found in and sometimes the line number of the error.
 
 ## Patch Your Application
 
