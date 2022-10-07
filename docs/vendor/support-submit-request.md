@@ -1,12 +1,11 @@
 # Submitting a Support Request
 
-You can submit a support request with or without a support bundle using the Replicated vendor portal. Uploading a support bundle is secure and helps the Replicated support team troubleshoot your application faster.
+You can submit a support request and a support bundle using the Replicated vendor portal. Uploading a support bundle is secure and helps the Replicated support team troubleshoot your application faster. Severity 1 issues are resolved three times faster when you submit a support bundle with your support request.
 
-Severity 1 issues are resolved three times faster when you submit a support bundle with your support request.
+:::note
 
-If you or your customer are unable to generate a support bundle, you can submit the request without a support bundle and the support team will assist you.
-
-For more information about how to generate a support bundle using either the Replicated admin console or the kubectl CLI, see [Generating Support Bundles](https://docs.replicated.com/enterprise/troubleshooting-an-app).
+If your customer cannot generate a support bundle using the admin console and needs an alternative method, see [Generating Support Bundles](/enterprise/troubleshooting-an-app).
+:::
 
 To submit a support request:
 
@@ -15,10 +14,10 @@ To submit a support request:
 1. In section 1 of the Support Request form, complete the fields with information about your issue.
 
 1. In section 2, do _one_ of the following actions:
-
     - Use your pre-selected support bundle or select a different bundle in the pick list
     - Select **Upload and attach a new support bundle** and attach a bundle from your file browser
-    - Select **I'm unable to generate a support bundle** and do the following in the user interface:
+
+    <!-- - Select **I'm unable to generate a support bundle** and do the following in the user interface:
 
       - Describe any procedures that led to the failure, including playbooks or scripts that were used
 
@@ -47,8 +46,7 @@ To submit a support request:
         - docker ps -a
         - journalctl -u kubelet –no-pager
         - journalctl -u docker –no-pager
-        - iptables -L -v
-
+        - iptables -L -v-->
 1. Click **Submit Support Request**. You receive a link to your support issue, where you can interact with the support team.
 
   :::note
