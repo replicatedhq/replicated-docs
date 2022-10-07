@@ -9,8 +9,7 @@ toc_max_heading_level: 2
 Released on October 7, 2022
 
 ### New Features {#new-features-v2022-10-07-0}
-* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-10-02T19-29-29Z.
-* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-10-05T14-58-27Z.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) versions RELEASE.2022-10-05T14-58-27Z and RELEASE.2022-10-02T19-29-29Z.
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.22.0.
 
 ### Improvements {#improvements-v2022-10-07-0}
