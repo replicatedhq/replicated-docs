@@ -22,15 +22,17 @@ Alternatively, you can generate a support bundle using the CLI, which can be hel
 
 1. (Optional) Click **Download bundle** to download the support bundle. You can send the bundle to your vendor for assistance.
 
-## Generating a Bundle Using the CLI
+## Generating a Bundle using the CLI
 
 You can generate a support bundle using the command line (CLI) instead of the admin console. For example, the admin console might not be available if you are using a Kubernetes installer (embedded installer) and the installation fails. Or perhaps you need to use a more recent version of the support-bundle plugin than what is embedded in the admin console.
 
-After you install or update the support-bundle plugin, generate a support bundle using one of the following methods, depending on your environment or situation.
-
-### Install the support-bundle Plugin {#plugin}
+### Prerequisite: Install the Plugin {#plugin}
 
 Install or update the support-bundle plugin (a kubectl plugin) before you generate a support bundle using the CLI. The plugin is required to generate a support bundle.
+
+:::note
+If your application was installed using a Kubernetes installer script, then `kubectl` and the `support-bundle` plugin should already be present on all of the control plane nodes.
+:::
 
 You can install the support-bundle plugin using krew or install it manually from the release archives.
 
@@ -71,7 +73,7 @@ To install the support-bundle plugin manually:
   kubectl support-bundle
   ```
 
-### Generate Bundles When the Cluster is Running
+### Generate a Bundle on a Running Cluster
 
 If the admin console is running and the application is installed, run the following command to generate a support bundle that includes customizations provided by the software vendor:
 
@@ -84,16 +86,18 @@ Replace:
 - NAMESPACE with the name of the namespace.
 - APP_NAME with the name of the application.
 
-### Generate Host Support Bundles
+### Generate a Host Support Bundle
 
 For Kubernetes installer provisioned clusters (embedded clusters), you can generate a host support bundle. Use this method when:
 
 - A cluster is down
 - The application is not installed
 - The admin console is not working
-- To debug a host-specific problem
+- To debug a host-specific performance and configuration problems even when the cluster is running
 
-Your vendor typically provides you with a host support bundle YAML file that you run with a command to generate the host support bundle. You can also create a host support bundle YAML file to debug host performance and host configuration problems even when the cluster is running. For more information about creating your own host support bundle YAML file, see [All Host Collectors and Analyzers](https://troubleshoot.sh/docs/host-collect-analyze/all/) in the Troubleshoot documentation.
+Your vendor typically provides you with a host support bundle YAML file that you run with a command to generate the host support bundle. You can also create a your own host support bundle YAML file. For more information about creating a YAML file, see [All Host Collectors and Analyzers](https://troubleshoot.sh/docs/host-collect-analyze/all/) in the Troubleshoot documentation.
+
+If you want to use a default YAML file from the Troubleshoot.sh repository for troubleshooting a degraded cluster, follow the command in the steps below.
 
 Root access is typically not required to run the host collectors and analyzers. However, depending on what is being collected, you might need to run the support-bundle binary with elevated permissions. For example, if you run the `filesystemPerformance` host collector against `/var/lib/etcd` and the user running the binary does not have permissions on this directory, the collection process fails.
 
@@ -101,9 +105,7 @@ To generate a host support bundle:
 
 1. Do one of the following:
 
-    - Save the host support bundle YAML file from your vendor on the host.
-
-    - Save a host support bundle YAML file that you created on the host.
+    - Save the host support bundle YAML file on the host.
 
     - Run the following command to download a host support bundle YAML file from the Troubleshoot repository that can help troubleshoot a degraded Kubernetes installer cluster:
 
@@ -124,17 +126,17 @@ To generate a host support bundle:
     - `PATH` with the path to the host support bundle YAML file.
     - `FILE` with the name of the host support bundle YAML file from your vendor.
 
-1. Share the host support bundle with your vendor's support team.
+1. Share the host support bundle with your vendor's support team, if needed.
 
 1. Repeat these steps for each node because there is no method to generate host support bundles on remote hosts. If you have a multi-node Kubernetes cluster, you must run the support-bundle binary on each node and generate a host support bundle for each node. Note that the support-bundle plugin must be installed on each control plane node to generate a support bundle from that node.
 
-### Generate Bundles With the Default kots.io Specification
+### Generate a Bundle with a Default kots.io FIle
 
-You can generate a support bundle using the default kots.io specification if the application does not have a support bundle specification included.
+You can generate a support bundle using the default kots.io manifest file if the application does not have a support bundle manifest included.
 
 #### In an Online Environment
 
-In an online environment, run the following command to generate a support bundle using the default kots.io specification:
+In an online environment, run the following command to generate a support bundle using the default kots.io manifest file:
 
   ```
   kubectl support-bundle https://kots.io
@@ -142,9 +144,9 @@ In an online environment, run the following command to generate a support bundle
 
 #### On an Air Gap Server
 
-If you are on an air gapped server, perform the following steps to create a support bundle using the default kots.io specification:
+If you are on an air gapped server, perform the following steps to create a support bundle using the default kots.io manifest file:
 
-1. Run the following command from a computer with internet access to download the default kots.io specification:
+1. Run the following command from a computer with internet access to download the default kots.io manifest:
 
     ```
     curl -o spec.yaml https://kots.io -H 'User-agent:Replicated_Troubleshoot/v1beta1'
