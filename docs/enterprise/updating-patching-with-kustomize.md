@@ -35,9 +35,9 @@ The `overlays` directory contains the following subdirectories that apply specif
   <table>
     <thead>
       <tr>
-        <th width="20%">Subdirectory</th>
-        <th width="10%">Changes Persist?</th>
-        <th width="70%">Description</th>
+        <th width="16%">Subdirectory</th>
+        <th width="15%">Changes Persist?</th>
+        <th width="67%">Description</th>
       </tr>
     </thead>
       <tr>
@@ -52,7 +52,7 @@ The `overlays` directory contains the following subdirectories that apply specif
       </tr>
       <tr>
         <td><code>charts</code></td>
-        <td>Persists only in downstream</td>
+        <td>Persists only in <code>downstream</code></td>
         <td><p>The <code>charts</code> subdirectory appears in <code>midstream</code> and <code>downstream</code> only when a native Helm installation workflow is used.</p><p>Contains a subdirectory for each Helm chart. Each Helm chart has its own kustomizations because each chart is rendered and deployed separately from other charts and manifests.</p><p>The subcharts of each Helm chart also have their own kustomizations and are rendered separately. However, these subcharts are included and deployed as part of the parent chart.</p></td>
       </tr>
   </table>
