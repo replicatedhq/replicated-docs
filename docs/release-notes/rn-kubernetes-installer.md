@@ -8,6 +8,10 @@ toc_max_heading_level: 2
 
 Released on October 7, 2022
 
+New KOTS add-on versions are now dynamically added to kURL upon a new release of KOTS.
+Given kURL no longer needs to release to make a new version of KOTS available, the addition of new KOTS add-on versions will no longer be stated in the kURL release notes.
+KOTS release notes can be found [here](https://docs.replicated.com/release-notes/rn-app-manager).
+
 ### New Features {#new-features-v2022-10-07-0}
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) versions RELEASE.2022-10-05T14-58-27Z and RELEASE.2022-10-02T19-29-29Z.
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.22.0.
