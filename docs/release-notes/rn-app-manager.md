@@ -10,13 +10,15 @@ Released on October 7, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
+### Improvements {#improvements-1-86-2}
+* Changes the way CSS and font files are included for custom admin console branding (Alpha). If you have early access to this feature, check out the alpha documentation for more information.
+
 ### Bug Fixes {#bug-fixes-1-86-2}
-* Fixes an issue where custom admin console branding (Alpha) would cause the admin console to fail to create a new application version if the data in the KOTS application manifest exceeded 1 MiB.
-* Fixes an issue where identity service login would redirect to login page after successful login.
-* adds cleanup to `useEffect`. without cleanup, extra calls to `/ping` could occur.
-* Fixes an issue in the "Cluster Management" tab where the button for adding a primary node stopped working if the original join token had expired.
-* fixes bug that would allow identity service route to work even if feature was not enabled.
-* Fixes a bug that may cause the Admin Console pod to terminate with an error due to a panic when checking for application updates in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Fixes an issue where large font files for custom admin console branding (Alpha) caused the admin console to fail to create a new application version.
+* Fixes an issue where the identity service login redirected to the login page after a successful login.
+* Fixes an issue in the **Cluster Management** tab where the button for adding a primary node stopped working if the original join token expired.
+* Fixes a bug that allowed the identity service route to be accessed even if the feature was not enabled.
+* Fixes a bug that caused the admin console Pod to terminate with an error due to a panic when checking for application updates in Helm-managed mode (Alpha). For more information on Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
 
 ## 1.86.1
 
