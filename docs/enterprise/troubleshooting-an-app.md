@@ -95,7 +95,20 @@ Root access is typically not required to run the host collectors and analyzers. 
 
 To generate a host support bundle:
 
-1. Save the host support bundle YAML file from your vendor on the host. For air gap environments, download the file and copy it to the air gap machine.
+1. Do one of the following:
+
+    - Save the host support bundle YAML file from your vendor on the host.
+
+    - Save a host support bundle YAML file that you created on the host.
+
+    - Run the following command to download a host support bundle YAML file from the Troubleshoot repository that can help troubleshoot a degraded Kubernetes installer cluster:
+
+    ```
+    kubectl support-bundle https://github.com/replicatedhq/troubleshoot-specs/blob/main/host/cluster-down.yaml
+    ```
+  :::note
+  For air gap environments, download the YAML file and copy it to the air gap machine.
+  :::
 
 1. Run the following command on the host to generate a host support bundle:
 
@@ -109,7 +122,7 @@ To generate a host support bundle:
 
 1. Share the host support bundle with your vendor's support team.
 
-1. Repeat these steps for each node because there is no method to generate host support bundles on remote hosts. If you have a multi-node Kubernetes cluster, you must run the support-bundle binary on each node and generate a host support bundle for each node.
+1. Repeat these steps for each node because there is no method to generate host support bundles on remote hosts. If you have a multi-node Kubernetes cluster, you must run the support-bundle binary on each node and generate a host support bundle for each node. Note that the support-bundle plugin must be installed on each control plane node to generate a support bundle from that node.
 
 #### With the Default kots.io Specification
 
