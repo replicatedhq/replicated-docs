@@ -4,6 +4,20 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.86.2
+
+Released on October 7, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### Bug Fixes {#bug-fixes-1-86-2}
+* Fixes an issue where custom admin console branding (Alpha) would cause the admin console to fail to create a new application version if the data in the KOTS application manifest exceeded 1 MiB.
+* Fixes an issue where identity service login would redirect to login page after successful login.
+* adds cleanup to `useEffect`. without cleanup, extra calls to `/ping` could occur.
+* Fixes an issue in the "Cluster Management" tab where the button for adding a primary node stopped working if the original join token had expired.
+* fixes bug that would allow identity service route to work even if feature was not enabled.
+* Fixes a bug that may cause the Admin Console pod to terminate with an error due to a panic when checking for application updates in [Helm managed mode (Alpha)](/vendor/helm-install).
+
 ## 1.86.1
 
 Released on September 30, 2022
