@@ -1,8 +1,10 @@
 # Generating Support Bundles
 
-The Replicated admin console includes a Troubleshoot page where you can generate an analysis and review remediation suggestions for troubleshooting an application. You can also download a support bundle to share with your vendor.
+The Replicated admin console includes a Troubleshoot page where you can generate an analysis and review remediation suggestions for troubleshooting an application. You can download a support bundle to share with your vendor.
 
-## Generating a Bundle using the Admin Console
+Alternatively, you can generate a support bundle using the CLI, which can be helpful when the admin console is not available or when you want to debug a host.
+
+## Generate a Bundle using the Admin Console
 
 1. From the admin console, select the Troubleshoot tab.
 
@@ -23,6 +25,8 @@ The Replicated admin console includes a Troubleshoot page where you can generate
 ## Generating a Bundle Using the CLI
 
 You can generate a support bundle using the command line (CLI) instead of the admin console. For example, the admin console might not be available if you are using a Kubernetes installer (embedded installer) and the installation fails. Or perhaps you need to use a more recent version of the support-bundle plugin than what is embedded in the admin console.
+
+After you install or update the support-bundle plugin, generate a support bundle using one of the following methods, depending on your environment or situation.
 
 ### Install the support-bundle Plugin {#plugin}
 
@@ -67,14 +71,9 @@ To install the support-bundle plugin manually:
   kubectl support-bundle
   ```
 
+### Generate Bundles When the Cluster is Running
 
-### Generate a Bundle with the CLI
-
-After you install or update the support-bundle plugin, generate a support bundle using one of the following methods, depending on your environment or situation.
-
-#### When the Admin Console and Application are Installed
-
-If the admin console is running and the application is installed, run the following command to create a support bundle that includes customizations provided by the software vendor:
+If the admin console is running and the application is installed, run the following command to generate a support bundle that includes customizations provided by the software vendor:
 
   ```
   kubectl support-bundle secrets/NAMESPACE/APP_NAMEkotsadm-supportbundle
@@ -85,9 +84,14 @@ Replace:
 - NAMESPACE with the name of the namespace.
 - APP_NAME with the name of the application.
 
-#### From the Host Operating System
+### Generate Host Support Bundles
 
-For Kubernetes installer provisioned clusters (embedded clusters), you can generate a host support bundle. Use this method when a cluster is down, when the application is not installed, when the admin console is not working, or to debug a host-specific problem.
+For Kubernetes installer provisioned clusters (embedded clusters), you can generate a host support bundle. Use this method when:
+
+- A cluster is down
+- The application is not installed
+- The admin console is not working
+- To debug a host-specific problem
 
 Your vendor typically provides you with a host support bundle YAML file that you run with a command to generate the host support bundle. You can also create a host support bundle YAML file to debug host performance and host configuration problems even when the cluster is running. For more information about creating your own host support bundle YAML file, see [All Host Collectors and Analyzers](https://troubleshoot.sh/docs/host-collect-analyze/all/) in the Troubleshoot documentation.
 
@@ -124,16 +128,21 @@ To generate a host support bundle:
 
 1. Repeat these steps for each node because there is no method to generate host support bundles on remote hosts. If you have a multi-node Kubernetes cluster, you must run the support-bundle binary on each node and generate a host support bundle for each node. Note that the support-bundle plugin must be installed on each control plane node to generate a support bundle from that node.
 
-#### With the Default kots.io Specification
+### Generate Bundles With the Default kots.io Specification
 
-To use the default kots.io specification, run the following command to create a support bundle:
+You can generate a support bundle using the default kots.io specification if the application does not have a support bundle specification included.
+
+#### In an Online Environment
+
+In an online environment, run the following command to generate a support bundle using the default kots.io specification:
 
   ```
   kubectl support-bundle https://kots.io
   ```
 
 #### On an Air Gap Server
-If you are on an air gapped server, perform the following steps to create a support bundle:
+
+If you are on an air gapped server, perform the following steps to create a support bundle using the default kots.io specification:
 
 1. Run the following command from a computer with internet access to download the default kots.io specification:
 
