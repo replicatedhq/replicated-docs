@@ -120,13 +120,13 @@ To patch your application:
 1. To download the application bundle locally:
 
    ```shell
-   kubectl kots download --namespace APP_NAMESPACE --slug APP_SLUG --dest ~/PATH_TO_APP
+   kubectl kots download --namespace APP_NAMESPACE --slug APP_SLUG --dest PATH_TO_APP
      • Connecting to cluster ✓
    ```
    Replace:
    * `APP_NAMESPACE` with the namespace on the cluster where the application is deployed.
    * `APP_SLUG` with the unique slug for the application.
-   * `PATH_TO_APP` with the name of the application. The `--dest` flag defaults to the current working directory, so specify this flag and value if you want to use another directory. For more information, see [download](/reference/kots-cli-download).
+   * `PATH_TO_APP` with the path to the application. The `--dest` flag defaults to the current working directory, so specify this flag and value if you want to use another directory. For more information, see [download](/reference/kots-cli-download).
 
    You can copy these values from the dialog that appears when you click **Need to edit these files? Click here to learn how**.
 
@@ -143,7 +143,7 @@ To patch your application:
      replicas: 2
    ```
 
-1. Add the file that you created in the previous step to the`patches` key in the `kustomization.yaml` file located in `~/PATH_TO_APP/overlays/downstreams/this-cluster/kustomization.yaml`. The `overlays/downstream/this-cluster` directory is where custom changes (patches) persist when releases are updated. These changes are in turn applied to the `midstream` directory. For more information, see [downstream](#downstream) and [midstream](#midstream).
+1. Add the file that you created in the previous step to the `patches` key in the `kustomization.yaml` file located in `PATH_TO_APP/overlays/downstreams/this-cluster/kustomization.yaml`. The `overlays/downstream/this-cluster` directory is where custom changes (patches) persist when releases are updated. These changes are in turn applied to the `midstream` directory. For more information, see [downstream](#downstream) and [midstream](#midstream).
 
   **Example:**
 
@@ -161,7 +161,7 @@ To patch your application:
    ```shell
    export APP_NAMESPACE=app-namespace
    export APP_SLUG=app-slug
-   kubectl kots upload --namespace ${APP_NAMESPACE} --slug ${APP_SLUG} ~/MY_KOTS_APP
+   kubectl kots upload --namespace ${APP_NAMESPACE} --slug ${APP_SLUG} PATH_TO_APP
      • Uploading local application to Admin Console ✓
    ```
 
