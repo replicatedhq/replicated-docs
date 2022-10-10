@@ -143,7 +143,7 @@ To patch your application:
      replicas: 2
    ```
 
-1. Add the file that you created in the previous step to the `kustomization.yaml` file located in `~/MY_KOTS_APP/overlays/downstreams/this-cluster/kustomization.yaml`.
+1. Add the file that you created in the previous step to the `kustomization.yaml` file located in `~/MY_KOTS_APP/overlays/downstreams/this-cluster/kustomization.yaml`. The `overlays/downstream` directory is where changes persist when releases are updated. These changes are in turn applied to the midstream directory. For more information, see [downstream](#downstream) and [midstrwam](#midstream).
 
   **Example:**
 
