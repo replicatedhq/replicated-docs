@@ -143,7 +143,7 @@ To patch your application:
      replicas: 2
    ```
 
-1. Add the file that you created in the previous step to the `kustomization.yaml` file located in `~/my-kots-app/overlays/downstreams/this-cluster/kustomization.yaml`.
+1. Add the file that you created in the previous step to the `kustomization.yaml` file located in `~/MY_KOTS_APP/overlays/downstreams/this-cluster/kustomization.yaml`.
 
   **Example:**
 
@@ -161,7 +161,7 @@ To patch your application:
    ```shell
    export APP_NAMESPACE=app-namespace
    export APP_SLUG=app-slug
-   kubectl kots upload --namespace ${APP_NAMESPACE} --slug ${APP_SLUG} ~/my-kots-app
+   kubectl kots upload --namespace ${APP_NAMESPACE} --slug ${APP_SLUG} ~/MY_KOTS_APP
      • Uploading local application to Admin Console ✓
    ```
 
