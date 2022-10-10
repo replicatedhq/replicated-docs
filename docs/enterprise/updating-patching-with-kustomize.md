@@ -139,7 +139,7 @@ To patch your application:
      replicas: 2
    ```
 
-1. Add the filename that you created in the previous step to the `patches` field in the `kustomization.yaml` file, located in `/overlays/downstream/this-cluster`. The `downstream/this-cluster` subdirectory is where custom changes (patches) persist when releases are updated. These changes are in turn applied to the `midstream` directory. For more information, see [downstream](#downstream) and [midstream](#midstream).
+1. Add the filename that you created in the previous step to the `patches` field in the `kustomization.yaml` file, located in `/overlays/downstream/this-cluster`. The `downstream/this-cluster` subdirectory is where custom changes (patches) persist when releases are updated. These changes are in turn applied to the `midstream` directory. For more information, see [overlays](#overlays).
 
   **Example:**
 
