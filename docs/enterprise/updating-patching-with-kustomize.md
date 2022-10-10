@@ -107,7 +107,7 @@ The `_index.yaml` file contains metadata and details about the errors, such as w
 
 ## Patch an Application
 
-To patch the application with Kustomize so that your changes persist between updates, edit the files in the `overlays/downstream/` directory.
+To patch the application with Kustomize so that your changes persist between updates, edit the files in the `overlays/downstream/this-cluster` directory.
 
 The admin console overwrites the `upstream` and `base` directories each time you upgrade the application to a later version.
 
@@ -128,7 +128,7 @@ To patch your application:
 
    You can copy these values from the dialog that appears when you click **Need to edit these files? Click here to learn how**.
 
-1. Create a Kubernetes manifest YAML file and make any desired edits. You only need to add key:value pairs to this patch manifest file that you want to change. For example, the following `Deployment` patch manifest file shows an edit only to the number of replicas because none of the other fields in the `base/Deployment.yaml` file are being kustomized.
+1. Create a Kubernetes manifest YAML file and make any desired edits. You only need to add the key: value pairs that you want to change because this patch file overwrites the key: value pairs in the corresponding file in the `base` directory. For example, the following `Deployment` patch manifest file shows an edit only to the number of replicas. None of the other values in the `base/deployment.yaml` file will be overwritten.
 
    ```yaml
    apiVersion: apps/v1
