@@ -10,7 +10,6 @@ Released on October 10, 2022
 
 ### New Features {#new-features-v2022-10-10-0}
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-10-08T20-11-00Z.
-* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.9.2.
 * Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) version 1.8.10.
 
 ### Bug Fixes {#bug-fixes-v2022-10-10-0}
