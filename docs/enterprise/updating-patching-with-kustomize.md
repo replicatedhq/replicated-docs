@@ -63,7 +63,7 @@ The following table describes the `base` directory and whether custom changes pe
 ### Overlays
 
 The `overlays` directory contains the following subdirectories that apply specific kustomizations to the `base` directory when deploying a version to the cluster.
- The table also specifies whether the custom changes persist after an update with regard to each subdirectory.
+ The following tables describes the subdirectories and specifies whether the custom changes persist after an update, with regard to each subdirectory.
   <table>
     <thead>
       <tr>
@@ -128,9 +128,7 @@ To patch your application:
 
    You can copy these values from the dialog that appears when you click **Need to edit these files? Click here to learn how**.
 
-1. Create a Kubernetes manifest YAML file and make any desired edits.
-
-  The following example shows an edit to the number of replicas:
+1. Create a Kubernetes manifest YAML file and make any desired edits. You only need to add key:value pairs to this patch manifest file that you want to change. For example, the following `Deployment` patch manifest file shows an edit only to the number of replicas because none of the other fields in the `base/Deployment.yaml` file are being kustomized.
 
    ```yaml
    apiVersion: apps/v1
@@ -141,7 +139,7 @@ To patch your application:
      replicas: 2
    ```
 
-1. Add the file that you created in the previous step to the `patches` field in the `kustomization.yaml` file located in `PATH_TO_APP/overlays/downstreams/this-cluster/kustomization.yaml`. The `overlays/downstream/this-cluster` directory is where custom changes (patches) persist when releases are updated. These changes are in turn applied to the `midstream` directory. For more information, see [downstream](#downstream) and [midstream](#midstream).
+1. Add the filename that you created in the previous step to the `patches` field in the `kustomization.yaml` file, located in `/overlays/downstream/this-cluster`. The `downstream/this-cluster` subdirectory is where custom changes (patches) persist when releases are updated. These changes are in turn applied to the `midstream` directory. For more information, see [downstream](#downstream) and [midstream](#midstream).
 
   **Example:**
 
