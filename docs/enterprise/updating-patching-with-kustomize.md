@@ -85,7 +85,7 @@ The `overlays` directory contains the following subdirectories that apply specif
       <tr>
         <td><code>downstream</code></td>
         <td>Yes</td>
-        <td><p>Contains user-defined kustomizations that are applied to the <code>midstream</code> directory and deployed to the cluster.</p><p>Only one <code>downstream</code> subdirectory is supported. It is automatically created and named <code>this-cluster</code> when the admin console is installed.</p><p>To add kustomizations, see <a href="#patch-your-application">Patch Your Application</a>.</p></td>
+        <td><p>Contains user-defined kustomizations that are applied to the <code>midstream</code> directory and deployed to the cluster.</p><p>Only one <code>downstream</code> subdirectory is supported. It is automatically created and named <code>this-cluster</code> when the admin console is installed.</p><p>To add kustomizations, see <a href="#patch-an-application">Patch an Application</a>.</p></td>
       </tr>
       <tr>
         <td><code>midstream/charts</code></td>
