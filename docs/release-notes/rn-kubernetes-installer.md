@@ -4,6 +4,17 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2022.10.10-0
+
+Released on October 10, 2022
+
+### New Features {#new-features-v2022-10-10-0}
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-10-08T20-11-00Z.
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) version 1.8.10.
+
+### Bug Fixes {#bug-fixes-v2022-10-10-0}
+* Fixes an issue that could cause installations to fail with error "yaml: did not find expected node content" when installing behind an HTTP_PROXY.
+
 ## v2022.10.07-0
 
 Released on October 7, 2022
