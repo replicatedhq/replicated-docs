@@ -43,7 +43,7 @@ multiple apps in the Team.
 
 To follow a tutorial connecting a sample app to an Amazon Elastic Container Registry (ECR), see [Tutorial: Using ECR for Private Images](tutorial-ecr-private-images).
 
-To configure access to your private images in an external registry:
+To configure access to your private images in an external registry using the vendor portal:
 
 1. Log in to the [vendor portal](https://vendor.replicated.com) and go to the Images page.
 1. Click **Add external registry**.
@@ -66,6 +66,37 @@ To configure access to your private images in an external registry:
     <td>Provide the username and password for an account that has pull access to the private registry.<br/><br/>For Amazon ECR registries, provide the Access Key ID and Secret Key for a Service Account User that has pull access to the registry. See <a href="tutorial-ecr-private-images#setting-up-the-service-account-user">Setting up the Service Account User</a>.<br/><br/>Replicated stores your username and password encrypted and securely. Your credentials and the encryption key do not leave Replicated servers.</td>
   </tr>
 </table>
+
+To configure access to private images in an external registry using the Replicated CLI:
+
+1. Follow the instructions to [install and configure](/reference/replicated-cli-installing) the Replicated CLI.
+1. Add a registry using the following command:
+
+```bash
+replicated registry add <hostname> \
+    --username <username> \
+    --password <password>
+```
+
+To prevent the password from being saved in your shell history, we recommend using the `--password-stdin` flag and entering the password when prompted.
+
+## Test External Registry Credentials
+
+There are a lot of variables when configuring access to an external registry that could prevent it from working if not properly set up. To help understand these early, the Replicated CLI has support to validate that the configured registry can pull specific images:
+
+```bash
+replicated registry test <hostname> \
+    --image <imagename>
+```
+
+This will ensure that the the saved credentials on our servers can pull the image specified in `imagename`.
+
+For example:
+
+```bash
+replicated registry test index.docker.io my-company/my-image:v1.2.3
+```
+
 
 
 ## Push Images to the Replicated Private Registry
