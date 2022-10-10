@@ -23,7 +23,7 @@ For more information about each of the sections in the file directory, see the f
 
 ### Upstream
 
-The following table describes the `upstream` directory and whether the changes persist after an update:
+The following table describes the `upstream` directory and whether custom changes persist after an update:
 
 <table>
   <thead>
@@ -42,7 +42,7 @@ The following table describes the `upstream` directory and whether the changes p
 
 ### Base
 
-The following table describes the `base` directory and whether the changes persist after an update:
+The following table describes the `base` directory and whether custom changes persist after an update:
 
 <table>
   <thead>
@@ -62,8 +62,8 @@ The following table describes the `base` directory and whether the changes persi
 
 ### Overlays
 
-The `overlays` directory contains the following subdirectories that apply specific kustomizations to the `base` directory when deploying a version to the cluster:
- The table also specifies for each subdirectory whether the changes persist after an update.
+The `overlays` directory contains the following subdirectories that apply specific kustomizations to the `base` directory when deploying a version to the cluster.
+ The table also specifies whether the custom changes persist after an update with regard to each subdirectory.
   <table>
     <thead>
       <tr>
@@ -126,9 +126,9 @@ To patch your application:
    Replace:
    * `APP_NAMESPACE` with the namespace on the cluster where the application is deployed.
    * `APP_SLUG` with the unique slug for the application.
-   * `MY_KOTS_APP` with the name of the application.
+   * `MY_KOTS_APP` with the name of the application. The `--dest` flag defaults to the current working directory, so specify this flag and value if you want to use another directory. For more information, see [download](/reference/kots-cli-download).
 
-   You can copy these values from the dialog that appears when you click **Need to edit these files? Click here to learn how**. For more information about the `--dest` flag, see [download](/reference/kots-cli-download).
+   You can copy these values from the dialog that appears when you click **Need to edit these files? Click here to learn how**.
 
 1. Create a Kubernetes manifest YAML file and make any desired edits.
 
