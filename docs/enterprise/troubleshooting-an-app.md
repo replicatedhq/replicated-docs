@@ -33,20 +33,20 @@ Install or update the support-bundle plugin (a kubectl plugin) before you genera
 You can install the support-bundle plugin using krew or install it manually from the release archives.
 
 :::note
-If your application was installed using a Kubernetes installer script, then `kubectl` and the `support-bundle` plugin should already be present on all of the control plane nodes.
+If your application was installed using a Replicated Kubernetes installer script, then `kubectl` and the `support-bundle` plugin should already be present on all of the control plane nodes.
 :::
 
 #### Install using krew
 
 To install the support-bundle plugin using krew, do one of the following actions:
 
-- If krew is _not_ installed, run the following command:
+- If krew is _not_ installed already, run the following command:
 
     ```
     curl https://krew.sh/support-bundle | bash
     ```
 
-- If krew is installed, run the following command:
+- If krew is installed already, run the following command:
 
     ```
     kubectl krew install support-bundle
@@ -57,7 +57,7 @@ If you do not want to install the plugin using krew or want an easier way to ins
 
 To install the support-bundle plugin manually:
 
-1. Run the following command to download and unarchive the latest release and move the plugin into your $PATH:
+1. Run the following command to download and unarchive the latest release, and move the plugin to your $PATH:
 
   ```
   curl -L https://github.com/replicatedhq/troubleshoot/releases/latest/download/support-bundle_linux_amd64.tar.gz | tar xzvf -
@@ -67,10 +67,10 @@ To install the support-bundle plugin manually:
   If you do not have root access, or choose not to add the support-bundle plugin to your path, you can run the binary directly from where you unzipped it by executing `./support-bundle`.  If you choose not to put the plugin into your $PATH, then replace all instances of `kubectl support-bundle` in these instructions with `./support-bundle` or with the absolute path to the binary.
   :::
 
-1. Run the following command to install the plugin:
+1. (Optional) Run the following command to test that the installation is working:
 
   ```
-  kubectl support-bundle
+  kubectl support-bundle --help
   ```
 
 ### Generate a Bundle on a Running Cluster
@@ -78,13 +78,13 @@ To install the support-bundle plugin manually:
 If the admin console is running and the application is installed, run the following command to generate a support bundle that includes customizations provided by your vendor:
 
   ```
-  kubectl support-bundle secrets/NAMESPACE/APP_NAMEkotsadm-supportbundle
+  kubectl support-bundle secrets/NAMESPACE/kotsadm-APP_SLUG-supportbundle
   ```
 
 Replace:
 
 - NAMESPACE with the name of the namespace
-- APP_NAME with the name of the application
+- APP_SLUG with the application slug
 
 ### Generate a Host Support Bundle
 
@@ -128,9 +128,9 @@ To generate a host support bundle:
 
 1. Share the host support bundle with your vendor's support team, if needed.
 
-1. Repeat these steps for each node because there is no method to generate host support bundles on remote hosts. If you have a multi-node Kubernetes cluster, you must run the support-bundle binary on each node and generate a host support bundle for each node. Note that the support-bundle plugin must be installed on each control plane node to generate a support bundle from that node.
+1. Repeat these steps for each node because there is no method to generate host support bundles on remote hosts. If you have a multi-node Kubernetes cluster, you must run the support-bundle binary on each node and generate a host support bundle for each node.
 
-### Generate a Bundle with a Default kots.io FIle
+### Generate a Bundle with a Default kots.io File
 
 You can generate a support bundle using the default kots.io manifest file if the application does not have a support bundle manifest included.
 
