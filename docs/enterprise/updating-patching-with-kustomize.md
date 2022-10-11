@@ -128,7 +128,7 @@ To patch your application:
 
    You can copy these values from the dialog that appears when you click **Need to edit these files? Click here to learn how**.
 
-1. Create a Kubernetes manifest YAML file and make any desired edits. You only need to add the key: value pairs that you want to change because this patch file overwrites the key: value pairs in the corresponding file in the `base` directory. For example, the following `Deployment` patch manifest file shows an edit only to the number of replicas. None of the other values in the `base/deployment.yaml` file will be overwritten.
+1. Create a Kubernetes manifest YAML file and make any desired edits. You only need to add the fields and values that you want to change because this patch file overwrites the corresponding values in the `base` directory. For example, the following `Deployment` patch manifest file shows an edit only to the number of replicas. None of the other values in the `base/deployment.yaml` file will be overwritten.
 
    ```yaml
    apiVersion: apps/v1
