@@ -12,7 +12,9 @@ There are two ways to view the status details, depending on your admin console v
 
 ## Resource Statuses
 
-Possible application statuses are "Missing", "Unavailable", "Degraded", "Ready" and "Updating". "Missing" indicates that informers have yet to report back their status.
+Possible application statuses are Missing, Unavailable, Degraded, Ready and Updating.
+
+_Missing_ is an initial deployment state indicating that informers have not reported their status because the application has just been deployed and the underlying resource has not been created yet. After the resource is created, the status changes. However, if a resource changes from another state to Missing, then the resource was either deleted or the resource failed.
 
 Below is a table of resources that are supported and conditions that contribute to each status:
 
