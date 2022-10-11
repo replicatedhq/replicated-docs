@@ -14,7 +14,7 @@ The native Helm chart support has the following limitations:
 * Migrating existing applications to the native Helm implementation is not supported. To deliver applications using the native Helm workflow, promote releases to a new channel for new customer installations.
 * The test hook is not supported.
 * Hook weights below -9999. All hook weights must be set to a value above -9999 to ensure the Replicated image pull secret is deployed before any resources are pulled.
-* Not supported with the [GitOps workflows](../enterprise/gitops-single-app-workflow).
+* Not supported with the [GitOps workflows](../enterprise/gitops-workflow).
 * The name specified in the [HelmChart custom resource](/reference/custom-resource-helmchart) must be an exact match to the actual Helm Chart name that is provided to Replicated; failure to do this will result in errored installations.
 
 ### Helm Hooks and Weights
