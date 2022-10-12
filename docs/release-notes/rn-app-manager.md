@@ -4,6 +4,26 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.87.0
+
+Released on October 12, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
+
+### New Features {#new-features-1-87-0}
+* Uses Ed25519 SSH keys for [GitOps integration](/enterprise/gitops-workflow) when integrating with Github Enterprise.
+
+### Improvements {#improvements-1-87-0}
+* Adds support for template functions to the `spec.graphs` field of the [Application custom resource](/reference/custom-resource-application).
+
+### Bug Fixes {#bug-fixes-1-87-0}
+* fixes issue where log tabs for helm installs would be hidden from kots managed installations.
+* Fixes a bug that causes previously existing rows on the [version history](/enterprise/updating-apps#update-an-application-in-the-admin-console) page to be highlighted when the page is opened in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Fixes an issue that could cause embedded installations to fail with error "yaml: did not find expected node content" when installing behind an HTTP_PROXY.
+* fixes issue where apis that require auth token were called while client was in an logged out state.
+* Fixes an issue that causes the [Troubleshoot tab](/enterprise/troubleshooting-an-app) to display support bundle collection progress bar even when support bundle is not actually being collected.
+* Sorts the ordering of entitlements in the /license endpoint.
+
 ## 1.86.2
 
 Released on October 7, 2022
