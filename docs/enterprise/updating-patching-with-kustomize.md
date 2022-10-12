@@ -55,7 +55,7 @@ The following table describes the `base` directory and whether custom changes pe
     <tr>
       <td><code>base</code></td>
       <td>No</td>
-      <td><p>After the Replicated app manager processes and renders the <code>upstream</code>, it puts those files in the <code>base</code> directory.</p><p>Only the deployable application files, such as deployable with <code>kubectl apply</code>, are placed here.</p><p>Any non-deployable manifests, such as template functions, preflight checks, and config options, are removed.</p></td>
+      <td><p>After the Replicated app manager processes and renders the <code>upstream</code>, it puts those files in the <code>base</code> directory.</p><p>Only the deployable application files, such as files deployable with <code>kubectl apply</code>, are placed here.</p><p>Any non-deployable manifests, such as template functions, preflight checks, and configuration options, are removed.</p></td>
     </tr>
 </table>
 
@@ -63,7 +63,7 @@ The following table describes the `base` directory and whether custom changes pe
 ### Overlays
 
 The `overlays` directory contains the following subdirectories that apply specific kustomizations to the `base` directory when deploying a version to the cluster.
- The following tables describes the subdirectories and specifies whether the custom changes persist after an update, with regard to each subdirectory.
+ The following table describes the subdirectories and specifies whether the custom changes made in each subdirectory persist after an update.
   <table>
     <thead>
       <tr>
@@ -90,12 +90,12 @@ The `overlays` directory contains the following subdirectories that apply specif
       <tr>
         <td><code>midstream/charts</code></td>
         <td>No</td>
-        <td><p>Appears only when the <code>useHelmInstall</code> property is set to <code>true</code>.</p><p>Contains a subdirectory for each Helm chart. Each Helm chart has its own kustomizations because each chart is rendered and deployed separately from other charts and manifests.</p><p>The subcharts of each Helm chart also have their own kustomizations and are rendered separately. However, these subcharts are included and deployed as part of the parent chart.</p></td>
+        <td><p>Appears only when the <code>useHelmInstall</code> property in the HelmChart custom resource is set to <code>true</code>.</p><p>Contains a subdirectory for each Helm chart. Each Helm chart has its own kustomizations because each chart is rendered and deployed separately from other charts and manifests.</p><p>The subcharts of each Helm chart also have their own kustomizations and are rendered separately. However, these subcharts are included and deployed as part of the parent chart.</p></td>
       </tr>
       <tr>
         <td><code>downstream/charts</code></td>
         <td>Yes</td>
-        <td><p>Appears only when the <code>useHelmInstall</code> property is set to <code>true</code>.</p><p>Contains a subdirectory for each Helm chart. Each Helm chart has its own kustomizations because each chart is rendered and deployed separately from other charts and manifests.</p><p>The subcharts of each Helm chart also have their own kustomizations and are rendered separately. However, these subcharts are included and deployed as part of the parent chart.</p></td>
+        <td><p>Appears only when the <code>useHelmInstall</code> property in the HelmChart custom resource is set to <code>true</code>.</p><p>Contains a subdirectory for each Helm chart. Each Helm chart has its own kustomizations because each chart is rendered and deployed separately from other charts and manifests.</p><p>The subcharts of each Helm chart also have their own kustomizations and are rendered separately. However, these subcharts are included and deployed as part of the parent chart.</p></td>
       </tr>
   </table>
 
