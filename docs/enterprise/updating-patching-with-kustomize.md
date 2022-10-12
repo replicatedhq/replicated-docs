@@ -12,7 +12,7 @@ You can patch an application with Kutomize from the View files page in the admin
 
 The following images shows an example of the file directory on the View files page:
 
-![Kustomize Dir Structure](/images/kustomize-dir-structure.png)
+![Kustomize Directory Structure](/images/kustomize-dir-structure.png)
 
 [View a larger version of this image](/images/kustomize-dir-structure.png)
 
@@ -163,6 +163,8 @@ To patch your application:
 1. On the Version History tab in the admin console, click **Diff** to see the new version of the application with the diff of the changes that you uploaded.
 
    ![kustomize-view-history-diff](/images/kustomize-view-history-diff.png)
+
+   [View a larger version of this image](/images/kustomize-view-history-diff.png)
 
 1. Click **Deploy** to apply the changes.
 
