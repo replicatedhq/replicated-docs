@@ -1,6 +1,8 @@
 # Patching with Kustomize
 
-Replicated leverages Kustomize to let you make customization patches to an application outside of the options available in the Replicated admin console Configuration page. These patches, which are configured on the View files page of the admin console, overlay the application resource files and can persist after release updates. For example, you can customize the number of replicas that you want to continually use in your environment or specify what `nodeSelectors` to use for a deployment.
+Replicated leverages Kustomize to let you make kustomization patches to an application outside of the options available in the Replicated admin console Configuration page. _Kustomizations_ are the Kustomize configuration objects, defined in kustomization.yaml files, that describe how to transform or generate other Kubernetes objects.
+
+These kustomizations, which are configured on the View files page of the admin console, overlay the application resource files and can persist after release updates. For example, you can kustomize the number of replicas that you want to continually use in your environment or specify what `nodeSelectors` to use for a deployment.
 
 For more information, see the [Kustomize website](https://kustomize.io).
 
