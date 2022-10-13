@@ -22,11 +22,15 @@ To create a release:
 
   ![Create Release](/images/guides/kots/create-release.png)
 
+  [View a larger image](/images/guides/kots/create-release.png)
+
   A YAML editor displays.
 
 1. In the YAML editor, drag and drop your application files into the file directory. These can be Kubernetes manifest files or Helm charts, and can include standard manifests such as Deployment and Service resources. For more information about how to package and configure manifest files for a production application, see [How to Package and Distribute a Production Application](distributing-workflow).
 
   ![Default YAML](/images/guides/kots/default-yaml.png)
+
+  [View a larger image](/images/guides/kots/default-yaml.png)
 
 1. To manage the file directory structure, note the following options:
 
