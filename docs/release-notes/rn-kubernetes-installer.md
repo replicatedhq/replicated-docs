@@ -9,11 +9,11 @@ toc_max_heading_level: 2
 Released on October 13, 2022
 
 ### New Features {#new-features-v2022-10-13-0}
-* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.23.0 with support for Rook 1.9.
 * Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) version 1.9.12.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.23.0 with support for Rook 1.9.
 
 ### Bug Fixes {#bug-fixes-v2022-10-13-0}
-* Fixes an issue that could prevent EKCO Deployment from scaling back up after running the kURL install script.
+* Fixes an issue that could prevent EKCO Deployment from scaling back up from zero replicas after running the kURL install script.
 
 ## v2022.10.10-0
 
