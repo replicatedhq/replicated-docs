@@ -4,6 +4,17 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2022.10.13-0
+
+Released on October 13, 2022
+
+### New Features {#new-features-v2022-10-13-0}
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) version 1.9.12.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.23.0 with support for Rook 1.9.
+
+### Bug Fixes {#bug-fixes-v2022-10-13-0}
+* Fixes an issue that could prevent the EKCO Deployment from scaling back up from zero replicas after running the Kubernetes installer script.
+
 ## v2022.10.10-0
 
 Released on October 10, 2022
