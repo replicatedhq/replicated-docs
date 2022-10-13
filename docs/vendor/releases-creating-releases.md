@@ -50,7 +50,3 @@ To create a release:
 ## Next Steps
 
 [Promoting releases](releases-promoting)
-
-## Related Topic
-
-[How to Package and Distribute a Production Application](distributing-workflow)
