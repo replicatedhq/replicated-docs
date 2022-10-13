@@ -65,7 +65,7 @@ The following fields are supported on all optional collectors for preflights and
   </tr>
   <tr>
     <td><code>exclude</code></td>
-    <td>(Optional) Based on the runtime available configuration, a conditional can be specified in the <code>exclude</code> field. This is useful for deployment techniques that allow templating for Replicated app manager and the optional Helm component. When this value is <code>false</code>, the collector is not included.</td>
+    <td>(Optional) Based on the runtime available configuration, a conditional can be specified in the <code>exclude</code> field. This is useful for deployment techniques that allow templating for Replicated app manager and the optional Helm component. When this value is <code>true</code>, the collector is not included.</td>
   </tr>
 </table>
 
