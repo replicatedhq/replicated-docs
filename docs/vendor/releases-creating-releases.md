@@ -4,7 +4,7 @@ You can use the Replicated vendor portal to create and release versions of your 
 
 Alternatively, you can use the replicated CLI and API to automate releases. For more information about using the CLI, see [Installing the replicated CLI](../reference/replicated-cli-installing).
 
-Replicated also lets you add custom resources to your release, which are packaged as part of the application, but not deployed to the cluster. When included, custom resources are consumed by the app manager, the admin console, or by other kubectl plugins to control the application experience. For more information about the custom resources, see [About Custom Resources](../reference/custom-resource-about).
+Replicated lets you add custom resources to your releases, which are packaged as part of the application but not deployed to the cluster. When included, custom resources are consumed by the app manager, the admin console, or by other kubectl plugins to control the application experience. For more information about the custom resources, see [About Custom Resources](../reference/custom-resource-about).
 
 We recommend that you bookmark the vendor portal because it is used to manage and deploy application releases.
 
@@ -40,7 +40,6 @@ To create a release:
   When viewing a release in the YAML editor, the custom resources are grouped together at the top of the manifests list:
 
   ![Custom Resource Manifest Files](/images/kots-custom-resources.png)
-
 
 1. Click **Save release**.
 
