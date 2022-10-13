@@ -13,7 +13,7 @@ Released on October 13, 2022
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.23.0 with support for Rook 1.9.
 
 ### Bug Fixes {#bug-fixes-v2022-10-13-0}
-* Fixes an issue that could prevent the EKCO Deployment from scaling back up from zero replicas after running the kURL install script.
+* Fixes an issue that could prevent the EKCO Deployment from scaling back up from zero replicas after running the Kubernetes installer script.
 
 ## v2022.10.10-0
 
