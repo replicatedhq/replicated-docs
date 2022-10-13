@@ -147,6 +147,7 @@ statusInformers:
 
 ## graphs
 Custom graphs to include on your admin console application dashboard.
+Entries support template functions.
 
 ### title
 The graph title.

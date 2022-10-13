@@ -81,10 +81,10 @@ To customize graphs on the admin console dashboard:
              legend: 'Available: {{ instance }}'
          yAxisFormat: bytes
        - title: CPU Usage
-         query: 'fmt.Sprintf(`sum(rate(container_cpu_usage_seconds_total{namespace="%s",container!="POD",pod!=""}[5m])) by (pod)`, util.PodNamespace)'
+         query: 'sum(rate(container_cpu_usage_seconds_total{namespace="{{repl Namespace}}",container!="POD",pod!=""}[5m])) by (pod)'
          legend: '{{ pod }}'
        - title: Memory Usage
-         query: 'fmt.Sprintf(`sum(container_memory_usage_bytes{namespace="%s",container!="POD",pod!=""}) by (pod)`, util.PodNamespace)'
+         query: 'sum(container_memory_usage_bytes{namespace="{{repl Namespace}}",container!="POD",pod!=""}) by (pod)'
          legend: '{{ pod }}'
          yAxisFormat: bytes
       ```   
