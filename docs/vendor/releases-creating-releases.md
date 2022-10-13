@@ -1,8 +1,10 @@
 # Creating a Release
 
-The Replicated vendor portal provides you with a location to create and release versions of your application to various release channels. The vendor portal hosts a built-in YAML editor and linter to help you write and validate manifest files. Alternatively, you can use the replicated CLI and API to automate releases. For more information about using the CLI, see [Installing the replicated CLI](../reference/replicated-cli-installing).
+You can use the Replicated vendor portal to create and release versions of your application to various release channels. The vendor portal hosts a built-in YAML editor and linter to help you write and validate manifest files.
 
-Replicated also lets you add custom resources to your release. These custom resources are packaged as part of the application, but are not deployed to the cluster. When included, they are consumed by the app manager, the admin console, or by other kubectl plugins to control the application experience. For more information about the custom resources, see [About Custom Resources](../reference/custom-resource-about).
+Alternatively, you can use the replicated CLI and API to automate releases. For more information about using the CLI, see [Installing the replicated CLI](../reference/replicated-cli-installing).
+
+Replicated also lets you add custom resources to your release, which are packaged as part of the application, but not deployed to the cluster. When included, custom resources are consumed by the app manager, the admin console, or by other kubectl plugins to control the application experience. For more information about the custom resources, see [About Custom Resources](../reference/custom-resource-about).
 
 We recommend that you bookmark the vendor portal because it is used to manage and deploy application releases.
 
@@ -16,20 +18,22 @@ To create a release:
 
   The Channels page opens and displays a list of your release channels, which are logical stacks for you to stage and promote releases to your customers.
 
-1. Click **Releases** on the left menu, and then click **Create release**.
+1. Click **Releases** on the left menu, and then click **Create a release**.
 
   ![Create Release](/images/guides/kots/create-release.png)
 
   A YAML editor displays.
 
-1. In the YAML editor, drag and drop your application files into the file directory. These can be Kubernetes manifest files or Helm charts. These can include standard manifests such as Deployment and Service resources. For more information about how to package and configure manifest files for a production application, see [How to Package and Distribute a Production Application](distributing-workflow).
-
-  To manage the file directory structure, note the following options:
-
-  - To delete files, click the Trash icon that displays when you hover over a file.
-  -
+1. In the YAML editor, drag and drop your application files into the file directory. These can be Kubernetes manifest files or Helm charts, and can include standard manifests such as Deployment and Service resources. For more information about how to package and configure manifest files for a production application, see [How to Package and Distribute a Production Application](distributing-workflow).
 
   ![Default YAML](/images/guides/kots/default-yaml.png)
+
+1. To manage the file directory structure, note the following options:
+
+    - To delete files, click the Trash icon that displays when you hover over a file.
+    - To create a new file or folder, click the corresponding icons at the bottom of the file directory pane.
+
+      ![Manage File Directory](/images/new-file-and-trash.png)
 
 1. (Optional) Add custom resource manifest files to your application. For example, Replicated recommends that you add Preflight and Support Bundle custom resources to help with troubleshooting.
 
