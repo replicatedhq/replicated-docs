@@ -135,9 +135,9 @@ For Kubernetes installers, the default app manager certificate automatically ren
 
 For information about TLS renewal for registry and Kubernetes control plane with the Kubernetes installer, see [TLS Certificates](https://kurl.sh/docs/install-with-kurl/setup-tls-certs) in the kURL documentation.
 
-## Updating New TLS Certificates
+## Updating TLS Certificates for Kubernetes Installer Clusters
 
-After the initial certificate is uploaded in the admin console and you want to upload new TLS certificates for Kubernetes Installer clusters, you must run the following annotation command to restore the ability to upload new TLS certificates.               
+After the initial certificate is uploaded with the app manager and you want to upload new TLS certificates for Kubernetes installer clusters, you must use the kubectl command-line tool.                
 
 :::warning
 Adding the `acceptAnonymousUploads` annotation temporarily creates a vulnerability for an attacker to maliciously upload TLS certificates. After TLS certificates have been uploaded, the vulnerability is closed again.
@@ -145,12 +145,19 @@ Adding the `acceptAnonymousUploads` annotation temporarily creates a vulnerabili
 Replicated recommends that you complete this upload process quickly to minimize the vulnerability risk.
 :::
 
-`kubectl -n default annotate secret kotsadm-tls acceptAnonymousUploads=1 --overwrite`
+Tp upload a new certificate:
 
+1. Run the following annotation command to restore the ability to upload new TLS certificates:
 
-After adding the annotation, you must restart the kurl proxy server. The simplest way is to delete the kurl-proxy pod (the pod will automatically get restarted):
+  ```shell
+  kubectl -n default annotate secret kotsadm-tls acceptAnonymousUploads=1 --overwrite
+  ```
 
-`kubectl delete pods PROXY_SERVER`
+1. Run the following command to delete the kurl-proxy pod. The pod automatically restarts after running this command:
+
+  ```shell
+  kubectl delete pods PROXY_SERVER
+  ```
 
 The following command should provide the name of the kurl-proxy server:
 
