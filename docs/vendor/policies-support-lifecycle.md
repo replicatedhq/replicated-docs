@@ -77,7 +77,7 @@ Replicated will provide support for products per our terms and services until th
   <tr>
     <td>1.25.0 and later</td>
     <td>1.87.0 and later</td>
-    <td></td>
+    <td>v2022.09.16-0</td>
     <td>2023-10-27</td>
   </tr>
   <tr>
