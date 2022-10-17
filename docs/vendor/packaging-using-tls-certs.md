@@ -161,6 +161,7 @@ Tp upload a new certificate:
   ```bash
   kubectl delete pods PROXY_SERVER
   ```
-  Replace PROXY_SERVER with the name of the proxy server tat you got from the previous step.
 
-1. After the pod has restarted, direct your browser to `http://<ip>:8800/tls` and run through the upload process in the graphical user interface.
+  Replace PROXY_SERVER with the name of the proxy server that you got in the previous step.
+
+1. After the pod has restarted, direct your browser to `http://<ip>:8800/tls` and go through the upload process in the user interface.
