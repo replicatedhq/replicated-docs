@@ -1,0 +1,30 @@
+# registry add other
+
+Add a generic registry
+
+### Synopsis
+
+Add a generic registry using a username/password
+
+```
+replicated registry add other [flags]
+```
+
+### Options
+
+```
+      --endpoint string   endpoint for the registry
+  -h, --help              help for other
+      --password string   The password to authenticate to the registry with
+      --password-stdin    Take the password from stdin
+      --username string   The userame to authenticate to the registry with
+```
+
+### Options inherited from parent commands
+
+```
+      --app string        The app slug or app id to use in all calls
+      --skip-validation   Skip validation of the registry (not recommended)
+      --token string      The API token to use to access your app in the Vendor API
+```
+
