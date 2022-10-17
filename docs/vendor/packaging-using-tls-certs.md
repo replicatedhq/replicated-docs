@@ -45,7 +45,7 @@ data:
 
 ### Use TLS in a Deployment Resource
 
-This procedure shows how to reference the `kotsadm-tls` secret using an example nginx Deployment resource.
+This procedure shows how to reference the `kotsadm-tls` secret using an example nginx Deployment resource (`kind: Deployment`).
 
 To use the `kotsadm-tls` secret in a Deployment resource:
 
@@ -100,9 +100,7 @@ To use the `kotsadm-tls` secret in a Deployment resource:
 
 ### Use TLS in an Ingress Resource
 
-The `kotsadm-tls` secret can be passed directly to the Ingress resource so that TLS can be terminated at the contour layer. This procedure shows how to to do this using an example nginx Deployment resource.
-
-In an Ingress YAML file, configure `secretName: kotsadm-tls` under hosts:
+The `kotsadm-tls` secret can be passed directly to the Ingress resource so that TLS can be terminated at the contour layer. This procedure shows how to configure `secretName: kotsadm-tls` under hosts in an Ingress resource (`kind: Ingress`):
 
 **Example:**
 
@@ -149,18 +147,20 @@ Tp upload a new certificate:
 
 1. Run the following annotation command to restore the ability to upload new TLS certificates:
 
-  ```shell
+  ```bash
   kubectl -n default annotate secret kotsadm-tls acceptAnonymousUploads=1 --overwrite
+  ```
+1. Run the following command to get the name of the kurl-proxy server:
+
+  ```bash
+  kubectl get pods -A | grep kurl-proxy | awk '{print $2}'
   ```
 
 1. Run the following command to delete the kurl-proxy pod. The pod automatically restarts after running this command:
 
-  ```shell
+  ```bash
   kubectl delete pods PROXY_SERVER
   ```
+  Replace PROXY_SERVER with the name of the proxy server tat you got from the previous step.
 
-The following command should provide the name of the kurl-proxy server:
-
-`kubectl get pods -A | grep kurl-proxy | awk '{print $2}'`
-
-After the pod has been restarted direct your browser to `http://<ip>:8800/tls` and run through the upload process as described above.
+1. After the pod has restarted, direct your browser to `http://<ip>:8800/tls` and run through the upload process in the graphical user interface.
