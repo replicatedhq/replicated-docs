@@ -156,12 +156,12 @@ Tp upload a new certificate:
   kubectl get pods -A | grep kurl-proxy | awk '{print $2}'
   ```
 
-1. Run the following command to delete the kurl-proxy pod. The pod automatically restarts after running this command:
+1. Run the following command to delete the kurl-proxy pod. The pod automatically restarts after the command runs.
 
   ```bash
   kubectl delete pods PROXY_SERVER
   ```
 
-  Replace PROXY_SERVER with the name of the proxy server that you got in the previous step.
+  Replace PROXY_SERVER with the name of the kurl-proxy server that you got in the previous step.
 
 1. After the pod has restarted, direct your browser to `http://<ip>:8800/tls` and go through the upload process in the user interface.
