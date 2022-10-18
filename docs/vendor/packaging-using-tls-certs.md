@@ -1,24 +1,16 @@
-# Enabling Custom TLS Certificates
+# Using TLS Certificates
 
-This topic describes the Replicated app manager default self-signed certificate and how to enable your customers to use custom TLS certificates in your application that is deployed with a Kubernetes installer.
+The Replicated app manager provides default self-signed certificate. The use of custom TLS options are supported.
 
-## About TLS Certificates
+For existing clusters, the expectation is for the end customer to bring their own Ingress Controller such as Contour or Istio and upload their own `kubernetes.io/tls` secret. For an example, see [Ingress with TLS](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls) in the Kubernetes documentation.
 
-The Replicated app manager provides default self-signed certificate. The use of custom TLS certificates is supported.
-
-For existing clusters, the expectation is for the end customer to bring their own Ingress Controller such as Contour or Istio and upload their own `kubernetes.io/tls` secret. For an example, see [Ingress with TLS](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls).
-
-For Kubernetes installer clusters, vendors can provide custom TLS certificates that can be shared with other resources. For more information see [Using Kubernetes Installer TLS Certificates](#using-kubernetes-installer-tls-certificates).
-
-## Using Kubernetes Installer TLS Certificates
-
-If you are packaging your application with a Kubernetes installer, you can provide a custom TLS certificate. Kubernetes installer clusters create a `kotsadm-tls` secret that can reused by other Kubernetes resources, such as Deployment or Ingress, which can be easier than providing and maintaining multiple certificates.
+For Kubernetes installer clusters, end customers can upload a custom TLS certificate. Kubernetes installer clusters create a `kotsadm-tls` secret that can reused by other Kubernetes resources, such as Deployment or Ingress, which can be easier than providing and maintaining multiple certificates. As a vendor, you can enable the use of custom TLS certificates with these additional resources.
 
 For example, if your application does TLS termination, your deployment would need the TLS secret. Or if the application is connecting to another deployment that is also secured using the same SSL certificate (which may not be a trusted certificate), you can use the custom TLS certificate to do validation without relying on the trust chain.
 
 ### Get the TLS Secret
 
-The Kubernetes installer sets up a Kubernetes secret called `kotsadm-tls`. The secret stores the TLS certificate, key, and hostname. Initially, the secret has an annotation set called `acceptAnonymousUploads`. This indicates that a new TLS certificate can be uploaded by the end customer during the installation process. For more information about the app manager installation, see [Completing Application Setup and Deploying](/enterprise/installing-app-setup).
+The Kubernetes installer sets up a Kubernetes secret called `kotsadm-tls`. The secret stores the TLS certificate, key, and hostname. Initially, the secret has an annotation set called `acceptAnonymousUploads`. This indicates that a new TLS certificate can be uploaded by the end customer during the deployment process. For more information about deployment, see [Completing Application Setup and Deploying](/enterprise/installing-app-setup).
 
 Before you can reference the TLS certificate in other resources, you must get the `kotsadm-tls` secret output.
 
@@ -28,7 +20,7 @@ To get the `kots-adm-tls` secret, run:
 kubectl get secret kotsadm-tls -o yaml
 ```
 
-In the output, the `tls.crt` and `tls.key` hold the certificate and key that can be referenced in either Kubernetes resources.
+In the output, the `tls.crt` and `tls.key` hold the certificate and key that can be referenced in other Kubernetes resources.
 
 **Example Output:**
 

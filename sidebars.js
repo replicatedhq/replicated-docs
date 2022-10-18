@@ -148,7 +148,7 @@ const sidebars = {
                   'vendor/packaging-template-functions',
                   'vendor/packaging-include-resources',
                   'vendor/namespaces',
-                  'vendor/packaging-enabling-tls-certs',
+                  'vendor/packaging-using-tls-certs',
                   'vendor/packaging-cleaning-up-jobs',
                   'vendor/packaging-rbac',
                   'vendor/identity-service-configuring',

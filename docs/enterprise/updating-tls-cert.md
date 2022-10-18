@@ -1,14 +1,14 @@
-# Updating a TLS Certificate
+# Updating TLS Certificates on a Kubernetes Installer Cluster
 
-The app manager provides a default self-signed certificate that automatically renews. For Kubernetes installers, the default app manager certificate automatically renews 30 days before the expiration date if the EKCO add-on is enabled with version 0.7.0 and higher.
+For Kubernetes installer provisioned clusters, the default app manager self-signed certificate automatically renews 30 days before the expiration date if your vendor has enabled the EKCO add-on with version 0.7.0 and higher.
 
-If you have uploaded a custom TLS certificate instead, then no renewal is attempted, even if the certificate is expired. In this case, you must manually upload a new certificate.
+If you have uploaded a custom TLS certificate instead, then no renewal is attempted, even if the certificate is expired. In this case, you must manually upload a new custom certificate.
 
 For information about TLS renewal for registry and Kubernetes control plane with the Kubernetes installer, see [TLS Certificates](https://kurl.sh/docs/install-with-kurl/setup-tls-certs) in the kURL documentation.
 
-## Update TLS Certificates for Kubernetes Installer Clusters
+## Update Custom TLS Certificates
 
-If you are using a custom TLS certificate in a Kubernetes installer provisioned cluster, you can to upload a custom TLS certificate when the previous one expires.                
+If you are using a custom TLS certificate in a Kubernetes installer cluster, you manually upload a new certificate when the previous one expires.                
 
 :::warning
 Adding the `acceptAnonymousUploads` annotation temporarily creates a vulnerability for an attacker to maliciously upload TLS certificates. After TLS certificates have been uploaded, the vulnerability is closed again.
