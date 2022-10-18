@@ -12,16 +12,15 @@ Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 
 ### Improvements {#improvements-1-87-1}
 * Updates the kotsadm/dex image to v2.35.3 to resolve CVE-2022-27664 with high severity.
-* Updates SchemaHero to v0.13.3 to resolve CVE-2022-37434 with critical severity.
+* Updates SchemaHero to v0.13.5 to resolve CVE-2022-37434 with critical severity and CVE-2022-27664 with high severity.
 * Updates the replicated/local-volume-provider image to v0.3.9 to resolve CVE-2022-37434 with critical severity.
 * Updates the golang.org/x/net module to resolve CVE-2022-27664 with high severity.
-* Updates the schemahero image to v0.13.5 to resolve CVE-2022-27664 with high severity.
 
 ### Bug Fixes {#bug-fixes-1-87-1}
 * Fixes an issue where cluster screen became blank when node resources pod capacity were defined with SI units.
-* fixes a bug where GitHub and GitOps are shown in pascal case.
-* fixes space missing between two words on diff Why? modal.
-* fix an issue where kots would occasionally not redirect to first available app preflight checks were skipped.
+* Fixes a bug where GitHub and GitOps are shown in pascal case.
+* Fixes space missing between two words on diff Why? modal.
+* Fixes an issue where kots would occasionally not redirect to first available app preflight checks were skipped.
 
 ## 1.87.0
 
