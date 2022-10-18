@@ -4,9 +4,9 @@ The Replicated app manager provides default self-signed certificate. The use of 
 
 For existing clusters, the expectation is for the end customer to bring their own Ingress Controller such as Contour or Istio and upload their own `kubernetes.io/tls` secret. For an example, see [Ingress with TLS](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls) in the Kubernetes documentation.
 
-For Kubernetes installer clusters, end customers can upload a custom TLS certificate. Kubernetes installer clusters create a `kotsadm-tls` secret that can reused by other Kubernetes resources, such as Deployment or Ingress, which can be easier than providing and maintaining multiple certificates. As a vendor, you can enable the use of custom TLS certificates with these additional resources.
+For Kubernetes installer clusters, end customers can upload a custom TLS certificate. Kubernetes installers creates that can reused by other Kubernetes resources, such as Deployment or Ingress, which can be easier than providing and maintaining multiple certificates. As a vendor, you can enable the use of custom TLS certificates with these additional resources.
 
-For example, if your application does TLS termination, your deployment would need the TLS secret. Or if the application is connecting to another deployment that is also secured using the same SSL certificate (which may not be a trusted certificate), you can use the custom TLS certificate to do validation without relying on the trust chain.
+For example, if your application does TLS termination, your deployment would need the TLS secret. Or if the application is connecting to another deployment that is also secured using the same SSL certificate (which may not be a trusted certificate), the custom TLS certificate can be used to do validation without relying on the trust chain.
 
 ### Get the TLS Secret
 
