@@ -1,6 +1,6 @@
 # Updating TLS Certificates on a Kubernetes Installer Cluster
 
-For Kubernetes installer provisioned clusters, the default app manager self-signed certificate automatically renews 30 days before the expiration date if your vendor has enabled the EKCO add-on with version 0.7.0 and higher.
+For Kubernetes installer provisioned clusters, the default app manager self-signed certificate automatically renews 30 days before the expiration date.
 
 If you have uploaded a custom TLS certificate instead, then no renewal is attempted, even if the certificate is expired. In this case, you must manually upload a new custom certificate.
 
