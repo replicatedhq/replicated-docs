@@ -39,33 +39,122 @@ registry.
 
 All applications in your vendor portal Team have access to the external registry
 that you add. This means that you can use the images in the external registry across
-multiple apps in the Team.
+multiple applications in the Team.
+
+The External Registry Support pane on the Images page displays all of the applications that are connected to external registries and shows that registry log files.
 
 To follow a tutorial connecting a sample app to an Amazon Elastic Container Registry (ECR), see [Tutorial: Using ECR for Private Images](tutorial-ecr-private-images).
 
 To configure access to your private images in an external registry using the vendor portal:
 
 1. Log in to the [vendor portal](https://vendor.replicated.com) and go to the Images page.
-1. Click **Add external registry**.
+1. In the External Registry Support pane, click **Add External Registry**.
 
    ![Add External Registry dialog in the vendor portal](/images/add-external-registry.png)
 
-1. Click the **Other Registry** or **DockerHub** tab.
-1. Complete the fields in the dialog:
-<table>
-  <tr>
-    <th width="30%">Field</th>
-    <th width="70%">Instructions</th>
-  </tr>
-  <tr>
-    <td>Endpoint</td>
-    <td>Enter the endpoint, such as quay.io, index.docker.io, or gcr.io.</td>
-  </tr>
-  <tr>
-    <td>Username and Password</td>
-    <td>Provide the username and password for an account that has pull access to the private registry.<br/><br/>For Amazon ECR registries, provide the Access Key ID and Secret Key for a Service Account User that has pull access to the registry. See <a href="tutorial-ecr-private-images#setting-up-the-service-account-user">Setting up the Service Account User</a>.<br/><br/>Replicated stores your username and password encrypted and securely. Your credentials and the encryption key do not leave Replicated servers.</td>
-  </tr>
-</table>
+1. In the Link a New Registry dialog, select a provider from the dropdown list. Choices include Amazon Elastic Container Registry (ECR), Docker Hub, GitHub Container Registry, Google Container Registry (GCR), quay.io, and Other. _Other_ is a generic registry for any other provider that you want to use.
+
+1. Complete the additional fields in the dialog. The fields that appear depend on which provider you choose.
+
+  **Amazon ECR:**
+  <table>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="70%">Description</th>
+    </tr>
+    <tr>
+      <td>Access Key ID</td>
+      <td>Provide the Access Key ID for a Service Account User that has pull access to the registry. See <a href="tutorial-ecr-private-images#setting-up-the-service-account-user">Setting up the Service Account User</a>.</td>
+    </tr>
+    <tr>
+      <td>Secret Key</td>
+      <td>Provide the Secret Key for a Service Account User that has pull access to the registry. See <a href="tutorial-ecr-private-images#setting-up-the-service-account-user">Setting up the Service Account User</a>.</td>
+    </tr>
+    <tr>
+      <td>Secret Key STDIN</td>
+      <td>Provide the Secret Key STDIN for a Service Account User that has pull access to the registry. See <a href="tutorial-ecr-private-images#setting-up-the-service-account-user">Setting up the Service Account User</a>.</td>
+    </tr>
+  </table>
+
+  **Docker Hub:**
+  <table>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="70%">Description</th>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+
+  **GitHub Container Registry:**
+  <table>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="70%">Description</th>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+
+  **Google Container Registry:**
+  <table>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="70%">Description</th>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+
+  **quay.io:**
+  <table>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="70%">Description</th>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
+
+  **Other:**
+  <table>
+    <tr>
+      <th width="30%">Field</th>
+      <th width="70%">Description</th>
+    </tr>
+    <tr>
+      <td>Username and Password</td>
+      <td>Provide the username and password for an account that has pull access to the private registry.<br/><br/>Replicated stores your username and password encrypted and securely. Your credentials and the encryption key do not leave Replicated servers.</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+    </tr>
+  </table>
 
 To configure access to private images in an external registry using the Replicated CLI:
 
