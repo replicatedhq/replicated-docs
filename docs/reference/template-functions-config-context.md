@@ -262,7 +262,7 @@ Replicated evaluates and templates each item in the Config custom resource separ
 As a workaround, you can create a configuration item with `hidden` set to `true` to evaluate complex templates and render the results.
 Then, you can access the result using the [`ConfigOption`](#configoption) function.
 
-The following Config custom resource example demonstrates how to generate a CA, a cert, and a key using [Sprig](http://masterminds.github.io/sprig/) functions. It also shows how to use a hidden `tls_json` configuration field that contains all the generated values in JSON format, and then reference the `tls_json` field in other configuration fields.
+The following Config custom resource example demonstrates how to generate a certificate authority (CA), a cert, and a key using [Sprig](http://masterminds.github.io/sprig/) functions. It also shows how to use a hidden `tls_json` configuration field that contains all the generated values in JSON format, and then reference the `tls_json` field in other configuration fields.
 
 **Warning**: Default values are treated as ephemeral. The following certificate chain is recalculated each time the application configuration is modified. Be sure that your application can handle updating these parameters dynamically.
 
