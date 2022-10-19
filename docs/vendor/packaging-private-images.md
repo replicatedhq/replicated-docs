@@ -168,7 +168,7 @@ To configure access to your private images in an external registry using the ven
     </tr>
   </table>
 
-1. For **Image name & tag**, enter the image name and optionally a tag. Click **Test** to test the connection to the external registry.
+1. For **Image name & tag**, enter the image name and optionally a tag. Click **Test** to test pulling the image from the specified registry.
 
   A success or fail status appears.
 
