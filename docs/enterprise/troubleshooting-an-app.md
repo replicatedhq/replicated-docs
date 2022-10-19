@@ -78,7 +78,7 @@ To install the support-bundle plugin manually:
 If the admin console is running and the application is installed, run the following command to generate a support bundle that includes customizations provided by your vendor:
 
   ```
-  kubectl support-bundle secrets/NAMESPACE/kotsadm-APP_SLUG-supportbundle
+  kubectl support-bundle secret/NAMESPACE/kotsadm-APP_SLUG-supportbundle
   ```
 
 Replace:
