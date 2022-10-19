@@ -16,7 +16,7 @@ Adding the `acceptAnonymousUploads` annotation temporarily creates a vulnerabili
 Replicated recommends that you complete this upload process quickly to minimize the vulnerability risk.
 :::
 
-Tp upload a new custom TLS certificate:
+To upload a new custom TLS certificate:
 
 1. Run the following annotation command to restore the ability to upload new TLS certificates:
 
