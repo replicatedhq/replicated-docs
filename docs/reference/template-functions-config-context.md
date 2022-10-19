@@ -251,24 +251,20 @@ This is true for air gapped installations, and optionally true for online instal
 
 ## Examples
 
+This section includes examples for using template functions from the config context.
+
 ### Example: Using Variables to Generate TLS Certificates and Keys {#tls-cert-example}
 
-A result returned from a template function can be assigned to a variable, and the variable can be used in another template function as long as the templates are evaluated at the same time.
+For template functions that Replicated evaluates at the same time, you can assign the result returned by a template function to a variable in a manifest file, then use the variable in another template function.
 
-All manifest files for the application are templated in a single pass.
-The Config custom resource manifest file is an exception.
-Each config item is templated separately and has no access to variables created in other config items.
-As a workaround, a hidden config item can be used to evaluate complex templates and render the results.
-The result can be accessed using the [`ConfigOption`](../reference/template-functions-config-context#configoption) function.
+Replicated evaluates and templates each item in the Config custom resource separately. Template functions in the Config custom resource do not have access to variables defined in other configuration fields.
 
-For more information about the Config custom resource, see [Config](../reference/custom-resource-config) in the _Custom resources_ section.
+As a workaround, you can create a configuration item with `hidden` set to `true` to evaluate complex templates and render the results.
+Then, you can access the result using the [`ConfigOption`](#configoption) function.
 
-This example demonstrates how to generate a CA, a cert, and a key using [Sprig](http://masterminds.github.io/sprig/) functions.
-`tls_json` is the hidden config item that contains all of the generated values in JSON format.
+The following Config custom resource example demonstrates how to generate a CA, a cert, and a key using [Sprig](http://masterminds.github.io/sprig/) functions. It also shows how to use a hidden `tls_json` configuration field that contains all the generated values in JSON format, and then reference the `tls_json` field in other configuration fields.
 
-*Prerequisites*
-* This requires the app manager 1.26.0 or later.
-* **Warning**: Default values are treated as ephemeral. The following certificate chain is recalculated each time the application configuration is modified. Be sure that your application can handle updating these parameters dynamically.
+**Warning**: Default values are treated as ephemeral. The following certificate chain is recalculated each time the application configuration is modified. Be sure that your application can handle updating these parameters dynamically.
 
 ```yaml
 apiVersion: kots.io/v1beta1
