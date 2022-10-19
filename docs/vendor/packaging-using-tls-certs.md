@@ -1,10 +1,10 @@
 # Using TLS Certificates
 
-The Replicated app manager provides default self-signed certificate. The use of custom TLS options are supported.
+The Replicated app manager provides default self-signed certificates. The use of custom TLS options are supported.
 
 For existing clusters, the expectation is for the end customer to bring their own Ingress Controller such as Contour or Istio and upload their own `kubernetes.io/tls` secret. For an example, see [Ingress with TLS](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls) in the Kubernetes documentation.
 
-For Kubernetes installer clusters, end customers can upload a custom TLS certificate. Kubernetes installers creates that can reused by other Kubernetes resources, such as Deployment or Ingress, which can be easier than providing and maintaining multiple certificates. As a vendor, you can enable the use of custom TLS certificates with these additional resources.
+For Kubernetes installer clusters, end customers can upload a custom TLS certificate. The Kubernetes installer creates a TLS secret that can reused by other Kubernetes resources, such as Deployment or Ingress, which can be easier than providing and maintaining multiple certificates. As a vendor, you can enable the use of custom TLS certificates with these additional resources.
 
 For example, if your application does TLS termination, your deployment would need the TLS secret. Or if the application is connecting to another deployment that is also secured using the same SSL certificate (which may not be a trusted certificate), the custom TLS certificate can be used to do validation without relying on the trust chain.
 
@@ -92,7 +92,7 @@ To use the `kotsadm-tls` secret in a Deployment resource:
 
 ### Use TLS in an Ingress Resource
 
-The `kotsadm-tls` secret can be passed directly to the Ingress resource so that TLS can be terminated at the contour layer. This procedure shows how to configure `secretName: kotsadm-tls` under hosts in an Ingress resource (`kind: Ingress`):
+You can add the `kotsadm-tls` secret to the Ingress resource to terminate TLS at the contour layer. The following example shows how to configure `secretName: kotsadm-tls` under the TLS `hosts` field in an Ingress resource (`kind: Ingress`):
 
 **Example:**
 
@@ -115,4 +115,6 @@ spec:
             serviceName: nginx
             servicePort: 80
 ```
-**Note:** `tls.foo.com` must resolve to a valid IP, and also must match the Common Name (CN) or Subjective Alternative Name (SAN) of the TLS certificate.
+:::note
+`tls.foo.com` must resolve to a valid IP, and also must match the Common Name (CN) or Subjective Alternative Name (SAN) of the TLS certificate.
+:::
