@@ -13,7 +13,7 @@ Released on October 13, 2022
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.23.0 with support for Rook 1.9.
 
 ### Bug Fixes {#bug-fixes-v2022-10-13-0}
-* Fixes an issue that could prevent the EKCO Deployment from scaling back up from zero replicas after running the Kubernetes installer script.
+* Fixes an issue that could prevent the EKCO deployment from scaling back up from zero replicas after running the Kubernetes installer script.
 
 ## v2022.10.10-0
 
@@ -72,8 +72,8 @@ Released on September 23, 2022
 
 ### Improvements {#improvements-v2022-09-23-0}
 * Messaging while upgrading Rook-Ceph add-on to newer versions has been improved.
-* When run on an unsupported Operating System, kURL will now link to the [list of supported systems](https://kurl.sh/docs/install-with-kurl/system-requirements#supported-operating-systems).
-* Online installations will download files from kurl.sh instead of Amazon S3.
+* When run on an unsupported operating system, kURL now links to the [list of supported systems](https://kurl.sh/docs/install-with-kurl/system-requirements#supported-operating-systems).
+* Online installations now downloads files from kurl.sh instead of Amazon S3.
 
 ## v2022.09.19-0
 
