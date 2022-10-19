@@ -45,6 +45,8 @@ The External Registry Support pane on the Images page displays all of the applic
 
 To follow a tutorial connecting a sample app to an Amazon Elastic Container Registry (ECR), see [Tutorial: Using ECR for Private Images](tutorial-ecr-private-images).
 
+### Configure Access with the Vendor Portal
+
 To configure access to your private images in an external registry using the vendor portal:
 
 1. Log in to the [vendor portal](https://vendor.replicated.com) and go to the Images page.
@@ -64,15 +66,11 @@ To configure access to your private images in an external registry using the ven
     </tr>
     <tr>
       <td>Access Key ID</td>
-      <td>Provide the Access Key ID for a Service Account User that has pull access to the registry. See <a href="tutorial-ecr-private-images#setting-up-the-service-account-user">Setting up the Service Account User</a>.</td>
+      <td>Provide the access key ID for a Service Account User that has pull access to the registry. See <a href="tutorial-ecr-private-images#setting-up-the-service-account-user">Setting up the Service Account User</a>.</td>
     </tr>
     <tr>
       <td>Secret Key</td>
-      <td>Provide the Secret Key for a Service Account User that has pull access to the registry. See <a href="tutorial-ecr-private-images#setting-up-the-service-account-user">Setting up the Service Account User</a>.</td>
-    </tr>
-    <tr>
-      <td>Secret Key STDIN</td>
-      <td>Provide the Secret Key STDIN for a Service Account User that has pull access to the registry. See <a href="tutorial-ecr-private-images#setting-up-the-service-account-user">Setting up the Service Account User</a>.</td>
+      <td>Provide the secret key for a Service Account User that has pull access to the registry. The key can be a string or taken from stdin. See <a href="tutorial-ecr-private-images#setting-up-the-service-account-user">Setting up the Service Account User</a>.</td>
     </tr>
   </table>
 
@@ -83,12 +81,20 @@ To configure access to your private images in an external registry using the ven
       <th width="70%">Description</th>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
+      <td>Auth Type</td>
+      <td>Enter the authorization type for the registry. Types are Password or Token.</td>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
+      <td>Username</td>
+      <td>This field appears if you selected Password as the Auth Type. Enter the username used to authenticate with the registry.</td>
+    </tr>
+    <tr>
+      <td>Password</td>
+      <td>This field appears if you selected Password as the Auth Type. Enter the password used to authenticate with the registry. The password can be a string or taken from stdin.</td>
+    </tr>
+    <tr>
+      <td>Token</td>
+      <td>This field appears if you selected Token as the Auth Type. Enter the API token used to access your application in the Vendor API. The token can be a string or taken from stdin.</td>
     </tr>
   </table>
 
@@ -99,12 +105,8 @@ To configure access to your private images in an external registry using the ven
       <th width="70%">Description</th>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td></td>
-      <td></td>
+      <td>Token</td>
+      <td>Enter the API token used to access your application in the Vendor API. This token can be a string or taken from stdin.</td>
     </tr>
   </table>
 
@@ -115,8 +117,12 @@ To configure access to your private images in an external registry using the ven
       <th width="70%">Description</th>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
+      <td>Endpoint</td>
+      <td>Enter the endpoint, such as <code>gcr.io</code>.</td>
+    </tr>
+    <tr>
+      <td>Service Account JSON Key</td>
+      <td>Copy and paste the JSON service account key that is used to authenticate with the registry. This key can be a string or taken from stdin.</td>
     </tr>
     <tr>
       <td></td>
@@ -131,12 +137,12 @@ To configure access to your private images in an external registry using the ven
       <th width="70%">Description</th>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
+      <td>Username</td>
+      <td>Provide the username for an account that has pull access to the private registry.</td>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
+      <td>Password</td>
+      <td>Enter the password used to authenticate with the registry. The password can be a string or taken from stdin.</td>
     </tr>
   </table>
 
@@ -147,14 +153,22 @@ To configure access to your private images in an external registry using the ven
       <th width="70%">Description</th>
     </tr>
     <tr>
-      <td>Username and Password</td>
-      <td>Provide the username and password for an account that has pull access to the private registry.<br/><br/>Replicated stores your username and password encrypted and securely. Your credentials and the encryption key do not leave Replicated servers.</td>
+      <td>Username</td>
+      <td>Provide the username for an account that has pull access to the private registry.<br/><br/>Replicated stores your username and password encrypted and securely. Your credentials and the encryption key do not leave Replicated servers.</td>
     </tr>
     <tr>
-      <td></td>
-      <td></td>
+      <td>Password</td>
+      <td>Provide the password used to authenticate with the registry.<br/><br/>Replicated stores your username and password encrypted and securely. Your credentials and the encryption key do not leave Replicated servers.</td>
     </tr>
   </table>
+
+1. For **Image name & tag**, enter the information and click **Test** to test the connection to the external registry.
+
+  A success or fail status appears.
+
+1. Click **Link Registry** to finish linking the registry.
+
+### Configure Access with the CLI
 
 To configure access to private images in an external registry using the Replicated CLI:
 
@@ -169,7 +183,7 @@ replicated registry add <hostname> \
 
 To prevent the password from being saved in your shell history, we recommend using the `--password-stdin` flag and entering the password when prompted.
 
-## Test External Registry Credentials
+### Test External Registry Credentials
 
 There are a lot of variables when configuring access to an external registry that could prevent it from working if not properly set up. To help understand these early, the Replicated CLI has support to validate that the configured registry can pull specific images:
 
