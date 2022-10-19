@@ -145,7 +145,6 @@ const sidebars = {
                   'vendor/packaging-ingress',
                   'vendor/packaging-custom-resources',
                   'vendor/packaging-kots-versions',
-                  'vendor/packaging-template-functions',
                   'vendor/packaging-include-resources',
                   'vendor/namespaces',
                   'vendor/packaging-using-tls-certs',
