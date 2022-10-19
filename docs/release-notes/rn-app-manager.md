@@ -26,7 +26,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, 1.25
 
 ### Known Issue {#known-issues-1-87-0}
 
-There is a known issue in the app manager v1.87.0 that causes a KOTS icon, rather than the application icon, to display on the login page before the application is deployed. Once the application is deployed, the application icon shows on the login screen.
+There is a known issue in the app manager v1.87.0 that causes a KOTS icon, instead of the application icon, to display on the login page before the application is deployed. After the application is deployed, the application icon shows on the login screen.
 
 ## 1.86.2
 
