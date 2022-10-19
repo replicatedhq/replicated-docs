@@ -270,6 +270,7 @@ const sidebars = {
             'enterprise/updating-embedded-cluster',
             'enterprise/updating-patching-with-kustomize',
             'enterprise/updating-licenses',
+            'enterprise/updating-tls-cert',
           ],
         },
         {
