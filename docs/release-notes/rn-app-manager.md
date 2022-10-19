@@ -27,7 +27,6 @@ Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 * fixes space missing between two words on diff Why? modal.
 * fix an issue where kots would occasionally not redirect to first available app preflight checks were skipped.
 * fix an issue where custom app icons were not showing on login page.
-* Fixes an issue that causes Released timestamp to be the same for all releases on the [version history](/enterprise/updating-apps#update-an-application-in-the-admin-console) page in [Helm managed mode (Alpha)](/vendor/helm-install).
 
 ## 1.87.0
 
