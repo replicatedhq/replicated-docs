@@ -56,7 +56,7 @@ To configure access to your private images in an external registry using the ven
 
 1. In the Link a New Registry dialog, select a provider from the dropdown list. Choices include Amazon Elastic Container Registry (ECR), Docker Hub, GitHub Container Registry, Google Container Registry (GCR), quay.io, and Other. _Other_ is a generic registry for any other provider that you want to use.
 
-1. Complete the additional fields in the dialog. The fields that appear depend on which provider you choose.
+1. Complete the additional fields in the dialog. The fields that appear depend on which provider you select and, in some cases, which authorization type you select.
 
   **Amazon ECR:**
   <table>
@@ -90,15 +90,15 @@ To configure access to your private images in an external registry using the ven
     </tr>
     <tr>
       <td>Username</td>
-      <td>This field appears if you selected Password as the Auth Type. Enter the username used to authenticate with the registry.</td>
+      <td>If you selected Password as the Auth Type, enter the username used to authenticate with the registry.</td>
     </tr>
     <tr>
       <td>Password</td>
-      <td>This field appears if you selected Password as the Auth Type. Enter the password used to authenticate with the registry. The password can be a string or taken from stdin.</td>
+      <td>If you selected Password as the Auth Type, enter the password used to authenticate with the registry. The password can be a string or taken from stdin.</td>
     </tr>
     <tr>
       <td>Token</td>
-      <td>This field appears if you selected Token as the Auth Type. Enter the API token used to access your application in the Vendor API. The token can be a string or taken from stdin.</td>
+      <td>If you selected Token as the Auth Type, enter the API token used to access your application in the Vendor API. The token can be a string or taken from stdin.</td>
     </tr>
   </table>
 
@@ -170,7 +170,7 @@ To configure access to your private images in an external registry using the ven
 
   A success or fail status appears.
 
-1. Click **Link Registry** to finish linking the registry.
+1. Click **Link Registry** to finish linking the registry to the Replicated servers.
 
 ### Configure Access with the CLI
 
