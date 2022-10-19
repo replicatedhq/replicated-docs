@@ -65,6 +65,10 @@ To configure access to your private images in an external registry using the ven
       <th width="70%">Description</th>
     </tr>
     <tr>
+      <td>Endpoint</td>
+      <td>Enter the endpoint, such as <code>ecr.io</code>.</td>
+    </tr>
+    <tr>
       <td>Access Key ID</td>
       <td>Provide the access key ID for a Service Account User that has pull access to the registry. See <a href="tutorial-ecr-private-images#setting-up-the-service-account-user">Setting up the Service Account User</a>.</td>
     </tr>
@@ -122,7 +126,7 @@ To configure access to your private images in an external registry using the ven
     </tr>
     <tr>
       <td>Service Account JSON Key</td>
-      <td>Copy and paste the JSON service account key that is used to authenticate with the registry. This key can be a string or taken from stdin.</td>
+      <td>Paste in the JSON service account key that is used to authenticate with the registry. This key can be a string or taken from stdin.</td>
     </tr>
     <tr>
       <td></td>
@@ -170,37 +174,46 @@ To configure access to your private images in an external registry using the ven
 
 ### Configure Access with the CLI
 
-To configure access to private images in an external registry using the Replicated CLI:
+You can use the replicated CLI to configure an external private registry. For information complete reference information about the supported providers, see [registry add](/reference/replicated-cli-registry-add).
+
+To configure access to private images in an external registry using the replicated CLI:
 
 1. Follow the instructions to [install and configure](/reference/replicated-cli-installing) the Replicated CLI.
-1. Add a registry using the following command:
+1. Add a registry using the `registry add` command.
 
-```bash
-replicated registry add <hostname> \
-    --username <username> \
-    --password <password>
-```
+  **Example: `other` Provider**
 
-To prevent the password from being saved in your shell history, we recommend using the `--password-stdin` flag and entering the password when prompted.
+  ```bash
+  replicated registry add other \
+      --username USERNAME \
+      --password PASSWORD
+  ```
 
-### Test External Registry Credentials
+  Replace:
 
-There are a lot of variables when configuring access to an external registry that could prevent it from working if not properly set up. To help understand these early, the Replicated CLI has support to validate that the configured registry can pull specific images:
+  - USERNAME with a username that has access to pull images from the registry.
+  - PASSWORD with the password for the specified username that can access the registry.
 
-```bash
-replicated registry test <hostname> \
-    --image <imagename>
-```
+  To prevent the password from being saved in your shell history, Replicated recommends using the `--password-stdin` flag and entering the password when prompted.
 
-This will ensure that the the saved credentials on our servers can pull the image specified in `imagename`.
+1. Run the following command to test that the Replicated servers can pull the specified image:
 
-For example:
+  ```bash
+  replicated registry test ENDPOINT \
+      --image IMAGE:TAG
+  ```
 
-```bash
-replicated registry test index.docker.io my-company/my-image:v1.2.3
-```
+  Replace:
 
+  - ENDPOINT with the host endpoint.
+  - IMAGE with the name of the image.
+  - TAG the tag for the image, if you are using a tag.
 
+  **Example:**
+
+  ```bash
+  replicated registry test index.docker.io my-company/my-image:v1.2.3
+  ```
 
 ## Push Images to the Replicated Private Registry
 
