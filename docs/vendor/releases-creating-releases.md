@@ -12,7 +12,9 @@ To create a release:
 
 1. Log in (or create a new team) on the [vendor portal](https://vendor.replicated.com) and create a new application. After signing up and activating your account, you are prompted to create a new application. Name your application and click **Create Application**.
 
-  **Note:** If you are logging in with an existing account, you can update an existing application or select **Create new app** from the application drop-down list.
+   :::note
+   If you are logging in with an existing account, you can update an existing application or select **Create new app** from the application drop-down list.
+   :::
 
   ![Create Application](/images/guides/kots/create-application.png)
 
