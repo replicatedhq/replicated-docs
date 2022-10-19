@@ -1,0 +1,12 @@
+```yaml
+env:
+  - name: MAX_CONCURRENT_USERS
+    value: '{{repl LicenseFieldValue "max_concurrent_users"}}'
+```
+The template function above renders as a string. For example:
+
+```yaml
+env:
+  - name: MAX_CONCURRENT_USERS
+    value: '100'
+```
