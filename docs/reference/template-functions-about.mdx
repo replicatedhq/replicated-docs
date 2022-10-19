@@ -1,0 +1,131 @@
+import SyntaxStringExample from "../partials/template-functions-about/_syntax-string-example.mdx"
+import SyntaxString from "../partials/template-functions-about/_syntax-string.mdx"
+import SyntaxIntegerExample from "../partials/template-functions-about/_syntax-integer-example.mdx"
+import SyntaxInteger from "../partials/template-functions-about/_syntax-integer.mdx"
+
+# About Template Functions
+
+This topic describes Replicated template functions, including information about template function contexts, syntax, and examples.
+
+## Overview of Template Functions
+
+You can use Go template functions in your application manifest files to render the manifests in the customer environment. Replicated also provides a set of custom template functions based on the Go text/template library. You can use all functionality of Go templating language with the Replicated custom template functions.
+
+For more information about the Go library, see [text/template](https://golang.org/pkg/text/template/) in the Go documentation. For more information about Replicated template functions, see [Replicated Template Function Contexts](#contexts) below.
+
+A common use case for adding template functions to your application manifest files is to generate values that are specific to the customer environment, such as customer entitlement information or user-provided configurations. Similarly, template functions can also return values with information about the customer environment, such the number of nodes detected in the Kubernetes cluster where the application is installed.
+
+For example, you can create a custom entitlement in Replicated vendor portal named `max_concurrent_users` that defines the maximum number of concurrent users permitted by the customer's license. To enforce the entitlement, you can use a template function in the License context to supply the `max_concurrent_users` value as a Pod environment variable:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api
+spec:
+  selector:
+    matchLabels:
+      app: api
+  template:
+    spec:
+      containers:
+      - image: myapp/api:v1.0.1
+        name: api
+        env:
+          - name: MAX_CONCURRENT_USERS
+            value: '{{repl LicenseFieldValue "max_concurrent_users" }}'
+```
+
+For more information about using template functions to create custom license fields, see [Managing Custom License Fields](/vendor/licenses-adding-custom-fields).
+
+## About Templating and Variables
+
+Replicated templates all manifest files, except the Config custom resource, at the same time during a single process. For the Config custom resource, Replicated templates each of the configuration fields defined in the `items:` field separately.
+
+Template functions have access to variables defined in other manifest files that are templated at the same time. This means that you can assign the result returned by a template function to a variable in a manifest file, then use the variable in another template function.
+
+Template functions in the Config custom resource do not have access to variables defined in other configuration fields under `items:`. For information about how to use `hidden` fields to pass variables to template functions in the Config custom resource, see [Example: Using Variables to Generate TLS Certificates and Keys](template-functions-config-context#tls-cert-example) in _Config Context_.
+
+
+## Template Function Syntax {#syntax}
+
+You can assign a template function as the value for a field in a manifest file. You include template functions in manifest files as strings, using the syntax described in this section.
+
+The Replicated template function syntax supports the following functionally equivalent delimiters:
+* [`'{{repl ... }}'`](#syntax-string): This syntax includes quotation marks to be valid YAML and renders a string value.
+* [`repl{{ ... }}`](#syntax-integer): This syntax renders an integer value.
+
+### `'{{repl ... }}'` {#syntax-string}
+
+<table>
+  <tr>
+    <th>Syntax</th>
+    <td><SyntaxString/></td>
+  </tr>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>This syntax is wrapped in quotes because <code>&#123;&#123;</code> is not a valid beginning for a string in YAML.
+      To use a template function with this syntax as a value in a YAML file, you must wrap it in quotation marks.</p>
+      <p>This syntax renders string values. Do not use this syntax if the Kubernetes API field requires an integer value.</p></td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><SyntaxStringExample/>
+    </td>
+  </tr>
+</table>
+
+### `repl{{ ... }}` {#syntax-integer}
+
+<table>
+  <tr>
+    <th>Syntax</th>
+    <td><SyntaxInteger/></td>
+  </tr>
+  <tr>
+    <th>Description</th>
+    <td><p>This syntax uses the delimiter after <code>repl</code>, and does not require quotation marks.
+    Use this syntax to render integer values.</p></td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><SyntaxIntegerExample/>
+    </td>
+  </tr>
+</table>
+
+
+## Replicated Template Function Contexts {#contexts}
+
+Replicated template functions are grouped into different contexts, depending on the phase of the application lifecycle when the function is available and the context data that is provided.
+
+### Static Context
+
+You can use template functions in the static context in any manifest file. Static context template functions are available at any time.
+
+The static context also includes the Masterminds Sprig function library. For more information, see [Sprig Function Documentation](http://masterminds.github.io/sprig/) on the sprig website.
+
+For a list of all Replicated template functions available in the static context, see [Static context](template-functions-static-context).
+
+### Config Context
+
+Template functions in the config context are available when rendering an application that has a config screen.
+At execution time, template functions in this context also can use the static context functions.
+
+For a list of all Replicated template functions available in the config context, click see [Config context](template-functions-config-context).
+
+### License Context
+Template functions in the license context have access to license and version data.
+
+For a list of all Replicated functions available in the license context, see [License context](template-functions-license-context).
+
+### kURL Context
+Template functions in the kURL context have access to information about applications installed on a cluster created by the Replicated Kubernetes installer.
+
+For a list of all Replicated template functions available in the kURL context, see [kURL context](template-functions-kurl-context).
+
+### Identity Context
+Template functions in the Identity context have access to Replicated identity service information.
+
+For a list of all Replicated template functions available in the identity context, see [Identity context](template-functions-identity-context).

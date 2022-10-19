@@ -1,3 +1,29 @@
+###################################################
+###################################################
+# Replicated Docs Redirects
+###################################################
+###################################################
+
+
+
+###################################################
+# Syntax
+###################################################
+
+#[[redirects]]
+  #from = "FROM_URL"
+  #to = "TO_URL"
+
+# For more information, see https://docs.netlify.com/configure-builds/file-based-configuration/#redirects
+
+
+
+###################################################
+# High-Level Redirects
+###################################################
+
+
+# Redirects from the root of the directories
 [[redirects]]
   #from = "/*"
   #to = "/blog/:splat"
@@ -21,3 +47,32 @@
 [[redirects]]
   from = "https://docs.replicated.com/release-notes"
   to = "https://docs.replicated.com/release-notes/rn-whats-new"
+
+###################################################
+# Redirects To the Getting Started Section
+###################################################
+
+###################################################
+# Redirects To the Vendor Section
+###################################################
+
+###################################################
+# Redirects To the Enterprise Section
+###################################################
+
+###################################################
+# Redirects To the References Section
+###################################################
+
+# Redirects from the removed packaging-template-functions topic
+[[redirects]]
+  from="https://docs.replicated.com/vendor/packaging-template-functions"
+  to= "https://docs.replicated.com/reference/template-functions-about"
+
+[[redirects]]
+  from="https://docs.replicated.com/vendor/packaging-template-functions/"
+  to= "https://docs.replicated.com/reference/template-functions-about"
+
+###################################################
+# Redirects To the Release Notes Section
+###################################################
