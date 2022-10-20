@@ -15,10 +15,9 @@ Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 
 ### Improvements {#improvements-1-88-0}
 * Updates the kotsadm/dex image to v2.35.3 to resolve CVE-2022-27664 with high severity.
-* Updates the replicated/local-volume-provider image to v0.3.9 to resolve CVE-2022-37434 with critical severity.
 * Updates the golang.org/x/net module to resolve CVE-2022-27664 with high severity.
 * Updates the schemahero image to v0.13.5 to resolve CVE-2022-37434 with critical severity and CVE-2022-27664 with high severity.
-* Updates the replicated/local-volume-provider image to v0.3.10 to resolve CVE-2022-27664 with high severity.
+* Updates the replicated/local-volume-provider image to v0.3.10 to resolve CVE-2022-37434 with critical severity and CVE-2022-27664 with high severity.
 
 ### Bug Fixes {#bug-fixes-1-88-0}
 * Fixes an issue where the cluster management page was blank when the pod capacity for a node was defined with an SI prefix (e.g., `1k`).
