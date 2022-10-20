@@ -22,7 +22,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 
 ### Bug Fixes {#bug-fixes-1-88-0}
 * Fixes an issue where the cluster management page was blank when the pod capacity for a node was defined with an SI prefix (e.g., `1k`).
-* Fixes an issue where the app manager occasionally would not redirect to the dashboard after preflight checks were skipped.
+* Fixes an issue where the admin console occasionally would not redirect to the dashboard after preflight checks were skipped.
 * Fixes an issue where the application icon did not show on the login page until the application was deployed.
 
 ## 1.87.0
