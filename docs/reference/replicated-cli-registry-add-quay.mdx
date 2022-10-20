@@ -1,0 +1,37 @@
+import App from "../partials/replicated-cli/_app.mdx"
+import SkipValidation from "../partials/replicated-cli/_skip-validation.mdx"
+import Token from "../partials/replicated-cli/_token.mdx"
+import Password from "../partials/replicated-cli/_password.mdx"
+import PasswordStdin from "../partials/replicated-cli/_password-stdin.mdx"
+import Username from "../partials/replicated-cli/_username.mdx"
+
+# registry add quay
+
+Adds a quay.io registry using a username/password or a robot account.
+
+## Usage
+
+```
+replicated registry add quay [flags]
+```
+
+The following flags are supported:
+
+<table>
+  <tr>
+    <th width="15%">Flag</th>
+    <th width="15%">Type</th>
+    <th width="70%">Description</th>
+  </tr>
+  <App/>
+  <tr>
+    <td>-h, --help</td>
+    <td></td>
+    <td>Help for <code>quay</code>.</td>
+  </tr>
+  <Password/>
+  <PasswordStdin/>
+  <SkipValidation/>
+  <Token/>
+  <Username/>
+</table>
