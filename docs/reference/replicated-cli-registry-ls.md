@@ -1,25 +1,31 @@
+import App from "../partials/replicated-cli/_app.mdx"
+import Token from "../partials/replicated-cli/_token.mdx"
+
 # registry ls
 
-list registries
+Lists multiple registries or a single registry by name.
 
-### Synopsis
-
-list registries, or a single registry by name
+## Usage
 
 ```
 replicated registry ls [NAME] [flags]
 ```
 
-### Options
+Replace NAME with the name of the registry.
 
-```
-  -h, --help   help for ls
-```
+The following flags are supported:
 
-### Options inherited from parent commands
-
-```
-      --app string     The app slug or app id to use in all calls
-      --token string   The API token to use to access your app in the Vendor API
-```
-
+<table>
+  <tr>
+    <th width="15%">Flag</th>
+    <th width="15%">Type</th>
+    <th width="70%">Description</th>
+  </tr>
+  <App/>
+  <tr>
+    <td>-h, --help</td>
+    <td></td>
+    <td>Help for <code>ls</code>.</td>
+  </tr>
+  <Token/>
+</table>

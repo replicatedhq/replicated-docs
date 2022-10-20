@@ -1,25 +1,36 @@
+import App from "../partials/replicated-cli/_app.mdx"
+import Token from "../partials/replicated-cli/_token.mdx"
+
 # registry test
 
-test registry
+Tests pulling an image from a registry.
 
-### Synopsis
+## Usage
 
-test registry
-
-```
+```bash
 replicated registry test HOSTNAME [flags]
 ```
 
-### Options
+Replace HOSTNAME with the name of the host.
 
-```
-  -h, --help           help for test
-      --image string   The image to test pulling
-```
+The following flags are supported:
 
-### Options inherited from parent commands
-
-```
-      --app string     The app slug or app id to use in all calls
-      --token string   The API token to use to access your app in the Vendor API
-```
+<table>
+  <tr>
+    <th width="15%">Flag</th>
+    <th width="15%">Type</th>
+    <th width="70%">Description</th>
+  </tr>
+  <App/>
+  <tr>
+    <td>-h, --help</td>
+    <td></td>
+    <td>Help for <code>test</code>.</td>
+  </tr>
+  <tr>
+    <td>--image</td>
+    <td>string</td>
+    <td>The image to use to do a test pull.</td>
+  </tr>
+  <Token/>
+</table>

@@ -1,25 +1,31 @@
+import App from "../partials/replicated-cli/_app.mdx"
+import Token from "../partials/replicated-cli/_token.mdx"
+
 # registry rm
 
-remove registry
+Removes a registry by endpoint.
 
-### Synopsis
-
-remove registry by endpoint
+## Usage
 
 ```
 replicated registry rm [ENDPOINT] [flags]
 ```
 
-### Options
+Replace ENDPOINT with the name of the endpoint, such as gcr.io.
 
-```
-  -h, --help   help for rm
-```
+The following flags are supported:
 
-### Options inherited from parent commands
-
-```
-      --app string     The app slug or app id to use in all calls
-      --token string   The API token to use to access your app in the Vendor API
-```
-
+<table>
+  <tr>
+    <th width="15%">Flag</th>
+    <th width="15%">Type</th>
+    <th width="70%">Description</th>
+  </tr>
+  <App/>
+  <tr>
+    <td>-h, --help</td>
+    <td></td>
+    <td>Help for <code>rm</code>.</td>
+  </tr>
+  <Token/>
+</table>
