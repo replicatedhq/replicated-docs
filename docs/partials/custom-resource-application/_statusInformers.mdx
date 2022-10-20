@@ -1,0 +1,11 @@
+```yaml
+statusInformers:
+    - deployment/my-web-svc
+    - deployment/my-worker
+```
+The following example shows excluding a specific status informer based on a user-supplied value from the admin console Configuration screen:
+```yaml
+statusInformers:
+    - deployment/my-web-svc
+    - '{{repl if ConfigOptionEquals "option" "value"}}deployment/my-worker{{repl else}}{{repl end}}'
+```
