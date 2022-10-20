@@ -11,22 +11,19 @@ Released on October 19, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 
 ### New Features {#new-features-1-88-0}
-* Adds ability to deploy application with new values after syncing license from admin console in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Adds ability to deploy an application with new values after syncing license from admin console in Helm-managed mode (Alpha). For more information on Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
 
 ### Improvements {#improvements-1-88-0}
 * Updates the kotsadm/dex image to v2.35.3 to resolve CVE-2022-27664 with high severity.
-* Updates SchemaHero to v0.13.3 to resolve CVE-2022-37434 with critical severity.
 * Updates the replicated/local-volume-provider image to v0.3.9 to resolve CVE-2022-37434 with critical severity.
 * Updates the golang.org/x/net module to resolve CVE-2022-27664 with high severity.
-* Updates the schemahero image to v0.13.5 to resolve CVE-2022-27664 with high severity.
+* Updates the schemahero image to v0.13.5 to resolve CVE-2022-37434 with critical severity and CVE-2022-27664 with high severity.
 * Updates the replicated/local-volume-provider image to v0.3.10 to resolve CVE-2022-27664 with high severity.
 
 ### Bug Fixes {#bug-fixes-1-88-0}
-* Fixes an issue where cluster screen became blank when node resources pod capacity were defined with SI units.
-* fixes a bug where GitHub and GitOps are shown in pascal case.
-* fixes space missing between two words on diff Why? modal.
-* fix an issue where kots would occasionally not redirect to first available app preflight checks were skipped.
-* fix an issue where custom app icons were not showing on login page.
+* Fixes an issue where the cluster management page was blank when node resources pod capacity was defined with SI units.
+* Fixes an issue where the app manager occasionally would not redirect to the dashboard after preflight checks were skipped.
+* Fixes an issue where the application icon did not show on the login page until the application was deployed.
 
 ## 1.87.0
 
