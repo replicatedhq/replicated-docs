@@ -1,31 +1,31 @@
 import App from "../partials/replicated-cli/_app.mdx"
 import Token from "../partials/replicated-cli/_token.mdx"
 
-# registry rm
+# registry logs
 
-Removes a registry by endpoint.
+Shows registry logs for a single registry.
 
 ## Usage
 
-```
-replicated registry rm [ENDPOINT] [flags]
+```bash
+replicated registry logs [NAME] [flags]
 ```
 
-Replace ENDPOINT with the name of the endpoint, such as gcr.io.
+Replace NAME with the name of the registry.
 
 The following flags are supported:
 
 <table>
   <tr>
     <th width="15%">Flag</th>
-    <th width="15%">Type</th>
+    <th width="15%">Type (if applicable)</th>
     <th width="70%">Description</th>
   </tr>
   <App/>
   <tr>
     <td>-h, --help</td>
     <td></td>
-    <td>Help for <code>rm</code>.</td>
+    <td>Help for <code>logs</code>.</td>
   </tr>
   <Token/>
 </table>
