@@ -4,6 +4,26 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2022.10.21-0
+
+Released on October 21, 2022
+
+### New Features {#new-features-v2022-10-21-0}
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.23.1.
+* [BUG] With the release of [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.23.1, fixes an issue that could cause EKCO to fail to perform operations dependent on Rook version on Rook upgrades, including maintaining CSI Pod resources and scaling the ceph-mgr Pod replica count.
+* Rook 1.9.12+ add-on is now supported on Kubernetes 1.25.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.25.3 1.24.7 1.23.13 1.22.15.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-10-15T19-57-03Z.
+* Updates the replicatedhq/local-volume-provider image to v0.3.10 for [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.9.2 to address CVE-2022-37434 with critical severity.
+* Beginning with Rook 1.9.12 and later, Ceph metrics collection and a Ceph Grafana dashboard will be enabled when the Prometheus add-on is also installed.
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.23.0.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.23.2 which addresses the following high and critical CVEs: CVE-2021-33574, CVE-2021-35942, CVE-2022-23218, CVE-2022-23219, CVE-2020-1752, CVE-2020-6096, CVE-2021-3326, CVE-2021-3999.
+* [BUG] Fixes an issue that would cause EKCO to log RBAC errors when the Rook add-on is not installed.
+
+### Bug Fixes {#bug-fixes-v2022-10-21-0}
+* Fixes an issue that causes the .kube/config to get removed on a Kubernetes upgrade.
+* [BUG] With the release of [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.23.2, fixes an issue that causes upgrades of Kubernetes to fail on secondary nodes when EKCO [Internal Load Balancer](https://kurl.sh/docs/add-ons/ekco#internal-load-balancer) is enabled.
+
 ## v2022.10.13-0
 
 Released on October 13, 2022
