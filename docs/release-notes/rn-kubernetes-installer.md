@@ -9,13 +9,13 @@ toc_max_heading_level: 2
 Released on October 21, 2022
 
 ### New Features {#new-features-v2022-10-21-0}
-* Rook add-on versions beginning with 1.9.12 are now supported on Kubernetes 1.25.
+* Rook add-on versions 1.9.12 and later are now supported on Kubernetes 1.25.
 * Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.25.3 1.24.7 1.23.13.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-10-15T19-57-03Z.
 * Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.23.0.
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.23.2 which addresses the following high and critical CVEs: CVE-2021-33574, CVE-2021-35942, CVE-2022-23218, CVE-2022-23219, CVE-2020-1752, CVE-2020-6096, CVE-2021-3326, CVE-2021-3999.
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.23.1.
-* Beginning with Rook add-on version 1.9.12, Ceph metrics collection and a Ceph Grafana dashboard are now enabled when the Prometheus add-on is installed.
+* For Rook add-on version 1.9.12 and later, Ceph metrics collection and a Ceph Grafana dashboard are now enabled when the Prometheus add-on is installed.
 * The replicatedhq/local-volume-provider image has been updated to v0.3.10 for [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.9.2 to address CVE-2022-37434 with critical severity.
 
 ### Bug Fixes {#bug-fixes-v2022-10-21-0}
