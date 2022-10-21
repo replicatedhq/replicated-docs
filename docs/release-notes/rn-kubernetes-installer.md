@@ -22,7 +22,7 @@ Released on October 21, 2022
 * Fixes an issue that causes the .kube/config to get removed on a Kubernetes upgrade.
 * With the release of [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.23.1, fixes an issue that could cause EKCO to fail to perform operations dependent on Rook version on Rook upgrades, including maintaining CSI Pod resources and scaling the ceph-mgr Pod replica count.
 * With the release of [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.23.2, fixes an issue that causes upgrades of Kubernetes to fail on secondary nodes when EKCO [Internal Load Balancer](https://kurl.sh/docs/add-ons/ekco#internal-load-balancer) is enabled.
-* Fixes an issue that would cause EKCO to log RBAC errors when the Rook add-on is not installed.
+* Fixes an issue that causes EKCO to log RBAC errors when the Rook add-on is not installed.
 
 ## v2022.10.13-0
 
