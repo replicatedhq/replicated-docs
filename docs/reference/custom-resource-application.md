@@ -375,7 +375,7 @@ spec:
   <tr>
     <th>Supports Go templates?</th>
     <td>
-      <p>You can template <code>query</code> fields with each element returned from the Prometheus query.</p>
+      <p>You can template <code>legend</code> fields with each element returned from the Prometheus query.</p>
       <p><GraphsTemplates/></p>
     </td>
   </tr>    
