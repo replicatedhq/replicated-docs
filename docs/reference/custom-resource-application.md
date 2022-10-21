@@ -11,6 +11,7 @@ import SupportMinimalRBACPrivileges from "../partials/custom-resource-applicatio
 import Ports from "../partials/custom-resource-application/_ports.mdx"
 import StatusInformers from "../partials/custom-resource-application/_statusInformers.mdx"
 import Graphs from "../partials/custom-resource-application/_graphs.mdx"
+import GraphsTemplates from "../partials/custom-resource-application/_graphs-templates.mdx"
 import TargetKotsVersion from "../partials/custom-resource-application/_targetKotsVersion.mdx"
 import MinKotsVersion from "../partials/custom-resource-application/_minKotsVersion.mdx"
 
@@ -58,7 +59,7 @@ spec:
 
 <table>
   <tr>
-    <th>Desription</th>
+    <th>Description</th>
     <td>The application title. Used on the license upload and in various places in the Replicated admin console.</td>
   </tr>
   <tr>
@@ -75,7 +76,7 @@ spec:
 
 <table>
   <tr>
-    <th>Desription</th>
+    <th>Description</th>
     <td>The icon file for the application. Used on the license upload and in various places in the admin console.</td>
   </tr>
   <tr>
@@ -93,7 +94,7 @@ spec:
 
 <table>
   <tr>
-    <th>Desription</th>
+    <th>Description</th>
     <td>The release notes for this version. These can also be set when promoting a release.</td>
   </tr>
   <tr>
@@ -110,8 +111,12 @@ spec:
 
 <table>
   <tr>
-    <th>Desription</th>
-    <td><p>Enable this flag to create a Rollback button on the admin console Version History page.</p> <p>If an application is guaranteed not to introduce backwards-incompatible versions (such as through database migrations), the <code>allowRollback</code> flag can allow end users to easily roll back to previous versions. This does not revert any state, just the YAML manifests that are applied to the cluster.</p></td>
+    <th>Description</th>
+    <td>
+      <p>Enable this flag to create a <strong>Rollback</strong> button on the admin console Version History page.</p>
+      <p>If an application is guaranteed not to introduce backwards-incompatible versions, such as through database migrations, then the <code>allowRollback</code> flag can allow end users to easily roll back to previous versions from the admin console.</p>
+      <p>Rollback does not revert any state. Rather, it recovers the YAML manifests that are applied to the cluster.</p>
+    </td>
   </tr>
   <tr>
     <th>Example</th>
@@ -132,12 +137,12 @@ spec:
 
 <table>
   <tr>
-    <th>Desription</th>
-    <td><p>An optional array of additional namespaces as strings. The app manager creates the additional namespaces that you provide in this field. For more information, see <a href="/vendor/operator-defining-additional-namespaces">Defining Additional Namespaces</a>.</p>
-    <p>In addition to creating these namespaces, the app manager ensures that the application secret exists in the namespaces. The app manager also ensures that this application secret has access to pull the application images, including both images that are used and any images you add in the <code>additionalImages</code> field. See <a href="/vendor/operator-defining-additional-images">Defining Additional Images</a>.</p>
-    <p>For access to dynamically created namespaces, you can specify <code>"*"</code>.
-    This pull secret is automatically added to all application specs that use private images.
-    </p></td>
+    <th>Description</th>
+    <td>
+      <p>An array of additional namespaces as strings that the app manager creates on the cluster. For more information, see <a href="/vendor/operator-defining-additional-namespaces">Defining Additional Namespaces</a>.</p>
+      <p>In addition to creating the additional namespaces, the app manager ensures that the application secret exists in the namespaces. The app manager also ensures that this application secret has access to pull the application images, including both images that are used and any images you add in the <code>additionalImages</code> field. This pull secret is automatically added to all manifest files that use private images.</p>
+      <p>For dynamically created namespaces, specify <code>"*"</code>.</p>
+    </td>
   </tr>
   <tr>
     <th>Example</th>
@@ -153,9 +158,9 @@ spec:
 
 <table>
   <tr>
-    <th>Desription</th>
-    <td><p>An optional array of strings that reference images to be included in air gap bundles and pushed to the local registry during installation.</p>
-    <p>While the Replicated app manager detects images from the PodSpecs in the application, some applications (Operators) may need to include additional images that will not be referenced until runtime. For more information, see <a href="/vendor/operator-defining-additional-images">Defining Additional Images</a>.
+    <th>Description</th>
+    <td><p>An array of strings that reference images to be included in air gap bundles and pushed to the local registry during installation.</p>
+    <p>The app manager detects images from the PodSpecs in the application. Some applications, such as Operators, might need to include additional images that are not referenced until runtime. For more information, see <a href="/vendor/operator-defining-additional-images">Defining Additional Images</a>.
     </p></td>
   </tr>
   <tr>
@@ -174,30 +179,36 @@ spec:
 
 <table>
   <tr>
-    <th>Desription</th>
-    <td><p>The app manager maintains up-to-date patch versions of all kubectl minor versions that the app manager supports.When unspecified, the app manager uses the latest supported version. The following minor versions are supported.
-    </p>
-      <ul>
-        <li>1.24.x (Added in <a href="/release-notes/rn-app-manager#1710">App manager 1.71.0</a>)</li>
-        <li>1.23.x (Added in <a href="/release-notes/rn-app-manager#1610">App manager 1.61.0</a>)</li>
-        <li>1.22.x (Added in <a href="/release-notes/rn-app-manager#1593">App manager 1.59.3</a>)</li>
-        <li>1.21.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">App manager 1.48.0</a>)</li>
-        <li>1.20.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">App manager 1.48.0</a>)</li>
-        <li>1.19.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">App manager 1.22.0</a>)</li>
-        <li>1.18.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">App manager 1.22.0</a>)</li>
-        <li>1.17.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">App manager 1.22.0</a>)</li>
-        <li>1.16.x</li>
-        <li>1.14.x</li>
-      </ul>
-    <p>You can specify an optional Semantic Version range, as defined by blang. See <a href="https://github.com/blang/semver#ranges">Ranges</a> in the blang GitHub repository. The latest supported version in the provided range is used.</p>
-    <p>If the specified version or range does not match any supported versions, the latest version from the above list of supported versions is used.</p>  
-    <p>For backwards compatibility, exact versions are also supported.
-    When an exact version is specified, the app manager chooses the matching version if it is supported. If the specific version is not supported, the app manager chooses the latest supported minor and patch version for the specified major version.</p>
-      </td>
+    <th>Description</th>
+    <td>
+      <p>Specifies the version of the kubectl command-line tool that the app manager uses.</p>
+      <p>You can specify an optional Semantic Version range for <code>kubectlVersion</code>, as defined by blang. See <a href="https://github.com/blang/semver#ranges">Ranges</a> in the blang GitHub repository. The latest supported version in the provided range is used.</p>
+      <p>If the specified version or range does not match any supported versions, the latest version from the above list of supported versions is used.</p>  
+      <p>For backwards compatibility, exact versions are also supported.
+      When an exact version is specified, the app manager chooses the matching version if it is supported. If the specific version is not supported, the app manager chooses the latest supported minor and patch version for the specified major version.</p>
+    </td>
   </tr>
   <tr>
     <th>Example</th>
     <td><KubectlVersion/></td>
+  </tr>
+  <tr>
+    <th>Default</th>
+    <td>
+     <p>When <code>kubectlVersion</code> is unspecified, the app manager uses the latest supported version of kubectl. The following minor versions are supported:</p>
+     <ul>
+       <li>1.24.x (Added in <a href="/release-notes/rn-app-manager#1710">App manager 1.71.0</a>)</li>
+       <li>1.23.x (Added in <a href="/release-notes/rn-app-manager#1610">App manager 1.61.0</a>)</li>
+       <li>1.22.x (Added in <a href="/release-notes/rn-app-manager#1593">App manager 1.59.3</a>)</li>
+       <li>1.21.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">App manager 1.48.0</a>)</li>
+       <li>1.20.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">App manager 1.48.0</a>)</li>
+       <li>1.19.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">App manager 1.22.0</a>)</li>
+       <li>1.18.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">App manager 1.22.0</a>)</li>
+       <li>1.17.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">App manager 1.22.0</a>)</li>
+       <li>1.16.x</li>
+       <li>1.14.x</li>
+     </ul>
+    </td>
   </tr>
   <tr>
     <th>Supports Go templates?</th>
@@ -205,18 +216,14 @@ spec:
   </tr>    
 </table>
 
-<!-- <code>kubectlVersion: >=1.22.0 <1.25.0</code> -->
-
 ## kustomizeVersion
 
 <table>
   <tr>
-    <th>Desription</th>
-    <td><p>The app manager maintains up-to-date minor and patch versions of all Kustomize major versions that the app manager supports.
-    When unspecified, the app manager uses the latest supported version.
-    <p>The following major versions are supported: 4.x.x.</p>
-    </p>
-    <p>You can specify an optional Semantic Version range, as defined by blang. See <a href="https://github.com/blang/semver#ranges">Ranges</a> in the blang GitHub repository. The latest supported version in the provided range is used.</p>
+    <th>Description</th>
+    <td>
+      <p>Specifies the version of Kustomize that the app manager uses.</p>
+    <p>You can specify a Semantic Version range, as defined by blang. See <a href="https://github.com/blang/semver#ranges">Ranges</a> in the blang GitHub repository. The latest supported version in the provided range is used.</p>
     <p>For backwards compatibility, exact versions are also supported.
     When an exact version is specified, the app manager chooses the matching version if it is supported. If the specific version is not supported, the app manager chooses the latest supported minor and patch version for the specified major version.</p>
       </td>
@@ -230,7 +237,11 @@ spec:
   <tr>
     <th>Default</th>
     <td>
-      When unspecified, the app manager uses the latest supported version.
+      <p>When <code>kustomizeVersion</code> is unspecified, the app manager uses the latest supported version of Kustomize.</p>
+      <p>The following major versions of Kustomize are supported:</p>
+      <ul>
+        <li>4.x.x.</li>
+      </ul>
     </td>
   </tr>
   <tr>
@@ -243,8 +254,8 @@ spec:
 
 <table>
   <tr>
-    <th>Desription</th>
-    <td><p>This option is applicable to existing clusters only.</p>
+    <th>Description</th>
+    <td><p><code>requireMinimalRBACPrivileges</code> applies to existing clusters only.</p>
     <p>Requires minimal role-based access control (RBAC) be used for all customer installations. When set to <code>true</code>, the app manager creates a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.</p>
     <p>For more information about RBAC, see <a href="/vendor/packaging-rbac/#namespace-scoped-access">Namespace-scoped Access</a> in <em>Configuring Role-based Access Control</em>.</p>
       </td>
@@ -267,8 +278,8 @@ spec:
 
 <table>
   <tr>
-    <th>Desription</th>
-    <td><p>This option is applicable to existing clusters only.</p>
+    <th>Description</th>
+    <td><p><code>supportMinimalRBACPrivileges</code> applies to existing clusters only.</p>
     <p>Allows minimal role-based access control (RBAC) be used for all customer installations. When set to <code>true</code>, the app manager supports creating a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.</p>
     <p> Minimal RBAC is not used by default. It is only used when the <code>--use-minimal-rbac</code> flag is passed to the <code>kots install</code> command. For more information about RBAC, see <a href="/vendor/packaging-rbac/#namespace-scoped-access">Namespace-scoped Access</a> in <em>Configuring Role-based Access Control</em>.</p>
       </td>
@@ -291,18 +302,18 @@ spec:
 
 <table>
   <tr>
-    <th>Desription</th>
+    <th>Description</th>
     <td>
-      <p>These are extra ports (additional to the :8800 admin console port) that are port-forwarded when running the <code>kots admin-console</code> command. With ports specified, the kots CLI can establish port-forwarding to simplify connections to the deployed application.</p>
+      <p>Extra ports (additional to the :8800 admin console port) that are port-forwarded when running the <code>kots admin-console</code> command. With ports specified, the kots CLI can establish port-forwarding to simplify connections to the deployed application.</p>
       <p>You can use the <code>ports</code> field to create a port-forward to a service that has a <code>ClusterIP</code> type. For clusters provisioned by the Kubernetes installer, you can also create a custom link to a service that has a <code>NodePort</code> type.</p>
       <p>For more information about configuring a custom link in Kubernetes installer clusters to a <code>NodePort</code> type service, see <a href="/vendor/admin-console-adding-buttons-links">Adding Buttons and Links</a>.</p>
-      <p>The <code>ports</code> field has the following properties:</p>
+      <p><code>ports</code> has the following fields:</p>
       <ul>
-        <li><code>ports.serviceName</code>: The name of the service that has a `ClusterIP` type or `NodePort` type if using the Kubernetes installer, that should receive the traffic.</li>
-        <li><code>ports.servicePort</code>: The `ClusterIP` port to forward traffic to.</li>
+        <li><code>ports.serviceName</code>: The name of the service that has a <code>ClusterIP</code> type or <code>NodePort</code> type if using the Kubernetes installer, that receives the traffic.</li>
+        <li><code>ports.servicePort</code>: The <code>ClusterIP</code> port to forward traffic.</li>
         <li><code>ports.localPort</code>: If set, the port to map on the local workstation.
-        If not set, this will be the same as `servicePort`.</li>
-        <li><code>ports.applicationUrl</code>: This should match a service found in the `k8s.io` Application spec.</li>
+        If not set, this is the same as <code>servicePort</code>.</li>
+        <li><code>ports.applicationUrl</code>: Must match a service found in the <code>k8s.io</code> Application manifest.</li>
       </ul>
     </td>
   </tr>
@@ -320,12 +331,11 @@ spec:
 
 <table>
   <tr>
-    <th>Desription</th>
+    <th>Description</th>
     <td>
-      <p>Resources to watch and report application status back to the user.
-      In the format <code>[namespace/]type/name</code> where namespace is optional.
-      Entries support template functions.</p>
-      <p>When [statusInformers](../vendor/admin-console-display-app-status) are specified, the dashboard can provide timely feedback when the application deployment is complete and the application is ready for use.</p>
+      <p>Resources to watch and report application status back to the user. When you include <code>statusInformers</code>, the dashboard can indicate when the application deployment is complete and the application is ready for use.</p>
+      <p><code>statusInformers</code> use the format <code>[namespace/]type/name</code>, where namespace is optional.</p>
+      <p>For more information about including statusInformers, see <a href="/vendor/admin-console-display-app-status">Displaying Application Status</a>.</p>
     </td>
   </tr>
   <tr>
@@ -339,42 +349,45 @@ spec:
 </table>
 
 ## graphs
-Custom graphs to include on your admin console application dashboard.
-Entries support template functions.
 
-### title
-The graph title.
-
-### query
-The Prometheus query.
-
-### legend
-The legend to use for the query line.
-Can be templated with each element returned from the Prometheus query.
-Template escape sequence is `{{}}`.
-
-### queries
-A list of queries containing a query and legend.
-- query: The Prometheus query
-- legend: The legend to use for the query line.
-Can be templated with each element returned from the Prometheus query.
-Template escape sequence is `{{}}`.
-
-### yAxisFormat
-The format of the Y axis labels with support for all Grafana [units](https://grafana.com/docs/features/panels/graph/#left-y-right-y).
-
-### yAxisTemplate
-Y axis labels template. Use `{{ value }}`.
-
-<Graphs/>
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>
+      Custom graphs to include on your admin console application dashboard.</p>
+      <p><code>graphs</code> has the following fields:</p>
+      <ul>
+        <li><code>graphs.title</code>: The graph title.</li>
+        <li><code>graphs.query</code>: The Prometheus query.</li>
+        <li><code>graphs.legend</code>: The legend to use for the query line.</li>
+        <li><code>graphs.queries</code>: A list of queries containing a <code>query</code> and <code>legend</code>
+        </li>  
+        <li><code>graphs.yAxisFormat</code>: The format of the Y axis labels with support for all Grafana units. For more information, see <a href="https://grafana.com/docs/features/panels/graph/#left-y-right-y">Visualizations</a> in the Grafana documentation.</li>
+        <li><code>graphs.yAxisTemplate</code>: Y axis labels template.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><Graphs/></td>
+  </tr>
+  <tr>
+    <th>Supports Go templates?</th>
+    <td>
+      <p>You can template <code>query</code> fields with each element returned from the Prometheus query.</p>
+      <p><GraphsTemplates/></p>
+    </td>
+  </tr>    
+</table>
 
 ## targetKotsVersion
 
 <table>
   <tr>
-    <th>Desription</th>
+    <th>Description</th>
     <td>
-      <p>The KOTS version that is targeted by the release. For more information, see [Setting Minimum and Target Versions for KOTS](../vendor/packaging-kots-versions).</p>
+      <p>The app manager (KOTS) version that is targeted by the release. For more information, see <a href="/vendor/packaging-kots-versions">Setting Minimum and Target Versions for KOTS</a>.</p>
       <p>Introduced in app manager v1.62.0.</p>
     </td>
   </tr>
@@ -392,9 +405,9 @@ Y axis labels template. Use `{{ value }}`.
 
 <table>
   <tr>
-    <th>Desription</th>
+    <th>Description</th>
     <td>
-      <p>The minimum KOTS version that is required by the release. For more information, see [Setting Minimum and Target Versions for KOTS](../vendor/packaging-kots-versions).</p>
+      <p>The minimum app manager (KOTS) version that is required by the release. For more information, see <a href="/vendor/packaging-kots-versions">Setting Minimum and Target Versions for KOTS</a>.</p>
       <p>Introduced in app manager v1.62.0.</p>
     </td>
   </tr>
