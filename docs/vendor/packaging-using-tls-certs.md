@@ -1,6 +1,6 @@
 # Using TLS Certificates
 
-The Replicated app manager provides default self-signed certificates that renew automatically. For Kubernetes installer clusters, the self-signed certificate renews 30 days before expiration when you enable the ECKO add-on version 0.7.0 and later.
+The Replicated app manager provides default self-signed certificates that renew automatically. For Kubernetes installer clusters, the self-signed certificate renews 30 days before expiration when you enable the EKCO add-on version 0.7.0 and later.
 
 Custom TLS options are supported:
 
