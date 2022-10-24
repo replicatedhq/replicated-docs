@@ -4,6 +4,14 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2022.10.24-0
+
+Released on October 24, 2022
+
+### New Features {#new-features-v2022-10-24-0}
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.20.0.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-10-20T00-55-09Z.
+
 ## v2022.10.21-0
 
 Released on October 21, 2022
