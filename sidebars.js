@@ -222,14 +222,6 @@ const sidebars = {
             'vendor/support-host-support-bundles',
           ],
         },
-        {
-          type: 'category',
-          label: 'Advanced Tutorials',
-          items: [
-            'vendor/tutorial-installing-air-gap-existing-cluster-gcp',
-            'vendor/tutorial-ha-cluster-deploying',
-          ],
-        },
       ],
     },
     {
