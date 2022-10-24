@@ -11,7 +11,6 @@ Released on October 24, 2022
 ### New Features {#new-features-v2022-10-24-0}
 * Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.20.0.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-10-20T00-55-09Z.
-* MinIO will deploy a highly-available statefulset via EKCO when OpenEBS LocalPV is enabled and at least 3 nodes are available.
 
 ## v2022.10.21-0
 
