@@ -1,12 +1,16 @@
 # Step 4: Install the App Manager
 
-The app manager can be installed either into an existing Kubernetes cluster, or as a Kubernetes installer-created cluster (embedded cluster). You can see the installation options at the bottom of each channel on the Channels page.
+The app manager can be installed either into an existing Kubernetes cluster, or as a Kubernetes installer provisioned cluster (embedded cluster). You can see the installation options at the bottom of each channel on the Channels page.
+
+For this tutorial, use the either installation option.
 
 ## Install in an Existing Cluster
 
-Installing the app manager on existing clusters is similar to using a Kubernetes installer-created cluster, except instead of bringing a plain virtual machine (VM), you will use a pre-built Kubernetes cluster and deploy your application into a namespace.
+Installing the app manager on existing clusters is similar to using a Kubernetes installer provisioned cluster, except instead of bringing a plain virtual machine (VM), you will use a pre-built Kubernetes cluster and deploy your application into a namespace.
 
 ![Installation Methods](/images/guides/kots/installation-methods-existing.png)
+
+This existing cluster example uses a Google Cloud provider to create a GKE cluster.
 
 To install the app manager:
 
@@ -48,7 +52,9 @@ To install the app manager:
 
 ## Install on a Kubernetes Installer Cluster
 
-The app manager can be installed as a Kubernetes installer-created cluster (embedded cluster), which provisions a plain virtual machine (VM). You can see the installation options at the bottom of each channel on the Channels page. For this tutorial, you will use the Kubernetes installer, or _embedded cluster_, option.
+The app manager can be installed as a Kubernetes installer provisioned cluster (embedded cluster), which provisions a plain virtual machine (VM).
+
+You can see the installation options at the bottom of each channel on the Channels page. For this tutorial, you can use the Kubernetes installer, or _embedded cluster_, option.
 
 ![Installation Methods](/images/guides/kots/installation-methods-embedded.png)
 

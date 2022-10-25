@@ -16,22 +16,10 @@ To create a release:
   :::
 
   ![Default YAML](/images/guides/kots/default-yaml.png)
+1. Click **Releases > Promote**.
 
-
-## Promote a Release
-
-After the release is saved, promote it to the Unstable channel to make this release available for installation.
-
-To promote the release:
-
-1. Click **Releases** from the top left menu.
-1. Click **Promote** on the row for the release that you just created.
+  In the Promote Release dialog, select the Unstable channel and click **Promote**. Promoting a release makes it available for installation.
 
   ![Create Application](/images/guides/kots/promote-release.png)
-
-  The Promote Release dialog opens.
-
-1. Choose the Unstable channel, and click **Promote**.
-
 
 Now that you have a release promoted, you can create a license and install the sample NGINX application on a test server.

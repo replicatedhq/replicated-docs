@@ -29,14 +29,10 @@ Now that you have an application running, a common task is to deliver updates. Y
 
 1. Click **Save Release**.
 
-### Promote the Release
+1. Following the same process you before, promote the release to a channel:
 
-Following the same process you before, promote the release to a channel.
+    1. Click **Promote** next to the newly created Sequence 2.
 
-To promote the release:
-
-1. Click **Promote** next to the newly created Sequence 2.
-
-1. Choose the Unstable channel, and click **Promote**.
+    1. Choose the Unstable channel, and click **Promote**.
 
   Any license installed from the Unstable channel will start with this new release, and any installation already running is prompted to update to the new release.

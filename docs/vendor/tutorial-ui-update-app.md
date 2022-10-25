@@ -2,7 +2,7 @@
 
 To install and test this new release, you must connect to the admin console on port :8800 using a web browser.
 At this point, the UI likely shows that your test application is up-to-date and that no updates are available.
-The admin console checks for new updates approximately every five hours, but for now you will trigger a check manually.
+The admin console checks for new updates approximately every five hours, but for now, you will trigger a check manually.
 
 To check for updates manually:
 
