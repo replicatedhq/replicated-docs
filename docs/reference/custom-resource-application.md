@@ -355,13 +355,15 @@ spec:
     <th>Description</th>
     <td>
       <p>
-      Custom graphs to include on your admin console application dashboard.</p>
+      Custom graphs to include on the admin console application dashboard.
+      For more information about how to create custom graphs,
+      see <a href="/vendor/admin-console-prometheus-monitoring">Adding Custom Graphs</a>.</p>
       <p><code>graphs</code> has the following fields:</p>
       <ul>
         <li><code>graphs.title</code>: The graph title.</li>
         <li><code>graphs.query</code>: The Prometheus query.</li>
-        <li><code>graphs.legend</code>: The legend to use for the query line.</li>
-        <li><code>graphs.queries</code>: A list of queries containing a <code>query</code> and <code>legend</code>
+        <li><code>graphs.legend</code>: The legend to use for the query line. You can use Prometheus templating in the <code>legend</code> fields with each element returned from the Prometheus query. <p><GraphsTemplates/></p></li>
+        <li><code>graphs.queries</code>: A list of queries containing a <code>query</code> and <code>legend</code>.
         </li>  
         <li><code>graphs.yAxisFormat</code>: The format of the Y axis labels with support for all Grafana units. For more information, see <a href="https://grafana.com/docs/features/panels/graph/#left-y-right-y">Visualizations</a> in the Grafana documentation.</li>
         <li><code>graphs.yAxisTemplate</code>: Y axis labels template.</li>
@@ -375,8 +377,7 @@ spec:
   <tr>
     <th>Supports Go templates?</th>
     <td>
-      <p>You can template <code>legend</code> fields with each element returned from the Prometheus query.</p>
-      <p><GraphsTemplates/></p>
+      <p>Yes</p>
     </td>
   </tr>    
 </table>
