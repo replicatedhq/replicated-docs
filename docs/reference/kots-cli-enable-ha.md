@@ -14,8 +14,8 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 
 | Flag                 | Type   | Description |
 |:---------------------|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `--wait-duration`    | string | Timeout out to be used while waiting for individual components to be ready.  Must be in [Go duration](https://pkg.go.dev/time#ParseDuration) format (eg: 10s, 2m)  |
-| `-h, --help`         |        | help for download                                                                                                                                                  |
+| `--wait-duration`    | string | Timeout used while waiting for individual components to be ready.  Must be in Go duration format. For example, `10s` or `2m`. See [func ParseDuration](https://pkg.go.dev/time#ParseDuration) in the Go documentation. |
+| `-h, --help`         |        | Help for `enable-ha`.                                                                                                                                                  |
 | `-n, --namespace`    | string | The namespace where the admin console is running _(required)_                                                                                                      |
 
 ## Example
