@@ -28,14 +28,14 @@ For more information about getting started with the vendor portal, see
 * **App manager**: The Replicated app manager is based on the open source KOTS project,
 which is maintained by Replicated. The app manager reads the Kubernetes manifest files that
 the vendor defines to package and install an application on a Kubernetes cluster
-in a customer environment. It also installs the admin console along with the application.
+in a customer environment. It installs the admin console along with the application.
 
    The app manager also uses functionality from the Troubleshoot open source project,
    which is maintained by Replicated. For example, the app manager runs preflight
    checks before the customer deploys the application to ensure that the customer
    environment meets any application requirements.
-   For more information, see [Getting Started](https://troubleshoot.sh/docs/) in the
-   Troubleshoot documentation.
+   For more information about using the features from the Troubleshoot project
+   in your application, see [Configuring Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-creating).
 * **Admin console**: The Replicated admin console is the user interface where enterprise
 application users can configure, update, manage, backup and restore, and troubleshoot
 the application that they installed. The admin console is deployed by the app manager
@@ -43,8 +43,12 @@ when the customer installs the application.
 * **Kubernetes installer**: The Replicated Kubernetes installer is based on the open source
 kURL project, which is maintained by Replicated. The Kubernetes installer provisions a Kubernetes
 cluster, called an _embedded cluster_, in the customer's environment if they do
-not have an existing cluster. For more information, see
-[Introduction to kURL](https://kurl.sh/docs/introduction/) in the kURL documentation.
+not have an existing cluster.
+
+  For more information about configuring a Kubernetes
+  installer cluster, see [Creating a Kubernetes Installer](/vendor/packaging-embedded-kubernetes).
+  For more information about how enterprise users install with the Kubernetes installer,
+  see [Installing with the Kubernetes Installer](/enterprise/installing-embedded-cluster).
 
 ## Replicated APIs and CLIs
 
