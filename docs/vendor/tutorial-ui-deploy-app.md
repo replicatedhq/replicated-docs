@@ -7,7 +7,7 @@ To install the application:
 1. In a browser, enter the URL `http://localhost:8800` and password to access the admin console.
 
   The Upload license page opens.
-1. Click Upload. Select your customer license YAML file to continue, or drag and drop the license file from your desktop. The admin console can pull the application YAML and containers now.
+1. Click **Upload**. Select your customer license YAML file to continue, or drag and drop the license file from your desktop. The admin console can pull the application YAML and containers now.
 1. There are some example configuration options on this page. Feel free to explore and toggle some of the options. You can see the results of your changes later.
 
     :::note

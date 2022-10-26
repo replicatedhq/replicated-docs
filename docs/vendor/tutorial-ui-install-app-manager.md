@@ -10,11 +10,11 @@ Installing the app manager on existing clusters is similar to using a Kubernetes
 
 ![Installation Methods](/images/guides/kots/installation-methods-existing.png)
 
-This existing cluster example uses a Google Cloud provider to create a GKE cluster.
+This existing cluster example uses a Google Cloud provider to create a GKE cluster. However, you can use any cluster for which you have `kubectl` access instead of using a GKE cluster.
 
 To install the app manager:
 
-1. Run the following command to launch a GKE cluster using the `gcloud` CLI. (You can use any cluster for which you have `kubectl` access instead of a GKE cluster.)
+1. Run the following command to launch a GKE cluster using the `gcloud` CLI.
 
   ```shell
   gcloud container clusters create kots-app --preemptible --no-enable-ip-alias
