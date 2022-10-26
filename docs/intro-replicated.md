@@ -22,40 +22,39 @@ define Kubernetes manifest files, including application manifests and custom res
 manifests, for their application. These files describe to the app manager how to
 package the application for distribution. Vendors can also use the vendor portal
 to manage other artifacts, such as customer license files, image registries, and
-release channels. For more information, see [Creating a Vendor Account](vendor/vendor-portal-creating-account).
-* **App manager**: The Replicated app manager reads the Kubernetes manifest files that
+release channels.
+For more information about getting started with the vendor portal, see
+[Creating a Vendor Account](vendor/vendor-portal-creating-account).
+* **App manager**: The Replicated app manager is based on the open source KOTS project,
+which is maintained by Replicated. The app manager reads the Kubernetes manifest files that
 the vendor defines to package and install an application on a Kubernetes cluster
-in a customer environment. It also installs the admin console along with the application.
-The app manager is based on the open-source KOTS project, which is maintained by
-Replicated.
-* **Kubernetes installer**: The Replicated Kubernetes installer provisions a Kubernetes
-cluster, called an _embedded cluster_, in the customer's environment if they do
-not have an existing cluster. The Kubernetes installer is based on the open-source
-kURL project, which is maintained by Replicated. For more information, see
-[Introduction to kURL](https://kurl.sh/docs/introduction/) in the kURL documentation.
+in a customer environment. It installs the admin console along with the application.
+
+   The app manager also uses functionality from the Troubleshoot open source project,
+   which is maintained by Replicated. For example, the app manager runs preflight
+   checks before the customer deploys the application to ensure that the customer
+   environment meets any application requirements.
+   For more information about using the features from the Troubleshoot project
+   in your application, see [Configuring Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-creating).
 * **Admin console**: The Replicated admin console is the user interface where enterprise
 application users can configure, update, manage, backup and restore, and troubleshoot
 the application that they installed. The admin console is deployed by the app manager
 when the customer installs the application.
+* **Kubernetes installer**: The Replicated Kubernetes installer is based on the open source
+kURL project, which is maintained by Replicated. The Kubernetes installer provisions a Kubernetes
+cluster, called an _embedded cluster_, in the customer's environment if they do
+not have an existing cluster.
 
-## How Replicated Works with Open-source Tools
-
-In general, Replicated components are grouped into one of the following categories:
-
-* **Cluster Operator Tools**: A set of open source projects that vendors can invoke to provide cluster operators with the necessary tools to validate, install, configure, troubleshoot, and automate the management of applications.
-These tools are built with a strong focus on production grade day-2 operations.
-* **Software Vendor Tools**: Primarily hosted by the [Replicated vendor portal](https://vendor.replicated.com) that serves as a centralized collaboration platform to manage customers, licenses/entitlements, releases/release channels, and troubleshooting. The vendor tools are [integrated with the open source KOTS projects](https://blog.replicated.com/announcing-kots/) to provide processes and workflows to operationalize and scale the distribution of a modern on-prem application.
-
-The foundational open source projects that Replicated coordinates are the [kots CLI](../reference/kots-cli-getting-started/) and [KOTS](../enterprise/installing-overview) (installation and admin console), [Troubleshoot](https://troubleshoot.sh) (preflight checks and support bundles), [kURL](https://kurl.sh) (embedded K8s option) as well as several community driven open source software (OSS) projects like Kubernetes, Kustomize, Helm, and Kubeadm.
+  For more information about configuring a Kubernetes
+  installer cluster, see [Creating a Kubernetes Installer](/vendor/packaging-embedded-kubernetes).
+  For more information about how enterprise users install with the Kubernetes installer,
+  see [Installing with the Kubernetes Installer](/enterprise/installing-embedded-cluster).
 
 ## Replicated APIs and CLIs
 
-Replicated also includes a Vendor API and CLIs that allow both vendors and enterprise
-users to complete tasks programmatically.
+Replicated includes a Vendor API and CLIs that allow both vendors and enterprise
+users to complete tasks programmatically:
 
-For information about the Vendor API v3, see [Using the Vendor API v3](reference/vendor-api-using).
-
-For information about the replicated CLI, see [Installing the replicated CLI](reference/replicated-cli-installing).
-
-For information about the kots CLI, see [Getting Started with KOTS](reference/kots-cli-getting-started)
-in the kots CLI documentation.
+* **Vendor API v3**: The API for the vendor portal. See [Using the Vendor API v3](reference/vendor-api-using).
+* **replicated CLI**: The CLI for the vendor portal. See [Installing the replicated CLI](reference/replicated-cli-installing).
+* **kots CLI**: The CLI for the KOTS open source project. The kots CLI allows users to interact with the app manager on the command line, rather than through the admin console. See [Installing the kots CLI](reference/kots-cli-getting-started).
