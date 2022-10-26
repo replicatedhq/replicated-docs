@@ -1,0 +1,38 @@
+# Step 8: Release a New Version
+
+From your local repo, you can update the NGINX deployment to test a simple update to the application.
+
+To make an update:
+
+1. Add the following line to `deployment.yaml`, right after `spec:`:
+
+  ```yaml
+    replicas: 2
+  ```
+
+1. Use `head` to view the first 10 lines of the file:
+
+  ```shell script
+  head manifests/deployment.yaml
+  ```
+
+  **Example output:**
+
+  ```yaml
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: example-nginx
+    labels:
+      app: example
+      component: nginx
+  spec:
+    replicas: 2
+    selector:
+  ```
+
+1. Run the following command to create a new release:
+
+  ```shell script
+  replicated release create --auto
+  ```

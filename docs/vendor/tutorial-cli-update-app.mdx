@@ -1,0 +1,38 @@
+# Step 9: Update the Application
+
+To install and test this new release, you must connect to the admin console on port :8800 using a web browser.
+At this point, the UI likely shows that your test application is up-to-date and that no updates are available.
+The admin console can be configured to check for new updates at regular intervals, but for now you will trigger a check manually.
+
+To check for updates manually:
+
+1. Click **Check for Updates** on the Version History page.
+  You should see a new release in the history now. You can click **Diff versions** to review the differences.
+
+  ![View Update](/images/guides/kots/view-update.png)
+
+1. Click **Deploy** to apply the new YAML, which changes the number of NGINX replicas. The deployment only takes a few seconds.
+
+1. Run the following command to verify the deployment on the server:
+
+  ```shell script
+  kubectl get pod -l app=nginx
+  ```
+
+  You should see two pods running.
+
+
+## Next Steps
+
+You can iterate further on your application. Continue making changes and using `replicated release create --auto` to publish them. You can add `-y` to the command to skip the prompt.
+
+To learn more about the app manager features, you can explore some of the tutorials and packaging options, such as:
+
+* Integrating with a CI/CD platform. See [Tutorial: Integrating with an existing CI/CD platform](tutorial-ci-cd-integration).
+* Packaging an application from a Helm chart. See [About Packaging with Helm](helm-overview).
+
+If you already have a release published in the vendor portal that you want to use as a starting point, run the following command to access the help docs for `replicated release download`:
+
+```shell script
+replicated release download --help
+```

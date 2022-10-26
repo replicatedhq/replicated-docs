@@ -1,0 +1,51 @@
+# Step 4: Create a Release
+
+Now that you have some YAML manifest files, you can create a release and promote it to the `Unstable` channel for internal testing.
+
+To create and promote a release:
+
+1. Run the following command with the `--auto` flag to generate release notes and metadata based on the git status.
+
+  ```shell script
+  $ replicated release create --auto
+  ```
+
+  **Example output:**
+
+  ```text
+      • Reading Environment ✓
+
+    Prepared to create release with defaults:
+
+        yaml-dir        "./manifests"
+        promote         "Unstable"
+        version         "Unstable-ba710e5"
+        release-notes   "CLI release of master triggered by dex [SHA: ba710e5] [28 Sep 20 09:15 CDT]"
+        ensure-channel  true
+
+    Create with these properties? [Y/n]
+  ```
+
+1. Press Enter to confirm the prompt. The release is created and promoted.
+
+  **Example output:**
+
+  ```text
+    • Reading manifests from ./manifests ✓
+    • Creating Release ✓
+      • SEQUENCE: 1
+    • Promoting ✓
+      • Channel VEr0nhJBBUdaWpPvOIK-SOryKZEwa3Mg successfully set to release 1
+  ```
+
+1. Run the following command to verify that the release was created:
+
+  ```text
+  $ replicated release ls
+  ```
+  **Example output:**
+
+  ```text
+  SEQUENCE    CREATED                      EDITED                  ACTIVE_CHANNELS
+  1           2020-09-03T11:48:45-07:00    0001-01-01T00:00:00Z    Unstable
+  ```
