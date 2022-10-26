@@ -1,0 +1,99 @@
+# Step 6: Install the App Manager
+
+After you create and download a customer license, get the installation commands so that you can test the installation on a development server.
+In this case, we demonstrate an installation without an existing cluster, on a single virtual machine (VM). This type of installation is known as an embedded or Kubernetes installer-created cluster.
+
+To install the app manager:
+
+1. Run the following command to get the installation commands for the Unstable channel:
+
+    ```text
+    $ replicated channel inspect Unstable
+    ```
+
+    **Example output:**
+    ```
+    ID:             VEr0nhJBBUdaWpPaOIK-SOryKZEwa3Mg
+    NAME:           Unstable
+    DESCRIPTION:
+    RELEASE:        1
+    VERSION:        Unstable-ba710e5
+    EXISTING:
+
+        curl -fsSL https://kots.io/install | bash
+        kubectl kots install cli-quickstart/unstable
+
+    EMBEDDED:
+
+        curl -fsSL https://k8s.kurl.sh/cli-quickstart-unstable | sudo bash
+
+    AIRGAP:
+
+        curl -fSL -o cli-quickstart-unstable.tar.gz https://k8s.kurl.sh/bundle/cli-quickstart-unstable.tar.gz
+        # ... scp or sneakernet cli-quickstart-unstable.tar.gz to airgapped machine, then
+        tar xvf cli-quickstart-unstable.tar.gz
+        sudo bash ./install.sh airgap
+    ```
+
+    The output generates commands for installing on an [existing cluster](../enterprise/installing-general-requirements#existing-cluster-requirements), installing [without an existing cluster](../enterprise/installing-general-requirements#embedded-cluster-requirements), and installing on an [air gap cluster](../enterprise/installing-existing-cluster#air-gap).
+
+1. Create a server using Google Cloud using the following criteria for this example:
+
+    - Ubuntu 18.04
+    - At least 8 GB of RAM
+    - 4 CPU cores
+    - At least 40GB of disk space
+
+    :::note
+    You can use any cloud provider or [local virtual machine](https://github.com/replicatedhq/replicated-automation/tree/master/vendor/vagrant-boxes).
+    :::
+
+1. Use SSH to access the server you created, and run the installation script from above, using the `EMBEDDED` version:
+
+  ```shell
+  curl -sSL https://kurl.sh/<your-app-name-and-channel> | sudo bash
+  ```
+
+  This script installs Docker, Kubernetes, and the Replicated admin console containers (kotsadm).
+
+  Installation takes approximately 5-10 minutes.
+
+  After the script completes the initial installation, the output displays the connection URL and password that you must use in a later step of the installation process:
+
+  ```text
+
+  Kotsadm: http://[ip-address]:8800
+  Login with password (will not be shown again): [password]
+  ```
+
+1. Reload your shell using the following command to access the cluster with `kubectl`:
+
+    ```
+    bash -l
+    ```
+
+    The UIs of Prometheus, Grafana and Alertmanager have been exposed on NodePorts 30900, 30902 and 30903 respectively.
+
+1. Use the generated user:password of admin:[password] to access Grafana.
+
+1. Run the following script on your other nodes to add worker nodes to this installation:
+
+    ```
+    curl -sSL https://kurl.sh/cli-quickstart-unstable/join.sh | sudo bash -s kubernetes-master-address=[ip-address]:6443 kubeadm-token=[token] kubeadm-token-ca-hash=sha256:[sha] kubernetes-version=1.16.4 docker-registry-ip=[ip-address]
+      ```
+
+1. Reload the shell, following the instructions on the screen, to make `kubectl` work:
+
+    ```bash
+    user@kots-guide:~$ kubectl get pods
+    ```
+    **Example output:**
+    ```
+    NAME                                  READY   STATUS      RESTARTS   AGE
+    kotsadm-585579b884-v4s8m              1/1     Running     0          4m47s
+    kotsadm-migrations                    0/1     Completed   2          4m47s
+    kotsadm-operator-fd9d5d5d7-8rrqg      1/1     Running     0          4m47s
+    kotsadm-postgres-0                    1/1     Running     0          4m47s
+    kurl-proxy-kotsadm-77c59cddc5-qs5bm   1/1     Running     0          4m46s
+    user@kots-guide:~$
+    ```

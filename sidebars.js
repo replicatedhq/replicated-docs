@@ -39,6 +39,25 @@ const sidebars = {
             'vendor/tutorial-ui-update-app',
           ],
         },
+        {
+          type: 'category',
+          label: 'CLI Tutorial',
+          items: [
+            {
+              type: 'doc',
+              label: 'Step 1: Install replicated CLI',
+              id: 'vendor/tutorial-cli-install-cli',
+            },
+            'vendor/tutorial-cli-create-app',
+            'vendor/tutorial-cli-manifests',
+            'vendor/tutorial-cli-create-release',
+            'vendor/tutorial-cli-create-customer',
+            'vendor/tutorial-cli-install-app-manager',
+            'vendor/tutorial-cli-deploy-app',
+            'vendor/tutorial-cli-create-new-version',
+            'vendor/tutorial-cli-update-app',
+          ],
+        },  
       ],
     },
     {

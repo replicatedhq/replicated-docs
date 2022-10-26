@@ -1,0 +1,67 @@
+# Step 3: Get the Sample Manifests
+
+To create a release with the replicated CLI, you must have the YAML manifest files for the application in a directory.
+This step shows you how to download sample manifest files from https://github.com/replicatedhq/replicated-starter-kots and initialize a Git repository for the sample application.
+
+To get the sample YAML files and initialize the application repository:
+
+1. Run the following command to create a folder for your project:
+
+  ```shell script
+  mkdir replicated-cli-tutorial
+  cd replicated-cli-tutorial
+  ```
+
+1. Run the following command to make a folder for the application manifests and download the starter YAML from https://github.com/replicatedhq/replicated-starter-kots:
+
+  ```shell script
+  mkdir ./manifests
+  curl -fSsL https://github.com/replicatedhq/kots-default-yaml/archive/v2020-09-03.tar.gz | \
+    tar xzv --strip-components=1 -C ./manifests \
+    --exclude README.md --exclude LICENSE --exclude .gitignore
+  ```
+
+  :::note
+  If you are using Helm charts to package your application, you can explore [Creating a release from an existing Helm chart](helm-overview) for steps on how to add the required app manager YAML files to your Helm chart after you finish reviewing this tutorial.
+  :::
+
+  You should now have a few YAML files in the manifests folder:
+
+  ** Example:**
+
+  ```text
+  $ ls -la manifests
+  .rw-r--r--  114 dex 16 Aug  7:59 config-map.yaml
+  .rw-r--r--  906 dex 16 Aug  7:59 config.yaml
+  .rw-r--r--  608 dex 16 Aug  7:59 deployment.yaml
+  .rw-r--r--  296 dex 16 Aug  7:59 ingress.yaml
+  .rw-r--r-- 2.5k dex 16 Aug  7:59 preflight.yaml
+  .rw-r--r--  399 dex 16 Aug  7:59 replicated-app.yaml
+  .rw-r--r--  205 dex 16 Aug  7:59 service.yaml
+  .rw-r--r--  355 dex 16 Aug  7:59 support-bundle.yaml
+  ```
+
+1. Run the following command to verify this YAML:
+
+  ```shell script
+  $ replicated release lint --yaml-dir=manifests
+  ```
+
+  If there are no errors, an empty list is displayed with a zero exit code.
+
+  **Example output:**
+
+  ```text
+  RULE    TYPE    FILENAME    LINE    MESSAGE
+  ```
+
+1. Initialize this project as a Git repository so that you can track your history.
+Additionally, the replicated CLI reads git metadata to help with the generation of release metadata,
+such as version labels. More information about this is covered later in this tutorial.
+
+  To initialize the repository, run the following commands:
+
+  ```shell script
+  git init
+  git add .
+  git commit -m "Initial Commit: CLI Quickstart"

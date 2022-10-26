@@ -1,0 +1,34 @@
+# CLI Tutorial
+
+This tutorial helps you use replicated CLI and the Replicated app manager to quickly deploy, install, and iterate with a sample Kubernetes application using a CLI-based workflow.
+
+## Step 1: Install the replicated CLI
+
+To begin, install the replicated CLI to perform the deployment tasks.
+
+To install the replicated CLI:
+
+1. Use [homebrew](https://brew.sh) or the latest Linux or macOS version from [the replicatedhq/replicated releases page](https://github.com/replicatedhq/replicated/releases) to install the CLI.
+
+  ```shell script
+  brew install replicatedhq/replicated/cli
+  ```
+
+1. Verify the installation using `replicated version`:
+
+  ```text
+  $ replicated version
+  ```
+  ```json
+  {
+    "version": "0.31.0",
+    "git": "c67210a",
+    "buildTime": "2020-09-03T18:31:11Z",
+    "go": {
+        "version": "go1.14.7",
+        "compiler": "gc",
+        "os": "darwin",
+        "arch": "amd64"
+    }
+  }
+  ``

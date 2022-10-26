@@ -1,0 +1,41 @@
+# Step 2: Create an Application and Token
+
+Create an application in the vendor portal. After you create an application, create a service account token to authenticate the replicated CLI.
+
+You can export the token as an environment variable in your shell or add it to your favorite dotfiles.
+
+To export the environment variables:
+
+1. Log in to the Replicated [vendor portal](https://vendor.replicated.com). [Create a new application](https://vendor.replicated.com/new-application) or use an existing application that you created previously. For this tutorial, we are using the name CLI Quickstart, although you can use any name.
+
+1. Open the Settings page. Copy the application slug.
+
+    ![app-slug](/images/guides/kots/cli-setup-quickstart-settings.png)
+
+1. Run the following command using the application slug that you copied previously:
+
+  ```shell script
+  export REPLICATED_APP=cli-quickstart
+  ```
+
+1. Create a read/write capable service account token:
+
+  ![service-account-token](/images/guides/kots/cli-setup-service-account-token.png)
+
+1. Run the following command to export the token:
+
+  ```shell script
+  export REPLICATED_API_TOKEN=1366be611e3bf...
+  ```
+
+1. Run the following command to verify these values are set correctly:
+
+  ```shell script
+  replicated release ls
+  ```
+
+  You will likely see an empty list of releases. You will create a release later in this tutorial.
+
+  ```text
+  SEQUENCE    CREATED    EDITED    ACTIVE_CHANNELS
+  ```

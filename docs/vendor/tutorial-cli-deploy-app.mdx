@@ -1,0 +1,52 @@
+# Step 7: Deploy the Application
+
+At this point, Kubernetes and the Replicated admin console are running, but the application is not deployed yet.
+
+To deploy the application:
+
+1. In a browser, enter the URL that the installation script displayed previously when it finished. Notice that the app manager cluster, created using the [Kubernetes installer](https://kurl.sh), has provisioned a self-signed certificate.
+
+  When you bypass the insecure certificate warning, you have the option of uploading a trusted certificate and key.
+  For production installations, we recommend using a trusted certificate. For this tutorial, use the self-signed certificate.
+
+1. Click **Skip & continue** to proceed using the self-signed certificate.
+
+  ![Console TLS](/images/guides/kots/admin-console-tls.png)
+
+  You are prompted for a password.
+
+1. Enter the password from the CLI output to log in to the admin console.
+
+    The Upload license page opens. Until this point, this server is running Docker, Kubernetes, and the admin console containers only.
+
+1. Click Upload. Select your YAML license file or drag and drop the license file from your desktop.
+    The admin console can pull containers and run your application now.
+
+    The Settings page opens with default configuration items.
+
+1. If you are using the defaults, select the **Enable Ingress** checkbox. You can leave the Ingress Hostname field blank. Click **Continue**.
+
+    :::note
+    For production, you can customize this screen to collect the configuration that your application needs from the customer.
+    :::
+
+    ![Settings Page](/images/guides/kots/configuration.png)
+
+    The Preflight page opens.
+
+1. Click **Continue**. If there are failing checks, dismiss the warning to continue. Preflight checks are designed to help ensure this server has the minimum system and software requirements to run the application. Depending on your YAML configuration in `preflight.yaml`, you can see some of the example preflight checks fail.
+
+    ![Preflight Checks](/images/preflight-warnings.png)
+
+    After the preflight checks pass, the Version History page opens and displays the initial version that was deployed. Later, you will come back to this page to deploy an update to the application.
+
+1. Click **Application** on the top to see the status of the application and some basic monitoring statistics (such as CPU, memory, and disk space). If you are still connected to this server using SSH, `kubectl get pods` shows the example NGINX service that you just deployed.
+
+  ![Cluster](/images/guides/kots/application.png)
+
+
+Since you used the default NGINX application and enabled the Ingress object, you can view the application at `http://${INSTANCE_IP}/` without a port and see a basic NGINX server running:
+
+![Cluster](/images/guides/kots/example-nginx.png)
+
+Next, you will create and deliver an update to the sample application.
