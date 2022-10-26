@@ -10,7 +10,7 @@ Released on October 26, 2022
 
 ### New Features {#new-features-v2022-10-26-0}
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.24.0.
-* MinIO will deploy a highly-available statefulset via EKCO when OpenEBS LocalPV is enabled and at least 3 nodes are available.
+* MinIO deploys a highly-available StatefulSet with EKCO when the OpenEBS localpv storage class is enabled and at least three nodes are available. For more information, see [EKCO Add-on](https://kurl.sh/docs/add-ons/ekco) in the kURL documentation.
 
 ### Improvements {#improvements-v2022-10-26-0}
 * Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.6.5-20221025 and 2.8.1-20221025 to address the following high CVEs: CVE-2022-40303, CVE-2022-40304.
