@@ -32,7 +32,7 @@ const sidebars = {
           items: [
             'vendor/tutorial-ui-create-app',
             'vendor/tutorial-ui-create-release',
-            'vendor/tutorial-ui-create-customer-license',
+            'vendor/tutorial-ui-create-customer',
             'vendor/tutorial-ui-install-app-manager',
             'vendor/tutorial-ui-deploy-app',
             'vendor/tutorial-ui-create-new-version',

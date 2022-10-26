@@ -1,4 +1,4 @@
-# Step 3: Create a Customer License
+# Step 3: Create a Customer
 
 A customer license, downloadable as a YAML file, is required to install any application.
 

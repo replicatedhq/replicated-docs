@@ -1,4 +1,4 @@
-# Step 6: Create New Version
+# Step 6: Create a New Version
 
 Now that you have an application running, a common task is to deliver updates. You will change the number of NGINX replicas to learn how to deliver an update.
 
