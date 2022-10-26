@@ -43,7 +43,7 @@ const sidebars = {
             'vendor/tutorial-cli-create-customer',
             'vendor/tutorial-cli-install-app-manager',
             'vendor/tutorial-cli-deploy-app',
-            'vendor/tutorial-cli-new-version',
+            'vendor/tutorial-cli-create-new-version',
             'vendor/tutorial-cli-update-app',
           ],
         },
