@@ -49,10 +49,17 @@
 ###################################################
 # Redirects To the Getting Started Section
 ###################################################
+[[redirects]]
+  from = "https://docs.replicated.com//vendor/tutorial-installing-with-existing-cluster"
+  to = "https://docs.replicated.com/vendor/tutorial-ui-create-app"
 
 [[redirects]]
   from = "https://docs.replicated.com/vendor/tutorial-installing-with-cli"
   to = "https://docs.replicated.com/vendor/tutorial-cli-install-cli"
+
+[[redirects]]
+  from = "https://docs.replicated.com//vendor/tutorial-installing-without-existing-cluster"
+  to = "https://docs.replicated.com/vendor/tutorial-ui-create-app"
 
 ###################################################
 # Redirects To the Vendor Section

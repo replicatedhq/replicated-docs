@@ -26,8 +26,19 @@ const sidebars = {
       type: 'category',
       label: 'Getting Started Tutorials',
       items: [
-        'vendor/tutorial-installing-without-existing-cluster',
-        'vendor/tutorial-installing-with-existing-cluster',
+        {
+          type: 'category',
+          label: 'UI Tutorial',
+          items: [
+            'vendor/tutorial-ui-create-app',
+            'vendor/tutorial-ui-create-release',
+            'vendor/tutorial-ui-create-customer',
+            'vendor/tutorial-ui-install-app-manager',
+            'vendor/tutorial-ui-deploy-app',
+            'vendor/tutorial-ui-create-new-version',
+            'vendor/tutorial-ui-update-app',
+          ],
+        },
         {
           type: 'category',
           label: 'CLI Tutorial',
@@ -46,7 +57,7 @@ const sidebars = {
             'vendor/tutorial-cli-create-new-version',
             'vendor/tutorial-cli-update-app',
           ],
-        },
+        },  
       ],
     },
     {
