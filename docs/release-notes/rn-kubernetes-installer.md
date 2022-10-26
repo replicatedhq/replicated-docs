@@ -4,6 +4,17 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2022.10.26-0
+
+Released on October 26, 2022
+
+### New Features {#new-features-v2022-10-26-0}
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.24.0.
+* MinIO will deploy a highly-available statefulset via EKCO when OpenEBS LocalPV is enabled and at least 3 nodes are available.
+
+### Improvements {#improvements-v2022-10-26-0}
+* Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.6.5-20221025 and 2.8.1-20221025 to address the following high CVEs: CVE-2022-40303, CVE-2022-40304.
+
 ## v2022.10.24-0
 
 Released on October 24, 2022
