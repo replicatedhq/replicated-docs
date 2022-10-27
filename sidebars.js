@@ -26,6 +26,7 @@ const sidebars = {
       type: 'category',
       label: 'Getting Started Tutorials',
       items: [
+        'vendor/tutorial-intro',
         {
           type: 'category',
           label: 'UI Tutorial',
@@ -57,7 +58,7 @@ const sidebars = {
             'vendor/tutorial-cli-create-new-version',
             'vendor/tutorial-cli-update-app',
           ],
-        },  
+        },
       ],
     },
     {
