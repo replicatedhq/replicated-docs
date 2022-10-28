@@ -4,6 +4,13 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2022.10.28-1
+
+Released on October 28, 2022
+
+### Bug Fixes {#bug-fixes-v2022-10-28-1}
+* Fixes an issue that causes kURL to erroneously prompt the end-user for a Rook to OpenEBS Local PV migration when upgrading and OpenEBS add-on version 3.3.0 is included in the spec.
+
 ## v2022.10.28-0
 
 Released on October 28, 2022
