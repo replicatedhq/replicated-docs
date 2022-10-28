@@ -7,12 +7,9 @@ Welcome! This topic describes how to get started with Replicated as a software v
 
 ## Get Started with Replicated
 
-The Getting Started section includes an overview of the Replicated product, as well as tutorials that help vendors learn about Replicated by completing common tasks with sample applications.
+The Getting Started section includes UI-based and CLI-based tutorials that are designed to help software vendors learn about Replicated by completing common tasks with a set of sample application manifest files.
 
-To get started, see [What is Replicated?](intro-replicated) and complete the following introductory tutorials:
-* [Packaging and Installing on an Existing Cluster](/vendor/tutorial-installing-with-existing-cluster)
-* [Packaging and Installing on a Kubernetes Installer Cluster](/vendor/tutorial-installing-without-existing-cluster)
-* [Managing Releases with the CLI](/vendor/tutorial-installing-with-cli)
+To get started, see [Introduction and Setup](/vendor/tutorial-intro) in _Getting Started Tutorials_.
 
 ## About the Replicated Documentation
 

@@ -1,30 +1,31 @@
+import VMRequirements from "../partials/getting-started/_vm-requirements.mdx"
+
 # Step 4: Install the App Manager
 
 The app manager can be installed either into an existing Kubernetes cluster, or as a Kubernetes installer provisioned cluster (embedded cluster). You can see the installation options at the bottom of each channel on the Channels page.
 
-For this tutorial, use the either installation option.
+For this tutorial, use either installation option:
+* [Install in an Existing Cluster](#Existing)
+* [Install in a Kubernetes Installer Cluster](#kubernetes-installer)
 
-## Install in an Existing Cluster
+## Install in an Existing Cluster {#existing}
 
 Installing the app manager on existing clusters is similar to using a Kubernetes installer provisioned cluster, except instead of bringing a plain virtual machine (VM), you will use a pre-built Kubernetes cluster and deploy your application into a namespace.
 
 ![Installation Methods](/images/guides/kots/installation-methods-existing.png)
 
-This existing cluster example uses a Google Cloud provider to create a GKE cluster. However, you can use any cluster for which you have `kubectl` access instead of using a GKE cluster.
-
 To install the app manager:
 
-1. Run the following command to launch a GKE cluster using the `gcloud` CLI.
+1. Access the Kubernetes cluster that you created as part of [Set Up the Environment](tutorial-ui-setup#set-up-the-environment).
+
+1. On the cluster, set the local kubectl context.
+
+  For example, to set the local kubectl context on a GKE cluster, run the following command:
 
   ```shell
-  gcloud container clusters create kots-app --preemptible --no-enable-ip-alias
+  gcloud container clusters get-credentials NAME
   ```
-
-1. Run the following command to set the local `kubectl` context:
-
-  ```shell
-  gcloud container clusters get-credentials kots-app
-  ```
+  Where `NAME` is the name of the cluster.
 
 1. Run the following command to install the latest app manager version as a `kubectl` plugin:
 
@@ -50,7 +51,7 @@ To install the app manager:
 
 1. Note the URL and password that you will use to access the Replicated admin console.
 
-## Install on a Kubernetes Installer Cluster
+## Install in a Kubernetes Installer Cluster {#kubernetes-installer}
 
 The app manager can be installed as a Kubernetes installer provisioned cluster (embedded cluster), which provisions a plain virtual machine (VM).
 
@@ -58,20 +59,9 @@ You can see the installation options at the bottom of each channel on the Channe
 
 ![Installation Methods](/images/guides/kots/installation-methods-embedded.png)
 
-To create the test server and install the app manager:
+To install the app manager on a VM using the Kubernetes installer:
 
-1. Create a server using any cloud provider (such as GCP or AWS). Or, use a local virtual machine. The server must meet the following criteria:
-
-    * Ubuntu 18.04
-    * At least 8 GB of RAM
-    * 4 CPU cores
-    * At least 50GB of disk space
-
-    :::note
-    If you use a virtual machine that is behind a firewall, make sure that port 8800 (and any other ports you attempt to access through the internet) are allowed to accept traffic. GCP and AWS typically require firewall rule creation to expose ports.
-    :::
-
-1. Use SSH to access the server you just created.
+1. Use SSH to access the VM that you created as part of [Set Up the Environment](tutorial-ui-setup#set-up-the-environment).
 1. Run the installation script:
 
   ```shell
