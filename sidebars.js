@@ -405,6 +405,7 @@ const sidebars = {
             'reference/kots-cli-upload',
             'reference/kots-cli-reset-tls',
             'reference/kots-cli-reset-password',
+            'reference/kots-cli-enable-ha',
             {
                 type: 'category',
                 label: 'get',
