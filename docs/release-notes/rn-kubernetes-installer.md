@@ -10,6 +10,8 @@ Released on October 28, 2022
 
 ### New Features {#new-features-v2022-10-28-0}
 * The replicatedhq/local-volume-provider image has been updated to v0.4.0 for [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.9.2 which addresses the following high and critical CVEs: CVE-2021-33574, CVE-2021-35942, CVE-2022-23218, CVE-2022-23219, CVE-2020-1752, CVE-2020-6096, CVE-2021-3326, CVE-2021-3999.
+* OpenEBS add-on versions 3.3.0 and later will automatically migrate Rook-backed PVCs to OpenEBS Local PV if Rook is installed but no longer included in the kURL spec.
+
 
 ## v2022.10.26-0
 
