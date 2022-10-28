@@ -15,7 +15,7 @@ users of the application to install, update, and manage their application instan
 
 ### App Manager
 
-The Replicated app manager is the underlying technology that installs and manages applications on a Kubernetes cluster. The app manager reads the Kubernetes manifest files or Helm charts that you define to package and install an application in a customer environment. It also installs the Replicated admin console and provides preflight and support bundle functionality from the Troubleshoot open source project.
+The Replicated app manager is the underlying technology that installs and manages applications on a Kubernetes cluster. The app manager reads the Kubernetes manifest files that you define to package and install an application in a customer environment. It also installs the Replicated admin console and provides preflight and support bundle functionality from the Troubleshoot open source project.
 
 The Replicated app manager is based on the open source KOTS project, which is maintained by Replicated.
 
