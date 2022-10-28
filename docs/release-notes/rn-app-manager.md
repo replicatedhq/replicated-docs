@@ -4,6 +4,20 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.89.0
+
+Released on October 28, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
+
+### Bug Fixes {#bug-fixes-1-89-0}
+* Fixes an issue that causes Released timestamp to be the same for all releases on the [version history](/enterprise/updating-apps#update-an-application-in-the-admin-console) page in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Allows kots cli commands to use the kubeconfig namespace by default if a flag is not provided.
+* Fixes an issue where installing, updating, or configuring applications that have many images defined in KOTS custom resources (e.g. collectors, preflights, analyzers, etc..) hangs or takes a really long time.
+* Fixes an issue that could cause the preflight progress bar to be stuck close to 100% but never complete.
+* Fixes an issue where unused Host Path and NFS volumes were not being cleaned up when changing snapshot storage locations in clusters without MinIO.
+* Fixes the issue that caused [`Sequence`](/reference/template-functions-license-context#sequence) template function to return 1 instead of 0 during initial configuration.
+
 ## 1.88.0
 
 Released on October 19, 2022
