@@ -1,21 +1,13 @@
 # What is Replicated?
 
-Replicated is an enterprise software distribution platform that lets vendors package and securely distribute their application to
-diverse customer environments, including both on-premises and cloud environments.
+Replicated is an enterprise software distribution platform that lets vendors package their application using Kubernetes manifests or Helm charts and securely distribute their application to diverse customer environments, including both on-premises and cloud environments.
 
-Replicated packages the vendor's application using a set of Kubernetes manifests or Helm charts,
-and installs the application on a Kubernetes cluster in the customer's environment.
-For customers who do not have an existing Kubernetes cluster, Replicated
-provisions a new cluster on the customer's VM and installs the application.
+## Replicated Components
 
 Replicated includes several components that make it easier for vendors to manage their
 applications, release channels, customer licenses, image
 registries, and more. Replicated components and features also make it easier for the enterprise
 users of the application to install, update, and manage their application instance.
-
-## Replicated Components
-
-The Replicated product is comprised of the following components:
 
 ![What is Replicated?](/images/what-is-replicated.png)
 
@@ -29,6 +21,8 @@ The Replicated app manager is based on the open source KOTS project, which is ma
 
 ### Vendor UI Options
 
+Vendors can use the following user interface options to package and manage their applications:
+
 <table>
   <tr>
     <th width="30%">UI Option</th>
@@ -37,9 +31,9 @@ The Replicated app manager is based on the open source KOTS project, which is ma
   <tr>
     <td>Vendor Portal</td>
     <td>The user interface where vendors
-    define Kubernetes manifest files, including application manifests and custom resource
-    manifests, for their application. These files describe to the app manager how to
-    package the application for distribution. Vendors can also use the vendor portal
+    define Kubernetes manifest files or Helm charts, including application and custom resource
+    manifests. These files describe to the app manager how to
+    package the application for distribution. <br></br><br></br>Vendors can also use the vendor portal
     to manage other artifacts, such as customer license files, image registries, and
     release channels.</td>
   </tr>
@@ -53,13 +47,10 @@ The Replicated app manager is based on the open source KOTS project, which is ma
   </tr>
 </table>
 
-The vendor portal:
-
-  ![Create Application](/images/guides/kots/create-application.png)
 
 ### Customer UI Options
 
-Enterprise customers can use the following options to manage your application:
+Enterprise customers can use the following user interface options to manage the application in their environment:
 
 <table>
   <tr>
@@ -78,20 +69,16 @@ Enterprise customers can use the following options to manage your application:
   </tr>
 </table>
 
-The admin console:
-
-![Admin Console](/images/kotsadm-dashboard-graph.png)
 
 ## Deployment Options
 
-- **Kubernetes installer**: The Kubernetes installer provisions a Kubernetes
-cluster, called an _embedded cluster_, in the customer's environment if they do
-not have an existing cluster. The Replicated Kubernetes installer is based on the open source
+- **Existing Cluster**: The app manager can install and deploy applications to a customer's existing Kubernetes cluster.
+
+- **Air Gap Environments**: The app manager can install and deploy applications in a customer's secure, air gapped environment.
+
+- **Kubernetes installer**: The Replicated Kubernetes installer provisions a Kubernetes
+cluster on a customer's virtual machine, if they do not have an existing cluster. This deployment is also known as an _embedded cluster_. The Kubernetes installer is based on the open source
 kURL project, which is maintained by Replicated.
-
-- **Existing Cluster**: The app manager can install and deploy vendor applications into a customer's existing Kubernetes cluster.
-
-- **Air Gap Environments**: The app manager can install and deploy vendor applications in a customer's secure, air gapped environment.
 
 ## Video Resources
 
