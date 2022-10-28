@@ -72,13 +72,28 @@ Enterprise customers can use the following user interface options to manage the 
 
 ## Deployment Options
 
-- **Existing Cluster**: The app manager can install and deploy applications to a customer's existing Kubernetes cluster.
+The app manager deploys applications securely to the following on-premise or cloud environments:
 
-- **Air Gap Environments**: The app manager can install and deploy applications in a customer's secure, air gapped environment.
-
-- **Kubernetes installer**: The Replicated Kubernetes installer provisions a Kubernetes
-cluster on a customer's virtual machine, if they do not have an existing cluster. This deployment is also known as an _embedded cluster_. The Kubernetes installer is based on the open source
-kURL project, which is maintained by Replicated.
+<table>
+  <tr>
+    <th width="30%">Environment</th>
+    <th width="70%">Description</th>
+  </tr>
+  <tr>
+    <td>Existing Cluster</td>
+    <td>The app manager can install and deploy applications to a customer's existing Kubernetes cluster.</td>
+  </tr>
+  <tr>
+    <td>Virtual Machine</td>
+    <td>The Replicated Kubernetes installer provisions a Kubernetes
+    cluster on a customer's virtual machine, if they do not have an existing cluster. This deployment is also known as an _embedded cluster_. The Kubernetes installer is based on the open source
+    kURL project, which is maintained by Replicated.</td>
+  </tr>
+  <tr>
+    <td>Air Gap</td>
+    <td>The app manager can install and deploy applications in a customer's secure, air gapped environment.</td>
+  </tr>
+</table>
 
 ## Video Resources
 
