@@ -11,7 +11,7 @@ Released on October 28, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 
 ### New Features {#new-features-1-89-0}
-* Automatically migrates data from Postgres to rqlite and removes Postgres. Also introduces a new command [kubectl kots enable-ha](/reference/kots-cli-enable-ha) that runs rqlite as three replicas for higher availability. This command should only be run on clusters with at least three nodes. Now multiple node clusters deployed with the Kubernetes installer can use OpenEBS local PV, because data will be replicated across all three replicas of rqlite, allowing the app manager to run on any node in the cluster without requiring distributed storage like Rook provides.
+* Automatically migrates data from Postgres to rqlite and removes Postgres. Also introduces a new [kubectl kots enable-ha](/reference/kots-cli-enable-ha) command that runs rqlite as three replicas for higher availability. This command should only be run on clusters with at least three nodes. Now multiple node clusters deployed with the Kubernetes installer can use OpenEBS local PV, because data will be replicated across all three replicas of rqlite, allowing the app manager to run on any node in the cluster without requiring distributed storage like Rook provides.
 
 ### Bug Fixes {#bug-fixes-1-89-0}
 * Fixes an issue that causes the Released timestamp to be the same for all releases on the [version history](/enterprise/updating-apps#update-an-application-in-the-admin-console) page in [Helm managed mode (Alpha)](/vendor/helm-install).
