@@ -5,7 +5,7 @@ import VMRequirements from "../partials/getting-started/_vm-requirements.mdx"
 The app manager can be installed either into an existing Kubernetes cluster, or as a Kubernetes installer provisioned cluster (embedded cluster). You can see the installation options at the bottom of each channel on the Channels page.
 
 For this tutorial, use either installation option:
-* [Install in an Existing Cluster](#Existing)
+* [Install in an Existing Cluster](#existing)
 * [Install in a Kubernetes Installer Cluster](#kubernetes-installer)
 
 ## Install in an Existing Cluster {#existing}
@@ -62,7 +62,7 @@ You can see the installation options at the bottom of each channel on the Channe
 To install the app manager on a VM using the Kubernetes installer:
 
 1. Use SSH to access the VM that you created as part of [Set Up the Environment](tutorial-ui-setup#set-up-the-environment).
-1. Run the installation script:
+1. On the VM, run the installation script:
 
   ```shell
   curl -sSL https://k8s.kurl.sh/<your-app-name-and-channel> | sudo bash
