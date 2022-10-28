@@ -1,15 +1,21 @@
 ---
 slug: /
 ---
+import LabsIntro from "./partials/getting-started/_labs-intro.mdx"
+
 # Welcome
 
 Welcome! This topic describes how to get started with Replicated as a software vendor. It also includes information on how to navigate the Replicated product documentation site.
 
 ## Get Started with Replicated
 
-The Getting Started section includes UI-based and CLI-based tutorials that are designed to help software vendors learn about Replicated by completing common tasks with a set of sample application manifest files.
+The documentation includes UI-based and CLI-based tutorials that are designed to help software vendors learn about Replicated by completing common tasks with a sample application.
 
-To get started, see [Introduction and Setup](/vendor/tutorial-intro) in _Getting Started Tutorials_.
+To get started with a tutorial that demonstrates how to use the Replicated vendor portal to create and promote releases, see [Introduction and Setup](/vendor/tutorial-ui-setup) in _UI Tutorial_.
+
+To get started with a tutorial that demonstrates how to use the replicated CLI to create and promote releases, see [Introduction and Setup](/vendor/tutorial-ui-setup) in _CLI Tutorial_.
+
+<LabsIntro/>
 
 ## About the Replicated Documentation
 
