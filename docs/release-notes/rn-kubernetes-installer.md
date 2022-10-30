@@ -31,6 +31,7 @@ Released on October 26, 2022
 
 ### Improvements {#improvements-v2022-10-26-0}
 * Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.6.5-20221025 and 2.8.1-20221025 to address the following high CVEs: CVE-2022-40303, CVE-2022-40304.
+* Removes support for the BETA K3s Add-on and the BETA RKE2 Add-on. It is recommended to use the [OpenEBS add-on](https://kurl.sh/docs/add-ons/openEBS#localpv) for the single-node LocalPV use case with kURL. More information on this deprecation decision is available [here](https://github.com/replicatedhq/kURL/pull/3625).
 
 ## v2022.10.24-0
 
