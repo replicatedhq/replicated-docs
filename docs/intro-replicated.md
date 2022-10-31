@@ -12,6 +12,20 @@ Replicated includes components and features that make it easier for vendors to m
 
 [View larger image](/images/what-is-replicated.png)
 
+### Vendor Portal
+
+The vendor portal is the graphical user interface that vendors can use to package and manage their applications. You define Kubernetes manifest files, including application and custom resource manifests. These files describe to the app manager how to package the application for distribution. Alternatively, you can use Helm charts. Vendors can also manage other artifacts, such as customer license files, image registries, and release channels.
+
+![Create an Application in the Vendor Portal](/images/guides/kots/create-application.png)
+
+### replicated CLI
+
+Vendors can use the replicated command-line interface (CLI) to interact with the vendor portal. The replicated CLI can be used to complete tasks programmatically. For more information, see [Installing the replicated CLI](/reference/replicated-cli-installing).
+
+### Vendor API v3
+
+Vendors can use the Vendor API to interacting with the vendor portal. This API can be used to complete tasks programmatically. For more information, see [Using the Vendor API V3](/reference/vendor-api-using).
+
 ### App Manager
 
 The Replicated app manager is the underlying technology that installs and manages applications on a Kubernetes cluster. The app manager reads the Kubernetes manifest files that you define to package and install an application in a customer environment. It also installs the Replicated admin console and provides preflight and support bundle functionality from the Troubleshoot open source project.
@@ -30,21 +44,6 @@ The Replicated app manager is based on the open source KOTS project, which is ma
 The Replicated Kubernetes installer provisions a cluster on a customer's virtual machine. This is known as a Kubernetes installer cluster or embedded cluster, and it allows customers to install an application without an existing Kubernetes cluster. The Kubernetes installer is based on the open source kURL project, which is maintained by Replicated.
 
 For more information about configuring a Kubernetes installer cluster, see [Creating a Kubernetes Installer](/vendor/packaging-embedded-kubernetes). For more information about how enterprise users install with the Kubernetes installer, see [Installing with the Kubernetes Installer](/enterprise/installing-embedded-cluster).
-
-
-### Vendor Portal
-
-The vendor portal is the graphical user interface that vendors can use to package and manage their applications. You define Kubernetes manifest files, including application and custom resource manifests. These files describe to the app manager how to package the application for distribution. Alternatively, you can use Helm charts. Vendors can also manage other artifacts, such as customer license files, image registries, and release channels.
-
-![Create an Application in the Vendor Portal](/images/guides/kots/create-application.png)
-
-### replicated CLI
-
-Vendors can use the replicated command-line interface (CLI) to interact with the vendor portal. The replicated CLI can be used to complete tasks programmatically. For more information, see [Installing the replicated CLI](/reference/replicated-cli-installing).
-
-### Vendor API v3
-
-Vendors can use the Vendor API to interacting with the vendor portal. This API can be used to complete tasks programmatically. For more information, see [Using the Vendor API V3](/reference/vendor-api-using).
 
 ### Admin Console
 
