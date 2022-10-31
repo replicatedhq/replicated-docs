@@ -33,28 +33,3 @@ To get the sample manifest files and initialize the application repository:
   config-map.yaml     deployment.yaml     preflight.yaml      service.yaml
   config.yaml         ingress.yaml        replicated-app.yaml support-bundle.yaml
   ```
-
-1. Run the following `release lint` command to verify this YAML:
-
-  ```
-  replicated release lint --yaml-dir=manifests
-  ```
-
-  If there are no errors, an empty list is displayed with a zero exit code:
-
-  ```text
-  RULE    TYPE    FILENAME    LINE    MESSAGE
-  ```
-
-  For a complete list of the possible error, warning, and informational messages that can appear in the ouput of the `release lint` command, see [KOTS Lint Rules](/reference/kots-lint).
-
-1. Initialize this project as a Git repository so that you can track your history.
-Additionally, the replicated CLI reads git metadata to help with the generation of release metadata,
-such as version labels. More information about this is covered later in this tutorial.
-
-  To initialize the repository, run the following commands:
-
-  ```shell script
-  git init
-  git add .
-  git commit -m "Initial Commit: CLI Quickstart"

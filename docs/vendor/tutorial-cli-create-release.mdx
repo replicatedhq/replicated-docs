@@ -1,10 +1,35 @@
 # Step 4: Create a Release
 
-Now that you have some YAML manifest files, you can create a release and promote it to the `Unstable` channel for internal testing.
+Now that you have some YAML manifest files, you can create a release and promote it to the Unstable channel for internal testing.
 
 To create and promote a release:
 
-1. Run the following command with the `--auto` flag to generate release notes and metadata based on the git status.
+1. Run the following command to verify this YAML:
+
+  ```
+  replicated release lint --yaml-dir=manifests
+  ```
+
+  If there are no errors, an empty list is displayed with a zero exit code:
+
+  ```text
+  RULE    TYPE    FILENAME    LINE    MESSAGE
+  ```
+
+  For a complete list of the possible error, warning, and informational messages that can appear in the ouput of the `release lint` command, see [KOTS Lint Rules](/reference/kots-lint).
+
+1. Initialize the project as a Git repository so that you can track your history.
+Additionally, the replicated CLI reads git metadata to help with the generation of release metadata,
+such as version labels. More information about this is covered later in this tutorial.
+
+  To initialize the repository, run the following commands:
+
+  ```shell script
+  git init
+  git add .
+  git commit -m "Initial Commit: CLI Tutorial"
+
+1. Run the following command with the `--auto` flag to generate release notes and metadata based on the Git status:
 
   ```shell script
   $ replicated release create --auto
@@ -12,7 +37,7 @@ To create and promote a release:
 
   **Example output:**
 
-  ```text
+  ```
       • Reading Environment ✓
 
     Prepared to create release with defaults:
@@ -20,13 +45,14 @@ To create and promote a release:
         yaml-dir        "./manifests"
         promote         "Unstable"
         version         "Unstable-ba710e5"
-        release-notes   "CLI release of master triggered by dex [SHA: ba710e5] [28 Sep 20 09:15 CDT]"
+        release-notes   "CLI release of master triggered by exampleusername [SHA: d4173a4] [31 Oct 22 08:51 MDT]"
         ensure-channel  true
+        lint-release    true
 
     Create with these properties? [Y/n]
   ```
 
-1. Press Enter to confirm the prompt. The release is created and promoted.
+1. Type `y` and press Enter to confirm the prompt:
 
   **Example output:**
 
@@ -37,6 +63,7 @@ To create and promote a release:
     • Promoting ✓
       • Channel VEr0nhJBBUdaWpPvOIK-SOryKZEwa3Mg successfully set to release 1
   ```
+  The release is created and promoted.
 
 1. Run the following command to verify that the release was created:
 
@@ -46,6 +73,6 @@ To create and promote a release:
   **Example output:**
 
   ```text
-  SEQUENCE    CREATED                      EDITED                  ACTIVE_CHANNELS
-  1           2020-09-03T11:48:45-07:00    0001-01-01T00:00:00Z    Unstable
+  SEQUENCE    CREATED                 EDITED                  ACTIVE_CHANNELS
+  1           2022-10-31T14:55:35Z    0001-01-01T00:00:00Z    Unstable
   ```
