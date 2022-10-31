@@ -31,10 +31,6 @@
   to = "https://docs.replicated.com/vendor/distributing-workflow"
 
 [[redirects]]
-  from = "https://docs.replicated.com/vendor/packaging-custom-resources"
-  to = "https://docs.replicated.com/vendor/releases-creating-releases"
-
-[[redirects]]
   from = "https://docs.replicated.com/enterprise"
   to = "https://docs.replicated.com/enterprise/installing-overview"
 
@@ -65,6 +61,10 @@
 # Redirects To the Vendor Section
 ###################################################
 
+[[redirects]]
+  from = "https://docs.replicated.com/vendor/packaging-custom-resources"
+  to = "https://docs.replicated.com/vendor/releases-creating-releases"
+
 ###################################################
 # Redirects To the Enterprise Section
 ###################################################
@@ -76,10 +76,6 @@
 # Redirects from the removed packaging-template-functions topic
 [[redirects]]
   from="https://docs.replicated.com/vendor/packaging-template-functions"
-  to= "https://docs.replicated.com/reference/template-functions-about"
-
-[[redirects]]
-  from="https://docs.replicated.com/vendor/packaging-template-functions/"
   to= "https://docs.replicated.com/reference/template-functions-about"
 
 ###################################################
