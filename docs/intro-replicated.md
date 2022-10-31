@@ -1,12 +1,12 @@
 # What is Replicated?
 
-Replicated is an enterprise software distribution platform that lets vendors package their application using Kubernetes manifests or Helm charts and securely distribute their application to diverse customer environments, including both on-premises and cloud environments.
+Replicated is an enterprise software distribution platform that lets you package your application using Kubernetes manifests or Helm charts, and securely distribute your application to diverse customer environments. This includes on-premises and cloud environments.
 
 To learn more about Replicated, see [Intro to Replicated: 20 Ways We Help](https://www.youtube.com/watch?v=2eOh7CofY3Q&t=779s) video.
 
 ## Replicated Components
 
-Replicated includes components and features that make it easier for vendors to manage and deploy applications, and for enterprise users to install and manage their application instance.
+Replicated includes components and features that make it easier for you to manage and deploy applications, and for enterprise users to install and manage their application instance.
 
 ![What is Replicated?](/images/what-is-replicated.png)
 
@@ -14,17 +14,17 @@ Replicated includes components and features that make it easier for vendors to m
 
 ### Vendor Portal
 
-The vendor portal is the graphical user interface that vendors can use to package and manage their applications. You define Kubernetes manifest files, including application and custom resource manifests. These files describe to the app manager how to package the application for distribution. Alternatively, you can use Helm charts. Vendors can also manage other artifacts, such as customer license files, image registries, and release channels.
+The vendor portal is the graphical user interface that you can use to package and manage applications. You define Kubernetes manifest files, including application and custom resource manifests. These files describe to the app manager how to package the application for distribution. Alternatively, you can use Helm charts. You can also manage other artifacts, such as customer license files, image registries, and release channels.
 
 ![Create an Application in the Vendor Portal](/images/guides/kots/create-application.png)
 
 ### replicated CLI
 
-Vendors can use the replicated command-line interface (CLI) to interact with the vendor portal. The replicated CLI can be used to complete tasks programmatically. For more information, see [Installing the replicated CLI](/reference/replicated-cli-installing).
+The replicated command-line interface (CLI) is the CLI for the vendor portal. The replicated CLI can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams, license files, and so on. For more information, see [Installing the replicated CLI](/reference/replicated-cli-installing).
 
 ### Vendor API v3
 
-Vendors can use the Vendor API to interacting with the vendor portal. This API can be used to complete tasks programmatically. For more information, see [Using the Vendor API V3](/reference/vendor-api-using).
+The Vendor API is the API for the vendor portal. This API can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams, license files, and so on. For more information, see [Using the Vendor API V3](/reference/vendor-api-using).
 
 ### App Manager
 
@@ -47,7 +47,7 @@ For more information about configuring a Kubernetes installer cluster, see [Crea
 
 ### Admin Console
 
-The admin console is a graphical user interface that enterprise users can use to manage the application in their environment. Customers can configure, update, manage, backup and restore, and troubleshoot the application.
+The admin console is a graphical user interface that interacts with the app manager. Enterprise customers can use the admin console to configure, update, manage, backup and restore, and troubleshoot the application.
 
 The admin console is installed with the application by the app manager.
 
@@ -55,4 +55,4 @@ The admin console is installed with the application by the app manager.
 
 ### kots CLI
 
-Enterprise users can install and use the kots command-line interface (CLI) to manage and troubleshoot the application programmatically. The kots CLI interacts with the app manager. For more information, see [Installing the kots CLI](/reference/kots-cli-getting-started).
+Enterprise customers can install and use the kots command-line interface (CLI) to manage and troubleshoot the application programmatically. The kots CLI interacts with the app manager and provides an alternative to using the admin console. For more information, see [Installing the kots CLI](/reference/kots-cli-getting-started).
