@@ -52,9 +52,9 @@ Before Replicated renders the `values.yaml`, it is not assumed to be a valid YAM
 
 ### Chart versioning
 
-Chart version is used as the image tag in the OCI registry, and as such they must comply with image tag format requirements. A valid tag may contain only lowercase and uppercase letters, digits, underscores, periods and dashes.
+Chart version is used as the image tag in the OCI registry, and so must comply with image tag format requirements. A valid tag can contain only lowercase and uppercase letters, digits, underscores, periods, and dashes.
 
-Chart version must also comply with [semver spec](https://semver.org).  When running the `helm install` command without the `--version` flag, Helm will retrieve the list of all available image tags for the chart from the registry and compare them using the semver comparison rules described in the semver spec.  The version that will be installed will be the one with the "largest" tag value.
+The chart version must also comply with [Semantic Versioning (SemVer) specifications](https://semver.org). When you run the `helm install` command without the `--version` flag, Helm retrieves the list of all available image tags for the chart from the registry and compares them using the SemVer comparison rules described in the SemVer specification. The version that is installed is the version with the largest tag value.
 
 ## Limitations
 
