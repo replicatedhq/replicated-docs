@@ -12,29 +12,6 @@ Replicated includes components and features that make it easier for vendors to m
 
 [View larger image](/images/what-is-replicated.png)
 
-### Vendor User Interfaces
-
-Vendors can use any of the following user interfaces to package and manage their applications. You define Kubernetes manifest files, including application and custom resource manifests. These files describe to the app manager how to package the application for distribution. Alternatively, you can use Helm charts. Vendors can also manage other artifacts, such as customer license files, image registries, and release channels.
-
-<table>
-  <tr>
-    <th width="30%">User Interface</th>
-    <th width="70%">Description</th>
-  </tr>
-  <tr>
-    <td>Vendor Portal</td>
-    <td>The graphical user interface for packaging and distributing an application with Replicated.</td>
-  </tr>
-  <tr>
-    <td>replicated CLI</td>
-    <td>The command-line interface (CLI) for interacting with the vendor portal. This CLI can be used to complete tasks programmatically. See <a href="reference/replicated-cli-installing">Installing the replicated CLI</a>.</td>
-  </tr>
-  <tr>
-    <td>Vendor API v3</td>
-    <td>The API for interacting with the vendor portal. This API can be used to complete tasks programmatically. See <a href="reference/vendor-api-using">Using the Vendor API V3</a>.</td>
-  </tr>
-</table>
-
 ### App Manager
 
 The Replicated app manager is the underlying technology that installs and manages applications on a Kubernetes cluster. The app manager reads the Kubernetes manifest files that you define to package and install an application in a customer environment. It also installs the Replicated admin console and provides preflight and support bundle functionality from the Troubleshoot open source project.
@@ -42,29 +19,41 @@ The Replicated app manager is the underlying technology that installs and manage
 The app manager deploys applications securely to the following Kubernetes cluster environments:
 
 - Existing clusters
-- Virtual machines, using the Replicated Kubernetes installer
-- Air gapped existing or virtual machine clusters
+- Replicated Kubernetes installer provisioned clusters on virtual machines (VMs)
+- Air gapped on existing clusters or VM clusters
 - High availability clusters
 
 The Replicated app manager is based on the open source KOTS project, which is maintained by Replicated.
 
+### Kubernetes Installer
 
-### Customer User Interfaces
+The Replicated Kubernetes installer provisions a cluster on a customer's virtual machine. This is known as a Kubernetes installer cluster or embedded cluster, and it allows customers to install an application without an existing Kubernetes cluster. The Kubernetes installer is based on the open source kURL project, which is maintained by Replicated.
 
-Enterprise customers can use either of the following user interfaces to manage the application in their environment. Customers can configure, update, manage, backup and restore, and troubleshoot
-the application.
+For more information about configuring a Kubernetes installer cluster, see [Creating a Kubernetes Installer](/vendor/packaging-embedded-kubernetes). For more information about how enterprise users install with the Kubernetes installer, see [Installing with the Kubernetes Installer](/enterprise/installing-embedded-cluster).
 
-<table>
-  <tr>
-    <th width="30%">User Interface</th>
-    <th width="70%">Description</th>
-  </tr>
-  <tr>
-    <td>Admin Console</td>
-    <td>The graphical user interface for interacting with the app manager. The admin console is installed by the app manager when customers install the application.</td>
-  </tr>
-  <tr>
-    <td>kots CLI</td>
-    <td>The command-line interface (CLI) for interacting with the app manager to manage and troubleshoot the application programmatically. See <a href="reference/kots-cli-getting-started">Installing the kots CLI</a>.</td>
-  </tr>
-</table>
+
+### Vendor Portal
+
+The vendor portal is the graphical user interface that vendors can use to package and manage their applications. You define Kubernetes manifest files, including application and custom resource manifests. These files describe to the app manager how to package the application for distribution. Alternatively, you can use Helm charts. Vendors can also manage other artifacts, such as customer license files, image registries, and release channels.
+
+![Create an Application in the Vendor Portal](/images/guides/kots/create-application.png)
+
+### replicated CLI
+
+Vendors can use the replicated command-line interface (CLI) to interact with the vendor portal. The replicated CLI can be used to complete tasks programmatically. For more information, see [Installing the replicated CLI](/reference/replicated-cli-installing).
+
+### Vendor API v3
+
+Vendors can use the Vendor API to interacting with the vendor portal. This API can be used to complete tasks programmatically. For more information, see [Using the Vendor API V3](/reference/vendor-api-using).
+
+### Admin Console
+
+The admin console is a graphical user interface that enterprise users can use to manage the application in their environment. Customers can configure, update, manage, backup and restore, and troubleshoot the application.
+
+The admin console is installed with the application by the app manager.
+
+![Admin Console Dashboard](/images/guides/kots/application.png)
+
+### kots CLI
+
+Enterprise users can install and use the kots command-line interface (CLI) to manage and troubleshoot the application programmatically. The kots CLI interacts with the app manager. For more information, see [Installing the kots CLI](/reference/kots-cli-getting-started).
