@@ -30,6 +30,7 @@ const sidebars = {
           type: 'category',
           label: 'UI Tutorial',
           items: [
+            'vendor/tutorial-ui-setup',
             'vendor/tutorial-ui-create-app',
             'vendor/tutorial-ui-create-release',
             'vendor/tutorial-ui-create-customer',
@@ -43,11 +44,8 @@ const sidebars = {
           type: 'category',
           label: 'CLI Tutorial',
           items: [
-            {
-              type: 'doc',
-              label: 'Step 1: Install replicated CLI',
-              id: 'vendor/tutorial-cli-install-cli',
-            },
+            'vendor/tutorial-cli-setup',
+            'vendor/tutorial-cli-install-cli',
             'vendor/tutorial-cli-create-app',
             'vendor/tutorial-cli-manifests',
             'vendor/tutorial-cli-create-release',
@@ -57,7 +55,7 @@ const sidebars = {
             'vendor/tutorial-cli-create-new-version',
             'vendor/tutorial-cli-update-app',
           ],
-        },  
+        },
       ],
     },
     {

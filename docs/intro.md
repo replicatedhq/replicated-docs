@@ -1,18 +1,21 @@
 ---
 slug: /
 ---
+import LabsIntro from "./partials/getting-started/_labs-intro.mdx"
+
 # Welcome
 
 Welcome! This topic describes how to get started with Replicated as a software vendor. It also includes information on how to navigate the Replicated product documentation site.
 
 ## Get Started with Replicated
 
-The Getting Started section includes an overview of the Replicated product, as well as tutorials that help vendors learn about Replicated by completing common tasks with sample applications.
+The documentation includes UI-based and CLI-based tutorials that are designed to help software vendors learn about Replicated by completing common tasks with a sample application.
 
-To get started, see [What is Replicated?](intro-replicated) and complete the following introductory tutorials:
-* [Packaging and Installing on an Existing Cluster](/vendor/tutorial-installing-with-existing-cluster)
-* [Packaging and Installing on a Kubernetes Installer Cluster](/vendor/tutorial-installing-without-existing-cluster)
-* [Managing Releases with the CLI](/vendor/tutorial-installing-with-cli)
+To get started with a tutorial that demonstrates how to use the Replicated vendor portal to create and promote releases, see [Introduction and Setup](/vendor/tutorial-ui-setup) in _UI Tutorial_.
+
+To get started with a tutorial that demonstrates how to use the replicated CLI to create and promote releases, see [Introduction and Setup](/vendor/tutorial-ui-setup) in _CLI Tutorial_.
+
+<LabsIntro/>
 
 ## About the Replicated Documentation
 

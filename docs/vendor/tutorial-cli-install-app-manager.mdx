@@ -37,18 +37,9 @@ To install the app manager:
 
     The output generates commands for installing on an [existing cluster](../enterprise/installing-general-requirements#existing-cluster-requirements), installing [without an existing cluster](../enterprise/installing-general-requirements#embedded-cluster-requirements), and installing on an [air gap cluster](../enterprise/installing-existing-cluster#air-gap).
 
-1. Create a server using Google Cloud using the following criteria for this example:
+1. Use SSH to access the VM that you created as part of [Set Up the Environment](tutorial-cli-setup#set-up-the-environment).
 
-    - Ubuntu 18.04
-    - At least 8 GB of RAM
-    - 4 CPU cores
-    - At least 40GB of disk space
-
-    :::note
-    You can use any cloud provider or [local virtual machine](https://github.com/replicatedhq/replicated-automation/tree/master/vendor/vagrant-boxes).
-    :::
-
-1. Use SSH to access the server you created, and run the installation script from above, using the `EMBEDDED` version:
+1. On the VM, run the installation script from above, using the `EMBEDDED` version:
 
   ```shell
   curl -sSL https://kurl.sh/<your-app-name-and-channel> | sudo bash

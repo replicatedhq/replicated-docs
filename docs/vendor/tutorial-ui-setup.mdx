@@ -1,0 +1,41 @@
+import KubernetesTraining from "../partials/getting-started/_kubernetes-training.mdx"
+import LabsIntro from "../partials/getting-started/_labs-intro.mdx"
+import TutorialIntro from "../partials/getting-started/_tutorial-intro.mdx"
+import RelatedTopics from "../partials/getting-started/_related-topics.mdx"
+import VMRequirements from "../partials/getting-started/_vm-requirements.mdx"
+
+# Introduction and Setup
+
+<TutorialIntro/>
+
+The steps in this UI-based tutorial show you how to use the Replicated vendor portal to create and promote releases for your application. The vendor portal is the user interface that you use as a software vendor to create, configure, and manage your application artifacts, including application releases, release channels, customer entitlements, private image registries, and more.
+
+For a tutorial that demonstrates how to use the replicated CLI to create and promote releases for your application, see [CLI Tutorial](tutorial-cli-setup).
+
+<KubernetesTraining/>
+
+## Set Up the Environment
+
+As part of this tutorial, you install a sample application onto an existing Kubernetes cluster, or onto a cluster provisioned by the Replicated Kubernetes installer. The Kubernetes installer creates the cluster on an existing VM.
+
+Before you begin this tutorial, ensure that you have one of the following:
+
+* A Kubernetes cluster that you can access with the kubectl command line tool.
+
+   For example, to create a cluster in Google Kubernetes Engine (GKE), run the following command in the gcloud CLI:
+   ```
+   gcloud container clusters create NAME --preemptible --no-enable-ip-alias
+   ```
+   Where `NAME` is any name for the cluster.
+   
+* A VM where the Kubernetes installer can create a cluster.
+
+  <VMRequirements/>
+
+## Additional Labs
+
+<LabsIntro/>
+
+## Related Topics
+
+<RelatedTopics/>
