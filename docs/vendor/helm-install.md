@@ -50,11 +50,11 @@ The `values.yaml` in your Chart is rendered with a customer-specific license. Ea
 
 Before Replicated renders the `values.yaml`, it is not assumed to be a valid YAML format in order to allow flow control and conditional template functions to optionally write some fields to the `values.yaml` file. Replicated renders template functions in the `values.yaml` for each customer, as the Helm chart is served to the customer.
 
-### Chart versioning
+### Chart Versioning
 
-Chart version is used as the image tag in the OCI registry, and so must comply with image tag format requirements. A valid tag can contain only lowercase and uppercase letters, digits, underscores, periods, and dashes.
+The chart version is used as the image tag in the OCI registry and must comply with image tag format requirements. A valid tag can contain only lowercase and uppercase letters, digits, underscores, periods, and dashes.
 
-The chart version must also comply with [Semantic Versioning (SemVer) specifications](https://semver.org). When you run the `helm install` command without the `--version` flag, Helm retrieves the list of all available image tags for the chart from the registry and compares them using the SemVer comparison rules described in the SemVer specification. The version that is installed is the version with the largest tag value.
+The chart version must also comply with the Semantic Versioning (SemVer) specifications. When you run the `helm install` command without the `--version` flag, Helm retrieves the list of all available image tags for the chart from the registry and compares them using the SemVer comparison rules described in the SemVer specification. The version that is installed is the version with the largest tag value. For more information about SemVer specifications, see the [Semantic Versioning](https://semver.org) documentation.
 
 ## Limitations
 
