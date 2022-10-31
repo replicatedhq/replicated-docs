@@ -34,6 +34,8 @@ For examples of how to use templated and static values in the HelmChart custom r
 
 ## About Installing with the helm CLI
 
+### Overview
+
 When you promote an application to a release channel, Replicated extracts any Helm charts included in the release. These charts are pushed as OCI objects to the Replicated private registry at `registry.replicated.com`. The Helm chart is pushed to the _channel_.
 
 For example, if your app is named "app", you create a channel named "nightly", and the release promoted contains a Helm chart with `name: my-chart` in the `Chart.yaml`, then the chart is pushed to `oci://registry.replicated.com/app/nightly/my-chart`. The chart version (tag) is read from the `Chart.yaml`.
@@ -47,6 +49,12 @@ When a license field changes for a customer, Replicated invalidates all rendered
 The `values.yaml` in your Chart is rendered with a customer-specific license. Each customer logs in with unique credentials, and our registry is able to identify which customer is pulling the chart. This creates a way to pass custom license fields and other customer-specific data into the `values.yaml` as defaults, and consume them in Helm templates.
 
 Before Replicated renders the `values.yaml`, it is not assumed to be a valid YAML format in order to allow flow control and conditional template functions to optionally write some fields to the `values.yaml` file. Replicated renders template functions in the `values.yaml` for each customer, as the Helm chart is served to the customer.
+
+### Chart versioning
+
+Chart version is used as the image tag in the OCI registry, and as such they must comply with image tag format requirements. A valid tag may contain only lowercase and uppercase letters, digits, underscores, periods and dashes.
+
+Chart version must also comply with [semver spec](https://semver.org).  When running the `helm install` command without the `--version` flag, Helm will retrieve the list of all available image tags for the chart from the registry and compare them using the semver comparison rules described in the semver spec.  The version that will be installed will be the one with the "largest" tag value.
 
 ## Limitations
 
