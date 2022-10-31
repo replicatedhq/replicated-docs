@@ -50,7 +50,7 @@
 # Redirects To the Getting Started Section
 ###################################################
 [[redirects]]
-  from = "https://docs.replicated.com//vendor/tutorial-installing-with-existing-cluster"
+  from = "https://docs.replicated.com/vendor/tutorial-installing-with-existing-cluster"
   to = "https://docs.replicated.com/vendor/tutorial-ui-setup"
 
 [[redirects]]
@@ -58,7 +58,7 @@
   to = "https://docs.replicated.com/vendor/tutorial-cli-setup"
 
 [[redirects]]
-  from = "https://docs.replicated.com//vendor/tutorial-installing-without-existing-cluster"
+  from = "https://docs.replicated.com/vendor/tutorial-installing-without-existing-cluster"
   to = "https://docs.replicated.com/vendor/tutorial-ui-setup"
 
 ###################################################
