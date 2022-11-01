@@ -68,7 +68,7 @@ To install an application in an air gapped environment:
 
       - **kots CLI:**
 
-          1. Install the kots CLI. See [Install Without Root Access](/reference/kots-cli-getting-started#install-without-root-access) in the _Installing the kots CLI_ reference section.
+          1. Install the kots CLI. See [Install without Root Access](/reference/kots-cli-getting-started#install-without-root-access) in the _Installing the kots CLI_ reference section.
           1. Use the following command to install the application `.airgap` bundle. For more information about the `kots install` command, see [install](../reference/kots-cli-install) in the kots CLI documentation.
 
           ```
