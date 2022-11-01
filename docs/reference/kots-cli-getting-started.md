@@ -33,12 +33,30 @@ kubectl kots --help
 
 ## Install without Root Access
 
-For computers without root access or computers that cannot write to the `/usr/local/bin` directory, the `kots` CLI can be downloaded using the following steps:
+You can install the kots CLI on computers without root access or computers that cannot write to the `/usr/local/bin` directory. This procedure applies to online clusters and air gapped environments.
 
-1. Download the release for your operating system from https://github.com/replicatedhq/kots/releases/latest (Linux and MacOS are supported).
-1. Unpack the release.
-1. Rename the `kots` executable to `kubectl-kots`.
-1. Copy the renamed `kubectl-kots` to anywhere on the `PATH`.
+To download the `kots` CLI without root access:
+
+1. Download the release for your operating system from https://github.com/replicatedhq/kots/releases/latest. Linux and MacOS are supported.
+
+  **Example:**
+
+  ```bash
+  curl -L https://github.com/replicatedhq/kots/releases/download/v1.89.0/kots_linux_amd64.tar.gz
+  ```
+1. Unarchive the binary by running the following command:
+
+  ```bash
+  tar xvf kots_linux_amd64.tar.gz
+  ```
+
+1. Rename the `kots` executable to `kubectl-kots` and copy it to a directory on your path by running the following command:
+
+  ```bash
+  mv kots /PATH/kubectl-kots
+  ```
+
+  Replace PATH with the path to the directory that you want to use.
 
 ## Uninstall
 
