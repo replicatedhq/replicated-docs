@@ -37,7 +37,9 @@ You can install the kots CLI on computers without root access or computers that 
 
 To download the `kots` CLI without root access:
 
-1. Download the release for your operating system from https://github.com/replicatedhq/kots/releases/latest. Linux and MacOS are supported.
+1. Download the release for your operating system from https://github.com/replicatedhq/kots/releases/latest. Air gap customers can also download this file from the download portal provided by your vendor.
+
+  Linux and MacOS are supported.
 
   **Example:**
 
@@ -50,13 +52,13 @@ To download the `kots` CLI without root access:
   tar xvf kots_linux_amd64.tar.gz
   ```
 
-1. Rename the `kots` executable to `kubectl-kots` and copy it to a directory on your path by running the following command:
+1. Rename the `kots` executable to `kubectl-kots` and move the plugin to your path by running the following command:
 
   ```bash
   mv kots /PATH/kubectl-kots
   ```
 
-  Replace PATH with the path to the directory that you want to use.
+  Replace PATH with the path to the directory where your system can access the binary.
 
 ## Uninstall
 

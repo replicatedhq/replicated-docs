@@ -66,22 +66,25 @@ To install an application in an air gapped environment:
 
       - **Admin console:** Use the `kotsadm` and password from the previous step to log into the admin console. For information about using the admin console, see [Completing Application Setup and Deploying](installing-app-setup).
 
-      - **kots CLI:** Use the following command to install the application `.airgap` bundle. For more information about the `kots install` command, see [install](../reference/kots-cli-install) in the kots CLI documentation.
+      - **kots CLI:**
 
-        ```
-          kubectl kots install APP_NAME \
-          --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
-          --license-file PATH_TO_LICENSE_FILE \
-            --config-values PATH_TO_CONFIG_VALUES \
-            --namespace default \
-            --shared-password PASSWORD
-        ```
-        Replace:
-          * `APP_NAME` with the name for the application.
-          * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle file.
-          * `PATH_TO_LICENSE_FILE` with the path to the license file.
-          * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file.
-          * `PASSWORD` with a shared password.
+          1. Install the kots CLI. See [Install Without Root Access](/reference/kots-cli-getting-started#install-without-root-access) in the _Installing the kots CLI_ reference section.
+          1. Use the following command to install the application `.airgap` bundle. For more information about the `kots install` command, see [install](../reference/kots-cli-install) in the kots CLI documentation.
+
+          ```
+            kubectl kots install APP_NAME \
+            --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
+            --license-file PATH_TO_LICENSE_FILE \
+              --config-values PATH_TO_CONFIG_VALUES \
+              --namespace default \
+              --shared-password PASSWORD
+          ```
+          Replace:
+              * `APP_NAME` with the name for the application.
+              * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle file.
+              * `PATH_TO_LICENSE_FILE` with the path to the license file.
+              * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file.
+              * `PASSWORD` with a shared password.
 
 ## Installing with High Availability Mode
 
