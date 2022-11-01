@@ -57,7 +57,7 @@ and [Referencing Custom License Fields](licenses-referencing-fields).
 
 ## License Expiration Handling
 
-The built-in `expires_at` license field defines the expiration date for a customer license. When setting an expiration date in the Vendor Portal, the `expires_at` field will be set to midnight UTC on the date selected.
+The built-in `expires_at` license field defines the expiration date for a customer license. When you set an expiration date in the vendor portal, the `expires_at` field is set to midnight UTC on the date selected.
 
 By default, an application with an expired license continues to run, but is prevented from receiving updates. To change the behavior of your application when a license expires, you can can add custom logic based on the values for the `expires_at` field.
 
