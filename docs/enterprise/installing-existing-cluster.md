@@ -69,6 +69,8 @@ You can install the admin console using the kots CLI plugin for the kubectl comm
 
 To push images and install:
 
+1. Install the kots CLI plugin. See [Install without Root Access](/reference/kots-cli-getting-started#install-without-root-access) in the kots CLI reference section.
+
 1. Download `kotsadm.tar.gz` from the kots release page on GitHub. See [Releases](https://github.com/replicatedhq/kots/releases) in the kots GitHub repository.
 
 1. Run the following command to confirm that the asset version matches the kots CLI version:
