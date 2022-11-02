@@ -2,17 +2,17 @@
 
 The Replicated admin console requires persistent storage for state. The following stateful components are required:
 
-* **PostgreSQL**: The admin console uses a PostgreSQL StatefulSet to store the version history, application metadata and other small amounts of data needed to manage the application(s).
+* **rqlite**: The admin console uses a rqlite StatefulSet to store the version history, application metadata and other small amounts of data needed to manage the application(s).
 
-   The Replicated app manager deploys the PostgreSQL component with the admin console and secured with a randomly generated password, and only exposed as a ClusterIP on the overlay network.
+   The Replicated app manager deploys the rqlite component with the admin console and secured with a randomly generated password, and only exposed as a ClusterIP on the overlay network.
 
 * **S3-compatible object store**: The admin console requires an S3-compatible object store to store application archives and support bundles.
 
    For more information about the S3-compatible object store requirements for both Kubernetes installer-created clusters and existing clusters, see the sections below.
 
-### Object Store Requirements for Kubernetes Installer-created Clusters
+### Object Store Requirements for Kubernetes Installer Clusters
 
-By default, installations on cluster created by the Kubernetes installer must include an add-on that satisfies the S3-compatible object store.
+By default, installations on clusters created by the Kubernetes installer must include an add-on that satisfies the S3-compatible object store.
 
 This can be either the Rook or MinIO add-on.
 Without one of these add-ons, the installer will fail with an error.
