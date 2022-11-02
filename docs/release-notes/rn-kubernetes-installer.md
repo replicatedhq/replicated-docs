@@ -12,7 +12,7 @@ Released on November 2, 2022
 * Updates the kurlsh/s3cmd image to tag 20221029-37473ee for the latest [Velero](https://kurl.sh/docs/add-ons/velero) add-on version, to address the following high severity CVE: CVE-2022-43680.
 * Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.9.
 * Adds [Goldpinger add-on](https://kurl.sh/docs/add-ons/goldpinger) version 3.7.0-5.5.0.
-* Adds [Sonobouy add-on](https://kurl.sh/docs/add-ons/sonobouy) version 0.56.11.
+* Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.11.
 
 ### Improvements {#improvements-v2022-11-02-0}
 * Updates the kurlsh/s3cmd image to tag 20221029-37473ee for the latest [Registry](https://kurl.sh/docs/add-ons/registry) add-on version, to address the following high severity CVE: CVE-2022-43680.
