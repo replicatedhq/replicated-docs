@@ -4,6 +4,27 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2022.11.02-0
+
+Released on November 2, 2022
+
+### New Features {#new-features-v2022-11-02-0}
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.9.
+* Adds [Goldpinger add-on](https://kurl.sh/docs/add-ons/goldpinger) version 3.7.0-5.5.0.
+* Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.11.
+
+### Improvements {#improvements-v2022-11-02-0}
+* Prompts and warns users of downtime before migrating from Rook-backed PersistentVolumeClaims to OpenEBS Local PV when OpenEBS is included in the specification and Rook is removed. For migration information, see [Migrating to Change kURL CSI Add-ons](https://kurl.sh/docs/install-with-kurl/migrating-csi).
+* Updates the kurlsh/s3cmd image to tag 20221029-37473ee for [Registry add-on](https://kurl.sh/docs/add-ons/registry) version 2.8.1 and [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.9.2, to address the high severity CVE: CVE-2022-43680.
+
+### Bug Fixes {#bug-fixes-v2022-11-02-0}
+* Fixes an issue that could cause the migration from Rook-backed PersistentVolumeClaims to unnecessarily hang for 5 minutes. For migration information, see [Migrating to Change kURL CSI Add-ons](https://kurl.sh/docs/install-with-kurl/migrating-csi).
+* Fixes an issue that could cause kURL to attempt to migrate CRI from Docker to Containerd when the CRI is already Containerd.
+* Fixes an issue with [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) versions 1.12.0 and 2.6.0 that could cause installations to fail with the error `failed calling webhook "admission-webhook.openebs.io"`.
+* Fixes an issue that could cause the kURL installer to disable EKCO management of the internal load balancer during an upgrade. See [Internal Load Balancer](https://kurl.sh/docs/add-ons/ekco#internal-load-balancer).
+* Fixes an issue where [Weave add-on](https://kurl.sh/docs/add-ons/weave) "latest" version resolves to 2.6.5-20221006 instead of 2.6.5-20221025.
+* Fixes an issue where kURL will migrate to both OpenEBS Local PV and Longhorn from Rook-backed PersistentVolumeClaims when both add-ons are included in the specification and Rook is removed. kURL now prefers to migrate to OpenEBS.
+
 ## v2022.10.28-1
 
 Released on October 28, 2022
