@@ -1,10 +1,10 @@
-# Supporting helm CLI Installations (Alpha)
+# Supporting helm CLI Installations (Beta)
 
 :::note
-Allowing users to install with the helm CLI is an Alpha feature. To enable this feature on your account, log in to your vendor portal account. Select **Support** > **Request a feature**, and submit a feature request for "Helm CLI install option".
+Allowing users to install with the helm CLI is an Beta feature. To enable this feature on your account, log in to your vendor portal account. Select **Support** > **Request a feature**, and submit a feature request for "Helm CLI install option".
 :::
 
-Some enterprise users prefer or require a Helm chart to install using the `helm` CLI. This is often because Helm is already approved and the customer has a custom CI pipeline that is compatible with Helm charts. Replicated has introduced Alpha support to enable these users to use Helm to install your application.
+Some enterprise users prefer or require a Helm chart to install using the `helm` CLI. This is often because Helm is already approved and the customer has a custom CI pipeline that is compatible with Helm charts. Replicated has introduced Beta support to enable these users to use Helm to install your application.
 
 ## Prerequisite
 
@@ -58,7 +58,7 @@ The chart version must also comply with the Semantic Versioning (SemVer) specifi
 
 ## Limitations
 
-The `helm install` method is Alpha and has the following limitations:
+The `helm install` method is Beta and has the following limitations:
 
 * No support for "last mile" changes with Kustomize. All configuration and customization must be done using Helm.
 * No support for `strict` preflights that block application installation. This is because Helm does not automatically run preflight checks. Preflight checks are supported with `helm install`, but your users must run the preflight checks manually before installing your application.

@@ -26,7 +26,7 @@ The following describes the Native Helm and Replicated KOTS deployment methods:
 
    For more information, see [Replicated KOTS](helm-processing#replicated-kots) in _How the App Manager Processes Helm Charts_.
 
-### Using the helm CLI (Alpha)
+### Using the helm CLI (Beta)
 
 Users can install an application packaged with a Helm chart into an existing cluster using the helm CLI. When users install with the helm CLI directly, Helm, rather than the app manager, manages the lifecycle of the application.
 
@@ -34,4 +34,4 @@ Deploying an application with the helm CLI differs from the "Native Helm" deploy
 
 Users do not have access to certain Replicated features when they install and manage the application with the helm CLI directly. This is because the app manager does not manage the lifecycle of the application. For example, users must update the application using the `helm upgrade` command, rather than using the admin console UI or the kots CLI.
 
-For more information about how to package an application so that users can install using the helm CLI, see [Supporting helm CLI Installations (Alpha)](helm-install).
+For more information about how to package an application so that users can install using the helm CLI, see [Supporting helm CLI Installations (Beta)](helm-install).
