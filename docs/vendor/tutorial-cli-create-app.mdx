@@ -1,44 +1,10 @@
-# Step 2: Create an Application and API Token
+# Step 2: Create an Application
 
-To create an API token and an application:
+After you install the replicated CLI and create an API token, you can use the CLI to create a new application.
 
-1. Run `replicated release ls` to see an error message about a missing API token:
+To create an application:
 
-  ```
-  Error: set up APIs: Please provide your API token
-  ```
-
-1. To authenticate and begin using the replicated CLI, create an API token in your vendor portal account:
-
-  1. In the vendor portal, go to the [Account settings](https://vendor.replicated.com/account-settings) page.
-
-  1. Under User API Tokens, click **New User API Token**. For Nickname, provide a name for the token. For Permissions, select **Read and Write**.
-
-     For more information about User API tokens, see [User Tokens](/reference/replicated-cli-tokens#user-tokens) in _Using Vendor API Tokens_.
-
-  1. Click **Create Token**.
-
-  1. Copy the string that appears in the dialog.
-
-1. Export the user token string that you copied in the previous step to an environment variable named `REPLICATED_API_TOKEN`:
-
-   ```
-   export REPLICATED_API_TOKEN=1234567...
-   ```
-
-1. Run the following command to verify the User API token:
-
-   ```
-   replicated release ls
-   ```
-
-   This command outputs the following error message:
-
-   ```
-   Error: App not found:
-   ```
-
-1. Run the following command to create an application:
+1. Run the following command to create an application named `cli-tutorial`:
 
     ```
     replicated app create cli-tutorial
@@ -57,7 +23,7 @@ To create an API token and an application:
   export REPLICATED_APP=cli-tutorial
   ```
 
-1. Run the following command to verify that the `REPLICATED_API_TOKEN` and `REPLICATED_APP` environment variables are set correctly:
+1. Verify that both the `REPLICATED_API_TOKEN` environment variable that you created as part of [Step 1: Install the replicated CLI](tutorial-cli-install-cli) and the `REPLICATED_APP` environment variable are set correctly:
 
   ```
   replicated release ls
@@ -69,4 +35,4 @@ To create an API token and an application:
   SEQUENCE    CREATED    EDITED    ACTIVE_CHANNELS
   ```
 
-  Later in this tutorial, you create a release from a set of sample manifest files.
+Continue to [Step 3: Get the Sample Manifests](tutorial-cli-manifests) to download the manifest files for a sample Kubernetes application. You will use these manifest files to create the first release for the `cli-tutorial` application.

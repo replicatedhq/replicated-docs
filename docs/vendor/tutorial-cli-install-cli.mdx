@@ -1,18 +1,24 @@
 # Step 1: Install the replicated CLI
 
+In this tutorial, you use the replicated CLI to create and promote releases for a sample application with Replicated. The replicated CLI is the CLI for the Replicated vendor portal. For a tutorial that uses the Replicated vendor portal UI to create and promote releases, see [UI Tutorial](tutorial-ui-setup).
+
 :::note
-Ensure that you have completed the required environment setup. See [Set Up the Environment](tutorial-cli-setup#set-up-the-environment) in _Introduction and Setup_.
+Before you begin, ensure that you have completed the required environment setup. See [Set Up the Environment](tutorial-cli-setup#set-up-the-environment) in _Introduction and Setup_.
 :::
 
-To begin, install the replicated CLI to perform the deployment tasks:
+The first step in this tutorial is to install the replicated CLI on your local machine and set up a `REPLICATED_API_TOKEN` environment variable to authenticate.
 
-1. Use [homebrew](https://brew.sh) or the latest Linux or macOS version from [the replicatedhq/replicated releases page](https://github.com/replicatedhq/replicated/releases) to install the CLI.
+To install the replicated CLI:
 
-  ```shell script
+1. Run the following command to use [Homebrew](https://brew.sh) to install the CLI:
+
+  ```
   brew install replicatedhq/replicated/cli
   ```
 
-1. Run the following command to verify the installation:
+  Alternatively, use the latest Linux or macOS version from the [replicatedhq/replicated](https://github.com/replicatedhq/replicated/releases) releases page in GitHub.
+
+1. Verify the installation:
 
   ```
   replicated version
@@ -32,3 +38,40 @@ To begin, install the replicated CLI to perform the deployment tasks:
       }
   }
   ```
+  If you run a replicated CLI command, such as `replicated release ls`, you see the following error message about a missing API token:
+
+  ```
+  Error: set up APIs: Please provide your API token
+  ```
+
+1. To authenticate and begin using the replicated CLI, create an API token in your vendor portal account:
+
+  1. Log in to the vendor portal, and go to the [Account settings](https://vendor.replicated.com/account-settings) page.
+
+  1. Under User API Tokens, click **New User API Token**. For Nickname, provide a name for the token. For Permissions, select **Read and Write**.
+
+     For more information about User API tokens, see [User Tokens](/reference/replicated-cli-tokens#user-tokens) in _Using Vendor API Tokens_.
+
+  1. Click **Create Token**.
+
+  1. Copy the string that appears in the dialog.
+
+1. Export the user token string that you copied in the previous step to an environment variable named `REPLICATED_API_TOKEN`:
+
+   ```
+   export REPLICATED_API_TOKEN=1234567...
+   ```
+
+1. Run the following command to verify the User API token:
+
+   ```
+   replicated release ls
+   ```
+
+   This command no longer prints an error message about a missing API token. Rather, you see the following error message:
+
+   ```
+   Error: App not found:
+   ```
+
+Continue to [Step 2: Create an Application](tutorial-cli-create-app).
