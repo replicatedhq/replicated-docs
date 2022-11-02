@@ -1,8 +1,66 @@
 # Step 8: Create a New Version
 
-From your local repo, you can update the NGINX deployment to test a simple update to the application.
+In this step, you make an edit to the Replicated Config custom resource manifest file in the `replicated-cli-tutorial/manifests` directory. The Config custom resource defines the fields on the admin console configuration page. For more information, see [Config](/reference/custom-resource-config).
 
-To make an update:
+After editing the YAML file, you use the replicated CLI to create and promote a new release for the application.
+
+To create and promote a new version of the application:
+
+1. In your local directory, change to the `replicated-cli-tutorial/manifests` directory:
+
+   ```
+   cd ~/replicated-cli-tutorial/manifests
+   ```
+
+1. Open the `kots-config.yaml` file in a text editor.
+
+1. Copy and paste the following YAML into the file to create a new required text field on the configuration page:
+
+   ```yaml
+    - name: new_field
+      title: Another Text Example
+      type: text
+      value: ""
+      required: true
+      when: repl{{ ConfigOptionEquals "show_text_inputs" "1" }}
+   ```
+
+1. Open the `example-configmap.yaml` file.
+
+1. To map the user input from the new field that you created to the application, update the `<body>` in the `example-configmap.yaml` file:
+
+   ```
+   <body>
+     This is an example KOTS application.
+     <p>This is text from a user config value: '{{repl ConfigOption "example_default_value"}}' </p>
+     <p>This is more text from a user config value: '{{repl ConfigOption "new_field"}}' </p>
+     This is a hidden value: '{{repl ConfigOption "hidden_text"}}'
+   </body>
+   ```
+
+1. Save your changes, then run the following command to verify the YAML:
+
+   ```
+   replicated release lint --yaml-dir=manifests
+   ```
+
+1. Run the following command to create the new release on the Unstable channel:
+
+   ```
+   replicated release create --auto
+   ```
+
+   ***Example output**:
+
+   ```
+   • Reading manifests from ./manifests ✓
+   • Creating Release ✓
+     • SEQUENCE: 2
+   • Promoting ✓
+     • Channel 2GxpUm7lyB2g0ramqUXqjpLHzK0 successfully set to release 2
+   ```
+
+   The release is created and promoted to the Unstable channel with `SEQUENCE: 2`.
 
 1. Add the following line to `deployment.yaml`, right after `spec:`:
 
@@ -12,13 +70,13 @@ To make an update:
 
 1. Use `head` to view the first 10 lines of the file:
 
-  ```shell script
+  ```
   head manifests/deployment.yaml
   ```
 
   **Example output:**
 
-  ```yaml
+  ```
   apiVersion: apps/v1
   kind: Deployment
   metadata:
@@ -33,6 +91,33 @@ To make an update:
 
 1. Run the following command to create a new release:
 
-  ```shell script
+  ```
   replicated release create --auto
+  ```
+  **Example output**:
+
+  ```
+  • Reading Environment ✓
+
+  Prepared to create release with defaults:
+
+    yaml-dir        "./manifests"
+    promote         "Unstable"
+    version         "Unstable-d4173a4-dirty"
+    release-notes   "CLI release of master triggered by exampleusername [SHA: d4173a4-dirty] [31 Oct 22 11:32 MDT]"
+    ensure-channel  true
+    lint-release    true
+  ```
+1. Type `y` and press Enter to continue with the defaults.
+
+   **Example output**:
+
+  ```
+  RULE    TYPE    FILENAME    LINE    MESSAGE
+
+  • Reading manifests from ./manifests ✓
+  • Creating Release ✓
+    • SEQUENCE: 2
+  • Promoting ✓
+    • Channel 2GmYFUFzj8JOSLYw0jAKKJKFua8 successfully set to release 2
   ```

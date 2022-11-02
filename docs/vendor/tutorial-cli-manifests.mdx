@@ -1,9 +1,11 @@
 # Step 3: Get the Sample Manifests
 
 To create a release with the replicated CLI, you must have the YAML manifest files for the application in a directory.
-This step shows you how to download sample manifest files from https://github.com/replicatedhq/replicated-starter-kots and initialize a Git repository for the application.
+This step shows you how to download a set of sample manifest files for a simple Kubernetes application that deploys an NGINX service.
 
-To get the sample manifest files and initialize the application repository:
+To view the GitHub repository for the sample application, see [kots-default-yaml](https://github.com/replicatedhq/kots-default-yaml).
+
+To get the sample manifest files:
 
 1. Run the following command to create and change to a directory for your project:
 
@@ -12,11 +14,11 @@ To get the sample manifest files and initialize the application repository:
   cd replicated-cli-tutorial
   ```
 
-1. Run the following command to make a `/manifests` directory for the application manifests and download the starter YAML from https://github.com/replicatedhq/replicated-starter-kots:
+1. Run the following command to make a `/manifests` directory for the application manifests and download the YAML manifest files for the application:
 
   ```
   mkdir ./manifests
-  curl -fSsL https://github.com/replicatedhq/kots-default-yaml/archive/v2020-09-03.tar.gz | \
+  curl -fSsL https://github.com/replicatedhq/kots-default-yaml/archive/refs/heads/main.zip | \
     tar xzv --strip-components=1 -C ./manifests \
     --exclude README.md --exclude LICENSE --exclude .gitignore
   ```
@@ -27,9 +29,9 @@ To get the sample manifest files and initialize the application repository:
   ls manifests/
   ```
 
-  In the ouput, you can see the following files:
+  In the `manifests` directory, you can see the following files:
 
   ```
-  config-map.yaml     deployment.yaml     preflight.yaml      service.yaml
-  config.yaml         ingress.yaml        replicated-app.yaml support-bundle.yaml
+  example-configmap.yaml   example-service.yaml     kots-app.yaml            kots-lint-config.yaml    kots-support-bundle.yaml
+  example-deployment.yaml  k8s-app.yaml             kots-config.yaml         kots-preflight.yaml
   ```

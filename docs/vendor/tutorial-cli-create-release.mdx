@@ -18,9 +18,8 @@ To create and promote a release:
 
   For a complete list of the possible error, warning, and informational messages that can appear in the ouput of the `release lint` command, see [KOTS Lint Rules](/reference/kots-lint).
 
-1. Initialize the project as a Git repository so that you can track your history.
-Additionally, the replicated CLI reads git metadata to help with the generation of release metadata,
-such as version labels. More information about this is covered later in this tutorial.
+1. Initialize the project as a Git repository so that you can track your history. The replicated CLI also reads Git metadata to help with the generation of release metadata,
+such as version labels.
 
   To initialize the repository, run the following commands:
 
@@ -31,8 +30,8 @@ such as version labels. More information about this is covered later in this tut
 
 1. Run the following command with the `--auto` flag to generate release notes and metadata based on the Git status:
 
-  ```shell script
-  $ replicated release create --auto
+  ```
+  replicated release create --auto
   ```
 
   **Example output:**
@@ -63,7 +62,7 @@ such as version labels. More information about this is covered later in this tut
     • Promoting ✓
       • Channel VEr0nhJBBUdaWpPvOIK-SOryKZEwa3Mg successfully set to release 1
   ```
-  The release is created and promoted.
+  The release is created and promoted to the Unstable channel.
 
 1. Run the following command to verify that the release was created:
 

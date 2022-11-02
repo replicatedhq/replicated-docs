@@ -4,7 +4,7 @@ To install and test this new release, you must connect to the admin console on p
 At this point, the UI likely shows that your test application is up-to-date and that no updates are available.
 The admin console can be configured to check for new updates at regular intervals, but for now you will trigger a check manually.
 
-To check for updates manually:
+To check for updates:
 
 1. Click **Check for Updates** on the Version History page.
   You should see a new release in the history now. You can click **Diff versions** to review the differences.
@@ -13,14 +13,24 @@ To check for updates manually:
 
 1. Click **Deploy** to apply the new YAML, which changes the number of NGINX replicas. The deployment only takes a few seconds.
 
-1. Run the following command to verify the deployment on the server:
+1. On your test server, run the following command to verify the deployment:
 
-  ```shell script
-  kubectl get pod -l app=nginx
+  ```
+  kubectl get pods
   ```
 
-  You should see two pods running.
+  You should see two NGINX pods running.
 
+  **Example output**:
+
+  ```
+  NAME                                 READY   STATUS    RESTARTS   AGE
+  example-nginx-67f4f5dd7-6wjff        1/1     Running   0          12s
+  example-nginx-67f4f5dd7-gtqpp        1/1     Running   0          34m
+  kotsadm-759486cc77-hcp8r             1/1     Running   0          100m
+  kotsadm-rqlite-0                     1/1     Running   0          100m
+  kurl-proxy-kotsadm-697fc4bff-ccjhz   1/1     Running   0          100m
+  ```
 
 ## Next Steps
 

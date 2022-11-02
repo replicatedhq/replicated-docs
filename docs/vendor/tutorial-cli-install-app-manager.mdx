@@ -1,9 +1,8 @@
 # Step 6: Install the App Manager
 
-After you create and download a customer license, get the installation commands so that you can test the installation on a development server.
-In this case, we demonstrate an installation without an existing cluster, on a single virtual machine (VM). This type of installation is known as an embedded or Kubernetes installer-created cluster.
+After you create and download a customer license, get the installation commands so that you can test the installation. These steps demonstrate the process of installing the app manager and the admin console in an existing cluster.
 
-To install the app manager:
+To install the app manager and admin console:
 
 1. Run the following command to get the installation commands for the Unstable channel, where you promoted the release:
 
@@ -36,40 +35,35 @@ To install the app manager:
         sudo bash ./install.sh airgap
     ```
 
-    The output generates commands for installing on an existing Kubernetes cluster, an embedded cluster, and an air gap cluster.
-
-1. Use SSH to access the VM that you created as part of [Set Up the Environment](tutorial-cli-setup#set-up-the-environment).
-
-1. On the VM, run the installation script from above, using the `EMBEDDED` version:
+1. Access the cluster you provisioned as part of [Set Up the Environment](tutorial-cli-setup#set-up-the-environment). Run the installation script from above, using the `EXISTING` version:
 
   ```
-  curl -fsSL https://k8s.kurl.sh/cli-tutorial-unstable | sudo bash
+  curl -fsSL https://kots.io/install | bash
+  kubectl kots install cli-tutorial/unstable
   ```
 
-  This script installs Docker, Kubernetes, and the Replicated admin console containers (kotsadm).
+1. For the **Enter the namespace to deploy to:** prompt in the installation script, enter `cli-tutorial`. This is the namespace where the admin console is installed.
 
-  Installation takes approximately 5-10 minutes.
+1. For **Enter a new password to be used for the Admin Console:**, provide a password to access to the admin console.
 
-  After the script completes the installation, the output displays the connection URL and password for the Replicated admin console and for Grafana.
+   :::note
+   You use this password in the next step to access the admin console and deploy the application.
+   :::
 
-1. Copy the output of the installation script to save the login information for the admin console and the Grafana instance.
+   When the admin console is ready, the script prints the URL where you can access the admin console.
 
-1. Reload your shell to access the cluster with kubectl:
+   **Example output**:
 
    ```
-   bash -l
+   Enter the namespace to deploy to: cli-tutorial
+    • Deploying Admin Console
+      • Creating namespace ✓
+      • Waiting for datastore to be ready ✓
+   Enter a new password to be used for the Admin Console: ••••••••
+      • Waiting for Admin Console to be ready ✓
+
+      • Press Ctrl+C to exit
+      • Go to http://localhost:8800 to access the Admin Console
    ```
 
-1. Run the following kubectl command to view the Pods in the cluster:
-
-    ```
-    kubectl get pods
-    ```
-    **Example output:**
-
-    ```
-    NAME                                 READY   STATUS    RESTARTS   AGE
-    kotsadm-759486cc77-hcp8r             1/1     Running   0          15m
-    kotsadm-rqlite-0                     1/1     Running   0          15m
-    kurl-proxy-kotsadm-697fc4bff-ccjhz   1/1     Running   0          15m
-    ```
+Continue to [Step 7: Deploy the Application](tutorial-cli-deploy-app) to access the admin console and deploy the application.
