@@ -14,6 +14,7 @@ Released on November 2, 2022
 * Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.11.
 
 ### Improvements {#improvements-v2022-11-02-0}
+* Prompts and warns the user of downtime prior to migrating from Rook backed PVCs to OpenEBS Local PV when OpenEBS is included in the spec and Rook is removed.
 * Updates the kurlsh/s3cmd image to tag 20221029-37473ee for the latest [Registry](https://kurl.sh/docs/add-ons/registry) and [Velero](https://kurl.sh/docs/add-ons/velero) add-on versions, to address the following high severity CVE: CVE-2022-43680.
 
 ### Bug Fixes {#bug-fixes-v2022-11-02-0}
