@@ -23,7 +23,7 @@ Released on November 2, 2022
 * Fixes an issue with [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) versions 1.12.0 and 2.6.0 that could cause installations to fail with error `failed calling webhook "admission-webhook.openebs.io"`.
 * Fixes an issue that can cause the kURL installer to disable EKCO management of the [Internal Load Balancer](https://kurl.sh/docs/add-ons/ekco#internal-load-balancer) upon upgrade.
 * Fixes an issue where [Weave add-on](https://kurl.sh/docs/add-ons/weave) "latest" version resolves to 2.6.5-20221006 instead of 2.6.5-20221025.
-* Fixes an issue where kURL would migrate to both OpenEBS Local PV and Longhorn from Rook backed PVCs when both add-ons are included in the spec and Rook is removed. kURL will now prefer to migrate to OpenEBS.
+* Fixes an issue where kURL will migrate to both OpenEBS Local PV and Longhorn from Rook backed PVCs when both add-ons are included in the spec and Rook is removed. kURL will now prefer to migrate to OpenEBS.
 
 ## v2022.10.28-1
 
