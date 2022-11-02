@@ -10,7 +10,7 @@ The Replicated admin console requires persistent storage for state. The followin
 
    For more information about the S3-compatible object store requirements for both Kubernetes installer-created clusters and existing clusters, see the sections below.
 
-### Object Store Requirements for Kubernetes Installer-created Clusters
+### Object Store Requirements for Kubernetes Installer Clusters
 
 By default, installations on clusters created by the Kubernetes installer must include an add-on that satisfies the S3-compatible object store.
 
