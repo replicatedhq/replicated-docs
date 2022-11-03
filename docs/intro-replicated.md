@@ -1,12 +1,16 @@
 # What is Replicated?
 
-Replicated is an enterprise software distribution platform that lets you package and update your application using Kubernetes manifests or Helm charts, and securely distribute your application to diverse customer environments. This includes on-premises, including air gapped environments, and cloud environments. For customers who do not have an existing Kubernetes cluster, Replicated provisions a new cluster on the customer's VM where it can then install the application
+Replicated is an enterprise software distribution platform that lets you package and update your application using Kubernetes manifests or Helm charts, and securely distribute your application to Kubernetes clusters in diverse customer environments.
 
-As a vendor, you can customize your deployment with features such as preflight checks, support bundles, status informers, versions, role-based access control (RBAC), and other custom resources. Replicated supports various image registry options. You can customize the user-facing configuration screen and brand the admin console. Team management options include using RBAC, multi-factor authentication, auto-join, and Google or SAML authentication.
-
-End customers can manage, update, configure, monitor, backup and restore, and troubleshoot their application instance using either the Replicated admin console or the kots CLI.
+Environments include on-premises (including air gapped) and cloud hosted Kubernetes clusters. For customers who do not have an existing Kubernetes cluster, Replicated provisions a new cluster on a customer's virtual machine (VM), where the application is then installed.
 
 To learn more about Replicated, see [Intro to Replicated: 20 Ways We Help](https://www.youtube.com/watch?v=2eOh7CofY3Q&t=779s) video.
+
+## Feature Overview
+
+As a vendor, you can customize your deployment with features such as preflight checks, support bundles, status informers, versions, role-based access control (RBAC), and other custom resources. Replicated supports various image registry options. You can customize the user-facing configuration screen, brand the admin console, and provide release notes. Team management options include using RBAC, multi-factor authentication, auto-join, and Google or SAML authentication.
+
+End customers can configure, update, and manage the application in the Replicated app manager user interfaces. For example, customers can monitor the application, manage their registry settings, push their configuration to a GitOps workflow, manage user access, schedule backups, and generate support bundles that they can optionally upload to your support portal.
 
 ## Replicated Components
 
@@ -18,7 +22,7 @@ Replicated includes components and features that make it easier for you to manag
 
 ### Vendor Portal
 
-The vendor portal is the web browser that you can use to package and manage applications. You define Kubernetes manifest files, including application and custom resource manifests. These files describe to the app manager how to package the application for distribution. Alternatively, you can use Helm charts. You can also manage other artifacts, such as customer license files, image registries, and release channels.
+The Replicated vendor portal is the web browser that you can use to package and manage applications. You define Kubernetes manifest files, including application and custom resource manifests. These files describe to the app manager how to package the application for distribution. Alternatively, you can use Helm charts. You can also manage other artifacts, such as customer license files, image registries, and release channels.
 
 ![Create an Application in the Vendor Portal](/images/guides/kots/create-application.png)
 
@@ -51,7 +55,7 @@ For more information about configuring a Kubernetes installer cluster, see [Crea
 
 ### Admin Console
 
-The admin console is a graphical user interface that interacts with the app manager. Enterprise customers can use the admin console to configure, update, manage, backup and restore, and troubleshoot the application.
+The Replicated admin console is a graphical user interface that interacts with the app manager. Enterprise customers can use the admin console to manage, update, configure, monitor, backup and restore, and troubleshoot their application instance.
 
 The admin console is installed with the application by the app manager.
 
