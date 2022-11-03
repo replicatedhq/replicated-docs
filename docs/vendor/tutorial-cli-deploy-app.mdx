@@ -2,11 +2,11 @@
 
 After you run the installation script from the previous step, the Replicated admin console is running, but the application is not yet deployed.
 
-To install and deploy the application on the cluster, you log in the admin console, upload the license file, complete the application configuration settings, and run the preflight checks.
+This procedure shows you how to deploy the application by logging into the admin console, uploading the license file that you created as part of [Step 5: Create a Customer](tutorial-cli-create-customer), completing the application configuration settings, and running the preflight checks.
 
 To deploy the application:
 
-1. In a browser, go to http://localhost:8800 to access the admin console. This is the URL that was provided in the output of the installation script from [Step 6: Install the App Manager](tutorial-cli-install-app-manager).
+1. In a browser, go to `http://localhost:8800` to access the admin console.
 
   :::note
   You can access the admin console as long as the installation script is running. If you press Ctrl+C to exit, run `kubectl kots admin-console --namespace cli-tutorial` to access the admin console again.
@@ -19,17 +19,13 @@ To deploy the application:
 
 1. On the Configure App Name page, select the **Customize Text Inputs** checkbox. In the **Text Example** field, enter any text. For example, `Hello`.
 
-   The configuration page in the admin console collects user input for custom configuration settings that are specific to the application. For example, as a software vendor, you can include fields on the configuration page that allow users to provide their own database for use with your application.
+   This page displays configuration settings that are specific to the application. Software vendors define the fields that are displayed on this page in the Replicated Config custom resource. For more information, see [Config](/reference/custom-resource-config) in _Reference_.
 
 1. Click **Continue**.
 
-   The preflight checks automatically run. Preflight checks are designed to help ensure the environment meets the minimum requirements to run the application. As a software vendor, you define preflight checks in the Preflight Replicated custom resource.
+   The preflight checks automatically run. Preflight checks are designed to help ensure the environment meets the minimum requirements to run the application. Software vendors define preflight checks in the Replicated Preflight custom resource. For more infromation, see [Preflight and Support Bundle](/reference/custom-resource-preflight) in _Reference_.
 
-1. After the preflight checks complete, click **Continue**. The admin console dashboard opens.
-
-   :::note
-   If there are failing preflight checks, click **Deploy and continue** in the dialog.
-   :::
+1. After the preflight checks complete, click **Continue**. If there are failing preflight checks, click **Deploy and continue** in the dialog. The admin console dashboard opens.
 
    On the admin console **Dashboard** tab, users can take various actions, including viewing the application status, opening the application, checking for application updates, syncing their license, and setting up application monitoring on the cluster with Prometheus.
 
@@ -51,4 +47,4 @@ To deploy the application:
     nginx-667f4fc76b-8gvr9     1/1     Running   0          17m
     ```
 
-In the next step, you will use the replicated CLI to create and promote a new release for the application. 
+Now that you have successfully installed and deployed the application in your Kubernetes cluster, you can test the procedure for updating the application. Continue to [Step 8: Create a New Version](tutorial-cli-create-new-version) to make a change to one of the manifest files for the `cli-tutorial` application, then use the replicated CLI to create and promote a new release.

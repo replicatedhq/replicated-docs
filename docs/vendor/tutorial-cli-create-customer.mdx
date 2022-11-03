@@ -1,12 +1,14 @@
 # Step 5: Create a Customer
 
-After promoting the first release for the `cli-tutorial` application, you create a customer. A customer represents a single licensed end user of your application.
+After promoting the first release for the `cli-tutorial` application, create a customer so that you can install the application.
 
-When you install the application later in this tutorial, you will upload the license file. The license defines entitlement information for the customer, and allows the Replicated admin console to create the application containers.
+A _customer_ is an object in the Replicated vendor portal that represents a single licensed user of your application. When you create a customer, you define entitlement information for the user, and the vendor portal generates a YAML license file for the customer that you can download.
 
-To create a customer license:
+When you install the application later in this tutorial, you will upload the license file that you create in this step to allow the Replicated admin console to create the application containers.
 
-1. Run the following command to create a customer named `Some-Big-Bank` that is assigned to the Unstable channel:
+To create a customer and download the license file:
+
+1. Run the following command to create a license for a customer named `Some-Big-Bank` that is assigned to the Unstable channel and expires in 10 days:
 
   ```
   replicated customer create \
@@ -71,7 +73,7 @@ To create a customer license:
     signature: eyJsaW...
   ```
 
-1. Run the following command to rename the license file and save it to your Desktop:
+1. Rename the license file and save it to your Desktop:
 
   ```
   export LICENSE_FILE=~/Desktop/Some-Big-Bank-${REPLICATED_APP}-license.yaml
@@ -83,7 +85,9 @@ To create a customer license:
   ```
   head ${LICENSE_FILE}
   ```
-  **Example output*:
+
+  **Example output**:
+
   ```
   apiVersion: kots.io/v1beta1
   kind: License
@@ -96,3 +100,5 @@ To create a customer license:
     customerName: Some-Big-Bank
     endpoint: https://replicated.app
   ```
+
+After creating and downloading the license file for a customer, you can continue to [Step 6: Install the App Manager](tutorial-cli-install-app-manager) to get the installation commands from the Unstable channel and install the Replicated app manager components on your Kuberentes cluster. 

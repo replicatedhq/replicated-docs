@@ -1,48 +1,33 @@
 # Step 9: Update the Application
 
-To install and test this new release, you must connect to the admin console on port :8800 using a web browser.
-At this point, the UI likely shows that your test application is up-to-date and that no updates are available.
-The admin console can be configured to check for new updates at regular intervals, but for now you will trigger a check manually.
+To test the new release that you promoted, return to the Replicated admin console in a browser to update the application.
 
-To check for updates:
+To update the application:
 
-1. Click **Check for Updates** on the Version History page.
-  You should see a new release in the history now. You can click **Diff versions** to review the differences.
+1. In a browser, open the admin console at `https://localhost:8800`.
 
-  ![View Update](/images/guides/kots/view-update.png)
+   :::note
+   You can access the admin console as long as the installation script is running. If you press Ctrl+C to exit, run `kubectl kots admin-console --namespace cli-tutorial` to access the admin console again.
+   :::
 
-1. Click **Deploy** to apply the new YAML, which changes the number of NGINX replicas. The deployment only takes a few seconds.
+1. On the Version History page, click **Check for Updates**.
 
-1. On your test server, run the following command to verify the deployment:
+   The admin console loads the new version that you promoted.
 
-  ```
-  kubectl get pods
-  ```
+1. Click **Diff versions** to review the changes that you made to the YAML files.
 
-  You should see two NGINX pods running.
+1. Click **Deploy** to deploy the new version.
 
-  **Example output**:
+1. After the new version is deployed, go to the **Config** tab. In the **Another Text Example** field that you added, enter any text. Click **Save**.
 
-  ```
-  NAME                                 READY   STATUS    RESTARTS   AGE
-  example-nginx-67f4f5dd7-6wjff        1/1     Running   0          12s
-  example-nginx-67f4f5dd7-gtqpp        1/1     Running   0          34m
-  kotsadm-759486cc77-hcp8r             1/1     Running   0          100m
-  kotsadm-rqlite-0                     1/1     Running   0          100m
-  kurl-proxy-kotsadm-697fc4bff-ccjhz   1/1     Running   0          100m
-  ```
+1. Deploy the configuration change.
+
+1. On the **Dashboard** tab, click **Open App**.
+
+   The application displays the text that you added in the new field from the configuration page.
 
 ## Next Steps
 
 You can iterate further on your application. Continue making changes and using `replicated release create --auto` to publish them. You can add `-y` to the command to skip the prompt.
 
-To learn more about the app manager features, you can explore some of the tutorials and packaging options, such as:
-
-* Integrating with a CI/CD platform. See [Tutorial: Integrating with an existing CI/CD platform](tutorial-ci-cd-integration).
-* Packaging an application from a Helm chart. See [About Packaging with Helm](helm-overview).
-
-If you already have a release published in the vendor portal that you want to use as a starting point, run the following command to access the help docs for `replicated release download`:
-
-```shell script
-replicated release download --help
-```
+To learn more about the topics discussed in this tutorial, see the following topics:

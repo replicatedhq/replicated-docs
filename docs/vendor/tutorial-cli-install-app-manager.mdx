@@ -1,10 +1,12 @@
 # Step 6: Install the App Manager
 
-After you create and download a customer license, get the installation commands so that you can test the installation. These steps demonstrate the process of installing the app manager and the admin console in an existing cluster.
+Get the installation commands from the Unstable channel so that you can test the installation process for the application release that you promoted. The first step in installing and deploying the application in your Kubernetes cluster is to install the Replicated app manager.
 
-To install the app manager and admin console:
+The _app manager_ is the Replicated component that allows your application users to install, manage, and upgrade applications. Users can interact with the app manager through a user interface, called the Replicated admin console, or through a CLI, called the kots CLI.
 
-1. Run the following command to get the installation commands for the Unstable channel, where you promoted the release:
+To install the app manager in your Kubernetes cluster:
+
+1. Run the following command to get the installation commands for the Unstable channel, where you promoted the release for the `cli-tutorial` application:
 
     ```
     replicated channel inspect Unstable
@@ -34,6 +36,10 @@ To install the app manager and admin console:
         tar xvf cli-tutorial-unstable.tar.gz
         sudo bash ./install.sh airgap
     ```
+    This command prints information about the channel, including the commands for installing in:
+    * An existing cluster
+    * An _embedded_ cluster created by the Replicated Kubernetes installer
+    * An air gap cluster that is not connected to the Internet
 
 1. Access the cluster you provisioned as part of [Set Up the Environment](tutorial-cli-setup#set-up-the-environment). Run the installation script from above, using the `EXISTING` version:
 
@@ -42,15 +48,11 @@ To install the app manager and admin console:
   kubectl kots install cli-tutorial/unstable
   ```
 
-1. For the **Enter the namespace to deploy to:** prompt in the installation script, enter `cli-tutorial`. This is the namespace where the admin console is installed.
+1. For `Enter the namespace to deploy to:`, enter `cli-tutorial`.
 
-1. For **Enter a new password to be used for the Admin Console:**, provide a password to access to the admin console.
+1. For `Enter a new password to be used for the Admin Console:`, provide a password to access the admin console. You use this password in a later step to access the admin console user interface and deploy the application.
 
-   :::note
-   You use this password in the next step to access the admin console and deploy the application.
-   :::
-
-   When the admin console is ready, the script prints the URL where you can access the admin console.
+   When the admin console is ready, the script prints the `https://localhost:8800` URL where you can access the admin console.
 
    **Example output**:
 
@@ -66,4 +68,4 @@ To install the app manager and admin console:
       • Go to http://localhost:8800 to access the Admin Console
    ```
 
-Continue to [Step 7: Deploy the Application](tutorial-cli-deploy-app) to access the admin console and deploy the application.
+Continue to [Step 7: Deploy the Application](tutorial-cli-deploy-app) to log in to the admin console and deploy the application.
