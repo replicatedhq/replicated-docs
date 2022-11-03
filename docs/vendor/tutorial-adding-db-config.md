@@ -17,8 +17,8 @@ It is split into 5 sections:
 This guide assumes you have:
 
 * A running instance of the Replicated admin console (`kotsadm`) to iterate against in either an existing cluster or a Replicated Kubernetes installer-created cluster. If you do not have a running instance of the admin console on an existing or Kubernetes installer cluster, complete one of the following getting started tutorials to package and install a sample application:
-   * [Packaging and Installing on an Existing Cluster](tutorial-installing-with-existing-cluster)
-   * [Packaging and Installing on a Kubernetes Installer Cluster](tutorial-installing-without-existing-cluster)
+   * [UI Tutorial](tutorial-ui-setup)
+   * [CLI Tutorial](tutorial-cli-setup)
 * A local git checkout of your application manifests.
 
 ### Accompanying Code Examples
@@ -88,7 +88,7 @@ For now we'll hard code the DB variable values, in the next sections we'll wire 
 
 ### Deploying the example application
 
- Once you've added this deployment to you application's `manifests` directory, create a release by pushing a commit to your [starter repo copy](tutorial-installing-with-cli#2-setting-a-service-account-token) or by running `replicated release create --auto` locally.
+ Once you've added this deployment to you application's `manifests` directory, create a release by running `replicated release create --auto` locally.
  Then head to the admin console instance and click **Check for Updates** on the Version History tab to pull the new release:
 
 ![View Update](/images/guides/kots/view-update.png)

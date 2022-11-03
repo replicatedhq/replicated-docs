@@ -94,8 +94,8 @@ const config = {
                 to: 'release-notes/rn-whats-new',
               },
               {
-                label: 'Quick Start Tutorials',
-                to: 'vendor/tutorial-installing-without-existing-cluster',
+                label: 'Getting Started Tutorials',
+                to: 'vendor/tutorial-ui-setup',
               },
             ],
           },
@@ -138,4 +138,3 @@ const config = {
 };
 
 module.exports = config;
-

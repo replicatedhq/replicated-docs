@@ -41,9 +41,8 @@ We are going to use the default NGINX deployment to create our application and t
 In this section, we cover at a high level the steps to create a new application and install it on a VM.
 
 For more detailed information about how to create and install an application, follow one of the following getting started tutorials:
-* [Packaging and Installing on an Existing Cluster](tutorial-installing-with-existing-cluster)
-* [Packaging and Installing on a Kubernetes Installer Cluster](tutorial-installing-without-existing-cluster)
-* [Managing Releases with the CLI](tutorial-installing-with-cli)
+* [UI Tutorial](tutorial-ui-setup)
+* [CLI Tutorial](tutorial-cli-setup)
 
 To create our sample application follow these steps:
 
