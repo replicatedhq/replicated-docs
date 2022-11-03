@@ -8,7 +8,7 @@ To create and promote a new version of the application:
 
 1. In your local directory, go to the the `replicated-cli-tutorial/manifests` folder and open the `kots-config.yaml` file in a text editor.
 
-1. Copy and paste the following YAML into the file to create a new text field on the admin console configuration page:
+1. Copy and paste the following YAML into the file under the `example_default_value` field to create a new text field on the admin console configuration page:
 
    ```yaml
     - name: more_text
@@ -17,20 +17,73 @@ To create and promote a new version of the application:
       value: ""
       when: repl{{ ConfigOptionEquals "show_text_inputs" "1" }}
    ```
+   The following shows the full YAML for the `kots-config.yaml` file after you add the new field:
 
-1. Open the `example-configmap.yaml` file. Update the `<body>` section in the `example-configmap.yaml` file to create a reference to the `more_text` field using a Replicated template function:
+   ```yaml
+   ---
+   apiVersion: kots.io/v1beta1
+   kind: Config
+   metadata:
+     name: config-sample
+   spec:
+     groups:
+     - name: example_settings
+       title: My Example Config
+       description: Configuration to serve as an example for creating your own. See [https://kots.io/reference/v1beta1/config/](https://kots.io/reference/v1beta1/config/) for configuration docs. In this case, we provide example fields for configuring an Nginx welcome page.
+       items:
+       - name: show_text_inputs
+         title: Customize Text Inputs
+         help_text: "Show custom user text inputs"
+         type: bool
+         default: "0"
+         recommended: true
+       - name: example_default_value
+         title: Text Example (with default value)
+         type: text
+         value: ""
+         default: please change this value
+         when: repl{{ ConfigOptionEquals "show_text_inputs" "1" }}
+         # Add the new more_text field here
+       - name: more_text
+         title: Another Text Example
+         type: text
+         value: ""
+         when: repl{{ ConfigOptionEquals "show_text_inputs" "1" }}
+       - name: api_token
+         title: API token
+         type: password
+         props:
+           rows: 5
+         when: repl{{ ConfigOptionEquals "show_text_inputs" "1" }}
+       - name: readonly_text_left
+         title: Readonly Text
+         type: text
+         value: "{{repl RandomString 10}}"
+         readonly: true
+         when: repl{{ ConfigOptionEquals "show_text_inputs" "1" }}
+       - name: hidden_text
+         title: Secret Key
+         type: password
+         hidden: true
+         value: "{{repl RandomString 40}}"
+
+   ```
+
+1. Open the `example-configmap.yaml` file.
+
+1. In the `example-configmap.yaml` file, copy and paste the following HTML to replace the `<body>` section:
 
    ```
    <body>
      This is an example KOTS application.
      <p>This is text from a user config value: '{{repl ConfigOption "example_default_value"}}' </p>
      <p>This is more text from a user config value: '{{repl ConfigOption "more_text"}}' </p>
-     This is a hidden value: '{{repl ConfigOption "hidden_text"}}'
+     <p>This is a hidden value: '{{repl ConfigOption "hidden_text"}}'</p>
    </body>
    ```
-   The ConfigOption template function renders the user input from the configuration item that you specify. For more information, see [Config Context](/reference/template-functions-config-context) in _Reference_.
+    This creates a reference to the `more_text` field using a Replicated template function. The ConfigOption template function renders the user input from the configuration item that you specify. For more information, see [Config Context](/reference/template-functions-config-context) in _Reference_.
 
-1. Save your changes, then run the following command to verify that there are no errors in the YAML:
+1. Save the changes to both YAML files, then run the following command to verify that there are no errors in the YAML:
 
    ```
    replicated release lint --yaml-dir=manifests
@@ -42,7 +95,7 @@ To create and promote a new version of the application:
    replicated release create --auto
    ```
 
-   ***Example output**:
+   **Example output**:
 
    ```
    • Reading manifests from ./manifests ✓

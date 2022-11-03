@@ -10,24 +10,32 @@ To update the application:
    You can access the admin console as long as the installation script is running. If you press Ctrl+C to exit, run `kubectl kots admin-console --namespace cli-tutorial` to access the admin console again.
    :::
 
-1. On the Version History page, click **Check for Updates**.
+1. Go to the Version history page, and click **Check for update**.
 
-   The admin console loads the new version that you promoted.
+   The admin console loads the new release that you promoted.
 
-1. Click **Diff versions** to review the changes that you made to the YAML files.
+1. Click **Deploy**. In the dialog, click **Yes, deploy** to deploy the new version.
 
-1. Click **Deploy** to deploy the new version.
+1. After the admin console deploys the new version, go to the **Config** page where you can see the **Another Text Example** field that you added.
 
-1. After the new version is deployed, go to the **Config** tab. In the **Another Text Example** field that you added, enter any text. Click **Save**.
+1. In the new **Another Text Example** field, enter any text. Click **Save config**.
 
-1. Deploy the configuration change.
+   The admin console notifies you that the configuration settings for the application have changed.
 
-1. On the **Dashboard** tab, click **Open App**.
+1. In the dialog, click **Go to updated version**.
 
-   The application displays the text that you added in the new field from the configuration page.
+   The admin console loads the updated version on the Version history page.
+
+1. On the Version history page, click **Deploy** next to the latest version to deploy the configuration change.
+
+1. After the admin console deploys the configuration change, go to the **Dashboard** page and click **Open App**.
+
+   The application displays the text that you added to the field.
+
+   :::note
+   If you do not see the new text, click Refresh in your browser.
+   :::
 
 ## Next Steps
 
-You can iterate further on your application. Continue making changes and using `replicated release create --auto` to publish them. You can add `-y` to the command to skip the prompt.
-
-To learn more about the topics discussed in this tutorial, see the following topics:
+You can iterate further on your application. Continue making changes and using `replicated release create --auto` to publish them.

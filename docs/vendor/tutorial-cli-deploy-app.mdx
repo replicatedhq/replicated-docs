@@ -33,7 +33,7 @@ To deploy the application:
 
    Notice the text that you entered previously on the configuration page is displayed on the screen.
 
-1. In your cluster, list the Pods to see the example NGINX service that you just deployed:
+1. In your cluster, press Ctrl + C to exit the admin console. List the Pods to see the example NGINX service that you just deployed:
 
     ```
     kubectl get pods --namespace APP_NAMESPACE
@@ -46,5 +46,12 @@ To deploy the application:
     kotsadm-rqlite-0           1/1     Running   0          22m
     nginx-667f4fc76b-8gvr9     1/1     Running   0          17m
     ```
+1. Run the following command to start the admin console again:
 
-Now that you have successfully installed and deployed the application in your Kubernetes cluster, you can test the procedure for updating the application. Continue to [Step 8: Create a New Version](tutorial-cli-create-new-version) to make a change to one of the manifest files for the `cli-tutorial` application, then use the replicated CLI to create and promote a new release.
+   ```
+   kubectl kots admin-console --namespace cli-tutorial
+   ```
+
+Now that you have successfully installed and deployed the application in your Kubernetes cluster, you can test the procedure for updating the application.
+
+Continue to [Step 8: Create a New Version](tutorial-cli-create-new-version) to make a change to one of the manifest files for the `cli-tutorial` application, then use the replicated CLI to create and promote a new release.

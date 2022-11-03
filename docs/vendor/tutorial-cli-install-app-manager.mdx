@@ -2,7 +2,7 @@
 
 Get the installation commands from the Unstable channel so that you can test the installation process for the application release that you promoted. The first step in installing and deploying the application in your Kubernetes cluster is to install the Replicated app manager.
 
-The _app manager_ is the Replicated component that allows your application users to install, manage, and upgrade applications. Users can interact with the app manager through a user interface, called the Replicated admin console, or through a CLI, called the kots CLI.
+The _app manager_ is the Replicated component that allows your users to install, manage, and upgrade your application. Users can interact with the app manager through a user interface, called the Replicated admin console, or through a CLI, called the kots CLI.
 
 To install the app manager in your Kubernetes cluster:
 
@@ -41,12 +41,14 @@ To install the app manager in your Kubernetes cluster:
     * An _embedded_ cluster created by the Replicated Kubernetes installer
     * An air gap cluster that is not connected to the Internet
 
-1. Access the cluster you provisioned as part of [Set Up the Environment](tutorial-cli-setup#set-up-the-environment). Run the installation script from above, using the `EXISTING` version:
+1. Access the cluster you provisioned as part of [Set Up the Environment](tutorial-cli-setup#set-up-the-environment). From a location where you can access the cluster with the kubectl command line tool, run the `EXISTING` installation script from above:
 
   ```
   curl -fsSL https://kots.io/install | bash
   kubectl kots install cli-tutorial/unstable
   ```
+
+1. For `Enter installation path (leave blank for /usr/local/bin):`, press Enter.
 
 1. For `Enter the namespace to deploy to:`, enter `cli-tutorial`.
 
