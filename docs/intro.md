@@ -15,8 +15,6 @@ To get started with a tutorial that demonstrates how to use the Replicated vendo
 
 To get started with a tutorial that demonstrates how to use the replicated CLI to create and promote releases, see [Introduction and Setup](/vendor/tutorial-ui-setup) in _CLI Tutorial_.
 
-<LabsIntro/>
-
 ## About the Replicated Documentation
 
 This Replicated product documentation site is divided into the following main sections:
