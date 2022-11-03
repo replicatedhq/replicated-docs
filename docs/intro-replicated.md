@@ -1,10 +1,10 @@
 # What is Replicated?
 
-Replicated is an enterprise software distribution platform that lets you package and update your application using Kubernetes manifests or Helm charts, and securely distribute your application to diverse customer environments. This includes on-premises and cloud environments.
+Replicated is an enterprise software distribution platform that lets you package and update your application using Kubernetes manifests or Helm charts, and securely distribute your application to diverse customer environments. This includes on-premises, including air gapped environments, and cloud environments. For customers who do not have an existing Kubernetes cluster, Replicated provisions a new cluster on the customer's VM where it can then install the application
 
-As a vendor, you can customize your deployment with features such as preflight checks, support bundles, status informers, versions, role-based access control (RBAC), and other custom resources. Replicated supports various registry options, and you can customize the user-facing configuration screen and brand the admin console. Team management options include (RBAC), multi-factor authentication, enable auto-join, and use Google or SAML authentication.
+As a vendor, you can customize your deployment with features such as preflight checks, support bundles, status informers, versions, role-based access control (RBAC), and other custom resources. Replicated supports various image registry options. You can customize the user-facing configuration screen and brand the admin console. Team management options include (RBAC), multi-factor authentication, enable auto-join, and use Google or SAML authentication.
 
-End customers can manage, update, configure, monitor, backup and restore, and troubleshoot your application using either the Replicated admin console or the kots CLI.
+End customers can manage, update, configure, monitor, backup and restore, and troubleshoot their application instance using either the Replicated admin console or the kots CLI.
 
 To learn more about Replicated, see [Intro to Replicated: 20 Ways We Help](https://www.youtube.com/watch?v=2eOh7CofY3Q&t=779s) video.
 
