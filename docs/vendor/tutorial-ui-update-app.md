@@ -15,6 +15,6 @@ To check for updates manually:
 
 ## Next Steps
 
-Now that you are familiar with the basics, we recommend that you run through the [CLI Quickstart Tutorial](tutorial-installing-with-cli) to start managing your release YAML in a git repository.
+Now that you are familiar with the basics, we recommend that you run through the [CLI Tutorial](tutorial-cli-setup) to start managing your release YAML in a git repository.
 
 You can also head over to [How to Package and Distribute a Production Application](distributing-workflow) to learn how to integrate your application with other app manager features.

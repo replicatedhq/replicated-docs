@@ -23,10 +23,6 @@ Now that you have an application running, a common task is to deliver updates. Y
 
 1. Change the number to `2` or more.
 
-  :::note
-  If you have worked ahead and completed the [CLI setup guide](tutorial-installing-with-cli), you can make this `replicas` change in your locally checked-out git repository, publish it with `replicated release create --auto`, and then skip to [Update the Test Server](#update-the-test-server).
-  :::
-
 1. Click **Save Release**.
 
 1. Following the same process you before, promote the release to a channel:

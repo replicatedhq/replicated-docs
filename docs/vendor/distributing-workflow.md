@@ -43,7 +43,7 @@ Complete the following procedures to import your files, create, and test your fi
       </tr>
       <tr>
         <td>Standard manifest files</td>
-        <td>We recommend using standard manifest YAML files unless you are already using Helm or Kubernetes Operators. <br></br><br></br>To import using the Replicated vendor portal, see <a href="releases-creating-releases">Create a Release</a>. To import using the replicated CLI, see <a href="tutorial-installing-with-cli">Managing Releases with the CLI</a>.</td>
+        <td>We recommend using standard manifest YAML files unless you are already using Helm or Kubernetes Operators. <br></br><br></br>To import using the Replicated vendor portal, see <a href="releases-creating-releases">Create a Release</a>.</td>
       </tr>
       <tr>
         <td>Helm charts</td>

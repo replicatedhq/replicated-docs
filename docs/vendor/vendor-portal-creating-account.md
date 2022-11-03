@@ -45,9 +45,4 @@ To create a vendor account:
 
 # Next steps
 * Invite team members to collaborate with you in vendor portal. See [Invite Members](team-management#invite-members).
-* Complete a tutorial to package, distribute, and install a sample application. See:
-
-   * [Managing Releases with the CLI](tutorial-installing-with-cli).
-   * [Packaging and Installing on an Existing Cluster](tutorial-installing-with-existing-cluster).
-   * [Packaging and Installing on a Kubernetes Installer Cluster](tutorial-installing-without-existing-cluster).
 * Learn about how to package, test, iterate, and distribute your production application. See [How to Package and Distribute a Production Application](distributing-workflow).
