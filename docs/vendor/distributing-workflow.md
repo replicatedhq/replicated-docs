@@ -16,9 +16,8 @@ Complete the following items before you perform this task:
 - Set up a development server.
 - Create your account in the Replicated vendor portal. See [Creating a Vendor Account](vendor-portal-creating-account).
 - (Recommended) Complete a tutorial to package, distribute, and install a sample application:
-  * [Managing Releases with the CLI](tutorial-installing-with-cli).
-  * [Packaging and Installing on an Existing Cluster](tutorial-installing-with-existing-cluster).
-  * [Packaging and Installing on a Kubernetes Installer Cluster](tutorial-installing-without-existing-cluster).
+  * [CLI Tutorial](tutorial-cli-setup).
+  * [UI Tutorial](tutorial-ui-setup).
 - (Recommended) Send a questionnaire to your customers to gather information about their environments. See [Customer Application Deployment Questionnaire](planning-questionnaire).
 
 ## Creating and Testing Your Initial Release
