@@ -1,6 +1,10 @@
 # What is Replicated?
 
-Replicated is an enterprise software distribution platform that lets you package your application using Kubernetes manifests or Helm charts, and securely distribute your application to diverse customer environments. This includes on-premises and cloud environments.
+Replicated is an enterprise software distribution platform that lets you package and update your application using Kubernetes manifests or Helm charts, and securely distribute your application to diverse customer environments. This includes on-premises and cloud environments.
+
+As a vendor, you can customize your deployment with features such as preflight checks, support bundles, status informers, versions, role-based access control (RBAC), and other custom resources. Replicated supports various registry options, and you can customize the user-facing configuration screen and brand the admin console. Team management options include (RBAC), multi-factor authentication, enable auto-join, and use Google or SAML authentication.
+
+End customers can manage, update, configure, monitor, backup and restore, and troubleshoot your application using either the Replicated admin console or the kots CLI.
 
 To learn more about Replicated, see [Intro to Replicated: 20 Ways We Help](https://www.youtube.com/watch?v=2eOh7CofY3Q&t=779s) video.
 
@@ -14,7 +18,7 @@ Replicated includes components and features that make it easier for you to manag
 
 ### Vendor Portal
 
-The vendor portal is the graphical user interface that you can use to package and manage applications. You define Kubernetes manifest files, including application and custom resource manifests. These files describe to the app manager how to package the application for distribution. Alternatively, you can use Helm charts. You can also manage other artifacts, such as customer license files, image registries, and release channels.
+The vendor portal is the web browser that you can use to package and manage applications. You define Kubernetes manifest files, including application and custom resource manifests. These files describe to the app manager how to package the application for distribution. Alternatively, you can use Helm charts. You can also manage other artifacts, such as customer license files, image registries, and release channels.
 
 ![Create an Application in the Vendor Portal](/images/guides/kots/create-application.png)
 
