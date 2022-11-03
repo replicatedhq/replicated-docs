@@ -20,7 +20,7 @@ To update the application:
 
    ![admin console verson history page with new version](/images/tutorials/tutorial-deploy-app.png)
 
-1. After the admin console deploys the new version, go to the **Config** page where you can see the **Another Text Example** field that you added.
+1. After the admin console deploys the new version, go to the **Config** page where the **Another Text Example** field that you added is displayed.
 
    ![admin console configuration page with Another Text Example field](/images/tutorials/tutorial-new-config-item.png)
 
@@ -48,4 +48,11 @@ To update the application:
 
 ## Next Steps
 
-You can iterate further on your application. Continue making changes and using `replicated release create --auto` to publish them.
+Congratulations! As part of this tutorial, you:
+* Created and promoted a release for a Kubernetes application using the replicated CLI
+* Installed the application in a Kubernetes cluster
+* Edited the manifest files for the application, adding a new configuration field and using template functions to reference the field
+* Promoted a new release with your changes
+* Used the admin console to update the application to the latest version
+
+As a next step, you can continue to iterate on your application, using `replicated release create --auto` to promote each new release. For ideas on features and funcionality to add to your sample application, see [Iterating Your Releases](/vendor/distributing-workflow#iterating-your-releases) in _How to Package and Distribute a Production Application_.

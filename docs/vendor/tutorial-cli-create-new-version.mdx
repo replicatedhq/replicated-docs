@@ -121,4 +121,17 @@ To create and promote a new version of the application:
 
   The release is created and promoted to the Unstable channel with `SEQUENCE: 2`.
 
+1. Run the following command to verify that the release was promoted to the Unstable channel:
+
+  ```
+  replicated release ls
+  ```
+  **Example output**:
+
+  ```
+  SEQUENCE    CREATED                 EDITED                  ACTIVE_CHANNELS
+  2           2022-11-03T19:16:24Z    0001-01-01T00:00:00Z    Unstable
+  1           2022-11-03T18:49:13Z    0001-01-01T00:00:00Z
+  ```
+
 After promoting the release with your changes, return to the admin console to update the application to the new version. Continue to [Step 9: Update the Application](tutorial-cli-update-app).
