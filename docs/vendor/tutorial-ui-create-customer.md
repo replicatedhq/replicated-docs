@@ -17,7 +17,7 @@ To create a customer license:
 
     ![Create Customer](/images/guides/kots/create-customer.png)
 
-    1. Click **Create Customer**.
+    1. Click **Save Changes**.
 
     1. Click **Download license** in the upper right corner for the newly created customer.
 

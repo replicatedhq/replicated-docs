@@ -2,21 +2,39 @@ import VMRequirements from "../partials/getting-started/_vm-requirements.mdx"
 
 # Step 4: Install the App Manager
 
-The app manager can be installed either into an existing Kubernetes cluster, or as a Kubernetes installer provisioned cluster (embedded cluster). You can see the installation options at the bottom of each channel on the Channels page.
+The app manager can be installed into an existing Kubernetes cluster, or using the Replicated Kubernetes installer on a virtual machine (VM). The Kubernetes installer provisioned cluster (embedded cluster).
 
-For this tutorial, use either installation option:
+You can see the installation options at the bottom of each channel on the Channels page.
+
+Choose either installation option:
 * [Install in an Existing Cluster](#existing)
 * [Install in a Kubernetes Installer Cluster](#kubernetes-installer)
 
 ## Install in an Existing Cluster {#existing}
 
-Installing the app manager on existing clusters is similar to using a Kubernetes installer provisioned cluster, except instead of bringing a plain virtual machine (VM), you will use a pre-built Kubernetes cluster and deploy your application into a namespace.
+When you install the app manager on existing cluster, you use a pre-built Kubernetes cluster and deploy your application into a namespace.
 
 ![Installation Methods](/images/guides/kots/installation-methods-existing.png)
 
 To install the app manager:
 
 1. Access the Kubernetes cluster that you created as part of [Set Up the Environment](tutorial-ui-setup#set-up-the-environment).
+
+  **Example:**
+
+  ```bash
+  glcloud compute ssh NAME
+  ```
+
+  Replace NAME with the name of the cluster.
+
+1. Install kubectl if it is not already installed.
+
+  **Example:**
+
+  ```bash
+  gcloud components install kubectl
+  ```
 
 1. On the cluster, set the local kubectl context.
 
