@@ -12,7 +12,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 
 ### New Features {#new-features-1-90-0}
 * Adds the ability to remove registry info from the **Registry settings** page.
-* Adds the ability to use status informers for Helm charts when running in Helm-managed mode (Alpha). For more information on Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
+* Adds the ability to use status informers for Helm charts when running in Helm-managed mode (Alpha). For more information on Helm-managed mode, see [Supporting helm CLI Installations (Beta)](/vendor/helm-install).
 
 ### Improvements {#improvements-1-90-0}
 * Updates the golang.org/x/text module in the kurl-proxy image used for embedded cluster installations, to resolve CVE-2022-32149 with high severity.
