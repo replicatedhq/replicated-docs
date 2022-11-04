@@ -4,6 +4,25 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.90.0
+
+Released on November 4, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
+
+### New Features {#new-features-1-90-0}
+* Adds the ability to remove registry info from the **Registry settings** page.
+* Adds the ability to use status informers for Helm charts when running in Helm-managed mode (Beta). For more information on Helm-managed mode, see [Supporting helm CLI Installations (Beta)](/vendor/helm-install).
+
+### Improvements {#improvements-1-90-0}
+* Updates the golang.org/x/text module in the kurl-proxy image used for embedded cluster installations, to resolve CVE-2022-32149 with high severity.
+* The file explorer now includes rendered `values.yaml` files for each Helm chart that is deployed by the app manager.
+
+### Bug Fixes {#bug-fixes-1-90-0}
+* Updates the Prometheus query to show disk usage by instance and mount point.
+* Fixes an issue where checking for updates failed with the message "License is expired", but the **License** tab indicated that the license was not expired.
+* Fixes an issue where the admin console could restart during the migration from Postgres to rqlite due to a short timeout.
+
 ## 1.89.0
 
 Released on October 28, 2022
