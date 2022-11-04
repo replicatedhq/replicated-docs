@@ -11,18 +11,17 @@ Released on November 4, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 
 ### New Features {#new-features-1-90-0}
-* Adds ability to remove registry info from the Registry settings page.
-* Added ability to run status informers for helm charts when running in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Adds the ability to remove registry info from the **Registry settings** page.
+* Adds the ability to use status informers for Helm charts when running in Helm-managed mode (Alpha). For more information on Helm-managed mode, see [Supporting helm CLI Installations (Alpha)](/vendor/helm-install).
 
 ### Improvements {#improvements-1-90-0}
 * Updates the golang.org/x/text module in the kurl-proxy image used for embedded cluster installations, to resolve CVE-2022-32149 with high severity.
-* The Admin Console now includes the rendered `values.yaml` file for each Helm chart in the file explorer.
+* The file explorer now includes rendered `values.yaml` files for each Helm chart that is deployed by the app manager.
 
 ### Bug Fixes {#bug-fixes-1-90-0}
-* Updates prometheus query to show disk usage by instance and mount point.
-* Fixes an issue where licenses were not showing as expired in the **License** tab, but would fail when checking for updates with the message "License is expired".
-* fixes an issue where kots would not redirect from `/install-with-helm` automatically after an application is installed.
-* Fixes an issue where the admin console might restart during the migration from Postgres to rqlite due to a short timeout.
+* Updates the Prometheus query to show disk usage by instance and mount point.
+* Fixes an issue where checking for updates failed with the message "License is expired", but the **License** tab indicated that the license was not expired.
+* Fixes an issue where the admin console could restart during the migration from Postgres to rqlite due to a short timeout.
 
 ## 1.89.0
 
