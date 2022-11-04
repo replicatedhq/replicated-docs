@@ -33,7 +33,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 | `--config-values` | string | path to a manifest containing config values (must be apiVersion: kots.io/v1beta1, kind: ConfigValues) |
 | `--with-minio` | bool | set to true to include a local minio instance to be used for storage _(default true)_ |
 
-### Examples
+### Example
 ```bash
 kubectl kots pull sentry/unstable --license-file ~/license.yaml
 ```
