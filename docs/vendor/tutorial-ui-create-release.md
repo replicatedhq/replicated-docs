@@ -1,12 +1,18 @@
 # Step 2: Create a Release
 
+Now that you have created an application object that contains example YAML manifest files, you can create a release and promote it to the Unstable channel.
+
+By default, Replicated includes Unstable, Beta, and Stable release channels. The Unstable channel is intended for software vendors to use for internal testing, before promoting a release to the Beta or Stable channels for distribution to customers. For more information about channels, see [About Release Channels](releases-about-channels).
+
 To create a release:
 
 1. Click **Releases** from the left menu, and click **Create a release**.
 
   ![Create Release](/images/guides/kots/create-release.png)
 
-  A YAML editor opens, where you can define how your application will work and the integration with the app manager functionality. The default YAML documents above the white line contain information for the app manager, preflight checks, customer configuration screen options, and support bundle analyzers for troubleshooting installations. For more information, see the [custom resources reference docs](../reference/custom-resource-about).
+  A YAML editor opens, where you can define how your application will work and the integration with the app manager functionality. The files below the white line are the sample NGINX application files.
+
+  The default YAML manifest files above the white line contain information for the app manager, preflight checks, customer configuration screen options, and support bundle analyzers for troubleshooting installations. For more information, see the [About Custom Resources](../reference/custom-resource-about).
 
   ![Default YAML](/images/guides/kots/default-yaml.png)
 
@@ -19,8 +25,10 @@ To create a release:
 
 1. Click **Releases > Promote**.
 
-  In the Promote Release dialog, select the Unstable channel and click **Promote**. Promoting a release makes it available for installation.
+  In the Promote Release dialog that opens, select the Unstable channel and click **Promote**. Promoting a release makes it available for installation.
 
   ![Create Application](/images/guides/kots/promote-release.png)
 
-Now that you have a release promoted, you can create a license and install the sample NGINX application on a test server.
+## Next Step
+
+Continue to [Step 3: Create a Customer](tutorial-ui-create-customer) to create a customer license file that you will upload when installing the application.
