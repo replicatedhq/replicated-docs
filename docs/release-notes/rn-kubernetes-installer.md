@@ -15,7 +15,7 @@ Released on November 7, 2022
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.60.1-41.7.3.
 
 ### Bug Fixes {#bug-fixes-v2022-11-07-0}
-* Fix CRD errors when updating from Prometheus 0.49.0-17.1.3 on Kubernetes versions that do not support server-side apply.
+* Fixes CRD errors when updating from Prometheus 0.49.0-17.1.3 on Kubernetes versions that do not support Server-Side Apply.
 
 ## v2022.11.02-0
 
