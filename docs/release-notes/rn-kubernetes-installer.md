@@ -4,6 +4,19 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2022.11.07-0
+
+Released on November 7, 2022
+
+### New Features {#new-features-v2022-11-07-0}
+* Removes support for the BETA K3s add-on and the BETA RKE2 add-on. It is recommended to use the [OpenEBS add-on](https://kurl.sh/docs/add-ons/openEBS#localpv) for the single-node LocalPV use case with kURL. For more information about this decision, see the [ADR](https://github.com/replicatedhq/kURL/blob/main/docs/arch/adr-007-deprecate-k3s-and-rke2.md).
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.24.1.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.20.1.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.60.1-41.7.3.
+
+### Bug Fixes {#bug-fixes-v2022-11-07-0}
+* Fixes CRD errors when updating from Prometheus 0.49.0-17.1.3 on Kubernetes versions that do not support Server-Side Apply.
+
 ## v2022.11.02-0
 
 Released on November 2, 2022
