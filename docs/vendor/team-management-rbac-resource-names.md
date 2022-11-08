@@ -192,6 +192,22 @@ Grants the holder permission to manage the following team authentication setting
 
 Grants the holder permission to manage team password requirements including two-factor authentication and password complexity requirements.
 
+### team/support-issues/read
+
+Grants the holder Read permissions in the Replicated collab repository in GitHub for the vendor portal team. For more information about the Read role in GitHub, see [Permissions for each role](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/repository-roles-for-an-organization#permissions-for-each-role) in the GitHub documentation.
+
+### team/support-issues/write
+
+Grants the holder Write permissions in the Replicated collab repository in GitHub for the vendor portal team. For more information about the Write role in GitHub, see [Permissions for each role](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/repository-roles-for-an-organization#permissions-for-each-role) in the GitHub documentation.
+
+### team/support-issues/triage
+
+Grants the holder Triage permissions in the Replicated collab repository in GitHub for the vendor portal team. For more information about the Triage role in GitHub, see [Permissions for each role](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/repository-roles-for-an-organization#permissions-for-each-role) in the GitHub documentation.
+
+### team/support-issues/admin
+
+Grants the holder Admin permissions in the Replicated collab repository in GitHub for the vendor portal team. For more information about the Admin role in GitHub, see [Permissions for each role](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/repository-roles-for-an-organization#permissions-for-each-role) in the GitHub documentation.
+
 ## User
 
 ### user/token/list
