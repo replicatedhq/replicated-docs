@@ -2,7 +2,15 @@
 
 You can configure custom role-based access control (RBAC) policies if you are on the Enterprise pricing plan. Creating custom RBAC policies lets you limit which areas of the Replicated vendor portal are accessible to team members, and control read and read/write privileges to groups based on their role. For example, you can limit access for the sales team to one application and to specific channels.
 
-You can also create custom RBAC policies in the vendor portal to manage user permissions in the Replicated collab repository in GitHub. For more information, see [About User Permissions in the Collab Repository](team-management-github-username).
+You can also create custom RBAC policies in the vendor portal to manage user access and permissions in the Replicated collab repository in GitHub. For more information, see [Managing Access to the Collab Repository](team-management-github-username).
+
+To apply RBAC policies to vendor portal team members, you can:
+
+- Assign policies to existing team members.
+- Specify a policy when inviting new team members.
+- Set a default policy for auto-joining a team.
+
+For more information about managing team members and assigning policies, see [Managing Team Members](team-management).
 
 :::note
 By default, every team has two policies created automatically: **Admin** and **Read Only**. These default policies are not configurable.
@@ -54,11 +62,3 @@ To configure custom RBAC policies:
   :::note
   Click **Cancel** to exit without saving changes.
   :::
-
-1. To use RBAC policies, you can:
-
-    - Assign policies to existing team members.
-    - Specify a policy when inviting new team members.
-    - Set a default policy for auto-joining a team.
-
-  For more information about managing team members and assigning policies, see [Managing Team Members](team-management).

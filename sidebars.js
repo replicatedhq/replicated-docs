@@ -226,6 +226,7 @@ const sidebars = {
                 items: [
                   'vendor/team-management-rbac-configuring',
                   "vendor/team-management-rbac-about",
+                  'vendor/team-management-github-username',
                   'vendor/team-management-rbac-resource-names',
               ],
             },
