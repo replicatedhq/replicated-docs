@@ -220,13 +220,13 @@ const sidebars = {
           label: 'Team Management',
           items: [
             'vendor/team-management',
+            'vendor/team-management-github-username',
             {
                 type: 'category',
                 label: 'Configuring Role-based Access Control',
                 items: [
                   'vendor/team-management-rbac-configuring',
                   "vendor/team-management-rbac-about",
-                  'vendor/team-management-github-username',
                   'vendor/team-management-rbac-resource-names',
               ],
             },
