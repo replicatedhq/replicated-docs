@@ -42,6 +42,11 @@ Registry username and password can be found in the `registry-creds` secret in th
 ### Limitations
 Currently the image garbage collection feature has following limitations:
 
+#### Optional Components
+Some application may define components (pods, deployments, statefulsets, ect) that can be enabled or disabled via application settings.
+If a component is disabled and is no longer deployed, its images may be garbage collected.
+To prevent this from happening, optional images should be included in the [`additionalImages`](/vendor/operator-defining-additional-images) list.
+
 #### Shared Image Registries
 The image garbage collection process assumes that the registry is not shared with any other instances of the Replicated app manager nor any external applications.
 If the embedded registry is used by another external application, this feature should be disabled to prevent image loss.
