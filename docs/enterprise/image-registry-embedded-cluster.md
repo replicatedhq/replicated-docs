@@ -44,7 +44,7 @@ Currently the image garbage collection feature has following limitations:
 
 #### Optional Components
 Some applications define Kubernetes resources that can be enabled or disabled dynamically. For example, template functions can be used to conditionally deploy a StatefulSet based on configuration from the user.
-If a resource is disabled and no longer deployed, its images can be added to the garbage collection.
+If a resource is disabled and no longer deployed, its images may be garbage collected.
 To prevent this from happening, optional images should be included in the `additionalImages` list of the Application custom resource. For more information, see [`additionalImages`](/reference/custom-resource-application#additionalimages) in _Application_.
 
 #### Shared Image Registries
