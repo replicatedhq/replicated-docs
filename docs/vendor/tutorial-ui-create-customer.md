@@ -17,14 +17,18 @@ To create a customer license and download the license file:
 1. Edit the following fields, leaving the rest of the fields set to the default values:
 
     1. Enter your name for the **Customer Name**.
-    1. Select **Unstable** for the **Assigned Channel**. The UNstable channle is where you promoted the release in [Step 3: Create a Release](tutorial-ui-create-release). Assigning the customer to a channel allows them to install the releases that are promoted to that channel.
+    1. Select **Unstable** for the **Assigned Channel**. The Unstable channel is where you promoted the release in [Step 3: Create a Release](tutorial-ui-create-release). Assigning the customer to a channel allows them to install the releases that are promoted to that channel.
 
       ![Create Customer](/images/guides/kots/create-customer.png)
 
     1. Click **Save Changes**.
 
-    1. Click **Download license** in the upper right corner for the newly created customer.
+    1. Click **Download license** from the dropdown menu in the upper right corner.
 
-      This downloads the file with your customer name and a YAML extension. This is the license file your customer needs to install your application. When a customer is installing your software, you need to send them two things: the app manager installation script and the license file.
+      The license file with your customer name and a YAML extension is downloaded. This is the license file that your customer uses to install your application. When a customer is installing your software, you need to send them two things: the app manager installation script and the license file.
 
       You will also use this license file to install and test the application on the test server.
+
+## Next Step
+
+Continue to [Step 4: Install the App Manager](tutorial-ui-install-app-manager) to get the installation commands from the Unstable channel and install the Replicated app manager components on your Kubernetes cluster.
