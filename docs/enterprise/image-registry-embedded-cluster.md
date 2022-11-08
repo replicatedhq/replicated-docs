@@ -43,9 +43,9 @@ Registry username and password can be found in the `registry-creds` secret in th
 Currently the image garbage collection feature has following limitations:
 
 #### Optional Components
-Some application may define components (pods, deployments, statefulsets, ect) that can be enabled or disabled via application settings.
-If a component is disabled and is no longer deployed, its images may be garbage collected.
-To prevent this from happening, optional images should be included in the [`additionalImages`](/vendor/operator-defining-additional-images) list.
+Some applications define Kubernetes resources that can be enabled or disabled dynamically. For example, template functions can be used to conditionally deploy a StatefulSet based on configuration from the user.
+If a resource is disabled and no longer deployed, its images may be garbage collected.
+To prevent this from happening, optional images should be included in the `additionalImages`](/reference/custom-resource-application#additionalimages) list.
 
 #### Shared Image Registries
 The image garbage collection process assumes that the registry is not shared with any other instances of the Replicated app manager nor any external applications.
