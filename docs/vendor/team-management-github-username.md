@@ -3,17 +3,15 @@ import CollabRbacResourcesImportant from "../partials/_collab-rbac-resources-imp
 
 # Managing Collab Repository Access
 
-This topic describes how to manage user access to the Replicated collab GitHub repository automatically through the vendor portal. It also includes information about granting and denying permissions in the collab repository using default vendor portal roles or custom RBAC policies.
+This topic describes how to manage user access to the Replicated collab GitHub repository automatically through the vendor portal. It also includes information about granting and denying permissions in the collab repository using default or custom vendor portal RBAC policies.
 
 ## Overview of Managing Collab Access {#overview}
 
 <CollabRepoAbout/>
 
-To get access to the collab repository, members of a vendor portal team can add their GitHub username to the vendor portal. The vendor portal then automatically provisions the team member as a user in the collab repository in GitHub. For team members that are added to the collab repository through the vendor portal using this method, the RBAC policy that the member is assigned in the vendor portal determines the GitHub role that they have in the collab repository.
+To get access to the collab repository, members of a vendor portal team can add their GitHub username to the vendor portal. The vendor portal then automatically provisions the team member as a user in the collab repository in GitHub. The RBAC policy that the member is assigned in the vendor portal determines the GitHub role that they have in the collab repository.
 
-Replicated recommends that vendor portal admins manage user access to the collab repository through the vendor portal, rather than manually managing users through GitHub.
-
-Managing access through the vendor portal has the following benefits:
+Replicated recommends that vendor portal admins manage user access to the collab repository through the vendor portal, rather than manually managing users through GitHub. Managing access through the vendor portal has the following benefits:
 * Users are automatically added to the collab repository when they add their GitHub username in the vendor portal.
 * Users are automatically removed from the collab repository when they are removed from the vendor portal team.
 * Vendor portal and collab repository RBAC policies are managed from a single location.

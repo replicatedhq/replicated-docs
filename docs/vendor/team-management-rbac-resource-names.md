@@ -209,8 +209,8 @@ To prevent access to the collab repository for an RBAC policy, add `team/support
      "denied": [
     	"team/support-issues/read"
       ]
-   }
- }
+    }
+  }
 }
 ```
 
