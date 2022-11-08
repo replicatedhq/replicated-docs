@@ -1,6 +1,6 @@
 # enable-ha
 
-Enables HA mode for the admin console
+(Deprecated) Enables HA mode for the admin console
 
 ## Usage
 ```bash
