@@ -22,32 +22,40 @@ To deploy the application:
   For production, you can customize what appears on this screen to collect the configuration that your application needs from the customer. Values are available to your app as text templates or input values to Helm Charts. We will make an update to this page in a later step.
   :::
 
-1. Click **Continue** and ignore the warnings.
+1. Click **Continue**.
 
-  The preflight checks run automatically. Preflight checks are designed to help ensure that the environment meets the minimum system and software requirements to run the application. Software vendors define preflight checks in the Preflight custom resource. For more information, see [Preflight and Support Bundle](/reference/custom-resource-preflight) in _Reference_.
+  The preflight checks run automatically. In the Results from your preflight checks list, look for the status of the number of nodes in the cluster. It should show the pass or warning messages that you configured earlier, depending on your cluster setup.
 
-  ![Preflight Checks](/images/preflight-warnings.png)
+  ![Preflight Results](/images/preflight-warning.png)
 
-1. After the preflight checks complete, click **Continue**. If there are failing preflight checks, click **Deploy and continue** in the dialog. The admin console dashboard opens.
+1. Ignore any preflight warnings and click **Continue**. If there are failing preflight checks, click **Deploy and continue** in the dialog. The admin console dashboard opens.
 
-  ![Cluster](/images/guides/kots/application.png)
+  ![Cluster](/images/guides/kots/application-tutorial-ui.png)
 
-  On the admin console Dashboard tab, users can take various actions, including viewing the application status, opening the application, checking for application updates, syncing their license, and setting up application monitoring on the cluster with Prometheus.
+  On the Dashboard tab, users can take various actions, including viewing the application status, opening the application, checking for application updates, syncing their license, and setting up application monitoring on the cluster with Prometheus.
 
 1. Click **Open App** to view the application in your browser.
 
   ![Open App](/images/guides/kots/open-app.png)
 
-  Notice that the text that you entered previously on the configuration page is displayed on the application screen.
+  Notice that the text that you entered previously on the Configure App Name page is displayed on the application screen.
 
   ![Cluster](/images/guides/kots/example-app.png)
 
-1. In your cluster, press **Ctrl + C** to exit the admin console. Run the following command to see the example NGINX service that you just deployed:
+1. In your cluster, press **Ctrl + C** to exit the admin console.
+
+1. Run the following command to reload your shell so that you can access the cluster with kubectl:
+
+  ```bash
+    bash -l
+    ```
+
+1. Run the following command to see the example NGINX service that you just deployed:
 
   ```bash
   kubectl get pods --namespace APP_NAMESPACE
   ```
-  Replace `APP_NAMESPACE` with the application namespace.
+  Replace `APP_NAMESPACE` with the application namespace. Typically this value is `default`.
 
   **Example output:**
 
@@ -66,7 +74,7 @@ To deploy the application:
   kubectl kots admin-console --namespace APP_NAMESPACE
   ```
 
-  Replace `APP_NAMESPACE` with the application namespace.
+  Replace `APP_NAMESPACE` with the application namespace. Typically this value is `default`.
 
 ## Next Step
 
