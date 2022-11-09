@@ -4,6 +4,13 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2022.11.09-0
+
+Released on November 9, 2022
+
+### New Features {#new-features-v2022-11-09-0}
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.25.0.
+
 ## v2022.11.07-0
 
 Released on November 7, 2022
