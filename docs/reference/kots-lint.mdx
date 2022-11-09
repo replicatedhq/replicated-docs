@@ -32,6 +32,8 @@ import RepeatOptionMissingValuesByGroup from "../partials/kots-lint-rules/_repea
 import RepeatOptionMalformedYAMLPath from "../partials/kots-lint-rules/_repeat-option-malformed-yamlpath.mdx"
 import ConfigOptionPasswordType from "../partials/kots-lint-rules/_config-option-password-type.mdx"
 import ConfigOptionIsCircular from "../partials/kots-lint-rules/_config-option-is-circular.mdx"
+import InvalidType from "../partials/kots-lint-rules/_invalid_type.mdx"
+import InvalidYaml from "../partials/kots-lint-rules/_invalid-yaml.mdx"
 
 # KOTS Lint Rules
 
@@ -366,6 +368,58 @@ spec:
 </table>
 
 
+### invalid_type
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Requires that the value of a property matches that property's expected type.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+      All files
+    </td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><InvalidType/></td>
+  </tr>
+</table>
+
+
+### invalid-yaml
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Enforces valid YAML.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+      YAML files
+    </td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><InvalidYaml/></td>
+  </tr>
+</table>
+
+
 ### deprecated-kubernetes-installer-version
 
 <table>
@@ -417,6 +471,49 @@ spec:
     <th>Applies To</th>
     <td>
     All files
+    </td>
+  </tr>
+</table>
+
+
+### helm-archive-missing
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Requires that a <code>*.tar.gz</code> file is present that matches what is in the HelmChart custom resource manifest file.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+    Releases with a HelmChart custom resource manifest file containing <code>kind: HelmChart</code> and <code>apiVersion: kots.io/v1beta1</code>.
+    </td>
+  </tr>
+</table>
+
+### helm-chart-missing
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Enforces that a HelmChart custom resource manifest file with <code>kind: HelmChart</code> is present if there is a <code>*.tar.gz</code> archive present.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+    Releases with a <code>*.tar.gz</code> archive file present.
     </td>
   </tr>
 </table>
