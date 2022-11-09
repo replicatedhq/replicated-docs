@@ -9,7 +9,7 @@ toc_max_heading_level: 2
 Released on November 9, 2022
 
 ### New Features {#new-features-v2022-11-09-0}
-* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.25.0.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.25.0. This version adds management of the rqlite StatefulSet deployed by the app manager. If a Kubernetes installer cluster has at least three healthy nodes and the OpenEBS localpv storage class is available, rqlite is scaled up to three replicas for data replication and high availability.
 
 ## v2022.11.07-0
 
