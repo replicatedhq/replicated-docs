@@ -83,7 +83,9 @@ To create and promote a new version of the application:
    ```
     This creates a reference to the `more_text` field using a Replicated template function. The ConfigOption template function renders the user input from the configuration item that you specify. For more information, see [Config Context](/reference/template-functions-config-context) in _Reference_.
 
-1. Save the changes to both YAML files, then run the following command to verify that there are no errors in the YAML:
+1. Save the changes to both YAML files.
+
+1. Change to the root `replicated-cli-tutorial` directory, then run the following command to verify that there are no errors in the YAML:
 
    ```
    replicated release lint --yaml-dir=manifests
