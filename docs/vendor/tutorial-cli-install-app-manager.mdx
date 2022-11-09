@@ -41,7 +41,11 @@ To install the app manager in your Kubernetes cluster:
     * An _embedded_ cluster created by the Replicated Kubernetes installer
     * An air gap cluster that is not connected to the Internet
 
-1. Access the cluster you provisioned as part of [Set Up the Environment](tutorial-cli-setup#set-up-the-environment). From a location where you can access the cluster with the kubectl command line tool, run the `EXISTING` installation script from above:
+1. If you have not already, configure kubectl access to the cluster you provisioned as part of [Set Up the Environment](tutorial-cli-setup#set-up-the-environment). For more information about configuring kubectl, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
+
+1. Run the `EXISTING` installation script from above:
+
+  **Example**
 
   ```
   curl -fsSL https://kots.io/install | bash
