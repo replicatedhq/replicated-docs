@@ -1,3 +1,5 @@
+import CollabRbacResourcesImportant from "../partials/collab-repo/_collab-rbac-resources-important.mdx"
+
 # RBAC Resource Names
 
 This a list of all available resource names for the Replicated vendor role-based access control (RBAC) policy:
@@ -191,6 +193,54 @@ Grants the holder permission to manage the following team authentication setting
 ### team/security/update
 
 Grants the holder permission to manage team password requirements including two-factor authentication and password complexity requirements.
+
+### team/support-issues/read
+
+Grants the holder Read permissions in the Replicated collab repository in GitHub for the vendor portal team. Applies after the user adds their GitHub username to the vendor portal [Account Settings](https://vendor.replicated.com/account-settings) page.
+
+To prevent access to the collab repository for an RBAC policy, add `team/support-issues/read` to the `denied:` list in the policy. For example:
+
+```
+{
+ "v1": {
+   "name": "Policy Name",
+   "resources": {
+     "allowed": [],
+     "denied": [
+    	"team/support-issues/read"
+      ]
+    }
+  }
+}
+```
+
+For more information about the Read role in GitHub, see [Permissions for each role](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/repository-roles-for-an-organization#permissions-for-each-role) in the GitHub documentation.
+
+<CollabRbacResourcesImportant/>
+
+### team/support-issues/write
+
+Grants the holder Write permissions in the Replicated collab repository in GitHub for the vendor portal team. Applies after the user adds their GitHub username to the vendor portal [Account Settings](https://vendor.replicated.com/account-settings) page.
+
+For more information about the Write role in GitHub, see [Permissions for each role](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/repository-roles-for-an-organization#permissions-for-each-role) in the GitHub documentation.
+
+<CollabRbacResourcesImportant/>
+
+### team/support-issues/triage
+
+Grants the holder Triage permissions in the Replicated collab repository in GitHub for the vendor portal team. Applies after the user adds their GitHub username to the vendor portal [Account Settings](https://vendor.replicated.com/account-settings) page.
+
+For more information about the Triage role in GitHub, see [Permissions for each role](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/repository-roles-for-an-organization#permissions-for-each-role) in the GitHub documentation.
+
+<CollabRbacResourcesImportant/>
+
+### team/support-issues/admin
+
+Grants the holder Admin permissions in the Replicated collab repository in GitHub for the vendor portal team. Applies after the user adds their GitHub username to the vendor portal [Account Settings](https://vendor.replicated.com/account-settings) page.
+
+For more information about the Admin role in GitHub, see [Permissions for each role](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/repository-roles-for-an-organization#permissions-for-each-role) in the GitHub documentation.
+
+<CollabRbacResourcesImportant/>
 
 ## User
 
