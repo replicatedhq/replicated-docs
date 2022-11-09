@@ -28,7 +28,7 @@ There are a few things to keep in mind about this guide:
 
 - In the example commands and screenshots, we are using a sample application called `AppDirect`. For more information, see [Sample Application](#sample-application).
 
-- This is an advanced topic that assumes you have a level of familiarity with Replicated. If you are not yet familiar with Replicated, first complete one of the getting started tutorials, such as [Packaging and Installing on a Kubernetes Installer Cluster](tutorial-installing-without-existing-cluster).
+- This is an advanced topic that assumes you have a level of familiarity with Replicated. If you are not yet familiar with Replicated, first complete one of the getting started tutorials, such as [UI Tutorial](tutorial-ui-setup).
 
 
 ### Sample application

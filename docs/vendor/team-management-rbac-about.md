@@ -2,6 +2,8 @@
 
 Replicated offers customizable, role-based access control (RBAC) policies that can be used to grant or deny access to users when interacting with the Replicated services in the Replicated vendor portal.
 
+RBAC policies can also be used to manage user access and permissions in the Replicated collab repository in GitHub for the vendor portal team. For more information, see [Managing Access to the Collab Repository](team-management-github-username).
+
 Every team has two policies created automatically that are not configurable: **Admin** and **Read Only**. Teams on the Enterprise pricing plan can create custom policies and roles that can be used to control access to specific resources, such as the ability to promote to a specific channel or edit certain licenses.
 
 ## Policy Definition
