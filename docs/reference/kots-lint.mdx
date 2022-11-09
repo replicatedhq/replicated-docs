@@ -32,6 +32,7 @@ import RepeatOptionMissingValuesByGroup from "../partials/kots-lint-rules/_repea
 import RepeatOptionMalformedYAMLPath from "../partials/kots-lint-rules/_repeat-option-malformed-yamlpath.mdx"
 import ConfigOptionPasswordType from "../partials/kots-lint-rules/_config-option-password-type.mdx"
 import ConfigOptionIsCircular from "../partials/kots-lint-rules/_config-option-is-circular.mdx"
+import InvalidType from "../partials/kots-lint-rules/_invalid-type.mdx"
 
 # KOTS Lint Rules
 
@@ -362,6 +363,54 @@ spec:
   <tr>
     <th>Example</th>
     <td><InvalidKubernetesInstaller/></td>
+  </tr>
+</table>
+
+
+### invalid_type
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Requires that the value of a property matches that property's expected type.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+      All files.
+    </td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><InvalidType/></td>
+  </tr>
+</table>
+
+
+### invalid-yaml
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Enforces valid YAML.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+      YAML files.
+    </td>
   </tr>
 </table>
 
