@@ -1,4 +1,4 @@
-import CollabRbacResourcesImportant from "../partials/_collab-rbac-resources-important.mdx"
+import CollabRbacResourcesImportant from "../partials/collab-repo/_collab-rbac-resources-important.mdx"
 
 # Configuring Custom RBAC Policies
 

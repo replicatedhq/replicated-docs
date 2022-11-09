@@ -1,5 +1,5 @@
-import CollabRepoAbout from "../partials/_collab-repo-about.mdx"
-import CollabRbacImportant from "../partials/_collab-rbac-important.mdx"
+import CollabRepoAbout from "../partials/collab-repo/_collab-repo-about.mdx"
+import CollabRbacImportant from "../partials/collab-repo/_collab-rbac-important.mdx"
 
 # Managing Team Members
 
