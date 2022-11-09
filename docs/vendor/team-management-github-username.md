@@ -4,7 +4,7 @@ import CollabExistingUser from "../partials/collab-repo/_collab-existing-user.md
 
 # Managing Collab Repository Access
 
-This topic describes how to add users to the Replicated collab GitHub repository automatically through the vendor portal. It also includes information about managing user roles in the collab repository using vendor portal roll-based access control (RBAC) policies.
+This topic describes how to add users to the Replicated collab GitHub repository automatically through the vendor portal. It also includes information about managing user roles in the collab repository using vendor portal role-based access control (RBAC) policies.
 
 ## Overview of Managing Collab Access {#overview}
 
