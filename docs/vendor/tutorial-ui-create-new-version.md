@@ -13,11 +13,11 @@ To create and promote a new version of the application:
 1. In the `kots-config.yaml` file, copy and paste the following YAML into the file under the `example_default_value` field to create a new text field on the admin console configuration page:
 
   ```yaml
-  - name: more_text
-  title: Another Text Example
-  type: text
-  value: ""
-  when: repl{{ ConfigOptionEquals "show_text_inputs" "1" }}
+   - name: more_text
+     title: Another Text Example
+     type: text
+     value: ""
+     when: repl{{ ConfigOptionEquals "show_text_inputs" "1" }}
   ```
 
   The following shows the full YAML for the kots-config.yaml file after you add the new field:
@@ -99,4 +99,4 @@ To create and promote a new version of the application:
 
 ## Next Step
 
-Continue to [Step 7: Update the Application](tutorial-ui-update-app) to return to the admin console to update the application to the new version. 
+Continue to [Step 7: Update the Application](tutorial-ui-update-app) to return to the admin console to update the application to the new version.

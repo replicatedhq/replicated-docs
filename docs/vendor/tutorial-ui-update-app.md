@@ -1,20 +1,51 @@
 # Step 7: Update the Application
 
-To install and test this new release, you must connect to the admin console on port :8800 using a web browser.
-At this point, the UI likely shows that your test application is up-to-date and that no updates are available.
-The admin console checks for new updates approximately every five hours, but for now, you will trigger a check manually.
+To deploy and test this updated release, you return to the admin console using a web browser.
 
-To check for updates manually:
+At this point, the UI likely shows that your test application is up-to-date and that no updates are available. The admin console checks for new updates approximately every five hours, but for now, you will trigger a check manually.
 
-1. Click **Check for Updates** on the Version History tab. You should see a new release in the history now. You can click **Diff versions** to review the differences in the YAML files.
+To update the application:
+
+1. Log in to the admin console at `https://localhost:8800`.
+
+1. On the Version history tab, click **Check for update**. You should see a new release in the history now. You can click **Diff versions** to review the differences in the YAML files.
 
   ![View Update](/images/guides/kots/view-update.png)
 
-1. Click **Deploy** to apply the new YAML, which changes the number of NGINX replicas. The deployment takes only a few seconds.
+1. Click **Deploy**. In the dialog that opens, click **Yes, deploy** to deploy the new version. The deployment takes only a few seconds.
 
+1. On the Config page, look for the **Another Text Example** field that you added is displayed.
+
+1. In the new **Another Text Example** field, enter any text. Click **Save config**.
+
+  The admin console notifies you that the configuration settings for the application have changed.
+
+1. In the dialog, click **Go to updated version**.
+
+  The updated version is loaded on the Version history page.
+
+1. On the Version history page, click **Deploy** next to the latest version to deploy the configuration change.
+
+1. After the admin console deploys the configuration change, go to the Dashboard page and click **Open App**.
+
+  The application displays the text that you added to the field.
+
+  :::note
+  If you do not see the new text, refresh your browser.
+  :::
 
 ## Next Steps
 
-Now that you are familiar with the basics, we recommend that you run through the [CLI Quickstart Tutorial](tutorial-installing-with-cli) to start managing your release YAML in a git repository.
+Congratulations! As part of this tutorial, you:
 
-You can also head over to [How to Package and Distribute a Production Application](distributing-workflow) to learn how to integrate your application with other app manager features.
+- Created and promoted a release for a Kubernetes application using the vendor portal
+- Installed the application in a Kubernetes cluster
+- Edited the manifest files for the application, adding a new configuration field and using template functions to reference the field
+- Promoted a new release with your changes
+- Used the admin console to update the application to the latest version
+
+As a next step you can:
+
+- Learn how to start managing your release YAML in a git repository. See the [CLI Quickstart Tutorial](tutorial-installing-with-cli).
+
+- Continue to iterate on your sample application by integratnig other app manager features. For ideas on features and functionality, see [Iterating Your Releases](distributing-workflow#iterating-your-releases)  in _How to Package and Distribute a Production Application_.
