@@ -422,6 +422,49 @@ spec:
 </table>
 
 
+### helm-archive-missing
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Requires that a <code>*.tar.gz</code> file is present that matches what is in the HelmChart custom resource manifest file.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+    Releases with a HelmChart custom resource manifest file containing <code>kind: HelmChart</code> and <code>apiVersion: kots.io/v1beta1</code>.
+    </td>
+  </tr>
+</table>
+
+### helm-chart-missing
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Enforces that a HelmChart custom resource manifest file with <code>kind: HelmChart</code> is present if there is a <code>*.tar.gz</code> archive present.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+    Releases with a <code>*.tar.gz</code> archive file present.
+    </td>
+  </tr>
+</table>
+
+
 ### invalid-helm-release-name
 
 <table>
