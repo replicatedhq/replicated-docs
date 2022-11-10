@@ -4,6 +4,15 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2022.11.10-0
+
+Released on November 10, 2022
+
+### Bug Fixes {#bug-fixes-v2022-11-10-0}
+* Fixes an issue that could cause installations or upgrades to fail with error "syntax error: operand expected (error token is ""0" + "1"")" for older bash versions.
+* [Improvement] OpenEBS Local PV Storage Class will now be the default if no other Storage Class is specified for OpenEBS add-on versions 3.3.0 and above. Previously OpenEBS was only the default if `openebs.localPVStorageClassName` was set to `"default"`.
+* [Bug] Fixes an issue that causes installations to fail with no default Storage Class for specs with `openebs.localPVStorageClassName` set to anything other than `"default"` and no other CSI add-on specified.
+
 ## v2022.11.09-0
 
 Released on November 9, 2022
