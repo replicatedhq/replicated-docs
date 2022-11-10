@@ -89,7 +89,7 @@ In the following example, a policy grants access to viewing all customers, but n
 
 ### Support Engineer
 
-The support engineer policy grants read access to release, channels, and application data, but not read-write access to customer and license details.
+The support engineer policy grants read access to release, channels, and application data, but read-write access to customer and license details.
 
 ```json
 {
