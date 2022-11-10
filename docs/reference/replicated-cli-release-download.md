@@ -1,3 +1,7 @@
+import Help from "../partials/replicated-cli/_help.mdx"
+import App from "../partials/replicated-cli/_app.mdx"
+import Token from "../partials/replicated-cli/_token.mdx"
+
 # release download
 
 Download the config manifest file for a release.
@@ -9,12 +13,21 @@ Download the config manifest file for a release.
 replicated release download SEQUENCE -d ./appyaml
 ```
 
-| Flag                 | Type | Description |
-|:----------------------|------|-------------|
-| `-d, --dest` | string  | Directory to which release manifests should be downloaded |
-| `-h, --help`   |  |          Help for the admin-console |
-| `--app string` | |   The app slug or app id used in all calls (default uses `$REPLICATED_APP` env variable) |
-| `--token string` | |  The API token used to access your app in the Vendor API (default uses `$REPLICATED_API_TOKEN` env variable) |
+<table>
+  <tr>
+    <th width="30%">Flag</th>
+    <th width="20%">Type (if applicable)</th>
+    <th width="50%">Description</th>
+  </tr>
+  <tr>
+    <td><code>-d, --dest</code></td>
+    <td>string</td>
+    <td>Directory where release manifests should be downloaded.</td>
+  </tr>
+  <Help/>
+  <App/>
+  <Token/>
+</table>
 
 ## Examples
 ```bash

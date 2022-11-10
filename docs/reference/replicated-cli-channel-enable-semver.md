@@ -1,3 +1,7 @@
+import Help from "../partials/replicated-cli/_help.mdx"
+import App from "../partials/replicated-cli/_app.mdx"
+import Token from "../partials/replicated-cli/_token.mdx"
+
 # channel enable-semantic-versioning
 
 Enable semantic versioning for a channel.
@@ -7,11 +11,16 @@ Enable semantic versioning for a channel.
 replicated channel enable-semantic-versioning CHANNEL_ID
 ```
 
-| Flag                 | Type | Description |
-|:----------------------|------|-------------|
-| `-h, --help`   |  |          Help for the command. |
-| `--app string` | |   The app slug or app id used in all calls. **Default**: Uses the `$REPLICATED_APP` environment variable. |
-| `--token string` | |  The API token used to access your app in the Vendor API. **Default**: Uses the `$REPLICATED_API_TOKEN` environment variable. |
+<table>
+  <tr>
+    <th width="30%">Flag</th>
+    <th width="20%">Type (if applicable)</th>
+    <th width="50%">Description</th>
+  </tr>
+  <Help/>
+  <App/>
+  <Token/>
+</table>
 
 ### Examples
 ```bash

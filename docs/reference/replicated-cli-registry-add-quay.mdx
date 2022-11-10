@@ -4,6 +4,7 @@ import Token from "../partials/replicated-cli/_token.mdx"
 import Password from "../partials/replicated-cli/_password.mdx"
 import PasswordStdin from "../partials/replicated-cli/_password-stdin.mdx"
 import Username from "../partials/replicated-cli/_username.mdx"
+import Help from "../partials/replicated-cli/_help.mdx"
 
 # registry add quay
 
@@ -19,16 +20,12 @@ The following flags are supported:
 
 <table>
   <tr>
-    <th width="15%">Flag</th>
-    <th width="15%">Type (if applicable)</th>
-    <th width="70%">Description</th>
+    <th width="30%">Flag</th>
+    <th width="20%">Type (if applicable)</th>
+    <th width="50%">Description</th>
   </tr>
   <App/>
-  <tr>
-    <td>-h, --help</td>
-    <td></td>
-    <td>Help for <code>quay</code>.</td>
-  </tr>
+  <Help/>
   <Password/>
   <PasswordStdin/>
   <SkipValidation/>

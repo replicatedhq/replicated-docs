@@ -1,3 +1,7 @@
+import Token from "../partials/replicated-cli/_token.mdx"
+import Help from "../partials/replicated-cli/_help.mdx"
+import App from "../partials/replicated-cli/_app.mdx"
+
 # customer create
 
 Create a new customer in your application and associate a customer to a channel.
@@ -8,15 +12,36 @@ Customer information returned on success.
 replicated customer create [Flags]
 ```
 
-| Flag                 | Type | Description |
-|:----------------------|------|-------------|
-| `--name`           |  string | The name of the customer (**required**) |
-| `--channel` | string | The channel name to associate with the customer (**case-sensitive, required**) |
-| `--ensure-channel` |        | If set, channel will be created if it does not exist. |
-| `--expires-in` | duration | If set, license will expire a specified number of units from the current time. For example, `2h` or `1h60m` or `120m` are all the same duration.  |
-| `-h, --help`   |  |          Help for the command |
-| `--app` | string |   The app slug or app id used in all calls (default uses `$REPLICATED_APP` env variable) |
-| `--token` | string |  The API token used to access your app in the Vendor API (default uses `$REPLICATED_API_TOKEN` env variable) |
+<table>
+  <tr>
+    <th width="30%">Flag</th>
+    <th width="20%">Type (if applicable)</th>
+    <th width="50%">Description</th>
+  </tr>
+  <tr>
+    <td><code>--name</code></td>
+    <td>string</td>
+    <td>The name of the customer. <strong>(Required)</strong></td>
+  </tr>
+  <tr>
+    <td><code>--channel</code></td>
+    <td>string</td>
+    <td>The channel name to associate with the customer. Case-sensitive. <strong>(Required)</strong></td>
+  </tr>
+  <tr>
+    <td><code>--ensure-channel</code></td>
+    <td></td>
+    <td>If set, channel is created if it does not exist.</td>
+  </tr>
+  <tr>
+    <td><code>--expires-in</code></td>
+    <td>duration</td>
+    <td>If set, license will expire a specified number of units from the current time. For example, <code>2h</code> or <code>1h60m</code> or <code>120m</code> are all the same duration.</td>
+  </tr>
+  <Help/>
+  <App/>
+  <Token/>
+</table>
 
 ## Examples
 ```bash

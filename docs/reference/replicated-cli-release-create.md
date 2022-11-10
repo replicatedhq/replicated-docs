@@ -1,3 +1,6 @@
+import Help from "../partials/replicated-cli/_help.mdx"
+import YamlDir from "../partials/replicated-cli/_yaml-dir.mdx"
+
 # release create
 
 Create a new release using a collection of application manifest files.
@@ -10,15 +13,40 @@ replicated release create --yaml-dir YAML_DIR [flags]
 * _`YAML_DIR` corresponds to the root directory of the YAML application manifest files._
 * _Additional flags returned by `--help` that are not supported in Replicated have been omitted from the list below_
 
-| Flag                 | Type | Description |
-|:----------------------|------|-------------|
-| `--yaml-dir` | path | The directory containing multiple manifests for a release. (**required**) |
-| `--promote` | string |    Channel name to promote this release to (**case sensitive**)|
-| `--ensure-channel` |  |    When used with --promote _channel_, will create the channel if it doesn't exist |
-| `--lint` | | Lint a manifest directory prior to creation of the release. For more information, see [KOTS Lint Rules](kots-lint). |
-| `--release-notes` | string |  When used with --promote _channel_, sets the **markdown** release notes |
-| `--version` string | When used with --promote _channel_, sets the version label for the release in this channel |
-| `-h, --help`   |  |          Help for the admin-console |
+<table>
+  <tr>
+    <th width="30%">Flag</th>
+    <th width="20%">Type (if applicable)</th>
+    <th width="50%">Description</th>
+  </tr>
+  <YamlDir/>
+  <tr>
+    <td><code>--promote</code></td>
+    <td>string</td>
+    <td>Channel name to promote this release to. Case sensitive.</td>
+  </tr>
+  <tr>
+    <td><code>--ensure-channel</code></td>
+    <td></td>
+    <td>When used with <code>--promote channel</code>, creates the channel if it does not exist.</td>
+  </tr>
+  <tr>
+    <td><code>--lint</code></td>
+    <td></td>
+    <td>Lint a manifest directory prior to creation of the release. For more information, see <a href="kots-lint">KOTS Lint Rules</a>.</td>
+  </tr>
+  <tr>
+    <td><code>--release-notes</code></td>
+    <td>string</td>
+    <td>When used with <code>--promote channel</code>, sets the version label for the release in this channel.</td>
+  </tr>
+  <tr>
+    <td><code>--version</code></td>
+    <td>string</td>
+    <td>When used with <code>--promote channel</code>, sets the version label for the release in this channel.</td>
+  </tr>
+  <Help/>
+</table>
 
 ## Examples
 

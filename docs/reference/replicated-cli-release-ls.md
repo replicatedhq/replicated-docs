@@ -1,3 +1,7 @@
+import Help from "../partials/replicated-cli/_help.mdx"
+import App from "../partials/replicated-cli/_app.mdx"
+import Token from "../partials/replicated-cli/_token.mdx"
+
 # release ls
 
 List all of an app's releases.
@@ -7,11 +11,16 @@ List all of an app's releases.
 replicated release ls
 ```
 
-| Flag                 | Type | Description |
-|:----------------------|------|-------------|
-| `-h, --help`   |  |          Help for the command |
-| `--app string` | |   The app slug or app id used in all calls (default uses `$REPLICATED_APP` env variable) |
-| `--token string` | |  The API token used to access your app in the Vendor API (default uses `$REPLICATED_API_TOKEN` env variable) |
+<table>
+  <tr>
+    <th width="30%">Flag</th>
+    <th width="20%">Type (if applicable)</th>
+    <th width="50%">Description</th>
+  </tr>
+  <Help/>
+  <App/>
+  <Token/>
+</table>
 
 ## Example
 ```bash

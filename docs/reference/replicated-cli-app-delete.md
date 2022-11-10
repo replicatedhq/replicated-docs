@@ -1,3 +1,6 @@
+import Token from "../partials/replicated-cli/_token.mdx"
+import Help from "../partials/replicated-cli/_help.mdx"
+
 # app delete
 
 Delete an application.
@@ -7,11 +10,20 @@ Delete an application.
 replicated app delete NAME
 ```
 
-| Flag                 | Type | Description |
-|:----------------------|------|-------------|
-| `-h, --help`   |  |          Help for the command |
-| `-f, --force`  |  | Skip the confirmation prompt. This action cannot be undone. |
-| `--token string` | |  The API token used to access your app in the Vendor API (default uses `$REPLICATED_API_TOKEN` env variable) |
+<table>
+  <tr>
+    <th width="30%">Flag</th>
+    <th width="20%">Type (if applicable)</th>
+    <th width="50%">Description</th>
+  </tr>
+  <Help/>
+  <tr>
+    <td><code>-f, --force</code></td>
+    <td></td>
+    <td>Skip the confirmation prompt. This action cannot be undone.</td>
+  </tr>
+  <Token/>
+</table>
 
 ## Examples
 ```bash
