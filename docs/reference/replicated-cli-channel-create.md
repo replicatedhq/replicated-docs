@@ -1,3 +1,7 @@
+import Help from "../partials/replicated-cli/_help.mdx"
+import App from "../partials/replicated-cli/_app.mdx"
+import Token from "../partials/replicated-cli/_token.mdx"
+
 # channel create
 
 Create a new channel in your application, and then print the channel.
@@ -7,13 +11,26 @@ Create a new channel in your application, and then print the channel.
 replicated channel create --name Beta --description 'New features subject to change'
 ```
 
-| Flag                 | Type | Description |
-|:----------------------|------|-------------|
-| `--description` | string | A longer description of this channel |
-| `--name` | string | The name of this channel (**required**) |
-| `-h, --help`   |  |          Help for the command |
-| `--app string` | |   The app slug or app id used in all calls (default uses `$REPLICATED_APP` env variable) |
-| `--token string` | |  The API token used to access your app in the Vendor API (default uses `$REPLICATED_API_TOKEN` env variable) |
+<table>
+  <tr>
+    <th width="30%">Flag</th>
+    <th width="20%">Type (if applicable)</th>
+    <th width="50%">Description</th>
+  </tr>
+  <tr>
+    <td><code>--description</code></td>
+    <td>string</td>
+    <td>A longer description of this channel</td>
+  </tr>
+  <tr>
+    <td><code>--name</code></td>
+    <td>string</td>
+    <td>The name of this channel. <strong>(Required)</strong></td>
+  </tr>
+  <Help/>
+  <App/>
+  <Token/>
+</table>
 
 ## Examples
 ```bash
