@@ -4,6 +4,13 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2022.11.10-1
+
+Released on November 10, 2022
+
+### Bug Fixes {#bug-fixes-v2022-11-10-1}
+* Fixes an issue where [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.89.0+ fails to install when a proxy is configured.
+
 ## v2022.11.10-0
 
 Released on November 10, 2022
