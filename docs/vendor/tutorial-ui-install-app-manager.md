@@ -6,7 +6,7 @@ Get the installation commands from the Unstable channel so that you can test the
 
 The app manager is the Replicated component that lets your users install, manage, and upgrade your application. Users can interact with the app manager through a user interface, called the Replicated admin console, or through a CLI, called the kots CLI.
 
-The app manager can be installed into an existing Kubernetes cluster, or using the Replicated Kubernetes installer on a virtual machine (VM). The Kubernetes installer provisioned cluster is also known as an embedded cluster.
+The app manager can be installed into an existing Kubernetes cluster, or using the Replicated Kubernetes installer on a virtual machine (VM). The Kubernetes installer provisioned cluster is also known as an _embedded cluster_.
 
 Choose either installation option:
 * [Install in an Existing Cluster](#existing)

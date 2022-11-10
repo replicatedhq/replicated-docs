@@ -1,6 +1,6 @@
 # Step 6: Create a New Version
 
-In this step, you edit the Replicated Config custom resource file to create a new field on the admin console Configuration page.
+In this step, you edit the Replicated Config custom resource file to create a new field on the admin console Configure App Name page.
 
 You then promote the new release to the Unstable channel with your changes.
 
@@ -10,7 +10,7 @@ To create and promote a new version of the application:
 
   The YAML editor opens and shows the contents of the most recently created release. This gives you everything that you have done so far.
 
-1. In the `kots-config.yaml` file, copy and paste the following YAML into the file under the `example_default_value` field to create a new text field on the admin console configuration page:
+1. In the `kots-config.yaml` file, copy and paste the following YAML into the file under the `example_default_value` field to create a new text field on the admin console Configure App Name page:
 
   ```yaml
    - name: more_text
@@ -20,7 +20,7 @@ To create and promote a new version of the application:
      when: repl{{ ConfigOptionEquals "show_text_inputs" "1" }}
   ```
 
-  The following shows the full YAML for the kots-config.yaml file after you add the new field:
+  The following shows the full YAML for the `kots-config.yaml` file after you add the new field:
 
   ```yaml
    ---
@@ -71,7 +71,7 @@ To create and promote a new version of the application:
          value: "{{repl RandomString 40}}"
 
    ```
-1. Check the KOTS linter in the right pane to ensure there are no errors.
+1. Check the KOTS linter messages in the right pane to ensure there are no errors.
 
 1. In the `example-configmap.yaml` file, copy and paste the following HTML to replace the `<body>` section:
 
@@ -85,7 +85,7 @@ To create and promote a new version of the application:
    ```
     This creates a reference to the `more_text` field using a Replicated template function. The ConfigOption template function renders the user input from the configuration item that you specify. For more information, see [Config Context](/reference/template-functions-config-context) in _Reference_.
 
-1. Check the KOTS linter in the right pane to ensure there are no errors.
+1. Check the KOTS linter messages in the right pane to ensure there are no errors.
 
 1. Click **Save Release**.
 

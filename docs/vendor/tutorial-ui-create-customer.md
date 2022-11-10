@@ -1,6 +1,6 @@
 # Step 3: Create a Customer
 
-After promoting the first release sample application, create a customer and download the license file so that you can install the application.
+After promoting the first release, create a customer and download the license file so that you can install the application.
 
 A _customer_ is an object in the Replicated vendor portal that represents a single licensed user of your application. When you create a customer, you define entitlement information for the user, and the vendor portal generates a YAML license file for the customer that you can download.
 

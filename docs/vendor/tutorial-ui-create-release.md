@@ -10,13 +10,15 @@ To create a release:
 
   ![Create Release](/images/guides/kots/create-release.png)
 
-  A YAML editor opens, where you can define how your application will work and the integration with the app manager functionality. The files below the white line are the sample NGINX application files.
+  A YAML editor opens, where you can define how your application will work and the integration with the app manager functionality.
 
   The default YAML manifest files above the white line contain information for the app manager, preflight checks, customer configuration screen options, and support bundle analyzers for troubleshooting installations. For more information, see the [About Custom Resources](../reference/custom-resource-about).
 
+  The files below the white line are the sample NGINX application files.
+
   ![Default YAML](/images/guides/kots/default-yaml.png)
 
-1. In the `kots-preflights.yaml` file, copy and paste the following code underneath the first nodeResources entry. This code checks for the number of nodes in the cluster, and triggers a warning during the deployment if the number of nodes does not meet the requirement:
+1. In the `kots-preflights.yaml` file, copy and paste the following YAML underneath the `nodeResources` field. This YAML creates a second `nodeResources` field that checks for the number of nodes in the cluster, and triggers a warning during the deployment if the number of nodes does not meet the requirement:
 
   ```yaml
      - nodeResources:
@@ -108,6 +110,8 @@ To create a release:
   ```
 
   Preflight checks are designed to help ensure that the environment meets the minimum system and software requirements to run the application. Software vendors define preflight checks in the Preflight custom resource. For more information, see [Preflight and Support Bundle](/reference/custom-resource-preflight) in _Reference_.
+
+1. Check the KOTS linter messages in the right pane to ensure there are no errors.
 
 1. Click **Save release**.
 

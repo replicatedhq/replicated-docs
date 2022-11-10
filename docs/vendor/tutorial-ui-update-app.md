@@ -2,7 +2,7 @@
 
 To deploy and test this updated release, you return to the admin console using a web browser.
 
-At this point, the UI likely shows that your test application is up-to-date and that no updates are available. The admin console checks for new updates approximately every five hours, but for now, you will trigger a check manually.
+At this point, the admin console likely shows that your test application is up-to-date and that no updates are available. The admin console checks for new updates approximately every five hours, but for now, you will trigger a check manually.
 
 To update the application:
 
@@ -14,7 +14,7 @@ To update the application:
 
 1. Click **Deploy**. In the dialog that opens, click **Yes, deploy** to deploy the new version. The deployment takes only a few seconds.
 
-1. On the Config page, look for the **Another Text Example** field that you added is displayed.
+1. On the Config tab, look for the **Another Text Example** field that you added is displayed.
 
 1. In the new **Another Text Example** field, enter any text. Click **Save config**.
 
@@ -48,4 +48,4 @@ As a next step you can:
 
 - Learn how to start managing your release YAML in a git repository. See the [CLI Quickstart Tutorial](tutorial-installing-with-cli).
 
-- Continue to iterate on your sample application by integratnig other app manager features. For ideas on features and functionality, see [Iterating Your Releases](distributing-workflow#iterating-your-releases)  in _How to Package and Distribute a Production Application_.
+- Continue to iterate on your sample application by integrating other app manager features. For ideas on features and functionality, see [Iterating Your Releases](distributing-workflow#iterating-your-releases)  in _How to Package and Distribute a Production Application_.

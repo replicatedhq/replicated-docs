@@ -49,7 +49,6 @@ To deploy the application:
   ```bash
     bash -l
     ```
-
 1. Run the following command to see the example NGINX service that you just deployed:
 
   ```bash
@@ -67,7 +66,6 @@ To deploy the application:
     nginx-667f4fc76b-8gvr9     1/1     Running   0          17m
     ```
 
-
 1. Run the following command to start the console again:
 
   ```bash
@@ -75,6 +73,8 @@ To deploy the application:
   ```
 
   Replace `APP_NAMESPACE` with the application namespace. Typically this value is `default`.
+
+  If you are using a VM that is behind a firewall and you get an error message, you might need to create a firewall rule to enable access to port 8800. For more information, see [Installation Requirements](/enterprise/installing-general-requirements).
 
 ## Next Step
 
