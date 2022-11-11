@@ -279,9 +279,11 @@ In this case, all keys from `values` and `optionalValues` are included in the me
 
 ## namespace
 
-The `namespace` key allows for a chart to be installed in an alternate namespace.
-If left blank, the namespace will default to the one into which the admin console is installed.
-If an alternate namespace is specified, it is required that the namespace exist or is included in the manifest file for the HelmChart custom resource.
+The `namespace` key specifies an alternative namespace where the app manager installs the Helm chart. By default, if no alternate namespace is provided, then the Helm chart is installed to the same namespace as the admin console.
+
+If you specify an alternate namespace in the `namespace` field, either Helm or your end user must create the namespace in the cluster:
+* **(Recommended) Configure Helm to create the namespace**: To configure Helm to create the namespace, include a Namespace object in the Release object of the Helm chart. For more information, see [Built-in objects](https://helm.sh/docs/chart_template_guide/builtin_objects/) in the Helm documentation.
+* **Instruct the end user to create the namespace**: Alternatively, the end user can run the `kubectl create namespace` command before they begin the installation process to create the namespace. For more information, see [Creating a new namespace](https://kubernetes.io/docs/tasks/administer-cluster/namespaces/#creating-a-new-namespace) in the Kubernetes documentation.
 
 ## builder
 
