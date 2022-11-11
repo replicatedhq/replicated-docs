@@ -41,8 +41,8 @@ Replicated will provide support for products per our terms and services until th
   <tr>
     <td><a href="https://help.replicated.com/docs/native/getting-started/overview/">Replicated Classic (Native SDK)</a></td>
     <td>LA</td>
-    <td>N/A</td>
-    <td>N/A</td>
+    <td>2023-12-31&#42;</td>
+    <td>2024-12-31&#42;</td>
   </tr>
   <tr>
     <td><a href="https://help.replicated.com/docs/kubernetes/getting-started/overview/">Replicated Classic (AKA SDK)</a></td>
@@ -64,6 +64,8 @@ Replicated will provide support for products per our terms and services until th
   </tr>
 </table>
 
+&#42;Except for customers who have specifically contracted different dates for the End of Availability and End of Life timelines.  
+
 The information contained herein is believed to be accurate as of the date of publication, but updates and revisions may be posted periodically and without notice.
 
-Last modified March 09, 2022.
+Last modified November 11, 2022.
