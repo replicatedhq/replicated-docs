@@ -17,7 +17,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 * Updates the kotsadm base image to `debian:bullseye-slim` to resolve CVE-2022-29458 with high severity.
 
 ### Bug Fixes {#bug-fixes-1-91-0}
-* Fixes an issue where the app manager automatically redirected to the login page after a snapshot was restored successfully, which could have prevented users from knowing the outcome of the restore.
+* Fixes an issue where the admin console automatically redirected to the login page after a snapshot was restored successfully, which could have prevented users from knowing the outcome of the restore.
 
 ## 1.90.0
 
