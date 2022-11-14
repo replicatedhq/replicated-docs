@@ -2,11 +2,11 @@
 
 To deploy and test this updated release, you return to the admin console using a web browser.
 
-At this point, the admin console likely shows that your test application is up-to-date and that no updates are available. The admin console checks for new updates approximately every five hours, but for now, you will trigger a check manually.
+At this point, the admin console likely shows that your test application is up-to-date and that no updates are available. The admin console checks for new updates approximately every four hours, but for now, you will trigger a check manually.
 
 To update the application:
 
-1. Log in to the admin console at `https://localhost:8800`.
+1. Log in to the admin console at `https://localhost:8800` for an existing cluster or `http://[ip-address]:8800` for an embedded cluster.
 
 1. On the Version history tab, click **Check for update**. You should see a new release in the history now. You can click **Diff versions** to review the differences in the YAML files.
 
@@ -40,7 +40,9 @@ Congratulations! As part of this tutorial, you:
 
 - Created and promoted a release for a Kubernetes application using the vendor portal
 - Installed the application in a Kubernetes cluster
-- Edited the manifest files for the application, adding a new configuration field and using template functions to reference the field
+- Edited the manifest files for the application:
+    - Added a preflight check
+    - Added a new configuration field and used template functions to reference the field
 - Promoted a new release with your changes
 - Used the admin console to update the application to the latest version
 

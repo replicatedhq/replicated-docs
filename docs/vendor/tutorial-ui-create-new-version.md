@@ -23,7 +23,6 @@ To create and promote a new version of the application:
   The following shows the full YAML for the `kots-config.yaml` file after you add the new field:
 
   ```yaml
-   ---
    apiVersion: kots.io/v1beta1
    kind: Config
    metadata:
@@ -95,7 +94,7 @@ To create and promote a new version of the application:
 
     1. Choose the Unstable channel, and click **Promote**.
 
-  Any license installed from the Unstable channel will start with this new release, and any installation already running is prompted to update to the new release.
+  Any license installed from the Unstable channel will start with this new release, and any installation already running is prompted to update to the new release. By default, the admin console checks for updates every 4 hours, but in the next step, you will check manually.
 
 ## Next Step
 

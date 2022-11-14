@@ -16,7 +16,7 @@ To create a customer license and download the license file:
 
 1. Edit the following fields, leaving the rest of the fields set to the default values:
 
-    1. Enter your name for the **Customer Name**.
+    1. Enter a name for the **Customer Name**.
     1. Select **Unstable** for the **Assigned Channel**. The Unstable channel is where you promoted the release in [Step 3: Create a Release](tutorial-ui-create-release). Assigning the customer to a channel allows them to install the releases that are promoted to that channel.
 
       ![Create Customer](/images/guides/kots/create-customer.png)
