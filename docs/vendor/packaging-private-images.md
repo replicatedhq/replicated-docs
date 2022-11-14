@@ -208,7 +208,7 @@ You can use image tags and image digests together in any case where both are sup
 
 For applications installed with the app manager v1.82.0 or later, you can enable a format for air gap bundles that supports the use of image digests. This air gap bundle format also ensures that identical image layers are not duplicated, resulting in a smaller air gap bundle size.
 
-You can enable or disable this air gap bundle format using the **Enable new air gap bundle format** toggle in the settings for any channel in the vendor portal.
+You can enable or disable this air gap bundle format using the **Enable new air gap bundle format** toggle in the settings for any channel in the vendor portal. The **Enable new air gap bundle format** toggle is enabled by default.
 
 When you enable **Enable new air gap bundle format** on a channel, all air gap bundles that you build or rebuild on that channel use the updated air gap bundle format.
 
