@@ -279,9 +279,9 @@ In this case, all keys from `values` and `optionalValues` are included in the me
 
 ## namespace
 
-The `namespace` key allows for a chart to be installed in an alternate namespace.
-If left blank, the namespace will default to the one into which the admin console is installed.
-If an alternate namespace is specified, it is required that the namespace exist or is included in the manifest file for the HelmChart custom resource.
+The `namespace` key specifies an alternative namespace where the app manager installs the Helm chart. By default, if no alternative namespace is provided, then the Helm chart is installed in the same namespace as the admin console.
+
+If you specify a namespace in the HelmChart `namespace` field, you must also include the same namespace in the `additionalNamespaces` field of the Application custom resource manifest file. The app manager creates the namespaces listed in the `additionalNamespaces` field during installation. For more information, see [additionalNamespaces](custom-resource-application#additionalnamespaces) in _Application_.
 
 ## builder
 
