@@ -4,6 +4,21 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.91.0
+
+Released on November 14, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
+
+### New Features {#new-features-1-91-0}
+* Updates the Troubleshoot and Config pages to standardize the look of admin console.
+
+### Improvements {#improvements-1-91-0}
+* Updates the kotsadm base image to `debian:bullseye-slim` to resolve CVE-2022-29458 with high severity.
+
+### Bug Fixes {#bug-fixes-1-91-0}
+* Fixes an issue where the admin console automatically redirected to the login page after a snapshot was restored successfully, which could have prevented users from knowing the outcome of the restore.
+
 ## 1.90.0
 
 Released on November 4, 2022
