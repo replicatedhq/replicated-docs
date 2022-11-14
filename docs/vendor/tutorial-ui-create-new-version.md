@@ -90,11 +90,11 @@ To create and promote a new version of the application:
 
 1. Promote the release to a channel:
 
-    1. Click **Promote** next to the newly created Sequence 2.
+    1. Click **Promote** at the top of the page.
 
-    1. Choose the Unstable channel, and click **Promote**.
+    1. Choose the Unstable channel in the Promote Release dialog, and click **Promote**.
 
-  Any license installed from the Unstable channel will start with this new release, and any installation already running is prompted to update to the new release. By default, the admin console checks for updates every 4 hours, but in the next step, you will check manually.
+  Any license installed from the Unstable channel will start with this new release, and any installation already running is prompted to update to the new release when the admin console checks for updates. However, in the next step, you will check for the update manually.
 
 ## Next Step
 
