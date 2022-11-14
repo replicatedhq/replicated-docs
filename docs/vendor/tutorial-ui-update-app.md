@@ -49,3 +49,5 @@ As a next step you can:
 - Learn how to start managing your release YAML in a git repository. See the [CLI Quickstart Tutorial](tutorial-installing-with-cli).
 
 - Continue to iterate on your sample application by integrating other app manager features. For ideas on features and functionality, see [Iterating Your Releases](distributing-workflow#iterating-your-releases)  in _How to Package and Distribute a Production Application_.
+
+- Make more customizations to the fields that appear on the Configure App screen in the admin console screen. This screen is used to collect the configuration that your application needs from the customer. Values are available to your app as text templates or input values to Helm Charts.

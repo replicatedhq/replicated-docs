@@ -12,7 +12,7 @@ To create a release:
 
   A YAML editor opens, where you can define how your application will work and the integration with the app manager functionality.
 
-  The default YAML manifest files above the white line contain information for the app manager, preflight checks, customer configuration screen options, and support bundle analyzers for troubleshooting installations. For more information, see the [About Custom Resources](../reference/custom-resource-about).
+  The default YAML manifest files above the white line contain information for the app manager, preflight checks, customer configuration screen options, and support bundle analyzers for troubleshooting installations. Most of these files are Replicated custom resource files. For more information about custom resources, see the [About Custom Resources](../reference/custom-resource-about).
 
   The files below the white line are the sample NGINX application files.
 
@@ -111,15 +111,11 @@ To create a release:
 
   Preflight checks are designed to help ensure that the environment meets the minimum system and software requirements to run the application. Software vendors define preflight checks in the Preflight custom resource. For more information, see [Preflight and Support Bundle](/reference/custom-resource-preflight) in _Reference_.
 
-1. Check the KOTS linter messages in the right pane to ensure there are no errors.
+1. Check the KOTS linter messages in the Help pane. If there are no errors, a message displays letting you know that everything looks good. If there are errors, information about the errors displays with a link to the reference documentation. For more information about the KOTS lint service, see [KOTS Lint Rules](/reference/kots-lint).
 
 1. Click **Save release**.
 
-  :::note
-  When you are familiar with these concepts, you can use the replicated CLI and the Replicated Vendor API to automate this task rather than manually editing the YAML on this page. For more information, see [Installing the replicated CLI](../reference/replicated-cli-installing) and [Using the Vendor API v3](../reference/vendor-api-using).
-  :::
-
-1. Click **Releases > Promote**.
+1. Click **Promote**.
 
   In the Promote Release dialog that opens, select the Unstable channel and click **Promote**. Promoting a release makes it available for installation.
 

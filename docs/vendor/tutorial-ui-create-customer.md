@@ -25,9 +25,7 @@ To create a customer license and download the license file:
 
     1. Click **Download license** from the dropdown menu in the upper right corner.
 
-      The license file with your customer name and a YAML extension is downloaded. This is the license file that your customer uses to install your application. When a customer is installing your software, you need to send them two things: the app manager installation script and the license file.
-
-      You will also use this license file to install and test the application on the test server.
+      The license file with your customer name and a YAML extension is downloaded. This is the license file that your customer uses to install your application. You will also use this license file to install and test the application on the test server.
 
 ## Next Step
 

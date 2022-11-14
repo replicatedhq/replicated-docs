@@ -6,7 +6,11 @@ This procedure shows you how to deploy the application by logging into the admin
 
 To deploy the application:
 
-1. In a browser, enter the URL `http://localhost:8800` and password from [Step 4: Install the App Manager](tutorial-ui-install-app-manager) to access the admin console.
+1. In a browser, enter the URL `http://localhost:8800` (existing clusters) or `http://[ip-address]:8800` (Kubernetes installer clusters) and the password from [Step 4: Install the App Manager](tutorial-ui-install-app-manager).
+
+1. (Embedded clusters only) On the Bypass Browser TLS warning page, click **Continue to Setup**.
+
+1. (Embedded clusters only) On the HTTPS page, click **Skip & continue** to use the self-signed TLS certificate and omit the hostname.
 
 1. On the Upload license page, select the customer license YAML file or drag and drop the license file from your desktop. Click **Upload license**.
 
@@ -19,7 +23,7 @@ To deploy the application:
   There are other example configuration options on this page. Feel free to explore and toggle some of the options. You can see the results of your changes later.
 
   :::note
-  For production, you can customize what appears on this screen to collect the configuration that your application needs from the customer. Values are available to your app as text templates or input values to Helm Charts. We will make an update to this page in a later step.
+  You will customize what appears on this screen in a later step.
   :::
 
 1. Click **Continue**.

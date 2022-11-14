@@ -12,6 +12,10 @@ Choose either installation option:
 * [Install in an Existing Cluster](#existing)
 * [Install in a Kubernetes Installer Cluster](#kubernetes-installer)
 
+## Prerequisite
+
+This step requires you to have kubectl access to a Kubernetes cluster. Before you begin, ensure that you have completed the required setup steps to create the cluster and configure kubectl command line access. See [Set Up the Environment](tutorial-ui-setup) in _Introduction and Setup_.
+
 ## Install in an Existing Cluster {#existing}
 
 When you install the app manager on existing cluster, you use a pre-built Kubernetes cluster and deploy your application into a namespace.
@@ -22,25 +26,6 @@ You can see the installation script options at the bottom of each channel on the
 
 To install the app manager:
 
-1. Access the Kubernetes cluster that you created as part of [Set Up the Environment](tutorial-ui-setup#set-up-the-environment).
-
-1. Install kubectl if it is not already installed.
-
-  **Example:**
-
-  ```bash
-  gcloud components install kubectl
-  ```
-
-1. On the cluster, set the local kubectl context.
-
-  For example, to set the local kubectl context on a GKE cluster, run the following command:
-
-  ```shell
-  gcloud container clusters get-credentials NAME
-  ```
-  Replace `NAME` with the name of the cluster.
-
 1. Copy the **KOTS Install** command from the Unstable channel in the vendor portal and run it on the cluster. The script installs the latest app manager version as a `kubectl` plugin. For more information about installing an application with the kots CLI, see [install](../reference/kots-cli-install/) in the kots CLI documentation.
 
   **Example:**
@@ -49,6 +34,7 @@ To install the app manager:
   curl https://kots.io/install | bash
   kubectl kots install my-test-app/unstable
   ```
+1. For `Enter installation path (leave blank for /usr/local/bin):`, use the default and  press Enter.
 
 1. For `Enter a new password to be used for the Admin Console:`, provide a password to access the admin console. You use this password in a later step to access the admin console user interface and deploy the application.
 
@@ -57,7 +43,7 @@ To install the app manager:
   **Example output:**
 
   ```bash
-  Enter the namespace to deploy to: <your-app-name-and-channel>
+  Enter the namespace to deploy to: my-app-unstable
     • Deploying Admin Console
       • Creating namespace ✓
       • Waiting for datastore to be ready ✓
