@@ -7,7 +7,7 @@ The Config custom resource can be provided by a vendor to specify a Config page 
 
 The settings that appear on the admin console Config page are specified as an array configuration _groups_ and _items_.
 
-The following example shows three groups defined in the Config custom resource manifest file, as well as how these groups are displayed on the admin console Config page.
+The following example shows three groups defined in the Config custom resource manifest file, and how these groups are displayed on the admin console Config page.
 
 For more information about the properties of groups and items, see [Group Properties](#group-properties) and [Item Properties](#item-properties) below.
 
