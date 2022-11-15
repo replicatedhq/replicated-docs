@@ -45,8 +45,9 @@ To deploy the application:
 1. In your cluster, press Ctrl + C to exit the admin console. List the Pods to see the example NGINX service that you just deployed:
 
     ```
-    kubectl get pods --namespace APP_NAMESPACE
+    kubectl get pods --namespace NAMESPACE_NAME
     ```
+    Replace `NAMESPACE_NAME` with the namespace where the admin console was installed.
 
     ```
     NAME                                 READY   STATUS    RESTARTS   AGE
