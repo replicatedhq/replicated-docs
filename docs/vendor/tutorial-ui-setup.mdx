@@ -18,24 +18,24 @@ For a tutorial that demonstrates how to use the replicated CLI to create and pro
 
 As part of this tutorial, you install a sample application onto an existing Kubernetes cluster, or onto a cluster provisioned by the Replicated Kubernetes installer. The Kubernetes installer creates the cluster on an existing VM.
 
-Do the following tasks before you begin this tutorial:
+Before you begin this tutorial, ensure that you have one of the following environments set up:
 
-1. Ensure that you have one of the following environments set up:
+- A Kubernetes cluster that you can access with the kubectl command-line tool. For more information about minimum requirements for installations, see [Installation Requirements](/enterprise/installing-general-requirements).
 
-    - A Kubernetes cluster that you can access with the kubectl command line tool. For more information about minimum requirements for installations, see [Installation Requirements](/enterprise/installing-general-requirements).
+    For example, to create a cluster in Google Kubernetes Engine (GKE), run the following command in the gcloud CLI:
 
-      For example, to create a cluster in Google Kubernetes Engine (GKE), run the following command in the gcloud CLI:
-       ```
-       gcloud container clusters create NAME --preemptible --no-enable-ip-alias
-       ```
-       Replace `NAME` with any name you want to use for the cluster.
+    ```
+    gcloud container clusters create NAME --preemptible --no-enable-ip-alias
+    ```
+    Replace `NAME` with any name you want to use for the cluster.
 
-    - A VM where the Kubernetes installer can create a cluster. For more information about minimum requirements for installations, see [Installation Requirements](/enterprise/installing-general-requirements).
+  :::note
+  For information about installing and configuring the kubectl command-line tool, see [Install Tools](https://kubernetes.io/docs/tasks/tools/) and [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
+  :::
 
-      <VMRequirements/>
+- A VM where the Kubernetes installer can create a cluster. The Kubernetes installer script installs and configures the kubectl command-line tool for you. For more information about minimum requirements for installations, see [Installation Requirements](/enterprise/installing-general-requirements).
 
-1. Install kubectl, the Kubernetes command line tool. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
-1. Configure kubectl command line access to the cluster that you created. See [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
+    <VMRequirements/>
 
 ## Related Topics
 

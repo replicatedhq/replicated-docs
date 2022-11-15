@@ -34,7 +34,7 @@ To install the app manager:
   curl https://kots.io/install | bash
   kubectl kots install my-test-app/unstable
   ```
-1. For `Enter installation path (leave blank for /usr/local/bin):`, use the default and  press Enter.
+1. For `Enter installation path (leave blank for /usr/local/bin):`, use the default and press **Enter**.
 
 1. For `Enter a new password to be used for the Admin Console:`, provide a password to access the admin console. You use this password in a later step to access the admin console user interface and deploy the application.
 
@@ -58,7 +58,7 @@ To install the app manager:
 
 The app manager can be installed as a Kubernetes installer provisioned cluster (embedded cluster), which provisions a plain virtual machine (VM).
 
-You can see the installation script options at the bottom of each channel on the Channels page in the vendor portal. For this tutorial, you can use the Kubernetes installer, or _embedded cluster_, option.
+You can see the installation script options at the bottom of each channel on the Channels page in the vendor portal. For this tutorial, you use the Embedded Cluster option for the Kubernetes installer.
 
 ![Installation Methods](/images/guides/kots/installation-methods-embedded.png)
 

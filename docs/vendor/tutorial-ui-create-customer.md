@@ -4,7 +4,7 @@ After promoting the first release, create a customer and download the license fi
 
 A _customer_ is an object in the Replicated vendor portal that represents a single licensed user of your application. When you create a customer, you define entitlement information for the user, and the vendor portal generates a YAML license file for the customer that you can download.
 
-When you install the application later in this tutorial, you will upload the license file that you create in this step to allow the Replicated admin console to create the application containers.
+When you install the application later in this tutorial, you will upload the license file that you create in this step. The license allows the Replicated admin console to create the application containers.
 
 To create a customer license and download the license file:
 

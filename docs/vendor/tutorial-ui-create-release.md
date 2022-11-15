@@ -10,7 +10,7 @@ To create a release:
 
   ![Create Release](/images/guides/kots/create-release.png)
 
-  A YAML editor opens, where you can define how your application will work and the integration with the app manager functionality.
+  A YAML editor opens, where you can define how your application will work with the app manager functionality.
 
   The default YAML manifest files above the white line contain information for the app manager, preflight checks, customer configuration screen options, and support bundle analyzers for troubleshooting installations. Most of these files are Replicated custom resource files. For more information about custom resources, see the [About Custom Resources](../reference/custom-resource-about).
 

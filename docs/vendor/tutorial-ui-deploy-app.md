@@ -6,7 +6,7 @@ This procedure shows you how to deploy the application by logging into the admin
 
 To deploy the application:
 
-1. In a browser, enter the URL `http://localhost:8800` (existing clusters) or `http://[ip-address]:8800` (Kubernetes installer clusters) and the password from [Step 4: Install the App Manager](tutorial-ui-install-app-manager).
+1. In a browser, enter the URL `http://localhost:8800` (existing clusters) or `http://[ip-address]:8800` (embedded clusters) and the password from [Step 4: Install the App Manager](tutorial-ui-install-app-manager).
 
 1. (Embedded clusters only) On the Bypass Browser TLS warning page, click **Continue to Setup**.
 
@@ -32,7 +32,9 @@ To deploy the application:
 
   ![Preflight Results](/images/preflight-warning.png)
 
-1. Ignore any preflight warnings and click **Continue**. If there are failing preflight checks, click **Deploy and continue** in the dialog. The admin console dashboard opens.
+1. Ignore any preflight warnings and click **Continue**. If there are failing preflight checks, click **Deploy and continue** in the dialog.
+
+  The admin console dashboard opens.
 
   ![Cluster](/images/guides/kots/application-tutorial-ui.png)
 
@@ -56,9 +58,9 @@ To deploy the application:
 1. Run the following command to see the example NGINX service that you just deployed:
 
   ```bash
-  kubectl get pods --namespace APP_NAMESPACE
+  kubectl get pods --namespace NAMESPACE_NAME
   ```
-  Replace `APP_NAMESPACE` with the application namespace. Typically this value is `default`.
+  Replace `NAMESPACE_NAME` with the namespace where the application and admin console are deployed. Typically this value is `default`.
 
   **Example output:**
 
@@ -73,10 +75,10 @@ To deploy the application:
 1. Run the following command to start the console again:
 
   ```bash
-  kubectl kots admin-console --namespace APP_NAMESPACE
+  kubectl kots admin-console --namespace NAMESPACE_NAME
   ```
 
-  Replace `APP_NAMESPACE` with the application namespace. Typically this value is `default`.
+  Replace `NAMESPACE_NAME` with the namespace where the application and admin console are deployed. Typically this value is `default`.
 
   If you are using a VM that is behind a firewall and you get an error message, you might need to create a firewall rule to enable access to port 8800. For more information, see [Installation Requirements](/enterprise/installing-general-requirements).
 

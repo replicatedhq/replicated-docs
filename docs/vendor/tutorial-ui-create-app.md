@@ -1,6 +1,6 @@
 # Step 1: Create an Application
 
-When you create an application object in the vendor portal, example YAML files are included that will be used for this tutorial.
+When you create an application object in the vendor portal, example NGINX manifest files are included that will be used for this tutorial.
 
 :::note
 Ensure that you have completed the required environment setup. See [Set Up the Environment](tutorial-ui-setup#set-up-the-environment) in _Introduction and Setup_.
