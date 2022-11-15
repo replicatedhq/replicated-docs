@@ -10,7 +10,7 @@ To learn more about Replicated, see [Intro to Replicated: 20 Ways We Help](https
 
 Replicated includes components and features that make it easier for you to manage and deploy applications, and for enterprise users to install and manage their application instance.
 
-The following diagram shows the Replicated components as they relate to you as a vendor packaging your application and the deployment to an existing cluster and a VM cluster provisioned by the Replicated Kubernetes installer. 
+The following diagram shows the Replicated components as they relate to you as a vendor packaging your application and the deployment to an existing cluster and a VM cluster provisioned by the Replicated Kubernetes installer.
 
 ![What is Replicated?](/images/what-is-replicated.png)
 
@@ -22,7 +22,7 @@ The Replicated vendor portal is the web-based user interface that you can use to
 
 ![Create an Application in the vendor portal](/images/guides/kots/create-application.png)
 
-You define Kubernetes manifest files, including application and custom resource manifests, using the built-in YAML editor and KOTS lint service. These files describe how to distribute the application. Alternatively, you can use Helm charts.
+You define Kubernetes manifest files, including application and custom resource manifests, using the built-in YAML editor and KOTS lint service (in the Help pane). These files describe how to distribute the application. Alternatively, you can use Helm charts.
 
 ![YAML editor in the vendor portal](/images/yaml-editor.png)
 
@@ -40,7 +40,7 @@ The Vendor API is the API for the vendor portal. This API can be used to complet
 
 ### App Manager
 
-The Replicated app manager is the underlying technology that installs and manages applications on a Kubernetes cluster. It also installs the Replicated admin console and provides preflight and support bundle functionality from the Troubleshoot open source project. For more information about preflight checks and support bundles, see [Configuring Preflight Checks and Support Bundles](preflight-support-bundle-creating) in the Replicated documentation and the [Troubleshoot repository](https://github.com/replicatedhq/troubleshoot) in GitHub.
+The Replicated app manager is the underlying technology that installs and manages applications on a Kubernetes cluster. It also installs the Replicated admin console and provides preflight and support bundle functionality from the Troubleshoot open source project. For more information about preflight checks and support bundles, see [Configuring Preflight Checks and Support Bundles](preflight-support-bundle-creating). For more information about the Troubleshoot open source project, see the [Troubleshoot repository](https://github.com/replicatedhq/troubleshoot) in GitHub.
 
 The app manager deploys applications securely to the following Kubernetes cluster environments:
 
