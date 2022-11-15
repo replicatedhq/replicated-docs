@@ -46,8 +46,6 @@ To deploy the application:
 
   Notice that the text that you entered previously on the Configure App Name page is displayed on the application screen.
 
-  ![Cluster](/images/guides/kots/example-app.png)
-
 1. In your cluster, press **Ctrl + C** to exit the admin console.
 
 1. Run the following command to reload your shell so that you can access the cluster with kubectl:
