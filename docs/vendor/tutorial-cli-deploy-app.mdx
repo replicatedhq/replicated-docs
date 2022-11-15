@@ -1,52 +1,68 @@
 # Step 7: Deploy the Application
 
-At this point, Kubernetes and the Replicated admin console are running, but the application is not deployed yet.
+After you run the installation script from the previous step, the Replicated admin console is running, but the application is not yet deployed.
+
+This procedure shows you how to deploy the application by logging into the admin console, uploading the license file that you created as part of [Step 5: Create a Customer](tutorial-cli-create-customer), completing the application configuration settings, and running the preflight checks.
 
 To deploy the application:
 
-1. In a browser, enter the URL that the installation script displayed previously when it finished. Notice that the app manager cluster, created using the [Kubernetes installer](https://kurl.sh), has provisioned a self-signed certificate.
+1. In a browser, go to `http://localhost:8800` to access the admin console.
 
-  When you bypass the insecure certificate warning, you have the option of uploading a trusted certificate and key.
-  For production installations, we recommend using a trusted certificate. For this tutorial, use the self-signed certificate.
+  :::note
+  You can access the admin console as long as the installation script is running. If you press Ctrl+C to exit, run `kubectl kots admin-console --namespace cli-tutorial` to access the admin console again.
+  :::
 
-1. Click **Skip & continue** to proceed using the self-signed certificate.
+1. Enter the password that you created in [Step 6: Install the App Manager](tutorial-cli-install-app-manager) to log in to the admin console.
 
-  ![Console TLS](/images/guides/kots/admin-console-tls.png)
+1. On the Upload your license file page, select the license file that you downloaded to your Desktop in [Step 5: Create a Customer](tutorial-cli-create-customer). Click **Upload license**.
 
-  You are prompted for a password.
+    With the license file, the admin console can pull containers and run the application.
 
-1. Enter the password from the CLI output to log in to the admin console.
+1. On the Configure App Name page, select the **Customize Text Inputs** checkbox. In the **Text Example** field, enter any text. For example, `Hello`.
 
-    The Upload license page opens. Until this point, this server is running Docker, Kubernetes, and the admin console containers only.
+   ![admin console configuration page](/images/tutorials/tutorial-install-config-page.png)
 
-1. Click Upload. Select your YAML license file or drag and drop the license file from your desktop.
-    The admin console can pull containers and run your application now.
+   This page displays configuration settings that are specific to the application. Software vendors define the fields that are displayed on this page in the Replicated Config custom resource. For more information, see [Config](/reference/custom-resource-config) in _Reference_.
 
-    The Settings page opens with default configuration items.
+1. Click **Continue**.
 
-1. If you are using the defaults, select the **Enable Ingress** checkbox. You can leave the Ingress Hostname field blank. Click **Continue**.
+   The preflight checks automatically run. Preflight checks are designed to help ensure the environment meets the minimum requirements to run the application. Software vendors define preflight checks in the Replicated Preflight custom resource. For more information, see [Preflight and Support Bundle](/reference/custom-resource-preflight) in _Reference_.
 
-    :::note
-    For production, you can customize this screen to collect the configuration that your application needs from the customer.
-    :::
+   ![admin console preflight checks page](/images/tutorials/tutorial-preflight-checks.png)
 
-    ![Settings Page](/images/guides/kots/configuration.png)
+1. After the preflight checks complete, click **Continue**. If there are failing preflight checks, click **Deploy and continue** in the dialog. The admin console dashboard opens.
 
-    The Preflight page opens.
+   ![admin console app dashboard](/images/tutorials/tutorial-admin-console-dashboard.png)
 
-1. Click **Continue**. If there are failing checks, dismiss the warning to continue. Preflight checks are designed to help ensure this server has the minimum system and software requirements to run the application. Depending on your YAML configuration in `preflight.yaml`, you can see some of the example preflight checks fail.
+   On the admin console **Dashboard** tab, users can take various actions, including viewing the application status, opening the application, checking for application updates, syncing their license, and setting up application monitoring on the cluster with Prometheus.
 
-    ![Preflight Checks](/images/preflight-warnings.png)
+1. Click **Open App** to view the application in your browser.
 
-    After the preflight checks pass, the Version History page opens and displays the initial version that was deployed. Later, you will come back to this page to deploy an update to the application.
+   ![web page that displays text](/images/tutorials/tutorial-open-app.png)
 
-1. Click **Application** on the top to see the status of the application and some basic monitoring statistics (such as CPU, memory, and disk space). If you are still connected to this server using SSH, `kubectl get pods` shows the example NGINX service that you just deployed.
+   Notice the text that you entered previously on the configuration page is displayed on the screen.
 
-  ![Cluster](/images/guides/kots/application.png)
+1. In your cluster, press Ctrl + C to exit the admin console. List the Pods to see the example NGINX service that you just deployed:
 
+    ```
+    kubectl get pods --namespace NAMESPACE_NAME
+    ```
+    Replace `NAMESPACE_NAME` with the namespace where the admin console was installed.
 
-Since you used the default NGINX application and enabled the Ingress object, you can view the application at `http://${INSTANCE_IP}/` without a port and see a basic NGINX server running:
+    **Example output:**
 
-![Cluster](/images/guides/kots/example-nginx.png)
+    ```
+    NAME                                 READY   STATUS    RESTARTS   AGE
+    kotsadm-7595595bf5-pmlng   1/1     Running   0          21m
+    kotsadm-minio-0            1/1     Running   0          22m
+    kotsadm-rqlite-0           1/1     Running   0          22m
+    nginx-667f4fc76b-8gvr9     1/1     Running   0          17m
+    ```
+1. Run the following command to start the admin console again:
 
-Next, you will create and deliver an update to the sample application.
+   ```
+   kubectl kots admin-console --namespace cli-tutorial
+   ```
+## Next Step
+
+Continue to [Step 8: Create a New Version](tutorial-cli-create-new-version) to make a change to one of the manifest files for the `cli-tutorial` application, then use the replicated CLI to create and promote a new release.

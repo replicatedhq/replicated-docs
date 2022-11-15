@@ -1,18 +1,46 @@
 # Step 4: Create a Release
 
-Now that you have some YAML manifest files, you can create a release and promote it to the `Unstable` channel for internal testing.
+Now that you have the manifest files for the sample Kubernetes application, you can create a release for the `cli-tutorial` application and promote the release to the Unstable channel.
 
-To create and promote a release:
+By default, Replicated includes Unstable, Beta, and Stable release channels. The Unstable channel is intended for software vendors to use for internal testing, before promoting a release to the Beta or Stable channels for distribution to customers. For more information about channels, see [About Release Channels](releases-about-channels).
 
-1. Run the following command with the `--auto` flag to generate release notes and metadata based on the git status.
+To create and promote a release to the Unstable channel:
 
-  ```shell script
-  $ replicated release create --auto
+1. Run the following command to lint the application manifest files and ensure that there are no errors in the YAML:
+
   ```
+  replicated release lint --yaml-dir=manifests
+  ```
+
+  If there are no errors, an empty list is displayed with a zero exit code:
+
+  ```text
+  RULE    TYPE    FILENAME    LINE    MESSAGE
+  ```
+
+  For a complete list of the possible error, warning, and informational messages that can appear in the ouput of the `release lint` command, see [KOTS Lint Rules](/reference/kots-lint).
+
+1. Initialize the project as a Git repository:
+
+  ```
+  git init
+  git add .
+  git commit -m "Initial Commit: CLI Tutorial"
+  ```
+
+  Initializing the project as a Git repository allows you to track your history. The replicated CLI also reads Git metadata to help with the generation of release metadata, such as version labels.
+
+1. Run the following command from the `replicated-cli-tutorial` directory to prepare a release with the default settings:
+
+  ```
+  replicated release create --auto
+  ```
+
+  The `--auto` flag generates release notes and metadata based on the Git status.
 
   **Example output:**
 
-  ```text
+  ```
       • Reading Environment ✓
 
     Prepared to create release with defaults:
@@ -20,13 +48,14 @@ To create and promote a release:
         yaml-dir        "./manifests"
         promote         "Unstable"
         version         "Unstable-ba710e5"
-        release-notes   "CLI release of master triggered by dex [SHA: ba710e5] [28 Sep 20 09:15 CDT]"
+        release-notes   "CLI release of master triggered by exampleusername [SHA: d4173a4] [31 Oct 22 08:51 MDT]"
         ensure-channel  true
+        lint-release    true
 
     Create with these properties? [Y/n]
   ```
 
-1. Press Enter to confirm the prompt. The release is created and promoted.
+1. Type `y` and press Enter to confirm the prompt.
 
   **Example output:**
 
@@ -37,15 +66,20 @@ To create and promote a release:
     • Promoting ✓
       • Channel VEr0nhJBBUdaWpPvOIK-SOryKZEwa3Mg successfully set to release 1
   ```
+  The release is created and promoted to the Unstable channel.
 
-1. Run the following command to verify that the release was created:
+1. Run the following command to confirm that the release was promoted to the Unstable channel:
 
-  ```text
-  $ replicated release ls
+  ```
+  replicated release ls
   ```
   **Example output:**
 
   ```text
-  SEQUENCE    CREATED                      EDITED                  ACTIVE_CHANNELS
-  1           2020-09-03T11:48:45-07:00    0001-01-01T00:00:00Z    Unstable
+  SEQUENCE    CREATED                 EDITED                  ACTIVE_CHANNELS
+  1           2022-10-31T14:55:35Z    0001-01-01T00:00:00Z    Unstable
   ```
+
+## Next Step
+
+Continue to [Step 5: Create a Customer](tutorial-cli-create-customer) to create a customer license file that you will upload when installing the application.

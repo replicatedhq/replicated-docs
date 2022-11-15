@@ -1,38 +1,58 @@
 # Step 9: Update the Application
 
-To install and test this new release, you must connect to the admin console on port :8800 using a web browser.
-At this point, the UI likely shows that your test application is up-to-date and that no updates are available.
-The admin console can be configured to check for new updates at regular intervals, but for now you will trigger a check manually.
+To test the new release that you promoted, return to the Replicated admin console in a browser to update the application.
 
-To check for updates manually:
+To update the application:
 
-1. Click **Check for Updates** on the Version History page.
-  You should see a new release in the history now. You can click **Diff versions** to review the differences.
+1. In a browser, open the admin console at `https://localhost:8800`.
 
-  ![View Update](/images/guides/kots/view-update.png)
+   :::note
+   You can access the admin console as long as the installation script is running. If you press Ctrl+C to exit, run `kubectl kots admin-console --namespace cli-tutorial` to access the admin console again.
+   :::
 
-1. Click **Deploy** to apply the new YAML, which changes the number of NGINX replicas. The deployment only takes a few seconds.
+1. Go to the Version history page, and click **Check for update**.
 
-1. Run the following command to verify the deployment on the server:
+   ![admin console verson history page](/images/tutorials/tutorial-check-for-update.png)
 
-  ```shell script
-  kubectl get pod -l app=nginx
-  ```
+   The admin console loads the new release that you promoted.
 
-  You should see two pods running.
+1. Click **Deploy**. In the dialog, click **Yes, deploy** to deploy the new version.
 
+   ![admin console verson history page with new version](/images/tutorials/tutorial-deploy-app.png)
+
+1. After the admin console deploys the new version, go to the **Config** page where the **Another Text Example** field that you added is displayed.
+
+   ![admin console configuration page with Another Text Example field](/images/tutorials/tutorial-new-config-item.png)
+
+1. In the new **Another Text Example** field, enter any text. Click **Save config**.
+
+   The admin console notifies you that the configuration settings for the application have changed.
+
+   ![dialog over admin console configuration screen](/images/tutorials/tutorial-go-to-updated-version.png)
+
+1. In the dialog, click **Go to updated version**.
+
+   The admin console loads the updated version on the Version history page.
+
+1. On the Version history page, click **Deploy** next to the latest version to deploy the configuration change.
+
+   ![admin console verson history page with new version](/images/tutorials/tutorial-deploy-config-change.png)
+
+1. After the admin console deploys the configuration change, go to the **Dashboard** page and click **Open App**. The application displays the text that you added to the field.
+
+   ![web page with text from the new configuration field](/images/tutorials/tutorial-updated-app.png)
+
+   :::note
+   If you do not see the new text, click Refresh in your browser.
+   :::
 
 ## Next Steps
 
-You can iterate further on your application. Continue making changes and using `replicated release create --auto` to publish them. You can add `-y` to the command to skip the prompt.
+Congratulations! As part of this tutorial, you:
+* Created and promoted a release for a Kubernetes application using the replicated CLI
+* Installed the application in a Kubernetes cluster
+* Edited the manifest files for the application, adding a new configuration field and using template functions to reference the field
+* Promoted a new release with your changes
+* Used the admin console to update the application to the latest version
 
-To learn more about the app manager features, you can explore some of the tutorials and packaging options, such as:
-
-* Integrating with a CI/CD platform. See [Tutorial: Integrating with an existing CI/CD platform](tutorial-ci-cd-integration).
-* Packaging an application from a Helm chart. See [About Packaging with Helm](helm-overview).
-
-If you already have a release published in the vendor portal that you want to use as a starting point, run the following command to access the help docs for `replicated release download`:
-
-```shell script
-replicated release download --help
-```
+As a next step, you can continue to iterate on your application, using `replicated release create --auto` to promote each new release. For ideas on features and funcionality to add to your sample application, see [Iterating Your Releases](/vendor/distributing-workflow#iterating-your-releases) in _How to Package and Distribute a Production Application_.

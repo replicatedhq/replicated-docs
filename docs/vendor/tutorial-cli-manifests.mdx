@@ -1,67 +1,35 @@
 # Step 3: Get the Sample Manifests
 
-To create a release with the replicated CLI, you must have the YAML manifest files for the application in a directory.
-This step shows you how to download sample manifest files from https://github.com/replicatedhq/replicated-starter-kots and initialize a Git repository for the sample application.
+To create a release for the `cli-tutorial` application, first create the Kubernetes manifest files for the application. This tutorial provides a set of sample manifest files for a simple Kubernetes application that deploys an NGINX service.
 
-To get the sample YAML files and initialize the application repository:
+To get the sample manifest files:
 
-1. Run the following command to create a folder for your project:
+1. Run the following command to create and change to a `replicated-cli-tutorial` directory:
 
-  ```shell script
+  ```
   mkdir replicated-cli-tutorial
   cd replicated-cli-tutorial
   ```
 
-1. Run the following command to make a folder for the application manifests and download the starter YAML from https://github.com/replicatedhq/replicated-starter-kots:
+1. Run the following command to create a `/manifests` directory and download the sample manifest files from the [kots-default-yaml](https://github.com/replicatedhq/kots-default-yaml) repository in GitHub:
 
-  ```shell script
+  ```
   mkdir ./manifests
-  curl -fSsL https://github.com/replicatedhq/kots-default-yaml/archive/v2020-09-03.tar.gz | \
+  curl -fSsL https://github.com/replicatedhq/kots-default-yaml/archive/refs/heads/main.zip | \
     tar xzv --strip-components=1 -C ./manifests \
     --exclude README.md --exclude LICENSE --exclude .gitignore
   ```
 
-  :::note
-  If you are using Helm charts to package your application, you can explore [Creating a release from an existing Helm chart](helm-overview) for steps on how to add the required app manager YAML files to your Helm chart after you finish reviewing this tutorial.
-  :::
+1. Verify that you can see the YAML files in the `replicated-cli-tutorial/manifests` folder:
 
-  You should now have a few YAML files in the manifests folder:
-
-  ** Example:**
-
-  ```text
-  $ ls -la manifests
-  .rw-r--r--  114 dex 16 Aug  7:59 config-map.yaml
-  .rw-r--r--  906 dex 16 Aug  7:59 config.yaml
-  .rw-r--r--  608 dex 16 Aug  7:59 deployment.yaml
-  .rw-r--r--  296 dex 16 Aug  7:59 ingress.yaml
-  .rw-r--r-- 2.5k dex 16 Aug  7:59 preflight.yaml
-  .rw-r--r--  399 dex 16 Aug  7:59 replicated-app.yaml
-  .rw-r--r--  205 dex 16 Aug  7:59 service.yaml
-  .rw-r--r--  355 dex 16 Aug  7:59 support-bundle.yaml
+  ```
+  ls manifests/
+  ```
+  ```
+  example-configmap.yaml   example-service.yaml     kots-app.yaml            kots-lint-config.yaml    kots-support-bundle.yaml
+  example-deployment.yaml  k8s-app.yaml             kots-config.yaml         kots-preflight.yaml
   ```
 
-1. Run the following command to verify this YAML:
+## Next Step
 
-  ```shell script
-  $ replicated release lint --yaml-dir=manifests
-  ```
-
-  If there are no errors, an empty list is displayed with a zero exit code.
-
-  **Example output:**
-
-  ```text
-  RULE    TYPE    FILENAME    LINE    MESSAGE
-  ```
-
-1. Initialize this project as a Git repository so that you can track your history.
-Additionally, the replicated CLI reads git metadata to help with the generation of release metadata,
-such as version labels. More information about this is covered later in this tutorial.
-
-  To initialize the repository, run the following commands:
-
-  ```shell script
-  git init
-  git add .
-  git commit -m "Initial Commit: CLI Quickstart"
+Continue to [Step 4: Create a Release](tutorial-cli-create-release) to create and promote the first release for the `cli-tutorial` application using these manifest files.

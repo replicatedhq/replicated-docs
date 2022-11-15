@@ -16,11 +16,21 @@ For a tutorial that demonstrates how to use the Replicated vendor portal to crea
 
 ## Set Up the Environment
 
-As part of this tutorial, you install a sample application onto a cluster provisioned by the Replicated Kubernetes installer. The Kubernetes installer creates the cluster on an existing virtual machine (VM).
+As part of this tutorial, you will install a sample application onto a Kubernetes cluster. Before you begin, do the following to set up your environment:
 
-Before you begin the tutorial, create a VM where you can install the application using the Kubernetes installer.
+* Create a Kubernetes cluster. You can use any cloud provider or tool that you prefer to create a cluster, such as Google Kubernetes Engine (GKE), Amazon Web Services (AWS), or minikube.
 
-<VMRequirements/>
+  **Example**
+
+  For example, to create a cluster in GKE, run the following command in the gcloud CLI:
+
+  ```
+  gcloud container clusters create NAME --preemptible --no-enable-ip-alias
+  ```
+  Where `NAME` is any name for the cluster.
+
+* Install kubectl, the Kubernetes command line tool. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
+* Configure kubectl command line access to the cluster that you created. See [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
 
 ## Related Topics
 
