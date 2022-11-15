@@ -1,0 +1,7 @@
+The `when` property denotes conditional user inputs that are only displayed on the admin console Config page when a condition evaluates to true. The equality check in the conditional statement of the `when` property must match exactly, without quotes.
+
+The `when` property can be used on groups, items, and `select_one` options.
+
+When the `when` property for a group or item evaluates to `false`, the group or item is not displayed on the Config page.
+
+If the user provides input on the Config page that makes a `when` property evaluate to `true`, then the Config page updates immediately to display the previously hidden group or item.
