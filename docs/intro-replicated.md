@@ -4,11 +4,11 @@ Replicated is an enterprise software distribution platform that lets you package
 
 Environments include on-premises (including air gapped) and cloud hosted Kubernetes clusters. For customers who do not have an existing Kubernetes cluster, Replicated provisions a new cluster on a customer's virtual machine (VM), where the application is then installed.
 
-To learn more about Replicated, see [Intro to Replicated: 20 Ways We Help](https://www.youtube.com/watch?v=2eOh7CofY3Q&t=779s) video.
+To learn more about Replicated, see the [Intro to Replicated: 20 Ways We Help](https://www.youtube.com/watch?v=2eOh7CofY3Q) video.
 
 ## Replicated Components
 
-Replicated includes components and features that make it easier for you to manage and deploy applications, and for enterprise users to install and manage their application instance.
+Replicated includes components and features that make it easier for you to manage and deploy applications, and for enterprise users to install and manage their instance of your application.
 
 The following diagram shows the Replicated components as they relate to you as a vendor packaging your application and the deployment to an existing cluster and a VM cluster provisioned by the Replicated Kubernetes installer.
 
@@ -46,7 +46,7 @@ The app manager deploys applications securely to the following Kubernetes cluste
 
 - Existing clusters
 - Replicated Kubernetes installer provisioned clusters on virtual machines (VMs)
-- Air gapped on existing clusters or VM clusters
+- Air gapped on existing clusters or Kubernetes installer clusters
 - High availability clusters
 
 The Replicated app manager is based on the open source KOTS project, which is maintained by Replicated.
