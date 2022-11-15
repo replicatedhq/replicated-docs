@@ -129,7 +129,7 @@ spec:
       title: Second Group
       description: This is descriptive help text.
       # The group is not displayed if when is false
-      when: false
+      when: repl{{ ConfigOptionEquals "http_enabled" "1" }}
       items:
       - name: key
         title: Key
