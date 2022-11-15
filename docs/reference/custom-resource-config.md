@@ -47,8 +47,8 @@ spec:
         type: password
         value: "{{repl RandomString 10}}"     
 ```
-![Three groups of items on the config page](../../static/images/config-screen-groups.png)
-[View a larger version of this image](../../static/images/config-screen-groups.png)
+![Three groups of items on the config page](/images/config-screen-groups.png)
+[View a larger version of this image](/images/config-screen-groups.png)
 
 ## Group Properties
 
@@ -152,8 +152,8 @@ spec:
         value: "{{repl RandomString 10}}"     
 ```
 
-![Only the first and third groups appear on the config screen](../../static/images/config-screen-group-when-false.png)
-[View a larger version of this image](../../static/images/config-screen-group-when-false.png)
+![Only the first and third groups appear on the config screen](/images/config-screen-group-when-false.png)
+[View a larger version of this image](/images/config-screen-group-when-false.png)
 
 ### `items`
 
