@@ -22,7 +22,7 @@ The Replicated vendor portal is the web-based user interface that you can use to
 
 ![Create an Application in the vendor portal](/images/guides/kots/create-application.png)
 
-You define Kubernetes manifest files, including application and custom resource manifests, using the built-in YAML editor and KOTS lint service (in the Help pane). These files describe how to distribute the application. Alternatively, you can use Helm charts.
+You define Kubernetes manifest files, including application and Replicated custom resource manifests, using the built-in YAML editor and KOTS lint service (in the Help pane). These files describe how to distribute the application. Alternatively, you can use Helm charts.
 
 ![YAML editor in the vendor portal](/images/yaml-editor.png)
 
@@ -40,14 +40,14 @@ The Vendor API is the API for the vendor portal. This API can be used to complet
 
 ### App Manager
 
-The Replicated app manager is the underlying technology that installs and manages applications on a Kubernetes cluster. It also installs the Replicated admin console and provides preflight and support bundle functionality from the Troubleshoot open source project. For more information about preflight checks and support bundles, see [Configuring Preflight Checks and Support Bundles](preflight-support-bundle-creating). For more information about the Troubleshoot open source project, see the [Troubleshoot repository](https://github.com/replicatedhq/troubleshoot) in GitHub.
+The Replicated app manager is the underlying technology that installs and manages applications on a Kubernetes cluster. It provides functionality such as preflight and support bundle analyzers and collectors from the Troubleshoot open source project. For more information about preflight checks and support bundles, see [Configuring Preflight Checks and Support Bundles](preflight-support-bundle-creating). For more information about the Troubleshoot open source project, see the [Troubleshoot repository](https://github.com/replicatedhq/troubleshoot) in GitHub.
 
 The app manager deploys applications securely to the following Kubernetes cluster environments:
 
 - Existing clusters
 - Replicated Kubernetes installer provisioned clusters on virtual machines (VMs)
 - Air gapped on existing clusters or Kubernetes installer clusters
-- High availability clusters
+- High availability mode with the Kubernetes installer
 
 The Replicated app manager is based on the open source KOTS project, which is maintained by Replicated.
 
@@ -59,9 +59,9 @@ The Kubernetes installer is based on the kURL open source project, which is main
 
 ### Admin Console
 
-The Replicated admin console is a graphical user interface that interacts with the app manager. Enterprise customers can use the admin console to manage, update, configure, monitor, backup and restore, and troubleshoot their application instance.
+The Replicated admin console is a graphical user interface for the app manager. Enterprise customers can use the admin console to manage, update, configure, monitor, backup and restore, and troubleshoot their application instance.
 
-The admin console is installed by the app manager.
+The admin console is the graphical user interface for the app manager.
 
 ![Admin Console Dashboard](/images/guides/kots/application.png)
 
