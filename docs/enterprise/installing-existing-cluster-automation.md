@@ -90,7 +90,7 @@ kubectl kots install app-name \
   --no-port-forward
 ```
 
-After this completes, you can optionally run the following command to start the admin console:
+After this completes, you can optionally run the following command to access the admin console at http://localhost:8800:
 
 ```
 kubectl kots admin-console --namespace NAMESPACE
