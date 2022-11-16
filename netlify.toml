@@ -65,6 +65,13 @@
   from = "https://docs.replicated.com/vendor/packaging-custom-resources"
   to = "https://docs.replicated.com/vendor/releases-creating-releases"
 
+[[redirects]]
+  from="https://docs.replicated.com/vendor/tutorial-ha-cluster-deploying"
+  to="https://docs.replicated.com/enterprise/installing-embedded-cluster#install-with-ha-in-online-environments"
+
+[[redirects]]
+  from="https://docs.replicated.com/vendor/tutorial-installing-air-gap-existing-cluster-gcp"
+  to="https://docs.replicated.com/enterprise/installing-existing-cluster#air-gap"  
 ###################################################
 # Redirects To the Enterprise Section
 ###################################################

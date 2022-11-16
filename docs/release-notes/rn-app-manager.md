@@ -331,7 +331,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 * Fixes an issue that caused the [help_text](/reference/custom-resource-config#help_text) property of config items to be ignored.
 * Fixes an issue that caused the license card to not be updated when switching applications in the admin console.
 * Fixes the ordering of versions on the [version history](/enterprise/updating-apps#update-an-application-in-the-admin-console) page in [Helm-managed mode (Alpha)](/vendor/helm-install).
-* Fixes the display of node statistics in the [Cluster Management](https://docs.replicated.com/vendor/tutorial-ha-cluster-deploying#adding-remaining-nodes-to-cluster) tab.
+* Fixes the display of node statistics in the Cluster Management tab.
 * Fixes an issue where legacy encryption keys were not loaded properly during snapshot restores.
 * Fixes an issue where snapshots would fail if a wildcard (`"*"`) was listed in the `additionalNamespaces` field of an Application manifest.
 * Fixes an issue where the diff fails to generate for a version that excludes a Helm chart that was previously included.
