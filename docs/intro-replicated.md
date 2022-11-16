@@ -10,7 +10,7 @@ To learn more about Replicated, see the [Intro to Replicated: 20 Ways We Help](h
 
 Replicated includes components and features that make it easier for you to manage and deploy applications, and for enterprise users to install and manage their instance of your application.
 
-The following diagram shows the Replicated components as they relate to you as a vendor packaging your application and the deployment to an existing cluster and a cluster provisioned by the Replicated Kubernetes installer on a VM.
+The following diagram shows the Replicated components as they relate to you as a vendor packaging your application, and the deployment to an existing cluster and a cluster provisioned by the Replicated Kubernetes installer on a VM.
 
 ![What is Replicated?](/images/what-is-replicated.png)
 
