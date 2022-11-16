@@ -61,8 +61,6 @@ The Kubernetes installer is based on the kURL open source project, which is main
 
 The Replicated admin console is a graphical user interface for the app manager. Enterprise customers can use the admin console to manage, update, configure, monitor, backup and restore, and troubleshoot their application instance.
 
-The admin console is the graphical user interface for the app manager.
-
 ![Admin Console Dashboard](/images/guides/kots/application.png)
 
 ### kots CLI
