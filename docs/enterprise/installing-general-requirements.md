@@ -76,13 +76,10 @@ To install the admin console on an embedded cluster created by the Replicated Ku
 * 4 CPUs or equivalent per machine.
 * 8GB of RAM per machine.
 * 40GB of disk space per machine.
-  :::note
-  10GB of the total 40GB must be available to `/var/lib/rook`. For more information, see [Rook Add-On](https://kurl.sh/docs/add-ons/rook) in the kURL documentation.
-  :::
-
 * TCP ports 2379, 2380, 6443, 6783, 10250, 10251, and 10252 open between cluster nodes.
 * UDP ports 6783 and 6784 open between cluster nodes.
 * Root access is required.
+* (Rook Only) The Rook add-on version 1.4.3 and later requires block storage on each node in the cluster. For more information about how to enable block storage for Rook, see [Block Storage](https://kurl.sh/docs/add-ons/rook/#block-storage) in _Rook Add-On_ in the kURL documentation.
 
 #### Additional System Requirements
 
