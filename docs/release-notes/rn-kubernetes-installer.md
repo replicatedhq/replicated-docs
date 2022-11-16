@@ -11,6 +11,16 @@ Released on November 16, 2022
 ### Bug Fixes {#bug-fixes-v2022-11-16-1}
 * Fixes a bug that blocked installations.
 
+## v2022.11.16-0
+
+Released on November 16, 2022
+
+### New Features {#new-features-v2022-11-16-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.25.4 1.24.8 1.23.14 1.22.16.
+* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.9.3.
+* PVMigrate now checks for available disk space before starting to migrate volumes.
+* RHEL 8.7 and Oracle Linux 8.7 are now supported.
+
 ## v2022.11.10-1
 
 Released on November 10, 2022
