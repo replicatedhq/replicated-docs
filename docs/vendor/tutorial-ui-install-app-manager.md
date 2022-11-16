@@ -22,7 +22,7 @@ You can see the installation script options at the bottom of each channel on the
 
 To install the app manager:
 
-1. Copy the **KOTS Install** command from the Unstable channel in the vendor portal. Make sure your kubectl context is set to your existing cluster and run the command on your command-line tool.
+1. Copy the **KOTS Install** command from the Unstable channel in the vendor portal. Make sure your kubectl context is set to your existing cluster and run the install command on the command line.
 
   The script installs the latest app manager version as a `kubectl` plugin. For more information about installing an application with the kots CLI, see [install](../reference/kots-cli-install/) in the kots CLI documentation.
 
