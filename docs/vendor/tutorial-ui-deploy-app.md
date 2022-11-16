@@ -1,39 +1,85 @@
 # Step 5: Deploy the Application
 
-At this point, the admin console and Kubernetes are running, but the application is not deployed yet. This is also what your customer would be experiencing when installing your application.
+After you run the installation script from the previous step, the admin console and Kubernetes are running, but the application is not deployed yet. This is also what your customer will be experiencing when installing your application.
 
-To install the application:
+This procedure shows you how to deploy the application by logging into the admin console, uploading the license file that you created as part of [Step 3: Create a Customer](tutorial-ui-create-customer), completing the application configuration settings, and running the preflight checks.
 
-1. In a browser, enter the URL `http://localhost:8800` and password to access the admin console.
+To deploy the application:
 
-  The Upload license page opens.
-1. Click **Upload**. Select your customer license YAML file to continue, or drag and drop the license file from your desktop. The admin console can pull the application YAML and containers now.
-1. There are some example configuration options on this page. Feel free to explore and toggle some of the options. You can see the results of your changes later.
+1. In a browser, enter the URL `http://localhost:8800` (existing clusters) or `http://[ip-address]:8800` (embedded clusters) and the password from [Step 4: Install the App Manager](tutorial-ui-install-app-manager).
 
-    :::note
-    For production, you can customize what appears on this screen to collect the configuration that your application needs from the customer. Values are available to your app as text templates or input values to Helm Charts.
-    :::
+1. (Embedded clusters only) On the Bypass Browser TLS warning page, click **Continue to Setup**.
 
-1. Proceed with the default settings.
+1. (Embedded clusters only) On the HTTPS page, click **Skip & continue** to use the self-signed TLS certificate and omit the hostname.
 
-  The Preflight page opens.
+1. On the Upload license page, select the customer license YAML file or drag and drop the license file from your desktop. Click **Upload license**.
 
-1. Click **Continue** and ignore the warnings. Preflight checks are designed to ensure this server has the minimum system and software requirements to run the application. By default, we included some preflight checks that are expected to fail so that you can see what failing checks might look like for a customer.
+  The admin console can pull the application YAML and containers now.
 
-    ![Preflight Checks](/images/preflight-warnings.png)
+1. On the Configure App Name page, select the **Customize Text Inputs** checkbox. In the **Text Example** field, enter any text. For example, `Hello`.
 
-1. Click **Application** on the top to see the application running. If you are still connected to this server using SSH, `kubectl get pods` shows the example NGINX service that you just deployed.
+  This page displays configuration settings that are specific to the application. Software vendors define the fields that are displayed on this page in the Config custom resource. For more information, see [Config](/reference/custom-resource-config) in _Reference_.
 
-  ![Cluster](/images/guides/kots/application.png)
+  There are other example configuration options on this page. Feel free to explore and toggle some of the options. You can see the results of your changes later.
 
-### View the Deployed Application
+  :::note
+  You will customize what appears on this screen in a later step.
+  :::
 
-To view the default NGINX application, click **Open App** on the Dashboard page.
+1. Click **Continue**.
 
-![Open App](/images/guides/kots/open-app.png)
+  The preflight checks run automatically. In the Results from your preflight checks list, look for the status of the number of nodes in the cluster. It should show the pass or warning messages that you configured earlier, depending on your cluster setup.
 
-You should see an example application.
+  ![Preflight Results](/images/preflight-warning.png)
 
-![Cluster](/images/guides/kots/example-app.png)
+1. Ignore any preflight warnings and click **Continue**. If there are failing preflight checks, click **Deploy and continue** in the dialog.
 
-Next, you will create and deliver an update to the sample application.
+  The admin console dashboard opens.
+
+  ![Cluster](/images/guides/kots/application-tutorial-ui.png)
+
+  On the Dashboard tab, users can take various actions, including viewing the application status, opening the application, checking for application updates, syncing their license, and setting up application monitoring on the cluster with Prometheus.
+
+1. Click **Open App** to view the application in your browser.
+
+  ![Open App](/images/guides/kots/open-app.png)
+
+  Notice that the text that you entered previously on the Configure App Name page is displayed on the application screen.
+
+1. In your cluster, press **Ctrl + C** to exit the admin console.
+
+1. Run the following command to reload your shell so that you can access the cluster with kubectl:
+
+  ```bash
+    bash -l
+    ```
+1. Run the following command to see the example NGINX service that you just deployed:
+
+  ```bash
+  kubectl get pods --namespace NAMESPACE_NAME
+  ```
+  Replace `NAMESPACE_NAME` with the namespace where the application and admin console are deployed. Typically this value is `default`.
+
+  **Example output:**
+
+  ```
+    NAME                                 READY   STATUS    RESTARTS   AGE
+    kotsadm-7595595bf5-pmlng   1/1     Running   0          21m
+    kotsadm-minio-0            1/1     Running   0          22m
+    kotsadm-rqlite-0           1/1     Running   0          22m
+    nginx-667f4fc76b-8gvr9     1/1     Running   0          17m
+    ```
+
+1. Run the following command to start the console again:
+
+  ```bash
+  kubectl kots admin-console --namespace NAMESPACE_NAME
+  ```
+
+  Replace `NAMESPACE_NAME` with the namespace where the application and admin console are deployed. Typically this value is `default`.
+
+  If you are using a VM that is behind a firewall and you get an error message, you might need to create a firewall rule to enable access to port 8800. For more information, see [Installation Requirements](/enterprise/installing-general-requirements).
+
+## Next Step
+
+Continue to [Step 6: Create a New Version](tutorial-ui-create-new-version) to make a change to one of the manifest files and promote a new release.

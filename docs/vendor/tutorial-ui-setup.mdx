@@ -8,7 +8,7 @@ import VMRequirements from "../partials/getting-started/_vm-requirements.mdx"
 
 <TutorialIntro/>
 
-The steps in this UI-based tutorial show you how to use the Replicated vendor portal to create and promote releases for your application. The vendor portal is the user interface that you use as a software vendor to create, configure, and manage your application artifacts, including application releases, release channels, customer entitlements, private image registries, and more.
+The steps in this UI-based tutorial show you how to use the Replicated vendor portal to create and promote releases for a sample NGINX application. The vendor portal is the user interface that you use as a software vendor to create, configure, and manage your application artifacts, including application releases, release channels, customer entitlements, private image registries, and more.
 
 For a tutorial that demonstrates how to use the replicated CLI to create and promote releases for your application, see [CLI Tutorial](tutorial-cli-setup).
 
@@ -18,19 +18,23 @@ For a tutorial that demonstrates how to use the replicated CLI to create and pro
 
 As part of this tutorial, you install a sample application onto an existing Kubernetes cluster, or onto a cluster provisioned by the Replicated Kubernetes installer. The Kubernetes installer creates the cluster on an existing VM.
 
-Before you begin this tutorial, ensure that you have one of the following:
+Before you begin this tutorial, ensure that you have one of the following environments set up:
 
-* A Kubernetes cluster that you can access with the kubectl command line tool.
+- A Kubernetes cluster that you can access with the kubectl command-line tool. You can use any cloud provider or tool that you prefer to create a cluster, such as Google Kubernetes Engine (GKE), Amazon Web Services (AWS), or minikube.
 
-   For example, to create a cluster in Google Kubernetes Engine (GKE), run the following command in the gcloud CLI:
-   ```
-   gcloud container clusters create NAME --preemptible --no-enable-ip-alias
-   ```
-   Where `NAME` is any name for the cluster.
+    For example, to create a cluster in GKE, run the following command in the gcloud CLI:
 
-* A VM where the Kubernetes installer can create a cluster.
+    ```
+    gcloud container clusters create NAME --preemptible --no-enable-ip-alias
+    ```
+    Replace `NAME` with any name you want to use for the cluster.
 
-  <VMRequirements/>
+    For information about installing and configuring the kubectl command-line tool, see [Install Tools](https://kubernetes.io/docs/tasks/tools/) and [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
+
+
+- A VM where the Kubernetes installer can create a cluster. The Kubernetes installer script installs and configures the kubectl command-line tool for you.
+
+    <VMRequirements/>
 
 ## Related Topics
 
