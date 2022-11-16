@@ -4,6 +4,13 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2022.11.16-1
+
+Released on November 16, 2022
+
+### Bug Fixes {#bug-fixes-v2022-11-16-1}
+* Fix manifest build process.
+
 ## v2022.11.10-1
 
 Released on November 10, 2022
