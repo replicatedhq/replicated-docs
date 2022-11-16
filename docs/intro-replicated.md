@@ -47,15 +47,8 @@ The app manager deploys applications securely to the following Kubernetes cluste
 - Existing clusters
 - Replicated Kubernetes installer provisioned clusters on virtual machines (VMs)
 - Air gapped on existing clusters or Kubernetes installer clusters
-- High availability mode with the Kubernetes installer
 
 The Replicated app manager is based on the open source KOTS project, which is maintained by Replicated.
-
-### Kubernetes Installer
-
-The Replicated Kubernetes installer provisions a cluster on a customer's virtual machine. This is known as a Kubernetes installer cluster or embedded cluster, and it allows customers to install an application without an existing Kubernetes cluster. For more information about configuring a Kubernetes installer cluster, see [Creating a Kubernetes Installer](/vendor/packaging-embedded-kubernetes). For more information about how enterprise users install with the Kubernetes installer, see [Installing with the Kubernetes Installer](/enterprise/installing-embedded-cluster).
-
-The Kubernetes installer is based on the kURL open source project, which is maintained by Replicated. For more information, see the [kURL repository](https://github.com/replicatedhq/kURL) in GitHub.
 
 ### Admin Console
 
@@ -66,3 +59,9 @@ The Replicated admin console is a graphical user interface for the app manager. 
 ### kots CLI
 
 Enterprise customers can install and use the kots command-line interface (CLI) to manage and update the application programmatically. The kots CLI interacts with the app manager and provides an alternative to using the admin console. For more information, see [Installing the kots CLI](/reference/kots-cli-getting-started).
+
+### Kubernetes Installer
+
+The Replicated Kubernetes installer provisions a cluster on a customer's virtual machine. This is known as a Kubernetes installer cluster or embedded cluster, and it allows customers to install an application without an existing Kubernetes cluster. For more information about configuring a Kubernetes installer cluster, see [Creating a Kubernetes Installer](/vendor/packaging-embedded-kubernetes). For more information about how enterprise users install with the Kubernetes installer, see [Installing with the Kubernetes Installer](/enterprise/installing-embedded-cluster).
+
+The Kubernetes installer is based on the kURL open source project, which is maintained by Replicated. For more information, see the [kURL repository](https://github.com/replicatedhq/kURL) in GitHub.
