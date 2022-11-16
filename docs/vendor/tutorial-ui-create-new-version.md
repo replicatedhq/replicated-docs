@@ -70,7 +70,7 @@ To create and promote a new version of the application:
          value: "{{repl RandomString 40}}"
 
    ```
-1. Check the KOTS linter messages in the Help pane to ensure there are no errors.
+1. Check the lint service messages in the Help pane to ensure there are no errors.
 
 1. In the `example-configmap.yaml` file, copy and paste the following HTML to replace the `<body>` section:
 
@@ -84,7 +84,7 @@ To create and promote a new version of the application:
    ```
     This creates a reference to the `more_text` field using a Replicated template function. The ConfigOption template function renders the user input from the configuration item that you specify. For more information, see [Config Context](/reference/template-functions-config-context) in _Reference_.
 
-1. Check the KOTS linter messages in the Help pane to ensure there are no errors.
+1. Check the lint service messages in the Help pane to ensure there are no errors.
 
 1. Click **Save Release**.
 
