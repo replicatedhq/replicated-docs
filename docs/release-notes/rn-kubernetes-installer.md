@@ -9,7 +9,7 @@ toc_max_heading_level: 2
 Released on November 16, 2022
 
 ### Bug Fixes {#bug-fixes-v2022-11-16-1}
-* Fixes a bug that blocked installs.
+* Fixes a bug that blocked installations.
 
 ## v2022.11.10-1
 
