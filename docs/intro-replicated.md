@@ -2,7 +2,7 @@
 
 Replicated is an enterprise software distribution platform that lets you package and update your application using Kubernetes manifests or Helm charts, and securely distribute your application to Kubernetes clusters in diverse customer environments.
 
-Environments include on-premises (including air gapped) and cloud hosted Kubernetes clusters. For customers who do not have an existing Kubernetes cluster, Replicated provisions a new cluster on a customer's virtual machine (VM), where the application is then installed.
+Environments include on-premises (including air gapped) and cloud-hosted Kubernetes clusters. For customers who do not have an existing Kubernetes cluster, Replicated provisions a new cluster on a customer's virtual machine (VM), where the application is then installed.
 
 To learn more about Replicated, see the [Intro to Replicated: 20 Ways We Help](https://www.youtube.com/watch?v=2eOh7CofY3Q) video.
 
