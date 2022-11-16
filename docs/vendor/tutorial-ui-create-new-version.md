@@ -94,7 +94,7 @@ To create and promote a new version of the application:
 
     1. Choose the Unstable channel in the Promote Release dialog, and click **Promote**.
 
-  Any license installed from the Unstable channel will start with this new release, and any installation already running is prompted to update to the new release when the admin console checks for updates. However, in the next step, you will check for the update manually.
+  Any license installed from the Unstable channel will start with this new release, and any installation already running is prompted to update to the new release when the admin console checks for updates.
 
 ## Next Step
 

@@ -48,7 +48,7 @@ Congratulations! As part of this tutorial, you:
 
 As a next step you can:
 
-- Learn how to start managing your release YAML in a git repository. See the [CLI Quickstart Tutorial](tutorial-installing-with-cli).
+- Learn how to use the CLI to perform these steps and manage your release YAML in a git repository. See the [CLI Quickstart Tutorial](tutorial-installing-with-cli).
 
 - Continue to iterate on your sample application by integrating other app manager features. For ideas on features and functionality, see [Iterating Your Releases](distributing-workflow#iterating-your-releases)  in _How to Package and Distribute a Production Application_.
 

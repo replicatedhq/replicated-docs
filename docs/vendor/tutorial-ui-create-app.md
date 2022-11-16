@@ -2,10 +2,6 @@
 
 When you create an application object in the vendor portal, example NGINX manifest files are included that will be used for this tutorial.
 
-:::note
-Ensure that you have completed the required environment setup. See [Set Up the Environment](tutorial-ui-setup#set-up-the-environment) in _Introduction and Setup_.
-:::
-
 To begin, create an application object in the vendor portal:
 
 1. Log in (or create a new team) to the [vendor portal](https://vendor.replicated.com).
