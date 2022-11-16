@@ -15,7 +15,7 @@ Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 
 ### Improvements {#improvements-1-91-0}
 * Updates the kotsadm base image to `debian:bullseye-slim` to resolve CVE-2022-29458 with high severity.
-* CLI prompts to set the admin console password now display password complexity rules. Currently, passwords must be at least six characters long.
+* The CLI prompts to set the admin console password now display password complexity rules. Passwords must be at least six characters long.
 
 ### Bug Fixes {#bug-fixes-1-91-0}
 * Fixes an issue where the admin console automatically redirected to the login page after a snapshot was restored successfully, which could have prevented users from knowing the outcome of the restore.
