@@ -71,7 +71,7 @@
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/tutorial-installing-air-gap-existing-cluster-gcp"
-  to="https://docs.replicated.com/enterprise/installing-existing-cluster#air-gap"  
+  to="https://docs.replicated.com/enterprise/installing-existing-cluster#air-gap"
 ###################################################
 # Redirects To the Enterprise Section
 ###################################################
@@ -84,6 +84,11 @@
 [[redirects]]
   from="https://docs.replicated.com/vendor/packaging-template-functions"
   to= "https://docs.replicated.com/reference/template-functions-about"
+
+# Redirects from the old topic name KOTS Lint Rules to the new topic name Lint Rules
+[[redirects]]
+  from="https://docs.replicated.com/reference/kots-lint"
+  to="https://docs.replicated.com/reference/linter"
 
 ###################################################
 # Redirects To the Release Notes Section

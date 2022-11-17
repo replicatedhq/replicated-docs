@@ -22,7 +22,7 @@ The Replicated vendor portal is the web-based user interface that you can use to
 
 ![Create an Application in the vendor portal](/images/guides/kots/create-application.png)
 
-You define Kubernetes manifest files, including application and Replicated custom resource manifests, using the built-in YAML editor and KOTS lint service (in the Help pane). These files describe how to distribute the application. Alternatively, you can use Helm charts.
+You define Kubernetes manifest files, including application and Replicated custom resource manifests, using the built-in YAML editor and linter (in the Help pane). These files describe how to distribute the application. Alternatively, you can use Helm charts.
 
 ![YAML editor in the vendor portal](/images/yaml-editor.png)
 

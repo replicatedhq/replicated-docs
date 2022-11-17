@@ -538,7 +538,7 @@ const sidebars = {
             },
           ],
         },
-        'reference/kots-lint',
+        'reference/linter',
       ],
     },
     {
