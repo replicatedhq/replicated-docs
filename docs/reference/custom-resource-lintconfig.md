@@ -2,7 +2,7 @@
 
 The linter runs automatically against releases that you create in the Replicated vendor portal, and displays any error or warning messages in the vendor portal UI.
 
-The linter rules have default levels that can be overwritten. You can configure custom levels by adding a LintConfig manifest file (`kind: LintConfig`) to the release. Specify the rule name and level you want the rule to have. Rules that are not included in the LintConfig manifest file keep their default level. For information about linting rules and their default levels, see [Linter Rules](#linter-rules).
+The linter rules have default levels that can be overwritten. You can configure custom levels by adding a LintConfig manifest file (`kind: LintConfig`) to the release. Specify the rule name and level you want the rule to have. Rules that are not included in the LintConfig manifest file keep their default level. For information about linter rules and their default levels, see [Linter Rules](#linter-rules).
 
 The supported levels are:
 
@@ -31,7 +31,7 @@ The supported levels are:
 
 
 ## Example
-The following example manifest file overwrites the level for the application-icon to `off` to disable the rule. Additionally, the level for the application-statusInformers rule is changed to `error`, so instead of a warning, it displays an error if the application is missing status informers.
+The following example manifest file overwrites the level for the application-icon to `off` to disable the rule. Additionally, the level for the application-statusInformers rule is changed to `error`, so instead of the default warning, it displays an error if the application is missing status informers.
 
 ```yaml
 apiVersion: kots.io/v1beta1
