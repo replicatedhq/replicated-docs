@@ -88,7 +88,7 @@
 # Redirects from the old topic name KOTS Lint Rules to the new topic name Lint Rules
 [[redirects]]
   from="https://docs.replicated.com/reference/kots-lint"
-  to="https://docs.replicated.com/reference/lint"
+  to="https://docs.replicated.com/reference/linter"
 
 ###################################################
 # Redirects To the Release Notes Section

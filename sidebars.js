@@ -538,7 +538,7 @@ const sidebars = {
             },
           ],
         },
-        'reference/lint',
+        'reference/linter',
       ],
     },
     {

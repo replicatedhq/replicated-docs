@@ -111,7 +111,7 @@ To create a release:
 
   Preflight checks are designed to help ensure that the environment meets the minimum system and software requirements to run the application. Software vendors define preflight checks in the Preflight custom resource. For more information, see [Preflight and Support Bundle](/reference/custom-resource-preflight) in _Reference_.
 
-1. Check the lint service messages in the Help pane. If there are no errors, a message displays letting you know that everything looks good. If there are errors, information about the errors displays with a link to the reference documentation. For more information about the lint service, see [Lint Rules](/reference/lint).
+1. Check the linter messages in the Help pane. If there are no errors, a message displays letting you know that everything looks good. If there are errors, information about the errors displays with a link to the reference documentation. For more information about the linter, see [Linter Rules](/reference/linter).
 
 1. Click **Save release**.
 

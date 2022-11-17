@@ -33,7 +33,7 @@ replicated release create --yaml-dir YAML_DIR [flags]
   <tr>
     <td><code>--lint</code></td>
     <td></td>
-    <td>Lint a manifest directory prior to creation of the release. For more information, see <a href="lint">Lint Rules</a>.</td>
+    <td>Lint a manifest directory prior to creation of the release. For more information, see <a href="linter">Linter Rules</a>.</td>
   </tr>
   <tr>
     <td><code>--release-notes</code></td>

@@ -1,51 +1,51 @@
-import MissingKindField from "../partials/lint-rules/_missing-kind-field.mdx"
-import MissingAPIVersionField from "../partials/lint-rules/_missing-api-version-field.mdx"
-import PreflightSpec from "../partials/lint-rules/_preflight-spec.mdx"
-import ConfigSpec from "../partials/lint-rules/_config-spec.mdx"
-import TroubleshootSpec from "../partials/lint-rules/_troubleshoot-spec.mdx"
-import ApplicationSpec from "../partials/lint-rules/_application-spec.mdx"
-import ApplicationIcon from "../partials/lint-rules/_application-icon.mdx"
-import ApplicationStatusInformers from "../partials/lint-rules/_application-statusInformers.mdx"
-import InvalidTargetKOTS from "../partials/lint-rules/_invalid-target-kots-version.mdx"
-import InvalidMinKOTS from "../partials/lint-rules/_invalid-min-kots-version.mdx"
-import InvalidKubernetesInstaller from "../partials/lint-rules/_invalid-kubernetes-installer.mdx"
-import DeprecatedKubernetesInstallerVersion from "../partials/lint-rules/_deprecated-kubernetes-installer-version.mdx"
-import InvalidHelmReleaseName from "../partials/lint-rules/_invalid-helm-release-name.mdx"
-import Replicas1 from "../partials/lint-rules/_replicas-1.mdx"
-import Privileged from "../partials/lint-rules/_privileged.mdx"
-import AllowPrivilegeEscalation from "../partials/lint-rules/_allow-privilege-escalation.mdx"
-import ContainerImageLatestTag from "../partials/lint-rules/_container-image-latest-tag.mdx"
-import ContainerImageLocalImageName from "../partials/lint-rules/_container-image-local-image-name.mdx"
-import ContainerResources from "../partials/lint-rules/_container-resources.mdx"
-import ContainerResourceLimits from "../partials/lint-rules/_container-resource-limits.mdx"
-import ContainerResourceRequests from "../partials/lint-rules/_container-resource-requests.mdx"
-import ResourceLimitsCPU from "../partials/lint-rules/_resource-limits-cpu.mdx"
-import ResourceLimitsMemory from "../partials/lint-rules/_resource-limits-memory.mdx"
-import ResourceRequestsCPU from "../partials/lint-rules/_resource-requests-cpu.mdx"
-import ResourceRequestsMemory from "../partials/lint-rules/_resource-requests-memory.mdx"
-import VolumesHostPaths from "../partials/lint-rules/_volumes-host-paths.mdx"
-import VolumeDockerSock from "../partials/lint-rules/_volume-docker-sock.mdx"
-import HardcodedNamespace from "../partials/lint-rules/_hardcoded-namespace.mdx"
-import ConfigOptionInvalidType from "../partials/lint-rules/_config-option-invalid-type.mdx"
-import RepeatOptionMissingTemplate from "../partials/lint-rules/_repeat-option-missing-template.mdx"
-import RepeatOptionMissingValuesByGroup from "../partials/lint-rules/_repeat-option-missing-valuesByGroup.mdx"
-import RepeatOptionMalformedYAMLPath from "../partials/lint-rules/_repeat-option-malformed-yamlpath.mdx"
-import ConfigOptionPasswordType from "../partials/lint-rules/_config-option-password-type.mdx"
-import ConfigOptionIsCircular from "../partials/lint-rules/_config-option-is-circular.mdx"
-import InvalidType from "../partials/lint-rules/_invalid_type.mdx"
-import InvalidYaml from "../partials/lint-rules/_invalid-yaml.mdx"
+import MissingKindField from "../partials/linter-rules/_missing-kind-field.mdx"
+import MissingAPIVersionField from "../partials/linter-rules/_missing-api-version-field.mdx"
+import PreflightSpec from "../partials/linter-rules/_preflight-spec.mdx"
+import ConfigSpec from "../partials/linter-rules/_config-spec.mdx"
+import TroubleshootSpec from "../partials/linter-rules/_troubleshoot-spec.mdx"
+import ApplicationSpec from "../partials/linter-rules/_application-spec.mdx"
+import ApplicationIcon from "../partials/linter-rules/_application-icon.mdx"
+import ApplicationStatusInformers from "../partials/linter-rules/_application-statusInformers.mdx"
+import InvalidTargetKOTS from "../partials/linter-rules/_invalid-target-kots-version.mdx"
+import InvalidMinKOTS from "../partials/linter-rules/_invalid-min-kots-version.mdx"
+import InvalidKubernetesInstaller from "../partials/linter-rules/_invalid-kubernetes-installer.mdx"
+import DeprecatedKubernetesInstallerVersion from "../partials/linter-rules/_deprecated-kubernetes-installer-version.mdx"
+import InvalidHelmReleaseName from "../partials/linter-rules/_invalid-helm-release-name.mdx"
+import Replicas1 from "../partials/linter-rules/_replicas-1.mdx"
+import Privileged from "../partials/linter-rules/_privileged.mdx"
+import AllowPrivilegeEscalation from "../partials/linter-rules/_allow-privilege-escalation.mdx"
+import ContainerImageLatestTag from "../partials/linter-rules/_container-image-latest-tag.mdx"
+import ContainerImageLocalImageName from "../partials/linter-rules/_container-image-local-image-name.mdx"
+import ContainerResources from "../partials/linter-rules/_container-resources.mdx"
+import ContainerResourceLimits from "../partials/linter-rules/_container-resource-limits.mdx"
+import ContainerResourceRequests from "../partials/linter-rules/_container-resource-requests.mdx"
+import ResourceLimitsCPU from "../partials/linter-rules/_resource-limits-cpu.mdx"
+import ResourceLimitsMemory from "../partials/linter-rules/_resource-limits-memory.mdx"
+import ResourceRequestsCPU from "../partials/linter-rules/_resource-requests-cpu.mdx"
+import ResourceRequestsMemory from "../partials/linter-rules/_resource-requests-memory.mdx"
+import VolumesHostPaths from "../partials/linter-rules/_volumes-host-paths.mdx"
+import VolumeDockerSock from "../partials/linter-rules/_volume-docker-sock.mdx"
+import HardcodedNamespace from "../partials/linter-rules/_hardcoded-namespace.mdx"
+import ConfigOptionInvalidType from "../partials/linter-rules/_config-option-invalid-type.mdx"
+import RepeatOptionMissingTemplate from "../partials/linter-rules/_repeat-option-missing-template.mdx"
+import RepeatOptionMissingValuesByGroup from "../partials/linter-rules/_repeat-option-missing-valuesByGroup.mdx"
+import RepeatOptionMalformedYAMLPath from "../partials/linter-rules/_repeat-option-malformed-yamlpath.mdx"
+import ConfigOptionPasswordType from "../partials/linter-rules/_config-option-password-type.mdx"
+import ConfigOptionIsCircular from "../partials/linter-rules/_config-option-is-circular.mdx"
+import InvalidType from "../partials/linter-rules/_invalid_type.mdx"
+import InvalidYaml from "../partials/linter-rules/_invalid-yaml.mdx"
 
-# Lint Rules
+# Linter Rules
 
-This topic describes the rules for the lint service. The lint service lints the manifest files for applications packaged with Replicated to ensure that there are no YAML syntax errors, that all required manifest files are present in the release, and more.
+This topic describes the rules for the linter. The linter checks the manifest files for applications packaged with Replicated to ensure that there are no YAML syntax errors, that all required manifest files are present in the release, and more.
 
-The lint service runs automatically against releases that you create in the Replicated vendor portal, and displays any error or warning messages in the vendor portal UI.
+The linter runs automatically against releases that you create in the Replicated vendor portal, and displays any error or warning messages in the vendor portal UI.
 
-To use the lint service to lint your application manifest files, you can run the replicated CLI `replicated release lint` command against the root directory of your application manifest files. You can also use the `--lint` flag when you create a release with the `replicated release create` command. For more information, see [release lint](/reference/replicated-cli-release-lint) and [release create](/reference/replicated-cli-release-create) in the _replicated CLI_ section.
+To use the linter to lint your application manifest files, you can run the replicated CLI `replicated release lint` command against the root directory of your application manifest files. You can also use the `--lint` flag when you create a release with the `replicated release create` command. For more information, see [release lint](/reference/replicated-cli-release-lint) and [release create](/reference/replicated-cli-release-create) in the _replicated CLI_ section.
 
-## Customize Lint Rule Levels
+## Customize Linter Rule Levels
 
-Lint rules have default levels that can be overwritten. You configure custom levels by adding a LintConfig manifest file (`kind: LintConfig`) to the release. Specify the rule name and level you want the rule to have. Rules that are not included in the LintConfig manifest file keep their default level. For information about linting rules and their default levels, see [Lint Rules](#lint-rules).
+The linter rules have default levels that can be overwritten. You configure custom levels by adding a LintConfig manifest file (`kind: LintConfig`) to the release. Specify the rule name and level you want the rule to have. Rules that are not included in the LintConfig manifest file keep their default level. For information about linting rules and their default levels, see [Linter Rules](#linter-rules).
 
 The supported levels are:
 
@@ -87,7 +87,7 @@ spec:
     level: "error"
 ```
 
-## Lint rules:
+## Linter rules:
 ### missing-kind-field
 
 <table>
