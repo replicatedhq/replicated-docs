@@ -47,7 +47,7 @@ Redactors censor sensitive customer information from the data gathered by the co
 
 This functionality cannot be disabled in the Replicated app manager. You can add custom redactors to support bundles only.
 
-Please review the [Troubleshoot](https://troubleshoot.sh/) documentation for the specific information on what these redactors detect, as they might not cover your specific requirements.
+To verify that the default redactors meet your requirements, see the [Redact](https://troubleshoot.sh/docs/redact/) section in the Troubleshoot documentation for detail on what information the redactors detect.
 
 ### Analyzers
 Analyzers use the non-redacted data from the collectors to identify issues. The outcomes that you specify are displayed to customers.
