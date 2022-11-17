@@ -38,7 +38,7 @@ To include the Kubernetes installer in the application release:
 
   The YAML editor opens.
 
-1. From the landing page at [kurl.sh](https://kurl.sh/), configure the add-ons and options for your Installer YAML. Note the following:
+1. From the landing page at [kurl.sh](https://kurl.sh/), configure the add-ons and options for your Installer YAML. Note the following requirements and guidelines for configuring the Installer:
 
     - You must include the KOTS add-on to provision the Replicated admin console. See [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) in the kURL documentation.
     
