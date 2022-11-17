@@ -3,7 +3,7 @@ import YamlDir from "../partials/replicated-cli/_yaml-dir.mdx"
 
 # release lint
 
-Lint a directory of application manifest files. The `release lint` command uses the lint service. For more information, see [Linter Rules](linter).
+Lint a directory of application manifest files. For more information, see [Linter Rules](linter).
 
 ## Usage
 ```bash
