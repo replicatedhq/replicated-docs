@@ -90,7 +90,12 @@ kubectl kots install app-name \
   --no-port-forward
 ```
 
-After this has completed, you can go to http://localhost:8800 will show the configured application dashboard, assuming all required config items were set and any included preflight checks passed.
+After this completes, you can optionally run the following command to access the admin console at http://localhost:8800:
+
+```
+kubectl kots admin-console --namespace NAMESPACE
+```
+Replace `NAMESPACE` with the namespace you specified in the `kots install` command.
 
 ## Air Gap Installation
 
