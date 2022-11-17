@@ -40,7 +40,9 @@ To include the Kubernetes installer in the application release:
 
 1. From the landing page at [kurl.sh](https://kurl.sh/), configure the add-ons and options for your Installer YAML. Note the following:
 
-    - You must include the KOTS add-on to provision the Replicated admin console.
+    - You *must* include the [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) to provision the Replicated admin console.
+    
+    - You *must* include the [EKCO add-on](https://kurl.sh/docs/add-ons/ekco), which performs [many cluster maintenance tasks](https://kurl.sh/docs/add-ons/ekco#operator-tasks) to ensure the embedded cluster stays healthy with minimal manual operation.
 
     - To use Replicated snapshots, Velero must be installed on the cluster. We recommend that you include the Velero add-on in your Kubernetes installer manifest so that your customers do not have to manually install Velero.
 
@@ -83,7 +85,7 @@ spec:
 
 ## Create a Separate Kubernetes Installer
 
-You can create a Kubernetes installer and promote it to the same channel as your application release. This method creates the installer separately from the application release and only lets you have one active Kubernetes installer for a channel at a time. All installations, regardless of the application version, will use the currently promoted installer.
+You can create a Kubernetes installer and promote it to the same channel as your application release. This method creates the installer separately from the application release and only lets you have one active Kubernetes installer for a channel at a time. All installations from that channel, regardless of the application version, will use the currently promoted installer.
 
 To create a separate Kubernetes installer:
 
@@ -93,8 +95,10 @@ To create a separate Kubernetes installer:
 
 1. Edit the file. Note the following:
 
-    - You must include the KOTS add-on to provision the Replicated admin console.
-
+    - You *must* include the [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) to provision the Replicated admin console.
+    
+    - You *must* include the [EKCO add-on](https://kurl.sh/docs/add-ons/ekco), which performs [many cluster maintenance tasks](https://kurl.sh/docs/add-ons/ekco#operator-tasks) to ensure the embedded cluster stays healthy with minimal manual operation.
+    
     - To use Replicated snapshots, Velero must be installed on the cluster. We recommend that you include the Velero add-on in your Kubernetes installer manifest so that your customers do not have to manually install Velero. For more information, see [Velero Add-On](https://kurl.sh/docs/add-ons/velero) and [Create An Installer](https://kurl.sh/docs/create-installer/) in the kURL open source documentation.
 
     For more information about creating a Kubernetes installer and the available add-ons, see [Create An Installer](https://kurl.sh/docs/create-installer/) in the kURL open source documentation.
