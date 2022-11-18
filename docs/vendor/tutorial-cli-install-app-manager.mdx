@@ -43,37 +43,39 @@ To install the app manager in your Kubernetes cluster:
 
 1. If you have not already, configure kubectl access to the cluster you provisioned as part of [Set Up the Environment](tutorial-cli-setup#set-up-the-environment). For more information about configuring kubectl, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
 
-1. Run the `EXISTING` installation script from above:
-
-  **Example**
+1. Run the installation script from above with the following changes to deploy the admin console at the same time you install the app manager. In this step, the license file uploads and the preflight checks run as part of the deployment:
 
   ```
   curl -fsSL https://kots.io/install | bash
-  kubectl kots install cli-tutorial/unstable
+  kubectl kots install cli-tutorial/unstable \
+  --license-file ./Desktop/Some-Big-Bank-cli-tutorial-raccoon-license.yaml \
+  --shared-password PASSWORD \
+  --namespace NAMESPACE_NAME
   ```
 
-1. For `Enter installation path (leave blank for /usr/local/bin):`, press **Enter**.
+  Replace:
 
-1. For `Enter the namespace to deploy to:`, enter `cli-tutorial`.
+    - PASSWORD with a password that will be used to access the admin console.
+    - NAMESPACE_NAME with a name for the namespace where the app manager will be installed. Replicated recommends using `default` for this value.
 
-1. For `Enter a new password to be used for the Admin Console:`, provide a password to access the admin console. You use this password in a later step to access the admin console user interface and deploy the application.
-
-   When the admin console is ready, the script prints the `https://localhost:8800` URL where you can access the admin console.
+  When the admin console is ready, the script prints the `https://localhost:8800` URL where you can access the admin console and the `http://localhost:8888` URL where you can access the application.
 
    **Example output**:
 
    ```
-   Enter the namespace to deploy to: cli-tutorial
-    • Deploying Admin Console
-      • Creating namespace ✓
-      • Waiting for datastore to be ready ✓
-   Enter a new password to be used for the Admin Console: ••••••••
-      • Waiting for Admin Console to be ready ✓
+  • Go to Deploying Admin Console
+    • Creating namespace ✓
+    • Waiting for datastore to be ready ✓
+  • Waiting for Admin Console to be ready ✓
+  • Waiting for installation to complete ✓
+  • Waiting for preflight checks to complete ✓
 
-      • Press Ctrl+C to exit
-      • Go to http://localhost:8800 to access the Admin Console
+  • Press Ctrl+C to exit
+  • Go to http://localhost:8800 to access the Admin Console
+
+  • Go to http://localhost:8888 to access the application
    ```
 
 ## Next Step
 
-Continue to [Step 7: Deploy the Application](tutorial-cli-deploy-app) to log in to the admin console and deploy the application.
+Continue to [Step 7: Edit the Config Screen for the Application](tutorial-cli-deploy-app) to log in to the admin console and make changes to the Config screen.

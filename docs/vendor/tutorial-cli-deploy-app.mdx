@@ -1,10 +1,10 @@
-# Step 7: Deploy the Application
+# Step 7: Edit the Config Screen
 
-After you run the installation script from the previous step, the Replicated admin console is running, but the application is not yet deployed.
+After you run the installation script and deploy the application from the previous step, you can access the Replicated admin console.
 
-This procedure shows you how to deploy the application by logging into the admin console, uploading the license file that you created as part of [Step 5: Create a Customer](tutorial-cli-create-customer), completing the application configuration settings, and running the preflight checks.
+This procedure shows you how to edit the Config screen for the application by logging into the admin console, which is a typical task that customers do.
 
-To deploy the application:
+To edit the Config screen application:
 
 1. In a browser, go to `http://localhost:8800` to access the admin console.
 
@@ -14,27 +14,23 @@ To deploy the application:
 
 1. Enter the password that you created in [Step 6: Install the App Manager](tutorial-cli-install-app-manager) to log in to the admin console.
 
-1. On the Upload your license file page, select the license file that you downloaded to your Desktop in [Step 5: Create a Customer](tutorial-cli-create-customer). Click **Upload license**.
+  The admin console dashboard opens. On the admin console **Dashboard** tab, users can take various actions, including viewing the application status, opening the application, checking for application updates, syncing their license, and setting up application monitoring on the cluster with Prometheus.
 
-    With the license file, the admin console can pull containers and run the application.
+    ![admin console app dashboard](/images/tutorials/tutorial-admin-console-dashboard.png)
 
-1. On the Configure App Name page, select the **Customize Text Inputs** checkbox. In the **Text Example** field, enter any text. For example, `Hello`.
+1. On the Config tab, select the **Customize Text Inputs** checkbox. In the **Text Example** field, enter any text. For example, `Hello`.
 
-   ![admin console configuration page](/images/tutorials/tutorial-install-config-page.png)
+    ![admin console configuration tab](/images/tutorials/tutorial-install-config-tab.png)
 
    This page displays configuration settings that are specific to the application. Software vendors define the fields that are displayed on this page in the Replicated Config custom resource. For more information, see [Config](/reference/custom-resource-config) in _Reference_.
 
-1. Click **Continue**.
+1. Click **Save config**. In the dialog that opens, click **Go to updated version**.
 
-   The preflight checks automatically run. Preflight checks are designed to help ensure the environment meets the minimum requirements to run the application. Software vendors define preflight checks in the Replicated Preflight custom resource. For more information, see [Preflight and Support Bundle](/reference/custom-resource-preflight) in _Reference_.
+    The Version history tab opens.
 
-   ![admin console preflight checks page](/images/tutorials/tutorial-preflight-checks.png)
+1. Click **Deploy** for the new version. Then click **Yes, deploy** in the confirmation dialog.
 
-1. After the preflight checks complete, click **Continue**. If there are failing preflight checks, click **Deploy and continue** in the dialog. The admin console dashboard opens.
-
-   ![admin console app dashboard](/images/tutorials/tutorial-admin-console-dashboard.png)
-
-   On the admin console **Dashboard** tab, users can take various actions, including viewing the application status, opening the application, checking for application updates, syncing their license, and setting up application monitoring on the cluster with Prometheus.
+    ![admin console configuration tab](/images/tutorials/tutorial-install-version-history.png)
 
 1. Click **Open App** to view the application in your browser.
 
@@ -42,12 +38,16 @@ To deploy the application:
 
    Notice the text that you entered previously on the configuration page is displayed on the screen.
 
+   :::note
+   If you do not see the new text, click Refresh in your browser.
+   :::
+
 1. In your cluster, press Ctrl + C to exit the admin console. List the Pods to see the example NGINX service that you just deployed:
 
     ```
     kubectl get pods --namespace NAMESPACE_NAME
     ```
-    Replace `NAMESPACE_NAME` with the namespace where the admin console was installed.
+    Replace `NAMESPACE_NAME` with the namespace where the app manager was installed.
 
     **Example output:**
 
@@ -61,8 +61,10 @@ To deploy the application:
 1. Run the following command to start the admin console again:
 
    ```
-   kubectl kots admin-console --namespace cli-tutorial
+   kubectl kots admin-console --namespace NAMESPACE_NAME
    ```
+   Replace `NAMESPACE_NAME` with the namespace where the app manager was installed.
+
 ## Next Step
 
 Continue to [Step 8: Create a New Version](tutorial-cli-create-new-version) to make a change to one of the manifest files for the `cli-tutorial` application, then use the replicated CLI to create and promote a new release.
