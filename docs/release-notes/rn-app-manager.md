@@ -10,10 +10,8 @@ Released on November 18, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 
-### New Features {#new-features-1-91-1}
-* Standardize and redesign Snapshots UI.
-
 ### Improvements {#improvements-1-91-1}
+* Standardize and redesign Snapshots UI.
 * Updates the schemahero image to v0.13.8 to resolve CVE-2022-32149 with high severity.
 * Updates the kotsadm-migrations base image to `debian:bullseye` to resolve CVE-2022-29458 with high severity.
 * Updates the kurl-proxy base image to `debian:bullseye-slim` to resolve CVE-2022-29458 with high severity.
