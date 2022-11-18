@@ -4,6 +4,29 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.91.1
+
+Released on November 18, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
+
+### New Features {#new-features-1-91-1}
+* Standardize and redesign Snapshots UI.
+
+### Improvements {#improvements-1-91-1}
+* Updates the schemahero image to v0.13.8 to resolve CVE-2022-32149 with high severity.
+* Updates the kotsadm-migrations base image to `debian:bullseye` to resolve CVE-2022-29458 with high severity.
+* Updates the kurl-proxy base image to `debian:bullseye-slim` to resolve CVE-2022-29458 with high severity.
+* Update github.com/mholt/archiver mod to v3.5.1 to fix medium CVE-2019-10743.
+* Updates the replicated/local-volume-provider image to v0.4.1 to resolve CVE-2022-29458 with high severity.
+* Updates the Helm dependency from 3.9.0 to 3.9.4 to resolve CVE-2022-36055 with medium severity.
+
+### Bug Fixes {#bug-fixes-1-91-1}
+* Fixes a bug that could result in `invalid status code from registry 400` error when pushing images from airgap bundle into a private registry.
+* Fixes an issue where configuring snapshot schedules in Firefox didn't work.
+* fixes an issue where installing or upgrading KOTS was failing for GKE Autopilot clusters.
+* Fixes an issue where existing cluster snapshot onboarding flow does not work when using the local volume provider plugin.
+
 ## 1.91.0
 
 Released on November 14, 2022
