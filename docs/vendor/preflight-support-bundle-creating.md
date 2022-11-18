@@ -40,13 +40,14 @@ Collectors identify what data to collect for analysis for preflight checks and s
 Redactors censor sensitive customer information from the data gathered by the collectors, before the preflight checks and support bundles analyze the data. By default, the following information is redacted:
 
 - Passwords
-- Tokens
-- AWS secrets
-- IP addresses
+- API token environment variables in JSON
+- AWS credentials
 - Database connection strings
 - URLs that include usernames and passwords
 
 This functionality cannot be disabled in the Replicated app manager. You can add custom redactors to support bundles only.
+
+For more detail on what information the default redactors detect, see the [Redact](https://troubleshoot.sh/docs/redact/) section in the Troubleshoot documentation.
 
 ### Analyzers
 Analyzers use the non-redacted data from the collectors to identify issues. The outcomes that you specify are displayed to customers.
