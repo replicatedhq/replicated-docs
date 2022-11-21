@@ -191,6 +191,7 @@ const sidebars = {
               },
               'vendor/releases-promoting',
               'vendor/releases-updating',
+              'vendor/releases-configvalues',
               {
                 type: 'category',
                 label: 'Integrating with CI/CD',
