@@ -5,6 +5,8 @@ By default, there are 3 release channels: Stable, Beta and Unstable. When you fi
 You can delete, edit, or create new channels at any time.
 Assign a customer to one of these channels. You can change the channel assigned to the customer later at any time.
 
+Most Replicated vendors [integrate channels with their CI/CD pipelines](https://docs.replicated.com/vendor/repository-workflow-and-tagging-releases) for development and a more automated release process.
+
 The channels Replicated creates by default are commonly used for:
 
 ## Unstable
