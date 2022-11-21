@@ -21,25 +21,31 @@ When starting, the admin console automatically installs the license file provide
 
 ### Define Application Configuration Values
 
-Many applications need configuration. You can supply the configuration values at installation time using the `--config-values` flag.
+Many applications need configuration. You supply the configuration values at installation time by creating using the `--config-values` flag.
 
-To do this, create a local YAML file that contains all of the configuration values.
+To do this, create a local ConfigValues YAML file that contains all of the configuration values. Your application vendor provides details about the required and optional fields to include in the ConfigValues file.
 
-For a template to start from, Replicated recommends that you use `kubectl kots download --decrypt-password-values` from an already running instance of the application.
-
-When the app manager downloads the application from the cluster using this command, a file will be written to `upstream/userdata/config.yaml`.
-
-This file will be:
+The following is an example of a ConfigValues file:
 
 ```yaml
 apiVersion: kots.io/v1beta1
 kind: ConfigValues
-...
+spec:
+  values:
+    config_option_name_text:
+      default: "Example default value"
+      value: "Example user-provided value"
+    config_option_name_boolean:
+      default: true
+      value: false
 ```
 
+Alternatively, if you have access to an already installed instance of the application, you can also download the ConfigValues file for the installed instance. `kubectl kots download --decrypt-password-values` from an already running instance of the application.
 All password type items will be decrypted and the value will be stored in `valuePlaintext`.
 All non-password type config items will have their value stored in `value`.
 When this file is uploaded, any `valuePlaintext` will be re-encrypted if the matching config item is a type password.
+
+The app manager downloads the application file from the cluster and writes the ConfigValues file to `upstream/userdata/config.yaml`.
 
 ### Pass preflight checks
 
