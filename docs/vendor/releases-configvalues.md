@@ -1,3 +1,5 @@
+import ConfigValuesExample from "../partials/configValues/_configValuesExample.mdx"
+
 # Downloading the ConfigValues File
 
 This topic describes how to access and download the ConfigValues file for a release. The ConfigValues file is required to configure and install an application using the kots CLI.
@@ -10,25 +12,14 @@ The `upstream` directory includes the manifest files that you created and saved 
 
 The application configuration data is saved in the `userdata` subdirectory in a `config.yaml` manifest file, which has `kind: ConfigValues` and `apiVersion: kots.io/v1beta1`.
 
-The ConfigValues file has the following format:
+The following is an example of a ConfigValues file:
 
-```yaml
-apiVersion: kots.io/v1beta1
-kind: ConfigValues
-spec:
-  values:
-    config_option_name_text:
-      default: "Example default value"
-      value: "Example user-provided value"
-    config_option_name_boolean:
-      default: true
-      value: false
-```
+<ConfigValuesExample/>
 
 As shown in the example above, the ConfigValues file includes the following:
 * Each of the custom configuration fields that you defined in the Config custom resource
 * The default values for each field, if applicable
-* The values provided by the user for each field
+* The user-supplied configuration value for each field
 
 For more information about the data in the `upstream`, `base`, `overlays`, and `skippedFiles` directories, see [About the Directory Structure](/enterprise/updating-patching-with-kustomize#about-the-directory-structure) in _Patching with Kustomize_.
 
@@ -55,7 +46,7 @@ To download the ConfigValues file for your application:
     * `APP_NAMESPACE` with the namespace on the cluster where you installed your application.
     * `APP_SLUG` with the slug of the application.
 
-  The kots CLI downloads your application files from the cluster. The output of this command includes the location where the kots CLI downloaded the files in your local directory.
+  The app manager downloads your application files from the cluster. The output of this command includes the location where the kots CLI downloaded the files in your local directory.
 
 1. In your local directory, navigate to the folder where the application manifest files are downloaded.
 
