@@ -1,6 +1,6 @@
 # Creating and Editing Channels
 
-There are three default channels that can be edited or deleted. You can also add custom channels.
+There are three default channels that can be edited or archived. You can also add custom channels.
 
 The default channels are:
 * **Stable**: The Stable channel is intended for production installations.
@@ -38,7 +38,7 @@ To edit an existing channel:
 
 1. Edit the fields and click **Save**.
 
-## Delete a Channel
+## Archive a Channel
 
 You can archive an existing channel to prevent any new releases from being promoted to the channel.
 
@@ -52,9 +52,9 @@ Assign customers to a different channel and set a different channel as the defau
 
 To archive a channel with the vendor portal or the replicated CLI:
 
-* **Vendor portal**: In the vendor portal, go to the **Channels** page and click the trashcan icon in the top right corner of the card for the channel that you want to delete.
+* **Vendor portal**: In the vendor portal, go to the **Channels** page and click the trash can icon in the top right corner of the card for the channel that you want to archive.
 * **replicated CLI**:
-  1. Run the following command to find the ID for the channel that you want to delete:
+  1. Run the following command to find the ID for the channel that you want to archive:
      ```
      replicated channel ls
      ```
@@ -64,7 +64,7 @@ To archive a channel with the vendor portal or the replicated CLI:
      ```
      replicated channel rm CHANNEL_ID
      ```
-     Replace `CHANNEL_ID` with the ID for the channel.
+     Replace `CHANNEL_ID` with the channel ID that you retrieved in the previous step.
 
      For more information, see [channel delete](/reference/replicated-cli-channel-delete) in the replicated CLI documentation.
 
