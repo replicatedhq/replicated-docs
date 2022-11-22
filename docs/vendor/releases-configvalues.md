@@ -25,7 +25,7 @@ To install your application with the kots CLI, users must define their applicati
 
 ## Download the ConfigValues File
 
-To allow your users to automate installation using the kots CLI, Replicated recommends that you provide a template or example of the ConfigValues file for your users to edit as needed. You can generate a template to share with your users by downloading the ConfigValues file for an installed instance of the application.
+The ConfigValues file is required to configure and install an application using the kots CLI. To allow your users to install your application with the kots CLI, Replicated recommends that you provide a template or example of the ConfigValues file for your users to edit as needed. You can generate a template to share with your users by downloading the ConfigValues file for an installed instance of the application.
 
 The app manager reads the ConfigValues file to configure the application during installation.
 
