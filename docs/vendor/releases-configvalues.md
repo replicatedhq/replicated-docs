@@ -21,13 +21,13 @@ As shown in the example above, the ConfigValues file includes the following:
 * The default values for each field, if applicable
 * The user-supplied configuration value for each field
 
-To install your application with the kots CLI, users must define their application configuration values in a ConfigValues file, then pass the ConfigValues file to the app manager with the `--config-values` flag. For more information about how users define a ConfigValues file to install with the kots CLI, see [Using Automation to Install on an Existing Cluster](/enterprise/installing-existing-cluster-automation) in the _Enterprise_ section.
+To install your application with the kots CLI, users must define their application configuration values in a ConfigValues file, then pass the ConfigValues file to the app manager with the `--config-values` flag. The app manager reads the ConfigValues file to configure the application during installation.
+
+For more information about how users define a ConfigValues file to install with the kots CLI, see [Using Automation to Install on an Existing Cluster](/enterprise/installing-existing-cluster-automation) in the _Enterprise_ section.
 
 ## Download the ConfigValues File
 
 The ConfigValues file is required to configure and install an application using the kots CLI. To allow your users to install your application with the kots CLI, Replicated recommends that you provide a template or example of the ConfigValues file for your users to edit as needed. You can generate a template to share with your users by downloading the ConfigValues file for an installed instance of the application.
-
-The app manager reads the ConfigValues file to configure the application during installation.
 
 To download the ConfigValues file for your application:
 
