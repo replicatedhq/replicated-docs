@@ -6,7 +6,9 @@ Alternatively, you can generate a support bundle using the CLI, which can be hel
 
 ## Generate a Bundle using the Admin Console
 
-1. From the admin console, select the Troubleshoot tab.
+To generate a support bundle in the admin console:
+
+1. Log in to the admin console and go to the **Troubleshoot** tab.
 
   ![Troubleshoot](/images/troubleshoot.png)
 
@@ -75,16 +77,25 @@ To install the support-bundle plugin manually:
 
 ### Generate a Bundle on a Running Cluster
 
-If the admin console is running and the application is installed, run the following command to generate a support bundle that includes customizations provided by your vendor:
+If the admin console is running and the application is installed, log in to the admin console to get the CLI command for generating a support bundle.
+
+To generate a support bundle on a running cluster with the CLI:
+
+1. Log in to the admin console and go to the **Troubleshoot** tab.
+
+1. On the Troubleshoot page, at the bottom of the Support Bundles section, click the **If you'd prefer, click here to get a command to manually generate a support bundle** link to get the command to generate a support bundle.
+
+  The command includes customizations provided by your application vendor.
+
+1. Run the command provided in the admin console to generate a support bundle:
 
   ```
-  kubectl support-bundle secret/NAMESPACE/kotsadm-APP_SLUG-supportbundle
+  kubectl support-bundle secret/NAMESPACE/kotsadm-APP_SLUG-supportbundle --redactors=configmap/NAMESPACE/kotsadm-redact-spec/redact-spec,configmap/NAMESPACE/kotsadm-APP_SLUG-redact-spec/redact-spec
   ```
 
-Replace:
-
-- NAMESPACE with the name of the namespace
-- APP_SLUG with the application slug
+  Replace:
+  - `NAMESPACE` with the name of the namespace.
+  - `APP_SLUG` with the unique application slug.
 
 ### Generate a Host Support Bundle
 
