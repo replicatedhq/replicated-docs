@@ -17,19 +17,15 @@ The following is an example of a ConfigValues file:
 <ConfigValuesExample/>
 
 As shown in the example above, the ConfigValues file includes the following:
-* Each of the custom configuration fields that you defined in the Config custom resource
+* Each of the custom configuration fields that you defined in the Config custom resource. See [Config](/reference/custom-resource-config) in _Reference_.
 * The default values for each field, if applicable
 * The user-supplied configuration value for each field
 
-For more information about the data in the `upstream`, `base`, `overlays`, and `skippedFiles` directories, see [About the Directory Structure](/enterprise/updating-patching-with-kustomize#about-the-directory-structure) in _Patching with Kustomize_.
-
-For more information about defining application configuration fields in the Config custom resource, see [Config](/reference/custom-resource-config) in _Reference_.
+To install your application with the kots CLI, users must define their application configuration values in a ConfigValues file, then pass the ConfigValues file to the app manager with the `--config-values` flag. For more information about how users define a ConfigValues file to install with the kots CLI, see [Using Automation to Install on an Existing Cluster](/enterprise/installing-existing-cluster-automation) in the _Enterprise_ section.
 
 ## Download the ConfigValues File
 
-When a user installs your application with the app manager, they can configure the application by providing values in the admin console Config page or by defining a ConfigValues file.
-
-To allow your users to automate installation using the kots CLI, Replicated recommends that you provide a template or example of the ConfigValues file for your users to edit as needed. You can generate a template to share with your users by downloading the ConfigValues for an installed instance of the application.
+To allow your users to automate installation using the kots CLI, Replicated recommends that you provide a template or example of the ConfigValues file for your users to edit as needed. You can generate a template to share with your users by downloading the ConfigValues file for an installed instance of the application.
 
 The app manager reads the ConfigValues file to configure the application during installation.
 
@@ -46,8 +42,8 @@ To download the ConfigValues file for your application:
     * `APP_NAMESPACE` with the namespace on the cluster where you installed your application.
     * `APP_SLUG` with the slug of the application.
 
-  The app manager downloads your application files from the cluster. The output of this command includes the location where the kots CLI downloaded the files in your local directory.
+  The app manager downloads your application files from the cluster. The output of this command includes the location where the app manager downloaded the files in your local directory.
 
-1. In your local directory, navigate to the folder where the application manifest files are downloaded.
+1. In your local directory, navigate to the folder where the app manager downloaded the files.
 
-1. Open the `upstream/userdata/config.yaml` file in a text editor. Edit as necessary to create a template for your users.
+1. Open the `upstream/userdata/config.yaml` file in a text editor. Use the contents of the ConfigValues file to create a template for your users.
