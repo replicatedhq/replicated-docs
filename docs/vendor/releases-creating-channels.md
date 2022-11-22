@@ -21,8 +21,8 @@ To create a channel:
   ![Create Channel](/images/channels-create.png)
 
 1. Enter a name and description for the channel.
-1. (Optional) To enable semantic versioning on the channel, turn on **Enable semantic versioning**.
-1. (Optional) To enable an air gap bundle format that supports image digests and deduplication of image layers, turn on **Enable new air gap bundle format**. 
+1. (Optional) To enable semantic versioning on the channel, turn on **Enable semantic versioning**. For more information, see [Enabling Semantic Versioning](releases-semantic-versioning).
+1. (Optional) To enable an air gap bundle format that supports image digests and deduplication of image layers, turn on **Enable new air gap bundle format**. For more information, see [Using Image Tags and Digests](/vendor/packaging-private-images#using-image-tags-and-digests) in _Connecting to an Image Registry_.
 1. Click **Create Channel**.
 
 ## Edit a Channel
