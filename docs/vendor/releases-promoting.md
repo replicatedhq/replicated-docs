@@ -1,19 +1,16 @@
 # Promoting and Editing Releases
 
-After a release is ready to be installed, the release can be promoted to one or more release channels.
+This topic describes how to promote releases, including information about release channels and how to edit the properties of promoted releases.
 
-Every Replicated license points to a release channel.
-When a license is installed, it pulls down and installs the release that is currently at the top of its channel.
-We recommend creating customer licenses on the Stable channel, and only promoting releases to Stable that are ready for all customers to install.
+## About Promoting Releases
 
-After an application is installed, the active instance can be updated by promoting a release to the channel that instance is licensed to (likely Stable).
+After you save a release, you can promote it to any of your release channels. While you are testing and developing an application release, Replicated recommends that you promote to a channel that does not have any customers assigned, such as the default Unstable channel. When you are ready to share your application with customers, you can then promote to a channel where customers are assigned, such as the default Beta or Stable channels.
 
-Each instance periodically checks for new releases. When a new release is found, the Replicated installation displays a button that allows end customers managing the instance to read the release notes and install the update. (Customers can also configure automatic updates for online environments.)
-A license only checks its own release channel.
+Every customer license file that you create in the Replicated vendor portal is assigned to a channel. When a customer installs your application using their license file, the Replicated app manager installs the latest release that you promoted to the assigned channel. Each time you promote a new release to a channel, customers assigned to that channel can update their installed application instance to the new release version.
+
+For more information about working with release channels, see [About Release Channels](releases-about-channels).
 
 ## Promote a Release
-
-The YAML files in a release are not editable after the release is promoted to a channel. However, the release properties, including release notes, the version label, and the required status, can be edited on the Release History page. For more information, see [Edit Release Properties](#edit) below.
 
 To promote a release:
 
@@ -43,14 +40,14 @@ To promote a release:
 
 ## Edit Release Properties {#edit}
 
-After you save and promote a release, you can edit the properties of the release from the vendor portal Channels page.
+You cannot edit the YAML files in a release after the release is promoted to a channel. However, you can edit the release properties, including release notes, the version label, and the required status, from the Release History page in the vendor portal.
 
 To edit release properties:
 
 1. Log in to the vendor portal and click **Channels**.
 1. On the Channels page, in the Latest release section, click **Release history**.
 
-   The Release History page lists all releases promoted to the channel. From the Release History page, you can view the installation commands and YAML files, build and download the air gap bundle, and edit the release properties for each promoted release.
+   The Release History page lists all releases previously promoted to the channel.
 
 1. On the Release History page, click the **Edit release** icon for the release version that you want to edit.
 1. Edit one or more of the properties for the release.
