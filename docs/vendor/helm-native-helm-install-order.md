@@ -48,7 +48,7 @@ To add a `weight` to native Helm charts:
      helmVersion: v3
 
      useHelmInstall: true
-     weight: "1"
+     weight: 1
 
      values:
        ...
