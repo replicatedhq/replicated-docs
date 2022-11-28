@@ -53,12 +53,7 @@ To edit release properties:
 1. Edit one or more of the properties for the release.
 1. Click **Update Release**.
 
-
-## Next Steps
-
-[Creating customers and downloading licenses](releases-creating-customer)
-
 ## Related Topics
 
-* [About Releases](releases-understanding)
+* [Creating a Customer](releases-creating-customer)
 * [How to Package and Distribute a Production Application](distributing-workflow)

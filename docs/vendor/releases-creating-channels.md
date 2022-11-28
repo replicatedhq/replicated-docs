@@ -68,10 +68,6 @@ To archive a channel with the vendor portal or the replicated CLI:
 
      For more information, see [channel delete](/reference/replicated-cli-channel-delete) in the replicated CLI documentation.
 
-## Next Steps
-
-[Creating a release](releases-creating-releases)
-
 ## Related Topic
 
 [How to Package and Distribute an Application](distributing-workflow)
