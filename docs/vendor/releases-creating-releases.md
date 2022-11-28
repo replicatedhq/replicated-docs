@@ -1,4 +1,4 @@
-# Creating Releases
+# Creating a Release
 
 You can use the Replicated vendor portal to create and release versions of your application to various release channels. The vendor portal hosts a built-in YAML editor and linter to help you write and validate manifest files.
 
