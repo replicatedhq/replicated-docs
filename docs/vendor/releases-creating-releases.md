@@ -1,12 +1,10 @@
-# Creating a Release
+# Creating Releases
 
 You can use the Replicated vendor portal to create and release versions of your application to various release channels. The vendor portal hosts a built-in YAML editor and linter to help you write and validate manifest files.
 
 Alternatively, you can use the replicated CLI and API to automate releases. For more information about using the CLI, see [Installing the replicated CLI](../reference/replicated-cli-installing).
 
 Replicated lets you add custom resources to your releases, which are packaged as part of the application but not deployed to the cluster. When included, custom resources are consumed by the app manager, the admin console, or by other kubectl plugins to control the application experience. For more information about the custom resources, see [About Custom Resources](../reference/custom-resource-about).
-
-We recommend that you bookmark the vendor portal because it is used to manage and deploy application releases.
 
 To create a release:
 
@@ -51,4 +49,4 @@ To create a release:
 
 ## Next Steps
 
-[Promoting releases](releases-promoting)
+[Promoting and Editing Releases](releases-promoting)

@@ -1,4 +1,4 @@
-# Promoting Releases
+# Promoting and Editing Releases
 
 After a release is ready to be installed, the release can be promoted to one or more release channels.
 
@@ -13,7 +13,7 @@ A license only checks its own release channel.
 
 ## Promote a Release
 
-Releases are not editable after being promoted to a channel. However, release notes, the version label, and the required status can be edited by visiting the channel’s history.
+The YAML files in a release are not editable after the release is promoted to a channel. However, the release properties, including release notes, the version label, and the required status, can be edited on the Release History page. For more information, see [Edit Release Properties](#edit) below.
 
 To promote a release:
 
@@ -40,6 +40,21 @@ To promote a release:
     * **Release notes**: Add detailed release notes. The release notes support markdown and are shown to your customer.
 
 1. Click **Promote**.
+
+## Edit Release Properties {#edit}
+
+After you save and promote a release, you can edit the properties of the release from the vendor portal Channels page.
+
+To edit release properties:
+
+1. Log in to the vendor portal and click **Channels**.
+1. On the Channels page, in the Latest release section, click **Release history**.
+
+   The Release History page lists all releases promoted to the channel. From the Release History page, you can view the installation commands and YAML files, build and download the air gap bundle, and edit the release properties for each promoted release.
+
+1. On the Release History page, click the **Edit release** icon for the release version that you want to edit.
+1. Edit one or more of the properties for the release.
+1. Click **Update Release**.
 
 
 ## Next Steps
