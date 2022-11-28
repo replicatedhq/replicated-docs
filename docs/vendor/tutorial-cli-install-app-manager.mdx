@@ -48,15 +48,19 @@ To install the app manager in your Kubernetes cluster:
   ```
   curl -fsSL https://kots.io/install | bash
   kubectl kots install cli-tutorial/unstable \
-  --license-file ./Desktop/Some-Big-Bank-cli-tutorial-raccoon-license.yaml \
+  --license-file ./LICENSE_YAML \
   --shared-password PASSWORD \
   --namespace NAMESPACE_NAME
+  --config-values ./CONFIGVALUES_YAML \
+  --no-port-forward
   ```
 
   Replace:
 
+    - LICENSE_YAML with the local path to your license file
     - PASSWORD with a password that will be used to access the admin console.
     - NAMESPACE_NAME with a name for the namespace where the app manager will be installed. Replicated recommends using `default` for this value.
+    - CONFIGVALUES_YAML with the local path to the ConfigValues YAML file that you created in the previous step.
 
   When the admin console is ready, the script prints the `https://localhost:8800` URL where you can access the admin console and the `http://localhost:8888` URL where you can access the application.
 
@@ -76,6 +80,10 @@ To install the app manager in your Kubernetes cluster:
   • Go to http://localhost:8888 to access the application
    ```
 
+   :::note
+   If you enable port forwarding, the kots CLI output includes the URLs where you can access the application and the admin console. For more information about each of the flags for the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
+   :::
+   
 ## Next Step
 
 Continue to [Step 7: Edit the Config Screen for the Application](tutorial-cli-deploy-app) to log in to the admin console and make changes to the Config screen.
