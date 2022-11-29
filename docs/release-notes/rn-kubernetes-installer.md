@@ -15,7 +15,7 @@ Released on November 29, 2022
 * Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) version 2.6.5-20221122 to address the following high and critical severity CVEs: CVE-2022-42915, CVE-2022-42915, CVE-2022-42916, CVE-2022-42916.
 
 ### Improvements {#improvements-v2022-11-29-0}
-* Binaries installed by kURL into /use/local/bin now are owned by root.
+* Binaries installed by kURL into /use/local/bin are now owned by root.
 * Containerd add-on versions are now shipped with the respective supported runc version. Containerd addon versions 1.6.4 and later are built with runc version `v1.1.4` instead of `v1.0.0-rc95`.
 
 ### Bug Fixes {#bug-fixes-v2022-11-29-0}
