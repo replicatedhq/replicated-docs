@@ -4,6 +4,26 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2022.11.29-0
+
+Released on November 29, 2022
+
+### New Features {#new-features-v2022-11-29-0}
+* Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.12.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.10.
+
+### Improvements {#improvements-v2022-11-29-0}
+* Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.8.1-20221122 to address the critical CVEs.
+* (CVE-2022-42915, CVE-2022-42915) and the high CVEs (CVE-2022-42916, CVE-2022-42916).
+* Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) version 2.6.5-20221122 to address the critical CVEs.
+* (CVE-2022-42915, CVE-2022-42915) and the high CVEs (CVE-2022-42916, CVE-2022-42916).
+* Binaries installed by kURL into /use/local/bin now are owned by root to ensure security concerns.
+
+### Bug Fixes {#bug-fixes-v2022-11-29-0}
+* Fixes an issue that causes Rook add-on version 1.0.4-14.2.21 to fail to install on Oracle Linux 7 with host dependency resolution errors.
+* Fixes an issue that causes rook upgrades to unnecessarily pause with the message "failed to wait for Rook" for an extended period of time before proceeding with the upgrade.
+* Fixes an issue that leaves the EKCO operator scaled down to 0 replicas when upgrading a cluster with Rook add-on versions 1.8.10 and 1.9.12.
+
 ## v2022.11.16-1
 
 Released on November 16, 2022
