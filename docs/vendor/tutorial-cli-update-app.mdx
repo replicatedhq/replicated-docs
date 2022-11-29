@@ -4,21 +4,23 @@ To test the new release that you promoted, return to the Replicated admin consol
 
 To update the application:
 
-1. In a browser, open the admin console at `https://localhost:8800`.
+1. Access the admin console using `https://localhost:8800` if the installation script is still running. Otherwise, run the following command to access the admin console:
 
-   :::note
-   You can access the admin console as long as the installation script is running. If you press Ctrl+C to exit, run `kubectl kots admin-console --namespace cli-tutorial` to access the admin console again.
-   :::
+  ```bash
+  kubectl kots admin-console --namespace NAMESPACE
+  ```
+
+  Replace NAMESPACE with the namespace where the app manager is installed.
 
 1. Go to the Version history page, and click **Check for update**.
 
-   ![admin console verson history page](/images/tutorials/tutorial-check-for-update.png)
+   ![admin console version history page](/images/tutorials/tutorial-check-for-update.png)
 
    The admin console loads the new release that you promoted.
 
 1. Click **Deploy**. In the dialog, click **Yes, deploy** to deploy the new version.
 
-   ![admin console verson history page with new version](/images/tutorials/tutorial-deploy-app.png)
+   ![admin console version history page with new version](/images/tutorials/tutorial-deploy-app.png)
 
 1. After the admin console deploys the new version, go to the **Config** page where the **Another Text Example** field that you added is displayed.
 
@@ -36,14 +38,14 @@ To update the application:
 
 1. On the Version history page, click **Deploy** next to the latest version to deploy the configuration change.
 
-   ![admin console verson history page with new version](/images/tutorials/tutorial-deploy-config-change.png)
+   ![admin console version history page with new version](/images/tutorials/tutorial-deploy-config-change.png)
 
 1. After the admin console deploys the configuration change, go to the **Dashboard** page and click **Open App**. The application displays the text that you added to the field.
 
    ![web page with text from the new configuration field](/images/tutorials/tutorial-updated-app.png)
 
    :::note
-   If you do not see the new text, click Refresh in your browser.
+   If you do not see the new text, refresh your browser.
    :::
 
 ## Next Steps
@@ -55,4 +57,4 @@ Congratulations! As part of this tutorial, you:
 * Promoted a new release with your changes
 * Used the admin console to update the application to the latest version
 
-As a next step, you can continue to iterate on your application, using `replicated release create --auto` to promote each new release. For ideas on features and funcionality to add to your sample application, see [Iterating Your Releases](/vendor/distributing-workflow#iterating-your-releases) in _How to Package and Distribute a Production Application_.
+As a next step, you can continue to iterate on your application, using `replicated release create --auto` to promote each new release. For ideas on features and functionality to add to your sample application, see [Iterating Your Releases](/vendor/distributing-workflow#iterating-your-releases) in _How to Package and Distribute a Production Application_.

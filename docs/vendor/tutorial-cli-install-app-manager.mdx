@@ -46,19 +46,18 @@ To install the app manager and deploy the application:
 1. Run the existing cluster installation script from above with the following changes to deploy the admin console and application at the same time you install the app manager. In this step, the license file uploads and the preflight checks run as part of the deployment:
 
   ```
-  curl -fsSL https://kots.io/install | bash
+  curl https://kots.io/install | bash
   kubectl kots install cli-tutorial/unstable \
   --license-file ./LICENSE_YAML \
   --shared-password PASSWORD \
-  --namespace NAMESPACE_NAME
-  --no-port-forward
+  --namespace NAMESPACE \
   ```
 
   Replace:
 
     - LICENSE_YAML with the local path to your license file
     - PASSWORD with a password that will be used to access the admin console.
-    - NAMESPACE_NAME with a name for the namespace where the app manager will be installed. Replicated recommends using `default` for this value.
+    - NAMESPACE with the namespace where the app manager will be installed.
 
   When the admin console is ready, the script prints the `https://localhost:8800` URL where you can access the admin console and the `http://localhost:8888` URL where you can access the application. You will use this information in [Step 7: Edit the Config Screen](tutorial-cli-app-deploy).
 
@@ -78,9 +77,21 @@ To install the app manager and deploy the application:
   • Go to http://localhost:8888 to access the application
    ```
 
- :::note
- If you enable port forwarding, the kots CLI output includes an IP address as part of the URLs to access the application and the admin console. For more information about each of the flags for the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
- :::
+1. Verify that the pods that are running:
+
+  ```bash
+  kubectl get pods
+  ```
+
+  **Example output:**
+
+  ```NAME                       READY   STATUS    RESTARTS   AGE
+  kotsadm-7ccc8586b8-n7vf6   1/1     Running   0          12m
+  kotsadm-minio-0            1/1     Running   0          17m
+  kotsadm-rqlite-0           1/1     Running   0          17m
+  nginx-688f4b5d44-8s5v7     1/1     Running   0          11m
+  ```
+  The Replicated admin console and application are running.
 
 ## Next Step
 
