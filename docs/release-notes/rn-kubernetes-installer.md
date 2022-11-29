@@ -18,7 +18,7 @@ Released on November 29, 2022
 
 ### Improvements {#improvements-v2022-11-29-0}
 * Binaries installed by kURL into /use/local/bin now are owned by root.
-* Containerd add-on versions will now be shipped with the respective supported runc version. Containerd addon versions >= 1.6.4 will be built with runc version `v1.1.4` instead of `v1.0.0-rc95`.
+* Containerd add-on versions are now shipped with the respective supported runc version. Containerd addon versions 1.6.4 and later are built with runc version `v1.1.4` instead of `v1.0.0-rc95`.
 
 ### Bug Fixes {#bug-fixes-v2022-11-29-0}
 * Fixes an issue that causes Rook add-on version 1.0.4-14.2.21 to fail to install on Oracle Linux 7 with host dependency resolution errors.
