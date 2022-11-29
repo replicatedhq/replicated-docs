@@ -20,7 +20,7 @@ Released on November 29, 2022
 
 ### Bug Fixes {#bug-fixes-v2022-11-29-0}
 * Fixes an issue that causes Rook add-on version 1.0.4-14.2.21 to fail to install on Oracle Linux 7 with host dependency resolution errors.
-* Fixes an issue that causes Rook upgrades to unnecessarily pause with the message "failed to wait for Rook" for an extended period of time before proceeding with the upgrade.
+* Fixes an issue that causes Rook upgrades to unnecessarily pause for an extended period of time, with the message "failed to wait for Rook", before proceeding with the upgrade.
 * Fixes an issue that leaves the EKCO operator scaled down to 0 replicas when upgrading a cluster with Rook add-on versions 1.8.10 and 1.9.12.
 
 ## v2022.11.16-1
