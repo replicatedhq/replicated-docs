@@ -1,6 +1,6 @@
 import ConfigValuesExample from "../partials/configValues/_configValuesExample.mdx"
 
-# Downloading ConfigValues Files
+# Downloading the ConfigValues File
 
 This topic describes how to access and download the ConfigValues file for an installed application instance so that you can share the file with your users.
 
@@ -31,14 +31,20 @@ To download the ConfigValues file for an application release:
 1. Run the following command to download the manifest files for the installed instance of the application:
 
     ```
-    kubectl kots download --namespace APP_NAMESPACE --slug APP_SLUG
+    kubectl kots download --namespace APP_NAMESPACE --slug APP_SLUG --decrypt-password-values
     ```
     Replace:
     * `APP_NAMESPACE` with the namespace on the cluster where you installed your application.
     * `APP_SLUG` with the slug of the application.
 
+    :::note
+    When you include `--decrypt-password-values`, all configuration items with `type: password` are decrypted and the value is stored in a `valuePlaintext` field in the ConfigValues file.
+
+    When you uploaded this ConfigValues file, any `valuePlaintext` is re-encrypted if the matching configuration item from the Config custom resource is `type: password`.
+    :::
+
     The app manager downloads your application files from the cluster. The output of this command includes the location in your local directory where the app manager downloaded the files.
 
 1. In your local directory, navigate to the location where the app manager downloaded the files and open the `upstream/userdata/config.yaml` file in a text editor.
 
-1. Copy and paste the contents of the `upstream/userdata/config.yaml` ConfigValues file to create an example for your users. 
+1. Copy and paste the contents of the `upstream/userdata/config.yaml` ConfigValues file to create an example for your users.
