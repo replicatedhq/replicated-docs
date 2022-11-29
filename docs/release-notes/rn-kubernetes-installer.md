@@ -11,13 +11,13 @@ Released on November 29, 2022
 ### New Features {#new-features-v2022-11-29-0}
 * Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.12.
 * Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.10.
-
-### Improvements {#improvements-v2022-11-29-0}
 * Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.8.1-20221122 to address the critical CVEs.
 * (CVE-2022-42915, CVE-2022-42915) and the high CVEs (CVE-2022-42916, CVE-2022-42916).
 * Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) version 2.6.5-20221122 to address the critical CVEs.
 * (CVE-2022-42915, CVE-2022-42915) and the high CVEs (CVE-2022-42916, CVE-2022-42916).
-* Binaries installed by kURL into /use/local/bin now are owned by root to ensure security concerns.
+
+### Improvements {#improvements-v2022-11-29-0}
+* Binaries installed by kURL into /use/local/bin now are owned by root.
 * Containerd add-on versions will now be shipped with the respective supported runc version. Containerd addon versions >= 1.6.4 will be built with runc version `v1.1.4` instead of `v1.0.0-rc95`.
 
 ### Bug Fixes {#bug-fixes-v2022-11-29-0}
