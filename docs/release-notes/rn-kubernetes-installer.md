@@ -18,10 +18,11 @@ Released on November 29, 2022
 * Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) version 2.6.5-20221122 to address the critical CVEs.
 * (CVE-2022-42915, CVE-2022-42915) and the high CVEs (CVE-2022-42916, CVE-2022-42916).
 * Binaries installed by kURL into /use/local/bin now are owned by root to ensure security concerns.
+* Containerd add-on versions will now be shipped with the respective supported runc version. Containerd addon versions >= 1.6.4 will be built with runc version `v1.1.4` instead of `v1.0.0-rc95`.
 
 ### Bug Fixes {#bug-fixes-v2022-11-29-0}
 * Fixes an issue that causes Rook add-on version 1.0.4-14.2.21 to fail to install on Oracle Linux 7 with host dependency resolution errors.
-* Fixes an issue that causes rook upgrades to unnecessarily pause with the message "failed to wait for Rook" for an extended period of time before proceeding with the upgrade.
+* Fixes an issue that causes Rook upgrades to unnecessarily pause with the message "failed to wait for Rook" for an extended period of time before proceeding with the upgrade.
 * Fixes an issue that leaves the EKCO operator scaled down to 0 replicas when upgrading a cluster with Rook add-on versions 1.8.10 and 1.9.12.
 
 ## v2022.11.16-1
