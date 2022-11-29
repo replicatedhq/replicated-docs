@@ -246,6 +246,7 @@ const sidebars = {
           type: 'category',
           label: 'Support and Troubleshooting',
           items: [
+            'vendor/support-inspecting-support-bundles',
             'vendor/support-submit-request',
             'vendor/support-host-support-bundles',
           ],
