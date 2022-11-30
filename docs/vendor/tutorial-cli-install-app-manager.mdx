@@ -1,10 +1,10 @@
-# Step 6: Install the App Manager
+# Step 6: Install the App Manager and Application
 
-The next step is to test the installation process for the application release that you promoted. Using the kots CLI, you can install the Replicated app manager and deploy the application in your Kubernetes cluster using just one command with some additional flags.
+The next step is to test the installation process for the application release that you promoted. Using the kots CLI, you will install the Replicated app manager and the sample application in your existing Kubernetes cluster.
 
 The _app manager_ is the Replicated component that allows your users to install, manage, and upgrade your application. Users can interact with the app manager through a user interface, called the Replicated admin console, or through a CLI, called the kots CLI.
 
-To install the app manager and deploy the application:
+To install the app manager and the application:
 
 1. Run the following command to get the installation commands for the Unstable channel, where you promoted the release for the `cli-tutorial` application:
 
@@ -43,7 +43,9 @@ To install the app manager and deploy the application:
 
 1. If you have not already, configure kubectl access to the cluster you provisioned as part of [Set Up the Environment](tutorial-cli-setup#set-up-the-environment). For more information about setting the context for kubectl, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
 
-1. Run the existing cluster installation script from above with the following changes to deploy the admin console and application at the same time you install the app manager. In this step, the license file uploads and the preflight checks run as part of the deployment:
+1. Run the existing cluster installation script with the following flags to automatically upload the license file and run the preflight checks at the same time you run the installation.
+
+  **Example:**
 
   ```
   curl https://kots.io/install | bash
@@ -55,16 +57,16 @@ To install the app manager and deploy the application:
 
   Replace:
 
-    - LICENSE_YAML with the local path to your license file
-    - PASSWORD with a password that will be used to access the admin console.
-    - NAMESPACE with the namespace where the app manager will be installed.
+    - `LICENSE_YAML` with the local path to your license file.
+    - `PASSWORD` with a password to access the admin console.
+    - `NAMESPACE` with the namespace where the app manager and application will be installed.
 
-  When the admin console is ready, the script prints the `https://localhost:8800` URL where you can access the admin console and the `http://localhost:8888` URL where you can access the application. You will use this information in [Step 7: Edit the Config Screen](tutorial-cli-app-deploy).
+  When the admin console is ready, the script prints the `https://localhost:8800` URL where you can access the admin console and the `http://localhost:8888` URL where you can access the application.
 
    **Example output**:
 
    ```
-  • Go to Deploying Admin Console
+  • Deploying Admin Console
     • Creating namespace ✓
     • Waiting for datastore to be ready ✓
   • Waiting for Admin Console to be ready ✓
@@ -77,11 +79,13 @@ To install the app manager and deploy the application:
   • Go to http://localhost:8888 to access the application
    ```
 
-1. Verify that the kotsadm and NGNIX pods are running:
+1. Verify that the Pods are running for the example NGNIX service and for kotsadm, which is the app manager:
 
   ```bash
-  kubectl get pods
+  kubectl get pods --namespace NAMESPACE
   ```
+
+  Replace `NAMESPACE` with the namespace where the app manager and application was installed.
 
   **Example output:**
 
@@ -94,4 +98,4 @@ To install the app manager and deploy the application:
 
 ## Next Step
 
-Continue to [Step 7: Edit the Config Screen for the Application](tutorial-cli-deploy-app) to log in to the admin console and make changes to the Config screen.
+Continue to [Step 7: Configure the Application](tutorial-cli-deploy-app) to log in to the admin console and make configuration changes.
