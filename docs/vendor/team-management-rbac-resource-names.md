@@ -58,9 +58,17 @@ Grants the holder permission to trigger airgap builds for the specified channel.
 
 Grants the holder permission to get an airgap bundle download URL for any release on the specified channel.
 
-### kots/app/[:appId]/installers
+### kots/app/[:appId]/installer/create
 
-Grants the holder permission to view and create Kubernetes installers. For more information, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
+Grants the holder permission to create Kubernetes installers. For more information, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
+
+### kots/app/[:appId]/installer/update
+
+Grants the holder permission to update Kubernetes installers. For more information, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
+
+### kots/app/[:appId]/installer/read
+
+Grants the holder permission to view Kubernetes installers. For more information, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
 
 ### kots/app/[:appId]/installer/promote
 
