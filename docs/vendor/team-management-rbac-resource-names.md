@@ -196,11 +196,11 @@ Grants the holder permission to create RBAC policies for the team.
 
 ### team/authentication/update
 
-Grants the holder permission to manage the following team authentication settings: multifactor authentication, Google authentication, Auto-join, and SAML authentication.
+Grants the holder permission to manage the following team authentication settings: Google authentication, Auto-join, and SAML authentication.
 
 ### team/authentication/read
 
-Grants the holder permission to read the following authentication settings: multifactor authentication, Google authentication, Auto-join, and SAML authentication.
+Grants the holder permission to read the following authentication settings: Google authentication, Auto-join, and SAML authentication.
 
 ### team/security/update
 
