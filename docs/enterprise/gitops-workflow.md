@@ -16,7 +16,7 @@ You can change your GitOps settings or disable a GitOps workflow at any time fro
 
 ## Limitations
 
-- Native Helm chart installations are not supported by the GitOps workflow.
+- The GitOps workflow is not supported for releases that use the native Helm chart installation method.
 
 - To enable pushing updates through the GitOps workflow, you must first follow the installation workflow for the application using the admin console or the kots CLI. If the preflight checks pass during installation, then the application is deployed.
 
