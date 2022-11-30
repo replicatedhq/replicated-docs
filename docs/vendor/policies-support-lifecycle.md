@@ -54,7 +54,7 @@ Replicated will provide support for products per our terms and services until th
     <td><a href="https://help.replicated.com/docs/ship/getting-started/overview/">Replicated Classic (Ship SDK)</a></td>
     <td>EOA</td>
     <td>2022-02-28</td>
-    <td>2022-12-31</td>
+    <td>2022-12-31&#42;</td>
   </tr>
   <tr>
     <td><a href="https://help.replicated.com/docs/swarm/getting-started/overview/">Replicated Classic (Swarm SDK)</a></td>
@@ -68,4 +68,4 @@ Replicated will provide support for products per our terms and services until th
 
 The information contained herein is believed to be accurate as of the date of publication, but updates and revisions may be posted periodically and without notice.
 
-Last modified November 11, 2022.
+Last modified November 30, 2022.
