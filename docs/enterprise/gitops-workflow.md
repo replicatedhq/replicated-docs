@@ -14,15 +14,17 @@ If you configure automatic updates for the application, any updates from your ve
 
 You can change your GitOps settings or disable a GitOps workflow at any time from the GitOps tab.
 
-## Limitation
+## Limitations
 
-To enable pushing updates through the GitOps workflow, you must first follow the installation workflow for the application using the admin console or the kots CLI. If the preflight checks pass during installation, then the application is deployed.
+- The GitOps workflow is not supported for releases that use the native Helm chart installation method.
 
-After you have completed the installation workflow, you can enable GitOps for all subsequent application updates. It is not required that the application deploy successfully to enable GitOps. For example, if the preflight checks fail during the installation workflow and the application is not deployed, you can still enable GitOps for subsequent application updates.
+- To enable pushing updates through the GitOps workflow, you must first follow the installation workflow for the application using the admin console or the kots CLI. If the preflight checks pass during installation, then the application is deployed.
 
-When you enable GitOps, the admin console sends all application updates, including the version that you initially installed before GitOps was enabled, to the repository that you specify.
+- After you have completed the installation workflow, you can enable GitOps for all subsequent application updates. It is not required that the application deploy successfully to enable GitOps. For example, if the preflight checks fail during the installation workflow and the application is not deployed, you can still enable GitOps for subsequent application updates.
 
-If your organization has security requirements that prevent you from completing the installation workflow for the application first with the admin console or kots CLI, you cannot enable GitOps.
+- When you enable GitOps, the admin console sends all application updates, including the version that you initially installed before GitOps was enabled, to the repository that you specify.
+
+- If your organization has security requirements that prevent you from completing the installation workflow for the application first with the admin console or kots CLI, you cannot enable GitOps.
 
 ## Prerequisites
 
