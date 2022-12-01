@@ -32,5 +32,5 @@ To inspect a support bundle:
   [View larger image](/images/support.png)
 
   :::note
-  The **Share with Replicated** button does not open a Support request. It is sometimes used when you are already interacting with a Replicated team member.
+  The **Share with Replicated** button does not open a Support request. You might be directed to use this option when you are already interacting with a Replicated team member.
   :::
