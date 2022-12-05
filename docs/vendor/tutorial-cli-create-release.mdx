@@ -6,7 +6,7 @@ By default, Replicated includes Unstable, Beta, and Stable release channels. The
 
 To create and promote a release to the Unstable channel:
 
-1. Run the following command to lint the application manifest files and ensure that there are no errors in the YAML:
+1. From the `replicated-cli-tutorial` directory, lint the application manifest files and ensure that there are no errors in the YAML:
 
   ```
   replicated release lint --yaml-dir=manifests
@@ -30,7 +30,7 @@ To create and promote a release to the Unstable channel:
 
   Initializing the project as a Git repository allows you to track your history. The replicated CLI also reads Git metadata to help with the generation of release metadata, such as version labels.
 
-1. Run the following command from the `replicated-cli-tutorial` directory to prepare a release with the default settings:
+1. From the `replicated-cli-tutorial` directory, create a release with the default settings:
 
   ```
   replicated release create --auto
@@ -55,7 +55,7 @@ To create and promote a release to the Unstable channel:
     Create with these properties? [Y/n]
   ```
 
-1. Type `y` and press Enter to confirm the prompt.
+1. Type `y` and press **Enter** to confirm the prompt.
 
   **Example output:**
 
@@ -68,7 +68,7 @@ To create and promote a release to the Unstable channel:
   ```
   The release is created and promoted to the Unstable channel.
 
-1. Run the following command to confirm that the release was promoted to the Unstable channel:
+1. Verify that the release was promoted to the Unstable channel:
 
   ```
   replicated release ls

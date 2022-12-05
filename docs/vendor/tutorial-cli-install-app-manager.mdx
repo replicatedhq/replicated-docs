@@ -1,12 +1,12 @@
-# Step 6: Install the App Manager
+# Step 6: Install the App Manager and Application
 
-Get the installation commands from the Unstable channel so that you can test the installation process for the application release that you promoted. The first step in installing and deploying the application in your Kubernetes cluster is to install the Replicated app manager.
+The next step is to test the installation process for the application release that you promoted. Using the kots CLI, you will install the Replicated app manager and the sample application in your existing Kubernetes cluster.
 
 The _app manager_ is the Replicated component that allows your users to install, manage, and upgrade your application. Users can interact with the app manager through a user interface, called the Replicated admin console, or through a CLI, called the kots CLI.
 
-To install the app manager in your Kubernetes cluster:
+To install the app manager and the application:
 
-1. Run the following command to get the installation commands for the Unstable channel, where you promoted the release for the `cli-tutorial` application:
+1. From the `replicated-cli-tutorial` directory, run the following command to get the installation commands for the Unstable channel, where you promoted the release for the `cli-tutorial` application:
 
     ```
     replicated channel inspect Unstable
@@ -41,39 +41,61 @@ To install the app manager in your Kubernetes cluster:
     * An _embedded_ cluster created by the Replicated Kubernetes installer
     * An air gap cluster that is not connected to the Internet
 
-1. If you have not already, configure kubectl access to the cluster you provisioned as part of [Set Up the Environment](tutorial-cli-setup#set-up-the-environment). For more information about configuring kubectl, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
+1. If you have not already, configure kubectl access to the cluster you provisioned as part of [Set Up the Environment](tutorial-cli-setup#set-up-the-environment). For more information about setting the context for kubectl, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
 
-1. Run the `EXISTING` installation script from above:
+1. Run the `EXISTING` installation script with the following flags to automatically upload the license file and run the preflight checks at the same time you run the installation.
 
-  **Example**
+  **Example:**
 
   ```
   curl -fsSL https://kots.io/install | bash
-  kubectl kots install cli-tutorial/unstable
+  kubectl kots install cli-tutorial/unstable \
+  --license-file ./LICENSE_YAML \
+  --shared-password PASSWORD \
+  --namespace NAMESPACE
   ```
 
-1. For `Enter installation path (leave blank for /usr/local/bin):`, press **Enter**.
+  Replace:
 
-1. For `Enter the namespace to deploy to:`, enter `cli-tutorial`.
+    - `LICENSE_YAML` with the local path to your license file.
+    - `PASSWORD` with a password to access the admin console.
+    - `NAMESPACE` with the namespace where the app manager and application will be installed.
 
-1. For `Enter a new password to be used for the Admin Console:`, provide a password to access the admin console. You use this password in a later step to access the admin console user interface and deploy the application.
-
-   When the admin console is ready, the script prints the `https://localhost:8800` URL where you can access the admin console.
+  When the admin console is ready, the script prints the `https://localhost:8800` URL where you can access the admin console and the `http://localhost:8888` URL where you can access the application.
 
    **Example output**:
 
    ```
-   Enter the namespace to deploy to: cli-tutorial
-    • Deploying Admin Console
-      • Creating namespace ✓
-      • Waiting for datastore to be ready ✓
-   Enter a new password to be used for the Admin Console: ••••••••
-      • Waiting for Admin Console to be ready ✓
+  • Deploying Admin Console
+    • Creating namespace ✓
+    • Waiting for datastore to be ready ✓
+  • Waiting for Admin Console to be ready ✓
+  • Waiting for installation to complete ✓
+  • Waiting for preflight checks to complete ✓
 
-      • Press Ctrl+C to exit
-      • Go to http://localhost:8800 to access the Admin Console
+  • Press Ctrl+C to exit
+  • Go to http://localhost:8800 to access the Admin Console
+
+  • Go to http://localhost:8888 to access the application
    ```
+
+1. Verify that the Pods are running for the example NGNIX service and for kotsadm, which is the app manager:
+
+  ```bash
+  kubectl get pods --namespace NAMESPACE
+  ```
+
+  Replace `NAMESPACE` with the namespace where the app manager and application was installed.
+
+  **Example output:**
+
+  ```NAME                       READY   STATUS    RESTARTS   AGE
+  kotsadm-7ccc8586b8-n7vf6   1/1     Running   0          12m
+  kotsadm-minio-0            1/1     Running   0          17m
+  kotsadm-rqlite-0           1/1     Running   0          17m
+  nginx-688f4b5d44-8s5v7     1/1     Running   0          11m
+  ```
 
 ## Next Step
 
-Continue to [Step 7: Deploy the Application](tutorial-cli-deploy-app) to log in to the admin console and deploy the application.
+Continue to [Step 7: Configure the Application](tutorial-cli-deploy-app) to log in to the admin console and make configuration changes.
