@@ -4,7 +4,7 @@ import CollabExistingUser from "../partials/collab-repo/_collab-existing-user.md
 
 # Managing Collab Repository Access
 
-Replicated's team performs support and other issue management via unique private repositories in the `replicated-collab` org in GitHub -- these are often referred to as "Collab Repositories". For more info about collab repos and how they're used, check out [Replicated Support Paths and Processes](https://community.replicated.com/t/replicated-vendor-support-paths-and-processes/850). This topic describes how to add GitHub users to these shared repositories automatically using the vendor portal. It also includes information about managing user roles in the collab repository using vendor portal role-based access control (RBAC) policies. 
+This topic describes how to add GitHub users to these shared repositories automatically using the vendor portal. It also includes information about managing user roles in the collab repository using vendor portal role-based access control (RBAC) policies. 
 
 ## Overview of Managing Collab Access {#overview}
 
