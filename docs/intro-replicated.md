@@ -12,9 +12,9 @@ Replicated includes components and features that make it easier for you to manag
 
 The following diagram shows the Replicated components as they relate to you as a vendor packaging your application, and the deployment to an existing cluster and a cluster provisioned by the Replicated Kubernetes installer on a VM.
 
-![What is Replicated?](/images/what-is-replicated.png)
+![What is Replicated?](/images/replicated-components-diagram.png)
 
-[View larger image](/images/what-is-replicated.png)
+[View larger image](/images/replicated-components-diagram.png)
 
 ### Vendor Portal
 
