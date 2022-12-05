@@ -1,116 +1,85 @@
+import ConfigValuesExample from "../partials/configValues/_configValuesExample.mdx"
+
 # Using Automation to Install on an Existing Cluster
 
-Starting with the Replicated app manager v1.15.0, it is possible to automate an application installation to an existing cluster in an online environment by providing a license file and the application configuration values when running `kots install`.
+This topic describes installing an application with the kots CLI in online and air gap environments.
 
-When these values are provided, they are written as ConfigMaps to the cluster, and the Replicated admin console finds these and processes them to complete the installation.
+## Installing in an Online Environment
 
-## Online Installation
+To install an application with the kots CLI in an online environment, run the following command:
 
-### Provide a License File
-
-Given a license file stored locally as `license.yaml`, you can run the following command to install the admin console to the `app-name` namespace:
-
-```shell
-kubectl kots install app-name \
-  --license-file ./license.yaml \
-  --shared-password <some value> \
-  --namespace app-name
+```
+kubectl kots install APP_NAME \
+  --namespace NAMESPACE \
+  --shared-password PASSWORD \
+  --license-file PATH_TO_LICENSE_FILE \
+  --config-values PATH_TO_CONFIGVALUES_FILE \
 ```
 
-When starting, the admin console automatically installs the license file provided.
+Replace:
+* `APP_NAME` with the name of the application. This is provided by your application vendor.
+* `NAMESPACE` with the namespace where you want the app manager to install the application.
+* `PASSWORD` with the shared password for accessing the admin console.
+* `PATH_TO_LICENSE_FILE` with the path in your local directory to your unique license YAML file. The admin console automatically installs the license file provided.
+* `PATH_TO_CONFIGVALUES_FILE` with the path in your local directory to the ConfigValues YAML file where your application configuration values are defined. For more information about the ConfigValues file, see [About the ConfigValues File](#config-values) below.
 
-### Define Application Configuration Values
+For more information about the required and optional flags for the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
 
-Many applications need configuration. You can supply the configuration values at installation time using the `--config-values` flag.
+## Installing in an Air Gap Environment
 
-To do this, create a local YAML file that contains all of the configuration values.
+To use the kots CLI to install in an air gap environment:
 
-For a template to start from, Replicated recommends that you use `kubectl kots download --decrypt-password-values` from an already running instance of the application.
+1. Push admin console images to a private registry using the  `kubectl kots admin-console push-images` command. For more information, see [Install in an Air Gapped Environment](installing-existing-cluster#air-gap) in _Installing on an Existing Cluster_.
 
-When the app manager downloads the application from the cluster using this command, a file will be written to `upstream/userdata/config.yaml`.
+1. Run the following command:
 
-This file will be:
+  ```
+  kubectl kots install APP_NAME \
+    --namespace APP_NAMESPACE \
+    --shared-password PASSWORD \
+    --license-file PATH_TO_LICENSE_FILE \
+    --config-values PATH_TO_CONFIGVALUES_FILE \
+    --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
+    --kotsadm-namespace ADMIN_CONSOLE_NAMESPACE \
+    --kotsadm-registry PRIVATE_REGISTRY_HOST \
+    --registry-username READ_WRITE_USERNAME \
+    --registry-password READ_WRITE_PASSWORD
+  ```
 
-```yaml
-apiVersion: kots.io/v1beta1
-kind: ConfigValues
-...
-```
+  Replace:
+    * `APP_NAME` with the name of the application. This is provided by your application vendor.
+    * `NAMESPACE` with the namespace where you want the app manager to install the application.
+    * `PASSWORD` with the shared password for accessing the admin console.
+    * `PATH_TO_LICENSE_FILE` with the path in your local directory to your unique license YAML file. The admin console automatically installs the license file provided.
+    * `PATH_TO_CONFIGVALUES_FILE` with the path in your local directory to the ConfigValues YAML file where your application configuration values are defined. For more information about the ConfigValues file, see [About the ConfigValues File](#config-values) below.
+    * `PATH_TO_AIRGAP_BUNDLE` with the path in your local directory to the `.airgap` bundle for the application. The air gap bundle is provided by your application vendor.
+    * `ADMIN_CONSOLE_NAMESPACE` with the namespace where you want the admin console to be installed.
+    * `PRIVATE_REGISTRY_HOST` with the hostname for the private image registry where you pushed the admin console images in the previous step.
+    * `READ_WRITE_USERNAME` and `READ_WRITE_PASSWORD` with credentials with read write permissions to the private image registry where you pushed the admin console images in the previous step.
 
-All password type items will be decrypted and the value will be stored in `valuePlaintext`.
-All non-password type config items will have their value stored in `value`.
-When this file is uploaded, any `valuePlaintext` will be re-encrypted if the matching config item is a type password.
+For more information about the required and optional flags for the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
 
-### Pass preflight checks
+## About the ConfigValues File {#config-values}
 
-The app manager runs preflight checks (conformance tests) against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application.
+You supply application configuration values by defining the values in a local ConfigValues YAML file. Then, you provide the file to the app manager when you run the `kots install` command using the `--config-values` flag.
 
-![Preflight Checks](/images/preflight-checks.png)
+The following is an example of a ConfigValues file:
 
-#### Resolve strict preflight checks
+<ConfigValuesExample/>
 
-When one or more strict preflight checks are present, the application deployment is blocked until these strict checks are run. Strict preflight checks must not contain failures and block the release from being deployed until the failures are resolved. Strict preflight checks help enforce that vendor-specific requirements are met before the application is deployed.
+As shown in the example above, the ConfigValues file includes the names of the configuration fields for the application, along with a user-supplied value for each field.
 
-#### Resolve role-based access control checks
+Your application vendor provides details about the required and optional configuration fields to include in the ConfigValues file. For more information, see [Downloading the ConfigValues File](/vendor/releases-configvalues).
 
-When the installation uses [minimal role-based access control (RBAC)](../reference/custom-resource-application#requireminimalrbacprivileges), the app manager recognizes if the preflight checks failed due to insufficient privileges.
+## About Disabling the Port Forward
 
-![Run Preflight Checks Manually](/images/manual-run-preflights.png)
+By default, the `kots install` command opens a port forward to the admin console. `--no-port-forward` is an optional flag that disables the default port forward.
 
-When this occurs, a `kubectl preflight` command is displayed that you must run manually in the cluster to run the preflight checks. When the command runs and completes, the results are automatically uploaded to the app manager.
-
-**Example:**
-
-```bash
-curl https://krew.sh/preflight | bash
-kubectl preflight secret/<namespace>/kotsadm-<appslug>-preflight
-```
-
-### Disable admin console port-forwarding
-The `kots install` kots CLI command by default opens a port-forward to the admin console as part of the application installation.
-
-To disable this behavior, add the `--no-port-forward` flag to the install command.
-
-You can later access the admin console with the following command:
-
-```shell
-kubectl kots admin-console -n <your app namespace>
-```
-
-## Example
-
-Given the information above, and a config file named `configvalues.yaml`, a license file named `license.yaml`, you could use the following command to automate an application installation:
-
-```shell
-kubectl kots install app-name \
-  --namespace app-name \
-  --shared-password password \
-  --license-file ./license.yaml \
-  --config-values ./configvalues.yaml \
-  --no-port-forward
-```
-
-After this completes, you can optionally run the following command to access the admin console at http://localhost:8800:
+If you include `--no-port-forward`, you can run the following command after the installation command completes to access the admin console at `http://localhost:8800`:
 
 ```
 kubectl kots admin-console --namespace NAMESPACE
 ```
 Replace `NAMESPACE` with the namespace you specified in the `kots install` command.
 
-## Air Gap Installation
-
-As the first step, admin console images must be pushed to a private registry using `kubectl kots admin-console push-images` command. For more information, see [Install in an Air Gapped Environment](installing-existing-cluster#air-gap) in _Installing on an Existing Cluster_.
-
-```shell
-kubectl kots install app-name \
-  --namespace app-name \
-  --shared-password password \
-  --license-file ./license.yaml \
-  --config-values ./configvalues.yaml \
-  --airgap-bundle /path/to/application.airgap \
-  --kotsadm-registry private.registry.host \
-  --kotsadm-namespace app-name \
-  --registry-username rw-username \
-  --registry-password rw-password \
-  --no-port-forward
-```
+For more information about the required and optional flags for the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
