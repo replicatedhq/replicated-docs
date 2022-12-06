@@ -51,7 +51,7 @@ This section describes the minimum system requirements for installing the Replic
 
 To install the admin console on an existing cluster, the cluster must meet the following requirements:
 
-* **Admin console minimum requirements**: The admin console requires a minimum of 5GB of disk space on the cluster. This includes 4GB for the object store PersistentVolume and 1GB for the PostgreSQL PersistentVolume. The admin console pod requests 50m CPU resources and 50Mi memory. Existing clusters that have LimitRanges specified must support these values. For more information, see [Requirements for Admin Console State](installing-stateful-component-requirements).
+* **Admin console minimum requirements**: The admin console requires a minimum of 5GB of disk space on the cluster. This includes 4GB for the object store PersistentVolume and 1GB for the rqlite PersistentVolume. The admin console pod requests 100m CPU resources and 100Mi memory. Existing clusters that have LimitRanges specified must support these values. For more information, see [Requirements for Admin Console State](installing-stateful-component-requirements).
 * **Kubernetes version compatibility**: The version of Kubernetes running on the cluster must be compatible with the version of KOTS that you use to install the application. This compatibility requirement does not include any specific and additional requirements defined by the software vendor for the application.
 
    For more information about the versions of Kubernetes that are compatible with each version of KOTS, see [Kubernetes Version Compatibility](#kubernetes-version-compatibility) above.
