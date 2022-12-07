@@ -45,9 +45,9 @@ To configure a custom domain:
 
 1. For **Domain**, add the domain used for images pushed to the Replicated registry. Click **Save & continue**.
 
-1. For **Verify ownership**, copy the text string and use it to create a domain TXT record in your DNS account. Click **Verify & continue**.
+1. For **Verify ownership**, copy the text string and use it to create a TXT record in your DNS account. Click **Verify & continue**.
 
-1. For **TLS cert creation verification**, copy the text string and use it to create a TLS TXT record in your DNS account. Click **Validate & finish**.
+1. For **TLS cert creation verification**, copy the text string and use it to create a TXT record in your DNS account. Click **Validate & finish**.
 
     Your changes can take up to 24 hours to propagate.
 
