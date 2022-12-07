@@ -1,10 +1,13 @@
-# Using a Custom Registry Hostname (Alpha)
+# Using a Custom Registry Domain (Alpha)
 
-You can use custom hostnames as aliases for the replicated.registry.com and proxy.replicated.com endpoints, by creating Canonical Name (CNAME) records for your domains.
+You can use custom domains as aliases for the replicated.registry.com and proxy.replicated.com endpoints, by creating Canonical Name (CNAME) records for your domains.
 
 Whether you use the Replicated private registry or the proxy service for your own private registry, these Replicated domains are external to your domain and require additional security reviews by your customer. Using custom domains as aliases for Replicated domains can bring the Replicated registry and proxy service inside an existing security review and reduce your exposure.
 
-You configure custom domains for the Replicated private registry and proxy service in the Replicated vendor portal or with the vendor API.
+Using the Replicated vendor portal or the vendor API, you configure custom domains for the Replicated private registry and proxy service at the Team level. Then, you specify those domains within the release in the Application custom resource manifest file. This method lets you:
+
+- Have different domains for your applications, if needed
+- Roll out domain name changes in phases to prevent the application from breaking in production environments
 
 ## About Verification
 
@@ -15,37 +18,48 @@ Verification of the domain is required using TXT records that undergo separate v
 
 The TXT records can be removed once verification is complete.
 
-If you configure a second application to use an existing, configured hostname, the configured hostname is automatically validated if both applications belongs to the same team.
+If you configure a second application to use an existing, configured domain, the configured domain is automatically validated if both applications belongs to the same team.
 
 ## Limitations
 
-Configuring a custom hostname has the following limitations:
+Configuring a custom domain has the following limitations:
 
-- The kustomization in the Replicated app manager always rewrites images to registry.replicated.com or proxy.replicated.com, and does not respect the CNAME. Only Helm installations that do not use the app manager respect the CNAME. This type of Helm installation is an Alpha feature. For more information, see [Supporting helm CLI Installations (Beta)](helm-install).
-- The LicenseDockerCfg template function does not respect the CNAME.
-- A single CNAME record cannot be used for both the registry and proxy endpoints. A single hostname can map to registry.replicated.com for any number of applications, but cannot map to both registry.replicated.com and  proxy.replicated.com, even if the applications are different.
-- Custom hostnames cannot be used to alias replicated.app (release manifests), api.replicated.com (platform market API), the download portal, or other services.
+- A single CNAME record cannot be used for both the registry and proxy endpoints. A single domain can map to registry.replicated.com for any number of applications, but cannot map to both registry.replicated.com and  proxy.replicated.com, even if the applications are different.
+- Custom domains cannot be used to alias replicated.app (release manifests), api.replicated.com (platform market API), the download portal, or other services.
 
-## Configure a Custom Hostname in the Vendor Portal
+## Configure a Custom Domain in the Vendor Portal
 
-You can configure custom hostnames for the Replicated private registry and the proxy service in the vendor portal.
+You can configure custom domains for the Replicated private registry and the proxy service in the vendor portal.
 
-To configure a custom hostname:
+To configure a custom domain:
 
-1. Log in to the [vendor portal](https://vendor.replicated.com), and click **Images**.
-1. In the Custom Registry Hostname pane, on either the registry.replicated.com or proxy.replicated.com tab, select **Use a custom hostname instead of ENDPOINT_NAME**.
-1. Enter the custom hostname in the text box, and click **Save**.
+1. Log in to the [vendor portal](https://vendor.replicated.com), and click **Team > Custom Domains**.
+
+1. In the **Use custom domains instead of...** pane for either registry.replicated.com or proxy.replicated.com, click **Add your first custom domain** or **Add a new domain**.
+
+1. Enter the custom domain in the text box, and click **Save**.
+
 1. From Create CNAME record, copy the text string and create the CNAME record in your DNS account. Click **Continue**.
-1. From Hostname ownership verification, copy the text string and create a TXT record in your DNS account. Click **Verify and continue**.
-1. From TLS cert creation verification, copy the text string and create a TXT record in your DNS account. Click **Verify and finish**.
 
-  Your changes can take up to 24 hours to propagate.
+    The **Configure a custom domain** wizard opens.
 
-## Configure a Custom Hostname with the Vendor API
+1. For **Domain**, add the domain used for images pushed to the Replicated registry. Click **Save & continue**.
 
-You can configure custom hostnames for the Replicated private registry and the proxy service using the vendor API.
+1. For **Verify ownership**, copy the text string and use it to create a domain TXT record in your DNS account. Click **Verify & continue**.
 
-To configure a custom hostname:
+1. For **TLS cert creation verification**, copy the text string and use it to create a TLS TXT record in your DNS account. Click **Validate & finish**.
+
+    Your changes can take up to 24 hours to propagate.
+
+1. From the **Custom Domains** page, click **Use custom domain in an application** next to the domain that you want to use. Copy the snippet from the **Use custom domain in an application** dialog that opens, then click **Ok, got it!** to close the dialog.
+
+1. Create a new release and add the code snippet to the Application custom resource manifest file to create the new field for either `proxyRegistryDomain` or `replicatedRegistryDomain`. For more information, see [proxyRegistryDomain](../reference/custom-resource-application#proxyRegistryDomain) and [replicatedRegistryDomain](../reference/custom-resource-application#replicatedRegistryDomain) in the _Application_ section.
+
+## Configure a Custom Domain with the Vendor API
+
+You can configure custom domains for the Replicated private registry and the proxy service using the vendor API.
+
+To configure a custom domain:
 
 1. Generate a user token. See [Generate a User API Token in Using the Vendor API v3](//reference/vendor-api-using#generate-a-user-api-token).
 
@@ -73,7 +87,7 @@ To configure a custom hostname:
   {"registry":null,"proxy":null}
   ```
 
-1. Customize the CNAME. For the "hostname" field, replace the hostname value in the following example with your host name:
+1. Customize the CNAME. For the "hostname" field, replace the hostname value in the following example with your domain:
 
   ```
   curl --request PUT \
@@ -193,3 +207,16 @@ To configure a custom hostname:
   :::note
   You may need to run the request a few times, and receiving the response can take approximately 90 seconds.
   :::
+
+1. Create a new release and add either the `proxyRegistryDomain` or `replicatedRegistryDomain` field to the Application custom resource manifest file, depending on which registry you are using. For more information, see [proxyRegistryDomain](../reference/custom-resource-application#proxyRegistryDomain) and [replicatedRegistryDomain](../reference/custom-resource-application#replicatedRegistryDomain) in the _Application_ section.
+
+## Assign a Custom Domain to an Application
+
+You can change or add the assignment of an existing custom domain to an application at any time.
+
+To assign a custom domain to an application:
+
+1. From the vendor portal, click **Teams > Custom Domains**.
+1. Click **Use custom domain in an application** next to the domain that you want to use.
+1. Copy the snippet from the **Use custom domain in an application** dialog that opens, then click **Ok, got it!**.
+1. Create a new release and add the code snippet to the Application custom resource manifest file to create the new field for either `proxyRegistryDomain` or `replicatedRegistryDomain`. For more information, see [proxyRegistryDomain](../reference/custom-resource-application#proxyRegistryDomain) and [replicatedRegistryDomain](../reference/custom-resource-application#replicatedRegistryDomain) in the _Application_ section.
