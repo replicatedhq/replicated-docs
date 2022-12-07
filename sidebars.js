@@ -147,8 +147,6 @@ const sidebars = {
                       'vendor/tutorial-adding-db-config',
                     ],
                   },
-                  'vendor/packaging-embedded-kubernetes',
-                  'vendor/preflight-host-preflights',
                   'vendor/preflight-support-bundle-creating',
                   {
                       type: 'category',
@@ -200,6 +198,15 @@ const sidebars = {
               },
               'vendor/packaging-air-gap-excluding-minio',
               'vendor/releases-updating',
+            ],
+          },
+          {
+            type: 'category',
+            label: 'Kubernetes Installers',
+            items: [
+              'vendor/packaging-embedded-kubernetes',
+              'vendor/packaging-installer-storage',
+              'vendor/preflight-host-preflights',
             ],
           },
           {
