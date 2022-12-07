@@ -13,7 +13,7 @@ kURL includes the following add-ons to provide object storage in the cluster:
 * **Rook Ceph**: For more information, see [Getting Started](https://rook.io/docs/rook/v1.10/Getting-Started/intro/) in the Rook Ceph documentation.
 
 kURL includes the following add-ons for PersistentVolumeClaim (PVC) provisioners:
-* **OpenEBS Local PV**: For more information, see [OpenEBS Local PV](https://openebs.io/docs/concepts/localpv) in the OpenEBS documentation.
+* **OpenEBS Local PV**: OpenEBS Local PV creates a Storage Class that provisions local PersistentVolumes to stateful workloads. For more information, see [OpenEBS Local PV](https://openebs.io/docs/concepts/localpv) in the OpenEBS documentation.
 * **Longhorn**:
 
 ## Single Node Clusters
