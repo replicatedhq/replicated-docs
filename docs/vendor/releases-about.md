@@ -1,40 +1,49 @@
 # About Releases
 
-You can use the Replicated vendor portal to create and release versions of your application to various release channels. The vendor portal hosts a built-in YAML editor and linter to help you write and validate manifest files.
+This topic describes concepts about creating and promoting releases, editing release properties, and information about the Releases page in the Replicated vendor portal.
 
-Alternatively, you can use the replicated CLI and API to automate releases. For more information about using the CLI, see [Installing the replicated CLI](../reference/replicated-cli-installing).
+## Overview of Releases
+
+You can use the Replicated vendor portal to create and release versions of your application to various release channels. The vendor portal hosts a built-in YAML editor and linter to help you write and validate manifest files. Alternatively, you can use the replicated CLI and API to automate releases. For more information about using the CLI, see [Installing the replicated CLI](../reference/replicated-cli-installing).
+
+Application files can be either Helm charts or Kubernetes manifest files, which can include standard manifests such as Deployment and Service resources.
+
+### Using Custom Resources
 
 Replicated lets you add custom resources to your releases, which are packaged as part of the application but not deployed to the cluster. When included, custom resources are consumed by the app manager, the admin console, or by other kubectl plugins to control the application experience. For more information about the custom resources, see [About Custom Resources](../reference/custom-resource-about).
 
-## About Promoting Releases
+### Promoting to Release Channels
 
-After you save a release, you can promote it to any of your release channels. While you are testing and developing an application release, Replicated recommends that you promote to a channel that does not have any customers assigned, such as the default Unstable channel. When you are ready to share your application with customers, you can then promote to a channel where customers are assigned, such as the default Beta or Stable channels.
+After you save a release, you can promote it to any of your release channels. While you are testing and developing an application release, Replicated recommends that you promote to a channel that does not have any customers assigned, such as the default Unstable channel. When you are ready to share your application with customers, you can then promote to a channel where customers are assigned, such as the default Beta or Stable channels. You can also add custom channels.
 
 Every customer license file that you create in the Replicated vendor portal is assigned to a channel. When a customer installs your application using their license file, the Replicated app manager installs the latest release that you promoted to the assigned channel. Each time you promote a new release to a channel, customers assigned to that channel can update their installed application instance to the new release version.
+
+### Editing Release Properties
 
 You cannot edit the YAML files in a release after the release is promoted to a channel. However, you can edit the release properties, including release notes, the version label, and the required status, from the Release History page for the channel in the vendor portal. For more information, see [About the Channels Page](/vendor/releases-about-channels#about-the-channels-page) in _About Release Channels_.
 
 ## About the Releases Page
 
-The Release page in the vendor portal provides a YAML editor to add, edit, and delete your application files and Replicated custom resources. 
+The Releases page in the vendor portal provides a YAML editor to add, edit, and delete your application files and Replicated custom resources.
+
+The following shows an example of a draft release in the vendor portal Releases page:
 
  ![Default YAML](/images/guides/kots/default-yaml.png)
 
   [View a larger image](/images/guides/kots/default-yaml.png)
 
-Application files can be either Kubernetes manifest files or Helm charts, and can include standard manifests such as Deployment and Service resources. Application file are grouped together underneath the white line in the file directory.
+You can do the following tasks on the Releases page:
 
-  ![Custom Resource Manifest Files](/images/kots-custom-resources.png)
+- In the file directory, you can manage the file directory structure. Replicated custom resource files are grouped together above the white line of the file directory. Application files are grouped together underneath the white line in the file directory.
 
-Replicated custom resource files are grouped together above the white line of the file directory. For more information about custom resources, see [About Custom Resources](../reference/custom-resource-about).
-
-To manage the file directory structure, note the following options:
-
-- To delete files, click the Trash icon that displays when you hover over a file.
-- To create a new file or folder, click the corresponding icons at the bottom of the file directory pane.
+  To delete files, click the Trash icon that displays when you hover over a file. To create a new file or folder, click the corresponding icons at the bottom of the file directory pane. You can drag and drop files in and out of the folders.
 
     ![Manage File Directory](/images/new-file-and-trash.png)
 
-The linter checks the manifest files to help ensure that there are no YAML syntax errors, that all required files are present, and other checks. The linter displays in the right pane of the YAML editor. If an error displays, you can click the error to get more information to help troubleshoot it. For more information about the linter, see [Using the Linter](../reference/linter#using-the-linter) in _Linter Rules_.
+- In the editor, you can edit the YAML files by selecting a file in the directory and making changes in the YAML that displays.
 
+- In the **Help** pane, the linter checks the manifest files to help ensure that there are no YAML syntax errors, that all required files are present, and other checks. If there are no errors, you get an **Everything looks good!** message. If an error displays, you can click the **Learn how to configure** link that displays to get more information. For more information, see [Using the Linter](../reference/linter#using-the-linter) in _Linter Rules_.
 
+- If you are using the Config custom resource and select that file, the **Config preview** in the **Help** pane displays how your application's Config page will look to your customer. For more information, see [About the Configuration Screen](../vendor/config-screen-about).
+
+- If you are using the Application custom resource and select that file, the **Application icon preview** in the **Help** pane displays how your application icon will look in the Replicated admin console. For more information, see [Customizing the Application Icon](../vendor/admin-console-customize-app-icon).
