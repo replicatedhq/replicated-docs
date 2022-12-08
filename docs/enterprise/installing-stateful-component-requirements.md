@@ -16,9 +16,9 @@ By default, Kubernetes installer clusters must include one of the following add-
 * Rook add-on
 * MinIO add-on
 
-Alternatively, the admin console can also be installed without an object store if the `disableS3` flag is set to `true` in the KOTS add-on specification in the Installer.
+By default, the kURL Registry and Velero add-ons also use the S3-compatible object store, if available.
 
-This deploys the admin console without an object store and allows the supporting add-ons to use persistent volumes (PVs) instead of object storage.
+Alternatively, the admin console can also be installed without an object store if the `disableS3` flag is set to `true` in the KOTS add-on specification for the Kubernetes installer.
 
 For more information about the behavior of the `disableS3` flag, see [KOTS Add-on](https://kurl.sh/docs/add-ons/kotsadm) in the open source kURL documentation.
 
