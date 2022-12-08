@@ -4,6 +4,29 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.91.2
+
+Released on December 8, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
+
+### Improvements {#improvements-1-91-2}
+* Improved the TLS certificate flow to make it clearer which fields are needed when using a self-signed certificate or uploading your own.
+* Adds the `proxyRegistryDomain` field to the Application custom resource. When this field is provided, the app manager will rewrite proxied private images using that domain instead of proxy.replicated.com.
+
+### Bug Fixes {#bug-fixes-1-91-2}
+* Fixes overlapping labels on TLS configuration page.
+* Fixes an issue that caused the login button to be stuck in the "Logging in" state in Helm-managed mode (Beta). For more information on Helm-managed mode, see [Supporting helm CLI Installations (Beta)](/vendor/helm-install).
+* Fixes an issue where snapshots to NFS storage locations failed due to file permission issues in environments running without MinIO.
+* Fixes an issue that caused the license upload to fail for applications that include Helm charts with [`required`](https://helm.sh/docs/howto/charts_tips_and_tricks/#using-the-required-function) values missing from configuration.
+* Fixes an issue where release notes did not display when the release notes icon was clicked on the dashboard.
+* Fixes an issue where no tab was selected by default when opening the View Logs modal in Helm-managed mode.
+* Fixes an issue that prevented image garbage collection from being enabled or disabled.
+* Fixes an issue where DockerHub credentials provided to the admin console via the [kots docker ensure-secret](/reference/kots-cli-docker-ensure-secret) CLI command did not increase the rate limit.
+* Fixes an issue that prevented Helm render errors from being surfaced to the user when running [`kots upload`](/reference/kots-cli-upload) commands.
+* Fixes leaked goroutines.
+* Increases the memory limit for rqlite to 1Gi to fix an issue where rqlite was OOM killed during the migration from Postgres when there was a very large number of versions available in the admin console.
+
 ## 1.91.1
 
 Released on November 18, 2022
