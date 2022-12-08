@@ -20,8 +20,8 @@ Below is a table of resources that are supported and conditions that contribute 
 
 | | Unavailable | Degraded | Ready | Updating |
 |---|---|---|---|---|
-| **Deployment** | No replicas are ready | At least 1 replica is ready and less than desired | Ready replicas equals desired replicas | The deployed replicas are from a different revision |
-| **StatefulSet** | No replicas are ready | At least 1 replica is ready and less than desired | Ready replicas equals desired replicas | The deployed replicas are from a different revision |
-| **Service** | No endpoints are ready, no load balancer has been assigned | At least one endpoint is ready and less than desired | All desired endpoints are ready, any load balancers have been assigned | n/a |
-| **Ingress** | No backend service endpoints are ready, no load balancer has been assigned | At least one backend service endpoint is ready and less than desired | All desired backend service endpoints are ready, any load balancers have been assigned | n/a |
+| **Deployment** | No replicas are ready | At least 1 replica is ready, but more are desired | Ready replicas equals desired replicas | The deployed replicas are from a different revision |
+| **StatefulSet** | No replicas are ready | At least 1 replica is ready, but more are desired | Ready replicas equals desired replicas | The deployed replicas are from a different revision |
+| **Service** | No endpoints are ready, no load balancer has been assigned | At least one endpoint is ready, but more are desired | All desired endpoints are ready, any load balancers have been assigned | n/a |
+| **Ingress** | No backend service endpoints are ready, no load balancer has been assigned | At least one backend service endpoint is ready, but more are desired | All desired backend service endpoints are ready, any load balancers have been assigned | n/a |
 | **PersistentVolumeClaim** | Claim is pending or lost | n/a | Claim is bound | n/a |
