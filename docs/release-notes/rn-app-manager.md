@@ -4,6 +4,27 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.91.2
+
+Released on December 8, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
+
+### New Features {#new-features-1-91-2}
+* Read `proxyRegistryDomain` fields from KOTS application manifest and if provided use the values to rewrite images instead of default replicated proxy `proxy.replicated.com`.
+
+### Bug Fixes {#bug-fixes-1-91-2}
+* Fixes an issue that causes the login button to be stuck in the "Logging in" state in [Helm managed mode (Alpha)](/vendor/helm-install).
+* Fixes an issue where snapshots to NFS storage locations would fail due to file permission issues in environments running without MinIO.
+* Fixes an issue that causes application license upload to fail for applications that include Helm charts with [`required`](https://helm.sh/docs/howto/charts_tips_and_tricks/#using-the-required-function) values missing from configuration.
+* fixes an issue where release notes would not display when the release notes icon is clicked on the dashboard.
+* fixes an issue where no tab was selected when opening the View Logs modal while in helm managed mode.
+* Fix an issue where enabling/disabling image garbage collection is broken.
+* Fixes an issue where DockerHub credentials provided to the admin console via the [kots docker ensure-secret](/reference/kots-cli-docker-ensure-secret) CLI command do not increase the rate limit.
+* Fixes an issue that prevented Helm render errors from being surfaced to the user when running [`kots upload`](/reference/kots-cli-upload) commands.
+* Fixes an issue where goroutines were leaked because a routine was left open waiting for data along a pipe even if an error occured causing no data to be sent through the pipe.
+* Fixes an issue where rqlite would be OOM killed during the migration from Postgres when there is a very large number of versions available in the admin console by increasing the memory limit to 1Gi.
+
 ## 1.91.1
 
 Released on November 18, 2022
