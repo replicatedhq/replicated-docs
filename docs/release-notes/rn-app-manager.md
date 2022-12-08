@@ -10,13 +10,11 @@ Released on December 8, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 
-### New Features {#new-features-1-91-2}
-* Read `proxyRegistryDomain` fields from KOTS application manifest and if provided use the values to rewrite images instead of default replicated proxy `proxy.replicated.com`.
-
 ### Improvements {#improvements-1-91-2}
 
 * Kurl proxy: Fixes overlapping labels on TLS configuration page.
 * Kurl proxy: Self-signed and CA-signed flows are now separated by radio button selection. Now only the fields necessary for the selected option are displayed.
+* Read `proxyRegistryDomain` fields from KOTS application manifest and if provided use the values to rewrite images instead of default replicated proxy `proxy.replicated.com`.
 
 ### Bug Fixes {#bug-fixes-1-91-2}
 * Fixes an issue that causes the login button to be stuck in the "Logging in" state in [Helm managed mode (Alpha)](/vendor/helm-install).
