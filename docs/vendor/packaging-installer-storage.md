@@ -128,4 +128,4 @@ spec:
     isSharedFilesystemDisabled: true
 ```
 
-For more information about the properties in the Rook add-on, see see [Rook](https://kurl.sh/docs/add-ons/rook) in the open source kURL documentation.
+For more information about properties for the Rook add-on, see [Rook](https://kurl.sh/docs/add-ons/rook) in the open source kURL documentation.
