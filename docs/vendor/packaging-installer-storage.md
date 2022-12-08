@@ -6,27 +6,55 @@ This topic provides guidance for selecting the add-ons to include in your Kubern
 
 The kURL open source project includes add-ons for object storage and for dynamic provisioning of PersistentVolumeClaims (PVCs) in the cluster. You configure these add-ons in your Kubernetes installer specification to define how data for your application and data for the Replicated admin console is managed in the cluster.
 
-kURL includes the following add-ons that you can use for object storage in the cluster:
-
-* **MinIO Add-on**: MinIO is an open source, S3-compatible object store. By default, the Replicated admin console uses MinIO for object storage. For more information about the MinIO add-on, see [MinIO Add-on](https://kurl.sh/docs/add-ons/minio) in the kURL documentation.
-
-* **Rook Add-on**: Rook provides dynamic PVC provisioning of distributed Ceph storage. Ceph is a distributed storage system that provides S3-compatible object storage. For more information about the Rook add-on, see [Rook](https://kurl.sh/docs/add-ons/rook) in the kURL documentation.
-
-In addition to the Rook add-on listed above, kURL includes the following add-ons for provisioning PVCs in the cluster:
-
-* **OpenEBS Local PV**: OpenEBS Local PV creates a StorageClass to dynamically provision local PersistentVolumes (PVs) in a cluster. For more information about the OpenEBS add-on, see [OpenEBS Local PV](https://openebs.io/docs/concepts/localpv) in the OpenEBS documentation.
-
-* **Longhorn Add-on**: Longhorn is an open source distributed block storage system for Kubernetes. For more information about the Longhorn add-on, see [Longhorn Add-on](https://kurl.sh/docs/add-ons/longhorn) in the kURL documentation.
-
-  :::important
-  The Longhorn add-on is deprecated and not recommended for production Kubernetes installer clusters.
-  :::
-
 The object store or PVC provisioner add-ons that you choose to include in your Kubernetes installer depend on the requirements for the version of the Replicated admin console installed in the cluster as well as the unique requirements for your application. For example, you might include different add-ons depending on if your application requires a single or multi-node cluster, or if your application requires distributed storage.
 
 For more information about the storage add-ons that Replicated recommends for single node and multi-node clusters, see the sections below:
 * [OpenEBS Local PV for Single Node Clusters](#single-node)
 * [Multi-Node Clusters](#multi-node)
+
+The following table describes the kURL add-ons for data storage and redundancy, including if the add-on provides PVC provisioning or object storage:
+
+<table>
+  <tr>
+    <th width="10%">Add-on</th>
+    <th width="50%">Description</th>
+    <th width="20%">PVC Provisioner?</th>
+    <th width="20%">Object Store?</th>
+  </tr>
+  <tr>
+    <td>MinIO</td>
+    <td>
+      <p>MinIO is an open source, S3-compatible object store. By default, the Replicated admin console uses MinIO for object storage.</p>
+      <p>See <a href="https://kurl.sh/docs/add-ons/minio">MinIO Add-on</a> in the kURL documentation.</p>
+    </td>
+    <td>No</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td>Rook</td>
+    <td>
+      <p>Rook provides dynamic PVC provisioning of distributed Ceph storage. Ceph is a distributed storage system that provides S3-compatible object storage.</p>
+      <p> See <a href="https://kurl.sh/docs/add-ons/rook">Rook Add-on</a> in the kURL documentation.</p>
+    </td>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <td>OpenEBS</td>
+    <td>
+      <p>OpenEBS Local PV creates a StorageClass to dynamically provision local PersistentVolumes (PVs) in a cluster.</p><p>See <a href="https://kurl.sh/docs/add-ons/openebs">OpenEBS Add-on</a> in the kURL documentation.</p>
+    </td>
+    <td>Yes</td>
+    <td>No</td>
+  </tr>
+  <tr>
+    <td>Longhorn</td>
+    <td><p>The Longhorn add-on is deprecated and not recommended for production Kubernetes installer clusters.</p><p>Longhorn is an open source distributed block storage system for Kubernetes.</p>
+    <p>See <a href="https://kurl.sh/docs/add-ons/longhorn">Longhorn Add-on</a> in the kURL documentation.</p></td>
+    <td>Yes</td>
+    <td>No</td>
+  </tr>
+</table>
 
 ## OpenEBS Local PV for Single Node Clusters {#single-node}
 
