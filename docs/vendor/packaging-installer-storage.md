@@ -22,7 +22,7 @@ In addition to the Rook add-on listed above, kURL includes the following add-ons
   The Longhorn add-on is deprecated and not recommended for production Kubernetes installer clusters.
   :::
 
-The object store or PVC provisioner add-ons that you choose to include in your Kubernetes installer depend on the requirements for the specified version of the Replicated admin console as well as the unique requirements for your application. For example, you might include different add-ons depending on if your application requires a single or multi-node cluster, or if your application required distributed storage.
+The object store or PVC provisioner add-ons that you choose to include in your Kubernetes installer depend on the requirements for the specified version of the Replicated admin console as well as the unique requirements for your application. For example, you might include different add-ons depending on if your application requires a single or multi-node cluster, or if your application requires distributed storage.
 
 For more information about the storage add-ons that Replicated recommends for single node and multi-node clusters, see the sections below:
 * [OpenEBS Local PV for Single Node Clusters](#single-node)
