@@ -14,15 +14,15 @@ kURL includes the following add-ons that you can use for object storage in the c
 
 In addition to the Rook add-on listed above, kURL includes the following add-ons for provisioning PVCs in the cluster:
 
-* **OpenEBS Local PV**: OpenEBS Local PV creates a StorageClass to dynamically provision local PersistentVolumes in a cluster. For more information about the OpenEBS add-on, see [OpenEBS Local PV](https://openebs.io/docs/concepts/localpv) in the OpenEBS documentation.
+* **OpenEBS Local PV**: OpenEBS Local PV creates a StorageClass to dynamically provision local PersistentVolumes (PVs) in a cluster. For more information about the OpenEBS add-on, see [OpenEBS Local PV](https://openebs.io/docs/concepts/localpv) in the OpenEBS documentation.
 
 * **Longhorn Add-on**: Longhorn is an open source distributed block storage system for Kubernetes. For more information about the Longhorn add-on, see [Longhorn Add-on](https://kurl.sh/docs/add-ons/longhorn) in the kURL documentation.
 
-  :::note
+  :::important
   The Longhorn add-on is deprecated and not recommended for production Kubernetes installer clusters.
   :::
 
-The object store or PVC provisioner add-ons that you choose to include in your Kubernetes installer depend on the requirements for the specified version of the Replicated admin console as well as the unique requirements for your application. For example, you might include different add-ons depending on if your application requires a single or multi-node cluster, or if your application requires distributed storage.
+The object store or PVC provisioner add-ons that you choose to include in your Kubernetes installer depend on the requirements for the version of the Replicated admin console installed in the cluster as well as the unique requirements for your application. For example, you might include different add-ons depending on if your application requires a single or multi-node cluster, or if your application requires distributed storage.
 
 For more information about the storage add-ons that Replicated recommends for single node and multi-node clusters, see the sections below:
 * [OpenEBS Local PV for Single Node Clusters](#single-node)
@@ -62,13 +62,13 @@ For more information about the benefits and limitations of both OpenEBS Local PV
 
 ### OpenEBS Local PV with MinIO {#openebs-minio}
 
-Using OpenEBS Local PV with MinIO provides a data storage and redundancy solution for multi-node clusters that is lighter-weight compared to using Rook Ceph. Replicated recommends that you use OpenEBS Local PV with MinIO for multi-node clusters if your application does _not_ require distributed storage.
+Using OpenEBS Local PV with MinIO provides a data storage and redundancy solution for multi-node clusters that is lighter-weight compared to using Rook Ceph. Replicated recommends that you use OpenEBS Local PV with MinIO for multi-node clusters if your application does _not_ require distributed storage. If you require distributed storage, see [Rook Ceph](#rook-ceph) below.
 
-When you use OpenEBS for local PV storage in a multi-node cluster, the app manager uses an rqlite PV to store the version history, application metadata, and other small amounts of data needed to manage the application. In multi-node clusters, rqlite automatically creates three replicas of this data, storing one replica on each node.
+When you use OpenEBS Local PV for local storage in a multi-node cluster, the app manager stores version history, application metadata, and other small amounts of data needed to manage the application on a local rqlite PV. Rqlite is a distributed relational database that uses SQLite as its storage engine. For more information, see the [rqlite](https://github.com/rqlite/rqlite) repository in GitHub. To make this data redundant in multi-node clusters, rqlite automatically creates three replicas of local PV data and stores one replica on each node.
 
-Rqlite is a lightweight, distributed relational database that uses SQLite as its storage engine. For more information, see the [rqlite](https://github.com/rqlite/rqlite) repository in GitHub.
+In addition to the version history, application metadata, and other data for managing the application mentioned above, the app manager also stores support bundle and application archive data in the Kubernetes installer cluster. For multi-node clusters that use OpenEBS Local PV, MinIO is also required to provide object storage that replicates support bundle and application archive data to each node in the cluster.
 
-MinIO is required for multi-node clusters that use OpenEBS Local PV to ensure that support bundle and application archive data is replicated to each node in the cluster. Without MinIO, the admin console stores support bundle and application archive data in local PVs on a single node in the cluster.
+With both OpenEBS Local PV and MinIO in the Kubernetes installer cluster, the app manager uses OpenEBS Local PV to provision the PVCs on each node that MinIO uses for local storage. Without MinIO, the app manager stores support bundle and application archive data locally in a PV on a single node in the cluster.
 
 #### Requirements
 
@@ -76,7 +76,7 @@ To use OpenEBS Local PV in multi-node Kubernetes installer clusters, your Kubern
 
 * The KOTS add-on in your Kubernetes installer specification must use the app manager v1.89 or later.  
 
-   In versions of the app manager earlier than 1.89, the admin console stores data in Postgres rather than rqlite. Additionally, the app manager v1.88 and earlier requires distributed storage, which is not provided by OpenEBS or MinIO. To support multi-node clusters, Kubernetes installers that use an app manager version earlier than v1.88 in the KOTS add-on must use the Rook add-on for distributed storage. See [Rook Ceph](#rook-ceph) below.
+   In versions of the app manager earlier than 1.89, the admin console stores data in Postgres rather than rqlite. Postgres does not provide the required data redundancy for multi-node clusters. Additionally, the app manager v1.88 and earlier requires distributed storage, which is not provided by OpenEBS Local PV or MinIO. To support multi-node clusters, Kubernetes installers that use an app manager version earlier than v1.88 in the KOTS add-on must use the Rook add-on for distributed storage. See [Rook Ceph](#rook-ceph) below.
 
 * You must include the MinIO add-on to ensure that support bundle and application archive data is replicated to each node in the cluster.
 
@@ -101,9 +101,9 @@ spec:
 
 ### Rook Ceph {#rook-ceph}
 
-If your application requires distributed storage, Replicated recommends that you use Rook Ceph as the object store in your Kubernetes installer specification. ​​Rook provides dynamic PVC provisioning of distributed Ceph storage.
+If your application requires distributed storage, Replicated recommends that you use Rook Ceph in your Kubernetes installer specification. ​​Rook provides dynamic PVC provisioning of distributed Ceph object storage.
 
-If you use Rook for object storage and PVC provisioning, then you are _not_ required to also include the MinIO add-on. This is because Rook satisfies the admin console requirement for object storage and also provides data redundancy in multi-node clusters.
+If you use Rook Ceph for object storage and dynamic PVC provisioning, then you are not required to also include the MinIO add-on. This is because Rook satisfies the admin console requirement for object storage and also provides data redundancy in multi-node clusters.
 
 #### Requirement
 
