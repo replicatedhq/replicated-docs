@@ -27,11 +27,13 @@ Configuring a custom domain has the following limitations:
 - A single CNAME record cannot be used for both the registry and proxy endpoints. A single domain can map to registry.replicated.com for any number of applications, but cannot map to both registry.replicated.com and  proxy.replicated.com, even if the applications are different.
 - Custom domains cannot be used to alias replicated.app (release manifests), api.replicated.com (platform market API), the download portal, or other services.
 
-## Configure a Custom Domain in the Vendor Portal
+## Configure a Custom Domain
 
-You can configure custom domains for the Replicated private registry and the proxy service in the vendor portal.
+You can configure custom domains for the Replicated private registry and the proxy service in the vendor portal or the vendor API.
 
-To configure a custom domain:
+### Use the Vendor Portal
+
+To configure a custom domain in the vendor portal:
 
 1. Log in to the [vendor portal](https://vendor.replicated.com), and click **Team > Custom Domains**.
 
@@ -55,11 +57,9 @@ To configure a custom domain:
 
 1. Create a new release and add the code snippet to the Application custom resource manifest file to create the new field for either `proxyRegistryDomain` or `replicatedRegistryDomain`. For more information, see [proxyRegistryDomain](../reference/custom-resource-application#proxyRegistryDomain) and [replicatedRegistryDomain](../reference/custom-resource-application#replicatedRegistryDomain) in the _Application_ section.
 
-## Configure a Custom Domain with the Vendor API
+### Use the Vendor API
 
-You can configure custom domains for the Replicated private registry and the proxy service using the vendor API.
-
-To configure a custom domain:
+To configure a custom domain in the vendor API:
 
 1. Generate a user token. See [Generate a User API Token in Using the Vendor API v3](//reference/vendor-api-using#generate-a-user-api-token).
 
