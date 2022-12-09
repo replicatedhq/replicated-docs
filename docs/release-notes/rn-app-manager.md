@@ -6,6 +6,12 @@ toc_max_heading_level: 2
 
 ## 1.91.2
 
+:::important
+The app manager v1.91.2 contains a known issue that affects the use of
+required configuration items in airgapped environments.
+See [Known Issue](#known-issues-1-91-2) below.
+:::
+
 Released on December 8, 2022
 
 Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
@@ -26,6 +32,10 @@ Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 * Fixes an issue that prevented Helm render errors from being surfaced to the user when running [`kots upload`](/reference/kots-cli-upload) commands.
 * Fixes leaked goroutines.
 * Increases the memory limit for rqlite to 1Gi to fix an issue where rqlite was OOM killed during the migration from Postgres when there was a very large number of versions available in the admin console.
+
+### Known Issue {#known-issues-1-91-2}
+
+There is a known issue in the app manager v1.91.2 that causes airgap uploads to fail when there are required configuration items that do not have default values specified. To work around this issue it is recommended to continue using app manager v1.91.1.
 
 ## 1.91.1
 
