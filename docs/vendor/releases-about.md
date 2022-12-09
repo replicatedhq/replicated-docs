@@ -14,7 +14,7 @@ Replicated lets you add custom resources to your releases, which are packaged as
 
 ### Promoting to Release Channels
 
-After you save a release, you can promote it to any of your release channels. While you are testing and developing an application release, Replicated recommends that you promote to a channel that does not have any customers assigned, such as the default Unstable channel. When you are ready to share your application with customers, you can then promote to a channel where customers are assigned, such as the default Beta or Stable channels. You can also add custom channels.
+After you save a release, you can promote it to any of your release channels. While you are testing and developing an application release, Replicated recommends that you promote to a channel that does not have any customers assigned, such as the default Unstable channel. When you are ready to share your application with customers, you can then promote to a channel where customers are assigned, such as the default Beta or Stable channels. For more information about channels, see [About Channels](../vendor/releases-about-channels).
 
 Every customer license file that you create in the Replicated vendor portal is assigned to a channel. When a customer installs your application using their license file, the Replicated app manager installs the latest release that you promoted to the assigned channel. Each time you promote a new release to a channel, customers assigned to that channel can update their installed application instance to the new release version.
 
@@ -24,15 +24,15 @@ You cannot edit the YAML files in a release after the release is promoted to a c
 
 ## About the Releases Page
 
-The Releases page in the vendor portal provides a YAML editor to add, edit, and delete your application files and Replicated custom resources.
+You click **Releases > Create Release** in the vendor portal to open the **Draft** page. This page provides a YAML editor to add, edit, and delete your application files and Replicated custom resources and create your release.
 
-The following shows an example of a draft release in the vendor portal Releases page:
+The following shows an example of the **Draft** page in the vendor portal:
 
  ![Default YAML](/images/guides/kots/default-yaml.png)
 
   [View a larger image](/images/guides/kots/default-yaml.png)
 
-You can do the following tasks on the Releases page:
+You can do the following tasks on the **Draft** page:
 
 - In the file directory, you can manage the file directory structure. Replicated custom resource files are grouped together above the white line of the file directory. Application files are grouped together underneath the white line in the file directory.
 
@@ -42,8 +42,8 @@ You can do the following tasks on the Releases page:
 
 - In the editor, you can edit the YAML files by selecting a file in the directory and making changes in the YAML that displays.
 
-- In the **Help** pane, the linter checks the manifest files to help ensure that there are no YAML syntax errors, that all required files are present, and other checks. If there are no errors, you get an **Everything looks good!** message. If an error displays, you can click the **Learn how to configure** link that displays to get more information. For more information, see [Using the Linter](../reference/linter#using-the-linter) in _Linter Rules_.
+- In the **Help** or **Config help** pane, the linter checks the manifest files to help ensure that there are no YAML syntax errors, that all required files are present, and other checks. If there are no errors, you get an **Everything looks good!** message. If an error displays, you can click the **Learn how to configure** link that displays to get more information. For more information, see [Using the Linter](../reference/linter#using-the-linter) in _Linter Rules_.
 
-- If you are using the Config custom resource and select that file, the **Config preview** in the **Help** pane displays how your application's Config page will look to your customer. For more information, see [About the Configuration Screen](../vendor/config-screen-about).
+- If you are using the Config custom resource and select that file, the **Config preview** displays how your application's Config page will look to your customer. This preview pane only appears when you select this file. For more information, see [About the Configuration Screen](../vendor/config-screen-about).
 
-- If you are using the Application custom resource and select that file, the **Application icon preview** in the **Help** pane displays how your application icon will look in the Replicated admin console. For more information, see [Customizing the Application Icon](../vendor/admin-console-customize-app-icon).
+- If you are using the Application custom resource and select that file, the **Application icon preview** in the **Help** pane displays how your application icon will look in the Replicated admin console. This preview pane only appears when you select this file. For more information, see [Customizing the Application Icon](../vendor/admin-console-customize-app-icon).
