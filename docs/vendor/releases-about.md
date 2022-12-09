@@ -16,7 +16,7 @@ Replicated includes several custom resources that you can add to your releases, 
 
 ### Release Channels
 
-After you save a release, you can promote it to any of your release channels. While you are testing and developing an application release, Replicated recommends that you promote to a channel that does not have any customers assigned, such as the default Unstable channel. When you are ready to share your application with customers, you can then promote to a channel where customers are assigned, such as the default Beta or Stable channels. For more information about channels, see [About Channels](../vendor/releases-about-channels).
+After you save a release, you can promote it to any of your release channels. While you are developing and testing an application release, Replicated recommends that you promote to a channel that does not have any customers assigned, such as the default Unstable channel. When you are ready to share your application with customers, you can then promote to a channel where customers are assigned, such as the default Beta or Stable channels. For more information about channels, see [About Channels](../vendor/releases-about-channels).
 
 Every customer license file that you create in the Replicated vendor portal is assigned to a channel. Each time you promote a new release to a channel, customers assigned to that channel can update their installed application instance to the new release version.
 
@@ -26,7 +26,7 @@ You cannot edit the YAML files in a release after the release is promoted to a c
 
 ## About the Draft Release Page
 
-You click **Releases > Create Release** in the vendor portal to open the **Draft** page. This page provides a YAML editor to add, edit, and delete your application files and Replicated custom resources and create your release.
+You click **Releases > Create Release** in the vendor portal to open the **Draft** page. This page provides a YAML editor to add, edit, and delete your application files and Replicated custom resources.
 
 The following shows an example of the **Draft** page in the vendor portal:
 
@@ -38,7 +38,7 @@ You can do the following tasks on the **Draft** page:
 
 - In the file directory, manage the file directory structure. Replicated custom resource files are grouped together above the white line of the file directory. Application files are grouped together underneath the white line in the file directory.
 
-  To delete files, click the Trash icon that displays when you hover over a file. To create a new file or folder, click the corresponding icons at the bottom of the file directory pane. You can drag and drop files in and out of the folders.
+  Delete files using the trash icon that displays when you hover over a file. Create a new file or folder using the corresponding icons at the bottom of the file directory pane. You can also drag and drop files in and out of the folders.
 
     ![Manage File Directory](/images/new-file-and-trash.png)
 
