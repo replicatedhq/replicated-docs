@@ -80,6 +80,7 @@ const sidebars = {
             label: 'Creating and Managing Releases',
             items: [
               'vendor/releases-creating-releases',
+              'vendor/releases-about',
               {
                 type: 'category',
                 label: 'Packaging an Application',
