@@ -9,7 +9,7 @@ toc_max_heading_level: 2
 Released on December 12, 2022
 
 ### New Features {#new-features-v2022-12-12-0}
-* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.26.0 and 0.26.1.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) versions 0.26.0 and 0.26.1.
 * Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.9.4.
 * Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.20.2.
 * Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) versions 1.25.5, 1.24.9, 1.23.15, and 1.22.17.
