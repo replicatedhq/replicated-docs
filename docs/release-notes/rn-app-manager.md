@@ -11,7 +11,7 @@ Released on December 10, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 
 ### Bug Fixes {#bug-fixes-1-91-3}
-* Fixes an issue where airgap uploads would fail for applications containing required configuration without default values.
+* Fixes an issue where air gap uploads failed for applications containing required configuration without default values.
 * Fixes errors when generating support bundles in existing clusters via the CLI.
 
 ## 1.91.2
