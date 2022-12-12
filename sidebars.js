@@ -79,11 +79,11 @@ const sidebars = {
             type: 'category',
             label: 'Releases',
             items: [
-              'vendor/releases-creating-releases',
               'vendor/releases-about',
+              'vendor/releases-creating-releases',
               {
                 type: 'category',
-                label: 'Packaging an Application',
+                label: 'Configuring a Release',
                 items: [
                   {
                       type: 'category',
@@ -201,7 +201,6 @@ const sidebars = {
               },
               'vendor/packaging-air-gap-excluding-minio',
               'vendor/releases-archiving',
-
             ],
           },
           {
@@ -257,7 +256,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Enterprise',
+      label: 'End Users',
       items: [
         {
           type: 'category',
