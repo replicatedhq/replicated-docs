@@ -1,54 +1,63 @@
-# Creating a Release
+# Creating and Promoting Releases
 
-You can use the Replicated vendor portal to create and release versions of your application to various release channels. The vendor portal hosts a built-in YAML editor and linter to help you write and validate manifest files.
+You can use the Replicated vendor portal to create and promote versions of your application to various release channels.
 
-Alternatively, you can use the replicated CLI and API to automate releases. For more information about using the CLI, see [Installing the replicated CLI](../reference/replicated-cli-installing).
+## Prerequisite​
 
-Replicated lets you add custom resources to your releases, which are packaged as part of the application but not deployed to the cluster. When included, custom resources are consumed by the app manager, the admin console, or by other kubectl plugins to control the application experience. For more information about the custom resources, see [About Custom Resources](../reference/custom-resource-about).
+If you are creating an initial production release and are using a private registry or the Replicated private registry, you must connect to the registry before _promoting_ the release. For more information, see [How to Package and Distribute a Production Application](distributing-workflow).
 
-We recommend that you bookmark the vendor portal because it is used to manage and deploy application releases.
+## Create and Promote a Release
 
-To create a release:
+To create and promote a release in the vendor portal:
 
-1. Log in (or create a new team) on the [vendor portal](https://vendor.replicated.com) and create a new application. After signing up and activating your account, you are prompted to create a new application. Name your application and click **Create Application**.
+1. From the **Applications** dropdown list, select **Create an app** or select an existing release to update.
 
- :::note
- If you are logging in with an existing account, you can update an existing application or select **Create new app** from the application drop-down list.
- :::
+1. Click **Releases** on the left menu, and click **Create release**.
 
-  ![Create Application](/images/guides/kots/create-application.png)
+  ![Create Release](/images/release-create-new.png)
 
-  The Channels page opens and displays a list of your release channels, which are logical stacks for you to stage and promote releases to your customers.
+  [View a larger image](/images/release-create-new.png)
 
-1. Click **Releases** on the left menu, and then click **Create a release**.
-
-  ![Create Release](/images/guides/kots/create-release.png)
-
-  [View a larger image](/images/guides/kots/create-release.png)
-
-  A YAML editor displays.
-
-1. In the YAML editor, drag and drop your application files into the file directory. These can be Kubernetes manifest files or Helm charts, and can include standard manifests such as Deployment and Service resources. For more information about how to package and configure manifest files for a production application, see [How to Package and Distribute a Production Application](distributing-workflow).
+1. In the YAML editor, do the following to import or add files:
 
   ![Default YAML](/images/guides/kots/default-yaml.png)
 
   [View a larger image](/images/guides/kots/default-yaml.png)
 
-1. To manage the file directory structure, note the following options:
+   - Drag and drop your application files into the file directory. These can be Kubernetes manifest files or Helm charts.
+   - Click `+` to add an untitled YAML file to the directory. For example, you can use this to create a Replicated custom resource.
 
-    - To delete files, click the Trash icon that displays when you hover over a file.
-    - To create a new file or folder, click the corresponding icons at the bottom of the file directory pane.
+   For more information about how to package files for a production application, see [How to Package and Distribute a Production Application](distributing-workflow).
 
-      ![Manage File Directory](/images/new-file-and-trash.png)
+1. Edit the YAML files as needed. For example, you can edit a custom resource or change the number of replicas.
 
-1. (Optional) Add custom resource manifest files to your application. For example, Replicated recommends that you add Preflight and Support Bundle custom resources to help with troubleshooting.
+1. Click **Save release**, and click **Promote**.
 
-  When viewing a release in the YAML editor, the custom resources are grouped together at the top of the manifests list:
+1. In the Promote Release dialog, edit the fields:
 
-  ![Custom Resource Manifest Files](/images/kots-custom-resources.png)
+    ![Promote release dialog](/images/release-promote.png)
 
-1. Click **Save release**.
+    * **Channel**: Select the channel where you want to promote the release. The defaults are Stable, Beta, and Unstable. If you created custom channels, they are listed here also.
+    * **Version label**: Enter a version label. If semantic versioning is enabled for the channel, you must use a valid semantic version. For more information, see [Enabling Semantic Versioning](releases-semantic-versioning).
+    * **Requirements**: Select **Prevent this release from being skipped during upgrades** to mark the release as required. When a release is required, the admin console requires users to upgrade to that version before they can upgrade to a later version. For example, if you select **Prevent this release from being skipped during upgrades** for release v2.0.0, users with v1.0.0 deployed must upgrade to v2.0.0 before they can upgrade to a version later than v2.0.0, such as v2.1.0.
 
-## Next Steps
+      :::note
+      Required releases are supported in the app manager v1.68.0 and later.
 
-[Promoting releases](releases-promoting)
+      After users deploy a required version, they can no longer redeploy, or _roll back_ to, versions earlier than the required version, even if `allowRollback` is `true` in the Application custom resource manifest. For more information about rollbacks, see [allowRollback](../reference/custom-resource-application#allowrollback) in the _Application_ custom resource topic.
+      :::
+
+    * **Release notes**: Add detailed release notes. The release notes support markdown and are shown to your customer.
+
+1. Click **Promote**.
+
+  The release appears in an **Active** state on the Releases page.
+
+## Next Step
+
+Update and test the release in your development environment using the Replicated admin console. For more information about updating an application release in the admin console, see [Updating an Application](../enterprise/updating-apps).
+
+## Related Topics
+
+* [About Releases](releases-about)
+* [About Release Channels](releases-about-channels)
