@@ -9,19 +9,19 @@ toc_max_heading_level: 2
 Released on December 12, 2022
 
 ### New Features {#new-features-v2022-12-12-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) versions 1.25.5, 1.24.9, 1.23.15, and 1.22.17.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) versions 1.6.11 and 1.6.12.
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) versions 0.26.0 and 0.26.1.
 * Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.9.4.
 * Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.20.2.
-* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) versions 1.25.5, 1.24.9, 1.23.15, and 1.22.17.
 * Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.23.1.
-* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) versions 1.6.11 and 1.6.12.
 
 ### Bug Fixes {#bug-fixes-v2022-12-12-0}
 * Fixes an issue that prevents upgrading from Rook 1.0.4 to 1.4.9 due to error "pool(s) have non-power-of-two pg_num".
-* Fixes an issue that prevents containerd.io to be installed/upgraded when the host has docker.io package installed on Ubuntu.
 * Fixes an issue that causes Rook add-on upgrades from 1.0.4 to 1.4.9 to hang indefinitely with 50% pgs degraded when EKCO add-on is included in the upgrade spec.
+* Fixes an issue that prevents containerd.io to be installed/upgraded when the host has docker.io package installed on Ubuntu.
 * Fixes preflight checks to only recommend Docker Enterprise Edition to RHEL installs when containerd is not selected.
-* Fixes an issue where a deprecated version of Docker was being installed when Docker or Containerd add-on versions were not explicitly set.
+* Fixes an issue where a deprecated version of Docker was being installed when Docker or containerd add-on versions were not explicitly set.
 
 ## v2022.11.29-0
 
