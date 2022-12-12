@@ -12,9 +12,9 @@ Released on December 12, 2022
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.26.0 and 0.26.1.
 * Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.9.4.
 * Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.20.2.
-* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.25.5 1.24.9 1.23.15 1.22.17.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) versions 1.25.5, 1.24.9, 1.23.15, and 1.22.17.
 * Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.23.1.
-* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.12.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) versions 1.6.11 and 1.6.12.
 
 ### Bug Fixes {#bug-fixes-v2022-12-12-0}
 * Fixes an issue that prevents upgrading from Rook 1.0.4 to 1.4.9 due to error "pool(s) have non-power-of-two pg_num".
