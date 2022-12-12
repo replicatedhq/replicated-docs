@@ -14,7 +14,7 @@ Application files can be either Helm charts or Kubernetes manifest files, which 
 
 Replicated includes several custom resources that you can add to your releases, which are packaged as part of the application but not deployed to the cluster. Custom resources are consumed by the app manager, the admin console, or by other kubectl plugins to control the application experience. For more information, see [About Custom Resources](../reference/custom-resource-about).
 
-### Release Channels
+### Release Promotion
 
 After you save a release, you can promote it to any of your release channels. While you are developing and testing an application release, Replicated recommends that you promote to a channel that does not have any customers assigned, such as the default Unstable channel. When you are ready to share your application with customers, you can then promote to a channel where customers are assigned, such as the default Beta or Stable channels. For more information about channels, see [About Channels](../vendor/releases-about-channels).
 
