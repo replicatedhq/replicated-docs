@@ -17,9 +17,9 @@ Released on December 12, 2022
 * Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.23.1.
 
 ### Bug Fixes {#bug-fixes-v2022-12-12-0}
-* Fixes an issue that prevents upgrading from Rook 1.0.4 to 1.4.9 due to error "pool(s) have non-power-of-two pg_num".
-* Fixes an issue that causes Rook add-on upgrades from 1.0.4 to 1.4.9 to hang indefinitely with 50% pgs degraded when EKCO add-on is included in the upgrade spec.
-* Fixes an issue that prevents containerd.io to be installed/upgraded when the host has docker.io package installed on Ubuntu.
+* Fixes an issue that prevented upgrading from Rook 1.0.4 to 1.4.9 due to error "pool(s) have non-power-of-two pg_num".
+* Fixes an issue that caused Rook add-on upgrades from 1.0.4 to 1.4.9 to hang indefinitely with 50% pgs degraded when EKCO add-on is included in the upgrade spec.
+* Fixes an issue that prevented containerd.io to be installed or upgraded when the host has docker.io package installed on Ubuntu.
 * Fixes preflight checks to only recommend Docker Enterprise Edition to RHEL installs when containerd is not selected.
 * Fixes an issue where a deprecated version of Docker was being installed when Docker or containerd add-on versions were not explicitly set.
 
