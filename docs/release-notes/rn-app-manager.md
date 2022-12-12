@@ -7,8 +7,8 @@ toc_max_heading_level: 2
 ## 1.91.2
 
 :::important
-The app manager v1.91.2 contains a known issue that affects the use of
-required configuration items in airgapped environments.
+The app manager v1.91.2 has a known issue that affects the use of
+required configuration items in air gapped environments.
 See [Known Issue](#known-issues-1-91-2) below.
 :::
 
@@ -35,7 +35,9 @@ Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 
 ### Known Issue {#known-issues-1-91-2}
 
-There is a known issue in the app manager v1.91.2 that causes airgap uploads to fail when there are required configuration items that do not have default values specified. To work around this issue it is recommended to continue using app manager v1.91.1.
+There is a known issue in the app manager v1.91.2 that causes air gap uploads to fail when there are configuration items with the `required` property set to `true` and no default value specified.
+
+To avoid this known issue, Replicated recommends that you do not upgrade to v1.91.2. To work around this issue in v1.92.2, ensure that all required configuration items in the Config custom resource have a default value. For more information about adding default values to configuration items, see [`default` and `value`](/reference/custom-resource-config#default-and-value) in _Config_.
 
 ## 1.91.1
 
