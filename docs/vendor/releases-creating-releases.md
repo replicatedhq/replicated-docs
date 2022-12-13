@@ -12,10 +12,7 @@ To create and promote a release in the vendor portal:
 
   [View a larger image](/images/release-create-new.png)
 
-1. In the YAML editor, do the following:
-
-   - Drag and drop your application files into the file directory. These can be Kubernetes manifest files or Helm charts.
-   - (Optional) Click `+` to add an untitled YAML file to the directory. For example, you can use this to create a Replicated custom resource.
+1. In the YAML editor, drag and drop your application files into the file directory. These can be Kubernetes manifest files or Helm charts. You can also click the plus icon to add an untitled YAML file to the directory, such as a Replicated custom resource.
 
    ![Default YAML](/images/guides/kots/default-yaml.png)
 
@@ -26,6 +23,9 @@ To create and promote a release in the vendor portal:
 1. Click **Save release**, and then click **Promote**.
 
 1. In the Promote Release dialog, edit the fields:
+
+  ![Promote release dialog](/images/release-promote.png)
+
 
     * **Channel**: Select the channel where you want to promote the release. The defaults are Stable, Beta, and Unstable. If you created custom channels, they are listed here also.
     * **Version label**: Enter a version label. If semantic versioning is enabled for the channel, you must use a valid semantic version. For more information, see [Enabling Semantic Versioning](releases-semantic-versioning).
@@ -38,8 +38,6 @@ To create and promote a release in the vendor portal:
       :::
 
     * **Release notes**: Add detailed release notes. The release notes support markdown and are shown to your customer.
-
-    ![Promote release dialog](/images/release-promote.png)
 
 1. Click **Promote**.
 
