@@ -2,12 +2,6 @@
 
 You can use the Replicated vendor portal to create and promote versions of your application to various release channels.
 
-## Prerequisite​
-
-If you are creating an initial production release and are using a private registry or the Replicated private registry, you must connect to the registry before _promoting_ the release. For more information, see [How to Package and Distribute a Production Application](distributing-workflow).
-
-## Create and Promote a Release
-
 To create and promote a release in the vendor portal:
 
 1. From the **Applications** dropdown list, select **Create an app** or select an existing release to update.
@@ -29,7 +23,7 @@ To create and promote a release in the vendor portal:
 
    For more information about how to package files for a production application, see [How to Package and Distribute a Production Application](distributing-workflow).
 
-1. Edit the YAML files as needed. For example, you can edit a custom resource or change the number of replicas.
+1. Edit the YAML files as needed. For example, you can edit a custom resource, such as adding preflight checks, adding installation methods, and so on.
 
 1. Click **Save release**, and click **Promote**.
 
