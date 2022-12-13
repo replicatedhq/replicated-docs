@@ -71,6 +71,7 @@ const sidebars = {
             label: 'Using Private Registries',
             items: [
               'vendor/packaging-private-images',
+              'vendor/helm-image-registry',
               'vendor/packaging-private-registry-cname',
               'vendor/packaging-private-registry-security',
               'vendor/tutorial-ecr-private-images',
