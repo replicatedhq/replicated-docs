@@ -66,6 +66,16 @@ const sidebars = {
         'vendor/distributing-workflow',
         'vendor/vendor-portal-creating-account',
         'vendor/planning-questionnaire',
+        {
+            type: 'category',
+            label: 'Using Private Registries',
+            items: [
+              'vendor/packaging-private-images',
+              'vendor/packaging-private-registry-cname',
+              'vendor/packaging-private-registry-security',
+              'vendor/tutorial-ecr-private-images',
+          ],
+        },
           {
             type: 'category',
             label: 'Creating and Managing Channels',
@@ -85,16 +95,6 @@ const sidebars = {
                 type: 'category',
                 label: 'Packaging an Application',
                 items: [
-                  {
-                      type: 'category',
-                      label: 'Using Private Registries',
-                      items: [
-                        'vendor/packaging-private-images',
-                        'vendor/packaging-private-registry-cname',
-                        'vendor/packaging-private-registry-security',
-                        'vendor/tutorial-ecr-private-images',
-                    ],
-                  },
                   {
                       type: 'category',
                       label: 'Customizing the Configuration Screen',
