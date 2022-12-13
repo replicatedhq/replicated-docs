@@ -169,7 +169,6 @@ const sidebars = {
                       'vendor/admin-console-prometheus-monitoring',
                     ],
                   },
-
                   'vendor/packaging-ingress',
                   'vendor/packaging-kots-versions',
                   'vendor/packaging-include-resources',
