@@ -133,7 +133,6 @@ const sidebars = {
                         label: 'Including Conditional Resources',
                         items: [
                           'vendor/helm-optional-charts',
-                          'vendor/helm-chart-components',
                           'vendor/helm-optional-value-keys',
                         ],
                       },
