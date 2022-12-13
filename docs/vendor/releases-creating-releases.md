@@ -25,7 +25,7 @@ To create and promote a release in the vendor portal:
 
 1. Edit the YAML files as needed. For example, you can edit a custom resource, such as adding preflight checks, adding installation methods, and so on.
 
-1. Click **Save release**, and click **Promote**.
+1. Click **Save release**, and then click **Promote**.
 
 1. In the Promote Release dialog, edit the fields:
 
