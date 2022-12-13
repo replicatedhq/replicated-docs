@@ -145,7 +145,7 @@ const sidebars = {
                     items: [
                       'vendor/database-config-adding-options',
                       'vendor/tutorial-adding-db-config',
-                    ]
+                    ],
                   },
                   'vendor/packaging-embedded-kubernetes',
                   'vendor/preflight-host-preflights',
@@ -347,7 +347,6 @@ const sidebars = {
             'enterprise/troubleshooting-an-app',
           ],
         },
-
       ],
     },
     {
