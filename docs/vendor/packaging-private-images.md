@@ -10,9 +10,9 @@ external registry.
 
 For information about how to connect to private image registries, see the following procedures:
 
-* For information about connecting to an external registry, see [About Connecting to an External Registry](#about-connecting-to-an-external-registry) below.
-* For information about using the Replicated private registry, see [Push Images to the Replicated Private Registry](#push-images-to-the-replicated-private-registry) below.
-* For information about how to connect to a private registry when your release supports helm CLI installations, see [Using Private Registries for helm CLI Installations (Beta)](helm-image-registry).
+* [About Connecting to an External Registry](#about-connecting-to-an-external-registry) below.
+* [Push Images to the Replicated Private Registry](#push-images-to-the-replicated-private-registry) below.
+* [Using Private Registries for helm CLI Installations (Beta)](helm-image-registry).
 
 ## About Connecting to an External Registry
 
