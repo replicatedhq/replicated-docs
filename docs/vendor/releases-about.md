@@ -48,4 +48,4 @@ You can do the following tasks on the **Draft** page:
 
 - Select the Config custom resource to preview how your application's Config page will look to your customers. The **Config preview** pane only appears when you select that file. For more information, see [About the Configuration Screen](../vendor/config-screen-about).
 
-- Select the Application custom resource to preview how your application icon will look in the Replicated admin console. The **Application icon preview** appears when you select that file. For more information, see [Customizing the Application Icon](../vendor/admin-console-customize-app-icon).
+- Select the Application custom resource to preview how your application icon will look in the Replicated admin console. The **Application icon preview** only appears when you select that file. For more information, see [Customizing the Application Icon](../vendor/admin-console-customize-app-icon).
