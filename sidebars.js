@@ -68,19 +68,19 @@ const sidebars = {
         'vendor/planning-questionnaire',
           {
             type: 'category',
-            label: 'Creating and Managing Channels',
+            label: 'Channels',
             items: [
-              'vendor/releases-creating-channels',
               'vendor/releases-about-channels',
+              'vendor/releases-creating-channels',
               'vendor/releases-semantic-versioning',
             ],
           },
           {
             type: 'category',
-            label: 'Creating and Managing Releases',
+            label: 'Releases',
             items: [
-              'vendor/releases-creating-releases',
               'vendor/releases-about',
+              'vendor/releases-creating-releases',
               {
                 type: 'category',
                 label: 'Packaging an Application',
@@ -145,7 +145,7 @@ const sidebars = {
                     items: [
                       'vendor/database-config-adding-options',
                       'vendor/tutorial-adding-db-config',
-                    ]
+                    ],
                   },
                   'vendor/packaging-embedded-kubernetes',
                   'vendor/preflight-host-preflights',
@@ -169,7 +169,6 @@ const sidebars = {
                       'vendor/admin-console-prometheus-monitoring',
                     ],
                   },
-
                   'vendor/packaging-ingress',
                   'vendor/packaging-kots-versions',
                   'vendor/packaging-include-resources',
@@ -190,8 +189,6 @@ const sidebars = {
                   },
                 ],
               },
-              'vendor/releases-promoting',
-              'vendor/releases-updating',
               'vendor/releases-configvalues',
               {
                 type: 'category',
@@ -202,11 +199,12 @@ const sidebars = {
                 ],
               },
               'vendor/packaging-air-gap-excluding-minio',
+              'vendor/releases-updating',
             ],
           },
           {
             type: 'category',
-            label: 'Creating and Managing Customers',
+            label: 'Customer Licenses',
             items: [
               'vendor/releases-creating-customer',
               'vendor/licenses-about',
@@ -349,7 +347,6 @@ const sidebars = {
             'enterprise/troubleshooting-an-app',
           ],
         },
-
       ],
     },
     {

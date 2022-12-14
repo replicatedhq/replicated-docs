@@ -1,54 +1,68 @@
-# Creating a Release
+# Creating and Promoting Releases
 
-You can use the Replicated vendor portal to create and release versions of your application to various release channels. The vendor portal hosts a built-in YAML editor and linter to help you write and validate manifest files.
+You can use the Replicated vendor portal to create and promote versions of your application to various release channels.
 
-Alternatively, you can use the replicated CLI and API to automate releases. For more information about using the CLI, see [Installing the replicated CLI](../reference/replicated-cli-installing).
+To create and promote a release in the vendor portal:
 
-Replicated lets you add custom resources to your releases, which are packaged as part of the application but not deployed to the cluster. When included, custom resources are consumed by the app manager, the admin console, or by other kubectl plugins to control the application experience. For more information about the custom resources, see [About Custom Resources](../reference/custom-resource-about).
+1. From the **Applications** dropdown list, select **Create an app** or select an existing application to update.
 
-We recommend that you bookmark the vendor portal because it is used to manage and deploy application releases.
+1. Click **Releases** on the left menu, and click **Create release**.
 
-To create a release:
+  ![Create Release](/images/release-create-new.png)
 
-1. Log in (or create a new team) on the [vendor portal](https://vendor.replicated.com) and create a new application. After signing up and activating your account, you are prompted to create a new application. Name your application and click **Create Application**.
+  [View a larger image](/images/release-create-new.png)
 
- :::note
- If you are logging in with an existing account, you can update an existing application or select **Create new app** from the application drop-down list.
- :::
+1. If you are creating a release for the first time, drag and drop your application files into the file directory in the YAML editor. These can be Kubernetes manifest files or Helm charts.
 
-  ![Create Application](/images/guides/kots/create-application.png)
+  If this is an existing application, your existing files appear in the YAML editor, and you can drag and drop new manifest files as needed.
 
-  The Channels page opens and displays a list of your release channels, which are logical stacks for you to stage and promote releases to your customers.
+  You can also click the plus icon to add a new, untitled YAML file.
 
-1. Click **Releases** on the left menu, and then click **Create a release**.
+   ![Default YAML](/images/guides/kots/default-yaml.png)
 
-  ![Create Release](/images/guides/kots/create-release.png)
+   [View a larger image](/images/guides/kots/default-yaml.png)
 
-  [View a larger image](/images/guides/kots/create-release.png)
+1. Edit the YAML files as needed, and click **Save release**. This saves a draft that you can continue to edit until you promote it.
 
-  A YAML editor displays.
+  :::note
+  To edit a draft release, click **Edit YAML** from the Releases page.
+  :::
 
-1. In the YAML editor, drag and drop your application files into the file directory. These can be Kubernetes manifest files or Helm charts, and can include standard manifests such as Deployment and Service resources. For more information about how to package and configure manifest files for a production application, see [How to Package and Distribute a Production Application](distributing-workflow).
+1. Click **Promote**. In the Promote Release dialog that opens, edit the fields:
 
-  ![Default YAML](/images/guides/kots/default-yaml.png)
+    <table>
+      <tr>
+        <th width="30%">Field</th>
+        <th width="70%">Description</th>
+      </tr>
+      <tr>
+        <td>Channel</td>
+        <td>Select the channel where you want to promote the release. The defaults are Stable, Beta, and Unstable. If you created custom channels, they are listed here also.</td>
+      </tr>
+      <tr>
+        <td>Version label</td>
+        <td>Enter a version label. If semantic versioning is enabled for the channel, you must use a valid semantic version. For more information, see <a href="releases-semantic-versioning">Enabling Semantic Versioning</a>.</td>
+      </tr>
+      <tr>
+        <td>Requirements</td>
+        <td>Select <strong>Prevent this release from being skipped during upgrades</strong> to mark the release as required. When a release is required, the admin console requires users to upgrade to that version before they can upgrade to a later version.<br></br><br></br>For example, if you select <strong>Prevent this release from being skipped during upgrades</strong> for release v2.0.0, users with v1.0.0 deployed must upgrade to v2.0.0 before they can upgrade to a version later than v2.0.0, such as v2.1.0.<br></br><br></br>Required releases are supported in the app manager v1.68.0 and later.<br></br><br></br>After users deploy a required version, they can no longer redeploy (roll back to) versions earlier than the required version, even if <code>allowRollback</code> is <code>true</code> in the Application custom resource manifest. See <a href="../reference/custom-resource-application#allowrollback">allowRollback</a> in the <i>Application</i> custom resource topic.</td>
+      </tr>
+      <tr>
+        <td>Release notes</td>
+        <td>Add detailed release notes. The release notes support markdown and are shown to your customer.</td>
+      </tr>
+    </table>
 
-  [View a larger image](/images/guides/kots/default-yaml.png)
+1. Click **Promote**.
 
-1. To manage the file directory structure, note the following options:
+  The release appears in an **Active** state on the Releases page.
 
-    - To delete files, click the Trash icon that displays when you hover over a file.
-    - To create a new file or folder, click the corresponding icons at the bottom of the file directory pane.
+## Next Step
 
-      ![Manage File Directory](/images/new-file-and-trash.png)
+Test the release in your development environment using the Replicated admin console. For more information, see [Updating an Application](../enterprise/updating-apps) in the _Enterprise_ section.
 
-1. (Optional) Add custom resource manifest files to your application. For example, Replicated recommends that you add Preflight and Support Bundle custom resources to help with troubleshooting.
+## Related Topics
 
-  When viewing a release in the YAML editor, the custom resources are grouped together at the top of the manifests list:
-
-  ![Custom Resource Manifest Files](/images/kots-custom-resources.png)
-
-1. Click **Save release**.
-
-## Next Steps
-
-[Promoting releases](releases-promoting)
+* [About Releases](releases-about)
+* [About Release Channels](releases-about-channels)
+* [How to Package and Distribute a Production Application](distributing-workflow)

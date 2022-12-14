@@ -72,6 +72,10 @@
 [[redirects]]
   from="https://docs.replicated.com/vendor/tutorial-installing-air-gap-existing-cluster-gcp"
   to="https://docs.replicated.com/enterprise/installing-existing-cluster#air-gap"
+
+[[redirects]]
+  from="https://docs.replicated.com/vendor/releases-promoting"
+  to="https://docs.replicated.com/vendor/releases-creating-releases"
 ###################################################
 # Redirects To the Enterprise Section
 ###################################################

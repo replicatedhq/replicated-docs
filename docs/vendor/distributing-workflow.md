@@ -43,7 +43,7 @@ Complete the following procedures to import your files, create, and test your fi
       </tr>
       <tr>
         <td>Standard manifest files</td>
-        <td>We recommend using standard manifest YAML files unless you are already using Helm or Kubernetes Operators. <br></br><br></br>To import using the Replicated vendor portal, see <a href="releases-creating-releases">Create a Release</a>.</td>
+        <td>We recommend using standard manifest YAML files unless you are already using Helm or Kubernetes Operators. <br></br><br></br>To import using the Replicated vendor portal, see <a href="releases-creating-releases">Creating and Promoting Releases</a>.</td>
       </tr>
       <tr>
         <td>Helm charts</td>
@@ -65,77 +65,67 @@ Complete the following procedures to import your files, create, and test your fi
 
 1. Create a license file in the vendor portal that contains entitlement information for your customer. You also need a license file to test your application in the admin console. See [Creating a Customer](releases-creating-customer).
 
-1. Promote the release and test it by installing the release in a development environment with the license file that you created. You can use the environment that you created during one of the recommended tutorials. For information about promoting a release, see [Promoting Releases](releases-promoting). For information about installation, see [Overview of Installing an Application](../enterprise/installing-overview).
+1. Promote the release and test it by installing the release in a development environment with the license file that you created. You can use the environment that you created during one of the recommended tutorials. For information about promoting a release, see [Creating and Promoting Releases](releases-creating-releases). For information about installation, see [Overview of Installing an Application](../enterprise/installing-overview).
 
-Next, iterate on your release.
+Next, add functionality to your release.
 
-## Iterating Your Releases
+## Adding Functionality to Your Releases
 
-To iterate on the release of your production application:
+Add functionality to your releases. The following table gives a suggested order, but you can add functionality in any order. These functions can be used with Kubernetes Operators, except where noted.
 
-1. (Recommended) Create a basic Configuration screen in the Replicated admin console to collect required or optional values from your users that are used to access the application:
-      1. Define custom fields. See <a href="admin-console-customize-config-screen">Creating and Editing Configuration Fields</a>.
-      1. Map the values to the application. See <a href="config-screen-map-inputs">Mapping User-Supplied Values</a>.
-    :::note
-    Skip this step if you are using Kubernetes Operators.
-    :::
+Update, promote, and test each release in your development environment until you are ready to share the application with your customers.
 
-1. Promote the updated release. Update and test the application in your development environment. See [Updating Releases](releases-updating) and [Updating an Application](../enterprise/updating-apps).
-
-1. Configure additional manifest functionality and custom resources, and iterate as needed. This is a suggested order, but you can configure these functions in any order. These functions can be used with Kubernetes Operators.
-
-  Update the release and application, testing it in your development environment after each iteration.
-
-    <table>
-      <tr>
-        <th width="30%">Functionality</th>
-        <th width="70%">Description</th>
-      </tr>
-      <tr>
-        <td><a href="database-config-adding-options">Adding Persistent Data Stores</a></td>
-        <td><p>Integrate persistent stores, such as databases, queues, and caches. </p><p>Add options for your users to either embed a database instance with the application, or connect your application to an external database instance that they manage.</p></td>
-      </tr>
-      <tr>
-        <td><a href="admin-console-customize-app-icon">Customizing the Admin Console and Download Portal</a></td>
-        <td>Customize the appearance of the admin console for end users, including branding, application status, URLs, adding ports and port forwarding, and adding custom graphs.</td>
-      </tr>
-      <tr>
-        <td><a href="packaging-rbac">Configuring Role-Based Access Control</a></td>
-        <td>Limit access to a single namespace in a cluster.</td>
-      </tr>
-      <tr>
-        <td><a href="preflight-support-bundle-creating">Defining Preflight Checks and Support Bundles</a></td>
-        <td>Define preflight checks to test for system compliance during the installation process and reduce the number of support escalations. <br></br><br></br>Enable support bundles to collect and analyze troubleshooting data from your customers' clusters to help you diagnose problems with application deployments.</td>
-      </tr>
-      <tr>
-        <td><a href="snapshots-configuring-backups">Configuring Backups</a></td>
-        <td>Enable snapshots so that end users can backup and restore their application configuration and data.</td>
-      </tr>
-      <tr>
-        <td><a href="packaging-ingress">Adding Cluster Ingress Options</a></td>
-        <td>Configure how traffic gets to your application using cluster ingress options.</td>
-      </tr>
-      <tr>
-        <td><a href="packaging-using-tls-certs">Using Kubernetes Installer TLS certificates</a></td>
-        <td>Share the Kubernetes installer TLS certificate with other Kubernetes resources.</td>
-      </tr>
-      <tr>
-        <td><a href="identity-service-configuring">Enabling and Configuring Identity Service (Beta)</a></td>
-        <td>Control access to the application for Kubernetes installer-created clusters.</td>
-      </tr>
-      <tr>
-        <td><a href="packaging-include-resources">Including Conditional Resources</a></td>
-        <td>Include and exclude resources based on a customer's configuration choices, such as an external database or an embedded database.</td>
-      </tr>
-      <tr>
-        <td><a href="packaging-cleaning-up-jobs">Cleaning Up Kubernetes Jobs</a></td>
-        <td>Clean up completed Kubernetes jobs to prevent errors with future Kubernetes job updates.</td>
-      </tr>
-   </table>
-
-  :::note
-  Continue to iterate by updating the release and application, and then testing it in the admin console until you are ready to share the application with your customers.
-  :::
+<table>
+  <tr>
+    <th width="30%">Functionality</th>
+    <th width="70%">Description</th>
+  </tr>
+  <tr>
+  <td><a href="admin-console-customize-config-screen">Creating and Editing Configuration Fields</a><br></br><br></br><a href="config-screen-map-inputs">Mapping User-Supplied Values</a></td>
+      <td>Create a basic Configuration screen in the Replicated admin console to collect required or optional values from your users that are used to access the application:<br></br><br></br>
+      1. Define custom fields.<br></br><br></br>2. Map the values to the application.<br></br><br></br><strong>Note:</strong> Skip this step if you are using Kubernetes Operators.</td>
+  </tr>
+  <tr>
+    <td><a href="database-config-adding-options">Adding Persistent Data Stores</a></td>
+    <td><p>Integrate persistent stores, such as databases, queues, and caches. </p><p>Add options for your users to either embed a database instance with the application, or connect your application to an external database instance that they manage.</p></td>
+  </tr>
+  <tr>
+    <td><a href="admin-console-customize-app-icon">Customizing the Admin Console and Download Portal</a></td>
+    <td>Customize the appearance of the admin console for end users, including branding, application status, URLs, adding ports and port forwarding, and adding custom graphs.</td>
+  </tr>
+  <tr>
+    <td><a href="packaging-rbac">Configuring Role-Based Access Control</a></td>
+    <td>Limit access to a single namespace in a cluster.</td>
+  </tr>
+  <tr>
+    <td><a href="preflight-support-bundle-creating">Defining Preflight Checks and Support Bundles</a></td>
+    <td>Define preflight checks to test for system compliance during the installation process and reduce the number of support escalations. <br></br><br></br>Enable support bundles to collect and analyze troubleshooting data from your customers' clusters to help you diagnose problems with application deployments.</td>
+  </tr>
+  <tr>
+    <td><a href="snapshots-configuring-backups">Configuring Backups</a></td>
+    <td>Enable snapshots so that end users can backup and restore their application configuration and data.</td>
+  </tr>
+  <tr>
+    <td><a href="packaging-ingress">Adding Cluster Ingress Options</a></td>
+    <td>Configure how traffic gets to your application using cluster ingress options.</td>
+  </tr>
+  <tr>
+    <td><a href="packaging-using-tls-certs">Using Kubernetes Installer TLS certificates</a></td>
+    <td>Share the Kubernetes installer TLS certificate with other Kubernetes resources.</td>
+  </tr>
+  <tr>
+    <td><a href="identity-service-configuring">Enabling and Configuring Identity Service (Beta)</a></td>
+    <td>Control access to the application for Kubernetes installer-created clusters.</td>
+  </tr>
+  <tr>
+    <td><a href="packaging-include-resources">Including Conditional Resources</a></td>
+    <td>Include and exclude resources based on a customer's configuration choices, such as an external database or an embedded database.</td>
+  </tr>
+  <tr>
+    <td><a href="packaging-cleaning-up-jobs">Cleaning Up Kubernetes Jobs</a></td>
+    <td>Clean up completed Kubernetes jobs to prevent errors with future Kubernetes job updates.</td>
+  </tr>
+</table>
 
 ## Distributing Your Application
 
