@@ -84,11 +84,11 @@ To define preflight checks:
   kind: Preflight
   metadata:
     name: supported-mysql-version
-    spec:
-      collectors:
-        - mysql:
-            collectorName: mysql
-            uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
+  spec:
+    collectors:
+      - mysql:
+          collectorName: mysql
+          uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
     ```
 
     Replicated recommends replacing using a template function for the URI to avoid exposing sensitive information. For more information about template functions, see [[About Template Functions](/reference/template-functions-about).
@@ -107,25 +107,25 @@ To define preflight checks:
     kind: Preflight
     metadata:
       name: supported-mysql-version
-      spec:
-        collectors:
-          - mysql:
-              collectorName: mysql
-              uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
+    spec:
+      collectors:
+        - mysql:
+            collectorName: mysql
+            uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
         analyzers:
-          - mysql:
-              strict: true
-              checkName: Must be MySQL 8.x or later
-              collectorName: mysql
-              outcomes:
-                - fail:
-                    when: connected == false
-                    message: Cannot connect to MySQL server
-                - fail:
-                    when: version < 8.x
-                    message: The MySQL server must be at least version 8
-                - pass:
-                    message: The MySQL server is ready
+        - mysql:
+            strict: true
+            checkName: Must be MySQL 8.x or later
+            collectorName: mysql
+            outcomes:
+              - fail:
+                  when: connected == false
+                  message: Cannot connect to MySQL server
+              - fail:
+                  when: version < 8.x
+                  message: The MySQL server must be at least version 8
+              - pass:
+                  message: The MySQL server is ready
       ```
 
 1. Add the manifest files to the application that you are packaging and distributing with Replicated.
@@ -164,13 +164,13 @@ To customize a support bundle:
   apiVersion: troubleshoot.sh/v1beta2
   kind: SupportBundle
   metadata:
-     name: collectors
+    name: collectors
   spec:
-     collectors:
-       - clusterInfo:
-          exclude: true
-       - clusterResources:
-          exclude: true
+    collectors:
+      - clusterInfo:
+        exclude: true
+      - clusterResources:
+        exclude: true
   ```
 1. (Optional) You can edit the default collector properties. If  `clusterResources` is defined in your specification, the default namespace cannot be removed, but you can add a namespace to the `namespaces` field.
 
@@ -178,15 +178,15 @@ To customize a support bundle:
   apiVersion: troubleshoot.sh/v1beta2
   kind: SupportBundle
   metadata:
-     name: collectors
+    name: collectors
   spec:
-     collectors:
-       - clusterInfo:
-          exclude: false
-       - clusterResources:
-          namespaces:
-          - default
-          - APP_NAMESPACE
+    collectors:
+      - clusterInfo:
+        exclude: false
+      - clusterResources:
+        namespaces:
+        - default
+        - APP_NAMESPACE
   ```
   Replace `APP_NAMESPACE` with the name of the namespace.
 
@@ -208,15 +208,15 @@ To customize a support bundle:
       apiVersion: troubleshoot.sh/v1beta2
       kind: SupportBundle
       metadata:
-         name: collectors
+        name: collectors
       spec:
-         collectors:
-            - logs:
-               selector:
-                   - app=api
-               namespace: default
-               limits:
-                  maxLines: 10000
+        collectors:
+          - logs:
+            selector:
+              - app=api
+            namespace: default
+            limits:
+              maxLines: 10000
       ```            
 
 1. Add any custom collectors to the file. Collectors that Replicated recommends considering are:
