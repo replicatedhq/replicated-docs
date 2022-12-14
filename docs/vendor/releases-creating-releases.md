@@ -4,7 +4,7 @@ You can use the Replicated vendor portal to create and promote versions of your 
 
 To create and promote a release in the vendor portal:
 
-1. From the **Applications** dropdown list, select **Create an app** or select an existing release to update.
+1. From the **Applications** dropdown list, select **Create an app** or select an existing application to update.
 
 1. Click **Releases** on the left menu, and click **Create release**.
 
@@ -12,19 +12,25 @@ To create and promote a release in the vendor portal:
 
   [View a larger image](/images/release-create-new.png)
 
-1. In the YAML editor, drag and drop your application files into the file directory. These can be Kubernetes manifest files or Helm charts. Click the plus icon to add a new YAML file, if needed.
+1. If you are creating a release for the first time, drag and drop your application files into the file directory in the YAML editor. These can be Kubernetes manifest files or Helm charts.
+
+  If this is an existing application, your existing files appear in the YAML editor, and you can drag and drop new manifest files as needed.
+
+  You can also click the plus icon to add a new, untitled YAML file.
 
    ![Default YAML](/images/guides/kots/default-yaml.png)
 
    [View a larger image](/images/guides/kots/default-yaml.png)
 
-1. Edit the YAML files as needed. For example, you can edit a custom resource or map Helm chart values.
+1. Edit the YAML files as needed, and click **Save release**. This saves a draft that you can continue to edit until you promote it.
 
-1. Click **Save release**, and then click **Promote**.
+  :::note
+  To edit a draft later, before promoting it, click **Edit YAML** from the Releases page.
+  :::
+
+1. Click **Promote**.
 
 1. In the Promote Release dialog, edit the fields:
-
-    ![Promote release dialog](/images/release-promote.png)
 
     <table>
       <tr>
@@ -55,7 +61,7 @@ To create and promote a release in the vendor portal:
 
 ## Next Step
 
-Update and test the release in your development environment using the Replicated admin console. For more information about updating an application release in the admin console, see [Updating an Application](../enterprise/updating-apps).
+Test the release in your development environment using the Replicated admin console. For more information, see [Updating an Application](../enterprise/updating-apps) in the _Enterprise_ section.
 
 ## Related Topics
 

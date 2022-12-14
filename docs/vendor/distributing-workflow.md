@@ -67,13 +67,13 @@ Complete the following procedures to import your files, create, and test your fi
 
 1. Promote the release and test it by installing the release in a development environment with the license file that you created. You can use the environment that you created during one of the recommended tutorials. For information about promoting a release, see [Creating and Promoting Releases](releases-creating-releases). For information about installation, see [Overview of Installing an Application](../enterprise/installing-overview).
 
-Next, iterate on your release.
+Next, add functionality to your release.
 
-## Iterating Your Releases
+## Adding Functionality to Your Releases
 
-To iterate on the release of your production application, configure additional manifest functionality and custom resources, and iterate as needed. This is a suggested iteration order, but you can configure these functions in any order. These functions can be used with Kubernetes Operators, except where noted.
+Add functionality to your release. The following table gives a suggested order, but you can add functionality in any order. These functions can be used with Kubernetes Operators, except where noted.
 
-Update the release and test it in your development environment after each iteration until you are ready to share the application with your customers.
+Update, promote, and test each release in your development environment until you are ready to share the application with your customers.
 
 <table>
   <tr>
