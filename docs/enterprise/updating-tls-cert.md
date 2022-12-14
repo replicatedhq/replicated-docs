@@ -40,9 +40,9 @@ To upload a new custom TLS certificate:
 1. After the pod has restarted, direct your browser to `http://<ip>:8800/tls` and go through the upload process in the user interface.
 
 
-## Update Custom PKCS #12 Certificates
+## Using Custom PKCS #12 Certificates
 
-If you are using a custom PKCS certificate in Kubernetes installer cluster, you can manually upload a new certificate when the previous one expires.
+If you are using a custom PKCS certificate in Kubernetes installer cluster, you must remove the private key section before it can be accepted by the admin console.
 
 To upload a new custom PKCS certificate:
 
