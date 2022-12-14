@@ -71,7 +71,7 @@ Next, add functionality to your release.
 
 ## Adding Functionality to Your Releases
 
-Add functionality to your release. The following table gives a suggested order, but you can add functionality in any order. These functions can be used with Kubernetes Operators, except where noted.
+Add functionality to your releases. The following table gives a suggested order, but you can add functionality in any order. These functions can be used with Kubernetes Operators, except where noted.
 
 Update, promote, and test each release in your development environment until you are ready to share the application with your customers.
 

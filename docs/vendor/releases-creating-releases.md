@@ -25,12 +25,10 @@ To create and promote a release in the vendor portal:
 1. Edit the YAML files as needed, and click **Save release**. This saves a draft that you can continue to edit until you promote it.
 
   :::note
-  To edit a draft later, before promoting it, click **Edit YAML** from the Releases page.
+  To edit a draft release, click **Edit YAML** from the Releases page.
   :::
 
-1. Click **Promote**.
-
-1. In the Promote Release dialog, edit the fields:
+1. Click **Promote**. In the Promote Release dialog that opens, edit the fields:
 
     <table>
       <tr>
