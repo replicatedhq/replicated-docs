@@ -140,7 +140,7 @@ To configure access to your private images in an external registry using the ven
     </tr>
     <tr>
       <td>Endpoint</td>
-      <td>Enter the endpoint, such as <code>gcr.io</code>.</td>
+      <td>Enter the endpoint, such as <code>quay.io</code>.</td>
     </tr>
     <tr>
       <td>Username</td>
