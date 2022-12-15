@@ -5,28 +5,33 @@ For information about how to upgrade the admin console on an existing cluster, s
 
 ### Online Installations
 
-To update the admin console when deployed to a Kubernetes installer-created cluster, re-run the installation script on the first primary node where the installation was initialized.
-All flags passed to the script for the initial installation must be passed again.
+To update the admin console when deployed to a Kubernetes installer-created cluster, re-run the installation script on the first primary node where the installation was initialized. All flags passed to the script for the initial installation must be passed again.
 
 ```bash
-curl -sSL https://kurl.sh/supergoodtool | sudo bash
+curl -sSL https://kurl.sh/APP_SLUG | sudo bash
 ```
+
+Replace `APP_SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
 
 ### Air Gapped Installations
 
 To update admin console in an air gapped environment, download the new Kubernetes installer air gap bundle, extract it, and run the install.sh script.
 
 ```bash
-curl -SL -o supergoodtool.tar.gz https://kurl.sh/bundle/supergoodtool.tar.gz
-tar xzvf supergoodtool.tar.gz
+curl -SL -o FILENAME.tar.gz https://kurl.sh/bundle/FILENAME.tar.gz
+tar xzvf FILENAME.tar.gz
 cat install.sh | sudo bash -s airgap
 ```
+
+Replace `FILENAME` with the name of the kURL air gap `.tar.gz` file.
 
 To update the application in an air gapped environment, download the new application air gap bundle and run the following command:
 
 ```bash
-kubectl kots upstream upgrade <app slug> --airgap-bundle new-app-release.airgap -n default
+kubectl kots upstream upgrade APP_SLUG --airgap-bundle new-app-release.airgap -n default
 ```
+
+Replace `APP_SLUG` with the unique slug for the application. The application slug is provided by the vendor.
 
 ### Updating Kubernetes
 
@@ -45,8 +50,10 @@ For each remote node detected, it will drain the node and wait for the drain to 
 Then it will print a command that must be run on that node to upgrade the control plane.
 
 ```bash
-    curl -sSL https://kurl.sh/supergoodtool/upgrade.sh | sudo bash -s hostname-check=master-node-2 kubernetes-version=v1.15.3
+    curl -sSL https://kurl.sh/APP_SLUG/upgrade.sh | sudo bash -s hostname-check=master-node-2 kubernetes-version=v1.15.3
 ```
+
+Replace `APP_SLUG` with the unique slug for the application. The application slug is is included in the installation command provided by the vendor.
 
 The script will poll the status of the remote node until it detects the upgrade has completed.
 Then it will uncordon that node and proceed to drain the next node.
