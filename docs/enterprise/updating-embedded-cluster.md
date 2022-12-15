@@ -1,11 +1,11 @@
 # Updating the Admin Console on a Kubernetes Installer Cluster
 
-This topic describes how to update the Replicated admin console on a Kubernetes installer-created cluster (embedded cluster).
+This topic describes how to update the admin console on a Kubernetes installer-created cluster (embedded cluster).
 For information about how to update the admin console on an existing cluster, see [Updating the Admin Console on an Existing Cluster](updating-existing-cluster).
 
 ### Online Installations
 
-To update the admin console when deployed to a Kubernetes installer cluster, re-run the installation script on the first primary node where the installation was initialized. All flags passed to the script for the initial installation must be passed again.
+To update the admin console when deployed to a Kubernetes installer cluster, re-run the installation script on the first primary node where the installation was initialized. All of the flags that were passed to the script for the initial installation must be passed again.
 
 ```bash
 curl -sSL https://kurl.sh/APP_SLUG | sudo bash
@@ -25,7 +25,7 @@ cat install.sh | sudo bash -s airgap
 
 Replace `FILENAME` with the name of the kURL air gap `.tar.gz` file.
 
-To update the application in an air gapped environment, download the new application air gap bundle, and then run the following command:
+To update the application in an air gapped environment, download the new application air gap bundle, and run the following command:
 
 ```bash
 kubectl kots upstream upgrade APP_SLUG --airgap-bundle PATH_TO_AIRGAP_BUNDLE -n NAMESPACE
@@ -35,7 +35,7 @@ Replace:
 
 * `APP_SLUG` with the unique slug for the application. The application slug is provided by the vendor.
 * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle file.
-* `NAMESPACE` with the namespace. Typically this value is `default`.
+* `NAMESPACE` with the admin console namespace.
 
 ### Updating Kubernetes
 
