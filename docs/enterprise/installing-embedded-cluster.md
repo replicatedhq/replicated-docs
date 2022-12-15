@@ -79,6 +79,7 @@ To install an application in an air gapped environment:
               --namespace default \
               --shared-password PASSWORD
           ```
+
           Replace:
               * `APP_NAME` with the name for the application.
               * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle file.
