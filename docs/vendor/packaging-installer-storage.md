@@ -104,7 +104,7 @@ To use the OpenEBS add-on for multi-node Kubernetes installer clusters, your Kub
 
 * The KOTS add-on in your Kubernetes installer specification must use the app manager v1.89 or later.  
 
-   The app manager v1.88 and earlier requires distributed storage, which is not provided by OpenEBS Local PV or MinIO. To support multi-node clusters, Kubernetes installers that use an app manager version earlier than v1.88 in the KOTS add-on must use the Rook add-on for distributed storage. See [Rook Ceph](#rook-ceph) below.
+   The app manager v1.88 and earlier requires distributed storage, which is not provided by OpenEBS Local PV. To support multi-node clusters, Kubernetes installers that use an app manager version earlier than v1.88 in the KOTS add-on must use the Rook add-on for distributed storage. See [Rook Ceph](#rook-ceph) below.
 
 * You must include the MinIO add-on to ensure that support bundle and application archive data is replicated to each node in the cluster.
 
