@@ -2,7 +2,7 @@
 
 ## Merge specs into a single Support Bundle archive
 
-Support bundle specs can be designed in a modular fashion.  The Troubleshoot CLI can take [multiple specs as input](https://troubleshoot.sh/docs/support-bundle/collecting/#Collect-a-support-bundle-using-multiple-specs), and will handle merging the `collectors:` and `analyzers:` property into a single support bundle.  Thus, teams can more easily develop specs that are scoped to individual components or microservices in a large application.
+Support bundle specs can be designed in a modular fashion.  The Troubleshoot CLI can take [multiple specs as input](https://troubleshoot.sh/docs/support-bundle/collecting/#collect-a-support-bundle-using-multiple-specs), and will handle merging the `collectors:` and `analyzers:` property into a single support bundle.  Thus, teams can more easily develop specs that are scoped to individual components or microservices in a large application.
 
 For instance, in an application that ships MySQL, nginx, and redis, your team might consider adding some [collectors](https://troubleshoot.sh/docs/collect/) and [analyzers](https://troubleshoot.sh/docs/analyze/) for each component:
 
