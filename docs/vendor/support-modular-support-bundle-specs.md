@@ -1,10 +1,10 @@
-# Modular Support Bundle specs
+# Modular & Discoverable Support Bundle and Redactor specs
 
 ## Merge specs into a single Support Bundle archive
 
 Support bundle specs can be designed in a modular fashion.  The Troubleshoot CLI can take [multiple specs as input](), and will handle merging the `collectors:` and `analyzers:` property into a single support bundle.  Thus, teams can more easily develop specs that are scoped to individual components or microservices in a large application.
 
-For instance, in an application that ships MySQL, nginx, and redis, your team might consider adding some [collectors]() and [analyzers]() for each component:
+For instance, in an application that ships MySQL, nginx, and redis, your team might consider adding some [collectors](https://troubleshoot.sh/docs/collect/) and [analyzers](https://troubleshoot.sh/docs/analyze/) for each component:
 
 > manifests/nginx/troubleshoot.yaml
 
@@ -18,7 +18,9 @@ spec:
   analyzers:
     - deploymentStatus:
         name: nginx
-        outcomes: [...]
+        outcomes:
+          - fail:
+              when: replicas < 2
 ```
 
 > manifests/mysql/troubleshoot.yaml
@@ -50,9 +52,11 @@ spec:
 
 And a Support Bundle can be generated from a combination of these manifests:
 
-```
+```bash
 kubectl support-bundle manifests/redis/troubleshoot.yaml manifests/mysql/troubleshoot.yaml manifests/nginx/troubleshoot.yaml
 ```
+
+You can also refer to Kubernetes resources like Secrets or ConfigMaps
 
 ## Adding specs to the cluster as Kubernetes resources for discoverability
 
