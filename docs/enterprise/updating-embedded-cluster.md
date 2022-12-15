@@ -49,7 +49,7 @@ Then it prints a command that you must run on that node to upgrade the control p
 
 The script polls the status of the remote node until it detects that the upgrade is complete. Then it uncordons that node and proceeds to drain the next node. The script ensures that only one node is cordoned at a time.
 
-The Kubernetes scheduler automatically reschedules pods to other nodes during maintenance. Any deployments or StatefulSets with a single replica experiences downtime while being rescheduled.
+The Kubernetes scheduler automatically reschedules pods to other nodes during maintenance. Any deployments or StatefulSets with a single replica experience downtime while being rescheduled.
 
 ### Updating Add-ons
 
