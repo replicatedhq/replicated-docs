@@ -47,14 +47,14 @@ If the application vendor has updated the version of Kubernetes in the installer
 
 If confirmed, the local primary node is drained and the upgrade to the control plane is applied.
 
-Then the script upgrades any remote nodes one at a time, starting with all primaries and then continuing to all secondary nodes.
+Then the script upgrades any remote nodes, one at a time, starting with all primaries and then continuing to all secondary nodes.
 For each remote node detected, it drains the node and waits for the drain to complete.
 Then it prints a command that you must run on that node to upgrade the control plane.
 
 **Example:**
 
 ```bash
-    curl -sSL https://kurl.sh/supoergoodtool/upgrade.sh | sudo bash -s hostname-check=master-node-2 kubernetes-version=v1.15.3
+    curl -sSL https://kurl.sh/supergoodtool/upgrade.sh | sudo bash -s hostname-check=master-node-2 kubernetes-version=v1.15.3
 ```
 
 The script polls the status of the remote node until it detects that the upgrade is complete. Then it uncordons that node and proceeds to drain the next node. The script ensures that only one node is cordoned at a time.
