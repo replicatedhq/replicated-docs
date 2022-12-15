@@ -18,12 +18,12 @@ Replace `APP_SLUG` with the unique slug for the application. The application slu
 To update the admin console in an air gapped environment, download the new Kubernetes installer air gap bundle, extract it, and run the install.sh script:
 
 ```bash
-curl -SL -o FILENAME.tar.gz https://kurl.sh/bundle/FILENAME.tar.gz
-tar xzvf FILENAME.tar.gz
+curl -SL -o APP_SLUG.tar.gz https://kurl.sh/bundle/APP_SLUG.tar.gz
+tar xzvf APP_SLUG.tar.gz
 cat install.sh | sudo bash -s airgap
 ```
 
-Replace `FILENAME` with the name of the kURL air gap `.tar.gz` file.
+Replace `APP_SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
 
 To update the application in an air gapped environment, see [Updating Applications](updating-apps#air-gapped-installations-on-a-kubernetes-installer-created-cluster).
 

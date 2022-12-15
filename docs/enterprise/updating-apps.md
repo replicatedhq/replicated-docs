@@ -125,4 +125,4 @@ Replace:
 
 * `APP_SLUG` with the unique slug for the application. The application slug is provided by the vendor.
 * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle file.
-* `NAMESPACE` with the admin console namespace.
+* `NAMESPACE` with the admin console namespace. Typically this value is `default`.
