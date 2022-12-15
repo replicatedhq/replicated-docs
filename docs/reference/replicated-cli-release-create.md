@@ -38,7 +38,7 @@ replicated release create --yaml-dir YAML_DIR [flags]
   <tr>
     <td><code>--release-notes</code></td>
     <td>string</td>
-    <td>When used with <code>--promote channel</code>, sets the version label for the release in this channel.</td>
+    <td>When used with <code>--promote channel</code>, creates the release notes in markdown.</td>
   </tr>
   <tr>
     <td><code>--version</code></td>
