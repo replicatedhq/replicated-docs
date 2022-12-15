@@ -476,18 +476,18 @@ repl{{ NoProxy }}
 func KotsVersion() string
 ```
 
-KotsVersion returns the current KOTS tag/version the admin console is using. **Note**: The app manager is based on the KOTS open source project. The current KOTS version is the same as the current app manager version. The app manager installs the admin console.
+KotsVersion returns the current version of the app manager. **Note**: The app manager is based on the KOTS open source project. The current KOTS version is the same as the current app manager version. The app manager installs the admin console.
 
 ```yaml
 repl{{ KotsVersion }}
 ```
 
-`KotsVersion` can be compared to Semantic Versions (SemVers) like follows:
+You can compare the KOTS version as follows:
 ```yaml
 repl{{KotsVersion | semverCompare ">= 1.19"}}
 ```
 
-The above template function will return `true` if `KotsVersion` is greater than or equal to `1.19`. **Note**: The app manager is based on the KOTS open source project. The current KOTS version is the same as the current app manager version.
+This returns `true` if the Kots version is greater than or equal to `1.19`. **Note**: The app manager is based on the KOTS open source project. The current KOTS version is the same as the current app manager version.
 
 For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
 
