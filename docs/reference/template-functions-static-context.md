@@ -514,12 +514,12 @@ KubernetesVersion returns the Kubernetes server version.
 repl{{ KubernetesVersion }}
 ```
 
-`KubernetesVersion` can be compared to Semantic Versions (SemVers) like follows:
+You can compare the Kubernetes version as follows:
 ```yaml
 repl{{KubernetesVersion | semverCompare ">= 1.19"}}
 ```
 
-The above template function will return `true` if `KubernetesVersion` is greater than or equal to `1.19`.
+This returns `true` if  the Kubernetes version is greater than or equal to `1.19`.
 
 For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
 
@@ -534,12 +534,12 @@ KubernetesMajorVersion returns the Kubernetes server *major* version.
 repl{{ KubernetesMajorVersion }}
 ```
 
-`KubernetesMajorVersion` can be compared to Semantic Versions (SemVers) like follows:
+You can compare the Kubernetes major version as follows:
 ```yaml
 repl{{KubernetesMajorVersion | semverCompare "< 2"}}
 ```
 
-The above template function will return `true` if `KubernetesMajorVersion` is less than `2`.
+This returns `true` if the Kubernetes major version is less than `2`.
 
 For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
 
@@ -554,11 +554,11 @@ KubernetesMinorVersion returns the Kubernetes server *minor* version.
 repl{{ KubernetesMinorVersion }}
 ```
 
-`KubernetesMinorVersion` can be compared to Semantic Versions (SemVers) like follows:
+You can compare the Kubernetes minor version as follows:
 ```yaml
 repl{{KubernetesMinorVersion | semverCompare "> 19"}}
 ```
 
-The above template function will return `true` if `KubernetesMinorVersion` is greater than `19`.
+This returns `true` if the Kubernetes minor version is greater than `19`.
 
 For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
