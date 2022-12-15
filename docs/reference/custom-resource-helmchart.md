@@ -285,5 +285,26 @@ If you specify a namespace in the HelmChart `namespace` field, you must also inc
 
 ## builder
 
-The `builder` key allows for defaults that will be set when the app manager is creating air gapped packages.
-This is an opportunity to ensure that all YAML and images are rendered "on" so they are included.
+To create an `.airgap` bundle for a release that uses Helm charts, the Replicated vendor portal renders templates of the Helm charts with `helm template`. The `builder` key specifies the values from the Helm chart `values.yaml` file that the vendor portal uses to create the `.airgap` bundle.
+
+Values in the `builder` key must be hardcoded with `enabled` set to `true` to ensure that the necssary resources are included in the `.airgap` bundle, including any conditional resources.
+
+For example, `postgresql` is defined as a conditional resource in the `values` key of the HelmChart custom resource:
+
+```yaml
+  values:
+    postgresql:
+      enabled: repl{{ ConfigOptionEquals `postgres_type` `embedded_postgres`}}
+```
+As shown above, `postgresql` is included only when the user selects the `embedded_postgres` option.
+
+To ensure the vendor portal includes this conditional `postgresql` resource in `.airgap` bundles, add the same `postgresql` value to the `builder` key with `enabled` set to `true`:
+
+```yaml
+  builder:
+    postgresql:
+      enabled: true
+```
+:::note
+Replicated recommends that you include only the minimum Helm values in the `builder` key that are required to template the Helm chart with the correct image tags.
+:::
