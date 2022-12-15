@@ -114,10 +114,15 @@ Adding the `--deploy` flag will also automatically deploy this version.
 
 > Introduced in the Replicated app manager v1.34.0
 
-In order to install an update from an air gap file, the following command can be used:
+To update the application in an air gapped environment with a Kubernetes installer-created cluster, download the new application air gap bundle, and run the following command:
 
 ```bash
-kubectl kots upstream upgrade <app slug> --airgap-bundle new-app-release.airgap -n <admin console namespace>
+kubectl kots upstream upgrade APP_SLUG --airgap-bundle PATH_TO_AIRGAP_BUNDLE -n NAMESPACE
 ```
-
 Adding the `--deploy` flag will also automatically deploy this version.
+
+Replace:
+
+* `APP_SLUG` with the unique slug for the application. The application slug is provided by the vendor.
+* `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle file.
+* `NAMESPACE` with the admin console namespace.

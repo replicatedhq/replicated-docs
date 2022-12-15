@@ -25,17 +25,7 @@ cat install.sh | sudo bash -s airgap
 
 Replace `FILENAME` with the name of the kURL air gap `.tar.gz` file.
 
-To update the application in an air gapped environment, download the new application air gap bundle, and run the following command:
-
-```bash
-kubectl kots upstream upgrade APP_SLUG --airgap-bundle PATH_TO_AIRGAP_BUNDLE -n NAMESPACE
-```
-
-Replace:
-
-* `APP_SLUG` with the unique slug for the application. The application slug is provided by the vendor.
-* `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle file.
-* `NAMESPACE` with the admin console namespace.
+To update the application in an air gapped environment, see [Updating Applications](updating-apps#air-gapped-installations-on-a-kubernetes-installer-created-cluster).
 
 ### Updating Kubernetes
 
