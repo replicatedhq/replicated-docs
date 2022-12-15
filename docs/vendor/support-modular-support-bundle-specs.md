@@ -102,6 +102,18 @@ kubectl get secrets --all-namespaces -l troubleshoot.io/kind=supportbundle-spec
 kubectl support-bundle secret/default/flannel-troubleshoot-spec secret/default/kotsadm-troubleshoot-spec secret/default/velero-troubleshoot-spec
 ```
 
+Troubleshoot can also discover all the specs in a given namespace or cluster based on the `troubleshoot.io/kind` label with the `--load-cluster-specs` flag:
+
+```shell
+kubectl support-bundle --load-cluster-specs
+```
+
+And this can be combined with input from a file or URL, as well:
+
+```shell
+kubectl support-bundle https://raw.githubusercontent.com/replicatedhq/troubleshoot/main/sample-troubleshoot.yaml --load-cluster-specs
+```
+
 The analysis screen will show the results of all the Analyzers defined in your chosen manifests, and all the contents will be available in a single bundle.  Have a look at our [troubleshoot-specs repo on GitHub](https://github.com/replicatedhq/troubleshoot-specs) for some real world use cases.
 
 **Note: getting a merged Support Bundle will be available from the Admin Console soon; right now this is available only from the Troubleshoot CLI**
