@@ -487,7 +487,7 @@ repl{{ KotsVersion }}
 repl{{KotsVersion | semverCompare ">= 1.19"}}
 ```
 
-The above template function will return `true` if `KotsVersion` is greater than `1.19`. **Note**: The app manager is based on the KOTS open source project. The current KOTS version is the same as the current app manager version.
+The above template function will return `true` if `KotsVersion` is greater than or equal to `1.19`. **Note**: The app manager is based on the KOTS open source project. The current KOTS version is the same as the current app manager version.
 
 For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
 
@@ -502,3 +502,63 @@ This can be useful when dealing with user-uploaded files that may include null b
 ```yaml
 repl{{ ConfigOptionData "my_file_upload" | YamlEscape }}
 ```
+
+## KubernetesVersion
+```go
+func KubernetesVersion() string
+```
+
+KubernetesVersion returns the Kubernetes server version.
+
+```yaml
+repl{{ KubernetesVersion }}
+```
+
+`KubernetesVersion` can be compared to Semantic Versions (SemVers) like follows:
+```yaml
+repl{{KubernetesVersion | semverCompare ">= 1.19"}}
+```
+
+The above template function will return `true` if `KubernetesVersion` is greater than or equal to `1.19`.
+
+For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
+
+## KubernetesMajorVersion
+```go
+func KubernetesMajorVersion() string
+```
+
+KubernetesMajorVersion returns the Kubernetes server *major* version.
+
+```yaml
+repl{{ KubernetesMajorVersion }}
+```
+
+`KubernetesMajorVersion` can be compared to Semantic Versions (SemVers) like follows:
+```yaml
+repl{{KubernetesMajorVersion | semverCompare "< 2"}}
+```
+
+The above template function will return `true` if `KubernetesMajorVersion` is less than `2`.
+
+For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
+
+## KubernetesMinorVersion
+```go
+func KubernetesMinorVersion() string
+```
+
+KubernetesMinorVersion returns the Kubernetes server *minor* version.
+
+```yaml
+repl{{ KubernetesMinorVersion }}
+```
+
+`KubernetesMinorVersion` can be compared to Semantic Versions (SemVers) like follows:
+```yaml
+repl{{KubernetesMinorVersion | semverCompare "> 19"}}
+```
+
+The above template function will return `true` if `KubernetesMinorVersion` is greater than `19`.
+
+For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
