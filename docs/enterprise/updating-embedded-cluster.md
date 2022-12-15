@@ -1,7 +1,7 @@
 # Updating the Admin Console on a Kubernetes Installer Cluster
 
-This document refers to upgrading the Replicated admin console on a Kubernetes installer-created cluster (embedded cluster).
-For information about how to upgrade the admin console on an existing cluster, see [Updating the Admin Console on an Existing Cluster](updating-existing-cluster).
+This topic describes how to update the Replicated admin console on a Kubernetes installer-created cluster (embedded cluster).
+For information about how to update the admin console on an existing cluster, see [Updating the Admin Console on an Existing Cluster](updating-existing-cluster).
 
 ### Online Installations
 
@@ -15,7 +15,7 @@ Replace `APP_SLUG` with the unique slug for the application. The application slu
 
 ### Air Gapped Installations
 
-To update admin console in an air gapped environment, download the new Kubernetes installer air gap bundle, extract it, and run the install.sh script.
+To update the admin console in an air gapped environment, download the new Kubernetes installer air gap bundle, extract it, and run the install.sh script:
 
 ```bash
 curl -SL -o FILENAME.tar.gz https://kurl.sh/bundle/FILENAME.tar.gz
@@ -25,7 +25,7 @@ cat install.sh | sudo bash -s airgap
 
 Replace `FILENAME` with the name of the kURL air gap `.tar.gz` file.
 
-To update the application in an air gapped environment, download the new application air gap bundle and run the following command:
+To update the application in an air gapped environment, download the new application air gap bundle, and then run the following command:
 
 ```bash
 kubectl kots upstream upgrade APP_SLUG --airgap-bundle PATH_TO_AIRGAP_BUNDLE -n NAMESPACE
@@ -39,9 +39,7 @@ Replace:
 
 ### Updating Kubernetes
 
-If the application vendor has updated the version of Kubernetes in the installer since the last time the script was run, it will begin an upgrade of Kubernetes.
-
-The script prints a prompt to continue with the upgrade of the local primary node.
+If the application vendor has updated the version of Kubernetes in the installer since the last time the script was run, it begins an upgrade of Kubernetes. The script prints a prompt to continue with the upgrade of the local primary node.
 
 ```bash
     Drain local node and apply upgrade?
