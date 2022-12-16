@@ -4,6 +4,27 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.92.0
+
+Released on December 16, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
+
+### New Features {#new-features-1-92-0}
+* The app manager uses the `replicatedRegistryDomain` domain to rewrite images stored in the Replicated private registry, when the `replicatedRegistryDomain` field is provided in the Application custom resource.
+* Adds the [KubernetesVersion](/reference/template-functions-static-context#kubernetesversion), [KubernetesMajorVersion](/reference/template-functions-static-context#kubernetesmajorversion), and [KubernetesMinorVersion](/reference/template-functions-static-context#kubernetesminorversion) template functions.
+
+### Improvements {#improvements-1-92-0}
+* Standardizes classes used for branding the admin console.
+* Pins the config navigation so that it does not disappear when scrolling.
+* The [`LicenseDockerCfg`](/reference/template-functions-license-context#licensedockercfg) template function in the License Context now utilizes the `replicatedRegistryDomain` and `proxyRegistryDomain` values from the Application custom resource, if specified.
+
+### Bug Fixes {#bug-fixes-1-92-0}
+* Disables image garbage collection when an external registry is enabled.
+* Fixes a bug where the rqlite headless service manifest was not generated.
+* Fixes an issue where labels displayed as config items in the config navigation.
+* Fixes a bug where the `kots get config` command always decrypted passwords, even when the `--decrypt` flag wasn't passed.
+
 ## 1.91.3
 
 Released on December 10, 2022
