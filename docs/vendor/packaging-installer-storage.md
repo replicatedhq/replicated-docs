@@ -12,7 +12,7 @@ For more information about the storage add-ons that Replicated recommends for si
 * [OpenEBS Local PV for Single Node Clusters](#single-node)
 * [Multi-Node Clusters](#multi-node)
 
-The following table describes the kURL add-ons for data storage and redundancy, including if the add-on provides PV provisioning or object storage:
+The following table describes the kURL add-ons for data storage, including if the add-on provides PV provisioning or object storage:
 
 <table>
   <tr>
@@ -106,9 +106,9 @@ To use the OpenEBS add-on for multi-node Kubernetes installer clusters, your Kub
 
    The app manager v1.88 and earlier requires distributed storage, which is not provided by OpenEBS Local PV. To support multi-node clusters, Kubernetes installers that use an app manager version earlier than v1.88 in the KOTS add-on must use the Rook add-on for distributed storage. See [Rook Ceph](#rook-ceph) below.
 
-* You must include the MinIO add-on to ensure that support bundle and application archive data is replicated to each node in the cluster.
+* You must include the MinIO add-on to ensure that support bundle and application archive data is distributed to each node in the cluster.
 
-* You must include the kURL ECKO add-on to ensure that data in MinIO is replicated to each node in the cluster. See [MinIO](https://kurl.sh/docs/add-ons/ekco#minio) in _ECKO Add-on_ in the open source kURL documentation.
+* You must include the kURL ECKO add-on to ensure that data in MinIO is distributed to each node in the cluster. See [MinIO](https://kurl.sh/docs/add-ons/ekco#minio) in _ECKO Add-on_ in the open source kURL documentation.
 
 #### OpenEBS and MinIO Add-ons Example
 
