@@ -476,18 +476,18 @@ repl{{ NoProxy }}
 func KotsVersion() string
 ```
 
-KotsVersion returns the current KOTS tag/version the admin console is using. **Note**: The app manager is based on the KOTS open source project. The current KOTS version is the same as the current app manager version. The app manager installs the admin console.
+KotsVersion returns the current version of the app manager. **Note**: The app manager is based on the KOTS open source project. The current KOTS version is the same as the current app manager version.
 
 ```yaml
 repl{{ KotsVersion }}
 ```
 
-`KotsVersion` can be compared to Semantic Versions (SemVers) like follows:
+You can compare the KOTS version as follows:
 ```yaml
 repl{{KotsVersion | semverCompare ">= 1.19"}}
 ```
 
-The above template function will return `true` if `KotsVersion` is greater than `1.19`. **Note**: The app manager is based on the KOTS open source project. The current KOTS version is the same as the current app manager version.
+This returns `true` if the KOTS version is greater than or equal to `1.19`.
 
 For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
 
@@ -502,3 +502,72 @@ This can be useful when dealing with user-uploaded files that may include null b
 ```yaml
 repl{{ ConfigOptionData "my_file_upload" | YamlEscape }}
 ```
+
+## KubernetesVersion
+
+> Introduced in Replicated app manager 1.92.0
+
+```go
+func KubernetesVersion() string
+```
+
+KubernetesVersion returns the Kubernetes server version.
+
+```yaml
+repl{{ KubernetesVersion }}
+```
+
+You can compare the Kubernetes version as follows:
+```yaml
+repl{{KubernetesVersion | semverCompare ">= 1.19"}}
+```
+
+This returns `true` if  the Kubernetes version is greater than or equal to `1.19`.
+
+For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
+
+## KubernetesMajorVersion
+
+> Introduced in Replicated app manager 1.92.0
+
+```go
+func KubernetesMajorVersion() string
+```
+
+KubernetesMajorVersion returns the Kubernetes server *major* version.
+
+```yaml
+repl{{ KubernetesMajorVersion }}
+```
+
+You can compare the Kubernetes major version as follows:
+```yaml
+repl{{KubernetesMajorVersion | semverCompare "< 2"}}
+```
+
+This returns `true` if the Kubernetes major version is less than `2`.
+
+For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
+
+## KubernetesMinorVersion
+
+> Introduced in Replicated app manager 1.92.0
+
+```go
+func KubernetesMinorVersion() string
+```
+
+KubernetesMinorVersion returns the Kubernetes server *minor* version.
+
+```yaml
+repl{{ KubernetesMinorVersion }}
+```
+
+You can compare the Kubernetes minor version as follows:
+```yaml
+repl{{KubernetesMinorVersion | semverCompare "> 19"}}
+```
+
+This returns `true` if the Kubernetes minor version is greater than `19`.
+
+For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
