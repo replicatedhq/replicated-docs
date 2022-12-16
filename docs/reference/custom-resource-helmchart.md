@@ -287,7 +287,7 @@ If you specify a namespace in the HelmChart `namespace` field, you must also inc
 
 To create an `.airgap` bundle for a release that uses Helm charts, the Replicated vendor portal renders templates of the Helm charts with `helm template`. The `builder` key specifies the values from the Helm chart `values.yaml` file that the vendor portal uses to create the `.airgap` bundle.
 
-Values in the `builder` key must be hardcoded with `enabled` set to `true` to ensure that the necssary resources are included in the `.airgap` bundle, including any conditional resources.
+Values in the `builder` key must be hardcoded with `enabled` set to `true` to ensure that the necessary resources are included in the `.airgap` bundle, including any conditional resources.
 
 For example, `postgresql` is defined as a conditional resource in the `values` key of the HelmChart custom resource:
 
