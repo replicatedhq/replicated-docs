@@ -1,6 +1,6 @@
 # Using a Custom Registry Domain (Alpha)
 
-You can use custom domains as aliases for the replicated.registry.com and proxy.replicated.com endpoints, by creating Canonical Name (CNAME) records for your domains.
+You can use custom domains as aliases for the replicated.registry.com and proxy.replicated.com endpoints, by creating Canonical Name (CNAME) records for your domains, also known as custom domains.
 
 Whether you use the Replicated private registry or the proxy service for your own private registry, these Replicated domains are external to your domain and require additional security reviews by your customer. Using custom domains as aliases for Replicated domains can bring the Replicated registry and proxy service inside an existing security review and reduce your exposure.
 
@@ -24,7 +24,7 @@ If you configure a second application to use an existing, configured domain, the
 
 Configuring a custom domain has the following limitations:
 
-- A single CNAME record cannot be used for both the registry and proxy endpoints. A single domain can map to registry.replicated.com for any number of applications, but cannot map to both registry.replicated.com and  proxy.replicated.com, even if the applications are different.
+- A single custom domain cannot be used for both the registry and proxy endpoints. A single domain can map to registry.replicated.com for any number of applications, but cannot map to both registry.replicated.com and  proxy.replicated.com, even if the applications are different.
 - Custom domains cannot be used to alias replicated.app (release manifests), api.replicated.com (platform market API), the download portal, or other services.
 
 ## Configure a Custom Domain
@@ -41,11 +41,11 @@ To configure a custom domain in the vendor portal:
 
 1. Enter the custom domain in the text box, and click **Save**.
 
-1. From Create CNAME record, copy the text string and create the CNAME record in your DNS account. Click **Continue**.
+1. From Create CNAME record, copy the text string and create the custom domain record in your DNS account. Click **Continue**.
 
     The **Configure a custom domain** wizard opens.
 
-1. For **Domain**, add the domain used for images pushed to the Replicated registry. Click **Save & continue**.
+1. For **Domain**, add the domain used for images pushed to the Replicated registry or proxy service. Click **Save & continue**.
 
 1. For **Verify ownership**, copy the text string and use it to create a TXT record in your DNS account. Click **Verify & continue**.
 
@@ -73,7 +73,7 @@ To configure a custom domain in the vendor API:
 
   Your application ID is returned as a numeric string.
 
-1. Review your current CNAME configuration:
+1. Review your current custom domain configuration:
 
   ```
   curl –-header "Authorization: USER_TOKEN" https://api.replicated.com/vendor/v3/app/APP_ID/registry/cnames
@@ -81,13 +81,13 @@ To configure a custom domain in the vendor API:
 
   Replace `APP_ID` with your application ID.
 
-  If your CNAME configuration is not set up, the results show as `null`:
+  If your custom domain configuration is not set up, the results show as `null`:
 
   ```
   {"registry":null,"proxy":null}
   ```
 
-1. Customize the CNAME. For the "hostname" field, replace the hostname value in the following example with your domain:
+1. Customize the custom domain. For the "hostname" field, replace the hostname value in the following example with your domain:
 
   ```
   curl --request PUT \
@@ -125,7 +125,7 @@ To configure a custom domain in the vendor API:
   }
   ```
 
-  There is a 2-step verification process. This response shows `is_active: false`, meaning that the CNAME is not set up yet and that the `domain_verification_status` is pending.
+  There is a 2-step verification process. This response shows `is_active: false`, meaning that the custom domain is not set up yet and that the `domain_verification_status` is pending.
 
 1. Create the domain TXT record for the application using your DNS provider's instructions, and set the value to the randomly generated value shown in the previous step.
 
@@ -202,7 +202,7 @@ To configure a custom domain in the vendor API:
   }
   ```
 
-  The TLS verification status is active and CNAME configuration is complete.
+  The TLS verification status is active and custom domain configuration is complete.
 
   :::note
   You may need to run the request a few times, and receiving the response can take approximately 90 seconds.
