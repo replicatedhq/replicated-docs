@@ -4,6 +4,25 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.92.0
+
+Released on December 16, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
+
+### New Features {#new-features-1-92-0}
+* Allows users to customize the look of the admin console.
+* The admin console will now read the `replicatedRegistryDomain` field from KOTS application manifest and, if provided, use the values to rewrite images from `registry.replicated.com`.
+* The [`LicenseDockerCfg`](/reference/template-functions-license-context#licensedockercfg) template function in the License Context now utilizes the `spec.replicatedRegistryDomain` and `spec.proxyRegistryDomain` values from the KOTS Application manifest, if specified. This change supports the [Custom Registry Hostname](https://docs.replicated.com/vendor/packaging-private-registry-cname) feature (Alpha).
+* Adds [KubernetesVersion](/reference/template-functions-static-context#kubernetesversion), [KubernetesMajorVersion](/reference/template-functions-static-context#kubernetesmajorversion), and [KubernetesMinorVersion](/reference/template-functions-static-context#kubernetesminorversion) template functions.
+* Config Page: updated the config nav so that its position is fixed and doesn't scroll with the config form.
+
+### Bug Fixes {#bug-fixes-1-92-0}
+* Disable image garbage collection when an external registry is enabled.
+* fix a bug where rqlite headless service manifest is not generated.
+* Config Page: fixes an issue where field labels were rendered in the config page side nav.
+* When using kots get config, now decrypts only if the --decrypt flag has been passed.
+
 ## 1.91.3
 
 Released on December 10, 2022
