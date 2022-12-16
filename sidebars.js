@@ -149,7 +149,6 @@ const sidebars = {
                   },
                   'vendor/packaging-embedded-kubernetes',
                   'vendor/preflight-host-preflights',
-                  'vendor/preflight-support-bundle-creating',
                   {
                       type: 'category',
                       label: 'Configuring Backup and Restore',
@@ -212,6 +211,15 @@ const sidebars = {
               'vendor/licenses-using-builtin-fields',
               'vendor/licenses-adding-custom-fields',
               'vendor/licenses-referencing-fields',
+            ],
+          },
+          {
+            type: 'category',
+            label: 'Preflights and Support Bundles',
+            items: [
+              'vendor/preflight-support-bundle-creating',
+              'vendor/support-online-support-bundle-specs',
+              'vendor/support-modular-support-bundle-specs',
             ],
           },
           'vendor/releases-sharing-license-install-script',

@@ -1,4 +1,4 @@
-# Modular & Discoverable Support Bundle and Redactor specs
+# Modular and Discoverable Support Bundle and Redactor specs
 
 ## Merge specs into a single Support Bundle archive
 
