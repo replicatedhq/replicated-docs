@@ -504,6 +504,9 @@ repl{{ ConfigOptionData "my_file_upload" | YamlEscape }}
 ```
 
 ## KubernetesVersion
+
+> Introduced in Replicated app manager 1.92.0
+
 ```go
 func KubernetesVersion() string
 ```
@@ -524,6 +527,9 @@ This returns `true` if  the Kubernetes version is greater than or equal to `1.19
 For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
 
 ## KubernetesMajorVersion
+
+> Introduced in Replicated app manager 1.92.0
+
 ```go
 func KubernetesMajorVersion() string
 ```
@@ -544,6 +550,9 @@ This returns `true` if the Kubernetes major version is less than `2`.
 For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
 
 ## KubernetesMinorVersion
+
+> Introduced in Replicated app manager 1.92.0
+
 ```go
 func KubernetesMinorVersion() string
 ```
