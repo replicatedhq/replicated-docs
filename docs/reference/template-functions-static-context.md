@@ -542,12 +542,10 @@ repl{{ KubernetesMajorVersion }}
 
 You can compare the Kubernetes major version as follows:
 ```yaml
-repl{{KubernetesMajorVersion | semverCompare "< 2"}}
+repl{{lt (KubernetesMajorVersion | ParseInt) 2 }}
 ```
 
 This returns `true` if the Kubernetes major version is less than `2`.
-
-For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
 
 ## KubernetesMinorVersion
 
@@ -565,9 +563,7 @@ repl{{ KubernetesMinorVersion }}
 
 You can compare the Kubernetes minor version as follows:
 ```yaml
-repl{{KubernetesMinorVersion | semverCompare "> 19"}}
+repl{{gt (KubernetesMinorVersion | ParseInt) 19 }}
 ```
 
 This returns `true` if the Kubernetes minor version is greater than `19`.
-
-For more complex comparisons, see [Semantic Version Functions](https://masterminds.github.io/sprig/semver.html) in the sprig documentation.
