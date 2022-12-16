@@ -218,8 +218,8 @@ const sidebars = {
             label: 'Preflights and Support Bundles',
             items: [
               'vendor/preflight-support-bundle-creating',
-              'vendor/support-online-support-bundle-specs',
-              'vendor/support-modular-support-bundle-specs',
+              'vendor/support-bundle-online-specs',
+              'vendor/support-bundle-modular-specs',
             ],
           },
           'vendor/releases-sharing-license-install-script',
