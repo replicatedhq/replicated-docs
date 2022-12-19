@@ -4,9 +4,9 @@ You can make the definition of a support bundle specification available online. 
 
 ## Use a Self-Link to a Source Repository
 
-Including a self-link to a source repository in a support bundle specification helps to ensure that the latest online Troubleshoot.sh specification is available to your support bundle. This lets you use the support bundle to detect potential problems in your end customer environments and let the know know how to fix it instead of waiting for the next time customers to upgrade their application or Kubernetes version and get notified of the potential problem.
+Including a self-link to a source repository in a support bundle specification helps to ensure that the latest online specification is available to your support bundle. With this method, the support bundle proactively detects potential problems in end customer environments and let them know know how to fix it. Without the self-link option, you must wait for the next time your customers upgrade their applications or Kubernetes versions to get notified of potential problems.
 
-For example, the Replicated Kubernetes installer includes the [EKCO](https://kurl.sh/docs/add-ons/ekco) add-on for maintenance on Kubernetes installer (embedded) clusters, such as automating certificate rotation or data migration tasks. You can make sure that embedded cluster installations include this add-on by packaging your application with a Replicated [support bundle](https://docs.replicated.com/vendor/preflight-support-bundle-creating#customize-a-support-bundle) custom resource that is configured to warn users if they do not have this add-on installed, or if it is not running in the cluster. 
+For example, the Replicated Kubernetes installer includes the [EKCO](https://kurl.sh/docs/add-ons/ekco) add-on for maintenance on Kubernetes installer (embedded) clusters, such as automating certificate rotation or data migration tasks. You can package your application with a Replicated [Support Bundle](https://docs.replicated.com/vendor/preflight-support-bundle-creating#customize-a-support-bundle) custom resource that is configured to warn users if they do not have this add-on installed, or if it is not running in the cluster. 
 
 **Example:**
 
@@ -28,7 +28,7 @@ For example, the Replicated Kubernetes installer includes the [EKCO](https://kur
               message: EKCO has at least 1 replica
 ```
 
-If you release this specification with EKCO 0.1.0 and later on you discover that there is a bug that you can write an [analyzer](https://troubleshoot.sh/docs/analyze/) for, you might have to wait until a cluster upgrade before users get the benefit of that new analyzer.  However, if you include a self-link to this specification, then Troubleshoot uses the assets hosted in your project, which you can keep up to date.  We have a spec hosted on [GitHub](https://github.com/replicatedhq/troubleshoot-specs/blob/main/in-cluster/ekco.yaml) and we'll be sure to get the raw file link from the browser.
+If you release this specification with EKCO 0.1.0 and later on discover that there is a bug that you can write an [analyzer](https://troubleshoot.sh/docs/analyze/) for, you might have to wait until a cluster upgrade before users get the benefit of that new analyzer.  However, if you include a self-link to this specification, then the support bundle uses the assets hosted in your project, which you can keep up to date. Troubleshoot has a specification hosted on [GitHub](https://github.com/replicatedhq/troubleshoot-specs/blob/main/in-cluster/ekco.yaml) and gets the raw file link from the browser.
 
 ```yaml
   uri: https://raw.githubusercontent.com/replicatedhq/troubleshoot-specs/main/in-cluster/ekco.yaml
@@ -36,4 +36,4 @@ If you release this specification with EKCO 0.1.0 and later on you discover that
   analyzers: [...]
 ```
 
-With the addition of the `uri:` property, Troubleshoot will get the most up to date spec if it can, and then fall back to what we wrote for the 0.1.0 release at the time.  See [our blog post](https://www.replicated.com/blog/debugging-kubernetes-enhancements-to-troubleshoot/#Using-online-specs-for-support-bundles) for the complete example.
+With the addition of the `uri:` property, Troubleshoot gets the latest specification if it can, or it falls back to the earlier release so that collection and analysis continue to work.  See [our blog post](https://www.replicated.com/blog/debugging-kubernetes-enhancements-to-troubleshoot/#Using-online-specs-for-support-bundles) for the complete example.

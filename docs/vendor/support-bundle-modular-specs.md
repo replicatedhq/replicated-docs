@@ -1,12 +1,18 @@
-# Modular and Discoverable Support Bundle and Redactor specs
+# Modular and Discoverable Support Bundle Specifications
 
-## Merge specs into a single Support Bundle archive
+Support bundle specifications are modular. Teams that are working on different parts of an application can create separate, smaller support bundle manifests that get merged. This helps to avoid merge conflicts that can happen when working together in one, larger specification. For more information, see [Bundling Modular Specifications](#modular).
 
-Support bundle specs can be designed in a modular fashion.  The Troubleshoot CLI can take [multiple specs as input](https://troubleshoot.sh/docs/support-bundle/collecting/#collect-a-support-bundle-using-multiple-specs), and will handle merging the `collectors:` and `analyzers:` property into a single support bundle.  Thus, teams can more easily develop specs that are scoped to individual components or microservices in a large application.
+You can also discover all of the specifications in a cluster or namespace and merge the contents in a single bundle to improve your debugging workflow. For more information, see [Adding Specifications for Discoverability](#discoverability).
 
-For instance, in an application that ships MySQL, nginx, and redis, your team might consider adding some [collectors](https://troubleshoot.sh/docs/collect/) and [analyzers](https://troubleshoot.sh/docs/analyze/) for each component:
+Support bundles are based on the open-source Troubleshoot project, which is maintained by Replicated. For more information about specific types of collectors, analyzers, and redactors, see the [Troubleshoot](https://troubleshoot.sh/docs/collect/) documentation.
 
-> manifests/nginx/troubleshoot.yaml
+## Merging Modular Specifications {#modular}
+
+When you design support bundle specs in a modular convention, the support-bundle CLI can take multiple specifications as input and merge the `collectors:` and `analyzers:` properties into a single support bundle.  This lets teams develop specifications that are scoped to individual components or microservices in a large application.
+
+For example, in an application that ships MySQL, NGINX, and Redis, your team can consider adding some collectors and analyzers for each component, as follows:
+
+**Example: `manifests/nginx/troubleshoot.yaml`**
 
 ```yaml
 ...
@@ -23,7 +29,7 @@ spec:
               when: replicas < 2
 ```
 
-> manifests/mysql/troubleshoot.yaml
+**Example: `manifests/mysql/troubleshoot.yaml`**
 
 ```yaml
 ...
@@ -39,7 +45,7 @@ spec:
               when: version < 8.x
 ```
 
-> manifests/redis/troubleshoot.yaml
+**Example: `manifests/redis/troubleshoot.yaml`**
 
 ```yaml
 ...
@@ -50,70 +56,80 @@ spec:
         uri: rediss://default:password@hostname:6379
 ```
 
-And a bundle can be generated from a combination of these manifests:
+You run the following command to generate a bundle from a combination of these manifests:
 
 ```bash
 kubectl support-bundle manifests/redis/troubleshoot.yaml manifests/mysql/troubleshoot.yaml manifests/nginx/troubleshoot.yaml
 ```
 
-Troubleshoot can consume preflights and support bundles from file, URL, and from Kubernetes resources.
+Troubleshoot can consume preflight checks and support bundles from files, URLs, and from Kubernetes resources.
 
-## Adding specs to the cluster as Kubernetes resources for discoverability
+For more information about using multiple specifications, see [Collecting a Support Bundle from Multiple Specs](https://troubleshoot.sh/docs/support-bundle/collecting/#collect-a-support-bundle-using-multiple-specs) in the Troubleshoot.sh documentation.
 
-You can also add [Support Bundle specs to a cluster as Secrets](https://troubleshoot.sh/docs/support-bundle/collecting/#collect-a-support-bundle-using-specs-discovered-from-the-cluster).  We don't have CRDs yet for Support Bundles or Preflights, so we'll wrap them in a Secret for now.  Make sure your spec has the label `troubleshoot.io/kind: supporbundle-kind` and a data key `support
+## Adding Specifications for Discoverability {#discoverability}
 
-> [`kURL/addons/flannel/template/yaml/troubleshoot.yaml`](https://github.com/adamancini/kURL/blob/main/addons/flannel/template/base/yaml/troubleshoot.yaml)
+To discover specifications in a cluster and generate them into one support bundle:
 
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: flannel-troubleshoot-spec
-  labels:
-    troubleshoot.io/kind: supportbundle-kind
-stringData:
-  support-bundle-spec: |
-    apiVersion: troubleshoot.sh/v1beta2
-    kind: SupportBundle
-    metadata:
-      name: flannel
-    spec:
-      uri: https://raw.githubusercontent.com/replicatedhq/kURL/main/addons/flannel/template/yaml/troubleshoot.yaml
-      collectors: [...]
-      analyzers: [...]
-```
+1. Add support bundle specifications to a cluster as secrets. Make sure your specification has the label `troubleshoot.io/kind: supportbundle-kind` and a data key `support`.
 
-Create the resource from our manifest:
+  **Example:**
 
-```shell
-kubectl apply -f kURL/addons/flannel/template/yaml/troubleshoot.yaml
-# secret default/flannel-troubleshoot-spec created
-```
+  > [`kURL/addons/flannel/template/yaml/troubleshoot.yaml`](https://github.com/adamancini/kURL/blob/main/addons/flannel/template/base/yaml/troubleshoot.yaml)
 
-And now we can use any of the specs from our cluster to collect an aggregate Support Bundle
+  ```yaml
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: flannel-troubleshoot-spec
+    labels:
+      troubleshoot.io/kind: supportbundle-kind
+  stringData:
+    support-bundle-spec: |
+      apiVersion: troubleshoot.sh/v1beta2
+      kind: SupportBundle
+      metadata:
+        name: flannel
+      spec:
+        uri: https://raw.githubusercontent.com/replicatedhq/kURL/main/addons/flannel/template/yaml/troubleshoot.yaml
+        collectors: [...]
+        analyzers: [...]
+  ```
 
-```shell
-kubectl get secrets --all-namespaces -l troubleshoot.io/kind=supportbundle-spec
-# NAMESPACE   NAME                        TYPE     DATA   AGE
-# default     flannel-troubleshoot-spec   Opaque   1      94s
-# default     kotsadm-troubleshoot-spec   Opaque   1      9s
-# default     velero-troubleshoot-spec    Opaque   1      52s
+1. Create the resource from your manifest.
 
-kubectl support-bundle secret/default/flannel-troubleshoot-spec secret/default/kotsadm-troubleshoot-spec secret/default/velero-troubleshoot-spec
-```
+**Example:**
 
-Troubleshoot can also discover all the specs in a given namespace or cluster based on the `troubleshoot.io/kind` label with the `--load-cluster-specs` flag:
+  ```shell
+  kubectl apply -f kURL/addons/flannel/template/yaml/troubleshoot.yaml
+  # secret default/flannel-troubleshoot-spec created
+  ```
 
-```shell
-kubectl support-bundle --load-cluster-specs
-```
+1. Use any of the specifications from your cluster to collect an aggregate support bundle.
 
-And this can be combined with input from a file or URL, as well:
+**Example:**
 
-```shell
-kubectl support-bundle https://raw.githubusercontent.com/replicatedhq/troubleshoot/main/sample-troubleshoot.yaml --load-cluster-specs
-```
+  ```shell
+  kubectl get secrets --all-namespaces -l troubleshoot.io/kind=supportbundle-spec
+  # NAMESPACE   NAME                        TYPE     DATA   AGE
+  # default     flannel-troubleshoot-spec   Opaque   1      94s
+  # default     kotsadm-troubleshoot-spec   Opaque   1      9s
+  # default     velero-troubleshoot-spec    Opaque   1      52s
 
-The analysis screen will show the results of all the Analyzers defined in your chosen manifests, and all the contents will be available in a single bundle.  Have a look at our [troubleshoot-specs repo on GitHub](https://github.com/replicatedhq/troubleshoot-specs) for some real world use cases.
+  kubectl support-bundle secret/default/flannel-troubleshoot-spec secret/default/kotsadm-troubleshoot-spec secret/default/velero-troubleshoot-spec
+  ```
 
-**Note: getting a merged Support Bundle will be available from the Admin Console soon; right now this is available only from the Troubleshoot CLI**
+1. Run the following command to discover all the specs in a given namespace or cluster based on the `troubleshoot.io/kind` label with the `--load-cluster-specs` flag:
+
+  ```shell
+  kubectl support-bundle --load-cluster-specs
+  ```
+
+  You can also combine this command with input from a file or URL.
+
+  **Example:**
+
+  ```shell
+  kubectl support-bundle https://raw.githubusercontent.com/replicatedhq/troubleshoot/main/sample-troubleshoot.yaml --load-cluster-specs
+  ```
+
+  The analysis screen shows the results of all the analyzers defined in your chosen manifests, and all the contents are available in a single bundle. To view real world use cases, see the[troubleshoot-specs repo](https://github.com/replicatedhq/troubleshoot-specs) in GitHub.
