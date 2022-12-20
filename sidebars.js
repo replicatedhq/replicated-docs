@@ -221,7 +221,8 @@ const sidebars = {
               'vendor/licenses-referencing-fields',
             ],
           },
-          'vendor/releases-sharing-license-install-script',
+        'vendor/releases-sharing-license-install-script',
+        'vendor/monitoring-instance-details',
         {
           type: 'category',
           label: 'Team Management',
