@@ -1,6 +1,6 @@
 # Online Support Bundle Specifications
 
-You can make the definition of a support bundle specification available online.  The Troubleshoot schema supports a `uri://` field that, when set, causes the support bundle to use the specification at that URI.  Any additional collectors or analyzers in the original specification are used as a fallback in case the URI is unreachable or unparseable. For more information about the URI, see [Troubleshoot schema supports a `uri://` field](https://troubleshoot.sh/docs/support-bundle/supportbundle/#uri) in the _Troubleshoot.sh_ docs.
+You can make the definition of a support bundle specification available online. The schema supports a `uri://` field that, when set, causes the support bundle to use the specification at that URI.  Any collectors or analyzers in the original specification are used as a fallback in case the URI is unreachable or unparseable. For more information about the URI, see [Troubleshoot schema supports a `uri://` field](https://troubleshoot.sh/docs/support-bundle/supportbundle/#uri) in the _Troubleshoot.sh_ docs.
 
 ## Use a Self-Link to a Source Repository
 
@@ -36,4 +36,8 @@ If you release this specification with EKCO 0.1.0 and later on discover that the
   analyzers: [...]
 ```
 
-With the addition of the `uri:` property, Troubleshoot gets the latest specification if it can, or it falls back to the earlier release so that collection and analysis continue to work.  See [our blog post](https://www.replicated.com/blog/debugging-kubernetes-enhancements-to-troubleshoot/#Using-online-specs-for-support-bundles) for the complete example.
+With the addition of the `uri:` property, Troubleshoot gets the latest specification if it can, or it falls back to the earlier release so that collection and analysis continue to work.  
+
+## Related Topic
+
+Blog Post: [Debugging Kubernetes: Enhancements to Troubleshoot](https://www.replicated.com/blog/debugging-kubernetes-enhancements-to-troubleshoot/#Using-online-specs-for-support-bundles)
