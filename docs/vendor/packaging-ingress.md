@@ -116,3 +116,5 @@ You should think carefully about the options added to be installed via your solu
 
 Assuming that your solution requires Prometheus and you are looking for a design that would be possible to consume it in a pre-existing cluster. Ideally, a cluster should have only one Prometheus installed and configured, which will serve all solutions running on it. Therefore, unless your solution's primary purpose would be installing and managing Prometheus, it does not fit in the application domain. Otherwise, it might become problematic when more than one solution deployed on the cluster tries to install Prometheus in this example. 
 
+For needs like the above example, a recommended approach would be to let the application users know that they can quickly get it running with the embedded cluster(`kURL`) or ensure that your solution's pre-requirements are correctly available on the pre-existent cluster. A typical option is to address this requirement via guidance and docs.
+ 
