@@ -2,28 +2,19 @@
 
 This topic describes how to monitor active application instances using the instance details data in the Replicated vendor portal.
 
-## Overview of Customer Reporting
-
-The Replicated vendor portal **Customers** page displays details about each customer license that you create, including the channel the customer is assigned, the type of license, the number of active application instances installed with the license, and more.
-
-From the **Customers** page, you can click **Customer reporting** for a customer to view reporting information about the active application instances associated with the customer license.
-
-For each active application instance listed on the **Customer reporting** page, you can click the **View details** button to access the **Instance details** page. The **Instance details** page displays key metrics and details to help you understand the performance and status of each active application instance.
-
-The following screenshot shows the location of the **View details** button on the **Customer reporting** page:
-
-![Customer reporting page that lists one active instance with box around View details button](/images/customer-reporting-view-details.png)
+## Overview of Instance Reporting
 
 
 ## Limitations
 
 The instance reporting data in the vendor portal has the following limitations:
 
-* Instance reporting data is available only for application instances installed in online environments. Data for instances installed in air gapped environments is not available. 
+* Instance reporting data is available only for application instances installed in online environments. Data for instances installed in air gapped environments is not available.
+* Inactive instances are not included in instance reporting data. 
 
 ## About the Instance Details Page
 
-Each customer license is associated with one or more installed instances of your application. For each application instance, you can view an **Instance details** page in the vendor portal to understand the health, performance, and current state of the instance.
+Each customer license is associated with one or more installed instance of your application. For each application instance, you can view an **Instance details** page in the vendor portal to understand the health, performance, and current state of the instance.
 
 The following screenshot shows an example of the **Instance details** page in the vendor portal:
 
@@ -43,7 +34,7 @@ As shown in the screenshot above, the vendor portal **Instance details** page in
 
 ### Current State
 
-The **Current State** section includes the following metrics:
+The **Current State** section includes the following details and computed metrics:
 
 * App status
 * App version
@@ -55,7 +46,7 @@ The **Current State** section includes the following metrics:
 
 ### Install Insights
 
-The **Install Insights** section displays key performance indicators (KPIs) for the instance.
+The **Install Insights** section displays key health metrics for the installation.
 
 instance-time-to-live
 license-time-to-live
@@ -81,8 +72,66 @@ The **Install Information** section displays details about the cluster infrastru
 
 ### Instance Uptime
 
+
+
 ### Instance Activity
 
-The **Instance Activity** section of the Reporting page displays realtime event data for the .
+The **Instance Activity** section of the Reporting page displays realtime event data for the instance.
 
-Every time an internet-connected KOTS instance checks for updates, it reports details about the KOTS version, Kubernetes Version, current app version, and current app status. These checkin events have always been surfaced to vendors, but we’re now refining this data at the point of sending, and using it to surface not only more detailed granular status, but also some powerful computed insights around business value recognized. The event data we send is cataloged here: Instance events and insights This granular event data is provided to vendors in the vendor portal and updated in real time
+Each time an instance checks for updates, it reports details about the current KOTS version, Kubernetes Version, application version, and application status. 
+
+You can filter the Instance Activity stream by the following event categories:
+
+* App install/upgrade
+* Status change
+* Downstream update 
+* kURL install/upgrade
+* KOTS install/upgrade
+
+#### App Install/Upgrade
+
+The following table describes the fields that the vendor portal uses to display application installation and upgrade events.
+
+<table>
+  <tr>
+    <th>Field Name</th>
+    <th>Description</th>
+    <th>Event Stream Label</th>
+  </tr> 
+  <tr>
+    <td><code>channelId</code></td>
+    <td>The ID of the channel to which the application instance is assigned. The channel name associated with this ID displays on the event stream.</td>
+    <td>App Channel: Stable</td>
+  </tr> 
+  <tr>
+    <td><code>versionLabel</code></td>
+    <td>The version that the instance is running. The <code>versionLabel</code> </td>
+    <td></td>
+  </tr> 
+</table>
+
+#### Status Change
+
+The following table describes the fields that the vendor portal uses to display application status change events.
+
+<table>
+  <tr>
+    <th>Field Name</th>
+    <th>Description</th>
+    <th>Event Stream Label</th>
+  </tr> 
+  <tr>
+    <td><code>appStatus</code></td>
+    <td>
+      <p>A string that represents the availability status of the application.</p>
+      <p>Possible values: ready, updating, degraded, inactive, unavailable, missing. For more information about how the app manager determines <code>appStatus</code>, see <a href="/enterprise/status-viewing-details#resource-statuses">Resource Statuses</a> in <em>Viewing Status Details</em>.</p>
+    </td>
+    <td>App Status: Ready</td>
+  </tr> 
+</table>
+
+#### Downstream Update
+
+#### kURL Install/Upgrade
+
+#### KOTS Install/Upgrade
