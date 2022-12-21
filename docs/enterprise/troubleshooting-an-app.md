@@ -206,7 +206,7 @@ Do one of the following:
 
 ## Discover Specifications and Generate a Support Bundle
 
-You can discover and use any of the support bundle specifications in your cluster to collect an aggregate support bundle using any of the following methods:
+You can discover and use any of the support bundle specifications in your cluster to collect an aggregate support bundle using any of the following methods. You must use the CLI to perform this task.
 
 - Use secrets to discover specifications:
 
