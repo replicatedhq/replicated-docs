@@ -60,7 +60,9 @@ For example, in an application that ships MySQL, NGINX, and Redis:
 
 ## Add Discoverability to Clusters
 
-You can add Kubernetes resource specifications to clusters for the purpose of discoverability. This lets customers use the CLI to discover support bundle manifest files and generate a merged support bundle with aggregated information.
+You can add a support bundle manifest file as a Secret to enable discoverability in clusters. 
+
+Customers can then discover all of the support bundle specifications and generate a merged support bundle with aggregated information.
 
 To configure a discovery resource:
 
