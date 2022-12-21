@@ -170,3 +170,36 @@ If you are on an air gapped server, perform the following steps to create a supp
     ```
     kubectl support-bundle /path/to/spec.yaml
     ```
+## Generate a Single Support Bundle Archive
+
+You can generate a single support bundle archive from multiple resource specifications, including manifest files, URLs, and Kubernetes secrets. You must use the CLI to perform this task.
+
+Do one of the following:
+
+  -  Run the following command to generate a support bundle from multiple files:
+
+    ```bash
+    kubectl support-bundle ./PATH_TO_FILE1 ./PATH_TO_FILE2
+      ```
+
+      Replace each `PATH_TO_FILE` with the path and YAML filename for each support bundle. A minimum of two files are required to run this command.
+
+      **Example:**
+
+      ```bash
+      kubectl support-bundle manifests/redis/troubleshoot.yaml manifests/mysql/troubleshoot.yaml manifests/nginx/troubleshoot.yaml
+      ```
+
+  - Run the following command to generate a support bundle from a file, and URL, and a Kubernetes secret:
+
+    ```bash
+      kubectl support-bundle URL \
+    ./PATH_TO_FILE \
+    SECRET/PATH_TO_SPEC 
+    ```
+
+    Replace:
+
+    - `URL` with the URL location of your YAML
+    - `PATH_TO_FILE` with the path and YAML file name
+    - `SECRET/PATH_TO_SPEC` with the path to the secret specification

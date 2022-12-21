@@ -1,14 +1,12 @@
-# Modular and Discoverable Support Bundle Specifications
+# Configuring Modular and Discoverable Support Bundles
 
 This topic provides information about using a modular approach to support bundles and adding specifications to discover Kubernetes resources in a cluster.
 
-## Merge specs into a single Support Bundle archive
+## Configure Modular Support Bundles
 
 Support bundle manifest files can be designed using a modular approach. This helps teams can more easily develop specifications that are scoped to individual components or microservices in a large application and avoid merge conflicts. You can create separate manifest files or use a combination of manifest files, URLs, and Kubernetes secrets.
 
- Customers can use the support-bundle CLI to merges the multiple specifications and generate a single support bundle archive.
- 
- Troubleshoot can consume preflights and support bundles from file, URL, and from Kubernetes resources. For more information, see [Collecting a Support Bundle from Multiple Specs](https://troubleshoot.sh/docs/support-bundle/collecting/#collect-a-support-bundle-using-multiple-specs) in the Troubleshoot documentation.
+ Then, customers can use the support-bundle CLI to merge the multiple specifications and generate a single support bundle archive. For more information, see [Collecting a Support Bundle from Multiple Specs](https://troubleshoot.sh/docs/support-bundle/collecting/#collect-a-support-bundle-using-multiple-specs) in the Troubleshoot documentation.
 
 For example, in an application that ships MySQL, NGINX, and Redis:
 
@@ -58,17 +56,13 @@ For example, in an application that ships MySQL, NGINX, and Redis:
           uri: rediss://default:password@hostname:6379
   ```
 
-2. And a bundle can be generated from a combination of these manifests:
+2. Generate a single support bundle archive in your development environment if you want to test it. For more information, see [Generate a Single Support Bundle Archive](/enterprise/troubleshooting-an-app/#generate-a-single-support-bundle-archive).
 
-  ```bash
-  kubectl support-bundle manifests/redis/troubleshoot.yaml manifests/mysql/troubleshoot.yaml manifests/nginx/troubleshoot.yaml
-  ```
+## Add Discoverability to Clusters
 
+You can also add Kubernetes resource specifications to clusters for the purposes of discoverability.
 
-
-## Adding specs to the cluster as Kubernetes resources for discoverability
-
-You can also add [Support Bundle specs to a cluster as Secrets](https://troubleshoot.sh/docs/support-bundle/collecting/#collect-a-support-bundle-using-specs-discovered-from-the-cluster).  We don't have CRDs yet for Support Bundles or Preflights, so we'll wrap them in a Secret for now.  Make sure your spec has the label `troubleshoot.io/kind: supporbundle-kind` and a data key `support
+[Support Bundle specs to a cluster as Secrets](https://troubleshoot.sh/docs/support-bundle/collecting/#collect-a-support-bundle-using-specs-discovered-from-the-cluster).  We don't have CRDs yet for Support Bundles or Preflights, so we'll wrap them in a Secret for now.  Make sure your spec has the label `troubleshoot.io/kind: supporbundle-kind` and a data key `support
 
 > [`kURL/addons/flannel/template/yaml/troubleshoot.yaml`](https://github.com/adamancini/kURL/blob/main/addons/flannel/template/base/yaml/troubleshoot.yaml)
 
