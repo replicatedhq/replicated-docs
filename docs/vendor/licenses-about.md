@@ -80,7 +80,3 @@ From the **Customers** page, you can do the following:
 * Click **Customer reporting** for a customer to view reporting information about the active application instances associated with the customer license.
 
    For each active application instance listed on the **Customer reporting** page, you can click the **View details** button to access the **Instance details** page. The **Instance details** page displays key metrics and details to help you understand the performance and status of each active application instance.
-
-   The following screenshot shows the location of the **View details** button on the **Customer reporting** page:
-
-   ![Customer reporting page that lists one active instance with box around View details button](/images/customer-reporting-view-details.png)
