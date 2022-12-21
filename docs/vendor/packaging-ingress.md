@@ -107,3 +107,12 @@ spec:
               serviceName: nginx
               servicePort: 80
 ```
+
+## It is NOT recommended to use this option to address needs outside of the solution domain
+
+You should think carefully about the options added to be installed via your solution. Suppose you are looking to develop a design where your application would be capable of installing what is installed by the embedded cluster ([kURL](https://kurl.sh/)). Than note that it is **not** recommended design. Keep in mind that the kURL will install solutions that are valid for the whole cluster and which does not fit well in the application domain. 
+
+**To better clarifies the above recommendation, let's think in the example following example scenario.**
+
+Assuming that your solution requires Prometheus and you are looking for a design that would be possible to consume it in a pre-existing cluster. Ideally, a cluster should have only one Prometheus installed and configured, which will serve all solutions running on it. Therefore, unless your solution's primary purpose would be installing and managing Prometheus, it does not fit in the application domain. Otherwise, it might become problematic when more than one solution deployed on the cluster tries to install Prometheus in this example. 
+
