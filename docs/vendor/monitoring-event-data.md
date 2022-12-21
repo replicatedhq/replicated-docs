@@ -20,7 +20,7 @@ The following table describes the fields that the vendor portal uses to display 
   </tr>
   <tr>
     <td><code>channelId</code></td>
-    <td>The ID of the channel to which the application instance is assigned. The channel name associated with this ID displays on the event stream.</td>
+    <td>The ID of the channel to which the application instance is assigned.</td>
   </tr> 
   <tr>
     <td><code>kotsVersion</code></td>
