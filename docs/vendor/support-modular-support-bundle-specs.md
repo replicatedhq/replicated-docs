@@ -60,7 +60,7 @@ Troubleshoot can consume preflights and support bundles from file, URL, and from
 
 ## Adding specs to the cluster as Kubernetes resources for discoverability
 
-You can also add [Support Bundle specs to a cluster as Secrets](https://troubleshoot.sh/docs/support-bundle/collecting/#collect-a-support-bundle-using-specs-discovered-from-the-cluster).  We don't have CRDs yet for Support Bundles or Preflights, so we'll wrap them in a Secret for now.  Make sure your spec has the label `troubleshoot.io/kind: supporbundle-kind` and a data key `support
+You can also add [Support Bundle specs to a cluster as Secrets](https://troubleshoot.sh/docs/support-bundle/collecting/#collect-a-support-bundle-using-specs-discovered-from-the-cluster).  We don't have CRDs yet for Support Bundles or Preflights, so we'll wrap them in a Secret for now.  Make sure your spec has the label `troubleshoot.io/kind: support-bundle` and a data key `support-bundle-spec`
 
 > [`kURL/addons/flannel/template/yaml/troubleshoot.yaml`](https://github.com/adamancini/kURL/blob/main/addons/flannel/template/base/yaml/troubleshoot.yaml)
 
@@ -93,7 +93,7 @@ kubectl apply -f kURL/addons/flannel/template/yaml/troubleshoot.yaml
 And now we can use any of the specs from our cluster to collect an aggregate Support Bundle
 
 ```shell
-kubectl get secrets --all-namespaces -l troubleshoot.io/kind=supportbundle-spec
+kubectl get secrets --all-namespaces -l troubleshoot.io/kind=support-bundle
 # NAMESPACE   NAME                        TYPE     DATA   AGE
 # default     flannel-troubleshoot-spec   Opaque   1      94s
 # default     kotsadm-troubleshoot-spec   Opaque   1      9s
