@@ -64,7 +64,7 @@ You can add Kubernetes resource specifications to clusters for the purpose of di
 
 To configure a discovery resource:
 
-1. Add a support bundle specification to a cluster as `Kind: Secret`. Add the label `troubleshoot.io/kind: supportbundle-spec` and a `data` key matching `support-bundle-spec`. 
+1. Add a support bundle specification to a cluster as `Kind: Secret`. Add the label `troubleshoot.io/kind: supportbundle` and a `data` key matching `support-bundle-spec`. 
 
   Custom resource definitions (CRDs) are not available for support bundles or preflights, so they must be wrapped in a secret. For more information about adding secrets, see [Support Bundle specs to a cluster as Secrets](https://troubleshoot.sh/docs/support-bundle/collecting/#collect-a-support-bundle-using-specs-discovered-from-the-cluster) in the Troubleshoot documentation.
 
@@ -76,7 +76,7 @@ To configure a discovery resource:
   metadata:
     name: flannel-troubleshoot-spec
     labels:
-      troubleshoot.io/kind: supportbundle-spec
+      troubleshoot.io/kind: supportbundle
   stringData:
     support-bundle-spec: |
       apiVersion: troubleshoot.sh/v1beta2
