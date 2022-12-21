@@ -108,9 +108,9 @@ spec:
               servicePort: 80
 ```
 
-## It is NOT recommended to use this option to address needs outside of the solution domain
+## Common Pitfalls and Best Practices
 
-You should think carefully about the options added to be installed via your solution. Suppose you are looking to develop a design where your application would be capable of installing what is installed by the embedded cluster ([kURL](https://kurl.sh/)). Than note that it is **not** recommended design. Keep in mind that the kURL will install solutions that are valid for the whole cluster and which does not fit well in the application domain. 
+It is NOT recommended to use the option described above to address needs outside of the solution domain. You should think carefully about the options added to be installed via your solution. Suppose you are looking to develop a design where your application would be capable of installing what is installed by the embedded cluster ([kURL](https://kurl.sh/)). Than note that it is **not** recommended design. Keep in mind that the kURL will install solutions that are valid for the whole cluster and which does not fit well in the application domain. 
 
 **To better clarifies the above recommendation, let's think in the example following example scenario.**
 
