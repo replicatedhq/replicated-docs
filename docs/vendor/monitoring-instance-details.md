@@ -65,9 +65,8 @@ total uptime %
 
 ### Install Information
 
-The **Install Information** section displays details about the cluster infrastructure where the application is installed. 
+The **Install Information** section displays details about the cluster infrastructure where the application is installed:
 
-Existing cluster:
 * Kubernetes Flavor
 * Kubernetes Version
 * KOTS version
