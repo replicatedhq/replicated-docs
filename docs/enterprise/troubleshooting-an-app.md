@@ -203,3 +203,44 @@ Do one of the following:
     - `URL` with the URL location of your YAML
     - `PATH_TO_FILE` with the path and YAML file name
     - `SECRET/PATH_TO_SPEC` with the path to the secret specification
+
+## Discover Specifications and Generate a Support Bundle
+
+You can discover and use any of the support bundle specifications in your cluster to collect an aggregate support bundle using any of the following methods:
+
+- Use secrets to discover specifications:
+
+  1. Run the following command:
+
+    ```shell
+    kubectl get secrets --all-namespaces -l troubleshoot.io/kind=supportbundle-spec
+    ```
+    **Example output:***
+
+    ```shell
+    # NAMESPACE   NAME                        TYPE     DATA   AGE
+    # default     flannel-troubleshoot-spec   Opaque   1      94s
+    # default     kotsadm-troubleshoot-spec   Opaque   1      9s
+    # default     velero-troubleshoot-spec    Opaque   1      52s
+    ```
+
+  1. Generate the support bundle for any of the specifications in your output.
+
+    **Example:**
+    ```shell
+      kubectl support-bundle secret/default/flannel-troubleshoot-spec secret/default/kotsadm-troubleshoot-spec secret/default/velero-troubleshoot-spec
+    ```
+
+- Discover all the specifications in a given namespace or cluster based on the `troubleshoot.io/kind` label with the `--load-cluster-specs` flag:
+
+  ```shell
+  kubectl support-bundle --load-cluster-specs
+  ```
+
+  You can also combine this command with input from a file or URL:
+
+  ```shell
+  kubectl support-bundle https://raw.githubusercontent.com/replicatedhq/troubleshoot/main/sample-troubleshoot.yaml --load-cluster-specs
+  ```
+
+  The analysis screen shows the results of all the analyzers defined in your chosen manifests, and all the contents are available in a single support bundle.

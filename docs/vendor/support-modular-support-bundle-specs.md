@@ -56,66 +56,50 @@ For example, in an application that ships MySQL, NGINX, and Redis:
           uri: rediss://default:password@hostname:6379
   ```
 
-2. Generate a single support bundle archive in your development environment if you want to test it. For more information, see [Generate a Single Support Bundle Archive](/enterprise/troubleshooting-an-app/#generate-a-single-support-bundle-archive).
+2. Generate a single support bundle archive in your development environment, if you want to test it. For more information, see [Generate a Single Support Bundle Archive](/enterprise/troubleshooting-an-app/#generate-a-single-support-bundle-archive).
 
 ## Add Discoverability to Clusters
 
-You can also add Kubernetes resource specifications to clusters for the purposes of discoverability.
+You can add Kubernetes resource specifications to clusters for the purpose of discoverability. This lets customers use the CLI to discover support bundle manifest files and generate a merged support bundle with aggregated information.
 
-[Support Bundle specs to a cluster as Secrets](https://troubleshoot.sh/docs/support-bundle/collecting/#collect-a-support-bundle-using-specs-discovered-from-the-cluster).  We don't have CRDs yet for Support Bundles or Preflights, so we'll wrap them in a Secret for now.  Make sure your spec has the label `troubleshoot.io/kind: supporbundle-kind` and a data key `support
+To configure a discovery resource:
 
-> [`kURL/addons/flannel/template/yaml/troubleshoot.yaml`](https://github.com/adamancini/kURL/blob/main/addons/flannel/template/base/yaml/troubleshoot.yaml)
+1. Add a support bundle specification to a cluster as `Kind: Secret`. Add the label `troubleshoot.io/kind: supportbundle-spec` and a `data` key matching `support-bundle-spec`. 
 
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: flannel-troubleshoot-spec
-  labels:
-    troubleshoot.io/kind: supportbundle-kind
-stringData:
-  support-bundle-spec: |
-    apiVersion: troubleshoot.sh/v1beta2
-    kind: SupportBundle
-    metadata:
-      name: flannel
-    spec:
-      uri: https://raw.githubusercontent.com/replicatedhq/kURL/main/addons/flannel/template/yaml/troubleshoot.yaml
-      collectors: [...]
-      analyzers: [...]
-```
+  Custom resource definitions (CRDs) are not available for support bundles or preflights, so they must be wrapped in a secret. For more information about adding secrets, see [Support Bundle specs to a cluster as Secrets](https://troubleshoot.sh/docs/support-bundle/collecting/#collect-a-support-bundle-using-specs-discovered-from-the-cluster) in the Troubleshoot documentation.
 
-Create the resource from our manifest:
+  **Example:** [`kURL/addons/flannel/template/yaml/troubleshoot.yaml`](https://github.com/adamancini/kURL/blob/main/addons/flannel/template/base/yaml/troubleshoot.yaml)
 
-```shell
-kubectl apply -f kURL/addons/flannel/template/yaml/troubleshoot.yaml
-# secret default/flannel-troubleshoot-spec created
-```
+  ```yaml
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: flannel-troubleshoot-spec
+    labels:
+      troubleshoot.io/kind: supportbundle-spec
+  stringData:
+    support-bundle-spec: |
+      apiVersion: troubleshoot.sh/v1beta2
+      kind: SupportBundle
+      metadata:
+        name: flannel
+      spec:
+        uri: https://raw.githubusercontent.com/replicatedhq/kURL/main/addons/flannel/template/yaml/troubleshoot.yaml
+        collectors: [...]
+        analyzers: [...]
+  ```
 
-And now we can use any of the specs from our cluster to collect an aggregate Support Bundle
+1. Create the resource from your manifest:
 
-```shell
-kubectl get secrets --all-namespaces -l troubleshoot.io/kind=supportbundle-spec
-# NAMESPACE   NAME                        TYPE     DATA   AGE
-# default     flannel-troubleshoot-spec   Opaque   1      94s
-# default     kotsadm-troubleshoot-spec   Opaque   1      9s
-# default     velero-troubleshoot-spec    Opaque   1      52s
+  **Example:**
 
-kubectl support-bundle secret/default/flannel-troubleshoot-spec secret/default/kotsadm-troubleshoot-spec secret/default/velero-troubleshoot-spec
-```
+  ```shell
+  kubectl apply -f kURL/addons/flannel/template/yaml/troubleshoot.yaml
+  # secret default/flannel-troubleshoot-spec created
+  ```
 
-Troubleshoot can also discover all the specs in a given namespace or cluster based on the `troubleshoot.io/kind` label with the `--load-cluster-specs` flag:
+1. Test discovery and generate a single support bundle in your development environment. For information about how to run discovery and generate a bundle, [Discover Specifications and Generate a Support Bundle](/enterprise/troubleshooting-an-app/#discover-specifications-and-generate-a-support-bundle).
 
-```shell
-kubectl support-bundle --load-cluster-specs
-```
+ For real world use cases, see the [troubleshoot-specs repo](https://github.com/replicatedhq/troubleshoot-specs) on GitHub.
 
-And this can be combined with input from a file or URL, as well:
 
-```shell
-kubectl support-bundle https://raw.githubusercontent.com/replicatedhq/troubleshoot/main/sample-troubleshoot.yaml --load-cluster-specs
-```
-
-The analysis screen will show the results of all the Analyzers defined in your chosen manifests, and all the contents will be available in a single bundle.  Have a look at our [troubleshoot-specs repo on GitHub](https://github.com/replicatedhq/troubleshoot-specs) for some real world use cases.
-
-**Note: getting a merged Support Bundle will be available from the Admin Console soon; right now this is available only from the Troubleshoot CLI**
