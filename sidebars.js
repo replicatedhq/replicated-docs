@@ -222,7 +222,14 @@ const sidebars = {
             ],
           },
         'vendor/releases-sharing-license-install-script',
-        'vendor/monitoring-instance-details',
+        {
+          type: 'category',
+          label: 'Instance Monitoring',
+          items: [
+            'vendor/monitoring-instance-details',
+            'vendor/monitoring-event-data',
+          ],
+        },
         {
           type: 'category',
           label: 'Team Management',
