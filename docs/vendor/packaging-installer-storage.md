@@ -1,12 +1,12 @@
 # About Selecting Storage Add-ons
 
-This topic provides guidance for selecting the add-ons to include in your Kubernetes installer specification to provide highly available data storage in Kubernetes installer clusters.
+This topic provides guidance for selecting the add-ons to include in your Kubernetes installer manifest file to provide highly available data storage in Kubernetes installer clusters.
 
 ## Overview of Storage Add-ons
 
-The kURL open source project includes add-ons for object storage and for dynamic provisioning of PersistentVolumes (PVs) in the cluster. You configure these add-ons in your Kubernetes installer specification to define how data for your application and data for the Replicated app manager is managed in the cluster.
+The kURL open source project includes add-ons for object storage and for dynamic provisioning of PersistentVolumes (PVs) in the cluster. You configure these add-ons in your Kubernetes installer manifest file to define how data for your application and data for the Replicated app manager is managed in the cluster.
 
-The object store or PV provisioner add-ons that you choose to include in your Kubernetes installer depend on the requirements for the version of the app manager installed in the cluster as well as the unique requirements for your application. For example, you might include different add-ons depending on if your application requires a single or multi-node cluster, or if your application requires distributed storage.
+The object store or PV provisioner add-ons that you choose to include in your Kubernetes installer depend on the version of the app manager installed in the cluster as well as the unique requirements for your application. For example, you might include different add-ons depending on if your application requires a single or multi-node cluster, or if your application requires distributed storage.
 
 For more information about the storage add-ons that Replicated recommends for single node and multi-node clusters, see the sections below:
 * [OpenEBS Local PV for Single Node Clusters](#single-node)
@@ -102,9 +102,9 @@ With both OpenEBS Local PV and MinIO in the Kubernetes installer cluster, the ap
 
 #### Requirements
 
-To use the OpenEBS add-on for multi-node Kubernetes installer clusters, your Kubernetes installer specification must meet the following requirements:
+To use the OpenEBS add-on for multi-node Kubernetes installer clusters, your Kubernetes installer must meet the following requirements:
 
-* The KOTS add-on in your Kubernetes installer specification must use the app manager v1.89 or later.  
+* The KOTS add-on must use the app manager v1.89 or later.  
 
    The app manager v1.88 and earlier requires distributed storage, which is not provided by OpenEBS Local PV. To support multi-node clusters, Kubernetes installers that use an app manager version earlier than v1.88 in the KOTS add-on must use the Rook add-on for distributed storage. See [Rook Ceph](#rook-ceph) below.
 
@@ -133,7 +133,7 @@ spec:
 
 ### Rook Ceph {#rook-ceph}
 
-If your application requires distributed storage, Replicated recommends that you use the Rook add-on in your Kubernetes installer specification. The Rook add-on creates an S3-compatible, distributed object store with Ceph and also creates a StorageClass for dynamically provisioning PVs.
+If your application requires distributed storage, Replicated recommends that you use the Rook add-on in your Kubernetes installer manifest file. The Rook add-on creates an S3-compatible, distributed object store with Ceph and also creates a StorageClass for dynamically provisioning PVs.
 
 The app manager stores version history, application metadata, and other small amounts of data needed to manage the application on a PV that is provisioned for rqlite. Rqlite is a distributed relational database that uses SQLite as its storage engine. For more information, see the [rqlite](https://rqlite.io/) website.
 
@@ -143,7 +143,7 @@ The kURL ECKO add-on manages data in Ceph and in rqlite to ensure that the data 
 
 #### Requirements
 
-To use the Rook add-on for multi-node Kubernetes installer clusters, your Kubernetes installer specification must meet the following requirements:
+To use the Rook add-on for multi-node Kubernetes installer clusters, your Kubernetes installer must meet the following requirements:
 
 * In Rook Ceph versions 1.4.3 and later, a dedicated block device attached to each node in the cluster is required.
 
