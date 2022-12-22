@@ -77,7 +77,7 @@ spec:
     localPVStorageClassName: "default"
 ```
 
-For more information about properties for the OpenEBS add-on, see [OpenEBS Add-on](https://kurl.sh/docs/add-ons/openebs) in the open source kURL documentation.
+For more information about properties for the OpenEBS add-on, see [OpenEBS Add-on](https://kurl.sh/docs/add-ons/openebs) in the kURL documentation.
 
 ## Multi-Node Clusters {#multi-node}
 
@@ -86,15 +86,17 @@ If your application must be deployed to a cluster with three or more nodes, Repl
 * [OpenEBS Local PV with MinIO](#openebs-minio)
 * [Rook Ceph](#rook-ceph)
 
-For more information about the benefits and limitations of both OpenEBS Local PV and Rook, see [Choosing a PV Provisioner](https://kurl.sh/docs/create-installer/choosing-a-pv-provisioner) in the kURL open source documentation.
+For more information about the benefits and limitations of both OpenEBS Local PV and Rook, see [Choosing a PV Provisioner](https://kurl.sh/docs/create-installer/choosing-a-pv-provisioner) in the kURL documentation.
 
 ### OpenEBS Local PV with MinIO {#openebs-minio}
 
 Using OpenEBS Local PV with MinIO provides a highly available data storage solution for multi-node clusters that is lighter-weight compared to using Rook Ceph. Replicated recommends that you use OpenEBS Local PV with MinIO for multi-node clusters if your application does _not_ require distributed storage. If you require distributed storage, see [Rook Ceph](#rook-ceph) below.
 
-The app manager stores version history, application metadata, and other small amounts of data needed to manage the application on a PV that is provisioned for rqlite. Rqlite is a distributed relational database that uses SQLite as its storage engine. For more information, see the [rqlite](https://github.com/rqlite/rqlite) repository in GitHub. To ensure this local PV data is highly availabile in multi-node clusters, rqlite distributes the data across each node.
+The app manager stores version history, application metadata, and other small amounts of data needed to manage the application on a PV that is provisioned for rqlite. Rqlite is a distributed relational database that uses SQLite as its storage engine. For more information, see the [rqlite](https://rqlite.io/) website.
 
-In addition to the version history, application metadata, and other data for managing the application mentioned above, the app manager also stores support bundle and application archive data in the Kubernetes installer cluster. For multi-node clusters that use OpenEBS Local PV, MinIO is also required to provide object storage for support bundle and application archive data that can be distributed across each node in the cluster. The kURL ECKO add-on provides an operator that manages data in the MinIO deployment to ensure that the data is properly distributed and has high availability. For more information, see [MinIO](https://kurl.sh/docs/add-ons/ekco#minio) in _ECKO Add-on_ in the open source kURL documentation.
+In addition to the version history, application metadata, and other data for managing the application mentioned above, the app manager also stores support bundle and application archive data in the Kubernetes installer cluster. For multi-node clusters that use OpenEBS Local PV, MinIO is also required to provide object storage for support bundle and application archive data that can be distributed across multiple nodes in the cluster.
+
+The kURL ECKO add-on provides an operator that manages data in rqlite and in the MinIO deployment to ensure that the data is properly distributed across multiple nodes in the cluster and has high availability. For more information, see [ECKO Add-on](https://kurl.sh/docs/add-ons/ekco) in the kURL documentation.
 
 With both OpenEBS Local PV and MinIO in the Kubernetes installer cluster, the app manager uses OpenEBS Local PV to provision the PVs on each node that MinIO uses for local storage. Without MinIO, the app manager stores support bundle and application archive data locally in a PV on a single node in the cluster, which can cause loss of data if the node is unavailable.
 
@@ -106,9 +108,9 @@ To use the OpenEBS add-on for multi-node Kubernetes installer clusters, your Kub
 
    The app manager v1.88 and earlier requires distributed storage, which is not provided by OpenEBS Local PV. To support multi-node clusters, Kubernetes installers that use an app manager version earlier than v1.88 in the KOTS add-on must use the Rook add-on for distributed storage. See [Rook Ceph](#rook-ceph) below.
 
-* You must include the MinIO add-on to ensure that support bundle and application archive data is distributed to each node in the cluster.
-
-* You must include the kURL ECKO add-on to ensure that data in MinIO is distributed to each node in the cluster. See [MinIO](https://kurl.sh/docs/add-ons/ekco#minio) in _ECKO Add-on_ in the open source kURL documentation.
+* You must include the MinIO add-on to store support bundle and application archive data. See [MinIO Add-on](https://kurl.sh/docs/add-ons/minio) in the kURL documentation.
+ 
+* You must include the kURL ECKO add-on to ensure that data in rqlite and MinIO is distributed across multiple nodes in the cluster. See [ECKO Add-on](https://kurl.sh/docs/add-ons/ekco) in the kURL documentation.
 
 #### OpenEBS and MinIO Add-ons Example
 
@@ -133,11 +135,11 @@ spec:
 
 If your application requires distributed storage, Replicated recommends that you use the Rook add-on in your Kubernetes installer specification. The Rook add-on creates an S3-compatible, distributed object store with Ceph and also creates a StorageClass for dynamically provisioning PVs.
 
-The app manager stores version history, application metadata, and other small amounts of data needed to manage the application on a PV that is provisioned for rqlite. Rqlite is a distributed relational database that uses SQLite as its storage engine. For more information, see the [rqlite](https://github.com/rqlite/rqlite) repository in GitHub. To ensure this local PV data is highly availabile in multi-node clusters, rqlite distributes the data across each node.
+The app manager stores version history, application metadata, and other small amounts of data needed to manage the application on a PV that is provisioned for rqlite. Rqlite is a distributed relational database that uses SQLite as its storage engine. For more information, see the [rqlite](https://rqlite.io/) website.
 
 In addition to the version history, application metadata, and other data for managing the application mentioned above, the app manager also stores support bundle and application archive data in the Kubernetes installer cluster. For multi-node Kubernetes installers clusters that use the Rook add-on, the support bundle and application archive data is stored in the Ceph object store.
 
-The kURL ECKO add-on manages data in Ceph to ensure that the data is properly distributed to provide high availability. The ECKO operator also performs several tasks to maintain the health of the Ceph cluster. For more information about how the ECKO add-on manages data in Rook Ceph, see [Rook](https://kurl.sh/docs/add-ons/ekco#rook) in _ECKO add-on_ in the open source kURL documentation.
+The kURL ECKO add-on manages data in Ceph and in rqlite to ensure that the data is properly distributed across multiple nodes in the cluster and has high availability. The ECKO operator also performs several tasks to maintain the health of the Ceph cluster. For more information about how the ECKO add-on manages data in Rook Ceph, see [Rook](https://kurl.sh/docs/add-ons/ekco#rook) in _ECKO add-on_ in the kURL documentation.
 
 #### Requirements
 
@@ -147,7 +149,7 @@ To use the Rook add-on for multi-node Kubernetes installer clusters, your Kubern
 
    For Rook Ceph versions earlier than 1.4.3, a dedicated block device is recommended in production clusters. Running distributed storage such as Rook on block devices is recommended for improved data stability and performance.
 
-* You must include the ECKO add-on to ensure that data in the cluster is highly available. See [Rook](https://kurl.sh/docs/add-ons/ekco#rook) in _ECKO add-on_ in the open source kURL documentation.
+* You must include the ECKO add-on to ensure that data in the cluster is highly available. See [Rook](https://kurl.sh/docs/add-ons/ekco#rook) in _ECKO add-on_ in the kURL documentation.
 
 #### Rook Add-on Example
 
@@ -166,4 +168,4 @@ spec:
     isSharedFilesystemDisabled: true
 ```
 
-For more information about properties for the Rook add-on, see [Rook](https://kurl.sh/docs/add-ons/rook) in the open source kURL documentation.
+For more information about properties for the Rook add-on, see [Rook](https://kurl.sh/docs/add-ons/rook) in the kURL documentation.
