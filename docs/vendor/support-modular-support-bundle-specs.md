@@ -103,6 +103,6 @@ kubectl apply -f kURL/addons/flannel/template/yaml/troubleshoot.yaml
 # secret default/flannel-troubleshoot-spec created
 ```
 
-You can use any of the specifications from your development cluster to test generating an aggregated support bundle. For information about how to run discovery and generate a bundle, [Discover Specifications and Generate a Support Bundle](/enterprise/troubleshooting-an-app/#discover-specifications-and-generate-a-support-bundle).
+Then, you can generate a single support bundle archive in your development cluster if you want to test it. The analysis screen shows the results of all of the analyzers defined in your chosen manifests, and the contents are available in a single bundle. For information about how to run discovery and generate a bundle, [Discover Specifications and Generate a Support Bundle](/enterprise/troubleshooting-an-app/#discover-specifications-and-generate-a-support-bundle).
 
  For real world use cases, see the [troubleshoot-specs repo](https://github.com/replicatedhq/troubleshoot-specs) on GitHub.

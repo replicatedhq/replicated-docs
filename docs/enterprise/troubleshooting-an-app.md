@@ -170,77 +170,90 @@ If you are on an air gapped server, perform the following steps to create a supp
     ```
     kubectl support-bundle /path/to/spec.yaml
     ```
-## Generate a Single Support Bundle Archive
+## Generate a Merged Support Bundle
 
-You can generate a single support bundle archive from multiple resource specifications, including manifest files, URLs, and Kubernetes secrets. You must use the CLI to perform this task.
+You can generate a merged support bundle archive from multiple resource specifications.
 
-Do one of the following:
+You can also use Secret and ConfigMap objects to discover the support bundle specifications and generate a merged support bundle. 
 
-  -  Run the following command to generate a support bundle from multiple files:
+You can generate a merged support bundle for any combination of manifest files, URLs, and Kubernetes secrets. For example, you can collect:
 
-    ```bash
-    kubectl support-bundle ./PATH_TO_FILE1 ./PATH_TO_FILE2
-      ```
+- Two support bundle manifest files and a URL
+- A URL and two secrets
+- Three secrets and a support bundle manifest file
+- A URL, a support bundle manifest, and the `--loadcluster-specs` flag
 
-      Replace each `PATH_TO_FILE` with the path and YAML filename for each support bundle. A minimum of two files are required to run this command.
+For more information, see [Collect a Support Bundle Using Multiple Specs](https://troubleshoot.sh/docs/support-bundle/collecting/#collect-a-support-bundle-using-multiple-specs) and [Discover Cluster Specs](https://troubleshoot.sh/docs/support-bundle/discover-cluster-specs/) in the Troubleshoot documentation.
 
-      **Example:**
+You must use the support-bundle CLI to perform these tasks.
 
-      ```bash
-      kubectl support-bundle manifests/redis/troubleshoot.yaml manifests/mysql/troubleshoot.yaml manifests/nginx/troubleshoot.yaml
-      ```
+### Generate from Multiple Files
 
-  - Run the following command to generate a support bundle from a file, and URL, and a Kubernetes secret:
+```bash
+kubectl support-bundle ./PATH_TO_FILE1 ./PATH_TO_FILE2
+```
 
-    ```bash
-      kubectl support-bundle URL \
-    ./PATH_TO_FILE \
-    SECRET/PATH_TO_SPEC 
-    ```
+Replace each `PATH_TO_FILE` with the path and YAML filename for each support bundle. A minimum of two files are required to run this command.
 
-    Replace:
+**Example:**
 
-    - `URL` with the URL location of your YAML
-    - `PATH_TO_FILE` with the path and YAML file name
-    - `SECRET/PATH_TO_SPEC` with the path to the secret specification
+```bash
+kubectl support-bundle manifests/redis/troubleshoot.yaml manifests/mysql/troubleshoot.yaml manifests/nginx/troubleshoot.yaml
+```
 
-## Discover Specifications and Generate a Support Bundle
+### Generate from Multiple Resource Types
 
-You can discover and use any of the support bundle specifications in your cluster to collect an aggregate support bundle using any of the following methods. You must use the CLI to perform this task.
+```bash
+kubectl support-bundle URL \
+./PATH_TO_FILE \
+SECRET/PATH_TO_SPEC 
+```
 
-- Use secrets to discover specifications:
+Replace:
 
-  1. Run the following command:
+- `URL` with the URL location of your YAML
+- `PATH_TO_FILE` with the path and YAML file name
+- `SECRET/PATH_TO_SPEC` with the path to the secret specification
 
-    ```shell
-    kubectl get secrets --all-namespaces -l troubleshoot.io/kind=supportbundle-spec
-    ```
-    **Example output:***
+### Use Discovery and Generate a Bundle
 
-    ```shell
-    # NAMESPACE   NAME                        TYPE     DATA   AGE
-    # default     flannel-troubleshoot-spec   Opaque   1      94s
-    # default     kotsadm-troubleshoot-spec   Opaque   1      9s
-    # default     velero-troubleshoot-spec    Opaque   1      52s
-    ```
+#### Using Secrets
 
-  1. Generate the support bundle for any of the specifications in your output.
+1. Run the `get secrets` command for a namespace or cluster using the label and key.
 
-    **Example:**
-    ```shell
-      kubectl support-bundle secret/default/flannel-troubleshoot-spec secret/default/kotsadm-troubleshoot-spec secret/default/velero-troubleshoot-spec
-    ```
+  **Example:**
 
-- Discover all the specifications in a given namespace or cluster based on the `troubleshoot.io/kind` label with the `--load-cluster-specs` flag:
+  ```shell
+  kubectl get secrets --all-namespaces -l troubleshoot.io/kind=support-bundle-spec
+  ```
+  **Example output:**
+
+  ```shell
+  # NAMESPACE   NAME                        TYPE     DATA   AGE
+  # default     flannel-troubleshoot-spec   Opaque   1      94s
+  # default     kotsadm-troubleshoot-spec   Opaque   1      9s
+  # default     velero-troubleshoot-spec    Opaque   1      52s
+  ```
+
+1. Generate the support bundle for any of the specifications in your output.
+
+  **Example:**
+  ```shell
+  kubectl support-bundle secret/default/flannel-troubleshoot-spec secret/default/kotsadm-troubleshoot-spec secret/default/velero-troubleshoot-spec
+  ```
+
+#### Using the `--load-cluster-specs` Flag
+
+**Generate a bundle using specifications discovered in the cluster:**
 
   ```shell
   kubectl support-bundle --load-cluster-specs
   ```
-
-  You can also combine this command with input from a file or URL:
+ 
+**Generate a bundle from a URL and specifications discovered in the cluster:**
 
   ```shell
-  kubectl support-bundle https://raw.githubusercontent.com/replicatedhq/troubleshoot/main/sample-troubleshoot.yaml --load-cluster-specs
+  kubectl support-bundle URL --load-cluster-specs
   ```
 
-  The analysis screen shows the results of all the analyzers defined in your chosen manifests, and all the contents are available in a single support bundle.
+  Replace `URL` with the URL of the online specification.

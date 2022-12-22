@@ -1,8 +1,10 @@
 # Using Online Support Bundle Specs
 
-You can make the definition of a support bundle specification available online. The schema supports a `uri://` field that, when set, causes the Support Bundle to use the spec at the specified URI. Any additional collectors or analyzers in the original specification are used as fallback if the URI is unreachable or unparseable. 
+You can make the definition of a support bundle specification available online. The schema supports a `uri://` field that, when set, causes the support bundle to use the online specification. This is referred to as a _self-link_ because the online specification is linking to itself. 
 
-Including a self-link to a source repository helps to ensure that the latest online specification is available to your support bundle. In turn, the support bundle proactively detects potential problems in customer environments and lets them know know how to fix it. Without the self-link option, you must wait for the next time your customers upgrade their applications or Kubernetes versions to get notified of potential problems.
+If the URL is unreachable or unparseable, any additional collectors or analyzers in the original specification are used as a fallback. 
+
+Including a self-link to an source repository helps to ensure that the latest online specification is available to your support bundle. In turn, the support bundle proactively detects potential problems in customer environments and lets them know know how to fix it. Without the self-link option, you must wait for the next time your customers upgrade their applications or Kubernetes versions to get notified of potential problems.
 
 For more information about the URI, see [Troubleshoot schema supports a `uri://` field](https://troubleshoot.sh/docs/support-bundle/supportbundle/#uri) in the Troubleshoot documentation.
 
@@ -39,9 +41,7 @@ spec:
               message: EKCO has at least 1 replica
 ```
 
-If a bug is discovered at any time after the release of this specification, Replicated can write an analyzer for it. Typically, Replicated might have to wait until a cluster upgrade before users get the benefit of the new analyzer. By adding a self-link to this manifest file, the support bundle uses the assets hosted in the Troubleshoot project, which is kept up to date. 
-
-Replicated uses a sample specification that is hosted online and adds the raw file link from the browser. This specification is hosted on [GitHub](https://github.com/replicatedhq/troubleshoot-specs/blob/main/in-cluster/ekco.yaml).
+If a bug is discovered at any time after the release of this specification, Replicated can write an analyzer for it. Typically, Replicated might have to wait until a cluster upgrade before users get the benefit of the new analyzer. By adding a self-link to this manifest file, the support bundle uses the assets hosted in the online repository, which is kept up to date. Replicated adds the raw file link from the browser to the specification that is hosted on [GitHub](https://github.com/replicatedhq/troubleshoot-specs/blob/main/in-cluster/ekco.yaml).
 
 **Example:**
 

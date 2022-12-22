@@ -221,8 +221,6 @@ const sidebars = {
               'vendor/preflight-support-bundle-creating',
               'vendor/support-online-support-bundle-specs',
               'vendor/support-modular-support-bundle-specs',
-              'vendor/support-host-support-bundles',
-              'vendor/support-inspecting-support-bundles',
             ],
           },
 
@@ -256,9 +254,11 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Getting Support',
+          label: 'Support',
           items: [
+            'vendor/support-inspecting-support-bundles',
             'vendor/support-submit-request',
+            'vendor/support-host-support-bundles',
           ],
         },
       ],
