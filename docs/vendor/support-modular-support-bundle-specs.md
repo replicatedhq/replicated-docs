@@ -103,5 +103,3 @@ To configure a discovery resource:
 1. Test discovery and generate a single support bundle in your development environment. For information about how to run discovery and generate a bundle, [Discover Specifications and Generate a Support Bundle](/enterprise/troubleshooting-an-app/#discover-specifications-and-generate-a-support-bundle).
 
  For real world use cases, see the [troubleshoot-specs repo](https://github.com/replicatedhq/troubleshoot-specs) on GitHub.
-
-
