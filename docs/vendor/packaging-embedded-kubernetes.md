@@ -41,10 +41,12 @@ To include the Kubernetes installer in the application release:
 1. From the landing page at [kurl.sh](https://kurl.sh/), configure the add-ons and options for your Installer YAML. Note the following requirements and guidelines for configuring the Installer:
 
     - You must include the KOTS add-on to provision the Replicated admin console. See [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) in the kURL documentation.
-    
+
     - You must include the ECKO add-on, which performs maintenance tasks to ensure the cluster is healthy with minimal manual operation. See [ECKO Add-on](https://kurl.sh/docs/add-ons/ekco) in the kURL documentation.
 
     - To use Replicated snapshots, Velero must be installed on the cluster. Replicated recommends that you include the Velero add-on in your Kubernetes installer manifest so that your customers do not have to manually install Velero.
+
+    - You must select storage add-ons based on the app manager requirements and the unique requirements for your application. For more information, see [About Selecting Storage Add-ons](packaging-installer-storage).
 
     - Kubernetes installers that are included in releases must pin specific add-on versions and cannot pin `latest` versions or x-ranges (such as 1.2.x). Pinning specific versions ensures the most testable and reproducible installations.
 
@@ -96,10 +98,12 @@ To create a separate Kubernetes installer:
 1. Edit the file. Note the following requirements and guidelines for configuring the Installer:
 
     - You must include the KOTS add-on to provision the Replicated admin console. See [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) in the kURL documentation.
-    
+
     - You must include the ECKO add-on, which performs maintenance tasks to ensure the cluster is healthy with minimal manual operation. See [ECKO Add-on](https://kurl.sh/docs/add-ons/ekco) in the kURL documentation.
 
     - To use Replicated snapshots, Velero must be installed on the cluster. Replicated recommends that you include the Velero add-on in your Kubernetes installer manifest so that your customers do not have to manually install Velero.
+
+    - You must select storage add-ons based on the app manager requirements and the unique requirements for your application. For more information, see [About Selecting Storage Add-ons](packaging-installer-storage).
 
     For more information about creating a Kubernetes installer and the available add-ons, see [Create An Installer](https://kurl.sh/docs/create-installer/) in the kURL open source documentation.
 
