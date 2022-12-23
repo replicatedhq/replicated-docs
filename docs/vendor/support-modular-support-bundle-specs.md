@@ -1,8 +1,4 @@
-# About Creating Modular and Discoverable Support Bundles
-
-This topic provides information about using a modular approach to support bundles and adding specifications to discover Kubernetes resources in a cluster.
-
-## Overview of Modular Support Bundle Specifications
+# About Modular and Discoverable Support Bundles
 
 Support bundle specifications can be designed using a modular approach. This helps teams more easily develop specifications that are scoped to individual components or microservices in a large application and avoid merge conflicts. You can create separate manifest files or use a combination of manifest files, URLs, and Kubernetes secrets. Then, customers can use the support-bundle CLI to merge the multiple specifications and generate a single support bundle archive.
 
@@ -73,7 +69,7 @@ Then, you can generate a single support bundle archive in your development envir
 kubectl support-bundle manifests/redis/troubleshoot.yaml manifests/mysql/troubleshoot.yaml manifests/nginx/troubleshoot.yaml
 ```
 
-For more information, see [Generate a Single Support Bundle Archive](/enterprise/troubleshooting-an-app/#generate-a-single-support-bundle-archive).
+For more information, see [Generate a Merged Support Bundle](/enterprise/troubleshooting-an-app/#generate-a-merged-support-bundle).
 
 ### Enable Discoverability of Support Bundle Specifications
 
@@ -127,8 +123,8 @@ Then generate a merged support bundle for any of the specifications listed.
 kubectl support-bundle secret/default/flannel-troubleshoot-spec secret/default/kotsadm-troubleshoot-spec secret/default/velero-troubleshoot-spec
 ```
 
-You can also discover all of the specifications in a given namespace or cluster based on the `troubleshoot.io/kind` label with the `--load-cluster-specs` flag. For information about how to run discovery and generate a bundle, [Discover Specifications and Generate a Support Bundle](/enterprise/troubleshooting-an-app/#discover-specifications-and-generate-a-support-bundle).
+The analysis screen shows the results of all of the analyzers defined in your chosen manifests, and the contents are available in a single bundle.
 
-The analysis screen shows the results of all of the analyzers defined in your chosen manifests, and the contents are available in a single bundle. 
+You can also discover all of the specifications in a given namespace or cluster based on the `troubleshoot.io/kind` label with the `--load-cluster-specs` flag. For information about using this flag, see [Generate a Merged Support Bundle](/enterprise/troubleshooting-an-app/#generate-a-merged-support-bundle).
 
  For real world use cases, see the [troubleshoot-specs repo](https://github.com/replicatedhq/troubleshoot-specs) on GitHub.

@@ -1,10 +1,10 @@
-# Using Online Support Bundle Specifications
+# About Online Support Bundle Specifications
 
-You can make the definition of one or more support bundle specifications available online. The schema supports a `uri://` field that, when set, causes the support bundle to use the online specification. This is referred to as a _self-link_ because you set the online specification to link to itself. 
-
-If the URL is unreachable or unparseable, any additional collectors or analyzers in the original specification are used as a fallback. 
+You can make the definition of one or more support bundle specifications available online. The schema supports a `uri://` field that, when set, causes the support bundle to use the online specification. This is referred to as a _self-link_ because you set the online specification to link to itself. If the URL is unreachable or unparseable, any additional collectors or analyzers in the original specification are used as a fallback. 
 
 Including a self-link to an source repository helps to ensure that the latest online specification is available to your support bundle. In turn, the support bundle proactively detects potential problems in customer environments and lets them know know how to fix it. Without the self-link option, you must wait for the next time your customers upgrade their applications or Kubernetes versions to get notified of potential problems.
+
+If you are using a modular approach to designing support bundles, you can use multiple online specifications. Each specification supports one self-link. For more information about modular specifications, see [About Creating Modular and Discoverable Support Bundles](support-modular-support-bundle-specs).
 
 ## Example: Using a Self-link to a Source Repository
 
