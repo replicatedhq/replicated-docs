@@ -39,7 +39,7 @@ spec:
               message: EKCO has at least 1 replica
 ```
 
-If a bug is discovered at any time after the release of this specification, Replicated can write an analyzer for it. Typically, Replicated might have to wait until a cluster upgrade before users get the benefit of the new analyzer. By adding a self-link to this manifest file, the support bundle uses the assets hosted in the online repository, which is kept up to date. The self-link is added in the `uri` field as a raw file link to the specification that is hosted on [GitHub](https://github.com/replicatedhq/troubleshoot-specs/blob/main/in-cluster/ekco.yaml).
+If a bug is discovered at any time after the release of this specification, Replicated can write an analyzer for it. Typically, Replicated might have to wait until a cluster upgrade before users get the benefit of the new analyzer. By adding a self-link to this manifest file, the support bundle uses the assets hosted in the online repository, which is kept current. The self-link is added in the `uri` field as a raw file link to the specification that is hosted on [GitHub](https://github.com/replicatedhq/troubleshoot-specs/blob/main/in-cluster/ekco.yaml).
 
 **Example:**
 

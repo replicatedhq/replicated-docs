@@ -2,7 +2,11 @@
 
 Support bundle specifications can be designed using a modular approach. This helps teams more easily develop specifications that are scoped to individual components or microservices in a large application and avoid merge conflicts. You can create separate manifest files or use a combination of manifest files, URLs, and Kubernetes secrets. Then, customers can use the support-bundle CLI to merge the multiple specifications and generate a single support bundle archive.
 
-You can also add a support bundle manifest file as a Secret to enable discoverability in clusters. Customers can then discover all of the support bundle specifications and generate a merged support bundle.
+You can also add a support bundle manifest file as a Secret or ConfigMap to enable discoverability in clusters. Customers can then discover all of the support bundle specifications and generate a merged support bundle.
+
+:::note
+Preflight checks also support using multiple specifications and resources. For more information, see [Run Preflights using multiple specs](https://troubleshoot.sh/docs/preflight/cluster-checks/#run-preflights-using-multiple-specs) in the Troubleshoot documentation.
+:::
 
 ## Examples
 
@@ -69,13 +73,13 @@ Then, you can generate a single support bundle archive in your development envir
 kubectl support-bundle manifests/redis/troubleshoot.yaml manifests/mysql/troubleshoot.yaml manifests/nginx/troubleshoot.yaml
 ```
 
-For more information, see [Generate a Merged Support Bundle](/enterprise/troubleshooting-an-app/#generate-a-merged-support-bundle).
+For more information about generating merged support bundles, see [Generate a Merged Support Bundle](/enterprise/troubleshooting-an-app/#generate-a-merged-support-bundle).
 
 ### Enable Discoverability of Support Bundle Specifications
 
 To make Kubernetes resources discoverable in a cluster, you add a specification as `Kind: Secret`. Make sure that your specification includes the label `troubleshoot.io/kind: supportbundle` and a `data` key matching `support-bundle-spec`.
 
-Custom resource definitions (CRDs) are not available for support bundles or preflights, so they must be wrapped in a secret. For more information about adding secrets, see [Support Bundle specs to a cluster as Secrets](https://troubleshoot.sh/docs/support-bundle/collecting/#collect-a-support-bundle-using-specs-discovered-from-the-cluster) in the Troubleshoot documentation.
+Custom resource definitions (CRDs) are not available for support bundles or preflights, so they must be wrapped in a Secret. For more information about adding Secrets, see [Support Bundle specs to a cluster as Secrets](https://troubleshoot.sh/docs/support-bundle/collecting/#collect-a-support-bundle-using-specs-discovered-from-the-cluster) in the Troubleshoot documentation.
 
 [`kURL/addons/flannel/template/yaml/troubleshoot.yaml`](https://github.com/adamancini/kURL/blob/main/addons/flannel/template/base/yaml/troubleshoot.yaml)
 
@@ -104,12 +108,12 @@ Create the resource from your manifest:
 kubectl apply -f kURL/addons/flannel/template/yaml/troubleshoot.yaml
 # secret default/flannel-troubleshoot-spec created
 ```
-Then you can use any of the specifications from your cluster to collect an aggregate support bundle. First, use `get secrets` to get a list of specifications that match the label and key in the Secret specification. 
+Then you can use any of the specifications from your cluster to collect an aggregate support bundle. First, use `kubectl get secrets` to get a list of specifications that match the label and key in the Secret specification. 
 
 ```shell
 kubectl get secrets --all-namespaces -l troubleshoot.io/kind=support-bundle-spec
 ```
-**Example output:**
+  **Example output:**
 
 ```shell
 # NAMESPACE   NAME                        TYPE     DATA   AGE
@@ -127,4 +131,4 @@ The analysis screen shows the results of all of the analyzers defined in your ch
 
 You can also discover all of the specifications in a given namespace or cluster based on the `troubleshoot.io/kind` label with the `--load-cluster-specs` flag. For information about using this flag, see [Generate a Merged Support Bundle](/enterprise/troubleshooting-an-app/#generate-a-merged-support-bundle).
 
- For real world use cases, see the [troubleshoot-specs repo](https://github.com/replicatedhq/troubleshoot-specs) on GitHub.
+ For real use cases, see the [troubleshoot-specs repo](https://github.com/replicatedhq/troubleshoot-specs) on GitHub.
