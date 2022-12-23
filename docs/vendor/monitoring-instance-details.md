@@ -4,26 +4,28 @@ This topic describes using the event data and key performance indicators (KPIs) 
 
 ## Overview of Instance Reporting
 
-Each time an active application instance in an online environment checks for updates, the Replicated app manager sends event data to the vendor portal about the status of the application as well as the status of the infrastructure where the application is installed.
+Each time an active application instance in an online environment checks for updates, the Replicated app manager sends event data to the vendor portal with the status of the application and of the infrastructure where the application is installed.
 
-The vendor portal uses this event data to provide key insights about the health, status, and performance of the active instances associated with each customer license. For example, the vendor portal 
+The vendor portal uses this event data to provide insights about the health, status, and performance of the active application instances associated with each customer license. The vendor portal displays these insights on **Instance details** dashboards. 
 
-This will reduce the time to diagnose and remediate end customer problems that occur in the field, reducing support burden. Giving a vendor insights about adoption rate, time-to-live, uptime, and upgrade success rate will help drive improvement in these key business value metrics. It will also enable Replicated’s primary vendor users to better communicate challenges and successes on the platform.
+You can use the event data and insights on the **Instance details** page to more quickly troubleshoot issues with active instances, helping to reduce support burden. The **Instance details** page also provides business value metrics for each instance, such as the rate of successful upgrades, total uptime, and the    drive improvement in these key business value metrics.
 
-We have added visibility into these metrics because you can't improve what you can't measure. Our hope is that you, as a Replicated vendor, make this data a critical part of measuring the ease of use and success of your installer.
+measuring the ease of use and success of your installer.
 
 
 ## Limitations
 
-The instance data in the vendor portal has the following limitations:
+Instance data in the vendor portal has the following limitations:
 
-* Instance data is available only for application instances installed in online environments. Data for instances installed in air gapped environments is not available.
+* The **Instances details** page is available only for application instances installed in online environments. Data for instances installed in air gapped environments is not available.
 * Inactive instances are not included in instance data. An instance is considered inactive if ** **[ADD INACTIVE DESCRIPTION]** ** 
-* The vendor portal receives updated instance data only when the application instance checks for updates. By default, instances automatically check for updates every four hours. However, if your users disable these automatic update checks, then the rate at which instance data is updated depends on the frequency that your users manually check for updates. 
+* The vendor portal receives updated instance data only when the application instance checks for updates. By default, instances automatically check for updates every four hours. However, if users disable automatic update checks, then the rate at which instance data is updated depends on the frequency that users manually check for updates. 
 
 ## About the Instance Details Page
 
-Instance data is displayed in a dashboard on the **Instance details** page in the vendor portal. The data on the **Instance details** page represents the most recent data available based on the last time that the instance checked for an update.
+Instance data is displayed in a dashboard on the **Instance details** page in the vendor portal. To access the **Instance details** page, go to **Customers** and click the **Customer reporting** button for the customer that you want to view. From the **Reporting** page for the selected customer, click the **View details** button for the desired application instance. 
+
+The data displayed on the **Instance details** page is the most recent data available based on the last time that the instance checked for an update.
 
 The following screenshot shows an example of the **Instance details** page:
 
@@ -53,37 +55,46 @@ The **Install Insights** section displays computed metrics that .
 
 #### Time to Live
 
-The speed at which customers can get a Vendor’s software up and running in a new customer environment is a key indicator of the quality of the packaging, configuration, and documentation of a distributed software product. If the process of installing is simple and straightforward, Vendors should expect to see a Time to Live of less than 2 hours for at least 80% of their customer installation attempts.  If the process is cumbersome, poorly documented, lacks appropriate preflight checks, or relies heavily on manual steps, then it can take days or weeks to get software up and running in customer environments. This generally represents a significantly increased Vendor support burden, and a significantly degraded end-customer experience.
+The Time to Live metric in the Install Insights section represents how quickly the customer was able to deploy the application to a Ready state in their environment.
+
+Replicated recommends that you use Time to Live as a KPI of the quality of the packaging, configuration, and documentation of your application. If the installation process for your application is cumbersome, poorly documented, lacks appropriate preflight checks, or relies heavily on manual steps, then it can take days or weeks to deploy the application in customer environments. This generally represents a significantly increased support burden and a degraded customer installation experience.
 
 The vendor portal displays the following metrics that measure Time to Live:
 
-* **Time to Live (Instance)**: The time between when the instances reports the first event, and when the application instance reports a `ready` value for the `appStatus` field.  
+* **Time to Live (License)**: The time between when you create the customer license in the vendor portal, and when the application instance `appStatus` field reports a `ready` state in the customer environment. Time to Live (License) represents the time that it takes for a customer to successfully deploy your application after you intend to distribute the application to the customer. Replicated uses the timestamp of when you create the customer license in the vendor portal to represent your intent to distribute the application to the customer because creating the license file for the customer is generally the final step before you share the installation materials with the customer.
 
-   ** **DIAGRAM** **
-
-* **Time to Live (License)**: The time between when you create the customer license in the vendor portal, and when the application instance reports a `ready` value for the `appStatus` field.
+   The following diagram demonstrates how the vendor portal computes the Time to Live (License) metric:
    
    ** **DIAGRAM** **
 
-#### Upgrade Success Rate
+   As shown in the diagram above, Time to Live (License) includes several activities that are involved in deploying the application, including the customer receiving the necessary materials and documentation, downloading the assets, provisioning the required hardware, networking, external systems, completing the preflight checks, and finally installing, configuring, and deploying the application.
 
-The vendor portal computes the number of upgrade events using the `appVersion` and `appStatus` fields from event data.
+* **Time to Live (Instance)**: The time between when the vendor portal records the first event for the application instance in the customer environment, and when the instance `appStatus` field reports a `ready` state.
 
-An upgrade is successful if _all_ of the following are true:
-     
-* There are no errors on deployment of the new version (the `kubectl apply` or `helm upgrade` commands)
-* The instance enters a “ready” status within 15 minutes.
-* The instance does not enter a “missing” or “unavailable” status in the first 15 minutes after the “Upgrading” phase is complete. This is _not_ the first 15 minutes after the `kubectl apply` or `helm upgrade` deployment command completes.
+   The following diagram demonstrates the activities included and excluded in Time to Live (Instance):
 
-#### Number of Upgrades
+   ** **DIAGRAM** **
 
-The vendor portal computes the total number of upgrades using the `appVersion` and `appStatus` events.
+   As shown in the diagram above, Time to Live (Instance) is the length of time that it takes for the application to reach a Ready state after the customer makes a successful deployment attempt in their environment. A deployment attempt is considered to be successful when the application instance reports its first event. Time to Live (Instance) does not include any deployment attempts that were unsuccessful. For example, Time to Live (Instance) does not include any time spent by the customer discarding servers and attempting to deploy the instance again on a new server.
+#### Upgrades
 
-#### Total Percent Uptime
+​​The ease with which customers can discover and execute new upgrades can be an important factor in determining the quality of a delivered software package. If the process of upgrading is simple and straightforward, customers may be more likely to upgrade their software, which can help to ensure that they are using the most up-to-date version. On the other hand, if the process is complicated, error-prone, or time-consuming, customers may be less likely to upgrade, which can result in them using outdated or vulnerable versions of the software.
 
-Uptime is computed as the fraction of time that an application spends in a “ready” state. High uptime indicates that the software is reliable and able to handle the demands of the customer environment, while low uptime may indicate that the software is prone to errors or failures. By measuring the uptime of end-customer instances, it is possible to get a sense of how well the software is performing in the field, and to identify areas where it may be necessary to improve its reliability and stability.
+* **Upgrade Success Rate**: The vendor portal calculates the Upgrade Success Rate by dividing the number of successful upgrades by the total number of upgrades completed.
+  
+  The vendor portal considers an upgrade successful if _all_ of the following are true:     
+    * There are no errors on the deployment of the new version. Depending on if the customer upgrades the instance using the app manager or the helm CLI, then the deployment command is either `kubectl apply` or `helm upgrade`.
+    * The instance enters a Ready status in 15 minutes or less after the `kubectl apply` or `helm upgrade` command completes.
+    * The instance does _not_ enter a Missing or Unavailable status in the first 15 minutes after the instance is no longer in an Updating status.
+* **Number of Upgrades**: The vendor portal computes the total number of upgrades using the `appVersion` and `appStatus` events.
 
-The following table lists the application statuses that classify the application as either up or down:
+   TBD
+
+#### Uptime
+
+The vendor portal computes the total Uptime for the instance as the fraction of time that an application spends in a Ready, Updating, or Degraded state. High uptime indicates that the application is reliable and able to handle the demands of the customer environment, while low uptime might indicate that the software is prone to errors or failures. By measuring the total uptime of customer instances, you can better understand the performance of your application. This can indicate if it is necessary to improve the reliability and stability of the application.
+
+The vendor portal classifies the application as either up or down using the following statuses:
 
 <table>
   <tr>
@@ -96,9 +107,9 @@ The following table lists the application statuses that classify the application
   </tr>
 </table>
 
-Degraded is part of uptime because a degraded status might be expected for the count of expected workloads and endpoints to drop below the ideal level during an update, depending on the rollout strategy used.
+Degraded is considered uptime because it is possible that a Degraded status is expected during an update, depending on the rollout strategy used.
 
-If your app declares StatusInformers for multiple workloads, the aggregate app status will always be represented as the state of the “least available” workload status. That is, if at least one Status Informer reports “unavailable”, then the app will be noted as “unavailable”. If all workloads are “Ready”, then the app will report ready, but if one drops to “degraded”, then the aggregate app status will be “degraded”. 
+If you configured StatusInformers for multiple application workloads, then the application uses the least available workload status. For example, if at least one workload reports Unavailable, then the application is Unavailable. Or, if all workloads are Ready, then one workload changes to Degraded, the aggregate application status also changes from Ready to Degraded. 
 
 ### Install Information
 
@@ -107,7 +118,7 @@ The **Install Information** section displays details about the cluster infrastru
 * Kubernetes Distribution
 * Kubernetes Version
 * KOTS version
-* First Seen
+* First Seen: The first event recorded by the instance.
 * Datacenter (if detected)
 * Datacenter region (if detected)
 * (Kubernetes Installer Cluster Only) Node Operating System(s)
@@ -118,16 +129,14 @@ The **Install Information** section displays details about the cluster infrastru
 
 ### Instance Uptime
 
-The Instance Uptime graph shows the percentage of each 8 hour time period in the previous two weeks that the instance was up, degraded, or down.
+The Instance Uptime graph shows the percentage of each 8 hour time period in the previous two weeks that the instance was up, Degraded, or down.
 
-The Instance Uptime graph uses the `appStatus` field to classify the instance  
+The Instance Uptime graph uses the `appStatus` field to classify the instance:  
 * Up: Ready or Updating
 * Degraded: Degraded
 * Down: Missing or Unavailable
 
-On hover, you will be able to see a breakdown of the actual downtime (in minutes, hours, days, etc). 
-
-The amount of downtime or degraded time may not be shown completely proportionately to the height of the bar. For example, if one bar represents one day, and there was 1 hour of downtime during that day (4% downtime), more than 4% of the bar may be colored red. This is primarily to ensure that any downtime or degraded-time is clearly visible, even if it’s a small amount. You can hover over the bars to see the exact breakdown of ready/degraded/missing/unavailable during that time period. In general, any non-zero amount of non-uptime will be shown as at least 7% of the bar area.
+You can hover over the bars to see the exact breakdown of ready/degraded/missing/unavailable during that time period. In general, any non-zero amount of non-uptime will be shown as at least 7% of the bar area.
 
 ### Instance Activity
 
