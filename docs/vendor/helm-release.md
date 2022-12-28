@@ -175,5 +175,5 @@ The following are recommended next steps for configuring the HelmChart custom re
 
 * To collect user-supplied values from the Replicated admin console configuration screen and mapping those values to your Helm chart, see [Creating and Editing Configuration Fields](admin-console-customize-config-screen).
 * To configure Replicated to install the Helm charts using the native Helm, see [Installing with Native Helm](helm-installing-native-helm).
-* To use the `builder` attribute to create a Helm chart package for air gap installations, see [Helm Air Gap Builder](helm-airgap-builder).
+* To use the `builder` attribute to create a Helm chart package for air gap installations, see [builder](/reference/custom-resource-helmchart#builder) in _HelmChart_.
 * To configure the installation order for native Helm charts, see [Defining Installation Order for Native Helm Charts](helm-native-helm-install-order).

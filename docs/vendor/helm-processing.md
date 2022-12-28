@@ -103,8 +103,7 @@ The Replicated KOTS Helm installation is compatible with both Helm v2 and Helm v
 
 Replicated finally runs the following command: `helm upgrade -i chart.tar.gz --timeout 60m -n {namespace}`. The helm binary processes hooks and weights, applies manifests to the Kubernetes cluster, and saves a Release secret similar to `sh.helm.release.v1.chart-name.v1`. This secret is how Helm tracks upgrades and rollbacks of applications.
 
-When a [Helm chart-based application is installed in an air gap environment](helm-airgap-builder), the processing of the chart is managed in the end customer environment (with the kots CLI or as part of the Replicated admin console). This means that the customer supplied values, license values, and existing values can be used to create the deployable manifests.
-
+When a Helm chart-based application is installed in an air gap environment, the processing of the chart is managed in the end customer environment (with the kots CLI or as part of the Replicated admin console). This means that the customer supplied values, license values, and existing values can be used to create the deployable manifests. For more information, see [builder](/reference/custom-resource-helmchart#builder) in _HelmChart_.
 
 In both online and air gap scenarios, the resulting deployment is comprised of raw Kubernetes manifests. Therefore, cluster operator's are always able to view the exact difference between what is currently deployed and what the update will deploy. This level of change management provides the necessary transparency to provide the level of assurance that cluster operators require.
 

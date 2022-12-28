@@ -137,7 +137,6 @@ const sidebars = {
                           'vendor/helm-optional-value-keys',
                         ],
                       },
-                      'vendor/helm-airgap-builder',
                     ],
                   },
                   {
