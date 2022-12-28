@@ -53,16 +53,16 @@ For more information, see [LintConfig](custom-resource-lintconfig).
 
 ## Linter Rules
 
-### missing-kind-field
+### allow-privilege-escalation
 
 <table>
   <tr>
     <th>Description</th>
-    <td>Requires the <code>kind:</code> field in all files.</td>
+    <td>Notifies if any manifest file has <code>allowPrivilegeEscalation</code> set to <code>true</code>.</td>
   </tr>
   <tr>
     <th>Level</th>
-    <td>Error</td>
+    <td>Info</td>
   </tr>
   <tr>
     <th>Applies To</th>
@@ -70,129 +70,9 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   </tr>
   <tr>
     <th>Example</th>
-    <td><p>Example of correct YAML for this rule:</p>
-    <MissingKindField/>
-    </td>
+    <td><p>Example of matching YAML for this rule:</p><AllowPrivilegeEscalation/></td>
   </tr>
 </table>
-
-
-### missing-api-version-field
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>Requires the <code>apiVersion:</code> field in all files.</td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Error</td>
-  </tr>
-  <tr>
-    <th>Applies To</th>
-    <td>All files</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><p>Example of correct YAML for this rule:</p>
-    <MissingAPIVersionField/>
-    </td>
-  </tr>
-</table>
-
-
-### preflight-spec
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td><p>Requires a Preflight custom resource manifest file with:</p>
-      <p><code>kind: Preflight</code></p>
-      <p>and one of the following:</p>
-      <ul>
-        <li><code>apiVersion: troubleshoot.replicated.com/v1beta1</code></li>
-        <li><code>apiVersion: troubleshoot.sh/v1beta2</code></li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Warn</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><p>Example of matching YAML for this rule:</p><PreflightSpec/></td>
-  </tr>
-</table>
-
-
-### config-spec
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td><p>Requires a Config custom resource manifest file.</p>
-      <p>Accepted value for <code>kind</code>: <code>Config</code></p>
-      <p>Accepted value for <code>apiVersion</code>: <code>kots.io/v1beta1</code></p>
-    </td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Warn</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><p>Example of matching YAML for this rule:</p><ConfigSpec/></td>
-  </tr>
-</table>
-
-### troubleshoot-spec
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td><p>Requires a Troubleshoot manifest file.</p>
-      <p>Accepted values for <code>kind</code>:</p>
-      <ul>
-        <li><code>Collector</code></li>
-        <li><code>SupportBundle</code></li>
-      </ul>
-      <p>Accepted values for <code>apiVersion</code>:</p>
-      <ul>
-        <li><code>troubleshoot.replicated.com/v1beta1</code></li>
-        <li><code>troubleshoot.sh/v1beta2</code></li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Warn</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><p>Example of matching YAML for this rule:</p><TroubleshootSpec/></td>
-  </tr>
-</table>
-
-### application-spec
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td><p>Requires an Application custom resource manifest file.</p>
-      <p>Accepted value for <code>kind</code>: <code>Application</code></p>
-    </td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Warn</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><p>Example of matching YAML for this rule:</p><ApplicationSpec/></td>
-  </tr>
-</table>
-
 
 ### application-icon
 
@@ -219,6 +99,24 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   </tr>
 </table>
 
+### application-spec
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td><p>Requires an Application custom resource manifest file.</p>
+      <p>Accepted value for <code>kind</code>: <code>Application</code></p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Warn</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><ApplicationSpec/></td>
+  </tr>
+</table>
 
 ### application-statusInformers
 
@@ -245,16 +143,14 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   </tr>
 </table>
 
-
-### invalid-target-kots-version
+### config-option-invalid-type
 
 <table>
   <tr>
     <th>Description</th>
     <td>
-      <p>Requires <code>targetKotsVersion</code> in the Application custom resource to use valid Semantic Versioning.
-      See <a href="https://semver.org/">Semantic Versioning 2.0.0</a>.</p>
-      <p>Accepts a <code>v</code> as an optional prefix, so both <code>1.0.0</code> and <code>v1.0.0</code> are valid.</p>
+      <p>Enforces valid types for Config items.</p>
+      <p>For more information, see <a href="/reference/custom-resource-config#items">Items</a> in <em>Config</em>.</p>
     </td>
   </tr>
   <tr>
@@ -263,241 +159,52 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   </tr>
   <tr>
     <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><ConfigOptionInvalidType/></td>
+  </tr>
+</table>
+
+### config-option-is-circular
+
+<table>
+  <tr>
+    <th>Description</th>
     <td>
-      Files with <code>kind: Application</code> and <code>apiVersion: kots.io/v1beta1</code>
+      Enforces that all ConfigOption items do not reference themselves.
+  </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+      Files with <code>kind: Config</code> and <code>apiVersion: kots.io/v1beta1</code>.
     </td>
   </tr>
   <tr>
     <th>Example</th>
-    <td><p>Example of correct YAML for this rule:</p><InvalidTargetKOTS/></td>
+    <td> <ConfigOptionIsCircular/> </td>
   </tr>
 </table>
 
-
-### invalid-min-kots-version
+### config-option-password-type
 
 <table>
   <tr>
     <th>Description</th>
     <td>
-      <p>Requires <code>minKotsVersion</code> in the Application custom resource to use valid Semantic Versioning.
-      See <a href="https://semver.org/">Semantic Versioning 2.0.0</a>.</p>
-      <p>Accepts a <code>v</code> as an optional prefix, so both <code>1.0.0</code> and <code>v1.0.0</code> are valid.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Error</td>
-  </tr>
-  <tr>
-    <th>Applies To</th>
-    <td>
-      Files with <code>kind: Application</code> and <code>apiVersion: kots.io/v1beta1</code>.
-    </td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><p>Example of correct YAML for this rule:</p><InvalidMinKOTS/></td>
-  </tr>
-</table>
-
-
-### invalid-kubernetes-installer
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Enforces valid Kubernetes installer add-on versions.</p>
-      <p>Add-ons included in the Kubernetes installer must pin specific versions rather than <code>latest</code> or x-ranges (1.2.x).</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Error</td>
-  </tr>
-  <tr>
-    <th>Applies To</th>
-    <td>
-    <p>Files with <code>kind: Installer</code> and one of the following values for <code>apiVersion</code>:</p>
-    <ul>
-      <li><code>cluster.kurl.sh/v1beta1</code></li>
-      <li><code>kurl.sh/v1beta1</code></li>
-    </ul>
-    </td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><InvalidKubernetesInstaller/></td>
-  </tr>
-</table>
-
-
-### invalid_type
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Requires that the value of a property matches that property's expected type.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Error</td>
-  </tr>
-  <tr>
-    <th>Applies To</th>
-    <td>
-      All files
-    </td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><InvalidType/></td>
-  </tr>
-</table>
-
-
-### invalid-yaml
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Enforces valid YAML.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Error</td>
-  </tr>
-  <tr>
-    <th>Applies To</th>
-    <td>
-      YAML files
-    </td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><InvalidYaml/></td>
-  </tr>
-</table>
-
-
-### deprecated-kubernetes-installer-version
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Disallows using the deprecated Kubernetes installer <code>apiVersion</code>.</p>
-      <p><code>kurl.sh/v1beta1</code> is deprecated. Use <code>cluster.kurl.sh/v1beta1</code> instead.</p>
-      </td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Warn</td>
-  </tr>
-  <tr>
-    <th>Applies To</th>
-    <td>
-    Files with <code>kind: Installer</code> and <code>apiVersion: kurl.sh/v1beta1</code>.
-    </td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><DeprecatedKubernetesInstallerVersion/></td>
-  </tr>
-</table>
-
-
-### duplicate-kots-kind
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Disallows duplicate Replicated custom resources.
-      A release can only include one of each <code>kind</code> of custom resource.</p>
-      <p>This rule disallows inclusion of more than one file with:</p>
-        <ul>
-          <li>The same <code>kind</code> and <code>apiVersion</code></li>
-          <li><code>kind: Troubleshoot</code> and any Troubleshoot <code>apiVersion</code></li>
-          <li><code>kind: Installer</code> and any Installer <code>apiVersion</code></li>
-        </ul>
-    </td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Error</td>
-  </tr>
-  <tr>
-    <th>Applies To</th>
-    <td>
-    All files
-    </td>
-  </tr>
-</table>
-
-
-### helm-archive-missing
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Requires that a <code>*.tar.gz</code> file is present that matches what is in the HelmChart custom resource manifest file.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Error</td>
-  </tr>
-  <tr>
-    <th>Applies To</th>
-    <td>
-    Releases with a HelmChart custom resource manifest file containing <code>kind: HelmChart</code> and <code>apiVersion: kots.io/v1beta1</code>.
-    </td>
-  </tr>
-</table>
-
-### helm-chart-missing
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Enforces that a HelmChart custom resource manifest file with <code>kind: HelmChart</code> is present if there is a <code>*.tar.gz</code> archive present.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Error</td>
-  </tr>
-  <tr>
-    <th>Applies To</th>
-    <td>
-    Releases with a <code>*.tar.gz</code> archive file present.
-    </td>
-  </tr>
-</table>
-
-
-### invalid-helm-release-name
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Enforces valid <code>spec.chart.releaseName</code> in the HelmChart custom resource manifest file.</p>
-      <p><code>spec.chart.releaseName</code> must meet the following requirements:</p>
+      <p>Requires ConfigOption items with any of the following names to have <code>type</code> set to <code>password</code>:</p>
       <ul>
-        <li>Begin and end with a lowercase letter or number</li>
-        <li>Contain only lowercase letters, numbers, periods, and hyphens (<code>-</code>)</li>
-        <li>Contain a lowercase letter or number between any two symbols (periods or hyphens)</li>
+        <li><code>password</code></li>
+        <li><code>secret</code></li>
+        <li><code>token</code></li>
       </ul>
-    </td>
+  </td>
   </tr>
   <tr>
     <th>Level</th>
@@ -505,26 +212,43 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   </tr>
   <tr>
     <th>Applies To</th>
-    <td>
-    Files with <code>kind: HelmChart</code> and <code>apiVersion: kots.io/v1beta1</code>.
-    </td>
+    <td>All files</td>
   </tr>
   <tr>
     <th>Example</th>
-    <td><p>Example of correct YAML for this rule:</p><InvalidHelmReleaseName/></td>
+    <td><p>Example of correct YAML for this rule:</p><ConfigOptionPasswordType/></td>
   </tr>
 </table>
 
 
-### duplicate-helm-release-name
+### config-option-not-found
 
 <table>
   <tr>
     <th>Description</th>
     <td>
-      <p>Enforces unique <code>spec.chart.releaseName</code>
-      across all HelmChart custom resource manifest files.</p>
-    </td>
+      Requires all ConfigOption items to be defined in the <code>Config</code> custom resource manifest file.
+  </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Warn</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+</table>
+
+
+### config-option-not-repeatable
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      Enforces that sub-templated ConfigOption items must be repeatable.
+  </td>
   </tr>
   <tr>
     <th>Level</th>
@@ -532,75 +256,49 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   </tr>
   <tr>
     <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+</table>
+
+
+### config-option-when-is-invalid
+
+<table>
+  <tr>
+    <th>Description</th>
     <td>
-    Files with <code>kind: HelmChart</code> and <code>apiVersion: kots.io/v1beta1</code>.
+      <p>Enforces valid <code>ConfigOption.when</code>.</p>
+      <p>For more information, see <a href="/reference/custom-resource-config#when">when</a> in <em>Config</em>.</p>
+  </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>Files with <code>kind: Config</code> and <code>apiVersion: kots.io/v1beta1</code>.
     </td>
   </tr>
 </table>
 
-
-### replicas-1
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>Notifies if any manifest file has <code>replicas</code> set to <code>1</code>.</td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Info</td>
-  </tr>
-  <tr>
-    <th>Applies To</th>
-    <td>All files</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><p>Example of matching YAML for this rule:</p><Replicas1/></td>
-  </tr>
-</table>
-
-
-### privileged
+### config-spec
 
 <table>
   <tr>
     <th>Description</th>
-    <td>Notifies if any manifest file has <code>privileged</code> set to <code>true</code>.</td>
+    <td><p>Requires a Config custom resource manifest file.</p>
+      <p>Accepted value for <code>kind</code>: <code>Config</code></p>
+      <p>Accepted value for <code>apiVersion</code>: <code>kots.io/v1beta1</code></p>
+    </td>
   </tr>
   <tr>
     <th>Level</th>
-    <td>Info</td>
-  </tr>
-  <tr>
-    <th>Applies To</th>
-    <td>All files</td>
+    <td>Warn</td>
   </tr>
   <tr>
     <th>Example</th>
-    <td><p>Example of matching YAML for this rule:</p><Privileged/></td>
-  </tr>
-</table>
-
-
-### allow-privilege-escalation
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>Notifies if any manifest file has <code>allowPrivilegeEscalation</code> set to <code>true</code>.</td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Info</td>
-  </tr>
-  <tr>
-    <th>Applies To</th>
-    <td>All files</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><p>Example of matching YAML for this rule:</p><AllowPrivilegeEscalation/></td>
+    <td><p>Example of matching YAML for this rule:</p><ConfigSpec/></td>
   </tr>
 </table>
 
@@ -647,27 +345,6 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   </tr>
 </table>
 
-### container-resources
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>Notifies if a manifest file has no <code>resources</code> field.</td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Info</td>
-  </tr>
-  <tr>
-    <th>Applies To</th>
-    <td>All files</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><p>Example of matching YAML for this rule:</p><ContainerResources/></td>
-  </tr>
-</table>
-
 ### container-resource-limits
 
 <table>
@@ -711,6 +388,564 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   </tr>
 </table>
 
+### container-resources
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>Notifies if a manifest file has no <code>resources</code> field.</td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Info</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><ContainerResources/></td>
+  </tr>
+</table>
+
+### deprecated-kubernetes-installer-version
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Disallows using the deprecated Kubernetes installer <code>apiVersion</code>.</p>
+      <p><code>kurl.sh/v1beta1</code> is deprecated. Use <code>cluster.kurl.sh/v1beta1</code> instead.</p>
+      </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Warn</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+    Files with <code>kind: Installer</code> and <code>apiVersion: kurl.sh/v1beta1</code>.
+    </td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><DeprecatedKubernetesInstallerVersion/></td>
+  </tr>
+</table>
+
+### duplicate-helm-release-name
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Enforces unique <code>spec.chart.releaseName</code>
+      across all HelmChart custom resource manifest files.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+    Files with <code>kind: HelmChart</code> and <code>apiVersion: kots.io/v1beta1</code>.
+    </td>
+  </tr>
+</table>
+
+### duplicate-kots-kind
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Disallows duplicate Replicated custom resources.
+      A release can only include one of each <code>kind</code> of custom resource.</p>
+      <p>This rule disallows inclusion of more than one file with:</p>
+        <ul>
+          <li>The same <code>kind</code> and <code>apiVersion</code></li>
+          <li><code>kind: Troubleshoot</code> and any Troubleshoot <code>apiVersion</code></li>
+          <li><code>kind: Installer</code> and any Installer <code>apiVersion</code></li>
+        </ul>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+    All files
+    </td>
+  </tr>
+</table>
+
+### hardcoded-namespace
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Notifies if any manifest file has a <code>metadata.namespace</code> set
+       to a static field.</p>
+      <p>Replicated strongly recommends not specifying a namespace to allow
+       for flexibility when deploying into end user environments.</p>
+      <p>For more information, see <a href="/vendor/namespaces">Managing Application Namespaces</a>.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Info</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><HardcodedNamespace/></td>
+  </tr>
+</table>
+
+### helm-archive-missing
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Requires that a <code>*.tar.gz</code> file is present that matches what is in the HelmChart custom resource manifest file.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+    Releases with a HelmChart custom resource manifest file containing <code>kind: HelmChart</code> and <code>apiVersion: kots.io/v1beta1</code>.
+    </td>
+  </tr>
+</table>
+
+### helm-chart-missing
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Enforces that a HelmChart custom resource manifest file with <code>kind: HelmChart</code> is present if there is a <code>*.tar.gz</code> archive present.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+    Releases with a <code>*.tar.gz</code> archive file present.
+    </td>
+  </tr>
+</table>
+
+### invalid-helm-release-name
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Enforces valid <code>spec.chart.releaseName</code> in the HelmChart custom resource manifest file.</p>
+      <p><code>spec.chart.releaseName</code> must meet the following requirements:</p>
+      <ul>
+        <li>Begin and end with a lowercase letter or number</li>
+        <li>Contain only lowercase letters, numbers, periods, and hyphens (<code>-</code>)</li>
+        <li>Contain a lowercase letter or number between any two symbols (periods or hyphens)</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Warn</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+    Files with <code>kind: HelmChart</code> and <code>apiVersion: kots.io/v1beta1</code>.
+    </td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of correct YAML for this rule:</p><InvalidHelmReleaseName/></td>
+  </tr>
+</table>
+
+### invalid-kubernetes-installer
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Enforces valid Kubernetes installer add-on versions.</p>
+      <p>Add-ons included in the Kubernetes installer must pin specific versions rather than <code>latest</code> or x-ranges (1.2.x).</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+    <p>Files with <code>kind: Installer</code> and one of the following values for <code>apiVersion</code>:</p>
+    <ul>
+      <li><code>cluster.kurl.sh/v1beta1</code></li>
+      <li><code>kurl.sh/v1beta1</code></li>
+    </ul>
+    </td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><InvalidKubernetesInstaller/></td>
+  </tr>
+</table>
+
+### invalid-min-kots-version
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Requires <code>minKotsVersion</code> in the Application custom resource to use valid Semantic Versioning.
+      See <a href="https://semver.org/">Semantic Versioning 2.0.0</a>.</p>
+      <p>Accepts a <code>v</code> as an optional prefix, so both <code>1.0.0</code> and <code>v1.0.0</code> are valid.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+      Files with <code>kind: Application</code> and <code>apiVersion: kots.io/v1beta1</code>.
+    </td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of correct YAML for this rule:</p><InvalidMinKOTS/></td>
+  </tr>
+</table>
+
+### invalid-target-kots-version
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Requires <code>targetKotsVersion</code> in the Application custom resource to use valid Semantic Versioning.
+      See <a href="https://semver.org/">Semantic Versioning 2.0.0</a>.</p>
+      <p>Accepts a <code>v</code> as an optional prefix, so both <code>1.0.0</code> and <code>v1.0.0</code> are valid.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+      Files with <code>kind: Application</code> and <code>apiVersion: kots.io/v1beta1</code>
+    </td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of correct YAML for this rule:</p><InvalidTargetKOTS/></td>
+  </tr>
+</table>
+
+### invalid-type
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Requires that the value of a property matches that property's expected type.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+      All files
+    </td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><InvalidType/></td>
+  </tr>
+</table>
+
+### invalid-yaml
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Enforces valid YAML.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+      YAML files
+    </td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><InvalidYaml/></td>
+  </tr>
+</table>
+
+### may-contain-secrets
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      Notifies if any manifest file may contain secrets.
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Info</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><MayContainSecrets/></td>
+  </tr>
+</table>
+
+### missing-api-version-field
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>Requires the <code>apiVersion:</code> field in all files.</td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of correct YAML for this rule:</p>
+    <MissingAPIVersionField/>
+    </td>
+  </tr>
+</table>
+
+### missing-kind-field
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>Requires the <code>kind:</code> field in all files.</td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of correct YAML for this rule:</p>
+    <MissingKindField/>
+    </td>
+  </tr>
+</table>
+
+### nonexsistent-status-informer-object
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>Requires that the value of the <code>statusInformers</code> field is an existing Kubernetes object.</td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Warning</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+      <p>All files.</p>
+      <p>Does not apply to Helm resources. Ignore any <code>nonexsistent-status-informer-object</code> warnings that appear for a Helm resource status informer.</p>
+    </td>
+  </tr>
+</table>
+
+### preflight-spec
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td><p>Requires a Preflight custom resource manifest file with:</p>
+      <p><code>kind: Preflight</code></p>
+      <p>and one of the following:</p>
+      <ul>
+        <li><code>apiVersion: troubleshoot.replicated.com/v1beta1</code></li>
+        <li><code>apiVersion: troubleshoot.sh/v1beta2</code></li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Warn</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><PreflightSpec/></td>
+  </tr>
+</table>
+
+### privileged
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>Notifies if any manifest file has <code>privileged</code> set to <code>true</code>.</td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Info</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><Privileged/></td>
+  </tr>
+</table>
+
+### repeat-option-malformed-yamlpath
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Enforces ConfigOption <code>yamlPath</code> ending with square brackets denoting index position.</p>
+      <p>For more information, see <a href="/reference/custom-resource-config#template-targets">Repeatable Item Template Targets</a> in <em>Config</em>.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of correct YAML for this rule:</p><RepeatOptionMalformedYAMLPath/></td>
+  </tr>
+</table>
+
+### repeat-option-missing-template
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Disallows repeating Config item with undefined <code>item.templates</code>.</p>
+      <p>For more information, see <a href="/reference/custom-resource-config#template-targets">Repeatable Item Template Targets</a> in <em>Config</em>.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of correct YAML for this rule:</p><RepeatOptionMissingTemplate/></td>
+  </tr>
+</table>
+
+
+### repeat-option-missing-valuesByGroup
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Disallows repeating Config item with undefined <code>item.valuesByGroup</code>.</p>
+      <p>For more information, see <a href="/reference/custom-resource-config#repeatable-items">Repeatable Items</a> in <em>Config</em>.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of correct YAML for this rule:</p><RepeatOptionMissingValuesByGroup/></td>
+  </tr>
+</table>
+
+### replicas-1
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>Notifies if any manifest file has <code>replicas</code> set to <code>1</code>.</td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Info</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>All files</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><p>Example of matching YAML for this rule:</p><Replicas1/></td>
+  </tr>
+</table>
 
 ### resource-limits-cpu
 
@@ -796,25 +1031,31 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   </tr>
 </table>
 
-
-### volumes-host-paths
+### troubleshoot-spec
 
 <table>
   <tr>
     <th>Description</th>
-    <td>Notifies if a <code>spec.volumes</code> has defined a <code>hostPath</code>.</td>
+    <td><p>Requires a Troubleshoot manifest file.</p>
+      <p>Accepted values for <code>kind</code>:</p>
+      <ul>
+        <li><code>Collector</code></li>
+        <li><code>SupportBundle</code></li>
+      </ul>
+      <p>Accepted values for <code>apiVersion</code>:</p>
+      <ul>
+        <li><code>troubleshoot.replicated.com/v1beta1</code></li>
+        <li><code>troubleshoot.sh/v1beta2</code></li>
+      </ul>
+    </td>
   </tr>
   <tr>
     <th>Level</th>
-    <td>Info</td>
-  </tr>
-  <tr>
-    <th>Applies To</th>
-    <td>All files</td>
+    <td>Warn</td>
   </tr>
   <tr>
     <th>Example</th>
-    <td><p>Example of matching YAML for this rule:</p><VolumesHostPaths/></td>
+    <td><p>Example of matching YAML for this rule:</p><TroubleshootSpec/></td>
   </tr>
 </table>
 
@@ -840,18 +1081,12 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   </tr>
 </table>
 
-### hardcoded-namespace
+### volumes-host-paths
 
 <table>
   <tr>
     <th>Description</th>
-    <td>
-      <p>Notifies if any manifest file has a <code>metadata.namespace</code> set
-       to a static field.</p>
-      <p>Replicated strongly recommends not specifying a namespace to allow
-       for flexibility when deploying into end user environments.</p>
-      <p>For more information, see <a href="/vendor/namespaces">Managing Application Namespaces</a>.</p>
-    </td>
+    <td>Notifies if a <code>spec.volumes</code> has defined a <code>hostPath</code>.</td>
   </tr>
   <tr>
     <th>Level</th>
@@ -863,245 +1098,6 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   </tr>
   <tr>
     <th>Example</th>
-    <td><p>Example of matching YAML for this rule:</p><HardcodedNamespace/></td>
-  </tr>
-</table>
-
-### may-contain-secrets
-
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      Notifies if any manifest file may contain secrets.
-    </td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Info</td>
-  </tr>
-  <tr>
-    <th>Applies To</th>
-    <td>All files</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><p>Example of matching YAML for this rule:</p><MayContainSecrets/></td>
-  </tr>
-</table>
-
-### config-option-invalid-type
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Enforces valid types for Config items.</p>
-      <p>For more information, see <a href="/reference/custom-resource-config#items">Items</a> in <em>Config</em>.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Error</td>
-  </tr>
-  <tr>
-    <th>Applies To</th>
-    <td>All files</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><ConfigOptionInvalidType/></td>
-  </tr>
-</table>
-
-### repeat-option-missing-template
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Disallows repeating Config item with undefined <code>item.templates</code>.</p>
-      <p>For more information, see <a href="/reference/custom-resource-config#template-targets">Repeatable Item Template Targets</a> in <em>Config</em>.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Error</td>
-  </tr>
-  <tr>
-    <th>Applies To</th>
-    <td>All files</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><p>Example of correct YAML for this rule:</p><RepeatOptionMissingTemplate/></td>
-  </tr>
-</table>
-
-
-### repeat-option-missing-valuesByGroup
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Disallows repeating Config item with undefined <code>item.valuesByGroup</code>.</p>
-      <p>For more information, see <a href="/reference/custom-resource-config#repeatable-items">Repeatable Items</a> in <em>Config</em>.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Error</td>
-  </tr>
-  <tr>
-    <th>Applies To</th>
-    <td>All files</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><p>Example of correct YAML for this rule:</p><RepeatOptionMissingValuesByGroup/></td>
-  </tr>
-</table>
-
-
-### repeat-option-malformed-yamlpath
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Enforces ConfigOption <code>yamlPath</code> ending with square brackets denoting index position.</p>
-      <p>For more information, see <a href="/reference/custom-resource-config#template-targets">Repeatable Item Template Targets</a> in <em>Config</em>.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Error</td>
-  </tr>
-  <tr>
-    <th>Applies To</th>
-    <td>All files</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><p>Example of correct YAML for this rule:</p><RepeatOptionMalformedYAMLPath/></td>
-  </tr>
-</table>
-
-
-### config-option-password-type
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Requires ConfigOption items with any of the following names to have <code>type</code> set to <code>password</code>:</p>
-      <ul>
-        <li><code>password</code></li>
-        <li><code>secret</code></li>
-        <li><code>token</code></li>
-      </ul>
-  </td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Warn</td>
-  </tr>
-  <tr>
-    <th>Applies To</th>
-    <td>All files</td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><p>Example of correct YAML for this rule:</p><ConfigOptionPasswordType/></td>
-  </tr>
-</table>
-
-
-### config-option-not-found
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      Requires all ConfigOption items to be defined in the <code>Config</code> custom resource manifest file.
-  </td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Warn</td>
-  </tr>
-  <tr>
-    <th>Applies To</th>
-    <td>All files</td>
-  </tr>
-</table>
-
-
-### config-option-is-circular
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      Enforces that all ConfigOption items do not reference themselves.
-  </td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Error</td>
-  </tr>
-  <tr>
-    <th>Applies To</th>
-    <td>
-      Files with <code>kind: Config</code> and <code>apiVersion: kots.io/v1beta1</code>.
-    </td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td> <ConfigOptionIsCircular/> </td>
-  </tr>
-</table>
-
-
-### config-option-not-repeatable
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      Enforces that sub-templated ConfigOption items must be repeatable.
-  </td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Error</td>
-  </tr>
-  <tr>
-    <th>Applies To</th>
-    <td>All files</td>
-  </tr>
-</table>
-
-
-### config-option-when-is-invalid
-
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>Enforces valid <code>ConfigOption.when</code>.</p>
-      <p>For more information, see <a href="/reference/custom-resource-config#when">when</a> in <em>Config</em>.</p>
-  </td>
-  </tr>
-  <tr>
-    <th>Level</th>
-    <td>Error</td>
-  </tr>
-  <tr>
-    <th>Applies To</th>
-    <td>Files with <code>kind: Config</code> and <code>apiVersion: kots.io/v1beta1</code>.
-    </td>
+    <td><p>Example of matching YAML for this rule:</p><VolumesHostPaths/></td>
   </tr>
 </table>
