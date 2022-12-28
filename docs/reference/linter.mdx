@@ -802,7 +802,7 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   <tr>
     <th>Applies To</th>
     <td>
-      <p>All files.</p>
+      <p>This will detect `statusInformer` entries in a `kots.io/v1beta1` `Application` manifest, but compares those to all manifests in the release.</p>
       <p>Does not apply to Helm resources. Ignore any <code>nonexsistent-status-informer-object</code> warnings that appear for a Helm resource status informer.</p>
     </td>
   </tr>
