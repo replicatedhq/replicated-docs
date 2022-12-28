@@ -788,12 +788,16 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   </tr>
 </table>
 
-### nonexsistent-status-informer-object
+### nonexistent-status-informer-object
 
 <table>
   <tr>
     <th>Description</th>
-    <td>Requires that the value of the <code>statusInformers</code> field is an existing Kubernetes object.</td>
+    <td>
+      <p>Requires that the value of the <code>statusInformers</code> field is an existing Kubernetes object.</p>
+      <p>The linter cannot evaulate <code>statusInformers</code> for Helm-managed resources because it does not template Helm charts during analysis.</p>
+      <p>If you configure status informers for Helm-managed resources, you can ignore <code>nonexistent-status-informer-object</code> warnings for those workloads. To disable <code>nonexistent-status-informer-object</code> warnings, change the level for this rule to <code>info</code> or <code>off</code> in the LintConfig custom resource manifest file. See <a href="custom-resource-lintconfig">LintConfig</a> in <em>Custom Resources</em>.</p>
+    </td>
   </tr>
   <tr>
     <th>Level</th>
@@ -802,8 +806,7 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   <tr>
     <th>Applies To</th>
     <td>
-      <p>This will detect `statusInformer` entries in a `kots.io/v1beta1` `Application` manifest, but compares those to all manifests in the release.</p>
-      <p>Because the linter does not template helm charts during static analysis, it cannot evaulate <code>statusInformer</code> entries for helm-managed resources. If you have configured status informers for your helm workloads, you can ignore <code>nonexistent-status-informer-object</code> warnings for those workloads. If you find these warnings to be noisy, you can use a <a href="https://docs.replicated.com/reference/custom-resource-lintconfig">LintConfig</a> manifest to set them to `info` or `off`.</p>
+      <p>Compares <code>statusInformer</code> values in files with <code>kind: Application</code> and <code>apiVersion: kots.io/v1beta1</code> to all manifests in the release.</p>
     </td>
   </tr>
 </table>
