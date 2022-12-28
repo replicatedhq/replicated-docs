@@ -290,21 +290,24 @@ To create an `.airgap` bundle for a release that uses Helm charts, the Replicate
 The `builder` key has the following requirements and recommendations:
 * Replicated recommends that you include only the minimum Helm values in the `builder` key that are required to template the Helm chart with the correct image tags.
 * Use only static, or _hardcoded_, values in the `builder` key. You cannot use template functions in the `builder` key because values in the `builder` key are not rendered in a customer environment.
-* To include conditional resources in the `.airgap` bundle, add `enabled: true` to the resource in the `builder` key.
 
-  For example, `postgresql` is defined as a conditional resource in the `values` key of the HelmChart custom resource:
+**Example**
 
-  ```yaml
-    values:
-      postgresql:
-        enabled: repl{{ ConfigOptionEquals `postgres_type` `embedded_postgres`}}
-  ```
-  As shown above, `postgresql` is included only when the user selects the `embedded_postgres` option.
+The following example demonstrates how to add a conditional `postgresql` resource to the `builder` key.
 
-  To ensure the vendor portal includes this conditional `postgresql` resource in `.airgap` bundles, add the same `postgresql` value to the `builder` key with `enabled` set to `true`:
+`postgresql` is defined as a conditional resource in the `values` key of the HelmChart custom resource:
 
-  ```yaml
-    builder:
-      postgresql:
-        enabled: true
-  ```
+```yaml
+  values:
+    postgresql:
+      enabled: repl{{ ConfigOptionEquals `postgres_type` `embedded_postgres`}}
+```
+As shown above, `postgresql` is included only when the user selects the `embedded_postgres` option.
+
+To ensure the vendor portal includes this conditional `postgresql` resource in `.airgap` bundles, add the same `postgresql` value to the `builder` key with `enabled` set to `true`:
+
+```yaml
+  builder:
+    postgresql:
+      enabled: true
+```
