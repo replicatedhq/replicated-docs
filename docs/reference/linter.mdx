@@ -803,7 +803,7 @@ For more information, see [LintConfig](custom-resource-lintconfig).
     <th>Applies To</th>
     <td>
       <p>This will detect `statusInformer` entries in a `kots.io/v1beta1` `Application` manifest, but compares those to all manifests in the release.</p>
-      <p>Does not apply to Helm resources. Ignore any <code>nonexsistent-status-informer-object</code> warnings that appear for a Helm resource status informer.</p>
+      <p>Because the linter does not template helm charts during static analysis, it cannot evaulate <code>statusInformer</code> entries for helm-managed resources. If you have configured status informers for your helm workloads, you can ignore <code>nonexistent-status-informer-object</code> warnings for those workloads. If you find these warnings to be noisy, you can use a <a href="https://docs.replicated.com/reference/custom-resource-lintconfig">LintConfig</a> manifest to set them to `info` or `off`.</p>
     </td>
   </tr>
 </table>
