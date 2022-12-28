@@ -149,6 +149,8 @@ const sidebars = {
                     ],
                   },
                   'vendor/preflight-support-bundle-creating',
+                  'vendor/support-modular-support-bundle-specs',
+                  'vendor/support-online-support-bundle-specs',
                   {
                       type: 'category',
                       label: 'Configuring Backup and Restore',
