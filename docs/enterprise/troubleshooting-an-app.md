@@ -1,8 +1,14 @@
 # Generating Support Bundles
 
+This topic describes generating support bundles to troubleshoot an application, using either the Replicated admin console or the support-bundle CLI. You can also troubleshoot issues from the host for Kubernetes installer clusters (embedded clusters).
+
+## About Support Bundles
+
 The Replicated admin console includes a Troubleshoot page where you can generate an analysis and review remediation suggestions for troubleshooting an application. You can download a support bundle to share with your vendor.
 
-Alternatively, you can generate a support bundle using the CLI, which can be helpful when the admin console is not available or when you want to debug a host.
+Alternatively, you can generate a support bundle using the support-bundle CLI, which can be helpful when the admin console is not available or when you want to debug a host.
+
+Support bundles are generated from support bundle specifications provided by the vendor. Specification types include manifest files that are included in the installation or accessible online from URLs, and specifications embedded within Kubernetes Secrets or ConfigMap objects. Your vendor can inform you of any online specifications or Kubernetes objects, if applicable.
 
 ## Generate a Bundle using the Admin Console
 
@@ -170,57 +176,66 @@ If you are on an air gapped server, perform the following steps to create a supp
     ```
     kubectl support-bundle /path/to/spec.yaml
     ```
-## Generate a Merged Support Bundle
+### Generate a Merged Support Bundle
 
-You can generate a merged support bundle archive from multiple resource specifications.
+You can generate a merged support bundle archive from one or more support bundle specifications. For more information about specification types, see [About Support Bundles](#about-support-bundles).
 
-If you do not know the specification IDs, then you can discover the support bundle specifications in the cluster and generate a merged support bundle. This option requires that your vendor has enabled discovery for Secret or ConfigMap objects.
-
-You can generate a merged support bundle for any combination of manifest files, URLs, and Kubernetes Secrets. For example, you can collect:
+You can generate a merged support bundle for combinations of specification types. For example, you can collect:
 
 - Two support bundle manifest files and a URL
-- A URL and two Secrets
-- Three Secrets and a support bundle manifest file
+- A URL, a Secret, and three support bundle manifest files
 - Two URLs and a support bundle manifest
 
-For more information, see [Collect a Support Bundle Using Multiple Specs](https://troubleshoot.sh/docs/support-bundle/collecting/#collect-a-support-bundle-using-multiple-specs) and [Discover Cluster Specs](https://troubleshoot.sh/docs/support-bundle/discover-cluster-specs/) in the Troubleshoot documentation.
+You can also automatically discover support bundle specifications in Secrets and ConfigMaps in the cluster and generate a merged support bundle.
 
 You must use the support-bundle CLI to perform these tasks.
 
 #### Generate from Multiple Specifications
 
+You can generate a merged support bundle from any combination of the support bundle specification types. For more information, see [Collect a Support Bundle Using Multiple Specs](https://troubleshoot.sh/docs/support-bundle/collecting/#collect-a-support-bundle-using-multiple-specs) in the Troubleshoot documentation.
+
+The following examples show some possible combinations:
+
 - Using multiple files:
 
   ```bash
-  kubectl support-bundle ./PATH_TO_FILE1 ./PATH_TO_FILE2
+  kubectl support-bundle ./PATH_TO_FILE1 ./PATH_TO_FILE2 ./PATH_TO_FILE3
   ```
 
-- Using multiple resource types:
+  Replace `PATH_TO_FILE` with the path and YAML file name for each file.
+
+  **Example:**
+
+  ```bash
+  kubectl support-bundle manifests/redis/troubleshoot.yaml manifests/mysql/troubleshoot.yaml manifests/nginx/troubleshoot.yaml
+  ```
+
+- Using a URL and a specification in the cluster:
 
   ```bash
   kubectl support-bundle URL \
   ./PATH_TO_FILE \
-  SECRET/PATH_TO_SPEC 
   ```
-
+  
   Replace:
 
-  - `URL` with the URL location of your YAML
+  - `URL` with the online specification location provided by your vendor
   - `PATH_TO_FILE` with the path and YAML file name
-  - `SECRET/PATH_TO_SPEC` with the path to the secret specification
 
+  **Example:**
+  
+  ```bash
+  kubectl support-bundle https://raw.githubusercontent.com/replicatedhq/troubleshoot-specs/main/in-cluster/default.yaml \
+  ./support-bundle-spec-1.yaml \
+  ```  
 #### Discover Specifications and Generate a Bundle
 
-- Using specifications discovered in the cluster:
+You can run an automatic discovery of specifications in Secrets or ConfigMaps in the cluster and generate a merged support bundle using the `--load-cluster-specs` flag. This can be easier than manually typing each specification on the command line.
 
-  ```shell
+The `--load-cluster-specs` flag can be combined with multiple specifications, such as URLs or specifications that match a custom label. For more information, see [Discover Cluster Specs](https://troubleshoot.sh/docs/support-bundle/discover-cluster-specs/) in the Troubleshoot documentation.
+
+Run the following command to generate a bundle with specifications discovered in the cluster:
+
+  ```bash
   kubectl support-bundle --load-cluster-specs
   ```
- 
-- Using a URL and specifications discovered in the cluster:
-
-  ```shell
-  kubectl support-bundle URL --load-cluster-specs
-  ```
-
-  Replace `URL` with the URL of the online specification.

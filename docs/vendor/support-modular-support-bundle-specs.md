@@ -16,6 +16,8 @@ Using a modular approach for an application that ships MySQL, NGINX, and Redis, 
 
 `manifests/nginx/troubleshoot.yaml`
 
+This collector and analyzer checks compliance for the minimum number of replicas for the NGINX component:
+
   ```yaml
 apiVersion: troubleshoot.sh/v1beta2
 kind: SupportBundle
@@ -36,6 +38,8 @@ spec:
 
 `manifests/mysql/troubleshoot.yaml`
 
+This collector and analyzer checks compliance for the minimum version of the MySQL component:
+
   ```yaml
 apiVersion: troubleshoot.sh/v1beta2
 kind: SupportBundle
@@ -55,6 +59,8 @@ spec:
 
 `manifests/redis/troubleshoot.yaml`
 
+This collector and analyzer checks that the default password is used for Redis:
+
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
 kind: SupportBundle
@@ -67,7 +73,7 @@ spec:
         uri: rediss://default:password@hostname:6379
 ```
 
-Then, you can generate a single support bundle archive in your development environment, if you want to test it from a customer perspective. 
+Then, you can generate a single support bundle archive from any combination of these manifests, if you want to test it from a customer perspective. 
 
 ```bash
 kubectl support-bundle manifests/redis/troubleshoot.yaml manifests/mysql/troubleshoot.yaml manifests/nginx/troubleshoot.yaml
@@ -104,13 +110,13 @@ stringData:
 
 Create the resource from your manifest:
 
-```shell
+```bash
 kubectl apply -f kURL/addons/flannel/template/yaml/troubleshoot.yaml
 # secret default/flannel-troubleshoot-spec created
 ```
 Then you can use any of the specifications from your cluster to collect an aggregate support bundle. First, use `kubectl get secrets` to get a list of specifications that match the label and key in the Secret specification. 
 
-```shell
+```bash
 kubectl get secrets --all-namespaces -l troubleshoot.io/kind=support-bundle-spec
 ```
   **Example output:**
@@ -123,12 +129,12 @@ kubectl get secrets --all-namespaces -l troubleshoot.io/kind=support-bundle-spec
 ```
 Then generate a merged support bundle for any of the specifications listed.
 
-```shell
+```bash
 kubectl support-bundle secret/default/flannel-troubleshoot-spec secret/default/kotsadm-troubleshoot-spec secret/default/velero-troubleshoot-spec
 ```
 
-The analysis screen shows the results of all of the analyzers defined in your chosen manifests, and the contents are available in a single bundle.
+Alternatively, you can also discover all of the specifications in a given namespace or cluster based on the `troubleshoot.io/kind` label with the `--load-cluster-specs` flag. This flag can also be combined with input for a URL. For information about using this flag, see [Generate a Merged Support Bundle](/enterprise/troubleshooting-an-app/#generate-a-merged-support-bundle).
 
-You can also discover all of the specifications in a given namespace or cluster based on the `troubleshoot.io/kind` label with the `--load-cluster-specs` flag. For information about using this flag, see [Generate a Merged Support Bundle](/enterprise/troubleshooting-an-app/#generate-a-merged-support-bundle).
+The analysis screen shows the results of all of the analyzers defined in your chosen manifests, and the contents are available in a single bundle.
 
  For real use cases, see the [troubleshoot-specs repo](https://github.com/replicatedhq/troubleshoot-specs) on GitHub.
