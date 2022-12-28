@@ -1,14 +1,8 @@
 # Generating Support Bundles
 
-This topic describes generating support bundles to troubleshoot an application, using either the Replicated admin console or the support-bundle CLI. You can also troubleshoot issues from the host for Kubernetes installer clusters (embedded clusters).
-
-## About Support Bundles
-
 The Replicated admin console includes a Troubleshoot page where you can generate an analysis and review remediation suggestions for troubleshooting an application. You can download a support bundle to share with your vendor.
 
 Alternatively, you can generate a support bundle using the support-bundle CLI, which can be helpful when the admin console is not available or when you want to debug a host.
-
-Support bundles are generated from support bundle specifications provided by the vendor. Specification types include manifest files that are included in the installation or accessible online from URLs, and specifications embedded within Kubernetes Secrets or ConfigMap objects. Your vendor can inform you of any online specifications or Kubernetes objects, if applicable.
 
 ## Generate a Bundle using the Admin Console
 
@@ -178,15 +172,11 @@ If you are on an air gapped server, perform the following steps to create a supp
     ```
 ### Generate a Merged Support Bundle
 
-You can generate a merged support bundle archive from one or more support bundle specifications. For more information about specification types, see [About Support Bundles](#about-support-bundles).
+Support bundles are generated from support bundle specifications provided by the vendor. Specification types include manifest files in the cluster, specifications that are accessible online, and specifications embedded in Kubernetes Secrets or ConfigMap objects. Your vendor can inform you of any online specifications or Kubernetes objects, if applicable.
 
-You can generate a merged support bundle for combinations of specification types. For example, you can collect:
+You can generate a merged support bundle archive from multiple specifications.
 
-- Two support bundle manifest files and a URL
-- A URL, a Secret, and three support bundle manifest files
-- Two URLs and a support bundle manifest
-
-You can also automatically discover support bundle specifications in Secrets and ConfigMaps in the cluster and generate a merged support bundle.
+When support bundle specifications are contained in Secrets or ConfigMaps, you can run an automatic discovery in the cluster and generate a merged support bundle.
 
 You must use the support-bundle CLI to perform these tasks.
 
@@ -230,12 +220,11 @@ The following examples show some possible combinations:
   ```  
 #### Discover Specifications and Generate a Bundle
 
-You can run an automatic discovery of specifications in Secrets or ConfigMaps in the cluster and generate a merged support bundle using the `--load-cluster-specs` flag. This can be easier than manually typing each specification on the command line.
-
-The `--load-cluster-specs` flag can be combined with multiple specifications, such as URLs or specifications that match a custom label. For more information, see [Discover Cluster Specs](https://troubleshoot.sh/docs/support-bundle/discover-cluster-specs/) in the Troubleshoot documentation.
+You can run an automatic discovery of specifications contained in Secrets or ConfigMaps in the cluster and generate a merged support bundle using the `--load-cluster-specs` flag. This can be easier than manually typing each specification on the command line.
 
 Run the following command to generate a bundle with specifications discovered in the cluster:
 
   ```bash
   kubectl support-bundle --load-cluster-specs
   ```
+The `--load-cluster-specs` flag can be combined with multiple specifications, such as URLs or specifications that match a custom label. For more information, see [Discover Cluster Specs](https://troubleshoot.sh/docs/support-bundle/discover-cluster-specs/) in the Troubleshoot documentation.

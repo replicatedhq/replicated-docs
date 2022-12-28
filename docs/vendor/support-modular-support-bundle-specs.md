@@ -1,8 +1,12 @@
 # About Modular and Discoverable Support Bundles
 
-Support bundle specifications can be designed using a modular approach. This helps teams more easily develop specifications that are scoped to individual components or microservices in a large application and avoid merge conflicts. You can create separate manifest files or use a combination of manifest files, URLs, and Kubernetes secrets. Then, customers can use the support-bundle CLI to merge the multiple specifications and generate a single support bundle archive.
+Support bundle specifications can be designed using a modular approach. This helps teams more easily develop specifications that are scoped to individual components or microservices in a large application and avoid merge conflicts. 
 
-You can also add a support bundle manifest file as a Secret or ConfigMap to enable discoverability in clusters. Customers can then discover all of the support bundle specifications and generate a merged support bundle.
+You can create separate manifest files or use a combination of manifest files, URLs, and Kubernetes Secrets or ConfigMaps. Then, customers can use the support-bundle CLI to generate a merged support bundle archive. For more information, see [Create Specifications by Component](#component) below.
+
+When you create support bundle specifications within Kubernetes Secret or ConfigMap resources, your customers can automatically discover support bundle specifications and generate a merged support bundle. For more information, see [Enable Discoverability of Specifications](#discoverable) below.
+
+You can also host any support bundle specifications that you create online, including specifications in Support Bundle manifest files or within Secret or ConfigMap resources. For more information, see [About Online Support Bundle Specifications](/vendor/support-online-support-bundle-specs).
 
 :::note
 Preflight checks also support using multiple specifications and resources. For more information, see [Run Preflights using multiple specs](https://troubleshoot.sh/docs/preflight/cluster-checks/#run-preflights-using-multiple-specs) in the Troubleshoot documentation.
@@ -10,9 +14,9 @@ Preflight checks also support using multiple specifications and resources. For m
 
 ## Examples
 
-### Create Support Bundle Specifications by Component
+### Create Specifications by Component {#component}
 
-Using a modular approach for an application that ships MySQL, NGINX, and Redis, your team can add collectors and analyzers for each component:
+Using a modular approach for an application that ships MySQL, NGINX, and Redis, your team can add collectors and analyzers for each component.
 
 `manifests/nginx/troubleshoot.yaml`
 
@@ -73,7 +77,7 @@ spec:
         uri: rediss://default:password@hostname:6379
 ```
 
-Then, you can generate a single support bundle archive from any combination of these manifests, if you want to test it from a customer perspective. 
+A single support bundle archive can be generated from a combination of these manifests: 
 
 ```bash
 kubectl support-bundle manifests/redis/troubleshoot.yaml manifests/mysql/troubleshoot.yaml manifests/nginx/troubleshoot.yaml
@@ -81,9 +85,9 @@ kubectl support-bundle manifests/redis/troubleshoot.yaml manifests/mysql/trouble
 
 For more information about generating merged support bundles, see [Generate a Merged Support Bundle](/enterprise/troubleshooting-an-app/#generate-a-merged-support-bundle).
 
-### Enable Discoverability of Support Bundle Specifications
+### Enable Discoverability of Specifications {#discoverable}
 
-To make Kubernetes resources discoverable in a cluster, you add a specification as `Kind: Secret`. Make sure that your specification includes the label `troubleshoot.io/kind: supportbundle` and a `data` key matching `support-bundle-spec`.
+To make support bundle specifications discoverable in a cluster, you wrap them in a Secret. Add a specification as `Kind: Secret` and include the label `troubleshoot.io/kind: supportbundle` and a `data` key matching `support-bundle-spec`.
 
 Custom resource definitions (CRDs) are not available for support bundles or preflights, so they must be wrapped in a Secret. For more information about adding Secrets, see [Support Bundle specs to a cluster as Secrets](https://troubleshoot.sh/docs/support-bundle/collecting/#collect-a-support-bundle-using-specs-discovered-from-the-cluster) in the Troubleshoot documentation.
 
