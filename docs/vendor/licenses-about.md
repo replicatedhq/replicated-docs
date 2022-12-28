@@ -74,9 +74,21 @@ This is a convenience feature for how licenses are displayed in the vendor porta
 
 The Replicated vendor portal **Customers** page displays details about each customer license that you create, including the channel the customer is assigned, the type of license, the number of active application instances installed with the license, and more.
 
-From the **Customers** page, you can do the following:
-* Download the YAML customer license file.
-* Archive the license. 
-* Click **Customer reporting** for a customer to view reporting information about the active application instances associated with the customer license.
+The following image shows an example of the **Customers** page in the vendor portal:
 
-   For each active application instance listed on the **Customer reporting** page, you can click the **View details** button to access the **Instance details** page. The **Instance details** page displays key metrics and details to help you understand the performance and status of each active application instance.
+![Customer page showing three customers](/images/customer-page.png)
+
+From the **Customers** page, you can do the following:
+* Create new customers.
+* Download a CSV file with details about each customer.
+* Download the license file for each customer.
+* Archive customers.
+* Click the **Customer reporting** button to view data about the active application instances associated with each customer on the **Reporting** page.
+
+   The following image shows an example of the **Reporting** page for a customer:
+
+   ![Customer reporting page showing one active instance](/images/customer-reporting-page.png)
+
+   For each active application instance listed on the **Reporting** page, you can click the **View details** button to access the **Instance details** page. The **Instance details** page displays key metrics and details to help you understand the performance and status of each active application instance.
+
+   

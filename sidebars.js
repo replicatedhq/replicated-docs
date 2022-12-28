@@ -207,9 +207,9 @@ const sidebars = {
             type: 'category',
             label: 'Customer Licenses',
             items: [
-              'vendor/releases-creating-customer',
               'vendor/licenses-about',
               'vendor/licenses-about-types',
+              'vendor/releases-creating-customer',
               'vendor/licenses-using-builtin-fields',
               'vendor/licenses-adding-custom-fields',
               'vendor/licenses-referencing-fields',
