@@ -1,8 +1,6 @@
-# About Customer Licenses
+# About Customers
 
-This topic describes the different fields and types for customer licenses. It also
-describes how Replicated uses the customer entitlement information provided in
-license files.
+This topic provides an overview of customer licenses, including information about license types, the **Customers** page in the vendor portal, and how Replicated uses the customer entitlement information that you provide in license files.
 
 ## Overview of Customer Licenses
 
@@ -79,16 +77,20 @@ The following image shows an example of the **Customers** page in the vendor por
 ![Customer page showing three customers](/images/customer-page.png)
 
 From the **Customers** page, you can do the following:
-* Create new customers.
-* Download a CSV file with details about each customer.
-* Download the license file for each customer.
-* Archive customers.
-* Click the **Customer reporting** button to view data about the active application instances associated with each customer on the **Reporting** page.
-
-   The following image shows an example of the **Reporting** page for a customer:
+* Create new customers
+* Download a CSV file with details about each customer
+* Download the license file for each customer
+* Archive customers
+* Click the **Customer reporting** button to view data about the active application instances associated with each customer on the **Reporting** page. The following image shows an example of the **Reporting** page for a customer:
 
    ![Customer reporting page showing one active instance](/images/customer-reporting-page.png)
 
-   For each active application instance listed on the **Reporting** page, you can click the **View details** button to access the **Instance details** page. The **Instance details** page displays key metrics and details to help you understand the performance and status of each active application instance.
+  For each active instance, the **Reporting** page displays:
+  * The application version 
+  * The app manager version
+  * The status of the instance
+  * The timestamps of the earliest and latest events recorded for the instance
+  * The Kubernetes distribution for the cluster where the instance is installed
+  * A **View details** button that opens the **Instance details** page. The **Instance details** page displays additional event data and computed metrics to help you understand the performance and status of each active application instance.
 
    
