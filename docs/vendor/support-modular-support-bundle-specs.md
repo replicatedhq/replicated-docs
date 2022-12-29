@@ -6,7 +6,7 @@ You can create separate manifest files or use a combination of manifest files, U
 
 When you create support bundle specifications within Kubernetes Secret or ConfigMap resources, your customers can automatically discover support bundle specifications and generate a merged support bundle. For more information, see [Enable Discoverability of Specifications](#discoverable) below.
 
-You can also host any support bundle specifications that you create online, including specifications in Support Bundle manifest files or within Secret or ConfigMap resources. For more information, see [About Online Support Bundle Specifications](/vendor/support-online-support-bundle-specs).
+You can also host any support bundle specifications that you create online, which can be updated with collectors and analyzers to notify customers of potential problems and fixes in between application updates. For more information, see [About Online Support Bundle Specifications](/vendor/support-online-support-bundle-specs).
 
 :::note
 Preflight checks also support using multiple specifications and resources. For more information, see [Run Preflights using multiple specs](https://troubleshoot.sh/docs/preflight/cluster-checks/#run-preflights-using-multiple-specs) in the Troubleshoot documentation.
