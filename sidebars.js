@@ -227,8 +227,8 @@ const sidebars = {
             label: 'Preflights and Support Bundles',
             items: [
               'vendor/preflight-support-bundle-creating',
-              'vendor/support-online-support-bundle-specs',
               'vendor/support-modular-support-bundle-specs',
+              'vendor/support-online-support-bundle-specs',
             ],
           },
 

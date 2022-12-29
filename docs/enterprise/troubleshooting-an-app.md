@@ -216,7 +216,7 @@ The following examples show some possible combinations:
   
   ```bash
   kubectl support-bundle https://raw.githubusercontent.com/replicatedhq/troubleshoot-specs/main/in-cluster/default.yaml \
-  ./support-bundle-spec-1.yaml \
+  ./support-bundle-spec-1.yaml
   ```  
 #### Discover Specifications and Generate a Bundle
 

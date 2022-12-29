@@ -1,20 +1,17 @@
 # About Online Support Bundle Specifications
 
-You can make the definition of one or more support bundle specifications available online. The schema supports a `uri://` field that, when set, causes the support bundle to use the online specification. This is referred to as a _self-link_ because you set the online specification to link to itself. If the URL is unreachable or unparseable, any additional collectors or analyzers in the original specification are used as a fallback. 
+You can make the definition of one or more support bundle specifications available online in a source repository and link to it from the specification in the cluster. The schema supports a `uri://` field that, when set, causes the support bundle generation to use the online specification. If the URI is unreachable or unparseable, any additional collectors or analyzers in the specification in the cluster are used as a fallback. 
 
-Including a self-link to an source repository helps to ensure that the latest online specification is available to your support bundle. In turn, the support bundle proactively detects potential problems in customer environments and lets them know know how to fix it. Without the self-link option, you must wait for the next time your customers upgrade their applications or Kubernetes versions to get notified of potential problems.
+You can keep the online specification current with collectors and analyzers to manage bug fixes. When a customer generates a support bundle, the online specification can detect those potential problems in the cluster and let them know know how to fix it. Without the URI link option, you must wait for the next time your customers update their applications or Kubernetes versions to get notified of potential problems. This option is particularly useful for customers that do not update their application routinely.
 
-If you are using a modular approach to designing support bundles, you can use multiple online specifications. Each specification supports one self-link. For more information about modular specifications, see [About Creating Modular and Discoverable Support Bundles](support-modular-support-bundle-specs).
+If you are using a modular approach to designing support bundles, you can use multiple online specifications. Each specification supports one  URI link. For more information about modular specifications, see [About Creating Modular and Discoverable Support Bundles](support-modular-support-bundle-specs).
 
-## Example: Using a Self-link to a Source Repository
+## Example: URI Linking to a Source Repository
 
-This example shows how Replicated could set up a self-link for one of its own components. You can follow a similar process to self-link to your own online repository for your support bundles.
+This example shows how Replicated could set up a URI link for one of its own components. You can follow a similar process to link to your own online repository for your support bundles.
 
 The Replicated Kubernetes installer includes the EKCO add-on for maintenance on Kubernetes installer clusters (embedded clusters), such as automating certificate rotation or data migration tasks. 
-
-To make sure that a user has this add-on installed during the first installation on an embedded cluster, Replicated can ship this component with a support bundle manifest that warns users if they do not have this add-on installed or if it is not running in the cluster. For more information about support bundles, see [Customize a Support Bundle](preflight-support-bundle-creating#customize-a-support-bundle).
-
-**Example:**
+Replicated can ship this component with a support bundle manifest that warns users if they do not have this add-on installed or if it is not running in the cluster. For more information about support bundles, see [Customize a Support Bundle](preflight-support-bundle-creating#customize-a-support-bundle).
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -39,9 +36,9 @@ spec:
               message: EKCO has at least 1 replica
 ```
 
-If a bug is discovered at any time after the release of this specification, Replicated can write an analyzer for it. Typically, Replicated might have to wait until a cluster upgrade before users get the benefit of the new analyzer. By adding a self-link to this manifest file, the support bundle uses the assets hosted in the online repository, which is kept current. The self-link is added in the `uri` field as a raw file link to the specification that is hosted on [GitHub](https://github.com/replicatedhq/troubleshoot-specs/blob/main/in-cluster/ekco.yaml).
+If a bug is discovered at any time after the release of the specification above, Replicated can write an analyzer for it in an online specification. Typically, Replicated might have to wait until a cluster upgrade before users get the benefit of the new analyzer. By adding a URI link to the online specification, the support bundle uses the assets hosted in the online repository, which is kept current. 
 
-**Example:**
+The link is added in the `uri` field as a raw file link to the specification that is hosted on [GitHub](https://github.com/replicatedhq/troubleshoot-specs/blob/main/in-cluster/ekco.yaml):
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -54,4 +51,4 @@ spec:
   analyzers: [...]
 ```
 
-With the addition of the `uri:` property, the support bundle gets the latest specification if it can, or falls back to the earlier release.  For more information about the URI, see [Troubleshoot schema supports a `uri://` field](https://troubleshoot.sh/docs/support-bundle/supportbundle/#uri) in the Troubleshoot documentation. For a complete example, see [Debugging Kubernetes: Enhancements to Troubleshoot](https://www.replicated.com/blog/debugging-kubernetes-enhancements-to-troubleshoot/#Using-online-specs-for-support-bundles) in The Replicated Blog.
+Using the `uri:` property, the support bundle gets the latest online specification if it can, or falls back to the collectors and analyzers listed in the specification that is in the cluster.  For more information about the URI, see [Troubleshoot schema supports a `uri://` field](https://troubleshoot.sh/docs/support-bundle/supportbundle/#uri) in the Troubleshoot documentation. For a complete example, see [Debugging Kubernetes: Enhancements to Troubleshoot](https://www.replicated.com/blog/debugging-kubernetes-enhancements-to-troubleshoot/#Using-online-specs-for-support-bundles) in The Replicated Blog.
