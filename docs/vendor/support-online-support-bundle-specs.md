@@ -1,8 +1,8 @@
 # About Online Support Bundle Specifications
 
-You can make the definition of one or more support bundle specifications available online in a source repository and link to it from the specification in the cluster. The schema supports a `uri://` field that, when set, causes the support bundle generation to use the online specification. If the URI is unreachable or unparseable, any additional collectors or analyzers in the specification in the cluster are used as a fallback. 
+You can make the definition of one or more support bundle specifications available online in a source repository and link to it from the specification in the cluster. The schema supports a `uri://` field that, when set, causes the support bundle generation to use the online specification. If the URI is unreachable or unparseable, any collectors or analyzers in the specification in the cluster are used as a fallback. 
 
-You can keep the online specification current with collectors and analyzers to manage bug fixes. When a customer generates a support bundle, the online specification can detect those potential problems in the cluster and let them know know how to fix it. Without the URI link option, you must wait for the next time your customers update their applications or Kubernetes versions to get notified of potential problems. This option is particularly useful for customers that do not update their application routinely.
+You can keep the online specification current with collectors and analyzers to manage bug fixes. When a customer generates a support bundle, the online specification can detect those potential problems in the cluster and let them know know how to fix it. Without the URI link option, you must wait for the next time your customers update their applications or Kubernetes versions to get notified of potential problems. The URI link option is particularly useful for customers that do not update their application routinely.
 
 If you are using a modular approach to designing support bundles, you can use multiple online specifications. Each specification supports one  URI link. For more information about modular specifications, see [About Creating Modular and Discoverable Support Bundles](support-modular-support-bundle-specs).
 
@@ -38,7 +38,7 @@ spec:
 
 If a bug is discovered at any time after the release of the specification above, Replicated can write an analyzer for it in an online specification. Typically, Replicated might have to wait until a cluster upgrade before users get the benefit of the new analyzer. By adding a URI link to the online specification, the support bundle uses the assets hosted in the online repository, which is kept current. 
 
-The link is added in the `uri` field as a raw file link to the specification that is hosted on [GitHub](https://github.com/replicatedhq/troubleshoot-specs/blob/main/in-cluster/ekco.yaml):
+The `uri` field is added to the specification as a raw file link. Replicated hosts the online specification on [GitHub](https://github.com/replicatedhq/troubleshoot-specs/blob/main/in-cluster/ekco.yaml). 
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
