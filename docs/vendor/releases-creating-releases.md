@@ -1,6 +1,8 @@
 # Creating and Promoting Releases
 
-You can use the Replicated vendor portal to create and promote versions of your application to various release channels.
+This topic describes how to use the Replicated vendor portal or the replicated CLI to create and promote versions of your application to various release channels.
+
+## Create and Promote in the Vendor Portal
 
 To create and promote a release in the vendor portal:
 
@@ -57,9 +59,22 @@ To create and promote a release in the vendor portal:
 
   The release appears in an **Active** state on the Releases page.
 
-## Next Step
+## Create and Promote with the CLI
 
-Test the release in your development environment using the Replicated admin console. For more information, see [Updating an Application](../enterprise/updating-apps) in the _Enterprise_ section.
+### Prerequisites
+
+The following prerequisites are either required or recommended:
+
+- (Required) Install the replicated CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
+- (Recommended) 
+
+## Next Steps
+
+The following are the recommended next steps to test the application in your development environment:
+
+- To add a customer, see [Creating a Customer](creating-a-customer).
+- If you are installing for the first time, see [Overview of Installing an Application with the App Manager](/enterprise/installing-overview) in the _Enterprise_ section. 
+- If you are updating an existing installation, see [Updating an Application](../enterprise/updating-apps) in the _Enterprise_ section.
 
 ## Related Topics
 
