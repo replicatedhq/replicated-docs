@@ -72,7 +72,7 @@ This is a convenience feature for how licenses are displayed in the vendor porta
 
 The Replicated vendor portal **Customers** page displays details about each customer license that you create, including the channel the customer is assigned, the type of license, the number of active application instances installed with the license, and more.
 
-The following image shows an example of the **Customers** page in the vendor portal:
+The following image shows an example of the **Customers** page:
 
 ![Customer page showing three customers](/images/customer-page.png)
 
