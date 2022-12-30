@@ -31,9 +31,54 @@ You can target resources of the supported types that are deployed in any of the 
 
 Replicated recommends that you add at least one resource.
 
+### Resource Statuses
+
+The app manager records the status of each Kubernetes resource that you add to the `statusInformers` property. Possible resource statuses are Missing, Unavailable, Degraded, Ready, and Updating.
+
+<MissingState/>
+
+Below is a table of resources that are supported and conditions that contribute to each status:
+
+<StatusesTable/>
+
+### Aggregate Application Status
+
+When you add more than one Kubernetes resource to the `statusInformers` property, the Replicated app manager aggregates all resource statuses to display a single application status on the admin console dashboard.
+
+The app manager uses the least available resource state to represent the aggregate application status. For example, if at least one resource is in an Unavailable state, then the aggregate application status is Unavailable.
+
+The following table
+
+<table>
+  <tr>
+    <th>Resource Statuses</th>
+    <th>Aggregate App Status</th>
+  </tr>
+  <tr>
+    <td>No status available for any resource</td>
+    <td>Missing</td>
+  </tr>
+  <tr>
+    <td>One or more resources Unavailable</td>
+    <td>Unavailable</td>
+  </tr>
+  <tr>
+    <td>One or more resources Degraded</td>
+    <td>Degraded</td>
+  </tr>
+  <tr>
+    <td>One or more resources Updating</td>
+    <td>Updating</td>
+  </tr>
+  <tr>
+    <td>All resources Ready</td>
+    <td>Ready</td>
+  </tr>
+</table>
+
 ## Add Status Informers
 
-To add an informer, include the `statusInformers` property in the Application custom resource manifest file.
+To add a status informer, include the `statusInformers` property in the Application custom resource manifest file.
 Status informers are in the format `[namespace/]type/name` where namespace is optional and will default to the current namespace.
 
 **Example**:
@@ -62,13 +107,3 @@ statusInformers:
 In the example above, the `deployment/my-worker` status informer is excluded unless the statement in the `ConfigOptionEquals` template function evaluates to true.
 
 For more information about using template functions in application manifest files, see [About Template Functions](/reference/template-functions-about).
-
-## Application Statuses
-
-Possible application statuses are Missing, Unavailable, Degraded, Ready, and Updating.
-
-<MissingState/>
-
-Below is a table of resources that are supported and conditions that contribute to each status:
-
-<StatusesTable/>
