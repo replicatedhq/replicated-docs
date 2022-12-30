@@ -68,7 +68,7 @@ const sidebars = {
         'vendor/planning-questionnaire',
         {
             type: 'category',
-            label: 'Using Private Registries',
+            label: 'Private Registries',
             items: [
               'vendor/packaging-private-images',
               'vendor/helm-image-registry',
