@@ -47,12 +47,12 @@ When you add more than one Kubernetes resource to the `statusInformers` property
 
 The app manager uses the least available resource state to represent the aggregate application status. For example, if at least one resource is in an Unavailable state, then the aggregate application status is Unavailable.
 
-The following table
+The following table lists the resource statuses the define each aggregate application status:
 
 <table>
   <tr>
     <th>Resource Statuses</th>
-    <th>Aggregate App Status</th>
+    <th>Aggregate Application Status</th>
   </tr>
   <tr>
     <td>No status available for any resource</td>
