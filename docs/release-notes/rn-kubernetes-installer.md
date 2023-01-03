@@ -23,7 +23,7 @@ Released on January 3, 2023
 * Disk and Volume validation checks are now run prior to migrating from Rook to OpenEBS. A failed validation check aborts the upgrade.
 
 ### Bug Fixes {#bug-fixes-v2023-01-03-0}
-* Fixes installation conflicts when trying to install the Containerd add-on when Docker is already installed on the host. Now the installation checks to see if Docker is installed and provides users with the option to automatically remove Docker.
+* Fixes installation conflicts when installing the Containerd add-on and Docker is already installed on the host. Now the installation checks to see if Docker is installed and provides users with the option to automatically remove Docker.
 * Fixes an issue where EKCO's provisioned HAProxy load balancer pod crashed when it did not have access to the Config file.
 * Fixes an issue that causes air gapped upgrades to Rook add-on version 1.7.11 to fail with ImagePullBackoff errors.
 * Fixes an issue with the Docker preflight check not failing on some unsupported operating systems.
