@@ -4,6 +4,31 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.01.03-0
+
+Released on January 3, 2023
+
+### New Features {#new-features-v2023-01-03-0}
+* [Rook add-on](https://kurl.sh/docs/add-ons/rook) can now be upgraded and migrated from version 1.4.3 up to version 1.7.x as part of the installation script.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.26.2.
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.23.2.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-12-12T19-27-27Z.
+* Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.13.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) versions 1.26.0 1.25.5 1.24.9 1.23.15 1.22.17.
+* Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.14.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) versions 1.6.13 and 1.6.14.
+
+### Improvements {#improvements-v2023-01-03-0}
+
+* Disk and Volume validation checks are now run prior to migrating from Rook to OpenEBS. A failed validation check aborts the upgrade.
+
+### Bug Fixes {#bug-fixes-v2023-01-03-0}
+* Fixes installation conflicts when installing the Containerd add-on and Docker is already installed on the host. Now the installation checks to see if Docker is installed and provides users with the option to automatically remove Docker.
+* Fixes an issue where EKCO's provisioned HAProxy load balancer pod crashed when it did not have access to the Config file.
+* Fixes an issue that causes air gapped upgrades to Rook add-on version 1.7.11 to fail with ImagePullBackoff errors.
+* Fixes an issue with the Docker preflight check not failing on some unsupported operating systems.
+* Fixes an issue that could cause Rook upgrades to fail if EKCO is scaled down, due to failures to recreate the Rook OSD deployments when the rook-priority.kurl.sh MutatingAdmissionWebhook is unreachable.
+
 ## v2022.12.12-0
 
 Released on December 12, 2022
