@@ -24,9 +24,6 @@ Released on January 3, 2023
 * fix: error to install containerd.io that conflicts with containerd because an containerd pkg is installed within docker.
 * Fixes an issue where EKCO's provisioned HAProxy load balancer pod crashed when it did not have access to the config file.
 * fix(centos|rhel|ol): allow allowerasing previous packages installed when conflicts are faced by kURL when it is installing the packages.
-* fix(centos|rhel|ol): allow allowerasing previous packages installed when conflicts are faced by kURL when it is installing the packages.
-* fix(centos|rhel|ol): allow allowerasing previous packages installed when conflicts are faced by kURL when it is installing the packages.
-* fix(centos|rhel|ol): allow allowerasing previous packages installed when conflicts are faced by kURL when it is installing the packages.
 * Fixes an issue that causes airgapped upgrades to Rook add-on version 1.7.11 to fail with ImagePullBackoff errors.
 * fix: preflight check informing that docker is not support on RHEL 8.
 * Fixes an issue that could cause Rook upgrades to fail if EKCO is scaled down due to failures to recreate the Rook OSD deployments since the rook-priority.kurl.sh MutatingAdmissionWebhook is unreachable.
