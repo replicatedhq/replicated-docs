@@ -2,6 +2,10 @@
 
 This topic describes how to use the Replicated vendor portal or the replicated CLI to create and promote versions of your application to various release channels.
 
+## Prerequisites
+
+Replicated recommends that you create a CI/CD platform or integrate with an existing platform. For more information, see [Repository Workflow and Tagging Releases](repository-workflow-and-tagging-releases) and [Tutorial: Integrating with an Existing CI/CD Platform] (tutorial-ci-cd-integration).
+
 ## Create and Promote in the Vendor Portal
 
 To create and promote a release in the vendor portal:
@@ -61,12 +65,120 @@ To create and promote a release in the vendor portal:
 
 ## Create and Promote with the CLI
 
-### Prerequisites
+To create and promote a release using the replicated CLI:
 
-The following prerequisites are either required or recommended:
+1. Install the replicated CLI and create an API token. See [Installing the replicated CLI](/reference/replicated-cli-installing).
 
-- (Required) Install the replicated CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
-- (Recommended) 
+1. Run the following command to create a new application:
+
+    ```
+    replicated app create APP_NAME
+    ```
+
+    Replace APP_NAME with the name of the application.
+
+1. Export the application slug in the output of the `app create` command as an environment variable:
+
+  ```
+  export REPLICATED_APP=YOUR_SLUG
+  ```
+  Replace `YOUR_SLUG` with the slug for the application you created in the previous step.
+
+1. Verify that both the `REPLICATED_API_TOKEN` environment variable that you created in step 1 and the `REPLICATED_APP` environment variable are set correctly:
+
+  ```
+  replicated release ls
+  ```
+
+  In the output of this command, you see an empty list of releases for the new application:
+
+  ```
+  SEQUENCE    CREATED    EDITED    ACTIVE_CHANNELS
+  ```
+
+1. Import your application files, depending on whether you are using standard manifest files or Helm charts. For Kubernetes Operators, see...
+
+1. From your directory, lint the manifest files and ensure that there are no errors in the YAML:
+
+  ```bash
+  replicated release lint --yaml-dir=YAML_DIR
+  ```
+
+  Replace YAML_DIR with the root directory of the YAML application manifest files.
+
+1. Initialize the project as a Git repository.
+
+  **Example:**
+
+  ```
+  git init
+  git add .
+  git commit -m "Initial Commit: My Application"
+  ```
+  
+  Initializing the project as a Git repository allows you to track your history. The replicated CLI also reads Git metadata to help with the generation of release metadata, such as version labels.
+
+1. From your application root directory, create a release with the default settings, which includes the Unstable channel:
+
+  ```bash
+  replicated release create --auto
+  ```
+
+  The `--auto` flag generates release notes and metadata based on the Git status. 
+  
+  Alternatively, run the following command to customize your settings:
+
+  ```bash
+  replicated release create --yaml-dir YAML_DIR --promote CHANNEL
+  ```
+
+  Replace:
+
+  - YAML_DIR with the root directory of the YAML application manifest files.
+  - CHANNEL with the name of the channel that you want to promote to. Channel names are case sensitive.
+  
+  For more information about flag options, see [release create](/reference/replicated-cli-release-create) in _Reference_.
+
+  **Example output:**
+
+  ```
+      • Reading Environment ✓
+
+    Prepared to create release with defaults:
+
+        yaml-dir        "./manifests"
+        promote         "Unstable"
+        version         "Unstable-ba710e5"
+        release-notes   "CLI release of master triggered by exampleusername [SHA: d4173a4] [31 Oct 22 08:51 MDT]"
+        ensure-channel  true
+        lint-release    true
+
+    Create with these properties? [Y/n]
+  ```
+
+1. Type `y` and press **Enter** to confirm the prompt.
+
+  **Example output:**
+
+  ```text
+    • Reading manifests from ./manifests ✓
+    • Creating Release ✓
+      • SEQUENCE: 1
+    • Promoting ✓
+      • Channel VEr0nhJBBUdaWpPvOIK-SOryKZEwa3Mg successfully set to release 1
+  ```
+  The release is created and promoted to the specified or default channel.
+
+1. Verify that the release was promoted to the channel:
+
+  ```
+  replicated release ls
+  ```
+  **Example output:**
+
+  ```text
+  SEQUENCE    CREATED                 EDITED                  ACTIVE_CHANNELS
+  1           2022-10-31T14:55:35Z    0001-01-01T00:00:00Z    Unstable
 
 ## Next Steps
 
