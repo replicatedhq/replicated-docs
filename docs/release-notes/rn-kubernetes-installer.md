@@ -27,7 +27,7 @@ Released on January 3, 2023
 * Fixes an issue where EKCO's provisioned HAProxy load balancer pod crashed when it did not have access to the Config file.
 * Fixes an issue that causes air gapped upgrades to Rook add-on version 1.7.11 to fail with ImagePullBackoff errors.
 * Fixes an issue with the Docker preflight check not failing on some unsupported operating systems.
-* Fixes an issue that could cause Rook upgrades to fail if EKCO is scaled down due to failures to recreate the Rook OSD deployments when the rook-priority.kurl.sh MutatingAdmissionWebhook is unreachable.
+* Fixes an issue that could cause Rook upgrades to fail if EKCO is scaled down, due to failures to recreate the Rook OSD deployments when the rook-priority.kurl.sh MutatingAdmissionWebhook is unreachable.
 
 ## v2022.12.12-0
 
