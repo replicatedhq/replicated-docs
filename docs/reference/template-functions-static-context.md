@@ -172,6 +172,10 @@ For more information about these properties, see [hidden](custom-resource-config
 
 The following table describes the behavior of the RandomString template function when the `hidden` and `readonly` properties are `true` or `false`, including whether the random string is ephemeral or persistent between configuration changes and the relevant use cases:
 
+:::important
+These rules apply to the `value` key, not the `default` key.
+:::
+
 <table>
   <tr>
     <th width="15%">readonly</th>
