@@ -2,7 +2,7 @@
 
 This topic describes using the event data and key performance indicators (KPIs) in the Replicated vendor portal to monitor the health and performance of application instances installed in your customers' environments.
 
-## Overview of Instance Reporting
+## About Instance Reporting
 
 Each time an active application instance installed in an online environment checks for updates, the Replicated app manager sends event data to the vendor portal with details about the application and the cluster where the application is installed.
 
@@ -16,9 +16,10 @@ For more information about the event data and metrics displayed on the **Instanc
 Viewing instance data in the vendor portal has the following requirements and limitations:
 
 * The **Instances details** page is available only for application instances installed in online environments. Data for instances installed in air gapped environments is not available.
-* Inactive instances are not included in instance data. An instance is considered inactive if **[ADD INACTIVE DESCRIPTION]**
+* Inactive instances are not included in instance data. An instance is considered inactive if **ADD INACTIVE DESCRIPTION**
 * The vendor portal receives updated instance data only when the application instance checks for updates. By default, instances automatically check for updates every four hours. However, if users edit the frequency of automatic update checks, then the rate at which instance data is updated changes accordingly. Additionally, if users disable automatic update checks, then the rate at which instance data is updated depends on the frequency that users manually check for updates. 
 * To view event data and insights related to instance uptime on the **Instances details** page, you must configure status informers for your application in the Application custom resource. For more information about how to configure status informers, see [Displaying Application Status](admin-console-display-app-status).
+* Data in the **Instance Activity** stream is not cached. **NEED MORE INFO**
 
 ## About the Instance Details Page {#about}
 
@@ -49,9 +50,13 @@ The **Current State** section displays event data about the state of the instanc
 As shown in the screenshot above, the  **Current State** section includes the following fields:
 * **App status**: 
 * **App version**: 
-* **Version age**: 
-* **Versions behind**: 
-* **Last check-in**: 
+* **Version age**: The absolute and relative ages of the application instance:
+  * **Absolute age**: `now - current_release.promoted_date`. The number of days since the current application version was promoted to the channel. For example, if the current application version is 1.0.0, and version 1.0.0 was promoted to the channel 30 days ago, then the absolute age is 30.
+  * **Relative age (Days Behind Latest)**: `channel.latest_release.promoted_date - current_release.promoted_date`. The number of days between when the current application version was promoted to the channel and when the latest available version on the channel was promoted. For example, the current application version is 1.0.0 and the latest version available on the channel is 1.5.0. If 1.0.0 was promoted 30 days ago and 1.5.0 was promoted 10 days ago, then the relative age of the application instance is 20 days. 
+* **Versions behind**: The number of versions between the current version and the latest version available on the channel where the instance is assigned. For example, if the current application version is 1.0.0, and the latest version available on the 
+* **Last check-in**: The timestamp that the instance most recently checked for an update.
+
+For more information about the event data in the **Current State** section, see [Application Installation and Upgrade Events](monitoring-event-data#install-upgrade) in _Event Data_. 
 
 ### Install Insights
 
@@ -103,7 +108,7 @@ The vendor portal displays the following metrics to measure the ease of upgradin
 
 #### Uptime
 
-The vendor portal computes the total Uptime for the instance as the fraction of time that an application spends in a Ready, Updating, or Degraded state. High uptime indicates that the application is reliable and able to handle the demands of the customer environment, while low uptime might indicate that the software is prone to errors or failures. By measuring the total uptime of customer instances, you can better understand the performance of your application.
+The vendor portal computes the total uptime for the instance as the fraction of time that an application spends in a Ready, Updating, or Degraded state. High uptime indicates that the application is reliable and able to handle the demands of the customer environment, while low uptime might indicate that the software is prone to errors or failures. By measuring the total uptime of customer instances, you can better understand the performance of your application.
 
 The vendor portal uses the status of the Kubernetes resources that you provide in the `statusInformers` field of the Application custom resource to determine the status of the application. For more information about how to configure status informers for your application, see [Displaying Application Status](admin-console-display-app-status).
 
@@ -120,7 +125,7 @@ The following table lists the application statuses that indicate whether the app
   </tr>
 </table>
 
-::note
+:::note
 The vendor portal includes time spent in a Degraded state in the total uptime for an application instance because it is possible that a Degraded state is expected during upgrade.
 :::
 
@@ -183,7 +188,9 @@ The **Instance Activity** section displays event data for the instance. The even
 
 By default, instances automatically check for updates every four hours. However, if users edit the frequency of automatic update checks, then the rate at which instance data is updated changes accordingly. Additionally, if users disable automatic update checks, then the rate at which instance data is updated depends on the frequency that users manually check for updates.
 
-Data in the Instance Activity stream is not cached.
+The following shows an example of the **Instance Activity** data stream:
+
+**SCREENSHOT**
 
 You can filter the **Instance Activity** stream by the following event categories:
 

@@ -2,7 +2,7 @@
 
 This topic describes the fields displayed in the Replicated vendor portal **Instance details** page. For more information, see [Monitoring Application Instances](monitoring-instance-details).
 
-## Application Installation and Upgrade Events
+## Application Installation and Upgrade Events {#install-upgrade}
 
 The following table describes the fields that the vendor portal uses to display application installation and upgrade events.
 
