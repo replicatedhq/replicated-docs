@@ -8,43 +8,52 @@ The following table describes the fields that the vendor portal uses to display 
 
 <table>
   <tr>
-    <th width="25%">Field Name</th>
+    <th>Field Name</th>
     <th>Description</th>
+    <th>Type</th>
+    <th>Label</th>
   </tr> 
   <tr>
     <td><code>appStatus</code></td>
     <td>
       <p>A string that represents the availability status of the application.</p>
-      <p>Possible values: ready, updating, degraded, inactive, unavailable, missing. For more information about how the app manager determines <code>appStatus</code>, see <a href="/enterprise/status-viewing-details#resource-statuses">Resource Statuses</a> in <em>Viewing Status Details</em>.</p>
+      <p>Possible values: ready, updating, degraded, unavailable, missing. For more information about how the app manager determines <code>appStatus</code>, see <a href="/enterprise/status-viewing-details#resource-statuses">Resource Statuses</a> in <em>Viewing Status Details</em>.</p>
     </td>
+    <td>string</td>
+    <td>App Status</td>
   </tr>
   <tr>
     <td><code>channelId</code></td>
-    <td>The ID of the channel to which the application instance is assigned.</td>
+    <td>The ID of the channel the application instance is assigned.</td>
+    <td>string</td>
+    <td>App Channel</td>
   </tr> 
   <tr>
     <td><code>kotsVersion</code></td>
-    <td>The version of KOTS that the instance is running. The KOTS version is displayed as a Semantic Versioning compliant string.</td>
+    <td>The version of the Replicated app manager that the instance is running. The app manager version is displayed as a Semantic Versioning compliant string.</td>
+    <td>string</td>
+    <td>KOTS Version</td>
   </tr> 
   <tr>
     <td><code>versionLabel</code></td>
     <td>The version that the instance is running. The <code>versionLabel</code> is the version assigned to the release when the release was promoted.</td>
+    <td>string</td>
+    <td>App Version</td>
   </tr> 
   <tr>
-    <td><code>upgradeSuccess</code>*</td>
+    <td><code>upgradeSuccess</code></td>
     <td>Tracks when an upgrade is successful according to the defined criteria.</td>
+    <td>boolean</td>
+    <td><p>Upgrade Successful</p><p>Upgrade Failed</p>
+</td>
   </tr> 
-  <tr>
-    <td><code></code></td>
-    <td></td>
-  </tr>
 </table>
 
 ## Cluster Status Events
 
 <table>
   <tr>
-    <th width="25%">Field Name</th>
+    <th>Field Name</th>
     <th>Description</th>
   </tr> 
   <tr>
@@ -91,17 +100,14 @@ The following table describes the fields that the vendor portal uses to display 
     <td><code>kurlInstallerSpecID</code></td>
     <td></td>
   </tr>
-  <tr>
-    <td><code></code></td>
-    <td></td>
-  </tr>
 </table>
+
 
 ## Infrastructure Status Events
 
 <table>
   <tr>
-    <th width="25%">Field Name</th>
+    <th>Field Name</th>
     <th>Description</th>
   </tr> 
   <tr>
@@ -130,17 +136,13 @@ The following table describes the fields that the vendor portal uses to display 
     <td><code>kurlOSVersion</code>*</td>
     <td>One or more operating systems detected across cluster nodes</td>
   </tr>
-  <tr>
-    <td><code></code></td>
-    <td></td>
-  </tr>
 </table>
 
 ## Preflight Check Events
 
 <table>
   <tr>
-    <th width="25%">Field Name</th>
+    <th>Field Name</th>
     <th>Description</th>
   </tr> 
   <tr>
@@ -154,7 +156,7 @@ The following table describes the fields that the vendor portal uses to display 
 
 <table>
   <tr>
-    <th width="25%">Field Name</th>
+    <th>Field Name</th>
     <th>Description</th>
   </tr> 
   <tr>
@@ -165,7 +167,6 @@ The following table describes the fields that the vendor portal uses to display 
   <tr>
     <td><code>versionAgeSinceLatest</code></td>
     <td>
-      <p></p>
     </td>
   </tr>  
   <tr>
