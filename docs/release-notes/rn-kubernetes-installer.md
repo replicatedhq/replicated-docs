@@ -4,6 +4,33 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.01.03-0
+
+Released on January 3, 2023
+
+### New Features {#new-features-v2023-01-03-0}
+* The [Rook add-on](https://kurl.sh/docs/add-ons/rook) can now be upgraded from version 1.0.x to the most current Rook version as part of the installation script.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.26.2.
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.23.2.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-12-12T19-27-27Z.
+* Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.13.
+* Disk and Volume validation checks will be run prior to migrating from Rook to OpenEBS. A failed validation check will abort the upgrade.
+* feat: added support for new kubernetes v1.26.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.26.0 1.25.5 1.24.9 1.23.15 1.22.17.
+* Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.14.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) versions 1.6.13 and 1.6.14.
+
+### Bug Fixes {#bug-fixes-v2023-01-03-0}
+* fix: error to install containerd.io that conflicts with containerd because an containerd pkg is installed within docker.
+* Fixes an issue where EKCO's provisioned HAProxy load balancer pod crashed when it did not have access to the config file.
+* fix(centos|rhel|ol): allow allowerasing previous packages installed when conflicts are faced by kURL when it is installing the packages.
+* fix(centos|rhel|ol): allow allowerasing previous packages installed when conflicts are faced by kURL when it is installing the packages.
+* fix(centos|rhel|ol): allow allowerasing previous packages installed when conflicts are faced by kURL when it is installing the packages.
+* fix(centos|rhel|ol): allow allowerasing previous packages installed when conflicts are faced by kURL when it is installing the packages.
+* Fixes an issue that causes airgapped upgrades to Rook add-on version 1.7.11 to fail with ImagePullBackoff errors.
+* fix: preflight check informing that docker is not support on RHEL 8.
+* Fixes an issue that could cause Rook upgrades to fail if EKCO is scaled down due to failures to recreate the Rook OSD deployments since the rook-priority.kurl.sh MutatingAdmissionWebhook is unreachable.
+
 ## v2022.12.12-0
 
 Released on December 12, 2022
