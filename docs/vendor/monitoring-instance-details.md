@@ -115,7 +115,7 @@ The vendor portal displays the following metrics to measure the ease of upgradin
 
 #### Uptime
 
-The vendor portal computes the total uptime for the instance as the fraction of time that an application spends in a Ready, Updating, or Degraded state. High uptime indicates that the application is reliable and able to handle the demands of the customer environment, while low uptime might indicate that the software is prone to errors or failures. By measuring the total uptime of customer instances, you can better understand the performance of your application.
+The vendor portal computes the total uptime for the instance as the fraction of time that an application spends in a Ready, Updating, or Degraded state. High uptime indicates that the application is reliable and able to handle the demands of the customer environment, while low uptime might indicate that the application is prone to errors or failures. By measuring the total uptime of customer instances, you can better understand the performance of your application.
 
 The vendor portal uses the status of the Kubernetes resources that you provide in the `statusInformers` field of the Application custom resource to determine the status of the application. For more information about how to configure status informers for your application, see [Displaying Application Status](admin-console-display-app-status).
 
