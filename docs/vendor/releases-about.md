@@ -49,3 +49,23 @@ You can do the following tasks on the **Draft** page:
 - Select the Config custom resource to preview how your application's Config page will look to your customers. The **Config preview** pane only appears when you select that file. For more information, see [About the Configuration Screen](../vendor/config-screen-about).
 
 - Select the Application custom resource to preview how your application icon will look in the Replicated admin console. The **Application icon preview** only appears when you select that file. For more information, see [Customizing the Application Icon](../vendor/admin-console-customize-app-icon).
+
+
+## Release Sequence Mechanics
+
+*This section contains under-the-hood details about how releases are organized and ordered, overall, on specific channels, and in an instance's internal version history.*
+
+**Release Sequence**: Each release has a unique, monotonically-increasing sequence number. This number can be used to identify an unpromoted release, and can also be used as a fallback to identify a release if no [Version Label](/vendor/releases-creating-releases) is set during promotion.
+
+**Channel Sequence**: When a release is promoted to a channel, a *Channel Sequence* is assigned to that promotion event. This mechanism allows for a single release to be promoted to a channel multiple times. For example, here is a potential release history for a Stable Channel. This captures a hypothetical scenario in which a bad release `244` is promoted on `12/01`, and then two days later, a previous, known-to-work release `236` is promoted "on top" of the faulty `244`.
+
+| Promotion Date | Release Sequence | Channel Sequence |
+|----------------|------------------|------------------|
+|     2022-12-03 |              236 |                6 |
+|     2022-12-01 |              244 |                5 |
+|     2022-11-01 |              236 |                4 |
+|     2022-10-01 |              222 |                3 |
+|            ... |              ... |              ... |
+
+
+**Instance Sequence**: When a release is seen by an instance (that is, a release identifier is returned to an app manager instance during an [Update Check](/enterprise/updating-apps)), that release is assigned a separate instance sequence, starting at 0 and incrementing for each release "seen" by the instance. A single release with a single release sequence `181` could have multiple different *Instance Sequences* in instances deployed in the field, depending on when those instances came online and how many other releases they "saw" before seeing release `181`. Note that instance sequences are only tracked by App Manager instances, and the Replicated SaaS platform has no knowledge of these numbers.
