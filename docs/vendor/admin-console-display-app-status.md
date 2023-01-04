@@ -14,7 +14,7 @@ The following shows an example of how an Unavailable status displays on the admi
 
 <img src="/images/kotsadm-dashboard-appstatus.png" alt="Unavailable status on the admin console dashboard" width="500px"/>
 
-To display application status on the admin console dashboard, you target one or more Kubernetes resources for your application in the `statusInformers` property of the Application custom resource manifest file. Replicated recommends that you add at least one resource. For more information, see [Add Status Informers](#add-status-informers) below.
+To display application status on the admin console dashboard, you target one or more Kubernetes resources for your application in the `statusInformers` property of the Application custom resource manifest file. Because status informers can aid end users in diagnosing problems and improve the overall customer experience, Replicated recommends that you add at least one resource to be watched by the App Manager. For more information, see [Add Status Informers](#add-status-informers) below.
 
 The following resource types are supported for displaying application status:
 
