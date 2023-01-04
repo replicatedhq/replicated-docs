@@ -290,7 +290,7 @@ To create an `.airgap` bundle for a release that uses Helm charts, the Replicate
 The `builder` key has the following requirements and recommendations:
 * Replicated recommends that you include only the minimum Helm values in the `builder` key that are required to template the Helm chart with the correct image tags.
 * Use only static, or _hardcoded_, values in the `builder` key. You cannot use template functions in the `builder` key because values in the `builder` key are not rendered in a customer environment.
-* Any values entries that are required for template rendering must have a value supplied in the builder field. For more information on the Helm `required` function, see [Using the 'required' function](https://helm.sh/docs/howto/charts_tips_and_tricks/#using-the-required-function).
+* Any Helm values entries that are required for rendering templates of the Helm charts must have a value supplied in the `builder` key. For more information about the Helm `required` function, see [Using the 'required' function](https://helm.sh/docs/howto/charts_tips_and_tricks/#using-the-required-function).
 
 **Example**
 
