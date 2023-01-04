@@ -8,7 +8,14 @@ Each time an active application instance installed in an online environment chec
 
 The vendor portal uses this event data to provide insights about the health, status, and performance of the active application instances associated with each customer license. The vendor portal displays these insights on an **Instance details** dashboard. 
 
-You can use the event data and insights on the **Instance details** page to more quickly troubleshoot issues with active instances, helping to reduce support burden. The **Instance details** page also provides business value metrics for each instance, such as the rate of successful upgrades, total uptime, and the time that it takes your customers to successfully deploy an instance of your application.
+You can use the event data and insights on the **Instance details** page to more quickly troubleshoot issues with active instances, helping to reduce support burden. It becomes easy to quickly get answers to questions like:
+
+1. Has the application experienced any performance degradation or downtime recently? How long has it been down?
+1. Have any cluster or infrastructure changes occurred recently? Have nodes been lost or added? Has the underlying Kubernetes version changed?
+1. Were any upgrades attempted recently? Which of them succeeded? Which version of the application is currently running?
+
+ 
+   The **Instance details** page also provides business value metrics for each instance, such as the rate of successful upgrades, total uptime, and the time that it takes your customers to successfully deploy an instance of your application.
 
 For more information about the event data and metrics displayed on the **Instance details** page, see [About the Instance Details Page](#about) below.
 ## Requirements and Limitations
