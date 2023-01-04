@@ -1,6 +1,6 @@
 # Event Data
 
-This topic describes the fields displayed in the Replicated vendor portal **Instance details** page. For more information, see [Monitoring Application Instances](monitoring-instance-details).
+This topic describes the event fields displayed in the Replicated vendor portal **Instance details** page. For more information, see [Monitoring Application Instances](monitoring-instance-details).
 
 ## Application Installation and Upgrade Events {#install-upgrade}
 
