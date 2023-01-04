@@ -29,7 +29,7 @@ The following resource types are supported for displaying application status:
 * Ingress
 * PersistentVolumeClaims
 
-Applications can report the status of one or more of the supported Kubernetes resources to the app manager. The resources that the app manager uses to display application status vary depending on the configuration of the application.
+Applications can specify one or more of the supported Kubernetes workloads to be watched by the app manager for state changes. The resources that the app manager uses to display application status vary depending on the configuration of the application.
 
 For more information about how to interpret the application status displayed on the admin console dashboard, see [Resource Statuses](#resource-statuses) and [Aggregate Application Status](#aggregate-application-status) below. 
 
