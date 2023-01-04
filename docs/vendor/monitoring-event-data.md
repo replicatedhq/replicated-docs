@@ -114,7 +114,7 @@ The following table describes the fields that the vendor portal uses to display 
     <td><code>cloudProvider</code></td>
     <td>
       <p>The cloud provider where the instance is running. Determined from the IP address that makes the request.</p>
-      <p>Possible values:</p>
+      <p>Possible values include:</p>
       <ul>
         <li>AWS</li>
         <li>GCP</li>
