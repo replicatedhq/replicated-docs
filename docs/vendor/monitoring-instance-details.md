@@ -48,7 +48,7 @@ The **Current State** section displays event data about the state of the instanc
 **SCREENSHOT**
 
 As shown in the screenshot above, the  **Current State** section includes the following fields:
-* **App status**: 
+* **App status**: The status computed based on an application's configured [Status Informers](/vendor/admin-console-display-app-status)
 * **App version**: 
 * **Version age**: The absolute and relative ages of the application instance:
   * **Absolute age**: `now - current_release.promoted_date`. The number of days since the current application version was promoted to the channel. For example, if the current application version is 1.0.0, and version 1.0.0 was promoted to the channel 30 days ago, then the absolute age is 30.
