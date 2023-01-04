@@ -55,7 +55,7 @@ You can do the following tasks on the **Draft** page:
 
 *This section contains under-the-hood details about how releases are organized and ordered, overall, on specific channels, and in an instance's internal version history.*
 
-**Release Sequence**: Each release has a unique, monotonically-increasing sequence number. This number can be used to identify an unpromoted release, and can also be used as a fallback to identify a release if no [Version Label](/vendor/releases-creating-releases) is set during promotion.
+**Release Sequence**: Each release has a unique, monotonically-increasing sequence number. This number can be used as a fallback to identify a release if no [Version Label](/vendor/releases-creating-releases) is set during promotion, or to identify an [unpromoted draft release](/vendor/releases-about#about-the-draft-release-page).
 
 **Channel Sequence**: When a release is promoted to a channel, a *Channel Sequence* is assigned to that promotion event. This mechanism allows for a single release to be promoted to a channel multiple times. For example, here is a potential release history for a Stable Channel. This captures a hypothetical scenario in which a bad release `244` is promoted on `12/01`, and then two days later, a previous, known-to-work release `236` is promoted "on top" of the faulty `244`.
 
