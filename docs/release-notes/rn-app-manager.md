@@ -11,7 +11,7 @@ Released on December 29, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 
 ### Improvements {#improvements-1-92-1}
-* Reduces the time it takes to run preflight checks and generate support bundles at least in half.
+* Preflight checks run and support bundles generate at least twice as fast as before.
 * Updates the kubectl binary in the kotsadm image to resolve CVE-2022-27664 and CVE-2022-32149 with high severity.
 * Updates the replicated/local-volume-provider image to v0.4.3 to resolve CVE-2021-46848 with critical severity.
 
