@@ -4,7 +4,7 @@ This topic describes using the event data and key performance indicators (KPIs) 
 
 ## About Instance Reporting
 
-Each time an active application instance installed in an online environment checks for updates, the Replicated app manager sends event data to the vendor portal with details about the application and the cluster where the application is installed.
+Each time an active application instance installed in an online environment checks for updates, the Replicated app manager sends a small amount of instance metadata to help help the update server build an appropriate list of available new versions for that instance. During this update check process, if any properties like app version or app status have changed,  an event is generated on the server side to record the state change.
 
 The vendor portal uses this event data to provide insights about the health, status, and performance of the active application instances associated with each customer license. The vendor portal displays these insights on an **Instance details** dashboard. 
 
