@@ -76,7 +76,7 @@ The **Install Insights** section displays the following computed metrics:
 
 The Time to Install metrics in the **Install Insights** section represent how quickly the customer was able to deploy the application to a Ready state in their environment.
 
-Replicated recommends that you use Time to Install as a KPI of the quality of the packaging, configuration, and documentation of your application. If the installation process for your application is challenging, poorly documented, lacks appropriate preflight checks, or relies heavily on manual steps, then it can take days or weeks to deploy the application in customer environments. A Time to Install of days or weeks generally represents a significantly increased support burden and a degraded customer installation experience.
+Replicated recommends that you use Time to Install as a KPI of the quality of the packaging, configuration, and documentation of your application. If the installation process for your application is challenging, poorly documented, lacks appropriate preflight checks, or relies heavily on manual steps, then it can take days or weeks to deploy the application in customer environments. A longer Time to Install generally represents a significantly increased support burden and a degraded customer installation experience.
 
 The vendor portal displays the following metrics that measure Time to Install:
 
