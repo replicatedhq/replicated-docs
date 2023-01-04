@@ -139,7 +139,7 @@ The following table describes the fields that the vendor portal uses to display 
 </table>
 
 ## Preflight Check Events
-
+**Note**: Preflight check events will only be sent by instances running KOTS version 1.93.x or later.
 <table>
   <tr>
     <th>Field Name</th>
