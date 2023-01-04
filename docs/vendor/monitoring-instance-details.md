@@ -128,7 +128,7 @@ The following table lists the application statuses that indicate whether the app
   </tr>
   <tr>
     <th>Down</th>
-    <td>Missing, Unavailable, Inactive</td>
+    <td>Missing, Unavailable</td>
   </tr>
 </table>
 
