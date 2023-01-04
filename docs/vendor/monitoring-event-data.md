@@ -69,7 +69,7 @@ The following table describes the fields that the vendor portal uses to display 
   </tr> 
   <tr>
     <td><code>k8sVersion</code></td>
-    <td>The version of Kubernetes running in the cluster. The Kubernetes version often contains the distribution. For example, <code>1.24.5-eks-sha</code>.</td>
+    <td>The version of Kubernetes running in the cluster. The Kubernetes version often contains details that may help determine the Kubernetes distribution. For example, <code>1.24.5-eks-ae7312d</code>.</td>
   </tr>
   <tr>
     <td><code>k8sDistribution</code></td>
