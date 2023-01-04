@@ -86,7 +86,7 @@ The following table describes the fields that the vendor portal uses to display 
   </tr>
   <tr>
     <td><code>kurlNodeCountTotal</code></td>
-    <td>Total number of nodes in the Kubernetes installer cluster. Applies to clusters provisioned by the Kubernetes installer only.</td>
+    <td>Total number of nodes in the Kubernetes cluster. Applies to clusters provisioned by a kurl.sh Kubernetes installer only.</td>
   </tr>
   <tr>
     <td><code>kurlNodeCountReady</code></td>
