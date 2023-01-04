@@ -2,9 +2,7 @@
 
 This topic describes how to use the Replicated vendor portal or the replicated CLI to create and promote versions of your application to various release channels.
 
-## Prerequisites
-
-Replicated recommends that you create a CI/CD platform or integrate with an existing platform. For more information, see [Repository Workflow and Tagging Releases](repository-workflow-and-tagging-releases) and [Tutorial: Integrating with an Existing CI/CD Platform] (tutorial-ci-cd-integration).
+Replicated recommends using a git-based workflow. You can create a CI/CD platform or integrate with an existing CI/CD platform. For more information, see [Repository Workflow and Tagging Releases](repository-workflow-and-tagging-releases) and [Tutorial: Integrating with an Existing CI/CD Platform](tutorial-ci-cd-integration).
 
 ## Create and Promote in the Vendor Portal
 
@@ -96,7 +94,11 @@ To create and promote a release using the replicated CLI:
   SEQUENCE    CREATED    EDITED    ACTIVE_CHANNELS
   ```
 
-1. Import your application files, depending on whether you are using standard manifest files or Helm charts. For Kubernetes Operators, see...
+1. Import your application files to a local root directory, depending on whether you are using standard manifest files or Helm charts.
+
+
+
+  For Kubernetes Operators, see [About Packaging Kubernetes Operators](operator-packaging-about).
 
 1. From your directory, lint the manifest files and ensure that there are no errors in the YAML:
 
