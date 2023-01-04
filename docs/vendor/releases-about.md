@@ -66,6 +66,8 @@ You can do the following tasks on the **Draft** page:
 |     2022-11-01 |              236 |                4 |
 |     2022-10-01 |              222 |                3 |
 |            ... |              ... |              ... |
+
+
 Note that Channel Sequences are treated differently in a channel that [Semantic Versioning](https://docs.replicated.com/vendor/releases-semantic-versioning) enabled.
 
 **Instance Sequence**: When a release is seen by an instance (that is, a release identifier is returned to an app manager instance during an [Update Check](/enterprise/updating-apps)), that release is assigned a separate instance sequence, starting at 0 and incrementing for each release "seen" by the instance. A single release with a single release sequence `181` could have multiple different *Instance Sequences* in instances deployed in the field, depending on when those instances came online and how many other releases they "saw" before seeing release `181`. Note that instance sequences are only tracked by App Manager instances, and the Replicated SaaS platform has no knowledge of these numbers.
