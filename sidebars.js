@@ -91,6 +91,7 @@ const sidebars = {
             label: 'Releases',
             items: [
               'vendor/releases-about',
+              'vendor/helm-release',
               'vendor/releases-creating-releases',
               {
                 type: 'category',
@@ -118,7 +119,6 @@ const sidebars = {
                           'vendor/helm-processing',
                         ],
                       },
-                      'vendor/helm-release',
                       'vendor/helm-install',
                       {
                         type: 'category',

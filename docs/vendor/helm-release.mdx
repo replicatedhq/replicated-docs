@@ -1,6 +1,8 @@
-# Adding Helm Charts to a Release
+import ReleasesCreatingUi from "../partials/releases/_releases-creating-ui.mdx"
 
-This topic describes how to add a Helm chart to a release in the Replicated vendor portal. Adding a Helm chart to a release is useful if you want to distribute a Kubernetes application with Replicated that is already packaged using Helm.
+# Creating Releases with Helm Charts
+
+This topic describes how to add a Helm chart to a release in the Replicated vendor portal and using the replicated CLI. Adding a Helm chart to a release is useful if you want to distribute a Kubernetes application with Replicated that is already packaged using Helm.
 
 This procedure applies for Replicated Helm installations and native Helm installations. For more information, see [Helm Overview](helm-overview).
 
@@ -46,7 +48,7 @@ For example, the following screenshot shows how a Postgres Helm chart displays i
 
 ![Postgres Helm Chart](/images/postgres-helm-chart.png)
 
-## Add a Helm Chart to a Release
+## Package a Helm Chart
 
 To include a Helm chart in a release, first package the Helm chart, including any of its dependencies, as a `.tgz` file. Then, add the `.tgz` Helm chart package to your release.
 
@@ -94,76 +96,75 @@ To package a Helm chart and add it to a release:
 
       The Helm chart, including any dependencies, is packaged and copied to your current directory in a `.tgz` file. The file uses the naming convention: `CHART_NAME-VERSION.tgz`. For example, `postgresql-8.1.2.tgz`.
 
-1. Do one of the following to add the Helm chart `.tgz` package to a release:
-   * **From the vendor portal**:
+## Create and Promote in the Vendor Portal
 
-      1. In the [vendor portal](https://vendor.replicated.com), click **Releases**. Then, either click **Create release** to create a new release, or click **Edit YAML** to edit an existing release.
+When you create a release in the vendor portal, Replicated automatically creates the HelmChart custom resource manifest file for the Helm chart when you drag and drop your Helm chart `.tgz` file from your local directory to the file tree in the vendor portal.
 
-      1. Drag and drop the Helm chart `.tgz` package from your local directory to the file tree in the release in the vendor portal.
+<ReleasesCreatingUi/>
 
-      Replicated automatically creates the HelmChart custom resource manifest file for the Helm chart.
+## Create and Promote with the CLI
 
-   * **From the replicated CLI**:
+To create and promote a release using the replicated CLI:
 
-      1. Copy the Helm chart `.tgz` package to the local directory that contains the manifest files for the release.
+1. Copy the Helm chart `.tgz` package to the local directory that contains the manifest files for the release.
 
-      1. Create a HelmChart custom resource manifest file in the same directory where you copied the `.tgz` file. Name the HelmChart manifest file `CHART_NAME.yaml`. For example, `postgresql.yaml`.
+1. Create a HelmChart custom resource manifest file in the same directory where you copied the `.tgz` file. Name the HelmChart manifest file `CHART_NAME.yaml`. For example, `postgresql.yaml`.
 
-      1. Copy and paste the following YAML into the HelmChart manifest:
+1. Copy and paste the following YAML into the HelmChart manifest:
 
-         ```yaml
-         apiVersion: kots.io/v1beta1
-         kind: HelmChart
-         metadata:
-           # name matches the file name that you used.
-           # If you saved the file as CHART_NAME.yaml, use name: CHART_NAME
-           name: CHART_NAME
-         spec:
-         # chart identifies the Helm chart from the .tgz
-         # Replace CHART_NAME with the name of the chart from the .tgz
-         # Replace CHART_VERSION with the version of the chart from the .tgz
-           chart:
-             name: CHART_NAME
-             chartVersion: CHART_VERSION
+   ```yaml
+   apiVersion: kots.io/v1beta1
+   kind: HelmChart
+   metadata:
+      # name matches the file name that you used.
+      # If you saved the file as CHART_NAME.yaml, use name: CHART_NAME
+      name: CHART_NAME
+   spec:
+   # chart identifies the Helm chart from the .tgz
+   # Replace CHART_NAME with the name of the chart from the .tgz
+   # Replace CHART_VERSION with the version of the chart from the .tgz
+      chart:
+         name: CHART_NAME
+         chartVersion: CHART_VERSION
 
-           # helmVersion identifies the version of Helm used to render the chart.
-           # Possible values are v2 or v3.
-           helmVersion: v3
+      # helmVersion identifies the version of Helm used to render the chart.
+      # Possible values are v2 or v3.
+      helmVersion: v3
 
-           # useHelmInstall identifies whether this Helm chart uses the
-           # Replicated Helm installation (false) or native Helm installation (true).
-           # Native Helm installation is available for Helm v3 charts only.
-           useHelmInstall: true
+      # useHelmInstall identifies whether this Helm chart uses the
+      # Replicated Helm installation (false) or native Helm installation (true).
+      # Native Helm installation is available for Helm v3 charts only.
+       useHelmInstall: true
 
-           # values maps user-provided values with the Helm chart values.yaml file.
-           # You can leave the values attribute empty for this procedure.
-           values: {}
+      # values maps user-provided values with the Helm chart values.yaml file.
+      # You can leave the values attribute empty for this procedure.
+      values: {}
 
-           # builder values are used to create air gap packages.
-           # You can leave the builder attribute empty for this procedure.
-           builder: {}
+      # builder values are used to create air gap packages.
+      # You can leave the builder attribute empty for this procedure.
+      builder: {}
+   ```
+   For more information, see [HelmChart](../reference/custom-resource-helmchart) in the _Custom Resources_ section.
+
+1. Create a new release or update an existing release:
+
+      * Create a new release:
+
          ```
-         For more information, see [HelmChart](../reference/custom-resource-helmchart) in the _Custom Resources_ section.
+         replicated release create --yaml-dir PATH-TO-APP-DIRECTORY
+         ```
+         Replace `PATH-TO-APP-DIRECTORY` with the path to the local directory where you copied the Helm chart `.tgz` and created the HelmChart custom resource manifest file..
 
-      1. Create a new release or update an existing release:
+      * Update an existing release:
 
-          * Create a new release:
+         ```
+         replicated release update SEQUENCE --yaml-dir PATH-TO-APP-DIRECTORY
+         ```
+         Replace:
+         * `SEQUENCE` with the release sequence number. This identifies the existing release to be updated.
+         * `PATH-TO-APP-DIRECTORY` with the path to the local directory where you copied the Helm chart `.tgz` and created the HelmChart custom resource manifest file.
 
-             ```
-             replicated release create --yaml-dir PATH-TO-APP-DIRECTORY
-             ```
-             Replace `PATH-TO-APP-DIRECTORY` with the path to the local directory where you copied the Helm chart `.tgz` and created the HelmChart custom resource manifest file..
-
-          * Update an existing release:
-
-             ```
-             replicated release update SEQUENCE --yaml-dir PATH-TO-APP-DIRECTORY
-             ```
-             Replace:
-             * `SEQUENCE` with the release sequence number. This identifies the existing release to be updated.
-             * `PATH-TO-APP-DIRECTORY` with the path to the local directory where you copied the Helm chart `.tgz` and created the HelmChart custom resource manifest file.
-
-    For more information, see [release create](../reference/replicated-cli-release-create) and [release update](../reference/replicated-cli-release-update) in the replicated CLI documentation.     
+   For more information, see [release create](../reference/replicated-cli-release-create) and [release update](../reference/replicated-cli-release-update) in the replicated CLI documentation.     
 
 1. Save and promote the release to a development environment to test your changes.
 
