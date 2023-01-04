@@ -2,37 +2,56 @@
 
 This topic describes using the event data and key performance indicators (KPIs) in the Replicated vendor portal to monitor the health and performance of application instances installed in your customers' environments.
 
-## About Instance Reporting
+## About Instance Reporting {#about-reporting}
 
-Each time an active application instance installed in an online environment checks for updates, the Replicated app manager sends a small amount of instance metadata to help help the update server build an appropriate list of available new versions for that instance. During this update check process, if any properties like app version or app status have changed,  an event is generated on the server side to record the state change.
+For active application instances installed in online customer environments, the Replicated app manager sends a small amount of instance metadata to the vendor portal when any of the following occur:
 
-The vendor portal uses this event data to provide insights about the health, status, and performance of the active application instances associated with each customer license. The vendor portal displays these insights on an **Instance details** dashboard. 
+* The instance checks for updates. An update check can occur when a user clicks the **Check for updates** button in the Replicated admin console, or when the admin console runs an automatic update check. By default, the admin console runs automatic update checks every four hours. Users can modify or disable automatic update checks from the admin console.
+* The status of an instance changes. For example, an instance can change from a Ready to Degraded status.
+* (App manager v1.92 and later only) The instance completes an update to a new application version.
 
-You can use the event data and insights on the **Instance details** page to more quickly troubleshoot issues with active instances, helping to reduce support burden. It becomes easy to quickly get answers to questions like:
+The instance data that the app manager sends includes properties such as the current application version and application status. The primary purpose of this instance data is to inform the list of new versions that are available to the given instance for upgrade.
 
-1. Has the application experienced any performance degradation or downtime recently? How long has it been down?
-1. Have any cluster or infrastructure changes occurred recently? Have nodes been lost or added? Has the underlying Kubernetes version changed?
-1. Were any upgrades attempted recently? Which of them succeeded? Which version of the application is currently running?
+When the vendor portal receives instance data from the app manager, it evaluates each property to determine if there was a change. For each property that changes, the vendor portal creates an _event_ to record the change. For example, a change from Ready to Degraded in the application status property generates an event in the vendor portal.
 
- 
-   The **Instance details** page also provides business value metrics for each instance, such as the rate of successful upgrades, total uptime, and the time that it takes your customers to successfully deploy an instance of your application.
+The vendor portal uses this event data to provide insights about the health, status, and performance of the active application instances associated with each customer license. The vendor portal displays these insights on an **Instance details** dashboard. You can use the event data and insights on the **Instance details** page to more quickly troubleshoot issues with your customers' active instances, helping to reduce support burden. For example, you can use the **Instance details** page to track the following events in each instance:
 
-For more information about the event data and metrics displayed on the **Instance details** page, see [About the Instance Details Page](#about) below.
+* Recent performance degradation or downtime
+* Length of instance downtime
+* Recent changes to the cluster or infrastructure
+* Changes in the number of nodes, such as nodes lost or added
+* Changes in the underlying Kubernetes version
+* Recent upgrade attempts, including which upgrade attempts were successful
+* The application version that the instance is running
+
+For more information about the event data and metrics displayed on the **Instance details** page, see [About the Instance Details Page](#about-page) below.
 ## Requirements and Limitations
 
-Viewing instance data in the vendor portal has the following requirements and limitations:
+Instance data has the following requirements and limitations:
 
-* The **Instances details** page is available only for application instances installed in online environments. Data for instances installed in air gapped environments is not available.
+* Instance data is available only for application instances installed in online environments. Data for instances installed in air gapped environments is not available.
+
 * Inactive instances are not included in instance data. An instance is considered inactive if **ADD INACTIVE DESCRIPTION**
-* The vendor portal receives updated instance data only when the application instance checks for updates. By default, instances automatically check for updates every four hours. However, if users edit the frequency of automatic update checks, then the rate at which instance data is updated changes accordingly. Additionally, if users disable automatic update checks, then the rate at which instance data is updated depends on the frequency that users manually check for updates. 
-* To view event data and insights related to instance uptime on the **Instances details** page, you must configure status informers for your application in the Application custom resource. For more information about how to configure status informers, see [Displaying Application Status](admin-console-display-app-status).
+
+* The rate at which data is updated on the **Instances details** page varies depending on how often the vendor portal receives instance data from the app manager. The vendor portal receives instance data when any of the following occur:
+
+  * The instance checks for updates. An update check can occur when a user clicks the **Check for updates** button in the Replicated admin console, or when the admin console runs an automatic update check. By default, the admin console runs automatic update checks every four hours. Users can modify or disable automatic update checks from the admin console.
+  * The status of an instance changes. For example, an instance can change from a Ready to Degraded status.
+  * (App manager v1.92 and later only) The instance completes an update to a new application version.
+
+* To view data that uses the application status property, you must configure status informers for your application in the Application custom resource. For more information about how to configure status informers, see [Displaying Application Status](admin-console-display-app-status).
+
 * Data in the **Instance Activity** stream is not cached. **NEED MORE INFO**
 
-## About the Instance Details Page {#about}
+## About the Instance Details Page {#about-page}
 
-Data for each active instance of your application is displayed in a dashboard on the **Instance details** page in the vendor portal. To access the **Instance details** page, go to **Customers** and click the **Customer reporting** button for the customer that you want to view. From the **Reporting** page for the selected customer, click the **View details** button for the desired application instance. 
+Data for each active instance is displayed in a dashboard on the **Instance details** page in the vendor portal. To access the **Instance details** page, go to **Customers** and click the **Customer reporting** button for the customer that you want to view. From the **Reporting** page for the selected customer, click the **View details** button for the desired application instance. 
 
-The following screenshot shows an example of the **Instance details** page:
+The following shows the **View details** button on the **Reporting** page:
+
+**SCREENSHOT**
+
+The following shows an example of the **Instance details** page:
 
 **UPDATE SCREENSHOT**
 
@@ -40,7 +59,7 @@ The following screenshot shows an example of the **Instance details** page:
 
 [View a larger version of this image](/images/instance-details.png)
 
-As shown in the screenshot above, the **Instance details** page includes the following sections:
+As shown in the image above, the **Instance details** page includes the following sections:
 
 * **Current State**: Displays information about the state of the instance, such as the current application version. See [Current State](#current-state) below.
 * **Install Insights**: Displays KPIs related to health, performance, and adoption. See [Install Insights](#install-insights) below. 
@@ -50,37 +69,52 @@ As shown in the screenshot above, the **Instance details** page includes the fol
 
 ### Current State
 
-The **Current State** section displays event data about the state of the instance at the time of the most recent update check.
+The **Current State** section displays event data about the state of the instance.
 
 **SCREENSHOT**
 
-As shown in the screenshot above, the  **Current State** section includes the following fields:
-* **App status**: The status computed based on an application's configured [Status Informers](/vendor/admin-console-display-app-status)
-* **App version**: The version label of the currently running release, as set during [Release Promotion](/vendor/releases-creating-releases). If no version is set, the [release sequence](/vendor/releases-about#release-sequence-mechanics) will be used.
-* **Version age**: The absolute and relative ages of the application instance:
-  * **Absolute age**: `now - current_release.promoted_date`. The number of days since the current application version was promoted to the channel. For example, if the current application version is 1.0.0, and version 1.0.0 was promoted to the channel 30 days ago, then the absolute age is 30.
-  * **Relative age (Days Behind Latest)**: `channel.latest_release.promoted_date - current_release.promoted_date`. The number of days between when the current application version was promoted to the channel and when the latest available version on the channel was promoted. For example, the current application version is 1.0.0 and the latest version available on the channel is 1.5.0. If 1.0.0 was promoted 30 days ago and 1.5.0 was promoted 10 days ago, then the relative age of the application instance is 20 days. 
-* **Versions behind**: The number of versions between the current version and the latest version available on the channel where the instance is assigned. For example, if the current application version is 1.0.0, and the latest version available on the 
-* **Last check-in**: The timestamp that the instance most recently checked for an update.
+As shown in the image above, the **Current State** section includes the following fields:
 
-For more information about the event data in the **Current State** section, see [Application Installation and Upgrade Events](monitoring-event-data#install-upgrade) in _Event Data_. 
+* **App status**: The status of the application. Possible statuses are Ready, Updating, Degraded, Unavailable, and Missing. The app manager computes the application status based on the status informers that you configure for the application. For more information about how to configure status informers, see [Displaying Application Status](/vendor/admin-console-display-app-status).
+
+* **App version**: The version label of the currently running release. You define the version label when you promote the release to a channel in the vendor portal. For more information about how to create version labels, see [Creating and Promoting Releases](releases-creating-releases).
+
+   If there is no version label for the release, then the vendor portal displays the release sequence in the **App version** field. You can find the sequence number associated with a release by running the `replicated release ls` command. See [release ls](/reference/replicated-cli-release-ls).
+
+* **Version age**: The absolute and relative ages of the application instance:
+
+  * **Absolute age**: The number of days since the currently running application version was promoted to the channel. For example, if the instance is currently running version 1.0.0, and version 1.0.0 was promoted to the channel 30 days ago, then the absolute age is 30.
+
+    Absolute age is calculated as `now - current_release.promoted_date`.
+
+  * **Relative age (Days Behind Latest)**: The number of days between when the currently running application version was promoted to the channel and when the latest available version on the channel was promoted. For example, the instance is currently running version 1.0.0, which was promoted to the Stable channel. The latest version available on the Stable channel is 1.5.0. If 1.0.0 was promoted 30 days ago and 1.5.0 was promoted 10 days ago, then the relative age of the application instance is 20 days. 
+
+     Absolute age is calculated as `channel.latest_release.promoted_date - current_release.promoted_date`.
+
+* **Versions behind**: The number of versions between the currently running version and the latest version available on the channel where the instance is assigned. For example, the instance is currently running version 1.0.0, which was promoted to the Stable channel. If the later versions 1.1.0, 1.2.0, 1.3.0, 1.4.0, and 1.5.0 were also promoted to the Stable channel, then the instance is five versions behind.
+
+* **Last check-in**: The timestamp when the app manager most recently sent instance metadata to the vendor portal. The vendor portal receives instance data from the app manager when any of the following occur:
+
+  * The instance checks for updates. An update check can occur when a user clicks the **Check for updates** button in the Replicated admin console, or when the admin console runs an automatic update check. By default, the admin console runs automatic update checks every four hours. Users can modify or disable automatic update checks from the admin console.
+  * The status of an instance changes. For example, an instance can change from a Ready to Degraded status.
+  * (App manager v1.92 and later only) The instance completes an update to a new application version.
 
 ### Install Insights
 
-The **Install Insights** section displays the following computed metrics:
-* Time to Install
-* Total Upgrades and Upgrade Success Rate
-* Application Uptime 
+The **Install Insights** section includes the following metrics computed by the vendor portal to provide key performance indicators (KPIs) about your application:
+
+* [Time to Install](#time-to-install)
+* [Application Uptime](#uptime)
 
 #### Time to Install
 
-The Time to Install metrics in the **Install Insights** section represent how quickly the customer was able to deploy the application to a Ready state in their environment.
+The vendor portal computes two Time to Install metrics that represent how quickly the customer was able to deploy the application to a Ready state in their environment.
 
-Replicated recommends that you use Time to Install as a KPI of the quality of the packaging, configuration, and documentation of your application. If the installation process for your application is challenging, poorly documented, lacks appropriate preflight checks, or relies heavily on manual steps, then it can take days or weeks to deploy the application in customer environments. A longer Time to Install generally represents a significantly increased support burden and a degraded customer installation experience.
+Replicated recommends that you use Time to Install as an indicator of the quality of the packaging, configuration, and documentation of your application. If the installation process for your application is challenging, poorly documented, lacks appropriate preflight checks, or relies heavily on manual steps, then it can take days or weeks to deploy the application in customer environments. A longer Time to Install generally represents a significantly increased support burden and a degraded customer installation experience.
 
-The vendor portal displays the following metrics that measure Time to Install:
+The following describes the Time to Install metrics:
 
-* **Time to Install (License)**: The time between when you create the customer license in the vendor portal, and when the application instance `appStatus` field reports a `ready` state in the customer environment. Time to Install (License) represents the time that it takes for a customer to successfully deploy your application after you intend to distribute the application to the customer. Replicated uses the timestamp of when you create the customer license in the vendor portal to represent your intent to distribute the application to the customer because creating the license file for the customer is generally the final step before you share the installation materials with the customer.
+* **Time to Install (License)**: The time between when you create the customer license in the vendor portal, and when the application instance reaches a Ready status in the customer environment. Time to Install (License) represents the time that it takes for a customer to successfully deploy your application after you intend to distribute the application to the customer. Replicated uses the timestamp of when you create the customer license in the vendor portal to represent your intent to distribute the application to the customer because creating the license file for the customer is generally the final step before you share the installation materials with the customer.
 
    The following diagram demonstrates how the vendor portal computes the Time to Install (License) metric:
    
@@ -88,112 +122,102 @@ The vendor portal displays the following metrics that measure Time to Install:
 
    As shown in the diagram above, Time to Install (License) includes several activities that are involved in deploying the application, including the customer receiving the necessary materials and documentation, downloading the assets, provisioning the required hardware, networking, external systems, completing the preflight checks, and finally installing, configuring, and deploying the application.
 
-* **Time to Install (Instance)**: The time between when the vendor portal records the first event for the application instance in the customer environment, and when the instance `appStatus` field reports a `ready` state.
+* **Time to Install (Instance)**: The time between when the vendor portal records the first event for the application instance in the customer environment, and when the instance reaches a Ready status.
 
    The following diagram demonstrates the activities included and excluded in Time to Install (Instance):
 
    ** **INSERT DIAGRAM** **
 
-   As shown in the diagram above, Time to Install (Instance) is the length of time that it takes for the application to reach a Ready state after the customer makes a successful deployment attempt in their environment. A deployment attempt is considered to be successful when the application instance reports its first event. Time to Install (Instance) does not include any deployment attempts that were unsuccessful. For example, Time to Live (Instance) does not include any time spent by the customer discarding servers and attempting to deploy the instance again on a new server.
-#### Upgrades
-
-​​The ease with which customers can upgrade their application instance is often an important factor in determining the quality of a delivered software package. If the process of upgrading is simple and straightforward, customers may be more likely to upgrade their software, which can help to ensure that they are using the most up-to-date version. On the other hand, if the process is complicated, error-prone, or time-consuming, customers may be less likely to upgrade, which can result in them using outdated or vulnerable versions of the application.
-
-The vendor portal displays the following metrics to measure the ease of upgrading your application:
-
-* **Number of Upgrades**: The vendor portal computes the total number of upgrades using the `appVersion` and `appStatus` events.
-
-   TBD
-
-* **Upgrade Success Rate**: The vendor portal calculates the upgrade success rate by dividing the number of successful upgrades by the total number of upgrades completed.
-  
-  The vendor portal considers an upgrade successful if _all_ of the following are true:     
-    * There are no errors on the deployment of the new version. Depending on if the customer upgrades the instance using the app manager or the helm CLI, then the deployment command is either `kubectl apply` or `helm upgrade`.
-    * The instance enters a Ready status in 15 minutes or less after the `kubectl apply` or `helm upgrade` command completes.
-    * The instance does _not_ enter a Missing or Unavailable status in the first 15 minutes after the instance is no longer in an Updating status.
-
-
+   As shown in the diagram above, Time to Install (Instance) is the length of time that it takes for the application to reach a Ready state after the customer starts a deployment attempt in their environment. A deployment attempt is considered to be started when the vendor portal first records an event for the application instance. An _event_ is any change in the properties for an instance. For example, as part of a deployment attempt, the application status property might change to Unavailable.
+   
+   :::note
+   Time to Install (Instance) does not include any deployment attempts that a customer might have made that did not produce an event. For example, Time to Live (Instance) does not include any time spent by the customer discarding servers and attempting to deploy the instance again on a new server.
+   :::
 #### Uptime
 
-The vendor portal computes the total uptime for the instance as the fraction of time that an application spends in a Ready, Updating, or Degraded state. High uptime indicates that the application is reliable and able to handle the demands of the customer environment, while low uptime might indicate that the application is prone to errors or failures. By measuring the total uptime of customer instances, you can better understand the performance of your application.
+The vendor portal computes the total uptime for the instance as the fraction of time that the instance spends with a Ready, Updating, or Degraded status. The vendor portal includes time spent in a Degraded status in the total uptime for an instance because it is possible that a Degraded state is expected during upgrade.
 
-The vendor portal uses the status of the Kubernetes resources that you provide in the `statusInformers` field of the Application custom resource to determine the status of the application. For more information about how to configure status informers for your application, see [Displaying Application Status](admin-console-display-app-status).
+High uptime indicates that the application is reliable and able to handle the demands of the customer environment, while low uptime might indicate that the application is prone to errors or failures. By measuring the total uptime, you can better understand the performance of your application.
 
-The following table lists the application statuses that indicate whether the application is up or down:
+The following table lists the application statuses that are associated with an Up or Down state in the total uptime calculation:
 
 <table>
   <tr>
-    <th>Up</th>
-    <td>Ready, Updating, Degraded</td>
+    <th>State</th>
+    <th>Application Statuses</th>
   </tr>
   <tr>
-    <th>Down</th>
-    <td>Missing, Unavailable</td>
+    <td>Up</td>
+    <td>Ready, Updating, or Degraded</td>
+  </tr>
+  <tr>
+    <td>Down</td>
+    <td>Missing or Unavailable</td>
   </tr>
 </table>
 
-:::note
-The vendor portal includes time spent in a Degraded state in the total uptime for an application instance because it is possible that a Degraded state is expected during upgrade.
-:::
+The app manager computes the application status property based on the status informers that you configure for your application. For more information about how to configure status informers, see [Displaying Application Status](/vendor/admin-console-display-app-status).
 
 ### Install Information
 
-The **Install Information** section displays details about the cluster infrastructure where the application is installed, such as the version and distribution of Kubernetes running in the cluster where the application is installed. For applications that are installed in clusters provisioned by the Replicated Kubernetes installer, the **Install Information** section also provides details such as the number of nodes in the cluster and the node operating systems.
+The **Install Information** section displays details about the cluster infrastructure where the application is installed, such as the version and distribution of Kubernetes running in the cluster where the application is installed.
 
 **SCREENSHOT**
 
-As shown in the image above, the **Install Information** section displays the following data:
+As shown in the image above, the **Install Information** section displays the following fields:
 
-* Kubernetes Distribution
-* Kubernetes Version
-* KOTS version
-* First Seen: The first event recorded by the instance.
-* Datacenter (if detected)
-* Datacenter region (if detected)
-* (Kubernetes Installer Cluster Only) Node Operating System(s)
-* (Kubernetes Installer Cluster Only) Node Operating System Version(s)
-* (Kubernetes Installer Cluster Only) Cluster Nodes Total
-* (Kubernetes Installer Cluster Only) Cluster Nodes Ready
-* (Kubernetes Installer Cluster Only) Link to the kurl.sh Kubernetes Installer spec used
+* **Kubernetes Distribution**: 
+* **Kubernetes Version**:
+* **KOTS version**:
+* **First Seen**: The timestamp of the first event that the vendor portal generated for the instance.
+* **Datacenter**:  (if detected)
+* **Datacenter region**:  (if detected)
+
+In addition to the fields listed above, the **Install Information** section also displays the following fields for Kubernetes installer clusters:
+* **Node Operating System(s)**:
+* **Node Operating System Version(s)**:
+* **Cluster Nodes Total**:
+* **Cluster Nodes Ready**:
+* **Kubernetes installer specification**: A link to the Kubernetes installer manifest file used the provision the cluster.
 
 For more information about the cluster event data in the **Install Information** section, see [Cluster Status Events](monitoring-event-data) in _Event Data_.
 
 ### Instance Uptime
 
-The Instance Uptime graph shows the percentage of each 8 hour time period in the previous two weeks that the instance was in an up, degraded, or down state. The vendor portal uses the status of the Kubernetes resources that you provide in the `statusInformers` field of the Application custom resource to determine the status of the application. For more information about how to configure status informers for your application, see [Displaying Application Status](admin-console-display-app-status).
+The **Instance Uptime** graph shows the percentage of each eight hour time period in the previous two weeks that the instance was in an Up, Degraded, or Down state. 
 
-The following table lists the application statuses that are associated with an up, degraded, or down state in the Instance Uptime graph:
+The vendor portal uses the application status property to determine if the instance is Up, Degraded, or Down. Possible application statuses are Ready, Updating, Degraded, Unavailable, and Missing. The following table lists the application statuses that are associated with each state in the **Instance Uptime** graph:
 
 <table>
   <tr>
-    <th>Up</th>
-    <td>Ready, Updating</td>
+    <th>State</th>
+    <th>Application Statuses</th>
   </tr>
   <tr>
-    <th>Degraded</th>
+    <td>Up</td>
+    <td>Ready or Updating</td>
+  </tr>
+  <tr>
+    <td>Degraded</td>
     <td>Degraded</td>
   </tr>
   <tr>
-    <th>Down</th>
-    <td>Missing, Unavailable, Inactive</td>
+    <td>Down</td>
+    <td>Missing or Unavailable</td>
   </tr>
 </table>
 
-:::note
-The vendor portal includes time spent in a Degraded state in the total uptime for an application instance. 
-:::
+The app manager computes the application status property based on the status informers that you configure for your application. For more information about how to configure status informers, see [Displaying Application Status](/vendor/admin-console-display-app-status).
 
-The following shows an example of an Instance Uptime graph:
+The following shows an example of an **Instance Uptime** graph:
 
 **INSERT SCREENSHOT**
 
-You can hover over the bars in the Instance Uptime graph to view more detail about the percent of time that the instance was in each state during the given time period.
+You can hover over the bars in the **Instance Uptime** graph to view more detail about the percent of time that the instance was in each state during the given time period.
 
 ### Instance Activity
 
-The **Instance Activity** section displays event data for the instance. The event data stream is updated each time an instance checks for updates. When an instance checks for updates, it reports details about the current app manager version, Kubernetes version, application version, and application status. 
-
-By default, instances automatically check for updates every four hours. However, if users edit the frequency of automatic update checks, then the rate at which instance data is updated changes accordingly. Additionally, if users disable automatic update checks, then the rate at which instance data is updated depends on the frequency that users manually check for updates.
+The **Instance Activity** section displays events for the instance. The data stream is updated each time the vendor portal generates an event for the instance.
 
 The following shows an example of the **Instance Activity** data stream:
 
