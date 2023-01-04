@@ -29,7 +29,7 @@ metadata:
   name: nginx
 spec:
   collectors:
-     - logs:
+    - logs:
         selector:
           - app=nginx
   analyzers:
@@ -63,7 +63,7 @@ spec:
 
 `manifests/redis/troubleshoot.yaml`
 
-This collector and analyzer checks that the default password is used for Redis:
+This collector and analyzer checks that the Redis server is responding:
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -87,9 +87,7 @@ For more information about generating merged support bundles, see [Generate a Me
 
 ### Enable Discoverability of Specifications {#discoverable}
 
-To make support bundle specifications discoverable in a cluster, you wrap them in a Secret. You add a specification as `Kind: Secret` and include the label `troubleshoot.io/kind: supportbundle` and a `data` key matching `support-bundle-spec`.
-
-Custom resource definitions (CRDs) are not available for support bundles or preflights, so they must be wrapped in a Secret. For more information about adding Secrets, see [Support Bundle specs to a cluster as Secrets](https://troubleshoot.sh/docs/support-bundle/collecting/#collect-a-support-bundle-using-specs-discovered-from-the-cluster) in the Troubleshoot documentation.
+To make support bundle specifications discoverable in a cluster, you must wrap them in a Secret. You add a specification as `Kind: Secret` and include the label `troubleshoot.io/kind: supportbundle` and a `data` key matching `support-bundle-spec`. For more information about adding Secrets, see [Discover Cluster Specs](https://troubleshoot.sh/docs/support-bundle/discover-cluster-specs/) in the Troubleshoot documentation.
 
 [`kURL/addons/flannel/template/yaml/troubleshoot.yaml`](https://github.com/adamancini/kURL/blob/main/addons/flannel/template/base/yaml/troubleshoot.yaml)
 

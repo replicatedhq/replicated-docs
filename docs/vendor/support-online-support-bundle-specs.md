@@ -13,6 +13,8 @@ This example shows how Replicated could set up a URI link for one of its own com
 The Replicated Kubernetes installer includes the EKCO add-on for maintenance on Kubernetes installer clusters (embedded clusters), such as automating certificate rotation or data migration tasks. 
 Replicated can ship this component with a support bundle manifest that warns users if they do not have this add-on installed or if it is not running in the cluster. For more information about support bundles, see [Customize a Support Bundle](preflight-support-bundle-creating#customize-a-support-bundle).
 
+**Example: Release Sequence v1.0.0**
+
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
 kind: SupportBundle
@@ -36,9 +38,11 @@ spec:
               message: EKCO has at least 1 replica
 ```
 
-If a bug is discovered at any time after the release of the specification above, Replicated can write an analyzer for it in an online specification. Typically, Replicated might have to wait until a cluster upgrade before users get the benefit of the new analyzer. By adding a URI link to the online specification, the support bundle uses the assets hosted in the online repository, which is kept current. 
+If a bug is discovered at any time after the release of the specification above, Replicated can write an analyzer for it in an online specification. By adding a URI link to the online specification, the support bundle uses the assets hosted in the online repository, which is kept current.
 
-The `uri` field is added to the specification as a raw file link. Replicated hosts the online specification on [GitHub](https://github.com/replicatedhq/troubleshoot-specs/blob/main/in-cluster/ekco.yaml). 
+The `uri` field is added to the specification as a raw file link. Replicated hosts the online specification on [GitHub](https://github.com/replicatedhq/troubleshoot-specs/blob/main/in-cluster/ekco.yaml).
+
+**Example: Release v1.1.0**
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -51,4 +55,8 @@ spec:
   analyzers: [...]
 ```
 
-Using the `uri:` property, the support bundle gets the latest online specification if it can, or falls back to the collectors and analyzers listed in the specification that is in the cluster.  For more information about the URI, see [Troubleshoot schema supports a `uri://` field](https://troubleshoot.sh/docs/support-bundle/supportbundle/#uri) in the Troubleshoot documentation. For a complete example, see [Debugging Kubernetes: Enhancements to Troubleshoot](https://www.replicated.com/blog/debugging-kubernetes-enhancements-to-troubleshoot/#Using-online-specs-for-support-bundles) in The Replicated Blog.
+Using the `uri:` property, the support bundle gets the latest online specification if it can, or falls back to the collectors and analyzers listed in the specification that is in the cluster.
+
+Note that because the release version 1.0.0 did not contain the URI, Replicated would have to wait until a cluster upgrade before existing users get the benefit of the new analyzer. Then, going forward with any future versions (1.1.1 and later), those users would get the online analyzers without having to upgrade. Additionally, all users who install the later version 1.1.0 will automatically get the new analyzers when they generate a support bundle.
+
+For more information about the URI, see [Troubleshoot schema supports a `uri://` field](https://troubleshoot.sh/docs/support-bundle/supportbundle/#uri) in the Troubleshoot documentation. For a complete example, see [Debugging Kubernetes: Enhancements to Troubleshoot](https://www.replicated.com/blog/debugging-kubernetes-enhancements-to-troubleshoot/#Using-online-specs-for-support-bundles) in The Replicated Blog.
