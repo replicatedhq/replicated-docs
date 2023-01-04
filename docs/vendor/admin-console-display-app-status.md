@@ -10,9 +10,9 @@ This topic describes how to use status informers to display the status of an app
 
 You can configure the Application custom resource to display application status on the dashboard of the admin console.
 
-The following shows an example of how an Unavailable state displays on the admin console dashboard:
+The following shows an example of how an Unavailable status displays on the admin console dashboard:
 
-<img src="/images/kotsadm-dashboard-appstatus.png" alt="Unavailable state on the admin console dashboard" width="500px"/>
+<img src="/images/kotsadm-dashboard-appstatus.png" alt="Unavailable status on the admin console dashboard" width="500px"/>
 
 To display application status on the admin console dashboard, you target one or more Kubernetes resources for your application in the `statusInformers` property of the Application custom resource manifest file. Replicated recommends that you add at least one resource. For more information, see [Add Status Informers](#add-status-informers) below.
 
@@ -44,7 +44,7 @@ The following table lists the supported Kubernetes resources and the conditions 
 
 When you add more than one Kubernetes resource to the `statusInformers` property, the app manager aggregates all resource statuses to display a single application status on the admin console dashboard.
 
-The app manager uses the least available resource status to represent the aggregate application status. For example, if at least one resource is in an Unavailable state, then the aggregate application status is Unavailable.
+The app manager uses the least available resource status to represent the aggregate application status. For example, if at least one resource has an Unavailable status, then the aggregate application status is Unavailable.
 
 <AggregateStatus/>
 

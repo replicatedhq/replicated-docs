@@ -7,7 +7,7 @@ import AggregateStatus from "../partials/status-informers/_aggregateStatus.mdx"
 This topic describes how to view the status of an application on the Replicated admin console dashboard. It also describes how the Replicated app manager collects and aggregates the application status. 
 ## View Status Details
 
-The application status displays on the dashboard of the Replicated admin console. Viewing the status details can be helpful for troubleshooting states, such as Missing.
+The application status displays on the dashboard of the Replicated admin console. Viewing the status details can be helpful for troubleshooting.
 
 There are two ways to view the status details, depending on your admin console version:
 
@@ -47,6 +47,6 @@ The following table lists the supported Kubernetes resources and the conditions 
 
 When an application instance reports the status of more than one of the supported Kubernetes resources, the app manager aggregates all resource statuses to display a single application status on the admin console dashboard.
 
-The app manager uses the least available resource status to represent the aggregate application status. For example, if at least one resource is in an Unavailable state, then the aggregate application status is Unavailable.
+The app manager uses the least available resource status to represent the aggregate application status. For example, if at least one resource is in an Unavailable status, then the aggregate application status is Unavailable.
 
 <AggregateStatus/>
