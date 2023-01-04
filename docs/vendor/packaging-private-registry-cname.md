@@ -1,4 +1,13 @@
-# Using a Custom Registry Domain (Alpha)
+# Using Custom Domains (Beta)
+
+This topic describes using custom registry domains and custom domains for the download portal, and how to configure them using the Replicated vendor portal or the vendor API.
+
+For more information, see the following sections in this topic:
+
+- [Custom Registry Domains](#registry)
+- [Custom Domains for the Download Portal](#download)
+
+## Custom Registry Domains {#registry}
 
 You can use custom domains as aliases for the replicated.registry.com and proxy.replicated.com endpoints, by creating Canonical Name (CNAME) records for your domains, also known as custom domains.
 
@@ -9,7 +18,7 @@ Using the Replicated vendor portal or the vendor API, you configure custom domai
 - Have different domains for your applications, if needed
 - Roll out domain name changes in phases to prevent the application from breaking in production environments
 
-## About Verification
+### Verification
 
 Verification of the domain is required using TXT records that undergo separate verification checks for:
 
@@ -20,44 +29,40 @@ The TXT records can be removed once verification is complete.
 
 If you configure a second application to use an existing, configured domain, the configured domain is automatically validated if both applications belongs to the same team.
 
-## Limitations
+### Limitations
 
-Configuring a custom domain has the following limitations:
+Configuring a custom registry domain has the following limitations:
 
 - A single custom domain cannot be used for both the registry and proxy endpoints. A single domain can map to registry.replicated.com for any number of applications, but cannot map to both registry.replicated.com and  proxy.replicated.com, even if the applications are different.
 - Custom domains cannot be used to alias replicated.app (release manifests), api.replicated.com (platform market API), the download portal, or other services.
 
-## Configure a Custom Domain
+### Configure Registry Domains in the Vendor Portal
 
-You can configure custom domains for the Replicated private registry and the proxy service in the vendor portal or the vendor API.
-
-### Use the Vendor Portal
+You can configure custom domains for the Replicated private registry or the proxy service in the vendor portal or the vendor API.
 
 To configure a custom domain in the vendor portal:
 
 1. Log in to the [vendor portal](https://vendor.replicated.com), and click **Team > Custom Domains**.
 
-1. In the **Use custom domains instead of...** pane for either registry.replicated.com or proxy.replicated.com, click **Add your first custom domain** or **Add a new domain**.
+1. From the **Custom domains...** pane for either the Replicated registry or the proxy service, click **Add your first custom domain** or **Add new domain**.
 
-1. Enter the custom domain in the text box, and click **Save**.
+  The **Configure a custom domain** wizard opens.
 
-1. From Create CNAME record, copy the text string and create the custom domain record in your DNS account. Click **Continue**.
+1. For **Domain**, enter the custom domain used for images pushed to the Replicated registry or proxy service. Click **Save & continue**.
 
-    The **Configure a custom domain** wizard opens.
+1. For **Verify ownership**, copy the text string and create the custom domain record in your DNS account. Click **Validate & continue**.
 
-1. For **Domain**, add the domain used for images pushed to the Replicated registry or proxy service. Click **Save & continue**.
+  Your changes can take up to 24 hours to propagate.
 
-1. For **Verify ownership**, copy the text string and use it to create a TXT record in your DNS account. Click **Verify & continue**.
-
-1. For **TLS cert creation verification**, copy the text string and use it to create a TXT record in your DNS account. Click **Validate & finish**.
+1. For **TLS cert creation verification**, copy the text string and use it to create a TXT record in your DNS account. Click **Validate & continue**.
 
     Your changes can take up to 24 hours to propagate.
 
-1. From the **Custom Domains** page, click **Use custom domain in an application** next to the domain that you want to use. Copy the snippet from the **Use custom domain in an application** dialog that opens, then click **Ok, got it!** to close the dialog.
+1. For **Use Domain**, copy the snippet to use as a template if needed. Click **Ok. got it!**.
 
 1. Create a new release and add the code snippet to the Application custom resource manifest file to create the new field for either `proxyRegistryDomain` or `replicatedRegistryDomain`. For more information, see [proxyRegistryDomain](../reference/custom-resource-application#proxyRegistryDomain) and [replicatedRegistryDomain](../reference/custom-resource-application#replicatedRegistryDomain) in the _Application_ section.
 
-### Use the Vendor API
+### Configure Registry Domains with the Vendor API
 
 To configure a custom domain in the vendor API:
 
@@ -210,7 +215,7 @@ To configure a custom domain in the vendor API:
 
 1. Create a new release and add either the `proxyRegistryDomain` or `replicatedRegistryDomain` field to the Application custom resource manifest file, depending on which registry you are using. For more information, see [proxyRegistryDomain](../reference/custom-resource-application#proxyRegistryDomain) and [replicatedRegistryDomain](../reference/custom-resource-application#replicatedRegistryDomain) in the _Application_ section.
 
-## Assign a Custom Domain to an Application
+### Assign a Custom Domain to an Application
 
 You can change or add the assignment of an existing custom domain to an application at any time.
 
@@ -220,3 +225,8 @@ To assign a custom domain to an application:
 1. Click **Use custom domain in an application** next to the domain that you want to use.
 1. Copy the snippet from the **Use custom domain in an application** dialog that opens, then click **Ok, got it!**.
 1. Create a new release and add the code snippet to the Application custom resource manifest file to create the new field for either `proxyRegistryDomain` or `replicatedRegistryDomain`. For more information, see [proxyRegistryDomain](../reference/custom-resource-application#proxyRegistryDomain) and [replicatedRegistryDomain](../reference/custom-resource-application#replicatedRegistryDomain) in the _Application_ section.
+
+
+## Custom Domains for the Download Portal {#download}
+
+You can configure the download portal to use a custom domain instead of the default get.replicated.com. Only one custom domain per team can be active at any time.
