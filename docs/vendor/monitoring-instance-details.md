@@ -103,8 +103,34 @@ As shown in the image above, the **Current State** section includes the followin
 
 The **Install Insights** section includes the following metrics computed by the vendor portal to provide key performance indicators (KPIs) about your application:
 
+* [Uptime](#uptime)
 * [Time to Install](#time-to-install)
-* [Application Uptime](#uptime)
+
+#### Uptime
+
+The vendor portal computes the total uptime for the instance as the fraction of time that the instance spends with a Ready, Updating, or Degraded status. The vendor portal includes time spent in a Degraded status in the total uptime for an instance because it is possible that a Degraded state is expected during upgrade.
+
+High uptime indicates that the application is reliable and able to handle the demands of the customer environment, while low uptime might indicate that the application is prone to errors or failures. By measuring the total uptime, you can better understand the performance of your application.
+
+The following table lists the application statuses that are associated with an Up or Down state in the total uptime calculation:
+
+<table>
+  <tr>
+    <th>State</th>
+    <th>Application Statuses</th>
+  </tr>
+  <tr>
+    <td>Up</td>
+    <td>Ready, Updating, or Degraded</td>
+  </tr>
+  <tr>
+    <td>Down</td>
+    <td>Missing or Unavailable</td>
+  </tr>
+</table>
+
+The app manager computes the application status property based on the status informers that you configure for your application. For more information about how to configure status informers, see [Displaying Application Status](/vendor/admin-console-display-app-status).
+
 
 #### Time to Install
 
@@ -133,30 +159,6 @@ The following describes the Time to Install metrics:
    :::note
    Time to Install (Instance) does not include any deployment attempts that a customer might have made that did not produce an event. For example, Time to Live (Instance) does not include any time spent by the customer discarding servers and attempting to deploy the instance again on a new server.
    :::
-#### Uptime
-
-The vendor portal computes the total uptime for the instance as the fraction of time that the instance spends with a Ready, Updating, or Degraded status. The vendor portal includes time spent in a Degraded status in the total uptime for an instance because it is possible that a Degraded state is expected during upgrade.
-
-High uptime indicates that the application is reliable and able to handle the demands of the customer environment, while low uptime might indicate that the application is prone to errors or failures. By measuring the total uptime, you can better understand the performance of your application.
-
-The following table lists the application statuses that are associated with an Up or Down state in the total uptime calculation:
-
-<table>
-  <tr>
-    <th>State</th>
-    <th>Application Statuses</th>
-  </tr>
-  <tr>
-    <td>Up</td>
-    <td>Ready, Updating, or Degraded</td>
-  </tr>
-  <tr>
-    <td>Down</td>
-    <td>Missing or Unavailable</td>
-  </tr>
-</table>
-
-The app manager computes the application status property based on the status informers that you configure for your application. For more information about how to configure status informers, see [Displaying Application Status](/vendor/admin-console-display-app-status).
 
 ### Install Information
 
@@ -217,7 +219,7 @@ You can hover over the bars in the **Instance Uptime** graph to view more detail
 
 ### Instance Activity
 
-The **Instance Activity** section displays events for the instance. The data stream is updated each time the vendor portal generates an event for the instance.
+The **Instance Activity** section displays recent events for the instance. The data stream is updated each time the vendor portal generates an event for the instance.
 
 The following shows an example of the **Instance Activity** data stream:
 
@@ -225,8 +227,11 @@ The following shows an example of the **Instance Activity** data stream:
 
 You can filter the **Instance Activity** stream by the following event categories:
 
-* TBD
-* TBD
-* TBD
+* Cluster status
+* Upstream update
+* App status
+* App install/upgrade
+* KOTS status
+* Infrastructure status
 
 For more information about the event data displayed in the **Instance Activity** stream, see [Event Data](monitoring-event-data).
