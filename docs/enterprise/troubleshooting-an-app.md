@@ -204,7 +204,7 @@ The following examples show some possible combinations:
 
   ```bash
   kubectl support-bundle URL \
-  ./PATH_TO_FILE \
+  ./PATH_TO_FILE 
   ```
   
   Replace:
@@ -222,7 +222,7 @@ The following examples show some possible combinations:
 
 You can run an automatic discovery of specifications contained in Secrets or ConfigMaps in the cluster and generate a merged support bundle using the `--load-cluster-specs` flag. This can be easier than manually typing each specification on the command line.
 
-Run the following command to generate a bundle with specifications discovered in the cluster:
+Run the following command to generate a bundle with all of the specifications discovered in the cluster:
 
   ```bash
   kubectl support-bundle --load-cluster-specs

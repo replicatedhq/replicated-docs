@@ -1,6 +1,6 @@
 # About Modular and Discoverable Support Bundles
 
-Support bundle specifications can be designed using a modular approach. This helps teams more easily develop specifications that are scoped to individual components or microservices in a large application and avoid merge conflicts. 
+Support bundle specifications can be designed using a modular approach. This helps teams develop specifications that are scoped to individual components or microservices in a large application and avoid merge conflicts. 
 
 You can create separate manifest files or use a combination of manifest files, URLs, and Kubernetes Secrets or ConfigMaps. Then, customers can use the support-bundle CLI to generate a merged support bundle archive. For more information, see [Create Specifications by Component](#component) below.
 
@@ -129,13 +129,13 @@ kubectl get secrets --all-namespaces -l troubleshoot.io/kind=support-bundle-spec
 # default     kotsadm-troubleshoot-spec   Opaque   1      9s
 # default     velero-troubleshoot-spec    Opaque   1      52s
 ```
-Then generate a merged support bundle for any of the specifications listed.
+Then generate a merged support bundle for any of the specifications listed. The following example uses two of the specifications in the list from the output above:
 
 ```bash
 kubectl support-bundle secret/default/flannel-troubleshoot-spec secret/default/velero-troubleshoot-spec
 ```
 
-To discover all of the specifications in a given namespace or cluster, you can use the `troubleshoot.io/kind` label with the `--load-cluster-specs` flag. This flag can also be combined with input for a URL. For more information about using this flag, see [Generate a Merged Support Bundle](/enterprise/troubleshooting-an-app/#generate-a-merged-support-bundle).
+To automatically discover and generate a bundle for all of the specifications in a given namespace or cluster, you can use the `troubleshoot.io/kind` label with the `--load-cluster-specs` flag. This flag can also be combined with input for a URL. For more information about using this flag, see [Generate a Merged Support Bundle](/enterprise/troubleshooting-an-app/#generate-a-merged-support-bundle).
 
 The Troubleshoot analysis screen in the admin console shows the results of all of the analyzers defined in your chosen manifests, and the contents are available in a single bundle.
 
