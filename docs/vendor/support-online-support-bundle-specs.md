@@ -4,7 +4,7 @@ You can make the definition of one or more support bundle specifications availab
 
 You can keep the online specification current with collectors and analyzers to manage bug fixes. When a customer generates a support bundle, the online specification can detect those potential problems in the cluster and let them know know how to fix it. Without the URI link option, you must wait for the next time your customers update their applications or Kubernetes versions to get notified of potential problems. The URI link option is particularly useful for customers that do not update their application routinely.
 
-If you are using a modular approach to designing support bundles, you can use multiple online specifications. Each specification supports one  URI link. For more information about modular specifications, see [About Creating Modular and Discoverable Support Bundles](support-modular-support-bundle-specs).
+If you are using a modular approach to designing support bundles, you can use multiple online specifications. Each specification supports one URI link. For more information about modular specifications, see [About Creating Modular and Discoverable Support Bundles](support-modular-support-bundle-specs).
 
 ## Example: URI Linking to a Source Repository
 

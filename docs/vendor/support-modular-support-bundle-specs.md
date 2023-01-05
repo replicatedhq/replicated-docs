@@ -87,9 +87,9 @@ For more information about generating merged support bundles, see [Generate a Me
 
 ### Enable Discoverability of Specifications {#discoverable}
 
-To make support bundle specifications discoverable in a cluster, you must wrap them in a Secret. You add a specification as `Kind: Secret` and include the label `troubleshoot.io/kind: supportbundle` and a `data` key matching `support-bundle-spec`. For more information about adding Secrets, see [Discover Cluster Specs](https://troubleshoot.sh/docs/support-bundle/discover-cluster-specs/) in the Troubleshoot documentation.
+To make support bundle specifications discoverable in a cluster, you must wrap them in a Secret or ConfigMap. For example, to use a Secret, you add a specification as `Kind: Secret` and include the label `troubleshoot.io/kind: supportbundle` and a `data` key matching `support-bundle-spec`. For more information about adding Secrets, see [Discover Cluster Specs](https://troubleshoot.sh/docs/support-bundle/discover-cluster-specs/) in the Troubleshoot documentation.
 
-[`kURL/addons/flannel/template/yaml/troubleshoot.yaml`](https://github.com/adamancini/kURL/blob/main/addons/flannel/template/base/yaml/troubleshoot.yaml)
+The following example shows using an online collector and analyzers specification. For an example Secret that shows the collector and analyzer specifications in the manifest file itself, see [`kURL/addons/flannel/template/yaml/troubleshoot.yaml`](https://github.com/adamancini/kURL/blob/main/addons/flannel/template/base/yaml/troubleshoot.yaml) in GitHub.
 
 ```yaml
 apiVersion: v1

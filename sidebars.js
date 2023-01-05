@@ -148,7 +148,6 @@ const sidebars = {
                       'vendor/tutorial-adding-db-config',
                     ],
                   },
-                  'vendor/preflight-support-bundle-creating',
                   {
                       type: 'category',
                       label: 'Configuring Backup and Restore',
