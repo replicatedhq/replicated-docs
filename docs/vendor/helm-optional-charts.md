@@ -108,8 +108,16 @@ spec:
   # chart identifies a matching chart from a .tgz
   chart:
     name: postgresql
-    chartVersion: 8.1.2
+    chartVersion: 12.1.7
 
+  # helmVersion identifies the Helm Version used to render the Chart. Default is v2.
+  helmVersion: v3
+
+  # useHelmInstall identifies whether this Helm chart will use the
+  # Replicated Helm installation (false) or native Helm installation (true). Default is false.
+  # Native Helm installations are only available for Helm v3 charts.
+  useHelmInstall: true
+  
   # values are used in the customer environment, as a pre-render step
   # these values will be supplied to helm template
   values:
