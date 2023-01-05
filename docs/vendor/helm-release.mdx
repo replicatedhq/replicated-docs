@@ -98,13 +98,29 @@ To package a Helm chart and add it to a release:
 
       The Helm chart, including any dependencies, is packaged and copied to your current directory in a `.tgz` file. The file uses the naming convention: `CHART_NAME-VERSION.tgz`. For example, `postgresql-8.1.2.tgz`.
 
-## Using the Vendor Portal
+Next, create and promote a release using one of the following methods:
+
+- [Using the Vendor Portal](#ui)
+
+- [Using the CLI](#cli)
+
+## Using the Vendor Portal {#ui}
 
 When you create a release in the vendor portal, Replicated automatically creates the HelmChart custom resource manifest file for the Helm chart when you drag and drop your Helm chart `.tgz` file from your local directory to the file tree in the vendor portal.
 
-<ReleasesCreatingUi/>
+<CreateReleaseUi/>
 
-## Using the CLI
+## Using the CLI {#cli}
+
+### Prerequisite
+
+Before you can create an application with the CLI for the first time, you must install the replicated CLI and create an API token. See [Installing the replicated CLI](/reference/replicated-cli-installing).
+
+### Create an Application
+
+<CreateNewAppCli/>
+
+### Create and Promote a Release
 
 To create and promote a release using the replicated CLI:
 
@@ -171,12 +187,14 @@ To create and promote a release using the replicated CLI:
 1. Save and promote the release to a development environment to test your changes.
 
 ## Next Steps
+- After you add one or more Helm charts to a release, Replicated recommends that you update the HelmChart custom resource manifest to continue configuring your application.
 
-After you add one or more Helm charts to a release, Replicated recommends that you update the HelmChart custom resource manifest to continue configuring your application.
+   The following are recommended next steps for configuring the HelmChart custom resource:
 
-The following are recommended next steps for configuring the HelmChart custom resource:
+   * To collect user-supplied values from the Replicated admin console configuration screen and mapping those values to your Helm chart, see [Creating and Editing Configuration Fields](admin-console-customize-config-screen).
+   * To configure Replicated to install the Helm charts using the native Helm, see [Installing with Native Helm](helm-installing-native-helm).
+   * To use the `builder` attribute to create a Helm chart package for air gap installations, see [builder](/reference/custom-resource-helmchart#builder) in _HelmChart_.
+   * To configure the installation order for native Helm charts, see [Defining Installation Order for Native Helm Charts](helm-native-helm-install-order).
 
-* To collect user-supplied values from the Replicated admin console configuration screen and mapping those values to your Helm chart, see [Creating and Editing Configuration Fields](admin-console-customize-config-screen).
-* To configure Replicated to install the Helm charts using the native Helm, see [Installing with Native Helm](helm-installing-native-helm).
-* To use the `builder` attribute to create a Helm chart package for air gap installations, see [builder](/reference/custom-resource-helmchart#builder) in _HelmChart_.
-* To configure the installation order for native Helm charts, see [Defining Installation Order for Native Helm Charts](helm-native-helm-install-order).
+- Learn about the supported helm CLI installation options. See [Supporting helm CLI installations (Beta)] for your customers.
+- Learn about including the Replicated admin console to your Helm release. See [Delivering the Admin Console with your Application](helm-install#deliver-admin-console).

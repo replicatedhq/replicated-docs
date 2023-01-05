@@ -57,7 +57,7 @@ To get the sample manifest files:
 
 ### Create and Promote a Release
 
-1.(Recommended) Lint the manifest files and ensure that there are no errors in the YAML:
+1. (Recommended) Lint the manifest files and ensure that there are no errors in the YAML:
 
   ```bash
   replicated release lint --yaml-dir=YAML_DIR
@@ -65,7 +65,7 @@ To get the sample manifest files:
 
   Replace YAML_DIR with the root directory of the YAML application manifest files.
 
-1. Initialize the project as a Git repository.
+1. Initialize the project as a Git repository. You only need to initialize a project once.
 
   **Example:**
 
@@ -77,43 +77,57 @@ To get the sample manifest files:
   
   Initializing the project as a Git repository lets you track your history. The replicated CLI also reads Git metadata to help with the generation of release metadata, such as version labels.
 
-1. From your application root directory, create a release with the default settings, which includes the Unstable channel:
+1. Edit your files as needed, such as adding preflight specifications or other Replicated custom resources.
+
+1. Lint the manifest files after you make changes to ensure that there are no errors in the YAML:
 
   ```bash
-  replicated release create --auto
+  replicated release lint --yaml-dir=YAML_DIR
   ```
 
-  The `--auto` flag generates release notes and metadata based on the Git status. 
+  Replace YAML_DIR with the root directory of the YAML application manifest files.
+
+1. From your application root directory, do one of the following:
+
+    - Create a release with the default settings, which includes the Unstable channel:
+
+      ```bash
+      replicated release create --auto
+      ```
+
+      The `--auto` flag generates release notes and metadata based on the Git status. 
   
-  Alternatively, run the following command to customize your settings:
+    - Create a release with custom settings:
 
-  ```bash
-  replicated release create --yaml-dir YAML_DIR --promote CHANNEL
-  ```
+      **Example:**
 
-  Replace:
+      ```bash
+      replicated release create --yaml-dir YAML_DIR --promote CHANNEL
+      ```
 
-  - YAML_DIR with the root directory of the YAML application manifest files.
-  - CHANNEL with the name of the channel that you want to promote to. Channel names are case sensitive.
-  
-  For more information about flag options, see [release create](/reference/replicated-cli-release-create) in _Reference_.
+      Replace:
 
-  **Example output:**
+      - YAML_DIR with the root directory of the YAML application manifest files.
+      - CHANNEL with the name of the channel that you want to promote to. Channel names are case sensitive.
+    
+      For more information about flag options, see [release create](/reference/replicated-cli-release-create) in _Reference_.
 
-  ```
-      • Reading Environment ✓
+    **Example output:**
 
-    Prepared to create release with defaults:
+    ```
+        • Reading Environment ✓
 
-        yaml-dir        "./manifests"
-        promote         "Unstable"
-        version         "Unstable-ba710e5"
-        release-notes   "CLI release of master triggered by exampleusername [SHA: d4173a4] [31 Oct 22 08:51 MDT]"
-        ensure-channel  true
-        lint-release    true
+      Prepared to create release with defaults:
 
-    Create with these properties? [Y/n]
-  ```
+          yaml-dir        "./manifests"
+          promote         "Unstable"
+          version         "Unstable-ba710e5"
+          release-notes   "CLI release of master triggered by exampleusername [SHA: d4173a4] [31 Oct 22 08:51 MDT]"
+          ensure-channel  true
+          lint-release    true
+
+      Create with these properties? [Y/n]
+    ```
 
 1. Type `y` and press **Enter** to confirm the prompt.
 
