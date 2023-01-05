@@ -1,4 +1,6 @@
-import ReleasesCreatingUi from "../partials/releases/_releases-creating-ui.mdx"
+import CreateReleaseUi from "../partials/releases/_create-release-ui.mdx"
+import CreateNewAppCli from "../partials/releases/_create-new-app-cli.mdx"
+
 
 # Creating Releases with Helm Charts
 
@@ -96,13 +98,13 @@ To package a Helm chart and add it to a release:
 
       The Helm chart, including any dependencies, is packaged and copied to your current directory in a `.tgz` file. The file uses the naming convention: `CHART_NAME-VERSION.tgz`. For example, `postgresql-8.1.2.tgz`.
 
-## Create and Promote in the Vendor Portal
+## Using the Vendor Portal
 
 When you create a release in the vendor portal, Replicated automatically creates the HelmChart custom resource manifest file for the Helm chart when you drag and drop your Helm chart `.tgz` file from your local directory to the file tree in the vendor portal.
 
 <ReleasesCreatingUi/>
 
-## Create and Promote with the CLI
+## Using the CLI
 
 To create and promote a release using the replicated CLI:
 
