@@ -11,7 +11,7 @@ If this value is not provided, the chart will be included.
 
 ## Example
 For an example, let's use an example application that has a Postgres database.
-The current community supported Postgres Helm chart is available at https://github.com/helm/charts/tree/master/stable/postgresql.
+The current community supported Postgres Helm chart is available at https://github.com/bitnami/charts/tree/main/bitnami/postgresql.
 For this example, we want to let the user provide their own Postgres instance (outside of the application), or use an embedded, simple Postgres service for demos and simple installations.
 
 
@@ -89,9 +89,9 @@ stringData:
 
 Next, we can take the Helm chart and upload it to our application.
 
-```shell
-helm repo update
-helm fetch stable/postgresl
+```
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm fetch bitnami/postgresql
 ```
 
 After dropping this file into the file tree in the [vendor portal](https://vendor.replicated.com), a new file named `postgresql.yaml` is created.
