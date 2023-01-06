@@ -199,7 +199,7 @@ To create and promote a release using the replicated CLI:
 
   Replace YAML_DIR with the root directory of the YAML application manifest files.
 
-1. Create a new release or update an existing release:
+1. Create a new release or update an existing release. You can continue to update and lint an existing release until you are ready to promote it. Releases cannot be edited after they are promoted.
 
       * Create a new release:
 
@@ -219,11 +219,14 @@ To create and promote a release using the replicated CLI:
 
    For more information, see [release create](../reference/replicated-cli-release-create) and [release update](../reference/replicated-cli-release-update) in the replicated CLI documentation.
 
-   You can continue to update and lint an existing release until you are ready to promote it. Releases cannot be edited after they are promoted.
+1. Promote the release and verify that it was promoted to the specified channel:
 
-1. Save and promote the release to a development environment to test your changes.
+  ```
+  replicated release ls
+  ```
 
 ## Next Steps
+
 - After you add one or more Helm charts to a release, Replicated recommends that you update the HelmChart custom resource manifest to continue configuring your application.
 
    The following are recommended next steps for configuring the HelmChart custom resource:
@@ -232,6 +235,13 @@ To create and promote a release using the replicated CLI:
    * To configure Replicated to install the Helm charts using the native Helm, see [Installing with Native Helm](helm-installing-native-helm).
    * To use the `builder` attribute to create a Helm chart package for air gap installations, see [builder](/reference/custom-resource-helmchart#builder) in _HelmChart_.
    * To configure the installation order for native Helm charts, see [Defining Installation Order for Native Helm Charts](helm-native-helm-install-order).
-
+- To add a customer, see [Creating a Customer](creating-a-customer).
 - Learn about the supported helm CLI installation options. See [Supporting helm CLI installations (Beta)] for your customers.
 - Learn about including the Replicated admin console to your Helm release. See [Delivering the Admin Console with your Application](helm-install#deliver-admin-console).
+- Test the release in your development environment.
+
+## Related Topics
+
+* [About Releases](releases-about)
+* [About Release Channels](releases-about-channels)
+* [How to Package and Distribute a Production Application](distributing-workflow)

@@ -31,10 +31,10 @@ To create and promote a release using the replicated CLI:
 1. Lint the manifest files and ensure that there are no errors in the YAML:
 
   ```bash
-  replicated release lint --yaml-dir=YAML_DIR
+  replicated release lint --yaml-dir=PATH_TO_APP_DIR
   ```
 
-  Replace YAML_DIR with the root directory of the YAML application manifest files.
+  Replace `PATH_TO_APP_DIR` with path to the directory of the YAML manifest files.
 
 1. Initialize the project as a Git repository. You only need to initialize a project once.
 
@@ -53,23 +53,21 @@ To create and promote a release using the replicated CLI:
 1. Lint the manifest files after you make changes to ensure that there are no errors in the YAML:
 
   ```bash
-  replicated release lint --yaml-dir=YAML_DIR
+  replicated release lint --yaml-dir=PATH_TO_APP_DIR
   ```
 
-  Replace YAML_DIR with the root directory of the YAML application manifest files.
+  Replace `PATH_TO_APP_DIR` with the path to the directory of the YAML manifest files.
 
-  You can also lint the file when you create a release, as shown in the next step.
+1. Create a new release or update an existing release. You can continue to update and lint an existing release until you are ready to promote it. Releases cannot be edited after they are promoted.
 
-1. From your application root directory, do one of the following actions to create, update, and promote a release. You can continue to update and lint an existing release until you are ready to promote it. Releases cannot be edited after they are promoted.
-
-    - Lint and create (or update) a release without promoting it:
+    - Create a release without promoting it:
 
       ```bash
-      replicated release create --yaml-dir YAML_DIR --lint
+      replicated release create --yaml-dir PATH_TO_APP_DIR
       ```
-      Replace YAML_DIR with the root directory of the YAML application manifest files.
+      Replace `PATH_TO_APP_DIR` with the path to the directory of the YAML manifest files.
 
-    - Create a release and promote a release with the default settings, which includes the Unstable channel:
+    - Create and promote a release with the default settings, which includes the Unstable channel:
 
       ```bash
       replicated release create --auto
@@ -77,52 +75,30 @@ To create and promote a release using the replicated CLI:
 
       The `--auto` flag generates release notes and metadata based on the Git status.
   
-    - Create a release and promote with custom settings:
-
-      **Example:**
+    - Create a release and promote with custom settings, such as a specific channel:
 
       ```bash
-      replicated release create --yaml-dir YAML_DIR --promote CHANNEL
+      replicated release create --yaml-dir PATH_TO_APP_DIR --promote CHANNEL
       ```
 
       Replace:
 
-      - YAML_DIR with the root directory of the YAML application manifest files.
-      - CHANNEL with the name of the channel that you want to promote to. Channel names are case sensitive.
-    
-      For more information about commands and flag options, see [release create](/reference/replicated-cli-release-create) in _Reference_.
+      - `PATH_TO_APP_DIR` with the path to the directory of the YAML manifest files.
+      - `CHANNEL` with a channel name, such as Beta or Stable. Channel names are case sensitive.
 
-    **Example output:**
+    - Update an existing release:
+      ```
+      replicated release update SEQUENCE --yaml-dir PATH-TO-APP-DIRECTORY
+      ```
 
-    ```
-        • Reading Environment ✓
+      Replace:
+      
+      -  `SEQUENCE` with the release sequence number. This identifies the existing release to be updated.
+      -  `PATH_TO_APP_DIR` with the path to the directory of the YAML manifest files.
+     
+  For more information about the commands and flags, see [release create](../reference/replicated-cli-release-create) and [release update](../reference/replicated-cli-release-update) in the replicated CLI documentation.
 
-      Prepared to create release with defaults:
-
-          yaml-dir        "./manifests"
-          promote         "Unstable"
-          version         "Unstable-ba710e5"
-          release-notes   "CLI release of master triggered by exampleusername [SHA: d4173a4] [31 Oct 22 08:51 MDT]"
-          ensure-channel  true
-          lint-release    true
-
-      Create with these properties? [Y/n]
-    ```
-
-1. Type `y` and press **Enter** to confirm the prompt.
-
-  **Example output:**
-
-  ```text
-    • Reading manifests from ./manifests ✓
-    • Creating Release ✓
-      • SEQUENCE: 1
-    • Promoting ✓
-      • Channel VEr0nhJBBUdaWpPvOIK-SOryKZEwa3Mg successfully set to release 1
-  ```
-  The release is created and promoted to the specified or default channel.
-
-1. Verify that the release was promoted to the channel:
+1. Promote the release and verify that it was promoted to the specified channel:
 
   ```
   replicated release ls
