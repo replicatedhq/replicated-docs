@@ -1,9 +1,12 @@
+import RepositoryCicdNote from "../partials/releases/_repository-cicd-note.mdx"
 import CreateReleaseUi from "../partials/releases/_create-release-ui.mdx"
 import CreateNewAppCli from "../partials/releases/_create-new-app-cli.mdx"
 
 # Creating Releases with Standard Manifest Files
 
 This topic describes how to use the Replicated vendor portal or the replicated CLI to create and promote versions of your application using standard manifest files.
+
+<RepositoryCicdNote/>
 
 ## Using the Vendor Portal
 
@@ -13,51 +16,19 @@ This topic describes how to use the Replicated vendor portal or the replicated C
 
 ### Prerequisite
 
-Before you can create an application with the CLI for the first time, you must install the replicated CLI and create an API token. See [Installing the replicated CLI](/reference/replicated-cli-installing).
+Before you can create an application release with the CLI for the first time, you must install the replicated CLI and create an API token. See [Installing the replicated CLI](/reference/replicated-cli-installing).
 
 ### Create an Application
 
 <CreateNewAppCli/>
 
-### Import Application Files
-
-To create your first application release, first import the Kubernetes manifest files for the application.
-
-:::note
-For Kubernetes Operators, see [About Packaging Kubernetes Operators](operator-packaging-about).
-:::
-
-To get the sample manifest files:
-
-1. Run the following command to create and change to a `replicated-cli-tutorial` directory:
-
-  ```
-  mkdir replicated-cli-tutorial
-  cd replicated-cli-tutorial
-  ```
-
-1. Create a `/manifests` directory and download the sample manifest files from the [kots-default-yaml](https://github.com/replicatedhq/kots-default-yaml) repository in GitHub:
-
-  ```
-  mkdir ./manifests
-  curl -fSsL https://github.com/replicatedhq/kots-default-yaml/archive/refs/heads/main.zip | \
-    tar xzv --strip-components=1 -C ./manifests \
-    --exclude README.md --exclude LICENSE --exclude .gitignore
-  ```
-
-1. Verify that you can see the YAML files in the `replicated-cli-tutorial/manifests` folder:
-
-  ```
-  ls manifests/
-  ```
-  ```
-  example-configmap.yaml   example-service.yaml     kots-app.yaml            kots-lint-config.yaml    kots-support-bundle.yaml
-  example-deployment.yaml  k8s-app.yaml             kots-config.yaml         kots-preflight.yaml
-  ```
+Next, create and promote a release. 
 
 ### Create and Promote a Release
 
-1. (Recommended) Lint the manifest files and ensure that there are no errors in the YAML:
+To create and promote a release using the replicated CLI:
+
+1. Lint the manifest files and ensure that there are no errors in the YAML:
 
   ```bash
   replicated release lint --yaml-dir=YAML_DIR
@@ -87,17 +58,26 @@ To get the sample manifest files:
 
   Replace YAML_DIR with the root directory of the YAML application manifest files.
 
-1. From your application root directory, do one of the following:
+  You can also lint the file when you create a release, as shown in the next step.
 
-    - Create a release with the default settings, which includes the Unstable channel:
+1. From your application root directory, do one of the following actions to create, update, and promote a release. You can continue to update and lint an existing release until you are ready to promote it. Releases cannot be edited after they are promoted.
+
+    - Lint and create (or update) a release without promoting it:
+
+      ```bash
+      replicated release create --yaml-dir YAML_DIR --lint
+      ```
+      Replace YAML_DIR with the root directory of the YAML application manifest files.
+
+    - Create a release and promote a release with the default settings, which includes the Unstable channel:
 
       ```bash
       replicated release create --auto
       ```
 
-      The `--auto` flag generates release notes and metadata based on the Git status. 
+      The `--auto` flag generates release notes and metadata based on the Git status.
   
-    - Create a release with custom settings:
+    - Create a release and promote with custom settings:
 
       **Example:**
 
@@ -110,7 +90,7 @@ To get the sample manifest files:
       - YAML_DIR with the root directory of the YAML application manifest files.
       - CHANNEL with the name of the channel that you want to promote to. Channel names are case sensitive.
     
-      For more information about flag options, see [release create](/reference/replicated-cli-release-create) in _Reference_.
+      For more information about commands and flag options, see [release create](/reference/replicated-cli-release-create) in _Reference_.
 
     **Example output:**
 
