@@ -51,12 +51,6 @@ The following table describes the instance data fields that can generate events 
     <td>App Channel</td>
   </tr> 
   <tr>
-    <td><code>kotsVersion</code></td>
-    <td>The version of the Replicated app manager that the instance is running. The app manager version is displayed as a Semantic Versioning compliant string.</td>
-    <td>string</td>
-    <td>KOTS Version</td>
-  </tr> 
-  <tr>
     <td><code>versionLabel</code></td>
     <td>The version label of the release that the instance is currently running. The <code>versionLabel</code> is the version assigned to the release when the release was promoted.</td>
     <td>string</td>
@@ -160,6 +154,23 @@ The following table describes the instance data fields that can generate events 
     <td><code>kurlOSVersion</code>*</td>
     <td>One or more operating systems detected across cluster nodes. Applies only to cluster provisioned by the Kubernetes installer.</td>
   </tr>
+</table>
+
+### KOTS Status Events
+
+<table>
+  <tr>
+    <th>Field Name</th>
+    <th>Description</th>
+    <th>Type</th>
+    <th>Label</th>
+  </tr>
+  <tr>
+    <td><code>kotsVersion</code></td>
+    <td>The version of the Replicated app manager that the instance is running. The app manager version is displayed as a Semantic Versioning compliant string.</td>
+    <td>string</td>
+    <td>KOTS Version</td>
+  </tr> 
 </table>
 
 ### Preflight Check Events
