@@ -1,6 +1,6 @@
 # Event Data
 
-This topic describes the instance data fields that the Replicated vendor portal uses to generate events for the instance.
+This topic describes the application instance data fields that the Replicated vendor portal uses to generate events for the instance.
 
 ## About Events
 
@@ -8,9 +8,8 @@ When the vendor portal receives instance data from the app manager, it evaluates
 
 In addition to creating events for changes in data fields sent by the app manager, the vendor portal also generates events when there is a change in the value of a computed metric. 
 
+The vendor portal displays these insights for each active application instance in a **Instance details** dashboard. 
 For more information about using the vendor portal **Instance details** page to monitor active instances of your application, see [Monitoring Application Instances](monitoring-instance-details).
-
-## Instance Events
 
 Each event that the vendor portal generates for application instances has the following fields:
 
@@ -18,15 +17,25 @@ Each event that the vendor portal generates for application instances has the fo
 * `previousValue`
 * `newValue` 
 
-The section describes each event, including:
-* Field Name: The `fieldName` associated with the event.
-* Description: 
-* Type: The data type of the event. Possible values are string, number, and boolean.
-* Label: The label for the event in the **Instance Activity** stream in the vendor portal **Instance Details** page. For more information, see
+## Instance Events
+
+The section describes each type of event that the vendor portal generates for active application instances. Events in the vendor portal are grouped into one of the following categories:
+
+* [Application Installation and Upgrade Events](#install-upgrade)
+* [Cluster Status Events](#cluster)
+* [Infrastructure Status Events](#infrastructure)
+* [KOTS Status Events](#kots)
+* [Preflight Check Events](#preflight)
+* [Upstream Update Events](#upstream)
+
+The tables in this section include the following details about each event type:
+
+* **Field Name**: The `fieldName` associated with the event.
+* **Description**: A description of the field, including if the field is sent by the app manager or computed by the vendor portal.
+* **Type**: The data type of the event. Possible values are string, number, and boolean.
+* **Label**: The label for the event that displays in the **Instance Activity** stream in the vendor portal **Instance Details** page. For more information, see [Instance Activity](monitoring-instance-details#instance-activity) in _Monitoring Application Instances_.
 
 ### Application Installation and Upgrade Events {#install-upgrade}
-
-The following table describes the instance data fields that can generate events related to application installation and upgrade. 
 
 <table>
   <tr>
@@ -58,7 +67,7 @@ The following table describes the instance data fields that can generate events 
   </tr> 
 </table>
 
-### Cluster Status Events
+### Cluster Status Events {#cluster}
 
 <table>
   <tr>
@@ -84,6 +93,8 @@ The following table describes the instance data fields that can generate events 
   <tr>
     <td><code>k8sVersion</code></td>
     <td>The version of Kubernetes running in the cluster.</td>
+    <td></td>
+    <td></td>
   </tr>
   <tr>
     <td><code>k8sDistribution</code></td>
@@ -115,18 +126,20 @@ The following table describes the instance data fields that can generate events 
   <tr>
     <td><code>kurlInstallerSpecID</code></td>
     <td>The ID of the Kubernetes installer specification that provisioned the cluster. An installer specification is a manifest file that has <code>apiVersion: cluster.kurl.sh/v1beta1</code> and <code>kind: Installer</code>.A <code>kurlInstallerSpecID</code> event indicates that a new Installer specification was added. For more information, see <a href="packaging-embedded-kubernetes">Creating a Kubernetes Installer</a>.</td>
-  </tr>
-  <td>string</td>
-  <td>New kURL Installer</td>
+    <td>string</td>
+    <td>New kURL Installer</td>
+  </tr>  
 </table>
 
 
-### Infrastructure Status Events
+### Infrastructure Status Events {#infrastructure}
 
 <table>
   <tr>
     <th>Field Name</th>
     <th>Description</th>
+    <th>Type</th>
+    <th>Label</th>
   </tr> 
   <tr>
     <td><code>cloudProvider</code></td>
@@ -139,24 +152,32 @@ The following table describes the instance data fields that can generate events 
         <li>DigitalOcean</li>
       </ul>
     </td>
+    <td></td>
+    <td></td>
   </tr>
   <tr>
     <td><code>cloudProviderRegion</code></td>
     <td>
       <p>The cloud provider region where the instance is running. For example, <code>us-central1-b</code></p>
     </td>
+    <td></td>
+    <td></td>
   </tr>  
     <tr>
     <td><code>kurlOSFlavor</code>*</td>
     <td>One or more operating systems detected across cluster nodes. Applies only to cluster provisioned by the Kubernetes installer.</td>
+    <td></td>
+    <td></td>
   </tr>
   <tr>
     <td><code>kurlOSVersion</code>*</td>
     <td>One or more operating systems detected across cluster nodes. Applies only to cluster provisioned by the Kubernetes installer.</td>
+    <td></td>
+    <td></td>
   </tr>
 </table>
 
-### KOTS Status Events
+### KOTS Status Events {#kots}
 
 <table>
   <tr>
@@ -173,7 +194,7 @@ The following table describes the instance data fields that can generate events 
   </tr> 
 </table>
 
-### Preflight Check Events
+### Preflight Check Events {#preflight}
 
 Preflight check data is sent only by instances on the app manager version 1.93.0 or later.
 
@@ -181,33 +202,42 @@ Preflight check data is sent only by instances on the app manager version 1.93.0
   <tr>
     <th>Field Name</th>
     <th>Description</th>
+    <th>Type</th>
+    <th>Label</th>
   </tr> 
   <tr>
     <td><code>preflightCheckStatus</code></td>
-    <td>
-    </td>
+    <td></td>
+    <td></td>
+    <td></td>
   </tr>
 </table>
 
-## Upstream Update Events
+### Upstream Update Events {#upstream}
 
 <table>
   <tr>
     <th>Field Name</th>
     <th>Description</th>
+    <th>Type</th>
+    <th>Label</th>
   </tr> 
   <tr>
     <td><code>versionAge</code></td>
-    <td>
-    </td>
+    <td></td>
+    <td>number</td>
+    <td></td>
   </tr>
   <tr>
     <td><code>versionAgeSinceLatest</code></td>
-    <td>
-    </td>
+    <td></td>
+    <td>number</td>
+    <td></td>
   </tr>  
   <tr>
     <td><code>numberVersionsBehind</code></td>
+    <td></td>
+    <td>number</td>
     <td></td>
   </tr>
 </table>
