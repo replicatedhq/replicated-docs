@@ -6,20 +6,20 @@ This topic describes the application instance data fields that the Replicated ve
 
 When the vendor portal receives instance data from the app manager, it evaluates each data field to determine if there was a change in its value. For each field that changes in value, the vendor portal creates an _event_ to record the change. For example, a change from `ready` to `degraded` in the `appStatus` data field generates an event in the vendor portal.
 
-In addition to creating events for changes in data fields sent by the app manager, the vendor portal also generates events when there is a change in the value of a computed metric. 
-
-The vendor portal displays these insights for each active application instance in a **Instance details** dashboard. 
-For more information about using the vendor portal **Instance details** page to monitor active instances of your application, see [Monitoring Application Instances](monitoring-instance-details).
+In addition to creating events for changes in data fields sent by the app manager, the vendor portal also generates events when there is a change in the value of a computed metric. For example, the vendor portal computes a `numberVersionsBehind` metric that tracks the number of versions behind the latest available version for the instance. When a new version becomes available to the instance for upgrade, the vendor portal generates an event to indicate the change in the value of the `numberVersionsBehind` metric.
 
 Each event that the vendor portal generates for application instances has the following fields:
 
-* `fieldName` 
-* `previousValue`
-* `newValue` 
+* `fieldName`: The instance data field that generated the event. For example, `appStatus`. 
+* `previousValue`: The value of the data field before the vendor portal generated the event.
+* `newValue`: The value of the data field after the vendor portal generated the event.
+
+The vendor portal uses events to display insights for each active application instance in a **Instance details** dashboard. 
+For more information about using the vendor portal **Instance details** page to monitor active instances of your application, see [Monitoring Application Instances](monitoring-instance-details).
 
 ## Instance Events
 
-The section describes each type of event that the vendor portal generates for active application instances. Events in the vendor portal are grouped into one of the following categories:
+This section describes each type of event that the vendor portal generates for active application instances. Events in the vendor portal are grouped into one of the following categories:
 
 * [Application Installation and Upgrade Events](#install-upgrade)
 * [Cluster Status Events](#cluster)
@@ -207,9 +207,9 @@ Preflight check data is sent only by instances on the app manager version 1.93.0
   </tr> 
   <tr>
     <td><code>preflightCheckStatus</code></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>Indicates when the preflight checks are passed or skipped for an application version.</td>
+    <td>string</td>
+    <td>Preflight Checks Passed</td>
   </tr>
 </table>
 
@@ -226,18 +226,18 @@ Preflight check data is sent only by instances on the app manager version 1.93.0
     <td><code>versionAge</code></td>
     <td></td>
     <td>number</td>
-    <td></td>
+    <td>App Version: X days since published</td>
   </tr>
   <tr>
     <td><code>versionAgeSinceLatest</code></td>
     <td></td>
     <td>number</td>
-    <td></td>
+    <td>App Version: X days behind latest</td>
   </tr>  
   <tr>
     <td><code>numberVersionsBehind</code></td>
     <td></td>
     <td>number</td>
-    <td></td>
+    <td>Versions Behind</td>
   </tr>
 </table>
