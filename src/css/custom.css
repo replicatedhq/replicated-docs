@@ -190,4 +190,8 @@ h3[id^="bug-fixes"] a {
   text-decoration: none;
 }
 
+/* Sidebar styling */
 
+.theme-doc-sidebar-item-category-level-1 {
+  font-weight: bolder;
+}
