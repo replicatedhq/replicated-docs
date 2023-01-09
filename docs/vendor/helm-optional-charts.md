@@ -121,9 +121,10 @@ spec:
   # values are used in the customer environment, as a pre-render step
   # these values will be supplied to helm template
   values:
-    postgresqlUsername: username
-    postgreslPassword: "repl{{ ConfigOption `embedded_postgres_password` }}"
-    postgresqlDatabase: mydatabase
+    auth:
+      username: username
+      password: "repl{{ ConfigOption `embedded_postgres_password` }}"
+      database: mydatabase
 
   # builder values provide a way to render the chart with all images
   # and manifests. this is used in replicated to create airgap packages
