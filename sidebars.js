@@ -90,11 +90,87 @@ const sidebars = {
         'vendor/releases-updating',
         {
           type: 'category',
-          label: 'Working with Manifest Files',
+          label: 'Packaging an Application',
           items: [
+            {
+                type: 'category',
+                label: 'Customizing the Configuration Screen',
+                items: [
+                  'vendor/config-screen-about',
+                  'vendor/admin-console-customize-config-screen',
+                  'vendor/config-screen-map-inputs',
+                  'vendor/helm-mapping-example',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Packaging Helm Charts',
+              items: [
+                {
+                  type: 'category',
+                  label: 'Overview',
+                  items: [
+                    'vendor/helm-overview',
+                    'vendor/helm-processing',
+                  ],
+                },
+                'vendor/helm-release',
+                'vendor/helm-install',
+                {
+                  type: 'category',
+                  label: 'Using Native Helm',
+                  items: [
+                    'vendor/helm-installing-native-helm',
+                    'vendor/helm-native-helm-install-order',
+                  ],
+                },
+                {
+                  type: 'category',
+                  label: 'Including Conditional Resources',
+                  items: [
+                    'vendor/helm-optional-charts',
+                    'vendor/helm-chart-components',
+                    'vendor/helm-optional-value-keys',
+                  ],
+                },
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Adding Persistent Data Stores',
+              items: [
+                'vendor/database-config-adding-options',
+                'vendor/tutorial-adding-db-config',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Customizing the Admin Console and Download Portal',
+              items: [
+                'vendor/admin-console-customize-app-icon',
+                'vendor/admin-console-display-app-status',
+                'vendor/admin-console-adding-buttons-links',
+                'vendor/admin-console-prometheus-monitoring',
+              ],
+            },
+            'vendor/packaging-ingress',
+            'vendor/packaging-kots-versions',
             'vendor/packaging-include-resources',
+            'vendor/namespaces',
             'vendor/packaging-using-tls-certs',
             'vendor/packaging-cleaning-up-jobs',
+            'vendor/packaging-rbac',
+            'vendor/identity-service-configuring',
+            {
+              type: 'category',
+              label: 'Packaging a Kubernetes Operator Application',
+              items: [
+                'vendor/operator-packaging-about',
+                'vendor/operator-defining-additional-images',
+                'vendor/operator-referencing-images',
+                'vendor/operator-defining-additional-namespaces',
+              ],
+            },
           ],
         },
       ],
@@ -108,77 +184,6 @@ const sidebars = {
         'vendor/packaging-private-registry-cname',
         'vendor/packaging-private-registry-security',
         'vendor/tutorial-ecr-private-images',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Helm Charts',
-      items: [
-        {
-          type: 'category',
-          label: 'Overview',
-          items: [
-            'vendor/helm-overview',
-            'vendor/helm-processing',
-          ],
-        },
-        'vendor/helm-release',
-        'vendor/helm-install',
-        {
-          type: 'category',
-          label: 'Using Native Helm',
-          items: [
-            'vendor/helm-installing-native-helm',
-            'vendor/helm-native-helm-install-order',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Including Conditional Resources',
-          items: [
-            'vendor/helm-optional-charts',
-            'vendor/helm-chart-components',
-            'vendor/helm-optional-value-keys',
-          ],
-        },
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Configuration Screen',
-      items: [
-        'vendor/config-screen-about',
-        'vendor/admin-console-customize-config-screen',
-        'vendor/config-screen-map-inputs',
-        'vendor/helm-mapping-example',
-        {
-          type: 'category',
-          label: 'Adding Persistent Data Stores',
-          items: [
-            'vendor/database-config-adding-options',
-            'vendor/tutorial-adding-db-config',
-          ],
-        },
-    ],
-  },
-    {
-      type: 'category',
-      label: 'Admin Console and Download Portal',
-      items: [
-        'vendor/admin-console-customize-app-icon',
-        'vendor/admin-console-display-app-status',
-        'vendor/admin-console-adding-buttons-links',
-        'vendor/admin-console-prometheus-monitoring',
-        'vendor/packaging-rbac',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Kubernetes Installers',
-      items: [
-        'vendor/packaging-embedded-kubernetes',
-        'vendor/packaging-installer-storage',
-        'vendor/preflight-host-preflights',
       ],
     },
     {
@@ -232,16 +237,7 @@ const sidebars = {
           'vendor/planning-questionnaire',
           'vendor/releases-sharing-license-install-script',
           'vendor/packaging-air-gap-excluding-minio',
-          'vendor/namespaces',
           'vendor/releases-configvalues',
-          {
-            type: 'category',
-            label: 'Integrating with CI/CD',
-            items: [
-              'vendor/repository-workflow-and-tagging-releases',
-              'vendor/tutorial-ci-cd-integration',
-            ],
-          },
         ],
       },
     {
