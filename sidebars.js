@@ -88,6 +88,15 @@ const sidebars = {
         'vendor/releases-semantic-versioning',
         'vendor/releases-creating-releases', 
         'vendor/releases-updating',
+        {
+          type: 'category',
+          label: 'Working with Manifest Files',
+          items: [
+            'vendor/packaging-include-resources',
+            'vendor/packaging-using-tls-certs',
+            'vendor/packaging-cleaning-up-jobs',
+          ],
+        },
       ],
     },
     {
@@ -160,6 +169,7 @@ const sidebars = {
         'vendor/admin-console-display-app-status',
         'vendor/admin-console-adding-buttons-links',
         'vendor/admin-console-prometheus-monitoring',
+        'vendor/packaging-rbac',
       ],
     },
     {
@@ -189,6 +199,9 @@ const sidebars = {
         'vendor/snapshots-hooks',
       ],
     },
+    'vendor/identity-service-configuring',
+    'vendor/packaging-ingress',
+    'vendor/packaging-kots-versions',
     {
       type: 'category',
       label: 'Kubernetes Operators',
@@ -199,14 +212,6 @@ const sidebars = {
         'vendor/operator-defining-additional-namespaces',
       ],
     },
-    'vendor/packaging-ingress',
-            'vendor/packaging-kots-versions',
-            'vendor/packaging-include-resources',
-            'vendor/namespaces',
-            'vendor/packaging-using-tls-certs',
-            'vendor/packaging-cleaning-up-jobs',
-            'vendor/packaging-rbac',
-            'vendor/identity-service-configuring',
     {
       type: 'category',
       label: 'Customer Licenses',
@@ -227,6 +232,7 @@ const sidebars = {
           'vendor/planning-questionnaire',
           'vendor/releases-sharing-license-install-script',
           'vendor/packaging-air-gap-excluding-minio',
+          'vendor/namespaces',
           'vendor/releases-configvalues',
           {
             type: 'category',
