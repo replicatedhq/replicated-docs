@@ -11,7 +11,7 @@ If this value is not provided, the chart will be included.
 
 ## Example
 For an example, let's use an example application that has a Postgres database.
-The current community supported Postgres Helm chart is available at https://github.com/helm/charts/tree/master/stable/postgresql.
+The current community supported Postgres Helm chart is available at https://github.com/bitnami/charts/tree/main/bitnami/postgresql.
 For this example, we want to let the user provide their own Postgres instance (outside of the application), or use an embedded, simple Postgres service for demos and simple installations.
 
 
@@ -89,9 +89,9 @@ stringData:
 
 Next, we can take the Helm chart and upload it to our application.
 
-```shell
-helm repo update
-helm fetch stable/postgresl
+```
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm fetch bitnami/postgresql
 ```
 
 After dropping this file into the file tree in the [vendor portal](https://vendor.replicated.com), a new file named `postgresql.yaml` is created.
@@ -108,14 +108,23 @@ spec:
   # chart identifies a matching chart from a .tgz
   chart:
     name: postgresql
-    chartVersion: 8.1.2
+    chartVersion: 12.1.7
 
+  # helmVersion identifies the Helm Version used to render the Chart. Default is v2.
+  helmVersion: v3
+
+  # useHelmInstall identifies whether this Helm chart will use the
+  # Replicated Helm installation (false) or native Helm installation (true). Default is false.
+  # Native Helm installations are only available for Helm v3 charts.
+  useHelmInstall: true
+  
   # values are used in the customer environment, as a pre-render step
   # these values will be supplied to helm template
   values:
-    postgresqlUsername: username
-    postgreslPassword: "repl{{ ConfigOption `embedded_postgres_password` }}"
-    postgresqlDatabase: mydatabase
+    auth:
+      username: username
+      password: "repl{{ ConfigOption `embedded_postgres_password` }}"
+      database: mydatabase
 
   # builder values provide a way to render the chart with all images
   # and manifests. this is used in replicated to create airgap packages
