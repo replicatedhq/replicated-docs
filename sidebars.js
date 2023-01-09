@@ -101,130 +101,124 @@ const sidebars = {
         'vendor/tutorial-ecr-private-images',
       ],
     },
-      {
-        type: 'category',
-        label: 'Packaging an Application',
-        items: [
-          {
-              type: 'category',
-              label: 'Customizing the Configuration Screen',
-              items: [
-                'vendor/config-screen-about',
-                'vendor/admin-console-customize-config-screen',
-                'vendor/config-screen-map-inputs',
-                'vendor/helm-mapping-example',
-            ],
-          },
-          {
-            type: 'category',
-            label: 'Packaging Helm Charts',
-            items: [
-              {
-                type: 'category',
-                label: 'Overview',
-                items: [
-                  'vendor/helm-overview',
-                  'vendor/helm-processing',
-                ],
-              },
-              'vendor/helm-release',
-              'vendor/helm-install',
-              {
-                type: 'category',
-                label: 'Using Native Helm',
-                items: [
-                  'vendor/helm-installing-native-helm',
-                  'vendor/helm-native-helm-install-order',
-                ],
-              },
-              {
-                type: 'category',
-                label: 'Including Conditional Resources',
-                items: [
-                  'vendor/helm-optional-charts',
-                  'vendor/helm-chart-components',
-                  'vendor/helm-optional-value-keys',
-                ],
-              },
-            ],
-          },
-          {
-            type: 'category',
-            label: 'Adding Persistent Data Stores',
-            items: [
-              'vendor/database-config-adding-options',
-              'vendor/tutorial-adding-db-config',
-            ],
-          },
-          {
-            type: 'category',
-            label: 'Customizing the Admin Console and Download Portal',
-            items: [
-              'vendor/admin-console-customize-app-icon',
-              'vendor/admin-console-display-app-status',
-              'vendor/admin-console-adding-buttons-links',
-              'vendor/admin-console-prometheus-monitoring',
-            ],
-          },
-          'vendor/packaging-ingress',
-          'vendor/packaging-kots-versions',
-          'vendor/packaging-include-resources',
-          'vendor/namespaces',
-          'vendor/packaging-using-tls-certs',
-          'vendor/packaging-cleaning-up-jobs',
-          'vendor/packaging-rbac',
-          'vendor/identity-service-configuring',
-        ],
-      },
-      {
-        type: 'category',
-        label: 'Kubernetes Installers',
-        items: [
-          'vendor/packaging-embedded-kubernetes',
-          'vendor/packaging-installer-storage',
-          'vendor/preflight-host-preflights',
-        ],
-      },
-      {
-        type: 'category',
-        label: 'Preflights and Support Bundles',
-        items: [
-          'vendor/preflight-support-bundle-creating',
-          'vendor/support-modular-support-bundle-specs',
-          'vendor/support-online-support-bundle-specs',
-        ],
-      },
-      {
-        type: 'category',
-        label: 'Backup and Restore',
-        items: [
-          'vendor/snapshots-overview',
-          'vendor/snapshots-configuring-backups',
-          'vendor/snapshots-hooks',
+    {
+      type: 'category',
+      label: 'Helm Charts',
+      items: [
+        {
+          type: 'category',
+          label: 'Overview',
+          items: [
+            'vendor/helm-overview',
+            'vendor/helm-processing',
+          ],
+        },
+        'vendor/helm-release',
+        'vendor/helm-install',
+        {
+          type: 'category',
+          label: 'Using Native Helm',
+          items: [
+            'vendor/helm-installing-native-helm',
+            'vendor/helm-native-helm-install-order',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Including Conditional Resources',
+          items: [
+            'vendor/helm-optional-charts',
+            'vendor/helm-chart-components',
+            'vendor/helm-optional-value-keys',
+          ],
+        },
       ],
     },
-      {
-        type: 'category',
-        label: 'Kubernetes Operators',
-        items: [
-          'vendor/operator-packaging-about',
-          'vendor/operator-defining-additional-images',
-          'vendor/operator-referencing-images',
-          'vendor/operator-defining-additional-namespaces',
-        ],
-      },
-      {
-        type: 'category',
-        label: 'Customer Licenses',
-        items: [
-          'vendor/licenses-about',
-          'vendor/licenses-about-types',
-          'vendor/releases-creating-customer',
-          'vendor/licenses-using-builtin-fields',
-          'vendor/licenses-adding-custom-fields',
-          'vendor/licenses-referencing-fields',
-        ],
-      },
+    {
+      type: 'category',
+      label: 'Configuration Screen',
+      items: [
+        'vendor/config-screen-about',
+        'vendor/admin-console-customize-config-screen',
+        'vendor/config-screen-map-inputs',
+        'vendor/helm-mapping-example',
+        {
+          type: 'category',
+          label: 'Adding Persistent Data Stores',
+          items: [
+            'vendor/database-config-adding-options',
+            'vendor/tutorial-adding-db-config',
+          ],
+        },
+    ],
+  },
+    {
+      type: 'category',
+      label: 'Admin Console and Download Portal',
+      items: [
+        'vendor/admin-console-customize-app-icon',
+        'vendor/admin-console-display-app-status',
+        'vendor/admin-console-adding-buttons-links',
+        'vendor/admin-console-prometheus-monitoring',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Kubernetes Installers',
+      items: [
+        'vendor/packaging-embedded-kubernetes',
+        'vendor/packaging-installer-storage',
+        'vendor/preflight-host-preflights',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Preflights and Support Bundles',
+      items: [
+        'vendor/preflight-support-bundle-creating',
+        'vendor/support-modular-support-bundle-specs',
+        'vendor/support-online-support-bundle-specs',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Backup and Restore',
+      items: [
+        'vendor/snapshots-overview',
+        'vendor/snapshots-configuring-backups',
+        'vendor/snapshots-hooks',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Kubernetes Operators',
+      items: [
+        'vendor/operator-packaging-about',
+        'vendor/operator-defining-additional-images',
+        'vendor/operator-referencing-images',
+        'vendor/operator-defining-additional-namespaces',
+      ],
+    },
+    'vendor/packaging-ingress',
+            'vendor/packaging-kots-versions',
+            'vendor/packaging-include-resources',
+            'vendor/namespaces',
+            'vendor/packaging-using-tls-certs',
+            'vendor/packaging-cleaning-up-jobs',
+            'vendor/packaging-rbac',
+            'vendor/identity-service-configuring',
+    {
+      type: 'category',
+      label: 'Customer Licenses',
+      items: [
+        'vendor/licenses-about',
+        'vendor/licenses-about-types',
+        'vendor/releases-creating-customer',
+        'vendor/licenses-using-builtin-fields',
+        'vendor/licenses-adding-custom-fields',
+        'vendor/licenses-referencing-fields',
+      ],
+    },
       {
         type: 'category',
         label: 'Distribute your Application',
@@ -277,6 +271,7 @@ const sidebars = {
     },
     {
       type: 'category',
+      className: 'main-section',
       label: 'Reference',
       items: [
         {
@@ -470,6 +465,7 @@ const sidebars = {
     },
     {
       type: 'category',
+      className: 'main-section',
       label: 'Release Notes',
       items: [
         'release-notes/rn-whats-new',
@@ -479,6 +475,7 @@ const sidebars = {
     },
     {
       type: 'category',
+      className: 'main-section',
       label: 'Enterprise User Documentation',
       items: [
         {
