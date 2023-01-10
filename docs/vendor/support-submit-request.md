@@ -1,5 +1,3 @@
-import CollabPrereq from "../partials/collab-repo/_collab-prereq.mdx"
-
 # Submitting a Support Request
 
 You can submit a support request and a support bundle using the Replicated vendor portal. Uploading a support bundle is secure and helps the Replicated support team troubleshoot your application faster. Severity 1 issues are resolved three times faster when you submit a support bundle with your support request.
@@ -11,11 +9,11 @@ If your customer cannot generate a support bundle using the admin console and ne
 
 ### Prerequisites
 
-The following prerequisites must be met to submit a support ticket:
+The following prerequisites must be met to submit support requests:
 
 * Your vendor portal account must be configured for access to support before you can submit support requests. Contact your administrator to ensure that you are added to the correct team.
 
-* <CollabPrereq/>
+* Your team must have a replicated-collab repository configured. If you are a team administrator and need information about getting a collab repository set up and adding users, see [Adding Users to the Collab Repository](https://deploy-preview-874--replicated-docs.netlify.app/vendor/team-management-github-username#add).
 
 
 ### Submit a Support Request
