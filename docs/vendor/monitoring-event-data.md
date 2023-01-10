@@ -6,7 +6,7 @@ This topic describes the application instance data fields that the Replicated ve
 
 When the vendor portal receives instance data from the app manager, it evaluates each data field to determine if there was a change in its value. For each field that changes in value, the vendor portal creates an _event_ to record the change. For example, a change from `ready` to `degraded` in the `appStatus` data field generates an event in the vendor portal.
 
-In addition to creating events for changes in data fields sent by the app manager, the vendor portal also generates events when there is a change in the value of a computed metric. For example, the vendor portal computes a `numberVersionsBehind` metric that tracks the number of versions behind the latest available version for the instance. When a new version becomes available to the instance for upgrade, the vendor portal generates an event to indicate the change in the value of the `numberVersionsBehind` metric.
+In addition to creating events for changes in data fields sent by the app manager, the vendor portal also generates events for changes in the value of a computed metric. For example, the vendor portal computes a `numberVersionsBehind` metric that tracks the number of versions behind the latest available version for the instance. When the instance checks for updates and the vendor portal identifies a new version that is available to the instance, then the vendor portal generates an event to indicate the change in the value of the `numberVersionsBehind` metric. The vendor portal updates the values of computed metrics each time the app manager sends instance data.
 
 Each event that the vendor portal generates for application instances has the following fields:
 
@@ -19,7 +19,7 @@ For more information about using the vendor portal **Instance details** page to 
 
 ## Instance Events
 
-This section describes each type of event that the vendor portal generates for active application instances. Events in the vendor portal are grouped into one of the following categories:
+This section describes each type of event that the vendor portal generates for active application instances. Events in the vendor portal are grouped into the following categories:
 
 * [Application Installation and Upgrade Events](#install-upgrade)
 * [Cluster Status Events](#cluster)
@@ -31,8 +31,8 @@ This section describes each type of event that the vendor portal generates for a
 The tables in this section include the following details about each event type:
 
 * **Field Name**: The `fieldName` associated with the event.
-* **Description**: A description of the field, including if the field is sent by the app manager or computed by the vendor portal.
-* **Type**: The data type of the event. Possible values are string, number, and boolean.
+* **Description**: A description of the data field.
+* **Type**: The data type of the field. Possible values are string, number, and boolean.
 * **Label**: The label for the event that displays in the **Instance Activity** stream in the vendor portal **Instance Details** page. For more information, see [Instance Activity](monitoring-instance-details#instance-activity) in _Monitoring Application Instances_.
 
 ### Application Installation and Upgrade Events {#install-upgrade}
@@ -47,8 +47,8 @@ The tables in this section include the following details about each event type:
   <tr>
     <td><code>appStatus</code></td>
     <td>
-      <p>A string that represents the availability status of the application.</p>
-      <p>Possible values: ready, updating, degraded, unavailable, missing. For more information about how the app manager determines <code>appStatus</code>, see <a href="/enterprise/status-viewing-details#resource-statuses">Resource Statuses</a> in <em>Viewing Status Details</em>.</p>
+      <p>A string that represents the status of the application.</p>
+      <p>Possible values: Ready, Updating, Degraded, Unavailable, Missing. For more information about how the app manager determines <code>appStatus</code>, see <a href="/enterprise/status-viewing-details#resource-statuses">Resource Statuses</a> in <em>Viewing Status Details</em>.</p>
     </td>
     <td>string</td>
     <td>App Status</td>
@@ -61,7 +61,7 @@ The tables in this section include the following details about each event type:
   </tr> 
   <tr>
     <td><code>versionLabel</code></td>
-    <td>The version label of the release that the instance is currently running. The <code>versionLabel</code> is the version assigned to the release when the release was promoted.</td>
+    <td>The version label of the release that the instance is currently running. The <code>versionLabel</code> is the version that you assigned to the release when promoting it to a channel.</td>
     <td>string</td>
     <td>App Version</td>
   </tr> 
@@ -113,19 +113,24 @@ The tables in this section include the following details about each event type:
   </tr>
   <tr>
     <td><code>kurlNodeCountTotal</code></td>
-    <td>Total number of nodes in the cluster. Applies only to clusters provisioned by the Kubernetes installer.</td>
+    <td><p>Total number of nodes in the cluster.</p>
+    <p><strong>Note:</strong> Applies only to clusters provisioned by the Kubernetes installer.</p></td>
     <td>number</td>
     <td>kURL Nodes Total</td>
   </tr>
   <tr>
     <td><code>kurlNodeCountReady</code></td>
-    <td>Number of nodes in the cluster that are in a healthy state and ready to run Pods. Applies only to clusters provisioned by the Kubernetes installer.</td>
+    <td><p>Number of nodes in the cluster that are in a healthy state and ready to run Pods.</p>
+    <p><strong>Note:</strong> Applies only to clusters provisioned by the Kubernetes installer.</p>
+    </td>
     <td>number</td>
     <td>kURL Nodes Ready</td>
   </tr>
   <tr>
     <td><code>kurlInstallerSpecID</code></td>
-    <td>The ID of the Kubernetes installer specification that provisioned the cluster. An installer specification is a manifest file that has <code>apiVersion: cluster.kurl.sh/v1beta1</code> and <code>kind: Installer</code>.A <code>kurlInstallerSpecID</code> event indicates that a new Installer specification was added. For more information, see <a href="packaging-embedded-kubernetes">Creating a Kubernetes Installer</a>.</td>
+    <td><p>The ID of the Kubernetes installer specification that provisioned the cluster. An installer specification is a manifest file that has <code>apiVersion: cluster.kurl.sh/v1beta1</code> and <code>kind: Installer</code>.A <code>kurlInstallerSpecID</code> event indicates that a new Installer specification was added. For more information, see <a href="packaging-embedded-kubernetes">Creating a Kubernetes Installer</a>.</p>
+    <p><strong>Note:</strong> Applies only to clusters provisioned by the Kubernetes installer.</p>
+    </td>
     <td>string</td>
     <td>New kURL Installer</td>
   </tr>  
@@ -152,8 +157,8 @@ The tables in this section include the following details about each event type:
         <li>DigitalOcean</li>
       </ul>
     </td>
-    <td></td>
-    <td></td>
+    <td>string</td>
+    <td>Cloud Provider</td>
   </tr>
   <tr>
     <td><code>cloudProviderRegion</code></td>
@@ -165,15 +170,19 @@ The tables in this section include the following details about each event type:
   </tr>  
     <tr>
     <td><code>kurlOSFlavor</code>*</td>
-    <td>One or more operating systems detected across cluster nodes. Applies only to cluster provisioned by the Kubernetes installer.</td>
-    <td></td>
-    <td></td>
+    <td><p>One or more operating systems detected across cluster nodes.</p>
+    <p><strong>Note:</strong> Applies only to clusters provisioned by the Kubernetes installer.</p>
+    </td>
+    <td>string</td>
+    <td>Cloud Region</td>
   </tr>
   <tr>
     <td><code>kurlOSVersion</code>*</td>
-    <td>One or more operating systems detected across cluster nodes. Applies only to cluster provisioned by the Kubernetes installer.</td>
-    <td></td>
-    <td></td>
+    <td><p>One or more operating systems detected across cluster nodes.</p>
+    <p><strong>Note:</strong> Applies only to clusters provisioned by the Kubernetes installer.</p>
+    </td>
+    <td>string</td>
+    <td>Operating System Version</td>
   </tr>
 </table>
 
@@ -224,19 +233,28 @@ Preflight check data is sent only by instances on the app manager version 1.93.0
   </tr> 
   <tr>
     <td><code>versionAge</code></td>
-    <td></td>
+    <td>
+        <p>The number of days since the version that the instance is currently running was promoted to the channel.</p>
+        <p>The <code>versionAge</code> metric is computed by the vendor portal each time the app manager sends instance data.</p>
+    </td>
     <td>number</td>
     <td>App Version: X days since published</td>
   </tr>
   <tr>
     <td><code>versionAgeSinceLatest</code></td>
-    <td></td>
+    <td>
+      <p>The number of days between when the version that the instance is currently running was promoted to the channel, and when the latest version available on the channel was promoted.</p>
+      <p>The <code>versionAgeSinceLatest</code> metric is computed by the vendor portal each time the app manager sends instance data.</p>
+    </td>
     <td>number</td>
     <td>App Version: X days behind latest</td>
   </tr>  
   <tr>
     <td><code>numberVersionsBehind</code></td>
-    <td></td>
+    <td>
+      <p>The number of versions between the version that the instance is currently running and the latest version available on the channel.</p>
+      <p>The <code>numberVersionsBehind</code> metric is computed by the vendor portal each time the app manager sends instance data.</p>
+    </td>
     <td>number</td>
     <td>Versions Behind</td>
   </tr>
