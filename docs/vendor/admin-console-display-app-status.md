@@ -53,7 +53,7 @@ The app manager uses the least available resource status to represent the aggreg
 ## Add Status Informers
 
 To add a status informer, include the `statusInformers` property in the Application custom resource manifest file.
-Status informers are in the format `[namespace/]type/name` where namespace is optional and defaults to the current namespace.
+Status informers are in the format `[namespace/]type/name`, where namespace is optional and defaults to the current namespace.
 
 **Example**:
 
