@@ -205,7 +205,9 @@ The tables in this section include the following details about each event type:
 
 ### Preflight Check Events {#preflight}
 
-Preflight check data is sent only by instances on the app manager version 1.93.0 or later.
+:::note
+Preflight check data is available only for instances on the app manager version 1.93.0 or later.
+:::
 
 <table>
   <tr>

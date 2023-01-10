@@ -6,7 +6,7 @@ This topic describes using the insights in the Replicated vendor portal to monit
 
 ## About Instance Reporting {#about-reporting}
 
-For active application instances installed in online customer environments, the Replicated app manager sends a small amount of instance metadata to the vendor portal when any of the following occur:
+For active application instances installed in online customer environments, the Replicated app manager sends a small amount of instance data to the vendor portal when any of the following occur:
 
 <Checkins/>
 
@@ -18,15 +18,19 @@ The vendor portal also uses this data to display insights about the active insta
 
 Instance data has the following requirements and limitations:
 
+* You must configure status informers for your application in the Application custom resource to view instance data about the application status or uptime. For more information about how to configure status informers, see [Displaying Application Status](admin-console-display-app-status).
+
 * Instance data is available only for application instances installed in online environments. Data for instances installed in air gapped environments is not available.
 
-* Inactive instances are not included in instance data. An instance is considered inactive if **ADD INACTIVE DESCRIPTION**
+* Instance data is available only for active application instances. An instance is considered inactive if **ADD INACTIVE DESCRIPTION**
 
 * The rate at which data is updated on the **Instances details** page varies depending on how often the vendor portal receives instance data from the app manager. The vendor portal receives instance data when any of the following occur:
 
   <Checkins/>
 
-* To view instance data about the application status or uptime, you must configure status informers for your application in the Application custom resource. For more information about how to configure status informers, see [Displaying Application Status](admin-console-display-app-status).
+* The timestamp of events displayed on the **Instances details** page is the timestamp when the vendor portal received the instance data from the app manager. The timestamp of events does not necessarily reflect the timestamp of when the event occurred.
+
+* The app manager stores the `kurlNodeCountTotal` and `kurlNodeCountReady` data fields in a cache for five minutes. If the app manager sends instance data to the vendor portal within the five minute window, then the reported data for `kurlNodeCountTotal` and `kurlNodeCountReady` reflects the data in the cache. This means that events displayed on the **Instances details** page for the `kurlNodeCountTotal` and `kurlNodeCountReady` fields can show values that differ from the current values of these fields.
 
 ## About the Instance Details Page {#about-page}
 
@@ -38,13 +42,12 @@ For example, you can use the **Instance details** page to track the following ev
 * Length of instance downtime
 * Recent changes to the cluster or infrastructure
 * Changes in the number of nodes, such as nodes lost or added
-* Changes in the underlying Kubernetes version
-* Recent upgrade attempts, including which upgrade attempts were successful
-* The application version that the instance is running
+* Changes in the Kubernetes version in the cluster
+* Changes in the application version that the instance is running
 
 To access the **Instance details** page, go to **Customers** and click the **Customer reporting** button for the customer that you want to view:
 
-**SCREENSHOT OF CUSTOMER REPORTING BUTTON**
+![Customer reporting button on the Customers page](/images/customer-reporting-button.png)
 
 From the **Reporting** page for the selected customer, click the **View details** button for the desired application instance.
 
@@ -94,7 +97,7 @@ As shown in the image above, the **Current State** section includes the followin
 
    For example, the instance is currently running version 1.0.0, which was promoted to the Stable channel. If the later versions 1.1.0, 1.2.0, 1.3.0, 1.4.0, and 1.5.0 were also promoted to the Stable channel, then the instance is five versions behind.
 
-* **Last check-in**: The timestamp when the app manager most recently sent instance metadata to the vendor portal. The vendor portal receives instance data from the app manager when any of the following occur:
+* **Last check-in**: The timestamp when the app manager most recently sent instance data  to the vendor portal. The vendor portal receives instance data from the app manager when any of the following occur:
 
   <Checkins/>
 
@@ -134,11 +137,13 @@ The vendor portal includes time spent in a Degraded status in the total uptime f
 
 #### Time to Install
 
+The vendor portal computes both _License time to install_ and _Instance time to install_ metrics to represent how quickly the customer was able to deploy the application to a Ready state in their environment.
+
 Replicated recommends that you use Time to Install as an indicator of the quality of the packaging, configuration, and documentation of your application.
 
 If the installation process for your application is challenging, poorly documented, lacks appropriate preflight checks, or relies heavily on manual steps, then it can take days or weeks to deploy the application in customer environments. A longer Time to Install generally represents a significantly increased support burden and a degraded customer installation experience.
 
-The vendor portal computes both _License time to install_ and _Instance time to install_ metrics to represent how quickly the customer was able to deploy the application to a Ready state in their environment:
+The following describes the _License time to install_ and _Instance time to install_ metrics:
 
 * **License time to install**: The time between when you create the customer license in the vendor portal, and when the application instance reaches a Ready status in the customer environment.
 
@@ -158,7 +163,7 @@ The vendor portal computes both _License time to install_ and _Instance time to 
 
    As shown in the diagram above, Instance time to install is the length of time that it takes for the application to reach a Ready state after the customer starts a deployment attempt in their environment. Replicated considers a deployment attempt started when the vendor portal first records an event for the instance.
    
-   The vendor portal generates an _event_ when there is a change in the value of a data field for the instance. For example, as part of a deployment attempt, the `appStatus` data field can change from null to Unavailable. For more information about how the vendor portal generates events, see [About Events](monitoring-event-data#about-events) in _Event Data_.
+   For more information about how the vendor portal generates events, see [About Events](monitoring-event-data#about-events) in _Event Data_.
    
   :::note
   Instance time to install does _not_ include any deployment attempts that a customer might have made that did not generate an event. For example, time spent by the customer discarding servers and attempting to deploy the instance again on a new server.
@@ -224,6 +229,8 @@ The **Instance Activity** section displays recent events for the instance. The d
 
 <Checkins/>
 
+The timestamp of events displayed in the **Instance Activity** stream is the timestamp when the vendor portal received the instance data from the app manager. The timestamp of events does not necessarily reflect the timestamp of when the event occurred.
+
 The following shows an example of the **Instance Activity** data stream:
 
 **SCREENSHOT**
@@ -236,5 +243,10 @@ You can filter the **Instance Activity** stream by the following event categorie
 * App install/upgrade
 * KOTS status
 * Infrastructure status
+* Preflight checks
 
-For more information about the event data displayed in the **Instance Activity** stream, see [Event Data](monitoring-event-data).
+  :::note
+  Preflight check data is available only for instances on the app manager version 1.93.0 or later.
+  :::
+
+For more information about the types of events displayed in the **Instance Activity** stream, see [Event Data](monitoring-event-data).
