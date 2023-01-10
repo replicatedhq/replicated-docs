@@ -23,9 +23,9 @@ For more information about adding users to the collab repository through the ven
 
 Collab repositories are not available in the following situations:
 
-* If you sign up and your Replicated account is not yet configured for support, then a collab repository does not exist. This can happen when you are the first in your company to create a Replicated account. In this case, complete the onboarding instructions you received by email. You can also connect with the [Replicated community help forum](https://community.replicated.com/).
+* If you sign up and your Replicated account is not configured for support, then a collab repository does not exist yet. This can happen when you are the first in your company to create a Replicated account. In this case, complete the onboarding instructions you received by email. You can also access [Replicated community help forum](https://community.replicated.com/) for assistance.
 
-* If you create an account instead of joining your team's existing account, then you cannot access your team repository. Contact your team administrator to get added to their Replicated account.
+* If you create an account outside of your team's existing account, then you cannot access your team repository. Contact your team administrator to get added to their Replicated account.
 
 ### Default GitHub Roles {#default}
 
