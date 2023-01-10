@@ -70,32 +70,32 @@ Replicated will provide support for products per our terms and services until th
 <table>
   <tr>
     <th>Kubernetes Version</th>
-    <th>Supported App Manager Version</th>  
-    <th>Supported Kubernetes Installer Version</th>
+    <th>App Manager Versions</th>  
+    <th>Kubernetes Installer Versions</th>
     <th>End of Replicated Support</th>
-  </tr>
+  </tr>  
   <tr>
-    <td>1.25.0 and later</td>
+    <td>1.25</td>
     <td>1.87.0 and later</td>
-    <td>v2022.09.16-0</td>
+    <td>v2022.09.16-0 and later</td>
     <td>2023-10-27</td>
   </tr>
   <tr>
-    <td>1.24.0 and later</td>
-    <td>1.71.0 and later</td>
-    <td></td>
-    <td></td>
+    <td>1.24</td>
+    <td>1.71.0 to 1.86.2</td>
+    <td>v2022.06.01-0 to v2022.09.12-0</td>
+    <td>2023-07-28</td>
   </tr>
   <tr>
-    <td>1.23.0 and later</td>
-    <td>1.61.0 and later</td>
-    <td></td>
+    <td>1.23</td>
+    <td>1.61.0 to 1.70.1</td>
+    <td>v2022.01.28-0 to v2022.05.19-0</td>
     <td>2023-02-28</td>
   </tr>
   <tr>
-    <td>1.22.0 and later</td>
-    <td>1.59.3 and later</td>
-    <td></td>
+    <td>1.22</td>
+    <td>1.59.3 to 1.70.0</td>
+    <td>v2022.01.18-0 to v2022.01.25-0</td>
     <td>2022-10-28</td>
   </tr>     
 </table>
