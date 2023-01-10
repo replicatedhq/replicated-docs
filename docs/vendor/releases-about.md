@@ -24,6 +24,14 @@ Every customer license file that you create in the Replicated vendor portal is a
 
 You cannot edit the YAML files in a release after the release is promoted to a channel. However, each release has properties, such as the release notes, the version label, and the required status, that you can edit from the channel Release History page in the vendor portal. For more information, see [About the Channels Page](/vendor/releases-about-channels#about-the-channels-page) in _About Release Channels_.
 
+## Release Sequence Mechanics
+
+By default, Replicated uses release sequence numbers to organize and order releases, and uses sequence numbers in an instance's internal version history.
+
+**Release Sequence**: Each release has a unique, monotonically-increasing sequence number. This number can be used as a fallback to identify a release if the `Version Label` field is not set during promotion, or to identify an unpromoted draft release. For more information, see [Creating and Promoting Releases](releases-creating-releases).
+
+**Instance Sequence**: When a release is seen by an instance (that is, a release identifier is returned to an app manager instance when checking for an application update), that release is assigned a separate instance sequence, starting at 0 and incrementing for each release seen by the instance. A single release with a single release sequence `181` can have multiple instance sequences in the deployed instances, depending on when those instances came online and how many other releases they saw before seeing release sequence `181`. Note that instance sequences are only tracked by app manager instances, and the Replicated SaaS platform has no knowledge of these numbers.
+
 ## About the Draft Release Page
 
 You click **Releases > Create Release** in the vendor portal to open the **Draft** page. This page provides a YAML editor to add, edit, and delete your application files and Replicated custom resources.
