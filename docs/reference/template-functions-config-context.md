@@ -183,15 +183,17 @@ func LocalImageName(remoteImageName string) string
 
 Given a `remoteImageName`, rewrite the `remoteImageName` so that it can be pulled to local hosts.
 
-Rewrites the `remoteImageName` in one of the following ways, depending on if a private registry is configured and if the image must be proxied:
+A common use case for the `LocalImageName` function is to ensure that a Kubernetes Operator can determine the names of container images on Pods created at runtime. For more information, see [Referencing Images](/vendor/operator-referencing-images) in the _Packaging a Kubernetes Operator Application_ section.
 
-* If there is a private registry configured, rewrite `remoteImageName` to reference the private registry.
+`LocalImageName` rewrites the `remoteImageName` in one of the following ways, depending on if a private registry is configured and if the image must be proxied:
 
-* If there is no private registry configured, but the image must be proxied, rewrite `remoteImageName` so that the image can be pulled through the proxy service.
+* If there is a private registry configured in the customer's environment, such as in air gapped environments, rewrite `remoteImageName` to reference the private registry locally. For example, rewrite `elasticsearch:7.6.0` as `registry.somebigbank.com/my-app/elasticsearch:7.6.0`.
 
-* If there is no private registry configured and the image does not need to be proxied, return `remoteImageName` without changes.
+* If there is no private registry configured in the customer's environment, but the image must be proxied, rewrite `remoteImageName` so that the image can be pulled through the proxy service. For example, rewrite `"quay.io/orgname/private-image:v1.2.3"` as `proxy.replicated.com/proxy/app-name/quay.io/orgname/private-image:v1.2.3`.
 
-For more information about the Replicated registry proxy service and configuring private image registries, see [How the App Manager Accesses Private Images](/vendor/packaging-private-images#how-the-app-manager-accesses-private-images) in _Connecting to an Image Registry_.
+* If there is no private registry configured in the customer's environment and the image does not need to be proxied, return `remoteImageName` without changes.
+
+For more information about the Replicated registry proxy service, see [How the App Manager Accesses Private Images](/vendor/packaging-private-images#how-the-app-manager-accesses-private-images) in _Connecting to an Image Registry_.
 
 ## LocalRegistryImagePullSecret
 
