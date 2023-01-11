@@ -1,6 +1,8 @@
 import RepositoryCicdNote from "../partials/releases/_repository-cicd-note.mdx"
 import CreateReleaseUi from "../partials/releases/_create-release-ui.mdx"
-import CreateNewAppCli from "../partials/releases/_create-new-app-cli.mdx"
+import PrereqsCli from "../partials/releases/_prereqs-cli.mdx"
+import ExportAppEnvVariable from "../partials/releases/_export-app-env-variable.mdx"
+import VerifyEnvVariables from "../partials/releases/_verify-env-variables.mdx"
 
 
 # Creating Releases with Helm Charts
@@ -8,8 +10,6 @@ import CreateNewAppCli from "../partials/releases/_create-new-app-cli.mdx"
 This topic describes how to add a Helm chart to a release in the Replicated vendor portal or the replicated CLI. Adding a Helm chart to a release is useful if you want to distribute a Kubernetes application with Replicated that is already packaged using Helm.
 
 This procedure applies for Replicated Helm installations and native Helm installations. For more information, see [Helm Overview](helm-overview).
-
-<RepositoryCicdNote/>
 
 ## About Releasing with Helm Charts
 
@@ -115,17 +115,13 @@ When you create a release in the vendor portal, Replicated automatically creates
 
 ## Using the CLI {#cli}
 
-### Prerequisite
+### Prerequisites
 
-Before you can create an application release with the CLI for the first time, you must install the replicated CLI and create an API token. See [Installing the replicated CLI](/reference/replicated-cli-installing).
-
-### Create an Application
-
-<CreateNewAppCli/>
-
-Next, create and promote a release.
+<PrereqsCli/>
 
 ### Create and Promote a Release
+
+This procedure shows how to create an application using local application files.
 
 To create and promote a release using the replicated CLI:
 
@@ -169,77 +165,68 @@ To create and promote a release using the replicated CLI:
    ```
    For more information, see [HelmChart](../reference/custom-resource-helmchart) in the _Custom Resources_ section.
 
+1. <ExportAppEnvVariable/>
+
+1. <VerifyEnvVariables/>
+
 1. Lint the manifest files and ensure that there are no errors in the YAML:
 
   ```bash
-  replicated release lint --yaml-dir=YAML_DIR
+  replicated release lint --yaml-dir=PATH_TO_APP_DIR
   ```
 
-  Replace YAML_DIR with the root directory of the YAML application manifest files.
-
-1. (Optional) Initialize the project as a Git repository.
-
-  **Example:**
-
-  ```
-  git init
-  git add .
-  git commit -m "Initial Commit: My Application"
-  ```
-  
-  Initializing the project as a Git repository lets you track your history. The replicated CLI also reads Git metadata to help with the generation of release metadata, such as version labels.
+  Replace `PATH_TO_APP_DIR` with path to the directory of the YAML manifest files.
 
 1. Edit your files as needed, such as adding preflight specifications or other Replicated custom resources.
 
 1. Lint the manifest files after you make changes to ensure that there are no errors in the YAML:
 
   ```bash
-  replicated release lint --yaml-dir=YAML_DIR
+  replicated release lint --yaml-dir=PATH_TO_APP_DIR
   ```
 
-  Replace YAML_DIR with the root directory of the YAML application manifest files.
+  Replace `PATH_TO_APP_DIR` with the path to the directory of the YAML manifest files.
 
-1. Create a new release or update an existing release. You can continue to update and lint an existing release until you are ready to promote it. Releases cannot be edited after they are promoted.
+  For more information about linting, see [release lint](replicated-cli-release-lint) and [Linter Rules](linter) in _Reference_.
 
-      * Create a new release without promoting it:
+1. Run one of the following commands to either create your first release or update an existing release.
 
-         ```
-         replicated release create --yaml-dir PATH-TO-APP-DIRECTORY
-         ```
-         Replace `PATH-TO-APP-DIRECTORY` with the path to the local directory where you copied the Helm chart `.tgz` and created the HelmChart custom resource manifest file..
+    - Create your first release:
 
-      * Create and promote a new release with the default settings, which includes the Unstable channel:
+      ```bash
+      replicated release create --yaml-dir PATH_TO_APP_DIR
+      ```
+      Replace `PATH_TO_APP_DIR` with the path to the directory of the YAML manifest files.
 
-         ```bash
-         replicated release create --auto
-         ```
+    
+   - Update an existing release:
 
-         The `--auto` flag generates release notes and metadata based on the Git status.
-  
-      * Create and promote a new release with custom settings, such as a specific channel:
+      ```
+      replicated release update SEQUENCE --yaml-dir PATH-TO-APP-DIRECTORY
+      ```
+      Replace:
+      
+      -  `SEQUENCE` with the release sequence number. This identifies the existing release to be updated.
+      -  `PATH_TO_APP_DIR` with the path to the directory of the YAML manifest files.
+          
+  For more information, see [release create](/reference/replicated-cli-release-create) or [release update](../reference/replicated-cli-release-update) in _Reference_.
 
-         ```bash
-         replicated release create --yaml-dir PATH_TO_APP_DIR --promote CHANNEL
-         ```
+1. Continue to edit, lint, and update the release as needed until you are ready to promote it. Releases cannot be edited after they are promoted.
 
-         Replace:
+1. Promote the release:
 
-         * `PATH-TO-APP-DIRECTORY` with the path to the local directory where you copied the Helm chart `.tgz` and created the HelmChart custom resource manifest file.
-         * `CHANNEL` with a channel name, such as Beta or Stable. Channel names are case sensitive.
+    ```
+    replicated release promote SEQUENCE CHANNEL_ID
+    ```
 
-      * Update an existing release:
+    Replace:
+      
+      -  `SEQUENCE` with the release sequence number.
+      -  `CHANNEL_ID` with the channel ID or case sensitive name of the channel.
 
-         ```
-         replicated release update SEQUENCE --yaml-dir PATH-TO-APP-DIRECTORY
-         ```
+    For more information, see [release promote](/reference/replicated-cli-release-promote) in the replicated CLI documentation.
 
-         Replace:
-         * `SEQUENCE` with the release sequence number. This identifies the existing release to be updated.
-         * `PATH-TO-APP-DIRECTORY` with the path to the local directory where you copied the Helm chart `.tgz` and created the HelmChart custom resource manifest file.
-
-   For more information, see [release create](../reference/replicated-cli-release-create), [release update](../reference/replicated-cli-release-update), and [release promote](/reference/replicated-cli-release-promote) in the replicated CLI documentation.
-
-1. After you promote the release, verify that it was promoted to the channel:
+1. Verify that the release was promoted to the channel:
 
   ```
   replicated release ls
@@ -247,15 +234,8 @@ To create and promote a release using the replicated CLI:
 
 ## Next Steps
 
-- After you add one or more Helm charts to a release, Replicated recommends that you update the HelmChart custom resource manifest to continue configuring your application.
+The following are the recommended next steps to test the application in your development environment:
 
-   The following are recommended next steps for configuring the HelmChart custom resource:
-
-   * To collect user-supplied values from the Replicated admin console configuration screen and mapping those values to your Helm chart, see [Creating and Editing Configuration Fields](admin-console-customize-config-screen).
-   * To configure Replicated to install the Helm charts using the native Helm, see [Installing with Native Helm](helm-installing-native-helm).
-   * To use the `builder` attribute to create a Helm chart package for air gap installations, see [builder](/reference/custom-resource-helmchart#builder) in _HelmChart_.
-   * To configure the installation order for native Helm charts, see [Defining Installation Order for Native Helm Charts](helm-native-helm-install-order).
 - To add a customer, see [Creating a Customer](creating-a-customer).
-- Learn about the supported helm CLI installation options. See [Supporting helm CLI installations (Beta)] for your customers.
-- Learn about including the Replicated admin console to your Helm release. See [Delivering the Admin Console with your Application](helm-install#deliver-admin-console).
-- Test the release in your development environment.
+- If you are installing for the first time, see [Overview of Installing an Application with the App Manager](/enterprise/installing-overview) in the _Enterprise_ section. 
+- If you are updating an existing installation, see [Updating an Application](../enterprise/updating-apps) in the _Enterprise_ section.
