@@ -67,10 +67,14 @@ Replicated will provide support for products per our terms and services until th
 &#42;Except for customers who have specifically contracted different dates for the End of Availability and End of Life timelines.  
 ## Supported Versions
 
+The following table lists the versions of the Replicated app manager and Replicated Kubernetes installer that are supported on each Kubernetes version.
+
+The End of Replicated Support date is the End Of Life (EOL) date for the Kubernetes version. The EOL date for each Kubernetes version is published on the [Releases](https://kubernetes.io/releases/) page in the Kubernetes documentation. 
+
 <table>
   <tr>
     <th>Kubernetes Version</th>
-    <th>App Manager Versions</th>  
+    <th>App Manager Versions</th>
     <th>Kubernetes Installer Versions</th>
     <th>End of Replicated Support</th>
   </tr>  
@@ -82,20 +86,20 @@ Replicated will provide support for products per our terms and services until th
   </tr>
   <tr>
     <td>1.24</td>
-    <td>1.71.0 to 1.86.2</td>
-    <td>v2022.06.01-0 to v2022.09.12-0</td>
+    <td>1.71.0 and later</td>
+    <td>v2022.06.01-0 and later</td>
     <td>2023-07-28</td>
   </tr>
   <tr>
     <td>1.23</td>
-    <td>1.61.0 to 1.70.1</td>
-    <td>v2022.01.28-0 to v2022.05.19-0</td>
+    <td>1.61.0 and later</td>
+    <td>v2022.01.28-0 and later</td>
     <td>2023-02-28</td>
   </tr>
   <tr>
     <td>1.22</td>
-    <td>1.59.3 to 1.70.0</td>
-    <td>v2022.01.18-0 to v2022.01.25-0</td>
+    <td>1.59.3 and later</td>
+    <td>v2022.01.18-0 and later</td>
     <td>2022-10-28</td>
   </tr>     
 </table>
