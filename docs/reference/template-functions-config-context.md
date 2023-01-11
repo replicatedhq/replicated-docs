@@ -181,9 +181,10 @@ Returns the local registry namespace that's configured.
 func LocalImageName(remoteImageName string) string
 ```
 
-This is a wrapper around other functions.
-Given a `remoteImageName` rewrite it so that it references the local registry.
-If no local registry is set, the `remoteImageName` is returned.
+Given a `remoteImageName` rewrite it so that it can be pulled to local hosts.
+If there is a private registry configured, image name will be rewritten to reference the private registry.
+If no private registry is set, but the image needs to be proxied, the `remoteImageName` is rewritten to be pulled through the Replicated registry proxy service.
+Otherwise `remoteImageName` will be returned as is.
 
 ## LocalRegistryImagePullSecret
 
