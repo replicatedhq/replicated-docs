@@ -181,10 +181,17 @@ Returns the local registry namespace that's configured.
 func LocalImageName(remoteImageName string) string
 ```
 
-Given a `remoteImageName` rewrite it so that it can be pulled to local hosts.
-If there is a private registry configured, image name will be rewritten to reference the private registry.
-If no private registry is set, but the image needs to be proxied, the `remoteImageName` is rewritten to be pulled through the Replicated registry proxy service.
-Otherwise `remoteImageName` will be returned as is.
+Given a `remoteImageName`, rewrite the `remoteImageName` so that it can be pulled to local hosts.
+
+Rewrites the `remoteImageName` in one of the following ways, depending on if a private registry is configured and if the image must be proxied:
+
+* If there is a private registry configured, rewrite `remoteImageName` to reference the private registry.
+
+* If there is no private registry configured, but the image must be proxied, rewrite `remoteImageName` so that the image can be pulled through the proxy service.
+
+* If there is no private registry configured and the image does not need to be proxied, return `remoteImageName` without changes.
+
+For more information about the Replicated registry proxy service and configuring private image registries, see [How the App Manager Accesses Private Images](/vendor/packaging-private-images#how-the-app-manager-accesses-private-images) in _Connecting to an Image Registry_.
 
 ## LocalRegistryImagePullSecret
 
