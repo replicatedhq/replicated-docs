@@ -1,5 +1,5 @@
 
-# Enabling and Configuring Identity Service (Beta)
+# Identity Service (Beta)
 
 When enabling the identity service for your application, the Replicated app manager will deploy [Dex](https://dexidp.io/) as an intermediary that can be configured to control access to the application.
 Dex implements an array of protocols for querying other user-management systems, known as [connectors](https://dexidp.io/docs/connectors/).
