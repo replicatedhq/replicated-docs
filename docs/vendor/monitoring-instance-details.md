@@ -30,7 +30,7 @@ Instance data has the following requirements and limitations:
 
 * The timestamp of events displayed on the **Instances details** page is the timestamp when the vendor portal received the instance data from the app manager. The timestamp of events does not necessarily reflect the timestamp of when the event occurred.
 
-* The app manager stores the `kurlNodeCountTotal` and `kurlNodeCountReady` data fields in a cache for five minutes. If the app manager sends instance data to the vendor portal within the five minute window, then the reported data for `kurlNodeCountTotal` and `kurlNodeCountReady` reflects the data in the cache. This means that events displayed on the **Instances details** page for the `kurlNodeCountTotal` and `kurlNodeCountReady` fields can show values that differ from the current values of these fields.
+* For clusters launched with the Replicated Kubernetes Installer, the app manager stores the total nodes and ready nodes counts in a cache for five minutes. If the app manager sends instance data to the vendor portal within the five minute window, then the reported data for total nodes and ready nodes reflects the data in the cache. This means that events displayed on the **Instances details** page for the total nodes and ready nodes can show values that differ from the current values of these fields.
 
 ## About the Instance Details Page {#about-page}
 
