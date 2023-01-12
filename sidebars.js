@@ -87,6 +87,14 @@ const sidebars = {
         'vendor/releases-creating-channels',
         'vendor/releases-semantic-versioning',
         'vendor/releases-creating-releases',
+        {
+          type: 'category',
+          label: 'Integrating with CI/CD',
+          items: [
+            'vendor/repository-workflow-and-tagging-releases',
+            'vendor/tutorial-ci-cd-integration',
+          ],
+        },
         `vendor/releases-updating`,
       ],
     },
@@ -163,6 +171,16 @@ const sidebars = {
         'vendor/packaging-cleaning-up-jobs',
         'vendor/packaging-rbac',
         'vendor/identity-service-configuring',
+        {
+          type: 'category',
+          label: 'Kubernetes Operators',
+          items: [
+            'vendor/operator-packaging-about',
+            'vendor/operator-defining-additional-images',
+            'vendor/operator-referencing-images',
+            'vendor/operator-defining-additional-namespaces',
+          ],
+        },
       ],
     },  
     {
@@ -192,16 +210,6 @@ const sidebars = {
         'vendor/snapshots-overview',
         'vendor/snapshots-configuring-backups',
         'vendor/snapshots-hooks',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Kubernetes Operators',
-      items: [
-        'vendor/operator-packaging-about',
-        'vendor/operator-defining-additional-images',
-        'vendor/operator-referencing-images',
-        'vendor/operator-defining-additional-namespaces',
       ],
     },
     {
