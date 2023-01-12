@@ -1,6 +1,13 @@
+import StatusesTable from "../partials/status-informers/_statusesTable.mdx"
+import Missing from "../partials/status-informers/_missing.mdx"
+import AggregateStatus from "../partials/status-informers/_aggregateStatus.mdx"
+
 # Viewing Status Details
 
-The application status displays on the dashboard of the Replicated admin console. Viewing the status details can be helpful for troubleshooting states, such as Missing.
+This topic describes how to view the status of an application on the Replicated admin console dashboard. It also describes how the Replicated app manager collects and aggregates the application status. 
+## View Status Details
+
+The application status displays on the dashboard of the Replicated admin console. Viewing the status details can be helpful for troubleshooting.
 
 There are two ways to view the status details, depending on your admin console version:
 
@@ -10,18 +17,36 @@ There are two ways to view the status details, depending on your admin console v
 
 - (Version 1.50.2 and earlier) Review the diagnostic information in `kots/admin_console/kotsadm-/kotsadm.log` in the support bundle. For more information about generating a support bundle, see [Generating Support Bundles](troubleshooting-an-app).
 
-## Resource Statuses
+## About Application Status
+
+To display application status on the admin console dashboard, the app manager aggregates the status of specific Kubernetes resources for the application.
+
+The following resource types are supported for displaying application status:
+
+* Deployment
+* StatefulSet
+* Service
+* Ingress
+* PersistentVolumeClaims
+
+Applications can specify one or more of the supported Kubernetes workloads listed above. The app manager watches all specified workloads for state changes.
+
+For more information about how to interpret the application status displayed on the admin console dashboard, see [Resource Statuses](#resource-statuses) and [Aggregate Application Status](#aggregate-application-status) below. 
+
+### Resource Statuses
 
 Possible application statuses are Missing, Unavailable, Degraded, Ready, and Updating.
 
-_Missing_ is an initial deployment state indicating that informers have not reported their status because the application has just been deployed and the underlying resource has not been created yet. After the resource is created, the status changes. However, if a resource changes from another state to Missing, then the resource was either deleted or the informers failed to report a status.
+<Missing/>
 
-Below is a table of resources that are supported and conditions that contribute to each status:
+The following table lists the supported Kubernetes resources and the conditions that contribute to each status:
 
-| | Unavailable | Degraded | Ready | Updating |
-|---|---|---|---|---|
-| **Deployment** | No replicas are ready | At least 1 replica is ready, but more are desired | Ready replicas equals desired replicas | The deployed replicas are from a different revision |
-| **StatefulSet** | No replicas are ready | At least 1 replica is ready, but more are desired | Ready replicas equals desired replicas | The deployed replicas are from a different revision |
-| **Service** | No endpoints are ready, no load balancer has been assigned | At least one endpoint is ready, but more are desired | All desired endpoints are ready, any load balancers have been assigned | n/a |
-| **Ingress** | No backend service endpoints are ready, no load balancer has been assigned | At least one backend service endpoint is ready, but more are desired | All desired backend service endpoints are ready, any load balancers have been assigned | n/a |
-| **PersistentVolumeClaim** | Claim is pending or lost | n/a | Claim is bound | n/a |
+<StatusesTable/>
+
+### Aggregate Application Status
+
+When an application instance reports the status of more than one of the supported Kubernetes resources, the app manager aggregates all resource statuses to display a single application status on the admin console dashboard.
+
+The app manager uses the least available resource status to represent the aggregate application status. For example, if at least one resource is in an Unavailable status, then the aggregate application status is Unavailable.
+
+<AggregateStatus/>

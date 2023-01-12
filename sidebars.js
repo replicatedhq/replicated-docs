@@ -147,7 +147,6 @@ const sidebars = {
                       'vendor/tutorial-adding-db-config',
                     ],
                   },
-                  'vendor/preflight-support-bundle-creating',
                   {
                       type: 'category',
                       label: 'Configuring Backup and Restore',
@@ -221,7 +220,16 @@ const sidebars = {
               'vendor/licenses-referencing-fields',
             ],
           },
-        'vendor/releases-sharing-license-install-script',
+          {
+            type: 'category',
+            label: 'Preflights and Support Bundles',
+            items: [
+              'vendor/preflight-support-bundle-creating',
+              'vendor/support-modular-support-bundle-specs',
+              'vendor/support-online-support-bundle-specs',
+            ],
+          },
+          'vendor/releases-sharing-license-install-script',
         {
           type: 'category',
           label: 'Instance Data',
@@ -259,7 +267,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Support and Troubleshooting',
+          label: 'Support',
           items: [
             'vendor/support-inspecting-support-bundles',
             'vendor/support-submit-request',
