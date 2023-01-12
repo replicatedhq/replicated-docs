@@ -10,7 +10,7 @@ For active application instances installed in online customer environments, the 
 
 <Checkins/>
 
-The instance data that the app manager sends includes properties such as the current application version and application status. The primary purpose of this instance data is to compile the list of new versions that are available to the given instance for upgrade.
+The instance data that the app manager sends includes properties such as the current application version and application status. The primary purpose of this instance data is to compile the list of new versions that are available to the given instance for upgrade. For a full overview of what might be included, please see the [Replicated Data Transmission Policy](https://docs.replicated.com/vendor/policies-data-transmission).
 
 The vendor portal also uses this data to display insights about the active instances of your application. For more information about the instance data insights displayed in the vendor portal, see [About the Instance Details Page](#about-page) below.
 
