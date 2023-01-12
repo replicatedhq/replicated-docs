@@ -26,4 +26,21 @@ To add primary and secondary nodes:
   docker-registry-ip=198.51.100.3 \
   kubernetes-version=v1.19.16 \
   primary-host=203.0.113.6
+  labels=gpu=enabled,type=data
+  ```
+
+## Dedicated Primary
+
+The first node kURL is installed on will always be a primary node running Kubernetes control-plane components, including etcd. A common practice is to taint all primary nodes to prevent most pods from being scheduled on them. The kURL installer does not taint primaries by default because single-node installs must be capable of scheduling all pods.
+
+Once a secondary node has been joined to a cluster, it's possible to taint the primary nodes with the following command:
+
+  **Airgap Example:**
+  ```
+  cat tasks.sh | sudo bash -s taint_primaries
+  ```
+
+  **Online Example:**
+  ```
+  curl -L https://k8s.kurl.sh/latest/tasks.sh | sudo bash -s taint_primaries
   ```
