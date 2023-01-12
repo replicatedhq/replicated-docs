@@ -1,4 +1,4 @@
-# Minimum and Target KOTS Versions
+# Setting Minimum and Target Versions for KOTS
 
 Minimum and target KOTS versions are optional features that are configured in the Application custom resource file. The attributes in this custom resource help to control the application experience, but the custom resource is not deployed to the cluster. For more information, see [Application Custom Resource](../reference/custom-resource-application).
 

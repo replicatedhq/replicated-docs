@@ -155,11 +155,14 @@ const sidebars = {
             'vendor/admin-console-prometheus-monitoring',
           ],
         },
+        'vendor/packaging-ingress',
+        'vendor/packaging-kots-versions',    
         'vendor/packaging-include-resources',
         'vendor/namespaces',
         'vendor/packaging-using-tls-certs',
         'vendor/packaging-cleaning-up-jobs',
         'vendor/packaging-rbac',
+        'vendor/identity-service-configuring',
       ],
     },  
     {
@@ -191,9 +194,6 @@ const sidebars = {
         'vendor/snapshots-hooks',
       ],
     },
-    'vendor/identity-service-configuring',
-    'vendor/packaging-ingress',
-    'vendor/packaging-kots-versions',
     {
       type: 'category',
       label: 'Kubernetes Operators',
@@ -303,7 +303,6 @@ const sidebars = {
         },
         {
           type: 'category',
-          className: 'main-section',
           label: 'kots CLI',
           items: [
             'reference/kots-cli-getting-started',
@@ -475,7 +474,6 @@ const sidebars = {
     },
     {
       type: 'category',
-      className: 'main-section',
       label: 'Enterprise User Documentation',
       items: [
         {
