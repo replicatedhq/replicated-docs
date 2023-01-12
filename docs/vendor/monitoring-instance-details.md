@@ -42,7 +42,7 @@ For example, you can use the **Instance details** page to track the following ev
 * Length of instance downtime
 * Recent changes to the cluster or infrastructure
 * Changes in the number of nodes, such as nodes lost or added
-* Changes in the Kubernetes version in the cluster
+* Changes in the cluster's Kubernetes version
 * Changes in the application version that the instance is running
 
 To access the **Instance details** page, go to **Customers** and click the **Customer reporting** button for the customer that you want to view:
