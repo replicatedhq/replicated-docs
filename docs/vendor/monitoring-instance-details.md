@@ -55,8 +55,6 @@ From the **Reporting** page for the selected customer, click the **View details*
 
 The following shows an example of the **Instance details** page:
 
-**UPDATE SCREENSHOT**
-
 ![Instance details full page](/images/instance-details.png)
 
 [View a larger version of this image](/images/instance-details.png)
@@ -71,11 +69,7 @@ As shown in the image above, the **Instance details** page includes the followin
 
 ### Current State
 
-The **Current State** section displays event data about the status and version of the instance.
-
-**SCREENSHOT**
-
-As shown in the image above, the **Current State** section includes the following fields:
+The **Current State** section displays the following event data about the status and version of the instance:
 
 * **App status**: The status of the application. Possible statuses are Ready, Updating, Degraded, Unavailable, and Missing. The app manager computes the application status based on the status informers that you configure for the application. For more information about how to configure status informers, see [Displaying Application Status](/vendor/admin-console-display-app-status).
 
@@ -173,11 +167,7 @@ The following describes the _License time to install_ and _Instance time to inst
 
 ### Install Information
 
-The **Install Information** section displays details about the cluster infrastructure where the application is installed, such as the version and distribution of Kubernetes running in the cluster where the application is installed.
-
-**SCREENSHOT**
-
-As shown in the image above, the **Install Information** section displays the following details about the installation:
+The **Install Information** section displays the following details about the cluster infrastructure where the application is installed:
 
 * The Kubernetes distribution for the cluster. For example, GKE or EKS.
 * The version of Kubernetes running in the cluster.
@@ -196,7 +186,7 @@ For more information about the data fields displayed in the **Install Informatio
 
 ### Instance Uptime
 
-The **Instance Uptime** graph shows the percentage of each eight hour time period in the previous two weeks that the instance was in an Up, Degraded, or Down state. 
+The **Instance Uptime** graph shows the percentage of a given time period that the instance was in an Up, Degraded, or Down state. 
 
 To determine if the instance is Up, Degraded, or Down, the vendor portal uses the application status. Possible application statuses are Ready, Updating, Degraded, Unavailable, and Missing. The following table lists the application statuses that are associated with each state in the **Instance Uptime** graph:
 
@@ -221,7 +211,7 @@ To determine if the instance is Up, Degraded, or Down, the vendor portal uses th
 
 The following shows an example of an **Instance Uptime** graph:
 
-**INSERT SCREENSHOT**
+![Uptime Graph on the Instance details page](/images/instance-uptime-graph.png)
 
 You can hover over the bars in the **Instance Uptime** graph to view more detail about the percent of time that the instance was in each state during the given time period.
 
@@ -235,7 +225,7 @@ The timestamp of events displayed in the **Instance Activity** stream is the tim
 
 The following shows an example of the **Instance Activity** data stream:
 
-**SCREENSHOT**
+![Instance Activity section of Instance details page](/images/instance-activity.png)
 
 You can filter the **Instance Activity** stream by the following event categories:
 
