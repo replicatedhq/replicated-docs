@@ -171,7 +171,7 @@ In addition to the details listed above, the **Install Information** section als
 * Node operating systems
 * Node operating systems versions
 * Total number of cluster nodes
-* Number of cluster nodes in a ready state
+* Number of cluster nodes in a Ready state
 * ID of the Kubernetes installer specification
 
 For more information about the data fields displayed in the **Install Information** section, see [Cluster Status Events](monitoring-event-data#cluster) and [Infrastructure Status Events](monitoring-event-data#infrastructure) in _Event Data_.
