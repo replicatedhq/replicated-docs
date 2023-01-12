@@ -23,6 +23,6 @@ The Reference section includes reference documentation for Replicated custom res
 
 The Enterprise section includes information for the enterprise users of applications delivered with Replicated. The topics in this section describe how enterprise users can install, update, manage, backup and restore, and monitor the application.
 
-Vendors reference the documentation in the Enterprise section to test the process of installing and managing their application with Replicated. Vendors can also integrate the Enterprise content into their application documentation by cloning it from the replicated-docs GitHub repository.
+Vendors can use the Enterprise documentation to test the installation and management their application with Replicated. Vendors can also clone the Enterprise content from the replicated-docs repository and include it with their application documentation. For more information, see [replicated-docs](https://github.com/replicatedhq/replicated-docs) in GitHub.
 
 
