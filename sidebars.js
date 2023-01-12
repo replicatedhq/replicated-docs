@@ -242,8 +242,6 @@ const sidebars = {
         'vendor/releases-sharing-license-install-script',
         'vendor/packaging-air-gap-excluding-minio',
         'vendor/releases-configvalues',
-        'vendor/repository-workflow-and-tagging-releases',
-        'vendor/tutorial-ci-cd-integration',
       ],
     },
     {
