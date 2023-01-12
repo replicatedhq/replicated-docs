@@ -63,7 +63,7 @@ As shown in the image above, the **Instance details** page includes the followin
 
 * **Current State**: Information about the state of the instance, such as the current application version. See [Current State](#current-state) below.
 * **Insights**: Key performance indicators (KPIs) related to health, performance, and adoption. See [Insights](#insights) below. 
-* **Install Information**: Information about the cluster where the instance is installed, such as the version of Kubernetes running on the cluster and details about completed preflight checks. See [Install Information](#install-information) below.
+* **Install Information**: Information about the cluster where the instance is installed, such as the version of Kubernetes running on the cluster. See [Install Information](#install-information) below.
 * **Instance Uptime**: Details about instance uptime over time. See [Instance Uptime](#instance-uptime) below.
 * **Instance Activity**: Event data stream. See [Instance Activity](#instance-activity) below.
 
@@ -235,10 +235,5 @@ You can filter the **Instance Activity** stream by the following event categorie
 * App install/upgrade
 * KOTS status
 * Infrastructure status
-* Preflight checks
-
-  :::note
-  Preflight check data is available only for instances on the app manager version 1.93.0 or later.
-  :::
 
 For more information about the types of events displayed in the **Instance Activity** stream, see [Event Data](monitoring-event-data).

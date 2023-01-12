@@ -25,7 +25,6 @@ This section describes each type of event that the vendor portal generates for a
 * [Cluster Status Events](#cluster)
 * [Infrastructure Status Events](#infrastructure)
 * [KOTS Status Events](#kots)
-* [Preflight Check Events](#preflight)
 * [Upstream Update Events](#upstream)
 
 The tables in this section include the following details about each event type:
@@ -201,27 +200,6 @@ The tables in this section include the following details about each event type:
     <td>string</td>
     <td>KOTS Version</td>
   </tr> 
-</table>
-
-### Preflight Check Events {#preflight}
-
-:::note
-Preflight check data is available only for instances on the app manager version 1.93.0 or later.
-:::
-
-<table>
-  <tr>
-    <th>Field Name</th>
-    <th>Description</th>
-    <th>Type</th>
-    <th>Label</th>
-  </tr> 
-  <tr>
-    <td><code>preflightCheckStatus</code></td>
-    <td>Indicates when the preflight checks are passed or skipped for an application version.</td>
-    <td>string</td>
-    <td>Preflight Checks Passed</td>
-  </tr>
 </table>
 
 ### Upstream Update Events {#upstream}
