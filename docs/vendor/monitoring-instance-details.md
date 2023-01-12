@@ -22,7 +22,7 @@ Instance data has the following requirements and limitations:
 
 * Instance data is available only for application instances installed in online environments. Data for instances installed in air gapped environments is not available.
 
-* Instance data is available only for active application instances. An instance is considered inactive if **ADD INACTIVE DESCRIPTION**
+* Instance data is available only for active application instances. If an instance is decommissioned, stops checking for updates, or otherwise stops reporting, it will continue to be displayed in the most-recently seen state. This may cause confusion if an instance was ready and then its VM was destroyed before it reported again. You can use the "Last Check-in" field to understand if an instance's data may have become stale.
 
 * The rate at which data is updated on the **Instances details** page varies depending on how often the vendor portal receives instance data from the app manager. The vendor portal receives instance data when any of the following occur:
 
