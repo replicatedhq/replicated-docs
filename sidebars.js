@@ -224,7 +224,7 @@ const sidebars = {
         'vendor/releases-sharing-license-install-script',
         {
           type: 'category',
-          label: 'Instance Monitoring',
+          label: 'Instance Data',
           items: [
             'vendor/monitoring-instance-details',
             'vendor/monitoring-event-data',

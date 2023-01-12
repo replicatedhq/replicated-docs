@@ -1,8 +1,8 @@
 import Checkins from "../partials/instance-monitoring/_appCheckins.mdx"
 
-# Monitoring Application Instances
+# Viewing Instance Details
 
-This topic describes using the insights in the Replicated vendor portal to monitor the health and performance of application instances installed in your customers' environments.
+This topic describes using the insights in the Replicated vendor portal to quickly understand the recent events and performance of application instances installed in your customers' environments.
 
 ## About Instance Reporting {#about-reporting}
 
@@ -22,13 +22,15 @@ Instance data has the following requirements and limitations:
 
 * Instance data is available only for application instances installed in online environments. Data for instances installed in air gapped environments is not available.
 
-* Instance data is available only for active application instances. If an instance is decommissioned, stops checking for updates, or otherwise stops reporting, it will continue to be displayed in the most-recently seen state. This may cause confusion if an instance was ready and then its VM was destroyed before it reported again. You can use the "Last Check-in" field to understand if an instance's data may have become stale.
+* Instance data is available only for active application instances. If an instance is decommissioned, stops checking for updates, or otherwise stops reporting, the vendor portal continues to display data for the instance from its most-recently seen state.
+
+  For example, this means that data for an inactive instance might continue to show a Ready status after the instance becomes inactive. Replicated recommends that you use the timestamp in the **Last Check-in** field to understand if an instance might have become inactive, causing its data to be out-of-date.
 
 * The rate at which data is updated on the **Instances details** page varies depending on how often the vendor portal receives instance data from the app manager. The vendor portal receives instance data when any of the following occur:
 
   <Checkins/>
 
-* The timestamp of events displayed on the **Instances details** page is the timestamp when the vendor portal received the instance data from the app manager. The timestamp of events does not necessarily reflect the timestamp of when the event occurred.
+* The timestamp of events displayed on the **Instances details** page is the timestamp when the Replicated Vendor API received the instance data from the app manager. The timestamp of events does not necessarily reflect the timestamp of when the event occurred.
 
 * For clusters launched with the Replicated Kubernetes Installer, the app manager stores the total nodes and ready nodes counts in a cache for five minutes. If the app manager sends instance data to the vendor portal within the five minute window, then the reported data for total nodes and ready nodes reflects the data in the cache. This means that events displayed on the **Instances details** page for the total nodes and ready nodes can show values that differ from the current values of these fields.
 
@@ -229,7 +231,7 @@ The **Instance Activity** section displays recent events for the instance. The d
 
 <Checkins/>
 
-The timestamp of events displayed in the **Instance Activity** stream is the timestamp when the vendor portal received the instance data from the app manager. The timestamp of events does not necessarily reflect the timestamp of when the event occurred.
+The timestamp of events displayed in the **Instance Activity** stream is the timestamp when the Replicated Vendor API received the instance data from the app manager. The timestamp of events does not necessarily reflect the timestamp of when the event occurred.
 
 The following shows an example of the **Instance Activity** data stream:
 
