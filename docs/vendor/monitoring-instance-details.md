@@ -143,21 +143,13 @@ The following describes the _License time to install_ and _Instance time to inst
 
 * **License time to install**: The time between when you create the customer license in the vendor portal, and when the application instance reaches a Ready status in the customer environment.
 
-  License time to install represents the time that it takes for a customer to successfully deploy your application after you intend to distribute the application to the customer. Replicated uses the timestamp of when you create the customer license in the vendor portal to represent your intent to distribute the application because creating the license file is generally the final step before you share the installation materials with the customer.
+   License time to install represents the time that it takes for a customer to successfully deploy your application after you intend to distribute the application to the customer. Replicated uses the timestamp of when you create the customer license in the vendor portal to represent your intent to distribute the application because creating the license file is generally the final step before you share the installation materials with the customer.
 
-   The following diagram demonstrates how the vendor portal computes the License time to install metric:
-   
-   ** **INSERT DIAGRAM** **
-
-   As shown in the diagram above, License time to install includes several activities that are involved in deploying the application, including the customer receiving the necessary materials and documentation, downloading the assets, provisioning the required hardware, networking, external systems, completing the preflight checks, and finally installing, configuring, and deploying the application.
+   License time to install includes several activities that are involved in deploying the application, including the customer receiving the necessary materials and documentation, downloading the assets, provisioning the required hardware, networking, external systems, completing the preflight checks, and finally installing, configuring, and deploying the application.
 
 * **Instance time to install**: The time between when the vendor portal records the first event for the application instance in the customer environment, and when the instance reaches a Ready status.
 
-   The following diagram demonstrates the activities included and excluded in Instance time to install:
-
-   ** **INSERT DIAGRAM** **
-
-   As shown in the diagram above, Instance time to install is the length of time that it takes for the application to reach a Ready state after the customer starts a deployment attempt in their environment. Replicated considers a deployment attempt started when the vendor portal first records an event for the instance.
+   Instance time to install is the length of time that it takes for the application to reach a Ready state after the customer starts a deployment attempt in their environment. Replicated considers a deployment attempt started when the vendor portal first records an event for the instance.
    
    For more information about how the vendor portal generates events, see [About Events](monitoring-event-data#about-events) in _Event Data_.
    
