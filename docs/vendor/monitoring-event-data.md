@@ -234,24 +234,6 @@ Preflight check data is available only for instances on the app manager version 
     <th>Label</th>
   </tr> 
   <tr>
-    <td><code>versionAge</code></td>
-    <td>
-        <p>The number of days since the version that the instance is currently running was promoted to the channel.</p>
-        <p>The <code>versionAge</code> metric is computed by the vendor portal each time the app manager sends instance data.</p>
-    </td>
-    <td>number</td>
-    <td>App Version: X days since published</td>
-  </tr>
-  <tr>
-    <td><code>versionAgeSinceLatest</code></td>
-    <td>
-      <p>The number of days between when the version that the instance is currently running was promoted to the channel, and when the latest version available on the channel was promoted.</p>
-      <p>The <code>versionAgeSinceLatest</code> metric is computed by the vendor portal each time the app manager sends instance data.</p>
-    </td>
-    <td>number</td>
-    <td>App Version: X days behind latest</td>
-  </tr>  
-  <tr>
     <td><code>numberVersionsBehind</code></td>
     <td>
       <p>The number of versions between the version that the instance is currently running and the latest version available on the channel.</p>
