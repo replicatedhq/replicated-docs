@@ -18,7 +18,7 @@ The vendor portal also uses this data to display insights about the active insta
 
 Instance data has the following requirements and limitations:
 
-* You must configure status informers for your application in the Application custom resource to view instance data about the application status or uptime. For more information about how to configure status informers, see [Displaying Application Status](admin-console-display-app-status).
+* You must configure one or more status informers for your application in the Application custom resource to populate instance data about the application status or uptime. For more information about how to configure status informers, see [Displaying Application Status](admin-console-display-app-status).
 
 * Instance data is available only for application instances installed in online environments. Data for instances installed in air gapped environments is not available.
 
