@@ -118,7 +118,7 @@ To customize host preflight checks:
             - http:
                 collectorName: Can Access A Website
                 get:
-                 Url: https://myFavoriteWebsite.com
+                  url: https://myFavoriteWebsite.com
           analyzers:
             - cpu:
                 checkName: Number of CPU check
@@ -139,7 +139,7 @@ To customize host preflight checks:
                       when: "error"
                       message: Error connecting to https://myFavoriteWebsite.com
                   - pass:
-                      when: "statuscode == 200"
+                      when: "statusCode == 200"
                       message: Connected to https://myFavoriteWebsite.com
   ```
 
