@@ -33,15 +33,9 @@ The app manager is based on the open source KOTS project. The app manager versio
 
 | KOTS Versions   | Kubernetes Compatibility |
 |-----------------|---------------------------|
-| v1.71 and later | v1.25, 1.24, v1.23, v1.22, and v1.21|
-| v1.66 to v1.70 | v1.23, v1.22, and v1.21   |
-| v1.61 to v1.65 | v1.23, v1.22, v1.21, and v1.20|
-| v1.59.3 to v1.60 | v1.22, v1.21, and v1.20 |
-| v1.48 to v1.59.2 | v1.21, v1.20, and v1.19|
-| v1.36 to v1.47  | v1.20, v1.19, and v1.18 |
-| v1.20 to v1.35  | v1.19, v1.18, and v1.17 |
-| v1.15 to v1.19  | v1.18, v1.17, and v1.16 |
-| v1.11 to v1.14  | v1.17, v1.16, and v1.15 |
+| v1.71 and later | v1.25, 1.24, v1.23 |
+| v1.66 to v1.70 | v1.23 |
+| v1.61 to v1.65 | v1.23 |
 
 ## Minimum System Requirements
 
