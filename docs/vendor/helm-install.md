@@ -1,3 +1,5 @@
+import HelmCLILimitations from "../partials/helm/_helm-cli-limitations.mdx"
+
 # Supporting helm CLI Installations (Beta)
 
 :::note
@@ -60,12 +62,7 @@ The chart version must also comply with the Semantic Versioning (SemVer) specifi
 
 The `helm install` method is Beta and has the following limitations:
 
-* No support for "last mile" changes with Kustomize. All configuration and customization must be done using Helm.
-* No support for `strict` preflights that block application installation. This is because Helm does not automatically run preflight checks. Preflight checks are supported with `helm install`, but your users must run the preflight checks manually before installing your application.
-* No support for air gap installations.
-* Customer adoption is not reported to the vendor portal.
-* This feature supports multiple charts and Replicated does not wrap or provide any special tooling to manage multiple charts. Replicated recommends that you provide installation instructions with sequenced steps for users to follow to install each chart in the required order.
-* The Replicated admin console is not included by default when your users install using the helm CLI. For more information, see [Delivering the Admin Console with your Application](#deliver-admin-console) below.
+<HelmCLILimitations/>
 
 ## Delivering the Admin Console with your Application {#deliver-admin-console}
 

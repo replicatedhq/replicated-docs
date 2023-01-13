@@ -287,7 +287,7 @@ Items can be hidden. They will not be visible if hidden.
           value: "{{repl RandomString 40}}"
 ```
 
-You can use the `hidden` property with a function that generates a value, such as `RandomString`, to define whether or not the generated value is ephemeral or persistent between changes to the configuration settings for the application. For more information, see [RandomString](template-functions-static-context#randomstring) in _Static Context_.
+When you assign a template function that generates a value to a `value` key in the Config custom resource, you can use the `readonly` and `hidden` properties to define whether or not the generated value is ephemeral or persistent between changes to the configuration settings for the application. For more information, see [RandomString](template-functions-static-context#randomstring) in _Static Context_.
 
 ### `readonly`
 Items can be readonly.
@@ -299,7 +299,7 @@ Items can be readonly.
           readonly: true
 ```
 
-You can use the `readonly` property with a function that generates a value, such as `RandomString`, to define whether or not the generated value is ephemeral or persistent between changes to the configuration settings for the application. For more information, see [RandomString](template-functions-static-context#randomstring) in _Static Context_.
+When you assign a template function that generates a value to a `value` key in the Config custom resource, you can use the `readonly` and `hidden` properties to define whether or not the generated value is ephemeral or persistent between changes to the configuration settings for the application. For more information, see [RandomString](template-functions-static-context#randomstring) in _Static Context_.
 
 ### `affix`
 Items can be affixed left or right.

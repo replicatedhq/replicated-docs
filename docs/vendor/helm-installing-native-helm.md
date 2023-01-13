@@ -1,3 +1,6 @@
+import NativeHelmLimitations from "../partials/helm/_native-helm-limitations.mdx"
+import TemplateLimitation from "../partials/helm/_helm-template-limitation.mdx"
+
 # Installing with Native Helm
 
 With the native Helm installation, you can exercise more control over chart deployment using Helm hooks and weights. In the native Helm installation workflow, the app manager deploys the app's v3 Helm charts with a `helm install` command. This means that Helm owns the installation and lifecycle management of the chart resources. For new applications, native Helm is the preferred method because it supports more Helm features, such as hook and weights.
@@ -8,14 +11,8 @@ Migrating existing installations to the native Helm workflow is not supported. H
 
 ## Native Helm Limitations
 The native Helm chart support has the following limitations:
-* Only available for Helm V3.
-* Only supported for new installations.
-* Not supported on existing charts deployed on existing applications.
-* Migrating existing applications to the native Helm implementation is not supported. To deliver applications using the native Helm workflow, promote releases to a new channel for new customer installations.
-* The test hook is not supported.
-* Hook weights below -9999. All hook weights must be set to a value above -9999 to ensure the Replicated image pull secret is deployed before any resources are pulled.
-* Not supported with the [GitOps workflows](../enterprise/gitops-workflow).
-* The name specified in the [HelmChart custom resource](/reference/custom-resource-helmchart) must be an exact match to the actual Helm Chart name that is provided to Replicated; failure to do this will result in errored installations.
+<TemplateLimitation/>
+<NativeHelmLimitations/>
 
 ### Helm Hooks and Weights
 

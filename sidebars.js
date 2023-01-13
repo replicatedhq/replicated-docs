@@ -60,299 +60,218 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Vendor',
-      collapsed: false,
+      label: 'Vendor Portal Team Management',
       items: [
-        'vendor/distributing-workflow',
         'vendor/vendor-portal-creating-account',
-        'vendor/planning-questionnaire',
+        'vendor/team-management',
+        'vendor/team-management-github-username',
         {
             type: 'category',
-            label: 'Using Private Registries',
+            label: 'Configuring Role-based Access Control',
             items: [
-              'vendor/packaging-private-images',
-              'vendor/helm-image-registry',
-              'vendor/packaging-private-registry-cname',
-              'vendor/packaging-private-registry-security',
-              'vendor/tutorial-ecr-private-images',
+              'vendor/team-management-rbac-configuring',
+              "vendor/team-management-rbac-about",
+              'vendor/team-management-rbac-resource-names',
           ],
         },
-          {
-            type: 'category',
-            label: 'Channels',
-            items: [
-              'vendor/releases-about-channels',
-              'vendor/releases-creating-channels',
-              'vendor/releases-semantic-versioning',
-            ],
-          },
-          {
-            type: 'category',
-            label: 'Releases',
-            items: [
-              'vendor/releases-about',
-              'vendor/helm-release',
-              'vendor/releases-creating-releases',
-              {
-                type: 'category',
-                label: 'Packaging an Application',
-                items: [
-                  {
-                      type: 'category',
-                      label: 'Customizing the Configuration Screen',
-                      items: [
-                        'vendor/config-screen-about',
-                        'vendor/admin-console-customize-config-screen',
-                        'vendor/config-screen-map-inputs',
-                        'vendor/helm-mapping-example',
-                    ],
-                  },
-                  {
-                    type: 'category',
-                    label: 'Packaging Helm Charts',
-                    items: [
-                      {
-                        type: 'category',
-                        label: 'Overview',
-                        items: [
-                          'vendor/helm-overview',
-                          'vendor/helm-processing',
-                        ],
-                      },
-                      'vendor/helm-install',
-                      {
-                        type: 'category',
-                        label: 'Using Native Helm',
-                        items: [
-                          'vendor/helm-installing-native-helm',
-                          'vendor/helm-native-helm-install-order',
-                        ],
-                      },
-                      {
-                        type: 'category',
-                        label: 'Including Conditional Resources',
-                        items: [
-                          'vendor/helm-optional-charts',
-                          'vendor/helm-chart-components',
-                          'vendor/helm-optional-value-keys',
-                        ],
-                      },
-                    ],
-                  },
-                  {
-                    type: 'category',
-                    label: 'Adding Persistent Data Stores',
-                    items: [
-                      'vendor/database-config-adding-options',
-                      'vendor/tutorial-adding-db-config',
-                    ],
-                  },
-                  'vendor/preflight-support-bundle-creating',
-                  {
-                      type: 'category',
-                      label: 'Configuring Backup and Restore',
-                      items: [
-                        'vendor/snapshots-overview',
-                        'vendor/snapshots-configuring-backups',
-                        'vendor/snapshots-hooks',
-                    ],
-                  },
-                  {
-                    type: 'category',
-                    label: 'Customizing the Admin Console and Download Portal',
-                    items: [
-                      'vendor/admin-console-customize-app-icon',
-                      'vendor/admin-console-display-app-status',
-                      'vendor/admin-console-adding-buttons-links',
-                      'vendor/admin-console-prometheus-monitoring',
-                    ],
-                  },
-                  'vendor/packaging-ingress',
-                  'vendor/packaging-kots-versions',
-                  'vendor/packaging-include-resources',
-                  'vendor/namespaces',
-                  'vendor/packaging-using-tls-certs',
-                  'vendor/packaging-cleaning-up-jobs',
-                  'vendor/packaging-rbac',
-                  'vendor/identity-service-configuring',
-                  {
-                    type: 'category',
-                    label: 'Packaging a Kubernetes Operator Application',
-                    items: [
-                      'vendor/operator-packaging-about',
-                      'vendor/operator-defining-additional-images',
-                      'vendor/operator-referencing-images',
-                      'vendor/operator-defining-additional-namespaces',
-                    ],
-                  },
-                ],
-              },
-              'vendor/releases-configvalues',
-              {
-                type: 'category',
-                label: 'Integrating with CI/CD',
-                items: [
-                  'vendor/repository-workflow-and-tagging-releases',
-                  'vendor/tutorial-ci-cd-integration',
-                ],
-              },
-              'vendor/packaging-air-gap-excluding-minio',
-              'vendor/releases-updating',
-            ],
-          },
-          {
-            type: 'category',
-            label: 'Kubernetes Installers',
-            items: [
-              'vendor/packaging-embedded-kubernetes',
-              'vendor/packaging-installer-storage',
-              'vendor/preflight-host-preflights',
-            ],
-          },
-          {
-            type: 'category',
-            label: 'Customer Licenses',
-            items: [
-              'vendor/releases-creating-customer',
-              'vendor/licenses-about',
-              'vendor/licenses-about-types',
-              'vendor/licenses-using-builtin-fields',
-              'vendor/licenses-adding-custom-fields',
-              'vendor/licenses-referencing-fields',
-            ],
-          },
-          'vendor/releases-sharing-license-install-script',
-        {
-          type: 'category',
-          label: 'Team Management',
-          items: [
-            'vendor/team-management',
-            'vendor/team-management-github-username',
-            {
-                type: 'category',
-                label: 'Configuring Role-based Access Control',
-                items: [
-                  'vendor/team-management-rbac-configuring',
-                  "vendor/team-management-rbac-about",
-                  'vendor/team-management-rbac-resource-names',
-              ],
-            },
-            'vendor/team-management-google-auth',
-            'vendor/team-management-saml-auth',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Data Storage',
-          items: [
-            'vendor/data-availability',
-            'vendor/offsite-backup'
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Support and Troubleshooting',
-          items: [
-            'vendor/support-inspecting-support-bundles',
-            'vendor/support-submit-request',
-            'vendor/support-host-support-bundles',
-          ],
-        },
+        'vendor/team-management-google-auth',
+        'vendor/team-management-saml-auth',
       ],
     },
     {
       type: 'category',
-      label: 'Enterprise',
+      label: 'Channels and Releases',
+      items: [
+        'vendor/releases-about',
+        'vendor/releases-about-channels',
+        'vendor/releases-creating-channels',
+        'vendor/releases-semantic-versioning',
+        'vendor/releases-creating-releases',
+        {
+          type: 'category',
+          label: 'Integrating with CI/CD',
+          items: [
+            'vendor/repository-workflow-and-tagging-releases',
+            'vendor/tutorial-ci-cd-integration',
+          ],
+        },
+        `vendor/releases-updating`,
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Packaging an Application',
       items: [
         {
-          type: 'category',
-          label: 'Installing an Application',
-          items: [
-            'enterprise/installing-overview',
-            'enterprise/installing-general-requirements',
-            'enterprise/installing-stateful-component-requirements',
-            'enterprise/installing-existing-cluster',
-            'enterprise/installing-embedded-cluster',
-            'enterprise/cluster-management-add-nodes',
-            'enterprise/installing-app-setup',
-            'enterprise/installing-existing-cluster-automation',
-            'enterprise/delete-admin-console',
+            type: 'category',
+            label: 'Customizing the Configuration Screen',
+            items: [
+              'vendor/config-screen-about',
+              'vendor/admin-console-customize-config-screen',
+              'vendor/config-screen-map-inputs',
+              'vendor/helm-mapping-example',
           ],
         },
         {
           type: 'category',
-          label: 'Using Self-hosted Image Registries',
+          label: 'Packaging Helm Charts',
           items: [
-            'enterprise/image-registry-airgap',
-            'enterprise/image-registry-embedded-cluster',
-            'enterprise/image-registry-rate-limits',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Updating',
-          items: [
-            'enterprise/updating-apps',
-            'enterprise/updating-existing-cluster',
-            'enterprise/updating-embedded-cluster',
-            'enterprise/updating-patching-with-kustomize',
-            'enterprise/updating-licenses',
-            'enterprise/updating-tls-cert',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'GitOps',
-          items: [
-            'enterprise/gitops-workflow',
-            'enterprise/gitops-managing-secrets',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Managing User Access',
-          items: [
-            'enterprise/auth-changing-passwords',
-            'enterprise/auth-identity-provider',
-            'enterprise/auth-configuring-rbac',
-          ],
-        },
-        {
-          type: 'doc',
-          id: 'enterprise/monitoring-applications'
-        },
-        {
-          type: 'category',
-          label: 'Managing Backup and Restore',
-          items: [
-            'enterprise/snapshots-understanding',
-            {
+              {
               type: 'category',
-              label: 'Configuring Backup Storage',
+              label: 'Overview',
               items: [
-                'enterprise/snapshots-config-workflow',
-                'enterprise/snapshots-velero-cli-installing',
-                'enterprise/snapshots-configuring-hostpath',
-                'enterprise/snapshots-configuring-nfs',
-                'enterprise/snapshots-storage-destinations',
-                'enterprise/snapshots-velero-installing-config',
+                'vendor/helm-overview',
+                'vendor/helm-processing',
               ],
             },
-            'enterprise/snapshots-creating',
-            'enterprise/snapshots-scheduling',
-            'enterprise/snapshots-restoring-full',
-            'enterprise/snapshots-restoring-partial',
-            `enterprise/snapshots-updating-with-admin-console`,
-            'enterprise/snapshots-troubleshooting-backup-restore',
+            'vendor/helm-release',
+            'vendor/helm-install',
+            {
+              type: 'category',
+              label: 'Using Native Helm',
+              items: [
+                'vendor/helm-installing-native-helm',
+                'vendor/helm-native-helm-install-order',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Including Conditional Resources',
+              items: [
+                'vendor/helm-optional-charts',
+                'vendor/helm-chart-components',
+                'vendor/helm-optional-value-keys',
+              ],
+            },
           ],
         },
         {
           type: 'category',
-          label: 'Troubleshooting',
+          label: 'Adding Persistent Data Stores',
           items: [
-            'enterprise/status-viewing-details',
-            'enterprise/troubleshooting-an-app',
+            'vendor/database-config-adding-options',
+            'vendor/tutorial-adding-db-config',
           ],
+        },
+        {
+          type: 'category',
+          label: 'Customizing the Admin Console and Download Portal',
+          items: [
+            'vendor/admin-console-customize-app-icon',
+            'vendor/admin-console-display-app-status',
+            'vendor/admin-console-adding-buttons-links',
+            'vendor/admin-console-prometheus-monitoring',
+          ],
+        },
+        'vendor/packaging-ingress',
+        'vendor/packaging-kots-versions',    
+        'vendor/packaging-include-resources',
+        'vendor/namespaces',
+        'vendor/packaging-using-tls-certs',
+        'vendor/packaging-cleaning-up-jobs',
+        'vendor/packaging-rbac',
+        'vendor/identity-service-configuring',
+        {
+          type: 'category',
+          label: 'Kubernetes Operators',
+          items: [
+            'vendor/operator-packaging-about',
+            'vendor/operator-defining-additional-images',
+            'vendor/operator-referencing-images',
+            'vendor/operator-defining-additional-namespaces',
+          ],
+        },
+      ],
+    },  
+    {
+      type: 'category',
+      label: 'Private Registries',
+      items: [
+        'vendor/packaging-private-images',
+        'vendor/helm-image-registry',
+        'vendor/packaging-private-registry-cname',
+        'vendor/packaging-private-registry-security',
+        'vendor/tutorial-ecr-private-images',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Preflights and Support Bundles',
+      items: [
+        'vendor/preflight-support-bundle-creating',
+        'vendor/support-modular-support-bundle-specs',
+        'vendor/support-online-support-bundle-specs',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Backup and Restore',
+      items: [
+        'vendor/snapshots-overview',
+        'vendor/snapshots-configuring-backups',
+        'vendor/snapshots-hooks',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Kubernetes Installers',
+      items: [
+        'vendor/packaging-embedded-kubernetes',
+        'vendor/packaging-installer-storage',
+        'vendor/preflight-host-preflights',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Customer Licenses',
+      items: [
+        'vendor/licenses-about',
+        'vendor/licenses-about-types',
+        'vendor/releases-creating-customer',
+        'vendor/licenses-using-builtin-fields',
+        'vendor/licenses-adding-custom-fields',
+        'vendor/licenses-referencing-fields',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Distribute Your Application',
+      items: [
+        'vendor/distributing-workflow',
+        'vendor/planning-questionnaire',
+        'vendor/releases-sharing-license-install-script',
+        'vendor/packaging-air-gap-excluding-minio',
+        'vendor/releases-configvalues',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Replicated Data Storage',
+      items: [
+        'vendor/data-availability',
+        'vendor/offsite-backup'
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Support',
+      items: [
+        'vendor/support-inspecting-support-bundles',
+        'vendor/support-submit-request',
+        'vendor/support-host-support-bundles',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Policies',
+      items: [
+        'vendor/policies-vulnerability-patch',
+        'vendor/policies-support-lifecycle',
+        'vendor/policies-data-transmission',
+        {
+          type: 'link',
+          label: 'Security at Replicated',
+          href: 'https://www.replicated.com/security/'
         },
       ],
     },
@@ -449,13 +368,13 @@ const sidebars = {
                   'reference/kots-cli-restore-ls',
               ],
             },
-              {
-                  type: 'category',
-                  label: 'upstream',
-                  items: [
-                    'reference/kots-cli-upstream',
-                    'reference/kots-cli-upstream-upgrade',
-                    'reference/kots-cli-upstream-download',
+            {
+                type: 'category',
+                label: 'upstream',
+                items: [
+                  'reference/kots-cli-upstream',
+                  'reference/kots-cli-upstream-upgrade',
+                  'reference/kots-cli-upstream-download',
               ],
             },
             {
@@ -551,26 +470,108 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Policies',
-      items: [
-        'vendor/policies-vulnerability-patch',
-        'vendor/policies-support-lifecycle',
-        'vendor/policies-data-transmission',
-        {
-          type: 'link',
-          label: 'Security at Replicated',
-          href: 'https://www.replicated.com/security/'
-        },
-      ],
-    },
-    {
-      type: 'category',
+      className: 'main-section',
       label: 'Release Notes',
-      collapsed: false,
       items: [
         'release-notes/rn-whats-new',
         'release-notes/rn-app-manager',
         'release-notes/rn-kubernetes-installer'
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Enterprise User Documentation',
+      items: [
+        {
+          type: 'category',
+          label: 'Installing an Application',
+          items: [
+            'enterprise/installing-overview',
+            'enterprise/installing-general-requirements',
+            'enterprise/installing-stateful-component-requirements',
+            'enterprise/installing-existing-cluster',
+            'enterprise/installing-embedded-cluster',
+            'enterprise/cluster-management-add-nodes',
+            'enterprise/installing-app-setup',
+            'enterprise/installing-existing-cluster-automation',
+            'enterprise/delete-admin-console',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Using Self-hosted Image Registries',
+          items: [
+            'enterprise/image-registry-airgap',
+            'enterprise/image-registry-embedded-cluster',
+            'enterprise/image-registry-rate-limits',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Updating',
+          items: [
+            'enterprise/updating-apps',
+            'enterprise/updating-existing-cluster',
+            'enterprise/updating-embedded-cluster',
+            'enterprise/updating-patching-with-kustomize',
+            'enterprise/updating-licenses',
+            'enterprise/updating-tls-cert',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'GitOps',
+          items: [
+            'enterprise/gitops-workflow',
+            'enterprise/gitops-managing-secrets',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Managing User Access',
+          items: [
+            'enterprise/auth-changing-passwords',
+            'enterprise/auth-identity-provider',
+            'enterprise/auth-configuring-rbac',
+          ],
+        },
+        {
+          type: 'doc',
+          id: 'enterprise/monitoring-applications'
+        },
+        {
+          type: 'category',
+          label: 'Managing Backup and Restore',
+          items: [
+            'enterprise/snapshots-understanding',
+            {
+              type: 'category',
+              label: 'Configuring Backup Storage',
+              items: [
+                'enterprise/snapshots-config-workflow',
+                'enterprise/snapshots-velero-cli-installing',
+                'enterprise/snapshots-configuring-hostpath',
+                'enterprise/snapshots-configuring-nfs',
+                'enterprise/snapshots-storage-destinations',
+                'enterprise/snapshots-velero-installing-config',
+              ],
+            },
+            'enterprise/snapshots-creating',
+            'enterprise/snapshots-scheduling',
+            'enterprise/snapshots-restoring-full',
+            'enterprise/snapshots-restoring-partial',
+            `enterprise/snapshots-updating-with-admin-console`,
+            'enterprise/snapshots-troubleshooting-backup-restore',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Troubleshooting',
+          items: [
+            'enterprise/status-viewing-details',
+            'enterprise/troubleshooting-an-app',
+          ],
+        },
       ],
     },
   ],

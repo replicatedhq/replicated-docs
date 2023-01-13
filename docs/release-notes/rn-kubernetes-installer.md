@@ -4,6 +4,74 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.01.13-1
+
+Released on January 13, 2023
+
+### Bug Fixes {#bug-fixes-v2023-01-13-1}
+* Reverts a bug fix made in v2023.01.03-0 which caused `.kube/config` to not be created.
+
+## v2023.01.13-0
+
+:::important The Kubernetes installer v2023.01.13-0 has a known issue that affects the creation of .kube/config in the home directory. See [Known Issue](#known-issues-v2023.01.13-0) below. This issue is resolved in v2023.01.13-1. :::
+
+Released on January 13, 2023
+
+### New Features {#new-features-v2023-01-13-0}
+* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.9.5.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) versions RELEASE.2023-01-02T09-40-09Z and RELEASE.2023-01-06T18-11-18Z.
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.10.8.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.15.
+* Adds automatic data migration from Longhorn to OpenEBS.
+* Adds a migration path for Weave to Flannel on single-node Kubernetes clusters. This migration requires downtime.
+* Adds logs for kURL execution which can be found under `/var/log/kurl/`.
+
+### Bug Fixes {#bug-fixes-v2023-01-13-0}
+* Fixes an issue where the process get stuck in failures scenarios by adding timeouts and improving log info when upgrading from the Rook `1.0.4` to `1.4.9`. 
+* Fixes upgrading Rook from `1.0.4-14.2.21` to `1.4.9`.
+* Fixes a bug on Ubuntu where the installer would sometimes remove packages when attempting to install Kubernetes.
+* Fixes a timeout waiting for new versions of Rook and Ceph to roll out on upgrades by increase wait timeouts from 10 to 20 minutes.
+
+### Known Issue {#known-issues-v2023.01.13-0}
+
+This issue is resolved in v2023.01.13-1.
+
+v2023.01.13-0 has a known issue where the .kube/config might not be created in the home directory. This does not affect the ability to access the cluster when you run bash -l with kubectl.
+
+If you cannot connect to the cluster with kubectl or did not find the .kube/config file, Replicated recommends that you copy .kube/config to your home directory:
+
+```
+cp /etc/kubernetes/admin.conf $HOME/.kube/config
+```
+
+Then, grant the permission the $HOME/.kube/config file.
+
+
+## v2023.01.03-0
+
+Released on January 3, 2023
+
+### New Features {#new-features-v2023-01-03-0}
+* [Rook add-on](https://kurl.sh/docs/add-ons/rook) can now be upgraded and migrated from version 1.4.3 up to version 1.7.x as part of the installation script.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.26.2.
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.23.2.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2022-12-12T19-27-27Z.
+* Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.13.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) versions 1.26.0, 1.25.5, 1.24.9, 1.23.15, and 1.22.17.
+* Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.14.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) versions 1.6.13 and 1.6.14.
+
+### Improvements {#improvements-v2023-01-03-0}
+
+* Disk and volume validation checks now run prior to migrating from Rook to OpenEBS. A failed validation check aborts the upgrade.
+
+### Bug Fixes {#bug-fixes-v2023-01-03-0}
+* Fixes installation conflicts when installing the containerd add-on and Docker is already installed on the host. Now the installation checks to see if Docker is installed and provides users with the option to automatically remove Docker.
+* Fixes an issue where EKCO's provisioned HAProxy load balancer pod crashed when it did not have access to the Config file.
+* Fixes an issue that causes air gapped upgrades to Rook add-on version 1.7.11 to fail with ImagePullBackoff errors.
+* Fixes an issue with the Docker preflight check not failing on some unsupported operating systems.
+* Fixes an issue that could cause Rook upgrades to fail if EKCO is scaled down, due to failures to recreate the Rook OSD deployments when the rook-priority.kurl.sh MutatingAdmissionWebhook is unreachable.
+
 ## v2022.12.12-0
 
 Released on December 12, 2022
