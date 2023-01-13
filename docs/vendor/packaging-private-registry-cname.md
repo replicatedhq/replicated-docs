@@ -1,11 +1,6 @@
 # Using Custom Domains (Beta)
 
-This topic describes using custom registry domains and custom domains for the download portal, and how to configure them using the Replicated vendor portal or the vendor API.
-
-For more information, see the following sections in this topic:
-
-- [Custom Registry Domains](#registry)
-- [Custom Domains for the Download Portal](#download)
+This topic describes using custom registry domains and how to configure them using the Replicated vendor portal or the vendor API.
 
 ## Custom Registry Domains {#registry}
 
