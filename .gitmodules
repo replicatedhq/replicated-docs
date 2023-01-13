@@ -1,0 +1,3 @@
+[submodule "troubleshoot"]
+	path = troubleshoot
+	url = https://github.com/replicatedhq/troubleshoot.sh.git

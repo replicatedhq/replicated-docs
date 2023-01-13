@@ -55,18 +55,18 @@ const config = {
     ],
 
   ],
-  // plugins: [
-  //   [
-  //     '@docusaurus/plugin-content-docs',
-  //     {
-  //       id: 'troubleshoot',
-  //       path: 'troubleshoot/docs/source',
-  //       routeBasePath: 'troubleshoot',
-  //       sidebarPath: require.resolve('./sidebarsTroubleShoot.js')
-  //       // ... other options
-  //     },
-  //   ],
-  // ],
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'troubleshoot',
+        path: 'troubleshoot/docs/source',
+        routeBasePath: 'troubleshoot',
+        sidebarPath: require.resolve('./sidebarsTroubleShoot.js')
+        // ... other options
+      },
+    ],
+  ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -89,23 +89,22 @@ const config = {
       },
       navbar: {
         // title: 'Docs',
-        logo: {
-          alt: 'R',
-          src: 'images/logo-replicated-red.png',
-        },
+        // logo: {
+        //   alt: 'R',
+        //   src: 'images/logo-replicated-red.png',
+        // },
         items: [
-          // {
-          //   docsPluginId: 'default',
-          //   label: "Replicated",
-          //   type: 'docsVersion'
-          // },
-          // {
-          //   type: 'docsVersion',
-          //   //position: 'left',
-          //   docsPluginId: 'troubleshoot',
-          //   label: 'Troubleshoot.sh',
-
-          // }
+          {
+            docsPluginId: 'default',
+            label: "Docs",
+            type: 'docsVersionDropdown'
+          },
+          {
+            //type: 'docsVersionDropdown',
+            //position: 'left',
+            docsPluginId: 'troubleshoot',
+            label: 'Troubleshoot',
+          }
         ]
 
 

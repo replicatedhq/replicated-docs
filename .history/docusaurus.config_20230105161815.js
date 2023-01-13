@@ -55,18 +55,18 @@ const config = {
     ],
 
   ],
-  // plugins: [
-  //   [
-  //     '@docusaurus/plugin-content-docs',
-  //     {
-  //       id: 'troubleshoot',
-  //       path: 'troubleshoot/docs/source',
-  //       routeBasePath: 'troubleshoot',
-  //       sidebarPath: require.resolve('./sidebarsTroubleShoot.js')
-  //       // ... other options
-  //     },
-  //   ],
-  // ],
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'troubleshoot',
+        path: 'troubleshoot/docs/source',
+        routeBasePath: 'troubleshoot',
+        sidebarPath: require.resolve('./sidebarsTroubleShoot.js')
+        // ... other options
+      },
+    ],
+  ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -94,11 +94,11 @@ const config = {
           src: 'images/logo-replicated-red.png',
         },
         items: [
-          // {
-          //   docsPluginId: 'default',
-          //   label: "Replicated",
-          //   type: 'docsVersion'
-          // },
+          {
+            docsPluginId: 'default',
+            label: "Replicated",
+            type: 'docsVersion'
+          },
           // {
           //   type: 'docsVersion',
           //   //position: 'left',

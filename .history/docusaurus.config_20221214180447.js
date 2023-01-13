@@ -53,7 +53,7 @@ const config = {
         },
       }),
     ],
-
+    
   ],
   // plugins: [
   //   [
@@ -88,28 +88,14 @@ const config = {
         anonymizeIP: true,
       },
       navbar: {
-        // title: 'Docs',
+        title: 'Docs',
         logo: {
           alt: 'R',
           src: 'images/logo-replicated-red.png',
         },
-        items: [
-          // {
-          //   docsPluginId: 'default',
-          //   label: "Replicated",
-          //   type: 'docsVersion'
-          // },
-          // {
-          //   type: 'docsVersion',
-          //   //position: 'left',
-          //   docsPluginId: 'troubleshoot',
-          //   label: 'Troubleshoot.sh',
-
-          // }
-        ]
-
 
       },
+
       footer: {
         style: 'dark',
         links: [

@@ -94,11 +94,11 @@ const config = {
           src: 'images/logo-replicated-red.png',
         },
         items: [
-          // {
-          //   docsPluginId: 'default',
-          //   label: "Replicated",
-          //   type: 'docsVersion'
-          // },
+          {
+            docsPluginId: 'default',
+            label: "Replicated",
+            type: 'docsVersion'
+          },
           // {
           //   type: 'docsVersion',
           //   //position: 'left',
