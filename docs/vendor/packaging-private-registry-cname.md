@@ -225,8 +225,3 @@ To assign a custom domain to an application:
 1. Click **Use custom domain in an application** next to the domain that you want to use.
 1. Copy the snippet from the **Use custom domain in an application** dialog that opens, then click **Ok, got it!**.
 1. Create a new release and add the code snippet to the Application custom resource manifest file to create the new field for either `proxyRegistryDomain` or `replicatedRegistryDomain`. For more information, see [proxyRegistryDomain](../reference/custom-resource-application#proxyRegistryDomain) and [replicatedRegistryDomain](../reference/custom-resource-application#replicatedRegistryDomain) in the _Application_ section.
-
-
-## Custom Domains for the Download Portal {#download}
-
-You can configure the download portal to use a custom domain instead of the default get.replicated.com. Only one custom domain per team can be active at any time.
