@@ -4,6 +4,13 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.01.13-1
+
+Released on January 13, 2023
+
+### Bug Fixes {#bug-fixes-v2023-01-13-1}
+* fix: create .kube/config for all installs.
+
 ## v2023.01.03-0
 
 Released on January 3, 2023
