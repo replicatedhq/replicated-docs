@@ -9,11 +9,12 @@ toc_max_heading_level: 2
 Released on January 13, 2023
 
 ### Bug Fixes {#bug-fixes-v2023-01-13-1}
-* Reverts a bug fix made in v2023.01.03-0 which caused `.kube/config` to not be created.
+* Reverts a bug fix made in v2023.01.03-0 which caused `.kube/config` to not be created. For more information, see [Known Issue](#known-issues-v2023-01-13-0) below.
 
 ## v2023.01.13-0
 
-:::important The Kubernetes installer v2023.01.13-0 has a known issue that affects the creation of .kube/config in the home directory. See [Known Issue](#known-issues-v2023.01.13-0) below. This issue is resolved in v2023.01.13-1.
+:::important
+The Kubernetes installer v2023.01.13-0 has a known issue that affects the creation of .kube/config in the home directory. See [Known Issue](#known-issues-v2023-01-13-0) below. This issue is resolved in v2023.01.13-1.
 :::
 
 Released on January 13, 2023
@@ -33,7 +34,7 @@ Released on January 13, 2023
 * Fixes a bug on Ubuntu where the installer would sometimes remove packages when attempting to install Kubernetes.
 * Fixes a timeout waiting for new versions of Rook and Ceph to roll out on upgrades by increase wait timeouts from 10 to 20 minutes.
 
-### Known Issue {#known-issues-v2023.01.13-0}
+### Known Issue {#known-issues-v2023-01-13-0}
 
 This issue is resolved in v2023.01.13-1.
 
@@ -45,7 +46,7 @@ If you cannot connect to the cluster with kubectl or did not find the .kube/conf
 cp /etc/kubernetes/admin.conf $HOME/.kube/config
 ```
 
-Then, grant the permission the $HOME/.kube/config file.
+Then, grant permissions to the $HOME/.kube/config file.
 
 
 ## v2023.01.03-0
