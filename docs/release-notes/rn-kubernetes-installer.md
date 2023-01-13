@@ -19,7 +19,7 @@ Released on January 13, 2023
 
 ### Bug Fixes {#bug-fixes-v2023-01-13-0}
 * Fixes an issue where .kube/config would only be created for some install configurations.
-* Improved log info when upgrading from the Rook `1.0.4` to `1.4.9`..
+* Fixes an issue where the process get stuck in failures scenarios by adding timeouts and improving log info when upgrading from the Rook `1.0.4` to `1.4.9`. 
 * Fixes upgrading Rook from `1.0.4-14.2.21` to `1.4.9`.
 * Fixes a bug on Ubuntu where the installer would sometimes remove packages when attempting to install Kubernetes.
 * Fixes a timeout waiting for new versions of Rook and Ceph to roll out on upgrades by increase wait timeouts from 10 to 20 minutes.
