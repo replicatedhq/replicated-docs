@@ -6,7 +6,7 @@ toc_max_heading_level: 2
 
 ## v2023.01.13-0
 
-:::important The app manager v2023.01.13-0 has a known issue that affects the creation of .kube/config in the home directory.  See [Known Issue](#known-issues-v2023.01.13-0) below. :::
+:::important The Kubernetes installer v2023.01.13-0 has a known issue that affects the creation of .kube/config in the home directory. See [Known Issue](#known-issues-v2023.01.13-0) below. This issue is resolved in v2023.01.13-1. :::
 
 Released on January 13, 2023
 
@@ -27,9 +27,17 @@ Released on January 13, 2023
 
 ### Known Issue {#known-issues-v2023.01.13-0}
 
-A regression issue was identified in this release where the .kube/config might not be created in the home directory. This should not affected the ability to access the cluster when you run bash -l with kubectl.
+This issue is resolved in v2023.01.13-1.
 
-If you face problems when connecting to the cluster with kubectl or did not find the .kube/config, you might able to sorted out it by copying the kubeconfig to your home directory (i.e. $ cp /etc/kubernetes/admin.conf $HOME/.kube/config) and grating the permission to the $HOME/.kube/config file.
+v2023.01.13-0 has a known issue where the .kube/config might not be created in the home directory. This does not affect the ability to access the cluster when you run bash -l with kubectl.
+
+If you cannot connect to the cluster with kubectl or did not find the .kube/config file, Replicated recommends that you copy .kube/config to your home directory:
+
+```
+cp /etc/kubernetes/admin.conf $HOME/.kube/config
+```
+
+Then, grant the permission the $HOME/.kube/config file.
 
 
 ## v2023.01.03-0
