@@ -19,7 +19,7 @@ spec:
 
 ## Objects and Fields
 
-A redactor supports two objects: `fileSelector` and `removals`. These objects specify the files the redactor applies to and how the redactions occur. For more information and examples of these fields, see [Example Redactors](#example-redactors) below and [Redactors](https://troubleshoot.sh/docs/redact/redactors/) in the Troubleshoot documentation.
+A redactor supports two objects: `fileSelector` and `removals`. These objects specify the files the redactor applies to and how the redactions occur. For more information and examples of these fields, see [Example Redactor](#example-redactor) below and [Redactors](https://troubleshoot.sh/docs/redact/redactors/) in the Troubleshoot documentation.
 
 ### fileSelector
 
