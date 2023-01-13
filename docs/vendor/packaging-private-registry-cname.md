@@ -44,13 +44,13 @@ To configure a custom domain in the vendor portal:
 
 1. Log in to the [vendor portal](https://vendor.replicated.com), and click **Team > Custom Domains**.
 
-1. From the **Custom domains...** pane for either the Replicated registry or the proxy service, click **Add your first custom domain** or **Add new domain**.
+1. From the **Custom domains...** pane for either the Replicated registry or the proxy service, click **Add new domain**.
 
   The **Configure a custom domain** wizard opens.
 
 1. For **Domain**, enter the custom domain used for images pushed to the Replicated registry or proxy service. Click **Save & continue**.
 
-1. For **Verify ownership**, copy the text string and create the custom domain record in your DNS account. Click **Validate & continue**.
+1. For **Verify ownership**, copy the text string and create the custom domain record in your DNS account. The text string can take a few seconds to appear. Click **Validate & continue**.
 
   Your changes can take up to 24 hours to propagate.
 
