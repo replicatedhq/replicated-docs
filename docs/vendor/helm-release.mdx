@@ -1,8 +1,6 @@
 import RepositoryCicdNote from "../partials/releases/_repository-cicd-note.mdx"
 import CreateReleaseUi from "../partials/releases/_create-release-ui.mdx"
 import PrereqsCli from "../partials/releases/_prereqs-cli.mdx"
-import ExportAppEnvVariable from "../partials/releases/_export-app-env-variable.mdx"
-import VerifyEnvVariables from "../partials/releases/_verify-env-variables.mdx"
 
 
 # Creating Releases with Helm Charts
@@ -165,10 +163,6 @@ To create and promote a new release:
    ```
    For more information, see [HelmChart](../reference/custom-resource-helmchart) in the _Custom Resources_ section.
 
-1. <ExportAppEnvVariable/>
-
-1. <VerifyEnvVariables/>
-
 1. Lint the manifest files and ensure that there are no errors in the YAML:
 
   ```bash
@@ -188,7 +182,7 @@ To create and promote a new release:
 
    For more information, see [release create](/reference/replicated-cli-release-create) or [release update](../reference/replicated-cli-release-update) in _Reference_.
 
-1. Continue to edit, and lint the release as needed, then update the release:
+1. Continue to edit and lint the release as needed, then update the release:
 
     ```
     replicated release update SEQUENCE --yaml-dir PATH-TO-APP-DIRECTORY
