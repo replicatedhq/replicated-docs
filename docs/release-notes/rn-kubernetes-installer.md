@@ -9,7 +9,7 @@ toc_max_heading_level: 2
 Released on January 13, 2023
 
 ### Bug Fixes {#bug-fixes-v2023-01-13-1}
-* fix: create .kube/config for all installs.
+* Revert fixed issue to ensure to create .kube/config in missing install configurations to sort out regression. This fix will be addressed in a future release.
 
 ## v2023.01.03-0
 
