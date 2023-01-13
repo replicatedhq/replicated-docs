@@ -8,6 +8,10 @@ toc_max_heading_level: 2
 
 Released on January 3, 2023
 
+:::important
+We recommend use `v2023.01.13-1` instead because a regression issue was identified on this release where if conflicts resolutions are faced to install the host packages then the package manager might remove host one ore more packages installed (valid only for ubuntu distributions). In the best scenarios the packaged removed might not affected the host or it can be sorted out by getting the host re-installed with `sudo apt-get install <package>`. In the worst scenarios it might can remove important host packages such as `openssh` which would no longer allow you be able to connect via ssh in the host.  
+:::
+
 ### New Features {#new-features-v2023-01-03-0}
 * [Rook add-on](https://kurl.sh/docs/add-ons/rook) can now be upgraded and migrated from version 1.4.3 up to version 1.7.x as part of the installation script.
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.26.2.
