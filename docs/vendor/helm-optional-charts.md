@@ -1,19 +1,21 @@
 # Including Optional Charts
 
-> This topic applies to both native Helm and Replicated Helm installations.
+> This topic applies to both the Native Helm and Replicated KOTS deployment methods.
 
-Charts can be optionally included in an application. By default, an instance of a Helm chart is created for every `apiVersion: kots.io/v1beta` and `kind: HelmChart` that's found in the upstream application manifests.
+By default, the app manager creates an instance of a Helm chart for every HelmChart custom resource manifest file in the upstream application manifests. However, you can configure your application so that the app manager excludes certain Helm charts based on a conditional statement. 
 
-To make a chart optional, add a [template-parsable](../reference/template-functions-about) `exclude` attribute to the `kind: HelmChart` document.
-When downloading, the Replicated app manager will render this field and exclude the entire chart if the output of this field can be parsed as a boolean evaluating to `true`.
+To create this conditional statement, add a Replicated template function to an `exclude` field in the HelmChart custom resource file. For example, you can add a template function that evaluates to `true` or `false` depending on the user's selection for a configuration field on the admin console Config page.
+The Replicated app manager renders the template function in the `exclude` field, and excludes the chart if the template function evaluates to `true`.
 
-If this value is not provided, the chart will be included.
+For more information about template functions, see [About Template Functions](/reference/template-functions-about).
 
 ## Example
-For an example, let's use an example application that has a Postgres database.
+For an example, let's use an application that has a Postgres database.
 The current community supported Postgres Helm chart is available at https://github.com/bitnami/charts/tree/main/bitnami/postgresql.
 For this example, we want to let the user provide their own Postgres instance (outside of the application), or use an embedded, simple Postgres service for demos and simple installations.
 
+For any optional components, Replicated recommends that you add a configuration option to allow the user to optionally enable or disable the component.
+Some enterprises will want everything running in the cluster, while others will want to bring their own services for stateful components.
 
 ### Config
 

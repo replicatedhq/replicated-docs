@@ -116,15 +116,8 @@ const sidebars = {
           type: 'category',
           label: 'Packaging Helm Charts',
           items: [
-              {
-              type: 'category',
-              label: 'Overview',
-              items: [
-                'vendor/helm-overview',
-                'vendor/helm-processing',
-              ],
-            },
-            'vendor/helm-release',
+            'vendor/helm-overview',
+            'vendor/helm-processing',
             'vendor/helm-install',
             {
               type: 'category',
@@ -134,15 +127,8 @@ const sidebars = {
                 'vendor/helm-native-helm-install-order',
               ],
             },
-            {
-              type: 'category',
-              label: 'Including Conditional Resources',
-              items: [
-                'vendor/helm-optional-charts',
-                'vendor/helm-chart-components',
-                'vendor/helm-optional-value-keys',
-              ],
-            },
+            'vendor/helm-optional-charts',
+            'vendor/helm-optional-value-keys',
           ],
         },
         {
