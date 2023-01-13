@@ -6,6 +6,8 @@ toc_max_heading_level: 2
 
 ## v2023.01.13-0
 
+:::important The app manager v2023.01.13-0 has a known issue that affects the creation of .kube/config in the home directory.  See [Known Issue](#known-issues-v2023.01.13-0) below. :::
+
 Released on January 13, 2023
 
 ### New Features {#new-features-v2023-01-13-0}
@@ -18,11 +20,16 @@ Released on January 13, 2023
 * Adds logs for kURL execution which can be found under `/var/log/kurl/`.
 
 ### Bug Fixes {#bug-fixes-v2023-01-13-0}
-* Fixes an issue where .kube/config would only be created for some install configurations.
 * Fixes an issue where the process get stuck in failures scenarios by adding timeouts and improving log info when upgrading from the Rook `1.0.4` to `1.4.9`. 
 * Fixes upgrading Rook from `1.0.4-14.2.21` to `1.4.9`.
 * Fixes a bug on Ubuntu where the installer would sometimes remove packages when attempting to install Kubernetes.
 * Fixes a timeout waiting for new versions of Rook and Ceph to roll out on upgrades by increase wait timeouts from 10 to 20 minutes.
+
+### Known Issue {#known-issues-v2023.01.13-0}
+
+A regression issue was identified in this release where the .kube/config might not be created in the home directory. This should not affected the ability to access the cluster when you run bash -l with kubectl.
+
+If you face problems when connecting to the cluster with kubectl or did not find the .kube/config, you might able to sorted out it by copying the kubeconfig to your home directory (i.e. $ cp /etc/kubernetes/admin.conf $HOME/.kube/config) and grating the permission to the $HOME/.kube/config file.
 
 
 ## v2023.01.03-0
