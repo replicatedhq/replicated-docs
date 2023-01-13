@@ -17,11 +17,11 @@ Replicated will provide support for products per our terms and services until th
   </tr>
   <tr>
     <td>“EOA” - End of Availability</td>
-    <td>A product has reached the End of Availability phase when it is no longer available for renewal purchase by existing customers. This date may coincide with the Limited Availability phase.<br/><br/>This product is considered deprecated, and will move to End of Life after a determined support window. Product maintenance is limited to critical security issues only.</td>
+    <td><p>A product has reached the End of Availability phase when it is no longer available for renewal purchase by existing customers. This date may coincide with the Limited Availability phase.</p><p>This product is considered deprecated, and will move to End of Life after a determined support window. Product maintenance is limited to critical security issues only.</p></td>
   </tr>
   <tr>
     <td>“EOL” - End of Life</td>
-    <td>A product has reached its End of Life, and will no longer be supported, patched, or fixed by Replicated. Associated product documentation may no longer be available.<br/><br/>The Replicated team will continue to engage to migrate end customers to GA product based deployments of your application.</td>
+    <td><p>A product has reached its End of Life, and will no longer be supported, patched, or fixed by Replicated. Associated product documentation may no longer be available.</p><p>The Replicated team will continue to engage to migrate end customers to GA product based deployments of your application.</p></td>
   </tr>
 </table>
 
@@ -66,6 +66,45 @@ Replicated will provide support for products per our terms and services until th
 
 &#42;Except for customers who have specifically contracted different dates for the End of Availability and End of Life timelines.  
 
+## Supported Versions
+
+The following table lists the versions of the Replicated app manager and Replicated Kubernetes installer that are supported on each Kubernetes version.
+
+The End of Replicated Support date is the End Of Life (EOL) date for the Kubernetes version. The EOL date for each Kubernetes version is published on the [Releases](https://kubernetes.io/releases/) page in the Kubernetes documentation. 
+
+<table>
+  <tr>
+    <th>Kubernetes Version</th>
+    <th>App Manager Versions</th>
+    <th>Kubernetes Installer Versions</th>
+    <th>End of Replicated Support</th>
+  </tr>  
+  <tr>
+    <td>1.26</td>
+    <td>N/A</td>
+    <td>v2023.01.03-0 and later</td>
+    <td>2024-02-28</td>
+  </tr>
+  <tr>
+    <td>1.25</td>
+    <td>1.87.0 and later</td>
+    <td>v2022.09.16-0 and later</td>
+    <td>2023-10-27</td>
+  </tr>
+  <tr>
+    <td>1.24</td>
+    <td>1.71.0 and later</td>
+    <td>v2022.06.01-0 and later</td>
+    <td>2023-07-28</td>
+  </tr>
+  <tr>
+    <td>1.23</td>
+    <td>1.61.0 and later</td>
+    <td>v2022.01.28-0 and later</td>
+    <td>2023-02-28</td>
+  </tr>
+</table>
+
 The information contained herein is believed to be accurate as of the date of publication, but updates and revisions may be posted periodically and without notice.
 
-Last modified January 3, 2023.
+Last modified January 13, 2023.
