@@ -4,6 +4,13 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.01.13-1
+
+Released on January 13, 2023
+
+### Bug Fixes {#bug-fixes-v2023-01-13-1}
+* Reverts a bug fix made in v2023.01.03-0 which caused `.kube/config` to not be created.
+
 ## v2023.01.13-0
 
 :::important The Kubernetes installer v2023.01.13-0 has a known issue that affects the creation of .kube/config in the home directory. See [Known Issue](#known-issues-v2023.01.13-0) below. This issue is resolved in v2023.01.13-1. :::
