@@ -10,20 +10,20 @@ Released on January 13, 2023
 
 ### New Features {#new-features-v2023-01-13-0}
 * Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.9.5.
-* Adds logs for kURL execution which can be found under `/var/log/kurl/`.
-* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-01-02T09-40-09Z.
-* Adds automatic data migration from Longhorn to OpenEBS.
-* Single-node kubernetes clusters can be migrated from the Weave CNI to Flannel. This migration requires downtime.
-* Increase wait timeouts from 10 to 20 minutes when waiting for new versions of Rook and Ceph to roll-out on upgrades.
-* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-01-06T18-11-18Z.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) versions RELEASE.2023-01-02T09-40-09Z and RELEASE.2023-01-06T18-11-18Z.
 * Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.10.8.
 * Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.15.
+* Adds automatic data migration from Longhorn to OpenEBS.
+* Adds a migration path for Weave to Flannel on single-node Kubernetes clusters. This migration requires downtime.
+* Adds logs for kURL execution which can be found under `/var/log/kurl/`.
 
 ### Bug Fixes {#bug-fixes-v2023-01-13-0}
-* fix: create .kube/config for all installs.
-* add timeout and better log info when upgrades from the rook versions `1.0.4` to `1.4.9` fails.
-* fix: failures into rock multi-upgrades from 1.0.4-14.2.21 to 1.4.9.
-* fix: (for ubuntu) does not allow remove packages when broken packages are sorted out automatically. Therefore, if be required to do removals ask for manual intervention instead.
+* Fixes an issue where .kube/config would only be created for some install configurations.
+* Improved log info when upgrading from the Rook `1.0.4` to `1.4.9`..
+* Fixes upgrading Rook from `1.0.4-14.2.21` to `1.4.9`.
+* Fixes a bug on Ubuntu where the installer would sometimes remove packages when attempting to install Kubernetes.
+* Fixes a timeout waiting for new versions of Rook and Ceph to roll out on upgrades by increase wait timeouts from 10 to 20 minutes.
+
 
 ## v2023.01.03-0
 
