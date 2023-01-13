@@ -10,9 +10,9 @@ Released on January 13, 2023
 
 ### New Features {#new-features-v2023-01-13-0}
 * Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.9.5.
-* feat: kURL execution logs can be found now under /var/log/kurl/.
+* Adds logs for kURL execution which can be found under `/var/log/kurl/`.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-01-02T09-40-09Z.
-* feat: automatic migrates data from Longhorn to OpenEBS.
+* Adds automatic data migration from Longhorn to OpenEBS.
 * Single-node kubernetes clusters can be migrated from the Weave CNI to Flannel. This migration requires downtime.
 * Increase wait timeouts from 10 to 20 minutes when waiting for new versions of Rook and Ceph to roll-out on upgrades.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-01-06T18-11-18Z.
