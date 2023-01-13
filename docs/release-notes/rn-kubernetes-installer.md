@@ -13,7 +13,8 @@ Released on January 13, 2023
 
 ## v2023.01.13-0
 
-:::important The Kubernetes installer v2023.01.13-0 has a known issue that affects the creation of .kube/config in the home directory. See [Known Issue](#known-issues-v2023.01.13-0) below. This issue is resolved in v2023.01.13-1. :::
+:::important The Kubernetes installer v2023.01.13-0 has a known issue that affects the creation of .kube/config in the home directory. See [Known Issue](#known-issues-v2023.01.13-0) below. This issue is resolved in v2023.01.13-1.
+:::
 
 Released on January 13, 2023
 
