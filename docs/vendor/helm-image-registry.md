@@ -107,7 +107,7 @@ To deliver customer-specific image pull secrets for a private registry:
           name: http
     ```
 
-1. Package your Helm chart and add the packaged chart to a release in the Replicated vendor portal. For more information, see [Add a Helm Chart to a Release](helm-release#add-a-helm-chart-to-a-release).
+1. Package your Helm chart and add the packaged chart to a release in the Replicated vendor portal. For more information, see [Create Releases with Helm Charts](helm-release#add-a-helm-chart-to-a-release).
    :::note
    If you are using an external private registry, ensure that you also complete the steps in [Update the Image Name to Reference the Proxy Service](#proxy-service) below. Otherwise, Replicated will not be able to access your private image through the proxy service.
    :::
@@ -172,7 +172,7 @@ To update the image name to reference the proxy service:
 
    The example above shows how to reference both the `apiImageRepository` and `apiImageTag` fields from the previous example.
 
-1. Package your Helm chart and add the packaged chart to a release in the Replicated vendor portal. For more information, see [Add a Helm Chart to a Release](helm-release#add-a-helm-chart-to-a-release).
+1. Package your Helm chart and add the packaged chart to a release in the Replicated vendor portal. For more information, see [Create Releases with Helm Charts](helm-release#add-a-helm-chart-to-a-release).
 
 1. In the release, create or open the HelmChart custom resource manifest file. A HelmChart custom resource manifest file has `kind: HelmChart` and `apiVersion: kots.io/v1beta1`.
 
