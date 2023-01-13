@@ -1,7 +1,3 @@
-# Creating and Promoting Releases
-
-You can use the Replicated vendor portal to create and promote versions of your application to various release channels.
-
 To create and promote a release in the vendor portal:
 
 1. From the **Applications** dropdown list, select **Create an app** or select an existing application to update.
@@ -12,15 +8,11 @@ To create and promote a release in the vendor portal:
 
   [View a larger image](/images/release-create-new.png)
 
-1. If you are creating a release for the first time, drag and drop your application files into the file directory in the YAML editor. These can be Kubernetes manifest files or Helm charts.
+1. For the first release of an application, drag and drop your application files into the file directory in the YAML editor.
 
-  If this is an existing application, your existing files appear in the YAML editor, and you can drag and drop new manifest files as needed.
+  If you are editing a draft or an existing non-promoted release, the files appear in the YAML editor. You can drag and drop new manifest files as needed.
 
   You can also click the plus icon to add a new, untitled YAML file.
-
-   ![Default YAML](/images/guides/kots/default-yaml.png)
-
-   [View a larger image](/images/guides/kots/default-yaml.png)
 
 1. Edit the YAML files as needed, and click **Save release**. This saves a draft that you can continue to edit until you promote it.
 
@@ -56,13 +48,3 @@ To create and promote a release in the vendor portal:
 1. Click **Promote**.
 
   The release appears in an **Active** state on the Releases page.
-
-## Next Step
-
-Test the release in your development environment using the Replicated admin console. For more information, see [Updating an Application](../enterprise/updating-apps) in the _Enterprise_ section.
-
-## Related Topics
-
-* [About Releases](releases-about)
-* [About Release Channels](releases-about-channels)
-* [How to Package and Distribute a Production Application](distributing-workflow)

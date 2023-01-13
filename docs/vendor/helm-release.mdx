@@ -1,0 +1,222 @@
+import RepositoryCicdNote from "../partials/releases/_repository-cicd-note.mdx"
+import CreateReleaseUi from "../partials/releases/_create-release-ui.mdx"
+import PrereqsCli from "../partials/releases/_prereqs-cli.mdx"
+
+
+# Creating Releases with Helm Charts
+
+This topic describes how to add a Helm chart to a release in the Replicated vendor portal or the replicated CLI. Adding a Helm chart to a release is useful if you want to distribute a Kubernetes application with Replicated that is already packaged using Helm.
+
+This procedure applies for Replicated Helm installations and native Helm installations. For more information, see [Helm Overview](helm-overview).
+
+## About Releasing with Helm Charts
+
+You can add one or more Helm charts to a release in the vendor portal by uploading each Helm chart as a `.tgz` package. This allows you to use Replicated to distribute applications that are packaged with Helm.
+
+When you add a Helm chart to a release, Replicated adds a copy of the `Chart.yaml` file and the `values.yaml` file from the Helm chart to the release.
+
+You must also have a HelmChart custom resource manifest file in the release for each Helm chart that you add. You use this HelmChart custom resource to configure the Helm chart with your application.
+
+The following table provides more information about these files:
+
+<table>
+<tr>
+  <th width="30%">File</th>
+  <th>Description</th>
+</tr>
+<tr>
+  <td>HelmChart custom resource</td>
+  <td>A HelmChart custom resource is a YAML file with <code>kind: HelmChart</code>.
+  <br/>
+  <br/>
+  When you drag and drop a Helm chart <code>.tgz</code> to a release in the vendor portal, Replicated automatically creates a corresponding HelmChart custom resource manifest that uses the naming convention <code>CHART_NAME.yaml</code>. For example, <code>postgresql.yaml</code>.
+  <br/>
+  <br/>
+  The HelmChart custom resource references the <code>.tgz</code> export of the Helm chart and provides the necessary instructions to the Replicated app manager for processing and preparing the chart for deployment.
+  <br/>
+  <br/>
+  For more information, see <a href="../reference/custom-resource-helmchart">HelmChart</a> in the <em>Custom Resources</em> section.</td>
+</tr>
+<tr>
+  <td>Chart.yaml</td>
+  <td>Replicated extracts the <code>Chart.yaml</code> file from the Helm chart <code>.tgz</code> file that you provide. This file is read-only and cannot be edited in the release.</td>
+</tr>
+<tr>
+  <td>values.yaml</td>
+  <td>Replicated extracts the <code>values.yaml</code> file from the Helm chart <code>.tgz</code> file that you provide. This file is read-only and cannot be edited in the release.</td>
+</tr>
+</table>
+
+For example, the following screenshot shows how a Postgres Helm chart displays in the file tree of a release in the vendor portal:
+
+![Postgres Helm Chart](/images/postgres-helm-chart.png)
+
+## Package a Helm Chart
+
+To include a Helm chart in a release, first package the Helm chart, including any of its dependencies, as a `.tgz` file. Then, add the `.tgz` Helm chart package to your release.
+
+There are different steps for creating the Helm chart package depending on if the Helm chart source is in a remote chart repository such as Artifact Hub, or in a local directory.
+
+For more information about the Helm CLI commands in this procedure, see the [Helm Commands](https://helm.sh/docs/helm/helm/) section in the Helm documentation.
+
+To package a Helm chart and add it to a release:
+
+1. If the Helm chart source is in a chart repository, do the following:
+
+   1. Update your local directory with the latest available Helm chart information from your chart repositories. Run:
+
+      ```
+      helm repo update
+      ```
+      :::note
+      You can also pass the names of a specific repository or repositories that you want to update in the `helm repo update` command. For more information, see [Helm Repo Update](https://helm.sh/docs/helm/helm_repo_update/) in the Helm documentation.
+      :::
+   1. Download the latest copy of the desired Helm chart from a repository. Run:
+
+      ```
+      helm fetch REPO_NAME/CHART_NAME
+      ```
+      Replace:
+      * `REPO_NAME` with the name of the repository where the Helm chart is located.
+      * `CHART_NAME` with the name of the Helm chart as it appears in the repository.
+
+      The Helm chart, including any dependencies, is packaged and copied to your current directory in a `.tgz` file. The file uses the naming convention: `CHART_NAME-VERSION.tgz`. For example, `postgresql-8.1.2.tgz`.
+
+1. If the Helm chart source is in your local directory, do the following:
+
+   1. In your local directory, `cd` to the location of the `Chart.yaml` file for the Helm chart.
+
+   1. If the `Chart.yaml` file includes any dependencies, update the `charts/` directory. Run:
+
+      ```
+      helm dependency update
+      ```
+   1. Package the Helm chart. Run:
+
+      ```
+      helm package .
+      ```
+
+      The Helm chart, including any dependencies, is packaged and copied to your current directory in a `.tgz` file. The file uses the naming convention: `CHART_NAME-VERSION.tgz`. For example, `postgresql-8.1.2.tgz`.
+
+Next, create and promote a release using one of the following methods:
+
+- [Using the Vendor Portal](#ui)
+
+- [Using the CLI](#cli)
+
+## Using the Vendor Portal {#ui}
+
+When you create a release in the vendor portal, Replicated automatically creates the HelmChart custom resource manifest file for the Helm chart when you drag and drop your Helm chart `.tgz` file from your local directory to the file tree in the vendor portal.
+
+<CreateReleaseUi/>
+
+## Using the CLI {#cli}
+
+### Prerequisites
+
+<PrereqsCli/>
+
+### Create and Promote a Release
+
+This procedure shows how to create a new release using local application files and the replicated CLI.
+
+To create and promote a new release:
+
+1. Copy the Helm chart `.tgz` package to the local directory that contains the manifest files for the release.
+
+1. Create a HelmChart custom resource manifest file in the same directory where you copied the `.tgz` file. Name the HelmChart manifest file `CHART_NAME.yaml`. For example, `postgresql.yaml`.
+
+1. Copy and paste the following YAML into the HelmChart manifest:
+
+   ```yaml
+   apiVersion: kots.io/v1beta1
+   kind: HelmChart
+   metadata:
+      # name matches the file name that you used.
+      # If you saved the file as CHART_NAME.yaml, use name: CHART_NAME
+      name: CHART_NAME
+   spec:
+   # chart identifies the Helm chart from the .tgz
+   # Replace CHART_NAME with the name of the chart from the .tgz
+   # Replace CHART_VERSION with the version of the chart from the .tgz
+      chart:
+         name: CHART_NAME
+         chartVersion: CHART_VERSION
+
+      # helmVersion identifies the version of Helm used to render the chart.
+      # Possible values are v2 or v3.
+      helmVersion: v3
+
+      # useHelmInstall identifies whether this Helm chart uses the
+      # Replicated Helm installation (false) or native Helm installation (true).
+      # Native Helm installation is available for Helm v3 charts only.
+       useHelmInstall: true
+
+      # values maps user-provided values with the Helm chart values.yaml file.
+      # You can leave the values attribute empty for this procedure.
+      values: {}
+
+      # builder values are used to create air gap packages.
+      # You can leave the builder attribute empty for this procedure.
+      builder: {}
+   ```
+   For more information, see [HelmChart](../reference/custom-resource-helmchart) in the _Custom Resources_ section.
+
+1. Lint the manifest files and ensure that there are no errors in the YAML:
+
+  ```bash
+  replicated release lint --yaml-dir=PATH_TO_APP_DIR
+  ```
+
+  Replace `PATH_TO_APP_DIR` with path to the directory of the YAML manifest files.
+
+  For more information about linting, see [release lint](replicated-cli-release-lint) and [Linter Rules](linter) in _Reference_.
+
+1. Create a new release:
+
+    ```bash
+    replicated release create --yaml-dir PATH_TO_APP_DIR
+    ```
+    Replace `PATH_TO_APP_DIR` with the path to the directory of the YAML manifest files.
+
+   For more information, see [release create](/reference/replicated-cli-release-create) or [release update](../reference/replicated-cli-release-update) in _Reference_.
+
+1. Continue to edit and lint the release as needed, then update the release:
+
+    ```
+    replicated release update SEQUENCE --yaml-dir PATH-TO-APP-DIRECTORY
+    ```
+    Replace:
+      
+    -  `SEQUENCE` with the release sequence number. This identifies the existing release to be updated.
+    -  `PATH_TO_APP_DIR` with the path to the directory of the YAML manifest files.
+
+    For more information, see [release update](../reference/replicated-cli-release-update) in _Reference_.
+
+1. Promote the release when you are ready to test it. Releases cannot be edited after they are promoted. To make changes after promotion, you have to create a new release.
+
+    ```
+    replicated release promote SEQUENCE CHANNEL_ID
+    ```
+
+    Replace:
+      
+    -  `SEQUENCE` with the release sequence number.
+    -  `CHANNEL_ID` with the channel ID or case sensitive name of the channel.
+
+    For more information, see [release promote](/reference/replicated-cli-release-promote) in the replicated CLI documentation.
+
+1. Verify that the release was promoted to the channel:
+
+  ```
+  replicated release ls
+  ```
+
+## Next Steps
+
+The following are the recommended next steps to test the application in your development environment:
+
+- To add a customer, see [Creating a Customer](creating-a-customer).
+- If you are installing for the first time, see [Overview of Installing an Application with the App Manager](/enterprise/installing-overview) in the _Enterprise_ section. 
+- If you are updating an existing installation, see [Updating an Application](../enterprise/updating-apps) in the _Enterprise_ section.

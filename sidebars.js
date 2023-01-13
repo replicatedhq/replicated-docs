@@ -86,6 +86,7 @@ const sidebars = {
         'vendor/releases-about-channels',
         'vendor/releases-creating-channels',
         'vendor/releases-semantic-versioning',
+        'vendor/helm-release',
         'vendor/releases-creating-releases',
         {
           type: 'category',
@@ -124,7 +125,6 @@ const sidebars = {
                 'vendor/helm-processing',
               ],
             },
-            'vendor/helm-release',
             'vendor/helm-install',
             {
               type: 'category',
