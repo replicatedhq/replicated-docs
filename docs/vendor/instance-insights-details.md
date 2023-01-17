@@ -1,8 +1,8 @@
-import Checkins from "../partials/instance-monitoring/_appCheckins.mdx"
+import Checkins from "../partials/instance-insights/_appCheckins.mdx"
 
 # Viewing Instance Details
 
-This topic describes using the insights in the Replicated vendor portal to quickly understand the recent events and performance of application instances installed in your customers' environments.
+This topic describes using the Replicated vendor portal to quickly understand the recent events and performance of application instances installed in your customers' environments.
 
 ## About Instance Reporting {#about-reporting}
 
@@ -10,7 +10,7 @@ For active application instances installed in online customer environments, the 
 
 <Checkins/>
 
-The instance data that the app manager sends includes properties such as the current application version and application status. The primary purpose of this instance data is to compile the list of new versions that are available to the given instance for upgrade. For a full overview of what might be included, please see the [Replicated Data Transmission Policy](https://docs.replicated.com/vendor/policies-data-transmission).
+The instance data that the app manager sends includes properties such as the current application version and application status. The primary purpose of this instance data is to help the cloud-hosted update service to compile the list of new versions that are available to the given instance for upgrade. For a full overview of what might be included, please see the [Replicated Data Transmission Policy](https://docs.replicated.com/vendor/policies-data-transmission).
 
 The vendor portal also uses this data to display insights about the active instances of your application. For more information about the instance data insights displayed in the vendor portal, see [About the Instance Details Page](#about-page) below.
 
@@ -63,7 +63,7 @@ As shown in the image above, the **Instance details** page includes the followin
 
 * **Current State**: Information about the state of the instance, such as the current application version. See [Current State](#current-state) below.
 * **Insights**: Key performance indicators (KPIs) related to health, performance, and adoption. See [Insights](#insights) below. 
-* **Install Information**: Information about the cluster where the instance is installed, such as the version of Kubernetes running on the cluster. See [Install Information](#install-information) below.
+* **Instance Information**: Information about the cluster where the instance is installed, such as the version of Kubernetes running on the cluster. See [Instance Information](#install-information) below.
 * **Instance Uptime**: Details about instance uptime over time. See [Instance Uptime](#instance-uptime) below.
 * **Instance Activity**: Event data stream. See [Instance Activity](#instance-activity) below.
 
@@ -128,7 +128,7 @@ The following table lists the application statuses that are associated with an U
 </table>
 
 :::note
-The vendor portal includes time spent in a Degraded status in the total uptime for an instance because it is possible that a Degraded state is expected during upgrade.
+The vendor portal includes time spent in a Degraded status in the total uptime for an instance because an app may still be capable of serving traffic when some subset of desired replicas are available. Further, it is possible that a Degraded state is expected during upgrade.
 :::
 
 #### Time to Install
@@ -151,30 +151,30 @@ The following describes the _License time to install_ and _Instance time to inst
 
    Instance time to install is the length of time that it takes for the application to reach a Ready state after the customer starts a deployment attempt in their environment. Replicated considers a deployment attempt started when the vendor portal first records an event for the instance.
    
-   For more information about how the vendor portal generates events, see [About Events](monitoring-event-data#about-events) in _Event Data_.
+   For more information about how the vendor portal generates events, see [About Events](instance-insights-event-data#about-events) in _Event Data_.
    
   :::note
-  Instance time to install does _not_ include any deployment attempts that a customer might have made that did not generate an event. For example, time spent by the customer discarding servers and attempting to deploy the instance again on a new server.
+  Instance time to install does _not_ include any deployment attempts that a customer might have made that did not generate an event. For example, time spent by the customer discarding the server used in a failed attempt before attempting to deploy the instance again on a new server.
   :::
 
-### Install Information
+### Instance Information
 
-The **Install Information** section displays the following details about the cluster infrastructure where the application is installed:
+The **Instance Information** section displays the following details about the cluster infrastructure where the application is installed:
 
 * The Kubernetes distribution for the cluster. For example, GKE or EKS.
 * The version of Kubernetes running in the cluster.
 * The Replicated app manager (KOTS) version installed in the cluster.
-* For **First Seen**, the timestamp of the first event that the vendor portal generated for the instance. For more information about how the vendor portal generates events, see [About Events](monitoring-event-data#about-events) in _Event Data_.
+* For **First Seen**, the timestamp of the first event that the vendor portal generated for the instance. For more information about how the vendor portal generates events, see [About Events](instance-insights-event-data#about-events) in _Event Data_.
 * If detected, the cloud provider and region where the cluster is running. For example, `GCP: us-central1`.
 
-In addition to the details listed above, the **Install Information** section also displays the following for clusters provisioned by the Replicated Kubernetes installer:
+In addition to the details listed above, the **Instance Information** section also displays the following for clusters provisioned by the Replicated Kubernetes installer:
 * Node operating systems
 * Node operating systems versions
 * Total number of cluster nodes
 * Number of cluster nodes in a Ready state
 * ID of the Kubernetes installer specification
 
-For more information about the data fields displayed in the **Install Information** section, see [Cluster Status Events](monitoring-event-data#cluster) and [Infrastructure Status Events](monitoring-event-data#infrastructure) in _Event Data_.
+For more information about the data fields displayed in the **Instance Information** section, see [Cluster Status Events](instance-insights-event-data#cluster) and [Infrastructure Status Events](instance-insights-event-data#infrastructure) in _Event Data_.
 
 ### Instance Uptime
 
@@ -228,4 +228,4 @@ You can filter the **Instance Activity** stream by the following event categorie
 * KOTS status
 * Infrastructure status
 
-For more information about the types of events displayed in the **Instance Activity** stream, see [Event Data](monitoring-event-data).
+For more information about the types of events displayed in the **Instance Activity** stream, see [Event Data](instance-insights-event-data).

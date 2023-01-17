@@ -246,10 +246,10 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Instance Data',
+      label: 'Instance Insights',
       items: [
-         'vendor/monitoring-instance-details',
-         'vendor/monitoring-event-data',
+         'vendor/instance-insights-details',
+         'vendor/instance-insights-event-data',
        ],
     },
     {

@@ -15,7 +15,7 @@ Each event that the vendor portal generates for application instances has the fo
 * `newValue`: The value of the data field after the vendor portal generated the event.
 
 The vendor portal uses events to display insights for each active application instance in a **Instance details** dashboard. 
-For more information about using the vendor portal **Instance details** page to monitor active instances of your application, see [Viewing Instance Details](monitoring-instance-details).
+For more information about using the vendor portal **Instance details** page to monitor active instances of your application, see [Viewing Instance Details](instance-insights-details).
 
 ## Instance Events
 
@@ -32,7 +32,7 @@ The tables in this section include the following details about each event type:
 * **Field Name**: The `fieldName` associated with the event.
 * **Description**: A description of the data field.
 * **Type**: The data type of the field. Possible values are string, number, and boolean.
-* **Label**: The label for the event that displays in the **Instance Activity** stream in the vendor portal **Instance Details** page. For more information, see [Instance Activity](monitoring-instance-details#instance-activity) in _Viewing Instance Details_.
+* **Label**: The label for the event that displays in the **Instance Activity** stream in the vendor portal **Instance Details** page. For more information, see [Instance Activity](instance-insights-details#instance-activity) in _Viewing Instance Details_.
 
 ### Application Installation and Upgrade Events {#install-upgrade}
 
