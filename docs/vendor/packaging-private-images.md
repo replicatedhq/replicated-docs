@@ -11,6 +11,8 @@ external registry:
 * For information about connecting to an external registry, see [About Connecting to an External Registry](#about-connecting-to-an-external-registry).
 * For information about using the Replicated private registry, see [Push Images to the Replicated Private Registry](#push-images-to-the-replicated-private-registry).
 
+If you use the Replicated private registry and proxy service, you can configure custom domains as aliases to bring the Replicated domains inside a customer security review and reduce exposure. This feature is configured at the Team level. For more information about custom domains, see [Using Custom Domains](packaging-private-registry-cname).
+
 ## About Connecting to an External Registry
 
 If your application images are available in a private image registry exposed to the Internet, such as Docker Hub, quay.io, Amazon Elastic Container Registry (ECR), Google Container Registry (GCR), or Artifactory, then the customer licenses for your application can grant proxy, or _pull-through_, access to the assignee without exposing registry credentials to the customer.

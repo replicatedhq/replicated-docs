@@ -39,7 +39,7 @@ To configure a custom domain in the vendor portal:
 
 1. Log in to the [vendor portal](https://vendor.replicated.com), and click **Team > Custom Domains**.
 
-1. From the **Custom domains...** pane for either the Replicated registry or the proxy service, click **Add new domain**.
+1. From the **Custom domains...** pane for either the Replicated registry or the proxy service, click **Add your first custom domain** for your first domain, or click **Add new domain** for additional domains.
 
   The **Configure a custom domain** wizard opens.
 
@@ -55,7 +55,7 @@ To configure a custom domain in the vendor portal:
 
 1. For **Use Domain**, copy the snippet to use as a template if needed. Click **Ok. got it!**.
 
-1. Create a new release and add the code snippet to the Application custom resource manifest file to create the new field for either `proxyRegistryDomain` or `replicatedRegistryDomain`. For more information, see [proxyRegistryDomain](../reference/custom-resource-application#proxyRegistryDomain) and [replicatedRegistryDomain](../reference/custom-resource-application#replicatedRegistryDomain) in the _Application_ section.
+1. Create a new release and create the new field for either `proxyRegistryDomain` or `replicatedRegistryDomain` in the Application custom resource manifest file. You can use the code snippet template from the previous step or manually code the field. For more information, see [proxyRegistryDomain](../reference/custom-resource-application#proxyRegistryDomain) and [replicatedRegistryDomain](../reference/custom-resource-application#replicatedRegistryDomain) in the _Application_ section.
 
 ### Configure Registry Domains with the Vendor API
 

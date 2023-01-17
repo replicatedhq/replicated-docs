@@ -89,7 +89,6 @@ const sidebars = {
                       label: 'Using Private Registries',
                       items: [
                         'vendor/packaging-private-images',
-                        'vendor/packaging-private-registry-cname',
                         'vendor/packaging-private-registry-security',
                         'vendor/tutorial-ecr-private-images',
                     ],
@@ -233,6 +232,7 @@ const sidebars = {
             },
             'vendor/team-management-google-auth',
             'vendor/team-management-saml-auth',
+            'vendor/packaging-private-registry-cname',
           ],
         },
         {
