@@ -1,0 +1,6 @@
+* "Last mile" changes with Kustomize are not supported. All configuration and customization must be done using Helm.
+* Strict preflights that block application installation are not supported. This is because Helm does not automatically run preflight checks. Preflight checks are supported with `helm install`, but your users must run the preflight checks manually before installing your application.
+* Air gap installations are not supported.
+* Customer adoption is not reported to the vendor portal.
+* This feature supports multiple charts and Replicated does not wrap or provide any special tooling to manage multiple charts. Replicated recommends that you provide installation instructions with sequenced steps for users to follow to install each chart in the required order.
+* The Replicated admin console is not included by default when your users install using the helm CLI. For more information about how to include the admin console with your application for helm CLI installations, see [Delivering the Admin Console with your Application](/vendor/helm-install#deliver-admin-console).

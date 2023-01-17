@@ -4,6 +4,86 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.92.1
+
+Released on December 29, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
+
+### Improvements {#improvements-1-92-1}
+* Preflight checks run and support bundles generate at least twice as fast as before.
+* Updates the kubectl binary in the kotsadm image to resolve CVE-2022-27664 and CVE-2022-32149 with high severity.
+* Updates the replicated/local-volume-provider image to v0.4.3 to resolve CVE-2021-46848 with critical severity.
+
+### Bug Fixes {#bug-fixes-1-92-1}
+* Fixes an issue that caused the license upload to fail for applications that include Helm charts with [required](https://helm.sh/docs/howto/charts_tips_and_tricks/#using-the-required-function) values missing from configuration.
+
+## 1.92.0
+
+Released on December 16, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
+
+### New Features {#new-features-1-92-0}
+* The app manager uses the `replicatedRegistryDomain` domain to rewrite images stored in the Replicated private registry, when the `replicatedRegistryDomain` field is provided in the Application custom resource.
+* Adds the [KubernetesVersion](/reference/template-functions-static-context#kubernetesversion), [KubernetesMajorVersion](/reference/template-functions-static-context#kubernetesmajorversion), and [KubernetesMinorVersion](/reference/template-functions-static-context#kubernetesminorversion) template functions.
+
+### Improvements {#improvements-1-92-0}
+* Standardizes classes used for branding the admin console.
+* Pins the config navigation so that it does not disappear when scrolling.
+* The [`LicenseDockerCfg`](/reference/template-functions-license-context#licensedockercfg) template function in the License Context now utilizes the `replicatedRegistryDomain` and `proxyRegistryDomain` values from the Application custom resource, if specified.
+
+### Bug Fixes {#bug-fixes-1-92-0}
+* Disables image garbage collection when an external registry is enabled.
+* Fixes a bug where the rqlite headless service manifest was not generated.
+* Fixes an issue where labels displayed as config items in the config navigation.
+* Fixes a bug where the `kots get config` command always decrypted passwords, even when the `--decrypt` flag wasn't passed.
+
+## 1.91.3
+
+Released on December 10, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
+
+### Bug Fixes {#bug-fixes-1-91-3}
+* Fixes an issue where air gap uploads failed for applications containing required configuration without default values.
+* Fixes errors when generating support bundles in existing clusters via the CLI.
+
+## 1.91.2
+
+:::important
+The app manager v1.91.2 has a known issue that affects the use of
+required configuration items in air gapped environments.
+See [Known Issue](#known-issues-1-91-2) below.
+:::
+
+Released on December 8, 2022
+
+Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
+
+### Improvements {#improvements-1-91-2}
+* Improved the TLS certificate flow to make it clearer which fields are needed when using a self-signed certificate or uploading your own.
+* Adds the `proxyRegistryDomain` field to the Application custom resource. When this field is provided, the app manager will rewrite proxied private images using that domain instead of proxy.replicated.com.
+
+### Bug Fixes {#bug-fixes-1-91-2}
+* Fixes overlapping labels on TLS configuration page.
+* Fixes an issue that caused the login button to be stuck in the "Logging in" state in Helm-managed mode (Beta). For more information on Helm-managed mode, see [Supporting helm CLI Installations (Beta)](/vendor/helm-install).
+* Fixes an issue where snapshots to NFS storage locations failed due to file permission issues in environments running without MinIO.
+* Fixes an issue that caused the license upload to fail for applications that include Helm charts with [`required`](https://helm.sh/docs/howto/charts_tips_and_tricks/#using-the-required-function) values missing from configuration.
+* Fixes an issue where release notes did not display when the release notes icon was clicked on the dashboard.
+* Fixes an issue where no tab was selected by default when opening the View Logs modal in Helm-managed mode.
+* Fixes an issue that prevented image garbage collection from being enabled or disabled.
+* Fixes an issue where DockerHub credentials provided to the admin console via the [kots docker ensure-secret](/reference/kots-cli-docker-ensure-secret) CLI command did not increase the rate limit.
+* Fixes an issue that prevented Helm render errors from being surfaced to the user when running [`kots upload`](/reference/kots-cli-upload) commands.
+* Fixes leaked goroutines.
+* Increases the memory limit for rqlite to 1Gi to fix an issue where rqlite was OOM killed during the migration from Postgres when there was a very large number of versions available in the admin console.
+
+### Known Issue {#known-issues-1-91-2}
+
+There is a known issue in the app manager v1.91.2 that causes air gap uploads to fail when there are configuration items with the `required` property set to `true` and no default value specified.
+
+To avoid this known issue, Replicated recommends that you do not upgrade to v1.91.2. To work around this issue in v1.92.2, ensure that all required configuration items in the Config custom resource have a default value. For more information about adding default values to configuration items, see [`default` and `value`](/reference/custom-resource-config#default-and-value) in _Config_.
+
 ## 1.91.1
 
 Released on November 18, 2022
@@ -623,7 +703,7 @@ Released on April 4, 2022
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### New Features
-* Adds the ability to make a KOTS application version required. Required version cannot be skipped during upgrades. See [Promoting releases](../vendor/releases-promoting).
+* Adds the ability to make a KOTS application version required. Required version cannot be skipped during upgrades. See [Creating and Promoting Releases](../vendor/releases-creating-releases).
 * Adds the `supportMinimalRBACPrivileges` field to the Application custom resource, and adds the `--use-minimal-rbac` flag to the `kots install` command. `supportMinimalRBACPrivileges` indicates that the application supports minimal RBAC, but it will not be used unless the `--use-minimal-rbac` flag is passed to the `kots install` command. See [`supportMinimalRBACPrivileges`](../reference/custom-resource-application#supportminimalrbacprivileges) in the Application custom resource.
 
 ### Improvements

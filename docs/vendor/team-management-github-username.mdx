@@ -2,9 +2,10 @@ import CollabRepoAbout from "../partials/collab-repo/_collab-repo-about.mdx"
 import CollabRbacResourcesImportant from "../partials/collab-repo/_collab-rbac-resources-important.mdx"
 import CollabExistingUser from "../partials/collab-repo/_collab-existing-user.mdx"
 
+
 # Managing Collab Repository Access
 
-This topic describes how to add users to the Replicated collab GitHub repository automatically through the vendor portal. It also includes information about managing user roles in the collab repository using vendor portal role-based access control (RBAC) policies.
+This topic describes how to add users to the Replicated collab GitHub repository automatically through the vendor portal. It also includes information about managing user roles in this repository using vendor portal role-based access control (RBAC) policies.
 
 ## Overview of Managing Collab Access {#overview}
 
@@ -103,9 +104,18 @@ For more information about how to edit the `allowed:` or `denied:` lists for cus
 <CollabRbacResourcesImportant/>
 
 
-## Add Users to the Collab Repository {#add}
+## Adding Users to the Collab Repository {#add}
 
 This procedure describes how to use the vendor portal to access the collab repository for the first time as an Admin, then automatically add new and existing users to the repository. This allows you to use the vendor portal to manage the GitHub roles for users in the collab repository, rather than manually adding, managing, and removing users from the repository through GitHub. For more information, see [Overview of Managing Collab Access](#overview) above.
+
+### Prerequisites
+
+Your team must have a replicated-collab repository configured to add users to
+the repository and to manage repository access through the vendor portal. To get 
+a collab support repository configured in GitHub for your team, complete the onboarding 
+instructions in the email you received from Replicated. You can also access the [Replicated community help forum](https://community.replicated.com/) for assistance.
+
+### Add Users to the Repository
 
 To add new and existing users to the collab repository through the vendor portal:
 

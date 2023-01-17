@@ -6,10 +6,13 @@ to your customer.
 
 The customer license file can grant revokable image pull access to private images,
 whether the images are stored in the Replicated private registry or a supported
-external registry:
+external registry.
 
-* For information about connecting to an external registry, see [About Connecting to an External Registry](#about-connecting-to-an-external-registry).
-* For information about using the Replicated private registry, see [Push Images to the Replicated Private Registry](#push-images-to-the-replicated-private-registry).
+For information about how to connect to private image registries, see the following procedures:
+
+* [About Connecting to an External Registry](#about-connecting-to-an-external-registry)
+* [Push Images to the Replicated Private Registry](#push-images-to-the-replicated-private-registry)
+* [Using Private Registries for helm CLI Installations (Beta)](helm-image-registry)
 
 If you use the Replicated private registry and proxy service, you can configure custom domains as aliases to bring the Replicated domains inside a customer security review and reduce exposure. This feature is configured at the Team level. For more information about custom domains, see [Using Custom Domains](packaging-private-registry-cname).
 

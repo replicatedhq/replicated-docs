@@ -1,0 +1,85 @@
+import RepositoryCicdNote from "../partials/releases/_repository-cicd-note.mdx"
+import CreateReleaseUi from "../partials/releases/_create-release-ui.mdx"
+import PrereqsCli from "../partials/releases/_prereqs-cli.mdx"
+
+# Creating Releases with Standard Manifest Files
+
+This topic describes how to use the Replicated vendor portal or the replicated CLI to create and promote versions of your application using standard manifest files.
+
+<RepositoryCicdNote/>
+
+## Using the Vendor Portal
+
+<CreateReleaseUi/>
+
+## Using the CLI
+
+### Prerequisites
+
+<PrereqsCli/>
+
+### Create and Promote a Release
+
+This procedure shows how to create a new release using local application files and the replicated CLI.
+
+To create and promote a new release:
+
+1. Make sure that you have a local folder with your application files.
+
+1. Lint the manifest files and ensure that there are no errors in the YAML:
+
+  ```bash
+  replicated release lint --yaml-dir=PATH_TO_APP_DIR
+  ```
+
+  Replace `PATH_TO_APP_DIR` with path to the directory of the YAML manifest files.
+
+  For more information about linting, see [release lint](replicated-cli-release-lint) and [Linter Rules](linter) in _Reference_.
+
+1. Create a new release:
+
+    ```bash
+    replicated release create --yaml-dir PATH_TO_APP_DIR
+    ```
+    Replace `PATH_TO_APP_DIR` with the path to the directory of the YAML manifest files.
+
+   For more information, see [release create](/reference/replicated-cli-release-create) or [release update](../reference/replicated-cli-release-update) in _Reference_.
+
+1. Continue to edit and lint the release as needed, then update the release:
+
+    ```
+    replicated release update SEQUENCE --yaml-dir PATH-TO-APP-DIRECTORY
+    ```
+    Replace:
+      
+    -  `SEQUENCE` with the release sequence number. This identifies the existing release to be updated.
+    -  `PATH_TO_APP_DIR` with the path to the directory of the YAML manifest files.
+
+    For more information, see [release update](../reference/replicated-cli-release-update) in _Reference_.
+
+1. Promote the release when you are ready to test it. Releases cannot be edited after they are promoted. To make changes after promotion, you have to create a new release.
+
+    ```
+    replicated release promote SEQUENCE CHANNEL_ID
+    ```
+
+    Replace:
+      
+    -  `SEQUENCE` with the release sequence number.
+    -  `CHANNEL_ID` with the channel ID or case sensitive name of the channel.
+
+    For more information, see [release promote](/reference/replicated-cli-release-promote) in the replicated CLI documentation.
+
+1. Verify that the release was promoted to the channel:
+
+  ```
+  replicated release ls
+  ```
+  
+## Next Steps
+
+The following are the recommended next steps to test the application in your development environment:
+
+- To add a customer, see [Creating a Customer](creating-a-customer).
+- If you are installing for the first time, see [Overview of Installing an Application with the App Manager](/enterprise/installing-overview) in the _Enterprise_ section. 
+- If you are updating an existing installation, see [Updating an Application](../enterprise/updating-apps) in the _Enterprise_ section.

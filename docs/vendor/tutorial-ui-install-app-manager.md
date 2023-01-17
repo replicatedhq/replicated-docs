@@ -70,7 +70,7 @@ To install the app manager on a VM using the Kubernetes installer:
   **Example:**
 
   ```bash
-  glcloud compute ssh NAME
+  gcloud compute ssh NAME
   ```
 
   Replace NAME with the name of the cluster.

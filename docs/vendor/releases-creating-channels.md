@@ -70,7 +70,10 @@ To archive a channel with the vendor portal or the replicated CLI:
 
 ## Next Steps
 
-[Creating a release](releases-creating-releases)
+Do one of the following:
+
+- [Creating Releases with Helm Charts](helm-release)
+- [Creating Releases with Standard Manifest Files](releases-creating-releases)
 
 ## Related Topic
 
