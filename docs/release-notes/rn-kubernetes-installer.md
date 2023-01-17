@@ -53,6 +53,10 @@ Then, grant permissions to the $HOME/.kube/config file.
 
 Released on January 3, 2023
 
+:::important
+v2023.01.03-0 has a known issue that can cause critical system packages to be removed from Ubuntu machines. This known issue is resolved in v2023.01.13-1. To avoid this known issue, do not upgrade to v2023.01.03-0, and instead upgrade directly to v2023.01.13-1.
+:::
+
 ### New Features {#new-features-v2023-01-03-0}
 * [Rook add-on](https://kurl.sh/docs/add-ons/rook) can now be upgraded and migrated from version 1.4.3 up to version 1.7.x as part of the installation script.
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.26.2.
