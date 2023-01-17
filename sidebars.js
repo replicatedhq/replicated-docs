@@ -85,7 +85,6 @@ const sidebars = {
         'vendor/releases-about',
         'vendor/releases-about-channels',
         'vendor/releases-creating-channels',
-        'vendor/releases-semantic-versioning',
         'vendor/helm-release',
         'vendor/releases-creating-releases',
         {

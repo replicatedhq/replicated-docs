@@ -76,6 +76,10 @@
 [[redirects]]
   from="https://docs.replicated.com/vendor/releases-promoting"
   to="https://docs.replicated.com/vendor/releases-creating-releases"
+
+[[redirects]]
+  from="https://docs.replicated.com/vendor/releases-semantic-versioning"
+  to="https://docs.replicated.com/vendor/releases-about"
 ###################################################
 # Redirects To the Enterprise Section
 ###################################################
