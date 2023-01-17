@@ -24,17 +24,35 @@ Every customer license file that you create in the Replicated vendor portal is a
 
 You cannot edit the YAML files in a release after the release is promoted to a channel. However, each release has properties, such as the release notes, the version label, and the required status, that you can edit from the channel Release History page in the vendor portal. For more information, see [About the Channels Page](/vendor/releases-about-channels#about-the-channels-page) in _About Release Channels_.
 
-### Sequences and Versioning
+### Release Sequence Mechanics
 
 By default, Replicated uses release sequence numbers to organize and order releases, and uses sequence numbers in an instance's internal version history.
 
 #### Release Sequence
 
-Each release has a unique, monotonically-increasing sequence number. This number can be used as a fallback to identify a release if the `Version Label` field is not set during promotion, or to identify an unpromoted draft release. For more information, see [Creating and Promoting Releases](releases-creating-releases).
+Each release has a unique, monotonically-increasing sequence number. This number can be used as a fallback to identify a release if the `Version label` field is not set during promotion, or to identify an unpromoted draft release. For more information, see [Creating Releases with Standard Manifest Files](releases-creating-releases#using-the-vendor-portal) or [Creating Releases with Helm Charts](helm-release#ui).
 
 #### Instance Sequence 
 
 When a release is seen by an instance (that is, a release identifier is returned to an app manager instance when checking for an application update), that release is assigned a separate instance sequence, starting at 0 and incrementing for each release seen by the instance. A single release with a single release sequence `181` can have multiple instance sequences in the deployed instances, depending on when those instances came online and how many other releases they saw before seeing release sequence `181`. Note that instance sequences are only tracked by app manager instances, and the Replicated SaaS platform has no knowledge of these numbers.
+
+### Semantic Versioning
+
+Semantic versioning is available with the Replicated app manager v1.58.0 and later. Note the following:
+
+- For applications created in the vendor portal on or after February 23, 2022, semantic versioning is enabled by default on the Stable and Beta channels. Semantic versioning is disabled on the Unstable channel by default.
+
+- For existing applications created before February 23, 2022, semantic versioning is disabled by default on all channels.
+
+When you enable semantic versioning on a channel, the version label for a release promoted to that channel is verified to ensure that it is a valid semantic version. For more information about valid semantic versions, see [Semantic Versioning 2.0.0](https://semver.org).
+
+For channels with semantic versioning enabled, the Replicated admin console sequences releases by their semantic versions instead of their creation dates. The admin console does not sort any releases already promoted to the channel that do not use a valid semantic version.
+
+If releases that do not use a valid semantic version are already promoted to a channel, the admin console sorts the releases that do have semantic versions starting with the earliest version and proceeding to the latest. For example, assume that you promote these releases in the following order to a channel: 1.0.0, abc, 0.1.0, xyz, and 2.0.0. Then, you enable semantic versioning on that channel. The admin console would sequence the version history as follows for the channel: 0.1.0, 1.0.0, abc, xyz, 2.0.0.
+
+For more information about how enterprise application users check for application updates in the admin console, see [Checking for Updates](../enterprise/updating-apps#checking-for-updates).
+
+If you enable semantic versioning for a channel and then promote releases to it, Replicated recommends that you do not later disable semantic versioning for that channel.
 
 ## About the Draft Release Page
 
