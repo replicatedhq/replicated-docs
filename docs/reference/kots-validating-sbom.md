@@ -19,7 +19,7 @@ Complete the following items before you perform this task:
 To validate an SBOM signature:
 
 1. Go to the [KOTS GitHub repository](https://github.com/replicatedhq/kots/releases) and download the specific KOTS release that you want to validate.
-1. Uncompress the tar.gz file.
+1. Extract the tar.gz file.
 
     **Example:**
 
