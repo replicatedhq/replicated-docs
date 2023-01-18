@@ -12,14 +12,14 @@ Each KOTS release includes signed SBOMs for KOTS Go dependencies.
 ## Prerequisites
 
 Complete the following items before you perform this task:
-* Install cosign. For directions, see the [sigstore GitHub repository](https://github.com/sigstore/cosign).
+* Install cosign. For more information, see the [sigstore GitHub repository](https://github.com/sigstore/cosign).
 
 ## Validate an SBOM Signature
 
-To validate the SBOM signature on a KOTS release:
+To validate an SBOM signature:
 
-1. Go to the [KOTS GitHub repository](https://github.com/replicatedhq/kots/releases) and download the specific KOTS release that you would like to validate.
-1. Uncompress and untar the tar.gz file.
+1. Go to the [KOTS GitHub repository](https://github.com/replicatedhq/kots/releases) and download the specific KOTS release that you want to validate.
+1. Uncompress the tar.gz file.
 
     **Example:**
 
