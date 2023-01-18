@@ -474,6 +474,7 @@ const sidebars = {
           ],
         },
         'reference/linter',
+        'reference/kots-validating-sbom',
       ],
     },
     {
