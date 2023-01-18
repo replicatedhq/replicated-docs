@@ -46,7 +46,9 @@ Each release has a unique, monotonically-increasing sequence number. This number
 
 #### Instance Sequence 
 
-When a release is _seen_ by an instance, a release identifier is returned to an app manager instance when checking for an application update. A seen release is assigned a separate instance sequence, starting at 0 and incrementing for each release that is seen. A single release with a single release sequence `181` can have multiple instance sequences in the deployed instances, depending on when those instances came online and how many other releases were seen before release sequence `181`. 
+When a release is _seen_ by an instance, a release identifier is returned to an app manager instance when checking for an application update. A seen release is assigned a separate instance sequence, starting at 0 and incrementing for each release that is seen. 
+
+A single release sequence, such as `181`, can have multiple instance sequences in the deployed instances, depending on when those instances came online and how many other releases were seen before release sequence `181`. 
 
 Note that instance sequences are only tracked by app manager instances, and the Replicated SaaS platform has no knowledge of these numbers.
 
