@@ -1,6 +1,6 @@
 # Updating the App Manager
 
-This topic describes how to update the version of the Replicated app manager running in existing cluster or in clusters created by the Replicated Kubernetes installer.
+This topic describes how to update the version of the Replicated app manager running in existing clusters or in clusters created by the Replicated Kubernetes installer.
 
 For information about the latest versions of the app manager, see [App Manager Release Notes](/release-notes/rn-app-manager).
 
@@ -72,28 +72,10 @@ To update the app manager in an existing air gap cluster:
       -n <namespace>
     ```
 
-## Update the App Manager on Kubernetes Installer Clusters
+## Update the App Manager in Kubernetes Installer Clusters
 
-This section provides information about how to update the version of the app manager running in a cluster created by the Kubernetes installer.
+To update the version of the app manager running on clusters created by the Kubernetes installer, you re-run the installation script. The installation script is the same command that you ran when you installed the application with the Kubernetes installer for the first time. For more information, see [Installing with the Kubernetes Installer](installing-embedded-cluster).
 
-### Online Installations
+When you re-run the installation script, the Kubernetes installer uses the specification provided by the application vendor to determine if any updates are required to the version of Kubernetes running in the cluster, or to any of the add-ons that the vendor included. For a complete list of add-ons that can be included in the Kubernetes installer specification, see [Add-ons](https://kurl.sh/docs/add-ons/antrea) in the kURL documentation. 
 
-To update the app manager in an online environment, re-run the installation script on the first primary node where the installation was initialized. All of the flags that were passed to the script for the initial installation must be passed again.
-
-```bash
-curl -sSL https://kurl.sh/APP_SLUG | sudo bash
-```
-
-Replace `APP_SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
-
-### Air Gapped Installations
-
-To update the app manager in an air gapped environment, download the new Kubernetes installer air gap bundle, extract it, and run the install.sh script:
-
-```bash
-curl -SL -o APP_SLUG.tar.gz https://kurl.sh/bundle/APP_SLUG.tar.gz
-tar xzvf APP_SLUG.tar.gz
-cat install.sh | sudo bash -s airgap
-```
-
-Replace `APP_SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
+The version of the KOTS add-on provided in the Kubernetes installer specification determines the version of the app manager installed in your cluster. For example, if the version of the app manager running in your cluster is 1.92.0, and the vendor updates the KOTS add-on in the Kubernetes installer specification to use 1.92.1, then you can run the installation script to update the app manager version in your cluster to 1.92.1.

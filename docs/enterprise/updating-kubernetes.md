@@ -1,32 +1,48 @@
-# Updating Kubernetes and Add-ons
+# Updating Kubernetes Installer Clusters
 
-This topic describes how to upgrade both the version of Kubernetes and any add-ons in a cluster created by the Replicated Kubernetes installer.
-
-For more information about Kubernetes installer add-ons, see [Add-ons](https://kurl.sh/docs/add-ons/antrea) in the open source kURL documentation.
-
-## How the Kubernetes Installer Updates Kubernetes and Add-ons {#overview}
-
-When your application vendor updates the version of Kubernetes or any add-ons in the specification for the Kubernetes installer, you can re-run the Kubernetes installer installation script to update your cluster with the latest changes. The installation script is the same command that you ran when you installed the application with the Kubernetes installer for the first time. For more information, see [Installing with the Kubernetes Installer](installing-embedded-cluster).
-
-The installation script automatically detects when the Kubernetes version in your cluster must be updated. When a Kubernetes upgrade is required, the script first drains and upgrades the local primary node where the script is running. Then, if there are any remote primary nodes to upgrade, the script drains each sequentially and prints a command that you must run on the node to upgrade.
-
-The script polls the status of each remote node until it detects that the Kubernetes upgrade is complete. Then, it uncordons the node and proceeds to cordon and drain the next node. This process ensures that only one node is cordoned at a time. After upgrading all primary nodes, the script performs the same operation sequentially on all remote secondary nodes.
-
-If the application vendor updated any add-ons in the Kubernetes installer specification, then the script automatically updates the add-ons in the cluster after any required Kubernetes update is complete.
+This topic describes how to upgrade the versions of Kubernetes, the Replicated app manager, and add-ons in a cluster created by the Replicated Kubernetes installer.
 
 For more information about how the Kubernetes installer updates Kubernetes and add-ons, see [Upgrading](https://kurl.sh/docs/install-with-kurl/upgrading) in the kURL documentation.
 
-## Notes and Limitations
+## About Updating Kubernetes Installer Clusters {#overview}
 
-Consider the following notes and limitations before you update Kubernetes and add-ons in your cluster:
+You re-run the Kubernetes installer installation script to update the versions of Kubernetes, the app manager, and any add-ons running in your cluster. The installation script is the same command that you ran when you installed the application with the Kubernetes installer for the first time. For more information, see [Installing with the Kubernetes Installer](installing-embedded-cluster).
+
+The application vendor uses a Kubernetes installer specification to specify the add-ons and the version of Kubernetes that are deployed to your cluster. When you re-run the installation script, the script uses this Kubernetes installer specification to determine if any updates are required. For example, if the specification indicates that the cluster must use Kubernetes version 1.25.x and your cluster is running version 1.24, then the script begins to upgrade Kubernetes on each node. 
+
+For more information about how the installation script makes these updates to your cluster, see the sections below:
+* [Updating Kubernetes](#kubernetes)
+* [Updating Add-ons and the App Manager](#add-ons)
+
+### Updating Kubernetes {#kubernetes}
+
+The installation script automatically detects when the Kubernetes version in your cluster must be updated. When a Kubernetes upgrade is required, the script first prints a prompt: `Drain local node and apply upgrade?`. When you confirm the prompt, it drains and upgrades the local primary node where the script is running.
+
+Then, if there are any remote primary nodes to upgrade, the script drains each sequentially and prints a command that you must run on the node to upgrade. For example, the command that that script prints might look like the following: `curl -sSL https://kurl.sh/supergoodtool/upgrade.sh | sudo bash -s hostname-check=master-node-2 kubernetes-version=v1.24.3`
+
+The script polls the status of each remote node until it detects that the Kubernetes upgrade is complete. Then, it uncordons the node and proceeds to cordon and drain the next node. This process ensures that only one node is cordoned at a time. After upgrading all primary nodes, the script performs the same operation sequentially on all remote secondary nodes.
+
+### Updating Add-ons and the App Manager {#add-ons}
+
+If the application vendor updated any add-ons in the Kubernetes installer specification since the last time that you ran the installation script in your cluster, then the script automatically updates the add-ons after completing any required Kubernetes upgrade.
+
+For a complete list of add-ons that can be included in the Kubernetes installer specification, see [Add-ons](https://kurl.sh/docs/add-ons/antrea) in the kURL documentation.  
+
+The version of the KOTS add-on provided in the Kubernetes installer specification determines the version of the app manager installed in your cluster. For example, if the version of the app manager running in your cluster is 1.92.0, and the vendor updates the KOTS add-on in the Kubernetes installer specification to use 1.92.1, then the app manager version in your cluster is updated to 1.92.1 when you run the installation script.
+
+For more information, see [KOTS Add-on](https://kurl.sh/docs/add-ons/kots) in the kURL documentation.
+
+## Requirements and Limitations
+
+Consider the following requirements and limitations before you update Kubernetes and add-ons in your cluster:
 
 * The Kubernetes installer supports upgrading at most two minor versions of Kubernetes at a time. When upgrading two minor versions, the Kubernetes installer first installs the skipped minor version before installing the desired version. For example, if you upgrade directly from Kubernetes 1.22 to 1.24, the Kubernetes installer first completes the installation of 1.23 before installing 1.24.
 * The Kubernetes scheduler automatically reschedules Pods to other nodes during maintenance. Any deployments or StatefulSets with a single replica experience downtime while being rescheduled.
-* Existing versions of docker and containerd on the cluster are never upgraded by the installation script.
+* Existing versions of docker and containerd on the cluster are never upgraded by the Kubernetes installer installation script.
 
-## Update Kubernetes and Add-ons
+## Update Kubernetes, Add-ons, and the App Manager
 
-This section describes how to update Kubernetes and add-ons in online and air gap environments.
+This section describes how to update Kubernetes and add-ons in your cluster in both online and air gap environments.
 
 ### Online Environments
 
@@ -34,11 +50,9 @@ To update Kubernetes and add-ons in an online environment:
 
 1. Run the installation script on any primary node in the cluster. The installation script is the same command that you ran when you installed the application with the Kubernetes installer for the first time. For more information, see [Installing with the Kubernetes Installer](installing-embedded-cluster).
 
-    **Example**
-
-    ```
-    curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash
-    ```
+   Consider the following requirements and recommendations:
+      * Replicated recommends that you use the same flags with the installation script 
+      * By default, the KOTS add-on in the Kubernetes installer specification also installs the latest version of the application when you run the installation script. To prevent the installation script from  
 
 1. If the script detects that the version of Kubernetes in your cluster must be upgraded, it prints a `Drain local node and apply upgrade?` prompt. Confirm the prompt to drain the local primary node and apply the Kubernetes upgrade to the control plane.
 
