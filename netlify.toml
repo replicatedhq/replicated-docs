@@ -85,10 +85,6 @@
 ###################################################
 
 [[redirects]]
-  from="https://docs.replicated.com/enterprise/updating-embedded-cluster"
-  to="https://docs.replicated.com/enterprise/updating-app-manager"
-
-[[redirects]]
   from="https://docs.replicated.com/enterprise/updating-existing-cluster"
   to="https://docs.replicated.com/enterprise/updating-app-manager" 
 
