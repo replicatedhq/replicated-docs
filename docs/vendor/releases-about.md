@@ -18,7 +18,7 @@ Replicated includes several custom resources that you can add to your releases, 
 
 After you save a release, you can promote it to any of your release channels. While you are developing and testing an application release, Replicated recommends that you promote to a channel that does not have any customers assigned, such as the default Unstable channel. When you are ready to share your application with customers, you can then promote to a channel where customers are assigned, such as the default Beta or Stable channels. For more information about channels, see [About Channels](../vendor/releases-about-channels).
 
-Every customer license file that you create in the Replicated vendor portal is assigned to a channel. Each time you promote a new release to a channel, customers assigned to that channel can update their installed application instance to the new release version.
+Every customer license file that you create in the vendor portal is assigned to a channel. Each time you promote a new release to a channel, customers assigned to that channel can update their installed application instance to the new release version.
 
 ### Semantic Versioning
 
@@ -36,27 +36,37 @@ If you enable semantic versioning for a channel and then promote releases to it,
 
 You cannot edit the YAML files in a release after the release is promoted to a channel. However, each release has properties, such as the release notes, the version label, and the required status, that you can edit from the channel Release History page in the vendor portal. For more information, see [About the Channels Page](/vendor/releases-about-channels#about-the-channels-page) in _About Release Channels_.
 
-### Release Sequence Mechanics
+### Release Sequencing
 
-By default, Replicated uses release sequence numbers to organize and order releases, and uses sequence numbers in an instance's internal version history.
+By default, Replicated uses release sequence numbers to organize and order releases, and uses instance sequence numbers in an instance's internal version history.
 
-#### Release Sequence
+#### Release Sequences
 
-Each release has a unique, monotonically-increasing sequence number. This number can be used as a fallback to identify a release if the `Version label` field is not set during promotion, or to identify an unpromoted draft release. For more information, see [Creating Releases with Standard Manifest Files](releases-creating-releases#using-the-vendor-portal) or [Creating Releases with Helm Charts](helm-release#ui).
+In the vendor portal, each release is automatically assigned a unique, monotonically-increasing sequence number. You can use this number as a fallback to identify a promoted or draft release, if you do not set the `Version label` field during promotion. For more information, see [Creating Releases with Standard Manifest Files](releases-creating-releases#using-the-vendor-portal) or [Creating Releases with Helm Charts](helm-release#ui).
 
-#### Instance Sequence 
+The following graphic shows release sequence numbers in the vendor portal:
 
-When a release is _seen_ by an instance, a release identifier is returned to an app manager instance when checking for an application update. A seen release is assigned a separate instance sequence, starting at 0 and incrementing for each release that is seen. 
+![Release sequence numbers](/images/release-sequences.png)
 
-A single release sequence, such as `181`, can have multiple instance sequences in the deployed instances, depending on when those instances came online and how many other releases were seen before release sequence `181`. 
+[View a larger version of this image](../../static/images/release-sequences.png)
+
+#### Instance Sequences 
+
+When an app manager instance checks for an application update, a release identifier is returned to the instance and is also assigned an instance sequence number. This instance sequence is separate from a release sequence in the vendor portal. Instance sequences start at 0 and increment for each release identifier that is returned when the app manager checks for an update.
+
+A single release sequence, such as `181`, can have multiple instance sequences in the deployed instances, depending on when those instances came online and how many other releases were seen before release sequence `181`.
 
 Note that instance sequences are only tracked by app manager instances, and the Replicated SaaS platform has no knowledge of these numbers.
+
+The following graphic shows instance sequence numbers on the Replicated admin console dashboard:
+
+![Instance sequence numbers](/images/instance-sequences.png)
 
 #### Semantic Versioning Sequence
 
 For channels with semantic versioning enabled, the Replicated admin console sequences releases by their semantic versions instead of their creation dates. The admin console does not sort any releases already promoted to the channel that do not use a valid semantic version.
 
-If releases that do not use a valid semantic version are already promoted to a channel, the admin console sorts the releases that do have semantic versions starting with the earliest version and proceeding to the latest. For example, assume that you promote these releases in the following order to a channel: 1.0.0, abc, 0.1.0, xyz, and 2.0.0. Then, you enable semantic versioning on that channel. The admin console would sequence the version history as follows for the channel: 0.1.0, 1.0.0, abc, xyz, 2.0.0.
+If releases that do not use a valid semantic version are already promoted to a channel, the admin console sorts the releases that do have semantic versions starting with the earliest version and proceeding to the latest. For example, assume that you promote these releases in the following order to a channel: 1.0.0, abc, 0.1.0, xyz, and 2.0.0. Then, you enable semantic versioning on that channel. The admin console sequences the version history for the channel as follows: 0.1.0, 1.0.0, abc, xyz, 2.0.0.
 
 For information about how enterprise application users check for application updates in the admin console, see [Checking for Updates](../enterprise/updating-apps#checking-for-updates).
 

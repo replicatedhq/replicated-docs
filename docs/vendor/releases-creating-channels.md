@@ -21,7 +21,7 @@ To create a channel:
   ![Create Channel](/images/channels-create.png)
 
 1. Enter a name and description for the channel.
-1. (Optional) To enable semantic versioning on the channel, turn on **Enable semantic versioning**. If you enable semantic versioning for a channel and then promote releases to it, Replicated recommends that you do not later disable semantic versioning for that channel. For more information, see [Semantic Versioning](releases-about#semantic-versioning).
+1. (Optional) To enable semantic versioning on the channel, if it is not enabled by default, turn on **Enable semantic versioning**. If you enable semantic versioning for a channel and then promote releases to it, Replicated recommends that you do not later disable semantic versioning for that channel. For more information about semantic versioning and defaults, see [Semantic Versioning](releases-about#semantic-versioning).
 
 1. (Optional) To enable an air gap bundle format that supports image digests and deduplication of image layers, turn on **Enable new air gap bundle format**. For more information, see [Using Image Tags and Digests](/vendor/packaging-private-images#using-image-tags-and-digests) in _Connecting to an Image Registry_.
 1. Click **Create Channel**.
@@ -39,7 +39,7 @@ To edit an existing channel:
 
 ## Enable Semantic Versioning using the CLI
 
-If you enable semantic versioning for a channel and then promote releases to it, Replicated recommends that you do not later disable semantic versioning for that channel.
+You can enable semantic versioning on the channel, if it is not enabled by default. If you enable semantic versioning for a channel and then promote releases to it, Replicated recommends that you do not later disable semantic versioning for that channel. For more information about semantic versioning and defaults, see [Semantic Versioning](releases-about#semantic-versioning).
 
 Run the following command to enable semantic versioning on a channel: 
 
