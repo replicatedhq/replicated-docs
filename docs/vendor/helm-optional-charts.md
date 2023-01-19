@@ -12,7 +12,7 @@ To create this conditional statement, you add a Replicated template function to 
 The app manager renders the template function in the `exclude` field, and excludes the chart if the template function evaluates to `true`.
 
 For all optional components, Replicated recommends that you add a configuration option to allow the user to optionally enable or disable the component.
-This allows you to support both enterprises that want everything to run in the cluster, as well as those that want to bring their own services for stateful components.
+This lets you support enterprises that want everything to run in the cluster and those that want to bring their own services for stateful components.
 
 For more information about template functions, see [About Template Functions](/reference/template-functions-about).
 
