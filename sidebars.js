@@ -597,6 +597,20 @@ const sidebars = {
             'enterprise/troubleshooting-an-app',
           ],
         },
+        {
+          type: 'category',
+          label: 'Troubshoot.sh Reference',
+          items: [
+            {
+              type: 'category',
+              label: 'Collectors',
+              items: [
+                'collect/collectors',
+              ],
+            },
+            
+          ],
+        },
       ],
     },
   ],
