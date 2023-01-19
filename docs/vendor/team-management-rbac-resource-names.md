@@ -156,7 +156,7 @@ Grants the holder permission to update specified integration(s).
 
 ### team/members/list
 
-Grants the holder permission to list team members and invites.
+Grants the holder permission to list team members and invitations.
 
 ### team/member/invite
 
