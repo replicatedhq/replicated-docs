@@ -83,4 +83,4 @@ To update the version of the app manager running in clusters created by the Kube
 
 The version of the KOTS add-on provided in the Kubernetes installer specification determines the version of the app manager installed in your cluster. For example, if the version of the app manager running in your cluster is 1.92.0, and the vendor updates the KOTS add-on in the Kubernetes installer specification to use 1.92.1, then you can run the installation script to update the app manager version in your cluster to 1.92.1.
 
-For information about how to re-run the installation script to update the app manager in Kubernetes installer clusters, see [Updating Kubernetes Installer Clusters](updating-kubernetes).
+For information about how to re-run the installation script to update the app manager in Kubernetes installer clusters, see [Updating Kubernetes Installer Clusters](updating-embedded-cluster).
