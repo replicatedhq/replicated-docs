@@ -55,6 +55,9 @@ const config = {
     ],
 
   ],
+  plugins:[
+    './plugins/webpack-config'
+  ],
   // plugins: [
   //   [
   //     '@docusaurus/plugin-content-docs',
