@@ -31,13 +31,11 @@ The Kubernetes installer supports upgrading at most two minor versions of Kubern
 
 If the application vendor updated any add-ons in the Kubernetes installer specification since the last time that you ran the installation script in your cluster, the script automatically updates the add-ons after completing any required Kubernetes upgrade.
 
-The installation script never updates existing versions of Docker and containerd on the cluster.
-
-For a complete list of add-ons that can be included in the Kubernetes installer specification, see [Add-ons](https://kurl.sh/docs/add-ons/antrea) in the kURL documentation.  
-
 The version of the KOTS add-on provided in the Kubernetes installer specification determines the version of the app manager installed in your cluster. For example, if the version of the app manager running in your cluster is 1.92.0, and the vendor updates the KOTS add-on in the Kubernetes installer specification to use 1.92.1, then the app manager version in your cluster is updated to 1.92.1 when you run the installation script.
 
-For more information about the KOTS add-on, see [KOTS Add-on](https://kurl.sh/docs/add-ons/kots) in the kURL documentation.
+The installation script never updates existing versions of Docker and containerd on the cluster.
+
+For a complete list of add-ons that can be included in the Kubernetes installer specification, including the KOTS add-on, see [Add-ons](https://kurl.sh/docs/add-ons/antrea) in the kURL documentation.
 ## Update Kubernetes, the App Manager, and Add-ons
 
 This section describes how to update Kubernetes, the app manager, and any add-ons in your cluster. It includes instructions for both online and air gap environments.
@@ -47,7 +45,7 @@ The Kubernetes scheduler automatically reschedules Pods to other nodes during ma
 :::
 ### Online Environments
 
-To update in an online environment:
+To update the cluster in an online environment:
 
 1. Run the installation script on any primary node in the cluster. The installation script is the same command that you ran when you installed the application with the Kubernetes installer for the first time. For more information, see [Installing with the Kubernetes Installer](installing-embedded-cluster).
 
@@ -68,7 +66,7 @@ To update in an online environment:
 
 For air gap installations, you must load images on each node in the cluster before you can run the installation script to update Kubernetes and add-ons. This is because upgraded components might have Pods scheduled on any node in the cluster. 
 
-To update Kubernetes and add-ons in an air gap environment:
+To update the cluster in an air gap environment:
 
 1. Download and extract the `.airgap` bundle to every node in the cluster.
 
