@@ -134,15 +134,8 @@ const sidebars = {
                 'vendor/helm-native-helm-install-order',
               ],
             },
-            {
-              type: 'category',
-              label: 'Including Conditional Resources',
-              items: [
-                'vendor/helm-optional-charts',
-                'vendor/helm-chart-components',
-                'vendor/helm-optional-value-keys',
-              ],
-            },
+            'vendor/helm-optional-charts',
+            'vendor/helm-optional-value-keys',
           ],
         },
         {
