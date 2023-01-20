@@ -45,7 +45,7 @@ To configure a custom domain in the vendor portal:
 
 1. For **Domain**, enter the custom domain used for images pushed to the Replicated registry or proxy service. Click **Save & continue**.
 
-1. For **Verify ownership**, copy the text string and create the custom domain record in your DNS account. The text string can take a few seconds to appear. Click **Validate & continue**.
+1. For **Verify ownership**, copy the text string and use it to create a TXT record in your DNS account. Click **Validate & continue**.
 
   Your changes can take up to 24 hours to propagate.
 
