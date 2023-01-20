@@ -1,6 +1,6 @@
 # Using Custom Domains (Beta)
 
-This topic describes using custom registry domains and how to configure them using the Replicated vendor portal or the vendor API.
+This topic describes using custom domains to alias Replicated endpoints, and how to configure them using the Replicated vendor portal or the vendor API.
 
 ## Custom Registry Domains {#registry}
 
