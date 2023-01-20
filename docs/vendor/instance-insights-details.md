@@ -207,6 +207,10 @@ The following shows an example of an **Instance Uptime** graph:
 
 You can hover over the bars in the **Instance Uptime** graph to view more detail about the percent of time that the instance was in each state during the given time period.
 
+![Uptime Graph with event markers on the Instance details page](/images/instance-uptime-graph-event-markers.png)
+
+You can hover over the event markers in the **Instance Uptime** graph to view more detail about the events that occurred during that given interval on the graph. If more than two events occurred in that period, the event marker displays the number of events that occurred during that period. If you click the event marker or the event in the tooltip, the **Instance Activity** section highlights the event or the first event in the group.
+
 ### Instance Activity
 
 The **Instance Activity** section displays recent events for the instance. The data stream is updated each time one of the following occurs:
