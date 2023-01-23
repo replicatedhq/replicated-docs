@@ -14,7 +14,7 @@ For information about how to connect to private image registries, see the follow
 * [Push Images to the Replicated Private Registry](#push-images-to-the-replicated-private-registry)
 * [Using Private Registries for helm CLI Installations (Beta)](helm-image-registry)
 
-If you use the Replicated private registry or proxy service, you can configure custom domains to alias registry.replicated.com and proxy.replicated.com, to remove the Replicated domains from a customer security review and reduce exposure. This feature is configured at the Team level. For more information about custom domains, see [Using Custom Domains](packaging-private-registry-cname).
+If you use the Replicated private registry or proxy service, you can configure custom domains to alias registry.replicated.com and proxy.replicated.com, to remove the Replicated domains from a customer security review and reduce exposure. This feature is configured at the Team level. For more information about custom domains, see [Using Custom Domains](custom-domains).
 
 ## About Connecting to an External Registry
 
