@@ -17,7 +17,7 @@ For more information about how the installation script makes these updates to yo
 * [Updating Kubernetes](#kubernetes)
 * [Updating Add-ons and the App Manager](#add-ons)
 
-### Updating Kubernetes {#kubernetes}
+### Kubernetes Updates {#kubernetes}
 
 The installation script automatically detects when the Kubernetes version in your cluster must be updated. When a Kubernetes upgrade is required, the script first prints a prompt: `Drain local node and apply upgrade?`. When you confirm the prompt, it drains and upgrades the local primary node where the script is running.
 
@@ -27,7 +27,7 @@ The script polls the status of each remote node until it detects that the Kubern
 
 The Kubernetes installer supports upgrading at most two minor versions of Kubernetes at a time. When upgrading two minor versions, the installation script first installs the skipped minor version before installing the desired version. For example, if you upgrade directly from Kubernetes 1.22 to 1.24, the script first completes the installation of 1.23 before installing 1.24.
 
-### Updating Add-ons and the App Manager {#add-ons}
+### Add-ons and App Manager Updates {#add-ons}
 
 If the application vendor updated any add-ons in the Kubernetes installer specification since the last time that you ran the installation script in your cluster, the script automatically updates the add-ons after completing any required Kubernetes upgrade.
 
@@ -64,7 +64,7 @@ To update the cluster in an online environment:
 
 ### Air Gap Environments
 
-For air gap installations, you must load images on each node in the cluster before you can run the installation script to update Kubernetes and add-ons. This is because upgraded components might have Pods scheduled on any node in the cluster. 
+For air gap installations, you must load images on each node in the cluster before you can run the installation script to update Kubernetes and any add-ons. This is because upgraded components might have Pods scheduled on any node in the cluster. 
 
 To update the cluster in an air gap environment:
 
