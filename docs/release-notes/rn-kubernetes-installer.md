@@ -17,7 +17,7 @@ Released on January 23, 2023
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-01-20T02-05-44Z.
 
 ### Bug Fixes {#bug-fixes-v2023-01-23-0}
-* fix: create .kube/config for installs where that has not been created.
+* Creates .kube/config for installations where .kube/config was not created.
 
 ## v2023.01.13-1
 
