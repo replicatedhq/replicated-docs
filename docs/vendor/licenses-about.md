@@ -86,11 +86,20 @@ From the **Customers** page, you can do the following:
    ![Customer reporting page showing one active instance](/images/customer-reporting-page.png)
 
   For each active instance, the **Reporting** page displays:
-  * The application version 
-  * The app manager version
+  * The first 7 characters of the instance ID
   * The status of the instance
-  * The timestamps of the earliest and latest events recorded for the instance
-  * The Kubernetes distribution for the cluster where the instance is installed
-  * A **View details** button that opens the **Instance details** page. The **Instance details** page displays additional event data and computed metrics to help you understand the performance and status of each active application instance.
+  * The application version
+  * The Kubernetes distribution for the cluster where the instance is installed (if available)
+  * The Kubernetes version
+  * Whether the instance is installed in a kURL cluster
+  * The number of nodes ready in the cluster (if instance is installed in a kURL cluster):
+   * ![Kurl instance with 1/1 nodes ready](/images/kurl-instance-row.png)
+  * The app manager version
+  * The cloud provider and region (if available)
+  * The timestamp of the last check-in time recorded for the instance
+  * A simplified version of the instance's uptime graph from the last 2 weeks. See [Instance Uptime](https://docs.replicated.com/vendor/instance-insights-details#instance-uptime) for more information.
+  * The uptime ratio for the instance over the last 2 weeks
+  
+  If you click one of the instance rows, it will take you to the **Instance details** page. The **Instance details** page displays additional event data and computed metrics to help you understand the performance and status of each active application instance. See [Viewing Instance Details](https://docs.replicated.com/vendor/instance-insights-details) for more information.
 
    
