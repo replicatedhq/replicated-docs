@@ -10,7 +10,7 @@ This topic describes the supported _cron expressions_ that are used to schedule 
 
 **Parameters**
 
-The following table shows the parameters and supported values for the required cron fields:
+The following table lists the parameters and supported values for the required cron fields:
 
 <table>
     <tr>
@@ -47,43 +47,42 @@ The following table shows the parameters and supported values for the required c
 
 **Wildcard Operators**
 
-The following table shows the definitions for the supported wildcards:
+The following table describes the supported wildcards:
 
 <table>
     <tr>
-      <th width="30%">Wildcard</th>
-      <th width="70%">Description</th>
+      <th width="20%">Wildcard</th>
+      <th width="80%">Description</th>
     </tr>
     <tr>
-      <td>,</td>
+      <td><center>,</center></td>
       <td>The , (comma) wildcard specifies a list or multiple values, which can be consecutive or not. For example, `1,2,4` in the Day-of-week field signifies every Monday, Tuesday, and Thursday.</td>
     </tr>
     <tr>
-      <td>-</td>
+      <td><center>-</center></td>
       <td>The - (dash) wildcard specifies a contiguous range, but it does not require all of the values in the field. For example, `4-6` in the Month field signifies April through June.</td>
     </tr>
     <tr>
-      <td>*</td>
+      <td><center>*</center></td>
       <td>The * (asterisk) wildcard indicates that all of the values for the field are used. For example, using `*` in the Month field means that all of the months are included in the schedule.</td>
     </tr>
-    
     <tr>
-      <td>?</td>
-      <td>The ? (question mark) specifies that one or another value can be used. For example, enter 5 for Day-of-the-month and ? for Day-of-the-week, if you do not have a preference for which day of the week that the fifth day of the month occurs on.</td>
+      <td><center>?</center></td>
+      <td>The ? (question mark) wildcard specifies that one or another value can be used. For example, enter 5 for Day-of-the-month and ? for Day-of-the-week, if you do not have a preference for which day of the week that the fifth day of the month occurs on.</td>
     </tr>
     <tr>
-      <td>L</td>
+      <td><center>L</center></td>
       <td>The L wildcard specifies the last day of the month or week respectively for the Day-of-month or Day-of-week fields.</td>
     </tr>
     <tr>
-      <td>W</td>
+      <td><center>W</center></td>
       <td>The W wildcard specifies the "N-th" occurrence or given day in the month. For example, the second Friday of the month is specified as `6#2`.</td>
     </tr>
 </table>
 
 ## Examples
 
-These are some examples of valid cron expressions that check for updates:
+The following examples show valid cron expressions to schedule checking for updates:
 
 - At 11:30 AM every day:
 
