@@ -11,7 +11,7 @@ Released on January 23, 2023
 ### New Features {#new-features-v2023-01-23-0}
 * Allow migrating multi-node Weave installs to Flannel.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-01-12T02-06-16Z.
-* The [Rook add-on](https://kurl.sh/docs/add-ons/rook) can now be upgraded from version 1.0.x to the most current Rook version as part of the installation script.
+* The [Rook add-on](https://kurl.sh/docs/add-ons/rook) can now be upgraded from version 1.0.x to 1.10.8, latest supported Rook version, as part of the installation script.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-01-18T04-36-38Z.
 * Adds metrics-server 0.6.2.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-01-20T02-05-44Z.
