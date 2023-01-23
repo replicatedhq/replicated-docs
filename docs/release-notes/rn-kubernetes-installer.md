@@ -4,6 +4,19 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.01.23-0
+
+Released on January 23, 2023
+
+### New Features {#new-features-v2023-01-23-0}
+* Allow migrating multi-node [Weave](https://kurl.sh/docs/add-ons/weave) installations to [Flannel](https://kurl.sh/docs/add-ons/flannel).
+* The [Rook add-on](https://kurl.sh/docs/add-ons/rook) can now be upgraded from version 1.0.x to 1.10.8, latest supported Rook version, as part of the installation script.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) versions RELEASE.2023-01-12T02-06-16Z, RELEASE.2023-01-18T04-36-38Z and RELEASE.2023-01-20T02-05-44Z.
+* Adds [metrics-server add-on](https://kurl.sh/docs/add-ons/metrics-server) version 0.6.2.
+
+### Bug Fixes {#bug-fixes-v2023-01-23-0}
+* Creates .kube/config for installations where .kube/config was not created.
+
 ## v2023.01.13-1
 
 Released on January 13, 2023
