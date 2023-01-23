@@ -1,0 +1,7 @@
+If the script detects that the version of Kubernetes in your cluster must be upgraded, it prints a `Drain local node and apply upgrade?` prompt. Confirm the prompt to drain the local primary node and apply the Kubernetes upgrade to the control plane.
+
+   The script continues to drain and upgrade nodes sequentially. For each node, the script prints a command that you must run on the node to upgrade Kubernetes. 
+
+   After the Kubernetes upgrade on each node is complete, the script automatically updates any add-ons in your cluster.
+
+   For more information about this update process, see [About Updating Kubernetes Installer Clusters](#overview) above.

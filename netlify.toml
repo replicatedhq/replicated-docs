@@ -84,6 +84,12 @@
 # Redirects To the Enterprise Section
 ###################################################
 
+[[redirects]]
+  from="https://docs.replicated.com/enterprise/updating-existing-cluster"
+  to="https://docs.replicated.com/enterprise/updating-app-manager" 
+
+   
+
 ###################################################
 # Redirects To the References Section
 ###################################################

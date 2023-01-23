@@ -513,7 +513,7 @@ const sidebars = {
           label: 'Updating',
           items: [
             'enterprise/updating-apps',
-            'enterprise/updating-existing-cluster',
+            'enterprise/updating-app-manager',
             'enterprise/updating-embedded-cluster',
             'enterprise/updating-patching-with-kustomize',
             'enterprise/updating-licenses',
