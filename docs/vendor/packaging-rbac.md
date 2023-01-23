@@ -103,7 +103,7 @@ The `kubectl kots velero ensure-permissions` command can be used to create addit
 Air gap installations honor the `requireMinimalRBACPrivileges` and `supportMinimalRBACPrivileges` flags in [headless mode only](../enterprise/installing-existing-cluster-automation#airgap-install).
 Without access to the internet or the application's `.airgap` package as provided in a headless install, the app manager does not have the information required to determine whether minimal RBAC is appropriate and so it defaults to the more permissive RBAC policy.
 
-### Operators and multiple namespaces
+### Operators and Multiple Namespaces
 
 It is possible to use namespace-scoped access for Operators and multi-namespace applications.
 During the installation, if there are `additionalNamespaces` specified in the Application manifest, Roles and RoleBindings are created to give the admin console access to all specified namespaces.
@@ -121,19 +121,132 @@ spec:
   requireMinimalRBACPrivileges: true
 ```
 
-#### Reference Objects
+Next, add the reference objects. See [Reference Objects](#objects).
 
-The following Role is created for namespace-scoped applications:
+#### Reference Objects {#objects}
+
+For existing clusters with RBAC, you must add the `kotsadmin-operator-role` and `kotsadmin-operator-rolebinding`.
+
+The following example YAML shows `kotsadmin-operator-role` and `kotsadmin-operator-rolebinding` added for a namespace-scoped application:
 
 ```yaml
-apiVersion: "rbac.authorization.k8s.io/v1"
-kind: "Role"
+apiVersion: v1
+kind: ServiceAccount
 metadata:
-  name: "kotsadm-role"
+  labels:
+    kots.io/backup: velero
+    kots.io/kotsadm: "true"
+  name: kotsadm
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    kots.io/backup: velero
+    kots.io/kotsadm: "true"
+  name: kotsadm-operator
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  labels:
+    kots.io/backup: velero
+    kots.io/kotsadm: "true"
+  name: kotsadm-role
 rules:
-  - apiGroups: ["*"]
-    resources: ["*"]
-    verb: "*"
+  - apiGroups: [""]
+    resources: ["configmaps", "persistentvolumeclaims", "pods", "secrets", "services"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: ["apps"]
+    resources: ["daemonsets", "deployments", "statefulsets"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: ["batch"]
+    resources: ["jobs", "cronjobs"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: ["networking.k8s.io", "extensions"]
+    resources: ["ingresses"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: [""]
+    resources: ["namespaces", "endpoints", "serviceaccounts"]
+    verbs: ["get"]
+  - apiGroups: ["authorization.k8s.io"]
+    resources: ["selfsubjectaccessreviews", "selfsubjectrulesreviews"]
+    verbs: ["create"]
+  - apiGroups: ["rbac.authorization.k8s.io"]
+    resources: ["roles", "rolebindings"]
+    verbs: ["get"]
+  - apiGroups: [""]
+    resources: ["pods/log", "pods/exec"]
+    verbs: ["get", "list", "watch", "create"]
+  - apiGroups: ["batch"]
+    resources: ["jobs/status"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  labels:
+    kots.io/backup: velero
+    kots.io/kotsadm: "true"
+  name: kotsadm-operator-role
+rules:
+  - apiGroups: [""]
+    resources: ["configmaps", "persistentvolumeclaims", "pods", "secrets", "services"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: ["apps"]
+    resources: ["daemonsets", "deployments", "statefulsets"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: ["batch"]
+    resources: ["jobs", "cronjobs"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: ["networking.k8s.io", "extensions"]
+    resources: ["ingresses"]
+    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  - apiGroups: [""]
+    resources: ["namespaces", "endpoints", "serviceaccounts"]
+    verbs: ["get"]
+  - apiGroups: ["authorization.k8s.io"]
+    resources: ["selfsubjectaccessreviews", "selfsubjectrulesreviews"]
+    verbs: ["create"]
+  - apiGroups: ["rbac.authorization.k8s.io"]
+    resources: ["roles", "rolebindings"]
+    verbs: ["get"]
+  - apiGroups: [""]
+    resources: ["pods/log", "pods/exec"]
+    verbs: ["get", "list", "watch", "create"]
+  - apiGroups: ["batch"]
+    resources: ["jobs/status"]
+    verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  labels:
+    kots.io/backup: velero
+    kots.io/kotsadm: "true"
+  name: kotsadm-operator-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: kotsadm-operator-role
+subjects:
+- kind: ServiceAccount
+  name: kotsadm-operator
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  labels:
+    kots.io/backup: velero
+    kots.io/kotsadm: "true"
+  name: kotsadm-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: kotsadm-role
+subjects:
+- kind: ServiceAccount
+  name: kotsadm
 ```
 
 :::note
