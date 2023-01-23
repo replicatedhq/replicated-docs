@@ -53,7 +53,9 @@ To configure a custom domain in the vendor portal:
 
     Your changes can take up to 24 hours to propagate.
 
-1. For **Use Domain**, copy the snippet to use as a template if needed. Click **Ok. got it!**.
+1. For **Create CNAME**, copy the text string and use it to create a CNAME record in your DNS account. Click **Validate & continue**.
+
+1. For **Use Domain**, copy the snippet to use as a template if needed. Click **Ok, got it!**.
 
 1. Create a new release and create the new field for either `proxyRegistryDomain` or `replicatedRegistryDomain` in the Application custom resource manifest file. You can use the code snippet template from the previous step or manually code the field. For more information, see [proxyRegistryDomain](../reference/custom-resource-application#proxyRegistryDomain) and [replicatedRegistryDomain](../reference/custom-resource-application#replicatedRegistryDomain) in the _Application_ section.
 
