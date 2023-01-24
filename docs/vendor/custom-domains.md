@@ -43,6 +43,8 @@ To configure a custom domain in the vendor portal:
 
 1. For **Domain**, enter the custom domain to use for images pushed to the Replicated registry or to proxy using the proxy service. Click **Save & continue**.
 
+1. For **Create CNAME**, copy the text string and use it to create a CNAME record in your DNS account. Click **Continue**.
+
 1. For **Verify ownership**, copy the text string and use it to create a TXT record in your DNS account. Click **Validate & continue**.
 
   Your changes can take up to 24 hours to propagate.
