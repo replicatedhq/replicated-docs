@@ -123,7 +123,7 @@ spec:
 
 #### Reference Objects
 
-The following role is created automatically for namespace-scoped applications:
+The following Role is created automatically for namespace-scoped applications:
 
 ```yaml
 apiVersion: "rbac.authorization.k8s.io/v1"
