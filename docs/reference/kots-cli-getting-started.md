@@ -44,7 +44,7 @@ To download the `kots` CLI without root access:
   **Example:**
 
   ```bash
-  curl -L https://github.com/replicatedhq/kots/releases/download/v1.89.0/kots_linux_amd64.tar.gz
+  curl -L https://github.com/replicatedhq/kots/releases/latest/download/kots_linux_amd64.tar.gz
   ```
 1. Unarchive the binary by running the following command:
 
