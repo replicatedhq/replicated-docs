@@ -4,9 +4,11 @@ This topic describes how to add primary and secondary nodes to a Kubernetes inst
 
 ## Overview of Adding Nodes
 
-You can generate commands in the admin console to join additional primary and secondary nodes to a Kubernetes installer provisioned cluster. Primary nodes run services that control the cluster. Secondary nodes run services that control the pods that host the application containers. Adding nodes can help manage resources to ensure that your application runs smoothly.
+The node where you first run the Kubernetes installer installation script is the primary node, which runs Kubernetes control-plane components including etcd. After you install, you can generate commands in the admin console to join additional primary and secondary nodes to your cluster.
 
-For high availability clusters, Kubernetes recommends using at least 3 primary nodes, and that you use an odd number of nodes to help with leader selection if machine or zone failure occurs. For more information, see [Creating Highly Available Clusters with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/) in the Kubernetes documentation.
+Primary nodes run services that control the cluster. Secondary nodes run services that control the pods that host the application containers. Adding nodes can help manage resources to ensure that your application runs smoothly.
+
+Adding additional nodes is also important for high availability. To ensure that your cluster has high availability, Kubernetes recommends that you use at least three primary nodes. Kubernetes also recommends that you use an odd number of nodes to help with leader selection if machine or zone failure occurs. For more information, see [Creating Highly Available Clusters with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/) in the Kubernetes documentation.
 
 ## Join Primary and Secondary Nodes
 
@@ -29,18 +31,10 @@ To add primary and secondary nodes:
   labels=gpu=enabled,type=data
   ```
 
-## Dedicated Primary
+## About Using Dedicated Primary Nodes
 
-The first node kURL is installed on will always be a primary node running Kubernetes control-plane components, including etcd. A common practice is to taint all primary nodes to prevent most pods from being scheduled on them. The kURL installer does not taint primaries by default because single-node installs must be capable of scheduling all pods.
+After you add secondary nodes to your cluster, you can taint primary nodes to prevent the Kubernetes scheduler from scheduling most pods on the primary nodes.
 
-Once a secondary node has been joined to a cluster, it's possible to taint the primary nodes with the following command:
+Tainting allows you to create _dedicated_ nodes, where the scheduler can only schedule certain pods on the tainted node. You define which pods can be scheduled on the node using _tolerations_. For more information about common use cases for taints and tolerations, see [Taints and Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) in the Kubernetes documentation.
 
-  **Airgap Example:**
-  ```
-  cat tasks.sh | sudo bash -s taint_primaries
-  ```
-
-  **Online Example:**
-  ```
-  curl -L https://k8s.kurl.sh/latest/tasks.sh | sudo bash -s taint_primaries
-  ```
+By default, the Kubernetes installer does not automatically taint primary nodes because many clusters, such as single-node clusters, must be capable of scheduling all pods. For more information about how to create dedicated primary nodes using tainting, see [Dedicated Primary](https://kurl.sh/docs/install-with-kurl/dedicated-primary) in the kURL documentation.
