@@ -80,6 +80,10 @@
 [[redirects]]
   from="https://docs.replicated.com/vendor/releases-promoting"
   to="https://docs.replicated.com/vendor/releases-creating-releases"
+
+[[redirects]]
+  from="https://docs.replicated.com/vendor/packaging-private-registry-cname"
+  to="https://docs.replicated.com/vendor/custom-domains"
 ###################################################
 # Redirects To the Enterprise Section
 ###################################################

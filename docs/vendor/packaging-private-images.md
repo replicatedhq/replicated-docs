@@ -14,6 +14,8 @@ For information about how to connect to private image registries, see the follow
 * [Push Images to the Replicated Private Registry](#push-images-to-the-replicated-private-registry)
 * [Using Private Registries for helm CLI Installations (Beta)](helm-image-registry)
 
+If you use the Replicated private registry or proxy service, you can configure custom domains to alias registry.replicated.com and proxy.replicated.com, to remove the Replicated domains from a customer security review and reduce exposure. This feature is configured at the Team level. For more information about custom domains, see [Using Custom Domains](custom-domains).
+
 ## About Connecting to an External Registry
 
 If your application images are available in a private image registry exposed to the Internet, such as Docker Hub, quay.io, Amazon Elastic Container Registry (ECR), Google Container Registry (GCR), or Artifactory, then the customer licenses for your application can grant proxy, or _pull-through_, access to the assignee without exposing registry credentials to the customer.

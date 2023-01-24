@@ -76,6 +76,7 @@ const sidebars = {
         },
         'vendor/team-management-google-auth',
         'vendor/team-management-saml-auth',
+        'vendor/custom-domains',
       ],
     },
     {
@@ -182,7 +183,6 @@ const sidebars = {
       items: [
         'vendor/packaging-private-images',
         'vendor/helm-image-registry',
-        'vendor/packaging-private-registry-cname',
         'vendor/packaging-private-registry-security',
         'vendor/tutorial-ecr-private-images',
       ],
