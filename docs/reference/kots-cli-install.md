@@ -30,7 +30,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 | `--https-proxy`             | string | Sets HTTPS_PROXY environment variable in all admin console components. |
 | `--kotsadm-namespace`       | string | Set to override the namespace of kotsadm images. Used for air gapped installations. For more information, see [Installing in an Air Gapped Environment](../enterprise/installing-existing-cluster#air-gap). |
 | `--kotsadm-registry`        | string | Set to override the registry of kotsadm images. Used for air gapped installations. For more information, see [Installing in an Air Gapped Environment](../enterprise/installing-existing-cluster#air-gap). |
-| `--license-file`            | string | Path to a license file. Required when [`--upstream-uri`](kots-cli-upload#usage) points to a Replicated application. |
+| `--license-file`            | string | Path to a license file. |
 | `--local-path`              | string | Specify a local-path to test the behavior of rendering a Replicated application locally. Only supported on Replicated application types.   |
 | `--name`                    | string | Name of the application to use in the admin console. |
 | `--no-port-forward`         | bool   | Set to `true` to disable automatic port forward. **Default:** `false` |
