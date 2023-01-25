@@ -159,6 +159,7 @@ The following examples show valid cron expressions to schedule checking for upda
 
     ```
     0 0 L * ?
+    ```
 
 - After 1 hour and 45 minutes, and then every interval following that:
 
