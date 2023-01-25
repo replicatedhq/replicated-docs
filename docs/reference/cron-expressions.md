@@ -1,6 +1,6 @@
 # Cron Expressions
 
-This topic describes the supported _cron expressions_ that are used to schedule checking for application updates in the Replicated admin console.
+This topic describes the supported cron expressions that are used to schedule checking for application updates in the Replicated admin console.
 
 ## Syntax
 
@@ -20,27 +20,27 @@ The following table lists the required cron fields and supported values:
     </tr>
     <tr>
       <td>Minute</td>
-      <td>0-59</td>
+      <td>0 through 59</td>
       <td>, - * </td>
     </tr>
     <tr>
       <td>Hour</td>
-      <td>0-23</td>
+      <td>0 through 23</td>
       <td>, - * </td>
     </tr>
     <tr>
       <td>Day-of-month</td>
-      <td>1-31</td>
+      <td>1 through 31</td>
       <td>, - * ? L W </td>
     </tr>
     <tr>
       <td>Month</td>
-      <td>1-12 or JAN-DEC</td>
+      <td>1 through 12 or JAN through DEC</td>
       <td>, - * </td>
     </tr>
     <tr>
       <td>Day-of-week</td>
-      <td>1-7 or SUN-SAT</td>
+      <td>1 through 7 or SUN through SAT</td>
       <td>, - * ? L</td>
     </tr>
   </table>
@@ -60,7 +60,7 @@ The following table describes the supported special characters:
     </tr>
     <tr>
       <td><center>Dash (-)</center></td>
-      <td>Specifies a contiguous range, but it does not require all of the values in the field. For example, <code>4-6</code> in the Month field signifies April through June.</td>
+      <td>Specifies a contiguous range. For example, <code>4-6</code> in the Month field signifies April through June.</td>
     </tr>
     <tr>
       <td><center>Asterisk (*)</center></td>
@@ -68,7 +68,7 @@ The following table describes the supported special characters:
     </tr>
     <tr>
       <td><center>Question mark (?)</center></td>
-      <td> Specifies that one or another value can be used. For example, enter <code>5</code> for Day-of-the-month and <code>?</code> for Day-of-the-week, if you do not have a preference for which day of the week that the fifth day of the month occurs on.</td>
+      <td> Specifies that one or another value can be used. For example, enter <code>5</code> for Day-of-the-month and <code>?</code> for Day-of-the-week to check for updates on the 5th day of the month, regardless of which day of the week it is.</td>
     </tr>
     <tr>
       <td><center>L</center></td>
@@ -79,27 +79,6 @@ The following table describes the supported special characters:
       <td>Specifies the "N-th" occurrence or given day in the month. For example, the second Friday of the month is specified as <code>6#2</code>.</td>
     </tr>
 </table>
-
-#### Examples
-
-The following examples show valid cron expressions to schedule checking for updates:
-
-- At 11:30 AM every day:
-
-    ```
-    30 11 * * *
-    ```
-
-- At 6:00 PM on the fourth Monday of every month:
-
-    ```
-    0 18 ? * 2#4
-    ```
-
-- At midnight on the last day of every month:
-
-    ```
-    0 0 L * ?
 
 ### Predefined Schedules
 
@@ -138,12 +117,12 @@ You can use one of the following predefined schedule values instead of a cron ex
     </tr>
     <tr>
       <td>@never</td>
-      <td>Disables the schedule completely. Only used by KOTS.<br></br><br></br>This value can be useful when you are calling the API directly or are editing the KOTS configuration manually.</td>
+      <td><p>Disables the schedule completely. Only used by KOTS.</p><p>This value can be useful when you are calling the API directly or are editing the KOTS configuration manually.</p></td>
       <td>0 * * * *</td>
     </tr>
     <tr>
       <td>@default</td>
-      <td>Selects the default schedule option (every 4 hours). Begins when the admin console starts up. Only used by KOTS.<br></br><br></br>This value can be useful when you are calling the API directly or are editing the KOTS configuration manually.</td>
+      <td><p>Selects the default schedule option (every 4 hours). Begins when the admin console starts up.</p><p>This value can be useful when you are calling the API directly or are editing the KOTS configuration manually.</p></td>
       <td>0 * * * *</td>
     </tr>
 </table>
@@ -156,18 +135,39 @@ You can also schedule the job to operate at fixed intervals, starting at the tim
 @every DURATION
 ```
 
-Replace `DURATION` with a string that is accepted by [time.ParseDuration](http://golang.org/pkg/time/#ParseDuration). 
+Replace `DURATION` with a string that is accepted by [time.ParseDuration](http://golang.org/pkg/time/#ParseDuration).
 
-Note that seconds are not supported by the app manager.
+#### Limitations
 
-**Example**
+- Seconds are not supported.
 
-After 1 hour and 45 minutes, and then every interval following that:
+- The interval does not include the job runtime. For example, if a job is scheduled to run every 10 minutes, and the job takes 4 minutes to run, there will be 6 minutes of idle time between each run.
+
+
+## Examples
+
+The following examples show valid cron expressions to schedule checking for updates:
+
+- At 11:30 AM every day:
+
+    ```
+    30 11 * * *
+    ```
+
+- At 6:00 PM on the fourth Monday of every month:
+
+    ```
+    0 18 ? * 2#4
+    ```
+
+- At midnight on the last day of every month:
+
+    ```
+    0 0 L * ?
+
+- After 1 hour and 45 minutes, and then every interval following that:
 
   ```
   @every 1h45m
   ```
 
-:::note
-The interval does not include the job runtime. For example, if a job is scheduled to run every 10 minutes, and the job takes 4 minutes to run, there will be 6 minutes of idle time between each run.
-:::
