@@ -71,7 +71,7 @@ To assign a custom domain to an application:
 
 ## Custom Domains for the Download Portal {#download}
 
-You can configure the download portal to use a custom domain instead of the default get.replicated.com.
+You can configure the download portal to use a custom domain instead of the default get.replicated.com. The download portal is used to share license and release files with customers. For more information about the download portal, see [Share Files through the Download Portal](releases-sharing-license-install-script#download-portal) in _Share License Files and Releases_.
 
 ### Limitations
 
@@ -88,7 +88,7 @@ To configure a custom domain for the download portal:
 
   The **Configure a custom domain** wizard opens.
 
-1. For **Domain**, enter the custom domain to use for images pushed to the Replicated registry or to proxy using the proxy service. Click **Save & continue**.
+1. For **Domain**, enter the custom domain to use for the download portal. Click **Save & continue**.
 
 1. For **Create CNAME**, copy the text string and use it to create a CNAME record in your DNS account. Click **Continue**.
 
@@ -100,4 +100,4 @@ To configure a custom domain for the download portal:
 
     Your changes can take up to 24 hours to propagate.
 
-1. For **Use Domain**, click **Yes, set as default** to set the domain as the active or click **Not now** to save the domain without making it the default.
+1. For **Use Domain**, click **Yes, set as default** to set the domain as the active domain, or click **Not now** to save the domain without making it the default.
