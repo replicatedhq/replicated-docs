@@ -29,7 +29,7 @@ Verification of the domain is required using TXT records that undergo separate v
 
 The TXT records can be removed once verification is complete.
 
-### Configure Registry Domains in the Vendor Portal
+### Configure Registry Domains
 
 You can configure custom domains for the Replicated private registry or the proxy service in the vendor portal or the vendor API.
 
@@ -67,3 +67,37 @@ To assign a custom domain to an application:
 1. Click **Use custom domain in an application** next to the domain that you want to use.
 1. Copy the snippet from the **Use custom domain in an application** dialog that opens, then click **Ok, got it!**.
 1. Create a new release and add the code snippet to the Application custom resource manifest file to create the new field for either `proxyRegistryDomain` or `replicatedRegistryDomain`. For more information, see [proxyRegistryDomain](../reference/custom-resource-application#proxyRegistryDomain) and [replicatedRegistryDomain](../reference/custom-resource-application#replicatedRegistryDomain) in the _Application_ section.
+
+
+## Custom Domains for the Download Portal {#download}
+
+You can configure the download portal to use a custom domain instead of the default get.replicated.com.
+
+### Limitations
+
+- You can change from one custom domain to another, but only one domain per team can be active at any time.
+- If you have multiple teams, each team must use the same active domain.
+
+### Configure Custom Domains
+
+To configure a custom domain for the download portal:
+
+1. Log in to the [vendor portal](https://vendor.replicated.com), and click **Team > Custom Domains**.
+
+1. From the **Custom domain for the download portal** pane, click **Add your first custom domain** for your first domain, or click **Add new domain** for additional domains.
+
+  The **Configure a custom domain** wizard opens.
+
+1. For **Domain**, enter the custom domain to use for images pushed to the Replicated registry or to proxy using the proxy service. Click **Save & continue**.
+
+1. For **Create CNAME**, copy the text string and use it to create a CNAME record in your DNS account. Click **Continue**.
+
+1. For **Verify ownership**, copy the text string and use it to create a TXT record in your DNS account. Click **Validate & continue**.
+
+  Your changes can take up to 24 hours to propagate.
+
+1. For **TLS cert creation verification**, copy the text string and use it to create a TXT record in your DNS account. Click **Validate & continue**.
+
+    Your changes can take up to 24 hours to propagate.
+
+1. For **Use Domain**, click **Yes, set as default** to set the domain as the active or click **Not now** to save the domain without making it the default.
