@@ -68,17 +68,24 @@ environments.
 To configure automatic updates:
 
 1. In the admin console, go to the Version History tab and click **Configure automatic updates**.
-1. In the Configure automatic updates dialog, under Automatically check for updates,
-select a cadence for the admin console to check for updates. To define a custom cadence,
-select **Custom** in the drop-down, then enter a cron expression into the text field.
+
+   The Configure automatic updates dialog opens.
+
+1. Under Automatically check for updates, use the default or select a cadence (Hourly, Daily, Weekly, Never, Custom) from the dropdown list. 
+
+   To turn off automatic updates, select **Never**. 
+   
+   To define a custom cadence, select **Custom**, then enter a cron expression in the text field. For more information about cron expressions, see [Cron Expressions](/reference/cron-expressions) in _Reference_.
+
+   ![Configure automatic updates](/images/automatic-updates-config.png)
+
 1. Under Automatically deploy new versions, select an option. The available options depend on whether semantic versioning is enabled for the channel.
    * **For channels that use semantic versioning**: (v1.58.0 and later) Select an option in the dropdown
    to specify the versions that the admin console automatically deploys. For example,
    to automatically deploy only new patch and minor versions, select
    **Automatically deploy new patch and minor versions**.
    * **For channels that do not use semantic versioning**: (v1.67.0 and later) Optionally select **Enable automatic deployment**.
-   When this checkbox is enabled, the admin console automatically
-   deploys each new version of the application that it downloads.
+   When this checkbox is enabled, the admin console automatically deploys each new version of the application that it downloads.
 
 ## Update an Application with the kots CLI
 

@@ -466,6 +466,7 @@ const sidebars = {
             },
           ],
         },
+        'reference/cron-expressions',
         'reference/linter',
         'reference/kots-validating-sbom',
       ],
