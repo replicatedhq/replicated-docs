@@ -154,6 +154,10 @@ Grants the holder permission to delete specified integration(s).
 
 Grants the holder permission to update specified integration(s).
 
+### team/members/list
+
+Grants the holder permission to list team members and invitations.
+
 ### team/member/invite
 
 Grants the holder permission to invite additional people to the team.

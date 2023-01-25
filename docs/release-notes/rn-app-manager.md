@@ -4,6 +4,25 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.93.0
+
+Released on January 19, 2023
+
+Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
+
+### New Features {#new-features-1-93-0}
+* Adds the ability to delete support bundles from the Troubleshoot page of the admin console.
+* Config navigation links are highlighted as the user scrolls.
+
+### Improvements {#improvements-1-93-0}
+* Updates the helm.sh/helm/v3 module to v3.10.3 to resolve CVE-2022-23524, CVE-2022-23525, and CVE-2022-23526 with high severity.
+
+### Bug Fixes {#bug-fixes-1-93-0}
+* Fixes an issue where the Cluster Management tab does not show up in Kubernetes installer clusters.
+* Fixes an issue where the description for generating a support bundle used a hard coded application name.
+* Fixes an issue on the Version History page where the row layout broke when displaying preflight check warnings.
+* Fixes an issue where an error occurred when uploading a PKCS #12 certificate with the private key listed first.
+
 ## 1.92.1
 
 Released on December 29, 2022

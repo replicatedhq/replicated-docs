@@ -11,7 +11,7 @@ The application status displays on the dashboard of the Replicated admin console
 
 There are two ways to view the status details, depending on your admin console version:
 
-- (Version 1.51.0 and later) Click **Details** next to the status on the dashboard. For information about how to update the admin console to view the Details link, see [Updating the Admin Console on an Existing Cluster](updating-existing-cluster) and [Updating the Admin Console on a Kubernetes Installer-Created Cluster](updating-embedded-cluster).
+- (Version 1.51.0 and later) Click **Details** next to the status on the dashboard. For information about how to update the admin console to view the Details link, see [Updating the App Manager](updating-app-manager).
 
   ![Status Details](/images/kotsadm-dashboard-appstatus.png)
 

@@ -62,6 +62,10 @@
 ###################################################
 
 [[redirects]]
+  from = "https://docs.replicated.com/vendor/helm-chart-components"
+  to = "https://docs.replicated.com/vendor/helm-optional-charts"
+
+[[redirects]]
   from = "https://docs.replicated.com/vendor/packaging-custom-resources"
   to = "https://docs.replicated.com/vendor/releases-creating-releases"
 
@@ -78,11 +82,18 @@
   to="https://docs.replicated.com/vendor/releases-creating-releases"
 
 [[redirects]]
-  from="https://docs.replicated.com/vendor/releases-semantic-versioning"
-  to="https://docs.replicated.com/vendor/releases-about"
+  from="https://docs.replicated.com/vendor/packaging-private-registry-cname"
+  to="https://docs.replicated.com/vendor/custom-domains"
+
 ###################################################
 # Redirects To the Enterprise Section
 ###################################################
+
+[[redirects]]
+  from="https://docs.replicated.com/enterprise/updating-existing-cluster"
+  to="https://docs.replicated.com/enterprise/updating-app-manager" 
+
+   
 
 ###################################################
 # Redirects To the References Section

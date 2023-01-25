@@ -66,9 +66,9 @@ const sidebars = {
         'vendor/team-management',
         'vendor/team-management-github-username',
         {
-            type: 'category',
-            label: 'Configuring Role-based Access Control',
-            items: [
+           type: 'category',
+           label: 'Configuring Role-based Access Control',
+           items: [
               'vendor/team-management-rbac-configuring',
               "vendor/team-management-rbac-about",
               'vendor/team-management-rbac-resource-names',
@@ -76,6 +76,7 @@ const sidebars = {
         },
         'vendor/team-management-google-auth',
         'vendor/team-management-saml-auth',
+        'vendor/custom-domains',
       ],
     },
     {
@@ -133,15 +134,8 @@ const sidebars = {
                 'vendor/helm-native-helm-install-order',
               ],
             },
-            {
-              type: 'category',
-              label: 'Including Conditional Resources',
-              items: [
-                'vendor/helm-optional-charts',
-                'vendor/helm-chart-components',
-                'vendor/helm-optional-value-keys',
-              ],
-            },
+            'vendor/helm-optional-charts',
+            'vendor/helm-optional-value-keys',
           ],
         },
         {
@@ -188,7 +182,6 @@ const sidebars = {
       items: [
         'vendor/packaging-private-images',
         'vendor/helm-image-registry',
-        'vendor/packaging-private-registry-cname',
         'vendor/packaging-private-registry-security',
         'vendor/tutorial-ecr-private-images',
       ],
@@ -242,6 +235,14 @@ const sidebars = {
         'vendor/packaging-air-gap-excluding-minio',
         'vendor/releases-configvalues',
       ],
+    },
+    {
+      type: 'category',
+      label: 'Instance Insights',
+      items: [
+         'vendor/instance-insights-details',
+         'vendor/instance-insights-event-data',
+       ],
     },
     {
       type: 'category',
@@ -465,6 +466,7 @@ const sidebars = {
           ],
         },
         'reference/linter',
+        'reference/kots-validating-sbom',
       ],
     },
     {
@@ -510,7 +512,7 @@ const sidebars = {
           label: 'Updating',
           items: [
             'enterprise/updating-apps',
-            'enterprise/updating-existing-cluster',
+            'enterprise/updating-app-manager',
             'enterprise/updating-embedded-cluster',
             'enterprise/updating-patching-with-kustomize',
             'enterprise/updating-licenses',
