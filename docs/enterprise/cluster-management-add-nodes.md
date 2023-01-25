@@ -33,7 +33,7 @@ To add primary and secondary nodes:
 
 ## About Using Dedicated Primary Nodes
 
-After you add secondary nodes to your cluster, you can taint primary nodes to prevent the Kubernetes scheduler from scheduling most pods on the primary nodes.
+After you add sufficient secondary nodes for the application to your cluster, you can taint primary nodes to prevent the Kubernetes scheduler from scheduling most pods on the primary nodes.
 
 Tainting allows you to create _dedicated_ nodes, where the scheduler can only schedule certain pods on the tainted node. You define which pods can be scheduled on the node using _tolerations_. For more information about common use cases for taints and tolerations, see [Taints and Tolerations](https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/) in the Kubernetes documentation.
 
