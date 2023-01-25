@@ -8,7 +8,7 @@ This topic describes the supported cron expressions that are used to schedule ch
 <minute> <hour> <day-of-month> <month> <day-of-week>
 ```
 
-### Fields
+## Fields
 
 The following table lists the required cron fields and supported values:
 
@@ -45,7 +45,7 @@ The following table lists the required cron fields and supported values:
     </tr>
   </table>
 
-### Special Characters
+## Special Characters
 
 The following table describes the supported special characters:
 
@@ -80,7 +80,7 @@ The following table describes the supported special characters:
     </tr>
 </table>
 
-### Predefined Schedules
+## Predefined Schedules
 
 You can use one of the following predefined schedule values instead of a cron expression:
 
@@ -127,7 +127,7 @@ You can use one of the following predefined schedule values instead of a cron ex
     </tr>
 </table>
 
-### Intervals
+## Intervals
 
 You can also schedule the job to operate at fixed intervals, starting at the time the job is added or when cron is run:
 
@@ -135,14 +135,9 @@ You can also schedule the job to operate at fixed intervals, starting at the tim
 @every DURATION
 ```
 
-Replace `DURATION` with a string that is accepted by [time.ParseDuration](http://golang.org/pkg/time/#ParseDuration).
+Replace `DURATION` with a string that is accepted by [time.ParseDuration](http://golang.org/pkg/time/#ParseDuration), with the exception of seconds. Seconds are not supported.
 
-#### Limitations
-
-- Seconds are not supported.
-
-- The interval does not include the job runtime. For example, if a job is scheduled to run every 10 minutes, and the job takes 4 minutes to run, there will be 6 minutes of idle time between each run.
-
+As with standard cron expressions, the interval does not include the job runtime. For example, if a job is scheduled to run every 10 minutes, and the job takes 4 minutes to run, there are 6 minutes of idle time between each run.
 
 ## Examples
 
