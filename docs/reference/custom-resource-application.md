@@ -389,7 +389,7 @@ spec:
   <tr>
     <th>Description</th>
     <td>
-      <p>The custom domain used for registry.replicated.com. For more information, see <a href="/vendor/packaging-kots-versions">Setting Minimum and Target Versions for KOTS</a>.</p>
+      <p>The custom domain used for registry.replicated.com. For more information, see <a href="/vendor/custom-domains#registry">Custom Registry Domains</a>.</p>
       <p>Introduced in app manager v1.92.0.</p>
     </td>
   </tr>
@@ -408,7 +408,7 @@ spec:
   <tr>
     <th>Description</th>
     <td>
-      <p>The custom domain used for proxy.replicated.com. For more information, see <a href="/vendor/packaging-kots-versions">Setting Minimum and Target Versions for KOTS</a>.</p>
+      <p>The custom domain used for proxy.replicated.com. For more information, see <a href="/vendor/custom-domains#registry">Custom Registry Domains</a>.</p>
       <p>Introduced in app manager v1.92.0.</p>
     </td>
   </tr>
