@@ -13,7 +13,7 @@ The following prerequisites must be met to submit support requests:
 
 * Your vendor portal account must be configured for access to support before you can submit support requests. Contact your administrator to ensure that you are added to the correct team.
 
-* Your team must have a replicated-collab repository configured. If you are a team administrator and need information about getting a collab repository set up and adding users, see [Adding Users to the Collab Repository](https://docs.replicated.com/vendor/team-management-github-username#add).
+* Your team must have a replicated-collab repository configured. If you are a team administrator and need information about getting a collab repository set up and adding users, see [Adding Users to the Collab Repository](team-management-github-username#add).
 
 
 ### Submit a Support Request
