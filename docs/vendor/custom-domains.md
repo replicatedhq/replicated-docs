@@ -7,7 +7,10 @@ This topic describes using custom domains to alias Replicated endpoints, and how
 Using custom domains have the following limitations:
 
 - A single custom domain cannot be used for both the registry and proxy endpoints. A single domain can map to registry.replicated.com for any number of applications, but cannot map to both registry.replicated.com and  proxy.replicated.com, even if the applications are different.
+
 - Custom domains cannot be used to alias replicated.app (release manifests), api.replicated.com (platform market API), the download portal, or other services.
+
+- Multiple custom domains for the download portal can be active at once, but only one custom domain can be the default. This default custom domain is used in the vendor portal for links to the download portal for all applications in the team. All active custom domains work whether or not they are the default.
 
 ## Custom Registry Domains {#registry}
 
@@ -69,15 +72,9 @@ To assign a custom domain to an application:
 1. Create a new release and add the code snippet to the Application custom resource manifest file to create the new field for either `proxyRegistryDomain` or `replicatedRegistryDomain`. For more information, see [proxyRegistryDomain](../reference/custom-resource-application#proxyRegistryDomain) and [replicatedRegistryDomain](../reference/custom-resource-application#replicatedRegistryDomain) in the _Application_ section.
 
 
-## Custom Domains for the Download Portal {#download}
+## Configure Download Portal Domains {#download}
 
 You can configure the download portal to use a custom domain instead of the default get.replicated.com. The download portal is used to share license and release files with customers. For more information about the download portal, see [Share Files through the Download Portal](releases-sharing-license-install-script#download-portal) in _Share License Files and Releases_.
-
-### Limitations
-
-- Multiple custom domains can be active at once, but only one custom domain can be the default. This default custom domain is used in the vendor portal for links to the download portal for all apps in the team. All active custom domains work whether or not they are the default.
-
-### Configure Custom Domains
 
 To configure a custom domain for the download portal:
 
