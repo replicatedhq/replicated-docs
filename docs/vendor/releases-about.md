@@ -52,7 +52,7 @@ The following graphic shows release sequence numbers in the vendor portal:
 
 #### Instance Sequences 
 
-When an app manager instance checks for an application update, a release identifier is returned to the instance and is also assigned an instance sequence number. This instance sequence is separate from a release sequence in the vendor portal. Instance sequences start at 0 and increment for each release identifier that is returned when the app manager checks for an update.
+When an app manager instance checks for an application update, the vendor portal returns a release identifier to the instance. The admin console then assigns the release a unique instance sequence number. This instance sequence is separate from a release sequence in the vendor portal. The instance sequence in the admin console starts at 0 and increments for each release identifier that is returned when the app manager checks for an update.
 
 A single release sequence, such as `181`, can have multiple instance sequences in the deployed instances, depending on when those instances came online and how many other releases were seen before release sequence `181`.
 
