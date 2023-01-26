@@ -4,7 +4,7 @@ This topic describes using custom domains to alias Replicated endpoints, and how
 
 ## About Custom Domains
 
-You can use custom domains as aliases for registry, proxy, and the download portal by creating Canonical Name (CNAME) records for your domains.
+You can use custom domains as aliases for the Replicated registry, the proxy service, and the download portal by creating Canonical Name (CNAME) records for your domains.
 
 Replicated domains are external to your domain and require additional security reviews by your customer. Using custom domains as aliases can bring the domains inside an existing security review and reduce your exposure.
 
