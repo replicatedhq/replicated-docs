@@ -48,4 +48,4 @@ The app manager is based on the open source KOTS project, which is maintained by
 | App manager and KOTS versions | Velero version |
 |------|-------------|
 | 1.15 to 1.20.2 | 1.2.0 |
-| 1.20.3 and later | 1.5.1 and later |
+| 1.20.3 and later | 1.5.1 through 1.9.x |
