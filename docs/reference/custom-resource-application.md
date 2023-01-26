@@ -409,7 +409,7 @@ spec:
     <th>Description</th>
     <td>
       <p>The custom domain used for proxy.replicated.com. For more information, see <a href="/vendor/custom-domains#registry">Custom Registry Domains</a>.</p>
-      <p>Introduced in app manager v1.92.0.</p>
+      <p>Introduced in app manager v1.91.1.</p>
     </td>
   </tr>
   <tr>
