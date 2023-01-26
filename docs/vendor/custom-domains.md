@@ -6,7 +6,7 @@ This topic describes using custom domains to alias Replicated endpoints, and how
 
 Using custom domains have the following limitations:
 
-- A single custom domain cannot be used for both the registry and proxy endpoints. A single domain can map to registry.replicated.com for any number of applications, but cannot map to both registry.replicated.com and  proxy.replicated.com, even if the applications are different.
+- A single custom domain cannot be used for multiple endpoints. For example, a single domain can map to registry.replicated.com for any number of applications, but cannot map to both registry.replicated.com and proxy.replicated.com, even if the applications are different.
 
 - Custom domains cannot be used to alias replicated.app (release manifests), api.replicated.com (platform market API), the download portal, or other services.
 
