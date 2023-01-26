@@ -75,8 +75,7 @@ You can configure the download portal to use a custom domain instead of the defa
 
 ### Limitations
 
-- You can change from one custom domain to another, but only one domain per team can be active at any time.
-- If you have multiple teams, each team must use the same active domain.
+- Multiple custom domains can be active at once, but only one custom domain can be the default. This default custom domain is used in the vendor portal for links to the download portal for all apps in the team. All active custom domains work whether or not they are the default.
 
 ### Configure Custom Domains
 
