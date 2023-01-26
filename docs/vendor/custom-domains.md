@@ -99,4 +99,4 @@ To configure a custom domain for the download portal:
 
     Your changes can take up to 24 hours to propagate.
 
-1. For **Use Domain**, click **Yes, set as default** to set the domain as the active domain, or click **Not now** to save the domain without making it the default.
+1. For **Use Domain**, click **Yes, set as default** to set the domain as the default, so that the vendor portal will use it for links to the download portal, or click **Not now**.
