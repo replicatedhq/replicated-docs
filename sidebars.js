@@ -466,9 +466,18 @@ const sidebars = {
             },
           ],
         },
+        {
+          type: 'category',
+          label: 'SBOM',
+          items: [
+            {
+              type: 'doc',
+              id: 'reference/kots-validating-sbom'
+            },
+          ]
+        },
         'reference/cron-expressions',
         'reference/linter',
-        'reference/kots-validating-sbom',
       ],
     },
     {
