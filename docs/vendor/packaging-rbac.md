@@ -103,7 +103,7 @@ The `kubectl kots velero ensure-permissions` command can be used to create addit
 Air gap installations honor the `requireMinimalRBACPrivileges` and `supportMinimalRBACPrivileges` flags in [headless mode only](../enterprise/installing-existing-cluster-automation#airgap-install).
 Without access to the internet or the application's `.airgap` package as provided in a headless install, the app manager does not have the information required to determine whether minimal RBAC is appropriate and so it defaults to the more permissive RBAC policy.
 
-### Operators and multiple namespaces
+### Operators and Multiple Namespaces
 
 It is possible to use namespace-scoped access for Operators and multi-namespace applications.
 During the installation, if there are `additionalNamespaces` specified in the Application manifest, Roles and RoleBindings are created to give the admin console access to all specified namespaces.
@@ -123,7 +123,7 @@ spec:
 
 #### Reference Objects
 
-The following Role is created for namespace-scoped applications:
+The following Role is created automatically for namespace-scoped applications:
 
 ```yaml
 apiVersion: "rbac.authorization.k8s.io/v1"
@@ -137,7 +137,7 @@ rules:
 ```
 
 :::note
-The kotsadm-operator component receives an authorization for all verbs, resources, and apiGroups in the namespace.
+The kotsadm component receives an authorization for all verbs, resources, and apiGroups in the namespace.
 :::
 
 ## Converting
