@@ -474,6 +474,14 @@ const sidebars = {
               type: 'doc',
               id: 'reference/kots-validating-sbom'
             },
+            {
+              type: 'doc', 
+              id: 'reference/kurl-validating-sbom'
+            },
+            {
+              type: 'doc', 
+              id: 'reference/troubleshoot-validating-sbom'
+            },
           ]
         },
         'reference/cron-expressions',
