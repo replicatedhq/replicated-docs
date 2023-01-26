@@ -8,7 +8,7 @@ Using custom domains have the following limitations:
 
 - A single custom domain cannot be used for multiple endpoints. For example, a single domain can map to registry.replicated.com for any number of applications, but cannot map to both registry.replicated.com and proxy.replicated.com, even if the applications are different.
 
-- Custom domains cannot be used to alias replicated.app (release manifests), api.replicated.com (platform market API), the download portal, or other services.
+- Custom domains cannot be used to alias replicated.app (release manifests), api.replicated.com (platform market API), or other services.
 
 - Multiple custom domains for the download portal can be active at once, but only one custom domain can be the default. This default custom domain is used in the vendor portal for links to the download portal for all applications in the team. All active custom domains work whether or not they are the default.
 
