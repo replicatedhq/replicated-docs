@@ -17,7 +17,7 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 
 ### Bug Fixes {#bug-fixes-1-93-1}
 * Fixes a bug where the snapshots page showed no snapshots for a moment after starting a snapshot.
-* Fixes a bug where a warning related to kubectl apply displayed during embedded cluster installations.
+* Fixes a bug where a warning related to `kubectl apply` displayed during embedded cluster installations.
 * Fixes an issue where registry.replicated.com images were rewritten to proxy.replicated.com when the application version specified a custom domain for the Replicated registry.
 * Fixes an issue where the edit config icon was visible for application versions that did not include config.
 
