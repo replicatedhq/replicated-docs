@@ -466,24 +466,6 @@ const sidebars = {
             },
           ],
         },
-        {
-          type: 'category',
-          label: 'SBOM',
-          items: [
-            {
-              type: 'doc',
-              id: 'reference/kots-validating-sbom'
-            },
-            {
-              type: 'doc', 
-              id: 'reference/kurl-validating-sbom'
-            },
-            {
-              type: 'doc', 
-              id: 'reference/troubleshoot-validating-sbom'
-            },
-          ]
-        },
         'reference/cron-expressions',
         'reference/linter',
       ],
@@ -502,6 +484,7 @@ const sidebars = {
       type: 'category',
       label: 'Enterprise User Documentation',
       items: [
+        'enterprise/sbom-validating',
         {
           type: 'category',
           label: 'Installing an Application',
