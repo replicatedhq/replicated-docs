@@ -6,7 +6,7 @@ For more information about the instance details displayed on the Reporting page,
 
 The following shows an example of the Reporting page for a customer:
 
-![Customer reporting page showing one active instance](/images/customer-reporting-page.png)
+![Customer reporting page showing two active instances](/images/customer-reporting-page.png)
 
 [View a larger version of this image](/images/customer-reporting-page.png)
 
