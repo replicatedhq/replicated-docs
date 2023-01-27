@@ -239,8 +239,9 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Instance Insights',
+      label: 'Reporting',
       items: [
+         'vendor/customer-reporting',
          'vendor/instance-insights-details',
          'vendor/instance-insights-event-data',
        ],

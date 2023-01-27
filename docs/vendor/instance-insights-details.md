@@ -1,6 +1,6 @@
 import Checkins from "../partials/instance-insights/_appCheckins.mdx"
 
-# Viewing Instance Details
+# Instance Details
 
 This topic describes using the Replicated vendor portal to quickly understand the recent events and performance of application instances installed in your customers' environments.
 
