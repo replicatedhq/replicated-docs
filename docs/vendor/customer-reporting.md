@@ -21,13 +21,14 @@ As shown in the image above, the Customer Reporting page has the following secti
 The Customer Details section displays the following information about the customer:
 
 * The customer name
-* The type of license the customer has
-* The channel the customer is assigned to
-* The date the customer license was created
-* The expiration date of the customer license
-* The features the customer has enabled:
+* The channel the customer is assigned
+* Details about the customer license:
+  * The license type
+  * The date the license was created
+  * The expiration date of the license
+* The features the customer has enabled, including:
   * GitOps
-  * Airgap
+  * Air gap
   * Identity
   * Snapshots
   
