@@ -6,8 +6,6 @@ For more information about the instance details displayed on the Reporting page,
 
 The following shows an example of the Reporting page for a customer:
 
-REPLACE SCREENSHOT
-
 ![Customer reporting page showing one active instance](/images/customer-reporting-page.png)
 
 [View a larger version of this image](/images/customer-reporting-page.png)
@@ -29,6 +27,8 @@ For more information about how to interpret these time to install metrics, see [
 A _Ready_ status indicates that all Kubernetes resources that you added as status informers for the application are Ready. For example, if you defined a Deployment resource as a status informer, then the Deployment resource is considered Ready when the number of Ready replicas equals the total desired number of replicas. For more information about how to configure status informers for your application, see [Displaying Application Status](admin-console-display-app-status).
 
 If the customer has no application instances that have ever reported a Ready status, or if you have not configured status informers for your application, then the Time to Install section displays a **No Ready Instances** message.
+
+![Customer reporting page showing no active instance](/images/reporting-no-instances-ready.png)
 
 If the customer has more than one application instance that has previously reported a Ready status, then the Time to Install section displays metrics for the instance that most recently reported a Ready status for the first time.
 
