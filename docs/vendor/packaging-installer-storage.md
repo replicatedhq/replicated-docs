@@ -145,7 +145,7 @@ The kURL ECKO add-on manages data in Ceph and in rqlite to ensure that the data 
 
 To use the Rook add-on for multi-node Kubernetes installer clusters, your Kubernetes installer must meet the following requirements:
 
-* In Rook Ceph versions 1.4.3 and later, a dedicated block device attached to each node in the cluster is required.
+* Rook versions 1.4.3 and later require a dedicated block device attached to each node in the cluster. The block device must be unformatted and dedicated for use by Rook only. The device cannot be used for other purposes, such as being part of a Raid configuration. If the device is used for purposes other than Rook, then the installer fails, indicating that it cannot find an available block device for Rook.
 
    For Rook Ceph versions earlier than 1.4.3, a dedicated block device is recommended in production clusters. Running distributed storage such as Rook on block devices is recommended for improved data stability and performance.
 
