@@ -11,9 +11,28 @@ The following shows an example of the Reporting page for a customer:
 [View a larger version of this image](/images/customer-reporting-page.png)
 
 As shown in the image above, the Customer Reporting page has the following sections:
+* [Customer Details](#customer-details)
 * [Time to Install](#time-to-install)
 * [Download Portal](#download-portal)
 * [Instances](#instances)
+
+## Customer Details
+
+The Customer Details section displays the following information about the customer:
+
+* The customer name
+* The channel the customer is assigned
+* Details about the customer license:
+  * The license type
+  * The date the license was created
+  * The expiration date of the license
+* The features the customer has enabled, including:
+  * GitOps
+  * Air gap
+  * Identity
+  * Snapshots
+  
+In this section you can also view Helm install instructions for the customer and download the customer license.
 
 ## Time to Install
 
