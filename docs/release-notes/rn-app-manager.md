@@ -4,6 +4,23 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.93.1
+
+Released on January 27, 2023
+
+Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
+
+### Improvements {#improvements-1-93-1}
+* Updates the Helm binary included in the kotsadm image from 3.9.3 to 3.11.0 to resolve CVE-2022-27664 and CVE-2022-32149 with high severity.
+* Updates the golang.org/x/net module to resolve CVE-2022-41721 with high severity.
+
+### Bug Fixes {#bug-fixes-1-93-1}
+* Fixes a visual bug that renders no snapshots message when snapshot is in progress.
+* delete private/public keys when gitops integration is disabled and keys are not in use by other applications.
+* add --save-config flag when creating kotsadm-confg configmap for kotsadm addon.
+* Fixes an issue where registry.replicated.com images are proxied when the application configures a custom hostname for the replicated registry.
+* Fixes an issue where the config icon is shown for application versions that do not include a config.
+
 ## 1.93.0
 
 Released on January 19, 2023
