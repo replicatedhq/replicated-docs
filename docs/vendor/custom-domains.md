@@ -8,10 +8,7 @@ You can use custom domains as aliases for the Replicated registry, the proxy ser
 
 Replicated domains are external to your domain and require additional security reviews by your customer. Using custom domains as aliases can bring the domains inside an existing security review and reduce your exposure.
 
-Using the Replicated vendor portal or the vendor API, you configure custom domains at the Team level. Then, you specify those domains within the release in the Application custom resource manifest file. This method lets you:
-
-- Have different domains for your applications, if needed
-- Roll out domain name changes in phases to prevent the application from breaking in production environments
+Using the Replicated vendor portal or the vendor API, you configure custom domains at the Team level.
 
 Verification of the domain is required using TXT records that undergo separate verification checks for:
 
@@ -19,6 +16,11 @@ Verification of the domain is required using TXT records that undergo separate v
 - TLS certificate creation: Each new domain must have a new TLS certificate to be verified.
 
 The TXT records can be removed after the verification is complete.
+
+For registry and proxy domains only, you also specify the domains in the Application custom resource manifest file for the release. This method lets you:
+
+- Have different domains for your applications, if needed
+- Roll out domain name changes in phases to prevent the application from breaking in production environments
 
 For more information about registries, see [Connecting to a Private Registry](packaging-private-images).
 
@@ -63,11 +65,11 @@ To configure a custom domain for a registry:
 
 1. Create a new release and create the new field for either `proxyRegistryDomain` or `replicatedRegistryDomain` in the Application custom resource manifest file. You can use the code snippet template from the previous step or manually code the field. For more information, see [proxyRegistryDomain](../reference/custom-resource-application#proxyRegistryDomain) and [replicatedRegistryDomain](../reference/custom-resource-application#replicatedRegistryDomain) in the _Application_ section.
 
-## Assign a Custom Domain to an Application
+## Assign a Registry Custom Domain
 
-You can change or add the assignment of an existing custom registry domain to an application at any time.
+You can add or change the assignment of an existing custom registry domain to an application at any time.
 
-To assign a custom domain to an application:
+To assign a registry custom domain to an application:
 
 1. From the vendor portal, click **Teams > Custom Domains**.
 1. Click **Use custom domain in an application** next to the domain that you want to use.
@@ -101,11 +103,11 @@ To configure a custom domain for the download portal:
 
 1. For **Use Domain**, click **Yes, set as default** to set the domain as the default, so that the vendor portal will use it for links to the download portal, or click **Not now**.
 
-## Assign a Custom Domain to an Download Portal
+## Change a Download Portal Custom Domain
 
-You can change or add the assignment of an existing custom domain to the download portal at any time.
+You can change or add the assignment of an existing custom domain to the download portal at any time. You can also remove a custom domain from the vendor portal when it is not set as the default.
 
-To assign a custom domain to the download portal:
+To change a download portal custom domain:
 
 1. From the vendor portal, click **Teams > Custom** Domains.
 1. (Optional) In the **Custom domain for the download portal** pane, click **Set as default domain** next to a domain that you want to set as the default.
