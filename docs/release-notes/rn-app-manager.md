@@ -13,13 +13,13 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 ### Improvements {#improvements-1-93-1}
 * Updates the Helm binary included in the kotsadm image from 3.9.3 to 3.11.0 to resolve CVE-2022-27664 and CVE-2022-32149 with high severity.
 * Updates the golang.org/x/net module to resolve CVE-2022-41721 with high severity.
+* Public and private SSH keys are now deleted when GitOps is disabled and the keys are not in use by another application.
 
 ### Bug Fixes {#bug-fixes-1-93-1}
-* Fixes a visual bug that renders no snapshots message when snapshot is in progress.
-* delete private/public keys when gitops integration is disabled and keys are not in use by other applications.
+* Fixes a bug where the snapshots page showed no snapshots for a moment after starting a snapshot.
 * add --save-config flag when creating kotsadm-confg configmap for kotsadm addon.
-* Fixes an issue where registry.replicated.com images are proxied when the application configures a custom hostname for the replicated registry.
-* Fixes an issue where the config icon is shown for application versions that do not include a config.
+* Fixes an issue where registry.replicated.com images were rewritten to proxy.replicated.com when the application version specified a custom domain for the Replicated registry.
+* Fixes an issue where the edit config icon was visible for application versions that did not include config.
 
 ## 1.93.0
 
