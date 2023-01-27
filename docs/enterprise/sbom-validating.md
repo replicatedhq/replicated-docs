@@ -39,7 +39,9 @@ If a Kubernetes installer used, then signed SBOMs for kURL Go and Javascript dep
 
 To validate a kURL SBOM signature:
 
-1. Go to the [kURL GitHub repository](https://github.com/replicatedhq/kURL/releases) and download the specific kURL release files that you want to validate. There are three assets related to the SBOM, as follows:
+1. Go to the [kURL GitHub repository](https://github.com/replicatedhq/kURL/releases) and download the specific kURL release files that you want to validate. 
+
+    There are three assets related to the SBOM:
 
     - `kurl-sbom.tgz` contains SBOMs for Go and Javascript dependencies
     - `kurl-sbom.tgz.sig` is the digital signature for `kurl-sbom.tgz`
@@ -57,7 +59,9 @@ A signed SBOM for Troubleshoot dependencies is included in each release.
 
 To validate an Troubleshoot SBOM signature:
 
-1. Go to the [Troubleshoot GitHub repository](https://github.com/replicatedhq/troubleshoot/releases) and download the specific Troubleshoot release files that you want to validate. There are three assets related to the SBOM, as follows:
+1. Go to the [Troubleshoot GitHub repository](https://github.com/replicatedhq/troubleshoot/releases) and download the specific Troubleshoot release files that you want to validate. 
+
+    There are three assets related to the SBOM:
 
     - `troubleshoot-sbom.tgz` contains a software bill of materials for Troubleshoot.
     - `troubleshoot-sbom.tgz.sig` is the digital signature for `troubleshoot-sbom.tgz`
