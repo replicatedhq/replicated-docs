@@ -109,6 +109,6 @@ You can change or add the assignment of an existing custom domain to the downloa
 
 To change a download portal custom domain:
 
-1. From the vendor portal, click **Teams > Custom** Domains.
+1. From the vendor portal, click **Teams > Custom Domains**.
 1. (Optional) In the **Custom domain for the download portal** pane, click **Set as default domain** next to a domain that you want to set as the default.
 1. (Optional)  In the **Custom domain for the download portal** pane, click **Remove** next to a domain that you want to remove from the vendor portal entirely.
