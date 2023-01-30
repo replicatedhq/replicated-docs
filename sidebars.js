@@ -469,7 +469,6 @@ const sidebars = {
         },
         'reference/cron-expressions',
         'reference/linter',
-        'reference/kots-validating-sbom',
       ],
     },
     {
@@ -493,6 +492,7 @@ const sidebars = {
             'enterprise/installing-overview',
             'enterprise/installing-general-requirements',
             'enterprise/installing-stateful-component-requirements',
+            'enterprise/sbom-validating',
             'enterprise/installing-existing-cluster',
             'enterprise/installing-embedded-cluster',
             'enterprise/cluster-management-add-nodes',
