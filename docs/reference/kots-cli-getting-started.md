@@ -25,6 +25,12 @@ To install a specific version of the kots CLI, run:
 curl https://kots.io/install/<version> | bash
 ```
 
+To install to a directory different than the default, `/usr/local/bin`, use the `REPL_INSTALL_PATH` environment variable.
+
+```bash
+curl https://kots.io/install | REPL_INSTALL_PATH=/usr/sbin bash
+```
+
 To verify your installation, run:
 
 ```bash
@@ -34,6 +40,33 @@ kubectl kots --help
 ## Install without Root Access
 
 You can install the kots CLI on computers without root access or computers that cannot write to the `/usr/local/bin` directory. This procedure applies to online clusters and air gapped environments.
+
+### Using the Install Script
+
+To install the `kots` CLI without root access, two environment variables are provided for altering the behavior of the install script, `REPL_INSTALL_PATH` and `REPL_USE_SUDO`. 
+
+The `REPL_INSTALL_PATH` variable can be set to install to a different directory. The user home symbol `~` can be used and will be expanded to `$HOME`.
+
+**Example:**
+```bash
+curl -L https://kots.io/install | REPL_INSTALL_PATH=~/bin bash
+```
+
+The `REPL_USE_SUDO` environment flag can be set to any value if the install can be done using sudo. This will use sudo to create and write to the installation directory as needed. The script will also prompt for the sudo password if it is required for the user executing the script.
+
+**Example:**
+```bash
+curl -L https://kots.io/install | REPL_USE_SUDO=y bash
+```
+
+The two environment variables can be combined to use a different install directory that also requires sudo for creation and writing.
+
+**Example:**
+```bash
+curl -L https://kots.io/install | REPL_INSTALL_PATH=/replicated/bin REPL_USE_SUDO=y bash
+```
+
+### Manual Install
 
 To download the `kots` CLI without root access:
 
