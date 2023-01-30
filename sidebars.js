@@ -484,7 +484,6 @@ const sidebars = {
       type: 'category',
       label: 'Enterprise User Documentation',
       items: [
-        'enterprise/sbom-validating',
         {
           type: 'category',
           label: 'Installing an Application',
@@ -492,6 +491,7 @@ const sidebars = {
             'enterprise/installing-overview',
             'enterprise/installing-general-requirements',
             'enterprise/installing-stateful-component-requirements',
+            'enterprise/sbom-validating',
             'enterprise/installing-existing-cluster',
             'enterprise/installing-embedded-cluster',
             'enterprise/cluster-management-add-nodes',
