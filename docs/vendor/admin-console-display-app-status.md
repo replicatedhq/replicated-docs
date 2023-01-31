@@ -1,5 +1,4 @@
 import StatusesTable from "../partials/status-informers/_statusesTable.mdx"
-import MissingState from "../partials/status-informers/_missing.mdx"
 import AggregateStatus from "../partials/status-informers/_aggregateStatus.mdx"
 
 # Displaying Application Status
@@ -24,7 +23,7 @@ The following resource types are supported for displaying application status:
 * StatefulSet
 * Service
 * Ingress
-* PersistentVolumeClaims
+* PersistentVolumeClaims (PVC)
 
 You can target resources of the supported types that are deployed in any of the following ways:
 
@@ -34,9 +33,7 @@ You can target resources of the supported types that are deployed in any of the 
 
 ### Resource Statuses
 
-The Replicated app manager records the status of each Kubernetes resource that you add to the `statusInformers` property. Possible resource statuses are Missing, Unavailable, Degraded, Ready, and Updating.
-
-<MissingState/>
+The Replicated app manager records the status of each Kubernetes resource that you add to the `statusInformers` property. Possible resource statuses are Ready, Updating, Degraded, Unavailable, and Missing.
 
 The following table lists the supported Kubernetes resources and the conditions that contribute to each status:
 

@@ -1,5 +1,4 @@
 import StatusesTable from "../partials/status-informers/_statusesTable.mdx"
-import Missing from "../partials/status-informers/_missing.mdx"
 import AggregateStatus from "../partials/status-informers/_aggregateStatus.mdx"
 
 # Viewing Status Details
@@ -35,9 +34,7 @@ For more information about how to interpret the application status displayed on 
 
 ### Resource Statuses
 
-Possible application statuses are Missing, Unavailable, Degraded, Ready, and Updating.
-
-<Missing/>
+Possible application statuses are Ready, Updating, Degraded, Unavailable, and Missing.
 
 The following table lists the supported Kubernetes resources and the conditions that contribute to each status:
 
