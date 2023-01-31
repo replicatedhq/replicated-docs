@@ -10,17 +10,17 @@ Released on January 31, 2023
 
 ### New Features {#new-features-v2023-01-31-0}
 * Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.26.1 1.25.6 1.24.10 1.23.16 1.22.17.
-* Adds a warning message when Flannel is the cluster CNI suggesting the user check that UDP port 8472 is open when joining a node or migrating from Weave to Flannel.
-* Adds a `serverFlags` configuration option to the [Velero add-on](https://kurl.sh/docs/add-ons/velero) to allow users to pass additional flags to the `velero server` command in the Velero pod. This can also be set using the [velero-server-flags](https://kurl.sh/docs/install-with-kurl/advanced-options#reference) cli flag when running the install script.
-* Adds Flannel UDP port 8472 status preflight check.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-01-25T00-19-54Z.
 * Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.15.
 * Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.16.
 * Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.9.5.
+* Adds a `serverFlags` configuration option to the [Velero add-on](https://kurl.sh/docs/add-ons/velero) to allow users to pass additional flags to the `velero server` command in the Velero pod. This can also be set using the [velero-server-flags](https://kurl.sh/docs/install-with-kurl/advanced-options#reference) cli flag when running the install script.
 
 ### Improvements {#improvements-v2023-01-31-0}
 * Adds TCP connection host preflight checks for ports 2379 and 6443.
 * Adds new weave `version 2.8.1-20230130` to address the [CVE-2022-43551](https://avd.aquasec.com/nvd/cve-2022-43551) which is high.
+* Adds a warning message when Flannel is the cluster CNI suggesting the user check that UDP port 8472 is open when joining a node or migrating from Weave to Flannel.
+* Adds Flannel UDP port 8472 status preflight check.
 
 ### Bug Fixes {#bug-fixes-v2023-01-31-0}
 * Fixes an error updating Kubernetes from 1.21 to 1.23.{0-14} and 1.22 to 1.24.{0-8} in airgap environments.
