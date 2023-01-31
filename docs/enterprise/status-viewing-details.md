@@ -26,7 +26,7 @@ The following resource types are supported for displaying application status:
 * StatefulSet
 * Service
 * Ingress
-* PersistentVolumeClaims
+* PersistentVolumeClaims (PVC)
 
 Applications can specify one or more of the supported Kubernetes workloads listed above. The app manager watches all specified workloads for state changes.
 
