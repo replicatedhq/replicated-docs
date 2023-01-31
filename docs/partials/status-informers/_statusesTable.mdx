@@ -1,7 +1,46 @@
-| | Unavailable | Degraded | Ready | Updating |
-|---|---|---|---|---|
-| **Deployment** | No replicas are ready | At least 1 replica is ready, but more are desired | Ready replicas equals desired replicas | The deployed replicas are from a different revision |
-| **StatefulSet** | No replicas are ready | At least 1 replica is ready, but more are desired | Ready replicas equals desired replicas | The deployed replicas are from a different revision |
-| **Service** | No endpoints are ready, no load balancer has been assigned | At least one endpoint is ready, but more are desired | All desired endpoints are ready, any load balancers have been assigned | N/A |
-| **Ingress** | No backend service endpoints are ready, no load balancer has been assigned | At least one backend service endpoint is ready, but more are desired | All desired backend service endpoints are ready, any load balancers have been assigned | N/A |
-| **PersistentVolumeClaim** | Claim is pending or lost | N/A | Claim is bound | N/A |
+<table>
+ <tr>
+    <th width="10%"></th>
+    <th width="18%">Deployment</th>
+    <th width="18%">StatefulSet</th>
+    <th width="18%">Service</th>
+    <th width="18%">Ingress</th>
+    <th width="18%">PVC</th>
+  </tr>
+    <tr>
+  <th>Ready</th>
+    <td>Ready replicas equals desired replicas</td>
+    <td>Ready replicas equals desired replicas</td>
+    <td>All desired endpoints are ready, any load balancers have been assigned</td>
+    <td>All desired backend service endpoints are ready, any load balancers have been assigned</td>
+    <td>Claim is bound</td>
+  </tr>
+  <tr>
+  <th>Updating</th>
+    <td>The deployed replicas are from a different revision</td>
+    <td>The deployed replicas are from a different revision</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+  </tr>
+  <tr>
+    <th>Degraded</th>
+    <td>At least 1 replica is ready, but more are desired</td>
+    <td>At least 1 replica is ready, but more are desired</td>
+    <td>At least one endpoint is ready, but more are desired</td>
+    <td>At least one backend service endpoint is ready, but more are desired</td>
+    <td>N/A</td>
+  </tr>
+  <tr>
+    <th>Unavailable</th>
+    <td>No replicas are ready</td>
+    <td>No replicas are ready</td>
+    <td>No endpoints are ready, no load balancer has been assigned</td>
+    <td>No backend service endpoints are ready, no load balancer has been assigned</td>
+    <td>Claim is pending or lost</td>
+  </tr>
+  <tr>
+    <th>Missing</th>
+    <td colspan="5">Missing is an initial deployment status indicating that informers have not reported their status because the application has just been deployed and the underlying resource has not been created yet. After the resource is created, the status changes. However, if a resource changes from another status to Missing, then the resource was either deleted or the informers failed to report a status.</td>
+  </tr>
+</table>
