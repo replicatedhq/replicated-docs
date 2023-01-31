@@ -21,10 +21,10 @@ Because status informers can help users diagnose and troubleshoot problems with 
 The following resource types are supported for displaying application status:
 
 * Deployment
-* StatefulSet
-* Service
 * Ingress
 * PersistentVolumeClaims
+* Service
+* StatefulSet
 
 You can target resources of the supported types that are deployed in any of the following ways:
 
@@ -36,11 +36,13 @@ You can target resources of the supported types that are deployed in any of the 
 
 The Replicated app manager records the status of each Kubernetes resource that you add to the `statusInformers` property. Possible resource statuses are Missing, Unavailable, Degraded, Ready, and Updating.
 
-<MissingState/>
-
 The following table lists the supported Kubernetes resources and the conditions that contribute to each status:
 
 <StatusesTable/>
+
+#### Missing
+
+<MissingState/>
 
 ### Aggregate Application Status
 
