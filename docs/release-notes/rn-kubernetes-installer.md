@@ -18,14 +18,14 @@ Released on January 31, 2023
 
 ### Improvements {#improvements-v2023-01-31-0}
 * Adds TCP connection host preflight checks for ports 2379 and 6443.
-* Adds new weave `version 2.8.1-20230130` to address the [CVE-2022-43551](https://avd.aquasec.com/nvd/cve-2022-43551) which is high.
+* Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.8.1-20230130 to address the following high severity CVE: [CVE-2022-43551](https://avd.aquasec.com/nvd/cve-2022-43551).
 * Adds a warning message when Flannel is the cluster CNI suggesting the user check that UDP port 8472 is open when joining a node or migrating from Weave to Flannel.
 * Adds Flannel UDP port 8472 status preflight check.
 
 ### Bug Fixes {#bug-fixes-v2023-01-31-0}
 * Fixes an error faced by missed images from registry.k8s.io when updating Kubernetes from 1.21 to 1.23.{0-14} and 1.22 to 1.24.{0-8} in airgap environments.
 * Fixes an issue that could cause Flannel pods on remote airgapped nodes to fail with ImagePullBackoff errors.
-* fix: path to find the manifest filesystem-singlenode.yaml to apply patch from rook version 1.6.11.
+* Fixes an issue that could cause single node upgrades to Rook add-on version 1.6.11 to fail with Ceph filesystem enabled with error "filesystem-singlenode.yaml: No such file or directory".
 
 ## v2023.01.23-0
 
