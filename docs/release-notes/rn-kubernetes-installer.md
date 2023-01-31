@@ -23,9 +23,9 @@ Released on January 31, 2023
 * Adds Flannel UDP port 8472 status preflight check.
 
 ### Bug Fixes {#bug-fixes-v2023-01-31-0}
-* Fixes an error faced by missed images from registry.k8s.io when updating Kubernetes from 1.21 to 1.23.{0-14} and 1.22 to 1.24.{0-8} in airgap environments.
+* Fixes an error due to missing images from registry.k8s.io when updating Kubernetes from 1.21 to 1.23.{0-14} and 1.22 to 1.24.{0-8} in airgapped environments.
 * Fixes an issue that could cause Flannel pods on remote airgapped nodes to fail with ImagePullBackoff errors.
-* Fixes an issue that could cause single node upgrades to Rook add-on version 1.6.11 to fail with Ceph filesystem enabled with error "filesystem-singlenode.yaml: No such file or directory".
+* Fixes an issue that could cause single node upgrades to Rook add-on version 1.6.11 with Ceph filesystem enabled to fail with error "filesystem-singlenode.yaml: No such file or directory".
 
 ## v2023.01.23-0
 
