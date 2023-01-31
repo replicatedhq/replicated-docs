@@ -40,7 +40,7 @@ The following table lists the supported Kubernetes resources and the conditions 
 
 <StatusesTable/>
 
-#### Missing
+#### Missing Status {#missing}
 
 <MissingState/>
 
