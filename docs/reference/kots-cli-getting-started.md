@@ -49,7 +49,7 @@ To install the kots CLI without root access, you can do any of the following:
 
 ### Install to a Different Directory
 
-You can set the `REPL_INSTALL_PATH` environment variable to install the kots CLI to a directory other `/usr/local/bin` that does not require elevated permissions.
+You can set the `REPL_INSTALL_PATH` environment variable to install the kots CLI to a directory other than `/usr/local/bin` that does not require elevated permissions.
 
 **Example:**
 
