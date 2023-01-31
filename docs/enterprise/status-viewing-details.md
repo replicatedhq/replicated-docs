@@ -35,13 +35,15 @@ For more information about how to interpret the application status displayed on 
 
 ### Resource Statuses
 
-Possible application statuses are Missing, Unavailable, Degraded, Ready, and Updating.
-
-<Missing/>
+Possible application statuses are Unavailable, Degraded, Ready, Updating, and Missing.
 
 The following table lists the supported Kubernetes resources and the conditions that contribute to each status:
 
 <StatusesTable/>
+
+#### Missing
+
+<Missing/>
 
 ### Aggregate Application Status
 

@@ -1,7 +1,46 @@
-| | Unavailable | Degraded | Ready | Updating |
-|---|---|---|---|---|
-| **Deployment** | No replicas are ready | At least 1 replica is ready, but more are desired | Ready replicas equals desired replicas | The deployed replicas are from a different revision |
-| **StatefulSet** | No replicas are ready | At least 1 replica is ready, but more are desired | Ready replicas equals desired replicas | The deployed replicas are from a different revision |
-| **Service** | No endpoints are ready, no load balancer has been assigned | At least one endpoint is ready, but more are desired | All desired endpoints are ready, any load balancers have been assigned | N/A |
-| **Ingress** | No backend service endpoints are ready, no load balancer has been assigned | At least one backend service endpoint is ready, but more are desired | All desired backend service endpoints are ready, any load balancers have been assigned | N/A |
-| **PersistentVolumeClaim** | Claim is pending or lost | N/A | Claim is bound | N/A |
+<table>
+    <tr>
+      <th width="15%"></th>
+      <th width="17%">Unavailable</th>
+      <th width="17%">Degraded</th>
+      <th width="17%">Ready</th>
+      <th width="17%">Updating</th>
+      <th width="17%">Missing</th>
+    </tr>
+    <tr>
+      <td>Deployment</td>
+      <td>No replicas are ready</td>
+      <td>At least 1 replica is ready, but more are desired</td>
+      <td>Ready replicas equals desired replicas</td>
+      <td>The deployed replicas are from a different revision</td>
+      <td rowspan="5">See <a href="#missing">Missing</a></td>
+    </tr>
+    <tr>
+      <td>Ingress</td>
+      <td>No backend service endpoints are ready, no load balancer has been assigned</td>
+      <td>At least one backend service endpoint is ready, but more are desired</td>
+      <td>All desired backend service endpoints are ready, any load balancers have been assigned</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>PersistentVolumeClaim</td>
+      <td>Claim is pending or lost</td>
+      <td>N/A</td>
+      <td>Claim is bound</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>Service</td>
+      <td>No endpoints are ready, no load balancer has been assigned</td>
+      <td>At least one endpoint is ready, but more are desired</td>
+      <td>All desired endpoints are ready, any load balancers have been assigned</td>
+      <td>N/A</td>
+    </tr>
+    <tr>
+      <td>StatefulSet</td>
+      <td>No replicas are ready</td>
+      <td>At least 1 replica is ready, but more are desired</td>
+      <td>Ready replicas equals desired replicas</td>
+      <td>The deployed replicas are from a different revision</td>
+    </tr>
+  </table>
