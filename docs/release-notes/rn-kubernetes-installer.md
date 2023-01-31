@@ -23,7 +23,7 @@ Released on January 31, 2023
 * Adds Flannel UDP port 8472 status preflight check.
 
 ### Bug Fixes {#bug-fixes-v2023-01-31-0}
-* Fixes an error updating Kubernetes from 1.21 to 1.23.{0-14} and 1.22 to 1.24.{0-8} in airgap environments.
+* Fixes an error faced by missed images from registry.k8s.io when updating Kubernetes from 1.21 to 1.23.{0-14} and 1.22 to 1.24.{0-8} in airgap environments.
 * Fixes an issue that could cause Flannel pods on remote airgapped nodes to fail with ImagePullBackoff errors.
 * fix: path to find the manifest filesystem-singlenode.yaml to apply patch from rook version 1.6.11.
 
