@@ -34,7 +34,7 @@ You can target resources of the supported types that are deployed in any of the 
 
 ### Resource Statuses
 
-The Replicated app manager records the status of each Kubernetes resource that you add to the `statusInformers` property. Possible resource statuses are Missing, Unavailable, Degraded, Ready, and Updating.
+The Replicated app manager records the status of each Kubernetes resource that you add to the `statusInformers` property. Possible resource statuses are Unavailable, Degraded, Ready, Updating, and Missing.
 
 The following table lists the supported Kubernetes resources and the conditions that contribute to each status:
 
