@@ -10,10 +10,10 @@ Released on January 31, 2023
 
 ### New Features {#new-features-v2023-01-31-0}
 * Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.26.1 1.25.6 1.24.10 1.23.16.
-* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-01-25T00-19-54Z.
-* Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.15.
 * Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.16.
 * Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.9.5.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-01-25T00-19-54Z.
+* Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.15.
 * Adds a `serverFlags` configuration option to the [Velero add-on](https://kurl.sh/docs/add-ons/velero) to allow users to pass additional flags to the `velero server` command in the Velero pod. This can also be set using the [velero-server-flags](https://kurl.sh/docs/install-with-kurl/advanced-options#reference) cli flag when running the install script.
 
 ### Improvements {#improvements-v2023-01-31-0}
