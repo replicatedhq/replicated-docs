@@ -25,11 +25,9 @@ below.
 
 ## Updating a Customer License Type
 
-You can update a customer license type in the Replicated vendor portal, for example, from a trial license to a paid license. An update impacts all customers who are using the same license. 
+You can update a customer license type in the Replicated vendor portal, for example, from a trial license to a paid license. An update impacts all customers who are using the same license. Then, your customers use the Replicated admin console to synchronize their licenses. If they are changing from a trial license to a paid license, they are also promoted to redeploy the existing version of the application.
 
-Then, your customers use the Replicated admin console to synchronize their licenses. If they are changing from a trial license to a paid license, they are also promoted to redeploy the existing version of the application.
-
-With the exception of community licenses, it is not possible for an end customer to replace one license file with another license file without completely reinstalling the app manager and application. Using the vendor portal to change the license type prevents the end customer from having to reinstall.
+With the exception of community licenses, it is not possible for an end customer to replace one license file with another license file without completely reinstalling the Replicated app manager and your application. Using the vendor portal to change the license type prevents the end customer from having to reinstall.
 
 For more information about community licenses, see [Community Licenses](#community-licenses).
 
