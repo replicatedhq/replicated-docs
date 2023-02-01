@@ -25,24 +25,7 @@ In this procedure, you install Velero and configure your initial storage destina
 If you already have Velero installed and want to update your storage destination, you can use the admin console instead. In this procedure, you use the kots CLI to install Velero and configure your initial storage destination in online environments. For more information about using the admin console to update storage settings, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
 :::
 
-To install Velero and configure a host path storage destination:
-
-1. Install Velero without a backup storage location:
-
-  ```
-  velero install \
-    --no-default-backup-location \
-    --no-secret \
-    --use-restic \
-    --use-volume-snapshots=false \
-    --plugins velero/velero-plugin-for-aws:v1.5.3
-  ```
-
-  A confirmation message displays that the installation is successful.
-
-1. If you're using RancherOS, OpenShift, Microsoft Azure, or VMware Tanzu Kubernetes Grid Integrated Edition (formerly VMware Enterprise PKS), please refer to the following Velero doc to complete restic configuration: https://velero.io/docs/v1.9/restic/#configure-restic-daemonset-spec
-
-1. Run the following command to configure the Velero backup storage location. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
+Run the following command to configure Velero and the storage destination. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
 
   ```
   kubectl kots velero configure-hostpath --namespace NAME --hostpath /PATH
@@ -59,7 +42,7 @@ To install Velero and configure a host path storage destination:
   kubectl kots velero configure-hostpath --namespace default --hostpath /backups
   ```
 
-  You get a message that the file system configuration for the admin console is successful. You can go to the Snapshots tab admin console and see the storage destination is configured.
+If no Velero installation is detected, instructions are displayed for installing Velero.
 
 ## Configure Host Path Storage in Air Gapped Environments
 
@@ -69,48 +52,28 @@ The kots CLI can be used to configure host path storage in air gapped environmen
 If you already have Velero installed and want to update your storage destination, you can use the admin console instead. In this procedure, you use the kots CLI to install Velero and configure your initial storage destination in online environments. For more information about using the admin console to update storage settings, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
 :::
 
-To configure host path storage in an air gapped environment:
-
-1. Prepare velero images (you will need `velero/velero-plugin-for-aws:v1.5.3` for plugins): https://velero.io/docs/v1.9/on-premises/#air-gapped-deployments
-
-1. Install Velero without a backup storage location:
-
-  ```
-    velero install \
-      --no-default-backup-location \
-      --no-secret \
-      --use-restic \
-      --use-volume-snapshots=false \
-      --image private.registry.host/velero:VELERO_VERSION \
-      --plugins private.registry.host/velero-plugin-for-aws:v1.5.3
-  ```
-
-    Replace:
-
-    - VELERO_VERSION with the actual velero version being used
-
-1. Configure restic restore helper to use the prepared image: https://velero.io/docs/v1.9/restic/#customize-restore-helper-container
-
-1. If you're using RancherOS, OpenShift, Microsoft Azure, or VMware Tanzu Kubernetes Grid Integrated Edition (formerly VMware Enterprise PKS), please refer to the following Velero doc to complete restic configuration: https://velero.io/docs/v1.9/restic/#configure-restic-daemonset-spec
-
-1. Run the following command to configure the Velero backup storage location. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
+Run the following command to configure Velero and the storage destination. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
 
   ```bash
   kubectl kots velero configure-hostpath \
     --namespace NAME \
     --hostpath /PATH \
-    --kotsadm-registry private.registry.host \
-    --kotsadm-namespace application-name \
-    --registry-username ro-username \
-    --registry-password ro-password
+    --kotsadm-registry REGISTRY_HOSTNAME \
+    --kotsadm-namespace REGISTRY_NAMESPACE \
+    --registry-username REGISTRY_USERNAME \
+    --registry-password REGISTRY_PASSWORD
   ```
 
     Replace:
 
     - NAME with the name of the namespace where the admin console is installed and running
     - PATH with the path to the directory where the backups will be stored
+    - REGISTRY_HOSTNAME with the registry endpoint where the images are hosted
+    - REGISTRY_NAMESPACE with the registry namespace where the images are hosted
+    - REGISTRY_USERNAME with the username to use to authenticate with the registry
+    - REGISTRY_PASSWORD with the password to use to authenticate with the registry
 
-You get a message that the file system configuration for the admin console is successful. You can go to the Snapshots tab admin console and see the storage destination is configured.
+If no Velero installation is detected, instructions are displayed for installing Velero.
 
 ## Configure Host Path Storage in the Admin Console
 

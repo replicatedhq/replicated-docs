@@ -32,8 +32,6 @@ To install Velero and configure an AWS storage destination:
      --use-restic --use-volume-snapshots=false
   ```
 
-1. If you're using RancherOS, OpenShift, Microsoft Azure, or VMware Tanzu Kubernetes Grid Integrated Edition (formerly VMware Enterprise PKS), please refer to the following Velero doc to complete restic configuration: https://velero.io/docs/v1.9/restic/#configure-restic-daemonset-spec
-
 ## Configure GCP Storage for Online Environments
 
 In this procedure, you install Velero and configure your initial storage destination in online environments.
@@ -54,8 +52,6 @@ To install Velero and configure a GCP storage destination:
     --secret-file ./CREDS_FILE
     --use-restic --use-volume-snapshots=false
   ```
-
-1. If you're using RancherOS, OpenShift, Microsoft Azure, or VMware Tanzu Kubernetes Grid Integrated Edition (formerly VMware Enterprise PKS), please refer to the following Velero doc to complete restic configuration: https://velero.io/docs/v1.9/restic/#configure-restic-daemonset-spec
 
 ## Configure Azure Storage for Online Environments
 
@@ -80,8 +76,6 @@ To install Velero and configure an Azure storage destination:
     --use-restic --use-volume-snapshots=false
   ```
 
-1. If you're using RancherOS, OpenShift, Microsoft Azure, or VMware Tanzu Kubernetes Grid Integrated Edition (formerly VMware Enterprise PKS), please refer to the following Velero doc to complete restic configuration: https://velero.io/docs/v1.9/restic/#configure-restic-daemonset-spec
-
 ## Configure S3-Compatible Storage for Online Environments
 
 Replicated supports the following S3-compatible object stores for storing backups with Velero:
@@ -89,26 +83,7 @@ Replicated supports the following S3-compatible object stores for storing backup
 - Ceph RADOS v12.2.7
 - MinIO
 
-To install Velero and configure an S3-compatible storage destination:
-
-1. Make sure that you meet the prerequisites for the storage destination. For more information, see [S3-Compatible object store providers](https://velero.io/docs/v1.9/supported-providers/#s3-compatible-object-store-providers) in the Velero documentation.
-
-1. Install Velero without a backup storage location:
-
-  ```
-  velero install \
-    --no-default-backup-location \
-    --no-secret \
-    --use-restic \
-    --use-volume-snapshots=false \
-    --plugins velero/velero-plugin-for-aws:v1.5.3
-  ```
-
-  A confirmation message displays that the installation is successful.
-
-1. If you're using RancherOS, OpenShift, Microsoft Azure, or VMware Tanzu Kubernetes Grid Integrated Edition (formerly VMware Enterprise PKS), please refer to the following Velero doc to complete restic configuration: https://velero.io/docs/v1.9/restic/#configure-restic-daemonset-spec
-
-1. Run the following command to configure the Velero backup storage location. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
+Run the following command to configure Velero and the storage destination. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
 
   ```
   kubectl kots velero configure-other-s3 \
@@ -141,7 +116,7 @@ To install Velero and configure an S3-compatible storage destination:
     --secret-access-key <secret access key here>
   ```
 
-  You get a message that the configuration for the admin console is successful. You can go to the Snapshots tab admin console and see the storage destination is configured.
+If no Velero installation is detected, instructions are displayed for installing Velero.
 
 ## Configure S3-Compatible Storage for Air Gapped Environments
 
@@ -150,33 +125,7 @@ Replicated supports the following S3-compatible object stores for storing backup
 - Ceph RADOS v12.2.7
 - MinIO
 
-To install Velero and configure an S3-compatible storage destination:
-
-1. Make sure that you meet the prerequisites for the storage destination. For more information, see [S3-Compatible object store providers](https://velero.io/docs/v1.9/supported-providers/#s3-compatible-object-store-providers) in the Velero documentation.
-
-1. Prepare velero images (you will need `velero/velero-plugin-for-aws:v1.5.3` for plugins): https://velero.io/docs/v1.9/on-premises/#air-gapped-deployments
-
-1. Install Velero without a backup storage location:
-
-  ```
-    velero install \
-      --no-default-backup-location \
-      --no-secret \
-      --use-restic \
-      --use-volume-snapshots=false \
-      --image private.registry.host/velero:VELERO_VERSION \
-      --plugins private.registry.host/velero-plugin-for-aws:v1.5.3
-  ```
-
-    Replace:
-
-    - VELERO_VERSION with the actual velero version being used
-
-1. Configure restic restore helper to use the prepared image: https://velero.io/docs/v1.9/restic/#customize-restore-helper-container
-
-1. If you're using RancherOS, OpenShift, Microsoft Azure, or VMware Tanzu Kubernetes Grid Integrated Edition (formerly VMware Enterprise PKS), please refer to the following Velero doc to complete restic configuration: https://velero.io/docs/v1.9/restic/#configure-restic-daemonset-spec
-
-1. Run the following command to configure the Velero backup storage location. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
+Run the following command to configure Velero and the storage destination. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
 
   ```bash
   kubectl kots velero configure-other-s3 \
@@ -186,10 +135,10 @@ To install Velero and configure an S3-compatible storage destination:
     --bucket BUCKET \
     --access-key-id ACCESS_KEY_ID \
     --secret-access-key SECRET_ACCESS_KEY \
-    --kotsadm-registry private.registry.host \
-    --kotsadm-namespace application-name \
-    --registry-username ro-username \
-    --registry-password ro-password
+    --kotsadm-registry REGISTRY_HOSTNAME \
+    --kotsadm-namespace REGISTRY_NAMESPACE \
+    --registry-username REGISTRY_USERNAME \
+    --registry-password REGISTRY_PASSWORD
   ```
 
     Replace:
@@ -200,8 +149,12 @@ To install Velero and configure an S3-compatible storage destination:
     - BUCKET with the name of the object storage bucket where backups should be stored
     - ACCESS_KEY_ID with the access key id to use for accessing the bucket
     - SECRET_ACCESS_KEY with the secret access key to use for accessing the bucket
+    - REGISTRY_HOSTNAME with the registry endpoint where the images are hosted
+    - REGISTRY_NAMESPACE with the registry namespace where the images are hosted
+    - REGISTRY_USERNAME with the username to use to authenticate with the registry
+    - REGISTRY_PASSWORD with the password to use to authenticate with the registry
 
-You get a message that the configuration for the admin console is successful. You can go to the Snapshots tab admin console and see the storage destination is configured.
+If no Velero installation is detected, instructions are displayed for installing Velero.
 
 ## Next Steps
 
