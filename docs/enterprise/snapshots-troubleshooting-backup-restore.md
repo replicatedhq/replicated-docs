@@ -99,7 +99,7 @@ We've seen this issue with Velero version 1.5.4 and opened up this issue with th
 
 #### Solution
 
-Upgrade Velero to 1.6.0. You can upgrade using the Replicated Kubernetes installer. Or, to follow the Velero upgrade instructions, see [Upgrading to Velero 1.6](https://velero.io/docs/v1.6/upgrade-to-1.6/) in the Velero documentation.
+Upgrade Velero to 1.9.0. You can upgrade using the Replicated Kubernetes installer. Or, to follow the Velero upgrade instructions, see [Upgrading to Velero 1.9](https://velero.io/docs/v1.9/upgrade-to-1.9/) in the Velero documentation.
 
 ## Snapshot Creation is Failing
 
