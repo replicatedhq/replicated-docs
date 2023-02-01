@@ -39,9 +39,9 @@ Using custom domains has the following limitations:
 
 ## Configure Registry Domains
 
-You can configure custom domains for the Replicated private registry or the proxy service.
+You can configure custom domains for the Replicated private registry and the proxy service.
 
-To configure a custom domain for a registry:
+To configure a custom domain for one of these services:
 
 1. Log in to the [vendor portal](https://vendor.replicated.com), and click **Team > Custom Domains**.
 
@@ -65,18 +65,21 @@ To configure a custom domain for a registry:
 
 1. Create a new release and create the new field for either `proxyRegistryDomain` or `replicatedRegistryDomain` in the Application custom resource manifest file. You can use the code snippet template from the previous step or manually code the field. For more information, see [proxyRegistryDomain](../reference/custom-resource-application#proxyRegistryDomain) and [replicatedRegistryDomain](../reference/custom-resource-application#replicatedRegistryDomain) in the _Application_ section.
 
-## Add or Remove a Registry Custom Domain
+## Transition to a Different Registry Custom Domain
 
-You can add or change the assignment of an existing custom registry domain to an application at any time.
+You can create a release and specify a different custom registry domain at any time, but you should plan the transition so that you don't break any existing installations.
 
-To assign a registry custom domain to an application:
+To transition to a different regstry custom domain:
 
 1. From the vendor portal, click **Teams > Custom Domains**.
-1. (Optional) To add a domain, click **Add domain to a release** next to a domain in the Replicated registry or proxy service lists. Then do the following:
+1. To begin using a newly configured domain, click **Add domain to a release** next to a domain in the Replicated registry or proxy service lists. Then do the following:
     1. Copy the snippet from the **Configure a custom domain** dialog that opens, then click **Ok, got it!**.
     1. Create a new release and add the code snippet to the Application custom resource manifest file to create the new field for either `proxyRegistryDomain` or `replicatedRegistryDomain`. For more information, see [proxyRegistryDomain](../reference/custom-resource-application#proxyRegistryDomain) and [replicatedRegistryDomain](../reference/custom-resource-application#replicatedRegistryDomain) in the _Application_ section.
-1. (Optional) To remove a domain from the vendor portal, click **Remove** next to a domain in the list.
+1. Ensure that all customers update to the new release so that they no longer use the old registry custom domain.
+1. To remove the unused domain from the vendor portal, click **Remove** next to the domain in the list, then click **Yes, remove domain**.
 
+:::warning
+Removing a registry custom domain from the vendor portal will break any installations that still reference that custom domain. Ensure that a custom domain is no longer in use before removing it from the vendor portal.
 
 ## Configure Download Portal Domains
 
@@ -104,12 +107,11 @@ To configure a custom domain for the download portal:
 
 1. For **Use Domain**, click **Yes, set as default** to set the domain as the default, so that the vendor portal will use it for links to the download portal, or click **Not now**.
 
-## Change or Remove a Download Portal Custom Domain
+## Set a Default Download Portal Custom Domain
 
-You can change or add the assignment of an existing custom domain to the download portal at any time. You can also remove a custom domain from the vendor portal when it is not set as the default.
+You can set a downlodd portal custom domain as the default at any time.
 
-To change a download portal custom domain:
+To set a download portal custom domain as teh default:
 
 1. From the vendor portal, click **Teams > Custom Domains**.
-1. (Optional) In the **Custom domain for the download portal** pane, click **Set as default domain** next to a domain that you want to set as the default.
-1. (Optional)  In the **Custom domain for the download portal** pane, click **Remove** next to a domain that you want to remove from the vendor portal entirely.
+1. In the **Custom domain for the download portal** pane, click **Set as default domain** next to a domain that you want to set as the default, then click **Yes, set as default**.
