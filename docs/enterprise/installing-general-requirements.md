@@ -56,6 +56,13 @@ To install the admin console on an existing cluster, the cluster must meet the f
    * cluster-admin permissions to create namespaces and assign RBAC roles across the cluster.
 
    If the `requireMinimalRBACPrivileges` property is set to `true` in the Application custom resource manifest, or if the `supportMinimalRBACPrivileges` property is set to `true` in the Application custom resource manifest and the `--use-minimal-rbac` flag is passed to the `kots install` command, the app manager does not require the ability to create ClusterRoles and ClusterRoleBindings and uses a namespace-scoped Role and RoleBinding instead. For more information about the Application custom resource, see [Application](../reference/custom-resource-application) in _Custom Resources_.
+* **Port forwarding**: To support port forwarding, Kubernetes clusters require that the SOcket CAT (socat) package is installed on each node.
+
+   If the package is not installed on each node in the cluster, you see the following error message when the installation script attempts to connect to the admin console: `unable to do port forwarding: socat not found`.
+
+   To check if the package that provides socat is installed, you can run `which socat`. If the package is installed, the `which socat` command prints the full path to the socat executable file. For example, `usr/bin/socat`.
+
+   If the output of the `which socat` command is `socat not found`, then you must install the package that provides the socat command. The name of this package can vary depending on the node's operating system.
 
 :::note
 Root access on nodes or workstations is *not* required to install an application on an existing cluster.
