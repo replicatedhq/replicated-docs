@@ -53,15 +53,11 @@ You can set the `REPL_INSTALL_PATH` environment variable to install the kots CLI
 
 **Example:**
 
+In the following example, the installation script installs the kots CLI to `~/bin` in the local directory. You can use the user home symbol `~` in the `REPL_INSTALL_PATH` environment variable. The script expands `~` to `$HOME`.
+
 ```bash
 curl -L https://kots.io/install | REPL_INSTALL_PATH=~/bin bash
 ```
-
-In the example above, the installation script installs the kots CLI to `~/bin` in the local directory.
-
-:::note
-You can use the user home symbol `~` in the `REPL_INSTALL_PATH` environment variable. The script expands `~` to `$HOME`.
-:::
 
 ### Install Using Sudo
 
@@ -71,17 +67,19 @@ When you set the `REPL_USE_SUDO` environment variable to any value, the installa
 
 **Example:**
 
+In the following example, the script uses sudo to install the kots CLI to the default `/usr/local/bin` directory.
+
 ```bash
 curl -L https://kots.io/install | REPL_USE_SUDO=y bash
 ```
-In the example above, the script uses sudo to install the kots CLI to the default `/usr/local/bin` directory.
 
 **Example:**
+
+In the following example, the script uses sudo to install the kots CLI to the `/replicated/bin` directory.
 
 ```bash
 curl -L https://kots.io/install | REPL_INSTALL_PATH=/replicated/bin REPL_USE_SUDO=y bash
 ```
-In the example above, the script uses sudo to install the kots CLI to the `/replicated/bin` directory.
 
 ### Manually Download and Install
 
