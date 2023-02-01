@@ -26,7 +26,7 @@ If you already have Velero installed and just want to update your storage destin
 
 To install Velero and configure an NFS storage destination:
 
-1. Install velero without a backup storage location:
+1. Install Velero without a backup storage location:
 
   ```
   velero install \
@@ -67,7 +67,7 @@ To configure NFS in an air gapped environment:
 
 1. Prepare velero images (you will need `velero/velero-plugin-for-aws:v1.5.3` for plugins): https://velero.io/docs/v1.9/on-premises/#air-gapped-deployments
 
-1. Install velero without a backup storage location:
+1. Install Velero without a backup storage location:
 
   ```
     velero install \

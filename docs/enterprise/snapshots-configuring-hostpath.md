@@ -27,7 +27,7 @@ If you already have Velero installed and want to update your storage destination
 
 To install Velero and configure a host path storage destination:
 
-1. Install velero without a backup storage location:
+1. Install Velero without a backup storage location:
 
   ```
   velero install \
@@ -73,7 +73,7 @@ To configure host path storage in an air gapped environment:
 
 1. Prepare velero images (you will need `velero/velero-plugin-for-aws:v1.5.3` for plugins): https://velero.io/docs/v1.9/on-premises/#air-gapped-deployments
 
-1. Install without a backup storage location:
+1. Install Velero without a backup storage location:
 
   ```
     velero install \
@@ -93,7 +93,7 @@ To configure host path storage in an air gapped environment:
 
 1. If you're using RancherOS, OpenShift, Microsoft Azure, or VMware Tanzu Kubernetes Grid Integrated Edition (formerly VMware Enterprise PKS), please refer to the following Velero doc to complete restic configuration: https://velero.io/docs/v1.9/restic/#configure-restic-daemonset-spec
 
-1. 
+1. Run the following command to configure the Velero backup storage location. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
 
   ```bash
   kubectl kots velero configure-hostpath \
