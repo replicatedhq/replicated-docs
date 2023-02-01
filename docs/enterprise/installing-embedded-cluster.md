@@ -81,11 +81,11 @@ To install an application in an air gapped environment:
           ```
 
           Replace:
-              * `APP_NAME` with the name for the application.
-              * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle file.
-              * `PATH_TO_LICENSE_FILE` with the path to the license file.
-              * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file.
-              * `PASSWORD` with a shared password.
+          * `APP_NAME` with the name for the application.
+          * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle file.
+          * `PATH_TO_LICENSE_FILE` with the path to the license file.
+          * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file.
+          * `PASSWORD` with a shared password.
 
 ## Installing with High Availability Mode
 
