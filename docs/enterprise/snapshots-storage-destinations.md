@@ -143,8 +143,6 @@ To install Velero and configure an S3-compatible storage destination:
 
   You get a message that the configuration for the admin console is successful. You can go to the Snapshots tab admin console and see the storage destination is configured.
 
-1. Run the appropriate `velero install` command with the additional flags `--use-restic` and `--use-volume-snapshots=false`.
-
 ## Configure S3-Compatible Storage for Air Gapped Environments
 
 Replicated supports the following S3-compatible object stores for storing backups with Velero:
