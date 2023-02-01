@@ -78,7 +78,7 @@ The Instances section displays the following details about each active instance:
 
 * Details about the cluster where the instance is installed, including:
 
-   * The Kubernetes distribution for the cluster, if applicable.
+   * The Kubernetes distribution for the cluster, if applicable
    * The Kubernetes version running in the cluster
    * Whether the instance is installed in a Kubernetes installer (kURL) cluster
    * (Kubernetes Installer Clusters Only) The number of nodes ready in the cluster
@@ -90,7 +90,7 @@ The Instances section displays the following details about each active instance:
      [View a larger version of this image](/images/kurl-instance-row.png)
 
    * The app manager version running in the cluster
-   * The cloud provider and region, if applicable.
+   * The cloud provider and region, if applicable
 
 * Instance uptime data, including:
 
