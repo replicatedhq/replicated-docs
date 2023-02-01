@@ -13,10 +13,16 @@ If you are using an [embedded Kubernetes installer-created cluster](../enterpris
 
 ## Install
 
-To install the latest version of the kots CLI, run:
+To install the latest version of the kots CLI to `/usr/local/bin`, run:
 
 ```bash
 curl https://kots.io/install | bash
+```
+
+To install to a directory other than `/usr/local/bin`, run:
+
+```bash
+curl https://kots.io/install | REPL_INSTALL_PATH=/path/to/cli bash
 ```
 
 To install a specific version of the kots CLI, run:
@@ -33,9 +39,55 @@ kubectl kots --help
 
 ## Install without Root Access
 
-You can install the kots CLI on computers without root access or computers that cannot write to the `/usr/local/bin` directory. This procedure applies to online clusters and air gapped environments.
+You can install the kots CLI on computers without root access or computers that cannot write to the `/usr/local/bin` directory.
 
-To download the `kots` CLI without root access:
+To install the kots CLI without root access, you can do any of the following:
+
+* (Online Only) [Install to a Different Directory](#install-to-a-different-directory)
+* (Online Only) [Install Using Sudo](#install-using-sudo)
+* (Online or Air Gap) [Manually Download and Install](#manually-download-and-install)
+
+### Install to a Different Directory
+
+You can set the `REPL_INSTALL_PATH` environment variable to install the kots CLI to a directory other than `/usr/local/bin` that does not require elevated permissions.
+
+**Example:**
+
+In the following example, the installation script installs the kots CLI to `~/bin` in the local directory. You can use the user home symbol `~` in the `REPL_INSTALL_PATH` environment variable. The script expands `~` to `$HOME`.
+
+```bash
+curl -L https://kots.io/install | REPL_INSTALL_PATH=~/bin bash
+```
+
+### Install Using Sudo
+
+If you have sudo access to the directory where you want to install the kots CLI, you can set the `REPL_USE_SUDO` environment variable so that the installation script prompts you for your sudo password.
+
+When you set the `REPL_USE_SUDO` environment variable to any value, the installation script uses sudo to create and write to the installation directory as needed. The script prompts for a sudo password if it is required for the user executing the script in the specified directory.
+
+**Example:**
+
+In the following example, the script uses sudo to install the kots CLI to the default `/usr/local/bin` directory.
+
+```bash
+curl -L https://kots.io/install | REPL_USE_SUDO=y bash
+```
+
+**Example:**
+
+In the following example, the script uses sudo to install the kots CLI to the `/replicated/bin` directory.
+
+```bash
+curl -L https://kots.io/install | REPL_INSTALL_PATH=/replicated/bin REPL_USE_SUDO=y bash
+```
+
+### Manually Download and Install
+
+You can manually download and install the kots CLI binary to install without root access, rather than using the installation script.
+
+Users in air gap environments can also follow this procedure to install the kots CLI.
+
+To manually download and install the `kots` CLI:
 
 1. Download the release for your operating system from https://github.com/replicatedhq/kots/releases/latest. Air gap customers can also download this file from the download portal provided by your vendor.
 
