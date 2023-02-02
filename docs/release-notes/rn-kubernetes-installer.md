@@ -9,14 +9,13 @@ toc_max_heading_level: 2
 Released on February 2, 2023
 
 ### New Features {#new-features-v2023-02-02-0}
-* Improves the user experience when upgrading multiple versions of Rook, allowing the user to download a single airgap bundle containing all Rook version airgap packages rather than one package for each version.
-* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.26.3.
 * Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.24.0.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-01-31T02-24-19Z.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.26.3.
 * Flannel CNI will no longer be supported with the Docker container runtime. Containerd is required.
 
-### Bug Fixes {#bug-fixes-v2023-02-02-0}
-* fix: check to verify multiple rook versions in for rook upgrade.
+### Improvements {#improvements-v2023-02-02-0}
+* Improves the user experience when upgrading multiple versions of Rook, allowing the user to download a single airgap bundle containing all Rook version airgap packages rather than one package for each version.
 
 ## v2023.01.31-0
 
