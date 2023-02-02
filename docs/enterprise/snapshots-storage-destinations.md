@@ -5,7 +5,7 @@ This topic describes installing Velero and configuring storage for Amazon Web Se
 To configure host path or NFS as a storage destination, see [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath) and [Configuring an NFS Storage Destination](snapshots-configuring-nfs).
 
 :::note
-If you already have Velero installed and want to update your storage destination, you can use the admin console instead. In these procedures, you use the kots CLI to install Velero and configure your initial storage destination in online environments. For more information about using the admin console to update storage settings, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
+If you already have Velero installed and want to update your storage destination, you can also use the admin console instead. For more information about using the admin console to update storage settings, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
 :::
 
 ## Configure AWS Storage for Online Environments

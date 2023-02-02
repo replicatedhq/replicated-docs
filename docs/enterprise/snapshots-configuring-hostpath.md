@@ -5,7 +5,7 @@
 You can configure a host path as your storage destination for backups.
 
 :::note
-For embedded clusters, or existing clusters where Velero is already installed, you can use the admin console to update your storage destination. In these procedures, you use the kots CLI to install Velero and configure your initial storage destination. For more information about using the admin console to update storage settings, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
+For embedded clusters, or existing clusters where Velero is already installed, you can also use the admin console to update your storage destination. For more information about using the admin console to update storage settings, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
 :::
 
 ## Prerequisites
