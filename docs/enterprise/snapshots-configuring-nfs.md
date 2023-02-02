@@ -22,7 +22,7 @@ Complete the following items before you perform this task:
 
 ## Configure NFS Storage in Online Environments
 
-Run the following command to install Velero and configure your initial NFS storage destination in an online environment. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
+Run the following command to install Velero and configure an NFS storage destination in an online environment. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
 
 ```bash
 kubectl kots velero configure-nfs --namespace NAME --nfs-path PATH --nfs-server HOST
@@ -38,7 +38,7 @@ If no Velero installation is detected, instructions are displayed to install Vel
 
 ## Configure NFS Storage in Air Gapped Environments
 
-Run the following command to configure Velero and the NFS storage destination in an air gapped environment. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
+Run the following command to install Velero and configure an NFS storage destination in an air gapped environment. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
 
 ```bash
 kubectl kots velero configure-nfs \
@@ -69,7 +69,7 @@ Velero does not support passing registry credentials during the installation, so
 
 ## Configure NFS Storage in the Admin Console
 
-Alternatively, when the admin console and application are already installed, you can start in the admin console to install Velero and configure NFS storage.
+Alternatively, when the admin console and application are already installed, you can start in the admin console to install Velero and configure an NFS storage destination.
 
 To install Velero and configure NFS storage for existing clusters:
 

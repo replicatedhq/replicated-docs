@@ -23,7 +23,7 @@ Complete the following items before you perform this task:
 
 ## Configure Host Path Storage in Online Environments
 
-Run the following command to install Velero and configure your initial host path storage destination in an online environment. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
+Run the following command to install Velero and configure a host path storage destination in an online environment. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
 
 ```
 kubectl kots velero configure-hostpath --namespace NAME --hostpath /PATH
@@ -38,7 +38,7 @@ If no Velero installation is detected, instructions are displayed to install Vel
 
 ## Configure Host Path Storage in Air Gapped Environments
 
-Run the following command to configure Velero and a host path storage destination in an air gapped environment. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
+Run the following command to install Velero and configure a host path storage destination in an air gapped environment. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
 
 ```bash
 kubectl kots velero configure-hostpath \
@@ -67,7 +67,7 @@ Velero does not support passing registry credentials during the installation, so
 
 ## Configure Host Path Storage in the Admin Console
 
-Alternatively, when the admin console and application are already installed, you can start in the admin console to install Velero and configure Host Path storage.
+Alternatively, when the admin console and application are already installed, you can start in the admin console to install Velero and configure a host path storage destination.
 
 To install Velero and configure host path storage for existing clusters:
 
