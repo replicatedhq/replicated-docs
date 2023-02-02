@@ -30,5 +30,5 @@ kubectl kots velero configure-other-s3 [flags]
 #### Example
 
 ```bash
-kubectl kots velero configure-other-s3 --namespace default --endpoint http://minio --region us-east-1 --bucket kots-snaps --access-key-id XXXXXXXJTJB7M2XZUV7D --secret-access-key <secret access key here>
+kubectl kots velero configure-other-s3 --namespace default --endpoint http://minio --region us-east-1 --bucket kots-snaps --access-key-id XXXXXXXJTJB7M2XZUV7D --secret-access-key mysecretkey
 ```

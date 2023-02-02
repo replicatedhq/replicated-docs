@@ -2,10 +2,10 @@
 
 > Introduced in the Replicated app manager v1.33.0
 
-You can configure a Network File System (NFS) as your storage destination for backups.
+This topic describes how to install Velero and configure a Network File System (NFS) as your storage destination for backups.
 
 :::note
-For embedded clusters, or existing clusters where Velero is already installed, you can also use the admin console to update your storage destination. For more information about using the admin console to update storage settings, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
+For existing or embedded clusters where Velero is already installed, you can update your storage destination in the admin console. For more information, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
 :::
 
 ## Prerequisites
@@ -22,9 +22,7 @@ Complete the following items before you perform this task:
 
 ## Configure NFS Storage in Online Environments
 
-In this procedure, you install Velero and configure your initial storage destination in online environments.
-
-Run the following command to configure Velero and the storage destination. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
+Run the following command to install Velero and configure your initial NFS storage destination in an online environment. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
 
 ```bash
 kubectl kots velero configure-nfs --namespace NAME --nfs-path PATH --nfs-server HOST
@@ -32,7 +30,7 @@ kubectl kots velero configure-nfs --namespace NAME --nfs-path PATH --nfs-server 
 
 Replace:
 
-- NAME with the name of the namespace where the admin console is installed and running
+- NAME with the namespace where the admin console is installed and running
 - PATH with the path that is exported by the NFS server
 - HOST with the hostname or IP address of the NFS server
 
@@ -40,9 +38,7 @@ If no Velero installation is detected, instructions are displayed to install Vel
 
 ## Configure NFS Storage in Air Gapped Environments
 
-The kots CLI can be used to configure NFS storage in air gapped environments.
-
-Run the following command to configure Velero and the storage destination. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
+Run the following command to configure Velero and the NFS storage destination in an air gapped environment. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
 
 ```bash
 kubectl kots velero configure-nfs \
@@ -57,7 +53,7 @@ kubectl kots velero configure-nfs \
 
 Replace:
 
-- NAME with the name of the namespace where the admin console is installed and running
+- NAME with the namespace where the admin console is installed and running
 - HOST with the hostname or IP address of the NFS server
 - PATH with the path that is exported by the NFS server
 - REGISTRY_HOSTNAME with the registry endpoint where the images are hosted
@@ -68,7 +64,7 @@ Replace:
 If no Velero installation is detected, instructions are displayed to install Velero and configure the storage destination.
 
 :::note
-Velero does not yet support passing registry credentials during the installation, so it is normal for the Velero and Restic Pods to be in the `ErrImagePull` or `ImagePullBackOff` state after running the `velero install` command. This will resolve itself after you complete the rest of the instructions.
+Velero does not support passing registry credentials during the installation, so it is typical for the Velero and Restic Pods to be in the `ErrImagePull` or `ImagePullBackOff` state after running the `velero install` command. This situation resolves itself after you complete the rest of the instructions.
 :::
 
 ## Configure NFS Storage in the Admin Console
@@ -91,9 +87,9 @@ To install Velero and configure NFS storage for existing clusters:
 
   ![Snapshot Provider NFS Fields](/images/snapshot-provider-nfs-fields.png)
 
-  A dialog opens with instructions on how to set up Velero with the desired NFS configuration.
+  A dialog opens with instructions on how to set up Velero with the specified NFS configuration.
 
-1. Follow the steps that are displayed in the dialog to install Velero and configure the storage destination.
+1. Follow the steps in the dialog to install Velero and configure the storage destination.
 
   ![Snapshot Provider File System Instructions](/images/snapshot-provider-nfs-instructions.png)
 
