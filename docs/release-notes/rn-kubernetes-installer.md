@@ -4,6 +4,19 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.02.02-0
+
+Released on February 2, 2023
+
+### New Features {#new-features-v2023-02-02-0}
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.24.0.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-01-31T02-24-19Z.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.26.3.
+* Flannel CNI is no longer supported with the Docker container runtime. Containerd is required.
+
+### Improvements {#improvements-v2023-02-02-0}
+* When upgrading multiple versions of Rook, users can download a single air gap bundle containing all versions of the Rook air gap packages, instead of downloading each version package separately.
+
 ## v2023.01.31-0
 
 Released on January 31, 2023
@@ -32,7 +45,7 @@ Released on January 31, 2023
 Released on January 23, 2023
 
 ### New Features {#new-features-v2023-01-23-0}
-* Allow migrating multi-node [Weave](https://kurl.sh/docs/add-ons/weave) installations to [Flannel](https://kurl.sh/docs/add-ons/flannel).
+* Allows migrating multi-node [Weave](https://kurl.sh/docs/add-ons/weave) installations to [Flannel](https://kurl.sh/docs/add-ons/flannel).
 * The [Rook add-on](https://kurl.sh/docs/add-ons/rook) can now be upgraded from version 1.0.x to 1.10.8, latest supported Rook version, as part of the installation script.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) versions RELEASE.2023-01-12T02-06-16Z, RELEASE.2023-01-18T04-36-38Z and RELEASE.2023-01-20T02-05-44Z.
 * Adds [metrics-server add-on](https://kurl.sh/docs/add-ons/metrics-server) version 0.6.2.
