@@ -2,7 +2,7 @@
 
 The **Customers > Reporting** page in the Replicated vendor portal displays details about each customer, including details about the active application instances associated with the customer.
 
-For more information about the instance details displayed on the Reporting page, see see [Instance Details](instance-insights-details).
+For more information about the instance details displayed on the Reporting page, see [Instance Details](instance-insights-details).
 
 The following shows an example of the Reporting page for a customer:
 
