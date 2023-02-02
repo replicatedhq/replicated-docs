@@ -15,7 +15,7 @@ Released on February 2, 2023
 * Flannel CNI is no longer supported with the Docker container runtime. Containerd is required.
 
 ### Improvements {#improvements-v2023-02-02-0}
-* When upgrading multiple versions of Rook, users can download a single air gap bundle containing all versions of the Rook air gap packages, instead of one package for each version.
+* When upgrading multiple versions of Rook, users can download a single air gap bundle containing all versions of the Rook air gap packages, instead of downloading each version package separately.
 
 ## v2023.01.31-0
 
