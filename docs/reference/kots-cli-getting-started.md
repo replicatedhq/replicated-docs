@@ -91,29 +91,61 @@ To manually download and install the `kots` CLI:
 
 1. Download the kots CLI release for your operating system from the [Releases](https://github.com/replicatedhq/kots/releases/latest) page in the KOTS GitHub repository:
 
-   * **MacOS (AMD and ARM)**: Download `kots_darwin_all.tar.gz`
-   * **Linux (AMD)**: Download `kots_linux_amd64.tar.gz`
-   * **Linux (ARM)**: Download `kots_linux_arm64.tar.gz`
+   * **MacOS (AMD and ARM)**:
 
-  For air gap environments, download the kots CLI release from the download portal provided by your vendor.
+      ```bash
+      curl -L https://github.com/replicatedhq/kots/releases/latest/download/kots_darwin_all.tar.gz
+      ```
 
-1. Unarchive the binary:
+   * **Linux (AMD)**:
 
-  ```bash
-  tar xvf KOTS_BINARY
-  ```
-  Replace `KOTS_BINARY` with the kots CLI release binary that you downloaded in the previous step. For example, `kots_darwin_all.tar.gz`.
+      ```bash
+      curl -L https://github.com/replicatedhq/kots/releases/latest/download/kots_linux_amd64.tar.gz
+      ```
 
-1. Rename the `kots` executable to `kubectl-kots` and use `sudo` to move it to a directory in your PATH so that your system can access the binary:
+   * **Linux (ARM)**:
 
-  ```bash
-  sudo mv kots /PATH_TO_KOTS/kubectl-kots
-  ```
-  Replace `PATH_TO_KOTS` with the path to the directory. For example, `/usr/local/bin`.
+      ```bash
+      curl -L https://github.com/replicatedhq/kots/releases/latest/download/kots_linux_arm64.tar.gz
+      ```
 
-1. When prompted, enter your sudo password.
+ :::note
+ For air gap environments, download the kots CLI release from the download portal provided by your vendor.
+ :::
 
-  You see a message confirming that the binary was installed. For example, `Installed at /usr/local/bin/kubectl-kots`.
+1. Unarchive the `.tar.gz` file that you downloaded:
+
+   * **MacOS (AMD and ARM)**:
+
+      ```bash
+      tar xvf kots_darwin_all.tar.gz
+      ```
+   * **Linux (AMD)**:
+
+      ```bash
+      tar xvf kots_linux_amd64.tar.gz
+      ```
+   * **Linux (ARM)**: Download
+
+      ```bash
+      tar xvf kots_linux_arm64.tar.gz
+      ```
+
+1. Rename the `kots` executable to `kubectl-kots` and move it to a directory that is on your PATH. Run one of the following commands, depending on if you have write access to the target directory:
+
+   * **You have write access to the directory**:
+
+     ```bash
+     mv kots /PATH_TO_KOTS/kubectl-kots
+     ```
+     Replace `PATH_TO_KOTS` with the path to the directory. For example, `/usr/local/bin`.
+
+   * **You do _not_ have write access to the directory**: 
+
+     ```bash
+     sudo mv kots /PATH_TO_KOTS/kubectl-kots
+     ```
+     Replace `PATH_TO_KOTS` with the path to the directory. For example, `/usr/local/bin`.
 
 1. Verify the installation:
 
