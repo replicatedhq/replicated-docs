@@ -85,38 +85,38 @@ Replicated supports the following S3-compatible object stores for storing backup
 
 Run the following command to configure Velero and the storage destination. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
 
-  ```
-  kubectl kots velero configure-other-s3 \
-    --namespace NAME \
-    --endpoint ENDPOINT \
-    --region REGION \
-    --bucket BUCKET \
-    --access-key-id ACCESS_KEY_ID \
-    --secret-access-key SECRET_ACCESS_KEY
-  ```
+```
+kubectl kots velero configure-other-s3 \
+  --namespace NAME \
+  --endpoint ENDPOINT \
+  --region REGION \
+  --bucket BUCKET \
+  --access-key-id ACCESS_KEY_ID \
+  --secret-access-key SECRET_ACCESS_KEY
+```
 
-    Replace:
+Replace:
 
-    - NAME with the name of the namespace where the admin console is installed and running
-    - ENDPOINT with the s3 endpoint
-    - REGION with the region where the bucket exists 
-    - BUCKET with the name of the object storage bucket where backups should be stored
-    - ACCESS_KEY_ID with the access key id to use for accessing the bucket
-    - SECRET_ACCESS_KEY with the secret access key to use for accessing the bucket
+- NAME with the name of the namespace where the admin console is installed and running
+- ENDPOINT with the s3 endpoint
+- REGION with the region where the bucket exists 
+- BUCKET with the name of the object storage bucket where backups should be stored
+- ACCESS_KEY_ID with the access key id to use for accessing the bucket
+- SECRET_ACCESS_KEY with the secret access key to use for accessing the bucket
 
-  **Example:**
+**Example:**
 
-  ```
-  kubectl kots velero configure-other-s3 \
-    --namespace default \
-    --endpoint http://minio \
-    --region minio \
-    --bucket kots-snaps \
-    --access-key-id XXXXXXXJTJB7M2XZUV7D \
-    --secret-access-key <secret access key here>
-  ```
+```
+kubectl kots velero configure-other-s3 \
+  --namespace default \
+  --endpoint http://minio \
+  --region minio \
+  --bucket kots-snaps \
+  --access-key-id XXXXXXXJTJB7M2XZUV7D \
+  --secret-access-key <secret access key here>
+```
 
-If no Velero installation is detected, instructions are displayed for installing Velero.
+If no Velero installation is detected, instructions are displayed to install Velero and configure the storage destination.
 
 ## Configure S3-Compatible Storage for Air Gapped Environments
 
@@ -127,34 +127,34 @@ Replicated supports the following S3-compatible object stores for storing backup
 
 Run the following command to configure Velero and the storage destination. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
 
-  ```bash
-  kubectl kots velero configure-other-s3 \
-    --namespace NAME \
-    --endpoint ENDPOINT \
-    --region REGION \
-    --bucket BUCKET \
-    --access-key-id ACCESS_KEY_ID \
-    --secret-access-key SECRET_ACCESS_KEY \
-    --kotsadm-registry REGISTRY_HOSTNAME \
-    --kotsadm-namespace REGISTRY_NAMESPACE \
-    --registry-username REGISTRY_USERNAME \
-    --registry-password REGISTRY_PASSWORD
-  ```
+```bash
+kubectl kots velero configure-other-s3 \
+  --namespace NAME \
+  --endpoint ENDPOINT \
+  --region REGION \
+  --bucket BUCKET \
+  --access-key-id ACCESS_KEY_ID \
+  --secret-access-key SECRET_ACCESS_KEY \
+  --kotsadm-registry REGISTRY_HOSTNAME \
+  --kotsadm-namespace REGISTRY_NAMESPACE \
+  --registry-username REGISTRY_USERNAME \
+  --registry-password REGISTRY_PASSWORD
+```
 
-    Replace:
+Replace:
 
-    - NAME with the name of the namespace where the admin console is installed and running
-    - ENDPOINT with the s3 endpoint
-    - REGION with the region where the bucket exists 
-    - BUCKET with the name of the object storage bucket where backups should be stored
-    - ACCESS_KEY_ID with the access key id to use for accessing the bucket
-    - SECRET_ACCESS_KEY with the secret access key to use for accessing the bucket
-    - REGISTRY_HOSTNAME with the registry endpoint where the images are hosted
-    - REGISTRY_NAMESPACE with the registry namespace where the images are hosted
-    - REGISTRY_USERNAME with the username to use to authenticate with the registry
-    - REGISTRY_PASSWORD with the password to use to authenticate with the registry
+- NAME with the name of the namespace where the admin console is installed and running
+- ENDPOINT with the s3 endpoint
+- REGION with the region where the bucket exists 
+- BUCKET with the name of the object storage bucket where backups should be stored
+- ACCESS_KEY_ID with the access key id to use for accessing the bucket
+- SECRET_ACCESS_KEY with the secret access key to use for accessing the bucket
+- REGISTRY_HOSTNAME with the registry endpoint where the images are hosted
+- REGISTRY_NAMESPACE with the registry namespace where the images are hosted
+- REGISTRY_USERNAME with the username to use to authenticate with the registry
+- REGISTRY_PASSWORD with the password to use to authenticate with the registry
 
-If no Velero installation is detected, instructions are displayed for installing Velero.
+If no Velero installation is detected, instructions are displayed to install Velero and configure the storage destination.
 
 ## Next Steps
 

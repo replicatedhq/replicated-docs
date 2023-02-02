@@ -4,6 +4,10 @@
 
 You can configure a host path as your storage destination for backups.
 
+:::note
+For embedded clusters, or existing clusters where Velero is already installed, you can use the admin console to update your storage destination. In these procedures, you use the kots CLI to install Velero and configure your initial storage destination. For more information about using the admin console to update storage settings, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
+:::
+
 ## Prerequisites
 
 Complete the following items before you perform this task:
@@ -21,59 +25,55 @@ Complete the following items before you perform this task:
 
 In this procedure, you install Velero and configure your initial storage destination in online environments.
 
-:::note
-If you already have Velero installed and want to update your storage destination, you can use the admin console instead. In this procedure, you use the kots CLI to install Velero and configure your initial storage destination in online environments. For more information about using the admin console to update storage settings, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
-:::
-
 Run the following command to configure Velero and the storage destination. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
 
-  ```
-  kubectl kots velero configure-hostpath --namespace NAME --hostpath /PATH
-  ```
+```
+kubectl kots velero configure-hostpath --namespace NAME --hostpath /PATH
+```
 
-    Replace:
+Replace:
 
-    - NAME with the name of the namespace where the admin console is installed and running
-    - PATH with the path to the directory where the backups will be stored
+- NAME with the name of the namespace where the admin console is installed and running
+- PATH with the path to the directory where the backups will be stored
 
-  **Example:**
+**Example:**
 
-  ```
-  kubectl kots velero configure-hostpath --namespace default --hostpath /backups
-  ```
+```
+kubectl kots velero configure-hostpath --namespace default --hostpath /backups
+```
 
-If no Velero installation is detected, instructions are displayed for installing Velero.
+If no Velero installation is detected, instructions are displayed to install Velero and configure the storage destination.
 
 ## Configure Host Path Storage in Air Gapped Environments
 
 The kots CLI can be used to configure host path storage in air gapped environments.
 
-:::note
-If you already have Velero installed and want to update your storage destination, you can use the admin console instead. In this procedure, you use the kots CLI to install Velero and configure your initial storage destination in online environments. For more information about using the admin console to update storage settings, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
-:::
-
 Run the following command to configure Velero and the storage destination. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
 
-  ```bash
-  kubectl kots velero configure-hostpath \
-    --namespace NAME \
-    --hostpath /PATH \
-    --kotsadm-registry REGISTRY_HOSTNAME \
-    --kotsadm-namespace REGISTRY_NAMESPACE \
-    --registry-username REGISTRY_USERNAME \
-    --registry-password REGISTRY_PASSWORD
-  ```
+```bash
+kubectl kots velero configure-hostpath \
+  --namespace NAME \
+  --hostpath /PATH \
+  --kotsadm-registry REGISTRY_HOSTNAME \
+  --kotsadm-namespace REGISTRY_NAMESPACE \
+  --registry-username REGISTRY_USERNAME \
+  --registry-password REGISTRY_PASSWORD
+```
 
-    Replace:
+Replace:
 
-    - NAME with the name of the namespace where the admin console is installed and running
-    - PATH with the path to the directory where the backups will be stored
-    - REGISTRY_HOSTNAME with the registry endpoint where the images are hosted
-    - REGISTRY_NAMESPACE with the registry namespace where the images are hosted
-    - REGISTRY_USERNAME with the username to use to authenticate with the registry
-    - REGISTRY_PASSWORD with the password to use to authenticate with the registry
+- NAME with the name of the namespace where the admin console is installed and running
+- PATH with the path to the directory where the backups will be stored
+- REGISTRY_HOSTNAME with the registry endpoint where the images are hosted
+- REGISTRY_NAMESPACE with the registry namespace where the images are hosted
+- REGISTRY_USERNAME with the username to use to authenticate with the registry
+- REGISTRY_PASSWORD with the password to use to authenticate with the registry
 
-If no Velero installation is detected, instructions are displayed for installing Velero.
+If no Velero installation is detected, instructions are displayed to install Velero and configure the storage destination.
+
+:::note
+Velero does not yet support passing registry credentials during the installation, so it is normal for the Velero and Restic Pods to be in the `ErrImagePull` or `ImagePullBackOff` state after running the `velero install` command. This will resolve itself after you complete the rest of the instructions.
+:::
 
 ## Configure Host Path Storage in the Admin Console
 
@@ -97,7 +97,7 @@ To install Velero and configure host path storage for existing clusters:
 
   A dialog opens with instructions on how to set up Velero with the desired host path configuration.
 
-1. Follow the steps that are displayed in the dialog to install Velero.
+1. Follow the steps that are displayed in the dialog to install Velero and configure the storage destination.
 
   ![Snapshot Provider File System Instructions](/images/snapshot-provider-hostpath-instructions.png)
 
