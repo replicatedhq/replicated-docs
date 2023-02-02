@@ -89,28 +89,37 @@ Users in air gap environments can also follow this procedure to install the kots
 
 To manually download and install the `kots` CLI:
 
-1. Download the release for your operating system from https://github.com/replicatedhq/kots/releases/latest. Air gap customers can also download this file from the download portal provided by your vendor.
+1. Download the kots CLI release for your operating system from the [Releases](https://github.com/replicatedhq/kots/releases/latest) page in the KOTS GitHub repository:
 
-  Linux and MacOS are supported.
+   * **MacOS (AMD and ARM)**: Download `kots_darwin_all.tar.gz`
+   * **Linux (AMD)**: Download `kots_linux_amd64.tar.gz`
+   * **Linux (ARM)**: Download `kots_linux_arm64.tar.gz`
 
-  **Example:**
+  For air gap environments, download the kots CLI release from the download portal provided by your vendor.
 
-  ```bash
-  curl -L https://github.com/replicatedhq/kots/releases/latest/download/kots_linux_amd64.tar.gz
-  ```
-1. Unarchive the binary by running the following command:
-
-  ```bash
-  tar xvf kots_linux_amd64.tar.gz
-  ```
-
-1. Rename the `kots` executable to `kubectl-kots` and move the plugin to your path by running the following command:
+1. Unarchive the binary:
 
   ```bash
-  mv kots /PATH/kubectl-kots
+  tar xvf KOTS_BINARY
   ```
+  Replace `KOTS_BINARY` with the kots CLI release binary that you downloaded in the previous step. For example, `kots_darwin_all.tar.gz`.
 
-  Replace PATH with the path to the directory where your system can access the binary.
+1. Rename the `kots` executable to `kubectl-kots` and use `sudo` to move it to a directory in your PATH so that your system can access the binary:
+
+  ```bash
+  sudo mv kots /PATH_TO_KOTS/kubectl-kots
+  ```
+  Replace `PATH_TO_KOTS` with the path to the directory. For example, `/usr/local/bin`.
+
+1. When prompted, enter your sudo password.
+
+  You see a message confirming that the binary was installed. For example, `Installed at /usr/local/bin/kubectl-kots`.
+
+1. Verify the installation:
+
+   ```
+   kubectl kots --help
+   ```
 
 ## Uninstall
 
