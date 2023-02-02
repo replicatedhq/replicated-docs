@@ -545,7 +545,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Managing Backup and Restore',
+          label: 'Backup and Restore',
           items: [
             'enterprise/snapshots-understanding',
             {
