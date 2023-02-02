@@ -131,21 +131,27 @@ To manually download and install the `kots` CLI:
       tar xvf kots_linux_arm64.tar.gz
       ```
 
-1. Rename the `kots` executable to `kubectl-kots` and move it to a directory that is on your PATH. Run one of the following commands, depending on if you have write access to the target directory:
+1. Rename the `kots` executable to `kubectl-kots` and move it to one of the directories that is in your PATH environment variable. This ensures that the system can access the executable when you run kots CLI commands.
+
+   :::note
+   You can run `echo $PATH` to view the list of directories in your PATH.
+   :::
+
+   Run one of the following commands, depending on if you have write access to the target directory:
 
    * **You have write access to the directory**:
 
      ```bash
-     mv kots /PATH_TO_KOTS/kubectl-kots
+     mv kots /PATH_TO_TARGET_DIRECTORY/kubectl-kots
      ```
-     Replace `PATH_TO_KOTS` with the path to the directory. For example, `/usr/local/bin`.
+     Replace `PATH_TO_TARGET_DIRECTORY` with the path to a directory that is in your PATH environment variable. For example, `/usr/local/bin`.
 
    * **You do _not_ have write access to the directory**: 
 
      ```bash
-     sudo mv kots /PATH_TO_KOTS/kubectl-kots
+     sudo mv kots /PATH_TO_TARGET_DIRECTORY/kubectl-kots
      ```
-     Replace `PATH_TO_KOTS` with the path to the directory. For example, `/usr/local/bin`.
+     Replace `PATH_TO_TARGET_DIRECTORY` with the path to a directory that is in your PATH environment variable. For example, `/usr/local/bin`.
 
 1. Verify the installation:
 
