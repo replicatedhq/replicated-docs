@@ -83,7 +83,7 @@ Replicated supports the following S3-compatible object stores for storing backup
 - Ceph RADOS v12.2.7
 - MinIO
 
-Run the following command to configure Velero and the storage destination. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
+Run the following command to configure Velero and the storage destination in an online environment. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
 
 ```
 kubectl kots velero configure-other-s3 \
@@ -125,7 +125,7 @@ Replicated supports the following S3-compatible object stores for storing backup
 - Ceph RADOS v12.2.7
 - MinIO
 
-Run the following command to configure Velero and the storage destination. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index).
+Run the following command to configure Velero and the storage destination in an air gapped environment. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
 
 ```bash
 kubectl kots velero configure-other-s3 \
