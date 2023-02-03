@@ -10,7 +10,7 @@ For existing or embedded clusters where Velero is already installed, you can upd
 
 ## Configure AWS Storage for Online Environments
 
-In this procedure, you install Velero and configure your initial storage destination in online environments.
+In this procedure, you install Velero and configure an AWS storage destination in online environments.
 
 Snapshots does not support Amazon Simple Storage Service (Amazon S3) buckets that have a bucket policy requiring the server-side encryption header. If you want to require server-side encryption for objects, you can enable default encryption on the bucket instead. For more information about Amazon S3, see the [Amazon S3](https://docs.aws.amazon.com/s3/?icmpid=docs_homepage_featuredsvcs) documentation.
 
@@ -34,7 +34,7 @@ To install Velero and configure an AWS storage destination:
 
 ## Configure GCP Storage for Online Environments
 
-In this procedure, you install Velero and configure your initial storage destination in online environments.
+In this procedure, you install Velero and configure a GCP storage destination in online environments.
 
 To install Velero and configure a GCP storage destination:
 
@@ -55,7 +55,7 @@ To install Velero and configure a GCP storage destination:
 
 ## Configure Azure Storage for Online Environments
 
-In this procedure, you install Velero and configure your initial storage destination in online environments.
+In this procedure, you install Velero and configure an Azure storage destination in online environments.
 
 To install Velero and configure an Azure storage destination:
 
@@ -83,7 +83,7 @@ Replicated supports the following S3-compatible object stores for storing backup
 - Ceph RADOS v12.2.7
 - MinIO
 
-Run the following command to configure Velero and the storage destination in an online environment. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
+Run the following command to install Velero and configure an S3-compatible storage destination in an online environment. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
 
 ```
 kubectl kots velero configure-other-s3 \
@@ -125,7 +125,7 @@ Replicated supports the following S3-compatible object stores for storing backup
 - Ceph RADOS v12.2.7
 - MinIO
 
-Run the following command to configure Velero and the storage destination in an air gapped environment. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
+Run the following command to install Velero and configure an S3-compatible storage destination in an air gapped environment. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
 
 ```bash
 kubectl kots velero configure-other-s3 \
