@@ -25,11 +25,13 @@ below.
 
 ## Updating a Customer License Type
 
-You can update a customer license type in the Replicated vendor portal, for example, from a trial license to a paid license. An update impacts all instances that are deployed using that license. Your customer can use the Replicated admin console to synchronize the licenses on their instances. If they are changing from a trial license to a paid license, it is unlikely that the license change would prompt any changes to the application deployment itself. However, if you also modify other [License Fields](/vendor/license-fields) as part of the trial to paid conversion, for example, this may trigger actual changes to the deployed application.
+You can update a customer license type in the Replicated vendor portal, for example, from a trial license to a paid license. An update impacts all instances that are deployed using that license. Your customer can use the Replicated admin console to synchronize the licenses on their instances. 
 
-With the exception of community licenses, it is not possible for an end customer to replace one license file with another license file without completely reinstalling the Replicated app manager and your application. Using the vendor portal to change the license type prevents the end customer from having to reinstall.
+It is unlikely that the license change, such as updating from a trial license to a paid license, would prompt any changes to the application deployment itself. However, if you also modify other license fields as part of the license conversion, this can trigger actual changes to the deployed application. For more information about license fields, see [License Fields](license-fields).
 
-For more information about community licenses, see [Community Licenses](#community-licenses).
+With the exception of community licenses, it is not possible for an customer to replace one license file with another license file without completely reinstalling the application. Using the vendor portal to change the license type prevents the end customer from having to reinstall.
+
+If a customer has a community license, they can change their license file with another type of license file in the admin console without reinstalling the application. For more information about community licenses, see [Community Licenses](#community-licenses).
 
 ## Community Licenses
 
