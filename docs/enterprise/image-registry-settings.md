@@ -52,7 +52,7 @@ To configure private registry settings:
     </tr>
     <tr>
       <td>Disable Pushing Images to Registry</td>
-      <td>(Optional) Select this option to allow images to be pushed to your registry from an external process instead of from the app manager. Your images are still read from your registry when the application is deployed, but the app manager is not responsible for pushing the images.</td>
+      <td>(Optional) Select this option to disable the app manager from pushing images. Make sure that an external process is configured to push images to your registry instead. Your images are still read from your registry when the application is deployed.</td>
     </tr>
   </table>
 
