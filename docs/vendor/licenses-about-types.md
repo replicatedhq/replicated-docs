@@ -1,6 +1,6 @@
 # About Customer License Types
 
-This topic describes the types of customer licenses. It also describes the
+This topic describes the types of customer licenses, updating licenses, and the
 differences between community licenses and the other types of licenses.
 
 ## Types of Customer Licenses
@@ -25,13 +25,19 @@ below.
 
 ## Updating a Customer License Type
 
-You can update a customer license type in the Replicated vendor portal, for example, from a trial license to a paid license. An update impacts all instances that are deployed using that license. Your customer can use the Replicated admin console to synchronize the licenses on their instances. 
+You can update a customer license type in the Replicated vendor portal, for example, from a trial license to a paid license. An update impacts all instances that are deployed using that license.
 
-It is unlikely that the license change, such as updating from a trial license to a paid license, would prompt any changes to the application deployment itself. However, if you also modify other license fields as part of the license conversion, this can trigger actual changes to the deployed application. For more information about license fields, see [License Fields](license-fields).
+![Customer Page in Vendor Portal](/images/customer-license-type.png)
 
-With the exception of community licenses, it is not possible for an customer to replace one license file with another license file without completely reinstalling the application. Using the vendor portal to change the license type prevents the end customer from having to reinstall.
+[View a larger image](/images/customer-license-type.png)
 
-If a customer has a community license, they can change their license file with another type of license file in the admin console without reinstalling the application. For more information about community licenses, see [Community Licenses](#community-licenses).
+It is unlikely that the license change will prompt any changes to the application deployment itself. However, if you also modify other license fields as part of the license conversion, this can trigger changes to the deployed application. For more information about license fields, see [License Fields](license-fields).
+
+Your customer uses the Replicated admin console to synchronize the licenses on their instances. Unless a customer is upgrading from a community license, it is not possible to replace one license file with another license file without completely reinstalling the application. Using the vendor portal to change the license type prevents end customers from having to reinstall. 
+
+For more information about community licenses, see [Community Licenses](#community-licenses).
+
+
 
 ## Community Licenses
 
