@@ -163,7 +163,6 @@ const sidebars = {
         'vendor/namespaces',
         'vendor/packaging-using-tls-certs',
         'vendor/packaging-cleaning-up-jobs',
-        'vendor/packaging-rbac',
         'vendor/identity-service-configuring',
         {
           type: 'category',
@@ -203,6 +202,13 @@ const sidebars = {
         'vendor/snapshots-overview',
         'vendor/snapshots-configuring-backups',
         'vendor/snapshots-hooks',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'App Manager RBAC',
+      items: [
+        'vendor/packaging-rbac',
       ],
     },
     {
