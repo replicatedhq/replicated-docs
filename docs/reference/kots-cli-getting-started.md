@@ -125,7 +125,7 @@ To manually download and install the `kots` CLI:
       ```bash
       tar xvf kots_linux_amd64.tar.gz
       ```
-   * **Linux (ARM)**: Download
+   * **Linux (ARM)**:
 
       ```bash
       tar xvf kots_linux_arm64.tar.gz
