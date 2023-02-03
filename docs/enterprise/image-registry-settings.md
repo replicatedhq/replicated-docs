@@ -1,3 +1,6 @@
+import DockerCompatibility from "../partials/image-registry/_docker-compatibility.mdx"
+
+
 # Using Private Registries
 
 This topic describes how to configure private registry settings in the Replicated admin console.
@@ -10,8 +13,11 @@ Private registries can be used with online or air gap clusters. For embedded clu
 
 ## Prerequisites
 
-- Your domain must support a Docker V2 protocol.
-- For additional air gap requirements, see [Image Registry for Air Gap Clusters](image-registry-airgap).
+- Your domain must support a Docker V2 protocol. The app manager has been tested for compatibility with the following registries:
+
+  <DockerCompatibility/>
+
+- For additional air gap requirements, see [Image Registry Requirements for Air Gap Clusters](image-registry-airgap).
 
 ## Configure Private Registry Settings
 
