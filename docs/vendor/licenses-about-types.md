@@ -35,7 +35,7 @@ It is unlikely that the license change will prompt any changes to the applicatio
 
 Your customer uses the Replicated admin console to synchronize the licenses on their instances. Unless a customer is upgrading from a community license, it is not possible to replace one license file with another license file without completely reinstalling the application. Using the vendor portal to change the license type prevents end customers from having to reinstall. 
 
-For more information about community licenses, see [Community Licenses](#community-licenses).
+Updating from a community license to another type cannot be reverted. For more information about community licenses, see [Community Licenses](#community-licenses).
 
 
 
