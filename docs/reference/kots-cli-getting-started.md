@@ -89,28 +89,75 @@ Users in air gap environments can also follow this procedure to install the kots
 
 To manually download and install the `kots` CLI:
 
-1. Download the release for your operating system from https://github.com/replicatedhq/kots/releases/latest. Air gap customers can also download this file from the download portal provided by your vendor.
+1. Download the kots CLI release for your operating system from the [Releases](https://github.com/replicatedhq/kots/releases/latest) page in the KOTS GitHub repository:
 
-  Linux and MacOS are supported.
+   * **MacOS (AMD and ARM)**:
 
-  **Example:**
+      ```bash
+      curl -L https://github.com/replicatedhq/kots/releases/latest/download/kots_darwin_all.tar.gz
+      ```
 
-  ```bash
-  curl -L https://github.com/replicatedhq/kots/releases/latest/download/kots_linux_amd64.tar.gz
-  ```
-1. Unarchive the binary by running the following command:
+   * **Linux (AMD)**:
 
-  ```bash
-  tar xvf kots_linux_amd64.tar.gz
-  ```
+      ```bash
+      curl -L https://github.com/replicatedhq/kots/releases/latest/download/kots_linux_amd64.tar.gz
+      ```
 
-1. Rename the `kots` executable to `kubectl-kots` and move the plugin to your path by running the following command:
+   * **Linux (ARM)**:
 
-  ```bash
-  mv kots /PATH/kubectl-kots
-  ```
+      ```bash
+      curl -L https://github.com/replicatedhq/kots/releases/latest/download/kots_linux_arm64.tar.gz
+      ```
 
-  Replace PATH with the path to the directory where your system can access the binary.
+ :::note
+ For air gap environments, download the kots CLI release from the download portal provided by your vendor.
+ :::
+
+1. Unarchive the `.tar.gz` file that you downloaded:
+
+   * **MacOS (AMD and ARM)**:
+
+      ```bash
+      tar xvf kots_darwin_all.tar.gz
+      ```
+   * **Linux (AMD)**:
+
+      ```bash
+      tar xvf kots_linux_amd64.tar.gz
+      ```
+   * **Linux (ARM)**:
+
+      ```bash
+      tar xvf kots_linux_arm64.tar.gz
+      ```
+
+1. Rename the `kots` executable to `kubectl-kots` and move it to one of the directories that is in your PATH environment variable. This ensures that the system can access the executable when you run kots CLI commands.
+
+   :::note
+   You can run `echo $PATH` to view the list of directories in your PATH.
+   :::
+
+   Run one of the following commands, depending on if you have write access to the target directory:
+
+   * **You have write access to the directory**:
+
+     ```bash
+     mv kots /PATH_TO_TARGET_DIRECTORY/kubectl-kots
+     ```
+     Replace `PATH_TO_TARGET_DIRECTORY` with the path to a directory that is in your PATH environment variable. For example, `/usr/local/bin`.
+
+   * **You do _not_ have write access to the directory**: 
+
+     ```bash
+     sudo mv kots /PATH_TO_TARGET_DIRECTORY/kubectl-kots
+     ```
+     Replace `PATH_TO_TARGET_DIRECTORY` with the path to a directory that is in your PATH environment variable. For example, `/usr/local/bin`.
+
+1. Verify the installation:
+
+   ```
+   kubectl kots --help
+   ```
 
 ## Uninstall
 
