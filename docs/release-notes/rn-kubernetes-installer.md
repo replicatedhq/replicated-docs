@@ -17,6 +17,7 @@ Released on February 6, 2023
 
 ### Bug Fixes {#bug-fixes-v2023-02-06-0}
 * Fixes an issue where the prometheus-adapter is not able to install custom metrics due to an incorrect url to the prometheus service.
+* Running kubectl commands with Kuberentes version 1.26 will no longer output the warning "Got empty response for: custom.metrics.k8s.io/v1beta1".
 
 ## v2023.02.02-0
 
