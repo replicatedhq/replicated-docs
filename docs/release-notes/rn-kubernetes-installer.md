@@ -4,6 +4,21 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.02.06-0
+
+Released on February 6, 2023
+
+### New Features {#new-features-v2023-02-06-0}
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.21.0.
+
+### Improvements {#improvements-v2023-02-06-0}
+* If there are multiple network interfaces on a single host, the [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) prompts users to choose an interface or use the interface of the [private-address](https://kurl.sh/docs/install-with-kurl/advanced-options#reference) flag when specified, instead of using the default gateway interface.
+* Prompts users when preflight warnings occur, and allows users to cancel the installation and fix the root cause before resuming the installation.
+
+### Bug Fixes {#bug-fixes-v2023-02-06-0}
+* Fixes an issue where the Prometheus adapter was not able to install custom metrics due to an incorrect URL to the Prometheus service.
+* Fixes an issue where running kubectl commands with Kubernetes version 1.26 was generating the warning "Got empty response for: custom.metrics.k8s.io/v1beta1".
+
 ## v2023.02.02-0
 
 Released on February 2, 2023
