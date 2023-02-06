@@ -12,12 +12,12 @@ Released on February 6, 2023
 * Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.21.0.
 
 ### Improvements {#improvements-v2023-02-06-0}
-* If there are multiple network interfaces on a single host, rather than using the default gateway interface, the [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) will prompt the user to choose an interface or use the interface of the [private-address](https://kurl.sh/docs/install-with-kurl/advanced-options#reference) flag when specified.
-* Adds a prompt when preflight warnings are faced to ensure that the user is aware and given the opportunity to cancel the installation to and fix the root cause before resuming.
+* If there are multiple network interfaces on a single host, the [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) prompts users to choose an interface or use the interface of the [private-address](https://kurl.sh/docs/install-with-kurl/advanced-options#reference) flag when specified, instead of using the default gateway interface.
+* Prompts users when preflight warnings occur to ensure that users are aware, and gives the opportunity to cancel the installation and fix the root cause before resuming.
 
 ### Bug Fixes {#bug-fixes-v2023-02-06-0}
-* Fixes an issue where the prometheus-adapter is not able to install custom metrics due to an incorrect url to the prometheus service.
-* Running kubectl commands with Kuberentes version 1.26 will no longer output the warning "Got empty response for: custom.metrics.k8s.io/v1beta1".
+* Fixes an issue where the Prometheus adapter was not able to install custom metrics due to an incorrect URL to the Prometheus service.
+* Fixes an issue where running kubectl commands with Kubernetes version 1.26 was generating the warning "Got empty response for: custom.metrics.k8s.io/v1beta1".
 
 ## v2023.02.02-0
 
