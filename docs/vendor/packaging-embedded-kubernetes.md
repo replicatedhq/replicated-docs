@@ -54,7 +54,11 @@ To include the Kubernetes installer in the application release:
 
 1. Copy the installer YAML from the kURL website and paste it into a new file in your release.
 
-1. Save and promote the release to your development environment to test your changes.
+1. Click **Save**. This saves a draft that you can continue to edit until you promote it.
+
+1. Click **Promote**. The release appears on the Releases page.
+
+  To make changes after promoting, create a new release.
 
 ### Include Supporting Preflight Checks
 
@@ -115,9 +119,28 @@ To create a separate Kubernetes installer:
     For more information about pinning Kubernetes versions, see [Versions](https://kurl.sh/docs/create-installer/#versions) and [Versioned Releases](https://kurl.sh/docs/install-with-kurl/#versioned-releases) in the kURL open source documentation.
     :::
 
-1. Click **Save installer**.
+1. Click **Save installer**. You can continue to edit your file until it is promoted.
 
-1. Save and promote a release to your development environment to test your changes.
+1. Click **Promote**. In the Promote Release dialog that opens, edit the fields:
+
+    <table>
+      <tr>
+        <th width="30%">Field</th>
+        <th width="70%">Description</th>
+      </tr>
+      <tr>
+        <td>Channel</td>
+        <td>Select the channel where you want to promote the release. The defaults are Stable, Beta, and Unstable. If you created custom channels, they are listed here also.</td>
+      </tr>
+      <tr>
+        <td>Version label</td>
+        <td>Enter a version label.</td>
+      </tr>
+    </table>
+
+1. Click **Promote** again. The installer appears on the Kubernetes Installer page.
+
+  To make changes after promoting, create a new Kubernetes installer.
 
 ## Customize Host Preflight Checks
 
