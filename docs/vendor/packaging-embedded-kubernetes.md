@@ -58,7 +58,7 @@ To include the Kubernetes installer in the application release:
 
 1. Click **Promote**. The release appears on the Releases page.
 
-  If you want to make changes after promoting, you must create a new release.
+  To make changes after promoting, create a new release.
 
 ### Include Supporting Preflight Checks
 
@@ -140,7 +140,7 @@ To create a separate Kubernetes installer:
 
 1. Click **Promote** again. The installer appears on the Kubernetes Installer page.
 
-  If you want to make changes after promoting, you must create a new Kubernetes installer.
+  To make changes after promoting, create a new Kubernetes installer.
 
 ## Customize Host Preflight Checks
 
