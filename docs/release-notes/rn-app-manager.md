@@ -25,7 +25,7 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 ### Bug Fixes {#bug-fixes-1-94-0}
 * Fixes an issue where the config icon would render when there is no config.
 * kots/web: Fixes layout of deploy / redeploy network errors.
-* Fixes an issue where if a user deletes a pending support bundle, user can generate a new support bundle.
+* Fixes an issue where a user could not generate a new support bundle after deleting a support bundle in progress.
 * Fixes the text colors for each state of the status informers.
 * Fixes a bug where the app icon for latest version was shown instead of the icon for the current version.
 * Fixes an issue where backup logs would fail to download if a log line exceeded the default `bufio.Scanner` buffer size of 64KB. This limit has been increased to 1MB in the admin console.
