@@ -120,7 +120,9 @@ If no Velero installation is detected, instructions are displayed to install Vel
 
 ## Configure S3-Compatible Storage for Air Gapped Environments
 
-In Replicated app manager 1.94.0 and later, the following S3-compatible object stores are supported for storing backups with Velero:
+> Introduced in the Replicated app manager v1.94.0
+
+The following S3-compatible object stores are supported for storing backups with Velero:
 
 - Ceph RADOS v12.2.7
 - MinIO
