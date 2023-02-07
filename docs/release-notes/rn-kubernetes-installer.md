@@ -4,6 +4,13 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.02.06-1
+
+Released on February 6, 2023
+
+### Bug Fixes {#bug-fixes-v2023-02-06-1}
+* Fixes an issue in [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.9.5 where restores fail to pull the `velero-restic-restore-helper` image in air gapped environments.
+
 ## v2023.02.06-0
 
 Released on February 6, 2023
