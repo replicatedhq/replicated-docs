@@ -21,7 +21,7 @@ Private registries can be used with online or air gap clusters. For embedded clu
 
 ## Configure Private Registry Settings
 
-You configure the application image to use a private registry in the admin console, unless you are using a kURL Registry add-on. You can also disable the connection or remove the registry settings if needed.
+You configure the application to use a private registry in the admin console, unless you are using a kURL Registry add-on. You can also disable the connection or remove the registry settings if needed.
 
 To configure private registry settings:
 
