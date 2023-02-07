@@ -20,7 +20,7 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 * Updates github.com/dexidp/dex go mod to resolve CVE-2022-39222 with medium severity.
 * Updates rqlite/rqlite image to 7.13.1 to resolve CVE-2022-41721 with high severity and CVE-2022-41717 with medium severity.
 * Updates replicated/local-volume-provider image to v0.4.4 to resolve CVE-2022-41721 with with high severity.
-* Deprecates the `kots velero print-fs-instructions` command because its functionality is replaced by the improved `kots velero configure-hostpath` and `kots velero configure-nfs` commands.
+* Deprecates the [kots velero print-fs-instructions](/reference/kots-cli-velero-print-fs-instructions) command because its functionality is replaced by the improved `kots velero configure-hostpath` and `kots velero configure-nfs` commands.
 
 ### Bug Fixes {#bug-fixes-1-94-0}
 * Fixes an issue where the config icon would render when there is no config.
