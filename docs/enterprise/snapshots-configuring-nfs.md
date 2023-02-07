@@ -1,6 +1,6 @@
 # Configuring an NFS Storage Destination
 
-> Introduced in the Replicated app manager v1.33.0
+> Updated in Replicated app manager v1.49.0
 
 This topic describes how to install Velero and configure a Network File System (NFS) as your storage destination for backups.
 
