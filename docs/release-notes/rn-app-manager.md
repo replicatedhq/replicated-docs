@@ -4,6 +4,32 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.94.0
+
+Released on February 7, 2023
+
+Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
+
+### New Features {#new-features-1-94-0}
+* Updates the kots velero configure-nfs and kots velero configure-hostpath commands to remove required manual steps and better automate the workflow. Users are now given a command to install Velero without a backup storage location. Then the user reruns the configure command to automatically configure the storage destination.
+* Updates the kots velero subcommands for configuring storage destinations, with instructions on how to install Velero if it is not yet installed.
+* The instructions displayed in the admin console for configuring an NFS or host path snapshot storage destination no longer use the kots velero print-fs-instructions command. Instead they use the kots velero configure-nfs and kots velero configure-hostpath commands to instruct the user to install Velero and configure the storage destination.
+* Deprecates the kots velero print-fs-instructions command. This command was updated in light of changes to the kots velero configure-hostpath  and kots velero configure-nfs commands, but it is no longer needed because of those improvements.
+
+### Improvements {#improvements-1-94-0}
+* Updates the golang.org/x/net module in the kurl-proxy image to resolve HIGH CVE-2022-41721.
+* Updates github.com/dexidp/dex go mod to resolve CVE-2022-39222 with medium severity.
+* Updates rqlite/rqlite image to 7.13.1 to resolve CVE-2022-41721 with high severity and CVE-2022-41717 with medium severity.
+* Updates replicated/local-volume-provider image to v0.4.4 to resolve CVE-2022-41721 with with high severity.
+
+### Bug Fixes {#bug-fixes-1-94-0}
+* Fixes an issue where the config icon would render when there is no config.
+* kots/web: fixes layout of deploy / redeploy network errors.
+* Fixes an issue where if a user deletes a pending support bundle, user can generate a new support bundle.
+* Fixes the text colors for each state the status informers may be in.
+* fix a bug where app icon was shown from latest version instead of current version.
+* Fixes an issue where backup logs would fail to download if a log line exceeded the default `bufio.Scanner` buffer size of 64KB. This limit has been increased to 1MB in the admin console.
+
 ## 1.93.1
 
 Released on January 27, 2023
