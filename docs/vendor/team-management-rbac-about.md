@@ -46,18 +46,20 @@ The most specific rule definition is always applied, when compared with less spe
 
 ### Rule Order Examples
 
-In the following example, a policy grants access to promote releases to any channel except channel ID `123456`.
+In the following example, a policy grants access to promote releases to any channel except for the `Stable` channel using the rule pattern `kots/app/[:appId]/channel/[:channelId]/promote`. 
+
+Note that channel ID (e.g. `1eg7CyEofYSmVAnK0pEKUlv36Y3`) must be specified instead of channel name (e.g. `Stable`). Channel ID can be found by navigating to the release history of a channel and copying the ID from the release history URL. For example, the channel ID for the following URL would be `1eg7CyEofYSmVAnK0pEKUlv36Y3`: https://vendor.replicated.com/apps/admin/channels/1eg7CyEofYSmVAnK0pEKUlv36Y3?page=0
 
 ```json
 {
   "v1": {
-    "name": "No Access To Channel ID 123456",
+    "name": "No Access To Stable Channel",
     "resources": {
       "allowed": [
         "**/*"
       ],
       "denied": [
-        "kots/app/*/channel/123456/promote"
+        "kots/app/*/channel/1eg7CyEofYSmVAnK0pEKUlv36Y3/promote"
       ]
     }
   }
