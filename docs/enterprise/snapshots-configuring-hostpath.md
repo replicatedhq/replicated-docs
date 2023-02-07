@@ -1,7 +1,5 @@
 # Configuring a Host Path Storage Destination
 
-> Updated in Replicated app manager v1.94.0
-
 This topic describes how to install Velero and configure a host path as your storage destination for backups.  
 
 :::note
@@ -62,7 +60,7 @@ Replace:
 If no Velero installation is detected, instructions are displayed to install Velero and configure the storage destination.
 
 :::note
-(App manager 1.49.0 and later) Velero does not support passing registry credentials during the installation, so it is typical for the Velero and Restic Pods to be in the `ErrImagePull` or `ImagePullBackOff` state after running the `velero install` command. This situation resolves itself after you complete the instructions.
+Velero does not support passing registry credentials during the installation, so it is typical for the Velero and Restic Pods to be in the `ErrImagePull` or `ImagePullBackOff` state after running the `velero install` command. In app manager 1.94.0 and later, this situation resolves itself after you complete the instructions.
 :::
 
 ## Configure Host Path Storage in the Admin Console
