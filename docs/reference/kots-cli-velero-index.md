@@ -20,4 +20,3 @@ The following `kots velero` commands are supported:
 - [`configure-nfs`](kots-cli-velero-configure-nfs): Configures NFS as the storage destination.
 - [`configure-hostpath`](kots-cli-velero-configure-hostpath): Configures a host path as the storage destination.
 - [`ensure-permissions`](kots-cli-velero-ensure-permissions): Allows the Replicated admin console to access Velero.
-- [`print-fs-instructions`](kots-cli-velero-print-fs-instructions): Prints instructions for setting up Velero with the current file system configuration.

@@ -1,6 +1,10 @@
 # velero print-fs-instructions
 
-Print instructions for setting up Velero with the current file system configuration (e.g. NFS, Host Path, etc..)
+:::note
+This command is deprecated. Use [kots velero configure-hostpath](/reference/kots-cli-velero-configure-hostpath) or [kots velero configure-nfs](/reference/kots-cli-velero-configure-nfs) instead.
+:::
+
+Prints instructions for setting up a file system as the snapshots storage destination (such as NFS or host path).
 
 ### Usage
 
@@ -14,7 +18,6 @@ kubectl kots velero print-fs-instructions [flags]
 | ----------------- | ------ | ------------------------------------------------------------------- |
 | `-h, --help`      |        | help for ensure-permissions |
 | `-n, --namespace` | string | the namespace of the admin console _(required)_ |
-| `--output` | string | output format. supported values: json |
 
 ### Example
 
@@ -23,5 +26,3 @@ Basic
 ```bash
 kubectl kots velero print-fs-instructions --namespace kots-sentry
 ```
-
-Note: when using the `json` output format, the printed credentials will be Base64 encoded.

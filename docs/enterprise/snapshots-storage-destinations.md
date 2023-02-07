@@ -5,12 +5,12 @@ This topic describes installing Velero and configuring storage for Amazon Web Se
 To configure host path or NFS as a storage destination, see [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath) and [Configuring an NFS Storage Destination](snapshots-configuring-nfs).
 
 :::note
-If you already have Velero installed and want to update your storage destination, you can use the admin console instead. In these procedures, you use the kots CLI to install Velero and configure your initial storage destination in online environments. For more information about using the admin console to update storage settings, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
+For existing or embedded clusters where Velero is already installed, you can update your storage destination in the admin console. For more information, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
 :::
 
 ## Configure AWS Storage for Online Environments
 
-In this procedure, you install Velero and configure your initial storage destination in online environments.
+In this procedure, you install Velero and configure an AWS storage destination in online environments.
 
 Snapshots does not support Amazon Simple Storage Service (Amazon S3) buckets that have a bucket policy requiring the server-side encryption header. If you want to require server-side encryption for objects, you can enable default encryption on the bucket instead. For more information about Amazon S3, see the [Amazon S3](https://docs.aws.amazon.com/s3/?icmpid=docs_homepage_featuredsvcs) documentation.
 
@@ -34,7 +34,7 @@ To install Velero and configure an AWS storage destination:
 
 ## Configure GCP Storage for Online Environments
 
-In this procedure, you install Velero and configure your initial storage destination in online environments.
+In this procedure, you install Velero and configure a GCP storage destination in online environments.
 
 To install Velero and configure a GCP storage destination:
 
@@ -55,7 +55,7 @@ To install Velero and configure a GCP storage destination:
 
 ## Configure Azure Storage for Online Environments
 
-In this procedure, you install Velero and configure your initial storage destination in online environments.
+In this procedure, you install Velero and configure an Azure storage destination in online environments.
 
 To install Velero and configure an Azure storage destination:
 
@@ -83,14 +83,80 @@ Replicated supports the following S3-compatible object stores for storing backup
 - Ceph RADOS v12.2.7
 - MinIO
 
-In this procedure, you install Velero and configure your initial storage destination in online environments.
+Run the following command to install Velero and configure an S3-compatible storage destination in an online environment. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
 
-To install Velero and configure an S3-compatible storage destination:
+```
+kubectl kots velero configure-other-s3 \
+  --namespace NAME \
+  --endpoint ENDPOINT \
+  --region REGION \
+  --bucket BUCKET \
+  --access-key-id ACCESS_KEY_ID \
+  --secret-access-key SECRET_ACCESS_KEY
+```
 
-1. Follow the instructions for installing Velero with these providers. For more information, see [S3-Compatible object store providers](https://velero.io/docs/v1.6/supported-providers/#s3-compatible-object-store-providers) in the Velero documentation.
+Replace:
 
-1. Run the appropriate `velero install` command with the additional flags `--use-restic` and `--use-volume-snapshots=false`.
+- NAME with the name of the namespace where the admin console is installed and running
+- ENDPOINT with the s3 endpoint
+- REGION with the region where the bucket exists 
+- BUCKET with the name of the object storage bucket where backups should be stored
+- ACCESS_KEY_ID with the access key id to use for accessing the bucket
+- SECRET_ACCESS_KEY with the secret access key to use for accessing the bucket
 
+**Example:**
+
+```
+kubectl kots velero configure-other-s3 \
+  --namespace default \
+  --endpoint http://minio \
+  --region minio \
+  --bucket kots-snaps \
+  --access-key-id XXXXXXXJTJB7M2XZUV7D \
+  --secret-access-key mysecretkey
+```
+
+If no Velero installation is detected, instructions are displayed to install Velero and configure the storage destination.
+
+## Configure S3-Compatible Storage for Air Gapped Environments
+
+> Introduced in the Replicated app manager v1.94.0
+
+The following S3-compatible object stores are supported for storing backups with Velero:
+
+- Ceph RADOS v12.2.7
+- MinIO
+
+Run the following command to install Velero and configure an S3-compatible storage destination in an air gapped environment. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
+
+```bash
+kubectl kots velero configure-other-s3 \
+  --namespace NAME \
+  --endpoint ENDPOINT \
+  --region REGION \
+  --bucket BUCKET \
+  --access-key-id ACCESS_KEY_ID \
+  --secret-access-key SECRET_ACCESS_KEY \
+  --kotsadm-registry REGISTRY_HOSTNAME \
+  --kotsadm-namespace REGISTRY_NAMESPACE \
+  --registry-username REGISTRY_USERNAME \
+  --registry-password REGISTRY_PASSWORD
+```
+
+Replace:
+
+- NAME with the name of the namespace where the admin console is installed and running
+- ENDPOINT with the s3 endpoint
+- REGION with the region where the bucket exists 
+- BUCKET with the name of the object storage bucket where backups should be stored
+- ACCESS_KEY_ID with the access key id to use for accessing the bucket
+- SECRET_ACCESS_KEY with the secret access key to use for accessing the bucket
+- REGISTRY_HOSTNAME with the registry endpoint where the images are hosted
+- REGISTRY_NAMESPACE with the registry namespace where the images are hosted
+- REGISTRY_USERNAME with the username to use to authenticate with the registry
+- REGISTRY_PASSWORD with the password to use to authenticate with the registry
+
+If no Velero installation is detected, instructions are displayed to install Velero and configure the storage destination.
 
 ## Next Steps
 

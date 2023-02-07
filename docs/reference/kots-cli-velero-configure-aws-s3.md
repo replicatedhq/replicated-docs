@@ -17,7 +17,7 @@ kubectl kots velero configure-aws-s3 [subcommand]
 |--------------|------|--------------------------|
 | `-h, --help` |      | help for configure-aws-s3 |
 
-### access-keys
+### access-key
 
 ```bash
 kubectl kots velero configure-aws-s3 access-key [flags]
