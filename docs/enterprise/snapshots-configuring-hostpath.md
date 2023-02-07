@@ -62,7 +62,7 @@ Replace:
 If no Velero installation is detected, instructions are displayed to install Velero and configure the storage destination.
 
 :::note
-Velero does not support passing registry credentials during the installation, so it is typical for the Velero and Restic Pods to be in the `ErrImagePull` or `ImagePullBackOff` state after running the `velero install` command. This situation resolves itself after you complete the instructions.
+(App manager 1.49.0 and later) Velero does not support passing registry credentials during the installation, so it is typical for the Velero and Restic Pods to be in the `ErrImagePull` or `ImagePullBackOff` state after running the `velero install` command. This situation resolves itself after you complete the instructions.
 :::
 
 ## Configure Host Path Storage in the Admin Console
