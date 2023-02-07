@@ -96,7 +96,7 @@ The app manager stores version history, application metadata, and other small am
 
 In addition to the version history, application metadata, and other data for managing the application mentioned above, the app manager also stores support bundle and application archive data in the Kubernetes installer cluster. For multi-node clusters that use OpenEBS Local PV, MinIO is also required to provide object storage for support bundle and application archive data that can be distributed across multiple nodes in the cluster.
 
-The kURL ECKO add-on provides an operator that manages data in rqlite and in the MinIO deployment to ensure that the data is properly distributed across multiple nodes in the cluster and has high availability. For more information, see [ECKO Add-on](https://kurl.sh/docs/add-ons/ekco) in the kURL documentation.
+The kURL EKCO add-on provides an operator that manages data in rqlite and in the MinIO deployment to ensure that the data is properly distributed across multiple nodes in the cluster and has high availability. For more information, see [EKCO Add-on](https://kurl.sh/docs/add-ons/ekco) in the kURL documentation.
 
 With both OpenEBS Local PV and MinIO in the Kubernetes installer cluster, the app manager uses OpenEBS Local PV to provision the PVs on each node that MinIO uses for local storage. Without MinIO, the app manager stores support bundle and application archive data locally in a PV on a single node in the cluster, which can cause loss of data if the node is unavailable.
 
@@ -110,7 +110,7 @@ To use the OpenEBS add-on for multi-node Kubernetes installer clusters, your Kub
 
 * You must include the MinIO add-on to store support bundle and application archive data. See [MinIO Add-on](https://kurl.sh/docs/add-ons/minio) in the kURL documentation.
  
-* You must include the kURL ECKO add-on to ensure that data in rqlite and MinIO is distributed across multiple nodes in the cluster. See [ECKO Add-on](https://kurl.sh/docs/add-ons/ekco) in the kURL documentation.
+* You must include the kURL EKCO add-on to ensure that data in rqlite and MinIO is distributed across multiple nodes in the cluster. See [EKCO Add-on](https://kurl.sh/docs/add-ons/ekco) in the kURL documentation.
 
 #### OpenEBS and MinIO Add-ons Example
 
@@ -139,7 +139,7 @@ The app manager stores version history, application metadata, and other small am
 
 In addition to the version history, application metadata, and other data for managing the application mentioned above, the app manager also stores support bundle and application archive data in the Kubernetes installer cluster. For multi-node Kubernetes installers clusters that use the Rook add-on, the support bundle and application archive data is stored in the Ceph object store.
 
-The kURL ECKO add-on manages data in Ceph and in rqlite to ensure that the data is properly distributed across multiple nodes in the cluster and has high availability. The ECKO operator also performs several tasks to maintain the health of the Ceph cluster. For more information about how the ECKO add-on manages data in Rook Ceph, see [Rook](https://kurl.sh/docs/add-ons/ekco#rook) in _ECKO add-on_ in the kURL documentation.
+The kURL EKCO add-on manages data in Ceph and in rqlite to ensure that the data is properly distributed across multiple nodes in the cluster and has high availability. The EKCO operator also performs several tasks to maintain the health of the Ceph cluster. For more information about how the EKCO add-on manages data in Rook Ceph, see [Rook](https://kurl.sh/docs/add-ons/ekco#rook) in _EKCO add-on_ in the kURL documentation.
 
 #### Requirements
 
@@ -149,7 +149,7 @@ To use the Rook add-on for multi-node Kubernetes installer clusters, your Kubern
 
    For Rook Ceph versions earlier than 1.4.3, a dedicated block device is recommended in production clusters. Running distributed storage such as Rook on block devices is recommended for improved data stability and performance.
 
-* You must include the ECKO add-on to ensure that data in the cluster is highly available. See [Rook](https://kurl.sh/docs/add-ons/ekco#rook) in _ECKO add-on_ in the kURL documentation.
+* You must include the EKCO add-on to ensure that data in the cluster is highly available. See [Rook](https://kurl.sh/docs/add-ons/ekco#rook) in _EKCO add-on_ in the kURL documentation.
 
 #### Rook Add-on Example
 
