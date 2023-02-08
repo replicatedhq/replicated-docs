@@ -37,11 +37,11 @@ The app manager is based on the open source KOTS project. The app manager versio
 | v1.66 to v1.70 | v1.23 |
 | v1.61 to v1.65 | v1.23 |
 
-## Minimum System Requirements
+## Existing Cluster Requirements
 
-This section describes the minimum system requirements for installing the Replicated admin console on an existing cluster or on an embedded cluster created by the Replicated Kubernetes installer.
+To install the app manager in an existing cluster, your environment must meet the following minimum requirements.
 
-### Existing Cluster Requirements
+### Minimum System Requirements
 
 To install the admin console on an existing cluster, the cluster must meet the following requirements:
 
@@ -51,11 +51,6 @@ To install the admin console on an existing cluster, the cluster must meet the f
    For more information about the versions of Kubernetes that are compatible with each version of KOTS, see [Kubernetes Version Compatibility](#kubernetes-version-compatibility) above.
 * **OpenShift version compatibility**: For Red Hat OpenShift clusters, the version of OpenShift must use a supported Kubernetes version. For more information about supported Kubernetes versions, see [Kubernetes Version Compatibility](#kubernetes-version-compatibility) above.
 * **Storage class**: The cluster must have an existing storage class available. For more information, see [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) in the Kubernetes documentation.
-* **Role-based access control (RBAC)**: Replicated requires the following RBAC permissions on the cluster:
-   * An existing namespace and an RBAC binding that permits the user of the kubectl command-line tool to create workloads, ClusterRoles, and ClusterRoleBindings.
-   * cluster-admin permissions to create namespaces and assign RBAC roles across the cluster.
-
-   If the `requireMinimalRBACPrivileges` property is set to `true` in the Application custom resource manifest, or if the `supportMinimalRBACPrivileges` property is set to `true` in the Application custom resource manifest and the `--use-minimal-rbac` flag is passed to the `kots install` command, the app manager does not require the ability to create ClusterRoles and ClusterRoleBindings and uses a namespace-scoped Role and RoleBinding instead. For more information about the Application custom resource, see [Application](../reference/custom-resource-application) in _Custom Resources_.
 * **Port forwarding**: To support port forwarding, Kubernetes clusters require that the SOcket CAT (socat) package is installed on each node.
 
    If the package is not installed on each node in the cluster, you see the following error message when the installation script attempts to connect to the admin console: `unable to do port forwarding: socat not found`.
@@ -64,15 +59,119 @@ To install the admin console on an existing cluster, the cluster must meet the f
 
    If the output of the `which socat` command is `socat not found`, then you must install the package that provides the socat command. The name of this package can vary depending on the node's operating system.
 
+### Cluster RBAC Requirements
+
+The user that runs the installation command must have at least the minimum role-based access control (RBAC) permissions that are required by the app manager. If the user does not have the required RBAC permissions, then an error message displays: `Current user has insufficient privileges to install Admin Console`.
+
+The required RBAC permissions vary depending on if the user attempts to install the app manager with cluster-scoped access or namespace-scoped access:
+* [Cluster-scoped RBAC Requirements (Default)](#cluster-scoped) 
+* [Namespace-scoped RBAC Requirements]({#namespace-scoped})
+   
+#### Cluster-scoped RBAC Requirements (Default) {#cluster-scoped}
+
+By default, the app manager requires cluster-scoped access. With cluster-scoped access, a Kubernetes ClusterRole and ClusterRoleBinding are created that grant the app manager access to all resources across all namespaces in the cluster.
+
+To install the app manager with cluster-scoped access, the user must meet the following requirements:
+* The user must be able to create workloads, ClusterRoles, and ClusterRoleBindings. 
+* The user must have cluster-admin permissions to create namespaces and assign RBAC roles across the cluster.
+
+#### Namespace-scoped RBAC Requirements {#namespace-scoped}
+
+Alternatively, the app manager can be installed with namespace-scoped access. With namespace-scoped access, a Kubernetes Role and RoleBinding are created that grant the app manager permissions only in the namespace where it is installed.
+
 :::note
-Root access on nodes or workstations is *not* required to install an application on an existing cluster.
+Depending on the application, namespace-scoped access for the app manager is required, optional, or not supported. Reach out to your software vendor for application-specific requirements.
 :::
 
-### Kubernetes Installer Cluster Requirements {#embedded-cluster-requirements}
+To install the app manager with namespace-scoped access, the user must have _one_ of the following in the target namespace:
 
-To install the admin console on an embedded cluster created by the Replicated Kubernetes installer, your environment must meet the following requirements.
+* **Wildcard permissions (Default)**: By default, the app manager attempts to create the following Role to acquire wildcard (`* * *`) permissions in the target namespace:
 
-#### Minimum System Requirements
+   ```yaml
+   apiVersion: "rbac.authorization.k8s.io/v1"
+   kind: "Role"
+   metadata:
+   name: "kotsadm-role"
+   rules:
+   - apiGroups: ["*"]
+      resources: ["*"]
+      verb: "*"
+    ```
+   
+   To support this default behavior, the user must also have `* * *` permissions in the target namespace.
+
+* **App manager-specific RBAC permissions**: Alternatively, to install without wildcard permissions in the namespace, the user must have the minimum app manager-specific permissions as defined in the following Kubernetes RBAC objects:
+
+   ```yaml
+   apiVersion: v1
+   kind: ServiceAccount
+   metadata:
+   labels:
+      kots.io/backup: velero
+      kots.io/kotsadm: "true"
+   name: kotsadm
+   ---
+   apiVersion: rbac.authorization.k8s.io/v1
+   kind: Role
+   metadata:
+   labels:
+      kots.io/backup: velero
+      kots.io/kotsadm: "true"
+   name: kotsadm-role
+   rules:
+   - apiGroups: [""]
+      resources: ["configmaps", "persistentvolumeclaims", "pods", "secrets", "services", "limitranges"]
+      verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+   - apiGroups: ["apps"]
+      resources: ["daemonsets", "deployments", "statefulsets"]
+      verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+   - apiGroups: ["batch"]
+      resources: ["jobs", "cronjobs"]
+      verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+   - apiGroups: ["networking.k8s.io", "extensions"]
+      resources: ["ingresses"]
+      verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+   - apiGroups: [""]
+      resources: ["namespaces", "endpoints", "serviceaccounts"]
+      verbs: ["get"]
+   - apiGroups: ["authorization.k8s.io"]
+      resources: ["selfsubjectaccessreviews", "selfsubjectrulesreviews"]
+      verbs: ["create"]
+   - apiGroups: ["rbac.authorization.k8s.io"]
+      resources: ["roles", "rolebindings"]
+      verbs: ["get"]
+   - apiGroups: [""]
+      resources: ["pods/log", "pods/exec"]
+      verbs: ["get", "list", "watch", "create"]
+   - apiGroups: ["batch"]
+      resources: ["jobs/status"]
+      verbs: ["get", "list", "watch"]
+   ---
+   apiVersion: rbac.authorization.k8s.io/v1
+   kind: RoleBinding
+   metadata:
+   labels:
+      kots.io/backup: velero
+      kots.io/kotsadm: "true"
+   name: kotsadm-rolebinding
+   roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: Role
+   name: kotsadm-role
+   subjects:
+   - kind: ServiceAccount
+   name: kotsadm
+   ```
+
+ :::note
+ When installing with the minimum app manager-specific RBAC permissions, include both the `--ensure-rbac=false` and `--skip-rbac-check` flags with the `kots install` command. This prevents the app manager from attempting to create a Role with `* * *` permissions in the namespace. For more information about these flags, see [install](/reference/kots-cli/kots-cli-install).
+ :::
+
+## Kubernetes Installer Cluster Requirements {#embedded-cluster-requirements}
+
+To install the app manager on an embedded cluster created by the Replicated Kubernetes installer, your environment must meet the following requirements.
+
+### Minimum System Requirements
 
 * 4 CPUs or equivalent per machine.
 * 8GB of RAM per machine.
@@ -82,7 +181,7 @@ To install the admin console on an embedded cluster created by the Replicated Ku
 * Root access is required.
 * (Rook Only) The Rook add-on version 1.4.3 and later requires block storage on each node in the cluster. For more information about how to enable block storage for Rook, see [Block Storage](https://kurl.sh/docs/add-ons/rook/#block-storage) in _Rook Add-On_ in the kURL documentation.
 
-#### Additional System Requirements
+### Additional System Requirements
 
 Because the Kubernetes installer is based on the open source kURL project, which is maintained by Replicated, you must meet the additional kURL system requirements when applicable:
 
