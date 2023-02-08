@@ -65,13 +65,13 @@ The user that runs the installation command must have at least the minimum role-
 
 The required RBAC permissions vary depending on if the user attempts to install the app manager with cluster-scoped access or namespace-scoped access:
 * [Cluster-scoped RBAC Requirements (Default)](#cluster-scoped) 
-* [Namespace-scoped RBAC Requirements]({#namespace-scoped})
+* [Namespace-scoped RBAC Requirements](#namespace-scoped)
    
 #### Cluster-scoped RBAC Requirements (Default) {#cluster-scoped}
 
 By default, the app manager requires cluster-scoped access. With cluster-scoped access, a Kubernetes ClusterRole and ClusterRoleBinding are created that grant the app manager access to all resources across all namespaces in the cluster.
 
-To install the app manager with cluster-scoped access, the user must meet the following requirements:
+To install the app manager with cluster-scoped access, the user must meet the following RBAC requirements:
 * The user must be able to create workloads, ClusterRoles, and ClusterRoleBindings. 
 * The user must have cluster-admin permissions to create namespaces and assign RBAC roles across the cluster.
 
@@ -102,7 +102,7 @@ To install or upgrade the app manager with namespace-scoped access, the user mus
 
 * **Minimum App manager RBAC permissions**: In some cases, it is not possible to grant the user `* * *` permissions in the target namespace. For example, an organization might have security policies that prevent this level of permissions.
 
-  If the user installing or upgrading the app manager cannot be granted `* * *` permissions in the namespace, then they can instead request the minimum RBAC permissions required by the app manager. Using the minimum app manager RBAC permissions also requires manually creating a ServiceAccount, Role, and RoleBinding for the app manager, rather than allowing the app manager to automatically create a Role with `* * *` permission.
+  If the user installing or upgrading the app manager cannot be granted `* * *` permissions in the namespace, then they can instead request the minimum RBAC permissions required by the app manager. Using the minimum app manager RBAC permissions also requires manually creating a ServiceAccount, Role, and RoleBinding for the app manager, rather than allowing the app manager to automatically create a Role with `* * *` permissions.
 
   To use the minimum app manager RBAC permissions to install or upgrade:
 
@@ -221,6 +221,10 @@ To install or upgrade the app manager with namespace-scoped access, the user mus
      Replace:
        * `RBAC_YAML_FILE` with the name of the YAML file that you saved in the previous step.
        * `TARGET_NAMESPACE` with the namespace where the user will install the app manager.
+
+  :::note
+  After manually creating these RBAC resources, the user must include both the `--ensure-rbac=false` and `--skip-rbac-check` flags when installing or upgrading. These flags prevent the app manager from checking for or attempting to create a Role with `* * *` permissions in the namespace. For more information, see [Prerequisites](installing-existing-cluster.md#prerequisites) in _Installing on an Existing Cluster_.
+  :::
 
 ## Kubernetes Installer Cluster Requirements {#embedded-cluster-requirements}
 

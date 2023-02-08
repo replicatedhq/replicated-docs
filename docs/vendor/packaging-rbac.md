@@ -32,7 +32,7 @@ subjects:
   namespace: appnamespace
 ```
 
-Alternatively, if your application does not require access to resources in multiple namespace in the cluster, then you can enable namespace-scoped RBAC for the app manager. For information, see [Enable Namespace-scoped Access](#min-rbac) below.
+Alternatively, if your application does not require access to resources across all namespaces in the cluster, then you can enable namespace-scoped RBAC for the app manager. For information, see [About Namespace-scoped RBAC](#min-rbac) below.
 
 ## About Namespace-scoped RBAC {#min-rbac}
 
@@ -40,7 +40,7 @@ Rather that use the default cluster-scoped RBAC, you can configure your applicat
 
 Namespace-scoped RBAC is supported for applications that use Kubernetes Operators or multiple namespaces. During application installation, if there are `additionalNamespaces` specified in the Application custom resource manifest file, then Roles and RoleBindings are created to grant the app manager access to resources in all specified namespaces.
 
-By default, for namespace-scoped installations, the following Role and RoleBinding resources are created that grant the app manager permissions to all resources in the target namespace:
+By default, for namespace-scoped installations, the following Role and RoleBinding resources are created that grant the app manager permissions to all resources in a target namespace:
 
 ```yaml
 apiVersion: "rbac.authorization.k8s.io/v1"
