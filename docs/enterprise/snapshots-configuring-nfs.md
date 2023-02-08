@@ -15,7 +15,7 @@ Complete the following items before you perform this task:
 * The NFS server must be configured to allow access from all of the nodes in the cluster.
 * The NFS directory must be writable by the user:group 1001:1001 from all of the nodes in the cluster.
   
-  **Example: Changing User:Group Permissions on Linux**
+  **Example: Changing user:group Permissions on Linux**
 
    ```bash
   sudo chown -R 1001:1001 /backups
