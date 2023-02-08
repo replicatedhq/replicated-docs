@@ -15,7 +15,7 @@ Complete the following items before you perform this task:
 * The host path must be a dedicated directory. Do not use a partition used by a service like Docker or Kubernetes for ephemeral storage.
 * The host path must exist and be writable by the user:group 1001:1001 on all nodes in the cluster.
 
-  **Example: Changing Host Path Permissions on Linux**
+  **Example: Changing User:Group Permissions on Linux**
 
     ```bash
     sudo chown -R 1001:1001 /backups

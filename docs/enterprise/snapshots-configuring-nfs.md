@@ -12,10 +12,10 @@ Complete the following items before you perform this task:
 
 * Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _How to Set Up Backup Storage_.
 * Install the Velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).
-* The NFS server must be configured to allow access from all the nodes in the cluster.
-* The NFS directory must be writable by the user:group 1001:1001.
+* The NFS server must be configured to allow access from all of the nodes in the cluster.
+* The NFS directory must be writable by the user:group 1001:1001 from all of the nodes in the cluster.
   
-  **Example: Changing Host Path Permissions on Linux**
+  **Example: Changing User:Group Permissions on Linux**
 
    ```bash
   sudo chown -R 1001:1001 /backups
