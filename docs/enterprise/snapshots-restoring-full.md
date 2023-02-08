@@ -1,9 +1,15 @@
-# Restoring Full Snapshots
+# Restoring Backups
 
-In order to set up disaster recovery snapshots, backups should be configured to use a store that exists outside of the cluster.
-This is especially true for installations on cluster created with the Replicated Kubernetes installer.
+This topic describes how to restore full backups on online and air gapped clusters using the Replicated admin console and the kots CLI. It also describes the partial snapshot restoration process.
 
-## Restore on Existing Cluster
+## Restore Backups from the Admin Console
+
+
+## Restore Full Backups from the CLI
+
+When the admin console is not available, you must use the kots CLI to restore backups.
+
+### Existing Clusters
 
 1. Begin with installing a version of Velero compatible with the one that was used to make the snapshot.
     * If restoring from an NFS or a host path storage destination, see [Configuring an NFS Storage Destination](snapshots-configuring-nfs) or [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath) for the configuration steps and how to set up Velero.
@@ -13,7 +19,7 @@ This is especially true for installations on cluster created with the Replicated
 
 1. Use the kots CLI to list backups and create restores. See [backup ls](../reference/kots-cli-backup-ls/) and [restore](../reference/kots-cli-restore-index/) in the kots CLI documentation.
 
-## Restore on Online Kubernetes Installer-created Clusters
+### Online Kubernetes Installer Clusters
 
 1. Set up the embedded cluster. See [Installing with the Kubernetes Installer](installing-embedded-cluster).
 1. Use the kots CLI to configure the pre-installed Velero setup to point at the snapshot storage destination.
@@ -26,7 +32,7 @@ This is especially true for installations on cluster created with the Replicated
     * **HostPath Configuration**: See [velero configure-hostpath](../reference/kots-cli-velero-configure-hostpath/) and [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath).
 1. Use the kots CLI to list backups and create restores. See [backup ls](../reference/kots-cli-backup-ls/) and [restore](../reference/kots-cli-restore-index/) in the kots CLI documentation.
 
-## Restore on Air Gapped Kubernetes Installer-created Clusters
+### Air Gapped Kubernetes Installer Clusters
 
 An air gapped Kubernetes installer-created cluster can be restored only if the store backend used for backups is accessible from the new cluster.
 
@@ -50,6 +56,15 @@ The registry from the old cluster does not need to be (and should not be) access
     * **NFS Configuration**: See [velero configure-nfs](../reference/kots-cli-velero-configure-nfs/) and [Configuring an NFS Storage Destination](snapshots-configuring-nfs).
     * **HostPath Configuration**: See [velero configure-hostpath](../reference/kots-cli-velero-configure-hostpath/) and [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath).
 1. Use the kots CLI to list backups and create restores. See [backup ls](../reference/kots-cli-backup-ls/) and [restore](../reference/kots-cli-restore-index/) in the kots CLI documentation.
+
+## Restore Partial Snapshots
+
+When restoring a partial snapshot, the admin console first deletes the correct application.
+During this process, all existing application manifests are removed from the cluster, and all `PersistentVolumeClaims` are deleted. This action is not reversible.
+
+The restore process then re-deploys all application manifests to the namespace. All Pods are have an extra `initContainer` and an extra directory named `.velero` created, which are used for restore hooks.
+
+For more information about the restore process, see [Restore Reference](https://velero.io/docs/v1.9/restore-reference/) in the Velero documentation.
 
 ## Additional Resources
 

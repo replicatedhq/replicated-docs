@@ -84,6 +84,7 @@
 [[redirects]]
   from="https://docs.replicated.com/vendor/packaging-private-registry-cname"
   to="https://docs.replicated.com/vendor/custom-domains"
+
 ###################################################
 # Redirects To the Enterprise Section
 ###################################################
@@ -92,7 +93,9 @@
   from="https://docs.replicated.com/enterprise/updating-existing-cluster"
   to="https://docs.replicated.com/enterprise/updating-app-manager" 
 
-   
+[[redirects]]
+  from="https://docs.replicated.com/enterprise/snapshots-restoring-partial"
+  to="https://docs.replicated.com/enterprise/snapshots-restoring-full"
 
 ###################################################
 # Redirects To the References Section
@@ -111,3 +114,6 @@
 ###################################################
 # Redirects To the Release Notes Section
 ###################################################
+
+
+
