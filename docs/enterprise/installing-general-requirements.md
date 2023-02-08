@@ -100,7 +100,7 @@ To install the app manager with namespace-scoped access, the user must have _one
    
    To support this default behavior, the user must also have `* * *` permissions in the target namespace.
 
-* **App manager-specific RBAC permissions**: Alternatively, to install without wildcard permissions in the namespace, the user must have the minimum app manager-specific permissions as defined in the following Kubernetes RBAC objects:
+* **App manager-specific RBAC permissions**: To install without `* * *` permissions in the namespace, the user must have the minimum app manager-specific permissions required as defined in the following Kubernetes RBAC objects:
 
    ```yaml
    apiVersion: v1
@@ -162,6 +162,8 @@ To install the app manager with namespace-scoped access, the user must have _one
    - kind: ServiceAccount
    name: kotsadm
    ```
+
+   To grant the user these permissions, you can save the resources above in a YAML file, such as `rbac.yaml`. Then, apply the resources in the cluster by running ``
 
  :::note
  When installing with the minimum app manager-specific RBAC permissions, include both the `--ensure-rbac=false` and `--skip-rbac-check` flags with the `kots install` command. This prevents the app manager from attempting to create a Role with `* * *` permissions in the namespace. For more information about these flags, see [install](/reference/kots-cli/kots-cli-install).
