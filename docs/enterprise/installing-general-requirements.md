@@ -59,7 +59,7 @@ To install the admin console on an existing cluster, the cluster must meet the f
 
    If the output of the `which socat` command is `socat not found`, then you must install the package that provides the socat command. The name of this package can vary depending on the node's operating system.
 
-### Cluster RBAC Requirements
+### RBAC Requirements
 
 The user that runs the installation command must have at least the minimum role-based access control (RBAC) permissions that are required by the app manager. If the user does not have the required RBAC permissions, then an error message displays: `Current user has insufficient privileges to install Admin Console`.
 
@@ -77,15 +77,15 @@ To install the app manager with cluster-scoped access, the user must meet the fo
 
 #### Namespace-scoped RBAC Requirements {#namespace-scoped}
 
-Alternatively, the app manager can be installed with namespace-scoped access. With namespace-scoped access, a Kubernetes Role and RoleBinding are created that grant the app manager permissions only in the namespace where it is installed.
+The app manager can be installed with namespace-scoped access rather than the default cluster-scoped access. With namespace-scoped access, a Kubernetes Role and RoleBinding are automatically created that grant the app manager permissions only in the namespace where it is installed.
 
 :::note
-Depending on the application, namespace-scoped access for the app manager is required, optional, or not supported. Reach out to your software vendor for application-specific requirements.
+Depending on the application, namespace-scoped access for the app manager is required, optional, or not supported. Contact your software vendor for application-specific requirements.
 :::
 
-To install the app manager with namespace-scoped access, the user must have _one_ of the following in the target namespace:
+To install or upgrade the app manager with namespace-scoped access, the user must have _one_ of the following permission levels in the target namespace:
 
-* **Wildcard permissions (Default)**: By default, the app manager attempts to create the following Role to acquire wildcard (`* * *`) permissions in the target namespace:
+* **Wildcard permissions (Default)**: By default, when namespace-scoped access is enabled, the app manager attempts to automatically create the following Role to acquire wildcard (`* * *`) permissions in the target namespace:
 
    ```yaml
    apiVersion: "rbac.authorization.k8s.io/v1"
@@ -100,74 +100,127 @@ To install the app manager with namespace-scoped access, the user must have _one
    
    To support this default behavior, the user must also have `* * *` permissions in the target namespace.
 
-* **App manager-specific RBAC permissions**: To install without `* * *` permissions in the namespace, the user must have the minimum app manager-specific permissions required as defined in the following Kubernetes RBAC objects:
+* **Minimum App manager RBAC permissions**: In some cases, it is not possible to grant the user `* * *` permissions in the target namespace. For example, an organization might have security policies that prevent this level of permissions.
 
-   ```yaml
-   apiVersion: v1
-   kind: ServiceAccount
-   metadata:
-   labels:
-      kots.io/backup: velero
-      kots.io/kotsadm: "true"
-   name: kotsadm
-   ---
-   apiVersion: rbac.authorization.k8s.io/v1
-   kind: Role
-   metadata:
-   labels:
-      kots.io/backup: velero
-      kots.io/kotsadm: "true"
-   name: kotsadm-role
-   rules:
-   - apiGroups: [""]
-      resources: ["configmaps", "persistentvolumeclaims", "pods", "secrets", "services", "limitranges"]
-      verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
-   - apiGroups: ["apps"]
-      resources: ["daemonsets", "deployments", "statefulsets"]
-      verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
-   - apiGroups: ["batch"]
-      resources: ["jobs", "cronjobs"]
-      verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
-   - apiGroups: ["networking.k8s.io", "extensions"]
-      resources: ["ingresses"]
-      verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
-   - apiGroups: [""]
-      resources: ["namespaces", "endpoints", "serviceaccounts"]
-      verbs: ["get"]
-   - apiGroups: ["authorization.k8s.io"]
-      resources: ["selfsubjectaccessreviews", "selfsubjectrulesreviews"]
-      verbs: ["create"]
-   - apiGroups: ["rbac.authorization.k8s.io"]
-      resources: ["roles", "rolebindings"]
-      verbs: ["get"]
-   - apiGroups: [""]
-      resources: ["pods/log", "pods/exec"]
-      verbs: ["get", "list", "watch", "create"]
-   - apiGroups: ["batch"]
-      resources: ["jobs/status"]
-      verbs: ["get", "list", "watch"]
-   ---
-   apiVersion: rbac.authorization.k8s.io/v1
-   kind: RoleBinding
-   metadata:
-   labels:
-      kots.io/backup: velero
-      kots.io/kotsadm: "true"
-   name: kotsadm-rolebinding
-   roleRef:
-   apiGroup: rbac.authorization.k8s.io
-   kind: Role
-   name: kotsadm-role
-   subjects:
-   - kind: ServiceAccount
-   name: kotsadm
-   ```
+  If the user installing or upgrading the app manager cannot be granted `* * *` permissions in the namespace, then they can instead request the minimum RBAC permissions required by the app manager. Using the minimum app manager RBAC permissions also requires manually creating a ServiceAccount, Role, and RoleBinding for the app manager, rather than allowing the app manager to automatically create a Role with `* * *` permission.
 
-   To grant the user these permissions, you can save the resources above in a YAML file, such as `rbac.yaml`. Then, apply the resources in the cluster by running ``
+  To use the minimum app manager RBAC permissions to install or upgrade:
 
- :::note
- When installing with the minimum app manager-specific RBAC permissions, include both the `--ensure-rbac=false` and `--skip-rbac-check` flags with the `kots install` command. This prevents the app manager from attempting to create a Role with `* * *` permissions in the namespace. For more information about these flags, see [install](/reference/kots-cli/kots-cli-install).
- :::
+   1. Ensure that the user has the minimum RBAC permissions required by the app manager. The following Role lists the minimum RBAC permissions under `rules`:
+
+    ```yaml
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: Role
+    metadata:
+    labels:
+        kots.io/backup: velero
+        kots.io/kotsadm: "true"
+    name: kotsadm-role
+    rules:
+      - apiGroups: [""]
+        resources: ["configmaps", "persistentvolumeclaims", "pods", "secrets", "services", "limitranges"]
+        verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+      - apiGroups: ["apps"]
+        resources: ["daemonsets", "deployments", "statefulsets"]
+        verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+      - apiGroups: ["batch"]
+        resources: ["jobs", "cronjobs"]
+        verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+      - apiGroups: ["networking.k8s.io", "extensions"]
+        resources: ["ingresses"]
+        verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+      - apiGroups: [""]
+        resources: ["namespaces", "endpoints", "serviceaccounts"]
+        verbs: ["get"]
+      - apiGroups: ["authorization.k8s.io"]
+        resources: ["selfsubjectaccessreviews", "selfsubjectrulesreviews"]
+        verbs: ["create"]
+      - apiGroups: ["rbac.authorization.k8s.io"]
+        resources: ["roles", "rolebindings"]
+        verbs: ["get"]
+      - apiGroups: [""]
+        resources: ["pods/log", "pods/exec"]
+        verbs: ["get", "list", "watch", "create"]
+      - apiGroups: ["batch"]
+        resources: ["jobs/status"]
+        verbs: ["get", "list", "watch"]
+      ```
+    :::note
+    The minimum RBAC requirements can vary slightly depending on the cluster's Kubernetes distribution and the version of the app manager.
+    :::
+
+   1. Save the following ServiceAccount, Role, and RoleBinding to a single YAML file, such as `rbac.yaml`:
+
+        ```yaml
+        apiVersion: v1
+        kind: ServiceAccount
+        metadata:
+        labels:
+            kots.io/backup: velero
+            kots.io/kotsadm: "true"
+        name: kotsadm
+        ---
+        apiVersion: rbac.authorization.k8s.io/v1
+        kind: Role
+        metadata:
+        labels:
+            kots.io/backup: velero
+            kots.io/kotsadm: "true"
+        name: kotsadm-role
+        rules:
+          - apiGroups: [""]
+            resources: ["configmaps", "persistentvolumeclaims", "pods", "secrets", "services", "limitranges"]
+            verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+          - apiGroups: ["apps"]
+            resources: ["daemonsets", "deployments", "statefulsets"]
+            verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+          - apiGroups: ["batch"]
+            resources: ["jobs", "cronjobs"]
+            verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+          - apiGroups: ["networking.k8s.io", "extensions"]
+            resources: ["ingresses"]
+            verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+          - apiGroups: [""]
+            resources: ["namespaces", "endpoints", "serviceaccounts"]
+            verbs: ["get"]
+          - apiGroups: ["authorization.k8s.io"]
+            resources: ["selfsubjectaccessreviews", "selfsubjectrulesreviews"]
+            verbs: ["create"]
+          - apiGroups: ["rbac.authorization.k8s.io"]
+            resources: ["roles", "rolebindings"]
+            verbs: ["get"]
+          - apiGroups: [""]
+            resources: ["pods/log", "pods/exec"]
+            verbs: ["get", "list", "watch", "create"]
+          - apiGroups: ["batch"]
+            resources: ["jobs/status"]
+            verbs: ["get", "list", "watch"]
+        ---
+        apiVersion: rbac.authorization.k8s.io/v1
+        kind: RoleBinding
+        metadata:
+        labels:
+            kots.io/backup: velero
+            kots.io/kotsadm: "true"
+        name: kotsadm-rolebinding
+        roleRef:
+        apiGroup: rbac.authorization.k8s.io
+        kind: Role
+        name: kotsadm-role
+        subjects:
+        - kind: ServiceAccount
+        name: kotsadm
+        ```
+
+    1. Run the following command to create the RBAC resources for the app manager in the namespace:
+
+     ```
+     kubectl apply -f RBAC_YAML_FILE -n TARGET_NAMESPACE
+     ```
+        
+     Replace:
+       * `RBAC_YAML_FILE` with the name of the YAML file that you saved in the previous step.
+       * `TARGET_NAMESPACE` with the namespace where the user will install the app manager.
 
 ## Kubernetes Installer Cluster Requirements {#embedded-cluster-requirements}
 

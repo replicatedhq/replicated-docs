@@ -1,14 +1,12 @@
-# Manage App Manager RBAC
+# Configuring App Manager RBAC
 
-This topic describes how to change the default cluster role-based access control (RBAC) permissions granted to the Replicated app manager in existing cluster installations.
+This topic describes role-based access control (RBAC) for the Replicated app manager in existing cluster installations, including information about how to change the default cluster-scoped RBAC permissions granted to the app manager.
 
-## About Default Cluster-scoped RBAC
+## About Cluster-scoped RBAC
 
 When a user installs your application in an existing cluster, Kubernetes RBAC resources are created to allow the app manager to install and manage the application.
 
 By default, the following ClusterRole and ClusterRoleBinding resources are created that grant the app manager access to all resources across all namespaces in the cluster:
-
-**Default ClusterRole**:
 
 ```yaml
 apiVersion: "rbac.authorization.k8s.io/v1"
@@ -20,8 +18,6 @@ rules:
     resources: ["*"]
     verbs: ["*"]
 ```
-
-**Default ClusterRoleBinding**:
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -36,15 +32,13 @@ subjects:
   namespace: appnamespace
 ```
 
-If your application requires access to resources across multiple namespaces in the cluster, then Replicated recommends that you use the default ClusterRole and ClusterRoleBinding above.
-
-Alternatively, if your application does not require cluster-scoped access, then Replicated recommends that you configure RBAC for the app manager  . For information, see [Enable Namespace-scoped Access](#min-rbac) below.
+Alternatively, if your application does not require access to resources in multiple namespace in the cluster, then you can enable namespace-scoped RBAC for the app manager. For information, see [Enable Namespace-scoped Access](#min-rbac) below.
 
 ## About Namespace-scoped RBAC {#min-rbac}
 
-Rather that use the default cluster-scoped RBAC, you can configure your application so that access granted to the app manager is limited to the namespace where it is installed. Replicated recommends that you enable this namespace-scoped access unless your application requires access to resources across multiple namespaces in the cluster. For information about how to enable namespace-scoped RBAC for your application, see [Enable Namespace-scoped RBAC](#enable) below.
+Rather that use the default cluster-scoped RBAC, you can configure your application so that the RBAC permissions granted to the app manager are limited to a target namespace or namespaces.
 
-Namespace-scoped RBAC is also supported for applications that use Kubernetes Operators or multiple namespaces. During application installation, if there are `additionalNamespaces` specified in the Application manifest, then Roles and RoleBindings are created to grant the app manager access to resources in all specified namespaces.
+Namespace-scoped RBAC is supported for applications that use Kubernetes Operators or multiple namespaces. During application installation, if there are `additionalNamespaces` specified in the Application custom resource manifest file, then Roles and RoleBindings are created to grant the app manager access to resources in all specified namespaces.
 
 By default, for namespace-scoped installations, the following Role and RoleBinding resources are created that grant the app manager permissions to all resources in the target namespace:
 
@@ -72,21 +66,23 @@ subjects:
   namespace: appnamespace
 ```
 
+For information about how to enable namespace-scoped RBAC for your application, see [Enable Namespace-scoped RBAC](#enable) below.
+
 ### Enable Namespace-scoped RBAC {#enable}
 
 To enable namespace-scoped RBAC permissions for the app manager, specify one of the following options in the Application custom resource manifest file:
 
-* `supportMinimalRBACPrivileges`: Set to `true` to make namespace-scoped RBAC optional for existing cluster installations. When `supportMinimalRBACPrivileges` is `true`, cluster-scoped RBAC is used by default and users must pass the `--use-minimal-rbac` flag with the `kots install` command to use namespace-scoped RBAC. 
+* `supportMinimalRBACPrivileges`: Set to `true` to make namespace-scoped RBAC optional for existing cluster installations. When `supportMinimalRBACPrivileges` is `true`, cluster-scoped RBAC is used by default and users must pass the `--use-minimal-rbac` flag with the installation or upgrade command to use namespace-scoped RBAC. 
 
 * `requireMinimalRBACPrivileges`: Set to `true` to require that all installations to existing clusters use namespace-scoped access. When `requireMinimalRBACPrivileges` is `true`, all installations use namespace-scoped RBAC automatically and users do not pass the `--use-minimal-rbac` flag.  
 
 For more information about these options, see [requireMinimalRBACPrivileges](/reference/custom-resource-application#requireMinimalRBACPrivileges) and [supportMinimalRBACPrivileges](/reference/custom-resource-application#supportMinimalRBACPrivileges) in _Application_.
 
-Additional limitations and requirements apply for namespace-scoped installations. For more information, see [Limitations](#limitations) and [Installation and Upgrade Requirements](#installation-and-upgrade-requirements) below.
+For information about limitations that apply to using namespace-scoped access, see [Limitations](#limitations) below.
 
 ### Limitations
 
-The following limitations apply when using the `requireMinimalRBACPrivileges` or `supportMinimalRBACPrivileges` options to require or support namespace-scoped RBAC for the app manager:
+The following limitations apply when using the `requireMinimalRBACPrivileges` or `supportMinimalRBACPrivileges` options to enable namespace-scoped RBAC for the app manager:
 
 * **Existing clusters only**: The `requireMinimalRBACPrivileges` and `supportMinimalRBACPrivileges` options apply only to installations in existing clusters.
 
@@ -107,25 +103,3 @@ The following limitations apply when using the `requireMinimalRBACPrivileges` or
 * **Changing RBAC permissions for installed instances**: The RBAC permissions for the app manager are set during its initial installation. The app manager runs using the assumed identity and cannot change its own authorization. When you update your application to add or remove the `requireMinimalRBACPrivileges` and `supportMinimalRBACPrivileges` flags in the Application custom resource, the RBAC permissions for the app manager are affected only for new installations. Existing app manager installations continue to run with their current RBAC permissions.
 
    To expand the scope of RBAC for the app manager from namespace-scoped to cluster-scoped, Replicated recommends that you include a preflight check to ensure the permission is available in the cluster. 
-
-### Installation and Upgrade Requirements
-
-This section describes the required RBAC permissions for users installing or upgrading the app manager with namespace-scoped access.
-
-#### Install or Upgrade with Wildcard Permissions
-
-By default, in installations where the app manager has namespace-scoped access, the app manager attempts to acquire wildcard (`* * *`) permissions to all resources in the target namespace. If the user that runs the installation or upgrade command does not have `* * *` permissions in the namespace, then an error message displays. For example:
-
-```bash
-$  kubectl kots install appslug
-  • Current user has insufficient privileges to install Admin Console.
-For more information, please visit https://kots.io/vendor/packaging/rbac
-To bypass this check, use the --skip-rbac-check flag
-Error: insufficient privileges
-```
-
-#### Install or Upgrade with App Manager-specific Permissions
-
-To install or upgrade without `* * *` permissions in the target namespace, 
-
-Additionally, to prevent error messages during installation or upgrade, users must include both the `--ensure-rbac=false` and `--skip-rbac-check` flags with the `kots install` command. The `--skip-rbac-check` flag prevents the app manager from checking for `* * *` permissions in the target namespace. The `--ensure-rbac=false` flag prevents the app manager from attempting to create a Role with `* * *` permissions in the namespace. For more information about these flags, see [install](/reference/kots-cli/kots-cli-install).

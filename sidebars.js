@@ -161,6 +161,7 @@ const sidebars = {
         'vendor/packaging-kots-versions',    
         'vendor/packaging-include-resources',
         'vendor/namespaces',
+        'vendor/packaging-rbac',
         'vendor/packaging-using-tls-certs',
         'vendor/packaging-cleaning-up-jobs',
         'vendor/identity-service-configuring',
@@ -202,13 +203,6 @@ const sidebars = {
         'vendor/snapshots-overview',
         'vendor/snapshots-configuring-backups',
         'vendor/snapshots-hooks',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'App Manager RBAC',
-      items: [
-        'vendor/packaging-rbac',
       ],
     },
     {
