@@ -11,7 +11,7 @@ Some common examples of how to use a hook to create successful backups are:
 - Restore a database file only if that file exists
 - Perform required setup tasks in a restored Pod before the application containers can start
 
-For more information, see [Backup Hooks](https://velero.io/docs/v1.9/backup-hooks/) and [Restore Hooks](https://velero.io/docs/v1.9/restore-hooks) in the Velero documentation.
+For more information, see [Backup Hooks](https://velero.io/docs/v1.10/backup-hooks/) and [Restore Hooks](https://velero.io/docs/v1.10/restore-hooks) in the Velero documentation.
 
 ## Example
 

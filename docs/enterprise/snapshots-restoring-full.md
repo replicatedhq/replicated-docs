@@ -7,9 +7,9 @@ This is especially true for installations on cluster created with the Replicated
 
 1. Begin with installing a version of Velero compatible with the one that was used to make the snapshot.
     * If restoring from an NFS or a host path storage destination, see [Configuring an NFS Storage Destination](snapshots-configuring-nfs) or [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath) for the configuration steps and how to set up Velero.
-    * Otherwise, see [Basic Install](https://velero.io/docs/v1.9/basic-install/) and [Plugins](https://velero.io/plugins/) in the Velero documentation.
+    * Otherwise, see [Basic Install](https://velero.io/docs/v1.10/basic-install/) and [Plugins](https://velero.io/plugins/) in the Velero documentation.
 
-    **Note**: Restic is required and `--use-restic` flag must be used with `velero install` command.
+    **Note**: For Velero version 1.10 and later, Node Agent is required and `--use-node-agent --uploader-type=restic` flags must be used with the `velero install` command. For Velero versions less than 1.10, Restic is required and `--use-restic` flag must be used with the `velero install` command.
 
 1. Use the kots CLI to list backups and create restores. See [backup ls](../reference/kots-cli-backup-ls/) and [restore](../reference/kots-cli-restore-index/) in the kots CLI documentation.
 
