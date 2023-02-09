@@ -17,7 +17,7 @@ To configure Velero:
 
   For more information, see [`velero ensure-permissions`](/reference/kots-cli-velero-ensure-permissions/) in the kots CLI documentation. For more information about RBAC privileges for the admin console, see [Kubernetes RBAC](../vendor/packaging-rbac).
 
-1. (Optional) Increase the default memory limit for the node-agent/restic Pod if your application is particularly large. Velero sets default limits for the Velero Pod and the node-agent/restic Pod during installation. There is a known issue with restic that causes high memory usage, which can result in failures during backup creation when the Pod reaches the memory limit. For more information about configuring Velero resource requests and limits, see [Customize resource requests and limits](https://velero.io/docs/v1.10/customize-installation/#customize-resource-requests-and-limits) in the Velero documentation.
+1. (Optional) Increase the default memory limit for the node-agent/restic Pod if your application is particularly large. Velero sets default limits for the velero Pod and the node-agent/restic Pod during installation. There is a known issue with restic that causes high memory usage, which can result in failures during backup creation when the Pod reaches the memory limit. For more information about configuring Velero resource requests and limits, see [Customize resource requests and limits](https://velero.io/docs/v1.10/customize-installation/#customize-resource-requests-and-limits) in the Velero documentation.
 
    Alternatively, you can potentially avoid the node-agent/restic Pod reaching the memory limit during backup creation by running the following kubectl command to lower the memory garbage collection target percentage on the node-agent/restic daemon set:
 

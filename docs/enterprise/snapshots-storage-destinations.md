@@ -18,9 +18,9 @@ To install Velero and configure an AWS storage destination:
 
 1. Follow the instructions for [installing Velero on AWS](https://github.com/vmware-tanzu/velero-plugin-for-aws#setup) in the Velero documentation.
 
-1. Run the `velero install` command with the additional flags `--use-node-agent`, `--uploader-type=restic`, and `--use-volume-snapshots=false`:
-
-  **Note**: For Velero versions less than 1.10, use the `--use-restic` flag instead of `--use-node-agent --uploader-type=restic` flags.
+1. Run the `velero install` command with these additional flags:
+   * **Velero 1.10 and later**: Use the `--use-node-agent`, `--uploader-type=restic`, and `--use-volume-snapshots=false` flags.
+   * **Velero versions earlier than 1.10**: Use the `--use-restic` and `--use-volume-snapshots=false` flags.
 
   **Example:**
 
@@ -43,9 +43,9 @@ To install Velero and configure a GCP storage destination:
 
 1. Follow the instructions for [installing Velero on GCP](https://github.com/vmware-tanzu/velero-plugin-for-gcp#setup) in the Velero documentation.
 
-1. Run the `velero install` command with the additional flags `--use-node-agent`, `--uploader-type=restic`, and `--use-volume-snapshots=false`:
-
-  **Note**: For Velero versions less than 1.10, use the `--use-restic` flag instead of `--use-node-agent --uploader-type=restic` flags.
+1. Run the `velero install` command with these additional flags:
+   * **Velero 1.10 and later**: Use the `--use-node-agent`, `--uploader-type=restic`, and `--use-volume-snapshots=false` flags.
+   * **Velero versions earlier than 1.10**: Use the `--use-restic` and `--use-volume-snapshots=false` flags.
 
   **Example:**
 
@@ -67,9 +67,9 @@ To install Velero and configure an Azure storage destination:
 
 1. Follow the instructions for [installing Velero on Azure](https://github.com/vmware-tanzu/velero-plugin-for-microsoft-azure#setup) in the Velero documentation.
 
-1. Run the `velero install` command with the additional flags `--use-node-agent`, `--uploader-type=restic`, and `--use-volume-snapshots=false`:
-
-  **Note**: For Velero versions less than 1.10, use the `--use-restic` flag instead of `--use-node-agent --uploader-type=restic` flags.
+1. Run the `velero install` command with these additional flags:
+   * **Velero 1.10 and later**: Use the `--use-node-agent`, `--uploader-type=restic`, and `--use-volume-snapshots=false` flags.
+   * **Velero versions earlier than 1.10**: Use the `--use-restic` and `--use-volume-snapshots=false` flags.
 
   **Example:**
 
