@@ -46,9 +46,7 @@ The most specific rule definition is always applied, when compared with less spe
 
 ### Rule Order Examples
 
-In the following example, a policy grants access to promote releases to any channel except for the `Stable` channel using the rule pattern `kots/app/[:appId]/channel/[:channelId]/promote`. 
-
-Note that channel ID (e.g. `1eg7CyEofYSmVAnK0pEKUlv36Y3`) must be specified instead of channel name (e.g. `Stable`). Channel ID can be found by navigating to the release history of a channel and copying the ID from the release history URL. For example, the channel ID for the following URL would be `1eg7CyEofYSmVAnK0pEKUlv36Y3`: https://vendor.replicated.com/apps/admin/channels/1eg7CyEofYSmVAnK0pEKUlv36Y3?page=0
+In the following example, a policy grants access to promote releases to any channel except the Stable channel. It uses the rule pattern `kots/app/[:appId]/channel/[:channelId]/promote`. Note that you specify the channel ID, rather than the channel name. To find the channel ID, go to the vendor portal **Channels** page and click the **Settings** icon for the target channel.
 
 ```json
 {
