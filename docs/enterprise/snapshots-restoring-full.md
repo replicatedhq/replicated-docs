@@ -1,13 +1,51 @@
-# Restoring Backups
+# Restoring from Backups
 
-This topic describes how to restore full backups on online and air gapped clusters using the Replicated admin console and the kots CLI. It also describes the partial snapshot restoration process.
+This topic describes how to restore full backups for disaster recovery on online and air gapped clusters using the Replicated admin console and the kots CLI.
 
 ## Restore Backups from the Admin Console
 
+When you select the full restore option in the admin console, you can do either a full or partial restore, or just restore the admin console.
 
-## Restore Full Backups from the CLI
+If the admin console is not available, you can do a full restoration from the kots CLI. For more information, see [Restore Full Backups from the CLI](#cli).
+
+To restore a backup from the admin console:
+
+1. Select **Full Snapshots (Instance)** from the Snapshots tab.
+
+    ![Full Snapshot tab](/images/full-snapshot-tab.png)
+
+    [View a larger image](/images/full-snapshot-tab.png)
+
+1. Click the **Restore from this backup** icon for the snapshot that you want to restore.
+
+1. In the Restore from backup dialog, select one of the restore options:
+
+    ![Restore Full Snapshot dialog](/images/restore-snapshot-dialog.png)
+
+    <table>
+    <tr>
+      <th width="25%">Option</th>
+      <th width="75%">Description</th>
+    </tr>
+    <tr>
+      <td>Full restore</td>
+      <td>Restores the application and its metadata, the admin console, and any databases. Copy the command from the text box and run it on the cluster.</td>
+    </tr>
+    <tr>
+      <td>Partial restore</td>
+      <td><p>Restores the application and its metadata.</p><p>Select an application name and sequence at the bottom of the dialog and click <b>Confirm and restore</b>.</p><p>The admin console deletes the correct application. All existing application manifests are removed from the cluster, and all `PersistentVolumeClaims` are deleted. This action is not reversible.</p><p>Then, all application manifests are redeployed to the namespace. An extra `initContainer` and an extra directory named `.velero` are created for all Pods, and are used to restore hooks. For more information about the restore process, see  <a href="https://velero.io/docs/v1.9/restore-reference/">Restore Reference</a> in the Velero documentation.</p></td>
+    </tr>
+    <tr>
+      <td>Restore admin console only</td>
+      <td>Restores the admin console on any instance in the cluster. Copy the command from the text box and run it on an instance.</td>
+    </tr>
+  </table>
+
+## Restore Full Backups from the CLI {#cli}
 
 When the admin console is not available, you must use the kots CLI to restore backups.
+
+Restoring full backups includes the admin console and the application with its metadata. If the admin console is available, you can start there to get the CLI command.
 
 ### Existing Clusters
 
@@ -56,15 +94,6 @@ The registry from the old cluster does not need to be (and should not be) access
     * **NFS Configuration**: See [velero configure-nfs](../reference/kots-cli-velero-configure-nfs/) and [Configuring an NFS Storage Destination](snapshots-configuring-nfs).
     * **HostPath Configuration**: See [velero configure-hostpath](../reference/kots-cli-velero-configure-hostpath/) and [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath).
 1. Use the kots CLI to list backups and create restores. See [backup ls](../reference/kots-cli-backup-ls/) and [restore](../reference/kots-cli-restore-index/) in the kots CLI documentation.
-
-## Restore Partial Snapshots
-
-When restoring a partial snapshot, the admin console first deletes the correct application.
-During this process, all existing application manifests are removed from the cluster, and all `PersistentVolumeClaims` are deleted. This action is not reversible.
-
-The restore process then re-deploys all application manifests to the namespace. All Pods are have an extra `initContainer` and an extra directory named `.velero` created, which are used for restore hooks.
-
-For more information about the restore process, see [Restore Reference](https://velero.io/docs/v1.9/restore-reference/) in the Velero documentation.
 
 ## Additional Resources
 

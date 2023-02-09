@@ -564,7 +564,7 @@ const sidebars = {
             'enterprise/snapshots-creating',
             'enterprise/snapshots-scheduling',
             'enterprise/snapshots-restoring-full',
-            `enterprise/snapshots-updating-with-admin-console`,
+            'enterprise/snapshots-updating-with-admin-console',
             'enterprise/snapshots-troubleshooting-backup-restore',
           ],
         },
