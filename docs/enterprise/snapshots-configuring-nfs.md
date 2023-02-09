@@ -12,10 +12,10 @@ Complete the following items before you perform this task:
 
 * Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _How to Set Up Backup Storage_.
 * Install the Velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).
-* The NFS server must be configured to allow access from all the nodes in the cluster.
+* The NFS server must be configured to allow access from all of the nodes in the cluster.
 * The NFS directory must be writable by the user:group 1001:1001.
 * Ensure that you configure the user:group 1001:1001 permissions for the directory on the NFS server.
-* All the nodes in the cluster must have the necessary NFS client packages installed to be able to communicate with the NFS server. For example, the `nfs-common` package is a common package used on Ubuntu.
+* All of the nodes in the cluster must have the necessary NFS client packages installed to be able to communicate with the NFS server. For example, the `nfs-common` package is a common package used on Ubuntu.
 * Any firewalls must be properly configured to allow traffic between the NFS server and clients (cluster nodes).
 
 ## Configure NFS Storage in Online Environments
