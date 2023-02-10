@@ -2,12 +2,14 @@
 
 import EnsureRBAC from "../partials/kots-cli/_ensure-rbac.mdx" 
 import Help from "../partials/kots-cli/_help.mdx" 
-import Namespace from "../partials/kots-cli/_namespace.mdx"
+import KotsadmNamespace from "../partials/kots-cli/_kotsadm-namespace.mdx"
+import KotsadmRegistry from "../partials/kots-cli/_kotsadm-registry.mdx" 
+import RegistryPassword from "../partials/kots-cli/_registry-password.mdx"
+import RegistryUsername from "../partials/kots-cli/_registry-username.mdx"
 import SkipRBACCheck from "../partials/kots-cli/_skip-rbac-check.mdx"
 import StrictSecurityContext from "../partials/kots-cli/_strict-security-context.mdx"
 import WaitDuration from "../partials/kots-cli/_wait-duration.mdx"
 import WithMinIO from "../partials/kots-cli/_with-minio.mdx"
-import UseMinimalRBAC from "../partials/kots-cli/_use-minimal-rbac.mdx"
 
 Upgrades the Replicated admin console to match the version of kots CLI.
 
@@ -26,10 +28,12 @@ This command supports all [global flags](kots-cli-global-flags) and also:
     </tr>
     <EnsureRBAC/>
     <Help/>
-    <Namespace/>
+    <KotsadmNamespace/>
+    <KotsadmRegistry/>
+    <RegistryPassword/>
+    <RegistryUsername/>
     <SkipRBACCheck/>
     <StrictSecurityContext/>
-    <UseMinimalRBAC/> 
     <WaitDuration/>
     <WithMinIO/>              
 </table>
