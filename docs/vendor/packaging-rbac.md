@@ -102,4 +102,4 @@ The following limitations apply when using the `requireMinimalRBACPrivileges` or
 
 * **Changing RBAC permissions for installed instances**: The RBAC permissions for the app manager are set during its initial installation. The app manager runs using the assumed identity and cannot change its own authorization. When you update your application to add or remove the `requireMinimalRBACPrivileges` and `supportMinimalRBACPrivileges` flags in the Application custom resource, the RBAC permissions for the app manager are affected only for new installations. Existing app manager installations continue to run with their current RBAC permissions.
 
-   To expand the scope of RBAC for the app manager from namespace-scoped to cluster-scoped, Replicated recommends that you include a preflight check to ensure the permission is available in the cluster. 
+   To expand the scope of RBAC for the app manager from namespace-scoped to cluster-scoped in new installations, Replicated recommends that you include a preflight check to ensure the permission is available in the cluster. 

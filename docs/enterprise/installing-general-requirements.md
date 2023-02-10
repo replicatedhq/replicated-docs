@@ -146,7 +146,7 @@ To install or upgrade the app manager with namespace-scoped access, the user mus
         verbs: ["get", "list", "watch"]
       ```
     :::note
-    The minimum RBAC requirements can vary slightly depending on the cluster's Kubernetes distribution and the version of the app manager.
+    The minimum RBAC requirements can vary slightly depending on the cluster's Kubernetes distribution and the version of the app manager. Reach out to your application vendor if you have the required RBAC permissions listed above and you see an error related to RBAC during installation or upgrade.
     :::
 
    1. Save the following ServiceAccount, Role, and RoleBinding to a single YAML file, such as `rbac.yaml`:
