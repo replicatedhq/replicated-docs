@@ -1,6 +1,6 @@
 # About Customer License Types
 
-This topic describes the types of customer licenses. It also describes the
+This topic describes the types of customer licenses, updating licenses, and the
 differences between community licenses and the other types of licenses.
 
 ## Types of Customer Licenses
@@ -22,6 +22,22 @@ additional information can be provided.
 * **Community**: The Community type is designed for a free or low cost version of your
 application. For more details about this type, see [Community Licenses](#community-licenses)
 below.
+
+## Updating a Customer License Type
+
+You can update a customer license type in the Replicated vendor portal, for example, from a trial license to a paid license. An update impacts all instances that are deployed using that license.
+
+![Customer Page in Vendor Portal](/images/customer-license-type.png)
+
+[View a larger image](/images/customer-license-type.png)
+
+It is unlikely that the license change will prompt any changes to the application deployment itself. However, if you also modify other license fields as part of the license conversion, this can trigger changes to the deployed application. For more information about license fields, see [License Fields](license-fields).
+
+Your customer uses the Replicated admin console to synchronize the licenses on their instances. Unless a customer is upgrading from a community license, it is not possible to replace one license file with another license file without completely reinstalling the application. Using the vendor portal to change the license type prevents end customers from having to reinstall. 
+
+Updating from a community license to another type cannot be reverted. For more information about community licenses, see [Community Licenses](#community-licenses).
+
+
 
 ## Community Licenses
 
