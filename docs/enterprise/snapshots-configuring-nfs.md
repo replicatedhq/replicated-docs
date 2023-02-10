@@ -62,7 +62,7 @@ Replace:
 If no Velero installation is detected, instructions are displayed to install Velero and configure the storage destination.
 
 :::note
-Velero does not support passing registry credentials during the installation, so it is typical for the Velero and Restic Pods to be in the `ErrImagePull` or `ImagePullBackOff` state after running the `velero install` command. This situation resolves itself after you complete the rest of the instructions.
+Velero does not support passing registry credentials during the installation, so it is typical for the velero and node-agent (restic) Pods to be in the `ErrImagePull` or `ImagePullBackOff` state after running the `velero install` command. This situation resolves itself after you complete the rest of the instructions.
 :::
 
 ## Configure NFS Storage in the Admin Console
