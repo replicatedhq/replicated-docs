@@ -84,6 +84,11 @@
 [[redirects]]
   from="https://docs.replicated.com/vendor/packaging-private-registry-cname"
   to="https://docs.replicated.com/vendor/custom-domains"
+
+[[redirects]]
+  from="https://docs.replicated.com/vendor/releases-semantic-versioning"
+  to="https://docs.replicated.com/vendor/releases-about"
+
 ###################################################
 # Redirects To the Enterprise Section
 ###################################################
