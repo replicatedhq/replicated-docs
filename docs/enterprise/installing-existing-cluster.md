@@ -2,9 +2,19 @@
 
 This topic describes how to use Replicated to install an application on an existing Kubernetes cluster. It includes procedures for installing in online and air gap environments.
 
-## Prerequisite
+## Prerequisites
 
-Before installing on an existing cluster, ensure that your cluster meets the minimum system requirements. See [Existing Cluster Requirements](installing-general-requirements#existing-cluster-requirements).
+Before installing on an existing cluster, complete the following prerequisites:
+
+* Ensure that your cluster meets the minimum system requirements. See [Minimum System Requirements](/enterprise/installing-general-requirements#minimum-system-requirements) in _Installation Requirements_.
+* Ensure that you have at least the minimum RBAC permissions in the cluster required to install the app manager. See [RBAC Requirements](/enterprise/installing-general-requirements#rbac-requirements) in _Installation Requirements_.
+
+  :::note
+  If you manually created RBAC resources for the app manager as described in [Namespace-scoped RBAC Requirements](/enterprise/installing-general-requirements#namespace-scoped), include both the `--ensure-rbac=false` and `--skip-rbac-check` flags when you run the `kots install` command.
+  
+  These flags prevent the app manager from checking for or attempting to create a Role with `* * *` permissions in the namespace. For more information about these flags, see [install](/reference/kots-cli-install) or [admin-console upgrade](/reference/kots-cli-admin-console-upgrade).
+  :::
+* Replicated recommends that you review the options available with the `kots install` command before installing. The `kots install` command includes several optional flags to support different installation use cases. For a list of options, see [install](/reference/kots-cli-install) in the _kots CLI_ documentation.   
 
 ## Install in an Online Environment {#online}
 
@@ -32,8 +42,6 @@ To install on an existing cluster in an online environment:
       Replace:
       * `APP_SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
       * `VERSION_LABEL` with the label for the version of the application to install. For example, `--app-version-label=3.0.1`.
-
-   For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the _kots CLI_ documentation.
 
 1. When prompted by the `kots install` command:
    1. Provide the namespace where you want to deploy the application and the admin console.

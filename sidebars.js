@@ -161,9 +161,9 @@ const sidebars = {
         'vendor/packaging-kots-versions',    
         'vendor/packaging-include-resources',
         'vendor/namespaces',
+        'vendor/packaging-rbac',
         'vendor/packaging-using-tls-certs',
         'vendor/packaging-cleaning-up-jobs',
-        'vendor/packaging-rbac',
         'vendor/identity-service-configuring',
         {
           type: 'category',
