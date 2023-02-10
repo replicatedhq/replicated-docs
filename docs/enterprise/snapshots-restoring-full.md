@@ -1,51 +1,17 @@
 # Restoring from Backups
 
-This topic describes how to restore full backups for disaster recovery on online and air gapped clusters using the Replicated admin console and the kots CLI.
+This topic describes how to restore full backups for disaster recovery on online and air gapped clusters. It also explains how to restore a partial backup (application only) from the Replicated admin console.
 
-## Restore Backups from the Admin Console
+## Restore Any Backup from the CLI {#full-cli}
 
-When you select the full restore option in the admin console, you can do either a full or partial restore, or just restore the admin console.
+Full backups are restored using the kots CLI. During restoration, the admin console gets recreated and the admin console UI is disconnected during this process.
 
-If the admin console is not available, you can do a full restoration from the kots CLI. For more information, see [Restore Full Backups from the CLI](#cli).
+Restoring full backups includes the admin console and the application with its metadata. You can also use the CLI to restore just the admin console or to do a partial restore of just the application and its metadata.
 
-To restore a backup from the admin console:
+If you are restoring to a brand new environment, you must run the installer, install Velero, and set a storage destination before restoring the backup.
 
-1. Select **Full Snapshots (Instance)** from the Snapshots tab.
+If you are restoring to an existing environment, 
 
-    ![Full Snapshot tab](/images/full-snapshot-tab.png)
-
-    [View a larger image](/images/full-snapshot-tab.png)
-
-1. Click the **Restore from this backup** icon for the snapshot that you want to restore.
-
-1. In the Restore from backup dialog, select one of the restore options:
-
-    ![Restore Full Snapshot dialog](/images/restore-snapshot-dialog.png)
-
-    <table>
-    <tr>
-      <th width="25%">Option</th>
-      <th width="75%">Description</th>
-    </tr>
-    <tr>
-      <td>Full restore</td>
-      <td>Restores the application and its metadata, the admin console, and any databases. Copy the command from the text box and run it on the cluster.</td>
-    </tr>
-    <tr>
-      <td>Partial restore</td>
-      <td><p>Restores the application and its metadata.</p><p>Select an application name and sequence at the bottom of the dialog and click <b>Confirm and restore</b>.</p><p>The admin console deletes the correct application. All existing application manifests are removed from the cluster, and all `PersistentVolumeClaims` are deleted. This action is not reversible.</p><p>Then, all application manifests are redeployed to the namespace. An extra `initContainer` and an extra directory named `.velero` are created for all Pods, and are used to restore hooks. For more information about the restore process, see  <a href="https://velero.io/docs/v1.9/restore-reference/">Restore Reference</a> in the Velero documentation.</p></td>
-    </tr>
-    <tr>
-      <td>Restore admin console only</td>
-      <td>Restores the admin console on any instance in the cluster. Copy the command from the text box and run it on an instance.</td>
-    </tr>
-  </table>
-
-## Restore Full Backups from the CLI {#cli}
-
-When the admin console is not available, you must use the kots CLI to restore backups.
-
-Restoring full backups includes the admin console and the application with its metadata. If the admin console is available, you can start there to get the CLI command.
 
 ### Existing Clusters
 
@@ -94,6 +60,34 @@ The registry from the old cluster does not need to be (and should not be) access
     * **NFS Configuration**: See [velero configure-nfs](../reference/kots-cli-velero-configure-nfs/) and [Configuring an NFS Storage Destination](snapshots-configuring-nfs).
     * **HostPath Configuration**: See [velero configure-hostpath](../reference/kots-cli-velero-configure-hostpath/) and [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath).
 1. Use the kots CLI to list backups and create restores. See [backup ls](../reference/kots-cli-backup-ls/) and [restore](../reference/kots-cli-restore-index/) in the kots CLI documentation.
+
+## Restore Partial Backups from the Admin Console
+
+You can restore a partial backup from the admin console or from the kots CLI. Partial backups consist of the application and its metadata.
+
+:::note
+Additionally, you can use the admin console to get the commands to restore a full backup or to restore only the admin console. Alternatively, you can just use the kots CLI to restore any backup. See [Restore Any Backup from the CLI](#full-cli).
+:::
+
+To restore a partial backup from the admin console:
+
+1. Select **Full Snapshots (Instance)** from the Snapshots tab.
+
+    ![Full Snapshot tab](/images/full-snapshot-tab.png)
+
+    [View a larger image](/images/full-snapshot-tab.png)
+
+1. Click the **Restore from this backup** icon for the snapshot that you want to restore.
+
+1. In the Restore from backup dialog, select **Partial restore**.
+
+    ![Restore Full Snapshot dialog](/images/restore-backup-dialog.png)
+
+1. In the list of available backups at the bottom of the dialog, enter the application slug in the **App Name** next to the snapshot that you want to restore. Click **Confirm and restore**.
+
+  The admin console deletes the selected application. All existing application manifests are removed from the cluster, and all `PersistentVolumeClaims` are deleted. This action is not reversible.
+
+  Then, all of the application manifests are redeployed to the namespace. All Pods are giving an extra `initContainer` and an extra directory named `.velero`, which are used to restore hooks. For more information about the restore process, see [Restore Reference](https://velero.io/docs/v1.9/restore-reference/) in the Velero documentation.
 
 ## Additional Resources
 
