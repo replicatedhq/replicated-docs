@@ -3,7 +3,7 @@
 When enabling GitOps, the Replicated admin console will push the rendered application manifests to the configured git repository.
 Application manifests often contain secrets and sensitive information that should not be committed to git.
 
-Replicated app manager 1.18 introduces an integration with SealedSecrets to encrypt secrets before committing.
+Replicated app manager v1.18 introduces an integration with SealedSecrets to encrypt secrets before committing.
 This integration is currently alpha and subject to change in future releases of the app manager. For more information, see the [sealed-secrets](https://github.com/bitnami-labs/sealed-secrets) Github repository.
 
 To enable this integration, a Secret with specific labels must be deployed to the same namespace as the admin console.

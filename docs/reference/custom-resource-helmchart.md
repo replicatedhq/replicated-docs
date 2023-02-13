@@ -89,7 +89,7 @@ This must match the `version` field from a `Chart.yaml` in a `.tgz` chart archiv
 
 ### chart.releaseName
 
-> Introduced in Replicated app manager 1.73.0
+> Introduced in Replicated app manager v1.73.0
 
 Specifies the release name to be used when installing this instance of the Helm chart.
 Defaults to the chart name.
