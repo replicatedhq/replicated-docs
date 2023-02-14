@@ -1,24 +1,24 @@
 # restore
 
-The `kots restore` restores a full snapshot for disaster recovery.
+The `kots restore` restores full snapshots for disaster recovery, partial snapshots (the application and its metadata), ot the admin console only.
 
 ### Usage
 
 ```bash
-kubectl kots restore [flags]
+kubectl kots restore --from-backup [flags]
 ```
 
-- _Provide `[flags]` according to the table below_
+This command supports the following flags:
 
 | Flag                        | Type   | Description                                                                                   |
 | :-------------------------- | ------ | --------------------------------------------------------------------------------------------- |
-| `--exclude-admin-console`   | bool   | exclude restoring the admin console and only restore the application(s) _(defaults to false)_ |
-| `--exclude-apps`            | bool   | exclude restoring the application(s) and only restore the admin console _(defaults to false)_ |
-| `--from-backup`             | string | the name of the backup to restore from _(required)_                                           |
-| `-h, --help`                |        | help for restore                                                                              |
-| `-o, --output`              | string | output format (currently supported: json) _(defaults to plain text if not set)_               |
-| `--velero-namespace`        | string | the namespace in which Velero is installed _(only required for minimal RBAC installations)_   |
-| `--wait-for-apps`           | bool   | wait for all applications to be restored _(defaults to true)_                                 |
+| `--exclude-admin-console`   | bool   | Exclude restoring the admin console and only restore the applications. **Default:** false |
+| `--exclude-apps`            | bool   | Exclude restoring the applications and only restore the admin console. **Default:** false |
+| `--from-backup`             | string | (Required) The name of the backup to restore from. |
+| `-h, --help`                |        | Help for `restore`.                                                                              |
+| `-o, --output`              | string | The output format. Supports JSON. Defaults to plain text if not set. |
+| `--velero-namespace`        | string | (Required for minimal RBAC installations) The namespace where Velero is installed. |
+| `--wait-for-apps`           | bool   | Wait for all applications to be restored. **Default:** true |
 
 ### Example
 
