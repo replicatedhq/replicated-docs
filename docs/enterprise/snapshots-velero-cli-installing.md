@@ -47,7 +47,12 @@ To install the Velero CLI in an online cluster:
   ```
 
 1. Run the following command to install the Velero CLI:
-
+  
+  ```
+  sudo mv velero-VERSION-linux-amd64/velero /usr/local/bin/velero
+  ```
+  
+  **Example**:
   ```
   sudo mv velero-v1.10.1-linux-amd64/velero /usr/local/bin/velero
   ```
