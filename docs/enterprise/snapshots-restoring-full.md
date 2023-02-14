@@ -118,8 +118,12 @@ To restore a backup on an air gapped Kubernetes installer cluster:
 
 You can restore a partial backup from the admin console if your cluster is healthy. Partial backups consist of the application and its metadata.
 
+ The admin console deletes the selected application. All existing application manifests are removed from the cluster, and all `PersistentVolumeClaims` are deleted. This action is not reversible.
+
+  Then, all of the application manifests are redeployed to the namespace. All Pods are giving an extra `initContainer` and an extra directory named `.velero`, which are used to restore hooks. For more information about the restore process, see [Restore Reference](https://velero.io/docs/v1.9/restore-reference/) in the Velero documentation.
+
 :::note
-Additionally, you can use the admin console to get the commands to restore a full backup or to restore only the admin console if you are restoring to an existing environment that is in a healthy state. Alternatively, you can just use the kots CLI to restore any backup. See [Restore Any Backup from the CLI](#full-cli).
+You can use the admin console to get the commands to restore a full backup or to restore only the admin console when restoring to an existing environment that is in a healthy state. Alternatively, you can use the kots CLI to restore any backup. See [Restore Any Backup from the CLI](#full-cli).
 :::
 
 To restore a partial backup from the admin console:
@@ -137,10 +141,6 @@ To restore a partial backup from the admin console:
     ![Restore Full Snapshot dialog](/images/restore-backup-dialog.png)
 
 1. In the list of available backups at the bottom of the dialog, enter the application slug in the **App Name** next to the snapshot that you want to restore. Click **Confirm and restore**.
-
-  The admin console deletes the selected application. All existing application manifests are removed from the cluster, and all `PersistentVolumeClaims` are deleted. This action is not reversible.
-
-  Then, all of the application manifests are redeployed to the namespace. All Pods are giving an extra `initContainer` and an extra directory named `.velero`, which are used to restore hooks. For more information about the restore process, see [Restore Reference](https://velero.io/docs/v1.9/restore-reference/) in the Velero documentation.
 
 ## Additional Resources
 
