@@ -11,7 +11,7 @@ Released on February 13, 2023
 Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 
 ### Improvements {#improvements-1-94-1}
-* Adds support for Velero 1.10+.
+* Adds support for Velero 1.10.
 
 ### Bug Fixes {#bug-fixes-1-94-1}
 * Fixes an issue where errors related to parsing and rendering HelmChart custom resources are silently ignored.
