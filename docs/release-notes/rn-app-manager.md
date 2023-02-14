@@ -6,7 +6,7 @@ toc_max_heading_level: 2
 
 ## 1.94.1
 
-Released on February 13, 2023
+Released on February 14, 2023
 
 Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 
