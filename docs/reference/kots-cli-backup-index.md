@@ -12,7 +12,7 @@ This command supports the following flags:
 
 | Flag              | Type   | Description                                                                     |
 | :---------------- | ------ | ------------------------------------------------------------------------------- |
-| `-h, --help`      |        | Help for `backup` s.                                                                 |
+| `-h, --help`      |        | Help for `backup`.                                                                 |
 | `-n, --namespace` | string | The namespace where the admin console is running. **Default:** `default`.        |
 | `-o, --output`    | string | The output format. Supports JSON. Defaults to plain text if not set. |
 
