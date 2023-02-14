@@ -1,6 +1,6 @@
 # backup
 
-The `kots backup` creates a full instance snapshot for disaster recovery.
+Create a full instance snapshot for disaster recovery.
 
 ### Usage
 

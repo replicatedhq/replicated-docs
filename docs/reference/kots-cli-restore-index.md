@@ -1,6 +1,6 @@
 # restore
 
-The `kots restore` restores full snapshots for disaster recovery, partial snapshots (the application and its metadata), ot the admin console only.
+The `kots restore` restores full snapshots for disaster recovery, partial snapshots (the application and its metadata), or the admin console only.
 
 ### Usage
 

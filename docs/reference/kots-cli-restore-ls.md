@@ -1,7 +1,6 @@
 # restore ls
 
-The `kots restore ls` command shows a list of all the available full snapshot restores for disaster recovery.
-A namespace can be provided to filter restores based on the namespace the admin console is/was installed in.
+Show a list of all the available full snapshot restores for disaster recovery.
 
 ### Usage
 
@@ -9,12 +8,12 @@ A namespace can be provided to filter restores based on the namespace the admin 
 kubectl kots restore ls [flags]
 ```
 
-- _Provide `[flags]` according to the table below_
+This command supports the following flags:
 
 | Flag              | Type   | Description                                                         |
 | :---------------- | ------ | ------------------------------------------------------------------- |
-| `-h, --help`      |        | help for restore ls                                                 |
-| `-n, --namespace` | string | filter by the namespace in which the admin console is/was installed |
+| `-h, --help`      |        | Help for `restore ls`.                                                 |
+| `-n, --namespace` | string | Filter by the namespace the admin console was installed in.|
 
 ### Example
 
