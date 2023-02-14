@@ -4,7 +4,9 @@ Running this command will create a directory on the workstation containing the R
 
 ### Limitations
 
-`generate-manifests` does not support generating manifests for Red Hat OpenShift clusters.
+`generate-manifests` does not support generating manifests for Red Hat OpenShift clusters or GKE Autopilot clusters if executed without a Kubernetes cluster context.
+
+The generated manifests cannot be used to upgrade an app manager instance that was ever on version 1.72.0 or earlier if run without a Kubernetes cluster context.
 
 ### Usage
 ```bash
