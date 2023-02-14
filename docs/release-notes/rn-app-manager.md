@@ -21,10 +21,10 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 * Updates the rqlite/rqlite image to 7.13.1 to resolve CVE-2022-41721 with high severity and CVE-2022-41717 with medium severity.
 * Updates the replicated/local-volume-provider image to v0.4.4 to resolve CVE-2022-41721 with high severity.
 * Deprecates the [kots velero print-fs-instructions](/reference/kots-cli-velero-print-fs-instructions) command because its functionality is replaced by the improved [kots velero configure-hostpath](/reference/kots-cli-velero-configure-hostpath) and [kots velero configure-nfs](/reference/kots-cli-velero-configure-nfs) commands.
+* Improves the layout of deploy and redeploy network errors.
 
 ### Bug Fixes {#bug-fixes-1-94-0}
 * Fixes an issue where the Edit Config icon was visible on the dashboard for application versions that did not include config.
-* Improves the layout of deploy and redeploy network errors.
 * Fixes an issue where a user had to refresh the page to generate a new support bundle after deleting a support bundle that was still being generated.
 * Fixes a regression where the text wasn't colored for certain status informer states.
 * Fixes a bug where the app icon for latest version was shown instead of the icon for the currently deployed version.
