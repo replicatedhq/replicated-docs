@@ -1,16 +1,22 @@
 # Restoring from Backups
 
-This topic describes how to restore full backups for disaster recovery on online and air gapped clusters. It also explains how to restore a partial backup (application only) from the Replicated admin console.
+This topic describes how to restore full and partial backups from the kots CLI and how to restore a partial backup (application only) from the Replicated admin console.
+
+## About the Restore Process
+
+During any full or partial restore, the admin console deletes the selected application. All existing application manifests are removed from the cluster, and all `PersistentVolumeClaims` are deleted. This action is not reversible.
+
+Then, all of the application manifests are redeployed to the namespace. All Pods are giving an extra `initContainer` and an extra directory named `.velero`, which are used to restore hooks. For more information about the restore process, see [Restore Reference](https://velero.io/docs/v1.9/restore-reference/) in the Velero documentation.
 
 ## Restore Any Backup from the CLI {#full-cli}
 
-Using the kots CLI, you can restore any of the following backup types:
+Using the kots CLI, you can do any of the following types of restores:
 
-- **Full backups:** Includes the admin console and the application with its metadata for disaster recovery
-- **Partial backups:** Consists of the application and its metadata
-- **Admin console:** Consists of the admin console only
+- **Full restore:** Restores the admin console and the application with its metadata
+- **Partial restore:** Restores the application volumes and manifests
+- **Admin console:** Restores only the admin console
 
-Full backups are restored only with the CLI. During restoration, the admin console gets recreated and the admin console UI is disconnected during this process.
+Full backups are restored only with the CLI, although you can get the restore command from the admin console. During restoration, the admin console gets recreated and the admin console UI is disconnected during this process.
 
 Partial backups can be restored using the CLI or the admin console. For more information about using the admin console to restore partial backups, see [Restore Partial Backups from the Admin Console](#admin-console).
 
@@ -39,7 +45,7 @@ To restore a backup on an existing cluster:
     ```
     Replace `BACKUP` with the the name of the backup to restore from.
     
-    For more information about the available backup options, including partial backups and admin console only, see [restore](../reference/kots-cli-restore-index/) in _Reference_.
+    For more information about the available backup options, including partial backups and admin console only, see [restore](/reference/kots-cli-restore-index/) in _Reference_.
 
 ### Online Kubernetes Installer Clusters
 
@@ -69,7 +75,7 @@ To restore a backup on a Kubernetes installer-created cluster:
     ```
     Replace `BACKUP` with the the name of the backup to restore from.
     
-    For more information about the available backup options, including partial backups and admin console only, see [restore](../reference/kots-cli-restore-index/) in _Reference_.
+    For more information about the available backup options, including partial backups and admin console only, see [restore](/reference/kots-cli-restore-index/) in _Reference_.
 
 ### Air Gapped Kubernetes Installer Clusters
 
@@ -108,21 +114,19 @@ To restore a backup on an air gapped Kubernetes installer cluster:
     ```
     Replace `BACKUP` with the the name of the backup to restore from.
     
-    For more information about the available backup options, including partial backups and admin console only, see [restore](../reference/kots-cli-restore-index/) in _Reference_.
+    For more information about the available backup options, including partial backups and admin console only, see [restore](/reference/kots-cli-restore-index/) in _Reference_.
 
-## Restore Partial Backups from the Admin Console {#admin-console}
+## Restore the Application from the Admin Console {#admin-console}
 
-You can restore a partial backup from the admin console if your cluster is healthy. Partial backups consist of the application and its metadata.
-
- The admin console deletes the selected application. All existing application manifests are removed from the cluster, and all `PersistentVolumeClaims` are deleted. This action is not reversible.
-
-  Then, all of the application manifests are redeployed to the namespace. All Pods are giving an extra `initContainer` and an extra directory named `.velero`, which are used to restore hooks. For more information about the restore process, see [Restore Reference](https://velero.io/docs/v1.9/restore-reference/) in the Velero documentation.
+You can restore the application only, known as a _partial restore_, from either a full backup or a partial backup in the admin console if your cluster is healthy. Partial restores consist of the application volumes and manifests.
 
 :::note
-You can use the admin console to get the commands to restore a full backup or to restore only the admin console. Alternatively, you can use the kots CLI to restore any backup. See [Restore Any Backup from the CLI](#full-cli).
+Alternatively, you can use the kots CLI to restore any type of backup. See [Restore Any Backup from the CLI](#full-cli)
 :::
 
-To restore a partial backup from the admin console:
+### Use a Full Backup to do a Partial Restore
+
+To do a partial restore from a full backup in the admin console:
 
 1. Select **Full Snapshots (Instance)** from the Snapshots tab.
 
@@ -136,7 +140,33 @@ To restore a partial backup from the admin console:
 
     ![Restore Full Snapshot dialog](/images/restore-backup-dialog.png)
 
-1. In the list of available backups at the bottom of the dialog, enter the application slug in the **App Name** next to the snapshot that you want to restore. Click **Confirm and restore**.
+    :::note
+    You can also get the commands to do a full restore or to restore the admin console only from this dialog.
+    :::     
+
+1. In the list of available backups at the bottom of the dialog, enter the application slug in the **App Name** next to the snapshot that you want to restore. 
+
+1. Click **Confirm and restore**.
+
+### Use a Partial Backup to do a Partial Restore
+
+To do a partial restore from a partial backup in the admin console:
+
+1. Select **Partial Snapshots (Application)** from the Snapshots tab.
+
+    ![Partial Snapshot tab](/images/partial-snapshot-tab.png)
+
+    [View a larger image](/images/partial-snapshot-tab.png)
+
+1. Click the **Restore from this backup** icon for the snapshot that you want to restore.
+
+    The Restore from Partial backup (Application) dialog opens.
+
+1. Under **Type your application slug to continue**, enter the application slug next to the snapshot that you want to restore.
+
+    ![Restore Partial Snapshot dialog](/images/restore-partial-dialog.png)
+
+1. Click **Confirm and restore**.
 
 ## Additional Resources
 
