@@ -15,8 +15,8 @@ Released on February 14, 2023
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-02-09T05-16-53Z.
 
 ### Bug Fixes {#bug-fixes-v2023-02-14-0}
-* Fixes a broken link to Rook zapping procedure in the script output.
-* Fixes CIS benchmark failure 4.1.1 "Ensure that the kubelet service file permissions are set to 600 or more restrictive".
+* Fixes a broken link to the Rook zapping procedure in the output of the installation script.
+* Changes the kubelet service file permissions to 600 to fix CIS benchmark failure 4.1.1: "Ensure that the kubelet service file permissions are set to 600 or more restrictive".
 * Fixes an issue where containers were stuck in a ContainerCreating state after a Kubernetes upgrade.
 
 ## v2023.02.06-1
