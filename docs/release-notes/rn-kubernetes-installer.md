@@ -17,7 +17,7 @@ Released on February 14, 2023
 ### Bug Fixes {#bug-fixes-v2023-02-14-0}
 * Fixes a broken link to Rook zapping procedure in the script output.
 * Fixes CIS benchmark failure 4.1.1 "Ensure that the kubelet service file permissions are set to 600 or more restrictive".
-* Fixes issue scenario faced where the containers are not created after k8s upgrades because flannel issues.
+* Fixes issue where the containers are stuck in a ContainerCreating state after K8s upgrade.
 
 ## v2023.02.06-1
 
