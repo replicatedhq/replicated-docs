@@ -1,65 +1,87 @@
 # Creating and Scheduling Backups
 
-This topic describes how to use the snapshots feature to create backups. It also includes information about how to create a schedule for automatic backups.
+This topic describes how to use the Replicated snapshots feature to create backups. It also includes information about how to use the Replicated admin console create a schedule for automatic backups.
 
 ## Prerequisite
 
-Configure a storage destination for your backups. See [How to Set Up Backup Storage](snapshots-config-workflow).
+Before you can create backups, you must configure a storage destination. See [How to Set Up Backup Storage](snapshots-config-workflow).
 
 ## Create a Full Backup (Recommended) {#full}
 
-Full backups, also referred to as _Full (Instance) snapshots_, back up the admin console and all application data.
-You can use full backups for disaster recovery by restoring over the same instance or into a new cluster.
+Full backups, or _instance snapshots_, back up the admin console, application volumes, application manifests, and application metadata. If you manage multiple applications with the admin console, then data from all applications is included in a full backup. You can use a full backup for disaster recovery scenarios by restoring over the same instance or into a new cluster.
 
-For limitations, see [Limitations and Considerations](snapshots-config-workflow#limitations-and-considerations) in _How to Set Up Backup Storage_.
+From a full backup, you can do any of the following types of restores:
+
+* **Full restore**: Restores all the data from a full backup.
+* **Partial restore**: Restores the application volumes and manifests from a specified application.
+* **Admin console restore**: Restores admin console data only.
+
+For more information about restoring from full backups, see [Restoring from Backups](snapshots-restoring-full).
 
 You can create a full backup with the kots CLI or in the admin console UI:
+* [Create a Backup with the CLI](#cli-backup)
+* [Admin Console](#admin-console-backup)
 
-* **kots CLI**: Run the `kots backup` command. See [backup](/reference/kots-cli-backup-index) in the kots CLI documentation.
+### Create a Backup with the CLI {#cli-backup}
 
-   **Example**:
+To create a full backup with the kots CLI, run the following command:
+
    ```
-   kubectl kots backup --namespace my-app-namespace
+   kubectl kots backup --namespace NAMESPACE
    ```
-* **Admin console**: In the admin console, go to **Snapshots > Full Snapshots (Instance)** and click **Start a snapshot**.
+   Replace `NAMESPACE` with the namespace where the admin console is installed. For more information, see [backup](/reference/kots-cli-backup-index) in _kots CLI_.
 
-   The following image shows the **Full Snapshots (Instance)** page in the admin console where you can create a full backup:
+### Create a Backup in the Admin Console {#admin-console-backup}
 
-    ![Full Snapshots page](/images/snapshot-instance-backup.png)
+To create a full backup in the admin console:
+
+1. Log in to the admin console and go to **Snapshots > Full Snapshots (Instance)**. 
+1. Click **Start a snapshot**.
+
+   ![Full Snapshots page](/images/snapshot-instance-backup.png)
 
 ## Create a Partial Backup {#partial}
 
-Partial backups, also referred to as _Partial (Application) snapshots_, back up only application volumes and application manifests.
+Partial backups, or _application snapshots_, back up only application volumes and application manifests. They do not include admin console data or application metadata.
 
-You can use partial backups for backing up information before deploying a new release version of an application, in case you need to roll back. Partial backups are not suitable for full disaster recovery.
+A common use case for partial backups is to back up an application before you deploy a new version in case you need to roll back. For more information about restoring from partial backups, see [Restoring from Backups](snapshots-restoring-full).
 
-For limitations, see [Limitations and Considerations](snapshots-config-workflow#limitations-and-considerations) in _How to Set Up Backup Storage_.
+:::note
+Partial backups are not suitable for disaster recovery. To create backups for disaster recovery, see [Create a Full Backup (Recommended)](#full) above.
+:::
 
-To create a partial backup, log in to the admin console and go to **Snapshots > Partial Snapshots (Application)**. Then, click **Start a snapshot**.
+To create a partial backup:
 
-![Application Backup UI](/images/snapshot-application-backup.png)
+1. Log in to the admin console and go to **Snapshots > Partial Snapshots (Application)**.
+
+   ![Application Backup UI](/images/snapshot-application-backup.png)
+
+1. If you manage multiple applications in the admin console, use the dropdown to select the application that you want to back up. 
+
+1. Click **Start a snapshot**.
 
 ## Schedule Automatic Backups
 
-You can use the admin console to schedule automatic backups.
+You can use the admin console to schedule partial or full backups. This is useful for automatically creating regular backups of admin console and application data.
 
-To schedule automatic backups:
+To schedule automatic backups in the admin console:
 
 1. Log in to the admin console and go to **Snapshots > Settings & Schedule**.
 
 1. Under **Automatic snapshots**, select **Full snapshots (Instance)** or **Partial snapshots (Application)** depending on the type of backup that you want to schedule.
 
-1. (Partial Snapshots Only) If you have multiple applications in the admin console, in the dropdown, select the application for which you want to schedule partial backups.
+   ![Snapshot Schedule](/images/snapshot-schedule.png)
+
+1. (Partial Backups Only) If you manage multiple applications in the admin console, use the dropdown to select the application that you want to back up.
 
 1. Select **Enable automatic scheduled snapshots**. 
 
-1. Configure the backup schedule:
+1. Configure the automatic backup schedule:
+
    * For **Schedule**, select Hourly, Daily, Weekly, or Custom.
-   * For **Cron Expression**, customize the automatic backup schedule. For information about supported cron expressions, see [Cron Expressions](/reference/cron-expressions).
+   * For **Cron Expression**, enter a cron expression to customize the automatic backup schedule that you selected. For information about supported cron expressions, see [Cron Expressions](/reference/cron-expressions) in _Reference_.
 
-   ![Snapshot Schedule](/images/snapshot-schedule.png)
-
-1. (Optional) For **Retention Policy**, edit the amount of time that backups are saved.
+1. (Optional) For **Retention Policy**, edit the amount of time that data from the automatic backups is saved.
    
    :::note
    The default retention period is one month. Changing the retention policy affects only snapshots created after the time of the change.

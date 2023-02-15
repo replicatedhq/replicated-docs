@@ -94,10 +94,8 @@ To install Velero and configure host path storage for existing clusters:
 
 ## Next Steps
 
-Next, you can:
-
 * Configure Velero namespace access and default memory limits, if needed. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
-* Create or schedule backups. See [Creating Backups](snapshots-creating) and [Scheduling Automatic Backups](snapshots-scheduling).
+* Create or schedule backups. See [Creating and Scheduling Backups](snapshots-creating).
 
 ## Additional Resources
 
