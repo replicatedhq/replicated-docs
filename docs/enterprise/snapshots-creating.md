@@ -8,7 +8,9 @@ Before you can create backups, you must configure a storage destination. See [Ho
 
 ## Create a Full Backup (Recommended) {#full}
 
-Full backups, or _instance snapshots_, back up the admin console, application volumes, application manifests, and application metadata. If you manage multiple applications with the admin console, then data from all applications that support backups is included in a full backup. You can use a full backup for disaster recovery scenarios by restoring over the same instance or into a new cluster.
+Full backups, or _instance snapshots_, back up the admin console and all application data, including volumes, manifests, and metadata. You can use a full backup for disaster recovery scenarios by restoring over the same instance or into a new cluster.
+
+If you manage multiple applications with the admin console, data from all applications that support backups is included in a full backup. Reach out to your software vendor for information about support for backup and restore.
 
 From a full backup, you can do a full restore of the instance. Or, you can also choose to restore only application or admin console data. For more information about restoring, see [Restoring from Backups](snapshots-restoring-full).
 
@@ -40,7 +42,7 @@ To create a full backup in the admin console:
 
 ## Create a Partial Backup {#partial}
 
-Partial backups, or _application snapshots_, back up only application volumes and application manifests. They do not include admin console data or application metadata.
+Partial backups, or _application snapshots_, back up application volumes and application manifests only.
 
 A common use case for partial backups is to back up an application before you deploy a new version in case you need to roll back. For more information about restoring from partial backups, see [Restoring from Backups](snapshots-restoring-full).
 
