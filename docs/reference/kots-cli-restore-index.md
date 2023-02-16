@@ -1,6 +1,6 @@
 # restore
 
-Restore full snapshots for disaster recovery, partial snapshots (the application and its metadata), or the admin console only.
+Restore full snapshots for disaster recovery, or do a partial restore of the application only or the admin console only.
 
 ### Usage
 
