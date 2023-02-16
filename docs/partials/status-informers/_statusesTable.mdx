@@ -1,11 +1,12 @@
 <table>
  <tr>
     <th width="10%"></th>
-    <th width="18%">Deployment</th>
-    <th width="18%">StatefulSet</th>
-    <th width="18%">Service</th>
-    <th width="18%">Ingress</th>
-    <th width="18%">PVC</th>
+    <th width="15%">Deployment</th>
+    <th width="15%">StatefulSet</th>
+    <th width="15%">Service</th>
+    <th width="15%">Ingress</th>
+    <th width="15%">PVC</th>
+    <th width="15%">DaemonSet</th>
   </tr>
     <tr>
   <th>Ready</th>
@@ -14,6 +15,7 @@
     <td>All desired endpoints are ready, any load balancers have been assigned</td>
     <td>All desired backend service endpoints are ready, any load balancers have been assigned</td>
     <td>Claim is bound</td>
+    <td>Ready daemons equals desired scheduled daemons</td>
   </tr>
   <tr>
   <th>Updating</th>
@@ -22,6 +24,7 @@
     <td>N/A</td>
     <td>N/A</td>
     <td>N/A</td>
+    <td>The deployed daemons are from a different revision</td>
   </tr>
   <tr>
     <th>Degraded</th>
@@ -30,6 +33,7 @@
     <td>At least one endpoint is ready, but more are desired</td>
     <td>At least one backend service endpoint is ready, but more are desired</td>
     <td>N/A</td>
+    <td>At least one daemon is ready, but more are desired</td>
   </tr>
   <tr>
     <th>Unavailable</th>
@@ -38,9 +42,10 @@
     <td>No endpoints are ready, no load balancer has been assigned</td>
     <td>No backend service endpoints are ready, no load balancer has been assigned</td>
     <td>Claim is pending or lost</td>
+    <td>No daemons are ready</td>
   </tr>
   <tr>
     <th>Missing</th>
-    <td colspan="5">Missing is an initial deployment status indicating that informers have not reported their status because the application has just been deployed and the underlying resource has not been created yet. After the resource is created, the status changes. However, if a resource changes from another status to Missing, then the resource was either deleted or the informers failed to report a status.</td>
+    <td colspan="6">Missing is an initial deployment status indicating that informers have not reported their status because the application has just been deployed and the underlying resource has not been created yet. After the resource is created, the status changes. However, if a resource changes from another status to Missing, then the resource was either deleted or the informers failed to report a status.</td>
   </tr>
 </table>
