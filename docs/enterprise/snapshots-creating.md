@@ -10,17 +10,11 @@ Before you can create backups, you must configure a storage destination. See [Ho
 
 Full backups, or _instance snapshots_, back up the admin console, application volumes, application manifests, and application metadata. If you manage multiple applications with the admin console, then data from all applications that support backups is included in a full backup. You can use a full backup for disaster recovery scenarios by restoring over the same instance or into a new cluster.
 
-From a full backup, you can do any of the following types of restores:
+From a full backup, you can do a full restore of the instance. Or, you can also choose to restore only application or admin console data. For more information about restoring, see [Restoring from Backups](snapshots-restoring-full).
 
-* **Full restore**: Restores all the data from a full backup.
-* **Partial restore**: Restores the application volumes and manifests from a specified application.
-* **Admin console restore**: Restores admin console data only.
-
-For more information about restoring from full backups, see [Restoring from Backups](snapshots-restoring-full).
-
-You can create a full backup with the kots CLI or in the admin console UI:
+You can create a full backup with the following methods:
 * [Create a Backup with the CLI](#cli-backup)
-* [Admin Console](#admin-console-backup)
+* [Create a Backup in the Admin Console](#admin-console-backup)
 
 ### Create a Backup with the CLI {#cli-backup}
 
@@ -29,16 +23,20 @@ To create a full backup with the kots CLI, run the following command:
    ```
    kubectl kots backup --namespace NAMESPACE
    ```
-   Replace `NAMESPACE` with the namespace where the admin console is installed. For more information, see [backup](/reference/kots-cli-backup-index) in _kots CLI_.
+   Replace `NAMESPACE` with the namespace where the admin console is installed.
+   
+For more information, see [backup](/reference/kots-cli-backup-index) in _kots CLI_.
 
 ### Create a Backup in the Admin Console {#admin-console-backup}
 
 To create a full backup in the admin console:
 
-1. Log in to the admin console and go to **Snapshots > Full Snapshots (Instance)**. 
+1. Go to **Snapshots > Full Snapshots (Instance)**. 
 1. Click **Start a snapshot**.
-
-   ![Full Snapshots page](/images/snapshot-instance-backup.png)
+   
+   When the backup is complete, it appears in the list of backups on the page, as shown in the following image:
+   
+   ![Full snapshot page with one completed snapshot](/images/snapshot-instance-list.png)
 
 ## Create a Partial Backup {#partial}
 
@@ -50,27 +48,29 @@ A common use case for partial backups is to back up an application before you de
 Partial backups are not suitable for disaster recovery. To create backups for disaster recovery, see [Create a Full Backup (Recommended)](#full) above.
 :::
 
-To create a partial backup:
+To create a partial backup in the admin console:
 
-1. Log in to the admin console and go to **Snapshots > Partial Snapshots (Application)**.
-
-   ![Application Backup UI](/images/snapshot-application-backup.png)
+1. Go to **Snapshots > Partial Snapshots (Application)**.
 
 1. If you manage multiple applications in the admin console, use the dropdown to select the application that you want to back up. 
 
 1. Click **Start a snapshot**.
 
+   When the snapshot is complete, it appears in the list of snapshots on the page as shown in the following image:
+
+   ![Partial snapshot page with one completed snapshot](/images/snapshot-application-list.png)
+
 ## Schedule Automatic Backups
 
-You can use the admin console to schedule partial or full backups. This is useful for automatically creating regular backups of admin console and application data.
+You can use the admin console to schedule full or partial backups. This is useful for automatically creating regular backups of admin console and application data.
 
 To schedule automatic backups in the admin console:
 
-1. Log in to the admin console and go to **Snapshots > Settings & Schedule**.
+1. Go to **Snapshots > Settings & Schedule**.
 
 1. Under **Automatic snapshots**, select **Full snapshots (Instance)** or **Partial snapshots (Application)** depending on the type of backup that you want to schedule.
 
-   ![Snapshot Schedule](/images/snapshot-schedule.png)
+   ![Snapshot Settings and Schedule page](/images/snapshot-schedule.png)
 
 1. (Partial Backups Only) If you manage multiple applications in the admin console, use the dropdown to select the application that you want to back up.
 
