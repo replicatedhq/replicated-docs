@@ -1,4 +1,4 @@
-# Installation Requirements
+# Requirements for Installation
 
 This topic describes the requirements for installing applications with Replicated.
 
@@ -36,6 +36,7 @@ The app manager is based on the open source KOTS project. The app manager versio
 | v1.71 and later | v1.25, 1.24, v1.23 |
 | v1.66 to v1.70 | v1.23 |
 | v1.61 to v1.65 | v1.23 |
+
 
 ## Existing Cluster Requirements
 
@@ -254,6 +255,26 @@ Because the Kubernetes installer is based on the open source kURL project, which
 
 - **Cloud Disk Performance**: For a list of cloud VM instance and disk combinations that are known to provide sufficient performance for etcd and pass the write latency preflight, see [Cloud Disk Performance](https://kurl.sh/docs/install-with-kurl/system-requirements#cloud-disk-performance) in the kURL documentation.
 
+## Image Registry Requirements for Air Gap Clusters
+
+To install an application into an air gapped network, you must have a Docker image registry that is available inside the network. For information about Docker image registry compatibility, see [Docker Image Registry Compatibility](#docker-compatibility).
+The app manager rewrites the application image names in all application manifests to read from the on-premises registry, and it re-tags and pushes the images to the on-premises registry.
+When authenticating to the registry, credentials with `push` permissions are required.
+
+A single application expects to use a single namespace in the Docker image registry.
+
+The namespace name can be any valid URL-safe string, supplied at installation time.
+Keep in mind that a registry typically expects the namespace to exist before any images can be pushed into it.
+
+:::note
+ECR does not use namespaces.
+:::
+
+## Docker Image Registry Compatibility {#docker-compatibility}
+
+The app manager has been tested for compatibility with the following registries:
+
+<DockerCompatibility/>
 
 ## Firewall Openings for Online Installations
 
