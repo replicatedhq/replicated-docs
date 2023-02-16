@@ -14,7 +14,7 @@ Released on February 16, 2023
 * Adds new command to kurl binary to get hostname `kurl host hostname`.
 
 ### Bug Fixes {#bug-fixes-v2023-02-16-0}
-* Fixes a misconfigured in the kubelet that causes Kubernetes to garbage collect the pause image causing new containers to fail to start and get stuck in ContainerCreating state.
+* Fixes a misconfiguration in the kubelet that caused Kubernetes to garbage collect the pause image, which caused new containers to fail to start and get stuck in ContainerCreating.
 
 ## v2023.02.06-1
 
