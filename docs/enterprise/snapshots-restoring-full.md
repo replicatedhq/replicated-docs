@@ -33,7 +33,7 @@ For CLI procedures, see the following sections:
 
 ### Existing Clusters {#existing}
 
-If you are restoring to a healthy cluster, you can skip the first step of reinstalling Velero and continue to running the `backup ls` and `restore` commands in the last two steps.
+If you are restoring to a healthy cluster, you can skip reinstalling Velero and continue to running the `backup ls` and `restore` commands in the last two steps.
 
 To restore a backup on an existing cluster:
 
@@ -59,7 +59,7 @@ To restore a backup on an existing cluster:
 
 ### Online Kubernetes Installer Clusters {#online}
 
-If you are restoring to a healthy cluster, you can skip the steps of running the installation and configuring a storage destination and continue to running the `backup ls` and `restore` commands in the last two steps.
+If you are restoring to a healthy cluster, you can skip the installation and configuration steps and continue to running the `backup ls` and `restore` commands in the last two steps.
 
 To restore a backup on a Kubernetes installer-created cluster:
 
