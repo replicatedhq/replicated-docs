@@ -4,6 +4,17 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.02.16-0
+
+Released on February 16, 2023
+
+### New Features {#new-features-v2023-02-16-0}
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-02-10T18-48-39Z.
+* Warn the user if there is likely to be insufficient space to upgrade Rook multiple versions.
+
+### Bug Fixes {#bug-fixes-v2023-02-16-0}
+* Fixes a misconfiguration in the kubelet that caused Kubernetes to garbage collect the pause image, which caused new containers to fail to start and get stuck in ContainerCreating.
+
 ## v2023.02.14-0
 
 Released on February 14, 2023
