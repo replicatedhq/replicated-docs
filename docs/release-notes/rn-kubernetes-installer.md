@@ -4,6 +4,21 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.02.14-0
+
+Released on February 14, 2023
+
+### New Features {#new-features-v2023-02-14-0}
+* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.10.1.
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.24.1.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.21.1.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-02-09T05-16-53Z.
+
+### Bug Fixes {#bug-fixes-v2023-02-14-0}
+* Fixes a broken link to the Rook zapping procedure in the output of the installation script.
+* Changes the kubelet service file permissions to 600 to fix CIS benchmark failure 4.1.1: "Ensure that the kubelet service file permissions are set to 600 or more restrictive".
+* Fixes an issue where containers were stuck in a ContainerCreating state after a Kubernetes upgrade.
+
 ## v2023.02.06-1
 
 Released on February 6, 2023
