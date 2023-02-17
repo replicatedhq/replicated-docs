@@ -15,9 +15,9 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 * Support bundles generated from the admin console now include collectors and analyzers from all discovered support bundle specs in the cluster.
 
 ### Bug Fixes {#bug-fixes-1-94-2}
-* Fixes a bug that will display config item correctly when using the affix property.
-* kots/web: fixes and issue where Re-run preflights button would not render during failed preflights in airgapped installation flow.
-* Fixes a bug where velero snapshot backup failed due to pods in Shutdown state.
+* Fixes a bug that didn't properly display config items that had the `affix` property.
+* Fixes an issue where the button to rerun preflights did not show if preflights failed during an air gapped installation.
+* Fixes a bug where Velero backups failed due to pods in the Shutdown state.
 
 ## 1.94.1
 
