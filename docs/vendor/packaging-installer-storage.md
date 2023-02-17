@@ -49,7 +49,7 @@ The following table describes the kURL add-ons for data storage, including if th
   </tr>
   <tr>
     <td>Longhorn</td>
-    <td><p>The Longhorn add-on is deprecated and not supported in production Kubernetes installer clusters. If you are currently using Longhorn, you must migrate data from Longhorn to either OpenEBS or Rook. For more information about migrating off Rook, see <a href="https://kurl.sh/docs/install-with-kurl/migrating-csi">Migrating to Change CSI Add-On</a> in the kURL documentation.</p><p>Longhorn is an open source distributed block storage system for Kubernetes.</p>
+    <td><p>The Longhorn add-on is deprecated and not supported in production Kubernetes installer clusters.</p><p>If you are currently using Longhorn, you must migrate data from Longhorn to either OpenEBS or Rook. For more information about migrating from Longhorn, see <a href="https://kurl.sh/docs/install-with-kurl/migrating-csi">Migrating to Change CSI Add-On</a> in the kURL documentation.</p><p>Longhorn is an open source distributed block storage system for Kubernetes.</p>
     <p>See <a href="https://kurl.sh/docs/add-ons/longhorn">Longhorn Add-on</a> in the kURL documentation.</p></td>
     <td>Yes</td>
     <td>No</td>
