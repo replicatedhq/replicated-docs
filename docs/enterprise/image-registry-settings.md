@@ -17,7 +17,7 @@ Private registries can be used with online or air gap clusters. For embedded clu
 
   <DockerCompatibility/>
 
-- For additional air gap requirements, see [Image Registry Requirements for Air Gap Clusters](image-registry-airgap).
+- For additional air gap requirements, see [Image Registry Requirements for Air Gap Clusters](installing-general-requirements#image-registry-requirements-for-air-gap-clusters).
 
 ## Configure Private Registry Settings
 
