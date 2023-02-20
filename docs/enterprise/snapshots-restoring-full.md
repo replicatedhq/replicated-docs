@@ -72,12 +72,13 @@ To restore a backup on a Kubernetes installer-created cluster:
     velero version
     ```
 1. (For new or unhealthy clusters) Configure a storage destination. See the following CLI documentation for your storage type:
-        * **AWS S3 Configuration**: See [velero configure-aws-s3](/reference/kots-cli-velero-configure-aws-s3/)
-        * **Azure Configuration**: See [velero configure-azure](/reference/kots-cli-velero-configure-azure/)
-        * **GCP Configuration**: See [velero configure-gcp](/reference/kots-cli-velero-configure-gcp/)
-        * **Other S3 Configuration (such as MinIO)**: See [velero configure-other-s3](/reference/kots-cli-velero-configure-other-s3/)
-        * **NFS Configuration**: See [velero configure-nfs](/reference/kots-cli-velero-configure-nfs/)
-        * **Host Path Configuration**: See [velero configure-hostpath](/reference/kots-cli-velero-configure-hostpath/)
+
+    * **AWS S3 Configuration**: See [velero configure-aws-s3](/reference/kots-cli-velero-configure-aws-s3/)
+    * **Azure Configuration**: See [velero configure-azure](/reference/kots-cli-velero-configure-azure/)
+    * **GCP Configuration**: See [velero configure-gcp](/reference/kots-cli-velero-configure-gcp/)
+    * **Other S3 Configuration (such as MinIO)**: See [velero configure-other-s3](/reference/kots-cli-velero-configure-other-s3/)
+    * **NFS Configuration**: See [velero configure-nfs](/reference/kots-cli-velero-configure-nfs/)
+    * **Host Path Configuration**: See [velero configure-hostpath](/reference/kots-cli-velero-configure-hostpath/)
 
 1. Run the `kubectl kots backup ls` command to get a list of backups.
 
