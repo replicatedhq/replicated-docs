@@ -4,19 +4,6 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
-## v2023.02.17-0
-
-Released on February 17, 2023
-
-### New Features {#new-features-v2023-02-17-0}
-* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.1.0 and 0.63.0-45.1.1.
-* Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) version 3.4.0.
-* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.18.
-
-### Bug Fixes {#bug-fixes-v2023-02-17-0}
-* Fixes an issue that causes Rook multi-version upgrades to fail if add-on airgap packages exist on the server prior to upgrading.
-* Fixes a rare race condition that could cause data loss when migrating between storage providers.
-
 ## v2023.02.16-0
 
 Released on February 16, 2023
