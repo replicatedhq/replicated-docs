@@ -9,7 +9,7 @@ toc_max_heading_level: 2
 Released on February 17, 2023
 
 :::important
-v2023.02.17-0 has been removed because a new requirement in version 1.6.18 of Containerd prevents high availability installations using the EKCO internal load balancer.
+v2023.02.17-0 has been removed because Containerd 1.6.18 is incompatible with high availability installations using the EKCO internal load balancer.
 :::
 
 ### New Features {#new-features-v2023-02-17-0}
