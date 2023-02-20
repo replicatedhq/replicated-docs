@@ -71,9 +71,7 @@ To restore a backup on a Kubernetes installer-created cluster:
     ```bash
     velero version
     ```
-1. (For new or unhealthy clusters) Do one of the following to configure a storage destination:
-    - If Velero is not installed, install Velero and configure an external storage destination. To start, see [Installing the Velero CLI](snapshots-velero-cli-installing).
-    - If Velero is installed, configure an external storage destination. See the following CLI documentation for your storage type:
+1. (For new or unhealthy clusters) Configure a storage destination. See the following CLI documentation for your storage type:
         * **AWS S3 Configuration**: See [velero configure-aws-s3](/reference/kots-cli-velero-configure-aws-s3/)
         * **Azure Configuration**: See [velero configure-azure](/reference/kots-cli-velero-configure-azure/)
         * **GCP Configuration**: See [velero configure-gcp](/reference/kots-cli-velero-configure-gcp/)
