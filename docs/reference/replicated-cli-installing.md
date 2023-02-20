@@ -51,7 +51,7 @@ brew install replicatedhq/replicated/cli
 To install the latest replicated CLI on Mac without Brew:
 ```shell
 curl -s https://api.github.com/repos/replicatedhq/replicated/releases/latest \
-| grep "browser_download_url.*darwin_amd64.tar.gz" \
+| grep "browser_download_url.*darwin_all.tar.gz" \
 | cut -d : -f 2,3 \
 | tr -d \" \
 | wget -O replicated.tar.gz -qi -
