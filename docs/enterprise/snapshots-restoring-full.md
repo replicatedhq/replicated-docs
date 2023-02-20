@@ -9,7 +9,7 @@ Backups can be restored to healthy or unhealthy clusters, or brand new clusters.
 
 During any full or partial restore, the admin console deletes the selected application. All existing application manifests are removed from the cluster, and all `PersistentVolumeClaims` are deleted. This action is not reversible.
 
-Then, all of the application manifests are redeployed to the namespace. All Pods are giving an extra `initContainer` and an extra directory named `.velero`, which are used to restore hooks. For more information about the restore process, see [Restore Reference](https://velero.io/docs/v1.9/restore-reference/) in the Velero documentation.
+Then, all of the application manifests are redeployed. All Pods are given an extra `initContainer` and an extra directory named `.velero`, which are used to restore hooks. For more information about the restore process, see [Restore Reference](https://velero.io/docs/v1.9/restore-reference/) in the Velero documentation.
 
 ## Restore Any Backup from the CLI {#full-cli}
 
@@ -71,7 +71,9 @@ To restore a backup on a Kubernetes installer-created cluster:
     ```bash
     velero version
     ```
-1. (For new or unhealthy clusters) Configure a storage destination. See the following CLI documentation for your storage type:
+1. (For new or unhealthy clusters) Do one of the following to configure a storage destination:
+    - If Velero is not installed, install Velero and configure an external storage destination. To start, see [Installing the Velero CLI](snapshots-velero-cli-installing).
+    - If Velero is installed, configure an external storage destination. See the following CLI documentation for your storage type:
         * **AWS S3 Configuration**: See [velero configure-aws-s3](/reference/kots-cli-velero-configure-aws-s3/)
         * **Azure Configuration**: See [velero configure-azure](/reference/kots-cli-velero-configure-azure/)
         * **GCP Configuration**: See [velero configure-gcp](/reference/kots-cli-velero-configure-gcp/)
@@ -147,7 +149,7 @@ To use a full backup to do a partial restore in the admin console:
     You can also get the CLI commands for full restores or admin console only restores from this dialog.
     :::     
 
-1. In the list of available backups at the bottom of the dialog, enter the application slug in the **App Name** next to the backup that you want to restore. 
+1. At the bottom of the dialog, enter the application slug.
 
 1. Click **Confirm and restore**.
 
