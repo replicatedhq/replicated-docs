@@ -21,5 +21,5 @@ kubectl kots velero configure-internal [flags]
 #### Example
 
 ```bash
-kubectl kots velero velero configure-internal
+kubectl kots velero configure-internal
 ```

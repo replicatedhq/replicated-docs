@@ -32,7 +32,7 @@ To install the Velero CLI in an online cluster:
   **Example:**
 
   ```
-  curl -LO https://github.com/vmware-tanzu/velero/releases/download/v1.9.1/velero-v1.9.1-linux-amd64.tar.gz
+  curl -LO https://github.com/vmware-tanzu/velero/releases/download/v1.10.1/velero-v1.10.1-linux-amd64.tar.gz
   ```
 
 1. Run the following command to uncompress the TAR file:
@@ -43,13 +43,18 @@ To install the Velero CLI in an online cluster:
 
   **Example:**
   ```
-  tar zxvf velero-v1.9.1-linux-amd64.tar.gz
+  tar zxvf velero-v1.10.1-linux-amd64.tar.gz
   ```
 
 1. Run the following command to install the Velero CLI:
-
+  
   ```
-  sudo mv velero-v1.9.1-linux-amd64/velero /usr/local/bin/velero
+  sudo mv velero-VERSION-linux-amd64/velero /usr/local/bin/velero
+  ```
+  
+  **Example**:
+  ```
+  sudo mv velero-v1.10.1-linux-amd64/velero /usr/local/bin/velero
   ```
 
 1. To test that the Velero CLI installation worked correctly, run a Velero command for version or help.

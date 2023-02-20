@@ -33,7 +33,9 @@ During installation, the app manager prompts for the target namespace. This is t
 
 The kubectl command-line tool access used must have read and write access to the namespace.
 
-By default, the app manager creates a ClusterRole and ClusterRoleBinding with permissions to all namespaces unless otherwise specified by the application developer. For more information, see [Kubernetes RBAC](../vendor/packaging-rbac).
+Additionally, by default, the app manager creates a ClusterRole and ClusterRoleBinding with permissions to all namespaces unless otherwise specified by the application vendor.
+
+For more information about the role-based access control (RBAC) requirements for the app manager, see [RBAC Requirements](installing-general-requirements#rbac-requirements) in _Installation Requirements_.
 
 ### Deploy Images to Local Registries
 

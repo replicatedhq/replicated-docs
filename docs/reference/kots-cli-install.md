@@ -24,7 +24,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 | `--config-values`           | string | Path to a manifest file containing configuration values. This manifest must be `apiVersion: kots.io/v1beta1` and `kind: ConfigValues`. For more information, see [Define Application Configuration Values](../enterprise/installing-existing-cluster-automation#define-application-configuration-values).|
 | `--copy-proxy-env`          | bool   | Copy proxy environment variables from current environment into all admin console components. **Default:** `false`|
 | `--disable-image-push`      | bool   | Set to `true` to disable images from being pushed to private registry. **Default:** `false`|
-| `--ensure-rbac`             | bool   | When set to `true`, KOTS configures RBAC at installation time. **Default:** `true`. If a role specification is needed, use the [generate-manifests](kots-cli-admin-console-generate-manifests) command. |
+| `--ensure-rbac`             | bool   | When `false`, KOTS does not attempt to create the RBAC resources necessary to manage applications. **Default:** `true`. If a role specification is needed, use the [generate-manifests](kots-cli-admin-console-generate-manifests) command. |
 | `-h, --help`                |        | Help for install. |
 | `--http-proxy`              | string | Sets HTTP_PROXY environment variable in all admin console components.  |
 | `--https-proxy`             | string | Sets HTTPS_PROXY environment variable in all admin console components. |
@@ -46,7 +46,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 | `--skip-preflights`         | bool   | Set to `true` to skip preflight checks. **Default:** `false`. If any strict preflight checks are configured, the `--skip-preflights` flag is not honored because strict preflight checks must run and contain no failures before the application is deployed. For more information, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles).|
 | `--skip-rbac-check`         | bool   | Set to `true` to bypass RBAC check. **Default:** `false`|
 | `--strict-security-context` | bool   | Set to `true` to explicitly enable explicit security contexts for all KOTS pods and containers. **Default:** `false`. **Note**: Might not work for some storage providers. |
-| `--use-minimal-rbac`        | bool   | When set to `true`, KOTS is namespace-scoped if the application supports namespace scoped installations. **Default:** `false` |
+| `--use-minimal-rbac`        | bool   | When set to `true`, KOTS RBAC permissions are limited to the namespace where it is installed. To use  `--use-minimal-rbac`, the application must support namespace-scoped installations and the user must have the minimum RBAC permissions required by KOTS in the target namespace. For a complete list of requirements, see [Namespace-scoped RBAC Requirements​](/enterprise/installing-general-requirements#namespace-scoped) in _Installation Requirements_. **Default:** `false` |
 | `--wait-duration`           | string | Timeout to be used while waiting for individual components to be ready. Must be in [Go duration](https://pkg.go.dev/time#ParseDuration) format. For example, 10s, 2m. **Default:** 2m |
 | `--with-minio`              | bool   | When set to `true`, KOTS deploys a local MinIO instance for storage and uses MinIO for host path and NFS snapshot storage. **Default:** `true` |
 

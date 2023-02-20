@@ -47,8 +47,6 @@ A _Ready_ status indicates that all Kubernetes resources that you added as statu
 
 If the customer has no application instances that have ever reported a Ready status, or if you have not configured status informers for your application, then the Time to Install section displays a **No Ready Instances** message.
 
-![Customer reporting page showing no active instance](/images/reporting-no-instances-ready.png)
-
 If the customer has more than one application instance that has previously reported a Ready status, then the Time to Install section displays metrics for the instance that most recently reported a Ready status for the first time.
 
 For example, Instance A reported its first Ready status at 9:00 AM today. Instance B reported its first Ready status at 8:00 AM today, moved to a Degraded status, then reported a Ready status again at 10:00 AM today. In this case, the vendor portal displays the time to install metrics for Instance A, which reported its _first_ Ready status most recently.

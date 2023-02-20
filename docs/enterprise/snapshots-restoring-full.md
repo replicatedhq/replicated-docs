@@ -4,6 +4,7 @@ This topic describes how to restore any type of backup from the kots CLI, and ho
 
 Backups can be restored to healthy or unhealthy clusters, or brand new clusters.
 
+
 ## About the Restore Process
 
 During any full or partial restore, the admin console deletes the selected application. All existing application manifests are removed from the cluster, and all `PersistentVolumeClaims` are deleted. This action is not reversible.

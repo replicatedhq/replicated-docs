@@ -13,7 +13,7 @@ Complete the following items before you perform this task:
 * Review the limitations and considerations. See [Limitations and Considerations](snapshots-config-workflow#limitations-and-considerations) in _How to Set Up Backup Storage_.
 * Install the Velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).
 * The host path must be a dedicated directory. Do not use a partition used by a service like Docker or Kubernetes for ephemeral storage.
-* The host path must exist and be writable by the user:group 1001:1001 on all nodes in the cluster.
+* The host path must exist and be writable by the user:group 1001:1001 on all nodes in the cluster. For example, in a Linux environment you might run `sudo chown -R 1001:1001 /backups` to change the user:group permissions.
 
    If you use a mounted directory for the storage destination, such as one that is created with the Common Internet File System (CIFS) or Server Message Block (SMB) protocols, ensure that you configure the user:group 1001:1001 permissions on all nodes in the cluster and from the server side as well.
 
@@ -60,7 +60,7 @@ Replace:
 If no Velero installation is detected, instructions are displayed to install Velero and configure the storage destination.
 
 :::note
-Velero does not support passing registry credentials during the installation, so it is typical for the Velero and Restic Pods to be in the `ErrImagePull` or `ImagePullBackOff` state after running the `velero install` command. In app manager 1.94.0 and later, this situation resolves itself after you complete the instructions.
+Velero does not support passing registry credentials during the installation, so it is typical for the velero and node-agent (restic) Pods to be in the `ErrImagePull` or `ImagePullBackOff` state after running the `velero install` command. In app manager v1.94.0 and later, this situation resolves itself after you complete the instructions.
 :::
 
 ## Configure Host Path Storage in the Admin Console

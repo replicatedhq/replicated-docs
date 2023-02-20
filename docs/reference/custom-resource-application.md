@@ -198,14 +198,14 @@ spec:
     <td>
      <p>When <code>kubectlVersion</code> is unspecified, the app manager uses the latest supported version of kubectl. The following minor versions are supported:</p>
      <ul>
-       <li>1.24.x (Added in <a href="/release-notes/rn-app-manager#1710">App manager 1.71.0</a>)</li>
-       <li>1.23.x (Added in <a href="/release-notes/rn-app-manager#1610">App manager 1.61.0</a>)</li>
-       <li>1.22.x (Added in <a href="/release-notes/rn-app-manager#1593">App manager 1.59.3</a>)</li>
-       <li>1.21.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">App manager 1.48.0</a>)</li>
-       <li>1.20.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">App manager 1.48.0</a>)</li>
-       <li>1.19.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">App manager 1.22.0</a>)</li>
-       <li>1.18.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">App manager 1.22.0</a>)</li>
-       <li>1.17.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">App manager 1.22.0</a>)</li>
+       <li>1.24.x (Added in <a href="/release-notes/rn-app-manager#1710">app manager v1.71.0</a>)</li>
+       <li>1.23.x (Added in <a href="/release-notes/rn-app-manager#1610">app manager v1.61.0</a>)</li>
+       <li>1.22.x (Added in <a href="/release-notes/rn-app-manager#1593">app manager v1.59.3</a>)</li>
+       <li>1.21.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">app manager v1.48.0</a>)</li>
+       <li>1.20.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">app manager v1.48.0</a>)</li>
+       <li>1.19.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">app manager v1.22.0</a>)</li>
+       <li>1.18.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">app manager v1.22.0</a>)</li>
+       <li>1.17.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">app manager v1.22.0</a>)</li>
        <li>1.16.x</li>
        <li>1.14.x</li>
      </ul>
@@ -258,7 +258,7 @@ spec:
     <th>Description</th>
     <td><p><code>requireMinimalRBACPrivileges</code> applies to existing clusters only.</p>
     <p>Requires minimal role-based access control (RBAC) be used for all customer installations. When set to <code>true</code>, the app manager creates a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.</p>
-    <p>For more information about RBAC, see <a href="/vendor/packaging-rbac/#namespace-scoped-access">Namespace-scoped Access</a> in <em>Configuring Role-based Access Control</em>.</p>
+    <p>For additional requirements and limitations related to using namespace-scoped RBAC, see <a href="/vendor/packaging-rbac#min-rbac">About Namespace-scoped RBAC</a> in <em>Configuring App Manager RBAC</em>.</p>
       </td>
   </tr>
   <tr>
@@ -282,7 +282,8 @@ spec:
     <th>Description</th>
     <td><p><code>supportMinimalRBACPrivileges</code> applies to existing clusters only.</p>
     <p>Allows minimal role-based access control (RBAC) be used for all customer installations. When set to <code>true</code>, the app manager supports creating a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.</p>
-    <p> Minimal RBAC is not used by default. It is only used when the <code>--use-minimal-rbac</code> flag is passed to the <code>kots install</code> command. For more information about RBAC, see <a href="/vendor/packaging-rbac/#namespace-scoped-access">Namespace-scoped Access</a> in <em>Configuring Role-based Access Control</em>.</p>
+    <p> Minimal RBAC is not used by default. It is only used when the <code>--use-minimal-rbac</code> flag is passed to the <code>kots install</code> command.</p>
+    <p>For additional requirements and limitations related to using namespace-scoped RBAC, see <a href="/vendor/packaging-rbac#min-rbac">About Namespace-scoped RBAC</a> in <em>Configuring App Manager RBAC</em>.</p>
       </td>
   </tr>
   <tr>

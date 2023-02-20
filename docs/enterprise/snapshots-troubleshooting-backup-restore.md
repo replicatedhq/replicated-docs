@@ -116,39 +116,57 @@ timed out after 12h0m0s
 
 #### Cause
 
-This error message appears when the restic Pod operation timeout limit is reached. In Velero v1.4.2 and later, the default restic timeout is 240 minutes.
+This error message appears when the node-agent (restic) Pod operation timeout limit is reached. In Velero v1.4.2 and later, the default timeout is 240 minutes.
 
-Restic is an open-source backup tool. Velero integrates with restic to provide a solution for backing up and restoring Kubernetes volumes. For more information about the Velero restic integration, see [Restic Integration](https://velero.io/docs/v1.9/restic/) in the Velero documentation.
+Restic is an open-source backup tool. Velero integrates with Restic to provide a solution for backing up and restoring Kubernetes volumes. For more information about the Velero Restic integration, see [File System Backup](https://velero.io/docs/v1.10/file-system-backup/) in the Velero documentation.
 
 #### Solution
 
-Use the kubectl Kubernetes command-line tool to patch the Velero deployment to increase the restic timeout:
+Use the kubectl Kubernetes command-line tool to patch the Velero deployment to increase the timeout:
+
+**Velero version 1.10 and later**:
+
+```bash
+kubectl patch deployment velero -n velero --type json -p '[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--fs-backup-timeout=TIMEOUT_LIMIT"}]'
+```
+
+**Velero versions less than 1.10**:
 
 ```bash
 kubectl patch deployment velero -n velero --type json -p '[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--restic-timeout=TIMEOUT_LIMIT"}]'
 ```
 
-Replace `TIMEOUT_LIMIT` with a length of time for the restic Pod operation timeout in hours, minutes, and seconds. Use the format `0h0m0s`. For example, `48h30m0s`.
+Replace `TIMEOUT_LIMIT` with a length of time for the node-agent (restic) Pod operation timeout in hours, minutes, and seconds. Use the format `0h0m0s`. For example, `48h30m0s`.
 
 :::note
-Application install overwrites the restic timeout that you set with the `kubectl patch deployment velero` command.
+The timeout value reverts back to the default value if you rerun the `velero install` command.
 :::
 
-### Memory Limit Reached on the Restic Pod
+### Memory Limit Reached on the node-agent Pod
 
 #### Symptom
 
-The restic Pod is killed by the Linux kernel Out Of Memory (OOM) killer.
+The node-agent (restic) Pod is killed by the Linux kernel Out Of Memory (OOM) killer.
 
 #### Cause
 
-Velero sets default limits for the Velero Pod and the restic Pod during installation. There is a known issue with restic that causes high memory usage on the restic Pod, which can result in failures during snapshot creation when the restic Pod reaches the memory limit.
+Velero sets default limits for the velero Pod and the node-agent (restic) Pod during installation. There is a known issue with Restic that causes high memory usage, which can result in failures during snapshot creation when the Pod reaches the memory limit.
 
 For more information, see the [Restic backup — OOM-killed on raspberry pi after backing up another computer to same repo](https://github.com/restic/restic/issues/1988) issue in the restic GitHub repository.
 
 #### Solution
 
-To avoid the restic Pod reaching the memory limit during snapshot creation, run the following kubectl command to increase the memory limit on the restic daemon set on the Velero deployment:
+Increase the default memory limit for the node-agent (restic) Pod if your application is particularly large. For more information about configuring Velero resource requests and limits, see [Customize resource requests and limits](https://velero.io/docs/v1.10/customize-installation/#customize-resource-requests-and-limits) in the Velero documentation.
+
+Alternatively, you can potentially avoid the node-agent (restic) Pod reaching the memory limit during snapshot creation by running the following kubectl command to lower the memory garbage collection target percentage on the node-agent (restic) daemon set:
+
+**Velero  1.10 and later**:
+
+```
+kubectl -n velero set env daemonset (node-agent) GOGC=1
+```
+
+**Velero versions earlier than 1.10**:
 
 ```
 kubectl -n velero set env daemonset/restic GOGC=1
