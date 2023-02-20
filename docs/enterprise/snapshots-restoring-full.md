@@ -153,7 +153,7 @@ To use a full backup to do a partial restore in the admin console:
     You can also get the CLI commands for full restores or admin console only restores from this dialog.
     :::     
 
-1. In the list of available backups at the bottom of the dialog, enter the application slug in the **App Name** next to the backup that you want to restore. 
+1. At the bottom of the dialog, enter the application slug.
 
 1. Click **Confirm and restore**.
 
