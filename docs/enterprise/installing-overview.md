@@ -42,7 +42,7 @@ For more information about the role-based access control (RBAC) requirements for
 During install, the app manager can re-tag and push images to a local image registry.
 This is useful to enable CVE scans, image policy validation, and other pre-deployment rules.
 
-For information about using a local image registry, see [Requirements for Air Gap Image Registry Requirements](image-registry-airgap).
+For information about using a local image registry, see [Requirements for Air Gap Image Registry](image-registry-airgap).
 
 ### Use a GitOps or Internal Version Control Workflow
 
