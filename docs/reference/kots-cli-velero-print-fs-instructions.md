@@ -1,7 +1,7 @@
 # velero print-fs-instructions
 
 :::note
-This command is deprecated. Use [kots velero configure-hostpath](/reference/kots-cli-velero-configure-hostpath) or [kots velero configure-nfs](/reference/kots-cli-velero-configure-nfs) instead.
+This command is deprecated. Use [`kubectl kots velero configure-hostpath`](/reference/kots-cli-velero-configure-hostpath) or [`kubectl kots velero configure-nfs`](/reference/kots-cli-velero-configure-nfs) instead.
 :::
 
 Prints instructions for setting up a file system as the snapshots storage destination (such as NFS or host path).

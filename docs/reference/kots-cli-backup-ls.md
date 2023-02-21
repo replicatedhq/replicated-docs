@@ -1,5 +1,9 @@
 # backup ls
 
+:::note
+This command is deprecated. Use [`kubectl kots get backups`](/reference/kots-cli-get-backups) instead.
+:::
+
 Show a list of all the available instance snapshots for disaster recovery.
 
 ### Usage

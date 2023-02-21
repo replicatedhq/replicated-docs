@@ -34,7 +34,7 @@ For CLI procedures, see the following sections:
 
 ### Existing Clusters {#existing}
 
-If you are restoring to a healthy cluster, you can skip reinstalling Velero and continue to running the `backup ls` and `restore` commands in the last two steps.
+If you are restoring to a healthy cluster, you can skip reinstalling Velero and continue to running the `get backups` and `restore` commands in the last two steps.
 
 To restore a backup on an existing cluster:
 
@@ -47,7 +47,7 @@ To restore a backup on an existing cluster:
     - **Velero 1.10 and later:** Use the `--use-node-agent`, `--uploader-type=restic`, and `--use-volume-snapshots=false` flags.
     - **Velero versions earlier than 1.10:** Use the `--use-restic` and `--use-volume-snapshots=false` flags. 
 
-1. Run the `kubectl kots backup ls` command to get a list of backups.
+1. Run the `kubectl kots get backups` command to get a list of backups.
 
 1. Run the following command to restore a full backup: 
 
@@ -60,7 +60,7 @@ To restore a backup on an existing cluster:
 
 ### Online Kubernetes Installer Clusters {#online}
 
-If you are restoring to a healthy cluster, you can skip the installation and configuration steps and continue to running the `backup ls` and `restore` commands in the last two steps.
+If you are restoring to a healthy cluster, you can skip the installation and configuration steps and continue to running the `get backups` and `restore` commands in the last two steps.
 
 To restore a backup on a Kubernetes installer-created cluster:
 
@@ -80,7 +80,7 @@ To restore a backup on a Kubernetes installer-created cluster:
     * **NFS Configuration**: See [velero configure-nfs](/reference/kots-cli-velero-configure-nfs/)
     * **Host Path Configuration**: See [velero configure-hostpath](/reference/kots-cli-velero-configure-hostpath/)
 
-1. Run the `kubectl kots backup ls` command to get a list of backups.
+1. Run the `kubectl kots get backups` command to get a list of backups.
 
 1. Run the following command to restore a full backup: 
 
@@ -111,7 +111,7 @@ To restore a backup on an air gapped Kubernetes installer cluster:
     * **NFS Configuration**: See [velero configure-nfs](/reference/kots-cli-velero-configure-nfs/)
     * **Host Path Configuration**: See [velero configure-hostpath](/reference/kots-cli-velero-configure-hostpath/)
 
-1. Run the `kubectl kots backup ls` command to get a list of backups.
+1. Run the `kubectl kots get backups` command to get a list of backups.
 
 1. Run the following command to restore a full backup: 
 

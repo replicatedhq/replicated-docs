@@ -1,5 +1,9 @@
 # restore ls
 
+:::note
+This command is deprecated. Use [`kubectl kots get restores`](/reference/kots-cli-get-restores) instead.
+:::
+
 Show a list of all the available full snapshot restores for disaster recovery.
 
 ### Usage
