@@ -15,7 +15,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 | `-h, --help`            |        | Help for the admin-console          |
 | `--registry-username`   | string | username for the private registry   |
 | `--registry-password`   | string | password for the private registry   |
-| `--skip-registry-check` | bool   | Set to `true` to skip the connectivity test and validation of the provided registry information. _(defaults to false)_ |
+| `--skip-registry-check` | bool   | Set to `true` to skip the connectivity test and validation of the provided registry information. **Default:** `false` |
 
 ### Examples
 ```bash
