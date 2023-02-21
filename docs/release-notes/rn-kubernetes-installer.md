@@ -12,7 +12,7 @@ Released on February 21, 2023
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-02-17T17-52-43Z.
 
 ### Bug Fixes {#bug-fixes-v2023-02-21-0}
-* Fixes an error when using Containerd 1.6.18 and the EKCO Internal Load Balancer that causes the install script to fail with error "ctr: flags --detach and --rm cannot be specified together".
+* Fixes an issue that causes the install script to fail with error "ctr: flags --detach and --rm cannot be specified together" when using Containerd 1.6.18 and the EKCO Internal Load Balancer.
 
 ## v2023.02.17-0 - Withdrawn
 
