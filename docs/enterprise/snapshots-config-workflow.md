@@ -56,10 +56,7 @@ Follow this process to install Velero and configure the snapshots feature:
 
 ## Next Step
 
-After you configure a storage destination, you can create a full backup using one of the following methods:
-
-  * Create backups manually. See [Creating Backups](snapshots-creating).
-  * Schedule automatic backups. See [Scheduling Automatic Backups](snapshots-scheduling).
+After you configure a storage destination, you can create a backup. See [Creating and Scheduling Backups](snapshots-creating).
 
 ## Additional Resources
 

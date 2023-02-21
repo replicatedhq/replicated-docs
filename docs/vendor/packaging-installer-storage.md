@@ -49,7 +49,7 @@ The following table describes the kURL add-ons for data storage, including if th
   </tr>
   <tr>
     <td>Longhorn</td>
-    <td><p>The Longhorn add-on is deprecated and not recommended for production Kubernetes installer clusters.</p><p>Longhorn is an open source distributed block storage system for Kubernetes.</p>
+    <td><p>The Longhorn add-on is deprecated and not supported in production Kubernetes installer clusters.</p><p>If you are currently using Longhorn, you must migrate data from Longhorn to either OpenEBS or Rook. For more information about migrating from Longhorn, see <a href="https://kurl.sh/docs/install-with-kurl/migrating-csi">Migrating to Change CSI Add-On</a> in the kURL documentation.</p><p>Longhorn is an open source distributed block storage system for Kubernetes.</p>
     <p>See <a href="https://kurl.sh/docs/add-ons/longhorn">Longhorn Add-on</a> in the kURL documentation.</p></td>
     <td>Yes</td>
     <td>No</td>
@@ -63,6 +63,10 @@ If your application does not require three or more nodes in the cluster where it
 If you use OpenEBS Local PV for single node clusters, you can optionally exclude the MinIO add-on. Excluding the MinIO add-on disables S3-object storage for the app manager. If you use only the OpenEBS add-on and exclude the MinIO add-on, then you must set the `disableS3` field to `true` in the KOTS add-on. For more information, see [Effects of the disableS3 Flag](https://kurl.sh/docs/add-ons/kotsadm#effects-of-the-disables3-flag) in _KOTS Add-on_ in the kURL documentation.
 
 When both the MinIO and OpenEBS add-ons are included in the Kubernetes installer, the app manager stores support bundle and application archives in MinIO object storage.
+
+The Kubernetes installer has a supported migration path from either Rook or Longhorn to OpenEBS v3.3.0 or later. For more information about how to migrate data to OpenEBS, see [Migrating to Change CSI Add-On](https://kurl.sh/docs/install-with-kurl/migrating-csi) in the kURL documentation.
+
+The following is an example specification that uses OpenEBS v3.3.x with Local PV:
 
 ```yaml
 apiVersion: "cluster.kurl.sh/v1beta1"
@@ -99,6 +103,8 @@ In addition to the version history, application metadata, and other data for man
 The kURL EKCO add-on provides an operator that manages data in rqlite and in the MinIO deployment to ensure that the data is properly distributed across multiple nodes in the cluster and has high availability. For more information, see [EKCO Add-on](https://kurl.sh/docs/add-ons/ekco) in the kURL documentation.
 
 With both OpenEBS Local PV and MinIO in the Kubernetes installer cluster, the app manager uses OpenEBS Local PV to provision the PVs on each node that MinIO uses for local storage. Without MinIO, the app manager stores support bundle and application archive data locally in a PV on a single node in the cluster, which can cause loss of data if the node is unavailable.
+
+The Kubernetes installer has a supported migration path from either Rook or Longhorn to OpenEBS v3.3.0 or later. For more information about how to migrate data to OpenEBS, see [Migrating to Change CSI Add-On](https://kurl.sh/docs/install-with-kurl/migrating-csi) in the kURL documentation.
 
 #### Requirements
 
@@ -140,6 +146,8 @@ The app manager stores version history, application metadata, and other small am
 In addition to the version history, application metadata, and other data for managing the application mentioned above, the app manager also stores support bundle and application archive data in the Kubernetes installer cluster. For multi-node Kubernetes installers clusters that use the Rook add-on, the support bundle and application archive data is stored in the Ceph object store.
 
 The kURL EKCO add-on manages data in Ceph and in rqlite to ensure that the data is properly distributed across multiple nodes in the cluster and has high availability. The EKCO operator also performs several tasks to maintain the health of the Ceph cluster. For more information about how the EKCO add-on manages data in Rook Ceph, see [Rook](https://kurl.sh/docs/add-ons/ekco#rook) in _EKCO add-on_ in the kURL documentation.
+
+The Kubernetes installer has a supported migration path from Longhorn to Rook. For more information about how to migrate data from Longhorn to Rook, see [Migrating to Change CSI Add-On](https://kurl.sh/docs/install-with-kurl/migrating-csi) in the kURL documentation.
 
 #### Requirements
 

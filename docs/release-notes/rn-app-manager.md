@@ -4,6 +4,21 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.94.2
+
+Released on February 17, 2023
+
+Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
+
+### Improvements {#improvements-1-94-2}
+* Updates kurl_proxy go mod gopkg.in/yaml.v3 to resolve CVE-2022-28948 with high severity.
+* Support bundles generated from the admin console now include collectors and analyzers from all support bundle specifications found in the cluster. This includes support bundle specifications found in Secret and ConfigMap objects. For more information about how to make support bundle specifications discoverable in a cluster, see [About Modular and Discoverable Support Bundles](/vendor/support-modular-support-bundle-specs).
+
+### Bug Fixes {#bug-fixes-1-94-2}
+* Fixes a bug that didn't properly display config items that had the `affix` property.
+* Fixes an issue where the button to rerun preflights did not show if preflights failed during an air gapped installation.
+* Fixes a bug where Velero backups failed due to pods in the Shutdown state.
+
 ## 1.94.1
 
 Released on February 14, 2023
