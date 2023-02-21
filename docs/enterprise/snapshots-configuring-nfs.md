@@ -27,7 +27,7 @@ To install Velero and configure NFS storage in an online environment:
 
 <InstallVelero/>
 
-4. Run the following command to install Velero and configure an NFS storage destination in an online environment:
+3. Run the following command to install Velero and configure an NFS storage destination in an online environment:
 
   ```
   kubectl kots velero configure-nfs --namespace NAME --nfs-path PATH --nfs-server HOST
@@ -48,7 +48,7 @@ To install Velero and configure NFS storage in air gapped environments:
 
 <InstallVelero/>
 
-4. Run the following command to install Velero and configure an NFS storage destination in an air gapped environment. 
+3. Run the following command to install Velero and configure an NFS storage destination in an air gapped environment. 
 
   ```
   kubectl kots velero configure-nfs \

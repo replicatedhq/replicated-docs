@@ -28,7 +28,7 @@ To install Velero and configure host path storage in online environments:
 
 <InstallVelero/>
 
-4. Run the following command to configure a host path storage destination:
+3. Run the following command to configure a host path storage destination:
 
   ```
   kubectl kots velero configure-hostpath --namespace NAME --hostpath /PATH
@@ -48,7 +48,7 @@ To install Velero and configure host path storage in air gapped environments:
 
 <InstallVelero/>
 
-4. Run the following command to configure a host path storage destination:
+3. Run the following command to configure a host path storage destination:
 
   ```
   kubectl kots velero configure-hostpath \
