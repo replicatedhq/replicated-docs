@@ -1,4 +1,5 @@
 import InstallVelero from "../partials/snapshots/_installVelero.mdx"
+import RegistryCredNote from "../partials/snapshots/_registryCredentialsNote.mdx"
 
 # Configuring a Host Path Storage Destination
 
@@ -21,7 +22,7 @@ Complete the following items before you perform this task:
 
    You cannot change the permissions of a mounted network shared filesystem from the client side. To reassign the user:group to 1001:1001 for a directory that is already mounted, you must remount the directory. For example, for a CIFS mounted directory, specify the `uid=1001,gid=1001` mount options in the CIFS mount command.
 
-## Configure Host Path Storage in Online Environments
+## Install Velero and Configure Host Path Storage in Online Environments
 
 To install Velero and configure host path storage in online environments:
 
@@ -29,18 +30,19 @@ To install Velero and configure host path storage in online environments:
 
 4. Run the following command to configure a host path storage destination:
 
-    ```bash
-    kubectl kots velero configure-hostpath --namespace NAME --hostpath /PATH
-    ```
+  ```
+  kubectl kots velero configure-hostpath --namespace NAME --hostpath /PATH
+  ```
 
-    Replace:
-
+  Replace:
     - `NAME` with the namespace where the admin console is installed and running
     - `PATH` with the path to the directory where the backups will be stored
 
     For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
 
-## Configure Host Path Storage in Air Gapped Environments
+## Install Velero and Configure Host Path Storage in Air Gapped Environments
+
+<RegistryCredNote/>
 
 To install Velero and configure host path storage in air gapped environments:
 
@@ -48,7 +50,7 @@ To install Velero and configure host path storage in air gapped environments:
 
 4. Run the following command to configure a host path storage destination:
 
-  ```bash
+  ```
   kubectl kots velero configure-hostpath \
     --namespace NAME \
     --hostpath /PATH \
@@ -67,10 +69,6 @@ To install Velero and configure host path storage in air gapped environments:
     - `REGISTRY_PASSWORD` with the password to use to authenticate with the registry
 
   For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
-
-  :::note
-  Velero does not support passing registry credentials during the installation, so it is typical for the velero and node-agent (restic) Pods to be in the `ErrImagePull` or `ImagePullBackOff` state after running the `velero install` command. In app manager v1.94.0 and later, this situation resolves itself after you complete the instructions.
-  :::
 
 ## Configure Host Path Storage in the Admin Console
 
