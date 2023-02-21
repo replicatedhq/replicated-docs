@@ -169,7 +169,7 @@ If no Velero installation is detected, instructions are displayed to install Vel
 
 ## Next Steps
 
-* (Existing clusters only) Configure Velero namespace access if you are using RBAC and optionally increase the default memory limits. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
+* (Existing clusters only) Configure Velero namespace access if you are using minimal RBAC, and optionally increase the default memory limits. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
 * Create or schedule backups. See [Creating and Scheduling Backups](snapshots-creating).
 
 ## Additional Resources

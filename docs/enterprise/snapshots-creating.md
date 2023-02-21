@@ -1,6 +1,6 @@
 # Creating and Scheduling Backups
 
-This topic describes how to use the Replicated snapshots feature to create backups. It also includes information about how to use the Replicated admin console create a schedule for automatic backups.
+This topic describes how to use the Replicated snapshots feature to create backups. It also includes information about how to use the Replicated admin console create a schedule for automatic backups. For information about restoring, see [Restoring from Backups](snapshots-restoring-full).
 
 ## Prerequisite
 
@@ -8,11 +8,14 @@ Before you can create backups, you must configure a storage destination. See [Ho
 
 ## Create a Full Backup (Recommended) {#full}
 
-Full backups, or _instance snapshots_, back up the admin console and all application data, including volumes and manifest files. You can use a full backup for disaster recovery scenarios by restoring over the same instance or into a new cluster.
+Full backups, or _instance snapshots_, back up the admin console and all application data, including application volumes and manifest files. If you manage multiple applications with the admin console, data from all applications that support snapshots is included in a full backup. Reach out to your software vendor for information about support for snapshots.
 
-If you manage multiple applications with the admin console, data from all applications that support backups is included in a full backup. Reach out to your software vendor for information about support for backup and restore.
+From a full backup, you can:
+* Restore application and admin console data.
+* Restore only application data.
+* Restore only admin console data.
 
-From a full backup, you can do a full restore of the instance. Or, you can also choose to restore only application or admin console data. For more information about restoring, see [Restoring from Backups](snapshots-restoring-full).
+Full backups are recommended because they support all types of restores. For example, you can restore your instance from full backups in disaster recovery scenarios. Or, you can use a full backup to roll back after you deploy a new version of an application by restoring only application data.
 
 You can create a full backup with the following methods:
 * [Create a Backup with the CLI](#cli-backup)
@@ -42,12 +45,10 @@ To create a full backup in the admin console:
 
 ## Create a Partial Backup {#partial}
 
-Partial backups, or _application snapshots_, back up application volumes and application manifests only. They do not back up admin console data.
-
-A common use case for partial backups is to back up an application before you deploy a new version in case you need to roll back. For more information about restoring from partial backups, see [Restoring from Backups](snapshots-restoring-full).
+Partial backups, or _application snapshots_, back up application volumes and application manifests only. Partial backups do not back up admin console data.
 
 :::note
-Partial backups are not suitable for disaster recovery. To create backups for disaster recovery, see [Create a Full Backup (Recommended)](#full) above.
+Replicated recommends that you create full backups instead of partial backups because partial backups are not suitable for disaster recovery. See [Create a Full Backup](#full) above.
 :::
 
 To create a partial backup in the admin console:
@@ -78,16 +79,10 @@ To schedule automatic backups in the admin console:
 
 1. Select **Enable automatic scheduled snapshots**. 
 
-1. Configure the automatic backup schedule:
+1. Configure the automatic backup schedule for the type of snapshots that you selected:
 
    * For **Schedule**, select Hourly, Daily, Weekly, or Custom.
-   * For **Cron Expression**, enter a cron expression to customize the automatic backup schedule that you selected. For information about supported cron expressions, see [Cron Expressions](/reference/cron-expressions) in _Reference_.
-
-1. (Optional) For **Retention Policy**, edit the amount of time that data from the automatic backups is saved.
-   
-   :::note
-   The default retention period is one month. Changing the retention policy affects only snapshots created after the time of the change.
-   :::
+   * For **Cron Expression**, enter a cron expression to create a custom automatic backup schedule. For information about supported cron expressions, see [Cron Expressions](/reference/cron-expressions) in _Reference_.
 ## Additional Resources
 
 [Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)
