@@ -166,7 +166,7 @@ To use a partial backup to do a partial restore in the admin console:
 
     The **Restore from Partial backup (Application)** dialog opens.
 
-1. Under **Type your application slug to continue**, enter the application slug next to the backup that you want to restore.
+1. Under **Type your application slug to continue**, enter the application slug.
 
     ![Restore Partial Snapshot dialog](/images/restore-partial-dialog.png)
 
