@@ -8,7 +8,9 @@ Before you can create backups, you must configure a storage destination. See [Ho
 
 ## Create a Full Backup (Recommended) {#full}
 
-Full backups, or _instance snapshots_, back up the admin console and all application data, including application volumes and manifest files. If you manage multiple applications with the admin console, data from all applications that support snapshots is included in a full backup. Reach out to your software vendor for information about support for snapshots.
+Full backups, or _instance snapshots_, back up the admin console and all application data, including application volumes and manifest files.
+
+If you manage multiple applications with the admin console, data from all applications that support backups is included in a full backup. To check if backups are supported for an application, go to the **View files** page in the admin console, open the `upstream` folder, and confirm that the application includes a manifest file with `kind: Backup` and `apiVersion: velero.io/v1`.
 
 From a full backup, you can:
 * Restore application and admin console data.
@@ -83,6 +85,10 @@ To schedule automatic backups in the admin console:
 
    * For **Schedule**, select Hourly, Daily, Weekly, or Custom.
    * For **Cron Expression**, enter a cron expression to create a custom automatic backup schedule. For information about supported cron expressions, see [Cron Expressions](/reference/cron-expressions) in _Reference_.
+
+1. (Optional) For **Retention Policy**, edit the amount of time that backup data is saved. By default, backup data is saved for 30 days.
+
+   The retention policy applies to all backups, including both automatically- and manually-created backups. Changing the retention policy affects only backups created after the time of the change.
 ## Additional Resources
 
 [Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)
