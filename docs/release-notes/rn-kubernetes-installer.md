@@ -4,6 +4,16 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.02.21-0
+
+Released on February 21, 2023
+
+### New Features {#new-features-v2023-02-21-0}
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-02-17T17-52-43Z.
+
+### Bug Fixes {#bug-fixes-v2023-02-21-0}
+* Fixes an issue that causes the install script to fail with error "ctr: flags --detach and --rm cannot be specified together" when using Containerd 1.6.18 and the EKCO Internal Load Balancer.
+
 ## v2023.02.17-0 - Withdrawn
 
 Released on February 17, 2023
