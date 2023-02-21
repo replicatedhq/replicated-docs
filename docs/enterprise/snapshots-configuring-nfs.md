@@ -70,7 +70,7 @@ To install Velero and configure NFS storage in air gapped environments:
     - `REGISTRY_USERNAME` with the username to use to authenticate with the registry
     - `REGISTRY_PASSWORD` with the password to use to authenticate with the registry
 
-For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
+  For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
 
 ## Configure NFS Storage in the Admin Console
 
