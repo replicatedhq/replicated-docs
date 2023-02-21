@@ -1,3 +1,5 @@
+import InstallVelero from "../partials/snapshots/_installVelero.mdx"
+
 # Configuring a Host Path Storage Destination
 
 This topic describes how to install Velero and configure a host path as your storage destination for backups.  
@@ -21,47 +23,54 @@ Complete the following items before you perform this task:
 
 ## Configure Host Path Storage in Online Environments
 
-Run the following command to install Velero and configure a host path storage destination in an online environment. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
+To install Velero and configure host path storage in online environments:
 
-```
-kubectl kots velero configure-hostpath --namespace NAME --hostpath /PATH
-```
+<InstallVelero/>
 
-Replace:
+4. Run the following command to configure a host path storage destination:
 
-- NAME with the namespace where the admin console is installed and running
-- PATH with the path to the directory where the backups will be stored
+    ```bash
+    kubectl kots velero configure-hostpath --namespace NAME --hostpath /PATH
+    ```
 
-If no Velero installation is detected, instructions are displayed to install Velero and configure the storage destination.
+    Replace:
+
+    - `NAME` with the namespace where the admin console is installed and running
+    - `PATH` with the path to the directory where the backups will be stored
+
+    For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
 
 ## Configure Host Path Storage in Air Gapped Environments
 
-Run the following command to install Velero and configure a host path storage destination in an air gapped environment. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
+To install Velero and configure host path storage in air gapped environments:
 
-```bash
-kubectl kots velero configure-hostpath \
-  --namespace NAME \
-  --hostpath /PATH \
-  --kotsadm-registry REGISTRY_HOSTNAME \
-  --kotsadm-namespace REGISTRY_NAMESPACE \
-  --registry-username REGISTRY_USERNAME \
-  --registry-password REGISTRY_PASSWORD
-```
+<InstallVelero/>
 
-Replace:
+4. Run the following command to configure a host path storage destination:
 
-- NAME with the namespace where the admin console is installed and running
-- PATH with the path to the directory where the backups will be stored
-- REGISTRY_HOSTNAME with the registry endpoint where the images are hosted
-- REGISTRY_NAMESPACE with the registry namespace where the images are hosted
-- REGISTRY_USERNAME with the username to use to authenticate with the registry
-- REGISTRY_PASSWORD with the password to use to authenticate with the registry
+  ```bash
+  kubectl kots velero configure-hostpath \
+    --namespace NAME \
+    --hostpath /PATH \
+    --kotsadm-registry REGISTRY_HOSTNAME \
+    --kotsadm-namespace REGISTRY_NAMESPACE \
+    --registry-username REGISTRY_USERNAME \
+    --registry-password REGISTRY_PASSWORD
+  ```
 
-If no Velero installation is detected, instructions are displayed to install Velero and configure the storage destination.
+  Replace:
+    - `NAME` with the namespace where the admin console is installed and running
+    - `PATH` with the path to the directory where the backups will be stored
+    - `REGISTRY_HOSTNAME` with the registry endpoint where the images are hosted
+    - `REGISTRY_NAMESPACE` with the registry namespace where the images are hosted
+    - `REGISTRY_USERNAME` with the username to use to authenticate with the registry
+    - `REGISTRY_PASSWORD` with the password to use to authenticate with the registry
 
-:::note
-Velero does not support passing registry credentials during the installation, so it is typical for the velero and node-agent (restic) Pods to be in the `ErrImagePull` or `ImagePullBackOff` state after running the `velero install` command. In app manager v1.94.0 and later, this situation resolves itself after you complete the instructions.
-:::
+  For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
+
+  :::note
+  Velero does not support passing registry credentials during the installation, so it is typical for the velero and node-agent (restic) Pods to be in the `ErrImagePull` or `ImagePullBackOff` state after running the `velero install` command. In app manager v1.94.0 and later, this situation resolves itself after you complete the instructions.
+  :::
 
 ## Configure Host Path Storage in the Admin Console
 

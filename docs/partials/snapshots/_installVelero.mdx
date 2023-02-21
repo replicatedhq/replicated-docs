@@ -1,0 +1,27 @@
+1. Run the following command to install Velero:
+
+    ```bash
+    velero install \
+      --no-default-backup-location \
+      --no-secret \
+      --use-restic \
+      --use-volume-snapshots=false \
+      --plugins velero/velero-plugin-for-aws:v1.5.3
+    ```
+
+1. If your cluster uses one of the following Kubernetes distributions, then you must configure the Restic DaemonSet specification:
+     * RancherOS 
+     * OpenShift 
+     * Microsoft Azure 
+     * VMware Tanzu Kubernetes Grid Integrated Edition
+     
+    For information about how to configure the Restic DaemonSet, see [Configure Restic DaemonSet spec](https://velero.io/docs/v1.9/restic/#configure-restic-daemonset-spec) in the Velero documentation.
+
+1. (Namespace-Scoped RBAC Only) If you installed the app manager with the `--use-minimal-rbac` flag to enable namespace-spaced scoped RBAC permissions, run the following command to ensure that the app manager can access the velero namespace:
+
+   ```
+   kubectl kots velero ensure-permissions --namespace NAME --velero-namespace VELERO-NAME
+   ```
+   Replace:
+   * `NAME` with the namespace where the admin console is running
+   * `VELERO-NAME` with the namespace where Velero is installed
