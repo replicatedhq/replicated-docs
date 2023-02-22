@@ -98,7 +98,7 @@ To restore a backup on an air gapped Kubernetes installer cluster:
 
     * **Host Path:** See [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath)
     * **NFS:** See [Configuring an NFS Storage Destination](snapshots-configuring-nfs) or  for the configuration steps and how to set up Velero.
-    * **AWS, GCP, Azure, or other S3:** See [Configuring Other Storage Destinations](snapshots-storage-destinations).
+    * **S3-Compatible:** See [Configure S3-Compatible Storage for Air Gapped Environments](snapshots-storage-destinations#configure-s3-compatible-storage-for-air-gapped-environments) in _Configuring Other Storage Destinations_.
 
 1. Run the `kubectl kots get backups` command to get a list of backups.
 
