@@ -1,5 +1,6 @@
 import InstallVelero from "../partials/snapshots/_installVelero.mdx"
 import RegistryCredNote from "../partials/snapshots/_registryCredentialsNote.mdx"
+import ResticDaemonSet from "../partials/snapshots/_resticDaemonSet.mdx"
 
 # Configuring an NFS Storage Destination
 
@@ -25,9 +26,11 @@ Complete the following items before you perform this task:
 
 To install Velero and configure NFS storage in an online environment:
 
-<InstallVelero/>
+1. <InstallVelero/>
 
-3. Run the following command to install Velero and configure an NFS storage destination in an online environment:
+1. <ResticDaemonSet/>
+
+1. Run the following command to configure the NFS storage destination:
 
   ```
   kubectl kots velero configure-nfs --namespace NAME --nfs-path PATH --nfs-server HOST
@@ -42,13 +45,15 @@ To install Velero and configure NFS storage in an online environment:
 
 ## Install Velero and Configure NFS Storage in Air Gapped Environments
 
-<RegistryCredNote/>
-
 To install Velero and configure NFS storage in air gapped environments:
 
-<InstallVelero/>
+1. <InstallVelero/>
 
-3. Run the following command to install Velero and configure an NFS storage destination in an air gapped environment. 
+      <RegistryCredNote/>
+
+1. <ResticDaemonSet/>
+
+1. Run the following command to configure the NFS storage destination: 
 
   ```
   kubectl kots velero configure-nfs \

@@ -1,35 +1,27 @@
-1. Run one of the following commands to install Velero, depending on the version of the Velero CLI that you installed as part of [Installing the Velero CLI](snapshots-velero-cli-installing):
+Run one of the following commands to install Velero, depending on the version of the Velero CLI that you installed as part of [Installing the Velero CLI](snapshots-velero-cli-installing):
 
-   * **Velero 1.10 and later**:
+  * **Velero 1.10 and later**:
 
-    ```bash
-    velero install \
-      --no-default-backup-location \
-      --no-secret \
-      --use-node-agent --uploader-type=restic \
-      --use-volume-snapshots=false \
-      --plugins velero/velero-plugin-for-aws:v1.5.3
-    ```
+  ```bash
+  velero install \
+    --no-default-backup-location \
+    --no-secret \
+    --use-node-agent --uploader-type=restic \
+    --use-volume-snapshots=false \
+    --plugins velero/velero-plugin-for-aws:v1.5.3
+  ```
 
-    * **Velero versions earlier than 1.10**:
+  * **Velero versions earlier than 1.10**:
 
-    ```bash
-    velero install \
-      --no-default-backup-location \
-      --no-secret \
-      --use-restic \
-      --use-volume-snapshots=false \
-      --plugins velero/velero-plugin-for-aws:v1.5.3
-    ```
+  ```bash
+  velero install \
+    --no-default-backup-location \
+    --no-secret \
+    --use-restic \
+    --use-volume-snapshots=false \
+    --plugins velero/velero-plugin-for-aws:v1.5.3
+  ```
 
-    :::note
-    To check the version of the Velero CLI installed, run `velero version --client-only`.
-    :::
-
-1. If your cluster uses one of the following Kubernetes distributions, then you must configure the Restic DaemonSet specification:
-     * RancherOS 
-     * OpenShift 
-     * Microsoft Azure 
-     * VMware Tanzu Kubernetes Grid Integrated Edition
-     
-    For information about how to configure the Restic DaemonSet, see [Configure Restic DaemonSet spec](https://velero.io/docs/v1.9/restic/#configure-restic-daemonset-spec) in the Velero documentation.
+:::note
+To check the version of the Velero CLI installed, run `velero version --client-only`.
+:::

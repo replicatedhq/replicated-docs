@@ -1,5 +1,6 @@
 import InstallVelero from "../partials/snapshots/_installVelero.mdx"
 import RegistryCredNote from "../partials/snapshots/_registryCredentialsNote.mdx"
+import ResticDaemonSet from "../partials/snapshots/_resticDaemonSet.mdx"
 
 # Configuring a Host Path Storage Destination
 
@@ -26,29 +27,33 @@ Complete the following items before you perform this task:
 
 To install Velero and configure host path storage in online environments:
 
-<InstallVelero/>
+1. <InstallVelero/>
 
-3. Run the following command to configure a host path storage destination:
+1. <ResticDaemonSet/>
 
-  ```
-  kubectl kots velero configure-hostpath --namespace NAME --hostpath /PATH
-  ```
+1. Run the following command to configure the host path storage destination:
 
-  Replace:
-    - `NAME` with the namespace where the admin console is installed and running
-    - `PATH` with the path to the directory where the backups will be stored
+    ```
+    kubectl kots velero configure-hostpath --namespace NAME --hostpath /PATH
+    ```
 
-  For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
+    Replace:
+      - `NAME` with the namespace where the admin console is installed and running
+      - `PATH` with the path to the directory where the backups will be stored
+
+    For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
 
 ## Install Velero and Configure Host Path Storage in Air Gapped Environments
 
-<RegistryCredNote/>
-
 To install Velero and configure host path storage in air gapped environments:
 
-<InstallVelero/>
+1. <InstallVelero/>
 
-3. Run the following command to configure a host path storage destination:
+     <RegistryCredNote/>
+
+1. <ResticDaemonSet/>
+
+1. Run the following command to configure the host path storage destination:
 
   ```
   kubectl kots velero configure-hostpath \
