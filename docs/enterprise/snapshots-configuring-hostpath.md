@@ -15,7 +15,7 @@ For existing or embedded clusters where Velero is already installed, you can upd
 Complete the following items before you perform this task:
 
 * Review the limitations and considerations. See [Limitations and Considerations](snapshots-config-workflow#limitations-and-considerations) in _How to Set Up Backup Storage_.
-* Install the Velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).
+* Install the velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).
 * The host path must be a dedicated directory. Do not use a partition used by a service like Docker or Kubernetes for ephemeral storage.
 * The host path must exist and be writable by the user:group 1001:1001 on all nodes in the cluster. For example, in a Linux environment you might run `sudo chown -R 1001:1001 /backups` to change the user:group permissions.
 
