@@ -16,8 +16,8 @@ Released on February 23, 2023
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.26.4.
 * Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.10.1.
 
-### Bug Fixes {#bug-fixes-v2023-02-23-0}
-* (improvement) kURL will no longer choose the node name and instead defer to kubeadm to infer the node name from the hostname.
+### Improvements {#improvements-v2023-02-23-0}
+* kURL will no longer choose the node name and instead defer to kubeadm to infer the node name from the hostname.
 
 ## v2023.02.21-0
 
