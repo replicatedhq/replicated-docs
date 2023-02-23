@@ -10,9 +10,8 @@ Released on February 23, 2023
 
 ### New Features {#new-features-v2023-02-23-0}
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.2.0.
-* Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) version 2.6.5-20230222 to address the following high severity CVEs: CVE-2022-4450, CVE-2023-0215, CVE-2023-0286.
+* Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.6.5-20230222 and 2.8.1-20230222 to address the following high severity CVEs: CVE-2022-4450, CVE-2023-0215, CVE-2023-0286.
 * Updates [Registry add-on](https://kurl.sh/docs/add-ons/registry) version 2.8.1 with new kurlsh/s3cmd image to address the following high severity CVEs: CVE-2022-4450, CVE-2023-0215, CVE-2023-0286.
-* Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) version 2.8.1-20230222 to address the following high severity CVEs: CVE-2022-4450, CVE-2023-0215, CVE-2023-0286.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-02-22T18-23-45Z.
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.26.4.
 * Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.10.1.
