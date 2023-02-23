@@ -31,9 +31,19 @@ The Kubernetes installer supports upgrading at most two minor versions of Kubern
 
 If the application vendor updated any add-ons in the Kubernetes installer specification since the last time that you ran the installation script in your cluster, the script automatically updates the add-ons after completing any required Kubernetes upgrade.
 
-The version of the KOTS add-on provided in the Kubernetes installer specification determines the version of the app manager installed in your cluster. For example, if the version of the app manager running in your cluster is 1.92.0, and the vendor updates the KOTS add-on in the Kubernetes installer specification to use 1.92.1, then the app manager version in your cluster is updated to 1.92.1 when you run the installation script.
-
 For a complete list of add-ons that can be included in the Kubernetes installer specification, including the KOTS add-on, see [Add-ons](https://kurl.sh/docs/add-ons/antrea) in the kURL documentation.
+
+#### Containerd and Docker Add-on Updates
+
+The install script upgrades the version of the Containerd or Docker container runtime if required by the installer specification file.
+
+The installation script also supports migrating from Docker to Containerd as Docker is not supported in Kubernetes versions 1.24 and later. If the install script detects a change from Docker to Containerd, it installs Containerd, loads the images found in Docker, and removes Docker.
+
+For information about the container runtime add-ons, see [Containerd Add-On](https://kurl.sh/docs/add-ons/containerd) and [Docker Add-On](https://kurl.sh/docs/add-ons/docker) in the kURL documentation.
+
+#### App Manager Updates (KOTS Add-on)
+
+The version of the app manager installed in your cluster is set by the KOTS add-on provided in the Kubernetes installer specification file. For example, if the version of the app manager running in your cluster is 1.92.0, and the vendor updates the KOTS add-on in the Kubernetes installer specification to use 1.92.1, then the app manager version in your cluster is updated to 1.92.1 when you run the installation script.
 ## Update Kubernetes, the App Manager, and Add-ons
 
 This section describes how to update Kubernetes, the app manager, and any add-ons in your cluster. It includes instructions for both online and air gap environments.
