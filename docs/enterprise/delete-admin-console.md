@@ -2,8 +2,9 @@
 
 This topic describes how to delete the Replicated admin console and remove installed applications, including information about:
 
-* Removing references for installed applications from the admin console.
-* Deleting Kubernetes objects and resources for the admin console from a cluster.
+* Removing references for installed applications from the admin console. See [Remove an Application Reference](#remove-an-application-reference).
+* Removing an application and all its resources from a cluster. See [Remove an Application](#remove-an-application).
+* Deleting Kubernetes objects and resources for the admin console from a cluster. See [Delete the Admin Console](#delete-the-admin-console)
 
 ## Remove an Application Reference
 
@@ -13,6 +14,8 @@ When you use `kots remove`, the admin console no longer manages the application 
 
 It can be useful to remove the reference to an application from the admin console if you want to reinstall the application, but you do not want to recreate the namespace or other Kubernetes resources. For example, you could use `kots remove` if you installed an application using an incorrect license file and need to reinstall with the correct license.
 
+For information about how to completely remove an application and its resources from a cluster, see [Remove an Application](#remove-an-application) below.
+
 To remove an application reference from the admin console:
 
 1. Run the following command to list the installed applications for a namespace:
@@ -21,7 +24,7 @@ To remove an application reference from the admin console:
    ```
    Replace `NAMESPACE` with the name of the namespace where the admin console is installed.
 
-   In the output of this command, note the application slug that you want to remove.
+   In the output of this command, note the slug for the application that you want to remove.
 
 1. Run the following command to remove an application reference:
    ```
@@ -30,6 +33,31 @@ To remove an application reference from the admin console:
    Replace:
    * `NAMESPACE` with the name of the namespace where the admin console is installed.
    * `APP_SLUG` with the slug for the application that you want to remove.
+
+
+## Remove an Application
+
+You can completely remove an installed application and all its resources from a cluster using the `kots remove` command with the `--undeploy` flag.
+ 
+To remove an application and its resource from a cluster:
+
+1. Run the following command to list the installed applications for a namespace:
+   ```
+   kubectl kots get apps -n NAMESPACE
+   ```
+   Replace `NAMESPACE` with the name of the namespace where the admin console is installed.
+
+   In the output of this command, note the slug for the application that you want to remove.
+
+1. Run the following command to remove the application and all of its resources:
+
+   ```
+   kubectl kots remove APP_SLUG -n NAMESPACE --undeploy
+   ```
+   Replace:
+   * `NAMESPACE` with the name of the namespace where the admin console is installed.
+   * `APP_SLUG` with the slug for the application that you want to remove.
+
 
 ## Delete the Admin Console
 
