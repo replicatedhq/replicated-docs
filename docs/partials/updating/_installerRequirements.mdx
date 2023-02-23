@@ -1,21 +1,11 @@
-* It is recommended that you use the same flags with the installation script that you have used previously. For a complete list of the available installation flags, see [Advanced Options](https://kurl.sh/docs/install-with-kurl/advanced-options) in the kURL documentation.
+* **`installer-spec-file` flag**: If you used the `installer-spec-file` flag to pass a `patch.yaml` file when you ran the installation script previously, you must include the `installer-spec-file` flag with the same `patch.yaml` file when you rerun the installation script. This prevents the installer from overwriting any configuration from your `patch.yaml` file and making changes to the add-ons in your cluster. For example: `curl https://kurl.sh/latest | sudo bash -s installer-spec-file="./patch.yaml"`
 
-* If you used the `installer-spec-file` flag to pass a `patch.yaml` file when you ran the installation script previously, you must include the `installer-spec-file` flag with the same `patch.yaml` file when you rerun the installation script.
+* **`app-version-label` flag**: By default, the KOTS add-on in the Kubernetes installer specification also upgrades your application to the latest version when you run the installation script.
 
-   This prevents the installer from overwriting any configuration from your `patch.yaml` file and making changes to the add-ons in your cluster. For example: `curl https://kurl.sh/latest | sudo bash -s installer-spec-file="./patch.yaml"`
+   You can also specify an application version with the `app-version-label` flag. Or, to avoid upgrading your application version, set the `app-version-label` flag to the currently installed application version.
 
-* By default, the KOTS add-on in the Kubernetes installer specification also upgrades your application to the latest version when you run the installation script.
-
-    To avoid automatically upgrading your application version, you must include the `app-version-label` flag, and set the flag to the desired version of the application. For example, to continue using the same application version, set the `app-version-label` flag to the currently installed application version. For example, `curl https://kurl.sh/latest | sudo bash -s app-version-label=1.5.0`
-
-* The Kubernetes scheduler automatically reschedules Pods to other nodes during maintenance. Any deployments or StatefulSets with a single replica experience downtime while being rescheduled.
-
-* The installation script never updates existing versions of Docker and containerd on the cluster.
-
-* The Kubernetes installer supports upgrading at most two minor versions of Kubernetes at a time. If the script detects that the version of Kubernetes in your cluster is more than two minor versions earlier than the target version, it prints an error message like the following:
+   **For example:**
 
    ```
-   The currently installed kubernetes version is 1.23.16. The requested version to upgrade to is 1.26.0. Kurl can only be upgraded two minor versions at time. Please install 1.25.x. first.
+   curl https://kurl.sh/latest | sudo bash -s app-version-label=1.5.0
    ```
-
-   To complete the cluster update, you must first upgrade Kubernetes to the version specified in the error message. 
