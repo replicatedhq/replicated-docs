@@ -33,8 +33,6 @@ If the application vendor updated any add-ons in the Kubernetes installer specif
 
 The version of the KOTS add-on provided in the Kubernetes installer specification determines the version of the app manager installed in your cluster. For example, if the version of the app manager running in your cluster is 1.92.0, and the vendor updates the KOTS add-on in the Kubernetes installer specification to use 1.92.1, then the app manager version in your cluster is updated to 1.92.1 when you run the installation script.
 
-The installation script never updates existing versions of Docker and containerd on the cluster.
-
 For a complete list of add-ons that can be included in the Kubernetes installer specification, including the KOTS add-on, see [Add-ons](https://kurl.sh/docs/add-ons/antrea) in the kURL documentation.
 ## Update Kubernetes, the App Manager, and Add-ons
 
