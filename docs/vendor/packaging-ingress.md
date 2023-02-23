@@ -79,8 +79,10 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: nginx
-              servicePort: 80
+              service:
+                name: nginx
+                port:
+                  number: 80
 ```
 
 ```yaml
@@ -104,6 +106,8 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: nginx
-              servicePort: 80
+              service:
+                name: nginx
+                port:
+                  number: 80
 ```
