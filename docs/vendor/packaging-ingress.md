@@ -78,9 +78,12 @@ spec:
       http:
         paths:
           - path: /
+            pathType: ImplementationSpecific
             backend:
-              serviceName: nginx
-              servicePort: 80
+              service:
+                name: nginx
+                port:
+                  number: 80
 ```
 
 ```yaml
@@ -103,7 +106,10 @@ spec:
       http:
         paths:
           - path: /
+            pathType: ImplementationSpecific
             backend:
-              serviceName: nginx
-              servicePort: 80
+              service:
+                name: nginx
+                port:
+                  number: 80
 ```
