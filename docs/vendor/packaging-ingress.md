@@ -78,6 +78,7 @@ spec:
       http:
         paths:
           - path: /
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: nginx
@@ -105,6 +106,7 @@ spec:
       http:
         paths:
           - path: /
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: nginx
