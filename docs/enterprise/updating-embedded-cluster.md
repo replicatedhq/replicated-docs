@@ -7,9 +7,12 @@ This topic describes how to upgrade the versions of Kubernetes, the Replicated a
 
 ## About Updating Clusters 
 
-You use the Kubernetes installer installation script to update the versions of Kubernetes, the app manager, and any additional add-ons running in your cluster. 
+The application vendor uses a Kubernetes installer specification to specify the add-ons and the version of Kubernetes that are deployed to your cluster. You use the Kubernetes installer installation script to update your cluster based on the versions listed in this installer specification file.
 
-The application vendor uses a Kubernetes installer specification to specify the add-ons and the version of Kubernetes that are deployed to your cluster. When you rerun the installation script, the script uses this Kubernetes installer specification to determine if any updates are required. For example, if the specification indicates that the cluster must use Kubernetes version 1.25.x and your cluster is running version 1.24, then the script begins to upgrade Kubernetes on each node. 
+For more information about how the script updates the versions of Kubernetes, the app manager, and any additional add-ons running in your cluster, see the following sections:
+* [Kubernetes Updates](#kubernetes)
+* [Multi-version Kubernetes Updates](#kubernetes)
+* [Add-ons and App Manager Updates](#add-ons)
 
 ### Kubernetes Updates {#kubernetes}
 
@@ -38,6 +41,10 @@ The version of the KOTS add-on provided in the Kubernetes installer specificatio
 The installation script never updates existing versions of Docker and containerd on the cluster.
 
 For a complete list of add-ons that can be included in the Kubernetes installer specification, including the KOTS add-on, see [Add-ons](https://kurl.sh/docs/add-ons/antrea) in the kURL documentation.
+
+### Application Updates
+
+You can also update the version of your application at the same time that you update your cluster.
 
 ## Update
 
