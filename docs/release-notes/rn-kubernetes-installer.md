@@ -17,10 +17,10 @@ Released on February 23, 2023
 * Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.10.1.
 
 ### Improvements {#improvements-v2023-02-23-0}
-* kURL will no longer choose the node name and instead defer to kubeadm to infer the node name from the hostname.
+* kURL no longer chooses the node name and instead defers to kubeadm to infer the node name from the hostname.
 
 ### Bug Fixes {#bug-fixes-v2023-02-23-0}
-* Fixes an issue where EKCO serialized an incorrect kubeadm `ClusterStatus(kubeadm.k8s.io/v1beta2)` config when purging a node via [`ekco-purge-node.sh`](https://kurl.sh/docs/add-ons/ekco#purge-nodes) for Kubernetes versions `1.21` and below. Moreover, this bug prevented adding new nodes to the Kuberenetes cluster.
+* Fixes an issue where EKCO serialized an incorrect kubeadm `ClusterStatus(kubeadm.k8s.io/v1beta2)` config when purging a node with [`ekco-purge-node.sh`](https://kurl.sh/docs/add-ons/ekco#purge-nodes) for Kubernetes version 1.21 and earlier. Moreover, this bug prevented adding new nodes to the Kuberenetes cluster.
 
 ## v2023.02.21-0
 
