@@ -19,6 +19,9 @@ Released on February 23, 2023
 ### Improvements {#improvements-v2023-02-23-0}
 * kURL will no longer choose the node name and instead defer to kubeadm to infer the node name from the hostname.
 
+### Bug Fixes {#bug-fixes-v2023-02-23-0}
+* Fixes an issue where EKCO serialized an incorrect kubeadm `ClusterStatus(kubeadm.k8s.io/v1beta2)` config when purging a node via [`ekco-purge-node.sh`](https://kurl.sh/docs/add-ons/ekco#purge-nodes) for Kubernetes versions `1.21` and below. Moreover, this bug prevented adding new nodes to the Kuberenetes cluster.
+
 ## v2023.02.21-0
 
 Released on February 21, 2023
