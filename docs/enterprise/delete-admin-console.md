@@ -10,47 +10,9 @@ The kots CLI `kots remove` command removes the reference to an installed applica
 
 By default, `kots remove` does not delete any of the installed Kubernetes resources for the application from the cluster. To remove both the reference to an application from the admin console and remove any resources for the application from the cluster, you can run `kots remove` with the `--undeploy` flag.
 
-For more information, see the following sections:
-* [Remove an Application Reference Only](#reference-only)
-* [Remove an Application Reference and Resources](#reference-and-resources)
-
-### Remove an Application Reference Only {#reference-only}
-
 It can be useful to remove only the reference to an application from the admin console if you want to reinstall the application, but you do not want to recreate the namespace or other Kubernetes resources. For example, if you installed an application using an incorrect license file and need to reinstall with the correct license.
-
-:::important
-After you run `kots remove`, you can longer manage the application with the kots CLI.
-
-If you want to remove both the reference to an application from the admin console and any resources for the application from your cluster, follow the steps in [Remove Application Reference and Resources](#reference-and-resources) below instead.
-:::
-
-To remove an application reference from the admin console:
-
-1. Run the following command to list the installed applications for a namespace:
-   ```
-   kubectl kots get apps -n NAMESPACE
-   ```
-   Replace `NAMESPACE` with the name of the namespace where the admin console is installed.
-
-   In the output of this command, note the slug for the application that you want to remove.
-
-1. Run the following command to remove the reference to the application from the admin console:
-   ```
-   kubectl kots remove APP_SLUG -n NAMESPACE
-   ```
-   Replace:
-   * `APP_SLUG` with the slug for the application that you want to remove.
-   * `NAMESPACE` with the name of the namespace where the admin console is installed.
-
-   :::note
-   Optionally, run the command with the `--force` flag to remove the application reference when the application has already been deployed. For more information, see [remove](/reference/kots-cli-remove) in _kots CLI_.
-   :::
-
-### Remove an Application Reference and Resources {#reference-and-resources}
-
-This section describes how to use `kots remove` to remove both the reference to an application from the admin console and remove any resources for the application from the cluster.
  
-To remove the reference to an application and the application's resources:
+To remove an application:
 
 1. Run the following command to list the installed applications for a namespace:
    ```
@@ -60,17 +22,25 @@ To remove the reference to an application and the application's resources:
 
    In the output of this command, note the slug for the application that you want to remove.
 
-1. Run the following command to remove the reference to the application from the admin console and also remove its resources from the cluster:
+1. Run _one_ of the following commands:
 
-   ```
-   kubectl kots remove APP_SLUG -n NAMESPACE --undeploy
-   ```
-   Replace:
-   * `APP_SLUG` is the slug for the application that you want to remove.
-   * `NAMESPACE` is the name of the namespace where the admin console is installed.
-   
+   * **Remove the reference to the application from the admin console only**: 
+
+     ```
+     kubectl kots remove APP_SLUG -n NAMESPACE
+     ```
+     Replace:
+     * `APP_SLUG` is the slug for the application that you want to remove.
+     * `NAMESPACE` is the name of the namespace where the admin console is installed.
+
+   * **Remove the reference to the application from the admin console and remove its resources from the cluster**:
+
+      ```
+      kubectl kots remove APP_SLUG -n NAMESPACE --undeploy
+      ```
+      
    :::note
-   Optionally, run the command with the `--force` flag to remove the application reference when the application has already been deployed. For more information, see [remove](/reference/kots-cli-remove) in _kots CLI_.
+   Optionally, use the `--force` flag to remove the application reference from the admin console when the application has already been deployed. For more information, see [remove](/reference/kots-cli-remove) in _kots CLI_.
    :::
 
 
