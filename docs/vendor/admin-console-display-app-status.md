@@ -24,6 +24,7 @@ The following resource types are supported for displaying application status:
 * Service
 * Ingress
 * PersistentVolumeClaims (PVC)
+* DaemonSet
 
 You can target resources of the supported types that are deployed in any of the following ways:
 
