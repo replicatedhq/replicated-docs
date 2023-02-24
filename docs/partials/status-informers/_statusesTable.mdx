@@ -15,7 +15,7 @@
     <td>All desired endpoints are ready, any load balancers have been assigned</td>
     <td>All desired backend service endpoints are ready, any load balancers have been assigned</td>
     <td>Claim is bound</td>
-    <td>Ready daemons equals desired scheduled daemons</td>
+    <td>Ready daemon pods equals desired scheduled daemon pods</td>
   </tr>
   <tr>
   <th>Updating</th>
@@ -24,7 +24,7 @@
     <td>N/A</td>
     <td>N/A</td>
     <td>N/A</td>
-    <td>The deployed daemons are from a different revision</td>
+    <td>The deployed daemon pods are from a different revision</td>
   </tr>
   <tr>
     <th>Degraded</th>
@@ -33,7 +33,7 @@
     <td>At least one endpoint is ready, but more are desired</td>
     <td>At least one backend service endpoint is ready, but more are desired</td>
     <td>N/A</td>
-    <td>At least one daemon is ready, but more are desired</td>
+    <td>At least one daemon pod is ready, but more are desired</td>
   </tr>
   <tr>
     <th>Unavailable</th>
@@ -42,7 +42,7 @@
     <td>No endpoints are ready, no load balancer has been assigned</td>
     <td>No backend service endpoints are ready, no load balancer has been assigned</td>
     <td>Claim is pending or lost</td>
-    <td>No daemons are ready</td>
+    <td>No daemon pods are ready</td>
   </tr>
   <tr>
     <th>Missing</th>
