@@ -24,7 +24,7 @@ To remove an application:
 
 1. Run _one_ of the following commands:
 
-   * **Remove the reference to the application from the admin console only**: 
+   * **Remove only the reference to the application from the admin console**: 
 
      ```
      kubectl kots remove APP_SLUG -n NAMESPACE
