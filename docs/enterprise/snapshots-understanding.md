@@ -17,7 +17,9 @@ There are two types of snapshots:
 
 ## About Storage Destinations
 
-You can use a storage provider that is compatible with Velero as the storage destination for backups created with the Replicated snapshots feature. For a list of the compatible storage providers, see [Providers](https://velero.io/docs/v1.10/supported-providers/) in the Velero documentation.
+For disaster recovery snapshots, backups should be configured to use a storage destination that exists outside of the cluster. This is especially true for installations on cluster created with the Replicated Kubernetes installer, because the default storage location on these clusters is internal.
+
+You can use a storage provider that is compatible with Velero as the storage destination for backups created with the Replicated snapshots feature. For a list of the compatible storage providers, see [Providers](https://velero.io/docs/v1.9/supported-providers/) in the Velero documentation.
 
 You initially configure backups on a supported storage provider backend using the kots CLI. If you want to change the storage destination after the initial configuration, you can use the the Snapshots page in the admin console, which has built-in support for the following storage destinations:
 

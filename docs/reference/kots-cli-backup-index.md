@@ -1,6 +1,6 @@
 # backup
 
-The `kots backup` creates a new instance snapshot for disaster recovery.
+Create a full instance snapshot for disaster recovery.
 
 ### Usage
 
@@ -8,13 +8,14 @@ The `kots backup` creates a new instance snapshot for disaster recovery.
 kubectl kots backup [flags]
 ```
 
-- _Provide `[flags]` according to the table below_
+This command supports the following flags:
 
 | Flag              | Type   | Description                                                                     |
 | :---------------- | ------ | ------------------------------------------------------------------------------- |
-| `-h, --help`      |        | help for backup                                                                 |
-| `-n, --namespace` | string | the namespace where the admin console is running _(default `"default"`)_        |
-| `-o, --output`    | string | output format (currently supported: json) _(defaults to plain text if not set)_ |
+| `-h, --help`      |        | Help for `backup`.                                                                 |
+| `-n, --namespace` | string | The namespace where the admin console is running. **Default:** `default`        |
+| `-o, --output`    | string | The output format. Supports JSON. Defaults to plain text if not set. |
+| `--wait`.             | bool   | Wait for the backup to finish. **Default:** true                                     |
 
 ### Example
 
