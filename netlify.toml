@@ -101,6 +101,10 @@
   from="https://docs.replicated.com/enterprise/snapshots-restoring-partial"
   to="https://docs.replicated.com/enterprise/snapshots-restoring-full"
 
+[[redirects]]
+  from="https://docs.replicated.com/enterprise/snapshots-scheduling"
+  to="https://docs.replicated.com/enterprise/snapshots-creating" 
+   
 ###################################################
 # Redirects To the References Section
 ###################################################

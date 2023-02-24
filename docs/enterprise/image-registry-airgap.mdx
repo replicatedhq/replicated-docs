@@ -1,0 +1,21 @@
+import DockerCompatibility from "../partials/image-registry/_docker-compatibility.mdx"
+
+# Requirements for Air Gap Image Registry
+
+To install an application into an air gapped network, you must have a Docker image registry that is available inside the network. The app manager rewrites the application image names in all application manifests to read from the on-premises registry, and it re-tags and pushes the images to the on-premises registry. When authenticating to the registry, credentials with `push` permissions are required.
+
+A single application expects to use a single namespace in the Docker image registry.
+
+The namespace name can be any valid URL-safe string, supplied at installation time. A registry typically expects the namespace to exist before any images can be pushed into it.
+
+:::note
+ECR does not use namespaces.
+:::
+
+For information about Docker image registry compatibility, see [Docker Image Registry Compatibility](#docker-compatibility).
+
+## Docker Image Registry Compatibility {#docker-compatibility}
+
+The app manager has been tested for compatibility with the following registries:
+
+<DockerCompatibility/>

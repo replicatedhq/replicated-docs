@@ -1,4 +1,6 @@
-# Installation Requirements
+import DockerCompatibility from "../partials/image-registry/_docker-compatibility.mdx"
+
+# Requirements for Installation
 
 This topic describes the requirements for installing applications with Replicated.
 
@@ -36,6 +38,7 @@ The app manager is based on the open source KOTS project. The app manager versio
 | v1.71 and later | v1.25, 1.24, v1.23 |
 | v1.66 to v1.70 | v1.23 |
 | v1.61 to v1.65 | v1.23 |
+
 
 ## Existing Cluster Requirements
 
@@ -254,6 +257,12 @@ Because the Kubernetes installer is based on the open source kURL project, which
 
 - **Cloud Disk Performance**: For a list of cloud VM instance and disk combinations that are known to provide sufficient performance for etcd and pass the write latency preflight, see [Cloud Disk Performance](https://kurl.sh/docs/install-with-kurl/system-requirements#cloud-disk-performance) in the kURL documentation.
 
+
+## Docker Image Registry Compatibility {#docker-compatibility}
+
+The app manager has been tested for compatibility with the following registries:
+
+<DockerCompatibility/>
 
 ## Firewall Openings for Online Installations
 

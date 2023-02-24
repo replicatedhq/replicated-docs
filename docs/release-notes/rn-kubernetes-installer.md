@@ -4,9 +4,41 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
-## v2023.02.17-0
+## v2023.02.23-0
+
+Released on February 23, 2023
+
+### New Features {#new-features-v2023-02-23-0}
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.2.0.
+* Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.6.5-20230222 and 2.8.1-20230222 to address the following high severity CVEs: CVE-2022-4450, CVE-2023-0215, CVE-2023-0286.
+* Updates [Registry add-on](https://kurl.sh/docs/add-ons/registry) version 2.8.1 with new kurlsh/s3cmd image to address the following high severity CVEs: CVE-2022-4450, CVE-2023-0215, CVE-2023-0286.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-02-22T18-23-45Z.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.26.4.
+* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.10.1.
+
+### Improvements {#improvements-v2023-02-23-0}
+* kURL no longer chooses the node name and instead defers to kubeadm to infer the node name from the hostname.
+
+### Bug Fixes {#bug-fixes-v2023-02-23-0}
+* Fixes an issue where EKCO serialized an incorrect kubeadm `ClusterStatus(kubeadm.k8s.io/v1beta2)` config when purging a node with [`ekco-purge-node.sh`](https://kurl.sh/docs/add-ons/ekco#purge-nodes) for Kubernetes version 1.21 and earlier. Moreover, this bug prevented adding new nodes to the Kuberenetes cluster.
+
+## v2023.02.21-0
+
+Released on February 21, 2023
+
+### New Features {#new-features-v2023-02-21-0}
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-02-17T17-52-43Z.
+
+### Bug Fixes {#bug-fixes-v2023-02-21-0}
+* Fixes an issue that causes the install script to fail with error "ctr: flags --detach and --rm cannot be specified together" when using Containerd 1.6.18 and the EKCO Internal Load Balancer.
+
+## v2023.02.17-0 - Withdrawn
 
 Released on February 17, 2023
+
+:::important
+v2023.02.17-0 has been removed because Containerd 1.6.18 is incompatible with high availability installations using the EKCO internal load balancer.
+:::
 
 ### New Features {#new-features-v2023-02-17-0}
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.1.0 and 0.63.0-45.1.1.
@@ -16,7 +48,6 @@ Released on February 17, 2023
 ### Bug Fixes {#bug-fixes-v2023-02-17-0}
 * Fixes an issue that causes Rook multi-version upgrades to fail if add-on airgap packages exist on the server prior to upgrading.
 * Fixes a rare race condition that could cause data loss when migrating between storage providers.
-
 ## v2023.02.16-0
 
 Released on February 16, 2023

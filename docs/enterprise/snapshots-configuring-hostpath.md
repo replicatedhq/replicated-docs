@@ -1,3 +1,7 @@
+import InstallVelero from "../partials/snapshots/_installVelero.mdx"
+import RegistryCredNote from "../partials/snapshots/_registryCredentialsNote.mdx"
+import ResticDaemonSet from "../partials/snapshots/_resticDaemonSet.mdx"
+
 # Configuring a Host Path Storage Destination
 
 This topic describes how to install Velero and configure a host path as your storage destination for backups.  
@@ -11,7 +15,7 @@ For existing or embedded clusters where Velero is already installed, you can upd
 Complete the following items before you perform this task:
 
 * Review the limitations and considerations. See [Limitations and Considerations](snapshots-config-workflow#limitations-and-considerations) in _How to Set Up Backup Storage_.
-* Install the Velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).
+* Install the velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).
 * The host path must be a dedicated directory. Do not use a partition used by a service like Docker or Kubernetes for ephemeral storage.
 * The host path must exist and be writable by the user:group 1001:1001 on all nodes in the cluster. For example, in a Linux environment you might run `sudo chown -R 1001:1001 /backups` to change the user:group permissions.
 
@@ -19,49 +23,57 @@ Complete the following items before you perform this task:
 
    You cannot change the permissions of a mounted network shared filesystem from the client side. To reassign the user:group to 1001:1001 for a directory that is already mounted, you must remount the directory. For example, for a CIFS mounted directory, specify the `uid=1001,gid=1001` mount options in the CIFS mount command.
 
-## Configure Host Path Storage in Online Environments
+## Install Velero and Configure Host Path Storage in Online Environments
 
-Run the following command to install Velero and configure a host path storage destination in an online environment. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
+To install Velero and configure host path storage in online environments:
 
-```
-kubectl kots velero configure-hostpath --namespace NAME --hostpath /PATH
-```
+1. <InstallVelero/>
 
-Replace:
+1. <ResticDaemonSet/>
 
-- NAME with the namespace where the admin console is installed and running
-- PATH with the path to the directory where the backups will be stored
+1. Run the following command to configure the host path storage destination:
 
-If no Velero installation is detected, instructions are displayed to install Velero and configure the storage destination.
+    ```
+    kubectl kots velero configure-hostpath --namespace NAME --hostpath /PATH
+    ```
 
-## Configure Host Path Storage in Air Gapped Environments
+    Replace:
+      - `NAME` with the namespace where the admin console is installed and running
+      - `PATH` with the path to the directory where the backups will be stored
 
-Run the following command to install Velero and configure a host path storage destination in an air gapped environment. For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
+    For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
 
-```bash
-kubectl kots velero configure-hostpath \
-  --namespace NAME \
-  --hostpath /PATH \
-  --kotsadm-registry REGISTRY_HOSTNAME \
-  --kotsadm-namespace REGISTRY_NAMESPACE \
-  --registry-username REGISTRY_USERNAME \
-  --registry-password REGISTRY_PASSWORD
-```
+## Install Velero and Configure Host Path Storage in Air Gapped Environments
 
-Replace:
+To install Velero and configure host path storage in air gapped environments:
 
-- NAME with the namespace where the admin console is installed and running
-- PATH with the path to the directory where the backups will be stored
-- REGISTRY_HOSTNAME with the registry endpoint where the images are hosted
-- REGISTRY_NAMESPACE with the registry namespace where the images are hosted
-- REGISTRY_USERNAME with the username to use to authenticate with the registry
-- REGISTRY_PASSWORD with the password to use to authenticate with the registry
+1. <InstallVelero/>
 
-If no Velero installation is detected, instructions are displayed to install Velero and configure the storage destination.
+     <RegistryCredNote/>
 
-:::note
-Velero does not support passing registry credentials during the installation, so it is typical for the velero and node-agent (restic) Pods to be in the `ErrImagePull` or `ImagePullBackOff` state after running the `velero install` command. In app manager v1.94.0 and later, this situation resolves itself after you complete the instructions.
-:::
+1. <ResticDaemonSet/>
+
+1. Run the following command to configure the host path storage destination:
+
+  ```
+  kubectl kots velero configure-hostpath \
+    --namespace NAME \
+    --hostpath /PATH \
+    --kotsadm-registry REGISTRY_HOSTNAME \
+    --kotsadm-namespace REGISTRY_NAMESPACE \
+    --registry-username REGISTRY_USERNAME \
+    --registry-password REGISTRY_PASSWORD
+  ```
+
+  Replace:
+    - `NAME` with the namespace where the admin console is installed and running
+    - `PATH` with the path to the directory where the backups will be stored
+    - `REGISTRY_HOSTNAME` with the registry endpoint where the images are hosted
+    - `REGISTRY_NAMESPACE` with the registry namespace where the images are hosted
+    - `REGISTRY_USERNAME` with the username to use to authenticate with the registry
+    - `REGISTRY_PASSWORD` with the password to use to authenticate with the registry
+
+  For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.
 
 ## Configure Host Path Storage in the Admin Console
 
@@ -94,10 +106,8 @@ To install Velero and configure host path storage for existing clusters:
 
 ## Next Steps
 
-Next, you can:
-
-* Configure Velero namespace access and default memory limits, if needed. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
-* Create or schedule backups. See [Creating Backups](snapshots-creating) and [Scheduling Automatic Backups](snapshots-scheduling).
+* (Existing clusters only) Configure Velero namespace access if you are using minimal RBAC, and optionally increase the default memory limits. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
+* Create or schedule backups. See [Creating and Scheduling Backups](snapshots-creating).
 
 ## Additional Resources
 

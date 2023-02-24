@@ -1,4 +1,4 @@
-# Requirements for Admin Console State
+# Installing Without Object Storage
 
 The Replicated admin console requires persistent storage for state. The following stateful components are required:
 

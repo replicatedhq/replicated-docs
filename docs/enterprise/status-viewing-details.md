@@ -27,6 +27,7 @@ The following resource types are supported for displaying application status:
 * Service
 * Ingress
 * PersistentVolumeClaims (PVC)
+* DaemonSet
 
 Applications can specify one or more of the supported Kubernetes workloads listed above. The app manager watches all specified workloads for state changes.
 
