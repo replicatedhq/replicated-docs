@@ -40,7 +40,7 @@ To remove an application:
       ```
       
    :::note
-   Optionally, use the `--force` flag to remove the application reference from the admin console when the application has already been deployed. For more information, see [remove](/reference/kots-cli-remove) in _kots CLI_.
+   Optionally, use the `--force` flag to remove the application reference from the admin console when the application has already been deployed. The `--force` flag is implied when `--undeploy` is used. For more information, see [remove](/reference/kots-cli-remove) in _kots CLI_.
    :::
 
 
