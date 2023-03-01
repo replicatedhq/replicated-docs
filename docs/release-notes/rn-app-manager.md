@@ -11,19 +11,19 @@ Released on March 1, 2023
 Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 
 ### New Features {#new-features-1-95-0}
-* Adds the ability to completely un-deploy an application including its resources from the cluster and not just the reference from the admin console by passing the `--undeploy` flag to the [kots remove](/reference/kots-cli-remove) CLI command.
-* Adds support for Azure Container Registry (ACR).
-* Adds the ability to use status informers for daemonsets.
+* When using the [kots remove](/reference/kots-cli-remove) command to remove from the admin console the reference to an application, you can now completely undeploy the application and delete its resources from the cluster by passing the `--undeploy` flag.
+* Adds support for Azure Container Registry (ACR). For a full list of supported registries, see [Docker Image Registry Compatibility](/enterprise/image-registry-airgap#docker-compatibility).
+* Status informers now support DaemonSets.
 * add a support bundle collector for rqlite backup.
-* kots/web(beta): add support for overriding primary scss variables with css variables to support theming.
+* When using custom branding for the admin console, you can more easily change the color of groups of elements in the admin console (Beta).
 
 ### Improvements {#improvements-1-95-0}
-* Modifies the [kots install](/reference/kots-cli-install), [kots upstream upgrade](/reference/kots-cli-upstream-upgrade), and [kots admin-console push-images](/reference/kots-cli-admin-console-push-images) commands to validate the provided registry information before processing the airgap bundle.
+* The [kots install](/reference/kots-cli-install), [kots upstream upgrade](/reference/kots-cli-upstream-upgrade), and [kots admin-console push-images](/reference/kots-cli-admin-console-push-images) commands now validate the provided registry information before processing the air gap bundle.
 * Upgrades the MinIO image to RELEASE.2023-02-22T18-23-45Z to resolve CVEs.
-* Adds support for OpenShift and GKE Autopilot to the KOTS CLI `admin-console generate-manifests` command when executed with a Kubernetes cluster context.
+* The [kots admin-console generate-manifests](/reference/kots-cli-admin-console-generate-manifests) command now supports OpenShift and GKE Autopilot, if it is executed with a Kubernetes cluster context.
 
 ### Bug Fixes {#bug-fixes-1-95-0}
-* Fixes an issue where specifying the [namespace](/reference/custom-resource-helmchart#namespace) field in the HelmChart custom resource isn't respected when setting the [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) field to `true`.
+* Fixes an issue where the [namespace](/reference/custom-resource-helmchart#namespace) field in the HelmChart custom resource wasn't respected when setting [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) to `true`.
 
 ## 1.94.2
 
