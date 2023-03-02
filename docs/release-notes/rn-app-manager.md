@@ -11,19 +11,19 @@ Released on March 1, 2023
 Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 
 ### New Features {#new-features-1-95-0}
-* When using the [kots remove](/reference/kots-cli-remove) command to remove from the admin console the reference to an application, you can now completely undeploy the application and delete its resources from the cluster by passing the `--undeploy` flag.
+* Adds an `--undeploy` flag to the [kots remove](/reference/kots-cli-remove) command that allows you to completely undeploy the application and delete its resources from the cluster.
 * Adds support for Azure Container Registry (ACR). For a full list of supported registries, see [Docker Image Registry Compatibility](/enterprise/image-registry-airgap#docker-compatibility).
-* Status informers now support DaemonSets.
+* Status informers now support DaemonSets. See [Resource Statuses](/vendor/admin-console-display-app-status#resource-statuses).
 * When using custom branding for the admin console, you can more easily change the color of groups of elements in the admin console (Beta).
 
 ### Improvements {#improvements-1-95-0}
 * The [kots install](/reference/kots-cli-install), [kots upstream upgrade](/reference/kots-cli-upstream-upgrade), and [kots admin-console push-images](/reference/kots-cli-admin-console-push-images) commands now validate the provided registry information before processing the air gap bundle.
 * Upgrades the MinIO image to RELEASE.2023-02-22T18-23-45Z to resolve CVE-2022-42898, CVE-2022-47629, and CVE-2022-41721 with high severity and CVE-2022-2509, CVE-2022-1304, CVE-2021-46848, CVE-2016-3709, CVE-2022-40303, CVE-2022-40304, CVE-2020-35527, CVE-2022-35737, CVE-2022-3821, CVE-2022-4415, CVE-2022-37434, and CVE-2022-41717 with medium severity.
 * The [kots admin-console generate-manifests](/reference/kots-cli-admin-console-generate-manifests) command now supports OpenShift and GKE Autopilot, if it is executed with a Kubernetes cluster context.
-* Support bundles generated from the admin console will include a copy of rqlite data for debugging purposes.
+* Support bundles generated from the admin console include a copy of rqlite data for debugging purposes.
 
 ### Bug Fixes {#bug-fixes-1-95-0}
-* Fixes an issue where the [namespace](/reference/custom-resource-helmchart#namespace) field in the HelmChart custom resource wasn't respected when setting [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) to `true`.
+* Fixes an issue where the [namespace](/reference/custom-resource-helmchart#namespace) field in the HelmChart custom resource was not respected when [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) was set to `true`.
 
 ## 1.94.2
 
