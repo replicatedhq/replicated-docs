@@ -62,6 +62,12 @@ The following graphic shows instance sequence numbers on the Replicated admin co
 
 ![Instance sequence numbers](/images/instance-sequences.png)
 
+#### Channel Sequences
+
+When a release is promoted to a channel, a channel sequence is assigned - this increases montonically and tracks the order in which releases were promoted to a channel. While it is not surfaced in the Vendor Portal UI, you may see it in certain URLs. For example, a release with **release sequence** number `170` might have a **channel sequence** of `125`, and the airgap download URL for that release on that channel may contain a `125` the the URL, even though the overall release sequence is `170`.
+
+Note that ordering gets more complex if some or all releases in a channel have Semantic Versioning enabled (see #semantic-versionsing-sequence)
+
 #### Semantic Versioning Sequence
 
 For channels with semantic versioning enabled, the admin console sequences instance releases by their semantic versions instead of their promotion dates.
