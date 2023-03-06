@@ -1,19 +1,18 @@
 # Deleting the Admin Console and Removing Applications
 
-This topic describes how to delete the Replicated admin console and remove installed applications, including information about:
+This topic describes how to remove installed applications and delete the Replicated admin console from a cluster. See the following sections:
+* [Remove an Application](#remove-an-application)
+* [Delete the Admin Console](#delete-the-admin-console)
 
-* Removing references for installed applications from the admin console.
-* Deleting Kubernetes objects and resources for the admin console from a cluster.
+## Remove an Application
 
-## Remove an Application Reference
+The kots CLI `kots remove` command removes the reference to an installed application from the admin console. When you use `kots remove`, the admin console no longer manages the application because the record of that application’s installation is removed. This means that you can no longer manage the application through the admin console or through the kots CLI.
 
-You can remove the reference to an installed application from the admin console using the `kots remove` kots CLI command.
+By default, `kots remove` does not delete any of the installed Kubernetes resources for the application from the cluster. To remove both the reference to an application from the admin console and remove any resources for the application from the cluster, you can run `kots remove` with the `--undeploy` flag.
 
-When you use `kots remove`, the admin console no longer manages the application because the record of that application’s installation is removed. The `kots remove` command does not delete any of the installed Kubernetes resources for the application from the cluster.
-
-It can be useful to remove the reference to an application from the admin console if you want to reinstall the application, but you do not want to recreate the namespace or other Kubernetes resources. For example, you could use `kots remove` if you installed an application using an incorrect license file and need to reinstall with the correct license.
-
-To remove an application reference from the admin console:
+It can be useful to remove only the reference to an application from the admin console if you want to reinstall the application, but you do not want to recreate the namespace or other Kubernetes resources. For example, if you installed an application using an incorrect license file and need to reinstall with the correct license.
+ 
+To remove an application:
 
 1. Run the following command to list the installed applications for a namespace:
    ```
@@ -21,23 +20,35 @@ To remove an application reference from the admin console:
    ```
    Replace `NAMESPACE` with the name of the namespace where the admin console is installed.
 
-   In the output of this command, note the application slug that you want to remove.
+   In the output of this command, note the slug for the application that you want to remove.
 
-1. Run the following command to remove an application reference:
-   ```
-   kubectl kots remove APP_SLUG -n NAMESPACE
-   ```
-   Replace:
-   * `NAMESPACE` with the name of the namespace where the admin console is installed.
-   * `APP_SLUG` with the slug for the application that you want to remove.
+1. Run _one_ of the following commands:
+
+   * **Remove only the reference to the application from the admin console**: 
+
+     ```
+     kubectl kots remove APP_SLUG -n NAMESPACE
+     ```
+     Replace:
+     * `APP_SLUG` with the slug for the application that you want to remove.
+     * `NAMESPACE` with the name of the namespace where the admin console is installed.
+
+   * **Remove the reference to the application from the admin console and remove its resources from the cluster**:
+
+      ```
+      kubectl kots remove APP_SLUG -n NAMESPACE --undeploy
+      ```
+      
+   :::note
+   Optionally, use the `--force` flag to remove the application reference from the admin console when the application has already been deployed. The `--force` flag is implied when `--undeploy` is used. For more information, see [remove](/reference/kots-cli-remove) in _kots CLI_.
+   :::
+
 
 ## Delete the Admin Console
 
-When you install an application with the admin console, Replicated also creates the Kubernetes objects for the admin console itself on the cluster. The admin console includes Deployment and Service objects, Secret objects, and other objects such as Services, StatefulSets, and PersistentVolumeClaims.
+When you install an application with the admin console, Replicated also creates the Kubernetes resources for the admin console itself on the cluster. The admin console includes Deployments and Services, Secrets, and other resources such as StatefulSets and PersistentVolumeClaims.
 
-For installations where `requireMinimalRBACPriviledges` is _not_ set to `true` in the Application custom resource manifest file, Replicated also creates Kubernetes ClusterRole and ClusterRoleBinding resources that grant permissions to the admin console on the cluster level. These `kotsadm-role` and `kotsadm-rolebinding` resources are managed outside of the namespace where the admin console is installed.
-
-For installations where `requireMinimalRBACPriviledges` is set to `true`, Replicated creates Role and RoleBinding resources inside the namespace where the admin console is installed.
+By default, Replicated also creates Kubernetes ClusterRole and ClusterRoleBinding resources that grant permissions to the admin console on the cluster level. These `kotsadm-role` and `kotsadm-rolebinding` resources are managed outside of the namespace where the admin console is installed. Alternatively, when the admin console is installed with namespace-scoped access, Replicated creates Role and RoleBinding resources inside the namespace where the admin console is installed.
 
 If you need to completely delete the admin console and an application installation, such as during testing, follow one of these procedures depending on the type of cluster where you installed the admin console:
 
@@ -50,9 +61,13 @@ These procedures do not uninstall the kots CLI. To uninstall the kots CLI, see [
 
 ### Delete from an Existing Cluster
 
-If you installed on an existing cluster and the admin console is not installed in the `default` namespace, you delete the admin console by using the kubectl Kubernetes command line tool to delete the namespace where the admin console is installed.
+In existing cluster installations, if the admin console is not installed in the `default` namespace, then you delete the admin console by deleting the namespace where it is installed. 
 
-After you delete the namespace, if `requireMinimalRBACPriviledges` is _not_ set to `true` in the Application custom resource manifest, delete the admin console ClusterRole and ClusterRoleBindings on the cluster.
+If you installed the admin console with namespace-scoped access, then the admin console Role and RoleBinding RBAC resources are also deleted when you delete the namespace. Alternatively, if you installed with the default cluster-scoped access, then you manually delete the admin console ClusterRole and ClusterRoleBindings resources from the cluster.
+
+The application vendor can require, support, or not support namespace-scoped installations. For more information, see [supportMinimalRBACPrivileges](/reference/custom-resource-application#supportminimalrbacprivileges) and [requireMinimalRBACPrivileges](/reference/custom-resource-application#requireminimalrbacprivileges) in _Application_.
+
+For more information about installing with cluster- or namespace-scoped access, see [RBAC Requirements](/enterprise/installing-general-requirements#rbac-requirements) in _Requirements for Installation_.
 
 To delete the admin console from an existing cluster:
 
@@ -60,7 +75,7 @@ To delete the admin console from an existing cluster:
 
    :::note
    * You cannot delete the `default` namespace.
-   * This command deletes everything inside the specified namespace.
+   * This command deletes everything inside the specified namespace, including the admin console Role and RoleBinding resources if you installed with namespace-scoped access.
    :::
 
    ```
@@ -68,7 +83,7 @@ To delete the admin console from an existing cluster:
    ```
    Replace `NAMESPACE` with the name of the namespace where the admin console is installed.
 
-1. If `requireMinimalRBACPriviledges` is _not_ set to `true` in the Application custom resource manifest, run the following commands to delete the admin console ClusterRole and ClusterRoleBinding from the cluster:
+1. (Cluster-scoped Access Only) If you installed the admin console with the default cluster-scoped access, run the following commands to delete the admin console ClusterRole and ClusterRoleBinding from the cluster:
 
    ```
    kubectl delete clusterrole kotsadm-role
@@ -77,9 +92,6 @@ To delete the admin console from an existing cluster:
    ```
    kubectl delete clusterrolebinding kotsadm-rolebinding
    ```
-   :::note
-   If `requireMinimalRBACPriviledges` is set to `true`, you deleted the Role and RoleBinding resources for the admin console when you deleted the namespace in the previous step.
-   :::
 
 ### Delete from a Kubernetes Installer Cluster
 
