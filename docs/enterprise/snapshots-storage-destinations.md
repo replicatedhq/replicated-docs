@@ -8,6 +8,13 @@ To configure host path or NFS as a storage destination, see [Configuring a Host 
 For existing or embedded clusters where Velero is already installed, you can update your storage destination in the admin console. For more information, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
 :::
 
+## Prerequisites
+
+Complete the following items before you install Velero and configure a storage destination:
+
+* Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _About Backup and Restore_.
+* Install the velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).
+
 ## Configure AWS Storage for Online Environments
 
 In this procedure, you install Velero and configure an AWS storage destination in online environments.

@@ -14,7 +14,7 @@ For existing or embedded clusters where Velero is already installed, you can upd
 
 Complete the following items before you perform this task:
 
-* Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _How to Set Up Backup Storage_.
+* Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _About Backup and Restore_.
 * Install the velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).
 * The NFS server must be configured to allow access from all of the nodes in the cluster.
 * The NFS directory must be writable by the user:group 1001:1001.
