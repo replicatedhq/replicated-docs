@@ -30,8 +30,8 @@ To remove an application:
      kubectl kots remove APP_SLUG -n NAMESPACE
      ```
      Replace:
-     * `APP_SLUG` is the slug for the application that you want to remove.
-     * `NAMESPACE` is the name of the namespace where the admin console is installed.
+     * `APP_SLUG` with the slug for the application that you want to remove.
+     * `NAMESPACE` with the name of the namespace where the admin console is installed.
 
    * **Remove the reference to the application from the admin console and remove its resources from the cluster**:
 
