@@ -27,15 +27,46 @@ There are two types of snapshots available that back up different types of data:
 For limitations and considerations, see [Limitations and Considerations](/enterprise/snapshots-understanding#limitations-and-consoderations).
 
 
-## How to Enable Backup and Restore
+## Enabling Backup and Restore for End Users
 
-To enable the snapshots backup and restore feature for your users, you must:
+To enable the snapshots backup and restore feature for your end users, you must:
 
 - Have the snapshots entitlement enabled in your Replicated vendor account. For account entitlements, contact the Replicated TAM team.
 - Define a manifest for executing snapshots and restoring previous snapshots. For more information, see [Configuring Backups](snapshots-configuring-backups).
-- Enable the Allow Snapshot option in customer licenses. For more information, see [Creating a Customer](releases-creating-customer).
+- Enable the ****Allow Snapshot** option in customer licenses. For more information, see [Creating a Customer](releases-creating-customer).
 
 Additionally, your end users must install Velero to access the snapshot functionality in the Replicated admin console. For more information about the enterprise snapshots procedures, see [Understanding Snapshots](../enterprise/snapshots-understanding) in the _Enterprise_ documentation.
+
+## How End Users Configure Backup and Restore
+
+After you enable backup and restore, your end users configure a storage destination in the admin console. Then users can create backups manually or schedule automatic backups.
+
+End users follow this process in the _Enterprise_ documentation to configure and create backups:
+
+1. [Review the limitations and considerations](/enterprise/snapshots-understanding).
+
+1. Install the velero CLI. See [Installing the Velero CLI](/enterprise/snapshots-understanding) in _Enterprise_.
+
+1. Install Velero and configure one of the following storage destination types:
+
+    - Amazon Web Services (AWS)
+    - Google Cloud Provider (GCP)
+    - Microsoft Azure
+    - S3-Compatible
+    - Network File System (NFS)
+    - Host Path
+
+1. Create backups manually or configure automatic backups.
+
+    Replicated recommends guiding users to make full backups. Full backups allow users to perform the following types of restores:
+
+    - **Full restore:** Restores the admin console and the application
+    - **Partial restore:** Restores the application only
+    - **Admin console:** Restores the admin console only
+
+1. When needed, restore from the kots CLI or from the admin console. Full restores and admin console only restores must be done using the kots CLI.
+
+For more information about how end users create and restore backups, see [About Backup and Restore](/enterprise/snapshots-understanding) in _Enterprise_.
 
 ## Velero Version Compatibility
 
