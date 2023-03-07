@@ -16,7 +16,7 @@ Released on March 7, 2023
 * Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.16.
 
 ### Improvements {#improvements-v2023-03-07-0}
-* Adds colors to the preflight checks results in order to improve the user experience.
+* Adds colors to the preflight checks results to improve the user experience.
 
 ### Bug Fixes {#bug-fixes-v2023-03-07-0}
 * Fixes an issue when migrating from Weave to Flannel that incorrectly prompts to load images with the airgap flag when online and without when offline.
