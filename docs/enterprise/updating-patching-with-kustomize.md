@@ -21,6 +21,7 @@ For more information about each of the sections in the file directory, see the f
 - [Upstream](#upstream)
 - [Base](#base)
 - [Overlays](#overlays)
+- [Rendered](#rendered)
 - [skippedFiles](#skippedfiles)
 
 ### Upstream
