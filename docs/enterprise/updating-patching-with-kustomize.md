@@ -101,6 +101,30 @@ The `overlays` directory contains the following subdirectories that apply specif
       </tr>
   </table>
 
+### Rendered
+
+The following table describes the `rendered` directory and whether custom changes persist after an update:
+
+<table>
+  <thead>
+    <tr>
+      <th width="16%">Directory</th>
+      <th width="15%">Changes Persist?</th>
+      <th width="67%">Description</th>
+    </tr>
+  </thead>
+    <tr>
+      <td><code>rendered</code></td>
+      <td>No</td>
+      <td><p>After the Replicated app manager processes and renders the <code>base</code> by applying the corrosponding overlays and the user-defined kustomizations, it puts those files in the <code>rendered</code> directory.</p><p>This directory contains the final rendered application manifests that are deployed to the cluster</p></td>
+    </tr>
+    <tr>
+      <td><code>rendered/charts</code></td>
+      <td>No</td>
+      <td><p>Appears only when the <code>useHelmInstall</code> property in the HelmChart custom resource is set to <code>true</code>.</p><p>Contains a subdirectory for each rendered Helm chart. Each Helm chart is deployed separately from other charts and manifests.</p><p>The rendered subcharts of each Helm chart are included and deployed as part of the parent chart.</p></td>
+    </tr>
+</table>
+
 ### skippedFiles
 
 The `skippedFiles` directory lists files that the app manager is not able to process or render, such as invalid YAML files.
