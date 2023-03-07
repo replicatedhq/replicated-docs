@@ -16,11 +16,11 @@ Released on March 7, 2023
 * Adds [Goldpinger add-on](https://kurl.sh/docs/add-ons/goldpinger) version 3.7.0-5.6.0.
 * Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.16.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.5.0.
+* Adds colours to the output preflights checks result in order to improve the user experience.
 
 ### Bug Fixes {#bug-fixes-v2023-03-07-0}
 * Fixes an issue when migrating from Weave to Flannel that incorrectly prompts to load images with the airgap flag when online and without when offline.
 * Fixes an issue that causes an HA install to fail after a node has been reset with error "stat: cannot stat '/etc/kubernetes/manifests/haproxy.yaml': No such file or directory".
-* fix: host preflight checks result by outputting them with colours in order to improve the user experience.
 
 ## v2023.02.23-0
 
