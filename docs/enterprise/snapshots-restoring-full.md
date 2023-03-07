@@ -1,8 +1,10 @@
 # Restoring from Backups
 
-Full restores must be done with the kots CLI. During a full restore or an admin console only restore, the admin console gets recreated and the admin console UI is disconnected during this process. For more information about restoring with the kots CLI, see [Restore the Application from the Admin Console](#admin-console).
+Full restores and admin console only restores must be done using the kots CLI because the admin console gets recreated and the admin console UI is disconnected during this process. For more information about restoring with the CLI, see [Restore Any Backup from the CLI](#full-cli).
 
-Partial restores (application only) can be done using the kots CLI or the admin console. For more information about using the admin console, see [Restore the Application from the Admin Console](#admin-console). 
+Partial restores (application only) can be done using the kots CLI or the admin console. For more information about using the admin console, see [Restore the Application from the Admin Console](#admin-console).
+
+For more information about the restore process, see [About Restores](snapshots-understanding#restores) in _About Backup and Restore_.
 
 ## Restore Any Backup from the CLI {#full-cli}
 

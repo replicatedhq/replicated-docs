@@ -27,19 +27,19 @@ Full backups are recommended because they support all types of restores. For exa
 
 You can restore backups to existing healthy clusters or to new clusters. Additionally, you can restore to an existing cluster when the admin console or the application are unhealthy.
 
-When you restore only the admin console, no changes are made to the application.
-
-When you do a full or partial restore, the admin console deletes the selected application. All existing application manifests are removed from the cluster, and all `PersistentVolumeClaims` are deleted. This action is not reversible.
-
-Then, the restore process redeploys all of the application manifests. All Pods are given an extra `initContainer` and an extra directory named `.velero`, which are used for restore hooks. For more information about the restore process, see [Restore Reference](https://velero.io/docs/v1.9/restore-reference/) in the Velero documentation.
-
-You can use the kots CLI to do any of the following types of restores:
+You can perform any of the following types of restores from the kots CLI:
 
 - **Full restore:** Restores the admin console and the application
 - **Partial restore:** Restores the application only
 - **Admin console:** Restores the admin console only
 
-You can also use the admin console to do a partial restore (application only) from either a full backup or a partial backup. The admin console also displays the commands to do a full restore or to restore the admin console only.
+When you do a full or partial restore, the admin console deletes the selected application. All existing application manifests are removed from the cluster, and all `PersistentVolumeClaims` are deleted. This action is not reversible.
+
+Then, the restore process redeploys all of the application manifests. All Pods are given an extra `initContainer` and an extra directory named `.velero`, which are used for restore hooks. For more information about the restore process, see [Restore Reference](https://velero.io/docs/v1.9/restore-reference/) in the Velero documentation.
+
+When you restore only the admin console, no changes are made to the application.
+
+You can also use the admin console to do a partial restore (application only) from either a full backup or a partial backup. The admin console also displays the CLI commands to do a full restore or to restore the admin console only.
 
 ## About Storage Destinations
 
