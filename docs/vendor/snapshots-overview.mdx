@@ -28,20 +28,6 @@ There are two types of snapshots available that back up different types of data:
 
 For limitations and considerations, see [Limitations and Considerations](/enterprise/snapshots-understanding#limitations-and-considerations) in _Enterprise_.
 
-## Velero Version Compatibility
-
-The following table lists which versions of Velero are compatible with each version of the app manager.
-
-:::note
-The app manager is based on the open source KOTS project, which is maintained by Replicated.
-:::
-
-| App manager and KOTS versions | Velero version |
-|------|-------------|
-| 1.15 to 1.20.2 | 1.2.0 |
-| 1.20.3 and later | 1.5.1 through 1.9.x |
-| 1.94.1 and later | 1.6.x and later |
-
 ## Enabling Backup and Restore for End Users
 
 To enable the snapshots backup and restore feature for your end users, you must:
@@ -81,8 +67,22 @@ End users follow this process to configure and create backups:
 
     <RestoreTable/>
 
-### Troubleshooting Backup and Restore
+## Troubleshooting Backup and Restore
 
 To help end users troubleshoot error messages, see [Troubleshooting Backup and Restore](/enterprise/snapshots-troubleshooting-backup-restore) in _Enterprise_. 
 
 Also, review the Limitations section to make sure an end users system is compliant. See [Limitations and Considerations](/enterprise/snapshots-understanding#limitations-and-consoderations) in _Enterprise_.
+
+## Velero Version Compatibility
+
+The following table lists which versions of Velero are compatible with each version of the app manager.
+
+:::note
+The app manager is based on the open source KOTS project, which is maintained by Replicated.
+:::
+
+| App manager and KOTS versions | Velero version |
+|------|-------------|
+| 1.15 to 1.20.2 | 1.2.0 |
+| 1.20.3 and later | 1.5.1 through 1.9.x |
+| 1.94.1 and later | 1.6.x and later |
