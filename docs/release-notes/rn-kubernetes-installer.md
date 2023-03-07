@@ -4,6 +4,24 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.03.07-0
+
+Released on March 7, 2023
+
+### New Features {#new-features-v2023-03-07-0}
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.3.0.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.4.0.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-02-27T18-10-45Z.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.26.2 1.25.7 1.24.11 1.23.17 1.22.17.
+* Adds [Goldpinger add-on](https://kurl.sh/docs/add-ons/goldpinger) version 3.7.0-5.6.0.
+* Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.16.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.5.0.
+
+### Bug Fixes {#bug-fixes-v2023-03-07-0}
+* Fixes an issue when migrating from Weave to Flannel that incorrectly prompts to load images with the airgap flag when online and without when offline.
+* Fixes an issue that causes an HA install to fail after a node has been reset with error "stat: cannot stat '/etc/kubernetes/manifests/haproxy.yaml': No such file or directory".
+* fix: host preflight checks result by outputting them with colours in order to improve the user experience.
+
 ## v2023.02.23-0
 
 Released on February 23, 2023
