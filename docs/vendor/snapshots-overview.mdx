@@ -6,7 +6,7 @@ Replicated's backup and restore feature for applications is called snapshots. Yo
 
 Snapshots use the Velero open source project as the backend to back up Kubernetes manifests and persistent volumes. Velero is a mature, fully-featured application. For more information, see the [Velero documentation](https://velero.io/docs/).
 
-In addition to the default functionality that Velero provides, the Replicated admin console provides a detailed interface where your users can manage storage destinations, schedule snapshots, and perform and monitor the backup process. For more information, see [About Backup and Restore](/enterprise/snapshots-understanding) in the _Enterprise_ documentation.
+In addition to the default functionality that Velero provides, the Replicated admin console provides a detailed interface where your users can manage storage destinations, schedule snapshots, and perform and monitor the backup process. For more information, see [About Backup and Restore](/enterprise/snapshots-understanding) in _Enterprise_.
 
 These details can also be managed using the kots CLI, which is the CLI for the Replicated app manager.
 
@@ -14,10 +14,7 @@ These details can also be managed using the kots CLI, which is the CLI for the R
 The restore process is managed through the kots CLI only.
 :::
 
-The app manager also exposes hooks that can be used to inject scripts to execute with snapshots for both of the following situations:
-
-- Before and after a backup.  See [Creating and Scheduling Backups](/enterprise/snapshots-creating) in _Enterprise_.
-- Before and after a restore. See [Restoring from Backups](/enterprise/snapshots-restoring-full) in _Enterprise_.
+The app manager also exposes hooks that can be used to inject scripts to execute with snapshots before and after a backup, and before and after a restore. For more information about configuring hooks, see [Configuring Backup and Restore Hooks](snapshots-hooks).
 
 ## What Data is Backed Up
 
@@ -44,7 +41,7 @@ Additionally, your end users must install Velero to access the snapshot function
 
 ## How End Users Configure Backup and Restore
 
-After vendors enable backup and restore, end users configure a storage destination in the admin console. Then users can create backups manually or schedule automatic backups. For more information about how end users create and restore backups, see [About Backup and Restore](/enterprise/snapshots-understanding) _Enterprise_.
+After vendors enable backup and restore, end users configure a storage destination in the admin console. Then users can create backups manually or schedule automatic backups. For more information about how end users create and restore backups, see [About Backup and Restore](/enterprise/snapshots-understanding) in _Enterprise_.
 
 End users follow this process to configure and create backups:
 
@@ -65,13 +62,17 @@ End users follow this process to configure and create backups:
 
 1. Create backups manually or configure automatic backups.
 
-    Replicated recommends guiding your users to make full backups. Full backups allow users to do a full restore, a partial restore (application only), or restore just the admin console.
+    Replicated recommends guiding your users to make full backups. Full backups are required for disaster recovery. Also, full backups give users the flexibility to do a full restore, a partial restore (application only), or restore just the admin console.
 
 1. Restore from the kots CLI or from the admin console as indicated in the following table:
 
     <RestoreTable/>
 
-To help end users troubleshoot error messages, see [Troubleshooting Backup and Restore](/enterprise/snapshots-troubleshooting-backup-restore) in _Enterprise_. Also, review the Limitations section to make sure an end users system is compliant. See [Limitations and Considerations](/enterprise/snapshots-understanding#limitations-and-consoderations) in _Enterprise_.
+### Troubleshooting Backup and Restore
+
+To help end users troubleshoot error messages, see [Troubleshooting Backup and Restore](/enterprise/snapshots-troubleshooting-backup-restore) in _Enterprise_. 
+
+Also, review the Limitations section to make sure an end users system is compliant. See [Limitations and Considerations](/enterprise/snapshots-understanding#limitations-and-consoderations) in _Enterprise_.
 
 ## Velero Version Compatibility
 
