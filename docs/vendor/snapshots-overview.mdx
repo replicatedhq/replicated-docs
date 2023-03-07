@@ -1,3 +1,5 @@
+import RestoreTable from "../partials/snapshots/_restoreTable.mdx"
+
 # About Backup and Restore
 
 Replicated's backup and restore feature for applications is called snapshots. You can optionally enable snapshots to support backup and restore for your users for disaster recovery scenarios.
@@ -12,7 +14,10 @@ These details can also be managed using the kots CLI, which is the CLI for the R
 The restore process is managed through the kots CLI only.
 :::
 
-The app manager also exposes hooks that can be used to inject scripts to execute with snapshots both [before and after a backup](snapshots-configuring-backups) and [before and after a restore](../enterprise/snapshots-understanding).
+The app manager also exposes hooks that can be used to inject scripts to execute with snapshots for both of the following situations:
+
+- Before and after a backup.  See [Creating and Scheduling Backups](/enterprise/snapshots-creating) in _Enterprise_.
+- Before and after a restore. See [Restoring from Backups](/enterprise/snapshots-restoring-full) in _Enterprise_.
 
 ## What Data is Backed Up
 
@@ -24,7 +29,7 @@ There are two types of snapshots available that back up different types of data:
 
 * **Partial snapshots**: Backs up the application volumes and manifests only. This is a legacy feature and does not support disaster recovery because it only backs up the application.
 
-For limitations and considerations, see [Limitations and Considerations](/enterprise/snapshots-understanding#limitations-and-consoderations).
+For limitations and considerations, see [Limitations and Considerations](/enterprise/snapshots-understanding#limitations-and-considerations) in _Enterprise_.
 
 
 ## Enabling Backup and Restore for End Users
@@ -35,17 +40,17 @@ To enable the snapshots backup and restore feature for your end users, you must:
 - Define a manifest for executing snapshots and restoring previous snapshots. For more information, see [Configuring Backups](snapshots-configuring-backups).
 - Enable the ****Allow Snapshot** option in customer licenses. For more information, see [Creating a Customer](releases-creating-customer).
 
-Additionally, your end users must install Velero to access the snapshot functionality in the Replicated admin console. For more information about the enterprise snapshots procedures, see [Understanding Snapshots](../enterprise/snapshots-understanding) in the _Enterprise_ documentation.
+Additionally, your end users must install Velero to access the snapshot functionality in the Replicated admin console. For more information about the enterprise snapshots procedures, see [About Backup and Restore](/enterprise/snapshots-understanding) _Enterprise_.
 
 ## How End Users Configure Backup and Restore
 
-After you enable backup and restore, your end users configure a storage destination in the admin console. Then users can create backups manually or schedule automatic backups.
+After vendors enable backup and restore, end users configure a storage destination in the admin console. Then users can create backups manually or schedule automatic backups. For more information about how end users create and restore backups, see [About Backup and Restore](/enterprise/snapshots-understanding) _Enterprise_.
 
-End users follow this process in the _Enterprise_ documentation to configure and create backups:
+End users follow this process to configure and create backups:
 
-1. [Review the limitations and considerations](/enterprise/snapshots-understanding).
+1. Review the limitations and considerations.
 
-1. Install the velero CLI. See [Installing the Velero CLI](/enterprise/snapshots-understanding) in _Enterprise_.
+1. Install the velero CLI.
 
 1. Install Velero and configure one of the following storage destination types:
 
@@ -56,17 +61,17 @@ End users follow this process in the _Enterprise_ documentation to configure and
     - Network File System (NFS)
     - Host Path
 
+    End users can change their storage destination settings at any time after the initial configuration.
+
 1. Create backups manually or configure automatic backups.
 
-    Replicated recommends guiding users to make full backups. Full backups allow users to perform the following types of restores:
+    Replicated recommends guiding your users to make full backups. Full backups allow users to do a full restore, a partial restore (application only), or restore just the admin console.
 
-    - **Full restore:** Restores the admin console and the application
-    - **Partial restore:** Restores the application only
-    - **Admin console:** Restores the admin console only
+1. Restore from the kots CLI or from the admin console as indicated in the following table:
 
-1. When needed, restore from the kots CLI or from the admin console. Full restores and admin console only restores must be done using the kots CLI.
+    <RestoreTable/>
 
-For more information about how end users create and restore backups, see [About Backup and Restore](/enterprise/snapshots-understanding) in _Enterprise_.
+To help end users troubleshoot error messages, see [Troubleshooting Backup and Restore](/enterprise/snapshots-troubleshooting-backup-restore) in _Enterprise_. Also, review the Limitations section to make sure an end users system is compliant. See [Limitations and Considerations](/enterprise/snapshots-understanding#limitations-and-consoderations) in _Enterprise_.
 
 ## Velero Version Compatibility
 
