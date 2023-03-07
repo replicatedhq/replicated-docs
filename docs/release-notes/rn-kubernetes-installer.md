@@ -9,10 +9,10 @@ toc_max_heading_level: 2
 Released on March 7, 2023
 
 ### New Features {#new-features-v2023-03-07-0}
-* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.26.2 1.25.7 1.24.11 1.23.17 1.22.17.
-* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) versions 0.63.0-45.3.0, 0.63.0-45.4.0 and 0.63.0-45.5.0.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) versions 1.26.2, 1.25.7, 1.24.11, 1.23.17, and 1.22.17.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) versions 0.63.0-45.3.0, 0.63.0-45.4.0, and 0.63.0-45.5.0.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-02-27T18-10-45Z.
-* Adds [Goldpinger add-on](https://kurl.sh/docs/add-ons/goldpinger) version 3.7.0-5.6.0.
+* Adds [Goldpinger add-on](https://kurl.sh/docs/add-ons/goldpinger) versions 3.7.0-5.6.0.
 * Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.16.
 
 ### Improvements {#improvements-v2023-03-07-0}
