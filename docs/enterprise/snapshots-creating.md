@@ -4,7 +4,11 @@ This topic describes how to use the Replicated snapshots feature to create backu
 
 ## Prerequisite
 
-Before you can create backups, you must configure a storage destination. See [How to Set Up Backup Storage](snapshots-config-workflow).
+Before you can create backups, you must configure a storage destination:
+
+- [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath)
+- [Configuring an NFS Storage Destination](snapshots-configuring-nfs)
+- [Configuring Other Storage Destinations](snapshots-storage-destinations)
 
 ## Create a Full Backup (Recommended) {#full}
 

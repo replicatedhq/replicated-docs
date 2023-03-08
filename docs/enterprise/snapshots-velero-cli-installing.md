@@ -74,7 +74,3 @@ Install Velero and configure a storage destination using one of the following pr
 - [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath)
 - [Configuring an NFS Storage Destination](snapshots-configuring-nfs)
 - [Configuring Other Storage Destinations](snapshots-storage-destinations)
-
-
-## Additional resources
-- [How to Set Up Backup Storage](snapshots-config-workflow)

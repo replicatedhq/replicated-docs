@@ -1,3 +1,5 @@
+import UpdateDefaultStorage from "../partials/snapshots/_updateDefaultStorage.mdx"
+
 # Configuring Other Storage Destinations
 
 This topic describes installing Velero and configuring storage for Amazon Web Service (AWS), Google Cloud Provide (GCP), Microsoft Azure, and S3-compatible providers.
@@ -5,7 +7,7 @@ This topic describes installing Velero and configuring storage for Amazon Web Se
 To configure host path or NFS as a storage destination, see [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath) and [Configuring an NFS Storage Destination](snapshots-configuring-nfs).
 
 :::note
-For existing or embedded clusters where Velero is already installed, you can update your storage destination in the admin console. For more information, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
+<UpdateDefaultStorage/>
 :::
 
 ## Prerequisites
@@ -176,10 +178,10 @@ If no Velero installation is detected, instructions are displayed to install Vel
 
 ## Next Steps
 
-* (Existing clusters only) Configure Velero namespace access if you are using minimal RBAC, and optionally increase the default memory limits. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
+* (Existing clusters only) Configure Velero namespace access if you are using minimal RBAC. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
+* (Optional) Increase the default memory limits. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
 * Create or schedule backups. See [Creating and Scheduling Backups](snapshots-creating).
 
 ## Additional Resources
 
-* [How to Set Up Snapshots](snapshots-understanding)
 * [Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)
