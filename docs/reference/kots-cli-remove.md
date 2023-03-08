@@ -17,9 +17,9 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 
 | Flag         | Type   | Description                                                            |
 |:-------------|--------|------------------------------------------------------------------------|
-| `--force`    |  bool  | Remove the reference even if the application has already been deployed. |
-| `--undeploy` |  bool  | Undeploy the application by deleting all its resources from the cluster. The `--force` flag will be set automatically. |
-| `-n`         | string | The namespace to remove the application from. Replace [namespace] with the actual namespace designation or use `default` for the default namespace. |
+| `--force`    |  bool  | Removes the reference even if the application has already been deployed. |
+| `--undeploy` |  bool  | Undeploys the application by deleting all its resources from the cluster. When `--undeploy` is set, the `--force` flag is set automatically. |
+| `-n`         | string | Removes the application from the specified namespace. Replace [namespace] with the actual namespace designation or use `default` for the default namespace. |
 
 ### Example
 ```bash
