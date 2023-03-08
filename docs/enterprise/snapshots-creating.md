@@ -34,8 +34,8 @@ For more information, see [backup](/reference/kots-cli-backup-index) in _kots CL
 
 To create a full backup in the admin console:
 
-1. Go to **Snapshots > Full Snapshots (Instance)**.
 1. To check if backups are supported for an application, go to the **View files** page, open the `upstream` folder, and confirm that the application includes a manifest file with `kind: Backup` and `apiVersion: velero.io/v1`. 
+1. Go to **Snapshots > Full Snapshots (Instance)**.
 1. Click **Start a snapshot**.
    
    When the backup is complete, it appears in the list of backups on the page, as shown in the following image:
