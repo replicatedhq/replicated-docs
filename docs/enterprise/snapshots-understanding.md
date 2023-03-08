@@ -1,6 +1,6 @@
 # About Backup and Restore
 
-An important part of the lifecycle of an application is backup and restore. The Replicated snapshots feature is to create and restore backups. The Replicated admin console can be used to create and manage your storage destination and schedule, and to perform and monitor the backup and restore process.
+An important part of the lifecycle of an application is backup and restore. The Replicated snapshots feature creates and restores backups. The Replicated admin console can be used to create and manage your storage destination and schedule, and to perform and monitor the backup and restore process.
 
 Velero and restic are the underlying technologies for snapshots.
 
