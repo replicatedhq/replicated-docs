@@ -27,7 +27,7 @@ Full backups are recommended because they support all types of restores. For exa
 
 You can restore backups to existing healthy clusters or to new clusters. Additionally, you can restore to an existing cluster when the admin console or the application are unhealthy.
 
-You can perform any of the following types of restores from the kots CLI:
+From a full backup, you can perform any of the following types of restores from the kots CLI:
 
 - **Full restore:** Restores the admin console and the application
 - **Partial restore:** Restores the application only
