@@ -21,7 +21,7 @@ There are two types of snapshots:
 
   * **Partial snapshots**: Backs up the application volumes and manifest files only. See [Create a Partial Backup](snapshots-creating#partial) in _Creating and Scheduling Backups_.
 
-Full backups are recommended because they support all types of restores. For example, you can restore your instance from full backups in disaster recovery scenarios. Or, you can use a full backup to roll back after you deploy a new version of an application by restoring only application data. For more information about restores, see [About Restores](#restores).
+Full backups are recommended because they support all types of restores. For example, you can restore your instance from full backups in disaster recovery scenarios. Or you can use a full backup to restore only application data, to roll back after you deploy a new version of an application. For more information about restores, see [About Restores](#restores).
 
 ## About Restores {#restores}
 
