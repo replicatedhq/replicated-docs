@@ -1,17 +1,10 @@
 # Restoring from Backups
 
-This topic describes how to restore any type of backup from the kots CLI, and how to restore a partial backup (application only) from the Replicated admin console.
+Full restores and admin console only restores must be done using the kots CLI because the admin console gets recreated and the admin console UI is disconnected during this process. For more information about restoring with the CLI, see [Restore Any Backup from the CLI](#full-cli).
 
-## About the Restore Process
+Partial restores (application only) can be done using the kots CLI or the admin console. For more information about using the admin console, see [Restore the Application from the Admin Console](#admin-console).
 
-Backups can be restored to existing healthy clusters or to new clusters. You can also restore to an existing cluster when the admin console or the application are unhealthy.
-
-When you restore only the admin console, no changes are made to the application.
-
-When you do a full or partial restore, the admin console deletes the selected application. All existing application manifests are removed from the cluster, and all `PersistentVolumeClaims` are deleted. This action is not reversible.
-
-Then, the restore process redeploys all of the application manifests. All Pods are given an extra `initContainer` and an extra directory named `.velero`, which are used for restore hooks. For more information about the restore process, see [Restore Reference](https://velero.io/docs/v1.9/restore-reference/) in the Velero documentation.
-
+For more information about the restore process, see [About Restores](snapshots-understanding#restores) in _About Backup and Restore_.
 
 ## Restore Any Backup from the CLI {#full-cli}
 
@@ -21,13 +14,7 @@ You can do any of the following types of restores using the kots CLI:
 - **Partial restore:** Restores the application only
 - **Admin console:** Restores the admin console only
 
-Full restores must be done with the CLI, although you can get the `restore` command from the admin console or use the following procedures. 
-
-For a full restore or admin console only restore, the admin console gets recreated and the admin console UI is disconnected during this process.
-
-Partial restores can be done using the CLI or the admin console. For more information about using the admin console, see [Restore the Application from the Admin Console](#admin-console). 
-
-For CLI procedures, see the following sections:
+Use the corresponding CLI procedure for your environment:
 
 - [Existing Clusters](#existing)
 - [Online Kubernetes Installer Clusters](#online)

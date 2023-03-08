@@ -2,19 +2,7 @@
 
 This topic describes the process of setting up backup storage for the Replicated snapshots feature.
 
-## Limitations and Considerations
 
-- Snapshots are useful for rollback and disaster recovery scenarios. They are not intended to be used for application migration scenarios.
-
-- Only full snapshots are usable in disaster recovery scenarios.
-
-- Snapshots must be restored on the same operating system that the snapshot was taken on. For example, snapshots taken on a CentOS cluster must be restored on a CentOS cluster.
-
-- Snapshots can be restored only to clusters that use the same installation method as the cluster the snapshot was taken from. For example, online cluster snapshots must be restored to an online cluster.
-
-- Snapshots does not support Amazon Simple Storage Service (Amazon S3) buckets that have a bucket policy requiring the server-side encryption header. If you want to require server-side encryption for objects, you can enable default encryption on the bucket instead. For more information about Amazon S3, see the [Amazon S3](https://docs.aws.amazon.com/s3/?icmpid=docs_homepage_featuredsvcs) documentation.
-
-- Use the Snapshots tab in the admin console to cleanup and remove snapshots. Otherwise, removing data from the snapshot storage itself results in data corruption and the loss of snapshots.
 
 ## Configuring Backup Storage for Kubernetes Installer Clusters
 

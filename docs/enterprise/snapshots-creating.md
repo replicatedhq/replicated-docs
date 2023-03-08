@@ -8,16 +8,12 @@ Before you can create backups, you must configure a storage destination. See [Ho
 
 ## Create a Full Backup (Recommended) {#full}
 
-Full backups, or _instance snapshots_, back up the admin console and all application data, including application volumes and manifest files.
-
-If you manage multiple applications with the admin console, data from all applications that support backups is included in a full backup. To check if backups are supported for an application, go to the **View files** page in the admin console, open the `upstream` folder, and confirm that the application includes a manifest file with `kind: Backup` and `apiVersion: velero.io/v1`.
+Full backups, or _instance snapshots_, back up the admin console and all application data, including application volumes and manifest files. If you manage multiple applications with the admin console, data from all applications that support backups is included in a full backup.
 
 From a full backup, you can:
-* Restore application and admin console data.
-* Restore only application data.
-* Restore only admin console data.
-
-Full backups are recommended because they support all types of restores. For example, you can restore your instance from full backups in disaster recovery scenarios. Or, you can use a full backup to roll back after you deploy a new version of an application by restoring only application data.
+* Restore application and admin console data
+* Restore only application data
+* Restore only admin console data
 
 You can create a full backup with the following methods:
 * [Create a Backup with the CLI](#cli-backup)
@@ -38,7 +34,8 @@ For more information, see [backup](/reference/kots-cli-backup-index) in _kots CL
 
 To create a full backup in the admin console:
 
-1. Go to **Snapshots > Full Snapshots (Instance)**. 
+1. To check if backups are supported for an application, go to the **View files** page, open the `upstream` folder, and confirm that the application includes a manifest file with `kind: Backup` and `apiVersion: velero.io/v1`. 
+1. Go to **Snapshots > Full Snapshots (Instance)**.
 1. Click **Start a snapshot**.
    
    When the backup is complete, it appears in the list of backups on the page, as shown in the following image:
