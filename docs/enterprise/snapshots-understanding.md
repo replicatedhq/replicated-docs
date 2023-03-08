@@ -21,7 +21,7 @@ There are two types of snapshots:
 
   * **Partial snapshots**: Backs up the application volumes and manifest files only. See [Create a Partial Backup](snapshots-creating#partial) in _Creating and Scheduling Backups_.
 
-Full backups are recommended because they support all types of restores. For example, you can restore your instance from full backups in disaster recovery scenarios. Or you can use a full backup to restore only application data, to roll back after you deploy a new version of an application. For more information about restores, see [About Restores](#restores).
+Full backups are recommended because they support all types of restores. For example, you can restore your instance from full backups in disaster recovery scenarios. Or you can use a full backup to restore only application data to roll back after you deploy a new version of an application. For more information about restores, see [About Restores](#restores).
 
 ## About Restores {#restores}
 
@@ -70,7 +70,7 @@ Kubernetes installers that include the Velero add-on also include a locally-prov
 
 - Snapshots does not support Amazon Simple Storage Service (Amazon S3) buckets that have a bucket policy requiring the server-side encryption header. If you want to require server-side encryption for objects, you can enable default encryption on the bucket instead. For more information about Amazon S3, see the [Amazon S3](https://docs.aws.amazon.com/s3/?icmpid=docs_homepage_featuredsvcs) documentation.
 
-- Removing data from the snapshot storage itself results in data corruption and the loss of snapshots. Use the Snapshots tab in the admin console to cleanup and remove snapshots.
+- Removing data from the snapshot storage itself results in data corruption and the loss of snapshots. Instead, use the Snapshots tab in the admin console to cleanup and remove snapshots.
 
 ## Additional Resources
 
