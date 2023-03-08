@@ -117,7 +117,7 @@ The following table describes the `rendered` directory and whether custom change
     <tr>
       <td><code>rendered</code></td>
       <td>No</td>
-      <td><p>After the Replicated app manager processes and renders the <code>base</code> by applying the corrosponding overlays and the user-defined kustomizations, it puts those files in the <code>rendered</code> directory.</p><p>This directory contains the final rendered application manifests that are deployed to the cluster</p></td>
+      <td><p>Contains the final rendered application manifests that are deployed to the cluster</p><p>These rendered files are created when the app manager processes and renders the <code>base</code> by applying the corresponding overlays and the user-defined kustomizations. The app manager puts the rendered files in the <code>rendered</code> directory.</p></td>
     </tr>
     <tr>
       <td><code>rendered/charts</code></td>
