@@ -33,11 +33,17 @@ You can update a customer license type in the Replicated vendor portal, for exam
 
 It is unlikely that the license change will prompt any changes to the application deployment itself. However, if you also modify other license fields as part of the license conversion, this can trigger changes to the deployed application. For more information about license fields, see [License Fields](license-fields).
 
-Your customer uses the Replicated admin console to synchronize the licenses on their instances. Unless a customer is upgrading from a community license, it is not possible to replace one license file with another license file without completely reinstalling the application. Using the vendor portal to change the license type prevents end customers from having to reinstall. 
+Your customer uses the Replicated admin console to synchronize the licenses on their instances. For online instances, license updates are pulled from the vendor portal when:
+
+- An automatic or manual update check is performed by the Replicated app manager.
+- A customer selects **Sync license** in the admin console.
+- An app status changes. See [App Status Change](instance-insights-details#about-reporting).
+
+For air gap customers, you update their license in the download portal and send them a notification.
+
+Unless a customer is upgrading from a community license, it is not possible to replace one license file with another license file without completely reinstalling the application. Using the vendor portal to change the license type prevents end customers from having to reinstall. 
 
 Updating from a community license to another type cannot be reverted. For more information about community licenses, see [Community Licenses](#community-licenses).
-
-
 
 ## Community Licenses
 
