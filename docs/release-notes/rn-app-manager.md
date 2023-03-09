@@ -4,6 +4,26 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.96.0
+
+Released on March 9, 2023
+
+Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
+
+### New Features {#new-features-1-96-0}
+* Adds the deployable rendered application manifests to the version archive.
+* Improves the performance of creating, diffing, configuring, and deploying application versions by retrieving the rendered application manifests when available instead of rendering them on the fly.
+
+### Improvements {#improvements-1-96-0}
+* Updates the replicated/local-volume-provider image to v0.5.1 to resolve CVE-2023-0361, CVE-2022-4450, CVE-2023-0215, and CVE-2023-0286 with high severity and CVE-2022-2097 and CVE-2022-4304 with medium severity.
+* Improves the performance of creating application versions by running private image checks concurrently.
+* Resolves a clickjacking vulnerability present in the kurl_proxy service that runs in embedded cluster installations.
+
+### Bug Fixes {#bug-fixes-1-96-0}
+* Adds re-run button on the preflights page during initial install.
+* kots/web: fixes an issue where the selected subnav tab did not render an underline.
+* Fixes an issue where CRDs from subcharts were being included in the secret that Helm stores release information in, which could dramatically increase its size.
+
 ## 1.95.0
 
 Released on March 1, 2023
