@@ -37,7 +37,7 @@ Your customer uses the Replicated admin console to synchronize the licenses on t
 
 - An automatic or manual update check is performed by the Replicated app manager.
 - A customer selects **Sync license** in the admin console.
-- An app status changes. See [App Status Change](instance-insights-details#about-reporting).
+- An app status changes. See [About Instance Reporting](instance-insights-details#about-reporting) in _Instance Details_.
 
 For air gap customers, you update their license in the download portal and send them a notification.
 
