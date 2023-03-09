@@ -104,6 +104,10 @@
 [[redirects]]
   from="https://docs.replicated.com/enterprise/snapshots-scheduling"
   to="https://docs.replicated.com/enterprise/snapshots-creating" 
+
+[[redirects]]
+  from="https://docs.replicated.com/enterprise//snapshots-config-workflow"
+  to="https://docs.replicated.com/enterprise/snapshots-velero-cli-installing"
    
 ###################################################
 # Redirects To the References Section

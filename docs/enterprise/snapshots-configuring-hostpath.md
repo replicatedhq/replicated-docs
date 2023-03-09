@@ -1,13 +1,15 @@
 import InstallVelero from "../partials/snapshots/_installVelero.mdx"
 import RegistryCredNote from "../partials/snapshots/_registryCredentialsNote.mdx"
 import ResticDaemonSet from "../partials/snapshots/_resticDaemonSet.mdx"
+import UpdateDefaultStorage from "../partials/snapshots/_updateDefaultStorage.mdx"
+
 
 # Configuring a Host Path Storage Destination
 
 This topic describes how to install Velero and configure a host path as your storage destination for backups.  
 
 :::note
-For existing or embedded clusters where Velero is already installed, you can update your storage destination in the admin console. For more information, see [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
+<UpdateDefaultStorage/>
 :::
 
 ## Prerequisites
@@ -106,10 +108,10 @@ To install Velero and configure host path storage for existing clusters:
 
 ## Next Steps
 
-* (Existing clusters only) Configure Velero namespace access if you are using minimal RBAC, and optionally increase the default memory limits. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
+* (Existing Clusters Only) Configure Velero namespace access if you are using minimal RBAC. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
+* (Optional) Increase the default memory limits. See [Configuring Namespace Access and Memory Limit](snapshots-velero-installing-config).
 * Create or schedule backups. See [Creating and Scheduling Backups](snapshots-creating).
 
 ## Additional Resources
 
-* [How to Set Up Backup Storage](snapshots-understanding)
 * [Troubleshooting Backup and Restore](snapshots-troubleshooting-backup-restore)

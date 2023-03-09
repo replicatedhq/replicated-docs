@@ -27,7 +27,7 @@ Full backups are recommended because they support all types of restores. For exa
 
 You can restore backups to existing healthy clusters or to new clusters. Additionally, you can restore to an existing cluster when the admin console or the application are unhealthy.
 
-You can perform any of the following types of restores from the kots CLI:
+From a full backup, you can perform any of the following types of restores from the kots CLI:
 
 - **Full restore:** Restores the admin console and the application
 - **Partial restore:** Restores the application only
@@ -71,7 +71,3 @@ Kubernetes installers that include the Velero add-on also include a locally-prov
 - Snapshots does not support Amazon Simple Storage Service (Amazon S3) buckets that have a bucket policy requiring the server-side encryption header. If you want to require server-side encryption for objects, you can enable default encryption on the bucket instead. For more information about Amazon S3, see the [Amazon S3](https://docs.aws.amazon.com/s3/?icmpid=docs_homepage_featuredsvcs) documentation.
 
 - Removing data from the snapshot storage itself results in data corruption and the loss of snapshots. Instead, use the Snapshots tab in the admin console to cleanup and remove snapshots.
-
-## Additional Resources
-
-- [How to Set Up Backup Storage](snapshots-config-workflow)
