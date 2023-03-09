@@ -1,4 +1,6 @@
 import UpdateDefaultStorage from "../partials/snapshots/_updateDefaultStorage.mdx"
+import RegistryCredNote from "../partials/snapshots/_registryCredentialsNote.mdx"
+import CheckVersion from "../partials/snapshots/_checkVersion.mdx"
 
 # Configuring Other Storage Destinations
 
@@ -175,6 +177,8 @@ Replace:
 - REGISTRY_PASSWORD with the password to use to authenticate with the registry
 
 If no Velero installation is detected, instructions are displayed to install Velero and configure the storage destination.
+
+<RegistryCredNote/>
 
 ## Next Steps
 

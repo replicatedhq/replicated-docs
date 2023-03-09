@@ -2,7 +2,7 @@ import InstallVelero from "../partials/snapshots/_installVelero.mdx"
 import RegistryCredNote from "../partials/snapshots/_registryCredentialsNote.mdx"
 import ResticDaemonSet from "../partials/snapshots/_resticDaemonSet.mdx"
 import UpdateDefaultStorage from "../partials/snapshots/_updateDefaultStorage.mdx"
-
+import CheckVersion from "../partials/snapshots/_checkVersion.mdx"
 
 # Configuring an NFS Storage Destination
 
@@ -48,6 +48,8 @@ To install Velero and configure NFS storage in an online environment:
 ## Install Velero and Configure NFS Storage in Air Gapped Environments
 
 To install Velero and configure NFS storage in air gapped environments:
+
+1. <CheckVersion/>
 
 1. <InstallVelero/>
 
