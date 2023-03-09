@@ -52,8 +52,7 @@ of your application. For example, you could use community licenses for an
 open source version of your application.
 
 :::note
-Not all accounts support community licenses. To enable community licenses,
-contact [support@replicated.com](mailto:support@replicated.com).
+Not all accounts support community licenses. To enable community licenses, contact [support@replicated.com](mailto:support@replicated.com).
 :::
 
 Community licenses function in the same the other types of licenses, with the following
