@@ -39,7 +39,7 @@ Your customer uses the Replicated admin console to synchronize the licenses on t
 - A customer selects **Sync license** in the admin console.
 - An app status changes. See [About Instance Reporting](instance-insights-details#about-reporting) in _Instance Details_.
 
-Because Airgap licenses are signed with the updated fields, a regenerated license file must be uploaded directly to the App Manager admin console every time you modify license fields. Once you've updated the license fields in the vendor portal, you can notify them out of band, either sending them a new license file, or instructing them to log into their download portal to retrieve the updated license. They can then upload the updated license file to the App Manager console to stage a new version with the changes (if any).
+Because air gap licenses are signed with the updated fields, a regenerated license file must be uploaded directly to the admin console every time you modify license fields. After you update the license fields in the vendor portal, you can notify customers by either sending them a new license file or instructing them to log into their download portal to retrieve the updated license. Customers can then click **Upload license** on the License tab in the admin console to upload the updated license to their air gap environment.
 
 Unless a customer is upgrading from a community license, it is not possible to replace one license file with another license file without completely reinstalling the application. Using the vendor portal to change the license type prevents end customers from having to reinstall. 
 
