@@ -18,21 +18,31 @@ The app manager also exposes hooks that can be used to inject scripts to execute
 
 There are two types of snapshots available that back up different types of data:
 
-* **Full snapshots (Recommended)**: Backs up the admin console and all application data, including kots-specific object-stored data. For embedded clusters, this also backs up the Docker registry, which is required for air gapped installations.
-
-  If other types of object-stored data (not kots-specific) is being used that does not use a PVC, then you must write custom backup and restore hooks for your users to be able to back up object-stored data. For example, Rook and Ceph do not use PVCs and require custom backup and restore hooks.
+* **Full snapshots (Recommended)**: Backs up the admin console and all application data, including KOTS-specific object-stored data. For embedded clusters, this also backs up the Docker registry, which is required for air gapped installations.
 
 * **Partial snapshots**: Backs up the application volumes and manifests only. This is a legacy feature and does not support disaster recovery because it only backs up the application.
 
-For limitations and considerations, see [Limitations and Considerations](/enterprise/snapshots-understanding#limitations-and-consoderations).
+For limitations and considerations, see [Limitations and Considerations](/enterprise/snapshots-understanding#limitations-and-considerations).
 
+### Pod Volume Data
+
+By default, you must opt-in to have pod volumes backed up using restic (restic is referred to as File System Backup or FSB in the Velero documentation). In the Backup resource that you configure to enable snapshots, you must annotate each specific volume that you want to back up.
+
+If you are also using using a Velero-compatible plug-in, such as the VMware Tanzu `velero-plugin-for-gcp`, you must add a label to exclude volume backups from being created for the plug-in to prevent the issue of incomplete restores.
+
+For more information about including and excluding pod volumes, see [Configuring Backups](snapshots-configuring-backups). For more information about Velero File System Backup, see [File System Backup](https://velero.io/docs/v1.10/file-system-backup/) in the Velero documentation.
+
+
+### Object-Stored Data
+
+If other types of object-stored data (not KOTS-specific) is being used that does not use a persistentVolumeClaim (PVC), then you must write custom backup and restore hooks for your users to be able to back up object-stored data. For example, Rook and Ceph do not use PVCs and require custom backup and restore hooks. For more information, see [Configuring Backup and Restore Hooks](snapshots-hooks).
 
 ## How to Enable Backup and Restore
 
 To enable the snapshots backup and restore feature for your users, you must:
 
 - Have the snapshots entitlement enabled in your Replicated vendor account. For account entitlements, contact the Replicated TAM team.
-- Define a manifest for executing snapshots and restoring previous snapshots. For more information, see [Configuring Backups](snapshots-configuring-backups).
+- Define a manifest for creating backups. For more information, see [Configuring Backups](snapshots-configuring-backups).
 - Enable the Allow Snapshot option in customer licenses. For more information, see [Creating a Customer](releases-creating-customer).
 
 Additionally, your end users must install Velero to access the snapshot functionality in the Replicated admin console. For more information about the enterprise snapshots procedures, see [Understanding Snapshots](../enterprise/snapshots-understanding) in the _Enterprise_ documentation.
