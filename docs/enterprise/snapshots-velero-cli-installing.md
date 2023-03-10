@@ -38,32 +38,18 @@ To install the Velero CLI in an online cluster:
   ```
   tar zxvf velero-VERSION-linuxamd64.tar.gz
   ```
-
-  **Example:**
-  ```
-  tar zxvf velero-v1.10.1-linux-amd64.tar.gz
-  ```
+  Replace VERSION with the version number using the format `vx.x.x`.
 
 1. Run the following command to install the Velero CLI:
   
   ```
   sudo mv velero-VERSION-linux-amd64/velero /usr/local/bin/velero
   ```
-  
-  **Example**:
-  ```
-  sudo mv velero-v1.10.1-linux-amd64/velero /usr/local/bin/velero
-  ```
+  Replace VERSION with the version number using the format `vx.x.x`.
 
-1. To test that the Velero CLI installation worked correctly, run a Velero command for version or help.
+1. Run `velero version` to test that the Velero CLI installation worked correctly.
 
-  **Example:**
-
-  ```
-  velero version
-  ```
-
-  Using the `version` command, you can get an error message stating that there are no matches for the server version. This is acceptable, as long as you get a confirmation for the client version. After the Velero installation, you should see the server version also.
+  You might get an error message stating that there are no matches for the server version. This is acceptable, as long as you get a confirmation for the client version. After the Velero installation, you should see the server version also.
 
 ## Install the Velero CLI in an Air Gapped Cluster
 
@@ -94,32 +80,19 @@ To install the Velero CLI in an air gapped cluster:
   ```
   tar zxvf velero-VERSION-linuxamd64.tar.gz
   ```
-
-  **Example:**
-  ```
-  tar zxvf velero-v1.10.1-linux-amd64.tar.gz
-  ```
+  Replace VERSION with the version number using the format `vx.x.x`.
 
 1. Run the following command to install the Velero CLI:
   
   ```
   sudo mv velero-VERSION-linux-amd64/velero /usr/local/bin/velero
   ```
-  
-  **Example**:
-  ```
-  sudo mv velero-v1.10.1-linux-amd64/velero /usr/local/bin/velero
-  ```
 
-1. To test that the Velero CLI installation worked correctly, run a Velero command for version or help.
+  Replace VERSION with the version number using the format `vx.x.x`.
 
-  **Example:**
+1. Run `velero version` to test that the Velero CLI installation worked correctly.
 
-  ```
-  velero version
-  ```
-
-  Using the `version` command, you can get an error message stating that there are no matches for the server version. This is acceptable, as long as you get a confirmation for the client version. After the Velero installation, you should see the server version also.
+  You might get an error message stating that there are no matches for the server version. This is acceptable, as long as you get a confirmation for the client version. After the Velero installation, you should see the server version also.
 
 
 ## Next Step
