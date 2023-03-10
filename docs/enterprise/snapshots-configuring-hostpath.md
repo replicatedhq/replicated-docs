@@ -2,7 +2,7 @@ import InstallVelero from "../partials/snapshots/_installVelero.mdx"
 import RegistryCredNote from "../partials/snapshots/_registryCredentialsNote.mdx"
 import ResticDaemonSet from "../partials/snapshots/_resticDaemonSet.mdx"
 import UpdateDefaultStorage from "../partials/snapshots/_updateDefaultStorage.mdx"
-
+import CheckVersion from "../partials/snapshots/_checkVersion.mdx"
 
 # Configuring a Host Path Storage Destination
 
@@ -48,6 +48,8 @@ To install Velero and configure host path storage in online environments:
 ## Install Velero and Configure Host Path Storage in Air Gapped Environments
 
 To install Velero and configure host path storage in air gapped environments:
+
+1. <CheckVersion/>
 
 1. <InstallVelero/>
 
