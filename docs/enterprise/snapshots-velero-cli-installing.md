@@ -65,11 +65,11 @@ To install the Velero CLI in an online cluster:
 
   Using the `version` command, you can get an error message stating that there are no matches for the server version. This is acceptable, as long as you get a confirmation for the client version. After the Velero installation, you should see the server version also.
 
-  ## Install the Velero CLI in an Air Gapped Cluster
+## Install the Velero CLI in an Air Gapped Cluster
 
 To install the Velero CLI in an air gapped cluster:
 
-1. From a computer with internat access, check for the latest supported release of the Velero CLI for **Linux AMD64** in the Velero GitHub repo at https://github.com/vmware-tanzu/velero/releases. Although earlier versions of Velero are supported, Replicated recommends using the latest [supported version](/vendor/snapshots-overview#velero-version-compatibility).
+1. From a computer with internet access, check for the latest supported release of the Velero CLI for **Linux AMD64** in the Velero GitHub repo at https://github.com/vmware-tanzu/velero/releases. Although earlier versions of Velero are supported, Replicated recommends using the latest [supported version](/vendor/snapshots-overview#velero-version-compatibility).
 
     Note the version number for the next step.
 
