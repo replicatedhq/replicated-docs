@@ -65,6 +65,63 @@ To install the Velero CLI in an online cluster:
 
   Using the `version` command, you can get an error message stating that there are no matches for the server version. This is acceptable, as long as you get a confirmation for the client version. After the Velero installation, you should see the server version also.
 
+  ## Install the Velero CLI in an Air Gapped Cluster
+
+To install the Velero CLI in an air gapped cluster:
+
+1. From a computer with internat access, check for the latest supported release of the Velero CLI for **Linux AMD64** in the Velero GitHub repo at https://github.com/vmware-tanzu/velero/releases. Although earlier versions of Velero are supported, Replicated recommends using the latest [supported version](/vendor/snapshots-overview#velero-version-compatibility).
+
+    Note the version number for the next step.
+
+1. Run the following command to download the latest supported Velero CLI version for the **Linux AMD64** operating system to the cluster:
+
+  ```
+  curl -LO https://github.com/vmware-tanzu/velero/releases/download/VERSION/velero-VERSION-linux-amd64.tar.gz
+  ```
+
+  Replace VERSION with the version number using the format `vx.x.x`
+
+  **Example:**
+
+  ```
+  curl -LO https://github.com/vmware-tanzu/velero/releases/download/v1.10.1/velero-v1.10.1-linux-amd64.tar.gz
+  ```
+
+1. Copy the TAR file to the air gapped node.
+
+1. Run the following command to uncompress the TAR file:
+
+  ```
+  tar zxvf velero-VERSION-linuxamd64.tar.gz
+  ```
+
+  **Example:**
+  ```
+  tar zxvf velero-v1.10.1-linux-amd64.tar.gz
+  ```
+
+1. Run the following command to install the Velero CLI:
+  
+  ```
+  sudo mv velero-VERSION-linux-amd64/velero /usr/local/bin/velero
+  ```
+  
+  **Example**:
+  ```
+  sudo mv velero-v1.10.1-linux-amd64/velero /usr/local/bin/velero
+  ```
+
+1. To test that the Velero CLI installation worked correctly, run a Velero command for version or help.
+
+  **Example:**
+
+  ```
+  velero version
+  ```
+
+  Using the `version` command, you can get an error message stating that there are no matches for the server version. This is acceptable, as long as you get a confirmation for the client version. After the Velero installation, you should see the server version also.
+
+
 ## Next Step
 
 Install Velero and configure a storage destination using one of the following procedures:
