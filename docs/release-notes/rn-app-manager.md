@@ -11,18 +11,18 @@ Released on March 9, 2023
 Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 
 ### New Features {#new-features-1-96-0}
-* Adds the deployable rendered application manifests to the version archive. This increases the transparency of what KOTS deploys, by showing on the **View Files** page the exact manifests that are deployed as part of this version. For more information, see [Rendered](/enterprise/updating-patching-with-kustomize#rendered).
+* Adds the deployable, rendered application manifests to the version archive. This increases the transparency of what KOTS deploys by showing on the **View Files** page the exact manifests that are deployed as part of this version. For more information, see [Rendered](/enterprise/updating-patching-with-kustomize#rendered).
 
 ### Improvements {#improvements-1-96-0}
-* Updates the replicated/local-volume-provider image to v0.5.1 to resolve CVE-2023-0361, CVE-2022-4450, CVE-2023-0215, and CVE-2023-0286 with high severity and CVE-2022-2097 and CVE-2022-4304 with medium severity.
-* Improves the performance of creating, diffing, configuring, and deploying application versions, by retrieving the rendered application manifests when available instead of rendering them on the fly.
-* Improves the performance of creating application versions, by running private image checks concurrently.
+* Updates the replicated/local-volume-provider image to v0.5.1 to resolve CVE-2023-0361, CVE-2022-4450, CVE-2023-0215, and CVE-2023-0286 with high severity, and CVE-2022-2097 and CVE-2022-4304 with medium severity.
+* Improves the performance of creating, diffing, configuring, and deploying application versions by retrieving the rendered application manifests when they are available, instead of rendering them on the fly.
+* Improves the performance of creating application versions by running private image checks concurrently.
 
 ### Bug Fixes {#bug-fixes-1-96-0}
-* Resolves a clickjacking vulnerability present in the kurl_proxy service that runs in embedded cluster installations.
-* Adds a rerun button on the preflights page when an app is first installed.
-* Fixes an issue where the selected subnav tab was not underlined.
-* Fixes an issue where CRDs from subcharts were included in the Secret that Helm stores release information in. This could dramatically increase the Secret's size.
+* Resolves a clickjacking vulnerability that was present in the kurl_proxy service that runs in embedded cluster installations.
+* Adds a **Rerun** button on the preflights page when an application is initially installed.
+* Fixes an issue where the selected subnavigation tab was not underlined.
+* Fixes an issue where CRDs from subcharts were included in the Secret that Helm stores the release information in. In some cases, this issue was dramatically increasing the Secret's size.
 
 ## 1.95.0
 
