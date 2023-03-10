@@ -15,14 +15,14 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 
 ### Improvements {#improvements-1-96-0}
 * Updates the replicated/local-volume-provider image to v0.5.1 to resolve CVE-2023-0361, CVE-2022-4450, CVE-2023-0215, and CVE-2023-0286 with high severity and CVE-2022-2097 and CVE-2022-4304 with medium severity.
-* Improves the performance of creating, diffing, configuring, and deploying application versions by retrieving the rendered application manifests when available instead of rendering them on the fly.
-* Improves the performance of creating application versions by running private image checks concurrently.
+* Improves the performance of creating, diffing, configuring, and deploying application versions, by retrieving the rendered application manifests when available instead of rendering them on the fly.
+* Improves the performance of creating application versions, by running private image checks concurrently.
 * Resolves a clickjacking vulnerability present in the kurl_proxy service that runs in embedded cluster installations.
 
 ### Bug Fixes {#bug-fixes-1-96-0}
-* Adds re-run button on the preflights page during initial install.
-* Fixes an issue where the selected subnav tab did not render an underline.
-* Fixes an issue where CRDs from subcharts were being included in the secret that Helm stores release information in, which could dramatically increase its size.
+* Adds a rerun button on the preflights page when an app is first installed.
+* Fixes an issue where the selected subnav tab was not underlined.
+* Fixes an issue where CRDs from subcharts were included in the Secret that Helm stores release information in. This could dramatically increase the Secret's size.
 
 ## 1.95.0
 
