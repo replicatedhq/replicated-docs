@@ -33,34 +33,15 @@ To enable the snapshots backup and restore feature for your end users, you must:
 
 Then, your end users must install Velero to access the snapshot functionality in the Replicated admin console. For more information about the end user experience, see [How End Users Run Backup and Restore](#how-users).
 
-## How End Users Run Backup and Restore {#how-users}
+## Understanding Backup and Restore for End Users {#how-users}
 
-After vendors enable backup and restore, end users configure a storage destination in the admin console. Then users can create backups manually or schedule automatic backups. For more information about how end users create and restore backups, see [About Backup and Restore](/enterprise/snapshots-understanding) in _Enterprise_.
+After vendors enable backup and restore, end users install Velero and configure a storage destination in the admin console. Then users can create backups manually or schedule automatic backups. For more information about how end users create and restore backups, see [About Backup and Restore](/enterprise/snapshots-understanding) in _Enterprise_.
 
-End users follow this process to configure and create backups:
+Replicated recommends advising your users to make full backups for disaster recovery purposes. Additionally, full backups give users the flexibility to do a full restore, a partial restore (application only), or restore just the admin console.
 
-1. Review the limitations and considerations.
+From a full backup, users restore using the kots CLI or the admin console as indicated in the following table:
 
-1. Install the velero CLI.
-
-1. Install Velero and configure one of the following storage destination types:
-
-    - Amazon Web Services (AWS)
-    - Google Cloud Provider (GCP)
-    - Microsoft Azure
-    - S3-Compatible
-    - Network File System (NFS)
-    - Host Path
-
-    End users can change their storage destination settings at any time after the initial configuration.
-
-1. Create backups manually or configure automatic backups.
-
-    Replicated recommends advising your users to make full backups for disaster recovery purposes. Additionally, full backups give users the flexibility to do a full restore, a partial restore (application only), or restore just the admin console.
-
-1. From a full backup, restore using the kots CLI or the admin console as indicated in the following table:
-
-    <RestoreTable/>
+<RestoreTable/>
 
 ## Troubleshooting Backup and Restore
 
