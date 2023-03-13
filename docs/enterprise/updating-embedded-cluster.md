@@ -11,7 +11,7 @@ The application vendor uses a Kubernetes installer specification file to specify
 
 For more information about how the script updates the versions of Kubernetes, the app manager, and any additional add-ons running in your cluster, see the following sections:
 * [Kubernetes Updates](#kubernetes)
-* [Multi-version Kubernetes Updates](#kubernetes)
+* [Multi-version Kubernetes Updates](#kubernetes-multi)
 * [Add-ons and App Manager Updates](#add-ons)
 
 ### Kubernetes Updates {#kubernetes}
@@ -30,7 +30,7 @@ If the script detects that the version of Kubernetes in your cluster is more tha
 
 To continue with the upgrade, you must first update Kubernetes in your cluster to the version specified in the error message.
 
-To update Kubernetes, contact your application vendor for a different Kubernetes installer script that specifies a version of Kubernetes that is no more than two minor versions later than the version currently installed. For example, to upgrade from Kubernetes 1.23.x to 1.26.x, first run an installation script that specifies Kubernetes 1.25.x. Then, run the target installation script that specifies 1.26.x.
+To update Kubernetes, contact your application vendor for a different Kubernetes installer installation script that specifies a version of Kubernetes no more than two minor versions later than the version currently installed. For example, to upgrade from Kubernetes 1.23.x to 1.26.x, first run an installation script that specifies Kubernetes 1.25.x. Then, run the target installation script that specifies 1.26.x.
 
 ### Add-ons and App Manager Updates {#add-ons}
 
@@ -69,18 +69,13 @@ To update the cluster in an online environment:
    ```
    Replace:
    * `APP_SLUG` with the unique slug for the application from your application vendor.
-   * `ADVANCED_OPTIONS` with any of the flags listed in [Advanced Options](https://kurl.sh/docs/install-with-kurl/advanced-options) in the kURL documentation.
+   * `ADVANCED_OPTIONS` optionally with any flags listed in [Advanced Options](https://kurl.sh/docs/install-with-kurl/advanced-options) in the kURL documentation.
       
-     :::note
      To use no advanced installation options, remove `-s ADVANCED_OPTIONS` from the command.
-     :::
 
-      See the following recommendations for advanced options:
+     See the following recommendations for advanced options:
 
       <InstallerRequirements/>
-   
-      See the following requirements and recommendations for advanced options:
-      
 
 1. <UpgradePrompt/>
 
@@ -109,13 +104,9 @@ To update the cluster in an air gap environment:
    ```
    Replace:
    * `APP_SLUG` with the unique slug for the application from your application vendor.
-   * `OTHER_ADVANCED_OPTIONS` with any additional flags listed in [Advanced Options](https://kurl.sh/docs/install-with-kurl/advanced-options) in the kURL documentation.
-      
-     :::note
-     To use no advanced installation options, remove `-s ADVANCED_OPTIONS` from the command.
-     :::
+   * `OTHER_ADVANCED_OPTIONS` optionally with any flags listed in [Advanced Options](https://kurl.sh/docs/install-with-kurl/advanced-options) in the kURL documentation.
    
-      See the following recommendations for advanced options:
+     See the following recommendations for advanced options:
       <InstallerRequirements/>
 
 1. <UpgradePrompt/>
