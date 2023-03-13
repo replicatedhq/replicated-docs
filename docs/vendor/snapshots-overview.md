@@ -28,7 +28,7 @@ For limitations and considerations, see [Limitations and Considerations](/enterp
 
 By default, you must opt-in to have pod volumes backed up using restic (restic is referred to as File System Backup or FSB in the Velero documentation). In the Backup resource that you configure to enable snapshots, you must annotate each specific volume that you want to back up.
 
-If you are also using using a Velero-compatible plug-in, such as the VMware Tanzu `velero-plugin-for-gcp`, you must add a label to exclude volume backups from being created for the plug-in to prevent the issue of incomplete restores.
+You can use a Velero-compatible plug-in, such as the VMware Tanzu `velero-plugin-for-gcp`, instead of restic. In this case, Velero backs up everything, not just the annotated volumes that you want to include. Backing up everything can, in turn, cause incomplete restores. As a best practice when using plug-ins, after you opt-in the volumes that you want to include, add a label to exclude the volumes that you do not want to back up.
 
 For more information about including and excluding pod volumes, see [Configuring Backups](snapshots-configuring-backups). For more information about Velero File System Backup, see [File System Backup](https://velero.io/docs/v1.10/file-system-backup/) in the Velero documentation.
 

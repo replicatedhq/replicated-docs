@@ -65,9 +65,14 @@ To configure backups:
     ```
 
 1. (Optional) Configure manifest exclusions. By default, Velero also includes snapshots of all of the Kubernetes objects in the namespace.
-To exclude any manifest, add a `velero.io/exclude-from-backup` label to the manifest to be excluded.
 
-    Example:
+  :::note
+  If you are using a Velero-compatible plug-in, such as the VMware Tanzu `velero-plugin-for-gcp`, add a label to exclude volumes that you do not want to backup. Otherwise, Velero backups up all volumes even if you only annotated a few volumes for inclusion, which can cause incomplete restores. For more information about plug-ins, see [Pod Volume Data](snapshots-overview/#pod-volume-data) in _About Backup and Restore_.
+  :::
+
+  To exclude any manifest, add a `velero.io/exclude-from-backup` label to the manifest to be excluded.
+
+    **Example:**
 
     ```yaml
     apiVersion: apps/v1
