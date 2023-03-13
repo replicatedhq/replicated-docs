@@ -4,6 +4,21 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.03.13-0
+
+Released on March 13, 2023
+
+### New Features {#new-features-v2023-03-13-0}
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-03-09T23-16-13Z.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.21.3.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.7.1.
+
+### Bug Fixes {#bug-fixes-v2023-03-13-0}
+* Fixes upgrade timeouts by adding a check to wait for Rook rollout from 1.5.9 to 1.10.8 as is done for Rook 1.10.11.
+* Adds a preflight check to prevent unsupported migrations from Rook to OpenEBS versions earlier than 3.3.0.
+* Fixes an issue where MinIO failed to update when running in high availability mode.
+* Fixes issue `failed to find plugin /opt/cni/bin/weave-net` when the installer is checking cluster networking by deleting the weave-net pod when the binary is not found to let it be re-created successfully.
+
 ## v2023.03.07-0
 
 Released on March 7, 2023
