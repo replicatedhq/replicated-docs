@@ -4,6 +4,42 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.03.07-0
+
+Released on March 7, 2023
+
+### New Features {#new-features-v2023-03-07-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) versions 1.26.2, 1.25.7, 1.24.11, 1.23.17, and 1.22.17.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) versions 0.63.0-45.3.0, 0.63.0-45.4.0, and 0.63.0-45.5.0.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-02-27T18-10-45Z.
+* Adds [Goldpinger add-on](https://kurl.sh/docs/add-ons/goldpinger) versions 3.7.0-5.6.0.
+* Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.16.
+
+### Improvements {#improvements-v2023-03-07-0}
+* Adds colors to the preflight checks results to improve the user experience.
+
+### Bug Fixes {#bug-fixes-v2023-03-07-0}
+* Fixes an issue when migrating from Weave to Flannel that incorrectly prompts to load images with the airgap flag when online and without when offline.
+* Fixes an issue that causes an HA install to fail after a node has been reset with error "stat: cannot stat '/etc/kubernetes/manifests/haproxy.yaml': No such file or directory".
+
+## v2023.02.23-0
+
+Released on February 23, 2023
+
+### New Features {#new-features-v2023-02-23-0}
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.2.0.
+* Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.6.5-20230222 and 2.8.1-20230222 to address the following high severity CVEs: CVE-2022-4450, CVE-2023-0215, CVE-2023-0286.
+* Updates [Registry add-on](https://kurl.sh/docs/add-ons/registry) version 2.8.1 with new kurlsh/s3cmd image to address the following high severity CVEs: CVE-2022-4450, CVE-2023-0215, CVE-2023-0286.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-02-22T18-23-45Z.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.26.4.
+* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.10.1.
+
+### Improvements {#improvements-v2023-02-23-0}
+* kURL no longer chooses the node name and instead defers to kubeadm to infer the node name from the hostname.
+
+### Bug Fixes {#bug-fixes-v2023-02-23-0}
+* Fixes an issue where EKCO serialized an incorrect kubeadm `ClusterStatus(kubeadm.k8s.io/v1beta2)` config when purging a node with [`ekco-purge-node.sh`](https://kurl.sh/docs/add-ons/ekco#purge-nodes) for Kubernetes version 1.21 and earlier. Moreover, this bug prevented adding new nodes to the Kuberenetes cluster.
+
 ## v2023.02.21-0
 
 Released on February 21, 2023

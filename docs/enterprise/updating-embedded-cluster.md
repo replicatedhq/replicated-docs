@@ -38,7 +38,7 @@ For a complete list of add-ons that can be included in the Kubernetes installer 
 
 #### Containerd and Docker Add-on Updates
 
-The install script upgrades the version of the Containerd or Docker container runtime if required by the installer specification file.
+The installation script upgrades the version of the Containerd or Docker container runtime if required by the installer specification file. For example, if your cluster uses Containerd version 1.6.4 and the specification file is updated to use 1.6.18, then Containerd is updated to 1.6.18 in your cluster when you run the installation script.
 
 The installation script also supports migrating from Docker to Containerd as Docker is not supported in Kubernetes versions 1.24 and later. If the install script detects a change from Docker to Containerd, it installs Containerd, loads the images found in Docker, and removes Docker.
 

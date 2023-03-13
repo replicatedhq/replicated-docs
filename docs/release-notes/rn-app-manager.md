@@ -4,6 +4,47 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.96.0
+
+Released on March 9, 2023
+
+Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
+
+### New Features {#new-features-1-96-0}
+* Adds the deployable, rendered application manifests to the version archive. This increases the transparency of what KOTS deploys by showing the exact manifests that are deployed as part of this version on the **View Files** page. For more information, see [Rendered](/enterprise/updating-patching-with-kustomize#rendered) in _Patching with Kustomize_.
+
+### Improvements {#improvements-1-96-0}
+* Updates the replicated/local-volume-provider image to v0.5.1 to resolve CVE-2023-0361, CVE-2022-4450, CVE-2023-0215, and CVE-2023-0286 with high severity, and CVE-2022-2097 and CVE-2022-4304 with medium severity.
+* Improves the performance of creating, diffing, configuring, and deploying application versions by retrieving the rendered application manifests when they are available, instead of rendering them on the fly.
+* Improves the performance of creating application versions by running private image checks concurrently.
+
+### Bug Fixes {#bug-fixes-1-96-0}
+* Resolves a clickjacking vulnerability that was present in the kurl_proxy service that runs in embedded cluster installations.
+* Adds a **Rerun** button on the preflights page when an application is initially installed.
+* Fixes an issue where the selected subnavigation tab was not underlined.
+* Fixes an issue where CRDs from subcharts were included in the Secret that Helm stores the release information in. In some cases, this issue could dramatically increase the Secret's size.
+
+## 1.95.0
+
+Released on March 1, 2023
+
+Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
+
+### New Features {#new-features-1-95-0}
+* Adds an `--undeploy` flag to the [kots remove](/reference/kots-cli-remove) command that allows you to completely undeploy the application and delete its resources from the cluster.
+* Adds support for Azure Container Registry (ACR). For a full list of supported registries, see [Docker Image Registry Compatibility](/enterprise/image-registry-airgap#docker-compatibility).
+* Status informers now support DaemonSets. See [Resource Statuses](/vendor/admin-console-display-app-status#resource-statuses).
+* When using custom branding for the admin console, you can more easily change the color of groups of elements in the admin console (Beta).
+
+### Improvements {#improvements-1-95-0}
+* The [kots install](/reference/kots-cli-install), [kots upstream upgrade](/reference/kots-cli-upstream-upgrade), and [kots admin-console push-images](/reference/kots-cli-admin-console-push-images) commands now validate the provided registry information before processing the air gap bundle.
+* Upgrades the MinIO image to RELEASE.2023-02-22T18-23-45Z to resolve CVE-2022-42898, CVE-2022-47629, and CVE-2022-41721 with high severity and CVE-2022-2509, CVE-2022-1304, CVE-2021-46848, CVE-2016-3709, CVE-2022-40303, CVE-2022-40304, CVE-2020-35527, CVE-2022-35737, CVE-2022-3821, CVE-2022-4415, CVE-2022-37434, and CVE-2022-41717 with medium severity.
+* The [kots admin-console generate-manifests](/reference/kots-cli-admin-console-generate-manifests) command now supports OpenShift and GKE Autopilot, if it is executed with a Kubernetes cluster context.
+* Support bundles generated from the admin console include a copy of rqlite data for debugging purposes.
+
+### Bug Fixes {#bug-fixes-1-95-0}
+* Fixes an issue where the [namespace](/reference/custom-resource-helmchart#namespace) field in the HelmChart custom resource was not respected when [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) was set to `true`.
+
 ## 1.94.2
 
 Released on February 17, 2023

@@ -552,7 +552,6 @@ const sidebars = {
               type: 'category',
               label: 'Configuring Backup Storage',
               items: [
-                'enterprise/snapshots-config-workflow',
                 'enterprise/snapshots-velero-cli-installing',
                 'enterprise/snapshots-configuring-hostpath',
                 'enterprise/snapshots-configuring-nfs',
@@ -562,8 +561,7 @@ const sidebars = {
             },
             'enterprise/snapshots-creating',
             'enterprise/snapshots-restoring-full',
-            'enterprise/snapshots-restoring-partial',
-            `enterprise/snapshots-updating-with-admin-console`,
+            'enterprise/snapshots-updating-with-admin-console',
             'enterprise/snapshots-troubleshooting-backup-restore',
           ],
         },

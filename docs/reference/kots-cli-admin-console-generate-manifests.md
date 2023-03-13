@@ -4,7 +4,9 @@ Running this command will create a directory on the workstation containing the R
 
 ### Limitations
 
-`generate-manifests` does not support generating manifests for Red Hat OpenShift clusters.
+`generate-manifests` does not support generating manifests for Red Hat OpenShift clusters or GKE Autopilot clusters if executed without a Kubernetes cluster context.
+
+To upgrade an app manager instance that has ever been on version 1.72.0 or earlier, you must run `generate-manifests` with a Kubernetes cluster context.
 
 ### Usage
 ```bash
@@ -20,7 +22,11 @@ This command supports the following flags:
 | `--shared-password`       | string | Shared password to use when deploying the admin console                                                                                               |
 | `--http-proxy`            | string | Sets HTTP_PROXY environment variable in all KOTS admin console components                                                                             |
 | `--https-proxy`           | string | Sets HTTPS_PROXY environment variable in all KOTS admin console components                                                                            |
+| `--kotsadm-namespace`       | string | Set to override the namespace of kotsadm images. Used for air gapped installations. For more information, see [Installing in an Air Gapped Environment](/enterprise/installing-existing-cluster#air-gap). |
+| `--kotsadm-registry`        | string | Set to override the registry of kotsadm images. Used for air gapped installations. For more information, see [Installing in an Air Gapped Environment](/enterprise/installing-existing-cluster#air-gap). |
 | `--no-proxy`              | string | Sets NO_PROXY environment variable in all KOTS admin console components                                                                               |
+| `--registry-password`       | string | Password to use to authenticate with the application registry. Used for air gapped installations. For more information, see [Installing in an Air Gapped Environment](/enterprise/installing-existing-cluster#air-gap).|
+| `--registry-username`       | string | Username to use to authenticate with the application registry. Used for air gapped installations. For more information, see [Installing in an Air Gapped Environment](/enterprise/installing-existing-cluster#air-gap).|
 | `--with-minio`            | bool   | Set to true to include a local minio instance to be used for storage _(default true)_                                                                 |
 | `--minimal-rbac`          | bool   | Set to true to use the namespaced role and bindings instead of cluster-level permissions _(default false)_                                            |
 | `--additional-namespaces` | string | Comma delimited list to specify additional namespace(s) managed by KOTS outside where it is to be deployed. Ignored without with `--minimal-rbac=true` |

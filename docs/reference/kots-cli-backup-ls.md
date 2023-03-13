@@ -1,7 +1,10 @@
 # backup ls
 
-The `kots backup ls` command shows a list of all the available instance snapshots for disaster recovery.
-A namespace can be provided to filter backups based on the namespace the admin console is/was installed in.
+:::note
+This command is deprecated. Use [`kubectl kots get backups`](/reference/kots-cli-get-backups) instead.
+:::
+
+Show a list of all the available instance snapshots for disaster recovery.
 
 ### Usage
 
@@ -9,12 +12,12 @@ A namespace can be provided to filter backups based on the namespace the admin c
 kubectl kots backup ls [flags]
 ```
 
-- _Provide `[flags]` according to the table below_
+This command supports the following flags:
 
 | Flag              | Type   | Description                                                         |
 | :---------------- | ------ | ------------------------------------------------------------------- |
-| `-h, --help`      |        | help for backup ls                                                  |
-| `-n, --namespace` | string | filter by the namespace in which the admin console is/was installed |
+| `-h, --help`      |        | Help for `backup ls`.                                                  |
+| `-n, --namespace` | string | Filter by the namespace the admin console was installed in. |
 
 ### Example
 
