@@ -14,7 +14,7 @@ Released on March 13, 2023
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.7.1.
 
 ### Bug Fixes {#bug-fixes-v2023-03-13-0}
-* Fix upgrade timeouts by adding check to wait for Rook rollout from 1.5.9 to 1.10.8 as is done for Rook 1.10.11.
+* Fixes upgrade timeouts by adding a check to wait for Rook rollout from 1.5.9 to 1.10.8 as is done for Rook 1.10.11.
 * Fixes unsupported migration path from Rook to OpenEBS with versions < 3.3.0 by adding a preflight check to prevent the scenario.
 * Fixes an issue where MinIO would fail to update when running in HA mode.
 * Fixes issue `failed to find plugin /opt/cni/bin/weave-net` when the installer is checking cluster networking by deleting the weave-net pod when the binary is not found to let it be re-created successfully.
