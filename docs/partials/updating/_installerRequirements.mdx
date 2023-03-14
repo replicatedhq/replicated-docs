@@ -1,18 +1,13 @@
-* Replicated recommends that you use the same flags with the installation script that you have used previously. For a complete list of the available installation flags, see [Advanced Options](https://kurl.sh/docs/install-with-kurl/advanced-options) in the kURL documentation.
-* If you used the `installer-spec-file` flag to pass a `patch.yaml` file when you ran the installation script previously, you must include the `installer-spec-file flag` with the same `patch.yaml` file when you re-run the installation script. This prevents the specification from the vendor from overwriting any configuration from your `patch.yaml` file and making changes to the add-ons in your cluster.
+* **installer-spec-file**: If you used the `installer-spec-file` flag to pass a `patch.yaml` file when you ran the installation script previously, you must include the `installer-spec-file` flag with the same `patch.yaml` file when you rerun the installation script. This prevents the installer from overwriting any configuration from your `patch.yaml` file and making changes to the add-ons in your cluster. For example: `curl https://kurl.sh/latest | sudo bash -s installer-spec-file="./patch.yaml"`
+
+* **app-version-label**: By default, the KOTS add-on in the Kubernetes installer specification also upgrades your application to the latest version when you run the installation script.
+
+   You can specify a target application version with the `app-version-label` flag. Or, to avoid upgrading your application version, set the `app-version-label` flag to the currently installed application version.
 
    **Example**
 
+   In the following example, the script updates the application to version 1.5.0:
+
    ```
-   curl https://kurl.sh/latest | sudo bash -s installer-spec-file="./patch.yaml"
+   curl https://kurl.sh/latest | sudo bash -s app-version-label=1.5.0
    ```
-
-* By default, the KOTS add-on in the Kubernetes installer specification also upgrades your application to the latest version when you run the installation script.
-
-    To avoid automatically upgrading your application version, you must include the `app-version-label` flag, and set the flag to the desired version of the application. For example, to continue using the same application version, set the `app-version-label` flag to the currently installed application version.
-
-    **Example**
-
-    ```
-    curl https://kurl.sh/latest | sudo bash -s app-version-label=1.5.0  
-    ```
