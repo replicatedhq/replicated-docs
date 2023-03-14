@@ -11,9 +11,9 @@ If you are changing from one provider to another provider, make sure that you me
 
 ## Update Storage Settings
 
-After your installation of Velero and initial configuration of a storage destination with the CLI, you can update storage destination settings using the admin console.
+You can update storage destination settings for online and air gapped environments at any time using the admin console. 
 
-If you used a Kubernetes installer that included the Velero installation automatically, Replicated recommends that you change the default internal storage because it is not sufficient for full backups.
+Additionally, if you used a Kubernetes installer that automatically installed Velero for you, Replicated recommends that you change the default internal storage because it is not sufficient for disaster recovery.
 
 To update storage destination settings:
 
@@ -32,7 +32,7 @@ To update storage destination settings:
     - [NFS](#nfs-fields)
     - [Host Path](#host-path-fields)
 
-1. Click **Update storage settings**. This update can take a couple of minutes.
+1. Click **Update storage settings**. The update can take several minutes.
 
 ### AWS Fields
 
