@@ -2,7 +2,9 @@
 
 The snapshots feature is a backup and restore option that lets you define a manifest for creating snapshots and restoring previous snapshots. The backups include all of the annotated volumes in the archive. For more information, see [About Backup and Restore](snapshots-overview/).
 
-**Note:** If you are using multiple applications, repeat this procedure for each application. Every application must have its own Backup resource to be included in a full backup.
+:::note
+If you are using multiple applications, repeat this procedure for each application. Every application must have its own Backup resource to be included in a full backup.
+:::
 
 To configure backups:
 
