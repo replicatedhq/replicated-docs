@@ -18,6 +18,7 @@ Released on March 13, 2023
 * Adds a preflight check to prevent unsupported migrations from Rook to OpenEBS versions earlier than 3.3.0.
 * Fixes an issue where MinIO failed to update when running in high availability mode.
 * Fixes issue `failed to find plugin /opt/cni/bin/weave-net` when the installer is checking cluster networking by deleting the weave-net pod when the binary is not found to let it be re-created successfully.
+* Increases timeout from 5 to 10 minutes waiting for sync-object-store pod to complete as part of the object store migration from Rook to OpenEBS.
 
 ## v2023.03.07-0
 
