@@ -1,4 +1,4 @@
-# Viewing Installer History
+# Installer History
 
 This topic describes how to access the installation commands for all Kubernetes installers that have been promoted to a channel. 
 

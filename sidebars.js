@@ -211,6 +211,7 @@ const sidebars = {
         'vendor/packaging-embedded-kubernetes',
         'vendor/packaging-installer-storage',
         'vendor/preflight-host-preflights',
+        'vendor/installer-history',
       ],
     },
     {
