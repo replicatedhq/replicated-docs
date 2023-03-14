@@ -1,3 +1,5 @@
+import RestoreTable from "../partials/snapshots/_restoreTable.mdx"
+
 # About Backup and Restore
 
 Replicated's backup and restore feature for applications is called snapshots. You can optionally enable snapshots to support backup and restore for your users for disaster recovery scenarios.
@@ -37,21 +39,30 @@ By default, Velero requires that you opt-in to have pod volumes backed up. In th
 To enable the snapshots backup and restore feature for your users, you must:
 
 - Have the snapshots entitlement enabled in your Replicated vendor account. For account entitlements, contact the Replicated TAM team.
-- Define a manifest for creating backups. For more information, see [Configuring Backups](snapshots-configuring-backups).
-- Enable the Allow Snapshot option in customer licenses. For more information, see [Creating a Customer](releases-creating-customer).
+- Define a manifest for creating backups. See [Configuring Backups](snapshots-configuring-backups).
+- When needed, configure backup and restore hooks for any additional processing or scripts that an application workload requires. See [Configuring Backup and Restore Hooks](snapshots-hooks).
+- Enable the **Allow Snapshot** option in customer licenses. See [Creating a Customer](releases-creating-customer).
 
 Additionally, your end users must install Velero to access the snapshot functionality in the Replicated admin console. For more information about the enterprise snapshots procedures, see [Understanding Snapshots](../enterprise/snapshots-understanding) in the _Enterprise_ documentation.
 
-## Velero Version Compatibility
+## Understanding Backup and Restore for End Users {#how-users}
 
-The following table lists which versions of Velero are compatible with each version of the app manager.
+After vendors enable backup and restore, end users install Velero and configure a storage destination in the admin console. Then users can create backups manually or schedule automatic backups. For more information about how end users create and restore backups, see [About Backup and Restore](/enterprise/snapshots-understanding) in _Enterprise_.
 
-:::note
-The app manager is based on the open source KOTS project, which is maintained by Replicated.
-:::
+Replicated recommends advising your users to make full backups for disaster recovery purposes. Additionally, full backups give users the flexibility to do a full restore, a partial restore (application only), or restore just the admin console.
 
-| App manager and KOTS versions | Velero version |
-|------|-------------|
-| 1.15 to 1.20.2 | 1.2.0 |
-| 1.20.3 and later | 1.5.1 through 1.9.x |
-| 1.94.1 and later | 1.6.x and later |
+From a full backup, users restore using the kots CLI or the admin console as indicated in the following table:
+
+<RestoreTable/>
+
+Partial backups are not recommended and can only be restored from the admin console.
+
+## Troubleshooting Backup and Restore
+
+To support end users with backup and restore, use the following resources:
+
+- To help troubleshoot error messages, see [Troubleshooting Backup and Restore](/enterprise/snapshots-troubleshooting-backup-restore) in _Enterprise_. 
+
+- Review the Limitations and Considerations section to make sure an end users system is compliant. See [Limitations and Considerations](/enterprise/snapshots-understanding#limitations-and-considerations) in _Enterprise_.
+
+- Check that the installed Velero version and app manager version are compatible. See [Velero Version Compatibility](enterprise/snapshots-understanding#velero-version-compatibility) in _Enterprise_.

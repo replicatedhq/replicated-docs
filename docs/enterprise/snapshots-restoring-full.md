@@ -1,3 +1,5 @@
+import RestoreTable from "../partials/snapshots/_restoreTable.mdx"
+
 # Restoring from Backups
 
 Full restores and admin console only restores must be done using the kots CLI because the admin console gets recreated and the admin console UI is disconnected during this process.
