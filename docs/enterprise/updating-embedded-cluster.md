@@ -28,9 +28,9 @@ The Kubernetes installer supports upgrading at most two minor versions of Kubern
 
 If the script detects that the version of Kubernetes in your cluster is more than two minor versions earlier than the target version, it prints an error message similar to the following: `The currently installed kubernetes version is 1.23.16. The requested version to upgrade to is 1.26.0. Kurl can only be upgraded two minor versions at time. Please install 1.25.x. first.`
 
-To continue with the upgrade, you must first update Kubernetes in your cluster to the version specified in the error message.
+To update Kubernetes when your currently installed version is more than two minor versions behind the target version, contact your application vendor for an additional Kubernetes installer installation script that specifies the prerequisite Kubernetes version indicated in the error message.
 
-To update Kubernetes, contact your application vendor for a different Kubernetes installer installation script that specifies a version of Kubernetes no more than two minor versions later than the version currently installed. For example, to upgrade from Kubernetes 1.23.x to 1.26.x, first run an installation script that specifies Kubernetes 1.25.x. Then, run the target installation script that specifies 1.26.x.
+After you update Kubernetes in your cluster to the prerequisite version, you can continue with the upgrade by running the target installation script. For example, to upgrade from Kubernetes 1.23.x to 1.26.x, first run an installation script that specifies Kubernetes 1.25.x. Then, run the target installation script that specifies 1.26.x.
 
 ### Add-ons and App Manager Updates {#add-ons}
 
