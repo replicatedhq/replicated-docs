@@ -28,10 +28,8 @@ To enable the snapshots backup and restore feature for your end users, you must:
 
 - Have the snapshots entitlement enabled in your Replicated vendor account. For account entitlements, contact the Replicated TAM team.
 - Define a manifest for executing snapshots and restoring previous snapshots. See [Configuring Backups](snapshots-configuring-backups).
-- When needed, configure backup and restore hooks. See [Configuring Backup and Restore Hooks](snapshots-hooks).
+- When needed, configure backup and restore hooks for any additional processing or scripts that an application workload requires. See [Configuring Backup and Restore Hooks](snapshots-hooks).
 - Enable the **Allow Snapshot** option in customer licenses. See [Creating a Customer](releases-creating-customer).
-
-Then, your end users must install Velero to access the snapshot functionality in the Replicated admin console. For more information about the end user experience, see [How End Users Run Backup and Restore](#how-users).
 
 ## Understanding Backup and Restore for End Users {#how-users}
 
@@ -50,17 +48,3 @@ To support end users with backup and restore, use the following resources:
 - To help troubleshoot error messages, see [Troubleshooting Backup and Restore](/enterprise/snapshots-troubleshooting-backup-restore) in _Enterprise_. 
 
 - Review the Limitations section to make sure an end users system is compliant. See [Limitations and Considerations](/enterprise/snapshots-understanding#limitations-and-consoderations) in _Enterprise_.
-
-## Velero Version Compatibility
-
-The following table lists which versions of Velero are compatible with each version of the app manager.
-
-:::note
-The app manager is based on the open source KOTS project, which is maintained by Replicated.
-:::
-
-| App manager and KOTS versions | Velero version |
-|------|-------------|
-| 1.15 to 1.20.2 | 1.2.0 |
-| 1.20.3 and later | 1.5.1 through 1.9.x |
-| 1.94.1 and later | 1.6.x and later |
