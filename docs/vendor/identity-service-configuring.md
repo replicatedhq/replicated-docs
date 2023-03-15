@@ -1,41 +1,154 @@
 
 # Enabling and Configuring Identity Service (Beta)
 
-When enabling the identity service for your application, the Replicated app manager will deploy [Dex](https://dexidp.io/) as an intermediary that can be configured to control access to the application.
-Dex implements an array of protocols for querying other user-management systems, known as [connectors](https://dexidp.io/docs/connectors/).
-This feature is only available for licenses that have the identity service feature enabled.
+When enabling the identity service for your application, the Replicated app manager deploys [Dex](https://dexidp.io/) as an intermediary that can be configured to control access to the application. Dex implements an array of protocols for querying other user-management systems, known as [connectors](https://dexidp.io/docs/connectors/).
 
-The identity service currently has the following limitations:
-* Only available with embedded cluster installations with the Kubernetes installer.
-* Only available through the Replicated admin console.
 
-![Identity Service License Field](/images/identity-service-license-field.png)
+## Limitations
+
+The identity service is available only for:
+
+* Licenses that have the identity service feature enabled
+* Embedded cluster installations with the Kubernetes installer
+* Use with the Replicated admin console
+
+## Enable and Configure Identity Service
 
 The Identity custom resource enables and configures the identity service for your application.
-If you prefer, here is an [example application](https://github.com/replicatedhq/kots-idp-example-app) that demonstrates how to configure the identity service.
+For an example application that demonstrates how to configure the identity service, see the [`kots-idp-example-app`](https://github.com/replicatedhq/kots-idp-example-app) on GitHub.
 
-To begin, create a new release on the [vendor portal](https://vendor.replicated.com).
-Once you are editing the release, create a new [Identity custom resource](../reference/custom-resource-identity) file customized for your application.
+To enable and configure identity service:
 
-![Identity Service Custom Resource](/images/identity-service-crd.png)
+1. Create a new release in the [vendor portal](https://vendor.replicated.com) and keep it in Draft mode. 
 
-The identity service has to be accessible from the browser. For that reason, the app manager provides the service name and port to the app through the [identity template functions](../reference/template-functions-identity-context) so that the app can then configure ingress for the identity service, for example:
+1. Add an Identity custom resource file and customize the file for your application. For more information about the Identity custom resource, see [Identity (Beta)](/reference/custom-resource-identity) in _Reference_.
 
-![Identity Service Ingress](/images/identity-service-ingress.png)
+    The following example shows a basic Identity custom resource YAML file:
 
-All the necessary information that your application needs to communicate and integrate with the identity service can be passed through environment variables, for example:
+    ```YAML
+    apiVersion: kots.io/v1beta1
+    kind: Identity
+    metadata:
+    name: identity
+    spec:
+    requireIdentityProvider: true
+    identityIssuerURL: https://{{repl ConfigOption "ingress_hostname"}}/oidcserver
+    oidcRedirectUris:
+        - https://{{repl ConfigOption "ingress_hostname"}}/callback
+    roles:
+        - id: access
+        name: Access
+        description: Restrict access to IDP Example App
+    ```
 
-![Identity Service Application Env](/images/identity-service-app-env.png)
+1. Make the identity service accessible from the browser. To help enable accessibility from the browser, the app manager provides the service name and port to the application through the identity template functions so that the application can then configure ingress for the identity service. For more information about the identity template functions, see [Identity Context](/reference/template-functions-identity-context) in _Reference_.
+
+    The following example shows an Ingress customer resource configured with `serviceName: repl{{ IdentityServiceName }}` and `servicePort: repl{{ IdentityServicePort }}` under `backend`:
+
+    ```YAML
+    apiVersion: extensions/v1beta1
+    kind: Ingress
+    metadata:
+    name: idp-app
+    annotations:
+        kubernetes.io/ingress.allow-http: 'false'
+        ingress.kubernetes.io/force-ssl-redirect: 'true'
+        kots.io/placeholder: repl{{ printf "'true'" }}repl{{ ConfigOption "annotations" | nindent 4 }}
+    labels:
+        app: idp-app
+    spec:
+    tls:
+        - hosts:
+        - repl{{ ConfigOption "ingress_hostname" }}
+        secretName: idp-ingress-tls
+    rules:
+        - host: repl{{ or (ConfigOption "ingress_hostname") "~" }}
+        http:
+            paths:
+            - path: /
+                backend:
+                serviceName: idp-app
+                servicePort: 80
+            - path: /oidcserver
+                backend:
+                serviceName: repl{{ IdentityServiceName }}
+                servicePort: repl{{ IdentityServicePort }}
+    ```
+
+1. In your Deployment manifest file, add environment variables to configure all of the necessary information that your application needs to communicate and integrate with the identity service.
+
+    The following example shows the `RESTRICTED_GROUPS` environment variable set with the value `{{repl IdentityServiceRoles | keys | toJson }}`:
+
+    ```YAML
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+    name: idp-app
+    labels:
+        app: idp-app
+    spec:
+    replicas: 1
+    selector:
+        matchLabels:
+        app: idp-app
+    template:
+        metadata:
+        labels:
+            app: idp-app
+        spec:
+        containers:
+            - name: idp-app
+            image: replicated/kots-idp-example-app:latest
+            imagePullPolicy: Always
+            ports:
+                - containerPort: 5555
+            volumeMounts:
+                - name: tls-ca-volume
+                mountPath: /idp-example
+                readOnly: true
+            args: ["--issuer-root-ca=/idp-example/tls.ca"]
+            env:
+                - name: CERT_SHA
+                value: repl{{ sha256sum (ConfigOption "tls_cert") }}
+                - name: LISTEN
+                value: http://0.0.0.0:5555
+                - name: ISSUER
+                value: https://{{repl ConfigOption "ingress_hostname"}}/oidcserver
+                - name: CLIENT_ID
+                value: repl{{ IdentityServiceClientID }}
+                - name: CLIENT_SECRET
+                value: repl{{ IdentityServiceClientSecret }} # TODO: secret
+                - name: REDIRECT_URI
+                value: https://{{repl ConfigOption "ingress_hostname"}}/callback
+                - name: EXTRA_SCOPES
+                value: groups
+                - name: RESTRICTED_GROUPS
+                value: |
+                    {{repl IdentityServiceRoles | keys | toJson }}
+        hostAliases:
+            - ip: 172.17.0.1
+            hostnames:
+                - myapp.kotsadmdevenv.com
+        volumes:
+            - name: tls-ca-volume
+            secret:
+                secretName: idp-app-ca
+    ```
+1. Save and promote the release to a development environment to test your changes.
 
 ## Role Based Access Control
 
-It is also possible to regulate access to your application resources based on the roles of individual users within the customer's organization.
+You can also regulate access to your application resources based on the roles of individual users within your customer's organization.
 
-A list of the available roles within your application can be provided to the customer via the [roles](../reference/custom-resource-identity#roles) section of the Identity custom resource.
+A list of the available roles within your application can be provided to the customer using the `roles` section of the Identity custom resource. For more information, see [`roles`](/reference/custom-resource-identity#roles) in _Reference_.
 
-![Identity Service Custom Resource Roles](/images/identity-service-crd-roles.png)
+![Identity Service Custom Resource Roles](/images/identity-service-crd-roles-new.png)
 
-Then, using the admin console, the customer will have the ability to create groups and assign specific roles to each group.
-This mapping of roles to groups will then be available to your application via the [IdentityServiceRoles](../reference/template-functions-identity-context#identityserviceroles) template function.
+[View a larger image](/images/identity-service-crd-roles-new.png)
 
-![Identity Service Custom Resource Roles](/images/identity-service-roles-template-function.png)
+Using the admin console, the customer then has the ability to create groups and assign specific roles to each group.
+This mapping of roles to groups become available to your application through the `IdentityServiceRoles` template function. For more information, see [`IdentityServiceRoles`](/reference/template-functions-identity-context#identityserviceroles) in _Reference_.
+
+![Identity Service Custom Resource Roles](/images/identity-service-roles-template-function-new.png)
+
+[View a larger image](/images/identity-service-roles-template-function-new.png)
