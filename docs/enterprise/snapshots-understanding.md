@@ -14,10 +14,8 @@ Full backups, or _instance snapshots_, back up the admin console and all applica
 
 If you manage multiple applications with the admin console, data from all applications that support backups is included in a full backup. Each application must include a manifest file with `kind: Backup` and `apiVersion: velero.io/v1`, which you can check for in the admin console.
 
-There are two types of snapshots:
+There are two types of backups:
   * **Full snapshots (Recommended)**: Backs up the admin console and all application data. For embedded clusters, this also backs up the Docker registry, which is required for air gapped installations.
-
-    Object-stored data that does not use PVCs, such as Rook and Ceph, require custom hooks for backups. Custom hooks are configured by your vendor. See [Create a Full Backup](snapshots-creating#full) in _Creating and Scheduling Backups_.
 
   * **Partial snapshots**: Backs up the application volumes and manifest files only. See [Create a Partial Backup](snapshots-creating#partial) in _Creating and Scheduling Backups_.
 

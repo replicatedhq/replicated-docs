@@ -1,10 +1,16 @@
 # Configuring Backup and Restore Hooks
 
-For many application workloads, additional processing or scripts must be run before or after creating a backup to prepare the system for a backup. Many application workloads also require additional processing or scripts to run during or after the restore process.
+This topic describes the use of custom backup and restore hooks and demonstrates a common example.
 
-Velero supports this through backup hooks and restore hooks.
+## About Backup and Restore Hooks
 
-Some common examples of how to use a hook to create successful backups are:
+Velero supports the use of backup hooks and restore hooks.
+
+You must write custom backup and restore hooks to enable back ups for any object-stored data that is not KOTS-specific and does not use persistentVolumeClaims (PVCs).
+
+Additionally, your application workload might require additional processing or scripts to be run before or after creating a backup to prepare the system for a backup. Many application workloads also require additional processing or scripts to run during or after the restore process.
+
+Some common examples of how to use a hook to create backups are:
 - Run `pg_dump` to export a postgres database prior to backup
 - Lock a file before running a backup, and unlock immediately after
 - Delete TMP files that should not be backed up
