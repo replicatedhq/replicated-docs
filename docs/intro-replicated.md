@@ -40,7 +40,7 @@ The Vendor API is the API for the vendor portal. This API can be used to complet
 
 ### App Manager
 
-The Replicated app manager is the underlying technology that installs and manages applications on a Kubernetes cluster. It provides functionality such as preflight and support bundle analyzers and collectors from the Troubleshoot open source project. For more information about preflight checks and support bundles, see [Configuring Preflight Checks and Support Bundles](preflight-support-bundle-creating). For more information about the Troubleshoot open source project, see the [Troubleshoot repository](https://github.com/replicatedhq/troubleshoot) in GitHub.
+The Replicated app manager is the underlying technology that installs and manages applications on a Kubernetes cluster. It provides functionality such as preflight and support bundle analyzers and collectors from the Troubleshoot open source project. For more information about preflight checks and support bundles, see [Configuring Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-creating). For more information about the Troubleshoot open source project, see the [Troubleshoot repository](https://github.com/replicatedhq/troubleshoot) in GitHub.
 
 The app manager deploys applications securely to the following Kubernetes cluster environments:
 
