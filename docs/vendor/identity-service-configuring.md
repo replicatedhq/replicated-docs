@@ -1,6 +1,10 @@
 
 # Enabling and Configuring Identity Service (Beta)
 
+This topic describes how to enable the identity service (Beta) feature.
+
+## About Identity Service
+
 When you enable the identity service for an application, the Replicated app manager deploys [Dex](https://dexidp.io/) as an intermediary that can be configured to control access to the application. Dex implements an array of protocols for querying other user-management systems, known as connectors. For more information about connectors, see [Connectors](https://dexidp.io/docs/connectors/) in the Dex documentation.
 
 
@@ -40,7 +44,7 @@ To enable and configure identity service:
         description: Restrict access to IDP Example App
     ```
 
-1. In your Ingress manifst file, make the identity service accessible from the browser. To help enable accessibility, the app manager provides the service name and port to the application through the identity template functions so that the application can configure ingress for the identity service. For more information about the identity template functions, see [Identity Context](/reference/template-functions-identity-context) in _Reference_.
+1. In your Ingress manifest file, make the identity service accessible from the browser. To help enable accessibility, the app manager provides the service name and port to the application through the identity template functions so that the application can configure ingress for the identity service. For more information about the identity template functions, see [Identity Context](/reference/template-functions-identity-context) in _Reference_.
 
     The following example shows an Ingress customer resource configured with `serviceName: repl{{ IdentityServiceName }}` and `servicePort: repl{{ IdentityServicePort }}` under the path for the oidserver:
 
