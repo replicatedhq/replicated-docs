@@ -2,13 +2,17 @@
 
 This topic describes how to use the Replicated snapshots feature to create backups. It also includes information about how to use the Replicated admin console create a schedule for automatic backups. For information about restoring, see [Restoring from Backups](snapshots-restoring-full).
 
-## Prerequisite
+## Prerequisites
 
-Before you can create backups, you must configure a storage destination:
+- Before you can create backups, you must configure a storage destination:
 
-- [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath)
-- [Configuring an NFS Storage Destination](snapshots-configuring-nfs)
-- [Configuring Other Storage Destinations](snapshots-storage-destinations)
+   - [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath)
+   - [Configuring an NFS Storage Destination](snapshots-configuring-nfs)
+   - [Configuring Other Storage Destinations](snapshots-storage-destinations)
+
+- If you have multiple applications in the admin console, make sure that each application has its own Backup custom resource file so that they can be included in the full backup. Use the **View file** tab to check for the Backup custom resources. 
+
+   If any Backup custom resource files are missing, contact your vendor. Backup customer resource files must be annotated to include any necessary volumes and processing hooks that your vendor requires.
 
 ## Create a Full Backup (Recommended) {#full}
 
