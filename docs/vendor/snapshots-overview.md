@@ -1,6 +1,6 @@
 import RestoreTable from "../partials/snapshots/_restoreTable.mdx"
 
-# Backup and Restore
+# Understanding Backup and Restore
 
 This topic describes how vendors enable the backup and restore feature, the type of data that is backed up, and how to troubleshoot issues for enterprise users. 
 
