@@ -145,7 +145,7 @@ You can also regulate access to your application resources using role based acce
 
 In the Identity custom resource, provide a list of the available roles within your application in the `roles` section. For more information, see [`roles`](/reference/custom-resource-identity#roles) in _Reference_.
 
-        **Example:**
+    **Example:**
 
     ```YAML
     apiVersion: kots.io/v1beta1
