@@ -16,7 +16,7 @@ The app manager provides a detailed interface and the kots CLI so that your user
 
 ## What Data is Backed Up
 
-Full snapshots back up the admin console and all application data, including KOTS-specific object-stored data. For Kubernetes installer clusters (embedded clusters), this also backs up the Docker registry, which is required for air gapped installations.
+Full backups include the admin console and all application data, including KOTS-specific object-stored data. For Kubernetes installer clusters (embedded clusters), this also backs up the Docker registry, which is required for air gapped installations.
 
 ### Other Object-Stored Data
 
