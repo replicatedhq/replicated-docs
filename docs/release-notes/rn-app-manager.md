@@ -4,6 +4,19 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.96.1
+
+Released on March 16, 2023
+
+Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
+
+### New Features {#new-features-1-96-1}
+* Refresh the design of the Preflights page.
+
+### Improvements {#improvements-1-96-1}
+* Updates the helm.sh/helm/v3 module to v3.11.2 to resolve CVE-2023-25165 with medium severity.
+* When enabling access to admin-console using command `kubectl kots admin-console`, if application port-forward port is not available, failure message are printed once and retried in silent.
+
 ## 1.96.0
 
 Released on March 9, 2023
