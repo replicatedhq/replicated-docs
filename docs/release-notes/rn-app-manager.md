@@ -11,9 +11,9 @@ Released on March 16, 2023
 Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 
 ### Improvements {#improvements-1-96-1}
-* Refreshes the design of the preflights page.
+* Refreshes the design of the preflights page in the admin console.
 * Updates the helm.sh/helm/v3 module to v3.11.2 to resolve CVE-2023-25165 with medium severity.
-* If the application's port is not available when enabling access to the admin console with `kubectl kots admin-console`, failure messages print once and retry silently.
+* If the application's port is not available when the user enables access to the admin console with `kubectl kots admin-console`, failure messages print one time and retry silently.
 
 ## 1.96.0
 
