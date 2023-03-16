@@ -1,17 +1,23 @@
 # Configuring Backup and Restore Hooks
 
-For many application workloads, additional processing or scripts must be run before or after creating a backup to prepare the system for a backup. Many application workloads also require additional processing or scripts to run during or after the restore process.
+This topic describes the use of custom backup and restore hooks and demonstrates a common example.
 
-Velero supports this through backup hooks and restore hooks.
+## About Backup and Restore Hooks
 
-Some common examples of how to use a hook to create successful backups are:
+Velero supports the use of backup hooks and restore hooks.
+
+Your application workload might require additional processing or scripts to be run before or after creating a backup to prepare the system for a backup. Many application workloads also require additional processing or scripts to run during or after the restore process.
+
+Some common examples of how to use a hook to create backups are:
 - Run `pg_dump` to export a postgres database prior to backup
 - Lock a file before running a backup, and unlock immediately after
 - Delete TMP files that should not be backed up
 - Restore a database file only if that file exists
 - Perform required setup tasks in a restored Pod before the application containers can start
 
-For more information, see [Backup Hooks](https://velero.io/docs/v1.10/backup-hooks/) and [Restore Hooks](https://velero.io/docs/v1.10/restore-hooks) in the Velero documentation.
+Additionally, for Kubernetes installer clusters, you must write custom backup and restore hooks to enable back ups for any object-stored data that is not KOTS-specific and does not use persistentVolumeClaims (PVCs). For more information about object-stored data, see [Other Object Stored Data](snapshots-overview#other-object-stored-data) in _Backup and Restore_.
+
+For more information about backup and restore hooks, see [Backup Hooks](https://velero.io/docs/v1.10/backup-hooks/) and [Restore Hooks](https://velero.io/docs/v1.10/restore-hooks) in the Velero documentation.
 
 ## Example
 
