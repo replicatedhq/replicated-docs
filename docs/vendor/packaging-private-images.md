@@ -99,7 +99,7 @@ This will ensure that the the saved credentials on our servers can pull the imag
 For example:
 
 ```bash
-replicated registry test index.docker.io my-company/my-image:v1.2.3
+replicated registry test index.docker.io --image my-company/my-image:v1.2.3
 ```
 
 
