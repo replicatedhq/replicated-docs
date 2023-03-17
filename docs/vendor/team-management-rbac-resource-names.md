@@ -90,6 +90,10 @@ Grants the holder permission to view the license specified by ID. If this is den
 
 Grants the holder permission to edit the license specified (by ID) for the specified application(s).
 
+### kots/app/[:appId]/license/[:licenseId]/airgap/password
+
+Grants the holder permission to generate a new download portal password for the license specified (by ID) for the specified application(s).
+
 ### kots/license/[:licenseId]/archive
 
 Grants the holder permission to archive the specified license (by ID).
