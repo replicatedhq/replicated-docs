@@ -12,7 +12,7 @@ This topic describes how to use the Replicated snapshots feature to create backu
 
 - If you have multiple applications in the admin console, make sure that each application has its own Backup custom resource file so that they can be included in the full backup. Use the **View file** tab to check for the Backup custom resources. 
 
-   If any Backup custom resource files are missing, contact your vendor. Backup customer resource files must be annotated to include any necessary volumes and processing hooks that your vendor requires.
+   If any Backup custom resource files are missing, contact your vendor.
 
 ## Create a Full Backup (Recommended) {#full}
 
