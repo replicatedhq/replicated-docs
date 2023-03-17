@@ -1,10 +1,14 @@
 # Backup
 
-When you include a Backup custom resource in an application, the Replicated app manager enables backup and restore capabilities for the application. For more information about backup and restore, see [Understanding Backup and Restore](/vendor/snapshots-overview).
+The Backup custom resource enables the Replicated snapshots backup and restore feature. The backend of this feature uses the Velero open source project to back up Kubernetes manifests and persistent volumes.
 
-For more information about the Backup custom resource, including all options for this custom resource, see [Backups](https://velero.io/docs/v1.10/api-types/backup/) in the Velero documentation.
+A Backup custom resource is required for each application that you deploy. You must add annotations for each volume that you want to back up. You can also configure manifest exclusions. For more information about configuring backups, see [Configuring Backups](/vendor/snapshots-configuring-backups).
 
-This custom resource supports optional resource installations. For more information, see [Include optional resources](/vendor/packaging-include-resources).
+This custom resource supports optional resource installations. For more information, see [Include Optional and Conditional Resources](/vendor/packaging-include-resources).
+
+## Basic Manifest File
+
+You can add the following basic Backup custom resource (kind: Backup) to your release. For information about all of the the options for this custom resource, see [Backups](https://velero.io/docs/v1.10/api-types/backup/) in the Velero documentation.
 
 ```yaml
 apiVersion: velero.io/v1
@@ -18,7 +22,7 @@ spec: {}
 
 ## Limitations for Full Snapshots
 
-The following top-level fields for Backup custom resources are not supported in [Full snapshots](/enterprise/snapshots-understanding/#full-snapshots-recommended):
+The following top-level fields for Backup custom resources are not supported in full backups.
 
 - `snapshotVolumes`
 - `volumeSnapshotLocations`
