@@ -75,9 +75,9 @@ To connect the admin console to a Prometheus endpoint:
 
 You can use the commands below to access Prometheus, Grafana, and Alertmanager dashboards using `kubectl port-forward` after you install the manifests.
 
-For Kubernetes installer clusters, you can also consume Prometheus metrics from an external monitoring solution by connecting to the Prometheus NodePort service running in the cluster. For more information, see [Consuming Prometheus Metrics Externally](monitoring-external-prometheus). 
-
 You can also expose these pods on NodePorts or behind an ingress controller. This is an advanced use case. For information about exposing the pods on NodePorts, see [NodePorts](https://github.com/prometheus-operator/kube-prometheus/blob/main/docs/customizations/node-ports.md) in the kube-prometheus GitHub repository. For information about exposing the pods behind an ingress controller, see [Expose via Ingress](https://github.com/prometheus-operator/kube-prometheus/blob/main/docs/customizations/exposing-prometheus-alertmanager-grafana-ingress.md) in the kube-prometheus GitHub repository.
+
+For Kubernetes installer clusters, you can consume Prometheus metrics from an external monitoring solution by connecting to the Prometheus NodePort service running in the cluster. For more information, see [Consuming Prometheus Metrics Externally](monitoring-external-prometheus). 
 
 ### Access Prometheus
 
