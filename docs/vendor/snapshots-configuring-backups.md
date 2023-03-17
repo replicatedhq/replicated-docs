@@ -1,6 +1,6 @@
 # Configuring Backups
 
-The snapshots feature is a backup and restore option that lets you define a manifest for creating snapshots and restoring previous snapshots. The backups include all of the annotated volumes in the archive. For more information, see [About Backup and Restore](snapshots-overview/).
+The snapshots feature is a backup and restore option that lets you define a manifest for creating backups and restoring previous backups. The backups include all of the annotated volumes in the archive. For more information, see [About Backup and Restore](snapshots-overview/).
 
 :::note
 If you are using multiple applications, repeat this procedure for each application. Every application must have its own Backup resource to be included in a full backup.
@@ -8,9 +8,9 @@ If you are using multiple applications, repeat this procedure for each applicati
 
 To configure backups:
 
-1. Enable snapshots:
+1. Enable backups:
 
-    1. Add a Backup resource (`kind: Backup`) using `apiVersion: velero.io/v1` to the application manifest files. The following minimal YAML example enables snapshots in the application. For more information about Backup resource options, see [backup resource](/reference/custom-resource-backup) in _Reference_.
+    1. Add a Backup resource (`kind: Backup`) using `apiVersion: velero.io/v1` to the application manifest files. The following minimal YAML example enables backups in the application. For more information about Backup resource options, see [Backup](/reference/custom-resource-backup) in _Reference_.
 
         **Example:**
 
@@ -24,11 +24,11 @@ To configure backups:
         ```
     1. (Optional) Configure the resources annotation in the manifest so that it can be dynamically enabled based on a license field or a config option. For more information, see [Including Optional and Conditional Resources](packaging-include-resources/).
 
-1. Configure backups for each volume that requires a backup. By default, no volumes are included in the backup. If any pods mount a volume that should be backed up, you must configure the backup with an annotation listing the specific volumes to include in the snapshot.
+1. Configure backups for each volume that requires a backup. By default, no volumes are included in the backup. If any pods mount a volume that should be backed up, you must configure the backup with an annotation listing the specific volumes to include in the backup.
 
     The annotation name is `backup.velero.io/backup-volumes` and the value is a comma separated list of volumes to include in the backup.
 
-    For example, in the following deployment, `pvc-volume` is the only volume that is backed up. The `scratch` volume is not included in the backup because it is not listed in annotation on the pod specification.
+    For example, in the following Deployment manifest file, `pvc-volume` is the only volume that is backed up. The `scratch` volume is not included in the backup because it is not listed in annotation on the pod specification.
 
     ```yaml
     apiVersion: apps/v1
@@ -66,11 +66,9 @@ To configure backups:
 
     ```
 
-1. (Optional) Configure manifest exclusions. By default, Velero also includes snapshots of all of the Kubernetes objects in the namespace.
+1. (Optional) Configure manifest exclusions. By default, Velero also includes backups of all of the Kubernetes objects in the namespace.
 
-  To exclude any manifest, add a `velero.io/exclude-from-backup` label to the manifest to be excluded.
-
-    **Example:**
+  To exclude any manifest file, add a `velero.io/exclude-from-backup` label to the manifest to be excluded. The following example shows the Secret manifest file with the `velero.io/exclude-from-backup` label:
 
     ```yaml
     apiVersion: apps/v1
