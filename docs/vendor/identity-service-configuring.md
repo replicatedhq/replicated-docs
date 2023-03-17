@@ -1,7 +1,7 @@
 
 # Enabling and Configuring Identity Service (Beta)
 
-This topic describes how to enable the identity service (Beta) feature.
+This topic describes how to enable the identity service (Beta) feature, and how to regulate access to application resources using role based access control (RBAC).
 
 ## About Identity Service
 
