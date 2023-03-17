@@ -10,7 +10,7 @@ This topic describes how to use the Replicated snapshots feature to create backu
    - [Configuring an NFS Storage Destination](snapshots-configuring-nfs)
    - [Configuring Other Storage Destinations](snapshots-storage-destinations)
 
-- If you have multiple applications in the admin console, make sure that each application has its own Backup custom resource file so that they can be included in the full backup. Use the **View file** tab to check for the Backup custom resources. 
+- If you have multiple applications in the admin console, make sure that each application has its own Backup custom resource file so that they can be included in the full backup. Use the **View file** tab to check for the Backup custom resources (`kind: Backup`, `apiVersion: velero.io/v1`). 
 
    If any Backup custom resource files are missing, contact your vendor.
 
