@@ -10,6 +10,10 @@ Prometheus uses a multi-dimensional data model with time series data and a flexi
 
 For more information about Prometheus, see [What is Prometheus?](https://prometheus.io/docs/introduction/overview/) in the Prometheus documentation.
 
+Prometheus is included by default on clusters provisioned by the Replicated Kubernetes installer, and no additional configuration is required to view graphs on the admin console dashboard.
+
+For information about how to set up Prometheus monitoring in existing clusters, see [Configure Monitoring in Existing Clusters](#configure-existing).
+
 ## About Admin Console Dashboards
 
 The admin console exposes graphs with key metrics collected by Prometheus in the Monitoring section of the dashboard. By default, the admin console includes the following graphs:
@@ -23,10 +27,6 @@ In addition to these default graphs, application developers can also expose busi
 The following screenshot shows an example of the Monitoring section on the admin console dashboard with the Disk Usage, CPU Usage, and Memory Usage default graphs.
 
 ![Graphs on the admin console dashboard](/images/kotsadm-dashboard-graph.png) 
-
-Prometheus is included by default on clusters provisioned by the Replicated Kubernetes installer, and no additional configuration is required to view graphs on the admin console dashboard.
-
-For information about how to set up Prometheus monitoring in existing clusters, see [Configure Monitoring in Existing Clusters](#configure-existing).
 
 ## Configure Monitoring in Existing Clusters {#configure-existing}
 

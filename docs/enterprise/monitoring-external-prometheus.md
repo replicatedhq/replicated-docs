@@ -27,11 +27,11 @@ Before you can consume Prometheus metrics in Kubernetes installer clusters exter
 
 ## Consume Metrics from External Services
 
-You can connect to the 
+You can connect to the `prometheus-k8s` service on port 30900 from any node in the cluster to access Prometheus metrics emitted by Kubernetes installer clusters.
 
 To consume Prometheus metrics from an external service:
 
-1. Get the IP address of one of the nodes in the cluster. You will use this IP address in the next step to access the `prometheus-k8s` service.
+1. Get the external IP address for one of the nodes in the cluster. You will use this IP address in the next step to access the `prometheus-k8s` service.
 
    You can find the IP address for a node in the output of the following command:
 
@@ -40,11 +40,8 @@ To consume Prometheus metrics from an external service:
    ```
    Where `NODE_NAME` is the name of a node in the Kubernetes installer cluster.   
 
-1. (Optional) Verify that 
+1. In a browser, go to `http://NODE_IP_ADDRESS:30900` to verify that you can connect to the `prometheus-k8s` NodePort service. Replace `NODE_IP_ADDRESS` with the external IP address that you copied in the first step. For example, `http://34.28.178.93:30900`.
 
-1. From your external monitoring solution, add Prometheus as a data source using the following format: 
+   If the connection is successful, the Prometheus UI displays in the browser.
 
-   ```
-   NODE_IP_ADDRESS:9000/30900
-   ```
-   Where `NODE_IP_ADDRESS` is the node IP address that you copied in the first step. 
+1. From your external monitoring solution, add Prometheus as an HTTP data source using the same URL from the previous step: `http://NODE_IP_ADDRESS:30900`.
