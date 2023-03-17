@@ -541,8 +541,12 @@ const sidebars = {
           ],
         },
         {
-          type: 'doc',
-          id: 'enterprise/monitoring-applications'
+          type: 'category',
+          label: 'Monitoring',
+          items: [
+             'enterprise/monitoring-applications',
+             'enterprise/monitoring-external-prometheus',
+          ],   
         },
         {
           type: 'category',
