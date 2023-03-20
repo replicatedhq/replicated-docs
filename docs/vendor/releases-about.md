@@ -16,7 +16,7 @@ Replicated includes several custom resources that you can add to your releases, 
 
 ### Release Promotion
 
-After you save a release, you can promote it to any of your release channels. While you are developing and testing an application release, Replicated recommends that you promote to a channel that does not have any customers assigned, such as the default Unstable channel. When you are ready to share your application with customers, you can then promote to a channel where customers are assigned, such as the default Beta or Stable channels. For more information about channels, see [About Channels](releases-about-channels).
+After you save a release, you can promote it to any of your release channels. While you are developing and testing an application release, Replicated recommends that you promote to a channel that does not have any customers assigned, such as the default Unstable channel. When you are ready to share your application with customers, you can then promote to a channel where customers are assigned, such as the default Beta or Stable channels. For more information about channels, see [About Release Channels](releases-about-channels).
 
 Every customer license file that you create in the vendor portal is assigned to a channel. Each time you promote a new release to a channel, customers assigned to that channel can update their installed application instance to the new release version.
 
