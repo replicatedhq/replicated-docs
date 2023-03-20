@@ -1,6 +1,6 @@
 # Setting Minimum and Target Versions for KOTS
 
-Minimum and target KOTS versions are optional features that are configured in the Application custom resource file. The attributes in this custom resource help to control the application experience, but the custom resource is not deployed to the cluster. For more information, see [Application Custom Resource](../reference/custom-resource-application).
+Minimum and target KOTS versions are optional features that are configured in the Application custom resource file. The attributes in this custom resource help to control the application experience, but the custom resource is not deployed to the cluster. For more information, see [Application Custom Resource](/reference/custom-resource-application).
 
 :::note
 The Replicated app manager is based on the KOTS open source project. The KOTS version is the same as the app manager version. For example, KOTS v1.60 is the same as the app manager v1.60.
@@ -18,11 +18,11 @@ Including this attribute enforces compatibility checks for both new installation
 
 When you promote a new release specifying a minimum KOTS version that is later than what a user currently has deployed, and that user checks for updates, that application version appears in the version history of the admin console. However, it is not downloaded.
 
-The admin console temporarily displays an error message that informs the user that they must update KOTS before downloading the application version. This error also displays when the user checks for updates with the [`kots upstream upgrade`](../reference/kots-cli-upstream-upgrade) command.
+The admin console temporarily displays an error message that informs the user that they must update KOTS before downloading the application version. This error also displays when the user checks for updates with the [`kots upstream upgrade`](/reference/kots-cli-upstream-upgrade) command.
 
-KOTS cannot update itself automatically, and users cannot update KOTS from the admin console. For more information on updating KOTS, see [Updating the Admin Console on an Existing Cluster](../enterprise/updating-existing-cluster) and [Updating the Admin Console on a Kubernetes Installer-Created Cluster](../enterprise/updating-embedded-cluster).
+KOTS cannot update itself automatically, and users cannot update KOTS from the admin console. For more information on updating KOTS, see [Updating the Admin Console on an Existing Cluster](/enterprise/updating-app-manager) and [Updating the Admin Console on a Kubernetes Installer-Created Cluster](/enterprise/updating-embedded-cluster).
 
-After updating KOTS to the minimum version or later, users can use the admin console or the [`kots upstream download`](../reference/kots-cli-upstream-download) command to download the release and subsequently deploy it.
+After updating KOTS to the minimum version or later, users can use the admin console or the [`kots upstream download`](/reference/kots-cli-upstream-download) command to download the release and subsequently deploy it.
 
 
 ## Using Target KOTS Versions
