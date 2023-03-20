@@ -2,7 +2,9 @@
 
 The Backup custom resource enables the Replicated snapshots backup and restore feature. The backend of this feature uses the Velero open source project to back up Kubernetes manifests and persistent volumes.
 
-A Backup custom resource is required for each application that you deploy. You must add annotations for each volume that you want to back up. You can also configure manifest exclusions. For more information about configuring backups, see [Configuring Backups](/vendor/snapshots-configuring-backups).
+A Backup custom resource is required for each application that you deploy. Additionally, you must add annotations for each volume that you want to back up. For more information about configuring backups, see [Configuring Backups](/vendor/snapshots-configuring-backups).
+
+All resources are included by default. To exclude resources from the backup, the [`velero.io/exclude-from-backup=true`](https://velero.io/docs/v1.5/resource-filtering/#veleroioexclude-from-backuptrue) label must be used and added to the resource instead.
 
 This custom resource also supports optional resource installations so that the feature can be dynamically enabled based on a license field or a config option. For more information, see [Include Optional and Conditional Resources](/vendor/packaging-include-resources).
 
@@ -39,9 +41,9 @@ Note the following field settings. For information about all of the the options 
   </tr>
 </table>
 
-All resources are included by default. To exclude resources from the backup, the [`velero.io/exclude-from-backup=true`](https://velero.io/docs/v1.5/resource-filtering/#veleroioexclude-from-backuptrue) label must be used and added to the resource instead.
+There are some top-level field limitations for full backups. For information about limitations, see [Limitations for Full Backups](#limitations).
 
-## Limitations for Full Backups
+## Limitations for Full Backups {#limitations}
 
 The following top-level fields for Backup custom resources are not supported in full backups.
 
