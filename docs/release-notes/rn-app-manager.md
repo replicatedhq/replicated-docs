@@ -1082,7 +1082,7 @@ Released on December 1, 2021
 Supported on Kubernetes: 1.19, 1.20, and 1.21
 
 ### New Features
- * Adds support for the semantic versioning of releases when the version labels are [valid](https://semver.org/). To use this feature, [enable semantic versioning for the channel](../vendor/releases-semantic-versioning) that the license is currently on.
+ * Adds support for the semantic versioning of releases when the version labels are [valid](https://semver.org/). To use this feature, [enable semantic versioning for the channel](/vendor/releases-about#semantic-versioning) that the license is currently on.
  * Adds the ability to automatically deploy new patch, minor, or major [valid](https://semver.org/) semantic versions when [semantic versioning is enabled](../vendor/releases-semantic-versioning). This new capability can be configured from the **Version History** page under the 'Configure automatic updates' option.
 
 ## 1.57.0 and earlier
