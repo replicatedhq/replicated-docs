@@ -1,6 +1,6 @@
 # Monitoring Applications
 
-This topic describes monitoring applications and clusters with Prometheus. It includes information about how to configure Prometheus monitoring for existing clusters as well as how to access dashboard using a port forward.
+This topic describes monitoring applications and clusters with Prometheus. It includes information about how to configure Prometheus monitoring for existing clusters and how to access dashboard using a port forward.
 
 ## About Prometheus
 
@@ -30,7 +30,7 @@ The following screenshot shows an example of the Monitoring section on the admin
 
 ## Configure Monitoring in Existing Clusters {#configure-existing}
 
-To configure Prometheus monitoring for applications installed in an existing cluster, you must connect the admin console to the endpoint of an installed instance of Prometheus on the cluster. See:
+To configure Prometheus monitoring for applications installed in an existing cluster, you must connect the admin console to the endpoint of an installed instance of Prometheus on the cluster. See the following sections:
 
 * [Install Prometheus](#install-prometheus)
 * [Connect to a Prometheus Endpoint](#connect-to-a-prometheus-endpoint)

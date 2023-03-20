@@ -23,7 +23,7 @@ As shown in the example above, port 9090 on the `prometheus-k8s` service maps to
 
 ## Prerequisite
 
-Before you can consume Prometheus metrics in Kubernetes installer clusters externally, ensure that firewall rules on all nodes in the cluster allow TCP traffic on port 30900. 
+Before you can consume Prometheus metrics in Kubernetes installer clusters externally, ensure that firewall rules on all nodes in the cluster allow inbound TCP traffic on port 30900. 
 
 ## Consume Metrics from External Services
 
@@ -38,7 +38,13 @@ To consume Prometheus metrics from an external service:
    ```
    kubectl describe node NODE_NAME
    ```
-   Where `NODE_NAME` is the name of a node in the Kubernetes installer cluster.   
+   Where `NODE_NAME` is the name of a node in the Kubernetes installer cluster.
+
+   :::note
+   Depending on the node's network configuration, there might be different IP addresses for accessing the node from an external or internal network. For example, the IP address 10.128.0.35 might be assigned to the node in the internal network, whereas the IP address used to access the node from external or public networks is 34.28.178.93.
+   
+   Consult your infrastructure team to assist you in determining which IP address to use.
+   :::   
 
 1. In a browser, go to `http://NODE_IP_ADDRESS:30900` to verify that you can connect to the `prometheus-k8s` NodePort service. Replace `NODE_IP_ADDRESS` with the external IP address that you copied in the first step. For example, `http://34.28.178.93:30900`.
 
