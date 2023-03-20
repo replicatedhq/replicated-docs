@@ -16,7 +16,7 @@ Replicated includes several custom resources that you can add to your releases, 
 
 ### Release Promotion
 
-After you save a release, you can promote it to any of your release channels. While you are developing and testing an application release, Replicated recommends that you promote to a channel that does not have any customers assigned, such as the default Unstable channel. When you are ready to share your application with customers, you can then promote to a channel where customers are assigned, such as the default Beta or Stable channels. For more information about channels, see [About Channels](/vendor/releases-about-channels).
+After you save a release, you can promote it to any of your release channels. While you are developing and testing an application release, Replicated recommends that you promote to a channel that does not have any customers assigned, such as the default Unstable channel. When you are ready to share your application with customers, you can then promote to a channel where customers are assigned, such as the default Beta or Stable channels. For more information about channels, see [About Channels](releases-about-channels).
 
 Every customer license file that you create in the vendor portal is assigned to a channel. Each time you promote a new release to a channel, customers assigned to that channel can update their installed application instance to the new release version.
 
@@ -34,7 +34,7 @@ If you enable semantic versioning for a channel and then promote releases to it,
 
 ### Release Properties
 
-You cannot edit the YAML files in a release after the release is promoted to a channel. However, each release has properties, such as the release notes, the version label, and the required status, that you can edit from the channel Release History page in the vendor portal. For more information, see [About the Channels Page](/vendor/releases-about-channels#about-the-channels-page) in _About Release Channels_.
+You cannot edit the YAML files in a release after the release is promoted to a channel. However, each release has properties, such as the release notes, the version label, and the required status, that you can edit from the channel Release History page in the vendor portal. For more information, see [About the Channels Page](releases-about-channels#about-the-channels-page) in _About Release Channels_.
 
 ### Release Sequencing
 
@@ -106,6 +106,6 @@ You can do the following tasks on the **Draft** page:
 
 - In the **Help** or **Config help** pane, view the linter for any errors. If there are no errors, you get an **Everything looks good!** message. If an error displays, you can click the **Learn how to configure** link. For more information, see [Using the Linter](/reference/linter#using-the-linter) in _Linter Rules_.
 
-- Select the Config custom resource to preview how your application's Config page will look to your customers. The **Config preview** pane only appears when you select that file. For more information, see [About the Configuration Screen](/vendor/config-screen-about).
+- Select the Config custom resource to preview how your application's Config page will look to your customers. The **Config preview** pane only appears when you select that file. For more information, see [About the Configuration Screen](config-screen-about).
 
-- Select the Application custom resource to preview how your application icon will look in the Replicated admin console. The **Application icon preview** only appears when you select that file. For more information, see [Customizing the Application Icon](/vendor/admin-console-customize-app-icon).
+- Select the Application custom resource to preview how your application icon will look in the Replicated admin console. The **Application icon preview** only appears when you select that file. For more information, see [Customizing the Application Icon](admin-console-customize-app-icon).
