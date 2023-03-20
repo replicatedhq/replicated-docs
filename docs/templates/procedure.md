@@ -79,4 +79,4 @@ To [do this task]: [For example, "To create a customer license:"]
 * Should only link to topics on docs.replicated.com, or Replicated blogs/articles
 -->
 
-[My Topic Title](my-topic-title)
+[Example Related Topic Title](docs.replicated.com)
