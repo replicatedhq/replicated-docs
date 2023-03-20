@@ -11,7 +11,7 @@ Released on March 20, 2023
 ### New Features {#new-features-v2023-03-20-0}
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-03-13T19-46-17Z.
 * Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.24.2.
-* Adds checks to ensure that Rook Ceph and ObjectStore are healthy before migrate from Rook to OpenEBS and Minio.
+* Adds checks to ensure that Rook Ceph and it's Object Store are healthy before migrating from Rook to OpenEBS and Minio.
 * Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) version 3.5.0.
 * Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.10.2.
 
