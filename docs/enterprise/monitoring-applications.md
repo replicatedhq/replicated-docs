@@ -1,16 +1,20 @@
 # Monitoring Applications
 
-This topic describes monitoring applications and clusters with Prometheus, including information about how to configure Prometheus monitoring for applications installed on an existing Kubernetes cluster.
+This topic describes monitoring applications and clusters with Prometheus. It includes information about how to configure Prometheus monitoring for existing clusters and how to access dashboard using a port forward.
 
 ## About Prometheus
 
-The Replicated admin console uses the open source systems monitoring tool, Prometheus, to collect metrics on an application and the cluster where the application is installed.
+The Replicated admin console uses the open source systems monitoring tool Prometheus to collect metrics on an application and the cluster where the application is installed.
 
 Prometheus uses a multi-dimensional data model with time series data and a flexible query language. Prometheus components include the main Prometheus server, which scrapes and stores time series data, and an Alertmanager for alerting on metrics.
 
 For more information about Prometheus, see [What is Prometheus?](https://prometheus.io/docs/introduction/overview/) in the Prometheus documentation.
 
-## Overview of Monitoring with Prometheus
+Prometheus is included by default on clusters provisioned by the Replicated Kubernetes installer, and no additional configuration is required to view graphs on the admin console dashboard.
+
+For information about how to set up Prometheus monitoring in existing clusters, see [Configure Monitoring in Existing Clusters](#configure-existing).
+
+## About Admin Console Dashboards
 
 The admin console exposes graphs with key metrics collected by Prometheus in the Monitoring section of the dashboard. By default, the admin console includes the following graphs:
 
@@ -22,15 +26,11 @@ In addition to these default graphs, application developers can also expose busi
 
 The following screenshot shows an example of the Monitoring section on the admin console dashboard with the Disk Usage, CPU Usage, and Memory Usage default graphs.
 
-![Graphs on the admin console dashboard](/images/kotsadm-dashboard-graph.png)
+![Graphs on the admin console dashboard](/images/kotsadm-dashboard-graph.png) 
 
-Prometheus is included by default on clusters provisioned by the Replicated Kubernetes installer, and no additional configuration is required to monitor the application and cluster.
+## Configure Monitoring in Existing Clusters {#configure-existing}
 
-If you installed on an existing cluster, see [Configure Monitoring on an Existing Cluster](#configure-monitoring-on-an-existing-cluster) below for information about how to monitor the application and cluster with Prometheus.
-
-## Configure Monitoring on an Existing Cluster
-
-To configure Prometheus monitoring for applications installed on an existing cluster, you must connect the admin console to the endpoint of an installed instance of Prometheus on the cluster. See:
+To configure Prometheus monitoring for applications installed in an existing cluster, you must connect the admin console to the endpoint of an installed instance of Prometheus on the cluster. See the following sections:
 
 * [Install Prometheus](#install-prometheus)
 * [Connect to a Prometheus Endpoint](#connect-to-a-prometheus-endpoint)
@@ -75,15 +75,13 @@ To connect the admin console to a Prometheus endpoint:
 
 You can use the commands below to access Prometheus, Grafana, and Alertmanager dashboards using `kubectl port-forward` after you install the manifests.
 
-You can also expose these pods on NodePorts or behind an ingress controller. This is an advanced use case.
+You can also expose these pods on NodePorts or behind an ingress controller. This is an advanced use case. For information about exposing the pods on NodePorts, see [NodePorts](https://github.com/prometheus-operator/kube-prometheus/blob/main/docs/customizations/node-ports.md) in the kube-prometheus GitHub repository. For information about exposing the pods behind an ingress controller, see [Expose via Ingress](https://github.com/prometheus-operator/kube-prometheus/blob/main/docs/customizations/exposing-prometheus-alertmanager-grafana-ingress.md) in the kube-prometheus GitHub repository.
 
-For information about exposing the pods on NodePorts, see [NodePorts](https://github.com/prometheus-operator/kube-prometheus/blob/main/docs/customizations/node-ports.md) in the kube-prometheus GitHub repository.
-
-For information about exposing the pods behind an ingress controller, see [Expose via Ingress](https://github.com/prometheus-operator/kube-prometheus/blob/main/docs/customizations/exposing-prometheus-alertmanager-grafana-ingress.md) in the kube-prometheus GitHub repository.
+For Kubernetes installer clusters, you can consume Prometheus metrics from an external monitoring solution by connecting to the Prometheus NodePort service running in the cluster. For more information, see [Consuming Prometheus Metrics Externally](monitoring-external-prometheus). 
 
 ### Access Prometheus
 
-To access the Prometheus dashboard with a port foward:
+To access the Prometheus dashboard with a port forward:
 
 1. Run the following command to create the port forward:
 
@@ -95,7 +93,7 @@ To access the Prometheus dashboard with a port foward:
 
 ### Access Grafana
 
-To access the Grafana dashboard with a port foward:
+To access the Grafana dashboard with a port forward:
 
 1. Run the following command to create the port forward:
 
@@ -115,7 +113,7 @@ To access the Grafana dashboard with a port foward:
 
 ### Access Alertmanager
 
-To access the Alertmanager dashboard with a port foward:
+To access the Alertmanager dashboard with a port forward:
 
 1. Run the following command to create the port forward:
 
