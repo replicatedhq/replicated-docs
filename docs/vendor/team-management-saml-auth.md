@@ -20,7 +20,7 @@ If SAML authentication is configured for your team, Two-Factor Authentication (2
 
 ### Role Based Access Control
 
-Replicated supports Role Based Access Control (RBAC) in the vendor portal. To use RBAC with SAML, you must configure policies and add users to the policies by their username. Usernames are the identity of the user in your identity provide (IDP). Typically, this username is the full email address. For more information about configuring RBAC, see [Creating RBAC Policies](team-management-vendor-rbac).
+Replicated supports Role Based Access Control (RBAC) in the vendor portal. To use RBAC with SAML, you must configure policies and add users to the policies by their username. Usernames are the identity of the user in your identity provide (IDP). Typically, this username is the full email address. For more information about configuring RBAC, see [Configuring Custom RBAC Policies](team-management-rbac-configuring).
 
 ## Downloading Certificates from Supported SAML providers
 
