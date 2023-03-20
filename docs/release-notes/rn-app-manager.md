@@ -6,6 +6,11 @@ toc_max_heading_level: 2
 
 ## 1.96.1
 
+:::important
+The app manager v1.96.1 has a known issue that affects the use of Helm charts that are deployed using the [native Helm installation](/reference/custom-resource-helmchart#usehelminstall) method.
+See [Known Issue](#known-issues-1-95-0) below.
+:::
+
 Released on March 16, 2023
 
 Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
@@ -16,6 +21,11 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 * If the application's port is not available when the user enables access to the admin console with `kubectl kots admin-console`, failure messages print one time and retry silently.
 
 ## 1.96.0
+
+:::important
+The app manager v1.96.0 has a known issue that affects the use of Helm charts that are deployed using the [native Helm installation](/reference/custom-resource-helmchart#usehelminstall) method.
+See [Known Issue](#known-issues-1-95-0) below.
+:::
 
 Released on March 9, 2023
 
@@ -37,6 +47,11 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 
 ## 1.95.0
 
+:::important
+The app manager v1.95.0 has a known issue that affects the use of Helm charts that are deployed using the [native Helm installation](/reference/custom-resource-helmchart#usehelminstall) method.
+See [Known Issue](#known-issues-1-95-0) below.
+:::
+
 Released on March 1, 2023
 
 Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
@@ -55,6 +70,17 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 
 ### Bug Fixes {#bug-fixes-1-95-0}
 * Fixes an issue where the [namespace](/reference/custom-resource-helmchart#namespace) field in the HelmChart custom resource was not respected when [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) was set to `true`.
+
+### Known Issue {#known-issues-1-95-0}
+
+There is a known issue in the app manager v1.95.0 that causes application upgrades to fail for Helm charts that are deployed using the [native Helm installation](/reference/custom-resource-helmchart#usehelminstall) method.
+
+The issue manifests for a particular Helm chart when the following conditions are met:
+
+- The Helm chart in the application has been installed previously using app manager versions 1.94.2 and earlier.
+- The [HelmChart](/reference/custom-resource-helmchart) custom resource for that particular Helm chart has the [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) field set to `true`, and the [namespace](/reference/custom-resource-helmchart#namespace) field set to a value different than the namespace where the app manager is installed.
+
+To avoid this known issue, Replicated recommends that you do not upgrade to v1.95.0. To work around this issue in v1.95.0, you can manually uninstall the affected Helm chart using the Helm CLI, and then re-deploy the application via the app manager.
 
 ## 1.94.2
 
