@@ -4,6 +4,23 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.03.20-0
+
+Released on March 20, 2023
+
+### New Features {#new-features-v2023-03-20-0}
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-03-13T19-46-17Z.
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.24.2.
+* Adds checks to ensure that Rook Ceph and ObjectStore are healthy before migrate from Rook to OpenEBS and Minio.
+* Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) version 3.5.0.
+* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.10.2.
+
+### Bug Fixes {#bug-fixes-v2023-03-20-0}
+* Fixes an issue where the weave-to-flannel-{primary,secondary} tasks fail with "Flannel images not present...".
+* Fixes missguided logs by adding clear output to the step to configure the installer.
+* Fixes issue when migrate from Longhorn and it is not uninstalled by adding a check and better log information to allow users be aware of and the reasons for Longhorn not be able to be uninstalled programmatically.
+* Fixes issue when migrate from Rook and it is not uninstalled by adding a check and better log information to allow users be aware of and the reasons for Rook not be able to be uninstalled programmatically.
+
 ## v2023.03.13-0
 
 Released on March 13, 2023
