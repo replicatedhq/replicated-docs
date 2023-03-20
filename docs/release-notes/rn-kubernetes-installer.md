@@ -16,7 +16,7 @@ Released on March 20, 2023
 
 ### Improvements {#improvements-v2023-03-20-0}
 * Adds checks to ensure that Rook Ceph and it's Object Store are healthy before migrating from Rook to OpenEBS and Minio.
-* Checks and better log information has been added when removing Rook or Longhorn to notify users of the reasons for a failure.
+* Adds checks and better log information when removing Rook or Longhorn to notify users of the reasons for a failure.
 
 ### Bug Fixes {#bug-fixes-v2023-03-20-0}
 * Fixes an issue where the weave-to-flannel-{primary,secondary} tasks fail with "Flannel images not present...".
