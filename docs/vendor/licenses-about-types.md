@@ -31,7 +31,7 @@ You can update a customer license type in the Replicated vendor portal, for exam
 
 [View a larger image](/images/customer-license-type.png)
 
-It is unlikely that the license change will prompt any changes to the application deployment itself. However, if you also modify other license fields as part of the license conversion, this can trigger changes to the deployed application. For more information about license fields, see [License Fields](license-fields).
+It is unlikely that the license change will prompt any changes to the application deployment itself. However, if you also modify other license fields as part of the license conversion, this can trigger changes to the deployed application.
 
 Your customer uses the Replicated admin console to synchronize the licenses on their instances. For online instances, license updates are pulled from the vendor portal when:
 
