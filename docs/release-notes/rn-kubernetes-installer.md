@@ -14,7 +14,7 @@ Released on March 21, 2023
 * Adds better logging information and highlights failures and warnings when migrating from Rook.
 
 ### Bug Fixes {#bug-fixes-v2023-03-21-0}
-* Fixes Rook Ceph preflight healthy checks done to migrate from Rook when it is considered unhealthy because was not possible to find the the ceph-version. This resolves a bug in Rook Ceph versions < `1.4.8` where the Ceph Version is not properly set to the deployment labels.
+* Fixes Rook Ceph preflight healthy checks done when migrating from Rook where it is considered unhealthy because was not possible to find the the ceph-version. This resolves a bug in Rook Ceph versions < `1.4.8` where the Ceph Version is not properly set to the deployment labels.
 * Fixes broken upgrades caused by not being able to uninstall Rook. Failures will be highlighted in the console with further information. 
 * Fixes issues where the script get stuck when migrating from Rook. Timeouts were added with further information displayed via the console.
 * Fixes a bug where Rook data was not being removed even after Rook Ceph was removed from the cluster.
