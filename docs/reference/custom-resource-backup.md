@@ -83,7 +83,7 @@ The following field settings differ from the default Velero field settings:
   </tr>
   <tr>
     <td><code>includeClusterResources</code></td>
-    <td>Always set to <code>true</code>.</td>
+    <td>Must be set to <code>true</code>.</td>
   </tr>
   <tr>
     <td><code>ttl</code></td>
@@ -93,10 +93,13 @@ The following field settings differ from the default Velero field settings:
 
 ## Limitations for Full Backups {#limitations}
 
-_Top-level fields_ are children of `spec`. The following top-level fields are not supported in full backups, and so are not shown in the preceding example specification:
+The following top-level fields, or children of `spec`, are not supported in full backups. Therefore, these fields are not shown in the preceding example specification:
 
 - `snapshotVolumes`
 - `volumeSnapshotLocations`
 - `labelSelector`
 - `includedResources`
 - `excludedResources`
+
+:::note
+Resources can be excluded adding `velero.io/exclude-from-backup=true` to the manifest files that you want to exclude. For more information, see [Configuring Backups](/vendor/snapshots-configuring-backups).
