@@ -18,7 +18,7 @@ Released on March 21, 2023
 * Fixes broken upgrades caused by not being able to uninstall Rook. Failures will be highlighted in the console with further information. 
 * Fixes issues where the install script gets stuck when migrating from Rook. Timeouts were added with further information displayed via the console.
 * Fixes a bug where Rook data was not being removed even after Rook Ceph was removed from the cluster.
-* Fixes bug regression introduced in the previous release `v2023.03.20-0` where the registry addon fails to create the object store.
+* Fixes a bug regression introduced in the previous release `v2023.03.20-0` where the registry addon fails to create the object store.
 
 ## v2023.03.20-0
 
