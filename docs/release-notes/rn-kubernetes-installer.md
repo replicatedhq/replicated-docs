@@ -16,7 +16,7 @@ Released on March 21, 2023
 ### Bug Fixes {#bug-fixes-v2023-03-21-0}
 * Fixes Rook Ceph preflight health checks done when migrating from Rook where it is considered unhealthy because was not possible to find the the ceph-version. This resolves a bug in Rook Ceph versions < `1.4.8` where the Ceph Version is not properly set to the deployment labels.
 * Fixes broken upgrades caused by not being able to uninstall Rook. Failures will be highlighted in the console with further information. 
-* Fixes issues where the script gets stuck when migrating from Rook. Timeouts were added with further information displayed via the console.
+* Fixes issues where the install script gets stuck when migrating from Rook. Timeouts were added with further information displayed via the console.
 * Fixes a bug where Rook data was not being removed even after Rook Ceph was removed from the cluster.
 * Fixes bug regression introduced in the previous release `v2023.03.20-0` where the registry addon fails to create the object store.
 
