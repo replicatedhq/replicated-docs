@@ -10,7 +10,7 @@ Released on March 21, 2023
 
 ### New Features {#new-features-v2023-03-21-0}
 * Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.26.3 1.25.8 1.24.12 1.23.17 1.22.17.
-* Adds a preflight check to ensure that a host is not updated with a previous kURL release.
+* Adds a preflight check to ensure that a host is not updated with a version of the Kubernetes installer that is earlier than the version currently running in the cluster.
 * Adds better logging information that highlights failures and warnings when migrating from Rook.
 
 ### Bug Fixes {#bug-fixes-v2023-03-21-0}
