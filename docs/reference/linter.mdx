@@ -794,11 +794,8 @@ For more information, see [LintConfig](custom-resource-lintconfig).
     <th>Description</th>
     <td>
       <p>Requires that each <code>statusInformers</code> entry references an existing Kubernetes workload.</p>
-      <p>The <code>nonexistent-status-informer-object</code> rule has the following limitations:</p>
-      <ul>
-        <li>The linter cannot evaulate <code>statusInformers</code> for Helm-managed resources because it does not template Helm charts during analysis. If you configure status informers for Helm-managed resources, you can ignore <code>nonexistent-status-informer-object</code> warnings for those workloads.</li>
-        <li>The LintConfig custom resource does not support configuring the <code>nonexistent-status-informer-object</code> rule. See <a href="custom-resource-lintconfig">LintConfig</a> in <em>Custom Resources</em>.</li>
-      </ul>
+      <p>The linter cannot evaulate <code>statusInformers</code> for Helm-managed resources because it does not template Helm charts during analysis.</p>
+      <p>If you configure status informers for Helm-managed resources, you can ignore <code>nonexistent-status-informer-object</code> warnings for those workloads. To disable <code>nonexistent-status-informer-object</code> warnings, change the level for this rule to <code>info</code> or <code>off</code> in the LintConfig custom resource manifest file. See <a href="custom-resource-lintconfig">LintConfig</a> in <em>Custom Resources</em>.</p>
     </td>
   </tr>
   <tr>
