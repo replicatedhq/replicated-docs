@@ -4,6 +4,22 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.03.21-0
+
+Released on March 21, 2023
+
+### New Features {#new-features-v2023-03-21-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.26.3 1.25.8 1.24.12 1.23.17 1.22.17.
+* Adds a preflight check to ensure that a host is not updated with a version of the Kubernetes installer that is earlier than the version currently running in the cluster.
+* Adds better logging information that highlights failures and warnings when migrating from Rook.
+
+### Bug Fixes {#bug-fixes-v2023-03-21-0}
+* Fixes an issue when migrating from Rook that caused the Rook Ceph preflight health check to incorrectly report that Ceph was unhealthy because Ceph version information could not be found. This issue was caused by a bug in Rook Ceph versions earlier than 1.4.8.
+* Fixes broken upgrades caused by not being able to uninstall Rook. Upgrade failures are highlighted in the console with further information. 
+* Fixes an issue where the installation script got stuck when migrating from Rook. Added timeouts with further information displayed in the console.
+* Fixes a bug where Rook data was not removed after Rook Ceph was removed from the cluster.
+* Fixes a bug in the Kubernetes installer v2023.03.20-0 where the registry add-on failed to create the object store.
+
 ## v2023.03.20-0
 
 Released on March 20, 2023
