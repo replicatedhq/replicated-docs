@@ -10,7 +10,7 @@ Released on March 21, 2023
 
 ### New Features {#new-features-v2023-03-21-0}
 * Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.26.3 1.25.8 1.24.12 1.23.17 1.22.17.
-* Adds preflight check to ensure that a host will not be updated with previously kURL releases.
+* Adds preflight check to ensure that a host will not be updated with previous kURL releases.
 
 ### Bug Fixes {#bug-fixes-v2023-03-21-0}
 * Fixes Rook Ceph healthy check by not considering unhealthy when a deployment does not contains the `ceph-version` value properly set caused by a bug into Rook Ceph versions < `1.4.8`.
