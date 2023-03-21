@@ -10,15 +10,15 @@ Released on March 21, 2023
 
 ### New Features {#new-features-v2023-03-21-0}
 * Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.26.3 1.25.8 1.24.12 1.23.17 1.22.17.
-* Adds preflight check to ensure that a host will not be updated with previous kURL release.
+* Adds a preflight check to ensure that a host is not updated with a previous kURL release.
 * Adds better logging information that highlights failures and warnings when migrating from Rook.
 
 ### Bug Fixes {#bug-fixes-v2023-03-21-0}
-* Fixes Rook Ceph preflight health checks done when migrating from Rook where it is considered unhealthy because it was not possible to find the Ceph Version information. This was caused by a bug in Rook Ceph versions < `1.4.8`.
-* Fixes broken upgrades caused by not being able to uninstall Rook. Failures will be highlighted in the console with further information. 
-* Fixes an issue where the install script gets stuck when migrating from Rook. Timeouts were added with further information displayed via the console.
-* Fixes a bug where Rook data was not being removed even after Rook Ceph was removed from the cluster.
-* Fixes a bug regression introduced in the previous release `v2023.03.20-0` where the registry addon fails to create the object store.
+* Fixes an issue when migrating from Rook that caused the Rook Ceph preflight health check to incorrectly report that Ceph was unhealthy because Ceph version information could not be found. This issue was caused by a bug in Rook Ceph versions earlier than 1.4.8.
+* Fixes broken upgrades caused by not being able to uninstall Rook. Upgrade failures are highlighted in the console with further information. 
+* Fixes an issue where the installation script got stuck when migrating from Rook. Added timeouts with further information displayed in the console.
+* Fixes a bug where Rook data was not removed after Rook Ceph was removed from the cluster.
+* Fixes a bug in the Kubernetes installer v2023.03.20-0 where the registry add-on failed to create the object store.
 
 ## v2023.03.20-0
 
