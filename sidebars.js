@@ -281,32 +281,21 @@ const sidebars = {
       type: 'category',
       label: 'Reference',
       items: [
+        'reference/cron-expressions',
         {
           type: 'category',
           label: 'Custom Resources',
           items: [
             'reference/custom-resource-about',
             'reference/custom-resource-application',
+            'reference/custom-resource-backup',
             'reference/custom-resource-config',
+            'reference/custom-resource-helmchart',
+            'reference/custom-resource-identity',
+            'reference/custom-resource-lintconfig',
             'reference/custom-resource-preflight',
             'reference/custom-resource-redactor',
-            'reference/custom-resource-sig-application',
-            'reference/custom-resource-helmchart',
-            'reference/custom-resource-backup',
-            'reference/custom-resource-lintconfig',
-            'reference/custom-resource-identity',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Template Functions',
-          items: [
-            'reference/template-functions-about',
-            'reference/template-functions-static-context',
-            'reference/template-functions-config-context',
-            'reference/template-functions-kurl-context',
-            'reference/template-functions-license-context',
-            'reference/template-functions-identity-context',
+            'reference/custom-resource-sig-application',  
           ],
         },
         {
@@ -320,30 +309,61 @@ const sidebars = {
                 label: 'admin console',
                 items: [
                   'reference/kots-cli-admin-console-index',
-                  'reference/kots-cli-admin-console-upgrade',
-                  'reference/kots-cli-admin-console-push-images',
                   'reference/kots-cli-admin-console-garbage-collect-images',
                   'reference/kots-cli-admin-console-generate-manifests',
+                  'reference/kots-cli-admin-console-push-images',
+                  'reference/kots-cli-admin-console-upgrade',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'backup',
+              items: [
+                'reference/kots-cli-backup-index',
+                'reference/kots-cli-backup-ls',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'docker',
+              items: [
+                'reference/kots-cli-docker-index',
+                'reference/kots-cli-docker-ensure-secret',
+              ],
+            },
+            'reference/kots-cli-download',
+            'reference/kots-cli-enable-ha',
+            {
+              type: 'category',
+              label: 'get',
+              items: [
+                'reference/kots-cli-get-index',
+                'reference/kots-cli-get-apps',
+                'reference/kots-cli-get-backups',
+                'reference/kots-cli-get-config',
+                'reference/kots-cli-get-restores',
+                'reference/kots-cli-get-versions',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'identity-service',
+              items: [
+                'reference/kots-cli-identity-service-index',
+                'reference/kots-cli-identity-service-enable-shared-password',
               ],
             },
             'reference/kots-cli-install',
             'reference/kots-cli-pull',
             'reference/kots-cli-remove',
-            'reference/kots-cli-download',
-            'reference/kots-cli-upload',
-            'reference/kots-cli-reset-tls',
             'reference/kots-cli-reset-password',
-            'reference/kots-cli-enable-ha',
+            'reference/kots-cli-reset-tls',
             {
-                type: 'category',
-                label: 'get',
-                items: [
-                  'reference/kots-cli-get-index',
-                  'reference/kots-cli-get-apps',
-                  'reference/kots-cli-get-backups',
-                  'reference/kots-cli-get-config',
-                  'reference/kots-cli-get-versions',
-                  'reference/kots-cli-get-restores',
+              type: 'category',
+              label: 'restore',
+              items: [
+                'reference/kots-cli-restore-index',
+                'reference/kots-cli-restore-ls',
               ],
             },
             {
@@ -354,65 +374,36 @@ const sidebars = {
                   'reference/kots-cli-set-config',
               ],
             },
-            {
-                type: 'category',
-                label: 'backup',
-                items: [
-                  'reference/kots-cli-backup-index',
-                  'reference/kots-cli-backup-ls',
-              ],
-            },
-            {
-                type: 'category',
-                label: 'restore',
-                items: [
-                  'reference/kots-cli-restore-index',
-                  'reference/kots-cli-restore-ls',
-              ],
-            },
+            'reference/kots-cli-upload',
             {
                 type: 'category',
                 label: 'upstream',
                 items: [
                   'reference/kots-cli-upstream',
-                  'reference/kots-cli-upstream-upgrade',
                   'reference/kots-cli-upstream-download',
+                  'reference/kots-cli-upstream-upgrade',
               ],
             },
             {
                 type: 'category',
                 label: 'velero',
                 items: [
-                  'reference/kots-cli-velero-index',
+                  
                   'reference/kots-cli-velero-configure-aws-s3',
                   'reference/kots-cli-velero-configure-azure',
                   'reference/kots-cli-velero-configure-gcp',
-                  'reference/kots-cli-velero-configure-internal',
-                  'reference/kots-cli-velero-configure-other-s3',
-                  'reference/kots-cli-velero-configure-nfs',
                   'reference/kots-cli-velero-configure-hostpath',
+                  'reference/kots-cli-velero-configure-internal',
+                  'reference/kots-cli-velero-configure-nfs',
+                  'reference/kots-cli-velero-configure-other-s3',
                   'reference/kots-cli-velero-ensure-permissions',
+                  'reference/kots-cli-velero-index',
                   'reference/kots-cli-velero-print-fs-instructions',
-              ],
-            },
-            {
-                type: 'category',
-                label: 'identity-service',
-                items: [
-                  'reference/kots-cli-identity-service-index',
-                  'reference/kots-cli-identity-service-enable-shared-password',
-              ],
-            },
-            {
-                type: 'category',
-                label: 'docker',
-                items: [
-                  'reference/kots-cli-docker-index',
-                  'reference/kots-cli-docker-ensure-secret',
               ],
             },
           ],
         },
+        'reference/linter',
         {
           type: 'category',
           label: 'replicated CLI',
@@ -454,6 +445,18 @@ const sidebars = {
         },
         {
           type: 'category',
+          label: 'Template Functions',
+          items: [
+            'reference/template-functions-about',
+            'reference/template-functions-config-context',
+            'reference/template-functions-identity-context',
+            'reference/template-functions-kurl-context',
+            'reference/template-functions-license-context',
+            'reference/template-functions-static-context',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Vendor API v3',
           items: [
             {
@@ -467,8 +470,6 @@ const sidebars = {
             },
           ],
         },
-        'reference/cron-expressions',
-        'reference/linter',
       ],
     },
     {
