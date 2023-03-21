@@ -27,10 +27,10 @@ spec:
   excludedNamespaces:
   - some-namespace
   orderedResources:
-    pods: mysql/mysql-cluster-replica-0,mysql/mysql-cluster-replica-1,mysql/mysql-cluster-source-0
-    persistentvolumes: pvc-87ae0832-18fd-4f40-a2a4-5ed4242680c4,pvc-63be1bb0-90f5-4629-a7db-b8ce61ee29b3
+    pods: mysql/mysql-cluster-replica-0,mysql/mysql-cluster-replica-1
+    persistentvolumes: pvc-12345,pvc-67890
   includeClusterResources: true
-  storageLocation: aws-primary
+  storageLocation: my-primary
   ttl: 720h
   defaultVolumesToFsBackup: true
   hooks:
@@ -63,8 +63,8 @@ status:
   expiration: null
   phase: ""
   validationErrors: null
-  startTimestamp: 2019-04-29T15:58:43Z
-  completionTimestamp: 2019-04-29T15:58:56Z
+  startTimestamp: 2023-02-29T15:58:43Z
+  completionTimestamp: 2023-02-29T15:58:56Z
   volumeSnapshotsAttempted: 2
   volumeSnapshotsCompleted: 1
   warnings: 2
