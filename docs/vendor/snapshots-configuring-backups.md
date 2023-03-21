@@ -68,7 +68,7 @@ To configure backups:
 
 1. (Optional) Configure manifest exclusions. By default, Velero also includes backups of all of the Kubernetes objects in the namespace.
 
-  To exclude any manifest file, add a `velero.io/exclude-from-backup` label to the manifest to be excluded. The following example shows the Secret manifest file with the `velero.io/exclude-from-backup` label:
+  To exclude any manifest file, add a [`velero.io/exclude-from-backup=true`](https://velero.io/docs/v1.5/resource-filtering/#veleroioexclude-from-backuptrue) label to the manifest to be excluded. The following example shows the Secret manifest file with the `velero.io/exclude-from-backup` label:
 
     ```yaml
     apiVersion: apps/v1
