@@ -13,7 +13,7 @@ Released on March 21, 2023
 * Adds preflight check to ensure that a host will not be updated with previously kURL releases.
 
 ### Bug Fixes {#bug-fixes-v2023-03-21-0}
-* Fixes Rook Ceph healthy check by not considering unhealthy when a deployment does not contains the `ceph-version` value properly set to the labels caused by a bug into Rook Ceph versions < `1.4.8`.
+* Fixes Rook Ceph healthy check by not considering unhealthy when a deployment does not contains the `ceph-version` value properly set caused by a bug into Rook Ceph versions < `1.4.8`.
 * Fixes stuck issues scenarios when is trying to delete Rook and provide better information about the steps performed.
 * Fixes broke upgrade because of was not possible uninstall Rook when the upgrade is migrating from Rook. Failures will be highlighted with further information in the logs.
 * Fixes Rook data stored not been removed when Rook Ceph is removed from the cluster.
