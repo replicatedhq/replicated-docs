@@ -281,6 +281,7 @@ const sidebars = {
       type: 'category',
       label: 'Reference',
       items: [
+        'reference/cron-expressions',
         {
           type: 'category',
           label: 'Custom Resources',
@@ -295,18 +296,6 @@ const sidebars = {
             'reference/custom-resource-preflight',
             'reference/custom-resource-redactor',
             'reference/custom-resource-sig-application',  
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Template Functions',
-          items: [
-            'reference/template-functions-about',
-            'reference/template-functions-config-context',
-            'reference/template-functions-identity-context',
-            'reference/template-functions-kurl-context',
-            'reference/template-functions-license-context',
-            'reference/template-functions-static-context',
           ],
         },
         {
@@ -414,6 +403,7 @@ const sidebars = {
             },
           ],
         },
+        'reference/linter',
         {
           type: 'category',
           label: 'replicated CLI',
@@ -455,6 +445,18 @@ const sidebars = {
         },
         {
           type: 'category',
+          label: 'Template Functions',
+          items: [
+            'reference/template-functions-about',
+            'reference/template-functions-config-context',
+            'reference/template-functions-identity-context',
+            'reference/template-functions-kurl-context',
+            'reference/template-functions-license-context',
+            'reference/template-functions-static-context',
+          ],
+        },
+        {
+          type: 'category',
           label: 'Vendor API v3',
           items: [
             {
@@ -468,8 +470,6 @@ const sidebars = {
             },
           ],
         },
-        'reference/cron-expressions',
-        'reference/linter',
       ],
     },
     {
