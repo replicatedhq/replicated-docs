@@ -18,7 +18,7 @@ Released on March 21, 2023
 * Fixes broken upgrades caused by not being able to uninstall Rook. Upgrade failures are highlighted in the console with further information. 
 * Fixes an issue where the installation script got stuck when migrating from Rook. Added timeouts with further information displayed in the console.
 * Fixes a bug where Rook data was not removed after Rook Ceph was removed from the cluster.
-* Fixes a bug in the Kubernetes installer `v2023.03.20-0` where the registry add-on failed to create the object store.
+* Fixes a bug in the Kubernetes installer v2023.03.20-0 where the registry add-on failed to create the object store.
 
 ## v2023.03.20-0
 
