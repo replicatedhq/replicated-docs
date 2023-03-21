@@ -11,11 +11,12 @@ Released on March 21, 2023
 ### New Features {#new-features-v2023-03-21-0}
 * Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.26.3 1.25.8 1.24.12 1.23.17 1.22.17.
 * Adds preflight check to ensure that a host will not be updated with previous kURL releases.
+* Adds better log information and highlight failures and warning scenarios when migration from Rook.
 
 ### Bug Fixes {#bug-fixes-v2023-03-21-0}
 * Fixes Rook Ceph healthy check by not considering unhealthy when a deployment does not contains the `ceph-version` value properly set caused by a bug into Rook Ceph versions < `1.4.8`.
-* Fixes an issue where the install process gets stuck when is trying to delete Rook and provides better information about the steps performed.
-* Fixes broke upgrade because of was not possible uninstall Rook when the upgrade is migrating from Rook. Failures will be highlighted with further information in the logs.
+* Fixes broke upgrades because of was not possible uninstall Rook. Failures scenarios will be highlighted with further information. 
+* Fixes issues where the script get stuck to migrate from Rook. Timeouts were added with further information for troubleshooting scenarios.
 * Fixes a bug where Rook data was not being removed even after Rook Ceph was removed from the cluster.
 * Fixes bug regression introduced in the previous release `v2023.03.20-0` where the registry addon fails to create the object store.
 
