@@ -88,44 +88,48 @@ The following fields are supported for full backups:
     <th width="70%">Description</th>
   </tr>
   <tr>
-    <td><code>csiSnapshotTimeout</code></td>
-    <td>The timeout interval to wait for the CSI VolumeSnapshot status to become ReadyToUse during creation, before returning an error. <bold>Default:</bold> 10 minutes</td>
-  </tr>
-  <tr>
     <td><code>includedNamespaces</code></td>
-    <td>(Optional) An array of namespaces to include in the backup. If unspecified, all namespaces are included.</td>
+    <td>(Optional) Specifies an array of namespaces to include in the backup. If unspecified, all namespaces are included.</td>
   </tr>
   <tr>
     <td><code>excludedNamespaces</code></td>
-    <td>(Optional) An array of namespaces to exclude from the backup.</td>
+    <td>(Optional) Specifies an array of namespaces to exclude from the backup.</td>
   </tr>
   <tr>
     <td><code>orderedResources</code></td>
-    <td></td>
+    <td>(Optional) Specifies the order of the resources to collect during the backup process. This is a map that uses a key as the plural resource. Each resource name has the format NAMESPACE/OBJECTNAME. The object names are a comma delimited list. For cluster resources, use OBJECTNAME only.</td>
   </tr>
   <tr>
     <td><code>includeClusterResources</code></td>
-    <td>By default, this is set to <code>true</code> and cannot be reconfigured for full backups.</td>
+    <td>Specifies whether to include cluster-scoped resources. By default, the value is set to <code>true</code> and cannot be reconfigured for full backups.</td>
   </tr>
   <tr>
     <td><code>storageLocations</code></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td><code></code></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td><code></code></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td><code></code></td>
-    <td></td>
+    <td>Specifies the location to store the logs and tarball.</td>
   </tr>
   <tr>
     <td><code>ttl</code></td>
-    <td> Specifies whether pod volume file system backups should be used for all volumes by default. By default, this is set to <code>720h</code> (which is one month) and is configurable only by the customer.</td>
+    <td> SPecifies the amount of time before this backup is eligible for garbage collection. By default, this is set to <code>720h</code> (which is one month) and is configurable only by the customer.</td>
+  </tr>
+  <tr>
+    <td><code>defaultVolumesToFsBackup</code></td>
+    <td>Specifies whether pod volume file system backup is used for all volumes by default.</td>
+  </tr>
+  <tr>
+    <td><code>hooks</code></td>
+    <td>(Optional) Specifies the actions to perform at different times during a backup. The only hook supported is executing a command in a container in a pod using the pod exec API.</td>
+  </tr>
+  <tr>
+    <td><code>name</code></td>
+    <td>Specifies the name of the hook. This value displays in the backup log.</td>
+  </tr>
+  <tr>
+    <td><code>includedNamespaces</code></td>
+    <td>(Optional) Specifies an array of namespaces to which this hook applies. If unspecified, the hook is applied to all namespaces.</td>
+  </tr>
+  <tr>
+    <td><code>excludedNamespaces</code></td>
+    <td>(Optional) Specifies an array of namespaces to which this hook does not apply.</td>
   </tr>
   <tr>
     <td><code></code></td>
@@ -145,3 +149,4 @@ The following top-level fields, or children of `spec`, are not supported in full
 
 :::note
 Resources can be excluded adding `velero.io/exclude-from-backup=true` to the manifest files that you want to exclude. For more information, see [Configuring Backups](/vendor/snapshots-configuring-backups).
+:::
