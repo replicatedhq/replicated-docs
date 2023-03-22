@@ -51,7 +51,7 @@ For example, the following screenshot shows how a Postgres Helm chart displays i
 
 ![Postgres Helm Chart](/images/postgres-helm-chart.png)
 
-## Package a Helm Chart
+## Create the Helm Chart Package {#package-chart}
 
 To include a Helm chart in a release, first package the Helm chart, including any of its dependencies, as a `.tgz` file. Then, add the `.tgz` Helm chart package to your release.
 
@@ -99,25 +99,82 @@ To package a Helm chart and add it to a release:
 
       The Helm chart, including any dependencies, is packaged and copied to your current directory in a `.tgz` file. The file uses the naming convention: `CHART_NAME-VERSION.tgz`. For example, `postgresql-8.1.2.tgz`.
 
-Next, create and promote a release using one of the following methods:
+## Add the Helm Chart to a Release      
+
+After you create the Helm chart `.tgz` package, you can create and promote a release with the Helm chart using one of the following methods:
 
 - [Using the Vendor Portal](#ui)
 
 - [Using the CLI](#cli)
 
-## Using the Vendor Portal {#ui}
+### Using the Vendor Portal {#ui}
 
-When you create a release in the vendor portal, Replicated automatically creates the HelmChart custom resource manifest file for the Helm chart when you drag and drop your Helm chart `.tgz` file from your local directory to the file tree in the vendor portal.
+To create and promote a release in the vendor portal:
 
-<CreateReleaseUi/>
+1. From the **Applications** dropdown list, select **Create an app** or select an existing application to update.
 
-## Using the CLI {#cli}
+1. Click **Releases** on the left menu, and click **Create release**.
 
-### Prerequisites
+  ![Create Release](/images/release-create-new.png)
+
+  [View a larger image](/images/release-create-new.png)
+
+1. Drag and drop the Helm chart `.tgz` package that you created as part of [Package a Helm Chart](#package-chart), into the file directory in the YAML editor. 
+
+1. In the **Select Helm Install Method** dialog that displays, select the method that the app manager uses to install the Helm chart. Replicated recommends that you select the Native Helm installation method.
+
+   ![Select helm install method dialog](/images/helm-install-method-vendor-portal.png)
+
+   For more information about the limitations of each method, see [Native Helm and Replicated KOTS Limitations](helm-overview#replicated-helm-limitations).
+
+   After you select the installation method, the vendor portal automatically creates a unique HelmChart custom resource manifest file for each Helm chart in the release.
+
+1. Edit the files in the release as needed. You can also drag and drop additional application manifest files or click the plus icon to add new, untitled files.
+
+1. Click **Save release**. This saves a draft that you can continue to edit until you promote it.
+
+  :::note
+  To edit a draft release, click **Edit YAML** from the Releases page.
+  :::
+
+1. Click **Promote**. In the Promote Release dialog that opens, edit the fields:
+
+    <table>
+      <tr>
+        <th width="30%">Field</th>
+        <th width="70%">Description</th>
+      </tr>
+      <tr>
+        <td>Channel</td>
+        <td>Select the channel where you want to promote the release. The defaults are Stable, Beta, and Unstable. If you created custom channels, they are listed here also.</td>
+      </tr>
+      <tr>
+        <td>Version label</td>
+        <td><p>Enter a version label.</p><p>If semantic versioning is enabled for the channel, you must use a valid semantic version using the X.Y.Z format, where X is the major version, Y is the minor version, and Z is the patch version. These must be non-negative integers and cannot contain leading zeroes. Each element must increase numerically.</p><p>For more information, see <a href="releases-about#enable-semantic-versioning">Enable Semantic Versioning</a> in <i>About Releases</i> and <a href="https://semver.org/">Semantic Versioning</a> on the Semantic Versioning website.</p></td>
+      </tr>
+      <tr>
+        <td>Requirements</td>
+        <td><p>Select <strong>Prevent this release from being skipped during upgrades</strong> to mark the release as required. When a release is required, the admin console requires users to upgrade to that version before they can upgrade to a later version.</p><p>For example, if you select <strong>Prevent this release from being skipped during upgrades</strong> for release v2.0.0, users with v1.0.0 deployed must upgrade to v2.0.0 before they can upgrade to a version later than v2.0.0, such as v2.1.0.</p><p>Required releases are supported in the app manager v1.68.0 and later.</p><p>After users deploy a required version, they can no longer redeploy (roll back to) versions earlier than the required version, even if <code>allowRollback</code> is <code>true</code> in the Application custom resource manifest. See <a href="../reference/custom-resource-application#allowrollback">allowRollback</a> in the <i>Application</i> custom resource topic.</p></td>
+      </tr>
+      <tr>
+        <td>Release notes</td>
+        <td>Add detailed release notes. The release notes support markdown and are shown to your customer.</td>
+      </tr>
+    </table>
+
+1. Click **Promote**.
+
+  The release appears in an **Active** state on the Releases page.
+
+### Using the CLI {#cli}
+
+This section describes the prerequisites and steps for creating and promoting a release using the replicated CLI.
+
+#### Prerequisites
 
 <PrereqsCli/>
 
-### Create and Promote a Release
+#### Create and Promote a Release
 
 This procedure shows how to create a new release using local application files and the replicated CLI.
 
