@@ -27,7 +27,6 @@ metadata:
   annotations:
     "kots.io/when": '{{repl ConfigOptionEquals "postgres_type" "embedded_postgres" }}'
 spec: 
-  csiSnapshotTimeout: 10m
   includedNamespaces:
   - '*'
   excludedNamespaces:
@@ -64,19 +63,6 @@ spec:
               onError: Fail
               timeout: 10s
         post:
-status:
-  version: 1
-  expiration: null
-  phase: ""
-  validationErrors: null
-  startTimestamp: 2023-02-29T15:58:43Z
-  completionTimestamp: 2023-02-29T15:58:56Z
-  volumeSnapshotsAttempted: 2
-  volumeSnapshotsCompleted: 1
-  warnings: 2
-  errors: 0
-  failureReason: ""
-```
 
 ## Fields
 
