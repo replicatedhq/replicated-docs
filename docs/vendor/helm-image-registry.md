@@ -10,7 +10,7 @@ Allowing users to install with the helm CLI is an Beta feature. To enable this f
 
 Using an external private image registry or the Replicated private registry for your application requires an image pull secret for access. The unique license for each customer can grant access to the Replicated private registry, or grant proxy access to an external registry without exposing registry credentials to the customer. When the app manager installs an application, Replicated automatically uses the customer license to create and inject an image pull secret.
 
-In addition to the image pull secret, using an external private registry also requires that you add credentials for the registry to the vendor portal so that Replicated can access the image through the Replicated proxy service. For kots CLI and Kubernetes installer installations, Replicated automatically patches the image name to reference the location of the image on the proxy service at `proxy.replicated.com`. For more information about this process, see [How the App Manager Accesses Private Images](packaging-private-images#how-the-app-manager-accesses-private-images) in _Connecting to an Image Registry_.
+In addition to the image pull secret, using an external private registry also requires that you add credentials for the registry to the vendor portal so that Replicated can access the image through the Replicated proxy service. For kots CLI and Kubernetes installer installations, Replicated automatically patches the image name to reference the location of the image on the proxy service at `proxy.replicated.com`. For more information about this process, see [About Using an External Registry](/vendor/private-images-about).
 
 For installations that use the helm CLI rather than the app manager, Replicated cannot automatically inject an image pull secret nor patch the image name to reference the proxy service in the Helm chart for your application.
 
@@ -107,7 +107,7 @@ To deliver customer-specific image pull secrets for a private registry:
           name: http
     ```
 
-1. Package your Helm chart and add the packaged chart to a release in the Replicated vendor portal. For more information, see [Create Releases with Helm Charts](helm-release#add-a-helm-chart-to-a-release).
+1. Package your Helm chart and add the packaged chart to a release in the Replicated vendor portal. For more information, see [Creating Releases with Helm Charts](helm-release).
    :::note
    If you are using an external private registry, ensure that you also complete the steps in [Update the Image Name to Reference the Proxy Service](#proxy-service) below. Otherwise, Replicated will not be able to access your private image through the proxy service.
    :::
@@ -172,7 +172,7 @@ To update the image name to reference the proxy service:
 
    The example above shows how to reference both the `apiImageRepository` and `apiImageTag` fields from the previous example.
 
-1. Package your Helm chart and add the packaged chart to a release in the Replicated vendor portal. For more information, see [Create Releases with Helm Charts](helm-release#add-a-helm-chart-to-a-release).
+1. Package your Helm chart and add the packaged chart to a release in the Replicated vendor portal. For more information, see [Creating Releases with Helm Charts](helm-release).
 
 1. In the release, create or open the HelmChart custom resource manifest file. A HelmChart custom resource manifest file has `kind: HelmChart` and `apiVersion: kots.io/v1beta1`.
 
@@ -187,7 +187,7 @@ To update the image name to reference the proxy service:
      ...
    ```
 
-   The Replicated HelmChart custom resource allows Replicated to process and deploy Helm charts. For more information, see [HelmChart](/reference/custom-resource-helmchart) in the _References_ section.
+   The Replicated HelmChart custom resource allows Replicated to process and deploy Helm charts. For more information, see [HelmChart](/reference/custom-resource-helmchart) in _Custom Resources_.
 
 1. Under the HelmChart custom resource `values` field, create a new field and add a static key value pair with the location of the private image on the external registry:
 
