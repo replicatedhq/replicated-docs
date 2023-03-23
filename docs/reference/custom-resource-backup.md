@@ -16,16 +16,15 @@ Partial backups (application only) are supported but not recommended. For partia
 
 The following example shows the supported fields for a full backup.
 
-The optional `annotations` field shows an example of a conditional resource. In this case, the volume for postgres will be backed up when the enterprise user selects the postgres config value for a Kubernetes installer-created cluster (embedded cluster).
+The `annotations` field shows that `pvc-volume` is the only volume included in the backup.
 
 ```yaml
 apiVersion: velero.io/v1
 kind: Backup
 metadata:
   name: backup
-  namespace: velero
   annotations:
-    "kots.io/when": '{{repl ConfigOptionEquals "postgres_type" "embedded_postgres" }}'
+    backup.velero.io/backup-volumes: pvc-volume
 spec: 
   includedNamespaces:
   - '*'
@@ -34,10 +33,7 @@ spec:
   orderedResources:
     pods: mysql/mysql-cluster-replica-0,mysql/mysql-cluster-replica-1
     persistentvolumes: pvc-12345,pvc-67890
-  includeClusterResources: true
-  storageLocation: my-primary
   ttl: 720h
-  defaultVolumesToFsBackup: true
   hooks:
     resources:
       -
@@ -87,20 +83,8 @@ The following fields are supported for full backups:
     <td>(Optional) Specifies the order of the resources to collect during the backup process. This is a map that uses a key as the plural resource. Each resource name has the format NAMESPACE/OBJECTNAME. The object names are a comma delimited list. For cluster resources, use OBJECTNAME only.</td>
   </tr>
   <tr>
-    <td><code>includeClusterResources</code></td>
-    <td>Specifies whether to include cluster-scoped resources. By default, the value is hardcoded to <code>true</code> and cannot be reconfigured for full backups.</td>
-  </tr>
-  <tr>
-    <td><code>storageLocations</code></td>
-    <td>Specifies the location to store the logs and tarball.</td>
-  </tr>
-  <tr>
     <td><code>ttl</code></td>
     <td> Specifies the amount of time before this backup is eligible for garbage collection. <b>Default:</b><code>720h</code> (equivalent to 30 days). This value is configurable only by the customer.</td>
-  </tr>
-  <tr>
-    <td><code>defaultVolumesToFsBackup</code></td>
-    <td>Specifies whether to use pod volume file system backup for all volumes by default.</td>
   </tr>
   <tr>
     <td><code>hooks</code></td>
