@@ -150,19 +150,15 @@ The following fields are supported for full backups:
   </tr>
   <tr>
     <td><code>command</code></td>
-    <td>Specifies the command to execute. The format is an array. </td>
+    <td>Specifies the command to execute. The format is an array.</td>
   </tr>
   <tr>
     <td><code>onError</code></td>
-    <td>(Optional) Specifies how to handle an error that might occur when executing the command. <bold>Valid values:</bold> <code>Fail</code> and <code>Continue</code> <bold>Default:</bold> Fail</td>
+    <td>(Optional) Specifies how to handle an error that might occur when executing the command. Valid values: <code>Fail</code> and <code>Continue</code> Default: Fail</td>
   </tr>
   <tr>
     <td><code>timeout</code></td>
-    <td>(Optional) Specifies how many seconds to wait for the command to finish executing before the action times out. <bold>Default:</bold> 30 seconds</td>
-  </tr>
-  <tr>
-    <td><code></code></td>
-    <td></td>
+    <td>(Optional) Specifies how many seconds to wait for the command to finish executing before the action times out. Default: 30 seconds</td>
   </tr>
 </table>
 
