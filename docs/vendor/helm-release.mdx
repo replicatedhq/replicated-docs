@@ -101,7 +101,7 @@ To package a Helm chart and add it to a release:
 
 ## Add the Helm Chart to a Release      
 
-After you create the Helm chart `.tgz` package, you can create and promote a release with the Helm chart using one of the following methods:
+After you create the Helm chart `.tgz` package, you can create and promote a release with the Helm chart package using one of the following methods:
 
 - [Using the Vendor Portal](#ui)
 - [Using the CLI](#cli)
@@ -126,11 +126,9 @@ To create and promote a release in the vendor portal:
 
    For more information about the limitations of each method, see [Native Helm and Replicated KOTS Limitations](helm-overview#replicated-helm-limitations).
 
-   After you select the installation method, the vendor portal automatically creates a HelmChart custom resource manifest file for the Helm chart in the release.
+   After you select the installation method, the vendor portal automatically creates a HelmChart custom resource manifest file for the Helm chart in the release. For information about the HelmChart custom resource, see [HelmChart](/reference/custom-resource-helmchart) in _Reference_.
 
 1. Edit the files in the release as needed. You can also drag and drop additional application manifest files or click the plus icon to add new, untitled files.
-
-   For information about how to edit the HelmChart custom resource manifest file, see [HelmChart](/reference/custom-resource-helmchart) in _Reference_.
 
 1. Click **Save release**. This saves a draft that you can continue to edit until you promote it.
 
