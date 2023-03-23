@@ -88,7 +88,7 @@ The following fields are supported for full backups:
   </tr>
   <tr>
     <td><code>includeClusterResources</code></td>
-    <td>Specifies whether to include cluster-scoped resources. By default, the value is set to <code>true</code> and cannot be reconfigured for full backups.</td>
+    <td>Specifies whether to include cluster-scoped resources. By default, the value is hardcoded to <code>true</code> and cannot be reconfigured for full backups.</td>
   </tr>
   <tr>
     <td><code>storageLocations</code></td>
@@ -96,15 +96,19 @@ The following fields are supported for full backups:
   </tr>
   <tr>
     <td><code>ttl</code></td>
-    <td> Specifies the amount of time before this backup is eligible for garbage collection. By default, this is set to <code>720h</code> (which is one month) and is configurable only by the customer.</td>
+    <td> Specifies the amount of time before this backup is eligible for garbage collection. <b>Default:</b><code>720h</code> (equivalent to 30 days). This value is configurable only by the customer.</td>
   </tr>
   <tr>
     <td><code>defaultVolumesToFsBackup</code></td>
-    <td>Specifies whether pod volume file system backup is used for all volumes by default.</td>
+    <td>Specifies whether to use pod volume file system backup for all volumes by default.</td>
   </tr>
   <tr>
     <td><code>hooks</code></td>
-    <td>(Optional) Specifies the actions to perform at different times during a backup. The only hook supported is executing a command in a container in a pod using the <code>pod exec</code>. Support <code>pre</code> and <code>post</code> hooks.</td>
+    <td>(Optional) Specifies the actions to perform at different times during a backup. The only supported hook is executing a command in a container in a pod (uses the pod exec API). Supports <code>pre</code> and <code>post</code> hooks.</td>
+  </tr>
+  <tr>
+    <td><code>resources</code></td>
+    <td>(Optional) Specifies an array of hooks that are applied to specific resources.</td>
   </tr>
   <tr>
     <td><code>name</code></td>
@@ -112,7 +116,7 @@ The following fields are supported for full backups:
   </tr>
   <tr>
     <td><code>includedNamespaces</code></td>
-    <td>(Optional) Specifies an array of namespaces to which this hook applies. If unspecified, the hook is applied to all namespaces.</td>
+    <td>(Optional) Specifies an array of namespaces that this hook applies to. If unspecified, the hook is applied to all namespaces.</td>
   </tr>
   <tr>
     <td><code>excludedNamespaces</code></td>
@@ -152,11 +156,11 @@ The following fields are supported for full backups:
   </tr>
   <tr>
     <td><code>onError</code></td>
-    <td>(Optional) Specifies how to handle an error that might occur when executing the command. <b>Valid values:</b> <code>Fail</code> and <code>Continue</code> <b>Default:</b> Fail</td>
+    <td>(Optional) Specifies how to handle an error that might occur when executing the command. <b>Valid values:</b> <code>Fail</code> and <code>Continue</code> <b>Default:</b> <code>Fail</code></td>
   </tr>
   <tr>
     <td><code>timeout</code></td>
-    <td>(Optional) Specifies how many seconds to wait for the command to finish executing before the action times out. <b>Default:</b> 30 seconds</td>
+    <td>(Optional) Specifies how many seconds to wait for the command to finish executing before the action times out. <b>Default:</b><code>30s</code></td>
   </tr>
 </table>
 
