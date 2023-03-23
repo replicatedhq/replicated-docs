@@ -1,5 +1,5 @@
 import RepositoryCicdNote from "../partials/releases/_repository-cicd-note.mdx"
-import CreateReleaseUi from "../partials/releases/_create-release-ui.mdx"
+import PromoteReleaseUi from "../partials/releases/_promote-release-ui.mdx"
 import PrereqsCli from "../partials/releases/_prereqs-cli.mdx"
 
 # Creating Releases with Standard Manifest Files
@@ -10,7 +10,35 @@ This topic describes how to use the Replicated vendor portal or the replicated C
 
 ## Using the Vendor Portal
 
-<CreateReleaseUi/>
+To create and promote a release in the vendor portal:
+
+1. From the **Applications** dropdown list, select **Create an app** or select an existing application to update.
+
+1. Click **Releases** on the left menu, and click **Create release**.
+
+  ![Create Release](/images/release-create-new.png)
+
+  [View a larger image](/images/release-create-new.png)
+
+1. For the first release of an application, drag and drop your application files into the file directory in the YAML editor.
+
+  If you are editing a draft or an existing non-promoted release, the files appear in the YAML editor. You can drag and drop new manifest files as needed.
+
+  You can also click the plus icon to add a new, untitled YAML file.
+
+1. Edit the YAML files as needed, and click **Save release**. This saves a draft that you can continue to edit until you promote it.
+   
+   :::note
+   To edit a draft release, click **Edit YAML** from the Releases page.
+   :::
+
+1. Click **Promote**. In the Promote Release dialog that opens, edit the fields:
+
+   <PromoteReleaseUi/>
+
+1. Click **Promote**.
+
+  The release appears in an **Active** state on the Releases page.
 
 ## Using the CLI
 

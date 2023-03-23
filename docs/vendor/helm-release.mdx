@@ -1,5 +1,5 @@
 import RepositoryCicdNote from "../partials/releases/_repository-cicd-note.mdx"
-import CreateReleaseUi from "../partials/releases/_create-release-ui.mdx"
+import PromoteReleaseUi from "../partials/releases/_promote-release-ui.mdx"
 import PrereqsCli from "../partials/releases/_prereqs-cli.mdx"
 
 
@@ -51,7 +51,7 @@ For example, the following screenshot shows how a Postgres Helm chart displays i
 
 ![Postgres Helm Chart](/images/postgres-helm-chart.png)
 
-## Package a Helm Chart
+## Create the Helm Chart Package {#package-chart}
 
 To include a Helm chart in a release, first package the Helm chart, including any of its dependencies, as a `.tgz` file. Then, add the `.tgz` Helm chart package to your release.
 
@@ -99,25 +99,60 @@ To package a Helm chart and add it to a release:
 
       The Helm chart, including any dependencies, is packaged and copied to your current directory in a `.tgz` file. The file uses the naming convention: `CHART_NAME-VERSION.tgz`. For example, `postgresql-8.1.2.tgz`.
 
-Next, create and promote a release using one of the following methods:
+## Add the Helm Chart to a Release      
+
+After you create the Helm chart `.tgz` package, you can create and promote a release with the Helm chart package using one of the following methods:
 
 - [Using the Vendor Portal](#ui)
-
 - [Using the CLI](#cli)
 
-## Using the Vendor Portal {#ui}
+### Using the Vendor Portal {#ui}
 
-When you create a release in the vendor portal, Replicated automatically creates the HelmChart custom resource manifest file for the Helm chart when you drag and drop your Helm chart `.tgz` file from your local directory to the file tree in the vendor portal.
+To create and promote a release in the vendor portal:
 
-<CreateReleaseUi/>
+1. From the **Applications** dropdown list, select **Create an app** or select an existing application to update.
 
-## Using the CLI {#cli}
+1. Click **Releases** on the left menu, and click **Create release**.
 
-### Prerequisites
+  ![Create Release](/images/release-create-new.png)
+
+  [View a larger image](/images/release-create-new.png)
+
+1. Drag and drop the Helm chart `.tgz` package that you created as part of [Create the Helm Chart Package](#package-chart) into the file directory in the YAML editor. 
+
+1. In the **Select Helm Install Method** dialog that displays, select the method that the app manager uses to install the Helm chart. Replicated recommends that you select the Native Helm installation method.
+
+   ![Select helm install method dialog](/images/helm-install-method-vendor-portal.png)
+
+   For more information about the limitations of each method, see [Native Helm and Replicated KOTS Limitations](helm-overview#replicated-helm-limitations).
+
+   After you select the installation method, the vendor portal automatically creates a HelmChart custom resource manifest file for the Helm chart in the release. For information about the HelmChart custom resource, see [HelmChart](/reference/custom-resource-helmchart) in _Reference_.
+
+1. Edit the files in the release as needed. You can also drag and drop additional application manifest files or click the plus icon to add new, untitled files.
+
+1. Click **Save release**. This saves a draft that you can continue to edit until you promote it.
+
+  :::note
+  To edit a draft release, click **Edit YAML** from the Releases page.
+  :::
+
+1. Click **Promote**. In the Promote Release dialog that opens, edit the fields:
+
+   <PromoteReleaseUi/>
+
+1. Click **Promote**.
+
+  The release appears in an **Active** state on the Releases page.
+
+### Using the CLI {#cli}
+
+This section describes the prerequisites and steps for creating and promoting a release using the replicated CLI.
+
+#### Prerequisites
 
 <PrereqsCli/>
 
-### Create and Promote a Release
+#### Create and Promote a Release
 
 This procedure shows how to create a new release using local application files and the replicated CLI.
 
