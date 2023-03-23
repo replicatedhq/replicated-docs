@@ -160,7 +160,7 @@ The following fields are supported for full backups:
   </tr>
   <tr>
     <td><code>timeout</code></td>
-    <td>(Optional) Specifies how many seconds to wait for the command to finish executing before the action times out. <b>Default:</b><code>30s</code></td>
+    <td>(Optional) Specifies how many seconds to wait for the command to finish executing before the action times out. <b>Default:</b> <code>30s</code></td>
   </tr>
 </table>
 
