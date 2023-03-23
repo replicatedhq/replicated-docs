@@ -1,6 +1,3 @@
-import DockerCompatibility from "../partials/image-registry/_docker-compatibility.mdx"
-
-
 # Using Private Registries
 
 This topic describes how to configure private registry settings in the Replicated admin console.
