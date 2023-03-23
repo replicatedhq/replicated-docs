@@ -18,6 +18,8 @@ The following example shows the supported fields for a full backup.
 
 The optional `annotations` field shows an example of a conditional resource. In this case, the volume for postgres will be backed up when the enterprise user selects the postgres config value for a Kubernetes installer-created cluster (embedded cluster).
 
+The use of hooks is optional. If you use `pre` or `post` hooks, some of the fields in the arrays are optional.
+
 ```yaml
 apiVersion: velero.io/v1
 kind: Backup
@@ -63,6 +65,7 @@ spec:
               onError: Fail
               timeout: 10s
         post:
+```
 
 ## Fields
 
@@ -103,7 +106,7 @@ The following fields are supported for full backups:
   </tr>
   <tr>
     <td><code>hooks</code></td>
-    <td>(Optional) Specifies the actions to perform at different times during a backup. The only hook supported is executing a command in a container in a pod using the pod exec API.</td>
+    <td>(Optional) Specifies the actions to perform at different times during a backup. The only hook supported is executing a command in a container in a pod using the <code>pod exec</code>. Support <code>pre</code> and <code>post</code> hooks.</td>
   </tr>
   <tr>
     <td><code>name</code></td>
@@ -116,6 +119,46 @@ The following fields are supported for full backups:
   <tr>
     <td><code>excludedNamespaces</code></td>
     <td>(Optional) Specifies an array of namespaces to which this hook does not apply.</td>
+  </tr>
+  <tr>
+    <td><code>includedResources</code></td>
+    <td>Specifies an array of pod resources to which this hook applies.</td>
+  </tr>
+  <tr>
+    <td><code>excludedResources</code></td>
+    <td>(Optional) Specifies an array of resources to which this hook does not apply.</td>
+  </tr>
+  <tr>
+    <td><code>labelSelector</code></td>
+    <td>(Optional) Specifies that this hook only applies to objects that match this label selector.</td>
+  </tr>
+  <tr>
+    <td><code>pre</code></td>
+    <td>Specifies an array of `exec` hooks to run before executing custom actions.</td>
+  </tr>
+  <tr>
+    <td><code>post</code></td>
+    <td>Specifies an array of `exec` hooks to run after executing custom actions.</td>
+  </tr>
+  <tr>
+    <td><code>exec</code></td>
+    <td>Specifies the type of the hook. <code>exec</code> is the only supported type.</td>
+  </tr>
+  <tr>
+    <td><code>container</code></td>
+    <td>(Optional) Specifies the name of the container where the specified command will be executed. If unspecified, the first container in the pod is used.</td>
+  </tr>
+  <tr>
+    <td><code>command</code></td>
+    <td>Specifies the command to execute. The format is an array. </td>
+  </tr>
+  <tr>
+    <td><code>onError</code></td>
+    <td>(Optional) Specifies how to handle an error that might occur when executing the command. <bold>Valid values:</bold> <code>Fail</code> and <code>Continue</code> <bold>Default:</bold> Fail</td>
+  </tr>
+  <tr>
+    <td><code>timeout</code></td>
+    <td>(Optional) Specifies how many seconds to wait for the command to finish executing before the action times out. <bold>Default:</bold> 30 seconds</td>
   </tr>
   <tr>
     <td><code></code></td>
