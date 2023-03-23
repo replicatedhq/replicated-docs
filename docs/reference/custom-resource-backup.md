@@ -18,8 +18,6 @@ The following example shows the supported fields for a full backup.
 
 The optional `annotations` field shows an example of a conditional resource. In this case, the volume for postgres will be backed up when the enterprise user selects the postgres config value for a Kubernetes installer-created cluster (embedded cluster).
 
-The use of hooks is optional. If you use `pre` or `post` hooks, some of the fields in the arrays are optional.
-
 ```yaml
 apiVersion: velero.io/v1
 kind: Backup
@@ -98,7 +96,7 @@ The following fields are supported for full backups:
   </tr>
   <tr>
     <td><code>ttl</code></td>
-    <td> SPecifies the amount of time before this backup is eligible for garbage collection. By default, this is set to <code>720h</code> (which is one month) and is configurable only by the customer.</td>
+    <td> Specifies the amount of time before this backup is eligible for garbage collection. By default, this is set to <code>720h</code> (which is one month) and is configurable only by the customer.</td>
   </tr>
   <tr>
     <td><code>defaultVolumesToFsBackup</code></td>
@@ -134,11 +132,11 @@ The following fields are supported for full backups:
   </tr>
   <tr>
     <td><code>pre</code></td>
-    <td>Specifies an array of `exec` hooks to run before executing custom actions.</td>
+    <td>Specifies an array of <code>exec</code> hooks to run before executing custom actions.</td>
   </tr>
   <tr>
     <td><code>post</code></td>
-    <td>Specifies an array of `exec` hooks to run after executing custom actions.</td>
+    <td>Specifies an array of <code>exec</code> hooks to run after executing custom actions.</td>
   </tr>
   <tr>
     <td><code>exec</code></td>
@@ -154,15 +152,15 @@ The following fields are supported for full backups:
   </tr>
   <tr>
     <td><code>onError</code></td>
-    <td>(Optional) Specifies how to handle an error that might occur when executing the command. Valid values: <code>Fail</code> and <code>Continue</code> Default: Fail</td>
+    <td>(Optional) Specifies how to handle an error that might occur when executing the command. <b>Valid values:</b> <code>Fail</code> and <code>Continue</code> <b>Default:</b> Fail</td>
   </tr>
   <tr>
     <td><code>timeout</code></td>
-    <td>(Optional) Specifies how many seconds to wait for the command to finish executing before the action times out. Default: 30 seconds</td>
+    <td>(Optional) Specifies how many seconds to wait for the command to finish executing before the action times out. <b>Default:</b> 30 seconds</td>
   </tr>
 </table>
 
-## Limitations for Full Backups {#limitations}
+## Limitations {#limitations}
 
 The following top-level fields, or children of `spec`, are not supported in full backups. Therefore, these fields are not shown in the preceding example specification:
 
