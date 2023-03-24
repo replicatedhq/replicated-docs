@@ -18,13 +18,15 @@ If you use the Replicated private registry or proxy service, you can configure c
 
 ## Supported Registries
 
-The app manager is tested for compatibility with the following external private registries:
+Replicated recommends that application vendors use one the following external private registries, which have been tested for compatibility with the app manager:
 
 * Amazon Elastic Container Registry (ECR)
 * DockerHub
 * GitHub Container Registry
 * Google Container Registry
 * Quay.io
+
+You can also configure access to most other external registries if the registry conforms to the Open Container Initiative (OCI) standard. 
 
 ## Configure Access to an External Registry
 
