@@ -73,8 +73,7 @@ To configure access to private images in an external registry using the replicat
 
   ```bash
   replicated regsitry add dockerhub --username USERNAME \
-    --password PASSWORD \
-    --password-stdin
+    --password PASSWORD
   ```
   Where:
     * `USERNAME` is the username for DockerHub credentials with access to the registry.
