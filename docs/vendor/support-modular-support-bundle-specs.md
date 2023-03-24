@@ -87,7 +87,7 @@ For more information about generating merged support bundles, see [Generate a Me
 
 ### Enable Discoverability of Specifications {#discoverable}
 
-To make support bundle specifications discoverable in a cluster, you must wrap them in a Secret or ConfigMap. For example, to use a Secret, you add a specification as `Kind: Secret` and include the label `troubleshoot.io/kind: supportbundle` and a `data` key matching `support-bundle-spec`. For more information about adding Secrets, see [Discover Cluster Specs](https://troubleshoot.sh/docs/support-bundle/discover-cluster-specs/) in the Troubleshoot documentation.
+To make support bundle specifications discoverable in a cluster, you must wrap them in a Secret or ConfigMap. For example, to use a Secret, you add a specification as `Kind: Secret` and include the label `troubleshoot.sh/kind: supportbundle` and a `data` key matching `support-bundle-spec`. For more information about adding Secrets, see [Discover Cluster Specs](https://troubleshoot.sh/docs/support-bundle/discover-cluster-specs/) in the Troubleshoot documentation.
 
 The following example shows using an online collector and analyzers specification. For an example Secret that shows the collector and analyzer specifications in the manifest file itself, see [`kURL/addons/flannel/template/yaml/troubleshoot.yaml`](https://github.com/adamancini/kURL/blob/main/addons/flannel/template/base/yaml/troubleshoot.yaml) in GitHub.
 
@@ -97,7 +97,7 @@ kind: Secret
 metadata:
   name: flannel-troubleshoot-spec
   labels:
-    troubleshoot.io/kind: supportbundle
+    troubleshoot.sh/kind: supportbundle
 stringData:
   support-bundle-spec: |
     apiVersion: troubleshoot.sh/v1beta2
@@ -116,10 +116,10 @@ Create the resource from your manifest:
 kubectl apply -f kURL/addons/flannel/template/yaml/troubleshoot.yaml
 # secret default/flannel-troubleshoot-spec created
 ```
-Then you can collect a merged support bundle for some or all of the specifications in the cluster. To generate an aggregate bundle, first use `kubectl get secrets` to get a list of specifications that match the label and key in the Secret specification. 
+Then you can collect a merged support bundle for some or all of the specifications in the cluster. To generate an aggregate bundle, first use `kubectl get secrets` to get a list of specifications that match the label and key in the Secret specification.
 
 ```bash
-kubectl get secrets --all-namespaces -l troubleshoot.io/kind=support-bundle-spec
+kubectl get secrets --all-namespaces -l troubleshoot.sh/kind=support-bundle-spec
 ```
   **Example output:**
 
@@ -135,7 +135,7 @@ Then generate a merged support bundle for any of the specifications listed. The 
 kubectl support-bundle secret/default/flannel-troubleshoot-spec secret/default/velero-troubleshoot-spec
 ```
 
-To automatically discover and generate a bundle for all of the specifications in a given namespace or cluster, you can use the `troubleshoot.io/kind` label with the `--load-cluster-specs` flag. This flag can also be combined with input for a URL. For more information about using this flag, see [Generate a Merged Support Bundle](/enterprise/troubleshooting-an-app/#generate-a-merged-support-bundle).
+To automatically discover and generate a bundle for all of the specifications in a given namespace or cluster, you can use the `troubleshoot.sh/kind` label with the `--load-cluster-specs` flag. This flag can also be combined with input for a URL. For more information about using this flag, see [Generate a Merged Support Bundle](/enterprise/troubleshooting-an-app/#generate-a-merged-support-bundle).
 
 The Troubleshoot analysis screen in the admin console shows the results of all of the analyzers defined in your chosen manifests, and the contents are available in a single bundle.
 
