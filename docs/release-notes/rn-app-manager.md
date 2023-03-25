@@ -18,10 +18,10 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 * Upgrades the schemahero image tag to v0.14.0 and replicated/local-volume-provider image to v0.5.2 to resolve CVE-2022-41723 with high severity.
 
 ### Bug Fixes {#bug-fixes-1-96-2}
-* fix a bug where kurl installation hangs forever with spinner with kotsadm addons and with more than one node.
-* kots/web: increase time to display slow loading indicator to 2 minutes.
-* kots/web: removed hard coded reference to Nomad on support bundle view for community license users.
-* fix a bug where helm release secret was created in kotsadm namespace instead helm release namespace.
+* Fixes a bug where multi-node embedded cluster installations hang forever with the KOTS add-on.
+* Increases to two minutes the time to display the slow loading indicator so that the admin console doesn't keep reloading when the internet connection is slow.
+* Removes hardcoded application name on the Troubleshoot page when a community license is used.
+* Fixes a bug where the Helm release secret was created in the kotsadm namespace instead of the Helm release namespace.
 
 ## 1.96.1
 
