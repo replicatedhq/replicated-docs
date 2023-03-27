@@ -70,6 +70,22 @@ For more information about using Helm dependencies, see [Chart Dependencies](htt
 
 ## Hooks
 
-Helm hooks enable more control over when Helm installs the resources in your Helm charts. Replicated supports using some Helm hooks with native Helm charts. For information about using hooks with native Helm charts in Replicated, see [Helm hooks and weights](helm-installing-native-helm#helm-hooks-and-weights) in _Installing with Native Helm_.
+Helm hooks enable more control over when Helm installs the resources in your Helm charts. This is useful if you want to bundle actions as part of a release. For example, you can build in a database backup as part of the upgrade process while ensuring that the backup occurs prior to upgrading the rest of the resources.
+
+Replicated supports using some Helm hooks with native Helm charts. For information about using hooks with native Helm charts in Replicated, see [Helm hooks and weights](helm-installing-native-helm#helm-hooks-and-weights) in _Installing with Native Helm_.
 
 If you use hooks in your native Helm charts, you can use the `weight` property to further manage the installation order of resources. For example, if you include a pre-install hook in Helm chart A that requires a resource from Helm chart B, you can add a lower `weight` to chart B to ensure that the app manager directs Helm to install chart B before chart A.
+
+The following hooks are supported:
+* pre-install - executes after resources are rendered but before any resources are installed.
+* post-install - executes after resources are installed.
+* pre-upgrade - executes after resources are rendered but before any resources are upgraded.
+* post-upgrade - executes after resources are upgraded.
+
+The following hooks can be used but no actions will be taken by Replicated:
+* pre-rollback - executes after resources are rendered but before any resources are rolled back.
+* post-rollback - executes after resources are rolled back.
+* pre-delete - executes before any resources are deleted.
+* post-delete - executes after resources are deleted.
+
+For more information about Helm hooks and weights, see the [Helm docs](https://helm.sh/docs/topics/charts_hooks/).
