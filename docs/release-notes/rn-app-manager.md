@@ -11,7 +11,7 @@ Released on March 24, 2023
 Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 
 ### Improvements {#improvements-1-96-2}
-* Updates the kotsadm/dex image to v2.36.0 to resolve CVE-2022-4450, CVE-2023-0215, CVE-2023-0286, CVE-2022-41721, CVE-2022-41723, and CVE-2022-32149 with high severity and CVE-2022-4304 and CVE-2022-41717 with medium severity.
+* Updates the kotsadm/dex image to v2.36.0 to resolve CVE-2022-4450, CVE-2023-0215, CVE-2023-0286, CVE-2022-41721, CVE-2022-41723, and CVE-2022-32149 with high severity, and CVE-2022-4304 and CVE-2022-41717 with medium severity.
 * Updates the MinIO image to RELEASE.2023-03-13T19-46-17Z to resolve CVE-2023-23916 with medium severity.
 * Updates the kubectl binary in the kotsadm image to resolve CVE-2022-41723 with high severity and CVE-2022-41717 with medium severity.
 * Updates the golang.org/x/net module in the kurl-proxy to resolve CVE-2022-41723 with high severity.
@@ -21,7 +21,7 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 * Fixes a bug where multi-node embedded cluster installations hang indefinitely with the KOTS add-on.
 * Increase the time for displaying the slow loading indicator to two minutes to prevent the admin console from continuously reloading when the internet connection is slow.
 * Removes hardcoded application name on the Troubleshoot page when a community license is used.
-* Fixes a [known issue](/release-notes/rn-app-manager#known-issues-1-95-0) that was introduced in [v1.95.0](/release-notes/rn-app-manager#1950) that causes application upgrades to fail for Helm charts that are deployed using the [native Helm installation](/reference/custom-resource-helmchart#usehelminstall) method.
+* Fixes a known issue that was introduced in v1.95.0 that causes application upgrades to fail for Helm charts that are deployed using the native Helm installation method. See the [known issue](/release-notes/rn-app-manager#known-issues-1-95-0) in the v1.95.0 release notes, and see [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) in the _HelmChart_ reference.
 
 ## 1.96.1
 
