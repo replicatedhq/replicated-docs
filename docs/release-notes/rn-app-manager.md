@@ -18,8 +18,8 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 * Upgrades the schemahero image tag to v0.14.0 and replicated/local-volume-provider image to v0.5.2 to resolve CVE-2022-41723 with high severity.
 
 ### Bug Fixes {#bug-fixes-1-96-2}
-* Fixes a bug where multi-node embedded cluster installations hang forever with the KOTS add-on.
-* Increases to two minutes the time to display the slow loading indicator so that the admin console doesn't keep reloading when the internet connection is slow.
+* Fixes a bug where multi-node embedded cluster installations hang indefinitely with the KOTS add-on.
+* Increase the time for displaying the slow loading indicator to two minutes to prevent the admin console from continuously reloading when the internet connection is slow.
 * Removes hardcoded application name on the Troubleshoot page when a community license is used.
 * Fixes a [known issue](/release-notes/rn-app-manager#known-issues-1-95-0) that was introduced in [v1.95.0](/release-notes/rn-app-manager#1950) that causes application upgrades to fail for Helm charts that are deployed using the [native Helm installation](/reference/custom-resource-helmchart#usehelminstall) method.
 
@@ -27,7 +27,7 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 
 :::important
 The app manager v1.96.1 has a known issue that causes application upgrades to fail for Helm charts that are deployed using the native Helm installation method.
-See [Known Issue](#known-issues-1-95-0) in _1.95.0_ below.
+ This issue is resolved in the app manager v1.96.2. See [Known Issue](#known-issues-1-95-0) in _1.95.0_ below.
 :::
 
 Released on March 16, 2023
@@ -43,7 +43,7 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 
 :::important
 The app manager v1.96.0 has a known issue that causes application upgrades to fail for Helm charts that are deployed using the native Helm installation method.
-See [Known Issue](#known-issues-1-95-0) in _1.95.0_ below.
+This issue is resolved in the app manager v1.96.2. See [Known Issue](#known-issues-1-95-0) in _1.95.0_ below.
 :::
 
 Released on March 9, 2023
@@ -68,7 +68,7 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 
 :::important
 The app manager v1.95.0 has a known issue that causes application upgrades to fail for Helm charts that are deployed using the native Helm installation method.
-See [Known Issue](#known-issues-1-95-0) below.
+This issue is resolved in the app manager v1.96.2. See [Known Issue](#known-issues-1-95-0) below.
 :::
 
 Released on March 1, 2023
