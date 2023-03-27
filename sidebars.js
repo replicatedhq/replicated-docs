@@ -180,8 +180,11 @@ const sidebars = {
       type: 'category',
       label: 'Private Registries',
       items: [
+        'vendor/private-images-about',
         'vendor/packaging-private-images',
+        'vendor/private-images-replicated',
         'vendor/helm-image-registry',
+        'vendor/private-images-tags-digests',
         'vendor/packaging-private-registry-security',
         'vendor/tutorial-ecr-private-images',
       ],
