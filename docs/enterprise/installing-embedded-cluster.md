@@ -1,3 +1,5 @@
+import ImageRegistryAirgap from "../partials/image-registry/_image-registry-airgap.mdx"
+
 # Installing with the Kubernetes Installer
 
 This topic explains how to install an application on a cluster provisioned by the Replicated Kubernetes installer.
@@ -16,6 +18,8 @@ Complete the following before you perform this task:
     - A TCP forwarding external load balancer.
     - Configured to distribute traffic to all healthy control plane nodes in its target list.
     - (Optional) Preconfigured by passing the `load-balancer-address=HOST:PORT` flag.
+    
+- <ImageRegistryAirgap/>
 
 ## Install in an Online Environment {#online}
 

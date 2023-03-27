@@ -10,9 +10,7 @@ Private registries can be used with online or air gap clusters. For embedded clu
 
 ## Prerequisites
 
-Your domain must support a Docker V2 protocol. For more information, see [Docker Image Registry Compatibility](installing-general-requirements#docker-compatibility) in _Requirements for Installation_.
-
-For information about air gap requirements, see [Requirements for Air Gap Image Registry](image-registry-airgap).
+Your domain must support a Docker V2 protocol. For more information, see [Private Registry Requirements](installing-general-requirements#private-registry-requirements) in _Requirements for Installation_.
 
 ## Configure Private Registry Settings
 

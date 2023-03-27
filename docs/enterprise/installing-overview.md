@@ -40,9 +40,9 @@ For more information about the role-based access control (RBAC) requirements for
 ### Deploy Images to Local Registries
 
 During install, the app manager can re-tag and push images to a local image registry.
-This is useful to enable CVE scans, image policy validation, and other pre-deployment rules.
+This is useful to enable CVE scans, image policy validation, and other pre-deployment rules. A private image registry is required for air gapped environments, and is optional for online environments.
 
-For information about using a local image registry, see [Requirements for Air Gap Image Registry](image-registry-airgap).
+For information about image registry requirements, see [Private Registry Requirements](installing-general-requirements#docker-compatibility).
 
 ### Use a GitOps or Internal Version Control Workflow
 

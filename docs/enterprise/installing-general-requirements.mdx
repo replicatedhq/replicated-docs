@@ -258,11 +258,13 @@ Because the Kubernetes installer is based on the open source kURL project, which
 - **Cloud Disk Performance**: For a list of cloud VM instance and disk combinations that are known to provide sufficient performance for etcd and pass the write latency preflight, see [Cloud Disk Performance](https://kurl.sh/docs/install-with-kurl/system-requirements#cloud-disk-performance) in the kURL documentation.
 
 
-## Docker Image Registry Compatibility {#docker-compatibility}
+## Private Registry Requirements
 
-Private registries are required for air gap installations. It is optional to use private registries for online installations.
+Private registries are required for air gap installations. During the air gap installation, you push the admin console container images to a private registry.
 
-The app manager has been tested for compatibility with the following registries:
+For online environments, it is optional to use private registries, which can be configured at any time after you install the application. For more information, see [Using Private Registries](image-registry-settings).
+
+Make sure that you use a compatible registry. The app manager has been tested for compatibility with the following registries:
 
 <DockerCompatibility/>
 

@@ -58,7 +58,7 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 
 ### New Features {#new-features-1-95-0}
 * Adds an `--undeploy` flag to the [kots remove](/reference/kots-cli-remove) command that allows you to completely undeploy the application and delete its resources from the cluster.
-* Adds support for Azure Container Registry (ACR). For a full list of supported registries, see [Docker Image Registry Compatibility](/enterprise/image-registry-airgap#docker-compatibility).
+* Adds support for Azure Container Registry (ACR). For a full list of supported registries, see [Private Registry Requirements](/enterprise//installing-general-requirements#private-registry-requirements).
 * Status informers now support DaemonSets. See [Resource Statuses](/vendor/admin-console-display-app-status#resource-statuses).
 * When using custom branding for the admin console, you can more easily change the color of groups of elements in the admin console (Beta).
 
