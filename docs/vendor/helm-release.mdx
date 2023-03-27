@@ -7,11 +7,10 @@ import PrereqsCli from "../partials/releases/_prereqs-cli.mdx"
 
 This topic describes how to add a Helm chart to a release in the Replicated vendor portal or the replicated CLI. Adding a Helm chart to a release is useful if you want to distribute a Kubernetes application with Replicated that is already packaged using Helm.
 
-This procedure applies for Replicated Helm installations and native Helm installations. For more information, see [Helm Overview](helm-overview).
-
 ## About Releasing with Helm Charts
 
-You can add one or more Helm charts to a release in the vendor portal by uploading each Helm chart as a `.tgz` package. This allows you to use Replicated to distribute applications that are packaged with Helm.
+You can add one or more Helm charts to a release in the vendor portal by uploading each Helm chart as a `.tgz` package. This allows you to use Replicated to distribute applications that are packaged with Helm. The procedures in this topic apply to native Helm installations (recommended) and Replicated Helm installations. For more information, see [About Deploying with Helm](helm-overview).
+
 
 When you add a Helm chart to a release, Replicated adds a copy of the `Chart.yaml` file and the `values.yaml` file from the Helm chart to the release.
 
@@ -50,6 +49,8 @@ The following table provides more information about these files:
 For example, the following screenshot shows how a Postgres Helm chart displays in the file tree of a release in the vendor portal:
 
 ![Postgres Helm Chart](/images/postgres-helm-chart.png)
+
+[View a larger image](/images/postgres-helm-chart.png)
 
 ## Create the Helm Chart Package {#package-chart}
 
@@ -162,7 +163,7 @@ To create and promote a new release:
 
 1. Create a HelmChart custom resource manifest file in the same directory where you copied the `.tgz` file. Name the HelmChart manifest file `CHART_NAME.yaml`. For example, `postgresql.yaml`.
 
-1. Copy and paste the following YAML into the HelmChart manifest:
+1. Copy and paste the following YAML into the HelmChart manifest. The `useHelmInstall` flag is set to `true`, specifying that the release uses the recommended native Helm installation. For more information, see [HelmChart](../reference/custom-resource-helmchart) in the _Custom Resources_ section.
 
    ```yaml
    apiVersion: kots.io/v1beta1
@@ -196,7 +197,6 @@ To create and promote a new release:
       # You can leave the builder attribute empty for this procedure.
       builder: {}
    ```
-   For more information, see [HelmChart](../reference/custom-resource-helmchart) in the _Custom Resources_ section.
 
 1. Lint the manifest files and ensure that there are no errors in the YAML:
 

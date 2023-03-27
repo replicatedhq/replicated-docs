@@ -2,13 +2,13 @@ import NativeHelmLimitations from "../partials/helm/_native-helm-limitations.mdx
 import TemplateLimitation from "../partials/helm/_helm-template-limitation.mdx"
 import HelmCLILimitations from "../partials/helm/_helm-cli-limitations.mdx"
 
-# About Packaging with Helm
+# About Deploying with Helm
 
 Helm is a popular package manager for Kubernetes applications. If your application is already packaged using Helm, you can use Replicated to more easily distribute and manage your application. Using Replicated to distribute applications packaged with Helm provides additional functionality not available through Helm, such as preflight checks, support bundles, a user interface for collecting user configuration values, support for using private images, and more.
 
 Replicated supports delivering an enterprise application as Helm charts, or including Helm charts as components of an application. An application can use more than one Helm chart, and can use more than a single instance of any Helm chart.
 
-To package an application with Helm, start by adding an existing Helm chart to a release in the Replicated vendor portal. For information about how to create a new release from an existing Helm chart, see [Creating Releases with Helm Charts](helm-release).
+To deploy an application with Helm, start by adding an existing Helm chart to a release in the Replicated vendor portal. For information about how to create a new release from an existing Helm chart, see [Creating Releases with Helm Charts](helm-release).
 
 ## How Replicated Deploys Helm Charts
 

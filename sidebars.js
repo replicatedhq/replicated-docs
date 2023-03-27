@@ -115,7 +115,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Packaging Helm Charts',
+          label: 'Deploying Helm Charts',
           items: [
               {
               type: 'category',
