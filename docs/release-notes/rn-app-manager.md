@@ -21,7 +21,7 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 * Fixes a bug where multi-node embedded cluster installations hang forever with the KOTS add-on.
 * Increases to two minutes the time to display the slow loading indicator so that the admin console doesn't keep reloading when the internet connection is slow.
 * Removes hardcoded application name on the Troubleshoot page when a community license is used.
-* Fixes a bug where the Helm release secret was created in the kotsadm namespace instead of the Helm release namespace.
+* Fixes a [known issue](/release-notes/rn-app-manager#known-issues-1-95-0) that was introduced in [v1.95.0](/release-notes/rn-app-manager#1950) that causes application upgrades to fail for Helm charts that are deployed using the [native Helm installation](/reference/custom-resource-helmchart#usehelminstall) method.
 
 ## 1.96.1
 
