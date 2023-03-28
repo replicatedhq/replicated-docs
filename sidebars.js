@@ -130,7 +130,6 @@ const sidebars = {
               type: 'category',
               label: 'Using Native Helm',
               items: [
-                'vendor/helm-installing-native-helm',
                 'vendor/helm-native-helm-install-order',
               ],
             },

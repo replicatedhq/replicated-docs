@@ -2,7 +2,7 @@
 
 ## Native Helm
 
-Our [Native Helm](helm-installing-native-helm) feature utilizes the Helm binary to deploy charts instead of `kubectl apply`. This helps support Helm lifecycle instruments such as Helm Hooks and Weights.
+Our [Native Helm](helm-overview) feature utilizes the Helm binary to deploy charts instead of `kubectl apply`. This helps support Helm lifecycle instruments such as Helm Hooks and Weights.
 
 Processing Helm charts for the app manager is accomplished with five high-level steps:
 

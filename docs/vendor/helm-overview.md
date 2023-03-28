@@ -18,9 +18,9 @@ When you distribute an application packaged with Helm, your customers can instal
 
 Users can install an application packaged with Helm charts using the app manager on an existing cluster or on a cluster provisioned by the Kubernetes installer. When installing with the app manager, users can either use the Replicated admin console UI or the kots CLI.
 
-The app manager installs applications packaged with Helm charts using either the "Native Helm" or "Replicated KOTS" deployment method. You specify the deployment method in the Replicated HelmChart custom resource manifest file with the `useHelmInstall` flag. For more information, see [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) in _HelmChart_.
+The app manager installs applications packaged with Helm charts using either the "Native Helm" or "Replicated KOTS" (Replicated Helm) deployment method. You specify the deployment method in the Replicated HelmChart custom resource manifest file with the `useHelmInstall` flag. For more information, see [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) in _HelmChart_.
 
-The following describes the Native Helm and Replicated KOTS deployment methods:
+The following describes the Native Helm and Replicated Helm deployment methods:
 
 * **Native Helm (Recommended)**: The app manager uses the Helm binary to install and manage the lifecycle of the chart resources that are part of the application. This is the preferred method because it supports more features of Helm, such as hooks and weights.
 
@@ -30,11 +30,11 @@ The following describes the Native Helm and Replicated KOTS deployment methods:
   Migrating existing installations to the native Helm workflow is not supported. However, new Helm charts within an existing application can use the native Helm workflow and the features that come with it.
   :::
 
-* **Replicated KOTS**: The app manager renders the Helm templates and deploys them as standard Kubernetes manifests using `kubectl apply`. The app manager manages the lifecycle of the resources.
+* **Replicated HELM**: The app manager renders the Helm templates and deploys them as standard Kubernetes manifests using `kubectl apply`. The app manager manages the lifecycle of the resources.
 
-   For more information, see [Replicated KOTS](helm-processing#replicated-kots) in _How the App Manager Processes Helm Charts_.
+   For more information, see [Replicated Helm](helm-processing#replicated-kots) in _How the App Manager Processes Helm Charts_.
 
-For limitations of the Native Helm and Replicated KOTS deployment methods, see [Native Helm and Replicated KOTS Limitations](#replicated-helm-limitations) below.
+For limitations of the Native Helm and Replicated Helm deployment methods, see [Native Helm and Replicated Helm Limitations](#replicated-helm-limitations) below.
   
 ### Using the helm CLI (Beta)
 
@@ -52,10 +52,10 @@ This section lists the limitations for packaging an application with Helm charts
 
 There are different limitations depending on if your customers install and manage the application with the app manager, or if they use the helm CLI directly:
 
-* [Replicated KOTS and Native Helm Limitations](#replicated-helm-limitations)
+* [Replicated Helm and Native Helm Limitations](#replicated-helm-limitations)
 * [helm CLI Install Limitations](#helm-cli-limitations)
 
-### Native Helm and Replicated KOTS Limitations {#replicated-helm-limitations}
+### Native Helm and Replicated Helm Limitations {#replicated-helm-limitations}
 
 The following limitations apply when using the app manager to install and manage Helm charts:
 
