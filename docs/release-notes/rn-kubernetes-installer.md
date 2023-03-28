@@ -4,6 +4,28 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.03.28-0
+
+Released on March 28, 2023
+
+### New Features {#new-features-v2023-03-28-0}
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-03-20T20-16-18Z.
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.2.
+* Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) version.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.21.4.
+* Adds [Metrics Server add-on](https://kurl.sh/docs/add-ons/metrics-server) version 0.6.3.
+
+### Improvements {#improvements-v2023-03-28-0}
+* Adds preflight checks to prevent installations without the `kotsadm.disableS3` option set to `true` from continuing without an Object Store.
+* Adds preflight checks to prevent migrating from Rook to OpenEBS without MinIO when the Registry add-on is included in the spec.
+* Removes the optional flag `force-reapply-addons` and makes it the default behavior to reapply all add-ons regardless of whether or not they change.
+
+### Bug Fixes {#bug-fixes-v2023-03-28-0}
+* Fixes an issue when upgrading from Kubernetes releases that caused the script to fail with error "connection refused" and the message "couldn't retrieve DNS addon deployments"
+* Fixes an issue that could cause the installation script to exit with an error when running preflights if kubectl is installed but Kubernetes is not installed or the cluster is down.
+* Fixes an issue that prevented Rook from being fully removed after a migration to another PV provisioner.
+* Fixes an issue that allowed the object store to be migrated more than one time during a storage migration.
+
 ## v2023.03.21-0
 
 Released on March 21, 2023
