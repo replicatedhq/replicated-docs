@@ -16,11 +16,9 @@ Released on March 28, 2023
 * Adds [Metrics Server add-on](https://kurl.sh/docs/add-ons/metrics-server) version 0.6.3.
 
 ### Improvements {#improvements-v2023-03-28-0}
-* Adds preflights checks to prevent installs which requires an Object Store set.
-* Adds preflight checks to prevent migrating from Rook to OpenEBS using Registry without have MinIO set.
-* Adds migration from Rook status to a ConfigMap placed on the kurl namespace named as `kurl-migration-from-rook` 
-* Adds usage of reapply add-on(s) option forced by default. 
-* Deprecates the usage of the optional flag `force-reapply-addons`.
+* Adds preflight checks to prevent installs which requires an Object Store.
+* Adds preflight checks to prevent migrating from Rook to OpenEBS without MinIO when the Registry add-on is included in the spec.
+* The optional flag `force-reapply-addons` has been removed and it is now the default behavior to re-apply all add-ons regardless of whether or not they are changing.
 
 ### Bug Fixes {#bug-fixes-v2023-03-28-0}
 * Fixes error faced to upgrade where are NotReady control-planes in the cluster
