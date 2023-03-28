@@ -16,7 +16,7 @@ Released on March 28, 2023
 * Adds [Metrics Server add-on](https://kurl.sh/docs/add-ons/metrics-server) version 0.6.3.
 
 ### Improvements {#improvements-v2023-03-28-0}
-* Adds preflight checks to prevent installations without the kotsadm.disableS3 option set from continuing without an Object Store.
+* Adds preflight checks to prevent installations without the `kotsadm.disableS3` option set to `true` from continuing without an Object Store.
 * Adds preflight checks to prevent migrating from Rook to OpenEBS without MinIO when the Registry add-on is included in the spec.
 * The optional flag `force-reapply-addons` has been removed and it is now the default behavior to re-apply all add-ons regardless of whether or not they are changing.
 
