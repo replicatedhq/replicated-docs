@@ -89,6 +89,10 @@
   from="https://docs.replicated.com/vendor/releases-semantic-versioning"
   to="https://docs.replicated.com/vendor/releases-about"
 
+[[redirects]]
+  from="https://docs.replicated.com/vendor/helm-installing-native-helm"
+  to="https://docs.replicated.com/vendor/helm-overview"
+  
 ###################################################
 # Redirects To the Enterprise Section
 ###################################################
