@@ -24,7 +24,7 @@ Released on March 28, 2023
 * Fixes error faced to upgrade where are NotReady control-planes in the cluster
 * Fixes an issue that could cause the install script to exit with an error when running preflights if kubectl is installed but Kubernetes is not installed or the cluster is down.
 * Fixes issues that prevent Rook from being fully removed after a migration to another PV provisioner.
-* Fixes scenario where the object store in the storage migrations could be migrated more than once.
+* Fixes an issue that could allow the object store to be migrated more than once during a storage migration.
 
 ## v2023.03.21-0
 
