@@ -9,16 +9,18 @@ toc_max_heading_level: 2
 Released on March 28, 2023
 
 ### New Features {#new-features-v2023-03-28-0}
-* Adds preflights checks to prevent installs which requires an Object Store set.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-03-20T20-16-18Z.
-* Adds preflight checks to prevent migrating from Rook to OpenEBS using Registry without have MinIO set.
-* Adds migration from Rook status to a ConfigMap placed on the kurl namespace named as `kurl-migration-from-rook` 
-* Adds usage of reapply add-on(s) option forced by default. 
-* Deprecates the usage of the optional flag `force-reapply-addons`.
 * Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.2.
 * Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) version.
 * Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.21.4.
 * Adds [Metrics Server add-on](https://kurl.sh/docs/add-ons/metrics-server) version 0.6.3.
+
+### Improvements {#improvements-v2023-03-28-0}
+* Adds preflights checks to prevent installs which requires an Object Store set.
+* Adds preflight checks to prevent migrating from Rook to OpenEBS using Registry without have MinIO set.
+* Adds migration from Rook status to a ConfigMap placed on the kurl namespace named as `kurl-migration-from-rook` 
+* Adds usage of reapply add-on(s) option forced by default. 
+* Deprecates the usage of the optional flag `force-reapply-addons`.
 
 ### Bug Fixes {#bug-fixes-v2023-03-28-0}
 * Fixes error faced to upgrade where are NotReady control-planes in the cluster
