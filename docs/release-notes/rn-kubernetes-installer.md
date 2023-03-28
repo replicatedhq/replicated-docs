@@ -9,23 +9,22 @@ toc_max_heading_level: 2
 Released on March 28, 2023
 
 ### New Features {#new-features-v2023-03-28-0}
-* Adds host preflights checks to prevent new installs which requires an Object Store be done without it.
+* Adds preflights checks to prevent installs which requires an Object Store set.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-03-20T20-16-18Z.
-* Support has been added for Red Hat Enterprise Linux 9 and Rocky Linux 9.
-* Adds preflight checks to prevent migrating from Rook to OpenEBS with Registry without MinIO.
-* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.19.
-* The kURL installer will now force reapply addons by default deprecating the usage of the `force-reapply-addons` options.
+* Adds preflight checks to prevent migrating from Rook to OpenEBS using Registry without have MinIO set.
+* Adds migration from Rook status to a ConfigMap placed on the kurl namespace named as `kurl-migration-from-rook` 
+* Adds usage of reapply add-on(s) option forced by default. 
+* Deprecates the usage of the optional flag `force-reapply-addons`.
 * Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.2.
 * Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) version.
 * Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.21.4.
 * Adds [Metrics Server add-on](https://kurl.sh/docs/add-ons/metrics-server) version 0.6.3.
 
 ### Bug Fixes {#bug-fixes-v2023-03-28-0}
-* Fixes `kubeadm init` addons phase failure when upgrading Kubernetes.
-* Adds status of migration from rook into configmap.
+* Fixes error faced to upgrade where are NotReady control-planes in the cluster
 * Fixes an issue that could cause the install script to exit with an error when running preflights if the kubectl is installed but not kubernetes or the cluster is down.
 * Fixes migration from Rook issues where Rook should be removed and it is not by automating troubleshooting steps when timeouts are faced and ensuring that Ceph Block Pool is removed. This fixes issues constantly faced when migrating from Rook versions 1.4.9 and upper.
-* Adds check to not allow perform more than once successfully the object store migration.
+* Fixes scenario where the object store in the storage migrations could be migrated more than once.
 
 ## v2023.03.21-0
 
