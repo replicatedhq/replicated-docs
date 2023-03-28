@@ -22,7 +22,7 @@ Released on March 28, 2023
 
 ### Bug Fixes {#bug-fixes-v2023-03-28-0}
 * Fixes error faced to upgrade where are NotReady control-planes in the cluster
-* Fixes an issue that could cause the install script to exit with an error when running preflights if the kubectl is installed but not kubernetes or the cluster is down.
+* Fixes an issue that could cause the install script to exit with an error when running preflights if kubectl is installed but Kubernetes is not installed or the cluster is down.
 * Fixes migration from Rook issues where Rook should be removed and it is not by automating troubleshooting steps when timeouts are faced and ensuring that Ceph Block Pool is removed. This fixes issues constantly faced when migrating from Rook versions 1.4.9 and upper.
 * Fixes scenario where the object store in the storage migrations could be migrated more than once.
 
