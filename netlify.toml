@@ -108,6 +108,10 @@
 [[redirects]]
   from="https://docs.replicated.com/enterprise//snapshots-config-workflow"
   to="https://docs.replicated.com/enterprise/snapshots-velero-cli-installing"
+
+[[redirects]]
+  from="https://docs.replicated.com/enterprise/image-registry-airgap"
+  to="https://docs.replicated.com/enterprise/installing-general-requirements"
    
 ###################################################
 # Redirects To the References Section

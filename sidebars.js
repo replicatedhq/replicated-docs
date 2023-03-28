@@ -495,7 +495,6 @@ const sidebars = {
           items: [
             'enterprise/installing-overview',
             'enterprise/installing-general-requirements',
-            'enterprise/image-registry-airgap',
             'enterprise/installing-stateful-component-requirements',
             'enterprise/sbom-validating',
             'enterprise/installing-existing-cluster',

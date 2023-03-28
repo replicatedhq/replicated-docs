@@ -1,3 +1,6 @@
+import ImageRegistryAirgap from "../partials/image-registry/_image-registry-airgap.mdx"
+
+
 # Installing on an Existing Cluster
 
 This topic describes how to use Replicated to install an application on an existing Kubernetes cluster. It includes procedures for installing in online and air gap environments.
@@ -14,7 +17,9 @@ Before installing on an existing cluster, complete the following prerequisites:
   
   These flags prevent the app manager from checking for or attempting to create a Role with `* * *` permissions in the namespace. For more information about these flags, see [install](/reference/kots-cli-install) or [admin-console upgrade](/reference/kots-cli-admin-console-upgrade).
   :::
-* Replicated recommends that you review the options available with the `kots install` command before installing. The `kots install` command includes several optional flags to support different installation use cases. For a list of options, see [install](/reference/kots-cli-install) in the _kots CLI_ documentation.   
+* Replicated recommends that you review the options available with the `kots install` command before installing. The `kots install` command includes several optional flags to support different installation use cases. For a list of options, see [install](/reference/kots-cli-install) in the _kots CLI_ documentation. 
+
+- <ImageRegistryAirgap/>
 
 ## Install in an Online Environment {#online}
 
