@@ -63,7 +63,7 @@ spec:
 
 ## Fields
 
-The following fields are supported for full backups: 
+The following Velero fields are supported for full backups, as shown in the previous example: 
 
 <table>
   <tr>
@@ -150,14 +150,15 @@ The following fields are supported for full backups:
 
 ## Limitations {#limitations}
 
-The following top-level fields, or children of `spec`, are not supported in full backups. Therefore, these fields are not shown in the preceding example specification:
+- The following top-level Velero fields, or children of `spec`, are not supported in full backups. Therefore, these fields are not shown in the preceding example specification. See [Example](#example).
 
-- `snapshotVolumes`
-- `volumeSnapshotLocations`
-- `labelSelector`
-- `includedResources`
-- `excludedResources`
+  - `snapshotVolumes`
+  - `volumeSnapshotLocations`
+  - `labelSelector`
+  - `includedResources`
+  - `excludedResources`
 
-:::note
-Resources can be excluded adding `velero.io/exclude-from-backup=true` to the manifest files that you want to exclude. For more information, see [Configuring Backups](/vendor/snapshots-configuring-backups).
-:::
+  Note that some of these fields are supported for hook arrays, as described in the previous field definition table. See [Fields](#fields).
+
+-   All resources are included in the backup by default. However, resources can be excluded by adding `velero.io/exclude-from-backup=true` to the manifest files that you want to exclude. For more information, see [Configuring Backups](/vendor/snapshots-configuring-backups).
+
