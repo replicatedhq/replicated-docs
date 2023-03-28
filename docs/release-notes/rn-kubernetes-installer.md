@@ -21,7 +21,7 @@ Released on March 28, 2023
 * The optional flag `force-reapply-addons` has been removed and it is now the default behavior to re-apply all add-ons regardless of whether or not they are changing.
 
 ### Bug Fixes {#bug-fixes-v2023-03-28-0}
-* Fixes error faced to upgrade where are NotReady control-planes in the cluster
+* Fixes an issue when upgrading from Kubernetes 1.20.x to 1.21.x that causes the script to fail with error "connection refused".
 * Fixes an issue that could cause the install script to exit with an error when running preflights if kubectl is installed but Kubernetes is not installed or the cluster is down.
 * Fixes issues that prevent Rook from being fully removed after a migration to another PV provisioner.
 * Fixes an issue that could allow the object store to be migrated more than once during a storage migration.
