@@ -16,8 +16,6 @@ When you add a Helm chart to a release, Replicated displays a copy of the `Chart
 
 You must also have a HelmChart custom resource manifest file for each Helm chart that you add to a release. By default, Replicated adds the HelmChart custom resource if you are using the vendor portal, which you use to configure how the app manager deploys the chart. If you are using the CLI, you must add the HelmChart custom resource manually.
 
-`useHelmInstall` is a chart-level flag that can only be set to `true` for new charts. Modifying existing charts in existing applications is not supported because charts installed with Replicated Helm cannot be migrated to Native Helm.
-
 The following table provides more information about these files:
 
 <table>
@@ -53,6 +51,12 @@ For example, the following screenshot shows how a Postgres Helm chart displays i
 ![Postgres Helm Chart](/images/postgres-helm-chart.png)
 
 [View a larger image](/images/postgres-helm-chart.png)
+
+## About Updating Existing Applications
+
+`useHelmInstall` is a chart-level flag that is set to `true` to specify the use of native Helm. Native Helm can only be set for new charts. Modifying this flag in existing charts for existing applications is not supported because charts installed with Replicated Helm cannot be migrated to native Helm.
+
+However, you can add native Helm charts to an existing release that already uses Replicated Helm. Each chart is installed using the specified installation method for that chart, indicated by the value of the `useHelmInstall` flag.
 
 ## Create the Helm Chart Package {#package-chart}
 
@@ -123,7 +127,7 @@ To create and promote a release in the vendor portal:
 
 1. Drag and drop the Helm chart `.tgz` package that you created as part of [Create the Helm Chart Package](#package-chart) into the file directory in the YAML editor. 
 
-1. In the **Select Helm Install Method** dialog that displays, select the method that the app manager uses to install the Helm chart. Replicated recommends that you select the Native Helm installation method. The Replicated Helm method is listed as **Replicated KOTS**.
+1. In the **Select Helm Install Method** dialog that displays, select the method that the app manager uses to install the Helm chart. Replicated recommends that you select the **Native Helm** installation method. The Replicated Helm method is listed as **Replicated KOTS**.
 
    ![Select helm install method dialog](/images/helm-install-method-vendor-portal.png)
 

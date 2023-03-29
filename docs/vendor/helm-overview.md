@@ -20,27 +20,27 @@ Users can install an application packaged with Helm charts using the app manager
 
 The app manager installs Helm charts using either the **Native Helm** or **Replicated Helm** deployment method. You specify the deployment method in the Replicated HelmChart custom resource manifest file with the `useHelmInstall` flag. For more information, see [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) in _HelmChart_.
 
-The following describes the Native Helm and Replicated Helm deployment methods:
+The following describes the native Helm and Replicated Helm deployment methods:
 
 * **Native Helm (Recommended)**: The app manager uses the Helm binary to install and manage the lifecycle of the chart resources that are part of the application. This is the preferred method because it supports more features of Helm, such as hooks and weights.
 
   For more information, see [Native Helm](helm-processing#native-helm) in _How the App Manager Processes Helm Charts_. See also [Creating Releases with Helm Charts](helm-release).
 
   :::note
-  Charts installed with Replicated Helm cannot be migrated to use Native Helm. However, Native Helm can always be used for charts that are newly added to a release, even if other charts in the release use Replicated Helm.
+  Charts installed with Replicated Helm cannot be migrated to use native Helm. However, native Helm can always be used for charts that are newly added to a release, even if other charts in the release use Replicated Helm.
   :::
 
 * **Replicated Helm**: The app manager renders the Helm templates and deploys them as standard Kubernetes manifests using `kubectl apply`. The app manager manages the lifecycle of the resources.
 
    For more information, see [Replicated Helm](helm-processing#replicated-kots) in _How the App Manager Processes Helm Charts_.
 
-For limitations of the Native Helm and Replicated Helm deployment methods, see [Native Helm and Replicated Helm Limitations](#replicated-helm-limitations) below.
+For limitations of the native Helm and Replicated Helm deployment methods, see [Native Helm and Replicated Helm Limitations](#replicated-helm-limitations) below.
   
 ### Using the helm CLI (Beta)
 
 Users can install an application packaged with a Helm chart into an existing cluster using the helm CLI. When users install with the helm CLI directly, Helm, rather than the app manager, manages the lifecycle of the application.
 
-Deploying an application with the helm CLI differs from the "Native Helm" deployment method described above because, when users install with the helm CLI directly, they have access to all Helm functionality. Some enterprise users also prefer or require using the helm CLI because their existing CI/CD pipeline is already compatible with Helm charts. Similarly, enterprise users might have organizational policies that require using Helm to manage applications.
+Deploying an application with the helm CLI differs from the "native Helm" deployment method described above because, when users install with the helm CLI directly, they have access to all Helm functionality. Some enterprise users also prefer or require using the helm CLI because their existing CI/CD pipeline is already compatible with Helm charts. Similarly, enterprise users might have organizational policies that require using Helm to manage applications.
 
 Users do not have access to certain Replicated features when they install and manage the application with the helm CLI directly. This is because the app manager does not manage the lifecycle of the application. For example, users must update the application using the `helm upgrade` command, rather than using the admin console UI or the kots CLI.
 
@@ -61,7 +61,7 @@ The following limitations apply when using the app manager to install and manage
 
 <TemplateLimitation/>
 
-* The following limitations apply to the Native Helm deployment method:
+* The following limitations apply to the native Helm deployment method:
 
   <NativeHelmLimitations/>
 
