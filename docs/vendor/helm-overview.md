@@ -1,12 +1,13 @@
 import NativeHelmLimitations from "../partials/helm/_native-helm-limitations.mdx"
 import TemplateLimitation from "../partials/helm/_helm-template-limitation.mdx"
+import VersionLimitation from "../partials/helm/_helm-version-limitation.mdx"
 import HelmCLILimitations from "../partials/helm/_helm-cli-limitations.mdx"
 
 # Helm Chart Installation Options 
 
 This topic describes the different options available for installing applications that are packaged with Helm charts.
 
-## About Using Helm Charts with Replicated
+## About Deploying Helm Charts with Replicated
 
 Helm is a popular package manager for Kubernetes applications. Using Replicated to distribute applications packaged with Helm provides additional functionality not available through Helm, such as preflight checks, support bundles, a user interface for collecting user configuration values, support for using private images, and more.
 
@@ -50,13 +51,11 @@ To process Helm charts using the Native Helm method, the app manager does the fo
 
 1. **Writes downstream files**: Replicated allows last-mile customization on Helm resources using downstream kustomize files.
 
-   As above, the directory structure in `base/charts` is copied to `overlays/downstream/this-cluster/charts`. Each chart and subchart directory receives a `kustomization.yaml`. These files only have `bases` defined, which points to the corresponding `midstream` kustomization file from step 3. These downstream `kustomization.yaml` files can be edited before deploying the application. Any kustomize instructions here will take priority over `midstream` and `base` kustomizations.
+   As above, the directory structure in `base/charts` is copied to `overlays/downstream/this-cluster/charts`. Each chart and subchart directory receives a `kustomization.yaml`. These files only have `bases` defined, which points to the corresponding `midstream` kustomization file. End users can edit these downstream `kustomization.yaml` files before deploying the application. Any instructions that users add to the downstream `kustomization.yaml` files take priority over `midstream` and `base` kustomizations.
 
-1. **Deploys the Helm chart**: Replicated uses the Helm binary to install the fully-rendered chart resources.
+1. **Deploys the Helm chart**: When deploying the application, the app manager runs `kustomize build` for any `kustomization.yaml` files in the `overlays/downstream/charts` directory. The app manager packages the resulting manifests together into a new tarball for Helm to consume.
 
-   When deploying the application, Replicated walks the `overlays/downstream/charts` directory looking for `kustomization.yaml` files. Upon finding them, the app manager will run `kustomize build` on the files. The resulting manifests are packaged together into a new tarball for Helm to consume.
-
-   The app manager finally runs `helm upgrade -i chart.tar.gz`. The helm binary processes hooks and weights, applies manifests to the Kubernetes cluster, and saves a release secret similar to `sh.helm.release.v1.chart-name.v1`. This secret is how Helm tracks upgrades and rollbacks of applications.
+   Finally, the app manager runs `helm upgrade -i chart.tar.gz`. The helm binary processes hooks and weights, applies manifests to the Kubernetes cluster, and saves a release secret similar to `sh.helm.release.v1.chart-name.v1`. This secret is how Helm tracks upgrades and rollbacks of applications.
 #### Replicated KOTS
 
 The app manager renders the Helm templates and deploys them as standard Kubernetes manifests using `kubectl apply`. With Replicated KOTS, the app manager manages the lifecycle of the resources. The Replicated Helm installation creates deployable YAML by using the same functionality that the `helm template` command uses, with some extended functionality for [specific Helm hooks](packaging-cleaning-up-jobs#helm-charts).
@@ -89,9 +88,13 @@ There are different limitations depending on if your customers install and manag
 
 The following limitations apply when using the app manager to install and manage Helm charts:
 
-<TemplateLimitation/>
+* <TemplateLimitation/>
 
-* The following limitations apply to the Native Helm deployment method:
+* <VersionLimitation/>
+
+   For more information, see [helmVersion](/reference/custom-resource-helmchart#helmversion) in _HelmChart_.
+
+* The following limitations apply to the Native Helm deployment method only:
 
   <NativeHelmLimitations/>
 
