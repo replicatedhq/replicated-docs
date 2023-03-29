@@ -11,7 +11,7 @@ Released on March 29, 2023
 Support for Kubernetes: 1.24, 1.25, and 1.26
 
 ### Improvements {#improvements-1-96-3}
-* Wraps the logs displayed in the deploy logs modal to make it more readable without having to scroll horizontally.
+* Wrap the logs displayed in the deploy logs modal to improve readability, without the need to horizontally scroll.
 * Removes support for cipher suites using the CBC encryption algorithm and SHA-1 from the kurl_proxy service that runs in embedded cluster installations.
 
 ### Bug Fixes {#bug-fixes-1-96-3}
