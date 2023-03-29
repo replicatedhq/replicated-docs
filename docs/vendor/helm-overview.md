@@ -18,7 +18,7 @@ When you distribute an application packaged with Helm, your customers can instal
 
 Users can install an application packaged with Helm charts using the app manager on an existing cluster or on a cluster provisioned by the Kubernetes installer. When installing with the app manager, users can either use the Replicated admin console UI or the kots CLI.
 
-The app manager installs applications packaged with Helm charts using either the "Native Helm" or "Replicated KOTS" (Replicated Helm) deployment method. You specify the deployment method in the Replicated HelmChart custom resource manifest file with the `useHelmInstall` flag. For more information, see [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) in _HelmChart_.
+The app manager installs applications packaged with Helm charts using either the **Native Helm** or **Replicated Helm** deployment method. You specify the deployment method in the Replicated HelmChart custom resource manifest file with the `useHelmInstall` flag. For more information, see [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) in _HelmChart_.
 
 The following describes the Native Helm and Replicated Helm deployment methods:
 
