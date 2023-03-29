@@ -12,7 +12,7 @@ Support for Kubernetes: 1.24, 1.25, and 1.26
 
 ### Improvements {#improvements-1-96-3}
 * Wraps the logs in the deploy logs modal to increase readability by eliminating the need to scroll horizontally.
-* Removes support for cipher suites that use the CBC encryption algorithm and SHA-1 from the kurl_proxy service that runs in embedded cluster installations.
+* Removes support for cipher suites that use the CBC encryption algorithm or SHA-1 from the kurl_proxy service that runs in embedded cluster installations.
 
 ### Bug Fixes {#bug-fixes-1-96-3}
 * Fixes a bug that caused application upgrades to fail because app manager attempted to migrate the Helm release secret when the release secret already existed in the release namespace.
