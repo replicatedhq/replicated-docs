@@ -8,7 +8,7 @@ Helm is a popular package manager for Kubernetes applications. If your applicati
 
 Replicated supports delivering an enterprise application as Helm charts, or including Helm charts as components of an application. An application can use more than one Helm chart, and can use more than a single instance of any Helm chart.
 
-To deploy an application with Helm, start by adding an existing Helm chart to a release in the Replicated vendor portal. For information about how to create a new release from an existing Helm chart, see [Creating Releases with Helm Charts](helm-release).
+To deploy a Helm chart, start by adding the Helm chart to a release in the Replicated vendor portal. For information about how to create a new release from an existing Helm chart, see [Creating Releases with Helm Charts](helm-release).
 
 ## How Replicated Deploys Helm Charts
 
