@@ -12,9 +12,9 @@ This topic describes how to add a Helm chart to a release in the Replicated vend
 
 You can add one or more Helm charts to a release in the vendor portal by uploading each Helm chart as a `.tgz` file. This allows you to use Replicated to distribute applications that are packaged in part or in whole with Helm. The procedures in this topic apply to native Helm installations (recommended) and Replicated Helm installations. For more information, see [About Deploying with Helm](helm-overview).
 
-When you add a Helm chart to a release, Replicated adds a copy of the `Chart.yaml` file and the `values.yaml` file from the Helm chart to the release. 
+When you add a Helm chart to a release, Replicated displays a copy of the `Chart.yaml` file and the `values.yaml` file from the Helm chart to the release. 
 
-You must also have a HelmChart custom resource manifest file for each Helm chart that you add to a release. By default, Replicated adds the HelmChart custom resource for you, which you use to configure the Helm chart with your application.
+You must also have a HelmChart custom resource manifest file for each Helm chart that you add to a release. By default, Replicated adds the HelmChart custom resource if you are using the vendor portal, which you use to configure how the app manager deploys the chart. If you are using the CLI, you must add the HelmChart custom resource manually.
 
 `useHelmInstall: true` is a chart level flag that is only supported for new charts using native Helm. Modifying existing charts in existing applications is not supported. After they are updated, any new Helm charts added to the application are deployed with the native Helm installation.
 
