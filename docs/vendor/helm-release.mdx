@@ -16,7 +16,7 @@ When you add a Helm chart to a release, Replicated displays a copy of the `Chart
 
 You must also have a HelmChart custom resource manifest file for each Helm chart that you add to a release. By default, Replicated adds the HelmChart custom resource if you are using the vendor portal, which you use to configure how the app manager deploys the chart. If you are using the CLI, you must add the HelmChart custom resource manually.
 
-`useHelmInstall: true` is a chart level flag that is only supported for new charts using native Helm. Modifying existing charts in existing applications is not supported. After they are updated, any new Helm charts added to the application are deployed with the native Helm installation.
+`useHelmInstall` is a chart-level flag that can only be set to `true` for new charts. Modifying existing charts in existing applications is not supported because charts installed with Replicated Helm cannot be migrated to Native Helm.
 
 The following table provides more information about these files:
 
