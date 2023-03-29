@@ -4,6 +4,19 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.96.3
+
+Released on March 29, 2023
+
+Support for Kubernetes: 1.24, 1.25, and 1.26
+
+### Improvements {#improvements-1-96-3}
+* Wraps the logs displayed in the deploy logs modal to make it more readable without having to scroll horizontally.
+* Removes support for cipher suites using the CBC encryption algorithm and SHA-1 from the kurl_proxy service that runs in embedded cluster installations.
+
+### Bug Fixes {#bug-fixes-1-96-3}
+* Fix the bug that caused the deployment to fail when the migration of Helm release secrets failed because the release secret already existed in the release namespace.
+
 ## 1.96.2
 
 Released on March 24, 2023
