@@ -27,7 +27,7 @@ The following describes the Native Helm and Replicated Helm deployment methods:
   For more information, see [Native Helm](helm-processing#native-helm) in _How the App Manager Processes Helm Charts_. See also [Creating Releases with Helm Charts](helm-release).
 
   :::note
-  Migrating existing installations to the native Helm workflow is not supported. However, new Helm charts within an existing application can use the native Helm workflow and the features that come with it.
+  Charts installed with Replicated Helm cannot be migrated to use Native Helm. However, Native Helm can always be used for charts that are newly added to a release, even if other charts in the release use Replicated Helm.
   :::
 
 * **Replicated Helm**: The app manager renders the Helm templates and deploys them as standard Kubernetes manifests using `kubectl apply`. The app manager manages the lifecycle of the resources.
