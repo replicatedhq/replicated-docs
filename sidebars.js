@@ -117,14 +117,7 @@ const sidebars = {
           type: 'category',
           label: 'Packaging Helm Charts',
           items: [
-              {
-              type: 'category',
-              label: 'Overview',
-              items: [
-                'vendor/helm-overview',
-                'vendor/helm-processing',
-              ],
-            },
+            'vendor/helm-overview',
             'vendor/helm-install',
             {
               type: 'category',
