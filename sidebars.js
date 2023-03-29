@@ -499,6 +499,7 @@ const sidebars = {
             'enterprise/sbom-validating',
             'enterprise/installing-existing-cluster',
             'enterprise/installing-embedded-cluster',
+            'enterprise/installing-existing-cluster-airgapped',
             'enterprise/cluster-management-add-nodes',
             'enterprise/installing-app-setup',
             'enterprise/installing-existing-cluster-automation',
