@@ -2,7 +2,7 @@ import VersionLimitation from "../partials/helm/_helm-version-limitation.mdx"
 
 # HelmChart
 
-A HelmChart custom resource enables the Replicated app manager to process and deploy Helm charts as part of an application. The app manager can process Helm charts using the Replicated Helm installation for existing applications. You can also use a native Helm installation for new applications or newly added Helm charts. For more information, see [Helm Chart Installation Options](/vendor/helm-overview).
+A HelmChart custom resource enables the Replicated app manager to process and deploy Helm charts as part of an application. The app manager can process Helm charts using the Replicated Helm installation for existing applications. You can also use a native Helm installation for new applications or newly added Helm charts. For more information, see [About Deploying Helm Charts](/vendor/helm-overview).
 
 HelmChart custom resources are required for the app manager to deploy Helm charts. HelmChart custom resources are not required if only raw Kubernetes manifests are deployed.
 
