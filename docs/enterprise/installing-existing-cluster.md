@@ -1,4 +1,4 @@
-# Installing on an Existing Cluster
+# Online Installation in Existing Clusters
 
 This topic describes how to use Replicated to install an application on an existing Kubernetes cluster in an online environment.
 

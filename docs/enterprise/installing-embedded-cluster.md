@@ -2,9 +2,9 @@ import ImageRegistryAirgap from "../partials/image-registry/_image-registry-airg
 import KurlAbout from "../partials/install/_kurl-about.mdx"
 
 
-# Installing with the Kubernetes Installer
+# Online Installation using a Kubernetes Installer
 
-This topic explains how to install an application on a cluster provisioned by the Replicated Kubernetes installer.
+This topic explains how to install an application on an embedded cluster provisioned by the Replicated Kubernetes installer.
 
 <KurlAbout/>
 
@@ -23,9 +23,9 @@ Complete the following before you perform this task:
     
 - <ImageRegistryAirgap/>
 
-## Install in an Online Environment {#online}
+## Install using a Kubernetes Installer {#online}
 
-To install an application in an online environment:
+To install in an online environment using the Kubernetes installer:
 
 Run the installation command provided by the application vendor to provision the cluster and install the kots CLI, the Replicated admin console, and the application on the cluster:
    * **Install the latest version of the application**:
@@ -75,3 +75,6 @@ To install with high availability in an online environment:
 
 After the installation command finishes, note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the installation command. Then, log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
 
+## Next Step
+
+(Optional) You can add nodes to the cluster. See [Adding Nodes to Kubernetes Installer Clusters](cluster-management-add-nodes).
