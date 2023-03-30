@@ -3,11 +3,11 @@ import TemplateLimitation from "../partials/helm/_helm-template-limitation.mdx"
 import VersionLimitation from "../partials/helm/_helm-version-limitation.mdx"
 import HelmCLILimitations from "../partials/helm/_helm-cli-limitations.mdx"
 
-# Helm Chart Installation Options 
+# About Deploying Helm Charts 
 
-This topic describes the different options available for installing applications that are packaged with Helm charts.
+This topic describes the options for using Replicated to deploy applications that are packaged with Helm charts.
 
-## About Deploying Helm Charts with Replicated
+## Overview of Helm with Replicated
 
 Helm is a popular package manager for Kubernetes applications. Using Replicated to distribute applications packaged with Helm provides additional functionality not available through Helm, such as preflight checks, support bundles, a user interface for collecting user configuration values, support for using private images, and more.
 
@@ -15,37 +15,38 @@ Replicated supports delivering an enterprise application as Helm charts, or incl
 
 To package an application with Helm, start by adding an existing Helm chart to a release in the Replicated vendor portal. For information about how to create a new release from an existing Helm chart, see [Creating Releases with Helm Charts](helm-release).
 
-## About Helm Chart Installation Options
+## Helm Chart Installation Options
 
-When you distribute an application packaged with Helm, your users can install and manage the application using the Replicated app manager or the helm CLI.
+When you distribute an application packaged with Helm, your users can install and manage the application with either the Replicated app manager or the helm CLI.
 
-### App Manager Installations
+This section describes the processes for installing Helm charts with the app manager or the helm CLI so that you can determine which installation methods to support as the application vendor.
+### App Manager
 
-Users can install an application packaged with Helm charts using the app manager on an existing cluster or on a cluster provisioned by the Kubernetes installer.
+Users can install an application packaged with Helm charts using the app manager in either an existing cluster or a cluster provisioned by the Replicated Kubernetes installer. The app manager also supports Helm installations into air gap environments. For more information, see [Air Gap](#air-gap) below.
 
-As an application vendor, you can choose one of the following methods for the app manager to deploy Helm charts:
+As an application vendor, you specify whether the app manager uses the _native Helm_ or _Replicated Helm_ method to deploy your Helm chart-based application. You specify the deployment method in the `useHelmInstall` field of the Replicated HelmChart custom resource manifest file for the Helm chart. For more information, see [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) in _HelmChart_.
+
+The following sections provide more information about how the app manager processes Helm charts in both deployment methods:
 
 * [Native Helm (Recommended)](#native)
 * [Replicated Helm](#replicated-helm)
-
-You specify the deployment method in the `useHelmInstall` field of the Replicated HelmChart custom resource manifest file for the Helm chart. For more information, see [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) in _HelmChart_.
 #### Native Helm (Recommended) {#native}
 
-With the Native Helm deployment method, the app manager uses the Helm binary to install and manage the lifecycle of the chart resources that are part of the application. Native Helm is the preferred method because it supports more features of Helm, such as hooks and weights.
+With the native Helm deployment method, the app manager uses the Helm binary to install and manage the lifecycle of the chart resources that are part of the application. Native Helm is the preferred method because it supports more features of Helm, such as hooks and weights.
 
-The app manager completes the following steps to deploy Helm charts using the Native Helm method:
+To deploy Helm charts using the native Helm method, the app manager does the following:
 
-1. **Check for previous installations of the chart**: If the chart has already been deployed with the Replicated Helm method, then the app manager does not attempt the install the chart using Native Helm. The following error message is displayed if this check fails: `Deployment method for chart <chart_name> has changed`.
+1. **Checks for previous installations of the chart**: If the Helm chart has already been deployed with the Replicated Helm method, then the app manager does not attempt the install the chart using native Helm. The following error message is displayed if this check fails: `Deployment method for chart <chart_name> has changed`.
 
-1. **Write base files**:  The app manager extracts Helm manifests, renders them with Replicated templating, and then adds all files from the original Helm tarball to a `base/charts/` directory.
+1. **Writes base files**:  The app manager extracts Helm manifests, renders them with Replicated templating, and then adds all files from the original Helm tarball to a `base/charts/` directory.
 
-  Under `base/charts/`, the app manager adds a `kustomization.yaml` file in the directories for each chart and subchart. The app manager uses these Kustomize files later in the deployment process to merge instructions from Kustomize to the chart resources. For more information about Kustomize, see the [Kustomize website](https://kustomize.io).
+  Under `base/charts/`, the app manager adds a Kustomization file named `kustomization.yaml` in the directories for each chart and subchart. The app manager uses these Kustomization files later in the deployment process to merge instructions from Kustomize to the chart resources. For more information about Kustomize, see the [Kustomize website](https://kustomize.io).
 
-  The following screenshot from the Replicated admin console shows a `base/charts/` directory that contains a deployed Helm chart named `postgresql` with one subchart:
+  The following screenshot from the Replicated admin console shows a `base/charts/` directory for a deployed application. The `base/charts/` directory contains a Helm chart named postgresql with one subchart:
 
-  ![Base directory example for Native Helm charts](/images/native-helm-base.png)
+  ![Base directory in the admin console UI](/images/native-helm-base.png)
 
-  In the screenshot above, a Kustomize file that targets the `postgresql` Helm chart resources appears in the `base/charts/postgresql/` directory:
+  In the screenshot above, a Kustomization file that targets the resources from the postgresql Helm chart appears in the `base/charts/postgresql/` directory:
 
    ```yaml
    apiVersion: kustomize.config.k8s.io/v1beta1
@@ -57,11 +58,13 @@ The app manager completes the following steps to deploy Helm charts using the Na
    - svc.yaml
    ```
 
-1. **Write midstream files with Kustomize instructions from Replicated**: The app manager then copies the directory structure from `base/charts/` to `overlays/midstream/charts/`. This midstream directory contains Kustomize instructions from Replicated for all deployed resources, such as imagePullSecrets, image proxies, and backup labels. For example, in the midstream Kustomize file, the app manager renames any images that it finds in the release to point to the Replicated proxy service. The midstream Kustomize files have a `bases` entry that references the corresponding Kustomize file from the `base/charts/` directory.
+1. **Writes midstream files with Kustomize instructions from Replicated**: The app manager then copies the directory structure from `base/charts/` to an `overlays/midstream/charts/` directory. The following screenshot shows an example of the midstream directory for the postgresql Helm chart: 
    
-  <!-- ![Midstream directory example for Native Helm charts](/images/native-helm-midstream.png) -->
+  ![Midstream directory in the admin console UI](/images/native-helm-midstream.png)
 
-  The following example shows the contents of a midstream Kustomize file for the postgresql Helm chart:
+  As shown in the screenshot above, the midstream directory also contains a Kustomization file with instructions from Replicated for all deployed resources, such as imagePullSecrets, image proxies, and backup labels. For example, in the midstream Kustomization file, the app manager renames any private images to point to the Replicated proxy service.
+
+  The following shows an example of a midstream Kustomization file for the postgresql Helm chart:
 
     ```yaml
     apiVersion: kustomize.config.k8s.io/v1beta1
@@ -81,7 +84,13 @@ The app manager completes the following steps to deploy Helm charts using the Na
     - backup-label-transformer.yaml
     ```
 
-1. **Write downstream files for end user Kustomize instructions**: The app manager creates an `overlays/downstream/this-cluster/charts` directory and again copies the directory structure of `base/charts/` to this downstream directory. Then, the app manager adds Kustomize files to each chart and subchart directory in the downstream directory. These downstream Kustomize files have a `bases` entry that references the corresponding Kustomize file from the midstream directory. For example:
+    As shown in the example above, all midstream Kustomization files have a `bases` entry that references the corresponding Kustomization file from the `base/charts/` directory.
+
+1. **Writes downstream files for end user Kustomize instructions**: The app manager then creates an `overlays/downstream/this-cluster/charts` directory and again copies the directory structure of `base/charts/` to this downstream directory, as shown in the following screenshot:
+
+   ![Downstream directory in the admin console UI](/images/native-helm-downstream.png)
+
+   As shown in the screenshot above, each chart and subchart directory in the downstream directory also contains a Kustomization file. These downstream Kustomization files contain only a `bases` entry that references the corresponding Kustomization file from the midstream directory. For example:
 
     ```yaml
     apiVersion: kustomize.config.k8s.io/v1beta1
@@ -90,15 +99,11 @@ The app manager completes the following steps to deploy Helm charts using the Na
     kind: Kustomization
     ```
    
-   End users can edit the downstream Kustomize files to make patches to the application before application. Any instructions that users add to the Kustomize files in the downstream directory take priority over midstream and base Kustomize files. For more information about how users can use Kustomize to make changes before deploying, see [Patching with Kustomize](/enterprise/updating-patching-with-kustomize) in _Enterprise User Documentation_.
+   End users can edit the downstream Kustomization files to make changes before deploying the application. Any instructions that users add to the Kustomization files in the downstream directory take priority over midstream and base Kustomization files. For more information about how users can make changes before deploying, see [Patching with Kustomize](/enterprise/updating-patching-with-kustomize) in _Enterprise User Documentation_.
 
-   The following screenshot shows an example of a downstream directory:
+1. **Deploys the Helm chart**: The app manager runs `kustomize build` for any Kustomization files in the `overlays/downstream/charts` directory. The app manager then packages the resulting manifests into a new tarball for Helm to consume.
 
-   ![Downstream directory example for Native Helm charts](/images/native-helm-downstream.png)
-
-1. **Deploy the Helm chart**: When deploying the application, the app manager runs `kustomize build` for any Kustomize files in the `overlays/downstream/charts` directory. The app manager then packages the resulting manifests together into a new tarball for Helm to consume.
-
-   Finally, the app manager runs `helm upgrade -i chart.tar.gz`. The Helm binary processes hooks and weights, applies manifests to the Kubernetes cluster, and saves a release secret similar to `sh.helm.release.v1.chart-name.v1`. This secret is how Helm tracks upgrades and rollbacks of applications.
+   Finally, the app manager runs `helm upgrade -i chart.tar.gz`. The Helm binary processes hooks and weights, applies manifests to the Kubernetes cluster, and saves a release secret similar to `sh.helm.release.v1.chart-name.v1`. Helm uses this secret to track upgrades and rollbacks of applications.
 #### Replicated Helm
 
 :::note
@@ -107,20 +112,20 @@ The Replicated Helm method is deprecated and is not recommended for new installa
 
 With the Replicated Helm deployment method, the app manager renders the Helm templates and deploys them as standard Kubernetes manifests using `kubectl apply`. The app manager also has additional functionality for specific Helm hooks. For example, when the app manager encounters an upstream Helm chart with a `helm.sh/hook-delete-policy` annotation, it automatically adds the same `kots.io/hook-delete-policy` to the Job object.
 
-To deploy charts with the Replicated Helm method, the app manager runs the following command: `helm upgrade -i chart.tar.gz --timeout 60m -n <namespace>`. The Helm binary processes hooks and weights, applies manifests to the Kubernetes cluster, and saves a release secret similar to `sh.helm.release.v1.chart-name.v1`. This secret is how Helm tracks upgrades and rollbacks of applications.
+To deploy charts with the Replicated Helm method, the app manager runs `helm upgrade -i chart.tar.gz --timeout 60m -n <namespace>`. The Helm binary processes hooks and weights, applies manifests to the Kubernetes cluster, and saves a release secret similar to `sh.helm.release.v1.chart-name.v1`. Helm uses this secret to track upgrades and rollbacks of applications.
 
-The resulting deployment is comprised of standard Kubernetes manifests. Therefore, cluster operators are able to view the differences between what is currently deployed and what an update will deploy.
-### helm CLI Installations (Beta)
+The resulting deployment is comprised of standard Kubernetes manifests. Therefore, cluster operators can view the exact differences between what is currently deployed and what an update will deploy.
+### helm CLI (Beta)
 
 Users can also install an application packaged with a Helm chart into an existing cluster using the helm CLI. When users install with the helm CLI directly, Helm, rather than the app manager, manages the lifecycle of the application.
 
-Deploying an application with the helm CLI differs from the native Helm deployment method described above because, when users install with the helm CLI directly, they have access to all Helm functionality. Some enterprise users prefer or require using the helm CLI because their existing CI/CD pipeline is already compatible with Helm charts. Similarly, enterprise users might have organizational policies that require using Helm to manage applications.
+Deploying an application with the helm CLI differs from the _native Helm_ deployment method described above because, when users install with the helm CLI directly, they have access to all Helm functionality. Some enterprise users prefer or require using the helm CLI because their existing CI/CD pipeline is already compatible with Helm charts. Similarly, enterprise users might have organizational policies that require using Helm to manage applications.
 
 Users do not have access to certain Replicated features when they install and manage the application with the helm CLI directly. This is because the app manager does not manage the lifecycle of the application. For example, users must update the application using the `helm upgrade` command, rather than using the admin console UI or the kots CLI.
 
-For more information about how to package an application so that users can install using the helm CLI, see [Supporting helm CLI Installations (Beta)](helm-install).
+For more information about how to package an application with Replicated so that users can install using the helm CLI, see [Supporting helm CLI Installations (Beta)](helm-install).
 
-### Air Gap Installations
+### Air Gap
 
 When a user installs a Helm chart-based application in an air gap environment, the chart processing is managed in the end customer environment. This means that the customer-supplied values, license values, and existing values can be used to create the deployable manifests.
 
@@ -132,9 +137,9 @@ The helm CLI installation method does not support installations into air gap env
 
 ## Limitations
 
-This section lists the limitations for packaging an application with Helm charts.
+This section lists the limitations for the Helm chart installation methods.
 
-There are different limitations depending on if your customers install and manage the application with the app manager, or if they use the helm CLI directly:
+There are different limitations depending on if your customers install and manage the application with the app manager or if they use the helm CLI directly:
 
 * [Replicated Helm and Native Helm Limitations](#replicated-helm-limitations)
 * [helm CLI Limitations](#helm-cli-limitations)
