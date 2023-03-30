@@ -1,4 +1,5 @@
 import ImageRegistryAirgap from "../partials/image-registry/_image-registry-airgap.mdx"
+import PrereqsExistingCluster from "../partials/install/_prereqs-existing-cluster.mdx"
 
 # Air Gap Installation in Existing Clusters
 
@@ -6,17 +7,9 @@ This topic describes how to use Replicated to install an application in an air g
 
 ## Prerequisites
 
-Complete the following tasks before installing in an existing air gap cluster:
+Complete the following prerequisites:
 
-* Ensure that your cluster meets the minimum system requirements. See [Minimum System Requirements](/enterprise/installing-general-requirements#minimum-system-requirements) in _Installation Requirements_.
-* Ensure that you have at least the minimum RBAC permissions in the cluster required to install the app manager. See [RBAC Requirements](/enterprise/installing-general-requirements#rbac-requirements) in _Installation Requirements_.
-
-  :::note
-  If you manually created RBAC resources for the app manager as described in [Namespace-scoped RBAC Requirements](/enterprise/installing-general-requirements#namespace-scoped), include both the `--ensure-rbac=false` and `--skip-rbac-check` flags when you run the `kots install` command.
-  
-  These flags prevent the app manager from checking for or attempting to create a Role with `* * *` permissions in the namespace. For more information about these flags, see [install](/reference/kots-cli-install) or [admin-console upgrade](/reference/kots-cli-admin-console-upgrade).
-  :::
-* Replicated recommends that you review the options available with the `kots install` command before installing. The `kots install` command includes several optional flags to support different installation use cases. For a list of options, see [install](/reference/kots-cli-install) in the _kots CLI_ documentation. 
+<PrereqsExistingCluster/>
 
 - <ImageRegistryAirgap/>
 
@@ -101,6 +94,6 @@ To push images and install:
 
 After the `kots install` command installs the admin console and the application on the cluster, it creates a port forward to the admin console. The admin console is exposed internally on the cluster and can only be accessed using a port forward.
 
-Log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
+1. Log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
 
 

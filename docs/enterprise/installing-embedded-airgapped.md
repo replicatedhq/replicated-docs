@@ -9,7 +9,7 @@ This topic describes how to use Replicated to install an application in an air g
 
 ## Prerequisites
 
-Complete the following before before you perform this task:
+Complete the following prerequisites:
 
 - Meet the system requirements. See [Kubernetes Installer Cluster Requirements](installing-general-requirements#embedded-cluster-requirements) in _Installation Requirements_.
 

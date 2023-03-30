@@ -10,7 +10,7 @@ This topic explains how to install an application on an embedded cluster provisi
 
 ## Prerequisites
 
-Complete the following before you perform this task:
+Complete the following prerequisites:
 
 - Meet the system requirements. See [Kubernetes Installer Cluster Requirements](installing-general-requirements#embedded-cluster-requirements) in _Installation Requirements_.
 
@@ -46,7 +46,9 @@ Run the installation command provided by the application vendor to provision the
      * `APP_SLUG` with the unique slug for the application.
      * `VERSION_LABEL` with the label for the version of the application to install. For example, `--app-version-label=3.0.1`.
 
-After the installation command finishes, note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the installation command. Then, log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
+After the installation command finishes, note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the installation command. 
+
+1. Log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
 
 ## Install with High Availability Mode
 
@@ -73,7 +75,9 @@ To install with high availability in an online environment:
 
     - If you are using an external load balancer, pass the load balancer address.
 
-After the installation command finishes, note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the installation command. Then, log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
+After the installation command finishes, note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the installation command. 
+
+1. Log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
 
 ## Next Step
 
