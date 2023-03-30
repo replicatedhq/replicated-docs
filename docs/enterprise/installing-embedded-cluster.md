@@ -27,26 +27,26 @@ Complete the following prerequisites:
 
 To install in an online environment using the Kubernetes installer:
 
-Run the installation command provided by the application vendor to provision the cluster and install the kots CLI, the Replicated admin console, and the application on the cluster:
-   * **Install the latest version of the application**:
+1. Run the installation command provided by the application vendor to provision the cluster and install the kots CLI, the Replicated admin console, and the application on the cluster:
+    * **Install the latest version of the application**:
 
-   ```bash
-   curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash
-   ```
+      ```bash
+      curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash
+      ```
 
-   Replace `APP_SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
+      Replace `APP_SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
 
-   * **(App manager v1.67.0 and later) Install a specific version of the application**:
+    * **(App manager v1.67.0 and later) Install a specific version of the application**:
      With the app manager v1.67.0 and later, you can install a specific version of the application. Use the `app-version-label` flag and the version label for a particular version of your vendor's application.
 
-     ```shell
-     curl https://k8s.kurl.sh/APP_SLUG | sudo bash -s app-version-label=VERSION_LABEL
-     ```
-     Replace:
-     * `APP_SLUG` with the unique slug for the application.
-     * `VERSION_LABEL` with the label for the version of the application to install. For example, `--app-version-label=3.0.1`.
+      ```shell
+      curl https://k8s.kurl.sh/APP_SLUG | sudo bash -s app-version-label=VERSION_LABEL
+      ```
+      Replace:
+      * `APP_SLUG` with the unique slug for the application.
+      * `VERSION_LABEL` with the label for the version of the application to install. For example, `--app-version-label=3.0.1`.
 
-After the installation command finishes, note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the installation command. 
+1. Note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the installation command. 
 
 1. Log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
 
@@ -75,7 +75,7 @@ To install with high availability in an online environment:
 
     - If you are using an external load balancer, pass the load balancer address.
 
-After the installation command finishes, note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the installation command. 
+1. Note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the installation command. 
 
 1. Log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
 
