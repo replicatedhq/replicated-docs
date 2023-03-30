@@ -19,7 +19,7 @@ To package an application with Helm, start by adding an existing Helm chart to a
 
 When you distribute an application packaged with Helm, your users can install and manage the application with either the Replicated app manager or the helm CLI.
 
-This section describes the processes for installing Helm charts with the app manager or the helm CLI so that you can determine which installation methods to support as the application vendor.
+This section describes the processes for installing Helm charts with the app manager or the helm CLI.
 ### App Manager
 
 Users can install an application packaged with Helm charts using the app manager in either an existing cluster or a cluster provisioned by the Replicated Kubernetes installer. The app manager also supports Helm installations into air gap environments. For more information, see [Air Gap](#air-gap) below.
@@ -86,7 +86,7 @@ To deploy Helm charts using the native Helm method, the app manager does the fol
 
     As shown in the example above, all midstream Kustomization files have a `bases` entry that references the corresponding Kustomization file from the `base/charts/` directory.
 
-1. **Writes downstream files for end user Kustomize instructions**: The app manager then creates an `overlays/downstream/this-cluster/charts` directory and again copies the directory structure of `base/charts/` to this downstream directory, as shown in the following screenshot:
+1. **Writes downstream files for end user Kustomize instructions**: The app manager then creates an `overlays/downstream/this-cluster/charts` directory and again copies the directory structure of `base/charts/` to this downstream directory:
 
    ![Downstream directory in the admin console UI](/images/native-helm-downstream.png)
 
@@ -127,9 +127,9 @@ For more information about how to package an application with Replicated so that
 
 ### Air Gap
 
-When a user installs a Helm chart-based application in an air gap environment, the chart processing is managed in the end customer environment. This means that the customer-supplied values, license values, and existing values can be used to create the deployable manifests.
+The app manager supports Helm installations into air gap environments. When a user installs a Helm chart-based application in an air gap environment, the chart processing is managed in the end user environment. This means that the app manager can use user-supplied values, license values, and existing values to create deployable manifests.
 
-The Replicated vendor portal renders templates of the Helm charts with `helm template` to create an `.airgap` bundle for a release that uses Helm charts. To specify which values from the Helm chart `values.yaml` file are included in the `.airgap` bundle, you add a `builder` key in the HelmChart custom resource manifest file. For more information, see [builder](/reference/custom-resource-helmchart#builder) in _HelmChart_.
+To create an `.airgap` bundle for a release that uses Helm charts, the Replicated vendor portal renders templates of the Helm charts with `helm template`. To specify which values from the Helm chart `values.yaml` file are included in the `.airgap` bundle, you add a `builder` key in the HelmChart custom resource manifest file. For more information, see [builder](/reference/custom-resource-helmchart#builder) in _HelmChart_.
 
 :::note
 The helm CLI installation method does not support installations into air gap environments. See [helm CLI Limitations](#helm-cli-limitations) below.
