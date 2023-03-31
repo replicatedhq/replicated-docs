@@ -1,9 +1,14 @@
-import ImageRegistryAirgap from "../partials/image-registry/_image-registry-airgap.mdx"
+import ImageRegistryAirgapAbout from "../partials/image-registry/_image-registry-airgap-about.mdx"
+import ImageRegistryAirgapPrereq from "../partials/image-registry/_image-registry-airgap-prereq.mdx"
 import PrereqsExistingCluster from "../partials/install/_prereqs-existing-cluster.mdx"
 
 # Air Gap Installation in Existing Clusters
 
 This topic describes how to use Replicated to install an application in an air gap environment. Procedures are provided for installing using an existing Kubernetes cluster.
+
+## About Private Registries
+
+<ImageRegistryAirgapAbout/>
 
 ## Prerequisites
 
@@ -11,9 +16,9 @@ Complete the following prerequisites:
 
 <PrereqsExistingCluster/>
 
-- <ImageRegistryAirgap/>
+- <ImageRegistryAirgapPrereq/>
 
-## Install in an Existing Cluster {#air-gap}
+## Install the App Manager {#air-gap}
 
 When installing an application with the Replicated app manager from a `.airgap` package, the container images and application manifests are provided by the application vendor in an archive that can be used to deliver the artifacts into the cluster.
 
