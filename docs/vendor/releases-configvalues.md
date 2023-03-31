@@ -34,7 +34,7 @@ To allow your users to install and configure your application with the kots CLI,
 
 To download the ConfigValues file for an installed instance of your application:
 
-1. Install the desired release for your application in a development environment. For more information, see [Installing on an Existing Cluster](/enterprise/installing-existing-cluster) or [Installing with the Kubernetes Installer](/enterprise/installing-embedded-cluster).
+1. Install the desired release for your application in a development environment. For more information, see [About Installing an Application](/enterprise/installing-overview).
 
 1. Run the following command to download the manifest files for the installed instance of the application:
 

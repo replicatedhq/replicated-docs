@@ -55,7 +55,7 @@ If you are restoring to a healthy cluster, you can skip the installation and con
 
 To restore a backup on a Kubernetes installer-created cluster:
 
-1. (New or Unhealthy Clusters Only) Provision a Kubernetes installer cluster and install the application. See [Installing with the Kubernetes Installer](installing-embedded-cluster).
+1. (New or Unhealthy Clusters Only) Provision a Kubernetes installer cluster and install the application. See [Online Installation with the Kubernetes Installer](installing-embedded-cluster).
 
 1. (New or Unhealthy Clusters Only) Configure a storage destination that holds the backup you want to use:
 

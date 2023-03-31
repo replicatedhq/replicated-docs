@@ -5,7 +5,7 @@ import HaLoadBalancerPrereq from "../partials/install/_ha-load-balancer-prereq.m
 
 
 
-# Online Installation using a Kubernetes Installer
+# Online Installation with the Kubernetes Installer
 
 This topic explains how to install an application on an embedded cluster provisioned by the Replicated Kubernetes installer.
 
