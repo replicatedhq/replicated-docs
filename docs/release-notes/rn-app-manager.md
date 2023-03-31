@@ -709,11 +709,11 @@ Released on July 5, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### New Features {#new-features-1-75-0}
-* Adds a `helmUpgradeFlags` parameter to the [HelmChart custom resource](../reference/custom-resource-helmchart) when [Installing with Native Helm](../vendor/helm-installing-native-helm). The specified flags are passed to the `helm upgrade` command. Note that the Replicated app manager uses `helm upgrade` for all installations, including initial installations, and not just when the application is upgraded.
+* Adds a `helmUpgradeFlags` parameter to the [HelmChart custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](/vendor/helm-overview). The specified flags are passed to the `helm upgrade` command. Note that the Replicated app manager uses `helm upgrade` for all installations, including initial installations, and not just when the application is upgraded.
 
 ### Bug Fixes {#bug-fixes-1-75-0}
 * Addresses the following critical severity CVEs: CVE-2022-26945, CVE-2022-30321, CVE-2022-30322, and CVE-2022-30323.
-* Fixes a bug that causes the [`push-images`](../reference/kots-cli-admin-console-push-images) command to fail when `--registry-password` and `--registry-username` are not specified for use with anonymous registries.
+* Fixes a bug that causes the [`push-images`](/reference/kots-cli-admin-console-push-images) command to fail when `--registry-password` and `--registry-username` are not specified for use with anonymous registries.
 
 ## 1.74.0
 
@@ -737,14 +737,14 @@ Released on June 24, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### New Features {#new-features-1-73-0}
-* Adds a `releaseName` parameter to the [HelmChart custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](/vendor/helm-installing-native-helm). Defaults to the chart name. Specifying a `releaseName` also allows you to deploy multiple instances of the same Helm chart, which was previously impossible.
+* Adds a `releaseName` parameter to the [HelmChart custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](/vendor/helm-overview). Defaults to the chart name. Specifying a `releaseName` also allows you to deploy multiple instances of the same Helm chart, which was previously impossible.
 
 ### Improvements {#improvements-1-73-0}
 * Improved UX on the version history page when the application is up to date or when there are new available versions.
 
 ### Bug Fixes {#bug-fixes-1-73-0}
 * Fixes an issue where the preflight screen was displayed even if no analyzers were run.
-* Fixes an issue that prevented you from excluding a Helm chart that was previously included when [Installing with Native Helm](/vendor/helm-installing-native-helm).
+* Fixes an issue that prevented you from excluding a Helm chart that was previously included when [Installing with Native Helm](/vendor/helm-overview).
 
 ## 1.72.2
 
@@ -844,7 +844,7 @@ Released on May 2, 2022
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### New Features
-* Adds a `weight` parameter to the [Helm custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](../vendor/helm-installing-native-helm). Charts are applied by weight in ascending order, with lower numbered weights applied first.
+* Adds a `weight` parameter to the [Helm custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](/vendor/helm-overview). Charts are applied by weight in ascending order, with lower numbered weights applied first.
 * Adds the ability to change the admin console password from the **Change Password** link in the admin console page footer.
 * Adds the ability to download `Config` file types for a given application sequence.
 * Adds a template function `YamlEscape` to escape a string for inclusion in a YAML file.

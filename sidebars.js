@@ -115,7 +115,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Packaging Helm Charts',
+          label: 'Helm Chart Deployment',
           items: [
               {
               type: 'category',
@@ -126,14 +126,7 @@ const sidebars = {
               ],
             },
             'vendor/helm-install',
-            {
-              type: 'category',
-              label: 'Using Native Helm',
-              items: [
-                'vendor/helm-installing-native-helm',
-                'vendor/helm-native-helm-install-order',
-              ],
-            },
+            'vendor/helm-native-helm-install-order',
             'vendor/helm-optional-charts',
             'vendor/helm-optional-value-keys',
           ],
