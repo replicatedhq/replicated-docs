@@ -508,7 +508,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Installing with a Kubernetes Installer',
+              label: 'Installing with the Kubernetes Installer',
               items: [
                 'enterprise/installing-embedded-cluster',
                 'enterprise/installing-embedded-airgapped',
