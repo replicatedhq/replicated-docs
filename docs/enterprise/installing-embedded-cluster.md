@@ -30,7 +30,7 @@ Complete the following prerequisites:
 
 This procedure explains how to install the the application in an online environment, with and without high availability mode.
 
-To install the app manager and application:
+To install the application:
 
 1. Run one of the following commands:
 
@@ -52,9 +52,9 @@ To install the app manager and application:
       curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash -s ha
         ```
     
-    Replace:
+    Replace, where applicable:
      * `APP_SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
-     * (Optional) `VERSION_LABEL` with the label for the version of the application to install. For example, `--app-version-label=3.0.1`.
+     * `VERSION_LABEL` with the label for the version of the application to install. For example, `--app-version-label=3.0.1`.
 
 1. (High Availability Only) If you did not preconfigure a load balancer, you are prompted during the installation. Do one of the following:
 

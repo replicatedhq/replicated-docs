@@ -26,7 +26,7 @@ This feature is only available for licenses that have the air gapped feature ena
 
 You can install the admin console using the kots CLI plugin for the kubectl command-line tool. To install the admin console, you use the admin console binary bundle, `kotsadm.tar.gz`.
 
-To push images and install:
+To install the application:
 
 1. Install the kots CLI plugin. See [Install without Root Access](/reference/kots-cli-getting-started#install-without-root-access) in the kots CLI reference section.
 

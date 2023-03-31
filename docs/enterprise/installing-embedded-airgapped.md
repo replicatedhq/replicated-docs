@@ -35,7 +35,7 @@ Complete the following prerequisites:
 
 This procedure explains how to install the app manager and the application in an air gapped environment, with and without high availability mode.
 
-To install the app manager and application:
+To install the application:
 
 1. Run one of the following commands:
 

@@ -15,7 +15,7 @@ Complete the following prerequisites:
 
 You can install an application to an existing Kubernetes cluster that contains nodes that can access the internet. In an online installation, the Replicated app manager pulls container images from the upstream registries directly.
 
-To install on an existing cluster in an online environment:
+To install the application:
 
 1. Run one of the following commands:
 
@@ -33,9 +33,9 @@ To install on an existing cluster in an online environment:
       kubectl kots install APP_SLUG --app-version-label=VERSION_LABEL
       ```
     
-    Replace:
+    Replace, where applicable:
      * `APP_SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
-     * (Optional) `VERSION_LABEL` with the label for the version of the application to install. For example, `--app-version-label=3.0.1`.
+     * `VERSION_LABEL` with the label for the version of the application to install. For example, `--app-version-label=3.0.1`.
 
 1. When prompted by the `kots install` command:
    1. Provide the namespace where you want to deploy the application and the admin console.
