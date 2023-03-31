@@ -1,17 +1,34 @@
-# Installing in an Air Gapped Environment
+import ImageRegistryAirgapAbout from "../partials/image-registry/_image-registry-airgap-about.mdx"
+import ImageRegistryAirgapPrereq from "../partials/image-registry/_image-registry-airgap-prereq.mdx"
+import PrereqsExistingCluster from "../partials/install/_prereqs-existing-cluster.mdx"
+
+# Air Gap Installation in Existing Clusters
+
+This topic describes how to use Replicated to install an application in an air gap environment. Procedures are provided for installing using an existing Kubernetes cluster.
+
+## About Private Registries
+
+<ImageRegistryAirgapAbout/>
+
+## Prerequisites
+
+Complete the following prerequisites:
+
+<PrereqsExistingCluster/>
+
+<ImageRegistryAirgapPrereq/>
+
+## Install the Application {#air-gap}
 
 When installing an application with the Replicated app manager from a `.airgap` package, the container images and application manifests are provided by the application vendor in an archive that can be used to deliver the artifacts into the cluster.
 
 This feature is only available for licenses that have the air gapped feature enabled.
 
-This topic applies to installing the Replicated admin console into an existing Kubernetes cluster.  
-For information about how to install on a cluster created by the Kubernetes installer in an air gapped environment, see [Install in an air gapped environment](installing-embedded-cluster#airgapped-installations) in _Installing with the Kubernetes installer_.
-
-## Push Images and Install the Admin Console
-
 You can install the admin console using the kots CLI plugin for the kubectl command-line tool. To install the admin console, you use the admin console binary bundle, `kotsadm.tar.gz`.
 
-To push images and install the admin console:
+To install the application:
+
+1. Install the kots CLI plugin. See [Install without Root Access](/reference/kots-cli-getting-started#install-without-root-access) in the kots CLI reference section.
 
 1. Download `kotsadm.tar.gz` from the kots release page on GitHub. See [Releases](https://github.com/replicatedhq/kots/releases) in the kots GitHub repository.
 
@@ -25,18 +42,18 @@ To push images and install the admin console:
 
    ```shell
    kubectl kots admin-console push-images ./kotsadm.tar.gz private.registry.host/app-name \
-     --registry-username RW-USERNAME \
-     --registry-password RW-PASSWORD
+     --registry-username RW_USERNAME \
+     --registry-password RW_PASSWORD
    ```
 
-   Where:
+    Replace:
 
-   * `RW-USERNAME` is the username for an account that has read and write access to the private image registry.
+    * `RW_USERNAME` with the username for an account that has read and write access to the private image registry.
 
-   * `RW-PASSWORD` is the password for the account with read and write access.
-   :::note
-   Replicated does not store or reuse these credentials.
-   :::
+    * `RW_PASSWORD` with the password for the account with read and write access.
+    :::note
+    Replicated does not store or reuse these credentials.
+    :::
 
 1. Install the admin console using the images that you pushed in the previous step:
 
@@ -48,13 +65,40 @@ To push images and install the admin console:
      --registry-password RO-PASSWORD
    ```
 
-   Where:
-   * `RO-USERNAME` is the username for an account that has read-only access to the private image registry.
-   * `RO-PASSWORD` is the password for the read-only account.
+   Replace:
+
+   * `RO_USERNAME` with the username for an account that has read-only access to the private image registry.
+
+   * `RO_PASSWORD` with the password for the read-only account.
+
    :::note
    Replicated stores these read-only credentials in a Kubernetes secret in the same namespace where the admin console is installed.
 
    Replicated uses these credentials to pull the images. To allow Replicated to pull images, the credentials are automatically created as an imagePullSecret on all of the admin console Pods.
    :::
 
-  After the `kots install` command completes, the app manager creates a port-forward to the admin console on port 8800. The admin console is exposed internally in the cluster and can only be accessed using a port forward.
+1. When prompted by the `kots install` command:
+   1. Provide the namespace where you want to deploy the application and the admin console.
+   1. Create a new password for logging in to the admin console.
+
+     **Example**:
+
+     ```shell
+     $ kubectl kots install application-name
+     Enter the namespace to deploy to: application-name
+       • Deploying Admin Console
+         • Creating namespace ✓
+         • Waiting for datastore to be ready ✓
+     Enter a new password to be used for the Admin Console: ••••••••
+       • Waiting for Admin Console to be ready ✓
+
+       • Press Ctrl+C to exit
+       • Go to http://localhost:8800 to access the Admin Console
+
+     ```   
+
+    After the `kots install` command installs the admin console and the application on the cluster, it creates a port forward to the admin console. The admin console is exposed internally on the cluster and can only be accessed using a port forward.
+
+1. Log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
+
+

@@ -29,7 +29,7 @@ For more information about the required and optional flags for the `kots install
 
 To use the kots CLI to install in an air gap environment:
 
-1. Push admin console images to a private registry using the  `kubectl kots admin-console push-images` command. For more information, see [Install in an Air Gapped Environment](installing-existing-cluster#air-gap) in _Installing on an Existing Cluster_.
+1. Push admin console images to a private registry using the  `kubectl kots admin-console push-images` command. For more information, see [Air Gap Installation in Existing Clusters](installing-existing-cluster-airgapped).
 
 1. Run the following command:
 
