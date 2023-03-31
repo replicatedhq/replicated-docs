@@ -31,7 +31,7 @@ Complete the following prerequisites:
 
 <HaLoadBalancerPrereq/>
 
-## Install the App Manager and Application {#air-gap}
+## Install the Application {#air-gap}
 
 This procedure explains how to install the app manager and the application in an air gapped environment, with and without high availability mode.
 

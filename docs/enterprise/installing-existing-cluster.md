@@ -11,31 +11,31 @@ Complete the following prerequisites:
 
 <PrereqsExistingCluster/> 
 
-## Install the App Manager {#online}
+## Install the Application {#online}
 
-You can install an application to an existing Kubernetes cluster that contains nodes that can access the internet.
-In an online installation, the Replicated app manager pulls container images from the upstream registries directly.
+You can install an application to an existing Kubernetes cluster that contains nodes that can access the internet. In an online installation, the Replicated app manager pulls container images from the upstream registries directly.
 
 To install on an existing cluster in an online environment:
 
 1. Run one of the following commands:
 
-   * For the latest version of the application:
+    * For the latest version of the application:
 
       ```shell
       curl https://kots.io/install | bash
       kubectl kots install APP_SLUG
       ```
 
-   * For a specific version of the application, use the `app-version-label` flag and the version label for a particular version of your vendor's application:
+    * For a specific version of the application, use the `app-version-label` flag and the version label for a particular version of your vendor's application:
 
       ```shell
       curl https://kots.io/install | bash
       kubectl kots install APP_SLUG --app-version-label=VERSION_LABEL
       ```
+    
     Replace:
-    * `APP_SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
-    * (Optional) `VERSION_LABEL` with the label for the version of the application to install. For example, `--app-version-label=3.0.1`.
+     * `APP_SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
+     * (Optional) `VERSION_LABEL` with the label for the version of the application to install. For example, `--app-version-label=3.0.1`.
 
 1. When prompted by the `kots install` command:
    1. Provide the namespace where you want to deploy the application and the admin console.

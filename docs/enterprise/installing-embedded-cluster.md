@@ -26,9 +26,9 @@ Complete the following prerequisites:
 <HaLoadBalancerPrereq/>
     
 
-## Install the App Manager and Application {#online}
+## Install the Application {#online}
 
-This procedure explains how to install the app manager and the application in an online environment, with and without high availability mode.
+This procedure explains how to install the the application in an online environment, with and without high availability mode.
 
 To install the app manager and application:
 

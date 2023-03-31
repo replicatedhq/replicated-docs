@@ -16,9 +16,9 @@ Complete the following prerequisites:
 
 <PrereqsExistingCluster/>
 
-- <ImageRegistryAirgapPrereq/>
+<ImageRegistryAirgapPrereq/>
 
-## Install the App Manager {#air-gap}
+## Install the Application {#air-gap}
 
 When installing an application with the Replicated app manager from a `.airgap` package, the container images and application manifests are provided by the application vendor in an archive that can be used to deliver the artifacts into the cluster.
 
@@ -46,14 +46,14 @@ To push images and install:
      --registry-password RW_PASSWORD
    ```
 
-   Replace:
+    Replace:
 
-   * `RW_USERNAME` with the username for an account that has read and write access to the private image registry.
+    * `RW_USERNAME` with the username for an account that has read and write access to the private image registry.
 
-   * `RW_PASSWORD` with the password for the account with read and write access.
-   :::note
-   Replicated does not store or reuse these credentials.
-   :::
+    * `RW_PASSWORD` with the password for the account with read and write access.
+    :::note
+    Replicated does not store or reuse these credentials.
+    :::
 
 1. Install the admin console using the images that you pushed in the previous step:
 
