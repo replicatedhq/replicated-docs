@@ -75,15 +75,15 @@ Helm hooks enable more control over when Helm installs the resources in your Hel
 Replicated supports using some Helm hooks with native Helm charts. If you use hooks in your native Helm charts, you can use the `weight` property to further manage the installation order of resources. For example, if you include a pre-install hook in Helm chart A that requires a resource from Helm chart B, you can add a lower `weight` to chart B to ensure that the app manager directs Helm to install chart B before chart A.
 
 The following hooks are supported:
-* pre-install - executes after resources are rendered but before any resources are installed.
-* post-install - executes after resources are installed.
-* pre-upgrade - executes after resources are rendered but before any resources are upgraded.
-* post-upgrade - executes after resources are upgraded.
+* `pre-install`: Executes after resources are rendered but before any resources are installed.
+* `post-install`: Executes after resources are installed.
+* `pre-upgrade`: Executes after resources are rendered but before any resources are upgraded.
+* `post-upgrade`: Executes after resources are upgraded.
+* `pre-delete`: Executes before any resources are deleted.
+* `post-delete`: Executes after resources are deleted.
 
-The following hooks can be used but no actions will be taken by Replicated:
-* pre-rollback - executes after resources are rendered but before any resources are rolled back.
-* post-rollback - executes after resources are rolled back.
-* pre-delete - executes before any resources are deleted.
-* post-delete - executes after resources are deleted.
+The following hooks are not supported and are ignored if they are present:
+* `pre-rollback`: Executes after resources are rendered but before any resources are rolled back.
+* `post-rollback`: Executes after resources are rolled back.
 
 For more information about Helm hooks and weights, see the [Helm docs](https://helm.sh/docs/topics/charts_hooks/).
