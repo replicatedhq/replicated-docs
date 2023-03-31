@@ -2,6 +2,7 @@ import NativeHelmLimitations from "../partials/helm/_native-helm-limitations.mdx
 import TemplateLimitation from "../partials/helm/_helm-template-limitation.mdx"
 import VersionLimitation from "../partials/helm/_helm-version-limitation.mdx"
 import HelmCLILimitations from "../partials/helm/_helm-cli-limitations.mdx"
+import ReplicatedHelmDeprecated from "../partials/helm/_replicated-deprecated.mdx"
 
 # About Deploying Helm Charts 
 
@@ -107,7 +108,7 @@ To deploy Helm charts using the native Helm method, the app manager does the fol
 #### Replicated Helm
 
 :::note
-The Replicated Helm method is deprecated and is not recommended for new installations.
+<ReplicatedHelmDeprecated/>
 :::
 
 With the Replicated Helm deployment method, the app manager renders the Helm templates and deploys them as standard Kubernetes manifests using `kubectl apply`. The app manager also has additional functionality for specific Helm hooks. For example, when the app manager encounters an upstream Helm chart with a `helm.sh/hook-delete-policy` annotation, it automatically adds the same `kots.io/hook-delete-policy` to the Job object.
@@ -141,12 +142,14 @@ This section lists the limitations for the Helm chart installation methods.
 
 There are different limitations depending on if your customers install and manage the application with the app manager or if they use the helm CLI directly:
 
-* [Replicated Helm and Native Helm Limitations](#replicated-helm-limitations)
+* [Native Helm and Replicated Helm Limitations](#replicated-helm-limitations)
 * [helm CLI Limitations](#helm-cli-limitations)
 
 ### Native Helm and Replicated Helm Limitations {#replicated-helm-limitations}
 
 The following limitations apply when using the app manager to install and manage Helm charts:
+
+* <ReplicatedHelmDeprecated/>
 
 * <TemplateLimitation/>
 
