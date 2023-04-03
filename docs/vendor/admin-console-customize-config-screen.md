@@ -2,7 +2,7 @@
 
 This topic describes how to use the Config custom resource manifest file to add and edit fields in the Replicated admin console configuration screen. For more information about the configuration screen, see [About the Configuration Screen](config-screen-about).
 
-## Overview of the Config Custom Resource
+## About the Config Custom Resource
 
 To include a configuration screen in the Replicated admin console for your application, you add a Config custom resource manifest file to the release in the Replicated vendor portal.
 
@@ -13,6 +13,63 @@ You define the fields that appear on the configuration screen as an array of `gr
    There are several types of `items` supported in the Config manifest that allow you to collect different types of user inputs. For example, you can use the `password` input type to create a text field on the configuration screen that hides user input.
 
 For more information about the syntax of the Config custom resource manifest, see [Config](../reference/custom-resource-config) in the _Custom Resources_ section.
+
+## About Regular Expression Validation
+
+When you have fields that must conform to a certain standard, such as valid email addresses, password complexity rules, IP addresses, URLs, and so on, you can configure those fields using regular expressions (`regex`). This helps ensure that users input valid configuration and gives them immediate feedback and guidance if their input does not meet the criteria.
+
+You add the `regex` and `message` field to the Config custom resource for an item. The following example shows the requirements for a password:
+
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Config
+metadata:
+  name: my-application
+spec:
+  groups:
+    - name: smtp-settings
+      title: SMTP Settings
+      items:
+      - name: smtp_password
+        title: SMTP Password
+        type: text
+        validation:
+          regex: ​^.*(?=.{8,20})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "]).*$
+          message: Must be a minimum of 8 characters and must contain a combination of uppercase, lowercase, numbers, and special characters.
+```
+
+The formatting of this regular expression is divided into the following parts: 
+
+<table>
+    <tr>
+      <th width="30%">Regex Pattern</th>
+      <th width="70%">Description</th>
+    </tr>
+    <tr>
+      <td>^.*</td>
+      <td>(Required) Specifies the start of the regular expression.</td>
+    </tr>
+    <tr>
+      <td>(?=.{8,20})</td>
+      <td>Specifies the length of at least 8 characters and a maximum of 20 characters.</td>
+    </tr>
+    <tr>
+      <td>(?=.*[a-zA-Z])</td>
+      <td>Specifies that uppercase and lowercase letters are required for the input.</td>
+    </tr>
+    <tr>
+      <td>(?=.*\d)</td>
+      <td>Specifies that at least one numerical digit from `0` - `9` is required for the input.</td>
+    </tr>
+    <tr>
+      <td>(?=.*[\W])</td>
+      <td>Specifies that at least one special character is required for the input.</td>
+    </tr>
+    <tr>
+      <td>.*$</td>
+      <td>(Required) Specifies the end of the regular expression.</td>
+    </tr>
+  </table>
 
 ## Add Fields to the Configuration Screen
 
