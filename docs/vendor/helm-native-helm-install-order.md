@@ -2,7 +2,7 @@
 
 When deploying applications with native Helm charts, the Replicated app manager directs Helm v3 to install your `HelmChart` resources on the cluster. In parallel, the app manager deploys any other manifest files within your application.
 
-Native Helm charts are `HelmChart` custom resources in your application that are installed and managed directly by Helm v3. Native Helm charts have the `useHelmInstall` property set to `true`. For more information about using native Helm charts with Replicated, see [About Deploying with Helm](helm-overview).
+Native Helm charts are `HelmChart` custom resources in your application that are installed and managed directly by Helm v3. Native Helm charts have the `useHelmInstall` property set to `true`. For more information about using native Helm charts with Replicated, see [About Deploying Helm Charts](helm-overview).
 
 ## About Native Helm Chart Installation Weight
 

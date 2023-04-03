@@ -30,7 +30,7 @@ You can target resources of the supported types that are deployed in any of the 
 
 * Deployed directly by the Replicated app manager.
 * Deployed by a Kubernetes Operator that is deployed by the app manager. For more information, see [About Packaging a Kubernetes Operator Application](operator-packaging-about).
-* Deployed by Helm. For more information, see [About Deploying with Helm](helm-overview).
+* Deployed by Helm. For more information, see [About Deploying Helm Charts](helm-overview).
 
 ### Resource Statuses
 
