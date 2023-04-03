@@ -89,6 +89,10 @@
   from="https://docs.replicated.com/vendor/releases-semantic-versioning"
   to="https://docs.replicated.com/vendor/releases-about"
 
+[[redirects]]
+  from="https://docs.replicated.com/vendor/helm-installing-native-helm"
+  to="https://docs.replicated.com/vendor/helm-overview"
+  
 ###################################################
 # Redirects To the Enterprise Section
 ###################################################
@@ -108,6 +112,10 @@
 [[redirects]]
   from="https://docs.replicated.com/enterprise//snapshots-config-workflow"
   to="https://docs.replicated.com/enterprise/snapshots-velero-cli-installing"
+
+[[redirects]]
+  from="https://docs.replicated.com/enterprise/image-registry-airgap"
+  to="https://docs.replicated.com/enterprise/installing-general-requirements"
    
 ###################################################
 # Redirects To the References Section

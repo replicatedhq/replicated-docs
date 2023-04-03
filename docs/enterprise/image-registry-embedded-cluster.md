@@ -29,12 +29,12 @@ kubectl patch configmaps kotsadm-confg --type merge -p "{\"data\":{\"enable-imag
 ```
 
 Garbage collection is triggered automatically when a new application version is deployed.
-The `admin-console garbage-collect-images` command can be used to trigger it manually. For more information, see [admin-console garbage-collect-images](../reference/kots-cli-admin-console-garbage-collect-images/) in the kots CLI documentation.
+The `admin-console garbage-collect-images` command can be used to trigger it manually. For more information, see [admin-console garbage-collect-images](/reference/kots-cli-admin-console-garbage-collect-images/) in the kots CLI documentation.
 
 ### Restoring Deleted Images
-Deleted images may be reloaded from application and the Replicated admin console air gap bundles using the `admin-console push-images` command. For more information, see [admin-console push-images](../reference/kots-cli-admin-console-push-images/) in the kots CLI documentation.
+Deleted images may be reloaded from application and the Replicated admin console air gap bundles using the `admin-console push-images` command. For more information, see [admin-console push-images](/reference/kots-cli-admin-console-push-images/) in the kots CLI documentation.
 
-For an example of using the `admin-console push-images` command, see [Install in an Air Gapped Environment](installing-existing-cluster#air-gap) in _Installing on an Existing Cluster_.
+For an example of using the `admin-console push-images` command, see [Air Gap Installation in Existing Clusters](installing-existing-cluster-airgapped).
 
 Registry address and namespace can be found on the Registry Settings page in the admin console.
 Registry username and password can be found in the `registry-creds` secret in the default namespace.
@@ -56,4 +56,4 @@ This feature is currently only supported when used with the embedded open source
 If the admin console instance is configured to use a different registry, this feature should be disabled to prevent image loss.
 
 #### Application Rollbacks
-Currently image garbage collection has no effect when the `allowRollback` field in the `application.yaml` file is set to `true`. For more information, see [Application](../reference/custom-resource-application) in _Custom Resources_.
+Currently image garbage collection has no effect when the `allowRollback` field in the `application.yaml` file is set to `true`. For more information, see [Application](/reference/custom-resource-application) in _Custom Resources_.

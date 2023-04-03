@@ -1,8 +1,8 @@
-# Overview of Installing an Application with the App Manager
+# About Installing an Application
 
-You can use the Replicated app manager to install applications into various environments and Kubernetes clusters, including air gapped, bare metal Kubernetes installations, managed offerings such as EKS, GKE and AKS, and more.
+You can use the Replicated app manager to install applications into various environments and Kubernetes clusters, including air gapped, bare metal Kubernetes installations, and managed offerings such as EKS, GKE and AKS, and more.
 
-## Considerations Before Installing an Application
+## Considerations Before Installing
 
 Before you install an application, consider the following installation options.
 
@@ -23,9 +23,9 @@ If the target cluster does not have outbound internet access, the application ca
 
 To install an application in an air gapped environment, the cluster must have access to an image registry. In this case, the app manager retags and pushes all images to the target registry. Replicated supports installations in air gapped environments on both existing clusters and on clusters created by the Kubernetes installer.
 
-For information about installing in air gapped environments, see:
-* **Existing cluster**: [Install in an Air Gapped Environment](installing-existing-cluster#air-gap) in _Installing on an Existing Cluster_
-* **Kubernetes installer provisioned cluster**: [Install in an Air Gapped Environment](installing-embedded-cluster#air-gap) in _Installing with the Kubernetes Installer_.
+For information about installing in air gapped environments:
+* **Existing cluster**: See [Air Gap Installation in Existing Clusters](installing-existing-cluster-airgapped)
+* **Kubernetes installer provisioned cluster**: See [Air Gap Installation with the Kubernetes Installer](installing-embedded-airgapped)
 
 ### Provide Access to the Target Namespaces
 
@@ -35,14 +35,14 @@ The kubectl command-line tool access used must have read and write access to the
 
 Additionally, by default, the app manager creates a ClusterRole and ClusterRoleBinding with permissions to all namespaces unless otherwise specified by the application vendor.
 
-For more information about the role-based access control (RBAC) requirements for the app manager, see [RBAC Requirements](installing-general-requirements#rbac-requirements) in _Installation Requirements_.
+For more information about the role-based access control (RBAC) requirements for the app manager, see [RBAC Requirements](installing-general-requirements#rbac-requirements) in _Requirements for Installation_.
 
 ### Deploy Images to Local Registries
 
 During install, the app manager can re-tag and push images to a local image registry.
-This is useful to enable CVE scans, image policy validation, and other pre-deployment rules.
+This is useful to enable CVE scans, image policy validation, and other pre-deployment rules. A private image registry is required for air gapped environments, and is optional for online environments.
 
-For information about using a local image registry, see [Requirements for Air Gap Image Registry](image-registry-airgap).
+For information about image registry requirements, see [Private Registry Requirements](installing-general-requirements#docker-compatibility).
 
 ### Use a GitOps or Internal Version Control Workflow
 

@@ -62,6 +62,6 @@ Enterprise customers can install and use the kots command-line interface (CLI) t
 
 ### Kubernetes Installer
 
-The Replicated Kubernetes installer provisions a cluster on a customer's virtual machine. This is known as a Kubernetes installer cluster or embedded cluster, and it allows customers to install an application without an existing Kubernetes cluster. For more information about configuring a Kubernetes installer cluster, see [Creating a Kubernetes Installer](/vendor/packaging-embedded-kubernetes). For more information about how enterprise users install with the Kubernetes installer, see [Installing with the Kubernetes Installer](/enterprise/installing-embedded-cluster).
+The Replicated Kubernetes installer provisions a cluster on a customer's virtual machine. This is known as a Kubernetes installer cluster or embedded cluster, and it allows customers to install an application without an existing Kubernetes cluster. For more information about configuring a Kubernetes installer cluster, see [Creating a Kubernetes Installer](/vendor/packaging-embedded-kubernetes). For more information about how enterprise users install with the Kubernetes installer, see [About INstalling an Application](/enterprise/installing-overview).
 
 The Kubernetes installer is based on the kURL open source project, which is maintained by Replicated. For more information, see the [kURL repository](https://github.com/replicatedhq/kURL) in GitHub.

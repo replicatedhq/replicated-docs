@@ -14,7 +14,7 @@ Helm is a popular package manager for Kubernetes applications. Using Replicated 
 
 Replicated supports delivering an enterprise application as Helm charts, or including Helm charts as components of an application. An application can use more than one Helm chart, and can use more than a single instance of any Helm chart.
 
-To package an application with Helm, start by adding an existing Helm chart to a release in the Replicated vendor portal. For information about how to create a new release from an existing Helm chart, see [Creating Releases with Helm Charts](helm-release).
+To deploy a Helm chart, start by adding the Helm chart to a release in the Replicated vendor portal. For information about how to create a new release from an existing Helm chart, see [Creating Releases with Helm Charts](helm-release).
 
 ## Helm Chart Installation Options
 
@@ -58,6 +58,7 @@ To deploy Helm charts using the native Helm method, the app manager does the fol
    - svc-headless.yaml
    - svc.yaml
    ```
+
 
 1. **Writes midstream files with Kustomize instructions from Replicated**: The app manager then copies the directory structure from `base/charts/` to an `overlays/midstream/charts/` directory. The following screenshot shows an example of the midstream directory for the postgresql Helm chart: 
    
@@ -105,6 +106,7 @@ To deploy Helm charts using the native Helm method, the app manager does the fol
 1. **Deploys the Helm chart**: The app manager runs `kustomize build` for any Kustomization files in the `overlays/downstream/charts` directory. The app manager then packages the resulting manifests into a new chart for Helm to consume.
 
    Finally, the app manager runs `helm upgrade -i <release-name> <chart> --timeout 3600s -n <namespace>`. The Helm binary processes hooks and weights, applies manifests to the Kubernetes cluster, and saves a release secret similar to `sh.helm.release.v1.chart-name.v1`. Helm uses this secret to track upgrades and rollbacks of applications.
+
 #### Replicated Helm
 
 :::note

@@ -4,6 +4,19 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.96.3
+
+Released on March 29, 2023
+
+Support for Kubernetes: 1.24, 1.25, and 1.26
+
+### Improvements {#improvements-1-96-3}
+* Wraps the logs in the deploy logs modal to increase readability by eliminating the need to scroll horizontally.
+* Removes support for cipher suites that use the CBC encryption algorithm or SHA-1 from the kurl_proxy service that runs in embedded cluster installations.
+
+### Bug Fixes {#bug-fixes-1-96-3}
+* Fixes a bug that caused application upgrades to fail because the app manager attempted to migrate the Helm release secret when the release secret already existed in the release namespace.
+
 ## 1.96.2
 
 Released on March 24, 2023
@@ -77,7 +90,7 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 
 ### New Features {#new-features-1-95-0}
 * Adds an `--undeploy` flag to the [kots remove](/reference/kots-cli-remove) command that allows you to completely undeploy the application and delete its resources from the cluster.
-* Adds support for Azure Container Registry (ACR). For a full list of supported registries, see [Docker Image Registry Compatibility](/enterprise/image-registry-airgap#docker-compatibility).
+* Adds support for Azure Container Registry (ACR). For a full list of supported registries, see [Private Registry Requirements](/enterprise//installing-general-requirements#private-registry-requirements).
 * Status informers now support DaemonSets. See [Resource Statuses](/vendor/admin-console-display-app-status#resource-statuses).
 * When using custom branding for the admin console, you can more easily change the color of groups of elements in the admin console (Beta).
 
@@ -696,11 +709,11 @@ Released on July 5, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### New Features {#new-features-1-75-0}
-* Adds a `helmUpgradeFlags` parameter to the [HelmChart custom resource](../reference/custom-resource-helmchart) when [Installing with Native Helm](../vendor/helm-installing-native-helm). The specified flags are passed to the `helm upgrade` command. Note that the Replicated app manager uses `helm upgrade` for all installations, including initial installations, and not just when the application is upgraded.
+* Adds a `helmUpgradeFlags` parameter to the [HelmChart custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](/vendor/helm-overview). The specified flags are passed to the `helm upgrade` command. Note that the Replicated app manager uses `helm upgrade` for all installations, including initial installations, and not just when the application is upgraded.
 
 ### Bug Fixes {#bug-fixes-1-75-0}
 * Addresses the following critical severity CVEs: CVE-2022-26945, CVE-2022-30321, CVE-2022-30322, and CVE-2022-30323.
-* Fixes a bug that causes the [`push-images`](../reference/kots-cli-admin-console-push-images) command to fail when `--registry-password` and `--registry-username` are not specified for use with anonymous registries.
+* Fixes a bug that causes the [`push-images`](/reference/kots-cli-admin-console-push-images) command to fail when `--registry-password` and `--registry-username` are not specified for use with anonymous registries.
 
 ## 1.74.0
 
@@ -724,14 +737,14 @@ Released on June 24, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, and 1.24
 
 ### New Features {#new-features-1-73-0}
-* Adds a `releaseName` parameter to the [HelmChart custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](/vendor/helm-installing-native-helm). Defaults to the chart name. Specifying a `releaseName` also allows you to deploy multiple instances of the same Helm chart, which was previously impossible.
+* Adds a `releaseName` parameter to the [HelmChart custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](/vendor/helm-overview). Defaults to the chart name. Specifying a `releaseName` also allows you to deploy multiple instances of the same Helm chart, which was previously impossible.
 
 ### Improvements {#improvements-1-73-0}
 * Improved UX on the version history page when the application is up to date or when there are new available versions.
 
 ### Bug Fixes {#bug-fixes-1-73-0}
 * Fixes an issue where the preflight screen was displayed even if no analyzers were run.
-* Fixes an issue that prevented you from excluding a Helm chart that was previously included when [Installing with Native Helm](/vendor/helm-installing-native-helm).
+* Fixes an issue that prevented you from excluding a Helm chart that was previously included when [Installing with Native Helm](/vendor/helm-overview).
 
 ## 1.72.2
 
@@ -831,7 +844,7 @@ Released on May 2, 2022
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### New Features
-* Adds a `weight` parameter to the [Helm custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](../vendor/helm-installing-native-helm). Charts are applied by weight in ascending order, with lower numbered weights applied first.
+* Adds a `weight` parameter to the [Helm custom resource](/reference/custom-resource-helmchart) when [Installing with Native Helm](/vendor/helm-overview). Charts are applied by weight in ascending order, with lower numbered weights applied first.
 * Adds the ability to change the admin console password from the **Change Password** link in the admin console page footer.
 * Adds the ability to download `Config` file types for a given application sequence.
 * Adds a template function `YamlEscape` to escape a string for inclusion in a YAML file.
@@ -918,7 +931,7 @@ Released on March 21, 2022
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### New Features
-* Adds support for installing a specific application version. For more information about installing a specific application version, see [Install in an Online Environment](/enterprise/installing-existing-cluster#online) in _Installing on an Existing Cluster_ and [Installing with the Kubernetes Installer](/enterprise/installing-embedded-cluster).
+* Adds support for installing a specific application version. For more information about installing a specific application version, see [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster and [Online Installation with the Kubernetes Installer](/enterprise/installing-embedded-cluster).
 * Extends the ability of status informers to detect if the application is being updated.
 * Adds the ability to provide a strict preflight, which cannot be skipped and must not have any failure outcomes. Any failure outcomes will prevent the user from deploying the application. For more information on strict preflights, see [About preflight checks and support bundles​](/vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles) in Creating Preflight Checks and Support Bundles.
 * New versions can automatically be deployed in the admin console, regardless of whether the vendor uses semantic versioning. For more information about automatically deploying new versions, see [Configure Automatic Updates​](/enterprise/updating-apps#configure-automatic-updates) in Updating an Application.
@@ -1045,7 +1058,7 @@ Supported on Kubernetes: 1.20, 1.21, and 1.22
 * Updates Postgres to version 10.19.
 
 ### Bug Fixes
-* Fixes an issue that caused images to be pushed multiple times during an [airgap installation](/enterprise/installing-existing-cluster#air-gap) when the [Native Helm](/vendor/helm-processing/#native-helm) feature is enabled.
+* Fixes an issue that caused images to be pushed multiple times during an [airgap installation](/enterprise/installing-existing-cluster-airgapped) when the [Native Helm](/vendor/helm-processing/#native-helm) feature is enabled.
 * Fixes an issue that prevented the deployment status labels from breaking into multiple lines on small displays.
 
 ## 1.59.3

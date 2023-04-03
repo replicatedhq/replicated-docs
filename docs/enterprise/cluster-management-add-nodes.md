@@ -1,6 +1,6 @@
 # Adding Nodes to Kubernetes Installer Clusters
 
-This topic describes how to add primary and secondary nodes to a Kubernetes installer provisioned cluster in the Replicated admin console.
+This topic describes how to add primary and secondary nodes to a Kubernetes installer provisioned cluster (embedded cluster) in the Replicated admin console.
 
 ## Overview of Adding Nodes
 

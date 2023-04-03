@@ -115,18 +115,11 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Packaging Helm Charts',
+          label: 'Helm Chart Deployment',
           items: [
             'vendor/helm-overview',
             'vendor/helm-install',
-            {
-              type: 'category',
-              label: 'Using Native Helm',
-              items: [
-                'vendor/helm-installing-native-helm',
-                'vendor/helm-native-helm-install-order',
-              ],
-            },
+            'vendor/helm-native-helm-install-order',
             'vendor/helm-optional-charts',
             'vendor/helm-optional-value-keys',
           ],
@@ -488,14 +481,27 @@ const sidebars = {
           items: [
             'enterprise/installing-overview',
             'enterprise/installing-general-requirements',
-            'enterprise/image-registry-airgap',
             'enterprise/installing-stateful-component-requirements',
             'enterprise/sbom-validating',
-            'enterprise/installing-existing-cluster',
-            'enterprise/installing-embedded-cluster',
-            'enterprise/cluster-management-add-nodes',
+            {
+              type: 'category',
+              label: 'Installing in Existing Clusters',
+              items: [
+                'enterprise/installing-existing-cluster',
+                'enterprise/installing-existing-cluster-airgapped',
+                'enterprise/installing-existing-cluster-automation',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Installing with the Kubernetes Installer',
+              items: [
+                'enterprise/installing-embedded-cluster',
+                'enterprise/installing-embedded-airgapped',
+                'enterprise/cluster-management-add-nodes',
+              ],
+            },
             'enterprise/installing-app-setup',
-            'enterprise/installing-existing-cluster-automation',
             'enterprise/delete-admin-console',
           ],
         },
