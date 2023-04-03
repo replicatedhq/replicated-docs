@@ -16,7 +16,7 @@ For more information about the syntax of the Config custom resource manifest, se
 
 ## About Regular Expression Validation
 
-When you have fields that must conform to a certain standard, such as valid email addresses, password complexity rules, IP addresses, URLs, and so on, you can configure those fields using regular expressions (`regex`). This helps ensure that users input valid configuration and gives them immediate feedback and guidance if their input does not meet the criteria.
+When you want to validate that user input conforms to a standard, such as valid email addresses, password complexity rules, IP addresses, URLs, and so on, you can configure those fields using regular expressions (regex). Regular expressions are supported for `text`, `textarea`, and `password` config option types. This helps ensure that users input a validated configuration with before they install an application.
 
 You add the `regex` and `message` field to the Config custom resource for an item. The following example shows the requirements for a password:
 
@@ -139,6 +139,9 @@ To add fields to the admin console configuration screen:
      :::
 
    * **With the `value` property**: When you include the `value` key, the app manager does not overwrite this value during an application update. The value that you provide for the `value` key is visually indistinguishable from other values that your user provides on the admin console configuration screen. The app manager treats user-supplied values and the value that you provide for the `value` key as the same.
+
+1. (Optional) Add regular expressions to validate  `text`, `textarea`, and `password` config option types. For more information, see [About Regular Expression Validation](#about-regular=expression-validation)
+
 1. (Optional) Mark fields as required by including `required: true`. When there are required fields, the user is prevented from proceeding with the installation until they provide a valid value for required fields.
 
    **Example**:
