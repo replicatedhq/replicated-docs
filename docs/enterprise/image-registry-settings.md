@@ -42,7 +42,7 @@ To change private registry settings for an air gap cluster:
 
 1. On the Registry Settings tab in the admin console, select the **Disable Pushing Images to Private Registry** checkbox, and click **Save changes**. This is a temporary action that allows you to edit the registry namespace and hostname.
 
-  If you only want to change the username or password, you can skip this step.
+  If you only want to change the username or password, you do not have to disable pushing the images.
 
 1. Edit the fields as needed, and click **Save changes**.
 
