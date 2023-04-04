@@ -142,7 +142,7 @@ To add fields to the admin console configuration screen:
 
    * **With the `value` property**: When you include the `value` key, the app manager does not overwrite this value during an application update. The value that you provide for the `value` key is visually indistinguishable from other values that your user provides on the admin console configuration screen. The app manager treats user-supplied values and the value that you provide for the `value` key as the same.
 
-1. (Optional) Add regular expressions fields `validation`, `regex`, and `message` to validate  `text`, `textarea`, and `password` config option types. For more information, see [About Regular Expression Validation](#about-regular=expression-validation).
+1. (Optional) Add the `validation`, `regex`, and `message` fields to validate user input for `text`, `textarea`, and `password` config item types. For more information, see [About Regular Expression Validation](#about-regular=expression-validation).
 
     **Example**:
 
