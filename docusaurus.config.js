@@ -1,5 +1,8 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
+// 
+
+// This is the last commit using docusaurus  2.0.0-beta.9
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
