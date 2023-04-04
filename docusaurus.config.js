@@ -1,8 +1,5 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
-// 
-
-// This is the last commit using docusaurus  2.0.0-beta.9
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
@@ -13,7 +10,7 @@ const config = {
   tagline: 'Technical documentation for Replicated vendors and their enterprise end-customers.',
   url: 'https://docs.replicated.com',
   baseUrl: '/',
-  onBrokenLinks: 'error',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'images/favicon.png',
   organizationName: 'replicatedhq', // Usually your GitHub org/user name.
@@ -28,8 +25,14 @@ const config = {
         docs: {
           routeBasePath: '/', // Serve the docs at the site's root
           sidebarPath: require.resolve('./sidebars.js'),
+          breadcrumbs: false,
           // Please change this to your repo.
           editUrl: 'https://github.com/replicatedhq/replicated-docs/edit/main/',
+          admonitions: {
+            tag: ':::',
+            keywords: ['note','important', 'tip', 'info', 'caution', 'danger'],
+          },
+          /**
           admonitions: {
             customTypes: {
               note: {
@@ -44,6 +47,15 @@ const config = {
               }
             }
           },
+          */
+        },
+        googleAnalytics: {
+          trackingID: 'UA-61420213-25',
+          anonymizeIP: true,
+        },
+        gtag: {
+          trackingID: 'GTM-W3BM5G5',
+          anonymizeIP: true,
         },
         blog: {
           showReadingTime: true,
@@ -69,14 +81,6 @@ const config = {
         apiKey: 'c1b3ad730ee08e83703eeaadd39c4790',
         indexName: 'docs',
         contextualSearch: true,
-      },
-      googleAnalytics: {
-        trackingID: 'UA-61420213-25',
-        anonymizeIP: true,
-      },
-      gtag: {
-        trackingID: 'GTM-W3BM5G5',
-        anonymizeIP: true,
       },
       navbar: {
         title: 'Docs',

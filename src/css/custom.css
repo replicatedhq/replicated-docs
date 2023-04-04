@@ -67,7 +67,7 @@ article {
   text-decoration-color: var(--ifm-color-primary-dark);
 }
 
-.admonition-note {
+.theme-admonition-note {
   --ifm-code-background: var(--ifm-alert-background-color-highlight);
   --ifm-link-color: var(--ifm-alert-foreground-color);
   --ifm-link-hover-color: var(--ifm-alert-foreground-color);
