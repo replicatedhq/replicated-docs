@@ -18,7 +18,7 @@ For more information about the syntax of the Config custom resource manifest, se
 
 You can use regular expressions (regex) to validate user input for config items, ensuring conformity to certain standards, such as valid email addresses, password complexity rules, IP addresses, and URLs. This prevents users from deploying an application with a verifiably invalid configuration.
 
-You add the `validation`, `regex`, and `message` fields to the Config custom resource for an item. Regular expressions are supported for `text`, `textarea`, and `password` config option types.
+You add the `validation`, `regex`, and `message` fields to items in the Config custom resource. Validation is supported for `text`, `textarea`, and `password` config item types.
 
 The following example shows the requirements for a password:
 
