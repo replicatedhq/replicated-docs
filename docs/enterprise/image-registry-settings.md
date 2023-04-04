@@ -14,7 +14,7 @@ Private registries can be used with online or air gap clusters. For embedded clu
 
 Your domain must support a Docker V2 protocol. For more information, see [Private Registry Requirements](installing-general-requirements#private-registry-requirements) in _Requirements for Installation_.
 
-## Configure Private Registries for Online Clusters
+## Configure Private Registries in Online Clusters
 
 You configure the application to use a private registry in the admin console, unless you are using a kURL Registry add-on. You can also disable the connection or remove the registry settings if needed.
 
@@ -23,10 +23,12 @@ For information about changing registry settings in an air gap environment, see 
 To configure private registry settings for a online cluster:
 
 1. On the Registry Settings tab in the admin console, edit the fields:
+    
+    <img src="/images/registry-settings.png" alt="Registry Settings" width="400"></img>
 
-     ![Registry Settings](/images/registry-settings.png)
+    The following table describes the fields:
 
-     <ImageRegistrySettings/>
+    <ImageRegistrySettings/>
 
 1. Click **Test Connection** to test the connection between the admin console and the private registry host.
 
@@ -34,9 +36,9 @@ To configure private registry settings for a online cluster:
 
 1. (Optional) Click **Stop using registry** if you want to remove the registry settings from the app manager.
 
-## Change Private Registries for Air Gap Clusters {#air-gap}
+## Change Private Registries in Air Gap Clusters {#air-gap}
 
-During air gap installations, you configure a private registry for the app manager to push images to. You can change the private registry settings at any time in the admin console.
+During air gap installations, you configure a private registry where the app manager pushes images. You can change the private registry settings at any time in the admin console.
 
 To change private registry settings for an air gap cluster:
 
