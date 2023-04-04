@@ -235,11 +235,12 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Reporting',
+      label: 'Insights and Reporting',
       items: [
-         'vendor/customer-reporting',
-         'vendor/instance-insights-details',
          'vendor/instance-insights-event-data',
+         'vendor/customer-reporting',
+         'vendor/customer-adoption',
+         'vendor/instance-insights-details',
        ],
     },
     {
