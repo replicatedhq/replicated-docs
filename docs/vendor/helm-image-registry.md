@@ -203,6 +203,10 @@ To update the image name to reference the proxy service:
 
       Helm Install installations ignore this static value, and instead use the `proxy.replicated.com` URL that you added to the `values.yaml` file in a previous step.
 
+   :::note
+   Setting this annotation to have a URL with the proxy prefix in the `values.yaml` file and without in the `HelmChart` enables the same manifest to be used for both Helm CLI and KOTS install methods. If installing with KOTS, the URL from the `HelmChart` will be used and KOTS will prefix the proxy to the URL, but if installing with the Helm CLI, the URL from the `values.yaml` file will be used unmodified.
+   :::
+
    **Example:**
 
    ```yaml
