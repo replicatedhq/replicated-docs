@@ -16,9 +16,11 @@ For more information about the syntax of the Config custom resource manifest, se
 
 ## About Regular Expression Validation
 
-When you want to validate that user input conforms to a standard, such as valid email addresses, password complexity rules, IP addresses, URLs, and so on, you can configure those fields using regular expressions (regex). Regular expressions are supported for `text`, `textarea`, and `password` config option types. This helps ensure that users input a validated configuration with before they install an application.
+You can use regular expressions (regex) to configure fields that validate user input, ensuring conformity to certain standards, such as valid email addresses, password complexity rules, IP addresses, and URLs. This prevents users from deploying an application with a verifiably invalid configuration and gives them a better user experience.
 
-You add the `regex` and `message` field to the Config custom resource for an item. The following example shows the requirements for a password:
+You add the `regex` and `message` field to the Config custom resource for an item. Regular expressions are supported for `text`, `textarea`, and `password` config option types.
+
+The following example shows the requirements for a password:
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -38,7 +40,7 @@ spec:
           message: Must be a minimum of 8 characters and must contain a combination of uppercase, lowercase, numbers, and special characters.
 ```
 
-The formatting of this regular expression is divided into the following parts: 
+The formatting of the example above is divided into the following parts: 
 
 <table>
     <tr>
@@ -140,8 +142,18 @@ To add fields to the admin console configuration screen:
 
    * **With the `value` property**: When you include the `value` key, the app manager does not overwrite this value during an application update. The value that you provide for the `value` key is visually indistinguishable from other values that your user provides on the admin console configuration screen. The app manager treats user-supplied values and the value that you provide for the `value` key as the same.
 
-1. (Optional) Add regular expressions to validate  `text`, `textarea`, and `password` config option types. For more information, see [About Regular Expression Validation](#about-regular=expression-validation)
+1. (Optional) Add regular expressions fields `validation`, `regex`, and `message` to validate  `text`, `textarea`, and `password` config option types. For more information, see [About Regular Expression Validation](#about-regular=expression-validation).
 
+    **Example**:
+
+      ```yaml
+      - name: email_address
+        title: Email Address
+        type: text
+        validation:
+          regex: ^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$
+          message: Enter a valid email address.
+        ```  
 1. (Optional) Mark fields as required by including `required: true`. When there are required fields, the user is prevented from proceeding with the installation until they provide a valid value for required fields.
 
    **Example**:
