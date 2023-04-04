@@ -34,7 +34,7 @@ spec:
       items:
       - name: smtp_password
         title: SMTP Password
-        type: text
+        type: password
         validation:
           regex: ​^.*(?=.{8,20})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "]).*$
           message: Must be a minimum of 8 characters and must contain a combination of uppercase, lowercase, numbers, and special characters.
