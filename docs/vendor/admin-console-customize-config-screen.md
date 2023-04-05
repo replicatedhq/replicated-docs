@@ -20,7 +20,9 @@ You can use regular expressions (regex) to validate user input for config items,
 
 You add the `validation`, `regex`, and `message` fields to items in the Config custom resource. Validation is supported for `text`, `textarea`, and `password` config item types.
 
-The following example implements a password complexity rule:
+Standard regular expressions are supported.
+
+The following example shows a common password complexity rule:
 
 ```yaml
 apiVersion: kots.io/v1beta1
