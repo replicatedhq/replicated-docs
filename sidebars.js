@@ -101,6 +101,17 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Helm Chart Deployment',
+      items: [
+        'vendor/helm-overview',
+        'vendor/helm-install',
+        'vendor/helm-native-helm-install-order',
+        'vendor/helm-optional-charts',
+        'vendor/helm-optional-value-keys',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Packaging an Application',
       items: [
         {
@@ -111,17 +122,6 @@ const sidebars = {
               'vendor/admin-console-customize-config-screen',
               'vendor/config-screen-map-inputs',
               'vendor/helm-mapping-example',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Helm Chart Deployment',
-          items: [
-            'vendor/helm-overview',
-            'vendor/helm-install',
-            'vendor/helm-native-helm-install-order',
-            'vendor/helm-optional-charts',
-            'vendor/helm-optional-value-keys',
           ],
         },
         {
