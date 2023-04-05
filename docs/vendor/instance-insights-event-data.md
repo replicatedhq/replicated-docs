@@ -4,15 +4,17 @@ import Checkins from "../partials/instance-insights/_appCheckins.mdx"
 
 This topic describes the application instance data fields that the Replicated vendor portal uses to generate events for the instance.
 
-## How the Vendor Portal Displays Instance Data {#about-reporting}
+## How the Vendor Portal Collects Instance Data {#about-reporting}
 
-For active application instances installed in online customer environments, the Replicated app manager sends a small amount of instance data to the vendor portal when any of the following occur:
+For application instances installed in online customer environments, the Replicated app manager periodically sends a small amount of instance data to the vendor portal, including properties such as the current version and status of the instance.
+
+The app manager sends this instance data to the vendor portal when any of the following _check-ins_ occur:
 
 <Checkins/>
 
-The instance data that the app manager sends includes properties such as the current application version and application status. The primary purpose of this instance data is to help the cloud-hosted update service to compile the list of new versions that are available to the given instance for upgrade. For a full overview of what might be included, please see the [Replicated Data Transmission Policy](https://docs.replicated.com/vendor/policies-data-transmission).
+The primary purpose of this instance data is to help the cloud-hosted update service to compile the list of new versions that are available to the given instance for upgrade. The vendor portal also uses this instance data to display insights about the active instances of your application.
 
-The vendor portal also uses this data to display insights about the active instances of your application. For more information about the instance data insights displayed in the vendor portal, see [Instance Details](#instance-insights-details). 
+For a full overview of what data might be included, see the [Replicated Data Transmission Policy](https://docs.replicated.com/vendor/policies-data-transmission).
 ## How the Vendor Portal Generates Events
 
 When the vendor portal receives instance data from the app manager, it evaluates each data field to determine if there was a change in its value. For each field that changes in value, the vendor portal creates an _event_ to record the change. For example, a change from `ready` to `degraded` in the `appStatus` data field generates an event in the vendor portal.
@@ -34,10 +36,10 @@ The vendor portal has the following limitations for reporting instance data and 
 
 * **Status informers required**: You must configure one or more status informers for your application in the Application custom resource to populate instance data about the application status or uptime. For more information about how to configure status informers, see [Displaying Application Status](admin-console-display-app-status).
 * **Air gap not supported**: Instance data is available only for application instances installed in online environments. Data for instances installed in air gapped environments is not available.
-* **Active instances only**: Instance data is available only for active application instances. If an instance is decommissioned, stops checking for updates, or otherwise stops reporting, the vendor portal continues to display data for the instance from its most-recently seen state.
+* **Active instances only**: Instance data is available only for active application instances. An instance is considered inactive when its most recent check-in was more than two weeks ago. An instance can become inactive if it is decommissioned, stops checking for updates, or otherwise stops reporting.
 
-   For example, this means that data for an inactive instance might continue to show a Ready status after the instance becomes inactive. Replicated recommends that you use the timestamp in the **Last Check-in** field to understand if an instance might have become inactive, causing its data to be out-of-date.
-* **Instance data freshness**: The rate at which data is updated in the vendor portal varies depending on how often the vendor portal receives instance data from the app manager. The vendor portal receives instance data when any of the following occur:
+   The vendor portal continues to display data for an inactive instance from its most-recently seen state. This means that data for an inactive instance might continue to show a Ready status after the instance becomes inactive. Replicated recommends that you use the timestamp in the **Last Check-in** field to understand if an instance might have become inactive, causing its data to be out-of-date.
+* **Instance data freshness**: The rate at which data is updated in the vendor portal varies depends on how often the vendor portal receives instance data from the app manager. The vendor portal receives instance data when any of the following occur:
   <Checkins/>
 * **Event timestamps**: The timestamp of events displayed on the **Instances details** page is the timestamp when the Replicated Vendor API received the instance data from the app manager. The timestamp of events does not necessarily reflect the timestamp of when the event occurred.
 * **Caching for Kubernetes Installer Cluster Data**: For clusters created with the Replicated Kubernetes Installer, the app manager stores the counts of total nodes and ready nodes in a cache for five minutes. If the app manager sends instance data to the vendor portal within the five minute window, then the reported data for total nodes and ready nodes reflects the data in the cache. This means that events displayed on the **Instances details** page for the total nodes and ready nodes can show values that differ from the current values of these fields.  
