@@ -99,7 +99,7 @@ const config = {
             type: 'docSidebar',
             position: 'left',
             sidebarId: 'enterprise',
-            label: 'Enterprise',
+            label: 'Enterprise User',
           },
           {
             type: 'docSidebar',

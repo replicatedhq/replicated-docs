@@ -470,8 +470,6 @@ const sidebars = {
       items: [
         'enterprise/installing-overview',
         'enterprise/installing-general-requirements',
-        'enterprise/installing-stateful-component-requirements',
-        'enterprise/sbom-validating',
         {
           type: 'category',
           label: 'Installing in Existing Clusters',
@@ -491,7 +489,8 @@ const sidebars = {
           ],
         },
         'enterprise/installing-app-setup',
-        'enterprise/delete-admin-console',
+        'enterprise/installing-stateful-component-requirements',
+        'enterprise/sbom-validating',
       ],
     },
     {
@@ -567,6 +566,7 @@ const sidebars = {
       label: 'Troubleshooting',
       items: [
         'enterprise/status-viewing-details',
+        'enterprise/delete-admin-console',
         'enterprise/troubleshooting-an-app',
       ],
     },
