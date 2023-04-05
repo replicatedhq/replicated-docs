@@ -117,14 +117,7 @@ const sidebars = {
           type: 'category',
           label: 'Helm Chart Deployment',
           items: [
-              {
-              type: 'category',
-              label: 'Overview',
-              items: [
-                'vendor/helm-overview',
-                'vendor/helm-processing',
-              ],
-            },
+            'vendor/helm-overview',
             'vendor/helm-install',
             'vendor/helm-native-helm-install-order',
             'vendor/helm-optional-charts',
