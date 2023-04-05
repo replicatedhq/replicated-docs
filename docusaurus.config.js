@@ -88,7 +88,26 @@ const config = {
           alt: 'R',
           src: 'images/logo-replicated-red.png',
         },
-
+        items: [
+          {
+            type: 'docSidebar',
+            position: 'left',
+            sidebarId: 'vendor',
+            label: 'Vendor',
+          },
+          {
+            type: 'docSidebar',
+            position: 'left',
+            sidebarId: 'enterprise',
+            label: 'Enterprise',
+          },
+          {
+            type: 'docSidebar',
+            position: 'left',
+            sidebarId: 'releaseNotes',
+            label: 'Release Notes',
+          },
+        ],
       },
       footer: {
         style: 'dark',

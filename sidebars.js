@@ -18,8 +18,7 @@ const sidebars = {
 
   // But you can create a sidebar manually
 
-  tutorialSidebar: [
-
+  vendor: [
     'intro',
     'intro-replicated',
     {
@@ -461,128 +460,228 @@ const sidebars = {
         },
       ],
     },
+  ],
+
+
+  enterprise: [
     {
       type: 'category',
-      className: 'main-section',
-      label: 'Release Notes',
+      label: 'Installing an Application',
       items: [
-        'release-notes/rn-whats-new',
-        'release-notes/rn-app-manager',
-        'release-notes/rn-kubernetes-installer'
+        'enterprise/installing-overview',
+        'enterprise/installing-general-requirements',
+        'enterprise/installing-stateful-component-requirements',
+        'enterprise/sbom-validating',
+        {
+          type: 'category',
+          label: 'Installing in Existing Clusters',
+          items: [
+            'enterprise/installing-existing-cluster',
+            'enterprise/installing-existing-cluster-airgapped',
+            'enterprise/installing-existing-cluster-automation',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Installing with the Kubernetes Installer',
+          items: [
+            'enterprise/installing-embedded-cluster',
+            'enterprise/installing-embedded-airgapped',
+            'enterprise/cluster-management-add-nodes',
+          ],
+        },
+        'enterprise/installing-app-setup',
+        'enterprise/delete-admin-console',
       ],
     },
     {
       type: 'category',
-      label: 'Enterprise User Documentation',
+      label: 'Private Registries',
       items: [
+        'enterprise/image-registry-settings',
+        'enterprise/image-registry-embedded-cluster',
+        'enterprise/image-registry-rate-limits',
+      ],
+    },
+    'enterprise/updating-patching-with-kustomize',
+    {
+      type: 'category',
+      label: 'Updating',
+      items: [
+        'enterprise/updating-apps',
+        'enterprise/updating-app-manager',
+        'enterprise/updating-embedded-cluster',
+        'enterprise/updating-licenses',
+        'enterprise/updating-tls-cert',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'GitOps',
+      items: [
+        'enterprise/gitops-workflow',
+        'enterprise/gitops-managing-secrets',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Managing User Access',
+      items: [
+        'enterprise/auth-changing-passwords',
+        'enterprise/auth-identity-provider',
+        'enterprise/auth-configuring-rbac',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Monitoring',
+      items: [
+          'enterprise/monitoring-applications',
+          'enterprise/monitoring-external-prometheus',
+      ],   
+    },
+    {
+      type: 'category',
+      label: 'Backup and Restore',
+      items: [
+        'enterprise/snapshots-understanding',
         {
           type: 'category',
-          label: 'Installing an Application',
+          label: 'Configuring Backup Storage',
           items: [
-            'enterprise/installing-overview',
-            'enterprise/installing-general-requirements',
-            'enterprise/installing-stateful-component-requirements',
-            'enterprise/sbom-validating',
-            {
-              type: 'category',
-              label: 'Installing in Existing Clusters',
-              items: [
-                'enterprise/installing-existing-cluster',
-                'enterprise/installing-existing-cluster-airgapped',
-                'enterprise/installing-existing-cluster-automation',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Installing with the Kubernetes Installer',
-              items: [
-                'enterprise/installing-embedded-cluster',
-                'enterprise/installing-embedded-airgapped',
-                'enterprise/cluster-management-add-nodes',
-              ],
-            },
-            'enterprise/installing-app-setup',
-            'enterprise/delete-admin-console',
+            'enterprise/snapshots-velero-cli-installing',
+            'enterprise/snapshots-configuring-hostpath',
+            'enterprise/snapshots-configuring-nfs',
+            'enterprise/snapshots-storage-destinations',
+            'enterprise/snapshots-velero-installing-config',
+          ],
+        },
+        'enterprise/snapshots-creating',
+        'enterprise/snapshots-restoring-full',
+        'enterprise/snapshots-updating-with-admin-console',
+        'enterprise/snapshots-troubleshooting-backup-restore',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Troubleshooting',
+      items: [
+        'enterprise/status-viewing-details',
+        'enterprise/troubleshooting-an-app',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'kots CLI',
+      items: [
+        'reference/kots-cli-getting-started',
+        'reference/kots-cli-global-flags',
+        {
+            type: 'category',
+            label: 'admin console',
+            items: [
+              'reference/kots-cli-admin-console-index',
+              'reference/kots-cli-admin-console-garbage-collect-images',
+              'reference/kots-cli-admin-console-generate-manifests',
+              'reference/kots-cli-admin-console-push-images',
+              'reference/kots-cli-admin-console-upgrade',
           ],
         },
         {
           type: 'category',
-          label: 'Private Registries',
+          label: 'backup',
           items: [
-            'enterprise/image-registry-settings',
-            'enterprise/image-registry-embedded-cluster',
-            'enterprise/image-registry-rate-limits',
-          ],
-        },
-        'enterprise/updating-patching-with-kustomize',
-        {
-          type: 'category',
-          label: 'Updating',
-          items: [
-            'enterprise/updating-apps',
-            'enterprise/updating-app-manager',
-            'enterprise/updating-embedded-cluster',
-            'enterprise/updating-licenses',
-            'enterprise/updating-tls-cert',
+            'reference/kots-cli-backup-index',
+            'reference/kots-cli-backup-ls',
           ],
         },
         {
           type: 'category',
-          label: 'GitOps',
+          label: 'docker',
           items: [
-            'enterprise/gitops-workflow',
-            'enterprise/gitops-managing-secrets',
+            'reference/kots-cli-docker-index',
+            'reference/kots-cli-docker-ensure-secret',
+          ],
+        },
+        'reference/kots-cli-download',
+        'reference/kots-cli-enable-ha',
+        {
+          type: 'category',
+          label: 'get',
+          items: [
+            'reference/kots-cli-get-index',
+            'reference/kots-cli-get-apps',
+            'reference/kots-cli-get-backups',
+            'reference/kots-cli-get-config',
+            'reference/kots-cli-get-restores',
+            'reference/kots-cli-get-versions',
           ],
         },
         {
           type: 'category',
-          label: 'Managing User Access',
+          label: 'identity-service',
           items: [
-            'enterprise/auth-changing-passwords',
-            'enterprise/auth-identity-provider',
-            'enterprise/auth-configuring-rbac',
+            'reference/kots-cli-identity-service-index',
+            'reference/kots-cli-identity-service-enable-shared-password',
+          ],
+        },
+        'reference/kots-cli-install',
+        'reference/kots-cli-pull',
+        'reference/kots-cli-remove',
+        'reference/kots-cli-reset-password',
+        'reference/kots-cli-reset-tls',
+        {
+          type: 'category',
+          label: 'restore',
+          items: [
+            'reference/kots-cli-restore-index',
+            'reference/kots-cli-restore-ls',
           ],
         },
         {
-          type: 'category',
-          label: 'Monitoring',
-          items: [
-             'enterprise/monitoring-applications',
-             'enterprise/monitoring-external-prometheus',
-          ],   
+            type: 'category',
+            label: 'set',
+            items: [
+              'reference/kots-cli-set-index',
+              'reference/kots-cli-set-config',
+          ],
         },
+        'reference/kots-cli-upload',
         {
-          type: 'category',
-          label: 'Backup and Restore',
-          items: [
-            'enterprise/snapshots-understanding',
-            {
-              type: 'category',
-              label: 'Configuring Backup Storage',
-              items: [
-                'enterprise/snapshots-velero-cli-installing',
-                'enterprise/snapshots-configuring-hostpath',
-                'enterprise/snapshots-configuring-nfs',
-                'enterprise/snapshots-storage-destinations',
-                'enterprise/snapshots-velero-installing-config',
-              ],
-            },
-            'enterprise/snapshots-creating',
-            'enterprise/snapshots-restoring-full',
-            'enterprise/snapshots-updating-with-admin-console',
-            'enterprise/snapshots-troubleshooting-backup-restore',
+            type: 'category',
+            label: 'upstream',
+            items: [
+              'reference/kots-cli-upstream',
+              'reference/kots-cli-upstream-download',
+              'reference/kots-cli-upstream-upgrade',
           ],
         },
         {
-          type: 'category',
-          label: 'Troubleshooting',
-          items: [
-            'enterprise/status-viewing-details',
-            'enterprise/troubleshooting-an-app',
+            type: 'category',
+            label: 'velero',
+            items: [
+              
+              'reference/kots-cli-velero-configure-aws-s3',
+              'reference/kots-cli-velero-configure-azure',
+              'reference/kots-cli-velero-configure-gcp',
+              'reference/kots-cli-velero-configure-hostpath',
+              'reference/kots-cli-velero-configure-internal',
+              'reference/kots-cli-velero-configure-nfs',
+              'reference/kots-cli-velero-configure-other-s3',
+              'reference/kots-cli-velero-ensure-permissions',
+              'reference/kots-cli-velero-index',
+              'reference/kots-cli-velero-print-fs-instructions',
           ],
         },
       ],
     },
+  ],
+
+
+  releaseNotes: [
+    'release-notes/rn-whats-new',
+    'release-notes/rn-app-manager',
+    'release-notes/rn-kubernetes-installer'
   ],
 };
 
