@@ -12,7 +12,7 @@ The following screenshot shows an example of the **Adoption rate** section:
 
 **INSERT SCREENSHOT**
 
-As shown in the screenshot above, the **Adoption rate** section includes a graph that shows the daily change in the percent of active instances running different versions of your application. It also includes key adoption rate metrics that highlight 
+As shown in the screenshot above, the **Adoption rate** section includes a graph as well as key adoption rate metrics.  
 
 You can filter the graph and metrics in the **Adoption rate** section by:
 * License type (Paid, Trial, Dev, or Community) **CONFIRM THAT THIS FILTER IS AVAILABLE FOR BETA**
@@ -31,7 +31,7 @@ If there are no active instances of your application, then the **Adoption rate**
 
 ## Adoption Rate Metrics
 
-The **Adoption rate** section also includes metrics that are key indicators of how up-to-date 
+The **Adoption rate** section also includes metrics that are key indicators of how frequently your customers discover and complete upgrades to new versions of your application.
 
 **SCREENSHOT OF METRICS SECTION**
 
