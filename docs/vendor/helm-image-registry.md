@@ -12,7 +12,9 @@ Using an external private image registry or the Replicated private registry for 
 
 In addition to the image pull secret, using an external private registry also requires that you add credentials for the registry to the vendor portal so that Replicated can access the image through the Replicated proxy service.
 
-For installations that use the helm CLI rather than the app manager, Replicated cannot automatically inject an image pull secret nor patch the image name to reference the proxy service in the Helm chart for your application. You can complete the following procedures to use a private registry for helm CLI installations:
+For installations that use the helm CLI rather than the app manager, Replicated cannot automatically inject an image pull secret nor patch the image name to reference the proxy service in the Helm chart for your application.
+
+To use a private registry for helm CLI installations, complete the following procedures:
 1. [Deliver Image Pull Secrets](#pull-secret)
 1. [Reference the Proxy Service](#proxy-service)
 1. [(Optional) Support Both Helm CLI and App Manager Installations](#helm-and-kots)
@@ -117,9 +119,7 @@ To deliver customer-specific image pull secrets for a private registry:
 This procedure is required only for external private registries. Skip this procedure if you are using the Replicated private registry.
 :::
 
-To reference the proxy service, first create a field in the Helm chart `values.yaml` file with the URL of the location of the private image on `proxy.replicated.com`. Use template functions to reference this field from the Pod spec in the Helm chart. This allows Replicated to access the external registry through the proxy service when your users install with the helm CLI.
-
-Then, update the Replicated HelmChart custom resource manifest file with the URL for the image on your external registry. Adding this URL to the HelmChart custom resource ensures that the Replicated proxy service can automatically patch the image name to reference `proxy.replicated.com` during KOTS Install or Embedded Cluster installations.
+This procedure describes how to update your Helm chart to allow Replicated to access the external registry through the proxy service when your users install with the helm CLI.
 
 To update the image name to reference the proxy service:
 
@@ -175,7 +175,7 @@ To update the image name to reference the proxy service:
 
 ## (Optional) Step 3: Support Both Helm CLI and App Manager Installations {#helm-and-kots}
 
-To support both helm CLI and app manager (KOTS Install and Embedded Cluster) installations from the same release using the same image registry, you must add a static value with your registry URL to the HelmChart custom resource for app manager installations.
+To support both helm CLI and app manager installations with your private registry from the same release, you must update the release to add your registry URL as a static value in the HelmChart custom resource.
 
 This allows the Replicated proxy service to automatically patch the image name to reference `proxy.replicated.com` for app manager installations. Helm Install installations ignore this static value, and instead use the `proxy.replicated.com` URL that you added to the `values.yaml` file previously.
 
@@ -222,4 +222,4 @@ To support both helm CLI and app manager installations:
        apiImageRepository: quay.io/my-org/api:v1.0.1
    ```
 
-1. Save and promote the release to a development environment to test your changes.
+1. Save and promote the release to a development environment to test that you can install with both the helm CLI and the app manager (KOTS Install or Embedded Cluster).
