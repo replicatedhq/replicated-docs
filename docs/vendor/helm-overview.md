@@ -58,8 +58,7 @@ To deploy Helm charts using the native Helm method, the app manager does the fol
    - svc-headless.yaml
    - svc.yaml
    ```
-
-
+   
 1. **Writes midstream files with Kustomize instructions from Replicated**: The app manager then copies the directory structure from `base/charts/` to an `overlays/midstream/charts/` directory. The following screenshot shows an example of the midstream directory for the postgresql Helm chart: 
    
   ![Midstream directory in the admin console UI](/images/native-helm-midstream.png)
