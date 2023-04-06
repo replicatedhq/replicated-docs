@@ -16,11 +16,9 @@ For more information about the syntax of the Config custom resource manifest, se
 
 ## About Regular Expression Validation
 
-You can use regular expressions (regex) to validate user input for config items, ensuring conformity to certain standards, such as valid email addresses, password complexity rules, IP addresses, and URLs. This prevents users from deploying an application with a verifiably invalid configuration.
+You can use standard regular expressions (regex) to validate user input for config items, ensuring conformity to certain standards, such as valid email addresses, password complexity rules, IP addresses, and URLs. This prevents users from deploying an application with a verifiably invalid configuration.
 
 You add the `validation`, `regex`, and `message` fields to items in the Config custom resource. Validation is supported for `text`, `textarea`, and `password` config item types.
-
-Standard regular expressions are supported.
 
 The following example shows a common password complexity rule:
 
@@ -38,42 +36,9 @@ spec:
         title: SMTP Password
         type: password
         validation:
-          regex: ​^.*(?=.{8,20})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "]).*$
+          regex: ​^.*(?=.{8,20})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&?]).*$
           message: Must be a minimum of 8 characters and must contain a combination of uppercase, lowercase, numbers, and special characters.
 ```
-
-The formatting of the example above is divided into the following parts: 
-
-<table>
-    <tr>
-      <th width="30%">Regex Pattern</th>
-      <th width="70%">Description</th>
-    </tr>
-    <tr>
-      <td>^.*</td>
-      <td>(Required) Specifies the start of the regular expression.</td>
-    </tr>
-    <tr>
-      <td>(?=.{8,20})</td>
-      <td>Specifies the length of at least 8 characters and a maximum of 20 characters.</td>
-    </tr>
-    <tr>
-      <td>(?=.*[a-zA-Z])</td>
-      <td>Specifies that uppercase and lowercase letters are required for the input.</td>
-    </tr>
-    <tr>
-      <td>(?=.*\d)</td>
-      <td>Specifies that at least one numerical digit from `0` - `9` is required for the input.</td>
-    </tr>
-    <tr>
-      <td>(?=.*[\W])</td>
-      <td>Specifies that at least one special character is required for the input.</td>
-    </tr>
-    <tr>
-      <td>.*$</td>
-      <td>(Required) Specifies the end of the regular expression.</td>
-    </tr>
-  </table>
 
 ## Add Fields to the Configuration Screen
 
