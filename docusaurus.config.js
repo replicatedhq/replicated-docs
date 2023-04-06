@@ -3,6 +3,7 @@
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const { link } = require('fs');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -83,9 +84,9 @@ const config = {
         contextualSearch: true,
       },
       navbar: {
-        title: 'Docs',
+        // title: 'Docs',
         logo: {
-          alt: 'R',
+          alt: 'Replicated',
           src: 'images/logo-replicated-red.png',
         },
         items: [
@@ -93,13 +94,13 @@ const config = {
             type: 'docSidebar',
             position: 'left',
             sidebarId: 'vendor',
-            label: 'Vendor',
+            label: 'Vendor Documentation',
           },
           {
             type: 'docSidebar',
             position: 'left',
             sidebarId: 'enterprise',
-            label: 'Enterprise User',
+            label: 'Enterprise User Documentation',
           },
           {
             type: 'docSidebar',
@@ -107,6 +108,12 @@ const config = {
             sidebarId: 'releaseNotes',
             label: 'Release Notes',
           },
+          // {
+          //   href: 'https://community.replicated.com/',
+          //   label: 'Community',
+          //   position: 'right',
+
+          // },
         ],
       },
       footer: {
