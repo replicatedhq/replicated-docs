@@ -1,4 +1,4 @@
-# Including Optional Value Keys
+# Configuring Optional Value Keys
 
 > This topic applies to both native Helm and Replicated Helm installations.
 
@@ -13,9 +13,9 @@ For more information, see [Deleting a Default Key](https://helm.sh/docs/chart_te
 
 ## Include Values
 
-Some advanced use cases involve writing values to a values file only if there is a value to apply.
+Some advanced use cases involve writing values to a values file only if there is a value to apply. For example, if a customer has the option to configure a different value than the default value in your file, such as setting the database option they want to use. You can include an optional value key so that your application can dynamically add and remove the default value key based on a `when` condition.
 
-Helm charts such as Postgres do not treat an empty value (`""`) in the same way as if the key were missing from the chart. This can be necessary for applications packaged as a Helm chart that include a reference to another chart in the `requirements.yaml`.
+Additionally, Helm charts such as Postgres do not treat an empty value (`""`) in the same way as if the key were missing from the chart. This can be necessary for applications packaged as a Helm chart that include a reference to another chart in the `requirements.yaml`.
 
 For example, in the [requirements.yaml](https://github.com/helm/charts/blob/e64112e0913db99227926b49fa0ae59158c9c9d9/stable/sentry/requirements.yaml) of the [Sentry](https://github.com/helm/charts/tree/master/stable/sentry) chart, there is a reference to postgres. This is configured through the [Sentry chart values.yaml](https://github.com/helm/charts/blob/e64112e0913db99227926b49fa0ae59158c9c9d9/stable/sentry/values.yaml#L192):
 
@@ -33,11 +33,11 @@ When the postgres chart is deployed, the existence of the database key sets the 
 
 The way the Sentry chart is written, it uses the value in `postgresql.postgresDatabase` unless it is *missing*. For more information, see the [workers-deployment.yaml](https://github.com/helm/charts/blob/e64112e0913db99227926b49fa0ae59158c9c9d9/stable/sentry/templates/workers-deployment.yaml#L80) implementation.
 
-In order to make this work reliably, we need to be able to dynamically add and remove the `postgresDatabase` key from the `values.yaml` so that it is only present if the user selects `embedded_postgres`.
+To make this work reliably, you must be able to dynamically add and remove the `postgresDatabase` key from the `values.yaml` so that it is only present if the user selects `embedded_postgres`.
 
-If the user selects external postgres, we want the Sentry `workers-deployment.yaml` to receive the value that the user provided.
+If the user selects external postgres, you want the Sentry `workers-deployment.yaml` to receive the value that the user provided.
 
-To enable this, instead of attempting to modify the render logic in the Helm chart, you can add an `optionalValues` section to the `kind: HelmChart`.
+To enable this use case, instead of modifying the render logic in the Helm chart, you can add an `optionalValues` section to the `kind: HelmChart`.
 
 The `optionalValues` section includes a `when` condition that instructs the app manager how to determine if these keys should be merged. It also includes a `recursiveMerge` field that defines how to merge the dataset.
 
@@ -78,7 +78,7 @@ spec:
       enabled: true
 ```
 
-The above YAML will result in the following `values.yaml` if the user selects `external_postgres`:
+The HelmChart YAML above results in the following `values.yaml` if a user selects `external_postgres`:
 
 ```yaml
 postgresql:
@@ -90,10 +90,10 @@ postgresql:
   postgresqlPort: "repl{{ ConfigOption `external_postgres_port`}}"
 ```
 
-And the following `values.yaml` if the user selects `embedded_postgres`:
+The HelmChart YAML results in the following `values.yaml` if the user selects `embedded_postgres`:
 
 ```yaml
 postgresql:
   enabled: true
 ```
-For more information about the `optionalValues` property, including details about the `when` and `recursiveMerge` fields, see [optionalValues](../reference/custom-resource-helmchart#optionalvalues) in _HelmChart_.
+For more information about the `optionalValues` property, including details about the `when` and `recursiveMerge` fields, see [optionalValues](/reference/custom-resource-helmchart#optionalvalues) in _HelmChart_.
