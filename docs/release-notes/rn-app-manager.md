@@ -4,6 +4,20 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.97.0
+
+Released on April 7, 2023
+
+Support for Kubernetes: 1.24, 1.25, and 1.26
+
+### New Features {#new-features-1-97-0}
+* Allows users to unmask passwords on various forms in the admin console.
+
+### Improvements {#improvements-1-97-0}
+* Simplifies the wording on the air gap bundle upload page.
+* Updates the log in page to say **Log in to APP_NAME admin console** instead of **Log in to APP_NAME**.
+* Upgrades the MinIO image to RELEASE.2023-03-24T21-41-23Z to resolve CVE-2023-0286 with high severity, and CVE-2022-4304, CVE-2022-4450, and CVE-2023-0215 with medium severity.
+
 ## 1.96.3
 
 Released on March 29, 2023
