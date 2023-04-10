@@ -18,6 +18,7 @@ To use a private registry for helm CLI installations, complete the following pro
 1. [Deliver Image Pull Secrets](#pull-secret)
 1. [Reference the Proxy Service](#proxy-service)
 1. [(Optional) Support Both Helm CLI and App Manager Installations](#helm-and-kots)
+
 ## Step 1: Deliver Image Pull Secrets {#pull-secret}
 
 When the app manager installs an application, Replicated automatically uses the customer license to create and inject an image pull secret that is specific to a customer's license. For helm CLI installations, you must use a template function to inject a customer-specific image pull secret.
@@ -181,7 +182,7 @@ This allows the Replicated proxy service to automatically patch the image name t
 
 To support both helm CLI and app manager installations:
 
-1. In the release that you want to update, create or open the HelmChart custom resource manifest file. A HelmChart custom resource manifest file has `kind: HelmChart` and `apiVersion: kots.io/v1beta1`.
+1. In the release that you want to update, open the HelmChart custom resource manifest file. A HelmChart custom resource manifest file has `kind: HelmChart` and `apiVersion: kots.io/v1beta1`.
 
    **Template:**
 
@@ -222,4 +223,4 @@ To support both helm CLI and app manager installations:
        apiImageRepository: quay.io/my-org/api:v1.0.1
    ```
 
-1. Save and promote the release to a development environment to test that you can install with both the helm CLI and the app manager (KOTS Install or Embedded Cluster).
+1. Save and promote the release to a development environment to test that you can install with both the helm CLI and the app manager.
