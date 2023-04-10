@@ -41,7 +41,7 @@ To enable this use case, instead of modifying the render logic in the Helm chart
 
 The `optionalValues` section includes a `when` condition that instructs the app manager how to determine if these keys should be merged. It also includes a `recursiveMerge` field that defines how to merge the dataset.
 
-For example, using the Sentry helm chart:
+**Example: HelmChart custom resource**
 
 ```yaml
 apiVersion: kots.io/v1beta1
