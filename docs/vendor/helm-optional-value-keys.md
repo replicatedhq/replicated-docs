@@ -23,8 +23,8 @@ For example, in the [requirements.yaml](https://github.com/helm/charts/blob/e641
 # PostgreSQL chart configs
 postgresql:
   enabled: false
-  # postgresqlUsername: kong
-  # postgresqlDatabase: kong
+  # postgresqlUsername: postgres
+  # postgresqlDatabase: sentry
   # service:
   #   port: 5432
 ```
