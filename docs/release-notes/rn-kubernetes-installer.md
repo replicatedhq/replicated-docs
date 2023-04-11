@@ -15,9 +15,10 @@ Released on April 11, 2023
 * Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.24.3.
 * Adds [Registry add-on](https://kurl.sh/docs/add-ons/registry) version 2.8.1.
 * Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.20.
-* Adds preflight host check to verify Kubernetes API healthz endpoint.
-* kURL will now run kube-proxy in iptables mode if ipvs kernel modules are not available.
-* Adds host preflight check to verify ephemeral disk space for the add-on(s) containerd, rook and openebs.
+
+### Improvements {#improvements-v2023-04-11-0}
+* Adds a host preflight check to verify Kubernetes API healthz endpoint.
+* Adds a host preflight check to verify ephemeral disk space for the add-on(s) containerd, rook and openebs.
 * Adds preflight checks to ensure nodes are healthy prior to Kubernetes upgrades.
 * Adds preflight checks to ensure Kubernetes API and ETCD certificates are present and valid prior to Kubernetes upgrades.
 * Adds a preflight check to ensure that MinIO pods are running prior to migrating object store data from Rook.
