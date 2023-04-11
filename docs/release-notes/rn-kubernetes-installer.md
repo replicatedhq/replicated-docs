@@ -9,6 +9,7 @@ toc_max_heading_level: 2
 Released on April 11, 2023
 
 ### New Features {#new-features-v2023-04-11-0}
+* Adds support for RHEL and Rocky Linux 9.
 * Makes the [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) mandatory.
 * Updates kURL to always install the latest version of the [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) add-on, even if the EKCO add-on is not specified or if a different version is specified.
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.26.5, and removes all versions earlier than 0.26.5.
