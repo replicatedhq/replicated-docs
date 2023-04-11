@@ -12,16 +12,16 @@ Using an external private image registry or the Replicated private registry for 
 
 In addition to the image pull secret, using an external private registry also requires that you add credentials for the registry to the vendor portal so that Replicated can access the image through the Replicated proxy service.
 
-For installations that use the helm CLI rather than the app manager, Replicated cannot automatically inject an image pull secret nor patch the image name to reference the proxy service in the Helm chart for your application.
+For installations that use the helm CLI rather than the app manager, Replicated cannot automatically inject an image pull secret nor patch the image name to reference the proxy service in the Helm chart for your application, so additional configuration is required.
 
 To use a private registry for helm CLI installations, complete the following procedures:
 1. [Deliver Image Pull Secrets](#pull-secret)
 1. [Reference the Proxy Service](#proxy-service)
 1. [(Optional) Support Both Helm CLI and App Manager Installations](#helm-and-kots)
 
-## Step 1: Deliver Image Pull Secrets {#pull-secret}
+## Deliver Image Pull Secrets {#pull-secret}
 
-When the app manager installs an application, Replicated automatically uses the customer license to create and inject an image pull secret that is specific to a customer's license. For helm CLI installations, you must use a template function to inject a customer-specific image pull secret.
+For helm CLI installations, you must use a template function to inject a customer-specific image pull secret.
 
 To deliver customer-specific image pull secrets for a private registry:
 
@@ -112,9 +112,9 @@ To deliver customer-specific image pull secrets for a private registry:
 
 1. Save and promote the release to a development environment to test your changes.  
 
-1. If you are using an external private registry, continue to [Step 2: Update the Image Name to Reference the Proxy Service](#proxy-service) below to allow Replicated to access your private image through the proxy service.
+1. If you are using an external private registry, continue to [Update the Image Name to Reference the Proxy Service](#proxy-service) below to allow Replicated to access your private image through the proxy service.
 
-## Step 2: Reference the Proxy Service {#proxy-service}
+## Reference the Proxy Service {#proxy-service}
 
 :::note
 This procedure is required only for external private registries. Skip this procedure if you are using the Replicated private registry.
@@ -172,13 +172,13 @@ To update the image name to reference the proxy service:
 
 1. Save and promote the release to a development environment to test your changes.
 
-1. To use the same private registry for both helm CLI and app manager installations, continue to [(Optional) Step 3: Support Both Helm CLI and App Manager Installations](#helm-and-kots) below.
+1. To use the same private registry for both helm CLI and app manager installations, continue to [(Optional) Support Both Helm CLI and App Manager Installations](#helm-and-kots) below.
 
-## (Optional) Step 3: Support Both Helm CLI and App Manager Installations {#helm-and-kots}
+## (Optional) Support Both Helm CLI and App Manager Installations {#helm-and-kots}
 
-To support both helm CLI and app manager installations with your private registry from the same release, you must update the release to add your registry URL as a static value in the HelmChart custom resource.
+As an application vendor, you can support both helm CLI and app manager installations from the same release.
 
-This allows the Replicated proxy service to automatically patch the image name to reference `proxy.replicated.com` for app manager installations. Helm Install installations ignore this static value, and instead use the `proxy.replicated.com` URL that you added to the `values.yaml` file previously.
+To support both types of installations with your private registry from a single release, you must update the release to add your registry URL as a static value in the HelmChart custom resource. This allows the Replicated proxy service to automatically patch the image name to reference `proxy.replicated.com` for app manager installations. Helm Install installations ignore this static value, and instead use the `proxy.replicated.com` URL that you added to the `values.yaml` file previously.
 
 To support both helm CLI and app manager installations:
 
