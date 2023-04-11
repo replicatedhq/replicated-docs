@@ -9,7 +9,7 @@ It is possible to either remove or include values when certain conditions are me
 
 If the Helm chart `values.yaml` contains a static value that must be removed when deploying using the Replicated app manager, set the value to `"null"` (including the quotation marks) in the HelmChart custom resource manifest file.
 
-For more information, see [Deleting a Default Key](https://helm.sh/docs/chart_template_guide/values_files/#deleting-a-default-key) in the Helm documentation.
+Typically this situation happens when you are including a community chart as a dependency in your own chart. You cannot control how the community chart is built and structured, and you might want to change some of the default behavior that the community chart does not easily expose. For example, Kubernetes only supports one livenessProbe handler. You can set a default livenessProbe handler to `"null"` and enable your preferred handler. For more information, see [Deleting a Default Key](https://helm.sh/docs/chart_template_guide/values_files/#deleting-a-default-key) in the Helm documentation.
 
 ## Include Values
 
@@ -97,3 +97,87 @@ postgresql:
   enabled: true
 ```
 For more information about the `optionalValues` property, including details about the `when` and `recursiveMerge` fields, see [optionalValues](/reference/custom-resource-helmchart#optionalvalues) in _HelmChart_.
+
+
+## Bitnami Example##
+
+For example, in the Bitnami Wordpress[charts.yaml.](https://github.com/bitnami/charts/blob/main/bitnami/wordpress/Chart.yaml) chart, there is a reference to mariadb. This is configured through the [values.yaml](https://github.com/bitnami/charts/blob/main/bitnami/wordpress/values.yaml#L1086):
+
+```yaml
+mariadb:
+  ## @param mariadb.enabled Deploy a MariaDB server to satisfy the applications database requirements
+  ## To use an external database set this to false and configure the `externalDatabase.*` parameters
+  ##
+  enabled: true
+  ## @param mariadb.architecture MariaDB architecture. Allowed values: `standalone` or `replication`
+  ##
+  architecture: standalone
+  ## MariaDB Authentication parameters
+  ## @param mariadb.auth.rootPassword MariaDB root password
+  ## @param mariadb.auth.database MariaDB custom database
+  ## @param mariadb.auth.username MariaDB custom user name
+  ## @param mariadb.auth.password MariaDB custom user password
+  auth:
+    rootPassword: ""
+    database: bitnami_wordpress
+    username: bn_wordpress
+    password: ""
+```
+If a user wants to configure an external database, you can enable this dynamically through your deployment by adding an `optionalValues` section to the `kind: HelmChart` custom resource, instead of attempting to modify the render logic in the Helm chart.
+
+The `optionalValues` section includes a `when` condition that instructs the app manager how to determine if these keys should be merged. It also includes a `recursiveMerge` field that defines how to merge the dataset.
+
+According the the Bitnami Readme, these are the values that must be set to use an external DB, including the port=3306. Not sure how to reflect this in the HelmChart below:
+
+```yaml
+mariadb.enabled=false
+externalDatabase.host=myexternalhost
+externalDatabase.user=myuser
+externalDatabase.password=mypassword
+externalDatabase.database=mydatabase
+externalDatabase.port=3306
+```
+
+apiVersion: kots.io/v1beta1
+kind: HelmChart
+metadata:
+  name: bitnami wordpress
+spec:
+  # chart identifies a matching chart from a .tgz
+  chart:
+    name: bitnami wordpress
+    chartVersion: 15.3.2
+
+  # values are used in the customer environment, as a pre-render step
+  # these values will be supplied to helm template
+  values:
+    mariadb:
+      enabled: repl{{ ConfigOptionEquals `mariadb_type` `externalDatabase`}}
+
+  optionalValues:
+    - when: "repl{{ ConfigOptionEquals `mariadb_type` `externalDatabase`}}"
+      recursiveMerge: false
+      values:
+        mariadb:
+          externalDatabase.host: "repl{{ ConfigOption `external_mariadb_host`}}"
+          externalDatabase.user: "repl{{ ConfigOption `external_mariadb_user`}}"
+          externalDatabase.password: "repl{{ ConfigOption `external_mariadb_password`}}"
+          externalDatabase.database: "repl{{ ConfigOption `external_mariadb_database`}}"
+
+  # builder values provide a way to render the chart with all images
+  # and manifests. this is used in replicated to create airgap packages
+  builder:
+    mariadb:
+      enabled: true
+
+According the the Bitnami Readme, these are the values that must be set to use an external DB, including the port=3306. Not sure how to reflect this in the HelmChart below:
+
+```yaml
+mariadb.enabled=false
+externalDatabase.host=myexternalhost
+externalDatabase.user=myuser
+externalDatabase.password=mypassword
+externalDatabase.database=mydatabase
+externalDatabase.port=3306
+```
+
