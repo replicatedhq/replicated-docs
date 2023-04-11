@@ -9,11 +9,14 @@ toc_max_heading_level: 2
 Released on April 11, 2023
 
 ### New Features {#new-features-v2023-04-11-0}
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.26.5, removes all previous versions, and makes EKCO mandatory.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-03-24T21-41-23Z.
-* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.8.0.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.8.0, 0.63.0-45.8.1, and 0.63.0-45.9.1.
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.24.3.
+* Adds [Registry add-on](https://kurl.sh/docs/add-ons/registry) version 2.8.1.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.20.
 * Adds preflight host check to verify Kubernetes API healthz endpoint.
 * kURL will now run kube-proxy in iptables mode if ipvs kernel modules are not available.
-* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.8.1.
 * Adds host preflight check to verify ephemeral disk space for the add-on(s) containerd, rook and openebs.
 * Adds host preflight check to verify ephemeral disk space for the add-on(s) containerd, rook and openebs.
 * Adds preflight checks to verify if nodes are healthy prior upgrades.
@@ -23,12 +26,7 @@ Released on April 11, 2023
 * Adds a check to ensure that kURL Pod(s) are running prior upgrades.
 * Adds checks to ensure that Longhorn and OpenEBS are healthy prior migration from Longhorn to OpenEBS.
 * Adds checks to ensure that Longhorn and Rook Ceph are healthy prior migration from Longhorn to Rook Ceph.
-* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.20.
 * Adds a preflight check to validate Kubernetes API Server load balancer health on upgrades.
-* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.26.5.
-* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.9.1.
-* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.24.3.
-* Adds [Registry add-on](https://kurl.sh/docs/add-ons/registry) version 2.8.1.
 
 ### Bug Fixes {#bug-fixes-v2023-04-11-0}
 * Fixed an issue that could cause re-running the install script to fail if the Kubernetes binaries are installed but the cluster was never installed or configured.
