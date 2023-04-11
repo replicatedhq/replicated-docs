@@ -17,13 +17,13 @@ Released on April 11, 2023
 * Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.20.
 
 ### Improvements {#improvements-v2023-04-11-0}
-* Adds a preflight check to verify ephemeral disk space for the add-ons Containerd, Rook and OpenEBS.
-* Adds a preflight check to verify Kubernetes API Server health on upgrades.
-* Adds a preflight check to verify Kubernetes API Server load balancer health on upgrades.
-* Adds preflight checks to ensure nodes are healthy prior to Kubernetes upgrades.
-* Adds preflight checks to ensure Kubernetes API and ETCD certificates are present and valid prior to Kubernetes upgrades.
+* Adds a preflight check to ensure sufficient disk space is available for the Containerd, Rook and OpenEBS add-ons.
+* Adds a preflight check to ensure Kubernetes API Server is healthy prior to Kubernetes upgrades.
+* Adds a preflight check to ensure Kubernetes API Server load balancer health prior to Kubernetes upgrades.
+* Adds a preflight check to ensure Kubernetes API and ETCD certificates are present and valid prior to Kubernetes upgrades.
+* Adds a preflight check to ensure nodes are healthy prior to Kubernetes upgrades.
+* Adds a preflight check to ensure that kURL Pod(s) are running prior to Kubernetes upgrades.
 * Adds a preflight check to ensure that MinIO pods are running prior to migrating object store data from Rook.
-* Adds a preflight check to ensure that kURL Pod(s) are running prior to upgrades.
 * Adds a preflight check to ensure that OpenEBS and Rook-Ceph are healthy prior to migrating from Rook to OpenEBS.
 * Adds a preflight check to ensure that Longhorn and OpenEBS are healthy prior to migrating from Longhorn to OpenEBS.
 * Adds a preflight check to ensure that Longhorn and Rook-Ceph are healthy prior to migrating from Longhorn to Rook Ceph.
