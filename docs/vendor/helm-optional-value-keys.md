@@ -13,7 +13,7 @@ For more information, see [Deleting a Default Key](https://helm.sh/docs/chart_te
 
 ## Include Values
 
-Some advanced use cases involve writing values to a values file only if there is a value to apply. For example, if a customer has the option to configure a different value than the default value in your file, such as setting the database option they want to use. You can include an optional value key so that your application can dynamically add and remove the default value key based on a `when` condition.
+Some advanced use cases involve writing values to a values file only if there is a value to apply. For example, if a customer has the option to configure a different value than the default value in your file, such as setting the database option they want to use. You can include an optional value key so that your application can dynamically include it based on a `when` condition.
 
 Additionally, Helm charts such as Postgres do not treat an empty value (`""`) in the same way as if the key were missing from the chart. This can be necessary for applications packaged as a Helm chart that include a reference to another chart in the `requirements.yaml`.
 
