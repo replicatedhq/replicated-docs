@@ -27,10 +27,10 @@ Released on April 11, 2023
 * Adds a preflight check to ensure that OpenEBS and Rook-Ceph are healthy prior to migrating from Rook to OpenEBS.
 * Adds a preflight check to ensure that Longhorn and OpenEBS are healthy prior to migrating from Longhorn to OpenEBS.
 * Adds a preflight check to ensure that Longhorn and Rook-Ceph are healthy prior to migrating from Longhorn to Rook Ceph.
+* Adds a preflight check to prevent unsupported migrations from Longhorn to OpenEBS versions earlier than 3.3.0 and without an object store when Registry is present.
 
 ### Bug Fixes {#bug-fixes-v2023-04-11-0}
 * Fixed an issue that could cause re-running the install script to fail if the Kubernetes binaries are installed but the cluster was never installed or configured.
-* Adds a preflight check to prevent unsupported migrations from Longhorn to OpenEBS versions earlier than 3.3.0 and without an object store when Registry is set.
 
 ## v2023.03.28-0
 
