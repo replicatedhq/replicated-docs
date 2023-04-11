@@ -9,7 +9,7 @@ toc_max_heading_level: 2
 Released on April 11, 2023
 
 ### New Features {#new-features-v2023-04-11-0}
-* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.26.5, removes all previous versions, and makes EKCO mandatory.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.26.5, removes all versions earlier than 0.26.5, and makes EKCO mandatory.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-03-24T21-41-23Z.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.8.0, 0.63.0-45.8.1, and 0.63.0-45.9.1.
 * Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.24.3.
@@ -17,7 +17,7 @@ Released on April 11, 2023
 * Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.20.
 
 ### Improvements {#improvements-v2023-04-11-0}
-* Adds a preflight check to ensure sufficient disk space is available for the Containerd, Rook and OpenEBS add-ons.
+* Adds a preflight check to ensure sufficient disk space is available for the Containerd, Rook, and OpenEBS add-ons.
 * Adds a preflight check to ensure Kubernetes API Server is healthy prior to Kubernetes upgrades.
 * Adds a preflight check to ensure Kubernetes API Server load balancer health prior to Kubernetes upgrades.
 * Adds a preflight check to ensure Kubernetes API and ETCD certificates are present and valid prior to Kubernetes upgrades.
@@ -30,7 +30,7 @@ Released on April 11, 2023
 * Adds a preflight check to prevent unsupported migrations from Longhorn to OpenEBS versions earlier than 3.3.0 and without an object store when Registry is present.
 
 ### Bug Fixes {#bug-fixes-v2023-04-11-0}
-* Fixed an issue that could cause re-running the install script to fail if the Kubernetes binaries are installed but the cluster was never installed or configured.
+* Fixes an issue that could cause rerunning the install script to fail if the Kubernetes binaries are installed but the cluster was never installed or configured.
 
 ## v2023.03.28-0
 
