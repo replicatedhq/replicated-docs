@@ -9,7 +9,7 @@ toc_max_heading_level: 2
 Released on April 11, 2023
 
 ### New Features {#new-features-v2023-04-11-0}
-* KURL will now always install the latest version of EKCO, even if a different version is specified.
+* The [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) is now mandatory and the latest version will always be installed, even if a different version is specified.
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.26.5, and removes all versions earlier than 0.26.5.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-03-24T21-41-23Z.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.8.0, 0.63.0-45.8.1, and 0.63.0-45.9.1.
