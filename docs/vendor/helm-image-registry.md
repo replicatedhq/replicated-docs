@@ -174,13 +174,13 @@ To update the image name to reference the proxy service:
 
 1. To use the same private registry for both helm CLI and app manager installations, continue to [(Optional) Support Both Helm CLI and App Manager Installations](#helm-and-kots) below.
 
-## (Optional) Support Both Helm CLI and App Manager Installations {#helm-and-kots}
+## (Optional) Support Both helm CLI and App Manager Installations {#helm-and-kots}
 
-As an application vendor, you can support both helm CLI and app manager installations from the same release.
+As an application vendor, you can support both helm CLI and app manager installations from the same release. For more information, see [About Supporting helm CLI installations](helm-install) in _Supporting helm CLI Installations (Beta)_.
 
 To support both types of installations with your private registry from a single release, you must update the release to add your registry URL as a static value in the HelmChart custom resource. This allows the Replicated proxy service to automatically patch the image name to reference `proxy.replicated.com` for app manager installations. Helm Install installations ignore this static value, and instead use the `proxy.replicated.com` URL that you added to the `values.yaml` file previously.
 
-To support both helm CLI and app manager installations:
+To use your private registry in both helm CLI and app manager installations:
 
 1. In the release that you want to update, open the HelmChart custom resource manifest file. A HelmChart custom resource manifest file has `kind: HelmChart` and `apiVersion: kots.io/v1beta1`.
 
