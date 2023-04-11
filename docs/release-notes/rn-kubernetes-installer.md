@@ -18,14 +18,13 @@ Released on April 11, 2023
 * Adds preflight host check to verify Kubernetes API healthz endpoint.
 * kURL will now run kube-proxy in iptables mode if ipvs kernel modules are not available.
 * Adds host preflight check to verify ephemeral disk space for the add-on(s) containerd, rook and openebs.
-* Adds host preflight check to verify ephemeral disk space for the add-on(s) containerd, rook and openebs.
 * Adds preflight checks to verify if nodes are healthy prior upgrades.
 * Adds preflights host checks to verify Kubernetes API and ETCD certificates prior upgrades.
 * Adds check to verify if MinIO Pod(s) is running prior migrate object store from Rook.
-* Adds a check to verify if OpenEBS and Rook Pod(s) are healthy prior migrate from Rook to OpenEBS.
-* Adds a check to ensure that kURL Pod(s) are running prior upgrades.
-* Adds checks to ensure that Longhorn and OpenEBS are healthy prior migration from Longhorn to OpenEBS.
-* Adds checks to ensure that Longhorn and Rook Ceph are healthy prior migration from Longhorn to Rook Ceph.
+* Adds a preflight check to ensure that kURL Pod(s) are running prior to upgrades.
+* Adds a preflight check to ensure that OpenEBS and Rook Ceph are healthy prior to migrating from Rook to OpenEBS.
+* Adds a preflight check to ensure that Longhorn and OpenEBS are healthy prior to migrating from Longhorn to OpenEBS.
+* Adds a preflight check to ensure that Longhorn and Rook Ceph are healthy prior to migrating from Longhorn to Rook Ceph.
 * Adds a preflight check to validate Kubernetes API Server load balancer health on upgrades.
 
 ### Bug Fixes {#bug-fixes-v2023-04-11-0}
