@@ -85,7 +85,7 @@ spec:
     mariadb:
       enabled: true
 ```
-The HelmChart YAML above results in the following `values.yaml` if a user selects `external_db_type`:
+The HelmChart YAML above results in the following `values.yaml` if a user selects a `mariadb_type` of `external`:
 
 ```yaml
 mariadb:
