@@ -31,6 +31,7 @@ const sidebars = {
   sidebarThree: [
     'test/sidebarThreeTopic',
     'test/sharedTopic',
+    'test/forcedSidebar',
   ],
 };
 
