@@ -17,7 +17,7 @@ Some advanced use cases involve writing values to a values file only if there is
 
 **Example:**
 
-For example, in the Bitnami Wordpress [chart.yaml.](https://github.com/bitnami/charts/blob/main/bitnami/wordpress/Chart.yaml) file, there is a reference to `mariadb`. This is configured through the [values.yaml](https://github.com/bitnami/charts/blob/main/bitnami/wordpress/values.yaml#L1086) file:
+For example, in the Bitnami Wordpress [chart.yaml.](https://github.com/bitnami/charts/blob/main/bitnami/wordpress/Chart.yaml) file, there is a reference to `mariadb`. This reference is configured through the [values.yaml](https://github.com/bitnami/charts/blob/main/bitnami/wordpress/values.yaml#L1086) file:
 
 ```yaml
 mariadb:
