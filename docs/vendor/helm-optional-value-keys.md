@@ -106,4 +106,4 @@ mariadb:
   enabled: true
 ```
 
-For more information about the `optionalValues` property, including details about the when and `recursiveMerge` fields, see [`optionalValues`](https://docs.replicated.com/reference/custom-resource-helmchart#optionalvalues) in _HelmChart_.
+For more information about the `optionalValues` property, including details about the `when` and `recursiveMerge` fields, see [`optionalValues`](https://docs.replicated.com/reference/custom-resource-helmchart#optionalvalues) in _HelmChart_.
