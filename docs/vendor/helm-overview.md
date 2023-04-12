@@ -21,6 +21,7 @@ To deploy a Helm chart, start by adding the Helm chart to a release in the Repli
 When you distribute an application packaged with Helm, your users can install and manage the application with either the Replicated app manager or the helm CLI.
 
 This section describes the processes for installing Helm charts with the app manager or the helm CLI.
+
 ### App Manager
 
 Users can install an application packaged with Helm charts using the app manager in either an existing cluster or a cluster provisioned by the Replicated Kubernetes installer. The app manager also supports Helm installations into air gap environments. For more information, see [Air Gap](#air-gap) below.
@@ -40,6 +41,12 @@ The following diagram shows how Replicated processes native Helm charts for depl
 ![Native Helm Deployment to Cluster](/images/native-helm-flowchart.png)
 
 [View larger image](/images/native-helm-flowchart.png)
+
+As shown in the diagram above, when given a Helm chart, the app manager:
+
+- Uses Kustomize to merge instructions from Replicated and the end user to chart resources (see steps 2 - 4 below)
+- Packages the resulting manifest files into a new Helm chart (see step 5 below)
+- Deploys the new Helm chart (see step 5 below)
 
 To deploy Helm charts using the native Helm method, the app manager does the following:
 
