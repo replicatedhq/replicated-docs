@@ -99,4 +99,4 @@ To [do this task]:
 * Should only link to topics on docs.replicated.com, or Replicated blogs/articles
 -->
 
-[My Topic Title](my-topic-title)
+[My Topic Title](https://docs.replicated.com)
