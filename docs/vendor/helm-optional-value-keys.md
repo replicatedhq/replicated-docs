@@ -66,7 +66,7 @@ spec:
   # these values will be supplied to helm template
   values:
     mariadb:
-      enabled: repl{{ ConfigOptionEquals `external_db_type` `embeddedDatabase`}}
+      enabled: repl{{ ConfigOptionEquals `mariadb_type` `embedded`}}
 
   optionalValues:
     - when: "repl{{ ConfigOptionEquals `external_db_type` `embeddedDatabase`}}"
