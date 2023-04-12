@@ -76,14 +76,12 @@ The Replicated vendor portal **Customers** page displays details about each cust
 
 The following shows an example of the **Customers** page:
 
-**UPDATE SCREENSHOT WITH ADOPTION RATE SECTION**
-
 ![Customer page showing three customers](/images/customer-page.png)
 
 [View a larger version of this image](/images/customer-page.png)
 
 From the **Customers** page, you can do the following:
-* View insights about the adoption rate of each version of your application across your customers. For more information, see [Adoption Rate](customer-adoption).
+<!-- * View insights about the adoption rate of each version of your application across your customers. For more information, see [Adoption Rate (Beta)](customer-adoption). -->
 * Create new customers
 * Download a CSV file with details about each customer
 * Click the **Manage customer** button to edit details such as the customer name and email, the custom license fields assigned to the customer, and the license expiration policy.

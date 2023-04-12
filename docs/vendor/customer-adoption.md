@@ -1,6 +1,10 @@
-# Adoption Rate
+# Adoption Rate (Beta)
 
 This topic describes the insights in the **Adoption rate** section on the Replicated vendor portal **Customers** page.
+
+:::note
+The **Adoption rate** section is Beta. To enable this feature on your account, log in to your vendor portal account, select **Support > Request a feature**, and submit a feature request for "Adoption rate".
+:::
 
 ## About Adoption Rate
 
