@@ -25,10 +25,11 @@ mariadb:
   ## To use an external database set this to false and configure the `externalDatabase.*` parameters
   ##
   enabled: true
-  ## External Database Configuration
-  ## All of these values are only used if `mariadb.enabled=false`
-  ##
-  externalDatabase:
+...
+## External Database Configuration
+## All of these values are only used if `mariadb.enabled=false`
+##
+externalDatabase:
   ## @param externalDatabase.host External Database server host
   ##
   host: localhost
