@@ -88,7 +88,26 @@ const config = {
           alt: 'R',
           src: 'images/logo-replicated-red.png',
         },
-
+        items: [
+          {
+            type: 'docSidebar',
+            position: 'left',
+            sidebarId: 'sidebarOne',
+            label: 'One',
+          },
+          {
+            type: 'docSidebar',
+            position: 'left',
+            sidebarId: 'sidebarTwo',
+            label: 'Two',
+          },
+          {
+            type: 'docSidebar',
+            position: 'left',
+            sidebarId: 'sidebarThree',
+            label: 'Three',
+          },
+        ],
       },
       footer: {
         style: 'dark',
