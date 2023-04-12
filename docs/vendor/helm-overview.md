@@ -35,7 +35,7 @@ The following sections provide more information about how the app manager proces
 
 With the native Helm deployment method, the app manager uses the Helm binary to install and manage the lifecycle of the chart resources that are part of the application. Native Helm is the preferred method because it supports more features of Helm, such as hooks and weights.
 
-The following image shows how Replicated processes native Helm charts for deployment to a Kubernetes cluster:
+The following diagram shows how Replicated processes native Helm charts for deployment to a Kubernetes cluster:
 
 ![Native Helm Deployment to Cluster](/images/native-helm-flowchart.png)
 
