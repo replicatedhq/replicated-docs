@@ -97,7 +97,7 @@ mariadb:
     database: "repl{{ ConfigOption `external_db_database`}}"
     port: "repl{{ `external_db_port`}}"
 ```
-The HelmChart YAML above results in the following `values.yaml` if the user selects `embeddedDatabase`:
+The HelmChart YAML above results in the following `values.yaml` if the user selects a `mariadb_type` of `embedded`:
 
 ```
 mariadb:
