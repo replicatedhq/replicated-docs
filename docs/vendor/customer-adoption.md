@@ -10,47 +10,61 @@ The vendor portal generates adoption rate data from all of your customer's activ
 
 The following screenshot shows an example of the **Adoption rate** section:
 
-**INSERT SCREENSHOT**
+![Adoption rate section on Customers page ](/images/customer_adoption_rates.png)
 
-As shown in the screenshot above, the **Adoption rate** section includes a graph as well as key adoption rate metrics.  
+[View a larger version of this image](/images/customer_adoption_rates.png)
+
+As shown in the screenshot above, the **Adoption rate** section includes a graph and key adoption rate metrics. For more information about how to interpret this data, see [Adoption Rate Graph](#graph) and [Adoption Rate Metrics](#metrics) below.
+
+The **Adoption rate** section also displays the number of customers assigned to the selected channel and a link to the report that you can share with other members of your team.
 
 You can filter the graph and metrics in the **Adoption rate** section by:
-* License type (Paid, Trial, Dev, or Community) **CONFIRM THAT THIS FILTER IS AVAILABLE FOR BETA**
-* Time period (the previous week, month, three months, or twelve months).
+* License type (Paid, Trial, Dev, or Community)
+* Time period (the previous month, three months, six months, or twelve months).
 * Release channel where the license is assigned, such as Stable or Beta.
 
-## Adoption Rate Graph
+## Adoption Rate Graph {#graph}
 
-The **Adoption rate** section includes a graph that shows the percent of active instances that are running different versions of your application on each day within the selected time period:
+The **Adoption rate** section includes a graph that shows the percent of active instances that are running different versions of your application on each day within the selected time period.
 
-**SCREENSHOT OF GRAPH SHOWING HOVER**
+The following shows an example of an adoption rate graph with three months of data:
 
-As shown in the screenshot above, you can hover over the graph to view the number of active instances running each version for each day.
+![Adoption rate graph showing three months of data](/images/adoption_rate_graph.png)
+
+[View a larger version of this image](/images/adoption_rate_graph.png)
+
+As shown in the image above, the graph plots the number of active instances on each day in the selected time period. Additionally, that graph uses colors to represent the application versions that were active on each day. The key to the left of the graph shows the unique color that is assigned to each application version that was running in at least one active instance during the selected time period.
+
+You can hover over the color-coded sections in the graph to view the number and percentage of active instances that were running the given version on that day.
 
 If there are no active instances of your application, then the **Adoption rate** section displays a "No Instances" message.
 
-## Adoption Rate Metrics
+## Adoption Rate Metrics {#metrics}
 
 The **Adoption rate** section also includes metrics that are key indicators of how frequently your customers discover and complete upgrades to new versions of your application.
 
-**SCREENSHOT OF METRICS SECTION**
+The following shows an example of the metrics in the **Adoption rate**:
 
-As shown in the screenshot above, the **Adoption rate** section displays the following metrics:
+![Adoption rate metrics showing](/images/adoption_rate_metrics.png)
+
+[View a larger version of this image](/images/adoption_rate_metrics.png)
+
+As shown in the image above, the **Adoption rate** section displays the following metrics:
 * Instances on last three versions
 * Unique versions
 * Median relative age
 * Upgrades completed
 
-Based on the time period selected, the **Adoption rate** section also displays arrows with the change in the value of each metric compared to the previous period. For example, if the median relative age today is 68 days, the selected time period is three months, and three months ago the median relative age was 55 days, then the metric would show an upward-facing arrow with an increase of 13 days. 
+Based on the time period selected, each metric includes an arrow that shows the change in value compared to the previous period. For example, if the median relative age today is 68 days, the selected time period is three months, and three months ago the median relative age was 55 days, then the metric would show an upward-facing arrow with an increase of 13 days. 
 
-The following table describes each metric in the **Adoption rate** section, including the formula used to calculate its value and the recommended target value: 
+The following table describes each metric in the **Adoption rate** section, including the formula used to calculate its value and the recommended trend for the metric over time: 
 
 <table>
   <tbody>
     <tr>
-      <th>Metric</th>
-      <th>Description</th>
-      <th>Recommended Target Value</th>
+      <th width="25%">Metric</th>
+      <th width="45%">Description</th>
+      <th width="30%">Target Trend</th>
     </tr>
     <tr>
       <td>Instances on last three versions</td>
@@ -58,7 +72,7 @@ The following table describes each metric in the **Adoption rate** section, incl
         <p>Percent of active instances that are running one the latest three versions of your application.</p>
         <p><strong>Formula</strong>: <code>count(instances on last 3 versions) / count(instances)</code></p>
       </td>
-      <td>100%</td>
+      <td>Increase towards 100%</td>
     </tr>
     <tr>
       <td>Unique versions</td>
@@ -66,7 +80,7 @@ The following table describes each metric in the **Adoption rate** section, incl
         <p>Number of unique versions of your application running in active instances.</p>
         <p><strong>Formula</strong>: <code>count(distinct instance_version)</code></p>
       </td>
-      <td>Less than or equal to three</td>
+      <td>Decrease towards less than or equal to three</td>
     </tr>
     <tr>
       <td>Median relative age</td>
@@ -75,8 +89,7 @@ The following table describes each metric in the **Adoption rate** section, incl
         <p>Median relative age is the median value across all active instances for the selected time period and channel.</p>
         <p><strong>Formula</strong>: <code>median(relative_age(instance_version))</code></p>
       </td>
-      <td><p>The target value for median relative age is the same as the median number of days between your releases on the selected channel.</p>
-      <p>For example, if the median number of days between new versions is 10 days, then the target value for median relative age is also 10 days.</p></td>
+      <td><p>Decrease towards the median time between your releases</p></td>
     </tr>
     <tr>
       <td>Upgrades completed</td>
@@ -85,7 +98,7 @@ The following table describes each metric in the **Adoption rate** section, incl
         <p>An upgrade is a single version change for an instance. An upgrade is considered complete when the instance deploys the new application version.</p>
         <p><strong>Formula</strong>: <code>sum(instance.upgrade_count) across all instances</code></p>
       </td>
-      <td></td>
+      <td>Increase towards the total number of upgrades available across instances for the selected time period and channel</td>
     </tr>
   </tbody>
 </table>
