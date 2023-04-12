@@ -1,13 +1,11 @@
 # Configuring Optional Value Keys
 
-> This topic applies to both native Helm and Replicated Helm installations.
-
 The Helm chart `values.yaml` file is not a static mapping in an application.
-It is possible to either remove or include values when certain conditions are met.
+It is possible, for native Helm and Replicated Helm installations, to either override values or include values when certain conditions are met.
 
-## Remove Values
+## Override Values
 
-If the Helm chart `values.yaml` contains a static value that must be removed when deploying using the Replicated app manager, set the value to `"null"` (including the quotation marks) in the HelmChart custom resource manifest file.
+If the Helm chart `values.yaml` contains a static value that must be overridden when deploying using the Replicated app manager, set the value to `"null"` (including the quotation marks) in the HelmChart custom resource manifest file.
 
 Typically this situation happens when you are including a community chart as a dependency in your own chart. You cannot control how the community chart is built and structured, and you might want to change some of the default behavior that the community chart does not easily expose. For more information, see [Deleting a Default Key](https://helm.sh/docs/chart_template_guide/values_files/#deleting-a-default-key) in the Helm documentation.
 
