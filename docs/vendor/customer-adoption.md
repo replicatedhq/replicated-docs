@@ -21,7 +21,7 @@ The **Adoption rate** section also displays the number of customers assigned to 
 You can filter the graph and metrics in the **Adoption rate** section by:
 * License type (Paid, Trial, Dev, or Community)
 * Time period (the previous month, three months, six months, or twelve months).
-* Release channel where the license is assigned, such as Stable or Beta.
+* Release channel where the instance license is assigned, such as Stable or Beta.
 
 ## Adoption Rate Graph {#graph}
 
@@ -33,17 +33,17 @@ The following shows an example of an adoption rate graph with three months of da
 
 [View a larger version of this image](/images/adoption_rate_graph.png)
 
-As shown in the image above, the graph plots the number of active instances on each day in the selected time period. Additionally, that graph uses colors to represent the application versions that were active on each day. The key to the left of the graph shows the unique color that is assigned to each application version that was running in at least one active instance during the selected time period.
+As shown in the image above, the graph plots the number of active instances on each day in the selected time period. Additionally, that graph uses colors to represent the application versions that were active on each day. The key to the left of the graph shows the unique color that is assigned to each application version. You can use this color-coding to see at a glance the percentage of active instances that were running different versions of your application across the selected time period.
 
-You can hover over the color-coded sections in the graph to view the number and percentage of active instances that were running the given version on that day.
+You can also hover over a color-coded section in the graph to view the number and percentage of active instances that were running the version on the given day.
 
-If there are no active instances of your application, then the **Adoption rate** section displays a "No Instances" message.
+If there are no active instances of your application, then the adoption rate graph displays a "No Instances" message.
 
 ## Adoption Rate Metrics {#metrics}
 
 The **Adoption rate** section also includes metrics that are key indicators of how frequently your customers discover and complete upgrades to new versions of your application.
 
-The following shows an example of the metrics in the **Adoption rate**:
+The following shows an example of the metrics in the **Adoption rate** section:
 
 ![Adoption rate metrics showing](/images/adoption_rate_metrics.png)
 
@@ -85,8 +85,8 @@ The following table describes each metric in the **Adoption rate** section, incl
     <tr>
       <td>Median relative age</td>
       <td>
-        <p>The relative age of a single instance is the number of days between the date that the instance's version was promoted to the channel and the date when the latest available application version was promoted to the channel.</p>
-        <p>Median relative age is the median value across all active instances for the selected time period and channel.</p>
+        <p>The <em>relative age</em> of a single instance is the number of days between the date that the instance's version was promoted to the channel and the date when the latest available application version was promoted to the channel.</p>
+        <p><em>Median relative age</em> is the median value across all active instances for the selected time period and channel.</p>
         <p><strong>Formula</strong>: <code>median(relative_age(instance_version))</code></p>
       </td>
       <td><p>Decrease towards the median time between your releases</p></td>
@@ -96,6 +96,7 @@ The following table describes each metric in the **Adoption rate** section, incl
       <td>
         <p>Total number of completed upgrades across active instances for the selected time period and channel.</p>
         <p>An upgrade is a single version change for an instance. An upgrade is considered complete when the instance deploys the new application version.</p>
+        <p>The instance does <em>not</em> need to become available (as indicated by reaching a Ready state) after deploying the new version for the upgrade to be counted as complete.</p>
         <p><strong>Formula</strong>: <code>sum(instance.upgrade_count) across all instances</code></p>
       </td>
       <td>Increase towards the total number of upgrades available across instances for the selected time period and channel</td>
