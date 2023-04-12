@@ -52,7 +52,7 @@ The `optionalValues` section includes a `when` condition that instructs the app 
 
 For example, the HelmChart custom resource can be configured as follows:
 
-```
+```yaml
 apiVersion: kots.io/v1beta1
 kind: HelmChart
 metadata:
@@ -101,7 +101,7 @@ externalDatabase:
 ```
 The HelmChart YAML above results in the following `values.yaml` if the user selects a `mariadb_type` of `embedded`:
 
-```
+```yaml
 mariadb:
   enabled: true
 ```
