@@ -9,7 +9,7 @@ It is possible to either remove or include values when certain conditions are me
 
 If the Helm chart `values.yaml` contains a static value that must be removed when deploying using the Replicated app manager, set the value to `"null"` (including the quotation marks) in the HelmChart custom resource manifest file.
 
-Typically this situation happens when you are including a community chart as a dependency in your own chart. You cannot control how the community chart is built and structured, and you might want to change some of the default behavior that the community chart does not easily expose. For example, Kubernetes only supports one livenessProbe handler. You can set a default livenessProbe handler to `"null"` and enable your preferred handler. For more information, see [Deleting a Default Key](https://helm.sh/docs/chart_template_guide/values_files/#deleting-a-default-key) in the Helm documentation.
+Typically this situation happens when you are including a community chart as a dependency in your own chart. You cannot control how the community chart is built and structured, and you might want to change some of the default behavior that the community chart does not easily expose. For more information, see [Deleting a Default Key](https://helm.sh/docs/chart_template_guide/values_files/#deleting-a-default-key) in the Helm documentation.
 
 ## Include Values
 
