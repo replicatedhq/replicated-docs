@@ -92,12 +92,12 @@ The HelmChart YAML above results in the following `values.yaml` if a user select
 ```yaml
 mariadb:
   enabled: false
-  externalDatabase:
-    host: "repl{{ ConfigOption `external_db_host`}}"
-    user: "repl{{ ConfigOption `external_db_user`}}"
-    password: "repl{{ ConfigOption `external_db_password`}}"
-    database: "repl{{ ConfigOption `external_db_database`}}"
-    port: "repl{{ `external_db_port`}}"
+externalDatabase:
+  host: "repl{{ ConfigOption `external_db_host`}}"
+  user: "repl{{ ConfigOption `external_db_user`}}"
+  password: "repl{{ ConfigOption `external_db_password`}}"
+  database: "repl{{ ConfigOption `external_db_database`}}"
+  port: "repl{{ ConfigOption `external_db_port`}}"
 ```
 The HelmChart YAML above results in the following `values.yaml` if the user selects a `mariadb_type` of `embedded`:
 
