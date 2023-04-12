@@ -69,7 +69,7 @@ spec:
       enabled: repl{{ ConfigOptionEquals `mariadb_type` `embedded`}}
 
   optionalValues:
-    - when: "repl{{ ConfigOptionEquals `external_db_type` `embeddedDatabase`}}"
+    - when: "repl{{ ConfigOptionEquals `mariadb_type` `external`}}"
       recursiveMerge: false
       values:
         externalDatabase.host: "repl{{ ConfigOption `external_db_host`}}"
