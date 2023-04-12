@@ -66,17 +66,17 @@ spec:
   # these values will be supplied to helm template
   values:
     mariadb:
-      enabled: repl{{ ConfigOptionEquals `mariadb_type` `embeddedDatabase`}}
+      enabled: repl{{ ConfigOptionEquals `external_db_type` `embeddedDatabase`}}
 
   optionalValues:
-    - when: "repl{{ ConfigOptionEquals `mariadb_type` `embeddedDatabase`}}"
+    - when: "repl{{ ConfigOptionEquals `external_db_type` `embeddedDatabase`}}"
       recursiveMerge: false
       values:
-        externalDatabase.host: "repl{{ ConfigOption `external_mariadb_host`}}"
-        externalDatabase.user: "repl{{ ConfigOption `external_mariadb_user`}}"
-        externalDatabase.password: "repl{{ ConfigOption `external_mariadb_password`}}"
-        externalDatabase.database: "repl{{ ConfigOption `external_mariadb_database`}}"
-        externalDatabase.port: "repl{{ `external_mariadb_port`}}"
+        externalDatabase.host: "repl{{ ConfigOption `external_db_host`}}"
+        externalDatabase.user: "repl{{ ConfigOption `external_db_user`}}"
+        externalDatabase.password: "repl{{ ConfigOption `external_db_password`}}"
+        externalDatabase.database: "repl{{ ConfigOption `external_db_database`}}"
+        externalDatabase.port: "repl{{ `external_ db_port`}}"
 
 
   # builder values provide a way to render the chart with all images
@@ -91,9 +91,17 @@ The HelmChart YAML above results in the following `values.yaml` if a user select
 mariadb:
   enabled: false
   externalDatabase:
-    host: "repl{{ ConfigOption `external_mariadb_host`}}"
-    user: "repl{{ ConfigOption `external_mariadb_user`}}"
-    password: "repl{{ ConfigOption `external_mariadb_password`}}"
-    database: "repl{{ ConfigOption `external_mariadb_database`}}"
-    port: "repl{{ `external_mariadb_port`}}"
+    host: "repl{{ ConfigOption `external_db_host`}}"
+    user: "repl{{ ConfigOption `external_db_user`}}"
+    password: "repl{{ ConfigOption `external_db_password`}}"
+    database: "repl{{ ConfigOption `external_db_database`}}"
+    port: "repl{{ `external_db_port`}}"
 ```
+The HelmChart YAML above results in the following `values.yaml` if the user selects `embeddedDatabase`:
+
+```
+mariadb:
+  enabled: true
+```
+
+For more information about the `optionalValues` property, including details about the when and `recursiveMerge` fields, see [`optionalValues`](https://docs.replicated.com/reference/custom-resource-helmchart#optionalvalues) in _HelmChart_.
