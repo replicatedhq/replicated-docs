@@ -120,7 +120,7 @@ Native Helm installations always deploy using Helm v3.
 Determines the order to apply charts that have `useHelmInstall: true`. Charts are applied by weight in ascending order, with lower weights applied first.
 Acceptable values are positive and negative integers, with a default value of 0.
 
-For more information, see [Defining Installation Order for Native Helm Charts](../vendor/helm-native-helm-install-order).
+For more information, see [Defining Installation Order for Native Helm Charts](/vendor/helm-native-helm-install-order).
 
 ## helmUpgradeFlags
 

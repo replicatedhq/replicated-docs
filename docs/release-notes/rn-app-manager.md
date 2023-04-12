@@ -1072,7 +1072,7 @@ Supported on Kubernetes: 1.20, 1.21, and 1.22
 * Updates Postgres to version 10.19.
 
 ### Bug Fixes
-* Fixes an issue that caused images to be pushed multiple times during an [airgap installation](/enterprise/installing-existing-cluster-airgapped) when the [Native Helm](/vendor/helm-processing/#native-helm) feature is enabled.
+* Fixes an issue that caused images to be pushed multiple times during an [airgap installation](/enterprise/installing-existing-cluster-airgapped) when the [Native Helm](/vendor/helm-overview#native) feature is enabled.
 * Fixes an issue that prevented the deployment status labels from breaking into multiple lines on small displays.
 
 ## 1.59.3
