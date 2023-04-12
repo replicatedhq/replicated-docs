@@ -78,7 +78,7 @@ spec:
           user: "repl{{ ConfigOption `external_db_user`}}"
           password: "repl{{ ConfigOption `external_db_password`}}"
           database: "repl{{ ConfigOption `external_db_database`}}"
-          port: "repl{{ `external_ db_port`}}"
+          port: "repl{{ ConfigOption `external_ db_port`}}"
 
 
   # builder values provide a way to render the chart with all images
