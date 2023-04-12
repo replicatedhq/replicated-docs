@@ -101,7 +101,7 @@ For more information about the `optionalValues` property, including details abou
 
 ## Bitnami Example
 
-For example, in the Bitnami Wordpress[charts.yaml.](https://github.com/bitnami/charts/blob/main/bitnami/wordpress/Chart.yaml) chart, there is a reference to mariadb. This is configured through the [values.yaml](https://github.com/bitnami/charts/blob/main/bitnami/wordpress/values.yaml#L1086):
+For example, in the Bitnami Wordpress[chart.yaml.](https://github.com/bitnami/charts/blob/main/bitnami/wordpress/Chart.yaml) chart, there is a reference to mariadb. This is configured through the [values.yaml](https://github.com/bitnami/charts/blob/main/bitnami/wordpress/values.yaml#L1086):
 
 ```yaml
 mariadb:
@@ -109,19 +109,25 @@ mariadb:
   ## To use an external database set this to false and configure the `externalDatabase.*` parameters
   ##
   enabled: true
-  ## @param mariadb.architecture MariaDB architecture. Allowed values: `standalone` or `replication`
+  ## External Database Configuration
+  ## All of these values are only used if `mariadb.enabled=false`
   ##
-  architecture: standalone
-  ## MariaDB Authentication parameters
-  ## @param mariadb.auth.rootPassword MariaDB root password
-  ## @param mariadb.auth.database MariaDB custom database
-  ## @param mariadb.auth.username MariaDB custom user name
-  ## @param mariadb.auth.password MariaDB custom user password
-  auth:
-    rootPassword: ""
-    database: bitnami_wordpress
-    username: bn_wordpress
-    password: ""
+  externalDatabase:
+  ## @param externalDatabase.host External Database server host
+  ##
+  host: localhost
+  ## @param externalDatabase.port External Database server port
+  ##
+  port: 3306
+  ## @param externalDatabase.user External Database username
+  ##
+  user: bn_wordpress
+  ## @param externalDatabase.password External Database user password
+  ##
+  password: ""
+  ## @param externalDatabase.database External Database database name
+  ##
+  database: bitnami_wordpress
 ```
 If a user wants to configure an external database, you can enable this dynamically through your deployment by adding an `optionalValues` section to the `kind: HelmChart` custom resource, instead of attempting to modify the render logic in the Helm chart.
 
@@ -141,29 +147,28 @@ externalDatabase.port=3306
 apiVersion: kots.io/v1beta1
 kind: HelmChart
 metadata:
-  name: bitnami wordpress
+  name: wordpress
 spec:
   # chart identifies a matching chart from a .tgz
   chart:
-    name: bitnami wordpress
+    name: wordpress
     chartVersion: 15.3.2
 
   # values are used in the customer environment, as a pre-render step
   # these values will be supplied to helm template
   values:
     mariadb:
-      enabled: repl{{ ConfigOptionEquals `mariadb_type` `externalDatabase`}}
+      enabled: repl{{ ConfigOptionEquals `mariadb_type` `embeddedDatabase`}}
 
   optionalValues:
-    - when: "repl{{ ConfigOptionEquals `mariadb_type` `externalDatabase`}}"
+    - when: "repl{{ ConfigOptionEquals `mariadb_type` `embeddedDatabase`}}"
       recursiveMerge: false
       values:
-        mariadb:
-          externalDatabase.host: "repl{{ ConfigOption `external_mariadb_host`}}"
-          externalDatabase.user: "repl{{ ConfigOption `external_mariadb_user`}}"
-          externalDatabase.password: "repl{{ ConfigOption `external_mariadb_password`}}"
-          externalDatabase.database: "repl{{ ConfigOption `external_mariadb_database`}}"
-          externalDatabase.port: "repl{{ 3306 }}"
+        externalDatabase.host: "repl{{ ConfigOption `external_mariadb_host`}}"
+        externalDatabase.user: "repl{{ ConfigOption `external_mariadb_user`}}"
+        externalDatabase.password: "repl{{ ConfigOption `external_mariadb_password`}}"
+        externalDatabase.database: "repl{{ ConfigOption `external_mariadb_database`}}"
+        externalDatabase.port: "repl{{ `external_mariadb_port`}}"
 
 
   # builder values provide a way to render the chart with all images
@@ -175,12 +180,12 @@ spec:
 The HelmChart YAML above results in the following `values.yaml` if a user selects `externalDatabase`:
 
 ```yaml
-postgresql:
+mariadb:
   enabled: false
-  mariadb:
-    externalDatabase.host: "repl{{ ConfigOption `external_mariadb_host`}}"
-    externalDatabase.user: "repl{{ ConfigOption `external_mariadb_user`}}"
-    externalDatabase.password: "repl{{ ConfigOption `external_mariadb_password`}}"
-    externalDatabase.database: "repl{{ ConfigOption `external_mariadb_database`}}""
-    externalDatabase.port: 3306
+  externalDatabase:
+    host: "repl{{ ConfigOption `external_mariadb_host`}}"
+    user: "repl{{ ConfigOption `external_mariadb_user`}}"
+    password: "repl{{ ConfigOption `external_mariadb_password`}}"
+    database: "repl{{ ConfigOption `external_mariadb_database`}}"
+    port: "repl{{ `external_mariadb_port`}}"
 ```
