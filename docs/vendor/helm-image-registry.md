@@ -178,7 +178,7 @@ To update the image name to reference the proxy service:
 
 As an application vendor, you can support both helm CLI and app manager installations from the same release. For more information, see [About Supporting helm CLI installations](helm-install) in _Supporting helm CLI Installations (Beta)_.
 
-To support both types of installations with your private registry from a single release, you must update the release to add your registry URL as a static value in the HelmChart custom resource. This allows the Replicated proxy service to automatically patch the image name to reference `proxy.replicated.com` for app manager installations. Helm Install installations ignore this static value, and instead use the `proxy.replicated.com` URL that you added to the `values.yaml` file previously.
+To support both types of installations with your private registry from a single release, you must update the release to add your registry URL as a static value in the HelmChart custom resource. This allows the app manager to automatically patch the image name to reference `proxy.replicated.com`. Helm Install installations ignore this static value, and instead use the `proxy.replicated.com` URL that you added to the `values.yaml` file previously.
 
 To use your private registry in both helm CLI and app manager installations:
 
