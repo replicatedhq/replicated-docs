@@ -99,7 +99,7 @@ postgresql:
 For more information about the `optionalValues` property, including details about the `when` and `recursiveMerge` fields, see [optionalValues](/reference/custom-resource-helmchart#optionalvalues) in _HelmChart_.
 
 
-## Bitnami Example##
+## Bitnami Example
 
 For example, in the Bitnami Wordpress[charts.yaml.](https://github.com/bitnami/charts/blob/main/bitnami/wordpress/Chart.yaml) chart, there is a reference to mariadb. This is configured through the [values.yaml](https://github.com/bitnami/charts/blob/main/bitnami/wordpress/values.yaml#L1086):
 
@@ -163,6 +163,8 @@ spec:
           externalDatabase.user: "repl{{ ConfigOption `external_mariadb_user`}}"
           externalDatabase.password: "repl{{ ConfigOption `external_mariadb_password`}}"
           externalDatabase.database: "repl{{ ConfigOption `external_mariadb_database`}}"
+          externalDatabase.port: "repl{{ 3306 }}"
+
 
   # builder values provide a way to render the chart with all images
   # and manifests. this is used in replicated to create airgap packages
@@ -170,14 +172,15 @@ spec:
     mariadb:
       enabled: true
 
-According the the Bitnami Readme, these are the values that must be set to use an external DB, including the port=3306. Not sure how to reflect this in the HelmChart below:
+The HelmChart YAML above results in the following `values.yaml` if a user selects `externalDatabase`:
 
 ```yaml
-mariadb.enabled=false
-externalDatabase.host=myexternalhost
-externalDatabase.user=myuser
-externalDatabase.password=mypassword
-externalDatabase.database=mydatabase
-externalDatabase.port=3306
+postgresql:
+  enabled: false
+  mariadb:
+    externalDatabase.host: "repl{{ ConfigOption `external_mariadb_host`}}"
+    externalDatabase.user: "repl{{ ConfigOption `external_mariadb_user`}}"
+    externalDatabase.password: "repl{{ ConfigOption `external_mariadb_password`}}"
+    externalDatabase.database: "repl{{ ConfigOption `external_mariadb_database`}}""
+    externalDatabase.port: 3306
 ```
-
