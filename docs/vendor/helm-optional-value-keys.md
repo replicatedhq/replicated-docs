@@ -73,11 +73,12 @@ spec:
     - when: "repl{{ ConfigOptionEquals `mariadb_type` `external`}}"
       recursiveMerge: false
       values:
-        externalDatabase.host: "repl{{ ConfigOption `external_db_host`}}"
-        externalDatabase.user: "repl{{ ConfigOption `external_db_user`}}"
-        externalDatabase.password: "repl{{ ConfigOption `external_db_password`}}"
-        externalDatabase.database: "repl{{ ConfigOption `external_db_database`}}"
-        externalDatabase.port: "repl{{ `external_ db_port`}}"
+        externalDatabase:
+          host: "repl{{ ConfigOption `external_db_host`}}"
+          user: "repl{{ ConfigOption `external_db_user`}}"
+          password: "repl{{ ConfigOption `external_db_password`}}"
+          database: "repl{{ ConfigOption `external_db_database`}}"
+          port: "repl{{ `external_ db_port`}}"
 
 
   # builder values provide a way to render the chart with all images
