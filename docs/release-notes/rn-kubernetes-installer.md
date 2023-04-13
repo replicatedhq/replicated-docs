@@ -4,6 +4,20 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.04.13-0
+
+Released on April 13, 2023
+
+### New Features {#new-features-v2023-04-13-0}
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.3.
+* Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) version.
+* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.10.2.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version 1.27.0.
+
+### Bug Fixes {#bug-fixes-v2023-04-13-0}
+* Fixes an issue that causes migrations from Docker to Containerd on multi-node clusters to fail with error "Downgrading containerd is not supported".
+* Fixes a bug when using the `kurl-install-directory` flag.
+
 ## v2023.04.11-0
 
 Released on April 11, 2023
