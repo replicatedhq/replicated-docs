@@ -128,7 +128,7 @@ For more information, see [Defining Installation Order for Native Helm Charts](/
 `helmUpgradeFlags` is available in the app manager v1.75.0 and later.
 :::
 
-Specifies additional flags to pass to the `helm upgrade` command for charts that have `useHelmInstall: true`. These flags are passed in addition to any flags the app manager passes by default. The values specified here take precedence if the app manager already passes the same flag.
+Specifies additional flags to pass to the `helm upgrade` command for charts that have `useHelmInstall: true`. These flags are passed in addition to any flags the app manager passes by default. The values specified here take precedence if the app manager already passes the same flag. The `helmUpgradeFlags` attribute can be parsed by template functions. For more information about template functions, see [About template function contexts](template-functions-about).
 
 The app manager uses `helm upgrade` for all deployments of an application (not just upgrades) by specifying the `--install` flag.
 For non-boolean flags that require an additional argument, such as `--timeout 1200s`, you must use an equals sign or specify the additional argument separately in the array. For example:
@@ -285,7 +285,7 @@ In this case, all keys from `values` and `optionalValues` are included in the me
 
 ## namespace
 
-The `namespace` key specifies an alternative namespace where the app manager installs the Helm chart. By default, if no alternative namespace is provided, then the Helm chart is installed in the same namespace as the admin console.
+The `namespace` key specifies an alternative namespace where the app manager installs the Helm chart. By default, if no alternative namespace is provided, then the Helm chart is installed in the same namespace as the admin console. The `namespace` attribute can be parsed by template functions. For more information about template functions, see [About template function contexts](template-functions-about).
 
 If you specify a namespace in the HelmChart `namespace` field, you must also include the same namespace in the `additionalNamespaces` field of the Application custom resource manifest file. The app manager creates the namespaces listed in the `additionalNamespaces` field during installation. For more information, see [additionalNamespaces](custom-resource-application#additionalnamespaces) in _Application_.
 
