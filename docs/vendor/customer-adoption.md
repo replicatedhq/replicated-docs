@@ -1,6 +1,6 @@
 # Adoption Report (Beta)
 
-This topic describes the insights in the **Adoption rate** section on the Replicated vendor portal **Customers** page.
+This topic describes the insights in the **Adoption** section on the Replicated vendor portal **Customers** page.
 
 :::note
 The **Adoption Report** section is currently in Beta -- you will see it labeled as such in the Vendor Portal. the character of this data and how it is computed and displayed is subject to change.
@@ -8,28 +8,28 @@ The **Adoption Report** section is currently in Beta -- you will see it labeled 
 
 ## About Adoption Rate
 
-The **Adoption rate** section on the **Customers** page provides insights about the rate at which your customers upgrade their instances and adopt the latest versions of your application. As an application vendor, you can use these adoption rate metrics to learn if your customers are completing upgrades regularly, which is a key indicator of the discoverability and ease of application upgrades.
+The **Adoption** section on the **Customers** page provides insights about the rate at which your customers upgrade their instances and adopt the latest versions of your application. As an application vendor, you can use these adoption rate metrics to learn if your customers are completing upgrades regularly, which is a key indicator of the discoverability and ease of application upgrades.
 
 The vendor portal generates adoption rate data from all of your customer's active application instances. An instance is considered _active_ if no more than two weeks have passed since its last check-in event. For more information about instance check-ins, see [How the Vendor Portal Collects Instance Data](instance-insights-event-data#about-reporting) in _About Instance and Event Data_.
 
-The following screenshot shows an example of the **Adoption rate** section:
+The following screenshot shows an example of the **Adoption** report:
 
 ![Adoption rate section on Customers page ](/images/customer_adoption_rates.png)
 
 [View a larger version of this image](/images/customer_adoption_rates.png)
 
-As shown in the screenshot above, the **Adoption rate** section includes a graph and key adoption rate metrics. For more information about how to interpret this data, see [Adoption Rate Graph](#graph) and [Adoption Rate Metrics](#metrics) below.
+As shown in the screenshot above, the **Adoption** report includes a graph and key adoption rate metrics. For more information about how to interpret this data, see [Adoption Rate Graph](#graph) and [Adoption Rate Metrics](#metrics) below.
 
-The **Adoption rate** section also displays the number of customers assigned to the selected channel and a link to the report that you can share with other members of your team.
+The **Adoption** report also displays the number of customers assigned to the selected channel and a link to the report that you can share with other members of your team.
 
-You can filter the graph and metrics in the **Adoption rate** section by:
+You can filter the graph and metrics in the **Adoption** report by:
 * License type (Paid, Trial, Dev, or Community)
 * Time period (the previous month, three months, six months, or twelve months).
 * Release channel where the instance license is assigned, such as Stable or Beta.
 
 ## Adoption Rate Graph {#graph}
 
-The **Adoption rate** section includes a graph that shows the percent of active instances that are running different versions of your application on each day within the selected time period.
+The **Adoption** report includes a graph that shows the percent of active instances that are running different versions of your application on each day within the selected time period.
 
 The following shows an example of an adoption rate graph with three months of data:
 
@@ -37,9 +37,9 @@ The following shows an example of an adoption rate graph with three months of da
 
 [View a larger version of this image](/images/adoption_rate_graph.png)
 
-As shown in the image above, the graph plots the number of active instances on each day in the selected time period. Additionally, that graph uses colors to represent the application versions that were active on each day. The key to the left of the graph shows the unique color that is assigned to each application version. You can use this color-coding to see at a glance the percentage of active instances that were running different versions of your application across the selected time period.
+As shown in the image above, the graph plots the number of active instances in each week in the selected time period. Additionally, the graph uses colors to represent the application versions that were active in each week. The key to the left of the graph shows the unique color that is assigned to each application version. You can use this color-coding to see at a glance the percentage of active instances that were running different versions of your application across the selected time period.
 
-You can also hover over a color-coded section in the graph to view the number and percentage of active instances that were running the version on the given day.
+You can also hover over a color-coded section in the graph to view the number and percentage of active instances that were running the version in a given period.
 
 If there are no active instances of your application, then the adoption rate graph displays a "No Instances" message.
 
