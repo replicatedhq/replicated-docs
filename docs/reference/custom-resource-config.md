@@ -264,7 +264,9 @@ A required field will prevent the application from starting until it has a value
 An item can be recommended.
 This item will bear the tag "recommended" in the admin console.
 
-**Note:** Only works for boolean and text field types.
+:::note
+Only works for boolean and text field types.
+:::
 
 ```yaml
     - name: group_title
@@ -323,7 +325,11 @@ This property can show a helpful message below `title`.
 
 ### `validation`
 An item's value can be validated using the validation property.
-Note: Only works for `text`, `textarea`, `password` and `file` field types
+
+:::note
+Only works for `text`, `textarea`, `password` and `file` field types.
+:::
+
 ```
     - name: smtp-settings
       title: SMTP Settings
@@ -380,7 +386,9 @@ See the [`ConfigOptionData`](template-functions-config-context#configoptiondata)
 The `heading` type allows you to display a group heading as a sub-element within a group.
 This is useful when you would like to use a config group to group items together, but still separate the items visually.
 
-**Note**: The `heading` item type is not supported.
+:::
+The `heading` item type is not supported.
+:::
 
 ```yaml
     - name: ldap_settings
@@ -500,7 +508,9 @@ A `regex` can validate if item's value matches to the provided regular expressio
 
 A repeatable config item copies a YAML array entry or YAML document for as many values as are provided. Any number of values can be added to a repeatable item to generate additional copies.
 
-**Note**: Repeatable Items only work for text, textarea, and file types.
+::note
+Repeatable Items only work for text, textarea, and file types.
+:::
 
 To make an item repeatable, set `repeatable` to true
 ```yaml
@@ -604,8 +614,11 @@ Repeatable items are processed in order of the template targets in the Config Sp
 ## Repeatable Examples
 
 In these examples, the default service port of "80" is included with the release. Port 443 is added as an additional port on the admin console configuration page, which is stored in the ConfigValues file.
+
 ### Repeatable Item Example for a YamlPath
+
 **Config custom resource manifest file**
+
 ```yaml
     - name: ports
       items:
@@ -659,7 +672,10 @@ spec:
 
 **After repeatable config processing**
 
-**Note**: this phase is internal to configuration rendering for the app manager. This example is only provided to further explain the templating process.*
+:::note
+This phase is internal to configuration rendering for the app manager. This example is only provided to further explain the templating process.
+:::
+
 ```yaml
 apiVersion: v1
 kind: Service
@@ -750,7 +766,10 @@ spec:
 
 **After repeatable config processing**
 
-**Note**: this phase is internal to configuration rendering for the app manager. This example is only provided to further explain the templating process.*
+:::note
+This phase is internal to configuration rendering for the app manager. This example is only provided to further explain the templating process.
+:::
+
 ```yaml
 apiVersion: v1
 kind: Service
