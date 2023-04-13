@@ -16,9 +16,9 @@ For more information about the syntax of the Config custom resource manifest, se
 
 ## About Regular Expression Validation
 
-You can use standard regular expressions (regex) to validate user input for config items, ensuring conformity to certain standards, such as valid email addresses, password complexity rules, IP addresses, and URLs. This prevents users from deploying an application with a verifiably invalid configuration.
+You can use [RE2 regular expressions](https://github.com/google/re2/wiki/Syntax) (regex) to validate user input for config items, ensuring conformity to certain standards, such as valid email addresses, password complexity rules, IP addresses, and URLs. This prevents users from deploying an application with a verifiably invalid configuration.
 
-You add the `validation`, `regex`, and `message` fields to items in the Config custom resource. Validation is supported for `text`, `textarea`, and `password` config item types.
+You add the `validation`, `regex`, `pattern` and `message` fields to items in the Config custom resource. Validation is supported for `text`, `textarea`, `password` and `file` config item types.
 
 The following example shows a common password complexity rule:
 
@@ -32,12 +32,14 @@ spec:
     - name: smtp-settings
       title: SMTP Settings
       items:
-      - name: smtp_password
-        title: SMTP Password
-        type: password
+      - name: smtp_host
+        title: SMTP Hostname
+        help_text: Set SMTP Hostname
+        type: text      
         validation:
-          regex: ​^.*(?=.{8,20})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&?]).*$
-          message: Must be a minimum of 8 characters and must contain a combination of uppercase, lowercase, numbers, and special characters.
+          regex: ​
+            pattern: ^[a-zA-Z]([a-zA-Z0-9\-]+[\.]?)*[a-zA-Z0-9]$
+            message: Valid hostname starts with a letter (uppercase/lowercase), followed by zero/more groups of letters (uppercase/lowercase), digits, or hyphens, optionally followed by a period. Ends with a letter or digit.
 ```
 
 ## Add Fields to the Configuration Screen
@@ -109,19 +111,20 @@ To add fields to the admin console configuration screen:
 
    * **With the `value` property**: When you include the `value` key, the app manager does not overwrite this value during an application update. The value that you provide for the `value` key is visually indistinguishable from other values that your user provides on the admin console configuration screen. The app manager treats user-supplied values and the value that you provide for the `value` key as the same.
 
-1. (Optional) Add regular expressions to validate user input for `text`, `textarea`, and `password` config item types. For more information, see [About Regular Expression Validation](#about-regular-expression-validation).
+2. (Optional) Add regular expressions to validate user input for `text`, `textarea`, `password` and `file` config item types. For more information, see [About Regular Expression Validation](#about-regular-expression-validation).
 
     **Example**:
 
       ```yaml
-      - name: email_address
-        title: Email Address
-        type: text
+      - name: smtp_password
+        title: SMTP Password
+        type: password
         validation:
-          regex: ^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$
-          message: Enter a valid email address.
+          regex: 
+            pattern: ^(?:[\w@#$%^&+=!*()_\-{}[\]:;"'<>,.?\/|]){8,16}$
+            message: The password must be between 8 and 16 characters long and must contain a combination of at least one uppercase letter, one lowercase letter, one digit, and one special character.
         ```  
-1. (Optional) Mark fields as required by including `required: true`. When there are required fields, the user is prevented from proceeding with the installation until they provide a valid value for required fields.
+3. (Optional) Mark fields as required by including `required: true`. When there are required fields, the user is prevented from proceeding with the installation until they provide a valid value for required fields.
 
    **Example**:
 
@@ -132,7 +135,7 @@ To add fields to the admin console configuration screen:
      required: true
     ```      
 
-1. Save and promote the release to a development environment to test your changes.
+4. Save and promote the release to a development environment to test your changes.
 
 ## Next Steps
 
