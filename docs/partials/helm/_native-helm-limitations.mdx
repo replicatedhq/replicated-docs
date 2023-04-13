@@ -1,8 +1,4 @@
 * Available only for Helm V3.
-* Supported only for new installations.
-* Not supported on existing charts deployed on existing applications.
-* Migrating existing applications to the native Helm deployment method is not supported. To deliver applications using the native Helm deployment method, promote releases to a new channel for new customer installations.
-* The test hook is not supported.
-* Hook weights below -9999 are not supported. All hook weights must be set to a value above -9999 to ensure the Replicated image pull secret is deployed before any resources are pulled.
+* Supported only for new installations. Migrating existing applications to the native Helm deployment method is not supported. To deliver applications using the native Helm deployment method, promote releases to a new channel for new customer installations. For more information, see [About Updating Replicated Helm Releases](/vendor/helm-release#about-updating-replicated-helm-releases) in _Creating Releases with Helm Charts_.
 * Not supported with GitOps workflows. For more information, see [Pushing Updates to a GitOps Workflow](/enterprise/gitops-workflow) in the _Enterprise_ documentation.
-* The name specified in the HelmChart custom resource must be an exact match to the actual Helm chart name that is provided to Replicated. If the Helm chart names do not match, then the installation can error or fail. See [HelmChart](/reference/custom-resource-helmchart) in _Custom Resources_.
+* Hook weights below -9999 are not supported. All hook weights must be set to a value above -9999 to ensure the Replicated image pull secret is deployed before any resources are pulled.
