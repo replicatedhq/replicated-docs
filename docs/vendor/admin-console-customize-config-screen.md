@@ -35,12 +35,12 @@ spec:
       - name: smtp_password
         title: SMTP Password
         type: password
-        help_text: Set SMPT password
+        help_text: Set SMTP password
         validation:
           regex: 
             pattern: ^(?:[\w@#$%^&+=!*()_\-{}[\]:;"'<>,.?\/|]){8,16}$
             message: The password must be between 8 and 16 characters long and must contain a combination of at least one uppercase letter, one lowercase letter, one digit, and one special character.
-```
+  ```
 
 ## Add Fields to the Configuration Screen
 
