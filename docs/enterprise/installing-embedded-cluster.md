@@ -2,8 +2,7 @@ import KurlAbout from "../partials/install/_kurl-about.mdx"
 import PrereqsEmbeddedCluster from "../partials/install/_prereqs-embedded-cluster.mdx"
 import HaLoadBalancerAbout from "../partials/install/_ha-load-balancer-about.mdx"
 import HaLoadBalancerPrereq from "../partials/install/_ha-load-balancer-prereq.mdx"
-
-
+import InstallAdmconsoleOnline from "../partials/install/_install-admconsole-online.mdx"
 
 # Online Installation with the Kubernetes Installer
 
@@ -64,7 +63,7 @@ To install the application:
 
 1. Note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the installation command. 
 
-1. Log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
+1. <InstallAdmconsoleOnline/>
 
 ## Next Step
 

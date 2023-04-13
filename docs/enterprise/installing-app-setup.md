@@ -1,4 +1,4 @@
-# Completing Application Setup and Deploying
+# Completing Application Setup with the UI
 
 This topic describes how to access the Replicated admin console to complete the application setup, run preflight checks, and deploy.
 
