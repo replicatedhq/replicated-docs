@@ -3,7 +3,7 @@
 This topic describes the insights in the **Adoption** section on the Replicated vendor portal **Customers** page.
 
 :::note
-The **Adoption Report** section is currently in Beta -- you will see it labeled as such in the Vendor Portal. the character of this data and how it is computed and displayed is subject to change.
+The **Adoption Report** section is currently in Beta -- you will see it labeled as such in the Vendor Portal. The character of this data, how it is computed, and how it is displayed is subject to change.
 :::
 
 ## About Adoption Rate
