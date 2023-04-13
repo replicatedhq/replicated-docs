@@ -10,12 +10,12 @@ Released on April 13, 2023
 
 ### New Features {#new-features-v2023-04-13-0}
 * Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.3.
-* Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) version.
+* Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) version 2.8.1-20230406.
 * Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.10.2.
 
 ### Bug Fixes {#bug-fixes-v2023-04-13-0}
 * Fixes an issue that causes migrations from Docker to Containerd on multi-node clusters to fail with error "Downgrading containerd is not supported".
-* Fixes a bug when using the `kurl-install-directory` flag.
+* Fixes an issue when using the `kurl-install-directory` flag that could cause installations to fail with error "/var/lib/kurl does not exist".
 
 ## v2023.04.11-0
 
