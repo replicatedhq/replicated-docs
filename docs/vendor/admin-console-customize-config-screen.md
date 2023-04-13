@@ -110,7 +110,7 @@ To add fields to the admin console configuration screen:
 
     **Example**:
 
-      ```yaml
+    ```yaml
     - name: smtp_host
       title: SMTP Hostname
       help_text: Set SMTP Hostname
@@ -118,8 +118,8 @@ To add fields to the admin console configuration screen:
       validation:
         regex: ​
           pattern: ^[a-zA-Z]([a-zA-Z0-9\-]+[\.]?)*[a-zA-Z0-9]$
-          message: Valid hostname starts with a letter (uppercase/lowercase), followed by zero/more groups of letters (uppercase/lowercase), digits, or hyphens, optionally followed by a period. Ends with a letter or digit.
-        ```  
+          message: Valid hostname starts with a letter (uppercase/lowercase), followed by zero or more groups of letters (uppercase/lowercase), digits, or hyphens, optionally followed by a period. Ends with a letter or digit.
+    ```  
 3. (Optional) Mark fields as required by including `required: true`. When there are required fields, the user is prevented from proceeding with the installation until they provide a valid value for required fields.
 
    **Example**:
