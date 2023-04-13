@@ -3,6 +3,7 @@ import TemplateLimitation from "../partials/helm/_helm-template-limitation.mdx"
 import VersionLimitation from "../partials/helm/_helm-version-limitation.mdx"
 import HelmCLILimitations from "../partials/helm/_helm-cli-limitations.mdx"
 import ReplicatedHelmDeprecated from "../partials/helm/_replicated-deprecated.mdx"
+import HooksLimitation from "../partials/helm/_hooks-limitation.mdx"
 
 # About Deploying Helm Charts 
 
@@ -160,18 +161,18 @@ There are different limitations depending on if your customers install and manag
 ### Native Helm and Replicated Helm Limitations {#replicated-helm-limitations}
 
 The following limitations apply when using the app manager to install and manage Helm charts:
-
 * <ReplicatedHelmDeprecated/>
-
 * <TemplateLimitation/>
-
 * <VersionLimitation/>
 
-   For more information, see [helmVersion](/reference/custom-resource-helmchart#helmversion) in _HelmChart_.
+  For more information, see [helmVersion](/reference/custom-resource-helmchart#helmversion) in _HelmChart_.
+* The name specified in the HelmChart custom resource must be an exact match to the actual Helm chart name that is provided to Replicated. If the Helm chart names do not match, then the installation can error or fail. See [HelmChart](/reference/custom-resource-helmchart) in _Custom Resources_.
 
 * The following limitations apply to the native Helm deployment method only:
 
   <NativeHelmLimitations/>
+
+  * <HooksLimitation/>
 
 ### helm CLI Limitations {#helm-cli-limitations}
 
