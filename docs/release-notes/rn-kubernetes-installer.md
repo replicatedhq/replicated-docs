@@ -14,8 +14,8 @@ Released on April 13, 2023
 * Updates the [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.10.2 with new kurlsh/s3cmd image to address the following high severity CVE: CVE-2023-0464.
 
 ### Bug Fixes {#bug-fixes-v2023-04-13-0}
-* Fixes an issue that causes migrations from Docker to Containerd on multi-node clusters to fail with error "Downgrading containerd is not supported".
-* Fixes an issue when using the `kurl-install-directory` flag that could cause installations to fail with error "/var/lib/kurl does not exist".
+* Fixes an issue that causes migrations from Docker to containerd on multi-node clusters to fail with the error "Downgrading containerd is not supported".
+* Fixes an issue that could cause installations to fail with the error "/var/lib/kurl does not exist" when using the `kurl-install-directory` flag.
 
 ## v2023.04.11-0
 
