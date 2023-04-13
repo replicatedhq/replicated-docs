@@ -321,6 +321,23 @@ This property can show a helpful message below `title`.
         type: bool
 ```
 
+### `validation`
+An item's value can be validated using the validation property
+Note: Only works for `text`, `textarea`, `password` and `file` field types
+```yaml
+    - name: smtp-settings
+      title: SMTP Settings
+      - name: smtp_password
+        title: SMTP Password
+        type: password
+        validation:
+          regex: 
+            pattern: ^(?:[\w@#$%^&+=!*()_\-{}[\]:;"'<>,.?\/|]){8,16}$
+            message: The password must be between 8 and 16 characters long and must contain a combination of at least one uppercase letter, one lowercase letter, one digit, and one special character.
+```
+
+For information about supported validation types, see [Validation](#item-validation).
+
 ## Item Types
 
 The section describes each of the item types:
@@ -460,6 +477,23 @@ For more information, see [HTML `<textarea/>` Tag](https://www.w3schools.com/tag
 ```
 ![Text area field on the configuration screen](../../static/images/config-screen-textarea.png)
 
+
+## Item Validation
+The supported validation types are:
+- `regex`
+
+### `regex`
+A `regex` can validate if item's value matches to the provided regular expression pattern
+`regex` pattern should be of type [RE2 regular expressions](https://github.com/google/re2/wiki/Syntax) and validates `text`, `textarea`, `password` and `file` field types
+```yaml
+    - name: jwt_token
+      title: JWT token
+      type: file
+      validation:
+        regex: 
+          pattern: ^[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]*$
+          message: Upload a file with valid jwt token.
+  ```  
 
 
 ## Repeatable Items
