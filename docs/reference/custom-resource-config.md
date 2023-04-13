@@ -322,9 +322,9 @@ This property can show a helpful message below `title`.
 ```
 
 ### `validation`
-An item's value can be validated using the validation property
+An item's value can be validated using the validation property.
 Note: Only works for `text`, `textarea`, `password` and `file` field types
-```yaml
+```
     - name: smtp-settings
       title: SMTP Settings
       - name: smtp_password
@@ -333,7 +333,7 @@ Note: Only works for `text`, `textarea`, `password` and `file` field types
         validation:
           regex: 
             pattern: ^(?:[\w@#$%^&+=!*()_\-{}[\]:;"'<>,.?\/|]){8,16}$
-            message: The password must be between 8 and 16 characters long and must contain a combination of at least one uppercase letter, one lowercase letter, one digit, and one special character.
+            message: The password must be between 8 and 16 characters long and can contain a combination of uppercase letters, lowercase letters, digits, and special characters.
 ```
 
 For information about supported validation types, see [Validation](#item-validation).
