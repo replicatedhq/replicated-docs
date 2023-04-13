@@ -32,14 +32,14 @@ spec:
     - name: smtp-settings
       title: SMTP Settings
       items:
-      - name: smtp_host
-        title: SMTP Hostname
-        help_text: Set SMTP Hostname
-        type: text      
+      - name: smtp_password
+        title: SMTP Password
+        type: password
+        help_text: Set SMPT password
         validation:
-          regex: ​
-            pattern: ^[a-zA-Z]([a-zA-Z0-9\-]+[\.]?)*[a-zA-Z0-9]$
-            message: Valid hostname starts with a letter (uppercase/lowercase), followed by zero/more groups of letters (uppercase/lowercase), digits, or hyphens, optionally followed by a period. Ends with a letter or digit.
+          regex: 
+            pattern: ^(?:[\w@#$%^&+=!*()_\-{}[\]:;"'<>,.?\/|]){8,16}$
+            message: The password must be between 8 and 16 characters long and must contain a combination of at least one uppercase letter, one lowercase letter, one digit, and one special character.
 ```
 
 ## Add Fields to the Configuration Screen
@@ -116,13 +116,14 @@ To add fields to the admin console configuration screen:
     **Example**:
 
       ```yaml
-      - name: smtp_password
-        title: SMTP Password
-        type: password
-        validation:
-          regex: 
-            pattern: ^(?:[\w@#$%^&+=!*()_\-{}[\]:;"'<>,.?\/|]){8,16}$
-            message: The password must be between 8 and 16 characters long and must contain a combination of at least one uppercase letter, one lowercase letter, one digit, and one special character.
+    - name: smtp_host
+      title: SMTP Hostname
+      help_text: Set SMTP Hostname
+      type: text
+      validation:
+        regex: ​
+          pattern: ^[a-zA-Z]([a-zA-Z0-9\-]+[\.]?)*[a-zA-Z0-9]$
+          message: Valid hostname starts with a letter (uppercase/lowercase), followed by zero/more groups of letters (uppercase/lowercase), digits, or hyphens, optionally followed by a period. Ends with a letter or digit.
         ```  
 3. (Optional) Mark fields as required by including `required: true`. When there are required fields, the user is prevented from proceeding with the installation until they provide a valid value for required fields.
 
