@@ -29,8 +29,8 @@ Released on April 11, 2023
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-03-24T21-41-23Z.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.8.0, 0.63.0-45.8.1, and 0.63.0-45.9.1.
 * Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.24.3.
-* Adds [Registry add-on](https://kurl.sh/docs/add-ons/registry) version 2.8.1.
 * Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.20.
+* Updates the [Registry add-on](https://kurl.sh/docs/add-ons/registry) version 2.8.1 with new kurlsh/s3cmd image to address the following high severity CVE: CVE-2023-0464.
 
 ### Improvements {#improvements-v2023-04-11-0}
 * Adds a preflight check to ensure sufficient disk space is available for the Containerd, Rook, and OpenEBS add-ons.
