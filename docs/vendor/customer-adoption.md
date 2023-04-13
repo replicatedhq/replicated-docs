@@ -1,4 +1,4 @@
-# Adoption Rate (Beta)
+# Adoption Report (Beta)
 
 This topic describes the insights in the **Adoption rate** section on the Replicated vendor portal **Customers** page.
 
