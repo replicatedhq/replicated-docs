@@ -85,5 +85,6 @@ The following hooks are supported:
 The following hooks are not supported and are ignored if they are present:
 * `pre-rollback`: Executes after resources are rendered but before any resources are rolled back.
 * `post-rollback`: Executes after resources are rolled back.
+* `test`: Executes when the Helm `test` subcommand is invoked.
 
 For more information about Helm hooks and weights, see the [Helm docs](https://helm.sh/docs/topics/charts_hooks/).
