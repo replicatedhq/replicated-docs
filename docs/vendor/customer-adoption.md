@@ -3,37 +3,37 @@
 This topic describes the insights in the **Adoption** section on the Replicated vendor portal **Customers** page.
 
 :::note
-The **Adoption Report** section is currently in Beta -- you will see it labeled as such in the Vendor Portal. The character of this data, how it is computed, and how it is displayed is subject to change.
+The **Adoption Report** section is in Beta and is labeled as such in the vendor portal. The character of this data, how it is computed, and how it is displayed is subject to change.
 :::
 
 ## About Adoption Rate
 
 The **Adoption** section on the **Customers** page provides insights about the rate at which your customers upgrade their instances and adopt the latest versions of your application. As an application vendor, you can use these adoption rate metrics to learn if your customers are completing upgrades regularly, which is a key indicator of the discoverability and ease of application upgrades.
 
-The vendor portal generates adoption rate data from all of your customer's active application instances. An instance is considered _active_ if no more than two weeks have passed since its last check-in event. For more information about instance check-ins, see [How the Vendor Portal Collects Instance Data](instance-insights-event-data#about-reporting) in _About Instance and Event Data_.
+The vendor portal generates adoption rate data from all your customer's application instances that have checked-in during the selected time period. For more information about instance check-ins, see [How the Vendor Portal Collects Instance Data](instance-insights-event-data#about-reporting) in _About Instance and Event Data_.
 
 The following screenshot shows an example of the **Adoption** report:
 
-![Adoption rate section on Customers page ](/images/customer_adoption_rates.png)
+![Adoption report section on Customers page ](/images/customer_adoption_rates.png)
 
 [View a larger version of this image](/images/customer_adoption_rates.png)
 
-As shown in the screenshot above, the **Adoption** report includes a graph and key adoption rate metrics. For more information about how to interpret this data, see [Adoption Rate Graph](#graph) and [Adoption Rate Metrics](#metrics) below.
+As shown in the screenshot above, the **Adoption** report includes a graph and key adoption rate metrics. For more information about how to interpret this data, see [Adoption Graph](#graph) and [Adoption Metrics](#metrics) below.
 
 The **Adoption** report also displays the number of customers assigned to the selected channel and a link to the report that you can share with other members of your team.
 
 You can filter the graph and metrics in the **Adoption** report by:
 * License type (Paid, Trial, Dev, or Community)
-* Time period (the previous month, three months, six months, or twelve months).
-* Release channel where the instance license is assigned, such as Stable or Beta.
+* Time period (the previous month, three months, six months, or twelve months)
+* Release channel where the instance license is assigned, such as Stable or Beta
 
-## Adoption Rate Graph {#graph}
+## Adoption Graph {#graph}
 
 The **Adoption** report includes a graph that shows the percent of active instances that are running different versions of your application on each day within the selected time period.
 
 The following shows an example of an adoption rate graph with three months of data:
 
-![Adoption rate graph showing three months of data](/images/adoption_rate_graph.png)
+![Adoption report graph showing three months of data](/images/adoption_rate_graph.png)
 
 [View a larger version of this image](/images/adoption_rate_graph.png)
 
@@ -43,9 +43,9 @@ You can also hover over a color-coded section in the graph to view the number an
 
 If there are no active instances of your application, then the adoption rate graph displays a "No Instances" message.
 
-## Adoption Rate Metrics {#metrics}
+## Adoption Metrics {#metrics}
 
-The **Adoption rate** section also includes metrics that are key indicators of how frequently your customers discover and complete upgrades to new versions of your application.
+The **Adoption** section also includes metrics that are key indicators of how frequently your customers discover and complete upgrades to new versions of your application.
 
 The following shows an example of the metrics in the **Adoption rate** section:
 
