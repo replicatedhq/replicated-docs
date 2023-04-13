@@ -11,7 +11,7 @@ Released on April 13, 2023
 ### New Features {#new-features-v2023-04-13-0}
 * Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.3.
 * Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) version 2.8.1-20230406.
-* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.10.2.
+* Updates the [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.10.2 with new kurlsh/s3cmd image to address the following high severity CVE: CVE-2023-0464.
 
 ### Bug Fixes {#bug-fixes-v2023-04-13-0}
 * Fixes an issue that causes migrations from Docker to Containerd on multi-node clusters to fail with error "Downgrading containerd is not supported".
