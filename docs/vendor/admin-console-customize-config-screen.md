@@ -23,11 +23,6 @@ You add the `validation`, `regex`, `pattern` and `message` fields to items in th
 The following example shows a common password complexity rule:
 
 ```yaml
-apiVersion: kots.io/v1beta1
-kind: Config
-metadata:
-  name: my-application
-spec:
   groups:
     - name: smtp-settings
       title: SMTP Settings
@@ -40,7 +35,7 @@ spec:
           regex: 
             pattern: ^(?:[\w@#$%^&+=!*()_\-{}[\]:;"'<>,.?\/|]){8,16}$
             message: The password must be between 8 and 16 characters long and must contain a combination of at least one uppercase letter, one lowercase letter, one digit, and one special character.
-  ```
+```
 
 ## Add Fields to the Configuration Screen
 
@@ -134,7 +129,7 @@ To add fields to the admin console configuration screen:
      title: SMTP Password
      type: password
      required: true
-    ```      
+  ```      
 
 4. Save and promote the release to a development environment to test your changes.
 
