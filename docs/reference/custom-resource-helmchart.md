@@ -2,16 +2,13 @@ import VersionLimitation from "../partials/helm/_helm-version-limitation.mdx"
 
 # HelmChart
 
-A HelmChart custom resource enables the Replicated app manager to process and deploy Helm charts as part of an application. The app manager can process Helm charts using the Replicated Helm installation for existing applications. You can also use a native Helm installation for new applications or newly added Helm charts. For more information, see [About Deploying Helm Charts](/vendor/helm-overview).
-
-HelmChart custom resources are required for the app manager to deploy Helm charts. HelmChart custom resources are not required if only raw Kubernetes manifests are deployed.
+HelmChart custom resources are required for the app manager to process and deploy Helm charts for the supported Helm installation types. For more information about Helm installation types, see [About Deploying Helm Charts](/vendor/helm-overview).
 
 The HelmChart custom resource manifest file references a required `.tgz` export of the Helm chart resources and provides the necessary instructions for processing and preparing the chart for deployment.
 
-By default, the HelmChart custom resource uses the Replicated Helm installation, which uses the app manager to render and deploy Helm charts. For new installations, you can set `useHelmInstall: true` in the manifest to use the native Helm installation.
-
-**Deploying multiple instances of the same chart**:
-You must add an additional HelmChart custom resource with a unique [release name](custom-resource-helmchart#chartreleasename) for each instance of the chart that is to be deployed as part of the application. However, only one `.tgz` of the chart needs to be included in the release.
+:::note
+To deploy multiple instances of the same chart, you must add an additional HelmChart custom resource with a unique [release name](custom-resource-helmchart#chartreleasename) for each instance of the chart that is to be deployed as part of the application. However, only one `.tgz` of the chart needs to be included in the release.
+:::
 
 The following is an example manifest file for the HelmChart custom resource:
 
@@ -110,15 +107,13 @@ Acceptable values are `v2` or `v3`. `v3` is the default when no value is specifi
 
 ## useHelmInstall
 
-Identifies whether this Helm chart will use the Replicated Helm installation (`false`) or native Helm installation (`true`).
-Default is `false`.
-It is recommended that you set this to `true`, because native Helm is preferred and Replicated Helm will be removed at some point.
+Identifies whether this Helm chart will use the Replicated Helm installation (`false`) or native Helm installation (`true`). We recommend that you set this to `true`, because native Helm is the preferred method. **Default:** `false`
+
 Native Helm installations always deploy using Helm v3.
 
 ## weight
 
-Determines the order to apply charts that have `useHelmInstall: true`. Charts are applied by weight in ascending order, with lower weights applied first.
-Acceptable values are positive and negative integers, with a default value of 0.
+Determines the order to apply charts that have `useHelmInstall: true`. Charts are applied by weight in ascending order, with lower weights applied first. Acceptable values are positive and negative integers. **Default:** `0`
 
 For more information, see [Defining Installation Order for Native Helm Charts](/vendor/helm-native-helm-install-order).
 
