@@ -10,6 +10,8 @@ The HelmChart custom resource manifest file references a required `.tgz` export 
 To deploy multiple instances of the same chart, you must add an additional HelmChart custom resource with a unique [release name](custom-resource-helmchart#chartreleasename) for each instance of the chart that is to be deployed as part of the application. However, only one `.tgz` of the chart needs to be included in the release.
 :::
 
+## Example
+
 The following is an example manifest file for the HelmChart custom resource:
 
 ```yaml
@@ -79,16 +81,16 @@ The `chart` key allows for a mapping between the data in this definition and the
 More than one `kind: HelmChart` can reference a single chart archive, if different settings are needed.
 
 ### chart.name
-The name of the chart. This value must match the `name` field from a `Chart.yaml` in a `.tgz` chart archive that's also included in the release.
+The name of the chart. This value must match the `name` field from a `Chart.yaml` in a `.tgz` chart archive that is also included in the release.
 
 ### chart.chartVersion
-The version of the chart. This value must match the `version` field from a `Chart.yaml` in a `.tgz` chart archive that's also included in the release.
+The version of the chart. This value must match the `version` field from a `Chart.yaml` in a `.tgz` chart archive that is also included in the release.
 
 ### chart.releaseName
 
 > Introduced in Replicated app manager v1.73.0
 
-Specifies the release name to be used when installing this instance of the Helm chart.
+Specifies the release name to use when installing this instance of the Helm chart.
 Defaults to the chart name.
 
 The release name must be unique across all charts deployed in the namespace. Specifying a unique release name allows you to deploy multiple instances of the same Helm chart.
@@ -123,8 +125,7 @@ For more information, see [Defining Installation Order for Native Helm Charts](/
 
 Specifies additional flags to pass to the `helm upgrade` command for charts that have `useHelmInstall: true`. These flags are passed in addition to any flags the app manager passes by default. The values specified here take precedence if the app manager already passes the same flag.
 
-The app manager uses `helm upgrade` for all deployments of an application (not just upgrades) by specifying the `--install` flag.
-For non-boolean flags that require an additional argument, such as `--timeout 1200s`, you must use an equals sign (`=`) or specify the additional argument separately in the array. 
+The app manager uses `helm upgrade` for _all_ deployments of an application, not just upgrades, by specifying the `--install` flag. For non-boolean flags that require an additional argument, such as `--timeout 1200s`, you must use an equal sign (`=`) or specify the additional argument separately in the array. 
 
 **Example:**
 
@@ -148,11 +149,15 @@ For more options, see the [Allow deletion of a previous values file key](https:/
 
 ## exclude
 
-The  attribute is a value for making [optional charts](/vendor/helm-optional-charts). The `exclude` attribute can be parsed by template functions. For more information about template functions, see [About template function contexts](template-functions-about).
+The  attribute is a value for making optional charts. The `exclude` attribute can be parsed by template functions. 
 
 When the app manager processes Helm charts, it excludes the entire chart if the output of the `exclude` field can be parsed as a boolean evaluating to `true`.
 
-For more information about how the app manager processes Helm charts, see [Helm processing](/vendor/helm-processing).
+For more information about:
+
+* Optional charts: See [Optional Charts](/vendor/helm-optional-charts)
+* Template functions: See [About Template Function Contexts](template-functions-about).
+* How the app manager processes Helm charts: See [Helm Processing](/vendor/helm-processing).
 
 ## optionalValues
 
@@ -213,16 +218,16 @@ The following table describes how `values` and `optionalValues` are merged based
 
 The `namespace` key specifies an alternative namespace where the app manager installs the Helm chart. By default, if no alternative namespace is provided, then the Helm chart is installed in the same namespace as the admin console.
 
-If you specify a namespace in the HelmChart `namespace` field, you must also include the same namespace in the `additionalNamespaces` field of the Application custom resource manifest file. The app manager creates the namespaces listed in the `additionalNamespaces` field during installation. For more information, see [additionalNamespaces](custom-resource-application#additionalnamespaces) in _Application_.
+If you specify a namespace in the HelmChart `namespace` field, you must also include the same namespace in the `additionalNamespaces` field of the Application custom resource manifest file. The app manager creates the namespaces listed in the `additionalNamespaces` field during installation. For more information, see [additionalNamespaces](custom-resource-application#additionalnamespaces) in the _Application_ reference.
 
 ## builder
 
-To create an `.airgap` bundle for a release that uses Helm charts, the Replicated vendor portal renders templates of the Helm charts with `helm template`. The `builder` key specifies the values from the Helm chart `values.yaml` file that the vendor portal uses to create the `.airgap` bundle.
+To create an `.airgap` bundle for a release that uses Helm charts, the Replicated vendor portal renders templates of the Helm charts with `helm template`. The `builder` key specifies the values from the Helm chart `values.yaml` file that the vendor portal uses to create the `.airgap` bundle. For more information, see [Air Gap](/vendor/helm-overview#air-gap) in _About Deploying Helm Charts_.
 
 The `builder` key has the following requirements and recommendations:
 * Replicated recommends that you include only the minimum Helm values in the `builder` key that are required to template the Helm chart with the correct image tags.
 * Use only static, or _hardcoded_, values in the `builder` key. You cannot use template functions in the `builder` key because values in the `builder` key are not rendered in a customer environment.
-* Any Helm values entries that are required for rendering Helm chart templates must have a value supplied in the `builder` key. For more information about the Helm `required` function, see [Using the 'required' function](https://helm.sh/docs/howto/charts_tips_and_tricks/#using-the-required-function).
+* Any Helm values entries that are required for rendering Helm chart templates must have a value supplied in the `builder` key. For more information about the Helm `required` function, see [Using the 'required' function](https://helm.sh/docs/howto/charts_tips_and_tricks/#using-the-required-function) in the Helm documentation.
 
 **Example:**
 
