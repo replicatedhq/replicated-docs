@@ -1,28 +1,88 @@
 ---
 slug: /
 ---
-import LabsIntro from "./partials/getting-started/_labs-intro.mdx"
 
-# Welcome
+# Replicated Documentation
 
-Welcome! This topic describes how to get started with Replicated as a software vendor. It also includes information on how to navigate the Replicated product documentation site.
+## Getting Started with Replicated
 
-## Get Started with Replicated
+Create a vendor portal account and invite team members --> 
 
-The documentation includes UI-based and CLI-based tutorials that are designed to help software vendors learn about Replicated by completing common tasks with a sample application.
+Set up collab repo access --> 
 
-To get started with a tutorial that demonstrates how to use the Replicated vendor portal to create and promote releases, see [Introduction and Setup](/vendor/tutorial-ui-setup) in _UI Tutorial_.
+Helm Chart SDK tutorials --> 
 
-To get started with a tutorial that demonstrates how to use the replicated CLI to create and promote releases, see [Introduction and Setup](/vendor/tutorial-ui-setup) in _CLI Tutorial_.
+## Most Viewed Pages
 
-## About the Replicated Documentation
+1. Patching with Kustomize -->
+1. Viewing customer adoption rate -->
+1. Getting Started with the kots CLI --> 
+1. Updating the App Manager -->
+1. Using Private Images --> 
 
-The Replicated product documentation guides vendors through packaging, distributing, and updating their application with Replicated. To begin packaging your production application with Replicated, see [How to Package and Distribute a Production Application](vendor/distributing-workflow).
+## Product Documentation
+### Vendor Platform Guides
+#### Vendor Platform Concepts
 
-The Reference section includes reference documentation for Replicated custom resources, template functions, CLIs, and the Vendor API.
+About the vendor portal -->
 
-The Enterprise section includes information for the enterprise users of applications delivered with Replicated. The topics in this section describe how enterprise users can install, update, manage, backup and restore, and monitor the application.
+Understand apps, releases, and channels --> 
 
-Vendors can use the Enterprise documentation to test the installation and management their application with Replicated. Vendors can also clone the Enterprise content from the replicated-docs repository and include it with their application documentation. For more information, see [replicated-docs](https://github.com/replicatedhq/replicated-docs) in GitHub.
+#### How To Guides
 
+Push images to the Replicated proxied OCI registry -->
 
+Define licenses and entitlement for your customers -->
+
+Test your deployment with the Reliability Matrix -->
+
+Add preflight checks and support bundles to your app -->
+### App Manager Guides
+
+#### App Manager Vendor Guide
+
+Configure your app to support app manager installations in existing or embedded clusters with out-of-the-box app manager functionality. -->
+
+#### App Manager Enterprise User Guide
+
+Install, update, manage, and monitor application instances with the app manager using the admin console UI or the kots CLI. -->
+## Reference Documentation
+### [Replicated/KOTS/App Manager/Admin Console] SDK
+
+Incorporate Replicated functionality into your app with the Helm chart-based [Replicated/KOTS/App Manager/Admin Console] SDK -->
+
+### Vendor Portal Tools
+
+#### Vendor API
+
+Programmatically create, edit, and manage apps, releases, channels, customers, and more.
+
+#### replicated CLI
+
+Create, edit, and manage apps, releases, channels, customers, and more from the command line.
+
+### App Manager Tools
+
+#### kots CLI
+
+Install, manage, and update apps with the app manager from the command line.
+
+## Resources
+
+### Replicated Community
+
+Ask questions and get help from the Replicated community --> 
+
+### Labs
+
+Hands-on Replicated labs with pre-configured environments --> 
+
+### Open Source Projects
+
+#### Troubleshoot
+
+See the open source documentation for the Troubleshoot project, which provides preflight check and support bundle functionality -->
+
+#### kURL
+
+See the open source documentation for the kURL project, which provides a customizable Kubernetes distribution for supporting embedded cluster installations --> 
