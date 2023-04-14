@@ -79,12 +79,10 @@ The `chart` key allows for a mapping between the data in this definition and the
 More than one `kind: HelmChart` can reference a single chart archive, if different settings are needed.
 
 ### chart.name
-The name of the chart.
-This must match the `name` field from a `Chart.yaml` in a `.tgz` chart archive that's also included in the release.
+The name of the chart. This value must match the `name` field from a `Chart.yaml` in a `.tgz` chart archive that's also included in the release.
 
 ### chart.chartVersion
-The version of the chart.
-This must match the `version` field from a `Chart.yaml` in a `.tgz` chart archive that's also included in the release.
+The version of the chart. This value must match the `version` field from a `Chart.yaml` in a `.tgz` chart archive that's also included in the release.
 
 ### chart.releaseName
 
@@ -92,14 +90,14 @@ This must match the `version` field from a `Chart.yaml` in a `.tgz` chart archiv
 
 Specifies the release name to be used when installing this instance of the Helm chart.
 Defaults to the chart name.
-The release name must be unique across all charts deployed in the namespace.
-Specifying a unique release name allows you to deploy multiple instances of the same Helm chart.
+
+The release name must be unique across all charts deployed in the namespace. Specifying a unique release name allows you to deploy multiple instances of the same Helm chart.
+
 Must be a valid Helm release name that matches regex `^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$` and is no longer than 53 characters.
 
 ## helmVersion
 
-Identifies the Helm Version used to render the chart.
-Acceptable values are `v2` or `v3`. `v3` is the default when no value is specified.
+Identifies the Helm Version used to render the chart. Acceptable values are `v2` or `v3`. **Default:** `v3` when no value is specified.
 
 :::note
 <VersionLimitation/>
@@ -107,7 +105,7 @@ Acceptable values are `v2` or `v3`. `v3` is the default when no value is specifi
 
 ## useHelmInstall
 
-Identifies whether this Helm chart will use the Replicated Helm installation (`false`) or native Helm installation (`true`). We recommend that you set this to `true`, because native Helm is the preferred method. **Default:** `false`
+Identifies whether this Helm chart will use the Replicated Helm installation (`false`) or native Helm installation (`true`). We recommend that you set this to `true` because native Helm is the preferred method. **Default:** `false`
 
 Native Helm installations always deploy using Helm v3.
 
@@ -126,7 +124,9 @@ For more information, see [Defining Installation Order for Native Helm Charts](/
 Specifies additional flags to pass to the `helm upgrade` command for charts that have `useHelmInstall: true`. These flags are passed in addition to any flags the app manager passes by default. The values specified here take precedence if the app manager already passes the same flag.
 
 The app manager uses `helm upgrade` for all deployments of an application (not just upgrades) by specifying the `--install` flag.
-For non-boolean flags that require an additional argument, such as `--timeout 1200s`, you must use an equals sign or specify the additional argument separately in the array. For example:
+For non-boolean flags that require an additional argument, such as `--timeout 1200s`, you must use an equals sign (`=`) or specify the additional argument separately in the array. 
+
+**Example:**
 
 ```yaml
 helmUpgradeFlags:
@@ -137,9 +137,7 @@ helmUpgradeFlags:
 
 ## values
 
-The `values` key allows for values to be changed in the chart. It also can create a mapping between the Replicated admin console configuration screen and the values. This mapping makes it possible to use the configuration screen in the admin console to control the Helm `values.yaml` file.
-
-For more information about the configuration screen, see [About the Configuration Screen](../vendor/config-screen-about).
+The `values` key allows for values to be changed in the chart. It also can create a mapping between the Replicated admin console configuration screen and the values. This mapping makes it possible to use the configuration screen in the admin console to control the Helm `values.yaml` file. For more information about the configuration screen, see [About the Configuration Screen](../vendor/config-screen-about).
 
 The keys below `values` must map exactly to the keys in your `values.yaml`.
 Only include the keys below `values` that you want to change. These are merged with the `values.yaml` in the chart archive.
@@ -150,11 +148,11 @@ For more options, see the [Allow deletion of a previous values file key](https:/
 
 ## exclude
 
-The  attribute is a value for making [optional charts](../vendor/helm-optional-charts). The `exclude` attribute can be parsed by template functions. For more information about template functions, see [About template function contexts](template-functions-about).
+The  attribute is a value for making [optional charts](/vendor/helm-optional-charts). The `exclude` attribute can be parsed by template functions. For more information about template functions, see [About template function contexts](template-functions-about).
 
 When the app manager processes Helm charts, it excludes the entire chart if the output of the `exclude` field can be parsed as a boolean evaluating to `true`.
 
-For more information about how the app manager processes Helm charts, see [Helm processing](../vendor/helm-processing).
+For more information about how the app manager processes Helm charts, see [Helm processing](/vendor/helm-processing).
 
 ## optionalValues
 
@@ -166,14 +164,16 @@ For more information about using `optionalValues`, see [Including Optional Value
 
 ### optionalValues[].when
 
-The `when` field in `optionalValues` provides a string-based method that is evaluated by template functions. The `when` field defers evaluation of the conditional to render time in the customer environment.
+The `when` field in `optionalValues` provides a string-based method that is evaluated by template functions. The `when` field defers evaluation of the conditional to render time in the customer environment. 
 
-To write the `when` conditional statement, use template functions. For example, in the `samplechart` HelmChart custom resource above, the `when` field includes a conditional statement that evaluates to `true` if the user selects the `external_postgres` option on the admin console configuration screen:
+To write the `when` conditional statement, use template functions. The following example shows a conditional statement for selecting a database option on the admin console configuration screen:
 
 ```yaml
 optionalValues:
   - when: "repl{{ ConfigOptionEquals `postgres_type` `external_postgres`}}"
 ```  
+
+For more information about using optional values, see [Configuring Optional Value Keys](/vendor/helm-optional-value-keys). 
 
 For more information about the syntax for template functions, see [About Template Function Contexts](template-functions-about).
 
@@ -209,75 +209,6 @@ The following table describes how `values` and `optionalValues` are merged based
   </tr>
 </table>
 
-For example, a HelmChart custom resource manifest file defines the following datasets in the `values` and `optionalValues` fields:
-
-```yaml
-values:
-  favorite:
-    drink:
-      hot: tea
-      cold: soda
-    dessert: ice cream
-    day: saturday
-
-optionalValues:
-  - when: '{{repl ConfigOptionEquals "example_config_option" "1" }}'
-    recursiveMerge: false
-    values:
-      example_config_option:
-        enabled: true
-      favorite:
-        drink:
-          cold: lemonade
-```
-
-The `values.yaml` file for the associated Helm chart defines the following key value pairs:
-
-```yaml
-favorite:
-  drink:
-    hot: coffee
-    cold: soda
-  dessert: pie
-```
-The `templates/configmap.yaml` file for the Helm chart maps these values to the following fields:
-
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: test-configmap
-data:
-  favorite_day: {{ .Values.favorite.day }}
-  favorite_dessert: {{ .Values.favorite.dessert }}
-  favorite_drink_cold: {{ .Values.favorite.drink.cold }}
-  favorite_drink_hot: {{ .Values.favorite.drink.hot }}
-```
-
-When `recursiveMerge` is set to `false` in the HelmChart custom resource manifest file, the ConfigMap for the deployed application includes the following key value pairs:
-
-```yaml
-favorite_day: null
-favorite_dessert: pie
-favorite_drink_cold: lemonade
-favorite_drink_hot: coffee
-```
-
-In this case, the top level keys in `optionalValues` overwrite the top level keys in `values`.
-
-Then, the admin console uses the values from the Helm chart `values.yaml` to populate the remaining fields in the ConfigMap: `favorite_day`, `favorite_dessert`, and `favorite_drink_hot`.
-
-When `recursiveMerge` is set to `true`, the ConfigMap for the deployed application includes the following key value pairs:
-
-```yaml
-favorite_day: saturday
-favorite_dessert: ice cream
-favorite_drink_cold: lemonade
-favorite_drink_hot: tea
-```
-
-In this case, all keys from `values` and `optionalValues` are included in the merged dataset. Both include `favorite:` > `drink:` > `cold:`, so the merged dataset uses `lemonade` from `optionalValues`.
-
 ## namespace
 
 The `namespace` key specifies an alternative namespace where the app manager installs the Helm chart. By default, if no alternative namespace is provided, then the Helm chart is installed in the same namespace as the admin console.
@@ -293,7 +224,7 @@ The `builder` key has the following requirements and recommendations:
 * Use only static, or _hardcoded_, values in the `builder` key. You cannot use template functions in the `builder` key because values in the `builder` key are not rendered in a customer environment.
 * Any Helm values entries that are required for rendering Helm chart templates must have a value supplied in the `builder` key. For more information about the Helm `required` function, see [Using the 'required' function](https://helm.sh/docs/howto/charts_tips_and_tricks/#using-the-required-function).
 
-**Example**
+**Example:**
 
 The following example demonstrates how to add a conditional `postgresql` resource to the `builder` key.
 
