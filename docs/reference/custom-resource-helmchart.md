@@ -105,7 +105,7 @@ Identifies the Helm Version used to render the chart. Acceptable values are `v2`
 
 ## useHelmInstall
 
-Identifies whether this Helm chart will use the Replicated Helm installation (`false`) or native Helm installation (`true`). We recommend that you set this to `true` because native Helm is the preferred method. **Default:** `false`
+Identifies whether this Helm chart will use the Replicated Helm installation (`false`) or native Helm installation (`true`). Replicated recommends that you set this to `true` because native Helm is the preferred method. **Default:** `false`
 
 Native Helm installations always deploy using Helm v3.
 
