@@ -31,7 +31,7 @@ To update the app manager in an online existing cluster:
       ```
       curl https://kots.io/install/VERSION | bash
       ```
-      Where `VERSION` is the desired app manager version.
+      Where `VERSION` is the target app manager version.
 
     For more kots CLI installation options, including information about how to install or update without root access, see [Installing the kots CLI](/reference/kots-cli-getting-started).
 
@@ -46,11 +46,11 @@ To update the app manager in an online existing cluster:
 
 ### Air Gap Environments
 
-For air gap installations, you first download the air gap bundle for the desired version of the app manager and push the images from the air gap bundle to a private image registry.
+For air gap installations, you first download the air gap bundle for the target version of the app manager and push the images from the air gap bundle to a private image registry.
 
 To update the app manager in an existing air gap cluster:
 
-1. Download the desired version of the app manager air gap bundle from [Github](https://github.com/replicatedhq/kots/releases) or from the customer download page provided by your vendor. The air gap bundle is named `kotsadm.tar.gz`.
+1. Download the target version of the app manager air gap bundle from [Github](https://github.com/replicatedhq/kots/releases) or from the customer download page provided by your vendor. The air gap bundle is named `kotsadm.tar.gz`.
 
 1. Install or update the kots CLI to the _same_ version of the air gap bundle:
 
