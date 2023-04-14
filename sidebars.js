@@ -23,7 +23,7 @@ const sidebars = {
     {type:'doc', id: 'intro-replicated', label: 'What is the App Manager?',},
     {
       type: 'category', 
-      label: 'Deploy your App with App Manager',
+      label: 'Deploy with App Manager',
       items: [
         'vendor/distributing-workflow', 
       ],
@@ -40,6 +40,7 @@ const sidebars = {
       label: 'Kubernetes Installers',
       items: [
         'vendor/packaging-embedded-kubernetes',
+        {type: 'link', label: 'kURL Documentation', href: 'https://kurl.sh/docs/introduction/'}
       ],
     },
     {
@@ -223,7 +224,7 @@ const sidebars = {
   main: [
     {type: 'doc', id: 'intro', label: 'Home'},
     {type: 'ref', id: 'release-notes/rn-whats-new', label: 'Release Notes'},
-    {type: 'ref', id: 'vendor/team-management', label: 'Getting Started with the Vendor Portal'},
+    {type: 'ref', id: 'vendor/team-management', label: 'Vendor Portal'},
     {type: 'ref', id: 'vendor/private-images-about', label: 'Replicated Proxied OCI Registry'},
     {type: 'ref', id: 'vendor/reliability-matrix', label: 'Reliability Matrix'},
     {type: 'ref', id: 'vendor/instance-insights-event-data', label: 'Insights and Telemetry'},
@@ -262,7 +263,8 @@ const sidebars = {
 
   troubleshoot: [
     {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},
-    'vendor/preflight-support-bundle-creating'
+    'vendor/preflight-support-bundle-creating',
+    {type: 'link', label: 'Troubleshoot Documentation', href: 'https://troubleshoot.sh/docs/collect/'}
   ],
 
   vendorPortal: [
