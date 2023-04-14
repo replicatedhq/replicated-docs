@@ -20,7 +20,14 @@ const sidebars = {
 
   appManager: [
     {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},
-    'intro-replicated',
+    {type:'doc', id: 'intro-replicated', label: 'What is the App Manager?',},
+    {
+      type: 'category', 
+      label: 'Deploy your App with App Manager',
+      items: [
+        'vendor/distributing-workflow', 
+      ],
+    },
     {
       type: 'category',
       label: 'Backup and Restore',
@@ -37,13 +44,40 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Admin Console Features',
+      label: 'Configuration Screen',
       items: [
         'vendor/admin-console-customize-config-screen',
-        'vendor/admin-console-display-app-status'
       ],
     },
-    {type: 'ref', id: 'enterprise/installing-overview', label: 'Enterprise User Docs -->'}
+    {
+      type: 'category',
+      label: 'Status Informers',
+      items: [
+        'vendor/admin-console-display-app-status',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Prometheus Monitoring',
+      items: [
+        'vendor/admin-console-prometheus-monitoring',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Custom Admin Console Branding',
+      items: [
+        'vendor/admin-console-customize-app-icon',
+      ],
+    },
+    {
+      type: 'category', 
+      label: 'Advanced Guides',
+      items: [
+        'vendor/packaging-ingress', 
+      ],
+    },
+    {type: 'ref', id: 'enterprise/installing-overview', label: 'Admin Console Docs -->'}
   ],
 
   enterprise: [
