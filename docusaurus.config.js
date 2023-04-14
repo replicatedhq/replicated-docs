@@ -88,7 +88,6 @@ const config = {
           alt: 'R',
           src: 'images/logo-replicated-red.png',
         },
-
       },
       footer: {
         style: 'dark',
