@@ -93,6 +93,7 @@ const sidebars = {
           label: 'Integrating with CI/CD',
           items: [
             'vendor/repository-workflow-and-tagging-releases',
+            'vendor/repository-workflow-semver',
             'vendor/tutorial-ci-cd-integration',
           ],
         },
@@ -157,7 +158,7 @@ const sidebars = {
           ],
         },
         'vendor/packaging-ingress',
-        'vendor/packaging-kots-versions',    
+        'vendor/packaging-kots-versions',
         'vendor/packaging-include-resources',
         'vendor/namespaces',
         'vendor/packaging-rbac',
@@ -175,7 +176,7 @@ const sidebars = {
           ],
         },
       ],
-    },  
+    },
     {
       type: 'category',
       label: 'Private Registries',
@@ -205,6 +206,17 @@ const sidebars = {
         'vendor/snapshots-overview',
         'vendor/snapshots-configuring-backups',
         'vendor/snapshots-hooks',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Reliability Testing',
+      items: [
+        'vendor/reliability-testing-overview',
+        'vendor/reliability-testing-supported-clusters',
+        'vendor/reliability-testing-manual',
+        'vendor/reliability-testing-ci',
+        'vendor/reliability-testing-github-actions',
       ],
     },
     {
@@ -298,7 +310,7 @@ const sidebars = {
             'reference/custom-resource-lintconfig',
             'reference/custom-resource-preflight',
             'reference/custom-resource-redactor',
-            'reference/custom-resource-sig-application',  
+            'reference/custom-resource-sig-application',
           ],
         },
         {
@@ -391,7 +403,7 @@ const sidebars = {
                 type: 'category',
                 label: 'velero',
                 items: [
-                  
+
                   'reference/kots-cli-velero-configure-aws-s3',
                   'reference/kots-cli-velero-configure-azure',
                   'reference/kots-cli-velero-configure-gcp',
@@ -422,6 +434,10 @@ const sidebars = {
             'reference/replicated-cli-channel-enable-semver',
             'reference/replicated-cli-channel-inspect',
             'reference/replicated-cli-channel-ls',
+            'reference/replicated-cli-cluster-create',
+            'reference/replicated-cli-cluster-rm',
+            'reference/replicated-cli-cluster-kubeconfig',
+            'reference/replicated-cli-cluster-ls',
             'reference/replicated-cli-customer-create',
             'reference/replicated-cli-customer-download-license',
             'reference/replicated-cli-customer-ls',
@@ -549,7 +565,7 @@ const sidebars = {
           items: [
              'enterprise/monitoring-applications',
              'enterprise/monitoring-external-prometheus',
-          ],   
+          ],
         },
         {
           type: 'category',
