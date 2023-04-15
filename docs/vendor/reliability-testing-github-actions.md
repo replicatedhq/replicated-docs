@@ -1,4 +1,4 @@
-# Using the Reliability Matrix in CI
+# GitHub Actions for Reliability Matrix
 
 There are published Reliability Matrix GitHub Actions to use in your own workflow.
 
