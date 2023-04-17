@@ -380,7 +380,7 @@ See the [`ConfigOptionData`](template-functions-config-context#configoptiondata)
         type: file
 ```
 
-![File input field on the configuration screen](../../static/images/config-screen-file.png)
+![File input field on the configuration screen](/images/config-screen-file.png)
 
 ### `heading`
 The `heading` type allows you to display a group heading as a sub-element within a group.
@@ -416,7 +416,7 @@ The `label` type allows you to display an input label.
         type: label
         title: "Note: The system will send you an email every hour."
 ```
-![Email address label on the configuration screen](/static/images/config-screen-label.png)
+![Email address label on the configuration screen](/images/config-screen-label.png)
 
 ### `password`
 The `password` type is a text field that hides the character input.
@@ -509,7 +509,7 @@ A `regex` can validate if the item's value matches the provided regular expressi
 A repeatable config item copies a YAML array entry or YAML document for as many values as are provided. Any number of values can be added to a repeatable item to generate additional copies.
 
 ::note
-Repeatable Items only work for text, textarea, and file types.
+Repeatable items only work for text, textarea, and file types.
 :::
 
 To make an item repeatable, set `repeatable` to true
@@ -523,7 +523,7 @@ To make an item repeatable, set `repeatable` to true
 ```
 
 Repeatable items do not use the `default` or `value` fields, but instead a `valuesByGroup` field.
-`valuesByGroup` should have an entry for the parent Config Group name, with all default `key:value` pairs nested in the group.  At least one default entry is required for the repeatable item.
+`valuesByGroup` must have an entry for the parent Config Group name, with all of the default `key:value` pairs nested in the group. At least one default entry is required for the repeatable item.
 ```yaml
     valuesByGroup:
       ports:
@@ -556,18 +556,18 @@ If the `yamlPath` field is not present, the entire YAML document matching the `t
 
 ### Templating
 
-The repeat items are called with the delimeters `repl[[ .itemName ]]` or `[[repl .itemName ]]`.  These delimiters can be placed anywhere inside of the `yamlPath` target node.
+The repeat items are called with the delimeters `repl[[ .itemName ]]` or `[[repl .itemName ]]`. These delimiters can be placed anywhere inside of the `yamlPath` target node.
 ```yaml
     - port: repl{{ ConfigOption "[[repl .service_port ]]" | ParseInt }}
       name: '[[repl .service_port ]]'
 ```
-This repeatable templating is not compatible with sprig templating functions.  It is designed for inserting repeatable `keys` into the manifest. Repeatable templating **can** be placed inside of Replicated config templating.
+This repeatable templating is not compatible with sprig templating functions. It is designed for inserting repeatable `keys` into the manifest. Repeatable templating **can** be placed inside of Replicated config templating.
 
 ### Ordering
 
 Repeatable templates are processed before config template rendering.
 
-Repeatable items are processed in order of the template targets in the Config Spec file.  Effectively, this ordering is from the top of the Config Spec, by Config Group, by Config Item, and then by template target.
+Repeatable items are processed in order of the template targets in the Config Spec file. Effectively, this ordering is from the top of the Config Spec, by Config Group, by Config Item, and then by template target.
 
 ```yaml
     - name: ports
@@ -615,9 +615,9 @@ Repeatable items are processed in order of the template targets in the Config Sp
 
 In these examples, the default service port of "80" is included with the release. Port 443 is added as an additional port on the admin console configuration page, which is stored in the ConfigValues file.
 
-### Repeatable Item Example for a YamlPath
+### Repeatable Item Example for a yamlPath
 
-**Config custom resource manifest file**
+**Config custom resource manifest file:**
 
 ```yaml
     - name: ports
@@ -637,7 +637,7 @@ In these examples, the default service port of "80" is included with the release
             port-default-1: "80"
 ```
 
-**Config values**
+**Config values:**
 ```yaml
 apiVersion: kots.io/v1beta1
 kind: ConfigValues
@@ -653,7 +653,7 @@ spec:
       value: "443"
 ```
 
-**Template manifest**
+**Template manifest:**
 ```yaml
 apiVersion: v1
 kind: Service
@@ -670,7 +670,7 @@ spec:
     component: my-deployment
 ```
 
-**After repeatable config processing**
+**After repeatable config processing:**
 
 :::note
 This phase is internal to configuration rendering for the app manager. This example is only provided to further explain the templating process.
@@ -694,7 +694,7 @@ spec:
     component: my-deployment
 ```
 
-**Resulting manifest**
+**Resulting manifest:**
 ```yaml
 apiVersion: v1
 kind: Service
@@ -714,7 +714,7 @@ spec:
 ```
 
 ### Repeatable Item Example for an Entire Document
-**Config spec**
+**Config spec:**
 ```yaml
     - name: ports
       items:
@@ -732,7 +732,7 @@ spec:
             port-default-1: "80"
 ```
 
-**Config values**
+**Config values:**
 ```yaml
 apiVersion: kots.io/v1beta1
 kind: ConfigValues
@@ -748,7 +748,7 @@ spec:
       value: "443"
 ```
 
-**Template manifest**
+**Template manifest:**
 ```yaml
 apiVersion: v1
 kind: Service
@@ -764,7 +764,7 @@ spec:
     component: repl[[ .service_port ]]
 ```
 
-**After repeatable config processing**
+**After repeatable config processing:**
 
 :::note
 This phase is internal to configuration rendering for the app manager. This example is only provided to further explain the templating process.
@@ -798,7 +798,7 @@ spec:
     component: service_port-8jdn2bgd
 ```
 
-**Resulting manifest**
+**Resulting manifest:**
 ```yaml
 apiVersion: v1
 kind: Service
