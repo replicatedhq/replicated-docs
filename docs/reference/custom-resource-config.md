@@ -401,7 +401,7 @@ The `heading` item type is not supported.
       ...
 ```
 
-![Heading on the configuration screen](../../static/images/config-screen-heading.png)
+![Heading on the configuration screen](/images/config-screen-heading.png)
 
 ### `label`
 The `label` type allows you to display an input label.
@@ -416,7 +416,7 @@ The `label` type allows you to display an input label.
         type: label
         title: "Note: The system will send you an email every hour."
 ```
-![Email address label on the configuration screen](../../static/images/config-screen-label.png)
+![Email address label on the configuration screen](/static/images/config-screen-label.png)
 
 ### `password`
 The `password` type is a text field that hides the character input.
@@ -428,7 +428,7 @@ The `password` type is a text field that hides the character input.
       value: "{{repl RandomString 10}}"
 ```
 
-![Password text field on the configuration screen](../../static/images/config-screen-password.png)
+![Password text field on the configuration screen](/images/config-screen-password.png)
 
 ### `select_one`
 The `select_one` type is a special case.
@@ -450,7 +450,7 @@ This type is displayed as radio buttons in the admin console.
           title: Password
 ```
 
-![Select one field on the configuration screen](../../static/images/config-screen-selectone.png)
+![Select one field on the configuration screen](/images/config-screen-selectone.png)
 
 ### `text`
 A `text` input field allows users to enter a string value.
@@ -462,7 +462,7 @@ Optionally, all additional properties are available for this input type.
       type: text
 ```
 
-![Text field on the configuration screen](../../static/images/config-screen-text.png)
+![Text field on the configuration screen](/images/config-screen-text.png)
 
 ### `textarea`
 A `textarea` can specify a `props` that will map into the HTML element directly.
@@ -483,7 +483,7 @@ For more information, see [HTML `<textarea/>` Tag](https://www.w3schools.com/tag
         title: Hostname
         type: text
 ```
-![Text area field on the configuration screen](../../static/images/config-screen-textarea.png)
+![Text area field on the configuration screen](/images/config-screen-textarea.png)
 
 
 ## Item Validation
@@ -491,8 +491,8 @@ The supported validation types are:
 - `regex`
 
 ### `regex`
-A `regex` can validate if item's value matches to the provided regular expression pattern
-`regex` pattern should be of type [RE2 regular expressions](https://github.com/google/re2/wiki/Syntax) and validates `text`, `textarea`, `password` and `file` field types
+A `regex` can validate if the item's value matches the provided regular expression pattern.
+`regex` pattern must be an [RE2 regular expression](https://github.com/google/re2/wiki/Syntax) and must validate the `text`, `textarea`, `password` and `file` field types.
 ```yaml
     - name: jwt_token
       title: JWT token
@@ -500,7 +500,7 @@ A `regex` can validate if item's value matches to the provided regular expressio
       validation:
         regex: 
           pattern: ^[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]*$
-          message: Upload a file with valid jwt token.
+          message: Upload a file with valid JWT token.
   ```  
 
 
