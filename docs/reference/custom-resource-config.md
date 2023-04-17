@@ -206,7 +206,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
   <tr>
     <th>Description</th>
     <td>
-      <p>Defines the default value for the config item. If the user does not provide a value for the config item, then the <code>default</code> value is applied.</p>
+      <p>Defines the default value for the config item. If the user does not provide a value for the item, then the <code>default</code> value is applied.</p>
       <p>If the <code>default</code> value is not associated with a <code>password</code> type config item, then it appears as placeholder text in the admin console.</p>
     </td>
   </tr>
@@ -230,8 +230,8 @@ Items have a `name`, `title`, `type`, and other optional properties.
   <tr>
     <th>Description</th>
     <td>
-      <p>This property can show a helpful message below <code>title</code> for the item.</p>
-      <p>Markdown syntax is supported. See <a href="https://guides.github.com/features/mastering-markdown/">Basic writing and formatting syntax</a> in the GitHub Docs.</p>
+      <p>Displays a helpful message below the <code>title</code> for the config item in the admin console.</p>
+      <p>Markdown syntax is supported. For more information about markdown syntax, see <a href="https://guides.github.com/features/mastering-markdown/">Basic writing and formatting syntax</a> in the GitHub Docs.</p>
     </td>
   </tr>
   <tr>
@@ -277,7 +277,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
 <table>
   <tr>
     <th>Description</th>
-    <td>A unique identifier for the item. Item names must be unique both within the group and across all groups. The <code>name</code> is not displayed in the admin console.</td>
+    <td>A unique identifier for the config item. Item names must be unique both within the group and across all groups. The item name is not displayed in the admin console.</td>
   </tr>
   <tr>
     <th>Required?</th>
@@ -299,7 +299,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
   <tr>
     <th>Description</th>
     <td>
-      <p>Readonly items are displayed on the admin console Config page and users cannot edit their value.</p>
+      <p>Readonly items are displayed in the admin console and users cannot edit their value.</p>
       <p><RandomStringNote/></p>
     </td>
   </tr>
@@ -322,7 +322,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
 <table>
   <tr>
     <th>Description</th>
-    <td><p>A recommended item shows the tag "Recommended" in the admin console.</p>
+    <td><p>Displays a Recommended tag for the config item in the admin console.</p>
     </td>
   </tr>
   <tr>
@@ -346,7 +346,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
 <table>
   <tr>
     <th>Description</th>
-    <td><p>A required item prevents the application from starting until it has a value. A required item shows the tag "Required" in the admin console.</p>
+    <td><p>Displays a Required tag for the config item in the admin console. A required item prevents the application from starting until it has a value.</p>
     </td>
   </tr>
   <tr>
@@ -368,7 +368,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
 <table>
   <tr>
     <th>Description</th>
-    <td><p>The title of the item that displays on the admin console Config page.</p></td>
+    <td><p>The title of the config item that displays in the admin console.</p></td>
   </tr>
   <tr>
     <th>Required?</th>
