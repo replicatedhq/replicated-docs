@@ -4,7 +4,8 @@ import RandomStringNote from "../partials/config/_randomStringNote.mdx"
 import NameExample from "../partials/config/_nameExample.mdx"
 import TitleExample from "../partials/config/_titleExample.mdx"
 import TypeExample from "../partials/config/_typeExample.mdx" 
-import DefaultValueExample from "../partials/config/_defaultAndValueExample.mdx" 
+import DefaultExample from "../partials/config/_defaultExample.mdx" 
+import ValueExample from "../partials/config/_valueExample.mdx" 
 import RequiredExample from "../partials/config/_requiredExample.mdx" 
 import RecommendedExample from "../partials/config/_recommendedExample.mdx" 
 import HiddenExample from "../partials/config/_hiddenExample.mdx" 
@@ -184,7 +185,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
   <tr>
     <th>Description</th>
     <td>
-      <p>Items can be affixed <code>left</code> or <code>right</code>. These items will appear in the admin console on the same line.</p>
+      <p>Items can be affixed <code>left</code> or <code>right</code>. Affixing items allows them to appear in the admin console on the same line.</p>
     </td>
   </tr>
   <tr>
@@ -201,18 +202,14 @@ Items have a `name`, `title`, `type`, and other optional properties.
   </tr>    
 </table>
 
-### `default` and `value`
+### `default`
 
 <table>
   <tr>
     <th>Description</th>
     <td>
-      <p>A default value will be applied to the ConfigOption template function when no value is specified.
-If default value is not a password field, it will appear as placeholder text in the settings section of the admin console.</p>
-      <p>Default values are treated as ephemeral, which is the same behavior as the `readonly` property.
-Configuration changes will re-evaluate the template expressions.</p>
-      <p>A value is data that will be overwritten by user input on non-readonly fields.  
-It will appear as the HTML input value in the settings section of the admin console.</p>
+      <p>Defines the default value for the config item. If the user does not provide a value for the config item, then the <code>default</code> value is applied.</p>
+      <p>If the <code>default</code> value is not associated with a <code>password</code> type config item, then it appears as placeholder text in the admin console.</p>
     </td>
   </tr>
   <tr>
@@ -221,11 +218,11 @@ It will appear as the HTML input value in the settings section of the admin cons
   </tr>
   <tr>
     <th>Example</th>
-    <td><DefaultValueExample/></td>
+    <td><DefaultExample/></td>
   </tr>
   <tr>
     <th>Supports Go templates?</th>
-    <td>Yes</td>
+    <td><p>Yes. Every time the user makes a change to their configuration settings for the application, any template functions used in the <code>default</code> property are reevaluated.</p></td>
   </tr>    
 </table>
 
@@ -235,7 +232,7 @@ It will appear as the HTML input value in the settings section of the admin cons
   <tr>
     <th>Description</th>
     <td>
-      <p>This property can show a helpful message below <code>title</code>. This is similar to <code>description</code> in a <code>Group</code> but for <code>items</code>.</p>
+      <p>This property can show a helpful message below <code>title</code> for the item.</p>
       <p>Markdown syntax is supported. See <a href="https://guides.github.com/features/mastering-markdown/">Basic writing and formatting syntax</a> in the GitHub Docs.</p>
     </td>
   </tr>
@@ -259,7 +256,7 @@ It will appear as the HTML input value in the settings section of the admin cons
   <tr>
     <th>Description</th>
     <td>
-       <p>Items can be hidden. Hidden items are not visible in the admin console.</p>
+       <p>Hidden items are not visible in the admin console.</p>
        <p><RandomStringNote/></p>
     </td>
   </tr>
@@ -279,12 +276,10 @@ It will appear as the HTML input value in the settings section of the admin cons
 
 ### `name`
 
-A unique identifier for the item. Each item in the Config custom resource much have a unique `name`, including items in different groups.
-
 <table>
   <tr>
     <th>Description</th>
-    <td>A unique identifier for the item. Item names must be unique both within the group and across all groups.</td>
+    <td>A unique identifier for the item. Item names must be unique both within the group and across all groups. The <code>name</code> is not displayed in the admin console.</td>
   </tr>
   <tr>
     <th>Required?</th>
@@ -306,7 +301,7 @@ A unique identifier for the item. Each item in the Config custom resource much h
   <tr>
     <th>Description</th>
     <td>
-      <p>Readonly items are displayed on the admin console Config page, but users cannot edit their value.</p>
+      <p>Readonly items are displayed on the admin console Config page and users cannot edit their value.</p>
       <p><RandomStringNote/></p>
     </td>
   </tr>
@@ -338,7 +333,9 @@ A unique identifier for the item. Each item in the Config custom resource much h
   </tr>
   <tr>
     <th>Example</th>
-    <td><RecommendedExample/></td>
+    <td>
+      <RecommendedExample/>
+    </td>
   </tr>
   <tr>
     <th>Supports Go templates?</th>
@@ -351,7 +348,7 @@ A unique identifier for the item. Each item in the Config custom resource much h
 <table>
   <tr>
     <th>Description</th>
-    <td><p>A required field prevents the application from starting until it has a value. A required item shows the tag "Required" in the admin console.</p>
+    <td><p>A required item prevents the application from starting until it has a value. A required item shows the tag "Required" in the admin console.</p>
     </td>
   </tr>
   <tr>
@@ -381,7 +378,7 @@ A unique identifier for the item. Each item in the Config custom resource much h
   </tr>
   <tr>
     <th>Example</th>
-    <td><TitleExample/></td>
+    <td><HelpTextExample/></td>
   </tr>
   <tr>
     <th>Supports Go templates?</th>
@@ -415,6 +412,30 @@ A unique identifier for the item. Each item in the Config custom resource much h
   </tr>    
 </table>
 
+### `value`
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Defines the value of the config item. Data that you add to <code>value</code> appears as the HTML input value for the config item in the admin console.</p>
+      <p>If the config item is not readonly, then the data that you add to <code>value</code> is overwritten by any user input for the item. If the item is readonly, then the data that you add to <code>value</code> cannot be overwritten.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Required?</th>
+    <td>No</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><ValueExample/></td>
+  </tr>
+  <tr>
+    <th>Supports Go templates?</th>
+    <td><p>Yes</p><RandomStringNote/></td>
+  </tr>    
+</table>
+
 ### `when`
 
 <table>
@@ -429,12 +450,8 @@ A unique identifier for the item. Each item in the Config custom resource much h
   <tr>
     <th>Example</th>
     <td>
-      <p><strong>Config Context Example:</strong></p>
       <p>Display the <code>database_host</code> and <code>database_password</code> items only when the user <br/> selects <code>external</code> for the <code>db_type</code> item:</p>
       <WhenExample/>
-      <p><strong>License Context Example:</strong></p>
-      <p>Display the <code>external_postgres</code> item only when the user's license contains the <br/><code>feature-flag-embedded-pg</code> entitlement:</p>
-      <WhenExampleLicense/>
     </td>
   </tr>
   <tr>

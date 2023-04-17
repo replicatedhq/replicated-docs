@@ -1,7 +1,13 @@
 ```yaml
-- name: unique_id
-  title: Unique ID
+- name: key
+  title: Key
+  type: text
+  value: ""
+  default: change me
+- name: unique_key
+  title: Unique Key
   type: text
   value: "{{repl RandomString 20}}"
-  readonly: true
+  readonly: true    
 ```
+![Default change me value displayed under the config field](../../../static/images/config-readonly.png)
