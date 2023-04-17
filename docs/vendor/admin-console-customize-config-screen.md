@@ -22,7 +22,7 @@ You add the `validation`, `regex`, `pattern` and `message` fields to items in th
 
 The following example shows a common password complexity rule:
 
-```yaml
+```
 - name: smtp-settings
     title: SMTP Settings
     items:
