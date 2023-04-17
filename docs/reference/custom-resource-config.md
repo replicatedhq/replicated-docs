@@ -1,5 +1,17 @@
 import ItemTypes from "../partials/config/_item-types.mdx"
 import PropertyWhen from "../partials/config/_property-when.mdx"
+import RandomStringNote from "../partials/config/_randomStringNote.mdx"
+import NameExample from "../partials/config/_nameExample.mdx"
+import TitleExample from "../partials/config/_titleExample.mdx"
+import TypeExample from "../partials/config/_typeExample.mdx" 
+import DefaultValueExample from "../partials/config/_defaultAndValueExample.mdx" 
+import RequiredExample from "../partials/config/_requiredExample.mdx" 
+import RecommendedExample from "../partials/config/_recommendedExample.mdx" 
+import HiddenExample from "../partials/config/_hiddenExample.mdx" 
+import ReadonlyExample from "../partials/config/_readonlyExample.mdx" 
+import WhenExample from "../partials/config/_whenExample.mdx" 
+import AffixExample from "../partials/config/_affixExample.mdx" 
+import HelpTextExample from "../partials/config/_helpTextExample.mdx"
 
 # Config
 
@@ -54,6 +66,26 @@ spec:
 
 Groups have a `name`, `title`, `description` and an array of `items`.
 
+### `description`
+
+Descriptive help text for the group that displays on the admin console Config page. Supports markdown formatting.
+
+To provide help text for individual items on the Config page, use the item `help-text` property. See [help_text](#help_text) below.
+
+```yaml
+spec:
+  groups:
+    - name: example_group
+      title: First Group
+      # Provide a description of the input fields in the group
+      description: Select whether or not to enable HTTP.
+      items:
+      - name: http_enabled
+        title: HTTP Enabled
+        type: bool
+        default: "0"
+```
+
 ### `name`
 
 A unique identifier for the group.
@@ -83,26 +115,6 @@ spec:
     # First Group is the heading that appears on the Config page
       title: First Group
       description: This is descriptive help text.
-      items:
-      - name: http_enabled
-        title: HTTP Enabled
-        type: bool
-        default: "0"
-```
-
-### `description`
-
-Descriptive help text for the group that displays on the admin console Config page. Supports markdown formatting.
-
-To provide help text for individual items on the Config page, use the item `help-text` property. See [help_text](#help_text) below.
-
-```yaml
-spec:
-  groups:
-    - name: example_group
-      title: First Group
-      # Provide a description of the input fields in the group
-      description: Select whether or not to enable HTTP.
       items:
       - name: http_enabled
         title: HTTP Enabled
@@ -165,161 +177,263 @@ For more information, see [Item Properties](#item-properties) and [Item Types](#
 
 Items have a `name`, `title`, `type`, and other optional properties.
 
+### `affix`
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Items can be affixed <code>left</code> or <code>right</code>. These items will appear in the admin console on the same line.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Required?</th>
+    <td>No</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><AffixExample/></td>
+  </tr>
+  <tr>
+    <th>Supports Go templates?</th>
+    <td>No</td>
+  </tr>    
+</table>
+
+### `default` and `value`
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>A default value will be applied to the ConfigOption template function when no value is specified.
+If default value is not a password field, it will appear as placeholder text in the settings section of the admin console.</p>
+      <p>Default values are treated as ephemeral, which is the same behavior as the `readonly` property.
+Configuration changes will re-evaluate the template expressions.</p>
+      <p>A value is data that will be overwritten by user input on non-readonly fields.  
+It will appear as the HTML input value in the settings section of the admin console.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Required?</th>
+    <td>No</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><DefaultValueExample/></td>
+  </tr>
+  <tr>
+    <th>Supports Go templates?</th>
+    <td>Yes</td>
+  </tr>    
+</table>
+
+### `help_text`
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>This property can show a helpful message below <code>title</code>. This is similar to <code>description</code> in a <code>Group</code> but for <code>items</code>.</p>
+      <p>Markdown syntax is supported. See <a href="https://guides.github.com/features/mastering-markdown/">Basic writing and formatting syntax</a> in the GitHub Docs.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Required?</th>
+    <td>No</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><HelpTextExample/></td>
+  </tr>
+  <tr>
+    <th>Supports Go templates?</th>
+    <td>No</td>
+  </tr>    
+</table> 
+
+### `hidden`
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+       <p>Items can be hidden. Hidden items are not visible in the admin console.</p>
+       <p><RandomStringNote/></p>
+    </td>
+  </tr>
+  <tr>
+    <th>Required?</th>
+    <td>No</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><HiddenExample/></td>
+  </tr>
+  <tr>
+    <th>Supports Go templates?</th>
+    <td>No</td>
+  </tr>    
+</table> 
+
 ### `name`
 
 A unique identifier for the item. Each item in the Config custom resource much have a unique `name`, including items in different groups.
 
-```yaml
-items:
-  # Item names must be unique both within the group and across all groups
-- name: http_enabled
-  title: HTTP Enabled
-  type: bool
-  default: "0"
-```  
+<table>
+  <tr>
+    <th>Description</th>
+    <td>A unique identifier for the item. Item names must be unique both within the group and across all groups.</td>
+  </tr>
+  <tr>
+    <th>Required?</th>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><NameExample/></td>
+  </tr>
+  <tr>
+    <th>Supports Go templates?</th>
+    <td>No</td>
+  </tr>    
+</table>
+
+### `readonly`
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Readonly items are displayed on the admin console Config page, but users cannot edit their value.</p>
+      <p><RandomStringNote/></p>
+    </td>
+  </tr>
+  <tr>
+    <th>Required?</th>
+    <td>No</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><ReadonlyExample/></td>
+  </tr>
+  <tr>
+    <th>Supports Go templates?</th>
+    <td>No</td>
+  </tr>    
+</table> 
+
+### `recommended`
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td><p>A recommended item shows the tag "Recommended" in the admin console.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Required?</th>
+    <td>No</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><RecommendedExample/></td>
+  </tr>
+  <tr>
+    <th>Supports Go templates?</th>
+    <td>No</td>
+  </tr>    
+</table> 
+
+### `required`
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td><p>A required field prevents the application from starting until it has a value. A required item shows the tag "Required" in the admin console.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Required?</th>
+    <td>No</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><RequiredExample/></td>
+  </tr>
+  <tr>
+    <th>Supports Go templates?</th>
+    <td>No</td>
+  </tr>    
+</table> 
 
 ### `title`
 
-The title of the item that displays on the admin console Config page.
-
-```yaml
-items:
-- name: http_enabled
-# HTTP Enabled is the title for the input field on the Config page
-  title: HTTP Enabled
-  type: bool
-  default: "0"
-```  
+<table>
+  <tr>
+    <th>Description</th>
+    <td><p>The title of the item that displays on the admin console Config page.</p></td>
+  </tr>
+  <tr>
+    <th>Required?</th>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><TitleExample/></td>
+  </tr>
+  <tr>
+    <th>Supports Go templates?</th>
+    <td>No</td>
+  </tr>    
+</table>
 
 ### `type`
 
-Each item has a `type` property that defines the type of user input accepted by the field.
-
-The following are the possible values for the `type` property:
-<ItemTypes/>
-
-For information about each type, see [Item Types](#item-types).
-
-```yaml
-items:
-- name: http_enabled
-  title: HTTP Enabled
-  # type identifies the input type
-  type: bool
-  default: "0"
-```  
-
-### `default` and `value`
-A default value will be applied to the ConfigOption template function when no value is specified.
-If default value is not a password field, it will appear as placeholder text in the settings section of the admin console.
-Default values are treated as ephemeral, which is the same behavior as the `readonly` property.
-Configuration changes will re-evaluate the template expressions.
-
-A value is data that will be overwritten by user input on non-readonly fields.  
-It will appear as the HTML input value in the settings section of the admin console.
-
-```yaml
-    - name: custom_key
-      title: Set your secret key for your app
-      description: Paste in your Custom Key
-      items:
-      - name: key
-        title: Key
-        type: text
-        value: ""
-        default: change me
-```
-
-### `required`
-A required field will prevent the application from starting until it has a value.
-```yaml
-        required: true
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Each item has a <code>type</code> property that defines the type of user input accepted by the field.</p>
+      <p>The <code>type</code> property supports the following values: <ItemTypes/>
+      </p>
+      <p>For information about each type, see <a href="#item-types">Item Types</a>.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Required?</th>
+    <td>Yes</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><TypeExample/></td>
+  </tr>
+  <tr>
+    <th>Supports Go templates?</th>
+    <td>No</td>
+  </tr>    
+</table>
 
 ### `when`
-<PropertyWhen/>
 
-```yaml
-    - name: database_settings_group
-      items:
-      - name: db_type
-        type: select_one
-        default: external
-        items:
-        - name: external
-          title: External
-        - name: embedded
-          title: Embedded DB
-      - name: database_host
-        title: Database Hostname
-        type: text
-        when: '{{repl (ConfigOptionEquals "db_type" "external")}}'
-      - name: database_password
-        title: Database Password
-        type: password
-        when: '{{repl (ConfigOptionEquals "db_type" "external")}}'
-```
-
-### `recommended`
-An item can be recommended.
-This item will bear the tag "recommended" in the admin console.
-
-**Note:** Only works for boolean and text field types.
-
-```yaml
-    - name: group_title
-      title: Group Title
-      items:
-      - name: http_enabled
-        title: HTTP Enabled
-        type: bool
-        default: "0"
-        recommended: true
-```
-
-### `hidden`
-Items can be hidden. They will not be visible if hidden.
-```yaml
-        - name: secret_key
-          title: Secret Key
-          type: password
-          hidden: true
-          value: "{{repl RandomString 40}}"
-```
-
-When you assign a template function that generates a value to a `value` key in the Config custom resource, you can use the `readonly` and `hidden` properties to define whether or not the generated value is ephemeral or persistent between changes to the configuration settings for the application. For more information, see [RandomString](template-functions-static-context#randomstring) in _Static Context_.
-
-### `readonly`
-Items can be readonly.
-```yaml
-        - name: unique_id
-          title: Unique ID
-          type: text
-          value: "{{repl RandomString 20}}"
-          readonly: true
-```
-
-When you assign a template function that generates a value to a `value` key in the Config custom resource, you can use the `readonly` and `hidden` properties to define whether or not the generated value is ephemeral or persistent between changes to the configuration settings for the application. For more information, see [RandomString](template-functions-static-context#randomstring) in _Static Context_.
-
-### `affix`
-Items can be affixed left or right.
-These items will appear in the admin console on the same line.
-```yaml
-    affix: left
-```
-
-### `help_text`
-This is similar to `description` but for `items`.
-This property can show a helpful message below `title`.
-[Markdown](https://guides.github.com/features/mastering-markdown/) syntax is supported.
-```yaml
-    - name: toggles
-      items:
-      - name: http_enabled
-        title: HTTP Enabled
-        help_text: Check to enable the HTTP listener
-        type: bool
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td><p><PropertyWhen/></p></td>
+  </tr>
+  <tr>
+    <th>Required?</th>
+    <td>No</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><WhenExample/></td>
+  </tr>
+  <tr>
+    <th>Supports Go templates?</th>
+    <td>Yes</td>
+  </tr>    
+</table>
 
 ## Item Types
 
