@@ -487,8 +487,7 @@ For more information, see [HTML `<textarea/>` Tag](https://www.w3schools.com/tag
 
 
 ## Item Validation
-The supported validation types are:
-- `regex`
+`regex is the supported validation type.
 
 ### `regex`
 A `regex` can validate if the item's value matches the provided regular expression pattern.
