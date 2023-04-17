@@ -508,7 +508,7 @@ A `regex` can validate if the item's value matches the provided regular expressi
 
 A repeatable config item copies a YAML array entry or YAML document for as many values as are provided. Any number of values can be added to a repeatable item to generate additional copies.
 
-::note
+:::note
 Repeatable items only work for text, textarea, and file types.
 :::
 
@@ -524,6 +524,7 @@ To make an item repeatable, set `repeatable` to true
 
 Repeatable items do not use the `default` or `value` fields, but instead a `valuesByGroup` field.
 `valuesByGroup` must have an entry for the parent Config Group name, with all of the default `key:value` pairs nested in the group. At least one default entry is required for the repeatable item.
+
 ```yaml
     valuesByGroup:
       ports:
