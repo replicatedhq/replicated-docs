@@ -492,7 +492,7 @@ A `validation` can be specified to validate the value of an item. `regex` is the
 
 Based on specified validation rules, the item is validated and a validation message is returned if the validation rule is not satisfied. A default message is returned if there is an empty validation message.
 
-Validation rules are:
+The validation rules are as follows:
 
 - Items of types `text`, `textarea`, `password`, and `file` are validated, but `repeatable` items are not validated.
 - If an item is marked as `hidden` or if its `when` condition is set to `false`, the item is not validated.
