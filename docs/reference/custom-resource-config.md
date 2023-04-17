@@ -512,7 +512,8 @@ A repeatable config item copies a YAML array entry or YAML document for as many 
 Repeatable items only work for text, textarea, and file types.
 :::
 
-To make an item repeatable, set `repeatable` to true
+To make an item repeatable, set `repeatable` to true:
+
 ```yaml
     - name: ports
       items:
@@ -523,7 +524,7 @@ To make an item repeatable, set `repeatable` to true
 ```
 
 Repeatable items do not use the `default` or `value` fields, but instead a `valuesByGroup` field.
-`valuesByGroup` must have an entry for the parent Config Group name, with all of the default `key:value` pairs nested in the group. At least one default entry is required for the repeatable item.
+`valuesByGroup` must have an entry for the parent Config Group name, with all of the default `key:value` pairs nested in the group. At least one default entry is required for the repeatable item:
 
 ```yaml
     valuesByGroup:
@@ -533,17 +534,20 @@ Repeatable items do not use the `default` or `value` fields, but instead a `valu
 
 ### Template Targets
 
-Repeatable items require at least 1 `template` to be provided.  The `template` defines a YAML target in the manifest to duplicate for each repeatable item.
+Repeatable items require that you provide at least one `template`. The `template` defines a YAML target in the manifest to duplicate for each repeatable item.
 
 Required fields for a template target are `apiVersion`, `kind`, and `name`.
 
-`namespace` is an optional template target field to match a yaml document's `metadata.namespace` property, in case the same filename is used across multiple namespaces.
+`namespace` is an optional template target field to match a YAML document's `metadata.namespace` property when the same filename is used across multiple namespaces.
 
-The entire YAML node at the target will be duplicated, including nested fields.
+The entire YAML node at the target is duplicated, including nested fields.
 
-The `yamlPath` field of the `template` must denote index position for arrays using square brackets.  For example, `spec.ports[0]` to select the first port entry for duplication.  All duplicate YAML will be appended to the final array in the `yamlPath`.
+The `yamlPath` field of the `template` must denote index position for arrays using square brackets.  For example, `spec.ports[0]` selects the first port entry for duplication. All duplicate YAML is appended to the final array in the `yamlPath`.
 
-`yamlPath` **must** end with an array.
+`yamlPath` must end with an array.
+
+**Example:**
+
 ```yaml
     templates:
     - apiVersion: v1
@@ -553,16 +557,17 @@ The `yamlPath` field of the `template` must denote index position for arrays usi
       yamlPath: 'spec.ports[0]'
 ```
 
-If the `yamlPath` field is not present, the entire YAML document matching the `template` will be replaced with a copy for each of the repeatable item entries.  The `metadata.name` field of the new doc will reflect the repeatable item `key`.
+If the `yamlPath` field is not present, the entire YAML document matching the `template` is replaced with a copy for each of the repeatable item entries. The `metadata.name` field of the new document reflects the repeatable item `key`.
 
 ### Templating
 
-The repeat items are called with the delimeters `repl[[ .itemName ]]` or `[[repl .itemName ]]`. These delimiters can be placed anywhere inside of the `yamlPath` target node.
+The repeat items are called with the delimeters `repl[[ .itemName ]]` or `[[repl .itemName ]]`. These delimiters can be placed anywhere inside of the `yamlPath` target node:
+
 ```yaml
     - port: repl{{ ConfigOption "[[repl .service_port ]]" | ParseInt }}
       name: '[[repl .service_port ]]'
 ```
-This repeatable templating is not compatible with sprig templating functions. It is designed for inserting repeatable `keys` into the manifest. Repeatable templating **can** be placed inside of Replicated config templating.
+This repeatable templating is not compatible with sprig templating functions. It is designed for inserting repeatable `keys` into the manifest. Repeatable templating can be placed inside of Replicated config templating.
 
 ### Ordering
 
