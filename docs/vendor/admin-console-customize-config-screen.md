@@ -93,7 +93,7 @@ To add fields to the admin console configuration screen:
 
    The following screenshot shows how the SMTP Settings group from the example YAML above displays in the admin console configuration screen during application installation:
 
-   ![User input fields on the configuration screen for the SMTP settings](../../static/images/config-screen-smtp-example-large.png)
+   ![User input fields on the configuration screen for the SMTP settings](/images/config-screen-smtp-example-large.png)
 
 1. (Optional) Add default values for the fields. You can add default values using one of the following properties:
    * **With the `default` property**: When you include the `default` key, the Replicated app manager uses this value when rendering the manifest files for your application. The value then displays as a placeholder on the configuration screen in the admin console for your users. The app manager only uses the default value if the user does not provide a different value.
