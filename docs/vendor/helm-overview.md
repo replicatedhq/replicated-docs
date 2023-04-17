@@ -143,11 +143,34 @@ For more information about how to package an application with Replicated so that
 
 The app manager supports native Helm and Replicated Helm installations into air gap environments. When a user installs a Helm chart-based application in an air gap environment, the chart processing is managed in the end user environment. This means that the app manager can use user-supplied values, license values, and existing values to create deployable manifests.
 
-To create an `.airgap` bundle for a release that uses Helm charts, the Replicated vendor portal renders templates of the Helm charts with `helm template`. To specify which values from the Helm chart `values.yaml` file are included in the `.airgap` bundle, you add a `builder` key in the HelmChart custom resource manifest file. For more information, see [builder](/reference/custom-resource-helmchart#builder) in _HelmChart_.
+To create an `.airgap` bundle for a release that uses Helm charts, the Replicated vendor portal renders templates of the Helm charts with `helm template`. To specify which values from the Helm chart `values.yaml` file are included in the `.airgap` bundle, you add a `builder` key in the HelmChart custom resource manifest file. For more information, see [builder](/reference/custom-resource-helmchart#builder) in the _HelmChart_ reference.
 
 :::note
 The helm CLI installation method does not support installations into air gap environments. See [helm CLI Limitations](#helm-cli-limitations) below.
 :::
+
+<HelmBuilderRequirements/>
+
+**Example:**
+
+The following example demonstrates how to add a conditional `postgresql` resource to the `builder` key.
+
+`postgresql` is defined as a conditional resource in the `values` key of the HelmChart custom resource:
+
+```yaml
+  values:
+    postgresql:
+      enabled: repl{{ ConfigOptionEquals `postgres_type` `embedded_postgres`}}
+```
+As shown above, `postgresql` is included only when the user selects the `embedded_postgres` option.
+
+To ensure the vendor portal includes this conditional `postgresql` resource in `.airgap` bundles, add the same `postgresql` value to the `builder` key with `enabled` set to `true`:
+
+```yaml
+  builder:
+    postgresql:
+      enabled: true
+```
 
 ## Limitations
 

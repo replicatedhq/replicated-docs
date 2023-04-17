@@ -1,4 +1,6 @@
 import VersionLimitation from "../partials/helm/_helm-version-limitation.mdx"
+import HelmBuilderRequirements from "../partials/helm/_helm-builder-requirements.mdx"
+
 
 # HelmChart
 
@@ -99,7 +101,7 @@ Must be a valid Helm release name that matches regex `^[a-z0-9]([-a-z0-9]*[a-z0-
 
 ## helmVersion
 
-Identifies the Helm Version used to render the chart. Acceptable values are `v2` or `v3`. **Default:** `v3` when no value is specified.
+Identifies the Helm Version used to render the chart. **Supported value:** `v3`
 
 :::note
 <VersionLimitation/>
@@ -113,7 +115,7 @@ Native Helm installations always deploy using Helm v3.
 
 ## weight
 
-Determines the order to apply charts that have `useHelmInstall: true`. Charts are applied by weight in ascending order, with lower weights applied first. Acceptable values are positive and negative integers. **Default:** `0`
+Determines the order to apply charts that have `useHelmInstall: true`. Charts are applied by weight in ascending order, with lower weights applied first. **Supported values:** Positive or negative integers. **Default:** `0`
 
 For more information, see [Defining Installation Order for Native Helm Charts](/vendor/helm-native-helm-install-order).
 
@@ -153,11 +155,11 @@ The  attribute is a value for making optional charts. The `exclude` attribute ca
 
 When the app manager processes Helm charts, it excludes the entire chart if the output of the `exclude` field can be parsed as a boolean evaluating to `true`.
 
-For more information about:
+For more information about optional charts, template functions, and how app manager processes Helm charts, see:
 
-* Optional charts: See [Optional Charts](/vendor/helm-optional-charts)
-* Template functions: See [About Template Function Contexts](template-functions-about).
-* How the app manager processes Helm charts: See [Helm Processing](/vendor/helm-processing).
+* [Optional Charts](/vendor/helm-optional-charts)
+* [About Template Function Contexts](template-functions-about)
+* [Helm Processing](/vendor/helm-processing)
 
 ## optionalValues
 
@@ -190,7 +192,7 @@ For more information about the syntax for template functions, see [About Templat
 
 The `recursiveMerge` boolean defines how the app manager merges the `values` and `optionalValues` datasets when the conditional statement in the `when` field is true.
 
-The admin console uses the values from this merged dataset and from the Helm chart `values.yaml` file when deploying the application.         
+The admin console uses the values from this merged dataset and from the Helm chart `values.yaml` file when deploying the application. For an example of recursive merge, see [Example: Recursive Merge](/vendor/helm-optional-value-keys#example-recursive-merge) in _Configuring Optional Value Keys_.        
 
 The following table describes how `values` and `optionalValues` are merged based on the value of the `recursiveMerge` boolean:
 
@@ -224,28 +226,6 @@ If you specify a namespace in the HelmChart `namespace` field, you must also inc
 
 To create an `.airgap` bundle for a release that uses Helm charts, the Replicated vendor portal renders templates of the Helm charts with `helm template`. The `builder` key specifies the values from the Helm chart `values.yaml` file that the vendor portal uses to create the `.airgap` bundle. For more information, see [Air Gap](/vendor/helm-overview#air-gap) in _About Deploying Helm Charts_.
 
-The `builder` key has the following requirements and recommendations:
-* Replicated recommends that you include only the minimum Helm values in the `builder` key that are required to template the Helm chart with the correct image tags.
-* Use only static, or _hardcoded_, values in the `builder` key. You cannot use template functions in the `builder` key because values in the `builder` key are not rendered in a customer environment.
-* Any Helm values entries that are required for rendering Helm chart templates must have a value supplied in the `builder` key. For more information about the Helm `required` function, see [Using the 'required' function](https://helm.sh/docs/howto/charts_tips_and_tricks/#using-the-required-function) in the Helm documentation.
+<HelmBuilderRequirements/>
 
-**Example:**
-
-The following example demonstrates how to add a conditional `postgresql` resource to the `builder` key.
-
-`postgresql` is defined as a conditional resource in the `values` key of the HelmChart custom resource:
-
-```yaml
-  values:
-    postgresql:
-      enabled: repl{{ ConfigOptionEquals `postgres_type` `embedded_postgres`}}
-```
-As shown above, `postgresql` is included only when the user selects the `embedded_postgres` option.
-
-To ensure the vendor portal includes this conditional `postgresql` resource in `.airgap` bundles, add the same `postgresql` value to the `builder` key with `enabled` set to `true`:
-
-```yaml
-  builder:
-    postgresql:
-      enabled: true
-```
+For more information about using the `builder` key, see [Air Gap](/vendor/helm-overview#air-gap) in _About Deploying Helm Charts_.
