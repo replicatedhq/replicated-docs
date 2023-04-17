@@ -10,6 +10,7 @@ import RecommendedExample from "../partials/config/_recommendedExample.mdx"
 import HiddenExample from "../partials/config/_hiddenExample.mdx" 
 import ReadonlyExample from "../partials/config/_readonlyExample.mdx" 
 import WhenExample from "../partials/config/_whenExample.mdx" 
+import WhenExampleLicense from "../partials/config/_whenExampleLicenseContext.mdx"
 import AffixExample from "../partials/config/_affixExample.mdx" 
 import HelpTextExample from "../partials/config/_helpTextExample.mdx"
 
@@ -427,7 +428,14 @@ A unique identifier for the item. Each item in the Config custom resource much h
   </tr>
   <tr>
     <th>Example</th>
-    <td><WhenExample/></td>
+    <td>
+      <p><strong>Config Context Example:</strong></p>
+      <p>Display the <code>database_host</code> and <code>database_password</code> items only when the user <br/> selects <code>external</code> for the <code>db_type</code> item:</p>
+      <WhenExample/>
+      <p><strong>License Context Example:</strong></p>
+      <p>Display the <code>external_postgres</code> item only when the user's license contains the <br/><code>feature-flag-embedded-pg</code> entitlement:</p>
+      <WhenExampleLicense/>
+    </td>
   </tr>
   <tr>
     <th>Supports Go templates?</th>
