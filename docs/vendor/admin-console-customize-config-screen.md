@@ -23,19 +23,17 @@ You add the `validation`, `regex`, `pattern` and `message` fields to items in th
 The following example shows a common password complexity rule:
 
 ```yaml
-spec:
-  groups:
-    - name: smtp-settings
-      title: SMTP Settings
-      items:
-      - name: smtp_password
-        title: SMTP Password
-        type: password
-        help_text: Set SMTP password
-        validation:
-          regex: 
-            pattern: ^(?:[\w@#$%^&+=!*()_\-{}[\]:;"'<>,.?\/|]){8,16}$
-            message: The password must be between 8 and 16 characters long and can contain a combination of uppercase letters, lowercase letters, digits, and special characters.
+- name: smtp-settings
+    title: SMTP Settings
+    items:
+    - name: smtp_password
+      title: SMTP Password
+      type: password
+      help_text: Set SMTP password
+      validation:
+        regex: 
+          pattern: ^(?:[\w@#$%^&+=!*()_\-{}[\]:;"'<>,.?\/|]){8,16}$
+          message: The password must be between 8 and 16 characters long and can contain a combination of uppercase letters lowercase letters, digits, and special characters.
 ```
 
 ## Add Fields to the Configuration Screen
