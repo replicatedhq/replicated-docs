@@ -487,15 +487,17 @@ For more information, see [HTML `<textarea/>` Tag](https://www.w3schools.com/tag
 
 
 ## Item Validation
-A `validation` can be specified to validate the value of an item. Based on specified validation rules, the item will be validated, and a validation message will be returned if the validation rule is not satisfied. In the case of an empty validation message, a default message will be returned.
 
-- Items of types `text`, `textarea`, `password`, and `file` will be validated, but `repeatable` items will not be validated.
-- If an item is marked as `hidden` or if its `when` condition is set to `false`, the item will not be validated.
-- If an item is `required`, validation will be applied, and an error will be returned if the validation fails.
-- If an item is set as not `required`, the item will be validated only when its value is not empty.
+A `validation` can be specified to validate the value of an item. `regex` is the supported validation type.
 
-The following is a list of supported validation types:
-- `regex`
+Based on specified validation rules, the item is validated and a validation message is returned if the validation rule is not satisfied. A default message is returned if there is an empty validation message.
+
+Validation rules are:
+
+- Items of types `text`, `textarea`, `password`, and `file` are validated, but `repeatable` items are not validated.
+- If an item is marked as `hidden` or if its `when` condition is set to `false`, the item is not validated.
+- If an item is `required`, validation is applied and an error is returned if the validation fails.
+- If an item is set as not `required`, the item is validated only when its value is not empty.
 
 ### `regex`
 A `regex` can be used to validate whether an item's value matches the provided regular expression `pattern`. The regex pattern should be of the [RE2 regular expression](https://github.com/google/re2/wiki/Syntax) type and can validate the `text`, `textarea`, `password`, and `file` field types.
