@@ -324,7 +324,7 @@ This property can show a helpful message below `title`.
 ```
 
 ### `validation`
-An item's value can be validated using the validation property.
+The `validation` property can be used to validate an item's value, allowing you to specify custom validation rules that determine whether the value is valid or not.
 
 :::note
 Only works for `text`, `textarea`, `password` and `file` field types.
@@ -487,11 +487,20 @@ For more information, see [HTML `<textarea/>` Tag](https://www.w3schools.com/tag
 
 
 ## Item Validation
-`regex is the supported validation type.
+A `validation` can be specified to validate the value of an item. Based on specified validation rules, the item will be validated, and a validation message will be returned if the validation rule is not satisfied. In the case of an empty validation message, a default message will be returned.
+
+- Items of types `text`, `textarea`, `password`, and `file` will be validated, but `repeatable` items will not be validated.
+- If an item is marked as `hidden` or if its `when` condition is set to `false`, the item will not be validated.
+- If an item is `required`, validation will be applied, and an error will be returned if the validation fails.
+- If an item is set as not `required`, the item will be validated only when its value is not empty.
+
+The following is a list of supported validation types:
+- `regex`
 
 ### `regex`
-A `regex` can validate if the item's value matches the provided regular expression pattern.
-`regex` pattern must be an [RE2 regular expression](https://github.com/google/re2/wiki/Syntax) and must validate the `text`, `textarea`, `password` and `file` field types.
+A `regex` can be used to validate whether an item's value matches the provided regular expression `pattern`. The regex pattern should be of the [RE2 regular expression](https://github.com/google/re2/wiki/Syntax) type and can validate the `text`, `textarea`, `password`, and `file` field types.
+
+ The default validation message is `Value does not match regex`.
 ```yaml
     - name: jwt_token
       title: JWT token
@@ -501,7 +510,6 @@ A `regex` can validate if the item's value matches the provided regular expressi
           pattern: ^[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]*$
           message: Upload a file with valid JWT token.
   ```  
-
 
 ## Repeatable Items
 
