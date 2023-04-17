@@ -28,6 +28,7 @@ const sidebars = {
         'vendor/distributing-workflow', 
       ],
     },
+    // {type: 'ref', id: 'vendor/private-images-about', label: 'Replicated Proxied OCI Registry -->'},
     {
       type: 'category',
       label: 'Backup and Restore',
@@ -269,8 +270,43 @@ const sidebars = {
 
   vendorPortal: [
     {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},
-    'vendor/team-management',
-    'vendor/vendor-portal-creating-account',
+    {
+      type: 'category',
+      label: 'Vendor Portal Team Management',
+      items: [
+        'vendor/vendor-portal-creating-account',
+        'vendor/team-management',
+        'vendor/team-management-github-username',
+        {
+            type: 'category',
+            label: 'Configuring Role-based Access Control',
+            items: [
+              'vendor/team-management-rbac-configuring',
+              "vendor/team-management-rbac-about",
+              'vendor/team-management-rbac-resource-names',
+          ],
+        },
+        'vendor/team-management-google-auth',
+        'vendor/team-management-saml-auth',
+        'vendor/custom-domains',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Releases',
+      items: [
+        
+        'vendor/wip-about-releases-helm',
+        'vendor/releases-wip-topic',
+        {
+          type: 'category',
+          label: 'App Manager Options',
+          items: [
+            'vendor/wip-about-releases',
+          ],
+        },
+      ],
+    },
   ],
 
   // tutorialSidebar: [
