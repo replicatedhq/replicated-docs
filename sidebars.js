@@ -293,18 +293,14 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Releases',
+      label: 'Channels and Releases',
       items: [
-        
-        'vendor/wip-about-releases-helm',
-        'vendor/releases-wip-topic',
-        {
-          type: 'category',
-          label: 'App Manager Options',
-          items: [
-            'vendor/wip-about-releases',
-          ],
-        },
+        'vendor/wip-about-releases',
+        'vendor/wip-about-channels',
+        'vendor/wip-create-releases',
+        'vendor/wip-create-release-cli',
+        'vendor/wip-create-channels',
+        'vendor/wip-package-helmchart',
       ],
     },
   ],
