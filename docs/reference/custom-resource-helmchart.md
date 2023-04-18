@@ -6,11 +6,7 @@ import HelmBuilderRequirements from "../partials/helm/_helm-builder-requirements
 
 HelmChart custom resources are required for the app manager to process and deploy Helm charts for the supported Helm installation types. For more information about Helm installation types, see [About Deploying Helm Charts](/vendor/helm-overview).
 
-The HelmChart custom resource manifest file references a required `.tgz` export of the Helm chart resources and provides the necessary instructions for processing and preparing the chart for deployment.
-
-:::note
-To deploy multiple instances of the same chart, you must add an additional HelmChart custom resource with a unique [release name](custom-resource-helmchart#chartreleasename) for each instance of the chart that is to be deployed as part of the application. However, only one `.tgz` of the chart needs to be included in the release.
-:::
+The HelmChart custom resource manifest file references a required `.tgz` export of the Helm chart resources and provides the necessary instructions for processing and preparing the chart for deployment. To deploy multiple instances of the same Helm chart, you must add an additional HelmChart custom resource for each instance. However, only one `.tgz` of the Helm chart needs to be included in the release.
 
 ## Example
 
@@ -95,7 +91,7 @@ The version of the chart. This value must match the `version` field from a `Char
 Specifies the release name to use when installing this instance of the Helm chart.
 Defaults to the chart name.
 
-The release name must be unique across all charts deployed in the namespace. Specifying a unique release name allows you to deploy multiple instances of the same Helm chart.
+The release name must be unique across all charts deployed in the namespace. To deploy multiple instances of the same Helm chart in a release, you must add an additional HelmChart custom resource with a unique [release name](custom-resource-helmchart#chartreleasename) for each instance of the Helm chart.
 
 Must be a valid Helm release name that matches regex `^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$` and is no longer than 53 characters.
 
