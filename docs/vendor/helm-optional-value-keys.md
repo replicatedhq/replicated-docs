@@ -11,9 +11,9 @@ Typically this situation happens when you are including a community chart as a d
 
 ## Include Values
 
-Some advanced use cases involve writing values to a values file only if there is a value to apply. For example, if a customer has the option to configure a different value than the default value in your file, such as setting the database option they want to use. You can include an optional value key so that your application can dynamically include it based on a `when` condition.
+Some advanced use cases involve writing values to a values file only if there is a value to apply. For example, if a customer has the option to configure a different value than the default value in your file, such as setting the database option they want to use. You can include an optional value key so that your application can dynamically include it based on a `when` condition. 
 
-**Example:**
+For more information about the `optionalValues` property, see [`optionalValues`](https://docs.replicated.com/reference/custom-resource-helmchart#optionalvalues) in the _HelmChart_ reference.
 
 For example, in the Bitnami Wordpress [chart.yaml.](https://github.com/bitnami/charts/blob/main/bitnami/wordpress/Chart.yaml) file, there is a reference to `mariadb`. This reference is configured through the [values.yaml](https://github.com/bitnami/charts/blob/main/bitnami/wordpress/values.yaml#L1086) file:
 
@@ -104,4 +104,79 @@ mariadb:
   enabled: true
 ```
 
-For more information about the `optionalValues` property, including details about the `when` and `recursiveMerge` fields, see [`optionalValues`](https://docs.replicated.com/reference/custom-resource-helmchart#optionalvalues) in _HelmChart_.
+## Example: Recursive Merge
+
+The `recursiveMerge` boolean defines how the app manager merges the values and `optionalValues` datasets when the conditional statement in the `when` field is `true`.
+
+Then, the admin console uses the values from this merged dataset and from the Helm chart `values.yaml` file when deploying the application.
+
+For more information about the `recursiveMerge` field, see [`optionalValues`](https://docs.replicated.com/reference/custom-resource-helmchart#optionalvalues) in the _HelmChart_ reference.
+
+For example, a HelmChart custom resource manifest file defines the following datasets in the `values` and `optionalValues` fields:
+
+```yaml
+values:
+  favorite:
+    drink:
+      hot: tea
+      cold: soda
+    dessert: ice cream
+    day: saturday
+
+optionalValues:
+  - when: '{{repl ConfigOptionEquals "example_config_option" "1" }}'
+    recursiveMerge: false
+    values:
+      example_config_option:
+        enabled: true
+      favorite:
+        drink:
+          cold: lemonade
+```
+
+The `values.yaml` file for the associated Helm chart defines the following key value pairs:
+
+```yaml
+favorite:
+  drink:
+    hot: coffee
+    cold: soda
+  dessert: pie
+```
+The `templates/configmap.yaml` file for the Helm chart maps these values to the following fields:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-configmap
+data:
+  favorite_day: {{ .Values.favorite.day }}
+  favorite_dessert: {{ .Values.favorite.dessert }}
+  favorite_drink_cold: {{ .Values.favorite.drink.cold }}
+  favorite_drink_hot: {{ .Values.favorite.drink.hot }}
+```
+
+When `recursiveMerge` is set to `false` in the HelmChart custom resource manifest file, the ConfigMap for the deployed application includes the following key value pairs:
+
+```yaml
+favorite_day: null
+favorite_dessert: pie
+favorite_drink_cold: lemonade
+favorite_drink_hot: coffee
+```
+
+In this case, the top level keys in `optionalValues` overwrite the top level keys in `values`.
+
+Then, the admin console uses the values from the Helm chart `values.yaml` to populate the remaining fields in the ConfigMap: `favorite_day`, `favorite_dessert`, and `favorite_drink_hot`.
+
+When `recursiveMerge` is set to `true`, the ConfigMap for the deployed application includes the following key value pairs:
+
+```yaml
+favorite_day: saturday
+favorite_dessert: ice cream
+favorite_drink_cold: lemonade
+favorite_drink_hot: tea
+```
+
+In this case, all keys from `values` and `optionalValues` are included in the merged dataset. Both include `favorite:` > `drink:` > `cold:`, so the merged dataset uses `lemonade` from `optionalValues`.

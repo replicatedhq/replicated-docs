@@ -1,17 +1,14 @@
 import VersionLimitation from "../partials/helm/_helm-version-limitation.mdx"
+import HelmBuilderRequirements from "../partials/helm/_helm-builder-requirements.mdx"
+
 
 # HelmChart
 
-A HelmChart custom resource enables the Replicated app manager to process and deploy Helm charts as part of an application. The app manager can process Helm charts using the Replicated Helm installation for existing applications. You can also use a native Helm installation for new applications or newly added Helm charts. For more information, see [About Deploying Helm Charts](/vendor/helm-overview).
+HelmChart custom resources are required for the app manager to process and deploy Helm charts for the supported Helm installation types. For more information about Helm installation types, see [About Deploying Helm Charts](/vendor/helm-overview).
 
-HelmChart custom resources are required for the app manager to deploy Helm charts. HelmChart custom resources are not required if only raw Kubernetes manifests are deployed.
+The HelmChart custom resource manifest file references a required `.tgz` export of the Helm chart resources and provides the necessary instructions for processing and preparing the chart for deployment. To deploy multiple instances of the same Helm chart, you must add an additional HelmChart custom resource for each instance. However, only one `.tgz` of the Helm chart needs to be included in the release.
 
-The HelmChart custom resource manifest file references a required `.tgz` export of the Helm chart resources and provides the necessary instructions for processing and preparing the chart for deployment.
-
-By default, the HelmChart custom resource uses the Replicated Helm installation, which uses the app manager to render and deploy Helm charts. For new installations, you can set `useHelmInstall: true` in the manifest to use the native Helm installation.
-
-**Deploying multiple instances of the same chart**:
-You must add an additional HelmChart custom resource with a unique [release name](custom-resource-helmchart#chartreleasename) for each instance of the chart that is to be deployed as part of the application. However, only one `.tgz` of the chart needs to be included in the release.
+## Example
 
 The following is an example manifest file for the HelmChart custom resource:
 
@@ -82,27 +79,25 @@ The `chart` key allows for a mapping between the data in this definition and the
 More than one `kind: HelmChart` can reference a single chart archive, if different settings are needed.
 
 ### chart.name
-The name of the chart.
-This must match the `name` field from a `Chart.yaml` in a `.tgz` chart archive that's also included in the release.
+The name of the chart. This value must match the `name` field from a `Chart.yaml` in a `.tgz` chart archive that is also included in the release.
 
 ### chart.chartVersion
-The version of the chart.
-This must match the `version` field from a `Chart.yaml` in a `.tgz` chart archive that's also included in the release.
+The version of the chart. This value must match the `version` field from a `Chart.yaml` in a `.tgz` chart archive that is also included in the release.
 
 ### chart.releaseName
 
 > Introduced in Replicated app manager v1.73.0
 
-Specifies the release name to be used when installing this instance of the Helm chart.
+Specifies the release name to use when installing this instance of the Helm chart.
 Defaults to the chart name.
-The release name must be unique across all charts deployed in the namespace.
-Specifying a unique release name allows you to deploy multiple instances of the same Helm chart.
+
+The release name must be unique across all charts deployed in the namespace. To deploy multiple instances of the same Helm chart in a release, you must add an additional HelmChart custom resource with a unique release name for each instance of the Helm chart.
+
 Must be a valid Helm release name that matches regex `^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$` and is no longer than 53 characters.
 
 ## helmVersion
 
-Identifies the Helm Version used to render the chart.
-Acceptable values are `v2` or `v3`. `v3` is the default when no value is specified.
+Identifies the Helm Version used to render the chart. Acceptable values are `v2` or `v3`. `v3` is the default when no value is specified, and `v3` is required for native Helm installations.
 
 :::note
 <VersionLimitation/>
@@ -110,15 +105,13 @@ Acceptable values are `v2` or `v3`. `v3` is the default when no value is specifi
 
 ## useHelmInstall
 
-Identifies whether this Helm chart will use the Replicated Helm installation (`false`) or native Helm installation (`true`).
-Default is `false`.
-It is recommended that you set this to `true`, because native Helm is preferred and Replicated Helm will be removed at some point.
+Identifies whether this Helm chart will use the Replicated Helm installation (`false`) or native Helm installation (`true`). Replicated recommends that you set this to `true` because native Helm is the preferred method. **Default:** `false`
+
 Native Helm installations always deploy using Helm v3.
 
 ## weight
 
-Determines the order to apply charts that have `useHelmInstall: true`. Charts are applied by weight in ascending order, with lower weights applied first.
-Acceptable values are positive and negative integers, with a default value of 0.
+Determines the order to apply charts that have `useHelmInstall: true`. Charts are applied by weight in ascending order, with lower weights applied first. **Supported values:** Positive or negative integers. **Default:** `0`
 
 For more information, see [Defining Installation Order for Native Helm Charts](/vendor/helm-native-helm-install-order).
 
@@ -130,8 +123,9 @@ For more information, see [Defining Installation Order for Native Helm Charts](/
 
 Specifies additional flags to pass to the `helm upgrade` command for charts that have `useHelmInstall: true`. These flags are passed in addition to any flags the app manager passes by default. The values specified here take precedence if the app manager already passes the same flag.
 
-The app manager uses `helm upgrade` for all deployments of an application (not just upgrades) by specifying the `--install` flag.
-For non-boolean flags that require an additional argument, such as `--timeout 1200s`, you must use an equals sign or specify the additional argument separately in the array. For example:
+The app manager uses `helm upgrade` for _all_ deployments of an application, not just upgrades, by specifying the `--install` flag. For non-boolean flags that require an additional argument, such as `--timeout 1200s`, you must use an equal sign (`=`) or specify the additional argument separately in the array. 
+
+**Example:**
 
 ```yaml
 helmUpgradeFlags:
@@ -142,9 +136,7 @@ helmUpgradeFlags:
 
 ## values
 
-The `values` key allows for values to be changed in the chart. It also can create a mapping between the Replicated admin console configuration screen and the values. This mapping makes it possible to use the configuration screen in the admin console to control the Helm `values.yaml` file.
-
-For more information about the configuration screen, see [About the Configuration Screen](../vendor/config-screen-about).
+The `values` key allows for values to be changed in the chart. It also can create a mapping between the Replicated admin console configuration screen and the values. This mapping makes it possible to use the configuration screen in the admin console to control the Helm `values.yaml` file. For more information about the configuration screen, see [About the Configuration Screen](../vendor/config-screen-about).
 
 The keys below `values` must map exactly to the keys in your `values.yaml`.
 Only include the keys below `values` that you want to change. These are merged with the `values.yaml` in the chart archive.
@@ -155,11 +147,15 @@ For more options, see the [Allow deletion of a previous values file key](https:/
 
 ## exclude
 
-The  attribute is a value for making [optional charts](../vendor/helm-optional-charts). The `exclude` attribute can be parsed by template functions. For more information about template functions, see [About template function contexts](template-functions-about).
+The  attribute is a value for making optional charts. The `exclude` attribute can be parsed by template functions. 
 
 When the app manager processes Helm charts, it excludes the entire chart if the output of the `exclude` field can be parsed as a boolean evaluating to `true`.
 
-For more information about how the app manager processes Helm charts, see [Helm processing](../vendor/helm-processing).
+For more information about optional charts, template functions, and how app manager processes Helm charts, see:
+
+* [Optional Charts](/vendor/helm-optional-charts)
+* [About Template Function Contexts](template-functions-about)
+* [Helm Processing](/vendor/helm-processing)
 
 ## optionalValues
 
@@ -171,14 +167,16 @@ For more information about using `optionalValues`, see [Including Optional Value
 
 ### optionalValues[].when
 
-The `when` field in `optionalValues` provides a string-based method that is evaluated by template functions. The `when` field defers evaluation of the conditional to render time in the customer environment.
+The `when` field in `optionalValues` provides a string-based method that is evaluated by template functions. The `when` field defers evaluation of the conditional to render time in the customer environment. 
 
-To write the `when` conditional statement, use template functions. For example, in the `samplechart` HelmChart custom resource above, the `when` field includes a conditional statement that evaluates to `true` if the user selects the `external_postgres` option on the admin console configuration screen:
+To write the `when` conditional statement, use template functions. The following example shows a conditional statement for selecting a database option on the admin console configuration screen:
 
 ```yaml
 optionalValues:
   - when: "repl{{ ConfigOptionEquals `postgres_type` `external_postgres`}}"
 ```  
+
+For more information about using optional values, see [Configuring Optional Value Keys](/vendor/helm-optional-value-keys). 
 
 For more information about the syntax for template functions, see [About Template Function Contexts](template-functions-about).
 
@@ -188,9 +186,9 @@ For more information about the syntax for template functions, see [About Templat
 `recursiveMerge` is available in the app manager v1.38.0 and later.
 :::
 
-The `recursiveMerge` boolean defines how the app manager merges the `values` and `optionalValues` datasets when the conditional statement in the `when` field is true.
+The `recursiveMerge` boolean defines how the app manager merges the `values` and `optionalValues` datasets when the conditional statement in the `when` field is `true`.
 
-The admin console uses the values from this merged dataset and from the Helm chart `values.yaml` file when deploying the application.         
+The admin console uses the values from this merged dataset and from the Helm chart `values.yaml` file when deploying the application. For an example of recursive merge, see [Example: Recursive Merge](/vendor/helm-optional-value-keys#example-recursive-merge) in _Configuring Optional Value Keys_.        
 
 The following table describes how `values` and `optionalValues` are merged based on the value of the `recursiveMerge` boolean:
 
@@ -214,107 +212,14 @@ The following table describes how `values` and `optionalValues` are merged based
   </tr>
 </table>
 
-For example, a HelmChart custom resource manifest file defines the following datasets in the `values` and `optionalValues` fields:
-
-```yaml
-values:
-  favorite:
-    drink:
-      hot: tea
-      cold: soda
-    dessert: ice cream
-    day: saturday
-
-optionalValues:
-  - when: '{{repl ConfigOptionEquals "example_config_option" "1" }}'
-    recursiveMerge: false
-    values:
-      example_config_option:
-        enabled: true
-      favorite:
-        drink:
-          cold: lemonade
-```
-
-The `values.yaml` file for the associated Helm chart defines the following key value pairs:
-
-```yaml
-favorite:
-  drink:
-    hot: coffee
-    cold: soda
-  dessert: pie
-```
-The `templates/configmap.yaml` file for the Helm chart maps these values to the following fields:
-
-```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: test-configmap
-data:
-  favorite_day: {{ .Values.favorite.day }}
-  favorite_dessert: {{ .Values.favorite.dessert }}
-  favorite_drink_cold: {{ .Values.favorite.drink.cold }}
-  favorite_drink_hot: {{ .Values.favorite.drink.hot }}
-```
-
-When `recursiveMerge` is set to `false` in the HelmChart custom resource manifest file, the ConfigMap for the deployed application includes the following key value pairs:
-
-```yaml
-favorite_day: null
-favorite_dessert: pie
-favorite_drink_cold: lemonade
-favorite_drink_hot: coffee
-```
-
-In this case, the top level keys in `optionalValues` overwrite the top level keys in `values`.
-
-Then, the admin console uses the values from the Helm chart `values.yaml` to populate the remaining fields in the ConfigMap: `favorite_day`, `favorite_dessert`, and `favorite_drink_hot`.
-
-When `recursiveMerge` is set to `true`, the ConfigMap for the deployed application includes the following key value pairs:
-
-```yaml
-favorite_day: saturday
-favorite_dessert: ice cream
-favorite_drink_cold: lemonade
-favorite_drink_hot: tea
-```
-
-In this case, all keys from `values` and `optionalValues` are included in the merged dataset. Both include `favorite:` > `drink:` > `cold:`, so the merged dataset uses `lemonade` from `optionalValues`.
-
 ## namespace
 
-The `namespace` key specifies an alternative namespace where the app manager installs the Helm chart. By default, if no alternative namespace is provided, then the Helm chart is installed in the same namespace as the admin console.
+The `namespace` key specifies an alternative namespace where the app manager installs the Helm chart. **Default:** The Helm chart is installed in the same namespace as the admin console. 
 
-If you specify a namespace in the HelmChart `namespace` field, you must also include the same namespace in the `additionalNamespaces` field of the Application custom resource manifest file. The app manager creates the namespaces listed in the `additionalNamespaces` field during installation. For more information, see [additionalNamespaces](custom-resource-application#additionalnamespaces) in _Application_.
+If you specify a namespace in the HelmChart `namespace` field, you must also include the same namespace in the `additionalNamespaces` field of the Application custom resource manifest file. The app manager creates the namespaces listed in the `additionalNamespaces` field during installation. For more information, see [additionalNamespaces](custom-resource-application#additionalnamespaces) in the _Application_ reference.
 
 ## builder
 
-To create an `.airgap` bundle for a release that uses Helm charts, the Replicated vendor portal renders templates of the Helm charts with `helm template`. The `builder` key specifies the values from the Helm chart `values.yaml` file that the vendor portal uses to create the `.airgap` bundle.
+To create an `.airgap` bundle for a release that uses Helm charts, the Replicated vendor portal renders templates of the Helm charts with `helm template`. The `builder` key specifies the values from the Helm chart `values.yaml` file that the vendor portal uses to create the `.airgap` bundle. For more information, see [Air Gap](/vendor/helm-overview#air-gap) in _About Deploying Helm Charts_.
 
-The `builder` key has the following requirements and recommendations:
-* Replicated recommends that you include only the minimum Helm values in the `builder` key that are required to template the Helm chart with the correct image tags.
-* Use only static, or _hardcoded_, values in the `builder` key. You cannot use template functions in the `builder` key because values in the `builder` key are not rendered in a customer environment.
-* Any Helm values entries that are required for rendering Helm chart templates must have a value supplied in the `builder` key. For more information about the Helm `required` function, see [Using the 'required' function](https://helm.sh/docs/howto/charts_tips_and_tricks/#using-the-required-function).
-
-**Example**
-
-The following example demonstrates how to add a conditional `postgresql` resource to the `builder` key.
-
-`postgresql` is defined as a conditional resource in the `values` key of the HelmChart custom resource:
-
-```yaml
-  values:
-    postgresql:
-      enabled: repl{{ ConfigOptionEquals `postgres_type` `embedded_postgres`}}
-```
-As shown above, `postgresql` is included only when the user selects the `embedded_postgres` option.
-
-To ensure the vendor portal includes this conditional `postgresql` resource in `.airgap` bundles, add the same `postgresql` value to the `builder` key with `enabled` set to `true`:
-
-```yaml
-  builder:
-    postgresql:
-      enabled: true
-```
+<HelmBuilderRequirements/>
