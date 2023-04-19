@@ -11,11 +11,12 @@ Released on April 19, 2023
 Support for Kubernetes: 1.24, 1.25, and 1.26
 
 ### New Features {#new-features-1-98-0}
-* The KOTS app archive now includes the folder 'kotsKinds' with all rendered upstream app manifests.
+* Adds support for validating the value of a config item. An item of type `text`, `textarea`, `password`, and `file` can now be matched against a regex pattern. For more information, please refer to the [Config Validation](/reference/custom-resource-config#validation) page.
+* Application archive now includes the folder `kotsKinds` with all rendered upstream application manifests.
 
 ### Improvements {#improvements-1-98-0}
-* kots/web: Multi app installs are now sorted by `createdBy` date with the latest install at the top.
-* admin console: updated spacing and font sizes to improve visual grouping of items on config page.
+* Multi app installs are now sorted by `createdBy` date with the latest install at the top.
+* Updates spacing and font sizes to improve visual grouping of items on config page.
 * Updates Kustomize from v4.5.7 to v5.0.1 which resolves CVE-2022-27664, CVE-2022-41723, CVE-2022-41723, and CVE-2022-28948 with high severity and CVE-2022-41717 with medium severity.
 * Updates the Helm binary included in the kotsadm image from 3.11.0 to 3.11.3 to resolve CVE-2022-41723 and CVE-2023-25173 with high severity and CVE-2023-25153 with medium severity.
 * Updates the github.com/opencontainers/runc module to v1.1.5 to resolve CVE-2023-27561 with high severity.
