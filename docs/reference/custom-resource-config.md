@@ -12,6 +12,7 @@ import ReadonlyExample from "../partials/config/_readonlyExample.mdx"
 import WhenExample from "../partials/config/_whenExample.mdx" 
 import AffixExample from "../partials/config/_affixExample.mdx" 
 import HelpTextExample from "../partials/config/_helpTextExample.mdx"
+import RegexValidationExample from "../partials/config/_regexValidationExample.mdx"
 
 # Config
 
@@ -458,6 +459,32 @@ Items have a `name`, `title`, `type`, and other optional properties.
   </tr>    
 </table>
 
+### `validation`
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td><p>The <code>validation</code> property can be used to validate an item's value, <br/>allowing you to specify custom validation rules that determine whether the value is valid or not.</p></td>
+  </tr>
+  <tr>
+    <th>Required?</th>
+    <td>No</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td>
+      <p>Validates and returns if <code>password</code> value is not matching the regex. <br/>The <code>jwt_token</code> file content is only validated if the file is uploaded since it is optional.</p>
+      <RegexValidationExample/>
+    </td>
+  </tr>
+  <tr>
+    <th>Supports Go templates?</th>
+    <td>No</td>
+  </tr>    
+</table>
+
+For information about supported validation types, see [Validation](#item-validation).
+
 ## Item Types
 
 The section describes each of the item types:
@@ -597,7 +624,30 @@ For more information, see [HTML `<textarea/>` Tag](https://www.w3schools.com/tag
 ```
 ![Text area field on the configuration screen](../../static/images/config-screen-textarea.png)
 
+## Item Validation
 
+A `validation` can be specified to validate the value of an item. `regex` is the supported validation type.
+
+Based on specified validation rules, the item is validated and a validation message is returned if the validation rule is not satisfied. A default message is returned if there is an empty validation message.
+
+The validation rules are as follows:
+
+- Items of types `text`, `textarea`, `password`, and `file` are validated, but `repeatable` items are not validated.
+- If an item is marked as `hidden` or if its `when` condition is set to `false`, the item is not validated.
+- If an item is `required`, validation is applied and an error is returned if the validation fails.
+- If an item is set as not `required`, the item is validated only when its value is not empty.
+- If a group `when` condition is set to `false`, the items in the group are not validated.
+
+### `regex`
+A `regex` can be used to validate whether an item's value matches the provided regular expression `pattern`. The regex pattern should be of the [RE2 regular expression](https://github.com/google/re2/wiki/Syntax) type and can validate the `text`, `textarea`, `password`, and `file` field types.
+
+ The default validation message is `Value does not match regex`.
+
+<RegexValidationExample/>
+
+![Password validation error](../../static/images/regex_password_validation_error.png)
+
+![File validation error only when uploaded](../../static/images/regex_file_validation_error.png)
 
 ## Repeatable Items
 
@@ -605,7 +655,8 @@ A repeatable config item copies a YAML array entry or YAML document for as many 
 
 **Note**: Repeatable Items only work for text, textarea, and file types.
 
-To make an item repeatable, set `repeatable` to true
+To make an item repeatable, set `repeatable` to true:
+
 ```yaml
     - name: ports
       items:
@@ -616,7 +667,8 @@ To make an item repeatable, set `repeatable` to true
 ```
 
 Repeatable items do not use the `default` or `value` fields, but instead a `valuesByGroup` field.
-`valuesByGroup` should have an entry for the parent Config Group name, with all default `key:value` pairs nested in the group.  At least one default entry is required for the repeatable item.
+`valuesByGroup` must have an entry for the parent Config Group name, with all of the default `key:value` pairs nested in the group. At least one default entry is required for the repeatable item:
+
 ```yaml
     valuesByGroup:
       ports:
@@ -625,17 +677,20 @@ Repeatable items do not use the `default` or `value` fields, but instead a `valu
 
 ### Template Targets
 
-Repeatable items require at least 1 `template` to be provided.  The `template` defines a YAML target in the manifest to duplicate for each repeatable item.
+Repeatable items require that you provide at least one `template`. The `template` defines a YAML target in the manifest to duplicate for each repeatable item.
 
 Required fields for a template target are `apiVersion`, `kind`, and `name`.
 
-`namespace` is an optional template target field to match a yaml document's `metadata.namespace` property, in case the same filename is used across multiple namespaces.
+`namespace` is an optional template target field to match a YAML document's `metadata.namespace` property when the same filename is used across multiple namespaces.
 
-The entire YAML node at the target will be duplicated, including nested fields.
+The entire YAML node at the target is duplicated, including nested fields.
 
-The `yamlPath` field of the `template` must denote index position for arrays using square brackets.  For example, `spec.ports[0]` to select the first port entry for duplication.  All duplicate YAML will be appended to the final array in the `yamlPath`.
+The `yamlPath` field of the `template` must denote index position for arrays using square brackets.  For example, `spec.ports[0]` selects the first port entry for duplication. All duplicate YAML is appended to the final array in the `yamlPath`.
 
-`yamlPath` **must** end with an array.
+`yamlPath` must end with an array.
+
+**Example:**
+
 ```yaml
     templates:
     - apiVersion: v1
@@ -645,22 +700,23 @@ The `yamlPath` field of the `template` must denote index position for arrays usi
       yamlPath: 'spec.ports[0]'
 ```
 
-If the `yamlPath` field is not present, the entire YAML document matching the `template` will be replaced with a copy for each of the repeatable item entries.  The `metadata.name` field of the new doc will reflect the repeatable item `key`.
+If the `yamlPath` field is not present, the entire YAML document matching the `template` is replaced with a copy for each of the repeatable item entries. The `metadata.name` field of the new document reflects the repeatable item `key`.
 
 ### Templating
 
-The repeat items are called with the delimeters `repl[[ .itemName ]]` or `[[repl .itemName ]]`.  These delimiters can be placed anywhere inside of the `yamlPath` target node.
+The repeat items are called with the delimeters `repl[[ .itemName ]]` or `[[repl .itemName ]]`. These delimiters can be placed anywhere inside of the `yamlPath` target node:
+
 ```yaml
     - port: repl{{ ConfigOption "[[repl .service_port ]]" | ParseInt }}
       name: '[[repl .service_port ]]'
 ```
-This repeatable templating is not compatible with sprig templating functions.  It is designed for inserting repeatable `keys` into the manifest. Repeatable templating **can** be placed inside of Replicated config templating.
+This repeatable templating is not compatible with sprig templating functions. It is designed for inserting repeatable `keys` into the manifest. Repeatable templating can be placed inside of Replicated config templating.
 
 ### Ordering
 
 Repeatable templates are processed before config template rendering.
 
-Repeatable items are processed in order of the template targets in the Config Spec file.  Effectively, this ordering is from the top of the Config Spec, by Config Group, by Config Item, and then by template target.
+Repeatable items are processed in order of the template targets in the Config Spec file. Effectively, this ordering is from the top of the Config Spec, by Config Group, by Config Item, and then by template target.
 
 ```yaml
     - name: ports
@@ -707,8 +763,11 @@ Repeatable items are processed in order of the template targets in the Config Sp
 ## Repeatable Examples
 
 In these examples, the default service port of "80" is included with the release. Port 443 is added as an additional port on the admin console configuration page, which is stored in the ConfigValues file.
-### Repeatable Item Example for a YamlPath
-**Config custom resource manifest file**
+
+### Repeatable Item Example for a yamlPath
+
+**Config custom resource manifest file:**
+
 ```yaml
     - name: ports
       items:
@@ -727,7 +786,7 @@ In these examples, the default service port of "80" is included with the release
             port-default-1: "80"
 ```
 
-**Config values**
+**Config values:**
 ```yaml
 apiVersion: kots.io/v1beta1
 kind: ConfigValues
@@ -743,7 +802,7 @@ spec:
       value: "443"
 ```
 
-**Template manifest**
+**Template manifest:**
 ```yaml
 apiVersion: v1
 kind: Service
@@ -760,9 +819,10 @@ spec:
     component: my-deployment
 ```
 
-**After repeatable config processing**
+**After repeatable config processing:**
 
-**Note**: this phase is internal to configuration rendering for the app manager. This example is only provided to further explain the templating process.*
+**Note**: This phase is internal to configuration rendering for the app manager. This example is only provided to further explain the templating process.*
+
 ```yaml
 apiVersion: v1
 kind: Service
@@ -781,7 +841,7 @@ spec:
     component: my-deployment
 ```
 
-**Resulting manifest**
+**Resulting manifest:**
 ```yaml
 apiVersion: v1
 kind: Service
@@ -801,7 +861,7 @@ spec:
 ```
 
 ### Repeatable Item Example for an Entire Document
-**Config spec**
+**Config spec:**
 ```yaml
     - name: ports
       items:
@@ -819,7 +879,7 @@ spec:
             port-default-1: "80"
 ```
 
-**Config values**
+**Config values:**
 ```yaml
 apiVersion: kots.io/v1beta1
 kind: ConfigValues
@@ -835,7 +895,7 @@ spec:
       value: "443"
 ```
 
-**Template manifest**
+**Template manifest:**
 ```yaml
 apiVersion: v1
 kind: Service
@@ -851,9 +911,10 @@ spec:
     component: repl[[ .service_port ]]
 ```
 
-**After repeatable config processing**
+**After repeatable config processing:**
 
-**Note**: this phase is internal to configuration rendering for the app manager. This example is only provided to further explain the templating process.*
+**Note**: This phase is internal to configuration rendering for the app manager. This example is only provided to further explain the templating process.*
+
 ```yaml
 apiVersion: v1
 kind: Service
@@ -882,7 +943,7 @@ spec:
     component: service_port-8jdn2bgd
 ```
 
-**Resulting manifest**
+**Resulting manifest:**
 ```yaml
 apiVersion: v1
 kind: Service

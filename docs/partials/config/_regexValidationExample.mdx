@@ -1,0 +1,19 @@
+```
+- name: smtp-settings
+  title: SMTP Settings
+  - name: smtp_password
+    title: SMTP Password
+    type: password
+    required: true
+    validation:
+      regex: 
+        pattern: ^(?:[\w@#$%^&+=!*()_\-{}[\]:;"'<>,.?\/|]){8,16}$
+        message: The password must be between 8 and 16 characters long and can contain a combination of uppercase letters, lowercase letters, digits, and special characters.
+  - name: jwt_token
+    title: JWT token
+    type: file
+    validation:
+      regex: 
+        pattern: ^[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]*$
+        message: Upload a file with valid JWT token.            
+```
