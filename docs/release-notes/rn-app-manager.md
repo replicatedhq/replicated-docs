@@ -4,6 +4,28 @@ toc_max_heading_level: 2
 
 # App Manager Release Notes
 
+## 1.98.0
+
+Released on April 19, 2023
+
+Support for Kubernetes: 1.24, 1.25, and 1.26
+
+### New Features {#new-features-1-98-0}
+* The KOTS app archive now includes the folder 'kotsKinds' with all rendered upstream app manifests.
+
+### Improvements {#improvements-1-98-0}
+* kots/web: Multi app installs are now sorted by `createdBy` date with the latest install at the top.
+* admin console: updated spacing and font sizes to improve visual grouping of items on config page.
+* Updates Kustomize from v4.5.7 to v5.0.1 which resolves CVE-2022-27664, CVE-2022-41723, CVE-2022-41723, and CVE-2022-28948 with high severity and CVE-2022-41717 with medium severity.
+* Updates the Helm binary included in the kotsadm image from 3.11.0 to 3.11.3 to resolve CVE-2022-41723 and CVE-2023-25173 with high severity and CVE-2023-25153 with medium severity.
+* Updates the github.com/opencontainers/runc module to v1.1.5 to resolve CVE-2023-27561 with high severity.
+* Updates the minio/minio image to RELEASE.2023-04-13T03-08-07Z to resolve CVE-2023-0361 with medium severity.
+* Updates the minio/mc image to RELEASE.2023-04-12T02-21-51Z to resolve CVE-2023-0361 with medium severity.
+* Adds support for template functions to the `namespace` and `helmUpgradeFlags` fields of the [HelmChart](/reference/custom-resource-helmchart) custom resource.
+
+### Bug Fixes {#bug-fixes-1-98-0}
+* Fixes an issue where strict security context configurations were not applied in OpenShift environments when the `--strict-security-context` flag is passed to the [kots install](https://docs.replicated.com/reference/kots-cli-install) or [kots admin-console upgrade](https://docs.replicated.com/reference/kots-cli-admin-console-upgrade) commands.
+
 ## 1.97.0
 
 Released on April 7, 2023
