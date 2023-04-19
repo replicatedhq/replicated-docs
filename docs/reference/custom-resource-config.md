@@ -12,6 +12,7 @@ import ReadonlyExample from "../partials/config/_readonlyExample.mdx"
 import WhenExample from "../partials/config/_whenExample.mdx" 
 import AffixExample from "../partials/config/_affixExample.mdx" 
 import HelpTextExample from "../partials/config/_helpTextExample.mdx"
+import RegexValidationExample from "../partials/config/_regexValidationExample.mdx"
 
 # Config
 
@@ -459,23 +460,28 @@ Items have a `name`, `title`, `type`, and other optional properties.
 </table>
 
 ### `validation`
-The `validation` property can be used to validate an item's value, allowing you to specify custom validation rules that determine whether the value is valid or not.
 
-:::note
-Only works for `text`, `textarea`, `password` and `file` field types.
-:::
-
-```
-    - name: smtp-settings
-      title: SMTP Settings
-      - name: smtp_password
-        title: SMTP Password
-        type: password
-        validation:
-          regex: 
-            pattern: ^(?:[\w@#$%^&+=!*()_\-{}[\]:;"'<>,.?\/|]){8,16}$
-            message: The password must be between 8 and 16 characters long and can contain a combination of uppercase letters, lowercase letters, digits, and special characters.
-```
+<table>
+  <tr>
+    <th>Description</th>
+    <td><p>The <code>validation</code> property can be used to validate an item's value, allowing you to specify custom validation rules that determine whether the value is valid or not.</p></td>
+  </tr>
+  <tr>
+    <th>Required?</th>
+    <td>No</td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td>
+      <p>Validates and returns if <code>password</code> value is not matching the regex. The <code>jwt_token</code> file content is only validated if the file is uploaded since it is optional.</p>
+      <RegexValidationExample/>
+    </td>
+  </tr>
+  <tr>
+    <th>Supports Go templates?</th>
+    <td>No</td>
+  </tr>    
+</table>
 
 For information about supported validation types, see [Validation](#item-validation).
 
