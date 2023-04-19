@@ -494,15 +494,13 @@ See the [`ConfigOptionData`](template-functions-config-context#configoptiondata)
         type: file
 ```
 
-![File input field on the configuration screen](/images/config-screen-file.png)
+![File input field on the configuration screen](../../static/images/config-screen-file.png)
 
 ### `heading`
 The `heading` type allows you to display a group heading as a sub-element within a group.
 This is useful when you would like to use a config group to group items together, but still separate the items visually.
 
-:::
-The `heading` item type is not supported.
-:::
+**Note**: The `heading` item type is not supported.	
 
 ```yaml
     - name: ldap_settings
@@ -515,7 +513,7 @@ The `heading` item type is not supported.
       ...
 ```
 
-![Heading on the configuration screen](/images/config-screen-heading.png)
+![Heading on the configuration screen](../../static/images/config-screen-heading.png)
 
 ### `label`
 The `label` type allows you to display an input label.
@@ -530,7 +528,7 @@ The `label` type allows you to display an input label.
         type: label
         title: "Note: The system will send you an email every hour."
 ```
-![Email address label on the configuration screen](/images/config-screen-label.png)
+![Email address label on the configuration screen](../../static/images/config-screen-label.png)
 
 ### `password`
 The `password` type is a text field that hides the character input.
@@ -542,7 +540,7 @@ The `password` type is a text field that hides the character input.
       value: "{{repl RandomString 10}}"
 ```
 
-![Password text field on the configuration screen](/images/config-screen-password.png)
+![Password text field on the configuration screen](../../static/images/config-screen-password.png)
 
 ### `select_one`
 The `select_one` type is a special case.
@@ -564,7 +562,7 @@ This type is displayed as radio buttons in the admin console.
           title: Password
 ```
 
-![Select one field on the configuration screen](/images/config-screen-selectone.png)
+![Select one field on the configuration screen](../../static/images/config-screen-selectone.png)
 
 ### `text`
 A `text` input field allows users to enter a string value.
@@ -576,7 +574,7 @@ Optionally, all additional properties are available for this input type.
       type: text
 ```
 
-![Text field on the configuration screen](/images/config-screen-text.png)
+![Text field on the configuration screen](../../static/images/config-screen-text.png)
 
 ### `textarea`
 A `textarea` can specify a `props` that will map into the HTML element directly.
@@ -597,8 +595,7 @@ For more information, see [HTML `<textarea/>` Tag](https://www.w3schools.com/tag
         title: Hostname
         type: text
 ```
-![Text area field on the configuration screen](/images/config-screen-textarea.png)
-
+![Text area field on the configuration screen](../../static/images/config-screen-textarea.png)
 
 ## Item Validation
 
@@ -631,9 +628,7 @@ A `regex` can be used to validate whether an item's value matches the provided r
 
 A repeatable config item copies a YAML array entry or YAML document for as many values as are provided. Any number of values can be added to a repeatable item to generate additional copies.
 
-:::note
-Repeatable items only work for text, textarea, and file types.
-:::
+**Note**: Repeatable Items only work for text, textarea, and file types.
 
 To make an item repeatable, set `repeatable` to true:
 
@@ -801,9 +796,7 @@ spec:
 
 **After repeatable config processing:**
 
-:::note
-This phase is internal to configuration rendering for the app manager. This example is only provided to further explain the templating process.
-:::
+**Note**: This phase is internal to configuration rendering for the app manager. This example is only provided to further explain the templating process.*
 
 ```yaml
 apiVersion: v1
@@ -895,9 +888,7 @@ spec:
 
 **After repeatable config processing:**
 
-:::note
-This phase is internal to configuration rendering for the app manager. This example is only provided to further explain the templating process.
-:::
+**Note**: This phase is internal to configuration rendering for the app manager. This example is only provided to further explain the templating process.*
 
 ```yaml
 apiVersion: v1
