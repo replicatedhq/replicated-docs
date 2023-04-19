@@ -91,13 +91,13 @@ The version of the chart. This value must match the `version` field from a `Char
 Specifies the release name to use when installing this instance of the Helm chart.
 Defaults to the chart name.
 
-The release name must be unique across all charts deployed in the namespace. To deploy multiple instances of the same Helm chart in a release, you must add an additional HelmChart custom resource with a unique [release name](custom-resource-helmchart#chartreleasename) for each instance of the Helm chart.
+The release name must be unique across all charts deployed in the namespace. To deploy multiple instances of the same Helm chart in a release, you must add an additional HelmChart custom resource with a unique release name for each instance of the Helm chart.
 
 Must be a valid Helm release name that matches regex `^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$` and is no longer than 53 characters.
 
 ## helmVersion
 
-Identifies the Helm Version used to render the chart. **Supported value:** `v3`
+Identifies the Helm Version used to render the chart. Acceptable values are `v2` or `v3`. `v3` is the default when no value is specified, and `v3` is required for native Helm installations.
 
 :::note
 <VersionLimitation/>
@@ -220,8 +220,8 @@ If you specify a namespace in the HelmChart `namespace` field, you must also inc
 
 ## builder
 
-To create an `.airgap` bundle for a release that uses Helm charts, the Replicated vendor portal renders templates of the Helm charts with `helm template`. The `builder` key specifies the values from the Helm chart `values.yaml` file that the vendor portal uses to create the `.airgap` bundle. For more information, see [Air Gap](/vendor/helm-overview#air-gap) in _About Deploying Helm Charts_.
+To create an `.airgap` bundle for a release that uses Helm charts, the Replicated vendor portal renders templates of the Helm charts with `helm template`. The `builder` key specifies the values from the Helm chart `values.yaml` file that the vendor portal uses to create the `.airgap` bundle.
 
 <HelmBuilderRequirements/>
 
-For more information about using the `builder` key, see [Air Gap](/vendor/helm-overview#air-gap) in _About Deploying Helm Charts_.
+For more information, see [Air Gap](/vendor/helm-overview#air-gap) in _About Deploying Helm Charts_.
