@@ -214,14 +214,12 @@ The following table describes how `values` and `optionalValues` are merged based
 
 ## namespace
 
-The `namespace` key specifies an alternative namespace where the app manager installs the Helm chart. **Default:** If no alternative namespace is provided, then the Helm chart is installed in the same namespace as the admin console.
+The `namespace` key specifies an alternative namespace where the app manager installs the Helm chart. **Default:** The Helm chart is installed in the same namespace as the admin console. 
 
 If you specify a namespace in the HelmChart `namespace` field, you must also include the same namespace in the `additionalNamespaces` field of the Application custom resource manifest file. The app manager creates the namespaces listed in the `additionalNamespaces` field during installation. For more information, see [additionalNamespaces](custom-resource-application#additionalnamespaces) in the _Application_ reference.
 
 ## builder
 
-To create an `.airgap` bundle for a release that uses Helm charts, the Replicated vendor portal renders templates of the Helm charts with `helm template`. The `builder` key specifies the values from the Helm chart `values.yaml` file that the vendor portal uses to create the `.airgap` bundle.
+To create an `.airgap` bundle for a release that uses Helm charts, the Replicated vendor portal renders templates of the Helm charts with `helm template`. The `builder` key specifies the values from the Helm chart `values.yaml` file that the vendor portal uses to create the `.airgap` bundle. For more information, see [Air Gap](/vendor/helm-overview#air-gap) in _About Deploying Helm Charts_.
 
 <HelmBuilderRequirements/>
-
-For more information, see [Air Gap](/vendor/helm-overview#air-gap) in _About Deploying Helm Charts_.
