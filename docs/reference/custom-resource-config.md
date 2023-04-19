@@ -649,7 +649,13 @@ A `regex` can be used to validate whether an item's value matches the provided r
         regex: 
           pattern: ^[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]*$
           message: Upload a file with valid JWT token.
-  ```  
+  ```
+
+  <RegexValidationExample/>
+
+![Password validation error](../../../static/images/regex_password_validation_error.png)
+
+![File validation error only when uploaded](../../../static/images/regex_file_validation_error.png)
 
 ## Repeatable Items
 
