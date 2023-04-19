@@ -11,7 +11,7 @@ Released on April 19, 2023
 Support for Kubernetes: 1.24, 1.25, and 1.26
 
 ### New Features {#new-features-1-98-0}
-* Adds support for validating the value of Config items with the type `text`, `textarea`, `password`, or `file` by matching the item against a regex pattern. For more information, see [Config Validation](/reference/custom-resource-config#validation).
+* Adds support for validating config items with type `text`, `textarea`, `password`, or `file` by matching the item's values against a regex pattern. For more information, see [Config Validation](/reference/custom-resource-config#validation).
 * Adds the folder `kotsKinds` to the application archive with all rendered upstream application manifests.
 
 ### Improvements {#improvements-1-98-0}
