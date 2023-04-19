@@ -458,6 +458,27 @@ Items have a `name`, `title`, `type`, and other optional properties.
   </tr>    
 </table>
 
+### `validation`
+The `validation` property can be used to validate an item's value, allowing you to specify custom validation rules that determine whether the value is valid or not.
+
+:::note
+Only works for `text`, `textarea`, `password` and `file` field types.
+:::
+
+```
+    - name: smtp-settings
+      title: SMTP Settings
+      - name: smtp_password
+        title: SMTP Password
+        type: password
+        validation:
+          regex: 
+            pattern: ^(?:[\w@#$%^&+=!*()_\-{}[\]:;"'<>,.?\/|]){8,16}$
+            message: The password must be between 8 and 16 characters long and can contain a combination of uppercase letters, lowercase letters, digits, and special characters.
+```
+
+For information about supported validation types, see [Validation](#item-validation).
+
 ## Item Types
 
 The section describes each of the item types:
