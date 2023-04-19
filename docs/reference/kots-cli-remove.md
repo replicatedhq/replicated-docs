@@ -23,26 +23,29 @@ This command supports all [global flags](kots-cli-global-flags) and also:
   <tr>
     <td><code>--force</code></td>
     <td><code>bool</code></td>
-    <td><p>Removes the reference even if the application has already been deployed.</p></td>
+    <td>
+      <p>Removes the reference even if the application has already been deployed.</p>
+    </td>
   </tr>
   <tr>
     <td><code>--undeploy</code></td>
     <td><code>bool</code></td>
-    <td><p>Un-deploys the application by deleting all its resources from the cluster. When `--undeploy` is set, the `--force` flag is set automatically.</p>
-      <p>To un-deploy an application, <code>kots remove</code> uses the <code>kots.io/app-slug:</code> annotation that the app manager adds to all resources deployed with <code>kubectl apply</code>. So any standalone manifests in the release, and any resources deployed by the Replicated Helm method, are identified by that annotation and removed. Resources are only created in the namespace where the app manager is deployed and the list of additionalNamespaces (docs), so resources are only deleted in those namespaces.</p></td>
+    <td>
+      <p>Un-deploys the application by deleting all its resources from the cluster. When <code>--undeploy</code> is set, the <code>--force</code> flag is set automatically.</p>
+      <p><strong>Note:</strong> <code>--undeploy</code> can remove application resources only from the namespace where the app manager is installed and from any namespaces provided in the <a href="custom-resource-application#additionalnamespaces">additionalNamespaces</a> field in the Application custom resource.</p>
+      <p>The following describes how <code>--undeploy</code> removes application resources:</p>
+      <ul>
+        <li>For applications deployed with <code>kubectl apply</code> (including standalone manifest files and Helm charts deployed with the <a href="/vendor/helm-overview#replicated-helm">Replicated Helm</a> method), <code>--undeploy</code> identifies and removes resources based on a <code>kots.io/app-slug: &lt;app_slug&gt;</code> annotation that is applied to all application resources during deployment. </li>
+        <li>For applications deployed with the <a href="/vendor/helm-overview#native">Native Helm</a> method, <code>--undeploy</code> runs <code>helm uninstall</code>.</li>
+      </ul>  
+      </td>
   </tr>
   <tr>
     <td><code>-n</code></td>
     <td><code>string</code></td>
-    <td><p>The namespace of the application to remove. Use `default` for the default namespace.</p></td>
+    <td><p>The namespace where the target application is deployed. Use <code>default</code> for the default namespace.</p></td>
   </tr>
 </table>
-
-| Flag         | Type   | Description                                                            |
-|:-------------|--------|------------------------------------------------------------------------|
-| `--force`    |  bool  | Removes the reference even if the application has already been deployed. |
-| `--undeploy` |  bool  | Undeploys the application by deleting all its resources from the cluster. When `--undeploy` is set, the `--force` flag is set automatically. KOTS adds the `kots.io/app-slug: <app-slug>` annotation to all resources it deploys. This annotation is used to delete the resources that were deployed by kubectl apply. So any standalone manifests in the release, and any resources deployed by the Replicated Helm method, are identified by that annotation and removed. Resources are only created in the namespace where the app manager is deployed and the list of additionalNamespaces (docs), so resources are only deleted in those namespaces.|
-| `-n`         | string | The namespace of the application to remove. Use `default` for the default namespace. |
 
 ### Example
 ```bash
