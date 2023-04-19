@@ -12,7 +12,7 @@ Support for Kubernetes: 1.24, 1.25, and 1.26
 
 ### New Features {#new-features-1-98-0}
 * Adds support for validating config items with type `text`, `textarea`, `password`, or `file` by matching the item's values against a regex pattern. For more information, see [Config Validation](/reference/custom-resource-config#validation).
-* Adds the folder `kotsKinds` to the application archive with all rendered upstream application manifests.
+* Adds a new `kotsKinds` directory to the application archive which includes the rendered KOTS custom resources.
 
 ### Improvements {#improvements-1-98-0}
 * Sorts multi-application installations in the admin console by their `createdBy` date with the most recent installation date at the top.
