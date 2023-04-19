@@ -186,7 +186,7 @@ For more information about the syntax for template functions, see [About Templat
 `recursiveMerge` is available in the app manager v1.38.0 and later.
 :::
 
-The `recursiveMerge` boolean defines how the app manager merges the `values` and `optionalValues` datasets when the conditional statement in the `when` field is true.
+The `recursiveMerge` boolean defines how the app manager merges the `values` and `optionalValues` datasets when the conditional statement in the `when` field is `true`.
 
 The admin console uses the values from this merged dataset and from the Helm chart `values.yaml` file when deploying the application. For an example of recursive merge, see [Example: Recursive Merge](/vendor/helm-optional-value-keys#example-recursive-merge) in _Configuring Optional Value Keys_.        
 
@@ -214,7 +214,7 @@ The following table describes how `values` and `optionalValues` are merged based
 
 ## namespace
 
-The `namespace` key specifies an alternative namespace where the app manager installs the Helm chart. By default, if no alternative namespace is provided, then the Helm chart is installed in the same namespace as the admin console.
+The `namespace` key specifies an alternative namespace where the app manager installs the Helm chart. **Default:** If no alternative namespace is provided, then the Helm chart is installed in the same namespace as the admin console.
 
 If you specify a namespace in the HelmChart `namespace` field, you must also include the same namespace in the `additionalNamespaces` field of the Application custom resource manifest file. The app manager creates the namespaces listed in the `additionalNamespaces` field during installation. For more information, see [additionalNamespaces](custom-resource-application#additionalnamespaces) in the _Application_ reference.
 
