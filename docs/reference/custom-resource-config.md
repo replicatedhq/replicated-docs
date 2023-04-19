@@ -196,7 +196,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
   </tr>
   <tr>
     <th>Supports Go templates?</th>
-    <td>No</td>
+    <td>Yes</td>
   </tr>    
 </table>
 
