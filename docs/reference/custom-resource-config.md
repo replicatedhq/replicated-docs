@@ -636,22 +636,14 @@ The validation rules are as follows:
 - If an item is marked as `hidden` or if its `when` condition is set to `false`, the item is not validated.
 - If an item is `required`, validation is applied and an error is returned if the validation fails.
 - If an item is set as not `required`, the item is validated only when its value is not empty.
+- If a group `when` condition is set to `false`, the items in the group are not validated.
 
 ### `regex`
 A `regex` can be used to validate whether an item's value matches the provided regular expression `pattern`. The regex pattern should be of the [RE2 regular expression](https://github.com/google/re2/wiki/Syntax) type and can validate the `text`, `textarea`, `password`, and `file` field types.
 
  The default validation message is `Value does not match regex`.
-```yaml
-    - name: jwt_token
-      title: JWT token
-      type: file
-      validation:
-        regex: 
-          pattern: ^[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]*$
-          message: Upload a file with valid JWT token.
-  ```
 
-  <RegexValidationExample/>
+<RegexValidationExample/>
 
 ![Password validation error](../../static/images/regex_password_validation_error.png)
 
