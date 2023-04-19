@@ -464,7 +464,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
 <table>
   <tr>
     <th>Description</th>
-    <td><p>The <code>validation</code> property can be used to validate an item's value, allowing you to specify custom validation rules that determine whether the value is valid or not.</p></td>
+    <td><p>The <code>validation</code> property can be used to validate an item's value, <br/>allowing you to specify custom validation rules that determine whether the value is valid or not.</p></td>
   </tr>
   <tr>
     <th>Required?</th>
@@ -473,7 +473,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
   <tr>
     <th>Example</th>
     <td>
-      <p>Validates and returns if <code>password</code> value is not matching the regex. The <code>jwt_token</code> file content is only validated if the file is uploaded since it is optional.</p>
+      <p>Validates and returns if <code>password</code> value is not matching the regex. <br/>The <code>jwt_token</code> file content is only validated if the file is uploaded since it is optional.</p>
       <RegexValidationExample/>
     </td>
   </tr>
