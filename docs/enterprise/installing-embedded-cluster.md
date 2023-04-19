@@ -23,7 +23,6 @@ Complete the following prerequisites:
 
 <HaLoadBalancerPrereq/>
     
-
 ## Install the Application {#online}
 
 This procedure explains how to install the the application in an online environment, with and without high availability mode.

@@ -1,5 +1,4 @@
 import PrereqsExistingCluster from "../partials/install/_prereqs-existing-cluster.mdx"
-import InstallAdmconsoleOnline from "../partials/install/_install-admconsole-online.mdx"
 
 # Online Installation in Existing Clusters
 
@@ -59,4 +58,4 @@ To install the application:
 
     After the `kots install` command installs the admin console and the application on the cluster, it creates a port forward to the admin console. The admin console is exposed internally on the cluster and can only be accessed using a port forward.
 
-1. Log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
+1. Log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup with the UI](installing-app-setup).
