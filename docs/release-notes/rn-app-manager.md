@@ -11,12 +11,12 @@ Released on April 19, 2023
 Support for Kubernetes: 1.24, 1.25, and 1.26
 
 ### New Features {#new-features-1-98-0}
-* Adds support for validating the value of a config item. An item of type `text`, `textarea`, `password`, and `file` can now be matched against a regex pattern. For more information, please refer to the [Config Validation](/reference/custom-resource-config#validation) page.
-* Application archive now includes the folder `kotsKinds` with all rendered upstream application manifests.
+* Adds support for validating the value of Config items with the type `text`, `textarea`, `password`, or `file` by matching the item against a regex pattern. For more information, see [Config Validation](/reference/custom-resource-config#validation).
+* Adds the folder `kotsKinds` to the application archive with all rendered upstream application manifests.
 
 ### Improvements {#improvements-1-98-0}
-* Multi app installs are now sorted by `createdBy` date with the latest install at the top.
-* Updates spacing and font sizes to improve visual grouping of items on config page.
+* Sorts multi-application installations in the admin console by their `createdBy` date with the most recent installation date at the top.
+* Updates spacing and font sizes to improve visual grouping of items on admin console Config page.
 * Updates Kustomize from v4.5.7 to v5.0.1 which resolves CVE-2022-27664, CVE-2022-41723, CVE-2022-41723, and CVE-2022-28948 with high severity and CVE-2022-41717 with medium severity.
 * Updates the Helm binary included in the kotsadm image from 3.11.0 to 3.11.3 to resolve CVE-2022-41723 and CVE-2023-25173 with high severity and CVE-2023-25153 with medium severity.
 * Updates the github.com/opencontainers/runc module to v1.1.5 to resolve CVE-2023-27561 with high severity.
@@ -25,7 +25,7 @@ Support for Kubernetes: 1.24, 1.25, and 1.26
 * Adds support for template functions to the `namespace` and `helmUpgradeFlags` fields of the [HelmChart](/reference/custom-resource-helmchart) custom resource.
 
 ### Bug Fixes {#bug-fixes-1-98-0}
-* Fixes an issue where strict security context configurations were not applied in OpenShift environments when the `--strict-security-context` flag is passed to the [kots install](https://docs.replicated.com/reference/kots-cli-install) or [kots admin-console upgrade](https://docs.replicated.com/reference/kots-cli-admin-console-upgrade) commands.
+* Fixes an issue where strict security context configurations were not applied in OpenShift environments when the `--strict-security-context` flag was passed to the [kots install](https://docs.replicated.com/reference/kots-cli-install) or [kots admin-console upgrade](https://docs.replicated.com/reference/kots-cli-admin-console-upgrade) commands.
 
 ## 1.97.0
 
