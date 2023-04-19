@@ -4,6 +4,19 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.04.13-0
+
+Released on April 13, 2023
+
+### New Features {#new-features-v2023-04-13-0}
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.3.
+* Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) version 2.8.1-20230406 to address the following high severity CVE: CVE-2023-0464.
+* Updates the [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.10.2 with new kurlsh/s3cmd image to address the following high severity CVE: CVE-2023-0464.
+
+### Bug Fixes {#bug-fixes-v2023-04-13-0}
+* Fixes an issue that causes migrations from Docker to containerd on multi-node clusters to fail with the error "Downgrading containerd is not supported".
+* Fixes an issue that could cause installations to fail with the error "/var/lib/kurl does not exist" when using the `kurl-install-directory` flag.
+
 ## v2023.04.11-0
 
 Released on April 11, 2023
@@ -16,8 +29,8 @@ Released on April 11, 2023
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-03-24T21-41-23Z.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.8.0, 0.63.0-45.8.1, and 0.63.0-45.9.1.
 * Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.24.3.
-* Adds [Registry add-on](https://kurl.sh/docs/add-ons/registry) version 2.8.1.
 * Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.20.
+* Updates the [Registry add-on](https://kurl.sh/docs/add-ons/registry) version 2.8.1 with new kurlsh/s3cmd image to address the following high severity CVE: CVE-2023-0464.
 
 ### Improvements {#improvements-v2023-04-11-0}
 * Adds a preflight check to ensure sufficient disk space is available for the Containerd, Rook, and OpenEBS add-ons.
