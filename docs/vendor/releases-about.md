@@ -71,7 +71,7 @@ Then, you enable semantic versioning on that channel. The admin console sequence
 - 2.0.0
 
 
-For information about how to enable and use semantic versioning, see [Using Semantic Versioning](releases-semver-using).
+For information about how to configure semantic versioning, see [Configuring Semantic Versioning](releases-semver-configuring).
 
 For information about how enterprise application users check for application updates in the admin console, see [Checking for Updates](/enterprise/updating-apps#checking-for-updates).
 

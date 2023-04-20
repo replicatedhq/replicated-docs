@@ -1,3 +1,6 @@
+import SemanticVersionNumber from "../partials/releases/_semantic-version-number.mdx"
+
+
 # Configuring Semantic Versioning
 
 This topic describes how to use semantic versioning in channels and releases.
@@ -12,7 +15,7 @@ Semantic versioning is available with the Replicated app manager v1.58.0 and lat
 
 When you enable semantic versioning on a channel, the version label for a release promoted to that channel is verified to ensure that it is a valid semantic version. For more information about valid semantic versions, see [Semantic Versioning 2.0.0](https://semver.org).
 
-If you enable semantic versioning for a channel and then promote releases to it, Replicated recommends that you do not later disable semantic versioning for that channel.Semantic versioning is available with the Replicated app manager v1.58.0 and later. Note the following:
+If you enable semantic versioning for a channel and then promote releases to it, Replicated recommends that you do not later disable semantic versioning for that channel. Note the following:
 
 - For applications created in the vendor portal on or after February 23, 2022, semantic versioning is enabled by default on the Stable and Beta channels. Semantic versioning is disabled on the Unstable channel by default.
 
@@ -26,7 +29,7 @@ For information about semantic versioning sequencing with app manager, see [Sema
 
 ## Configure Semantic Versioning with the Vendor Portal
 
-You can enable semantic versioning on the channel, if it is not enabled by default. If you enable semantic versioning for a channel and then promote releases to it, Replicated recommends that you do not later disable semantic versioning for that channel. For more information about semantic versioning and defaults, see [Semantic Versioning](releases-about#semantic-versioning).
+You can enable semantic versioning on the channel, if it is not enabled by default.
 
 ### Using the Vendor Portal
 
@@ -38,7 +41,9 @@ To configure semantic versioning using the vendor portal:
 
     ![Channel Setting Dialog](/images/channel-settings-dialog.png)
 
-1. Promote a draft release to the channel where semantic versioning is enabled. For **Version label**, you must use a valid semantic version using the X.Y.Z format, where X is the major version, Y is the minor version, and Z is the patch version. These must be non-negative integers and cannot contain leading zeroes. Each element must increase numerically.
+1. Promote a draft release to the channel where semantic versioning is enabled. 
+
+    For **Version label**: <SemanticVersionNumber/>
 
 ### Using the CLI
 
@@ -52,7 +57,7 @@ To configure semantic versioning using the CLI:
     replicated channel ls
     ```
 
-1. Note the channel ID for the channel where you want to enable semantic versioning.
+    Note the channel ID for the channel where you want to enable semantic versioning.
 
 1. Run the following command to enable semantic versioning on the channel: 
 
@@ -68,7 +73,9 @@ To configure semantic versioning using the CLI:
     replicated release create [flags]
     ```
 
-    Note the sequence number in the output.
+    For information about the flag options, see [`release create`](/reference/replicated-cli-release-create) in the _replicated CLI_ reference.
+
+    Note the `SEQUENCE` number in the output.
 
 1. Run the following command to promote the draft release:
 
@@ -80,4 +87,4 @@ To configure semantic versioning using the CLI:
     
     - `SEQUENCE` with the integer number corresponding to a specific release.
     - `CHANNEL_ID` with the ID of the target channel or the case sensitive name of the channel.
-    - `VERSION_NUMBER` with the semantic version number.
+    - `VERSION_NUMBER` with the semantic version number. <SemanticVersionNumber/>
