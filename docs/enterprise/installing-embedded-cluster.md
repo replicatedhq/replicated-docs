@@ -22,6 +22,7 @@ Complete the following prerequisites:
 <PrereqsEmbeddedCluster/>
 
 <HaLoadBalancerPrereq/>
+
     
 ## Install the Application
 
@@ -63,13 +64,13 @@ To install the application:
 
 1. Install the application using one of the following methods:
 
-  - **Admin console:** Use the `kotsadm` and password from the previous step to log into the admin console. For information about using the admin console, see [Deploying the Application using the Admin Console](installing-app-setup).
+    - **Admin console:** Use the `kotsadm` and password from the previous step to log into the admin console. For information about using the admin console, see [Deploying the Application using the Admin Console](installing-app-setup).
 
-  - **kots CLI:**
+    - **kots CLI:**
 
-      1. Install the kots CLI. See [Install without Root Access](/reference/kots-cli-getting-started#install-without-root-access) in the _Installing the kots CLI_ reference section.
+        1. Install the kots CLI. See [Install without Root Access](/reference/kots-cli-getting-started#install-without-root-access) in the _Installing the kots CLI_ reference section.
 
-      1. Use the following command to install the application. For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
+        1. Use the following command to install the application. For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
 
           ```
             kubectl kots install APP_NAME \
@@ -80,11 +81,11 @@ To install the application:
           ```
 
           Replace:
-          * `APP_NAME` with the name for the application.
-          * `PATH_TO_LICENSE_FILE` with the path to the license file.
-          * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file.
-          * `ADMIN_CONSOLE_NAMESPACE` with the namespace where the admin console will be installed. **Default:** `default`
-          * `PASSWORD` with a shared password.
+            * `APP_NAME` with the name for the application.
+            * `PATH_TO_LICENSE_FILE` with the path to the license file.
+            * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file.
+            * `ADMIN_CONSOLE_NAMESPACE` with the namespace where the admin console will be installed. **Default:** `default`
+            * `PASSWORD` with a shared password.
 
 ## Next Step
 
