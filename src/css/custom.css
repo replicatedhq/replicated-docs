@@ -146,11 +146,10 @@ ol ol ol {
   display: flex;
   flex-direction: row;
   width: 100%;
-  gap: 25px
+  gap: 0.7em;
 }
 
 .flexContainer ul {
-  padding: 0;
   list-style: none;
   border-radius: 7px;
   border: 1px solid lightgray;
@@ -161,41 +160,37 @@ ol ol ol {
 
 .flexContainer ul:hover {
   border: 1px solid rgba(88,88,88,0.5);
-  background-image: linear-gradient(to bottom right, rgba(88,88,88,0.02), rgba(88,88,88,0.01));
+  background-image: linear-gradient(to bottom right, rgba(88,88,88,0.03), rgba(88,88,88,0.02));
 }
 
 .tileHeader {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap:10px;
-  padding: 25px 0 0 25px;
+  gap:1.0em;
+  padding-top: 1.5em;
+  padding-right: 1.0em;
 }
 
 .tileHeader img {
-  width: auto;
-  height: 50px;
-  background-color:rgba(88,88,88,0.1);
+  min-width: 2.75em;
+  height: 2.75em;
+  background-color:rgba(88,88,88,0.075);
   border-radius: 7px;
 }
 
 .tileHeader p {
-  font-size: larger;
+  font-size: 20px;
 }
 
-.tileDescription {
-  padding: 0 0 0 25px;
+.tileDescription p {
+  padding-right: 1.0em
 }
 
 .tileLink {
   display: flex;
   flex-direction: row;
-  justify-content: left;
-  padding: 0 0 25px 25px;
-}
-
-.tileLink a {
-  text-decoration: none;
+  padding-bottom: 1.5em;
 }
 
 @media (max-width: 1300px) {
