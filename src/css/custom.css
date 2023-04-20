@@ -140,6 +140,70 @@ ol ol ol {
 }
 
 
+/* Home Page */
+
+.flexContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 25px
+}
+
+.flexContainer ul {
+  padding: 0;
+  list-style: none;
+  border-radius: 7px;
+  border: 1px solid lightgray;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.flexContainer ul:hover {
+  border: 1px solid rgba(88,88,88,0.5);
+  background-image: linear-gradient(to bottom right, rgba(88,88,88,0.02), rgba(88,88,88,0.01));
+}
+
+.tileHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap:10px;
+  padding: 25px 0 0 25px;
+}
+
+.tileHeader img {
+  width: auto;
+  height: 50px;
+  background-color:rgba(88,88,88,0.1);
+  border-radius: 7px;
+}
+
+.tileHeader p {
+  font-size: larger;
+}
+
+.tileDescription {
+  padding: 0 0 0 25px;
+}
+
+.tileLink {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  padding: 0 0 25px 25px;
+}
+
+.tileLink a {
+  text-decoration: none;
+}
+
+@media (max-width: 1300px) {
+  .flexContainer {
+    flex-direction: column;
+  }
+}
+
 /* Release Note label styling */
 
 h3[id^="new-features"] {

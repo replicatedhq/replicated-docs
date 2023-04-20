@@ -19,7 +19,7 @@ const sidebars = {
   // But you can create a sidebar manually
 
   tutorialSidebar: [
-
+    'landingPage',
     'intro',
     'intro-replicated',
     {
