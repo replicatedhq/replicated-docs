@@ -156,6 +156,7 @@ ol ol ol {
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .flexContainer ul:hover {
@@ -168,14 +169,12 @@ ol ol ol {
   flex-direction: row;
   align-items: center;
   gap: 1.0em;
-  /* margin-top: 1.5em; */
-  /* margin-right: 1.0em; */
 }
 
 .tileHeader img {
   min-width: 2.75em;
   height: 2.75em;
-  background-color:rgba(88,88,88,0.1);
+  background-color:rgba(255,72,86,0.1);
   border-radius: 7px;
 }
 
