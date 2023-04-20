@@ -50,7 +50,7 @@ The following graphic shows instance sequence numbers on the Replicated admin co
 
 ![Instance sequence numbers](/images/instance-sequences.png)
 
-#### Semantic Versioning Sequence
+#### Semantic Versioning Sequences
 
 For channels with semantic versioning enabled, the admin console sequences instance releases by their semantic versions instead of their promotion dates.
 
