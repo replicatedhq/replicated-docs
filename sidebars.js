@@ -85,6 +85,7 @@ const sidebars = {
       items: [
         'vendor/releases-about',
         'vendor/releases-about-channels',
+        'vendor/releases-semver-using',
         'vendor/releases-creating-channels',
         'vendor/helm-release',
         'vendor/releases-creating-releases',
