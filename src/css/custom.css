@@ -164,6 +164,10 @@ ol ol ol {
   background-image: linear-gradient(to bottom right, rgba(88,88,88,0.03), rgba(88,88,88,0.01));
 }
 
+[data-theme='dark'] .flexContainer ul:hover {
+  background-image: linear-gradient(to bottom right, rgba(88,88,88,0.08), rgba(88,88,88,0.02));
+}
+
 .tileHeader {
   display: flex;
   flex-direction: row;
