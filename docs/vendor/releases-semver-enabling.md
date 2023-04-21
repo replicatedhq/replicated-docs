@@ -19,7 +19,7 @@ If you enable semantic versioning for a channel and then promote releases to it,
 
 You can enable semantic versioning on a channel that already has releases promoted to it without semantic versioning. Any subsequently promoted releases must use semantic versioning. In this case, the channel will have releases with and without semantic version numbers. It can be helpful to understand how Replicated uses sequence numbers to organize and order releases. For information about semantic versioning sequencing, see [Semantic Versioning Sequences](releases-about#semantic-versioning-sequence) in _About Releases_.
 
-## Enable Semantic Versioning with the Vendor Portal
+## Enable Semantic Versioning
 
 You can enable semantic versioning on the channel, if it is not enabled by default.
 
