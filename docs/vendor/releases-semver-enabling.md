@@ -1,9 +1,9 @@
 import SemanticVersionNumber from "../partials/releases/_semantic-version-number.mdx"
 
 
-# Configuring Semantic Versioning
+# Enabling Semantic Versioning
 
-This topic describes how to use semantic versioning in channels and releases.
+This topic describes how to enable semantic versioning in channels and releases.
 
 ## About Semantic Versioning
 
@@ -19,13 +19,13 @@ If you enable semantic versioning for a channel and then promote releases to it,
 
 You can enable semantic versioning on a channel that already has releases promoted to it without semantic versioning. Any subsequently promoted releases must use semantic versioning. In this case, the channel will have releases with and without semantic version numbers. It can be helpful to understand how Replicated uses sequence numbers to organize and order releases. For information about semantic versioning sequencing, see [Semantic Versioning Sequences](releases-about#semantic-versioning-sequence) in _About Releases_.
 
-## Configure Semantic Versioning with the Vendor Portal
+## Enable Semantic Versioning with the Vendor Portal
 
 You can enable semantic versioning on the channel, if it is not enabled by default.
 
 ### Using the Vendor Portal
 
-To configure semantic versioning using the vendor portal:
+To enable semantic versioning using the vendor portal:
 
 1. On the **Channels** page, click the settings icon in the upper right corner of the channel where you want to enable semantic versioning.  
 
@@ -41,7 +41,7 @@ To configure semantic versioning using the vendor portal:
 
 There are many ways to create a release using the command line. It is possible to create a release and promote it to a channel with a single command. This procedure shows how to do it with separate commands to help you understand the process. 
 
-To configure semantic versioning using the CLI:
+To enable semantic versioning using the CLI:
 
 1. Run the following command to get a full list of the channels for you application:
 
