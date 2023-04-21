@@ -1,4 +1,5 @@
 import DockerCompatibility from "../partials/image-registry/_docker-compatibility.mdx"
+import KubernetesCompatibility from "../partials/install/_kubernetes-compatibility.mdx"
 
 # Requirements for Installation
 
@@ -23,23 +24,13 @@ The following table lists the browser requirements for the latest Replicated adm
 
 ## Kubernetes Version Compatibility
 
-Each release of the open source KOTS project maintains compatibility with the current Kubernetes version, and the two most recent versions at the time of its release. This includes support against all patch releases of the corresponding Kubernetes version.
+Each release of the Replicated app manager maintains compatibility with the current Kubernetes version, and the two most recent versions at the time of its release. This includes support against all patch releases of the corresponding Kubernetes version.
 
 Kubernetes versions 1.23 and earlier are end-of-life (EOL). For more information about Kubernetes versions, see [Release History](https://kubernetes.io/releases/) in the Kubernetes documentation.
 
-Replicated recommends using a KOTS version that is compatible with Kubernetes 1.24 and higher.
+Replicated recommends using a version of the app manager that is compatible with Kubernetes 1.24 and higher.
 
-:::note
-The app manager is based on the open source KOTS project. The app manager version is the same as the KOTS version. For example, KOTS v1.92 is the same as the app manager v1.92.
-:::
-
-| KOTS Versions      | Kubernetes Compatibility  |
-|--------------------|---------------------------|
-| v1.96.3 and later  | v1.26, v1.25, 1.24        |
-| v1.93.1 and v1.96.2| v1.26, v1.25, 1.24, v1.23 |
-| v1.71 to v1.93.0   | v1.25, 1.24, v1.23        |
-| v1.66 to v1.70     | v1.23                     |
-| v1.61 to v1.65     | v1.23                     |
+<KubernetesCompatibility/>
 
 
 ## Existing Cluster Requirements
