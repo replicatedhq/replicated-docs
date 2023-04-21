@@ -632,10 +632,9 @@ Based on specified validation rules, the item is validated and a validation mess
 
 The validation rules are as follows:
 
+- An item is validated only when its value is not empty.
 - Items of types `text`, `textarea`, `password`, and `file` are validated, but `repeatable` items are not validated.
 - If an item is marked as `hidden` or if its `when` condition is set to `false`, the item is not validated.
-- If an item is `required`, validation is applied and an error is returned if the validation fails.
-- If an item is set as not `required`, the item is validated only when its value is not empty.
 - If a group `when` condition is set to `false`, the items in the group are not validated.
 
 ### `regex`
