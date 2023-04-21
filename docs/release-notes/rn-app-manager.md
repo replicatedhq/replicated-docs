@@ -2,7 +2,15 @@
 toc_max_heading_level: 2
 ---
 
+import KubernetesCompatibility from "../partials/install/_kubernetes-compatibility.mdx"
+
 # App Manager Release Notes
+
+## Kubernetes Compatibility
+
+The following table lists the versions of Kubernetes that are compatible with each version of the app manager:
+
+<KubernetesCompatibility/>
 
 ## 1.98.0
 
