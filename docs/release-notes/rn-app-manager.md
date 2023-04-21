@@ -6,6 +6,16 @@ import KubernetesCompatibility from "../partials/install/_kubernetes-compatibili
 
 # App Manager Release Notes
 
+## 1.98.1
+
+Released on April 21, 2023
+
+Support for Kubernetes: 1.24, 1.25, and 1.26
+
+### Bug Fixes {#bug-fixes-1-98-1}
+* Fixes an issue where multiple copies of the same Kubernetes resource (e.g. same `kind` and `name`) get deduplicated even if they have a different namespace, which results in only one of them getting deployed to the cluster.
+* Fixes an issue where updating the config fails if a value is not provided for required config items with defaults.
+
 ## Kubernetes Compatibility
 
 The following table lists the versions of Kubernetes that are compatible with each version of the app manager:
