@@ -7,7 +7,7 @@ toc_max_heading_level: 2
 ## 1.98.0
 
 :::important
-The app manager v1.96.0 has a known issue where resources may not be deployed if they share the same values for `apiVersion`, `kind`, and `metadata.name`, but different values for `metadata.namespace`.
+The app manager v1.98.0 has a known issue where resources may not be deployed if they share the same values for `apiVersion`, `kind`, and `metadata.name`, but different values for `metadata.namespace`.
 See [Known Issue](#known-issues-1-96-0) in _1.96.0_ below.
 :::
 
@@ -35,7 +35,7 @@ Support for Kubernetes: 1.24, 1.25, and 1.26
 ## 1.97.0
 
 :::important
-The app manager v1.96.0 has a known issue where resources may not be deployed if they share the same values for `apiVersion`, `kind`, and `metadata.name`, but different values for `metadata.namespace`.
+The app manager v1.97.0 has a known issue where resources may not be deployed if they share the same values for `apiVersion`, `kind`, and `metadata.name`, but different values for `metadata.namespace`.
 See [Known Issue](#known-issues-1-96-0) in _1.96.0_ below.
 :::
 
@@ -54,7 +54,7 @@ Support for Kubernetes: 1.24, 1.25, and 1.26
 ## 1.96.3
 
 :::important
-The app manager v1.96.0 has a known issue where resources may not be deployed if they share the same values for `apiVersion`, `kind`, and `metadata.name`, but different values for `metadata.namespace`.
+The app manager v1.96.3 has a known issue where resources may not be deployed if they share the same values for `apiVersion`, `kind`, and `metadata.name`, but different values for `metadata.namespace`.
 See [Known Issue](#known-issues-1-96-0) in _1.96.0_ below.
 :::
 
@@ -72,7 +72,7 @@ Support for Kubernetes: 1.24, 1.25, and 1.26
 ## 1.96.2
 
 :::important
-The app manager v1.96.0 has a known issue where resources may not be deployed if they share the same values for `apiVersion`, `kind`, and `metadata.name`, but different values for `metadata.namespace`.
+The app manager v1.96.2 has a known issue where resources may not be deployed if they share the same values for `apiVersion`, `kind`, and `metadata.name`, but different values for `metadata.namespace`.
 See [Known Issue](#known-issues-1-96-0) in _1.96.0_ below.
 :::
 
@@ -101,7 +101,7 @@ The app manager v1.96.1 has a known issue that causes application upgrades to fa
 :::
 
 :::important
-The app manager v1.96.0 has a known issue where resources may not be deployed if they share the same values for `apiVersion`, `kind`, and `metadata.name`, but different values for `metadata.namespace`.
+The app manager v1.96.1 has a known issue where resources may not be deployed if they share the same values for `apiVersion`, `kind`, and `metadata.name`, but different values for `metadata.namespace`.
 See [Known Issue](#known-issues-1-96-0) in _1.96.0_ below.
 :::
 
