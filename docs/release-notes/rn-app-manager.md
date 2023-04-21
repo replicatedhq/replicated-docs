@@ -6,6 +6,11 @@ toc_max_heading_level: 2
 
 ## 1.98.0
 
+:::important
+The app manager v1.96.0 has a known issue where resources may not be deployed if they share the same values for `apiVersion`, `kind`, and `metadata.name`, but different values for `metadata.namespace`.
+See [Known Issue](#known-issues-1-96-0) in _1.96.0_ below.
+:::
+
 Released on April 19, 2023
 
 Support for Kubernetes: 1.24, 1.25, and 1.26
@@ -29,6 +34,11 @@ Support for Kubernetes: 1.24, 1.25, and 1.26
 
 ## 1.97.0
 
+:::important
+The app manager v1.96.0 has a known issue where resources may not be deployed if they share the same values for `apiVersion`, `kind`, and `metadata.name`, but different values for `metadata.namespace`.
+See [Known Issue](#known-issues-1-96-0) in _1.96.0_ below.
+:::
+
 Released on April 7, 2023
 
 Support for Kubernetes: 1.24, 1.25, and 1.26
@@ -43,6 +53,11 @@ Support for Kubernetes: 1.24, 1.25, and 1.26
 
 ## 1.96.3
 
+:::important
+The app manager v1.96.0 has a known issue where resources may not be deployed if they share the same values for `apiVersion`, `kind`, and `metadata.name`, but different values for `metadata.namespace`.
+See [Known Issue](#known-issues-1-96-0) in _1.96.0_ below.
+:::
+
 Released on March 29, 2023
 
 Support for Kubernetes: 1.24, 1.25, and 1.26
@@ -55,6 +70,11 @@ Support for Kubernetes: 1.24, 1.25, and 1.26
 * Fixes a bug that caused application upgrades to fail because the app manager attempted to migrate the Helm release secret when the release secret already existed in the release namespace.
 
 ## 1.96.2
+
+:::important
+The app manager v1.96.0 has a known issue where resources may not be deployed if they share the same values for `apiVersion`, `kind`, and `metadata.name`, but different values for `metadata.namespace`.
+See [Known Issue](#known-issues-1-96-0) in _1.96.0_ below.
+:::
 
 Released on March 24, 2023
 
@@ -80,6 +100,11 @@ The app manager v1.96.1 has a known issue that causes application upgrades to fa
  This issue is resolved in the app manager v1.96.2. See [Known Issue](#known-issues-1-95-0) in _1.95.0_ below.
 :::
 
+:::important
+The app manager v1.96.0 has a known issue where resources may not be deployed if they share the same values for `apiVersion`, `kind`, and `metadata.name`, but different values for `metadata.namespace`.
+See [Known Issue](#known-issues-1-96-0) in _1.96.0_ below.
+:::
+
 Released on March 16, 2023
 
 Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
@@ -94,6 +119,11 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 :::important
 The app manager v1.96.0 has a known issue that causes application upgrades to fail for Helm charts that are deployed using the native Helm installation method.
 This issue is resolved in the app manager v1.96.2. See [Known Issue](#known-issues-1-95-0) in _1.95.0_ below.
+:::
+
+:::important
+The app manager v1.96.0 has a known issue where resources may not be deployed if they share the same values for `apiVersion`, `kind`, and `metadata.name`, but different values for `metadata.namespace`.
+See [Known Issue](#known-issues-1-96-0) below.
 :::
 
 Released on March 9, 2023
@@ -113,6 +143,12 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 * Adds a **Rerun** button on the preflights page when an application is initially installed.
 * Fixes an issue where the selected subnavigation tab was not underlined.
 * Fixes an issue where CRDs from subcharts were included in the Secret that Helm stores the release information in. In some cases, this issue could dramatically increase the Secret's size.
+
+### Known Issue {#known-issues-1-96-0}
+
+There is a known issue in the app manager v1.96.0 where resources may not be deployed if they share the same values for `apiVersion`, `kind`, and `metadata.name`, but different values for `metadata.namespace`.
+
+To avoid this known issue, Replicated recommends that you do not upgrade to v1.96.0. To work around this issue in v1.96.0, ensure that each resource has a unique `metadata.name`.
 
 ## 1.95.0
 
