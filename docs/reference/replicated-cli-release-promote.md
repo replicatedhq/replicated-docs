@@ -36,7 +36,7 @@ replicated release promote SEQUENCE CHANNEL_ID [Flags]
   <tr>
     <td><code>--version</code></td>
     <td>string</td>
-    <td>A version label for the release in this channel.</td>
+    <td><p>A version label for the release in this channel.</p><p>If semantic versioning is enabled on the channel, then the version label must be a valid semantic version number. See <a href="/vendor/releases-about#semantic-versioning">Semantic Versioning</a> in <em>About Releases</em>.</p></td>
   </tr>
 </table>
 

@@ -28,9 +28,16 @@ Semantic versioning is available with the Replicated app manager v1.58.0 and lat
 
 - For existing applications created before February 23, 2022, semantic versioning is disabled by default on all channels.
 
-When you enable semantic versioning on a channel, the version label for a release promoted to that channel is verified to ensure that it is a valid semantic version. For more information about valid semantic versions, see [Semantic Versioning 2.0.0](https://semver.org).
+To use semantic versioning:
+
+1. Enable semantic versioning on a channel, if it is not enabled by default.
+1. Assign a semantic version number for the release version label.
+
+When you enable semantic versioning on a channel, releases promoted to that channel are verified to ensure that the version label is a valid semantic version. For more information about valid semantic versions, see [Semantic Versioning 2.0.0](https://semver.org).
 
 If you enable semantic versioning for a channel and then promote releases to it, Replicated recommends that you do not later disable semantic versioning for that channel.
+
+You can enable semantic versioning on a channel that already has releases promoted to it without semantic versioning. Any subsequently promoted releases must use semantic versioning. In this case, the channel will have releases with and without semantic version numbers. It can be helpful to understand how Replicated uses sequence numbers to organize and order releases. For information about semantic versioning sequencing, see [Semantic Versioning Sequences](#semantic-versioning-sequence).
 
 ### Release Properties
 
