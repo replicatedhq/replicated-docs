@@ -2,7 +2,7 @@ import PrereqsExistingCluster from "../partials/install/_prereqs-existing-cluste
 
 # Online Installation in Existing Clusters
 
-This topic describes how to use Replicated to install an application on an existing Kubernetes cluster in an online environment.
+This topic describes how to use Replicated to install an application in an existing Kubernetes cluster in an online environment.
 
 ## Prerequisites
 
@@ -16,7 +16,7 @@ You can install an application to an existing Kubernetes cluster that contains n
 
 To install the application:
 
-1. Run one of the following commands:
+1. Run one of the following commands to install the app manager:
 
     * For the latest version of the application:
 
