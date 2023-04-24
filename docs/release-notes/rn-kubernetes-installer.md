@@ -9,18 +9,18 @@ toc_max_heading_level: 2
 Released on April 24, 2023
 
 ### New Features {#new-features-v2023-04-24-0}
-* The [Kubernetes add-on](https://kurl.sh/docs/add-ons/kubernetes) is no longer limited to two upgrades at a time and can now be upgraded to the latest supported Kubernetes version using a single spec. The previous Kubernetes add-on version will no longer be included in the kURL airgap bundle and it will now be required to download a supplementary bundle to upgrade more than one Kubernetes version.
+* Updates the [Kubernetes add-on](https://kurl.sh/docs/add-ons/kubernetes) to support upgrading Kubernetes by more than two minor versions at the same time using a single spec. For air gap instances, users must provdide a package with the required assets during upgrade. For more information, see [Upgrading](https://kurl.sh/docs/install-with-kurl/upgrading#kubernetes) in the kURL documentation.
 * Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.4.
 * Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.8.1-20230417 and 2.6.5-20230417 to address the following high and critical severity CVEs: CVE-2023-27536, CVE-2023-27533, CVE-2023-27534, CVE-2023-27535.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) versions 0.63.0-45.10.1 and 0.63.0-45.15.0.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-04-13T03-08-07Z.
 
 ### Improvements {#improvements-v2023-04-24-0}
-* kURL will now use the `kurl-install-directory` specified for host os repositories. Previously this was hardcoded to /var/lib/kurl.
+* Updates kURL to use the `kurl-install-directory` specified for host os repositories. Previously, this was hardcoded to `/var/lib/kurl`.
 
 ### Bug Fixes {#bug-fixes-v2023-04-24-0}
-* The tasks.sh reset script will now respect the `kurl-install-directory` flag or discover the directory from the cluster.
-* When running the installer with `ekco-enable-internal-load-balancer` the script will no longer prompt for a load balancer address.
+* Fixes an issue to ensure that the tasks.sh reset script respects the `kurl-install-directory` flag or discovers the directory from the cluster.
+* Fixes an issue that caused the installation script to prompt for a load balancer address when running the installer with `ekco-enable-internal-load-balancer`.
 
 ## v2023.04.13-0
 
