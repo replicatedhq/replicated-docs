@@ -4,6 +4,24 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.04.24-0
+
+Released on April 24, 2023
+
+### New Features {#new-features-v2023-04-24-0}
+* The [Kubernetes add-on](https://kurl.sh/docs/add-ons/kubernetes) is no longer limited to two upgrades at a time and can now be upgraded to the latest supported Kubernetes version using a single spec.
+* Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) version 2.8.1-20230417.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.10.1.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-04-13T03-08-07Z.
+* Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) version 2.6.5-20230417.
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.4.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.15.0.
+
+### Bug Fixes {#bug-fixes-v2023-04-24-0}
+* kURL will now use the `kurl-install-directory` specified for host os repositories. Previously this was hardcoded to /var/lib/kurl.
+* The tasks.sh reset script will now respect the `kurl-install-directory` flag or discover the directory from the cluster.
+* When running the installer with `ekco-enable-internal-load-balancer` it will no longer prompt for a load-balancer.
+
 ## v2023.04.13-0
 
 Released on April 13, 2023
