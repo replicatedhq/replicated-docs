@@ -20,6 +20,20 @@ After you save a release, you can promote it to any of your release channels. Wh
 
 Every customer license file that you create in the vendor portal is assigned to a channel. Each time you promote a new release to a channel, customers assigned to that channel can update their installed application instance to the new release version.
 
+## About Semantic Versioning
+
+Semantic versioning is available with the Replicated app manager v1.58.0 and later. Note the following:
+
+- For applications created in the vendor portal on or after February 23, 2022, semantic versioning is enabled by default on the Stable and Beta channels. Semantic versioning is disabled on the Unstable channel by default.
+
+- For existing applications created before February 23, 2022, semantic versioning is disabled by default on all channels.
+
+When you enable semantic versioning on a channel, releases promoted to that channel are verified to ensure that the version label is a valid semantic version. For more information about valid semantic versions, see [Semantic Versioning 2.0.0](https://semver.org).
+
+If you enable semantic versioning for a channel and then promote releases to it, Replicated recommends that you do not later disable semantic versioning for that channel.
+
+You can enable semantic versioning on a channel that already has releases promoted to it without semantic versioning. Any subsequently promoted releases must use semantic versioning. In this case, the channel will have releases with and without semantic version numbers. It can be helpful to understand how Replicated uses sequence numbers to organize and order releases. For information about semantic versioning sequencing, see [Semantic Versioning Sequences](releases-about#semantic-versioning-sequence).
+
 ### Release Properties
 
 You cannot edit the YAML files in a release after the release is promoted to a channel. However, each release has properties, such as the release notes, the version label, and the required status, that you can edit from the channel Release History page in the vendor portal. For more information, see [About the Channels Page](releases-about-channels#about-the-channels-page) in _About Release Channels_.
