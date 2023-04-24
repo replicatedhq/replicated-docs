@@ -19,8 +19,8 @@ Released on April 21, 2023
 Support for Kubernetes: 1.24, 1.25, and 1.26
 
 ### Bug Fixes {#bug-fixes-1-98-1}
-* Fixes an issue where multiple copies of the same Kubernetes resource (e.g. same `kind` and `name`) get deduplicated even if they have a different namespace, which results in only one of them getting deployed to the cluster.
-* Fixes an issue where updating the config fails if a value is not provided for required config items that have defaults, even if they are hidden.
+* Fixes an issue where multiple copies of the same Kubernetes resource (for example, the same `kind` and `name`) were deduplicated even if they had a different namespace. This deduplication resulted in the app manager deploying only one of the resources to the cluster.
+* Fixes an issue that caused config updates to fail when the user did not provide a value for a required config item with a default value, even if the item was hidden.
 
 ## 1.98.0
 
