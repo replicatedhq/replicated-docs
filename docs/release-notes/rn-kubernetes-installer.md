@@ -11,7 +11,7 @@ Released on April 24, 2023
 ### New Features {#new-features-v2023-04-24-0}
 * The [Kubernetes add-on](https://kurl.sh/docs/add-ons/kubernetes) is no longer limited to two upgrades at a time and can now be upgraded to the latest supported Kubernetes version using a single spec.
 * Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.4.
-* Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.8.1-20230417 and 2.6.5-20230417.
+* Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.8.1-20230417 and 2.6.5-20230417 to address the following high and critical severity CVEs: CVE-2023-27536, CVE-2023-27533, CVE-2023-27534, CVE-2023-27535.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) versions 0.63.0-45.10.1 and 0.63.0-45.15.0.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-04-13T03-08-07Z.
 
