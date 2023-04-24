@@ -1,6 +1,6 @@
 # Creating a Helm Chart Package
 
-To include a Helm chart in a release, you must first package the Helm chart, including any of its dependencies, as a `.tgz` file. Then, add the `.tgz` Helm chart package to your release.
+Before you can include a Helm chart in a release, you must first package the Helm chart, including any of its dependencies, as a `.tgz` file. Then, you add the `.tgz` Helm chart package to your release.
 
 There are different steps for creating the Helm chart package depending on if the Helm chart source is in a remote chart repository such as Artifact Hub, or in a local directory.
 
@@ -46,3 +46,7 @@ To create a Helm chart package:
       ```
 
       The Helm chart, including any dependencies, is packaged and copied to your current directory in a `.tgz` file. The file uses the naming convention: `CHART_NAME-VERSION.tgz`. For example, `postgresql-8.1.2.tgz`.
+
+## Next Step
+
+Use the Helm Chart Package to create a Helm release. See [Creating Releases with Helm Charts](helm-release).
