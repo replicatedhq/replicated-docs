@@ -10,12 +10,10 @@ Released on April 24, 2023
 
 ### New Features {#new-features-v2023-04-24-0}
 * The [Kubernetes add-on](https://kurl.sh/docs/add-ons/kubernetes) is no longer limited to two upgrades at a time and can now be upgraded to the latest supported Kubernetes version using a single spec.
-* Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) version 2.8.1-20230417.
-* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.10.1.
+* Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.8.1-20230417 and 2.6.5-20230417.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) versions 0.63.0-45.10.1 and 0.63.0-45.15.0.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-04-13T03-08-07Z.
-* Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) version 2.6.5-20230417.
 * Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.4.
-* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.15.0.
 
 ### Bug Fixes {#bug-fixes-v2023-04-24-0}
 * kURL will now use the `kurl-install-directory` specified for host os repositories. Previously this was hardcoded to /var/lib/kurl.
