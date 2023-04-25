@@ -127,5 +127,5 @@ To update the cluster in an air gap environment:
 1. <UpgradePrompt/>
    
    :::note
-   If Kubernetes must be upgraded by more than one minor version, the script automatically searches for the required Kubernetes assets in the `/var/lib/kurl/assets/` directory. If the assets are not available, the script provides a command to download the assets as a `tar.gz` package.
+   If Kubernetes must be upgraded by more than one minor version, the script automatically searches for the required Kubernetes assets in the `/var/lib/kurl/assets/` directory. If the assets are not available, the script prints a command to download the assets as a `tar.gz` package. Download and provide the absolute path to the package when prompted to continue with the upgrade.
    :::
