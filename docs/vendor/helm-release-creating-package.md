@@ -49,4 +49,4 @@ To create a Helm chart package:
 
 ## Next Step
 
-Use the Helm Chart Package to create a Helm release. See [Creating Releases with Helm Charts](helm-release).
+Use the Helm chart package to create a Helm release. See [Creating Releases with Helm Charts](helm-release).
