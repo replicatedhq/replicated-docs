@@ -1,12 +1,12 @@
-* **installer-spec-file**: If you used the `installer-spec-file` flag to pass a `patch.yaml` file when you ran the installation script previously, you must include the `installer-spec-file` flag with the same `patch.yaml` file when you rerun the installation script. This prevents the installer from overwriting any configuration from your `patch.yaml` file and making changes to the add-ons in your cluster. For example: `curl https://kurl.sh/latest | sudo bash -s installer-spec-file="./patch.yaml"`
+* **installer-spec-file**: If you used the `installer-spec-file` flag to pass a `patch.yaml` file when you installed, you must pass the same `patch.yaml` file when you upgrade. This prevents the installer from overwriting any configuration from your `patch.yaml` file and making changes to the add-ons in your cluster. For example:
 
-* **app-version-label**: By default, the KOTS add-on in the Kubernetes installer specification also upgrades your application to the latest version when you run the installation script.
+   ```
+   curl https://kurl.sh/latest | sudo bash -s installer-spec-file="./patch.yaml"
+   ```
 
-   You can specify a target application version with the `app-version-label` flag. Or, to avoid upgrading your application version, set the `app-version-label` flag to the currently installed application version.
+* **app-version-label**: By default, the script also upgrades your application to the latest version when you run the installation script.
 
-   **Example**
-
-   In the following example, the script updates the application to version 1.5.0:
+   You can specify a target application version with the `app-version-label` flag. To avoid upgrading your application version, set the `app-version-label` flag to the currently installed application version. For example:
 
    ```
    curl https://kurl.sh/latest | sudo bash -s app-version-label=1.5.0
