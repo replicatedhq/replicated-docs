@@ -87,8 +87,8 @@ const sidebars = {
         'vendor/releases-about-channels',
         'vendor/releases-creating-channels',
         'vendor/helm-release-creating-package',
-        'vendor/helm-release',
         'vendor/releases-creating-releases',
+        'vendor/releases-creating-cli',
         {
           type: 'category',
           label: 'Integrating with CI/CD',
@@ -97,7 +97,6 @@ const sidebars = {
             'vendor/tutorial-ci-cd-integration',
           ],
         },
-        `vendor/releases-updating`,
       ],
     },
     {
@@ -106,6 +105,7 @@ const sidebars = {
       items: [
         'vendor/helm-overview',
         'vendor/helm-install',
+        'vendor/helm-release',
         'vendor/helm-native-helm-install-order',
         'vendor/helm-optional-charts',
         'vendor/helm-optional-value-keys',
