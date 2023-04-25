@@ -45,7 +45,7 @@ If there are no active instances of your application, then the adoption rate gra
 
 ## Adoption Metrics {#metrics}
 
-The **Adoption** section also includes metrics that are key indicators of how frequently your customers discover and complete upgrades to new versions of your application.
+The **Adoption** section includes metrics that show how frequently your customers discover and complete upgrades to new versions of your application. It is important that your users adopt new versions of your application so that they have access to the latest features and bug fixes. Additionally, when most of your users are on the latest versions, you can also reduce the number of versions for which you provide support and maintain documentation.
 
 The following shows an example of the metrics in the **Adoption rate** section:
 
