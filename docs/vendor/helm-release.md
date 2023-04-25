@@ -1,14 +1,14 @@
-# About Native Helm and Replicated Helm
+# About HelmChart Custom Resources and Processing
 
-Replicated supports delivering an enterprise application as Helm charts, or including Helm charts as components of an application. An application can use more than one Helm chart, and can use more than a single instance of any Helm chart.
+This topic describes how the HelmChart custom resource works with native Helm and Replicated Helm releases. It also describes how the Replicated app manager processes native Helm charts for deployment.
 
-To deploy a Helm chart, start by adding the Helm chart to a release in the Replicated vendor portal. For information about how to create a new release, see [Creating Releases with the Vendor Portal](releases-creating-release).
+## About the HelmChart Custom Resource
 
-You can add one or more Helm charts to a release in the vendor portal by uploading each Helm chart as a `.tgz` file. This allows you to use Replicated to distribute applications that are packaged in part or in whole with Helm. The procedures in this topic apply to native Helm installations (recommended) and Replicated Helm installations. For more information, see [About Deploying Helm Charts](helm-overview).
+Replicated supports using native Helm and Replicated Helm to deliver an enterprise applications as Helm charts, or including Helm charts as components of an application. An application can use more than one Helm chart, and can use more than a single instance of any Helm chart.
 
-When you add a Helm chart to a release, Replicated displays a copy of the `Chart.yaml` file and the `values.yaml` file from the Helm chart to the release. 
+You start by adding add one or more Helm charts to a release in the vendor portal by uploading each Helm chart as a `.tgz` file. When you add a Helm chart to a release, Replicated displays a copy of the `Chart.yaml` file and the `values.yaml` file from the Helm chart to the release. For information about how to create a new release, see [Creating Releases with the Vendor Portal](releases-creating-release).
 
-You must also have a HelmChart custom resource manifest file for each Helm chart that you add to a release. By default, Replicated adds the HelmChart custom resource if you are using the vendor portal, which you use to configure how the app manager deploys the chart. If you are using the CLI, you must add the HelmChart custom resource manually.
+You must also add a HelmChart custom resource manifest file for each Helm chart that you add to a release. When you drag and drop a Helm chart <code>.tgz</code> to a release in the vendor portal, Replicated automatically creates a corresponding HelmChart custom resource manifest that uses the naming convention <code>CHART_NAME.yaml</code>. For example, <code>postgresql.yaml</code>. If you are using the CLI, you must add the HelmChart custom resource manually.
 
 The following table provides more information about these files:
 
@@ -22,13 +22,10 @@ The following table provides more information about these files:
   <td>A HelmChart custom resource is a YAML file with <code>kind: HelmChart</code>.
   <br/>
   <br/>
-  When you drag and drop a Helm chart <code>.tgz</code> to a release in the vendor portal, Replicated automatically creates a corresponding HelmChart custom resource manifest that uses the naming convention <code>CHART_NAME.yaml</code>. For example, <code>postgresql.yaml</code>.
+  The HelmChart custom resource references the <code>.tgz</code> export of the Helm chart and provides the necessary instructions to the app manager for processing and preparing the chart for deployment.
   <br/>
   <br/>
-  The HelmChart custom resource references the <code>.tgz</code> export of the Helm chart and provides the necessary instructions to the Replicated app manager for processing and preparing the chart for deployment.
-  <br/>
-  <br/>
-  For more information, see <a href="../reference/custom-resource-helmchart">HelmChart</a> in the <em>Custom Resources</em> section.</td>
+  For more information, see <a href="/reference/custom-resource-helmchart">HelmChart</a> in the <em>Custom Resources</em> section.</td>
 </tr>
 <tr>
   <td>Chart.yaml</td>
@@ -46,13 +43,9 @@ For example, the following screenshot shows how a Postgres Helm chart displays i
 
 [View a larger image](/images/postgres-helm-chart.png)
 
-## About Updating Replicated Helm Releases
+## About Native Helm Processing
 
-`useHelmInstall` is a chart-level flag that is set to `true` to specify the use of native Helm. Native Helm can only be set for new charts. Modifying this flag in existing charts for existing applications is not supported because charts installed with Replicated Helm cannot be migrated to native Helm.
-
-However, you can add native Helm charts to an existing release that already uses Replicated Helm. Each chart is installed using the specified installation method for that chart, indicated by the value of the `useHelmInstall` flag.
-
-## Native Helm Processing
+When you use native Helm deployment, the app manager renders your Helm manifests with Replicated templating in the HelmChart custom resource, without making changes to your`Chart.yaml` and `values.yaml` file. The templating maps to your `values.yaml` file and allows the app manager to deploy the native Helm charts.
 
 The following diagram shows how Replicated processes native Helm charts for deployment to a Kubernetes cluster:
 
@@ -136,3 +129,10 @@ To deploy Helm charts using the native Helm method, the app manager does the fol
 1. **Deploys the Helm chart**: The app manager runs `kustomize build` for any Kustomization files in the `overlays/downstream/charts` directory. The app manager then packages the resulting manifests into a new chart for Helm to consume.
 
    Finally, the app manager runs `helm upgrade -i <release-name> <chart> --timeout 3600s -n <namespace>`. The Helm binary processes hooks and weights, applies manifests to the Kubernetes cluster, and saves a release secret similar to `sh.helm.release.v1.chart-name.v1`. Helm uses this secret to track upgrades and rollbacks of applications.
+
+## About Updating Replicated Helm Releases
+
+`useHelmInstall` is a chart-level flag that is set to `true` to specify the use of native Helm. Native Helm can only be set for new charts. Modifying this flag in existing charts for existing applications is not supported because charts installed with Replicated Helm cannot be migrated to native Helm.
+
+However, you can add native Helm charts to an existing release that already uses Replicated Helm. Each chart is installed using the specified installation method for that chart, indicated by the value of the `useHelmInstall` flag.
+
