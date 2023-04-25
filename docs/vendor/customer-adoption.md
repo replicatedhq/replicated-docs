@@ -47,13 +47,13 @@ If there are no active instances of your application, then the adoption rate gra
 
 The **Adoption** section includes metrics that show how frequently your customers discover and complete upgrades to new versions of your application. It is important that your users adopt new versions of your application so that they have access to the latest features and bug fixes. Additionally, when most of your users are on the latest versions, you can also reduce the number of versions for which you provide support and maintain documentation.
 
-The following shows an example of the metrics in the **Adoption rate** section:
+The following shows an example of the metrics in the **Adoption** section:
 
 ![Adoption rate metrics showing](/images/adoption_rate_metrics.png)
 
 [View a larger version of this image](/images/adoption_rate_metrics.png)
 
-As shown in the image above, the **Adoption rate** section displays the following metrics:
+As shown in the image above, the **Adoption** section displays the following metrics:
 * Instances on last three versions
 * Unique versions
 * Median relative age
@@ -61,7 +61,7 @@ As shown in the image above, the **Adoption rate** section displays the followin
 
 Based on the time period selected, each metric includes an arrow that shows the change in value compared to the previous period. For example, if the median relative age today is 68 days, the selected time period is three months, and three months ago the median relative age was 55 days, then the metric would show an upward-facing arrow with an increase of 13 days. 
 
-The following table describes each metric in the **Adoption rate** section, including the formula used to calculate its value and the recommended trend for the metric over time: 
+The following table describes each metric in the **Adoption** section, including the formula used to calculate its value and the recommended trend for the metric over time: 
 
 <table>
   <tbody>
