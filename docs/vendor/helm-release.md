@@ -22,7 +22,7 @@ The following table provides more information about these files:
   <td>A HelmChart custom resource is a YAML file with <code>kind: HelmChart</code>.
   <br/>
   <br/>
-  The HelmChart custom resource references the <code>.tgz</code> export of the Helm chart and provides the necessary instructions to the app manager for processing and preparing the chart for deployment.
+  The HelmChart custom resource references the <code>.tgz</code> export of the Helm chart. You configure this file, which provides the necessary instructions to the app manager for processing and preparing the chart for deployment.
   <br/>
   <br/>
   For more information, see <a href="/reference/custom-resource-helmchart">HelmChart</a> in the <em>Custom Resources</em> section.</td>
