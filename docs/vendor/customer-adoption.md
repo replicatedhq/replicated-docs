@@ -29,7 +29,7 @@ You can filter the graph and metrics in the **Adoption** report by:
 
 ## Adoption Graph {#graph}
 
-The **Adoption** report includes a graph that shows the percent of active instances that are running different versions of your application on each day within the selected time period.
+The **Adoption** report includes a graph that shows the percent of active instances that are running different versions of your application within the selected time period.
 
 The following shows an example of an adoption rate graph with three months of data:
 
@@ -37,7 +37,7 @@ The following shows an example of an adoption rate graph with three months of da
 
 [View a larger version of this image](/images/adoption_rate_graph.png)
 
-As shown in the image above, the graph plots the number of active instances in each week in the selected time period. Additionally, the graph uses colors to represent the application versions that were active in each week. The key to the left of the graph shows the unique color that is assigned to each application version. You can use this color-coding to see at a glance the percentage of active instances that were running different versions of your application across the selected time period.
+As shown in the image above, the graph plots the number of active instances in each week in the selected time period. Additionally, the graph uses colors to represent the application versions that were active in each week. The key to the left of the graph shows the unique color that is assigned to each application version. You can use this color-coding to see at a glance the percent of active instances that were running different versions of your application across the selected time period.
 
 You can also hover over a color-coded section in the graph to view the number and percentage of active instances that were running the version in a given period.
 
