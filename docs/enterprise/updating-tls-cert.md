@@ -10,7 +10,7 @@ For information about TLS renewal for registry and Kubernetes control plane with
 
 If you are using a custom TLS certificate in a Kubernetes installer cluster, you manually upload a new certificate when the previous one expires.                
 
-:::warning
+:::important
 Adding the `acceptAnonymousUploads` annotation temporarily creates a vulnerability for an attacker to maliciously upload TLS certificates. After TLS certificates have been uploaded, the vulnerability is closed again.
 
 Replicated recommends that you complete this upload process quickly to minimize the vulnerability risk.
