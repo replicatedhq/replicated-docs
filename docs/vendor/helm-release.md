@@ -45,7 +45,7 @@ For example, the following screenshot shows how a Postgres Helm chart displays i
 
 ## About Native Helm Processing
 
-When you use native Helm deployment, the app manager renders your Helm manifests with Replicated templating in the HelmChart custom resource, without making changes to your`Chart.yaml` and `values.yaml` file. The templating maps to your `values.yaml` file and allows the app manager to deploy the native Helm charts.
+When you use native Helm deployment, the app manager renders your Helm manifests with Replicated templating in the HelmChart custom resource, without making changes to your `Chart.yaml` and `values.yaml` file. The templating maps to your `values.yaml` file and allows the app manager to deploy the native Helm charts.
 
 The following diagram shows how Replicated processes native Helm charts for deployment to a Kubernetes cluster:
 
