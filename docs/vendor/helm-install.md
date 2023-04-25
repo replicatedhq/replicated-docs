@@ -11,7 +11,7 @@ Some enterprise users prefer or require a Helm chart to install using the `helm`
 ## Prerequisites
 
 To support installations with the helm CLI, you must:
-  * Have an application that contains one or more Helm charts. For information about how to create a release using an existing Helm chart, see [Creating Releases with Helm Charts](helm-release).
+  * Have an application that contains one or more Helm charts. For information about how to create a release, see [Creating Releases with the Vendor Portal](releases-creating-release).
   * If your application uses private images, update your Helm chart to deliver the required image pull secret and to reference the Replicated proxy service. For more information, see [Using Private Registries for helm CLI Installations (Beta)](helm-image-registry).
 
 ## About Supporting helm CLI installations {#about}
@@ -137,7 +137,7 @@ To conditionally include and exclude the `admin-console` Helm chart:
 
    Helm Install installations read this `true` value from the `values.yaml` file and include the `admin-console` Helm chart in the deployment.
 
-1. Package your Helm chart, and add the packaged chart to a release in the Replicated vendor portal. For more information, see [Creating Releases with Helm Charts](helm-release#add-a-helm-chart-to-a-release).
+1. Package your Helm chart, and add the packaged chart to a release in the Replicated vendor portal. For more information, see [Creating Releases with the Vendor Portal](releases-creating-release).
 
 1. In the release, create or open the HelmChart custom resource manifest file. A HelmChart custom resource manifest file has `kind: HelmChart` and `apiVersion: kots.io/v1beta1`. For more information, see [HelmChart](/reference/custom-resource-helmchart) in the _References_ section.
 

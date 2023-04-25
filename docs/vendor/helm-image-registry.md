@@ -108,7 +108,7 @@ To deliver customer-specific image pull secrets for a private registry:
           name: http
     ```
 
-1. Package your Helm chart and add the packaged chart to a release in the Replicated vendor portal. For more information, see [Creating Releases with Helm Charts](helm-release).
+1. Package your Helm chart and add the packaged chart to a release in the Replicated vendor portal. For more information, see [Creating Releases with the Vendor Portal](releases-creating-release).
 
 1. Save and promote the release to a development environment to test your changes.  
 
@@ -168,7 +168,7 @@ To update the image name to reference the proxy service:
 
    The example above shows how to reference both the `apiImageRepository` and `apiImageTag` fields from the previous example.
 
-1. Package your Helm chart and add the packaged chart to a release in the Replicated vendor portal. For more information, see [Creating Releases with Helm Charts](helm-release).
+1. Package your Helm chart and add the packaged chart to a release in the Replicated vendor portal. For more information, see [Creating Releases with Vendor Portal](releases-creating-release).
 
 1. Save and promote the release to a development environment to test your changes.
 

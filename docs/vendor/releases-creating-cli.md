@@ -1,12 +1,17 @@
+import PrereqsCli from "../partials/releases/_prereqs-cli.mdx"
+
+
 # Creating and Editing Releases Using the CLI
 
-### Prerequisites
+This topic describes how to use the replicated CLI to create and promote versions of your application.
+
+<RepositoryCicdNote/>
+
+## Prerequisites
 
 <PrereqsCli/>
 
-### Create and Promote a Release
-
-This procedure shows how to create a new release using local application files and the replicated CLI.
+## Create a Release
 
 To create and promote a new release:
 

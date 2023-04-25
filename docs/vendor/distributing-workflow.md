@@ -26,7 +26,7 @@ The following diagram is a visual representation of the steps that follow for cr
 
 ![Initial Release Workflow](/images/packaging-first-iteration.png)
 
-[View a larger version of this image](../../static/images/packaging-first-iteration.png)
+[View a larger version of this image](/images/packaging-first-iteration.png)
 
 Complete the following procedures to import your files, create, and test your first release:
 
@@ -47,7 +47,7 @@ Complete the following procedures to import your files, create, and test your fi
       </tr>
       <tr>
         <td>Helm charts</td>
-        <td>If your application is already packaged using Helm charts, see <a href="helm-release">Creating Releases with Helm Charts</a>.</td>
+        <td>If your application is already packaged using Helm charts, see <a href="releases-creating-release">Creating Releases with the Vendor Portal</a>.</td>
       </tr>
       <tr>
         <td>Kubernetes Operators</td>
@@ -65,7 +65,7 @@ Complete the following procedures to import your files, create, and test your fi
 
 1. Create a license file in the vendor portal that contains entitlement information for your customer. You also need a license file to test your application in the admin console. See [Creating a Customer](releases-creating-customer).
 
-1. Promote the release and test it by installing the release in a development environment with the license file that you created. You can use the environment that you created during one of the recommended tutorials. For information about promoting a release, see [Creating Releases with Helm Charts](helm-release) or [Creating Releases with Standard Manifest Files](releases-creating-releases). For information about installation, see [Overview of Installing an Application](../enterprise/installing-overview).
+1. Promote the release and test it by installing the release in a development environment with the license file that you created. You can use the environment that you created during one of the recommended tutorials. For information about promoting a release, see [Creating Releases with the Vendor Portal](releases-creating-releases). For information about installation, see [Overview of Installing an Application](/enterprise/installing-overview).
 
 Next, add functionality to your release.
 

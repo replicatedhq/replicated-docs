@@ -42,7 +42,7 @@ By default, Replicated uses release sequence numbers to organize and order relea
 
 #### Release Sequences
 
-In the vendor portal, each release is automatically assigned a unique, monotonically-increasing sequence number. You can use this number as a fallback to identify a promoted or draft release, if you do not set the `Version label` field during promotion. For more information, see [Creating Releases with Standard Manifest Files](releases-creating-releases#using-the-vendor-portal) or [Creating Releases with Helm Charts](helm-release#ui).
+In the vendor portal, each release is automatically assigned a unique, monotonically-increasing sequence number. You can use this number as a fallback to identify a promoted or draft release, if you do not set the `Version label` field during promotion. For more information, see [Creating Releases with the Vendor Portal](releases-creating-releases).
 
 The following graphic shows release sequence numbers in the vendor portal:
 
