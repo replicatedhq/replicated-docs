@@ -16,21 +16,17 @@ For more information about how the script updates the versions of Kubernetes, th
 
 ### Kubernetes Updates {#kubernetes}
 
+You can use the installation script to upgrade from any Kubernetes minor versions to the latest supported Kubernetes version using a single spec. This upgrade process steps through minor versions one at a time. For example, upgrades from Kubernetes 1.19.x to 1.26.x step through versions 1.20.x, 1.21x, 1.22.x, 1.23.x, 1.24.x, and 1.25.x before installing 1.26.x.
+
 The installation script automatically detects when the Kubernetes version in your cluster must be updated. When a Kubernetes upgrade is required, the script first prints a prompt: `Drain local node and apply upgrade?`. When you confirm the prompt, it drains and upgrades the local primary node where the script is running.
 
 Then, if there are any remote primary nodes to upgrade, the script drains each sequentially and prints a command that you must run on the node to upgrade. For example, the command that that script prints might look like the following: `curl -sSL https://kurl.sh/myapp/upgrade.sh | sudo bash -s hostname-check=master-node-2 kubernetes-version=v1.24.3`.
 
 The script polls the status of each remote node until it detects that the Kubernetes upgrade is complete. Then, it uncordons the node and proceeds to cordon and drain the next node. This process ensures that only one node is cordoned at a time. After upgrading all primary nodes, the script performs the same operation sequentially on all remote secondary nodes.
 
-### Multi-version Kubernetes Updates {#kubernetes-multi}
+### Air Gap Kubernetes Updates {#kubernetes-air-gap}
 
-The Kubernetes installer supports upgrading at most two minor versions of Kubernetes at a time. When upgrading two minor versions at one time, the installation script first installs the skipped minor version before installing the target version. For example, when you upgrade directly from Kubernetes 1.22.x to 1.24.x, the script first completes the installation of 1.23.x before installing 1.24.x. 
-
-If the script detects that the version of Kubernetes in your cluster is more than two minor versions earlier than the target version, it prints an error message similar to the following: `The currently installed kubernetes version is 1.23.16. The requested version to upgrade to is 1.26.0. Kurl can only be upgraded two minor versions at time. Please install 1.25.x. first.`
-
-To update Kubernetes when your currently installed version is more than two minor versions behind the target version, contact your application vendor for an additional Kubernetes installer installation script that specifies the prerequisite Kubernetes version indicated in the error message.
-
-After you update Kubernetes in your cluster to the prerequisite version, you can continue with the upgrade by running the target installation script. For example, to upgrade from Kubernetes 1.23.x to 1.26.x, first run an installation script that specifies Kubernetes 1.25.x. Then, run the target installation script that specifies 1.26.x.
+For air gap clusters, 
 
 ### Add-ons and App Manager Updates {#add-ons}
 
