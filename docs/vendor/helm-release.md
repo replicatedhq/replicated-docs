@@ -101,7 +101,5 @@ To ensure the vendor portal includes this conditional `postgresql` resource in `
 
 ## Adding Native Helm to Existing Replicated Helm Releases
 
-`useHelmInstall` is a chart-level flag that is set to `true` to specify the use of native Helm. Native Helm can only be set for new charts. Modifying this flag in existing charts for existing applications is not supported because charts installed with Replicated Helm cannot be migrated to native Helm.
-
-However, you can add native Helm charts to an existing release that already uses Replicated Helm. Each chart is installed using the specified installation method for that chart, indicated by the value of the `useHelmInstall` flag.
+Native Helm can only be set for new charts. Charts installed with Replicated Helm cannot be migrated to native Helm. However, you can add native Helm charts to an existing release that already uses Replicated Helm. Each chart is installed using the specified installation method for that chart, indicated by the value of the `useHelmInstall` flag. For more information about this flag, see [`useHelmInstall`](/reference/custom-resource-helmchart#usehelminstall) in _HelmChart_.
 
