@@ -1,3 +1,10 @@
+import NativeHelmLimitations from "../partials/helm/_native-helm-limitations.mdx"
+import TemplateLimitation from "../partials/helm/_helm-template-limitation.mdx"
+import VersionLimitation from "../partials/helm/_helm-version-limitation.mdx"
+import ReplicatedHelmDeprecated from "../partials/helm/_replicated-deprecated.mdx"
+import HooksLimitation from "../partials/helm/_hooks-limitation.mdx"
+
+
 # Configuring Native Helm and Replicated Helm Releases
 
 This topic describes how the HelmChart custom resource works with Replicated app manager for native Helm and Replicated Helm releases. It also described the limitations that exist for native Helm and Replicated Helm installations.
