@@ -9,9 +9,9 @@ import HooksLimitation from "../partials/helm/_hooks-limitation.mdx"
 
 This topic describes how the HelmChart custom resource works with Replicated app manager for native Helm and Replicated Helm releases. It also described the limitations that exist for native Helm and Replicated Helm installations.
 
-### Native Helm and Replicated Helm Limitations {#replicated-helm-limitations}
+## Limitations {#replicated-helm-limitations}
 
-The following limitations apply when using the app manager to install and manage Helm charts:
+The following limitations apply when using the app manager to install and manage Helm charts to native Helm and Replicated Helm:
 * <ReplicatedHelmDeprecated/>
 * <TemplateLimitation/>
 * <VersionLimitation/>

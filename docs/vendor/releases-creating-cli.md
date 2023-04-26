@@ -68,9 +68,3 @@ To create and promote a new release:
   ```
   replicated release ls
   ```
-
-Next, if you are using the app manager, you can use the following steps to test the application in your development environment:
-
-- To add a customer, see [Creating a Customer](releases-creating-customer).
-- If you are installing for the first time, see [Overview of Installing an Application with the App Manager](/enterprise/installing-overview) in the _Enterprise_ section. 
-- If you are updating an existing installation, see [Updating an Application](/enterprise/updating-apps) in the _Enterprise_ section.
