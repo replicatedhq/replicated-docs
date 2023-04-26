@@ -29,7 +29,7 @@ The following limitations apply when using the app manager to install and manage
 
 Replicated app manager supports using native Helm and Replicated Helm to deliver an enterprise applications as Helm charts, or including Helm charts as components of an application. An application can use more than one Helm chart, and can use more than a single instance of any Helm chart.
 
-You start by adding add one or more Helm charts to a release in the vendor portal by uploading each Helm chart as a `.tgz` file. When you add a Helm chart to a release, Replicated displays a copy of the `Chart.yaml` file and the `values.yaml` file from the Helm chart to the release. For information about how to create a new release, see [Creating Releases with the Vendor Portal](releases-creating-release).
+You start by adding add one or more Helm charts to a release in the vendor portal by uploading each Helm chart as a `.tgz` file. When you add a Helm chart to a release, Replicated displays a copy of the `Chart.yaml` file and the `values.yaml` file from the Helm chart to the release. For information about how to create a new release, see [Managing Releases with the Vendor Portal](releases-creating-release).
 
 You must also add a HelmChart custom resource manifest file for each Helm chart that you add to a release. When you drag and drop a Helm chart <code>.tgz</code> to a release in the vendor portal, Replicated automatically creates a corresponding HelmChart custom resource manifest that uses the naming convention <code>CHART_NAME.yaml</code>. For example, <code>postgresql.yaml</code>. If you are using the CLI, you must add the HelmChart custom resource manually.
 
