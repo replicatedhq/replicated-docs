@@ -73,7 +73,7 @@ The app manager supports native Helm and Replicated Helm installations into air 
 To create an `.airgap` bundle for a release that uses Helm charts, the Replicated vendor portal renders templates of the Helm charts with `helm template`. To specify which values from the Helm chart `values.yaml` file are included in the `.airgap` bundle, you add a `builder` key in the HelmChart custom resource manifest file. For more information, see [builder](/reference/custom-resource-helmchart#builder) in the _HelmChart_ reference.
 
 :::note
-The helm CLI installation method does not support installations into air gap environments. See [helm CLI Limitations](#helm-cli-limitations) below.
+The helm CLI installation method does not support installations into air gap environments. See [helm CLI Limitations](helm-install#limitations) below.
 :::
 
 <HelmBuilderRequirements/>

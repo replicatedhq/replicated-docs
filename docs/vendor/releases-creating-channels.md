@@ -81,7 +81,7 @@ To archive a channel with the vendor portal or the replicated CLI:
 
 ## Next Step
 
-- [Creating Releases with the Vendor Portal](releases-creating-releases)
+- [Managing Releases with the Vendor Portal](releases-creating-releases)
 
 ## Related Topic
 
