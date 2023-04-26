@@ -1,20 +1,22 @@
-import PrereqsCli from "../partials/releases/_prereqs-cli.mdx"
-
-
 # Creating and Editing Releases Using the CLI
 
 This topic describes how to use the replicated CLI to create and promote versions of your application.
 
 <RepositoryCicdNote/>
 
-## Prerequisites
-
-<PrereqsCli/>
-
 ## Create a Release
+
+Before you can create your first release with Replicated, make sure that the following requirements are met:
+
+- Install the replicated CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
+  
+- Create a new application using the `replicated app create APP_NAME` command. You only need to do this procedure once for each application that you want to deploy. See [`app create`](/reference/replicated-cli-app-create) in _Reference_.
+
+- If you are using Helm charts, make sure that you first create the Helm chart package. See [Creating a Helm Chart Package](helm-release-creating-package).
 
 To create and promote a new release:
 
+1. Export the token environment variable. The token environment variable is valid for a single session. You must export it for each new session.
 1. Make sure that you have a local folder with your application files.
 
 1. Lint the manifest files and ensure that there are no errors in the YAML:
@@ -67,9 +69,7 @@ To create and promote a new release:
   replicated release ls
   ```
 
-## Next Steps
-
-The following are the recommended next steps to test the application in your development environment:
+Next, if you are using the app manager, you can use the following steps to test the application in your development environment:
 
 - To add a customer, see [Creating a Customer](releases-creating-customer).
 - If you are installing for the first time, see [Overview of Installing an Application with the App Manager](/enterprise/installing-overview) in the _Enterprise_ section. 

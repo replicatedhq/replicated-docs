@@ -1,6 +1,5 @@
 import RepositoryCicdNote from "../partials/releases/_repository-cicd-note.mdx"
 import PromoteReleaseUi from "../partials/releases/_promote-release-ui.mdx"
-import PrereqsCli from "../partials/releases/_prereqs-cli.mdx"
 
 # Creating Releases with the Vendor Portal
 
@@ -8,15 +7,15 @@ This topic describes how to use the Replicated vendor portal to create and promo
 
 <RepositoryCicdNote/>
 
-## Prerequisite
-
-If you are using Helm charts, make sure that you first create the Helm chart package. See [Creating a Helm Chart Package](helm-release-creating-package).
-
 ## Create a Release
+
+You can use standard manifest files or Helm charts to create a release. 
+
+If you are using Helm charts, make sure that you first create the Helm chart package. For more information, see [Creating a Helm Chart Package](helm-release-creating-package).
 
 To create and promote a release in the vendor portal:
 
-1. From the **Applications** dropdown list, select **Create an app**.
+1. From the **Applications** dropdown list, select **Create an app** or select an existing application to update.
 
 1. Click **Releases > Create release**. 
 
@@ -37,6 +36,13 @@ To create and promote a release in the vendor portal:
 1. Click **Promote**.
 
   The release appears in an **Active** state on the Releases page.
+
+Next, if you are using the app manager, you can follow these steps to test the application in your development environment:
+
+- To add a customer, see [Creating a Customer](releases-creating-customer).
+- If you are installing for the first time, see [Overview of Installing an Application with the App Manager](/enterprise/installing-overview) in the _Enterprise_ section. 
+- If you are updating an existing installation, see [Updating an Application](/enterprise/updating-apps) in the _Enterprise_ section.
+
 
 ## Edit a Draft Release
 
@@ -70,11 +76,3 @@ To archive one or more releases:
 1. Select one or more releases.
 1. Click **Archive Releases**.
 1. Confirm the archive action when prompted. Alternatively, click **Cancel** to cancel the archiving action.
-
-## Next Steps
-
-The following are the recommended next steps to test the application in your development environment:
-
-- To add a customer, see [Creating a Customer](releases-creating-customer).
-- If you are installing for the first time, see [Overview of Installing an Application with the App Manager](/enterprise/installing-overview) in the _Enterprise_ section. 
-- If you are updating an existing installation, see [Updating an Application](/enterprise/updating-apps) in the _Enterprise_ section.
