@@ -19,8 +19,8 @@ Released on April 26, 2023
 Support for Kubernetes: 1.24, 1.25, and 1.26
 
 ### Bug Fixes {#bug-fixes-1-98-2}
-* Fixes an issue where quotes were being stripped from fields in HelmChart resources, which could lead to unexpected behavior and failed deployments.
-* Fixes an issue where invalid Kustomize patches were being generated for Helm Charts with deeply nested dependencies.
+* Fixes an issue where quotes are stripped from fields in HelmChart custom resources, which leads to unexpected behavior and failed deployments.
+* Fixes an issue where invalid Kustomize patches were being generated for Helm charts with deeply nested dependencies.
 * Fixes an issue where processing application manifests during installation, upgrade, deployment, and configuration might fail if null values are encountered.
 
 ## 1.98.1
