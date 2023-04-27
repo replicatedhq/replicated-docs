@@ -20,10 +20,16 @@ const sidebars = {
 
   appManager: [
     {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},
-    {type:'doc', id: 'intro-replicated', label: 'What is the App Manager?',},
-    'vendor/wip-install-options-about',
-    'vendor/wip-app-manager-releases',
-    'vendor/wip-first-release',
+    {
+      type: 'category', 
+      label: 'Introduction',
+      items: [
+        {type:'doc', id:'intro-replicated', label: 'What is the App Manager?'},
+        'vendor/wip-install-options-about',
+        'vendor/wip-app-manager-releases',
+        'vendor/wip-first-release',
+      ],
+    },    
     {
       type: 'category',
       label: 'Helm Charts',
@@ -86,7 +92,7 @@ const sidebars = {
         'vendor/packaging-ingress', 
       ],
     },
-    {type: 'ref', id: 'enterprise/installing-overview', label: 'Admin Console Docs -->'}
+    {type: 'ref', id: 'enterprise/installing-overview', label: 'Admin Console Docs'}
   ],
 
   enterprise: [
@@ -231,27 +237,87 @@ const sidebars = {
 
   main: [
     {type: 'doc', id: 'intro', label: 'Home'},
-    {type: 'ref', id: 'release-notes/rn-whats-new', label: 'Release Notes'},
-    {type: 'ref', id: 'vendor/vendor-portal-creating-account', label: 'Vendor Portal'},
-    {type: 'ref', id: 'vendor/private-images-about', label: 'Replicated Proxied OCI Registry'},
-    {type: 'ref', id: 'vendor/reliability-matrix', label: 'Reliability Matrix'},
-    {type: 'ref', id: 'vendor/instance-insights-event-data', label: 'Insights and Telemetry'},
-    {type: 'ref', id: 'vendor/preflight-support-bundle-creating', label: 'Preflight Checks and Support Bundles'},
+    { type: 'category',
+      label: 'Release Notes',
+      items: [
+        'release-notes/rn-whats-new',
+        'release-notes/rn-app-manager',
+        'release-notes/rn-kubernetes-installer',
+      ],
+    },
+    {type: 'html', value: '<h5>Product</h5>', defaultStyle: true},
+    {
+      type: 'category', 
+      label: 'Vendor Team',
+      items: [    
+          'vendor/vendor-portal-creating-account',
+          'vendor/team-management',
+          'vendor/team-management-github-username',
+          {
+              type: 'category',
+              label: 'Configuring Role-based Access Control',
+              items: [
+                'vendor/team-management-rbac-configuring',
+                "vendor/team-management-rbac-about",
+                'vendor/team-management-rbac-resource-names',
+            ],
+          },
+          'vendor/team-management-google-auth',
+          'vendor/team-management-saml-auth',
+          'vendor/custom-domains',
+        ], 
+    },
+    {
+      type: 'category',
+      label: 'Channels and Releases',
+      items: [
+        'vendor/wip-about-channels',  
+        'vendor/wip-create-channels',
+        'vendor/wip-about-releases',
+        'vendor/wip-create-releases',
+        'vendor/wip-create-release-cli',
+        'vendor/wip-package-helmchart',
+      ],
+    },
+    {
+      type: 'category', 
+      label: 'Licenses and Entitlements',
+      items: [
+        'vendor/licenses-about',
+        'vendor/licenses-about-types',
+        'vendor/releases-creating-customer',
+        'vendor/licenses-using-builtin-fields',
+        'vendor/licenses-adding-custom-fields',
+        'vendor/licenses-referencing-fields',
+      ],
+    },
+    {type: 'category', items: ['vendor/private-images-about'], label: 'Proxied Image Registry'},
+    {type: 'category', items: ['vendor/reliability-matrix'], label: 'Reliability Matrix'},
+    { 
+      type: 'category',
+      label: 'Preflight Checks and Support Bundles',
+      items: [
+        'vendor/preflight-support-bundle-creating',
+        {type: 'link', label: 'Troubleshoot Documentation', href: 'https://troubleshoot.sh/docs/collect/'}
+      ],   
+    },
+    {type: 'category', items: ['vendor/instance-insights-event-data'], label: 'Insights and Telemetry'},
+    {type: 'ref', id: 'intro-replicated', label: 'App Manager and Admin Console'},
+    {type: 'html', value: '<h5>Tools</h5>', defaultStyle: true},
     {type: 'ref', id: 'replicated-sdk/sdk-getting-started', label: 'Replicated SDK'},
-    {type: 'ref', id: 'intro-replicated', label: 'App Manager Features'},
-    
+    {type: 'ref', id: 'replicated-sdk/sdk-getting-started', label: 'Vendor API'},
+    {type: 'ref', id: 'replicated-sdk/sdk-getting-started', label: 'replicated CLI'},
+    {type: 'html', value: '<h5>Policies</h5>', defaultStyle: true},
+    {type: 'doc', id: 'vendor/policies-vulnerability-patch'},
+    {type: 'doc', id: 'vendor/policies-support-lifecycle'},
+    {type: 'doc', id: 'vendor/policies-data-transmission'},
+    {type: 'link',label: 'Security at Replicated',href: 'https://www.replicated.com/security/'},
   ],
 
   proxyOCIRegistry: [
     {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},
     'vendor/private-images-about',
     'vendor/private-images-replicated',
-  ],
-
-  releaseNotes: [
-    {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},
-    'release-notes/rn-whats-new',
-    'release-notes/rn-app-manager',
   ],
 
   reliabilityMatrix: [
@@ -275,42 +341,42 @@ const sidebars = {
     {type: 'link', label: 'Troubleshoot Documentation', href: 'https://troubleshoot.sh/docs/collect/'}
   ],
 
-  vendorPortal: [
-    {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},
-    {
-      type: 'category',
-      label: 'Vendor Portal Team Management',
-      items: [
-        'vendor/vendor-portal-creating-account',
-        'vendor/team-management',
-        'vendor/team-management-github-username',
-        {
-            type: 'category',
-            label: 'Configuring Role-based Access Control',
-            items: [
-              'vendor/team-management-rbac-configuring',
-              "vendor/team-management-rbac-about",
-              'vendor/team-management-rbac-resource-names',
-          ],
-        },
-        'vendor/team-management-google-auth',
-        'vendor/team-management-saml-auth',
-        'vendor/custom-domains',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Channels and Releases',
-      items: [
-        'vendor/wip-about-channels',  
-        'vendor/wip-create-channels',
-        'vendor/wip-about-releases',
-        'vendor/wip-create-releases',
-        'vendor/wip-create-release-cli',
-        'vendor/wip-package-helmchart',
-      ],
-    },
-  ],
+  // vendorPortal: [
+  //   {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},
+  //   {
+  //     type: 'category',
+  //     label: 'Vendor Portal Team Management',
+  //     items: [
+  //       'vendor/vendor-portal-creating-account',
+  //       'vendor/team-management',
+  //       'vendor/team-management-github-username',
+  //       {
+  //           type: 'category',
+  //           label: 'Configuring Role-based Access Control',
+  //           items: [
+  //             'vendor/team-management-rbac-configuring',
+  //             "vendor/team-management-rbac-about",
+  //             'vendor/team-management-rbac-resource-names',
+  //         ],
+  //       },
+  //       'vendor/team-management-google-auth',
+  //       'vendor/team-management-saml-auth',
+  //       'vendor/custom-domains',
+  //     ],
+  //   },
+  //   {
+  //     type: 'category',
+  //     label: 'Channels and Releases',
+  //     items: [
+  //       'vendor/wip-about-channels',  
+  //       'vendor/wip-create-channels',
+  //       'vendor/wip-about-releases',
+  //       'vendor/wip-create-releases',
+  //       'vendor/wip-create-release-cli',
+  //       'vendor/wip-package-helmchart',
+  //     ],
+  //   },
+  // ],
 
   // tutorialSidebar: [
 

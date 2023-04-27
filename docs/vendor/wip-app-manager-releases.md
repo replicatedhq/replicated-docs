@@ -1,4 +1,4 @@
-# How to Make the Most of App Manager Functionality
+# App Manager Custom Resources
 
 How do you get them features into your app????
 
