@@ -21,7 +21,7 @@ Support for Kubernetes: 1.24, 1.25, and 1.26
 ### Bug Fixes {#bug-fixes-1-98-2}
 * Fixes an issue where quotes are stripped from fields in HelmChart custom resources, which leads to unexpected behavior and failed deployments.
 * Fixes an issue where invalid Kustomize patches were being generated for Helm charts with deeply nested dependencies.
-* Fixes an issue where processing application manifests during installation, upgrade, deployment, and configuration might fail if null values are encountered.
+* Fixes an issue where processing application manifests might fail if null values are encountered after rendering.
 
 ## 1.98.1
 
