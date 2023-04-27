@@ -5,13 +5,13 @@ import ReplicatedHelmDeprecated from "../partials/helm/_replicated-deprecated.md
 import HooksLimitation from "../partials/helm/_hooks-limitation.mdx"
 
 
-# Configuring Native Helm and Replicated Helm Releases
+# Configuring Native Helm and Replicated Helm
 
-This topic describes how the HelmChart custom resource works with Replicated app manager for native Helm and Replicated Helm releases. It also described the limitations that exist for native Helm and Replicated Helm installations.
+This topic describes how vendors configure the HelmChart custom resource for native Helm and Replicated Helm releases with Replicated app manager. It also describe the limitations for native Helm and Replicated Helm installations.
 
 ## Limitations {#replicated-helm-limitations}
 
-The following limitations apply when using the app manager to install and manage Helm charts to native Helm and Replicated Helm:
+The following limitations apply when using the app manager for native Helm and Replicated Helm installations:
 * <ReplicatedHelmDeprecated/>
 * <TemplateLimitation/>
 * <VersionLimitation/>
@@ -25,11 +25,11 @@ The following limitations apply when using the app manager to install and manage
 
   * <HooksLimitation/>
 
-## Adding the HelmChart Custom Resource
+## Add the HelmChart Custom Resource
 
-Replicated app manager supports using native Helm and Replicated Helm to deliver an enterprise applications as Helm charts, or including Helm charts as components of an application. An application can use more than one Helm chart, and can use more than a single instance of any Helm chart.
+Replicated app manager supports using native Helm and Replicated Helm to deliver enterprise applications as Helm charts, or including Helm charts as components of an application. An application can use more than one Helm chart, and can use more than a single instance of any Helm chart.
 
-You start by adding add one or more Helm charts to a release in the vendor portal by uploading each Helm chart as a `.tgz` file. When you add a Helm chart to a release, Replicated displays a copy of the `Chart.yaml` file and the `values.yaml` file from the Helm chart to the release. For information about how to create a new release, see [Managing Releases with the Vendor Portal](releases-creating-release).
+You start by adding add one or more Helm charts to a release in the vendor portal by uploading each Helm chart as a `.tgz` file. When you add a Helm chart to a release, Replicated displays a copy of the `Chart.yaml` file and the `values.yaml` file from the Helm chart in the release. For information about how to create a new release, see [Managing Releases with the Vendor Portal](releases-creating-release).
 
 You must also add a HelmChart custom resource manifest file for each Helm chart that you add to a release. When you drag and drop a Helm chart <code>.tgz</code> to a release in the vendor portal, Replicated automatically creates a corresponding HelmChart custom resource manifest that uses the naming convention <code>CHART_NAME.yaml</code>. For example, <code>postgresql.yaml</code>. If you are using the CLI, you must add the HelmChart custom resource manually.
 
@@ -71,10 +71,6 @@ For example, the following screenshot shows how a Postgres Helm chart displays i
 The app manager supports native Helm and Replicated Helm installations into air gap environments. When a user installs a Helm chart-based application in an air gap environment, the chart processing is managed in the end user environment. This means that the app manager can use user-supplied values, license values, and existing values to create deployable manifests.
 
 To create an `.airgap` bundle for a release that uses Helm charts, the Replicated vendor portal renders templates of the Helm charts with `helm template`. To specify which values from the Helm chart `values.yaml` file are included in the `.airgap` bundle, you add a `builder` key in the HelmChart custom resource manifest file. For more information, see [builder](/reference/custom-resource-helmchart#builder) in the _HelmChart_ reference.
-
-:::note
-The helm CLI installation method does not support installations into air gap environments. See [helm CLI Limitations](helm-install#limitations) below.
-:::
 
 <HelmBuilderRequirements/>
 
