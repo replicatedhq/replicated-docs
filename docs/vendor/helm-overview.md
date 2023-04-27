@@ -7,19 +7,15 @@ import HooksLimitation from "../partials/helm/_hooks-limitation.mdx"
 
 # About Deploying Helm Charts 
 
-This topic describes the options for using Replicated to deploy applications that are packaged with Helm charts.
-
-## Overview of Helm with Replicated
-
-Helm is a popular package manager for Kubernetes applications. Using Replicated to distribute applications packaged with Helm provides additional functionality not available through Helm, such as preflight checks, support bundles, a user interface for collecting user configuration values, support for using private images, and more.
+This topic describes the options and processes for using Replicated to deploy applications that are packaged with Helm charts.
 
 ## Helm Chart Installation Options
 
+Helm is a popular package manager for Kubernetes applications. Using Replicated to distribute applications packaged with Helm provides additional functionality not available through Helm, such as preflight checks, support bundles, a user interface for collecting user configuration values, support for using private images, and more.
+
 When you distribute an application packaged with Helm, your users can install and manage the application with either the Replicated app manager or the helm CLI.
 
-This section describes the processes for installing Helm charts with the app manager or the helm CLI.
-
-### App Manager
+## App Manager
 
 Users can install an application packaged with Helm charts using the app manager in either an existing cluster or a cluster provisioned by the Replicated Kubernetes installer. The app manager also supports Helm installations into air gap environments. For more information, see [Air Gap Installations](air-gap-installations).
 
@@ -30,7 +26,7 @@ The following sections provide more information about how the app manager proces
 * [Native Helm (Recommended)](#native)
 * [Replicated Helm](#replicated-helm)
 
-#### Native Helm (Recommended) {#native}
+### Native Helm (Recommended) {#native}
 
 With the native Helm deployment method, the app manager uses the Helm binary to install and manage the lifecycle of the chart resources that are part of the application. Native Helm is the preferred method because it supports more features of Helm, such as hooks and weights.
 
@@ -120,7 +116,7 @@ To deploy Helm charts using the native Helm method, the app manager does the fol
    Finally, the app manager runs `helm upgrade -i <release-name> <chart> --timeout 3600s -n <namespace>`. The Helm binary processes hooks and weights, applies manifests to the Kubernetes cluster, and saves a release secret similar to `sh.helm.release.v1.chart-name.v1`. Helm uses this secret to track upgrades and rollbacks of applications.
 
 
-#### Replicated Helm
+### Replicated Helm
 
 :::note
 <ReplicatedHelmDeprecated/>
@@ -131,12 +127,12 @@ With the Replicated Helm deployment method, the app manager renders the Helm tem
 The resulting deployment is comprised of standard Kubernetes manifests. Therefore, cluster operators can view the exact differences between what is currently deployed and what an update will deploy.
 
 
-#### Air Gap Installations
+### Air Gap
 
 The app manager supports native Helm and Replicated Helm installations into air gap environments. When a user installs a Helm chart-based application in an air gap environment, the chart processing is managed in the end user environment. This means that the app manager can use user-supplied values, license values, and existing values to create deployable manifests. For more information, see [`builder`](/reference/custom-resource-helmchart#builder) in the _HelmChart_ reference.
 
 
-### helm CLI (Beta)
+## helm CLI (Beta)
 
 Users can also install an application packaged with a Helm chart into an existing cluster using the helm CLI. When users install with the helm CLI directly, Helm, rather than the app manager, manages the lifecycle of the application.
 
