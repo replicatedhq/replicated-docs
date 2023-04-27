@@ -12,6 +12,17 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <KubernetesCompatibility/>
 
+## 1.98.2
+
+Released on April 26, 2023
+
+Support for Kubernetes: 1.24, 1.25, and 1.26
+
+### Bug Fixes {#bug-fixes-1-98-2}
+* Fixes an issue where quotes were stripped from fields in HelmChart custom resources, which led to unexpected behavior and failed deployments.
+* Fixes an issue where invalid Kustomize patches were generated for Helm charts with deeply nested dependencies.
+* Fixes an issue where processing application manifests occasionally failed if null values were encountered after rendering.
+
 ## 1.98.1
 
 Released on April 21, 2023
