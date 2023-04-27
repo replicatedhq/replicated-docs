@@ -21,7 +21,7 @@ This section describes the processes for installing Helm charts with the app man
 
 ### App Manager
 
-Users can install an application packaged with Helm charts using the app manager in either an existing cluster or a cluster provisioned by the Replicated Kubernetes installer. The app manager also supports Helm installations into air gap environments. For more information, see [Air Gap](#air-gap) below.
+Users can install an application packaged with Helm charts using the app manager in either an existing cluster or a cluster provisioned by the Replicated Kubernetes installer. The app manager also supports Helm installations into air gap environments. For more information, see [Air Gap Installations](air-gap-installations).
 
 As an application vendor, you specify whether the app manager uses the _native Helm_ or _Replicated Helm_ method to deploy your Helm chart-based application. You specify the deployment method in the `useHelmInstall` field of the Replicated HelmChart custom resource manifest file for the Helm chart. For more information, see [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) in _HelmChart_.
 
@@ -29,6 +29,7 @@ The following sections provide more information about how the app manager proces
 
 * [Native Helm (Recommended)](#native)
 * [Replicated Helm](#replicated-helm)
+
 #### Native Helm (Recommended) {#native}
 
 With the native Helm deployment method, the app manager uses the Helm binary to install and manage the lifecycle of the chart resources that are part of the application. Native Helm is the preferred method because it supports more features of Helm, such as hooks and weights.
@@ -129,6 +130,10 @@ With the Replicated Helm deployment method, the app manager renders the Helm tem
 
 The resulting deployment is comprised of standard Kubernetes manifests. Therefore, cluster operators can view the exact differences between what is currently deployed and what an update will deploy.
 
+
+#### Air Gap Installations
+
+The app manager supports native Helm and Replicated Helm installations into air gap environments. When a user installs a Helm chart-based application in an air gap environment, the chart processing is managed in the end user environment. This means that the app manager can use user-supplied values, license values, and existing values to create deployable manifests. For more information, see [`builder`](/reference/custom-resource-helmchart#builder) in the _HelmChart_ reference.
 
 
 ### helm CLI (Beta)
