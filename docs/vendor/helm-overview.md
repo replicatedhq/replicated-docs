@@ -17,7 +17,7 @@ When you distribute an application packaged with Helm, your users can install an
 
 ## App Manager
 
-Users can install an application packaged with Helm charts using the app manager in either an existing cluster or a cluster provisioned by the Replicated Kubernetes installer. The app manager also supports Helm installations into air gap environments. For more information, see [Air Gap Installations](air-gap-installations).
+Users can install an application packaged with Helm charts using the app manager in either an existing cluster or a cluster provisioned by the Replicated Kubernetes installer. The app manager also supports Helm installations into air gap environments. For more information, see [Air Gap](air-gap).
 
 As an application vendor, you specify whether the app manager uses the _native Helm_ or _Replicated Helm_ method to deploy your Helm chart-based application. You specify the deployment method in the `useHelmInstall` field of the Replicated HelmChart custom resource manifest file for the Helm chart. For more information, see [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) in _HelmChart_.
 
