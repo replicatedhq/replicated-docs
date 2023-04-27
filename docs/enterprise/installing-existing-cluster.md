@@ -1,9 +1,8 @@
 import PrereqsExistingCluster from "../partials/install/_prereqs-existing-cluster.mdx"
 
-
 # Online Installation in Existing Clusters
 
-This topic describes how to use Replicated to install an application on an existing Kubernetes cluster in an online environment.
+This topic describes how to use Replicated to install an application in an existing Kubernetes cluster in an online environment.
 
 ## Prerequisites
 
@@ -17,7 +16,7 @@ You can install an application to an existing Kubernetes cluster that contains n
 
 To install the application:
 
-1. Run one of the following commands:
+1. Run one of the following commands to install the app manager:
 
     * For the latest version of the application:
 
@@ -59,4 +58,4 @@ To install the application:
 
     After the `kots install` command installs the admin console and the application on the cluster, it creates a port forward to the admin console. The admin console is exposed internally on the cluster and can only be accessed using a port forward.
 
-1. Log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
+1. Log in to the admin console to provide the license file, define your configuration values, run preflight checks, and deploy. See [Deploying the Application using the Admin Console](installing-app-setup).

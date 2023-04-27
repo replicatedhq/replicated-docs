@@ -1,4 +1,5 @@
 import DockerCompatibility from "../partials/image-registry/_docker-compatibility.mdx"
+import KubernetesCompatibility from "../partials/install/_kubernetes-compatibility.mdx"
 
 # Requirements for Installation
 
@@ -23,21 +24,13 @@ The following table lists the browser requirements for the latest Replicated adm
 
 ## Kubernetes Version Compatibility
 
-Each release of the open source KOTS project maintains compatibility with the current Kubernetes version, and the two most recent versions at the time of its release. This includes support against all patch releases of the corresponding Kubernetes version.
+Each release of the Replicated app manager maintains compatibility with the current Kubernetes version, and the two most recent versions at the time of its release. This includes support against all patch releases of the corresponding Kubernetes version.
 
-Kubernetes versions 1.22 and earlier are end-of-life (EOL). Kubernetes version 1.23 is nearing EOL. For more information about Kubernetes versions, see [Release History](https://kubernetes.io/releases/) in the Kubernetes documentation.
+Kubernetes versions 1.23 and earlier are end-of-life (EOL). For more information about Kubernetes versions, see [Release History](https://kubernetes.io/releases/) in the Kubernetes documentation.
 
-Replicated recommends upgrading to a KOTS version that is compatible with Kubernetes 1.24 and higher.
+Replicated recommends using a version of the app manager that is compatible with Kubernetes 1.24 and higher.
 
-:::note
-The app manager is based on the open source KOTS project. The app manager version is the same as the KOTS version. For example, KOTS v1.92 is the same as the app manager v1.92.
-:::
-
-| KOTS Versions   | Kubernetes Compatibility |
-|-----------------|---------------------------|
-| v1.71 and later | v1.25, 1.24, v1.23 |
-| v1.66 to v1.70 | v1.23 |
-| v1.61 to v1.65 | v1.23 |
+<KubernetesCompatibility/>
 
 
 ## Existing Cluster Requirements
@@ -284,7 +277,7 @@ No outbound internet access is required for air gapped installations.
 | registry.replicated.com | Required&#42;&#42;         | Required&#42;&#42;            | Some applications host private images in the Replicated private registry at this domain. The on-prem docker client uses a license ID to authenticate to registry.replicated.com. This domain is owned by Replicated, Inc which is headquartered in Los Angeles, CA.
 | kots.io              | Required                      | Not Required                  | Requests are made to this domain when you are installing the kots CLI. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.|
 | github.com           | Required                      | Not Required                  | Requests are made to this domain when you are installing the kots CLI. |
-| k8s.kurl.sh          | Not Required                  | Required                      | Kubernetes cluster installation scripts and artifacts are served from [kurl.sh](https://kurl.sh). An application identifier is sent in a URL path, and bash scripts and binary executables are served from kurl.sh. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.                                                     |
+| k8s.kurl.sh<br />s3.kurl.sh          | Not Required                  | Required                      | Kubernetes cluster installation scripts and artifacts are served from [kurl.sh](https://kurl.sh). An application identifier is sent in a URL path, and bash scripts and binary executables are served from kurl.sh. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.                                                     |
 | amazonaws.com        | Not Required                  | Required                      | tar.gz packages are downloaded from Amazon S3 during embedded cluster installations. For information about dynamically scraping the IP ranges to allowlist for accessing these packages, see [AWS IP address ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html#aws-ip-download) in the AWS documentation.                                                         |
 
 &#42; Required only if the application uses the Replicated proxy service. Contact your application vendor for more information.

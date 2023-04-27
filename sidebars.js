@@ -86,6 +86,7 @@ const sidebars = {
         'vendor/releases-about',
         'vendor/releases-about-channels',
         'vendor/releases-creating-channels',
+        'vendor/helm-release-creating-package',
         'vendor/helm-release',
         'vendor/releases-creating-releases',
         {
@@ -259,6 +260,7 @@ const sidebars = {
         'vendor/policies-vulnerability-patch',
         'vendor/policies-support-lifecycle',
         'vendor/policies-data-transmission',
+        'vendor/policies-infrastructure-and-subprocessors',
         {
           type: 'link',
           label: 'Security at Replicated',

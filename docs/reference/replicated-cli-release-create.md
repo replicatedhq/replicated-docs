@@ -43,7 +43,7 @@ replicated release create --yaml-dir YAML_DIR [flags]
   <tr>
     <td><code>--version</code></td>
     <td>string</td>
-    <td>When used with <code>--promote channel</code>, sets the version label for the release in this channel.</td>
+    <td><p>When used with <code>--promote channel</code>, sets the version label for the release in this channel.</p><p>If semantic versioning is enabled on the channel, then the version label must be a valid semantic version number. See <a href="/vendor/releases-about#semantic-versioning">Semantic Versioning</a> in <em>About Releases</em>.</p></td>
   </tr>
   <Help/>
 </table>

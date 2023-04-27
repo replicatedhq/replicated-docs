@@ -72,7 +72,7 @@ To configure access to private images in an external registry using the replicat
   For example, to add a DockerHub registry:
 
   ```bash
-  replicated regsitry add dockerhub --username USERNAME \
+  replicated registry add dockerhub --username USERNAME \
     --password PASSWORD
   ```
   Where:

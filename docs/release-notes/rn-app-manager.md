@@ -2,7 +2,59 @@
 toc_max_heading_level: 2
 ---
 
+import KubernetesCompatibility from "../partials/install/_kubernetes-compatibility.mdx"
+
 # App Manager Release Notes
+
+## Kubernetes Compatibility
+
+The following table lists the versions of Kubernetes that are compatible with each version of the app manager:
+
+<KubernetesCompatibility/>
+
+## 1.98.2
+
+Released on April 26, 2023
+
+Support for Kubernetes: 1.24, 1.25, and 1.26
+
+### Bug Fixes {#bug-fixes-1-98-2}
+* Fixes an issue where quotes were stripped from fields in HelmChart custom resources, which led to unexpected behavior and failed deployments.
+* Fixes an issue where invalid Kustomize patches were generated for Helm charts with deeply nested dependencies.
+* Fixes an issue where processing application manifests occasionally failed if null values were encountered after rendering.
+
+## 1.98.1
+
+Released on April 21, 2023
+
+Support for Kubernetes: 1.24, 1.25, and 1.26
+
+### Bug Fixes {#bug-fixes-1-98-1}
+* Fixes an issue where multiple copies of the same Kubernetes resource (for example, the same `kind` and `name`) were deduplicated even if they had a different namespace. This deduplication resulted in the app manager deploying only one of the resources to the cluster.
+* Fixes an issue that caused config updates to fail when the user did not provide a value for a required config item with a default value, even if the item was hidden.
+
+## 1.98.0
+
+Released on April 19, 2023
+
+Support for Kubernetes: 1.24, 1.25, and 1.26
+
+### New Features {#new-features-1-98-0}
+* Adds support for validating config items with type `text`, `textarea`, `password`, or `file` by matching the item's values against a regex pattern. For more information, see [validation](/reference/custom-resource-config#validation) in _Config_.
+* Adds a new `kotsKinds` directory to the application archive that includes the rendered KOTS custom resources.
+
+### Improvements {#improvements-1-98-0}
+* Sorts multi-application installations in the admin console by their creation date with the most recently installed application at the top.
+* Updates spacing and font sizes to improve visual grouping of items on admin console Config page.
+* Updates Kustomize from v4.5.7 to v5.0.1 which resolves CVE-2022-27664, CVE-2022-41723, CVE-2022-41723, and CVE-2022-28948 with high severity and CVE-2022-41717 with medium severity.
+* Updates the Helm binary included in the kotsadm image from 3.11.0 to 3.11.3 to resolve CVE-2022-41723 and CVE-2023-25173 with high severity and CVE-2023-25153 with medium severity.
+* Updates the github.com/opencontainers/runc module to v1.1.5 to resolve CVE-2023-27561 with high severity.
+* Updates the minio/minio image to RELEASE.2023-04-13T03-08-07Z to resolve CVE-2023-0361 with medium severity.
+* Updates the minio/mc image to RELEASE.2023-04-12T02-21-51Z to resolve CVE-2023-0361 with medium severity.
+* Adds support for template functions to the `namespace` and `helmUpgradeFlags` fields of the [HelmChart](/reference/custom-resource-helmchart) custom resource.
+
+### Bug Fixes {#bug-fixes-1-98-0}
+* Fixes an issue where strict security context configurations were not applied in OpenShift environments when the `--strict-security-context` flag was passed to the [kots install](https://docs.replicated.com/reference/kots-cli-install) or [kots admin-console upgrade](https://docs.replicated.com/reference/kots-cli-admin-console-upgrade) commands.
 
 ## 1.97.0
 
