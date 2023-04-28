@@ -30,7 +30,7 @@ replicated release promote SEQUENCE CHANNEL_ID [Flags]
   <tr>
     <td><code>--required</code></td>
     <td></td>
-    <td>Prevents users from skipping this release during application upgrades. For more information, see <a href="/vendor/releases-creating-releases">Creating and Promoting Releases</a>.</td>
+    <td>Prevents users from skipping this release during application upgrades. For more information, see <a href="/vendor/releases-creating-releases">Managing Releases with the Vendor Portal</a>.</td>
   </tr>
   <Token/>
   <tr>

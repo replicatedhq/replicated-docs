@@ -970,8 +970,8 @@ Released on April 4, 2022
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### New Features
-* Adds the ability to make a KOTS application version required. Required version cannot be skipped during upgrades. See [Creating and Promoting Releases](../vendor/releases-creating-releases).
-* Adds the `supportMinimalRBACPrivileges` field to the Application custom resource, and adds the `--use-minimal-rbac` flag to the `kots install` command. `supportMinimalRBACPrivileges` indicates that the application supports minimal RBAC, but it will not be used unless the `--use-minimal-rbac` flag is passed to the `kots install` command. See [`supportMinimalRBACPrivileges`](../reference/custom-resource-application#supportminimalrbacprivileges) in the Application custom resource.
+* Adds the ability to make a KOTS application version required. Required version cannot be skipped during upgrades. See [Managing Releases with the Vendor Portal](/vendor/releases-creating-releases).
+* Adds the `supportMinimalRBACPrivileges` field to the Application custom resource, and adds the `--use-minimal-rbac` flag to the `kots install` command. `supportMinimalRBACPrivileges` indicates that the application supports minimal RBAC, but it will not be used unless the `--use-minimal-rbac` flag is passed to the `kots install` command. See [`supportMinimalRBACPrivileges`](/reference/custom-resource-application#supportminimalrbacprivileges) in the Application custom resource.
 
 ### Improvements
 * Adds pagination to the version history page and improves the admin console API performance.

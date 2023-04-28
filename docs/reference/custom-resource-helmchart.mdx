@@ -107,6 +107,8 @@ Identifies the Helm Version used to render the chart. Acceptable values are `v2`
 
 Identifies whether this Helm chart will use the Replicated Helm installation (`false`) or native Helm installation (`true`). Replicated recommends that you set this to `true` because native Helm is the preferred method. **Default:** `false`
 
+Native Helm can only be set for new charts. Modifying this flag in existing charts for existing applications is not supported because charts installed with Replicated Helm cannot be migrated to native Helm. However, you can add native Helm charts to an existing release that already uses Replicated Helm. Each chart is installed using the specified installation method for that chart, indicated by the value of the `useHelmInstall` flag.
+
 Native Helm installations always deploy using Helm v3.
 
 ## weight
@@ -155,7 +157,7 @@ For more information about optional charts, template functions, and how app mana
 
 * [Optional Charts](/vendor/helm-optional-charts)
 * [About Template Function Contexts](template-functions-about)
-* [Helm Processing](/vendor/helm-processing)
+* [Native Helm (Recommended)](/vendor/helm-overview#native)
 
 ## optionalValues
 
@@ -163,7 +165,7 @@ The `optionalValues` array supports advanced use cases where value overwrites mu
 
 Not all Helm charts treat `""` and missing as the same value. If you need to have a value set that is always optional, and an empty string does not provide the same functionality as "not set", use the `optionalValues` key.
 
-For more information about using `optionalValues`, see [Including Optional Value Keys](../vendor/helm-optional-value-keys).
+For more information about using `optionalValues`, see [Including Optional Value Keys](/vendor/helm-optional-value-keys).
 
 ### optionalValues[].when
 
@@ -224,3 +226,24 @@ If you specify a namespace in the HelmChart `namespace` field, you must also inc
 To create an `.airgap` bundle for a release that uses Helm charts, the Replicated vendor portal renders templates of the Helm charts with `helm template`. The `builder` key specifies the values from the Helm chart `values.yaml` file that the vendor portal uses to create the `.airgap` bundle. For more information, see [Air Gap](/vendor/helm-overview#air-gap) in _About Deploying Helm Charts_.
 
 <HelmBuilderRequirements/>
+
+**Example:**
+
+The following example demonstrates how to add a conditional `postgresql` resource to the `builder` key.
+
+`postgresql` is defined as a conditional resource in the `values` key of the HelmChart custom resource:
+
+```yaml
+  values:
+    postgresql:
+      enabled: repl{{ ConfigOptionEquals `postgres_type` `embedded_postgres`}}
+```
+As shown above, `postgresql` is included only when the user selects the `embedded_postgres` option.
+
+To ensure the vendor portal includes this conditional `postgresql` resource in `.airgap` bundles, add the same `postgresql` value to the `builder` key with `enabled` set to `true`:
+
+```yaml
+  builder:
+    postgresql:
+      enabled: true
+```

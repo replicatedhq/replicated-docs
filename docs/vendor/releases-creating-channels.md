@@ -67,12 +67,9 @@ To archive a channel with the vendor portal or the replicated CLI:
 
      For more information, see [channel delete](/reference/replicated-cli-channel-delete) in the replicated CLI documentation.
 
-## Next Steps
+## Next Step
 
-Do one of the following:
-
-- [Creating Releases with Helm Charts](helm-release)
-- [Creating Releases with Standard Manifest Files](releases-creating-releases)
+- [Managing Releases with the Vendor Portal](releases-creating-releases)
 
 ## Related Topic
 
