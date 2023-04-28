@@ -47,7 +47,7 @@ Complete the following procedures to import your files, create, and test your fi
       </tr>
       <tr>
         <td>Helm charts</td>
-        <td>Create a release with your Helm chart package and add a HelmChart custom resource to the release. See <a href="releases-creating-release">Managing Releases with the Vendor Portal</a> and <a href="helm-release">Configuring Native Helm and Replicated Helm</a>.</td>
+        <td>Create a release with your Helm chart package and add a HelmChart custom resource to the release. See <a href="releases-creating-release">Managing Releases with the Vendor Portal</a> and <a href="helm-release">Supporting Native Helm and Replicated Helm</a>.</td>
       </tr>
       <tr>
         <td>Kubernetes Operators</td>

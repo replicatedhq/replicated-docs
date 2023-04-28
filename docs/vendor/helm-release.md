@@ -4,7 +4,7 @@ import VersionLimitation from "../partials/helm/_helm-version-limitation.mdx"
 import ReplicatedHelmDeprecated from "../partials/helm/_replicated-deprecated.mdx"
 import HooksLimitation from "../partials/helm/_hooks-limitation.mdx"
 
-# Supporting Native Helm or Replicated Helm
+# Supporting Native Helm and Replicated Helm
 
 This topic describes the HelmChart custom resource that is required for native Helm and Replicated Helm releases with Replicated app manager. It also describe the limitations for native Helm and Replicated Helm installations.
 
@@ -105,3 +105,11 @@ To add a HelmChart custom resource using the replicated CLI:
 1. Configure the HelmChart custom resource. For more information, see [HelmChart](/reference/custom-resource-helmchart) in _Custom Resources_.
 
 1. Repeat these steps for each Helm chart in your release.
+
+## Additional Resources
+
+For more information and examples of HelmChart configuration options, see:
+
+- [Defining Installation Order for Native Helm Charts](helm-native-helm-install-order)
+- [Including Optional Charts](helm-optional-charts)
+- [Configuring Optional Value Keys](helm-optional-value-keys)
