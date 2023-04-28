@@ -53,11 +53,17 @@ article {
 
 li.menu__list-item > h5 {
   text-transform: uppercase;
-  margin: 16px 0;
+  margin: 1.5rem 0;
+  /* border-top: 1px solid rgba(88,88,88,0.2); */
+  padding-top: 20px;
 }
 
+/* [data-theme='dark'] li.menu__list-item > h5 {
+  border-top: 1px solid rgba(88,88,88,0.5);
+} */
+
 .footer--dark {
-    --ifm-footer-background-color: #2f2f2f;
+    --ifm-footer-background-color: #ffffff;
 }
 
 .alert--warning {

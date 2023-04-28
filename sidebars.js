@@ -303,10 +303,12 @@ const sidebars = {
     },
     {type: 'category', items: ['vendor/instance-insights-event-data'], label: 'Insights and Telemetry'},
     {type: 'ref', id: 'intro-replicated', label: 'App Manager and Admin Console'},
+    // TOOLS
     {type: 'html', value: '<h5>Tools</h5>', defaultStyle: true},
     {type: 'ref', id: 'replicated-sdk/sdk-getting-started', label: 'Replicated SDK'},
     {type: 'ref', id: 'replicated-sdk/sdk-getting-started', label: 'Vendor API'},
     {type: 'ref', id: 'replicated-sdk/sdk-getting-started', label: 'replicated CLI'},
+    // POLICIES
     {type: 'html', value: '<h5>Policies</h5>', defaultStyle: true},
     {type: 'doc', id: 'vendor/policies-vulnerability-patch'},
     {type: 'doc', id: 'vendor/policies-support-lifecycle'},
