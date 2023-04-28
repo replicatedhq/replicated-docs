@@ -500,6 +500,7 @@ const sidebars = {
               items: [
                 'enterprise/installing-embedded-cluster',
                 'enterprise/installing-embedded-airgapped',
+                'enterprise/installing-embedded-cluster-automation',
                 'enterprise/cluster-management-add-nodes',
               ],
             },

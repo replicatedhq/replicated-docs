@@ -1,4 +1,5 @@
 import PrereqsExistingCluster from "../partials/install/_prereqs-existing-cluster.mdx"
+import ConfigValuesExample from "../partials/configValues/_configValuesExample.mdx"
 
 # Online Installation in Existing Clusters
 
@@ -9,6 +10,16 @@ This topic describes how to use Replicated to install an application in an exist
 Complete the following prerequisites:
 
 <PrereqsExistingCluster/> 
+
+* You supply application configuration values by defining the values in a local ConfigValues YAML file. Then, you provide the file to the app manager when you run the `kots install` command using the `--config-values` flag.
+
+    The following is an example of a ConfigValues file:
+
+    <ConfigValuesExample/>
+
+    As shown in the example above, the ConfigValues file includes the names of the configuration fields for the application, along with a user-supplied value for each field.
+
+    Your application vendor provides details about the required and optional configuration fields to include in the ConfigValues file. For more information, see [Downloading the ConfigValues File](/vendor/releases-configvalues).
 
 ## Install the Application {#online}
 

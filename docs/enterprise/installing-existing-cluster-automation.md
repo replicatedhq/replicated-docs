@@ -1,29 +1,39 @@
-import ConfigValuesExample from "../partials/configValues/_configValuesExample.mdx"
+# Using Automation to Install in an Existing Cluster
 
-# Using Automation to Install on an Existing Cluster
+This topic describes how to use the the kots CLI to automate installation in an existing online or air gap cluster.
 
-This topic describes installing an application with the kots CLI in online and air gap environments.
+## About Automating Installation
+
+Automating an install means that you run a single CLI command to provision the cluster with the Kubernetes installer, install the Replicated app manager, and then install and deploy the application. This allows you to 
+
+## Prerequisites
+
+Complete the following prerequisites:
+
+<PrereqsExistingCluster/> 
+
+* you must have a config values file
 
 ## Installing in an Online Environment
 
-To install an application with the kots CLI in an online environment, run the following command:
+To install an application with the kots CLI in an online environment:
 
-```
-kubectl kots install APP_NAME \
-  --namespace NAMESPACE \
-  --shared-password PASSWORD \
-  --license-file PATH_TO_LICENSE_FILE \
-  --config-values PATH_TO_CONFIGVALUES_FILE \
-```
+1. Create the installation command:
 
-Replace:
-* `APP_NAME` with the name of the application. This is provided by your application vendor.
-* `NAMESPACE` with the namespace where you want the app manager to install the application.
-* `PASSWORD` with the shared password for accessing the admin console.
-* `PATH_TO_LICENSE_FILE` with the path in your local directory to your unique license YAML file. The admin console automatically installs the license file provided.
-* `PATH_TO_CONFIGVALUES_FILE` with the path in your local directory to the ConfigValues YAML file where your application configuration values are defined. For more information about the ConfigValues file, see [About the ConfigValues File](#config-values) below.
+    ```
+    kubectl kots install APP_NAME \
+      --namespace NAMESPACE \
+      --shared-password PASSWORD \
+      --license-file PATH_TO_LICENSE_FILE \
+      --config-values PATH_TO_CONFIGVALUES_FILE \
+    ```
+    Replace:
+      * `APP_NAME` with the name of the application. This is provided by your application vendor.
+      * `NAMESPACE` with the namespace where you want the app manager to install the application.
+      * `PASSWORD` with the shared password for accessing the admin console.
+      * `PATH_TO_LICENSE_FILE` with the path in your local directory to your unique license YAML file. The admin console automatically installs the license file provided.
+      * `PATH_TO_CONFIGVALUES_FILE` with the path in your local directory to the ConfigValues YAML file where your application configuration values are defined. For more information about the ConfigValues file, see [About the ConfigValues File](#config-values) below.
 
-For more information about the required and optional flags for the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
 
 ## Installing in an Air Gap Environment
 
@@ -58,18 +68,6 @@ To use the kots CLI to install in an air gap environment:
     * `READ_WRITE_USERNAME` and `READ_WRITE_PASSWORD` with credentials with read write permissions to the private image registry where you pushed the admin console images in the previous step.
 
 For more information about the required and optional flags for the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
-
-## About the ConfigValues File {#config-values}
-
-You supply application configuration values by defining the values in a local ConfigValues YAML file. Then, you provide the file to the app manager when you run the `kots install` command using the `--config-values` flag.
-
-The following is an example of a ConfigValues file:
-
-<ConfigValuesExample/>
-
-As shown in the example above, the ConfigValues file includes the names of the configuration fields for the application, along with a user-supplied value for each field.
-
-Your application vendor provides details about the required and optional configuration fields to include in the ConfigValues file. For more information, see [Downloading the ConfigValues File](/vendor/releases-configvalues).
 
 ## About Disabling the Port Forward
 
