@@ -12,22 +12,23 @@ Before you can create your first release with Replicated, make sure that the fol
 
 - Install the replicated CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
   
-- Create a new application using the `replicated app create APP_NAME` command. You only need to do this procedure once for each application that you want to deploy. See [`app create`](/reference/replicated-cli-app-create) in _Reference_.
+- Create a new application using the `replicated app create APP_NAME` command. You only need to do this procedure one time for each application that you want to deploy. See [`app create`](/reference/replicated-cli-app-create) in _Reference_.
 
 - If you are using Helm charts, make sure that you first create the Helm chart package. See [Creating a Helm Chart Package](helm-release-creating-package).
+
+- Make sure that you have an application directory that contains your application files.
 
 To create and promote a new release:
 
 1. Export the token environment variable. The token environment variable is valid for a single session. You must export it for each new session.
-1. Make sure that you have a local folder with your application files.
 
-1. Lint the manifest files and ensure that there are no errors in the YAML:
+1. Lint the application manifest files in your local folder and ensure that there are no errors in the YAML:
 
   ```bash
   replicated release lint --yaml-dir=PATH_TO_APP_DIR
   ```
 
-  Replace `PATH_TO_APP_DIR` with path to the directory of the YAML manifest files.
+  Replace `PATH_TO_APP_DIR` with path to the directory of the application files.
 
   For more information about linting, see [release lint](/reference/replicated-cli-release-lint) and [Linter Rules](/reference/linter) in _Reference_.
 
@@ -36,7 +37,7 @@ To create and promote a new release:
     ```bash
     replicated release create --yaml-dir PATH_TO_APP_DIR
     ```
-    Replace `PATH_TO_APP_DIR` with the path to the directory of the YAML manifest files.
+    Replace `PATH_TO_APP_DIR` with the path to the directory of the application files.
 
    For more information, see [release create](/reference/replicated-cli-release-create) or [release update](/reference/replicated-cli-release-update) in _Reference_.
 
@@ -48,7 +49,7 @@ To create and promote a new release:
     Replace:
       
     -  `SEQUENCE` with the release sequence number. This identifies the existing release to be updated.
-    -  `PATH_TO_APP_DIR` with the path to the directory of the YAML manifest files.
+    -  `PATH_TO_APP_DIR` with the path to the directory of the application files.
 
     For more information, see [release update](/reference/replicated-cli-release-update) in _Reference_.
 
