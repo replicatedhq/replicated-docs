@@ -28,13 +28,13 @@ The following limitations apply when using the app manager for native Helm and R
 
 App manager supports using native Helm and Replicated Helm to deliver enterprise applications as Helm charts, or including Helm charts as components of an application. An application can use more than one Helm chart, and can use more than a single instance of any Helm chart.
 
-You must add a HelmChart custom resource manifest file (`kind: HelmChart`) for each Helm chart that you add to a release. When you add a Helm chart TGZ file to a release, Replicated copies the `Chart.yaml` and `values.yaml` files as read-only files. You use the HelmChart custom resource to provide the necessary instructions to the app manager for processing and preparing the chart for deployment, such as whether to use the native Helm or Replicated Helm installation. 
+You must add a HelmChart custom resource manifest file (`kind: HelmChart`) for each Helm chart that you add to a release. When you add a Helm chart TGZ file to a release, Replicated copies the `Chart.yaml` and `values.yaml` files as read-only files. You configure the HelmChart custom resource to provide the necessary instructions to the app manager for processing and preparing the chart for deployment, such as whether to use the native Helm or Replicated Helm installation. 
 
-Using the HelmChart custom resource, you can create a mapping between the `values.yaml` file and the admin console Config page. This allows values to be changed in the chart. 
+The HelmChart custom resource lets you create a mapping between the `values.yaml` file and the admin console Config page. This allows values to be changed in the chart. 
 
 Other options include adding conditional statements that exclude certain Helm charts, depending on the user's input. You can also configure optional value keys that allow dynamic deployment, such as allowing users to configure an external database.
 
-For native Helm, you can configure hooks and weights to define the installation order and bundle actions, such as performing database backups before upgrading.
+For native Helm, you can also configure hooks and weights to define the installation order and bundle actions, such as performing database backups before upgrading.
 
 
 ## Add a HelmChart Custom Resource
@@ -50,15 +50,15 @@ To add a HelmChart custom resource using the vendor portal:
 1. Drag and drop a Helm chart TGZ file to a release. 
 1. In the **Select Helm Install Method** dialog, select **Native Helm (Recommended)** or **Replicated Helm** from the dropdown list. Click **OK**. 
 
-    ![Select Helm Install Method. Native Helm is recommended for greater Helm chart support.](/images/helm-select-install-method.png)
+  ![Select Helm Install Method. Native Helm is recommended for greater Helm chart support.](/images/helm-select-install-method.png)
 
-    Replicated automatically creates a corresponding HelmChart custom resource manifest that uses the naming convention `CHART_NAME.yaml`.
+  Replicated automatically creates a corresponding HelmChart custom resource manifest that uses the naming convention `CHART_NAME.yaml`.
 
-    For example, the following screenshot shows how a Postgres Helm chart displays in the file tree of a release in the vendor portal:
+  For example, the following screenshot shows a HelmChart custom resource named `postgres.yaml` in the vendor portal YAML editor:
 
-    ![Postgres Helm Chart](/images/postgres-helm-chart.png)
+  ![Postgres Helm Chart](/images/postgres-helm-chart.png)
 
-    [View a larger image](/images/postgres-helm-chart.png)
+  [View a larger image](/images/postgres-helm-chart.png)
 
 1. Configure the HelmChart custom resource. For more information, see [HelmChart](/reference/custom-resource-helmchart) in _Custom Resources_.
 
@@ -68,7 +68,7 @@ To add a HelmChart custom resource using the vendor portal:
 
 To add a HelmChart custom resource using the replicated CLI:
   
-1. Manually add the HelmChart custom resource (`kind: HelmChart`) as a YAML file to the local folder with your Helm chart.
+1. Manually add the HelmChart custom resource (`kind: HelmChart`) as a YAML file to the local folder with your application Helm charts. Use the naming convention `CHART_NAME.yaml`
 
   **Example:**
       
@@ -101,7 +101,7 @@ To add a HelmChart custom resource using the replicated CLI:
     builder: {}
   ```
       
-1. Give the chart a unique name, preferably using the naming convention `CHART_NAME.yaml`. 
+1. Give the chart a unique name and use `apiVersion: kots.io/v1beta1`. 
       
 1. To use native Helm, set the `useHelmInstall` flag to `true`. Native Helm is recommended for greater Helm support. To use Replicated Helm, use the default value `false`.
 
