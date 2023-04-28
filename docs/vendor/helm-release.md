@@ -4,7 +4,7 @@ import VersionLimitation from "../partials/helm/_helm-version-limitation.mdx"
 import ReplicatedHelmDeprecated from "../partials/helm/_replicated-deprecated.mdx"
 import HooksLimitation from "../partials/helm/_hooks-limitation.mdx"
 
-# Using Native Helm or Replicated Helm
+# Supporting Native Helm or Replicated Helm
 
 This topic describes the HelmChart custom resource that is required for native Helm and Replicated Helm releases with Replicated app manager. It also describe the limitations for native Helm and Replicated Helm installations.
 
