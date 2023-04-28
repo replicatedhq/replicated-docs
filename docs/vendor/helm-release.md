@@ -68,7 +68,7 @@ To add a HelmChart custom resource using the vendor portal:
 
 To add a HelmChart custom resource using the replicated CLI:
   
-1. Manually add the HelmChart custom resource (`kind: HelmChart`) as a YAML file to the local folder with your application Helm charts. Use the naming convention `CHART_NAME.yaml`
+1. Manually add the HelmChart custom resource (`kind: HelmChart` and `apiVersion: kots.io/v1beta1`) to the local folder with your TGZ file. Give the chart a unique name, using the naming convention `CHART_NAME.yaml`.
 
   **Example:**
       
@@ -76,13 +76,12 @@ To add a HelmChart custom resource using the replicated CLI:
   apiVersion: kots.io/v1beta1
   kind: HelmChart
   metadata:
-    name: samplechart
+    name: CHART_NAME
   spec:
     # chart identifies a matching chart from a .tgz
     chart:
-      name: samplechart
-      chartVersion: 3.1.7
-      releaseName: samplechart-release-1
+      name: CHART_NAME
+      chartVersion: CHART_VERSION
 
     # helmVersion identifies the Helm Version used to render the chart. Default is v3.
     helmVersion: v3
@@ -100,9 +99,7 @@ To add a HelmChart custom resource using the replicated CLI:
     # and manifests. this is used in Replicated to create `.airgap` packages
     builder: {}
   ```
-      
-1. Give the chart a unique name and use `apiVersion: kots.io/v1beta1`. 
-      
+        
 1. To use native Helm, set the `useHelmInstall` flag to `true`. Native Helm is recommended for greater Helm support. To use Replicated Helm, use the default value `false`.
 
 1. Configure the HelmChart custom resource. For more information, see [HelmChart](/reference/custom-resource-helmchart) in _Custom Resources_.
