@@ -30,7 +30,11 @@ The following shows an example of a channel in the vendor portal Channels page:
 
 As shown in the image above, you can do the following to manage a channel from the Channels page:
 
-* Edit the channel settings by clicking on the settings icon, or archive the channel by clicking on the trash can icon. See [Creating and Editing Channels](releases-creating-channels).
+* Edit the channel settings by clicking on the settings icon, or archive the channel by clicking on the trash can icon. The **Channel settings** dialog shows the channel ID and lets you set defaults for semantic versioning, automatic air gap builds, and the air gap bundle format.
+
+   <img src="/images/channel-settings.png" alt="Channel Settings dialog in the vendor portal" width="350"/>
+
+   [View a larger version of this image](/images/channel-settings.png)
 
 * In the **Adoption rate** section, view data on the adoption rate of releases promoted to the channel among customers assigned to the channel.
 

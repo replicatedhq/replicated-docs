@@ -3,9 +3,9 @@
 
 This lists describes the infrastructure environment, subprocessors and other entities material to the Replicated products and services.
 
-Prior to engaging any third party, Replicated performs diligence to evaluate their privacy, security and confidentiality practices. Whenever possible, Replicated uses encryption for data at rest and in motion so that your information is not available to these third parties. 
+Prior to engaging any third party, Replicated performs diligence to evaluate their privacy, security and confidentiality practices. Whenever possible, Replicated uses encryption for data at rest and in motion so that all information is not available to these third parties. 
 
-Replicated does not engage in the business of selling or trading personal information. Any personally identifible information Replicated may hold is data that a customer has provided to us. 
+Replicated does not engage in the business of selling or trading personal information. Any personally identifible information Replicated might possibly hold is data that a customer has provided to us. 
 
 The fields that Replicated may posess as identifiable to a physical person may include:
 - Name
@@ -20,7 +20,7 @@ Note: This does not imply that all these fields are collected for each person. I
 
 ## Replicated Infrastructure Providers
 
-Replicated may use the following entities to provide infrastructure that helps with delivery of our products:
+Replicated might use the following entities to provide infrastructure that helps with delivery of our products:
 
 
 | Entity Name | Purpose | Country where Infrastructure Resides | Notes
