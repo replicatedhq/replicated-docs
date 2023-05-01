@@ -30,7 +30,7 @@ This procedure explains how to install the the application in an online environm
 
 To install the application:
 
-1. Run one of the following commands to install the app manager:
+1. Run one of the following commands to create the cluster and install the app manager:
 
     * For the latest version of the application:
 
@@ -48,7 +48,7 @@ To install the application:
 
       ```bash
       curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash -s ha
-        ```
+      ```
     
     Replace, where applicable:
      * `APP_SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.

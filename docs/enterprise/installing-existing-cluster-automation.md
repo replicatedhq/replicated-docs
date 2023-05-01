@@ -1,22 +1,42 @@
+import ConfigValuesExample from "../partials/configValues/_configValuesExample.mdx"
+import PrereqsConfigValues from "../partials/install/_prereqs-configvalues.mdx"
+import PrereqsExistingCluster from "../partials/install/_prereqs-existing-cluster.mdx"
+import PrereqsKotsInstall from "../partials/install/_prereqs-kots-install.mdx"
+import PortForwardStep from "../partials/install/_port-forward-step.mdx"
+
 # Using Automation to Install in an Existing Cluster
 
 This topic describes how to use the the kots CLI to automate installation in an existing online or air gap cluster.
 
 ## About Automating Installation
 
-Automating an install means that you run a single CLI command to provision the cluster with the Kubernetes installer, install the Replicated app manager, and then install and deploy the application. This allows you to 
+Automating installation refers to using a single script to install both the Replicated app manager and the application.
+
+Automating installation is useful because you can reference this installation script from an existing CI/CD workflow, 
 
 ## Prerequisites
 
 Complete the following prerequisites:
 
-<PrereqsExistingCluster/> 
+<PrereqsExistingCluster/>
 
-* you must have a config values file
+* <PrereqsKotsInstall/>
 
-## Installing in an Online Environment
+* <PrereqsConfigValues/>
 
-To install an application with the kots CLI in an online environment:
+    The following is an example of a ConfigValues file:
+
+    <ConfigValuesExample/>
+
+    As shown in the example above, the ConfigValues file includes the names of the configuration fields for the application, along with a user-supplied value for each field.
+
+    Your application vendor provides details about the required and optional configuration fields to include in the ConfigValues file. For more information, see [Downloading the ConfigValues File](/vendor/releases-configvalues).
+
+## Automate Online Installations
+
+You can use a single script to automatically install both the app manager and the application in an existing cluster that has access to the internet.
+
+To automate the installation of the app manager and an application in an online environment:
 
 1. Create the installation command:
 
@@ -26,6 +46,7 @@ To install an application with the kots CLI in an online environment:
       --shared-password PASSWORD \
       --license-file PATH_TO_LICENSE_FILE \
       --config-values PATH_TO_CONFIGVALUES_FILE \
+      --no-port-forward
     ```
     Replace:
       * `APP_NAME` with the name of the application. This is provided by your application vendor.
@@ -34,10 +55,12 @@ To install an application with the kots CLI in an online environment:
       * `PATH_TO_LICENSE_FILE` with the path in your local directory to your unique license YAML file. The admin console automatically installs the license file provided.
       * `PATH_TO_CONFIGVALUES_FILE` with the path in your local directory to the ConfigValues YAML file where your application configuration values are defined. For more information about the ConfigValues file, see [About the ConfigValues File](#config-values) below.
 
+1. <PortForwardStep/>
 
-## Installing in an Air Gap Environment
 
-To use the kots CLI to install in an air gap environment:
+## Automate Air Gap Installations
+
+To automate the installation of the app manager and an application in an air gap environment:
 
 1. Push admin console images to a private registry using the  `kubectl kots admin-console push-images` command. For more information, see [Air Gap Installation in Existing Clusters](installing-existing-cluster-airgapped).
 
@@ -53,7 +76,8 @@ To use the kots CLI to install in an air gap environment:
     --kotsadm-namespace ADMIN_CONSOLE_NAMESPACE \
     --kotsadm-registry PRIVATE_REGISTRY_HOST \
     --registry-username READ_WRITE_USERNAME \
-    --registry-password READ_WRITE_PASSWORD
+    --registry-password READ_WRITE_PASSWORD \
+    --no-port-forward
   ```
 
   Replace:
@@ -67,17 +91,4 @@ To use the kots CLI to install in an air gap environment:
     * `PRIVATE_REGISTRY_HOST` with the hostname for the private image registry where you pushed the admin console images in the previous step.
     * `READ_WRITE_USERNAME` and `READ_WRITE_PASSWORD` with credentials with read write permissions to the private image registry where you pushed the admin console images in the previous step.
 
-For more information about the required and optional flags for the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
-
-## About Disabling the Port Forward
-
-By default, the `kots install` command opens a port forward to the admin console. `--no-port-forward` is an optional flag that disables the default port forward.
-
-If you include `--no-port-forward`, you can run the following command after the installation command completes to access the admin console at `http://localhost:8800`:
-
-```
-kubectl kots admin-console --namespace NAMESPACE
-```
-Replace `NAMESPACE` with the namespace you specified in the `kots install` command.
-
-For more information about the required and optional flags for the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
+1. <PortForwardStep/>    
