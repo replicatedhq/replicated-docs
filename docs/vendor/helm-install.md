@@ -14,7 +14,7 @@ To support installations with the helm CLI, you must:
   * Have an application that contains one or more Helm charts. For information about how to create a release, see [Creating Releases with the Vendor Portal](releases-creating-release).
   * If your application uses private images, update your Helm chart to deliver the required image pull secret and to reference the Replicated proxy service. For more information, see [Using Private Registries for helm CLI Installations (Beta)](helm-image-registry).
 
-## About Supporting helm CLI installations {#about}
+## About Supporting helm CLI Installations {#about}
 
 Using Helm charts to create a release in the vendor portal allows you to package your application one time and support the following application installation methods:
 

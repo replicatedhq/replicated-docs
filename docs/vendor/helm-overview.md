@@ -15,7 +15,45 @@ Helm is a popular package manager for Kubernetes applications. Using Replicated 
 
 When you distribute an application packaged with Helm, your users can install and manage the application with either the Replicated app manager or the helm CLI.
 
-## App Manager
+Additionally, you can create a single release that supports both app manager and helm CLI installation options. For more information about supporting helm CLI in the same release, see [About Supporting helm CLI Installations (Beta)](helm-install#about).
+
+The following table show an overview of the Helm installation options:
+
+<table>
+<tr>
+  <th width="15%">Installation Type</th>
+  <th width="15%">Uses App Manager?</th>
+  <th width="15%">Supported On</th>
+  <th width="55">Highlights</th>
+</tr>
+<tr>
+  <td>Native Helm</td>
+  <td>Yes</td>
+  <td><ul><li>Existing clusters</li><li>Kubernetes installer clusters</li><li>Air gap</li></ul></td>
+  <td><ul><li>Recommended type for app manager</li><li>Supports more Helm options, including hooks and weights</li><li>App manager manages the lifecycle of the application</li></ul></td>
+</tr>
+<tr>
+  <td>Replicated Helm</td>
+  <td>Yes</td>
+  <td><ul><li>Existing clusters</li><li>Kubernetes installer clusters</li><li>Air gap</li></ul></td>
+  <td><ul><li>Not recommended for new installations</li><li>Limited functionality for Helm hooks</li></ul></td>
+</tr>
+<tr>
+  <td>Helm CLI (Beta)</td>
+  <td>No</td>
+  <td>Existing online cluster only</td>
+  <td><ul><li>Limited Replicated features</li><li>Helm manages the lifecycle of the application</li></ul></td>
+</tr>
+</table>
+
+## Limitations
+
+There are different limitations depending on if your customers install and manage the application with the app manager or if they use the helm CLI directly. For more information, see:
+
+* [Supporting Native Helm and Replicated Helm](helm-release)
+* [Supporting helm CLI Installations (Beta)](helm-install)
+
+## App Manager Deployment
 
 Users can install an application packaged with Helm charts using the app manager in either an existing cluster or a cluster provisioned by the Replicated Kubernetes installer. The app manager also supports Helm installations into air gap environments. For more information, see [Air Gap](air-gap).
 
@@ -132,7 +170,7 @@ The resulting deployment is comprised of standard Kubernetes manifests. Therefor
 The app manager supports native Helm and Replicated Helm installations into air gap environments. When a user installs a Helm chart-based application in an air gap environment, the chart processing is managed in the end user environment. This means that the app manager can use user-supplied values, license values, and existing values to create deployable manifests. For more information, see [`builder`](/reference/custom-resource-helmchart#builder) in the _HelmChart_ reference.
 
 
-## helm CLI (Beta)
+## helm CLI (Beta) Deployment
 
 Users can also install an application packaged with a Helm chart into an existing cluster using the helm CLI. When users install with the helm CLI directly, Helm, rather than the app manager, manages the lifecycle of the application.
 
@@ -144,12 +182,7 @@ For more information about how to package an application with Replicated so that
 
 
 
-## Limitations
 
-There are different limitations depending on if your customers install and manage the application with the app manager or if they use the helm CLI directly:
-
-* [Native Helm and Replicated Helm Limitations](helm-release#replicated-helm-limitations)
-* [helm CLI Limitations](helm-install#limitations)
 
 
 
