@@ -113,11 +113,12 @@ Native Helm installations always deploy using Helm v3.
 
 ## weight
 
-Determines the order to apply charts that have `useHelmInstall: true`. Charts are applied by weight in ascending order, with lower weights applied first. **Supported values:** Positive or negative integers. **Default:** `0`
+For charts deployed with the native Helm method (`useHelmInstall: true`), `weight` determines the order in which the app manager applies the Helm chart. Charts are applied by weight in ascending order, with lower weights applied first.
 
-> Introduced in KOTS 1.99.0
+In the app manager v1.99.0 and later, the `weight` also determines the order in which charts are uninstalled. Charts are uninstalled by weight in descending order, with higher weights uninstalled first. For more information about uninstalling applications, see [remove](kots-cli-remove) in _kots CLI_.
 
-When undeploying the application, charts are uninstalled by weight in descending order, with higher weights uninstalled first.
+**Supported values:** Positive or negative integers.
+**Default:** `0`
 
 For more information, see [Defining Installation Order for Native Helm Charts](/vendor/helm-native-helm-install-order).
 
