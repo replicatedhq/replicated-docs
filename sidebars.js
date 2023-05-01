@@ -21,7 +21,15 @@ const sidebars = {
   tutorialSidebar: [
 
     'intro',
-    'intro-replicated',
+    {
+      type: 'category',
+      label: 'Introduction',
+      items: [
+        'vendor/intro-replicated',
+        'vendor/custom-resources-about',
+        'vendor/first-release-workflow',
+      ],
+    },
     {
       type: 'category',
       label: 'Getting Started Tutorials',

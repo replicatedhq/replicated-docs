@@ -1,6 +1,8 @@
-# What is Replicated?
+# What is the App Manager?
 
-The Replicated platform lets you install, manage, support, and get insights on your applications in customer environments. With Replicated, you package and update your application using Kubernetes manifests or Helm charts, then securely distribute to any on-premises or cloud-hosted environments, including air gap.
+The Replicated platform lets you install, manage, support, and get insights on your applications in customer environments using the Replicated app manager. With the app manager, you package and update your application using Kubernetes manifests or Helm charts, then securely distribute to any on-premises or cloud-hosted environments, including air gap.
+
+_Packaging_ refers to the act of authoring, testing, iterating on, and accepting a set of Kubernetes manifests for release to your customers with Replicated. For more information about customer resources, see [About Custom Resources](custom-resources-about).
 
 For information about the Replicated features and components, see [Replicated Components](#replicated-components) below.
 
