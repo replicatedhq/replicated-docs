@@ -21,28 +21,28 @@ The following table show an overview of the Helm installation options:
 
 <table>
 <tr>
-  <th width="15%">Installation Type</th>
-  <th width="15%">Uses App Manager?</th>
-  <th width="15%">Supported On</th>
-  <th width="55">Highlights</th>
+  <th width="20%">Installation Type</th>
+  <th width="20%">Installs with App Manager?</th>
+  <th width="20%">Supported On</th>
+  <th width="40">Highlights</th>
 </tr>
 <tr>
-  <td>Native Helm</td>
+  <td><a href="helm-overview#native">Native Helm</a></td>
   <td>Yes</td>
   <td><ul><li>Existing clusters</li><li>Kubernetes installer clusters</li><li>Air gap</li></ul></td>
-  <td><ul><li>Recommended type for app manager</li><li>Supports more Helm options, including hooks and weights</li><li>App manager manages the lifecycle of the application</li></ul></td>
+  <td><ul><li>Recommended type for app manager</li><li>Supports more Helm options, including hooks and weights</li></ul></td>
 </tr>
 <tr>
-  <td>Replicated Helm</td>
+  <td><a href="helm-overview#replicated">Replicated Helm</a></td>
   <td>Yes</td>
   <td><ul><li>Existing clusters</li><li>Kubernetes installer clusters</li><li>Air gap</li></ul></td>
   <td><ul><li>Not recommended for new installations</li><li>Limited functionality for Helm hooks</li></ul></td>
 </tr>
 <tr>
-  <td>Helm CLI (Beta)</td>
+  <td><a href="helm-overview#helm-cli">helm CLI (Beta)</a></td>
   <td>No</td>
-  <td>Existing online cluster only</td>
-  <td><ul><li>Limited Replicated features</li><li>Helm manages the lifecycle of the application</li></ul></td>
+  <td>Existing online clusters</td>
+  <td><ul><li>Limited Replicated features</li></ul></td>
 </tr>
 </table>
 
@@ -50,8 +50,8 @@ The following table show an overview of the Helm installation options:
 
 There are different limitations depending on if your customers install and manage the application with the app manager or if they use the helm CLI directly. For more information, see:
 
-* [Supporting Native Helm and Replicated Helm](helm-release)
-* [Supporting helm CLI Installations (Beta)](helm-install)
+* [Limitations](helm-release#replicated-helm-limitations) in _Supporting Native Helm and Replicated Helm_
+* [Limitations](helm-install#limitations) in _Supporting helm CLI Installations (Beta)_
 
 ## App Manager Deployment
 
@@ -154,7 +154,7 @@ To deploy Helm charts using the native Helm method, the app manager does the fol
    Finally, the app manager runs `helm upgrade -i <release-name> <chart> --timeout 3600s -n <namespace>`. The Helm binary processes hooks and weights, applies manifests to the Kubernetes cluster, and saves a release secret similar to `sh.helm.release.v1.chart-name.v1`. Helm uses this secret to track upgrades and rollbacks of applications.
 
 
-### Replicated Helm
+### Replicated Helm {#replicated}
 
 :::note
 <ReplicatedHelmDeprecated/>
@@ -170,7 +170,7 @@ The resulting deployment is comprised of standard Kubernetes manifests. Therefor
 The app manager supports native Helm and Replicated Helm installations into air gap environments. When a user installs a Helm chart-based application in an air gap environment, the chart processing is managed in the end user environment. This means that the app manager can use user-supplied values, license values, and existing values to create deployable manifests. For more information, see [`builder`](/reference/custom-resource-helmchart#builder) in the _HelmChart_ reference.
 
 
-## helm CLI (Beta) Deployment
+## helm CLI Deployment (Beta) {#helm-cli}
 
 Users can also install an application packaged with a Helm chart into an existing cluster using the helm CLI. When users install with the helm CLI directly, Helm, rather than the app manager, manages the lifecycle of the application.
 
