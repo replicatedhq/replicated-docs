@@ -1,6 +1,6 @@
 # What is Replicated?
 
-The Replicated platform lets you install, manage, support, and get insights on your applications in customer environments. With Replicated, you package and update your application using Kubernetes manifests or Helm charts, then securely distribute to any on-premises or cloud-hosted environments, including air gap.
+The Replicated platform lets you install, manage, support, and get insights on your applications in customer environments using the Replicated app manager. You can package and update your application using Kubernetes manifests or Helm charts, then securely distribute to any on-premises or cloud-hosted environments, including air gap.
 
 For information about the Replicated features and components, see [Replicated Components](#replicated-components) below.
 

@@ -1,0 +1,19 @@
+import CustomResourcesFunctionality from "../partials/releases/_custom-resources-functionality.mdx"
+
+# App Manager Custom Resources
+
+You use Replicated custom resources to add app manager functionality to your releases. Replicated custom resources are YAML files that you add to your releases depending on which options you want to use. Custom resources are packaged as part of the application release but are not deployed to the cluster. Instead, custom resources control the application experience.
+
+For example, custom resources let you define the user-facing config screen, brand the admin console, and configure preflight checks and support bundle collectors and analyzers, and deploy Helm charts.
+
+For more information and a list of available custom resources, see [About Custom Resources](/reference/custom-resource-about) in _Reference_.
+
+## Adding Functionality with Custom Resources
+
+With your first release, you must configure an image registry and import your application.
+
+As you iterate and add functionality to your releases, Replicated recommends packaging and testing your application in small iterations. With the interdependencies and synergies among Replicated features, it can be helpful to know which features to explore first. Some integrations, like preflight checks and support bundles, are highly recommended.
+
+The following table gives a suggested order, but you can add functionality in any order and omit features that do not apply to your needs. These functions can be used with Kubernetes Operators, except where noted.
+
+<CustomResourcesFunctionality/>
