@@ -483,7 +483,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
   </tr>    
 </table>
 
-For information about supported validation types, see [Validation](#item-validation).
+For information about supported validation types, see [Item Validation](#item-validation).
 
 ## Item Types
 
