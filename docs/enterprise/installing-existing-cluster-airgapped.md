@@ -1,6 +1,7 @@
 import ImageRegistryAirgapAbout from "../partials/image-registry/_image-registry-airgap-about.mdx"
 import ImageRegistryAirgapPrereq from "../partials/image-registry/_image-registry-airgap-prereq.mdx"
 import PrereqsExistingCluster from "../partials/install/_prereqs-existing-cluster.mdx"
+import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
 
 # Air Gap Installation in Existing Clusters
 
@@ -17,6 +18,8 @@ Complete the following prerequisites:
 <PrereqsExistingCluster/>
 
 <ImageRegistryAirgapPrereq/>
+
+* <AirGapBundle/>
 
 ## Install the Application {#air-gap}
 
