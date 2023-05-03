@@ -1,4 +1,4 @@
-# Google Authentication
+# Managing Google Authentication
 
 This topic describes the Replicated supported functionality for Google authentication and how to configure it.
 
@@ -23,15 +23,15 @@ To manage Google authentication settings:
   
 
 ## Migrating Existing Accounts
-Excluding some teams that restrict end users to use only Security Assertion Markup Language (SAML) or require multi-factor authentication (MFA), existing end users can seamlessly sign into an account that exactly matches their Google Workspace (formerly GSuite) email address. However, Google authentication only matches existing user accounts, so for users who have signed up using task-based email addresses (such as name+news@domain.com), you can continue to use email/password to sign in, invite your normal email address to your team, or contact support to change your email address. For more information about task-based email addresses, see [Create task-specific email addresses](https://support.google.com/a/users/answer/9308648?hl=en) in the Google Support site.
+Excluding some teams that restrict end users to use only Security Assertion Markup Language (SAML) or require two-factor authentication (2FA), existing end users can seamlessly sign into an account that exactly matches their Google Workspace (formerly GSuite) email address. However, Google authentication only matches existing user accounts, so for users who have signed up using task-based email addresses (such as name+news@domain.com), you can continue to use email/password to sign in, invite your normal email address to your team, or contact support to change your email address. For more information about task-based email addresses, see [Create task-specific email addresses](https://support.google.com/a/users/answer/9308648?hl=en) in the Google Support site.
 
 Migrated accounts maintain the same role-based access control (RBAC) permissions that were previously assigned. After signing in with Google, users can choose to disable username/password-based authentication on their account or maintain both authentication methods using the vendor portal [account settings page](https://vendor.replicated.com/account-settings).
 
 ## Limitations
 * Using distribution lists for sending invitations to join a team are not supported. The invitations are sent, but are invalid and cannot be used to join a team using Google authentication.
 
-### Compatibility with MFA
-Google authentication is not entirely compatible with the Replicated MFA implementation because Google authentication bypasses account-based MFA, relying on your Google Authentication MFA instead. However, the vendor portal continues to enforce MFA on all email/password-based authentication, even for the same user, if both options are enabled.
+### Compatibility with Replicated Two-Factor Authentication
+Google authentication is not entirely compatible with Replicated two-factor authentication (2FA) implementation because Google authentication bypasses account-based 2FA, relying on your Google Authentication instead. However, the vendor portal continues to enforce 2FA on all email/password-based authentication, even for the same user, if both options are enabled.
 
 ## Related Topic
 

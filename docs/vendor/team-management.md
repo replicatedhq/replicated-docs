@@ -6,7 +6,7 @@ import CollabRbacImportant from "../partials/collab-repo/_collab-rbac-important.
 This topic describes how to manage team members in the Replicated vendor portal, such as inviting and removing members, and editing permissions. For information about managing user access to the Replicated collab repository in GitHub, see [Managing Collab Repository Access](team-management-github-username).
 
 ## Viewing Team Members
-The [Team](https://vendor.replicated.com/team/members) page provides a list of all accounts currently associated with or invited to your team. Each row contains information about the user, including their multi-factor authentication (MFA) status and role-based access control (RBAC) role, and lets administrators take additional actions, such as remove, re-invite, and edit permissions.
+The [Team](https://vendor.replicated.com/team/members) page provides a list of all accounts currently associated with or invited to your team. Each row contains information about the user, including their two-factor authentication (2FA) status and role-based access control (RBAC) role, and lets administrators take additional actions, such as remove, re-invite, and edit permissions.
 
 All users, including read-only, can see the name of the RBAC role assigned to each team member. When SAML authentication is enabled, users with the built-in read-only policy cannot see the RBAC role assigned to team members.
 
@@ -31,7 +31,7 @@ To invite a new team member:
 
 1. Click **Invite Member**.
 
-  People invited to join your team receive an email notification to accept the invitation. They must follow the link in the email to accept the invitation and join the team. If they do not have a Replicated account already, they can create one that complies with your password policies, MFA, and Google authentication requirements. If an invited user's email address is already associated with a Replicated account, by accepting your invitation, they automatically leave their current team and join the team that you have invited them to.
+  People invited to join your team receive an email notification to accept the invitation. They must follow the link in the email to accept the invitation and join the team. If they do not have a Replicated account already, they can create one that complies with your password policies, 2FA, and Google authentication requirements. If an invited user's email address is already associated with a Replicated account, by accepting your invitation, they automatically leave their current team and join the team that you have invited them to.
 
 ## Re-invite Members
 

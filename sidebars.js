@@ -74,9 +74,15 @@ const sidebars = {
               'vendor/team-management-rbac-resource-names',
           ],
         },
-        'vendor/team-management-two-factor-auth',
-        'vendor/team-management-google-auth',
-        'vendor/team-management-saml-auth',
+        {
+          type: 'category',
+          label: 'Configuring Authentication',
+          items: [
+            'vendor/team-management-two-factor-auth',
+            'vendor/team-management-google-auth',
+            'vendor/team-management-saml-auth',
+         ],
+       },
         'vendor/custom-domains',
       ],
     },

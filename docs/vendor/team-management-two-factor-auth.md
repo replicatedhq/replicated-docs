@@ -1,10 +1,10 @@
-# Enabling and Disabling Two-Factor Authentication
+# Managing Two-Factor Authentication
 
 This topic describes how to enable and disable two-factor authentication for individual and team accounts in the Replicated vendor portal.
 
 ## About Two-Factor Authentication
 
-Two-factor authentication (2FA) provides additional security by requiring two methods of authentication to access resources and data. When you enable the 2FA option in the Replicated vendor portal, you are asked to provide an authentication code and your password during authentication. Replicated utilizes the open algorithm known as the Time-based One-time Password (TOTP 7) which is specified by the Internet Engineering Task Force (IETF) under RFC 6238 2.
+Two-factor authentication (2FA) provides additional security by requiring two methods of authentication to access resources and data. When you enable the 2FA option in the vendor portal, you are asked to provide an authentication code and your password during authentication. Replicated utilizes the open algorithm known as the Time-based One-time Password (TOTP 7), which is specified by the Internet Engineering Task Force (IETF) under RFC 6238 2.
 
 Administrators must first enable their own individual account before enabling it for teams. Then team members can enable their individual accounts.
 
@@ -18,7 +18,7 @@ If you are an administrator or if 2FA is enabled for your team, you can enable 2
 
 To enable two-factor authentication on your account:
 
-1. In the vendor portal, click **Account Settings** from the dropdown list in the upper right corner of the screen.
+1. In the [vendor portal](https://vendor.replicated.com), click **Account Settings** from the dropdown list in the upper right corner of the screen.
 
     <img src="/images/vendor-portal-account-settings.png" alt="Vendor portal account settings" width="300"/>
 
@@ -49,7 +49,7 @@ To enable two-factor authentication on your account:
 
 To disable two-factor authentication on your account:
 
-1. In the vendor portal, click **Account Settings** from the dropdown list in the upper right corner of the screen.
+1. In the [vendor portal](https://vendor.replicated.com), click **Account Settings** from the dropdown list in the upper right corner of the screen.
 
     <img src="/images/vendor-portal-account-settings.png" alt="Vendor portal account settings" width="300"/>
 
@@ -65,7 +65,7 @@ As an administrator, you can enable or disable 2FA for a team. Then team members
 
 To enable or disable 2FA for a team:
 
-1. In the vendor portal, select the **Team** tab, then select **Multifactor Auth**.
+1. In the [vendor portal](https://vendor.replicated.com), select the **Team** tab, then select **Multifactor Auth**.
 
     <img src="/images/team-2fa-auth.png" alt="Multifactor authentication for teams in the vendor portal" width="600"/>
 
