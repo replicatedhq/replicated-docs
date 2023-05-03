@@ -27,7 +27,7 @@ Complete the following prerequisites:
 
 <PrereqsEmbeddedCluster/>
 
-* <AirGapBundle/>
+<AirGapBundle/>
 
 <HaLoadBalancerPrereq/>
 
@@ -37,13 +37,13 @@ This procedure describes how to provision a cluster with the Kubernetes installe
 
 To install the application:
 
-1. Download the `.tar.gz` air gap bundle for the Kubernetes installer:
+1. In your installation environment, run the following command to download the `.tar.gz` air gap bundle for the Kubernetes installer:
 
    ```bash
    curl -LO https://k8s.kurl.sh/bundle/FILENAME.tar.gz
    ```
 
-   Replace `FILENAME` with the name of the `.tar.gz` bundle provided by your application vendor. For example, `curl -LO https://k8s.kurl.sh/bundle/my-app.tar.gz`
+   Replace `FILENAME` with the name of the `.tar.gz` bundle provided by your application vendor. For example, `curl -LO https://k8s.kurl.sh/bundle/my-app.tar.gz`.
 
 1. Extract the contents of the bundle that you downloaded:
 
@@ -51,7 +51,7 @@ To install the application:
    tar -xvzf FILENAME.tar.gz
    ```
 
-1. Run one of the following commands to create the cluster and install the app manager: 
+1. Run one of the following commands to create the cluster with the Kubernetes installer and install the app manager in air gap mode: 
 
     - For a regular installation, run:
 
@@ -78,21 +78,21 @@ To install the application:
       - **kots CLI:** To install and deploy the application with the kots CLI, run the following command:
 
         ```
-          kubectl kots install APP_NAME \
-          --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
-          --license-file PATH_TO_LICENSE_FILE \
-          --config-values PATH_TO_CONFIG_VALUES \
-          --namespace ADMIN_CONSOLE_NAMESPACE \
-          --shared-password PASSWORD
+        kubectl kots install APP_NAME \
+        --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
+        --license-file PATH_TO_LICENSE_FILE \
+        --config-values PATH_TO_CONFIG_VALUES \
+        --namespace ADMIN_CONSOLE_NAMESPACE \
+        --shared-password PASSWORD
         ```
 
         Replace:
-        * `APP_NAME` with the name for the application.
-        * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle file.
-        * `PATH_TO_LICENSE_FILE` with the path to the license file.
-        * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file.
+        * `APP_NAME` with a name for the application.
+        * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle that you downloaded.
+        * `PATH_TO_LICENSE_FILE` with the path to the license file that you downloaded.
+        * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file. See [About the ConfigValues File](installing-existing-cluster-automation#config-values).
         * `ADMIN_CONSOLE_NAMESPACE` with the namespace where the admin console will be installed. **Default:** `default`
-        * `PASSWORD` with a shared password.
+        * `PASSWORD` with a shared password for accessing the admin console.
 
         For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
 

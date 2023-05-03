@@ -33,7 +33,7 @@ This procedure describes how to provision a cluster with the Kubernetes installe
 
 To install the application:
 
-1. Run one of the following commands to create the cluster and install the app manager:
+1. Run one of the following commands to create the cluster with the Kubernetes installer and install the app manager:
 
     * For a regular installation, run:
 
@@ -70,11 +70,11 @@ To install the application:
       ```
 
       Replace:
-        * `APP_NAME` with the name for the application.
-        * `PATH_TO_LICENSE_FILE` with the path to the license file.
-        * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file.
-        * `ADMIN_CONSOLE_NAMESPACE` with the namespace where the admin console will be installed. **Default:** `default`
-        * `PASSWORD` with a shared password.
+        * `APP_NAME` with a name for the application.
+        * `PATH_TO_LICENSE_FILE` with the path to the license file that you downloaded.
+        * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file. See [About the ConfigValues File].(installing-existing-cluster-automation#config-values).
+        * `ADMIN_CONSOLE_NAMESPACE` with the namespace where the admin console is installed. **Default:** `default`
+        * `PASSWORD` with a shared password for accessing the admin console.
 
         For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
 

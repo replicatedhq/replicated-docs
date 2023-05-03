@@ -19,7 +19,7 @@ Complete the following prerequisites:
 
 <ImageRegistryAirgapPrereq/>
 
-* <AirGapBundle/>
+<AirGapBundle/>
 
 ## Install the Application {#air-gap}
 
