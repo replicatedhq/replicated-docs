@@ -33,7 +33,7 @@ The following example shows a common password complexity rule:
       validation:
         regex: 
           pattern: ^(?:[\w@#$%^&+=!*()_\-{}[\]:;"'<>,.?\/|]){8,16}$
-          message: The password must be between 8 and 16 characters long and can contain a combination of uppercase letters lowercase letters, digits, and special characters.
+          message: The password must be between 8 and 16 characters long and can contain a combination of uppercase letter, lowercase letters, digits, and special characters.
 ```
 
 ## Add Fields to the Configuration Screen
