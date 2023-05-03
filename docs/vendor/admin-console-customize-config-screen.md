@@ -12,13 +12,13 @@ You define the fields that appear on the configuration screen as an array of `gr
 
    There are several types of `items` supported in the Config manifest that allow you to collect different types of user inputs. For example, you can use the `password` input type to create a text field on the configuration screen that hides user input.
 
-For more information about the syntax of the Config custom resource manifest, see [Config](/reference/custom-resource-config) in the _Custom Resources_ reference section.
+For more information about the syntax of the Config custom resource manifest, see [Config](/reference/custom-resource-config) in the _Custom Resources_.
 
 ## About Regular Expression Validation
 
 You can use [RE2 regular expressions](https://github.com/google/re2/wiki/Syntax) (regex) to validate user input for config items, ensuring conformity to certain standards, such as valid email addresses, password complexity rules, IP addresses, and URLs. This prevents users from deploying an application with a verifiably invalid configuration.
 
-You add the `validation`, `regex`, `pattern` and `message` fields to items in the Config custom resource. Validation is supported for `text`, `textarea`, `password` and `file` config item types. For more information about regex validation fields, see [`regex`](/reference/custom-resource-config#item-validation) in the _Config_ reference section.
+You add the `validation`, `regex`, `pattern` and `message` fields to items in the Config custom resource. Validation is supported for `text`, `textarea`, `password` and `file` config item types. For more information about regex validation fields, see [Item Validation](/reference/custom-resource-config#item-validation) in _Config_.
 
 The following example shows a common password complexity rule:
 
