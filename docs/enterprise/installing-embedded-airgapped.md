@@ -95,3 +95,7 @@ To install the application:
         * `PASSWORD` with a shared password.
 
         For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
+
+## Next Step
+
+(Optional) You can add nodes to the cluster. See [Adding Nodes to Kubernetes Installer Clusters](cluster-management-add-nodes).

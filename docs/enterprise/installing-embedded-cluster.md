@@ -29,11 +29,11 @@ Complete the following prerequisites:
 
 ## Install the Application
 
-This procedure explains how to install the the application in an online environment, with and without high availability mode.
+This procedure describes how to provision a cluster with the Kubernetes installer, install the app manager, then install and deploy the application.
 
 To install the application:
 
-1. Run one of the following commands to install the app manager:
+1. Run one of the following commands to provision the cluster and install the app manager:
 
     * For a regular installation, run:
 
@@ -59,7 +59,7 @@ To install the application:
 
     <InstallApp/>
 
-    - **kots CLI:** Use the following command to install the application. For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
+    - **kots CLI:** To install and deploy the application with the kots CLI, run the following command:
 
       ```
         kubectl kots install APP_NAME \
@@ -75,6 +75,8 @@ To install the application:
         * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file.
         * `ADMIN_CONSOLE_NAMESPACE` with the namespace where the admin console will be installed. **Default:** `default`
         * `PASSWORD` with a shared password.
+
+        For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
 
 ## Next Step
 
