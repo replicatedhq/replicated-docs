@@ -51,7 +51,7 @@ To install the application:
    tar -xvzf FILENAME.tar.gz
    ```
 
-1. Run one of the following commands to provision the cluster and install the app manager: 
+1. Run one of the following commands to create the cluster and install the app manager: 
 
     - For a regular installation, run:
 

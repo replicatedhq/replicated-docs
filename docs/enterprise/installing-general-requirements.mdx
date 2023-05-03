@@ -253,11 +253,11 @@ Because the Kubernetes installer is based on the open source kURL project, which
 
 ## Private Registry Requirements
 
-Private registries are required for air gap environments because you push the admin console container images to a private registry during installation. For online environments, it is optional to use private registries.  
+A private image registry is required for air gap installations in existing clusters. For air gap installations in a Kubernetes installer cluster, the Kubernetes installer automatically uses the open source kURL registry add-on to meet the private registry requirement. For more information, see [Registry Add-on](https://kurl.sh/docs/add-ons/registry) in the kURL documentation.
 
 Private registry settings can be changed at any time. For more information, see [Using Private Registries](image-registry-settings).
 
-Make sure that you use a compatible registry. The app manager has been tested for compatibility with the following registries:
+You must use a compatible registry. The app manager has been tested for compatibility with the following registries:
 
 <DockerCompatibility/>
 

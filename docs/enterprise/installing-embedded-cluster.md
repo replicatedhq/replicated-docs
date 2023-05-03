@@ -9,7 +9,7 @@ import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
 
 # Online Installation with the Kubernetes Installer
 
-This topic explains how to install an application on an embedded cluster provisioned by the Replicated Kubernetes installer.
+This topic describes how to use Replicated to install an application in an embedded cluster provisioned by the Replicated Kubernetes installer. The procedure explains how to install with and without high availability mode.
 
 <KurlAbout/>
 
@@ -33,7 +33,7 @@ This procedure describes how to provision a cluster with the Kubernetes installe
 
 To install the application:
 
-1. Run one of the following commands to provision the cluster and install the app manager:
+1. Run one of the following commands to create the cluster and install the app manager:
 
     * For a regular installation, run:
 
