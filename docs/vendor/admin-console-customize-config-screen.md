@@ -12,7 +12,7 @@ You define the fields that appear on the configuration screen as an array of `gr
 
    There are several types of `items` supported in the Config manifest that allow you to collect different types of user inputs. For example, you can use the `password` input type to create a text field on the configuration screen that hides user input.
 
-For more information about the syntax of the Config custom resource manifest, see [Config](/reference/custom-resource-config) in the _Custom Resources_.
+For more information about the syntax of the Config custom resource manifest, see [Config](/reference/custom-resource-config).
 
 ## About Regular Expression Validation
 
