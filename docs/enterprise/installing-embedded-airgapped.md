@@ -75,27 +75,30 @@ To install the application:
 
       <InstallApp/>
 
-      - **kots CLI:** To install and deploy the application with the kots CLI, run the following command:
+      - **kots CLI:** To install and deploy the application with the kots CLI:
 
-        ```
-        kubectl kots install APP_NAME \
-        --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
-        --license-file PATH_TO_LICENSE_FILE \
-        --config-values PATH_TO_CONFIG_VALUES \
-        --namespace ADMIN_CONSOLE_NAMESPACE \
-        --shared-password PASSWORD
-        ```
+        1. Run the following command:
+        
+            ```
+            kubectl kots install APP_NAME \
+            --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
+            --license-file PATH_TO_LICENSE_FILE \
+            --config-values PATH_TO_CONFIG_VALUES \
+            --namespace ADMIN_CONSOLE_NAMESPACE \
+            --shared-password PASSWORD
+            ```
 
-        Replace:
-        * `APP_NAME` with a name for the application.
-        * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle that you downloaded.
-        * `PATH_TO_LICENSE_FILE` with the path to the license file that you downloaded.
-        * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file. See [About the ConfigValues File](installing-existing-cluster-automation#config-values).
-        * `ADMIN_CONSOLE_NAMESPACE` with the namespace where the admin console will be installed. **Default:** `default`
-        * `PASSWORD` with a shared password for accessing the admin console.
+            Replace:
+            * `APP_NAME` with a name for the application.
+            * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle that you downloaded.
+            * `PATH_TO_LICENSE_FILE` with the path to the license file that you downloaded.
+            * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file. See [About the ConfigValues File](installing-existing-cluster-automation#config-values).
+            * `ADMIN_CONSOLE_NAMESPACE` with the namespace where the admin console will be installed. **Default:** `default`
+            * `PASSWORD` with a shared password for accessing the admin console.
 
-        For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
+            For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
 
+        1. (Optional) After the `kots install` command completes, you can access the admin console at the address that was provided previously in the `Kotsadm` field. Then, enter the password that was provided in the `Login with password (will not be shown again)` field.
 ## Next Step
 
 (Optional) You can add nodes to the cluster. See [Adding Nodes to Kubernetes Installer Clusters](cluster-management-add-nodes).
