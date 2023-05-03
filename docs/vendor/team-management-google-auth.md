@@ -28,9 +28,10 @@ Excluding some teams that restrict end users to use only Security Assertion Mark
 Migrated accounts maintain the same role-based access control (RBAC) permissions that were previously assigned. After signing in with Google, users can choose to disable username/password-based authentication on their account or maintain both authentication methods using the vendor portal [account settings page](https://vendor.replicated.com/account-settings).
 
 ## Limitations
-* Using distribution lists for sending invitations to join a team are not supported. The invitations are sent, but are invalid and cannot be used to join a team using Google authentication.
 
-### Compatibility with Replicated Two-Factor Authentication
+Using distribution lists for sending invitations to join a team are not supported. The invitations are sent, but are invalid and cannot be used to join a team using Google authentication.
+
+## Compatibility with Two-Factor Authentication
 Google authentication is not entirely compatible with Replicated two-factor authentication (2FA) implementation because Google authentication bypasses account-based 2FA, relying on your Google Authentication instead. However, the vendor portal continues to enforce 2FA on all email/password-based authentication, even for the same user, if both options are enabled.
 
 ## Related Topic
