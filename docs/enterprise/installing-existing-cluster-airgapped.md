@@ -1,5 +1,6 @@
 import PrereqsExistingCluster from "../partials/install/_prereqs-existing-cluster.mdx"
 import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
+import LicenseFile from "../partials/install/_license-file-prereq.mdx"
 
 # Air Gap Installation in Existing Clusters
 
@@ -24,6 +25,8 @@ Complete the following prerequisites:
 * Ensure that there is a compatible Docker image registry available inside the network. For more information about Docker registry compatibility, see [Private Registry Requirements](/enterprise/installing-general-requirements#private-registry-requirements).
 
 <AirGapBundle/>
+
+<LicenseFile/>
 
 ## Install the Application {#air-gap}
 

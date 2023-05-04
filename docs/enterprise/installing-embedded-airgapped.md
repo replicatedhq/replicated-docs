@@ -6,6 +6,7 @@ import HAStep from "../partials/install/_embedded-ha-step.mdx"
 import LoginPassword from "../partials/install/_embedded-login-password.mdx"
 import InstallApp from "../partials/install/_embedded-admin-console-step.mdx"
 import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
+import LicenseFile from "../partials/install/_license-file-prereq.mdx"
 
 # Air Gap Installation with the Kubernetes Installer
 
@@ -26,6 +27,8 @@ Complete the following prerequisites:
 <PrereqsEmbeddedCluster/>
 
 <AirGapBundle/>
+
+<LicenseFile/>
 
 <HaLoadBalancerPrereq/>
 

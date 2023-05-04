@@ -6,6 +6,7 @@ import HAStep from "../partials/install/_embedded-ha-step.mdx"
 import LoginPassword from "../partials/install/_embedded-login-password.mdx"
 import InstallApp from "../partials/install/_embedded-admin-console-step.mdx"
 import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
+import LicenseFile from "../partials/install/_license-file-prereq.mdx"
 
 # Online Installation with the Kubernetes Installer
 
@@ -24,6 +25,8 @@ Online installations can use high availability (HA) mode with the Kubernetes ins
 Complete the following prerequisites:
 
 <PrereqsEmbeddedCluster/>
+
+<LicenseFile/>
 
 <HaLoadBalancerPrereq/>
 
