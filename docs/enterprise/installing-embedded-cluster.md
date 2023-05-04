@@ -7,6 +7,7 @@ import LoginPassword from "../partials/install/_embedded-login-password.mdx"
 import InstallApp from "../partials/install/_embedded-admin-console-step.mdx"
 import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
 import LicenseFile from "../partials/install/_license-file-prereq.mdx"
+import KotsCliInstall from "../partials/install/_kots-cli-install.mdx"
 
 # Online Installation with the Kubernetes Installer
 
@@ -48,7 +49,7 @@ To install the application:
 
       ```bash
       curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash -s ha
-        ```
+      ```
     
     Replace `APP_SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
 
@@ -64,22 +65,18 @@ To install the application:
 
     - **kots CLI:** To install and deploy the application with the kots CLI, run the following command:
 
-      ```
-        kubectl kots install APP_NAME \
-        --license-file PATH_TO_LICENSE_FILE \
-        --config-values PATH_TO_CONFIG_VALUES \
-        --namespace ADMIN_CONSOLE_NAMESPACE \
-        --shared-password PASSWORD
+      ```bash
+      kubectl kots install APP_NAME \
+      --license-file PATH_TO_LICENSE_FILE \
+      --config-values PATH_TO_CONFIG_VALUES \
+      --namespace ADMIN_CONSOLE_NAMESPACE \
+      --shared-password PASSWORD
       ```
 
       Replace:
-        * `APP_NAME` with a name for the application.
-        * `PATH_TO_LICENSE_FILE` with the path to the license file that you downloaded.
-        * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file. See [About the ConfigValues File].(installing-existing-cluster-automation#config-values).
-        * `ADMIN_CONSOLE_NAMESPACE` with the namespace where the admin console is installed. **Default:** `default`
-        * `PASSWORD` with a shared password for accessing the admin console.
+      <KotsCliInstall/>
 
-        For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
+      For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
 
 ## Next Step
 

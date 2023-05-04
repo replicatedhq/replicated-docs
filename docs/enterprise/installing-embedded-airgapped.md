@@ -7,6 +7,7 @@ import LoginPassword from "../partials/install/_embedded-login-password.mdx"
 import InstallApp from "../partials/install/_embedded-admin-console-step.mdx"
 import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
 import LicenseFile from "../partials/install/_license-file-prereq.mdx"
+import KotsCliInstall from "../partials/install/_kots-cli-install.mdx"
 
 # Air Gap Installation with the Kubernetes Installer
 
@@ -78,22 +79,19 @@ To install the application:
 
       - **kots CLI:** To install and deploy the application with the kots CLI, run the following command:
         
-        ```
+        ```bash
         kubectl kots install APP_NAME \
-        --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
         --license-file PATH_TO_LICENSE_FILE \
         --config-values PATH_TO_CONFIG_VALUES \
         --namespace ADMIN_CONSOLE_NAMESPACE \
-        --shared-password PASSWORD
+        --shared-password PASSWORD \
+        --airgap-bundle PATH_TO_AIRGAP_BUNDLE
         ```
 
         Replace:
-        * `APP_NAME` with a name for the application.
+        <KotsCliInstall/>
+        
         * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle that you downloaded.
-        * `PATH_TO_LICENSE_FILE` with the path to the license file that you downloaded.
-        * `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file. See [About the ConfigValues File](installing-existing-cluster-automation#config-values).
-        * `ADMIN_CONSOLE_NAMESPACE` with the namespace where the admin console will be installed. **Default:** `default`
-        * `PASSWORD` with a shared password for accessing the admin console.
 
         For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
 ## Next Step
