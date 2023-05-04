@@ -20,6 +20,49 @@ Replicated recommends that vendor portal admins manage user access to the collab
 
 For more information about adding users to the collab repository through the vendor portal, see [Add Users to the Collab Repository](#add) below.
 
+
+## Adding Users to the Collab Repository {#add}
+
+This procedure describes how to use the vendor portal to access the collab repository for the first time as an Admin, then automatically add new and existing users to the repository. This allows you to use the vendor portal to manage the GitHub roles for users in the collab repository, rather than manually adding, managing, and removing users from the repository through GitHub. For more information, see [Overview of Managing Collab Access](#overview) above.
+
+### Prerequisites
+
+Your team must have a replicated-collab repository configured to add users to
+the repository and to manage repository access through the vendor portal. To get 
+a collab support repository configured in GitHub for your team, complete the onboarding 
+instructions in the email you received from Replicated. You can also access the [Replicated community help forum](https://community.replicated.com/) for assistance.
+
+### Add Users to the Repository
+
+To add new and existing users to the collab repository through the vendor portal:
+
+1. As a vendor portal admin, log in to your vendor portal account. In the [Account Settings](https://vendor.replicated.com/account-settings) page, add your GitHub username and click **Save Changes**.
+
+
+![add-github-username](https://user-images.githubusercontent.com/3730605/236249230-5a415974-097c-4d56-a33c-919e929553cc.png)
+
+   The vendor portal automatically adds your GitHub username to the collab repository and assigns it the Admin role. You receive an email with details about the collab repository when you are added.
+
+1. Follow the collab repository link from the email that you receive to log in to your GitHub account and access the repository.
+
+1. (Recommended) Manually remove any users in the collab repository that were previously added through GitHub.
+
+   :::note
+   <CollabExistingUser/>
+   :::
+
+1. (Optional) In the vendor portal, go to the [Team](https://vendor.replicated.com/team/members) page. For each team member, click **Edit permissions** as necessary to specify their GitHub role in the collab repository.
+
+   For information about which policies to select, see [Default GitHub Roles](#default) and [About Changing the Default GitHub Role](#custom) above.
+
+1. Instruct each vendor portal team member to add their GitHub username to the [Account Settings](https://vendor.replicated.com/account-settings) page in the vendor portal.
+
+   The vendor portal adds the username to the collab repo and assigns a GitHub role to the user based on their vendor portal policy.
+
+
+   Users receive an email when they are added to the collab repository.
+
+
 ### Default GitHub Roles {#default}
 
 When team members add a GitHub username to their vendor portal account, the vendor portal determines how to assign the user a GitHub role in the collab repository based on the following criteria:
@@ -103,40 +146,3 @@ For more information about how to edit the `allowed:` or `denied:` lists for cus
 
 <CollabRbacResourcesImportant/>
 
-
-## Adding Users to the Collab Repository {#add}
-
-This procedure describes how to use the vendor portal to access the collab repository for the first time as an Admin, then automatically add new and existing users to the repository. This allows you to use the vendor portal to manage the GitHub roles for users in the collab repository, rather than manually adding, managing, and removing users from the repository through GitHub. For more information, see [Overview of Managing Collab Access](#overview) above.
-
-### Prerequisites
-
-Your team must have a replicated-collab repository configured to add users to
-the repository and to manage repository access through the vendor portal. To get 
-a collab support repository configured in GitHub for your team, complete the onboarding 
-instructions in the email you received from Replicated. You can also access the [Replicated community help forum](https://community.replicated.com/) for assistance.
-
-### Add Users to the Repository
-
-To add new and existing users to the collab repository through the vendor portal:
-
-1. As a vendor portal admin, log in to your vendor portal account. In the [Account Settings](https://vendor.replicated.com/account-settings) page, add your GitHub username and click **Save Changes**.
-
-   The vendor portal automatically adds your GitHub username to the collab repository and assigns it the Admin role. You receive an email with details about the collab repository when you are added.
-
-1. Follow the collab repository link from the email that you receive to log in to your GitHub account and access the repository.
-
-1. (Recommended) Manually remove any users in the collab repository that were previously added through GitHub.
-
-   :::note
-   <CollabExistingUser/>
-   :::
-
-1. (Optional) In the vendor portal, go to the [Team](https://vendor.replicated.com/team/members) page. For each team member, click **Edit permissions** as necessary to specify their GitHub role in the collab repository.
-
-   For information about which policies to select, see [Default GitHub Roles](#default) and [About Changing the Default GitHub Role](#custom) above.
-
-1. Instruct each vendor portal team member to add their GitHub username to the [Account Settings](https://vendor.replicated.com/account-settings) page in the vendor portal.
-
-   The vendor portal adds the username to the collab repo and assigns a GitHub role to the user based on their vendor portal policy.
-
-   Users receive an email when they are added to the collab repository.
