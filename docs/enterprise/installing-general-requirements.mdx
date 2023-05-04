@@ -253,11 +253,11 @@ Because the Kubernetes installer is based on the open source kURL project, which
 
 ## Private Registry Requirements
 
-A private image registry is required for air gap installations in existing clusters. For air gap installations in a Kubernetes installer cluster, the Kubernetes installer automatically uses the open source kURL registry add-on to meet the private registry requirement. For more information, see [Registry Add-on](https://kurl.sh/docs/add-ons/registry) in the kURL documentation.
+A private image registry is required for air gap installations. For air gap installations in existing clusters, you must provide credentials for a compatible private registry during installation. For air gap installations in Kubernetes installer clusters, the Kubernetes installer automatically uses the open source kURL registry add-on to meet the private registry requirement. For more information, see [Registry Add-on](https://kurl.sh/docs/add-ons/registry) in the kURL documentation.
 
 Private registry settings can be changed at any time. For more information, see [Using Private Registries](image-registry-settings).
 
-You must use a compatible registry. The app manager has been tested for compatibility with the following registries:
+The app manager has been tested for compatibility with the following registries:
 
 <DockerCompatibility/>
 

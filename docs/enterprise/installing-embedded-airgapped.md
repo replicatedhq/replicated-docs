@@ -1,5 +1,3 @@
-import ImageRegistryAirgapAbout from "../partials/image-registry/_image-registry-airgap-about.mdx"
-import ImageRegistryAirgapPrereq from "../partials/image-registry/_image-registry-airgap-prereq.mdx"
 import KurlAbout from "../partials/install/_kurl-about.mdx"
 import PrereqsEmbeddedCluster from "../partials/install/_prereqs-embedded-cluster.mdx"
 import HaLoadBalancerAbout from "../partials/install/_ha-load-balancer-about.mdx"
