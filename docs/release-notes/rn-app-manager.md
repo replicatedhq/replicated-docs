@@ -6,6 +6,12 @@ import KubernetesCompatibility from "../partials/install/_kubernetes-compatibili
 
 # App Manager Release Notes
 
+## Kubernetes Compatibility
+
+The following table lists the versions of Kubernetes that are compatible with each version of the app manager:
+
+<KubernetesCompatibility/>
+
 ## 1.98.3
 
 Released on May 5, 2023
@@ -19,11 +25,11 @@ Support for Kubernetes: 1.24, 1.25, and 1.26
 * Introduces a deterministic order for applying and deleting Kubernetes manifests based on the resource kind.
 * Uses the [weight](https://docs.replicated.com/reference/custom-resource-helmchart#weight) field from the HelmChart custom resource to determine the order in which to uninstall charts that have `useHelmInstall: true`. Charts are uninstalled by weight in descending order, with higher weights uninstalled first.
 * Application Helm charts are now uninstalled first, then other Kubernetes manifests.
+
+### Bug Fixes {#bug-fixes-1-98-3}
 * Fixes an issue where snapshot restores hanged if RabbitMQ cluster custom resources are used.
 * Fixes an issue where Helm releases were not uninstalled when un-deploying an application using the the [kots remove](/reference/kots-cli-remove) command and passing the `--undeploy` flag.
 * Fixes an issue where Helm charts that were deployed to a different namespace than were KOTS is running, and were installed using the native Helm installation workflow, were not uninstalled when they were removed from subsequent application releases.
-
-### Bug Fixes {#bug-fixes-1-98-3}
 * Fixes an issue where uploading an airgap bundle through the admin console might fail due to issues in getting layers for OCI images.
 * The command `kots admin-console push-images` will now return an error if the provided airgap bundle file is missing.
 * Adds back button for preflight checks page.
@@ -34,12 +40,6 @@ Support for Kubernetes: 1.24, 1.25, and 1.26
 * Fixes an issue where installs and upgrades could fail when checking if the cluster was kURL if the user running the command was not authorized to list ConfigMaps in the `kube-system` namespace.
 * Fixes an issue where air-gapped application pods may fail to pull images from the kURL registry due to the image names being rewritten incorrectly if the app was upgraded using the [kots upstream upgrade](/reference/kots-cli-upstream-upgrade) command.
 * Fixes an issue where the version history might incorrectly show a "Deployed" button if an application version was being deployed while preflights were running.
-
-## Kubernetes Compatibility
-
-The following table lists the versions of Kubernetes that are compatible with each version of the app manager:
-
-<KubernetesCompatibility/>
 
 ## 1.98.2
 
