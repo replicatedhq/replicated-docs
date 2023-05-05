@@ -6,11 +6,11 @@ Alternatively, you can use Google Authentication or SAML Authentication to acces
 
 ## About Two-Factor Authentication
 
-Two-factor authentication (2FA) provides additional security by requiring two methods of authentication to access resources and data. When you enable the 2FA option in the vendor portal, you are asked to provide an authentication code and your password during authentication. Replicated utilizes the open algorithm known as the Time-based One-time Password (TOTP 7), which is specified by the Internet Engineering Task Force (IETF) under RFC 6238 2.
+Two-factor authentication (2FA) provides additional security by requiring two methods of authentication to access resources and data. When you enable the 2FA option in the vendor portal, you are asked to provide an authentication code and your password during authentication. Replicated uses the open algorithm known as the Time-based One-time Password (TOTP 7), which is specified by the Internet Engineering Task Force (IETF) under RFC 6238 2.
 
-:::note
-If SAML Authentication or Google Authentication is configured for your team, then 2FA is bypassed, if it is enabled. You can leave 2FA enabled, but you are not prompted to enter a code when logging in.
-:::
+## Limitation
+
+If SAML Authentication or Google Authentication is configured and 2FA is also enabled, then 2FA is bypassed. You can leave 2FA enabled, but you are not prompted to enter a code when logging in.
 
 ## Enable 2FA on Individual Accounts
 
@@ -61,7 +61,7 @@ To disable two-factor authentication on your individual account:
 
 ## Enable or Disable 2FA for a Team
 
-As an administrator, you can enable and disable 2FA for teams. You must first enable 2FA on your individual account before you can enable 2FA for teams. Then team members can enable their individual accounts.
+As an administrator, you can enable and disable 2FA for teams. You must first enable 2FA on your individual account before you can enable 2FA for teams. After you enable 2FA for your team, team members can enable 2FA on their individual accounts.
 
 To enable or disable 2FA for a team:
 
