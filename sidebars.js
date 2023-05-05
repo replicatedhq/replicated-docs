@@ -206,7 +206,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Managing Objects',
+      label: 'Managing Resources and Objects',
       items: [
         'vendor/packaging-include-resources',
         'vendor/packaging-cleaning-up-jobs',
