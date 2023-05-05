@@ -20,7 +20,7 @@ Support for Kubernetes: 1.24, 1.25, and 1.26
 
 ### Improvements {#improvements-1-98-3}
 * The JSON Web Token (JWT) is stored in an HttpOnly cookie to prevent cross-site scripting (XSS) attacks.
-* The Cluster Management page shows by default the command for joining a primary node instead of a secondary node for high availability clusters.
+* The **Cluster Management** page shows by default the command for joining a primary node instead of a secondary node for high availability clusters.
 * The resource status modal displays the time the data was last fetched automatically.
 * Introduces a deterministic order for applying and deleting Kubernetes manifests based on the resource kind.
 * Uses the [weight](https://docs.replicated.com/reference/custom-resource-helmchart#weight) field from the HelmChart custom resource to determine the order in which to uninstall charts that have `useHelmInstall: true`. Charts are uninstalled by weight in descending order, with higher weights uninstalled first.
