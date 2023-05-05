@@ -35,7 +35,7 @@ Support for Kubernetes: 1.24, 1.25, and 1.26
 * Fixes an issue where Helm charts that were deployed with native Helm to a different namespace than KOTS were not uninstalled when they were removed from subsequent application releases.
 * Fixes an issue where uploading an air gap bundle through the admin console might have failed due to issues getting layers for OCI images.
 * Fixes an issue where canceling a restore of an application (partial) snapshot sometimes did not work if multiple applications were installed in the same admin console.
-* The **Config** page now shows the correct error message if errors other can regex validation occurred.
+* The **Config** page now shows the correct error message if errors other than regex validation occurred.
 * Fixes an issue where the Config page incorrectly displayed "Edit the currently deployed config" when there was no application deployed.
 * Fixes an issue where installations and upgrades could fail when checking if the cluster was a kURL cluster, if the user running the command was not authorized to list ConfigMaps in the `kube-system` namespace.
 * Fixes an issue where air gapped application pods could fail to pull images from the kURL registry due to the image names being rewritten incorrectly, if the application was upgraded using the [`kots upstream upgrade`](/reference/kots-cli-upstream-upgrade) command.
