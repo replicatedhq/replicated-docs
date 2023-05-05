@@ -1,6 +1,6 @@
-import ImageRegistryAirgapAbout from "../partials/image-registry/_image-registry-airgap-about.mdx"
-import ImageRegistryAirgapPrereq from "../partials/image-registry/_image-registry-airgap-prereq.mdx"
 import PrereqsExistingCluster from "../partials/install/_prereqs-existing-cluster.mdx"
+import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
+import LicenseFile from "../partials/install/_license-file-prereq.mdx"
 
 # Air Gap Installation in Existing Clusters
 
@@ -8,7 +8,13 @@ This topic describes how to use Replicated to install an application in an air g
 
 ## About Private Registries
 
-<ImageRegistryAirgapAbout/>
+Air gapped networks must have a Docker image registry that is available inside the network. The app manager rewrites the application image names in all application manifests to read from the on-premises registry, and it re-tags and pushes the images to the on-premises registry. When authenticating to the registry, credentials with `push` permissions are required.
+
+A single application expects to use a single namespace in the Docker image registry. The namespace name can be any valid URL-safe string, supplied at installation time. A registry typically expects the namespace to exist before any images can be pushed into it.
+
+:::note
+ECR does not use namespaces.
+:::
 
 ## Prerequisites
 
@@ -16,7 +22,11 @@ Complete the following prerequisites:
 
 <PrereqsExistingCluster/>
 
-<ImageRegistryAirgapPrereq/>
+* Ensure that there is a compatible Docker image registry available inside the network. For more information about Docker registry compatibility, see [Private Registry Requirements](/enterprise/installing-general-requirements#private-registry-requirements).
+
+<AirGapBundle/>
+
+<LicenseFile/>
 
 ## Install the Application {#air-gap}
 

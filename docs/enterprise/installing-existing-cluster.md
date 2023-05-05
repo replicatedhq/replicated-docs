@@ -1,4 +1,5 @@
 import PrereqsExistingCluster from "../partials/install/_prereqs-existing-cluster.mdx"
+import LicenseFile from "../partials/install/_license-file-prereq.mdx"
 
 # Online Installation in Existing Clusters
 
@@ -9,6 +10,7 @@ This topic describes how to use Replicated to install an application in an exist
 Complete the following prerequisites:
 
 <PrereqsExistingCluster/> 
+<LicenseFile/>
 
 ## Install the Application {#online}
 
