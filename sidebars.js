@@ -149,16 +149,6 @@ const sidebars = {
         'vendor/packaging-rbac',
         'vendor/packaging-using-tls-certs',
         'vendor/identity-service-configuring',
-        {
-          type: 'category',
-          label: 'Kubernetes Operators',
-          items: [
-            'vendor/operator-packaging-about',
-            'vendor/operator-defining-additional-images',
-            'vendor/operator-referencing-images',
-            'vendor/operator-defining-additional-namespaces',
-          ],
-        },
       ],
     },  
     {
@@ -220,6 +210,16 @@ const sidebars = {
       items: [
         'vendor/packaging-include-resources',
         'vendor/packaging-cleaning-up-jobs',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Kubernetes Operators',
+      items: [
+        'vendor/operator-packaging-about',
+        'vendor/operator-defining-additional-images',
+        'vendor/operator-referencing-images',
+        'vendor/operator-defining-additional-namespaces',
       ],
     },
     {
