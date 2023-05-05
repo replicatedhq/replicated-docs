@@ -12,6 +12,35 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <KubernetesCompatibility/>
 
+## 1.98.3
+
+Released on May 5, 2023
+
+Support for Kubernetes: 1.24, 1.25, and 1.26
+
+### Improvements {#improvements-1-98-3}
+* The JSON Web Token (JWT) is stored in an HttpOnly cookie to prevent cross-site scripting (XSS) attacks.
+* The **Cluster Management** page shows by default the command for joining a primary node instead of a secondary node for high availability clusters.
+* The resource status modal displays the time the data was last fetched automatically.
+* Introduces a deterministic order for applying and deleting Kubernetes manifests based on the resource kind.
+* Uses the [weight](https://docs.replicated.com/reference/custom-resource-helmchart#weight) field from the HelmChart custom resource to determine the order in which to uninstall charts that have `useHelmInstall: true`. Charts are uninstalled by weight in descending order, with higher weights uninstalled first.
+* Application Helm charts are uninstalled first, then other Kubernetes manifests are uninstalled.
+* Improvements to the **Version history** page include truncating long version labels, removing unnecessary preflight icons, and improving the content layout.
+* The `kots admin-console push-images` command now returns an error if the provided air gap bundle file is missing.
+* Adds a **Back** button to the **Preflights** page.
+
+### Bug Fixes {#bug-fixes-1-98-3}
+* Fixes an issue where snapshot restores hung if RabbitMQ cluster custom resources were used.
+* Fixes an issue where Helm releases were not uninstalled when undeploying an application using the [kots remove](/reference/kots-cli-remove) command and passing the `--undeploy` flag.
+* Fixes an issue where Helm charts that were deployed with native Helm to a different namespace than KOTS were not uninstalled when they were removed from subsequent application releases.
+* Fixes an issue where uploading an air gap bundle through the admin console might have failed due to issues getting layers for OCI images.
+* Fixes an issue where canceling a restore of an application (partial) snapshot sometimes did not work if multiple applications were installed in the same admin console.
+* The **Config** page now shows the correct error message if errors other than regex validation occurred.
+* Fixes an issue where the Config page incorrectly displayed "Edit the currently deployed config" when there was no application deployed.
+* Fixes an issue where installations and upgrades could fail when checking if the cluster was a kURL cluster, if the user running the command was not authorized to list ConfigMaps in the `kube-system` namespace.
+* Fixes an issue where air gapped application pods could fail to pull images from the kURL registry due to the image names being rewritten incorrectly, if the application was upgraded using the [`kots upstream upgrade`](/reference/kots-cli-upstream-upgrade) command.
+* Fixes an issue where the **Version history** page could incorrectly show a **Deployed** button if an application version was deployed while preflight checks were running.
+
 ## 1.98.2
 
 Released on April 26, 2023
