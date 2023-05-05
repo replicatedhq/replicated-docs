@@ -145,11 +145,9 @@ const sidebars = {
         },
         'vendor/packaging-ingress',
         'vendor/packaging-kots-versions',    
-        'vendor/packaging-include-resources',
         'vendor/namespaces',
         'vendor/packaging-rbac',
         'vendor/packaging-using-tls-certs',
-        'vendor/packaging-cleaning-up-jobs',
         'vendor/identity-service-configuring',
         {
           type: 'category',
@@ -214,6 +212,14 @@ const sidebars = {
         'vendor/licenses-using-builtin-fields',
         'vendor/licenses-adding-custom-fields',
         'vendor/licenses-referencing-fields',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Managing Objects',
+      items: [
+        'vendor/packaging-include-resources',
+        'vendor/packaging-cleaning-up-jobs',
       ],
     },
     {
