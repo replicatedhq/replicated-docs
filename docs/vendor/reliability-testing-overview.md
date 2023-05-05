@@ -14,7 +14,7 @@ have this feature enabled on your account, please contact your customer success 
 
 Developers and packaging teams expect that Kubernetes is a reliable abstraction and that it provides 
 guarantees that an application which functions in one distribution of Kubernetes will also function 
-in all other distributions. This expaction often fails because various distributions of Kubernetes 
+in all other distributions. This expectation often fails because various distributions of Kubernetes 
 have different requirements for workloads. 
 
 For example, OpenShift will not run root or privileged containers (among other things). EKS uses a 
