@@ -1,85 +1,62 @@
 import ConfigValuesExample from "../partials/configValues/_configValuesExample.mdx"
+import KotsCliInstall from "../partials/install/_kots-cli-install.mdx"
 
-# Using Automation to Install on an Existing Cluster
+# Installing with Automation
 
-This topic describes installing an application with the kots CLI in online and air gap environments.
+This topic describes using the kots CLI to automate installation in online and air gap environments.
 
-## Installing in an Online Environment
+## About Using Automation to Install
+
+You can automate application installation by creating an installation command with the Replicated kots CLI, then adding the command to an existing CI/CD workflow.
+
+In an automated installation, you provide all the information required to install and deploy the application in the kots CLI `kots install` command, rather than through the Replicated admin console UI.
+
+For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
+
+## Prerequisites
+
+Complete the following prerequisites:
+
+* Create a ConfigValues manifest file to define the application's configuration values. The following is an example of a ConfigValues file:
+
+  <ConfigValuesExample/>
+
+  As shown in the example above, the ConfigValues file includes the names of the configuration fields for the application along with a user-supplied `value` for each field.
+
+  :::note
+  Your application vendor provides details about the required and optional configuration fields to include in the ConfigValues file.
+  :::
+
+* (Existing Clusters Only) To automate installation in an existing cluster, complete the following prerequisites: 
+  * [Online Prerequisites](installing-existing-cluster#prerequisites)
+  * [Air Gap Prerequisites](installing-existing-cluster-airgapped#prerequisites)
+
+* (Kubernetes Installer Only) To automate installation in a VM or bare metal server, complete the following prerequisites: 
+## Installation Command
 
 To install an application with the kots CLI in an online environment, run the following command:
 
 ```
 kubectl kots install APP_NAME \
-  --namespace NAMESPACE \
-  --shared-password PASSWORD \
-  --license-file PATH_TO_LICENSE_FILE \
-  --config-values PATH_TO_CONFIGVALUES_FILE \
+--namespace APP_NAMESPACE \
+--shared-password PASSWORD \
+--license-file PATH_TO_LICENSE_FILE \
+--config-values PATH_TO_CONFIGVALUES_FILE \
+--airgap-bundle PATH_TO_AIRGAP_BUNDLE \
+--kotsadm-namespace ADMIN_CONSOLE_NAMESPACE \
+--kotsadm-registry PRIVATE_REGISTRY_HOST \
+--registry-username READ_WRITE_USERNAME \
+--registry-password READ_WRITE_PASSWORD
 ```
 
 Replace:
-* `APP_NAME` with the name of the application. This is provided by your application vendor.
-* `NAMESPACE` with the namespace where you want the app manager to install the application.
-* `PASSWORD` with the shared password for accessing the admin console.
-* `PATH_TO_LICENSE_FILE` with the path in your local directory to your unique license YAML file. The admin console automatically installs the license file provided.
-* `PATH_TO_CONFIGVALUES_FILE` with the path in your local directory to the ConfigValues YAML file where your application configuration values are defined. For more information about the ConfigValues file, see [About the ConfigValues File](#config-values) below.
 
-For more information about the required and optional flags for the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
+<KotsCliInstall/>
 
-## Installing in an Air Gap Environment
+* (Air Gap Only) `PATH_TO_AIRGAP_BUNDLE` with the path in your local directory to the `.airgap` bundle for the application. The air gap bundle is provided by your application vendor.
 
-To use the kots CLI to install in an air gap environment:
+* (Air Gap Only) `ADMIN_CONSOLE_NAMESPACE` with the namespace where you want the admin console to be installed.
 
-1. Push admin console images to a private registry using the  `kubectl kots admin-console push-images` command. For more information, see [Air Gap Installation in Existing Clusters](installing-existing-cluster-airgapped).
+* (Air Gap Only) `PRIVATE_REGISTRY_HOST` with the hostname for the private image registry where you pushed the admin console images in the previous step.
 
-1. Run the following command:
-
-  ```
-  kubectl kots install APP_NAME \
-    --namespace APP_NAMESPACE \
-    --shared-password PASSWORD \
-    --license-file PATH_TO_LICENSE_FILE \
-    --config-values PATH_TO_CONFIGVALUES_FILE \
-    --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
-    --kotsadm-namespace ADMIN_CONSOLE_NAMESPACE \
-    --kotsadm-registry PRIVATE_REGISTRY_HOST \
-    --registry-username READ_WRITE_USERNAME \
-    --registry-password READ_WRITE_PASSWORD
-  ```
-
-  Replace:
-    * `APP_NAME` with the name of the application. This is provided by your application vendor.
-    * `NAMESPACE` with the namespace where you want the app manager to install the application.
-    * `PASSWORD` with the shared password for accessing the admin console.
-    * `PATH_TO_LICENSE_FILE` with the path in your local directory to your unique license YAML file. The admin console automatically installs the license file provided.
-    * `PATH_TO_CONFIGVALUES_FILE` with the path in your local directory to the ConfigValues YAML file where your application configuration values are defined. For more information about the ConfigValues file, see [About the ConfigValues File](#config-values) below.
-    * `PATH_TO_AIRGAP_BUNDLE` with the path in your local directory to the `.airgap` bundle for the application. The air gap bundle is provided by your application vendor.
-    * `ADMIN_CONSOLE_NAMESPACE` with the namespace where you want the admin console to be installed.
-    * `PRIVATE_REGISTRY_HOST` with the hostname for the private image registry where you pushed the admin console images in the previous step.
-    * `READ_WRITE_USERNAME` and `READ_WRITE_PASSWORD` with credentials with read write permissions to the private image registry where you pushed the admin console images in the previous step.
-
-For more information about the required and optional flags for the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
-
-## About the ConfigValues File {#config-values}
-
-You supply application configuration values by defining the values in a local ConfigValues YAML file. Then, you provide the file to the app manager when you run the `kots install` command using the `--config-values` flag.
-
-The following is an example of a ConfigValues file:
-
-<ConfigValuesExample/>
-
-As shown in the example above, the ConfigValues file includes the names of the configuration fields for the application, along with a user-supplied value for each field.
-
-Your application vendor provides details about the required and optional configuration fields to include in the ConfigValues file. For more information, see [Downloading the ConfigValues File](/vendor/releases-configvalues).
-
-## About Disabling the Port Forward
-
-By default, the `kots install` command opens a port forward to the admin console. `--no-port-forward` is an optional flag that disables the default port forward.
-
-If you include `--no-port-forward`, you can run the following command after the installation command completes to access the admin console at `http://localhost:8800`:
-
-```
-kubectl kots admin-console --namespace NAMESPACE
-```
-Replace `NAMESPACE` with the namespace you specified in the `kots install` command.
-
-For more information about the required and optional flags for the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
+* (Air Gap Only) `READ_WRITE_USERNAME` and `READ_WRITE_PASSWORD` with credentials with read write permissions to the private image registry where you pushed the admin console images in the previous step.
