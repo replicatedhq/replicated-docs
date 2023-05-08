@@ -1,8 +1,8 @@
-# SAML Authentication
+# Managing SAML Authentication
 
 This topic describes how to enable or disable SAML authentication.
 
-## Using SAML with the Vendor Portal
+## About Using SAML with the Vendor Portal
 
 After starting out with Replicated, most teams grow, adding more developers, support engineers, and sales engineers. Eventually, managing access to the Replicated vendor portal can become difficult. Replicated supports logging in using SAML, which lets you manage access (provisioning and unprovisioning) outside of Replicated. Using SAML, everyone on your team can log in with their existing usernames and passwords, simplifying their experience.
 
@@ -14,9 +14,9 @@ To enable SAML in your vendor portal account, you must have an Enterprise plan. 
 
 Replicated does not implement System for Cross-domain Identity Management (SCIM). Instead, we use SAML to authenticate and create just-in-time user identities in our system. We resolve the username (email address) as the actor and use this to ensure that audit log events follow these dynamically provisioned users. If a user's email address is already associated with a Replicated account, by using your SAML integration to access the vendor portal, they automatically leave their current team and join the team associated with the SAML login.
 
-### Two-Factor Authentication
+### Compatibility with Two-Factor Authentication
 
-If SAML authentication is configured for your team, Two-Factor Authentication (2FA) is bypassed. You can leave 2FA enabled, but you are not prompted to enter a code when logging in.
+If SAML authentication is configured for your team, Replicated two-factor authentication (2FA) is bypassed. You can leave 2FA enabled, but you are not prompted to enter a code when logging in.
 
 ### Role Based Access Control
 
