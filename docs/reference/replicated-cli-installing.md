@@ -34,10 +34,12 @@ export REPLICATED_API_TOKEN=d5cdf814bae01b211a8e891593dc12e1158238d27932d082a32b
 
 ## Installing The replicated CLI
 
-There are three options for installing the replicated CLI.
+To access the replicated CLI installation files, see the [replicatedhq/replicated repository](https://github.com/replicatedhq/replicated/releases) on GitHub.
 
-* Running the CLI directly on mac
-* Running the CLI directly on linux
+There are three options for installing the replicated CLI: 
+
+* Running the CLI directly on Mac
+* Running the CLI directly on Linux
 * Running the CLI through Docker (Useful for Windows, GitHub Actions, or computers without sufficient access).
 
 ### MacOS
