@@ -19,14 +19,14 @@ Released on May 8, 2023
 * Adds the ability to configure the maximum number of Pods that can run on each node (default 110) using the spec property [`kubernetes.maxPodsPerNode`](https://kurl.sh/docs/add-ons/kubernetes#advanced-install-options:~:text=the%20Kubernetes%20documentation.-,maxPodsPerNode,-The%20maximum%20number) or the flag [`--kubernetes-max-pods-per-node=`](https://kurl.sh/docs/install-with-kurl/advanced-options#:~:text=preflight%2Derrors%3DCoreDNSUnsupportedPlugins-,kubernetes%2Dmax%2Dpods%2Dper%2Dnode,-The%20maximum%20number).
 
 ### Improvements {#improvements-v2023-05-08-0}
-* Improves OpenEBS by removing NDM, reducing resource usage.
-* The `rook-upgrade` task has been removed.
+* Reduces OpenEBS resource usage by removing NDM.
+* Removes the `rook-upgrade` task.
 
 ### Bug Fixes {#bug-fixes-v2023-05-08-0}
-* Fixes an issue on RHEL 7 based distributions that causes the script to improperly calculate the bundle size when upgrading multiple Kubernetes versions and prints the message 'total_archive_size + "935": syntax error: operand expected (error token is ""935"")'.
-* Fixes an issue where HA MinIO deployments would not be migrated to Rook's object store.
-* Fixes an issue that causes Rook upgrades of more than one version to upgrade to the greatest patch version for the target minor version rather than to the specified patch version.
-* Fixes an issue when upgrading multiple versions of Rook starting with a version >= 1.4.x in an airgap environment that causes the script to fail with ImagePullBackoff errors due to the failure to prompt the user to load images on remote nodes.
+* Fixes an issue on RHEL 7 based distributions that caused the script to improperly calculate the bundle size when upgrading multiple Kubernetes versions and print the message 'total_archive_size + "935": syntax error: operand expected (error token is ""935"")'.
+* Fixes an issue where high availability MinIO deployments were not migrated to Rook's object store.
+* Fixes an issue that caused Rook upgrades of more than one minor version to upgrade to the latest patch version for the target minor version rather than to the specified patch version.
+* Fixes an issue when upgrading Rook from v1.4.x or later in an air gap environment that caused the script to fail with ImagePullBackoff errors due to the failure to prompt the user to load images on remote nodes.
 
 ## v2023.04.24-0
 
