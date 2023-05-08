@@ -23,7 +23,7 @@ You need to set up two environment variables to interact with the [vendor portal
 * `REPLICATED_API_TOKEN` should be set to a service account token created at [https://vendor.replicated.com/team/serviceaccounts](https://vendor.replicated.com/team/serviceaccounts), or a user token created in the vendor portal. To create a user token, go to [https://vendor.replicated.com/account-settings](https://vendor.replicated.com/account-settings).
 ![Vendor Service Account Token](/images/vendor-service-account-token.png)
 
-Ensure the token has “Write” access or you cannot create new releases.
+Ensure the token has `Read/Write` access or you cannot create new releases.
 After you have the values, set them in your environment.
 
 For Linux or Mac environments:
