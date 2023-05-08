@@ -14,10 +14,12 @@ Released on May 8, 2023
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-04-20T17-56-55Z.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) versions 0.63.0-45.19.0, 0.63.0-45.20.0, 0.63.0-45.21.0.
 * Adds [Goldpinger add-on](https://kurl.sh/docs/add-ons/goldpinger) version 3.7.0-6.0.1.
-* Improves OpenEBS by removing NDM, reducing resource usage.
 * Updates [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) runc version from v1.1.5 to v1.1.7.
 * Adds the ability to bypass kubeadm upgrade preflight errors and warnings using the spec property `kubernetes.upgradeIgnorePreflightErrors` or the flag `--kubernetes-upgrade-ignore-preflight-errors=`.
 * Adds the ability to configure the maximum number of Pods that can run on each node (default 110) using the spec property `kubernetes.maxPodsPerNode` or the flag `--kubernetes-max-pods-per-node=`.
+
+### Improvements {#improvements-v2023-05-08-0}
+* Improves OpenEBS by removing NDM, reducing resource usage.
 
 ### Bug Fixes {#bug-fixes-v2023-05-08-0}
 * Fixes an issue on RHEL 7 based distributions that causes the script to improperly calculate the bundle size when upgrading multiple Kubernetes versions and prints the message 'total_archive_size + "935": syntax error: operand expected (error token is ""935"")'.
