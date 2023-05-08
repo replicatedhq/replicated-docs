@@ -4,6 +4,31 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.05.08-0
+
+Released on May 8, 2023
+
+### New Features {#new-features-v2023-05-08-0}
+* Adds [Goldpinger add-on](https://kurl.sh/docs/add-ons/goldpinger) version 3.7.0-6.0.1.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-04-20T17-56-55Z.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.19.0.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.20.0.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.27.1 1.26.4 1.25.9 1.24.13 1.23.17 1.22.17.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.20.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.21.0.
+* Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) version 3.6.0.
+* Improves OpenEBS by removing NDM, reducing resource usage.
+* Updates [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) runc version from v1.1.6 to v1.1.7.
+* Adds the ability to bypass kubeadm upgrade preflight errors and warnings using the spec property `kubernetes.upgradeIgnorePreflightErrors` or the flag `--kubernetes-upgrade-ignore-preflight-errors=`.
+* Adds the ability to configure the maximum number of Pods that can run on each node (default 110) using the spec property `kubernetes.maxPodsPerNode` or the flag `--kubernetes-max-pods-per-node=`.
+
+### Bug Fixes {#bug-fixes-v2023-05-08-0}
+* Fixes an issue on RHEL 7 based distributions that causes the script to improperly calculate the bundle size when upgrading multiple Kubernetes versions and prints the message 'total_archive_size + "935": syntax error: operand expected (error token is ""935"")'.
+* Fix an issue where HA MinIO deployments would not be migrated to Rook's object store.
+* Fixes an issue that causes Rook upgrades of more than one version to upgrade to the greatest patch version for the target minor version rather than to the specified patch version.
+* (improvement) The rook-upgrade task has been removed.
+* Fixes an issue when upgrading multiple versions of Rook starting with a version >= 1.4.x in an airgap environment that causes the script to fail with ImagePullBackoff errors due to the failure to prompt the user to load images on remote nodes.
+
 ## v2023.04.24-0
 
 Released on April 24, 2023
