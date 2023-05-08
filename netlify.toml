@@ -93,9 +93,13 @@
   from="https://docs.replicated.com/vendor/helm-installing-native-helm"
   to="https://docs.replicated.com/vendor/helm-overview"
 
-  [[redirects]]
+[[redirects]]
   from="https://docs.replicated.com/vendor/helm-processing"
   to="https://docs.replicated.com/vendor/helm-overview"
+
+[[redirects]]
+  from="https://docs.replicated.com/vendor/team-management-rbac-about"
+  to="https://docs.replicated.com/vendor/team-management-rbac-configuring"
   
 ###################################################
 # Redirects To the Enterprise Section
