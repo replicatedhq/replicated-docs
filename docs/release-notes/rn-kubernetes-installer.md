@@ -17,6 +17,7 @@ Released on May 8, 2023
 * Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.20.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.21.0.
 * Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) version 3.6.0.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) versions 1.27.0 and 1.27.1
 * Improves OpenEBS by removing NDM, reducing resource usage.
 * Updates [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) runc version from v1.1.6 to v1.1.7.
 * Adds the ability to bypass kubeadm upgrade preflight errors and warnings using the spec property `kubernetes.upgradeIgnorePreflightErrors` or the flag `--kubernetes-upgrade-ignore-preflight-errors=`.
