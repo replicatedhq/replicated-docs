@@ -9,8 +9,7 @@ toc_max_heading_level: 2
 Released on May 8, 2023
 
 ### New Features {#new-features-v2023-05-08-0}
-* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) versions 1.27.0 and 1.27.1.
-* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.27.1 1.26.4 1.25.9 1.24.13 1.23.17 1.22.17.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) versions 1.27.1, 1.27.0, 1.26.4, 1.25.9 and 1.24.13.
 * Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) version 3.6.0.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-04-20T17-56-55Z.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) versions 0.63.0-45.19.0, 0.63.0-45.20.0, 0.63.0-45.21.0.
