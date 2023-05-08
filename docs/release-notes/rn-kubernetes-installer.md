@@ -24,7 +24,7 @@ Released on May 8, 2023
 
 ### Bug Fixes {#bug-fixes-v2023-05-08-0}
 * Fixes an issue on RHEL 7 based distributions that causes the script to improperly calculate the bundle size when upgrading multiple Kubernetes versions and prints the message 'total_archive_size + "935": syntax error: operand expected (error token is ""935"")'.
-* Fix an issue where HA MinIO deployments would not be migrated to Rook's object store.
+* Fixes an issue where HA MinIO deployments would not be migrated to Rook's object store.
 * Fixes an issue that causes Rook upgrades of more than one version to upgrade to the greatest patch version for the target minor version rather than to the specified patch version.
 * Fixes an issue when upgrading multiple versions of Rook starting with a version >= 1.4.x in an airgap environment that causes the script to fail with ImagePullBackoff errors due to the failure to prompt the user to load images on remote nodes.
 
