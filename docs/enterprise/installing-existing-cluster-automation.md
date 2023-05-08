@@ -9,7 +9,7 @@ This topic describes using the kots CLI to automate installation in online and a
 
 You can automate application installation by creating an installation command with the Replicated kots CLI, then adding the command to an existing CI/CD workflow.
 
-In an automated installation, you provide all the information required to install and deploy the application in the kots CLI `kots install` command, rather than through the Replicated admin console UI.
+In an automated installation, you provide all the information required to install and deploy the application in the kots CLI `kots install` command, rather than through the Replicated admin console UI. After you install an application using automation with the kots CLI, you can optionally access the admin console by opening a port forward.
 
 For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
 
@@ -35,12 +35,16 @@ Before you can use the kots CLI to automate installation, you must complete the 
   * [Online Prerequisites](installing-embedded-cluster#prerequisites)
   * [Air Gap Prerequisites](installing-embedded-airgapped#prerequisites)
 
-* (Kubernetes Installer Only) To use the kots CLI to install an application in a VM or bare metal server, you must first run the Kubernetes installer installation script to provision a cluster and install the Replicated app manager. See:
+* (Kubernetes Installer Only) Before you can use the kots CLI to install an application in a VM or bare metal server, you must first run the Kubernetes installer installation script to provision a cluster and install the Replicated app manager. See:
   * [Online Installation with the Kubernetes Installer](installing-embedded-cluster)
   * [Air Gap Installation with the Kubernetes Installer](installing-embedded-airgapped)  
 ## Installation Commands
 
+This section provides the kots CLI `kots install` commands that you can use to automate installation.
+
 ### Online Existing Cluster
+
+The following is the kots CLI command for installing an application in an existing cluster that has access to the internet:
 
 ```bash 
 kubectl kots install APP_NAME \
@@ -53,29 +57,34 @@ kubectl kots install APP_NAME \
 Replace:
 
 
-### Online Kubernetes Installer
+### Online Kubernetes Installer Cluster
+
+The following is the kots CLI command for installing an application in a Kubernetes installer cluster that has access to the internet:
 
 ```bash
 kubectl kots install APP_NAME \
   --license-file PATH_TO_LICENSE_FILE \
   --config-values PATH_TO_CONFIG_VALUES \
   --namespace ADMIN_CONSOLE_NAMESPACE \
-  --shared-password PASSWORD
+  --shared-password PASSWORD \
+  --no-port-forward
 ```
 
 Replace:
 
 <KotsCliInstall/>
 
-### Air Gapped Existing Cluster 
+### Air Gap Existing Cluster 
 
-```
+The following is the kots CLI command for installing an application in an existing cluster that does not have access to the internet:
+
+```bash
 kubectl kots install APP_NAME \
-  --namespace APP_NAMESPACE \
-  --shared-password PASSWORD \
   --license-file PATH_TO_LICENSE_FILE \
   --config-values PATH_TO_CONFIGVALUES_FILE \
+  --shared-password PASSWORD \
   --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
+  --namespace APP_NAMESPACE \
   --kotsadm-namespace ADMIN_CONSOLE_NAMESPACE \
   --kotsadm-registry PRIVATE_REGISTRY_HOST \
   --registry-username READ_WRITE_USERNAME \
@@ -84,14 +93,16 @@ kubectl kots install APP_NAME \
 ```
 
 Replace:
-<KotsCliInstall/>
+
 
 * `PATH_TO_AIRGAP_BUNDLE` with the path in your local directory to the `.airgap` bundle for the application. The air gap bundle is provided by your application vendor.
 * `ADMIN_CONSOLE_NAMESPACE` with the namespace where you want the admin console to be installed.
 * `PRIVATE_REGISTRY_HOST` with the hostname for the private image registry where you pushed the admin console images in the previous step.
 * `READ_WRITE_USERNAME` and `READ_WRITE_PASSWORD` with credentials with read write permissions to the private image registry where you pushed the admin console images in the previous step.
 
-### Air Gapped Kubernetes Installer 
+### Air Gap Kubernetes Installer Cluster
+
+The following is the kots CLI command for installing an application in a Kubernetes installer cluster that does not have access to the internet:
 
 ```bash
 kubectl kots install APP_NAME \
@@ -99,7 +110,8 @@ kubectl kots install APP_NAME \
   --config-values PATH_TO_CONFIG_VALUES \
   --namespace ADMIN_CONSOLE_NAMESPACE \
   --shared-password PASSWORD \
-  --airgap-bundle PATH_TO_AIRGAP_BUNDLE
+  --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
+  --no-port-forward
 ```
 
 Replace:
@@ -107,4 +119,12 @@ Replace:
 
 * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle that you downloaded.
 
-## Next Step: Access the Admin Console
+## (Optional) Access the Admin Console
+
+By default, the kots install command opens a port forward to the admin console. `--no-port-forward` is an optional flag that disables the default port forward.
+
+If you include `--no-port-forward`, you can run the following command after the installation command completes to access the admin console at `http://localhost:8800`:
+
+```
+kubectl kots admin-console --namespace NAMESPACE
+```
