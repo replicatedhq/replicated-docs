@@ -6,7 +6,9 @@ Alternatively, you can use the Replicated vendor portal user interface for the s
 
 ## Prerequisites
 
-This guide already assumes that you have created a team and an initial application in the vendor portal. For more information, see [How to Distribute a Production Application](/vendor/distributing-workflow). You'll also need:
+This guide already assumes that you have created a team and an initial application in the vendor portal. For more information, see [How to Package and Distribute a Production Application](/vendor/distributing-workflow). 
+
+You also need:
 
 * [curl](https://curl.haxx.se/) (For running CLI directly on linux/mac)
 * [docker](https://www.docker.com) (For running CLI through docker container)
@@ -14,7 +16,7 @@ This guide already assumes that you have created a team and an initial applicati
 
 ## Configure the Environment
 
-You need to set up two environment variables to interact with the [vendor portal](https://vendor.replicated.com): `REPLICATED_APP` and `REPLICATED_API_TOKEN`.
+You must set up two environment variables to interact with the [vendor portal](https://vendor.replicated.com): `REPLICATED_APP` and `REPLICATED_API_TOKEN`.
 
 
 * `REPLICATED_APP` should be set to the name of your application, as shown in the URL path at https://vendor.replicated.com/apps. _Note that this is **case sensitive**_
