@@ -31,7 +31,7 @@ Complete the following prerequisites:
 
 <HaLoadBalancerPrereq/>
 
-## Install the Application
+## Install the App Manager
 
 This procedure describes how to provision a cluster with the Kubernetes installer, install the app manager, then install and deploy the application.
 
@@ -59,25 +59,7 @@ To install the application:
 
 1. <HAStep/> 
 
-1. Install the application using one of the following methods:
+## Next Step: Install and Deploy the Application
 
-    <InstallApp/>
+Install the application using one of the following methods:
 
-    - **kots CLI:** To install and deploy the application with the kots CLI, run the following command:
-
-      ```bash
-      kubectl kots install APP_NAME \
-      --license-file PATH_TO_LICENSE_FILE \
-      --config-values PATH_TO_CONFIG_VALUES \
-      --namespace ADMIN_CONSOLE_NAMESPACE \
-      --shared-password PASSWORD
-      ```
-
-      Replace:
-      <KotsCliInstall/>
-
-      For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
-
-## Next Step
-
-(Optional) You can add nodes to the cluster. See [Adding Nodes to Kubernetes Installer Clusters](cluster-management-add-nodes).

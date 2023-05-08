@@ -1,6 +1,6 @@
 import AppInstall from "../partials/install/_app-setup-install.mdx"
 
-# Deploying the Application
+# Deploying the Application with the Admin Console
 
 This topic describes how to log in to the Replicated admin console to provide a license file, define your configuration values, run preflight checks, and install and deploy the application.
 

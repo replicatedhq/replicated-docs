@@ -28,7 +28,7 @@ Complete the following prerequisites:
 
 <LicenseFile/>
 
-## Install the Application {#air-gap}
+## Install the App Manager {#air-gap}
 
 When installing an application with the Replicated app manager from a `.airgap` package, the container images and application manifests are provided by the application vendor in an archive that can be used to deliver the artifacts into the cluster.
 
@@ -109,6 +109,6 @@ To install the application:
 
     After the `kots install` command installs the admin console and the application on the cluster, it creates a port forward to the admin console. The admin console is exposed internally on the cluster and can only be accessed using a port forward.
 
-1. Log in to the admin console to provide the license file, define your configuration values, run preflight checks, and deploy. See [Deploying the Application using the Admin Console](installing-app-setup).
+## Next Step: Install and Deploy the Application    
 
-
+Log in to the admin console to provide the license file, define your configuration values, run preflight checks, and deploy. See [Deploying the Application using the Admin Console](installing-app-setup).

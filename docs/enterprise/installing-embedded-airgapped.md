@@ -77,23 +77,6 @@ To install the application:
 
       <InstallApp/>
 
-      - **kots CLI:** To install and deploy the application with the kots CLI, run the following command:
-        
-        ```bash
-        kubectl kots install APP_NAME \
-        --license-file PATH_TO_LICENSE_FILE \
-        --config-values PATH_TO_CONFIG_VALUES \
-        --namespace ADMIN_CONSOLE_NAMESPACE \
-        --shared-password PASSWORD \
-        --airgap-bundle PATH_TO_AIRGAP_BUNDLE
-        ```
-
-        Replace:
-        <KotsCliInstall/>
-        
-        * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle that you downloaded.
-
-        For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
 ## Next Step
 
 (Optional) You can add nodes to the cluster. See [Adding Nodes to Kubernetes Installer Clusters](cluster-management-add-nodes).

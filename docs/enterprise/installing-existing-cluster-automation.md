@@ -5,7 +5,7 @@ import KotsCliInstall from "../partials/install/_kots-cli-install.mdx"
 
 This topic describes using the kots CLI to automate installation in online and air gap environments.
 
-## About Using Automation to Install
+## About Installing with Automation
 
 You can automate application installation by creating an installation command with the Replicated kots CLI, then adding the command to an existing CI/CD workflow.
 
@@ -15,7 +15,7 @@ For more information about the `kots install` command, see [install](/reference/
 
 ## Prerequisites
 
-Complete the following prerequisites:
+Before you can use the kots CLI to automate installation, you must complete the following prerequisites:
 
 * Create a ConfigValues manifest file to define the application's configuration values. The following is an example of a ConfigValues file:
 
@@ -27,36 +27,84 @@ Complete the following prerequisites:
   Your application vendor provides details about the required and optional configuration fields to include in the ConfigValues file.
   :::
 
-* (Existing Clusters Only) To automate installation in an existing cluster, complete the following prerequisites: 
+* (Existing Clusters Only) To install in an existing cluster, complete the prerequisites for your environment: 
   * [Online Prerequisites](installing-existing-cluster#prerequisites)
   * [Air Gap Prerequisites](installing-existing-cluster-airgapped#prerequisites)
 
-* (Kubernetes Installer Only) To automate installation in a VM or bare metal server, complete the following prerequisites: 
-## Installation Command
+* (Kubernetes Installer Only) To install in a VM or bare metal server with the Replicated Kubernetes installer, complete the prerequisites for your environment: 
+  * [Online Prerequisites](installing-embedded-cluster#prerequisites)
+  * [Air Gap Prerequisites](installing-embedded-airgapped#prerequisites)
 
-To install an application with the kots CLI in an online environment, run the following command:
+* (Kubernetes Installer Only) To use the kots CLI to install an application in a VM or bare metal server, you must first run the Kubernetes installer installation script to provision a cluster and install the Replicated app manager. See:
+  * [Online Installation with the Kubernetes Installer](installing-embedded-cluster)
+  * [Air Gap Installation with the Kubernetes Installer](installing-embedded-airgapped)  
+## Installation Commands
 
-```
+### Online Existing Cluster
+
+```bash 
 kubectl kots install APP_NAME \
---namespace APP_NAMESPACE \
---shared-password PASSWORD \
---license-file PATH_TO_LICENSE_FILE \
---config-values PATH_TO_CONFIGVALUES_FILE \
---airgap-bundle PATH_TO_AIRGAP_BUNDLE \
---kotsadm-namespace ADMIN_CONSOLE_NAMESPACE \
---kotsadm-registry PRIVATE_REGISTRY_HOST \
---registry-username READ_WRITE_USERNAME \
---registry-password READ_WRITE_PASSWORD
+  --license-file PATH_TO_LICENSE_FILE \
+  --config-values PATH_TO_CONFIGVALUES_FILE \
+  --namespace APP_NAMESPACE \
+  --shared-password PASSWORD \
+  --no-port-forward
+```
+Replace:
+
+
+### Online Kubernetes Installer
+
+```bash
+kubectl kots install APP_NAME \
+  --license-file PATH_TO_LICENSE_FILE \
+  --config-values PATH_TO_CONFIG_VALUES \
+  --namespace ADMIN_CONSOLE_NAMESPACE \
+  --shared-password PASSWORD
 ```
 
 Replace:
 
 <KotsCliInstall/>
 
-* (Air Gap Only) `PATH_TO_AIRGAP_BUNDLE` with the path in your local directory to the `.airgap` bundle for the application. The air gap bundle is provided by your application vendor.
+### Air Gapped Existing Cluster 
 
-* (Air Gap Only) `ADMIN_CONSOLE_NAMESPACE` with the namespace where you want the admin console to be installed.
+```
+kubectl kots install APP_NAME \
+  --namespace APP_NAMESPACE \
+  --shared-password PASSWORD \
+  --license-file PATH_TO_LICENSE_FILE \
+  --config-values PATH_TO_CONFIGVALUES_FILE \
+  --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
+  --kotsadm-namespace ADMIN_CONSOLE_NAMESPACE \
+  --kotsadm-registry PRIVATE_REGISTRY_HOST \
+  --registry-username READ_WRITE_USERNAME \
+  --registry-password READ_WRITE_PASSWORD \
+  --no-port-forward
+```
 
-* (Air Gap Only) `PRIVATE_REGISTRY_HOST` with the hostname for the private image registry where you pushed the admin console images in the previous step.
+Replace:
+<KotsCliInstall/>
 
-* (Air Gap Only) `READ_WRITE_USERNAME` and `READ_WRITE_PASSWORD` with credentials with read write permissions to the private image registry where you pushed the admin console images in the previous step.
+* `PATH_TO_AIRGAP_BUNDLE` with the path in your local directory to the `.airgap` bundle for the application. The air gap bundle is provided by your application vendor.
+* `ADMIN_CONSOLE_NAMESPACE` with the namespace where you want the admin console to be installed.
+* `PRIVATE_REGISTRY_HOST` with the hostname for the private image registry where you pushed the admin console images in the previous step.
+* `READ_WRITE_USERNAME` and `READ_WRITE_PASSWORD` with credentials with read write permissions to the private image registry where you pushed the admin console images in the previous step.
+
+### Air Gapped Kubernetes Installer 
+
+```bash
+kubectl kots install APP_NAME \
+  --license-file PATH_TO_LICENSE_FILE \
+  --config-values PATH_TO_CONFIG_VALUES \
+  --namespace ADMIN_CONSOLE_NAMESPACE \
+  --shared-password PASSWORD \
+  --airgap-bundle PATH_TO_AIRGAP_BUNDLE
+```
+
+Replace:
+<KotsCliInstall/>
+
+* `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle that you downloaded.
+
+## Next Step: Access the Admin Console
