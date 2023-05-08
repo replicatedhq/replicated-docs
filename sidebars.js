@@ -78,6 +78,7 @@ const sidebars = {
           type: 'category',
           label: 'Configuring Authentication',
           items: [
+            'vendor/team-management-password-policies',
             'vendor/team-management-two-factor-auth',
             'vendor/team-management-google-auth',
             'vendor/team-management-saml-auth',
