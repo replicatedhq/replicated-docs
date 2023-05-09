@@ -1,4 +1,5 @@
 import AppInstallIntroOnline from "../partials/install/_install-app-admin-console-intro-online.mdx"
+import IntroExisting from "../partials/install/_intro-existing.mdx"
 
 import PrereqsExistingCluster from "../partials/install/_prereqs-existing-cluster.mdx"
 import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
@@ -10,7 +11,7 @@ import InstallApp from "../partials/install/_install-app-admin-console.mdx"
 
 # Online Installation in Existing Clusters
 
-This topic describes how to use Replicated to install an application in an existing Kubernetes cluster in an online environment.
+<IntroExisting/>
 
 ## Prerequisites
 

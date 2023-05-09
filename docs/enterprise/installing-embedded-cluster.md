@@ -2,6 +2,7 @@ import KurlAbout from "../partials/install/_kurl-about.mdx"
 import HaLoadBalancerAbout from "../partials/install/_ha-load-balancer-about.mdx"
 import ProvisionClusterIntro from "../partials/install/_provision-cluster-intro.mdx"
 import AppInstallIntroOnline from "../partials/install/_install-app-admin-console-intro-online.mdx"
+import IntroEmbedded from "../partials/install/_intro-embedded.mdx"
 
 import PrereqsEmbeddedCluster from "../partials/install/_prereqs-embedded-cluster.mdx"
 import HaLoadBalancerPrereq from "../partials/install/_ha-load-balancer-prereq.mdx"
@@ -14,7 +15,7 @@ import InstallApp from "../partials/install/_install-app-admin-console.mdx"
 
 # Online Installation with the Kubernetes Installer
 
-This topic describes how to use Replicated to install an application in an embedded cluster provisioned by the Replicated Kubernetes installer. The procedure explains how to install with and without high availability mode.
+<IntroEmbedded/>
 
 <KurlAbout/>
 

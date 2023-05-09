@@ -1,4 +1,5 @@
 import AppInstallIntroAirGap from "../partials/install/_install-app-admin-console-intro-air-gap.mdx"
+import IntroExisting from "../partials/install/_intro-existing.mdx"
 
 import PrereqsExistingCluster from "../partials/install/_prereqs-existing-cluster.mdx"
 import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
@@ -10,7 +11,7 @@ import InstallApp from "../partials/install/_install-app-admin-console.mdx"
 
 # Air Gap Installation in Existing Clusters
 
-This topic describes how to use the Replicated to install an application in an air gap environment. Procedures are provided for installing using an existing Kubernetes cluster.
+<IntroExisting/>
 
 ## About Private Registries
 
