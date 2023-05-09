@@ -12,8 +12,6 @@ To configure a password policy:
 
 1. Do one of the following:
 
-    - To customize the password complexity, change the default settings for the minimum required password length, letters, numbers, or symbols.
+    - To customize the password complexity, change the default settings for the minimum required password length, letters, numbers, or symbols. Click **Save changes**.
 
     - To restore the default settings, click **Restore defaults**.
-
-1. Click **Save changes**.
