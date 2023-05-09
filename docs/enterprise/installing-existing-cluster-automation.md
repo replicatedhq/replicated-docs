@@ -12,7 +12,7 @@ This topic describes using the kots CLI to automate installation in online and a
 
 ## About Installing with Automation
 
-You can automate the installation of an application in your existing cluster or in a cluster that you created with the Kubernetes installer. To automate installation, you create an installation command with the Replicated kots CLI. The `kots install` command that you create depends on the type of cluster and if your installation environment has access to the internet.
+You can automate the installation of an application in your existing cluster or in a cluster that you created with the Replicated Kubernetes installer. To automate installation, you create an installation command with the Replicated kots CLI. The `kots install` command that you create depends on the type of cluster and if your installation environment has access to the internet.
 
 In an automated installation, you provide all the information required to install and deploy the application with the `kots install` command, rather than providing this information in the Replicated admin console. For example, rather than uploading your license file in the admin console UI, you provide your license file with the `kots install` command using the `--license` flag. 
 
@@ -21,6 +21,8 @@ For more information about the `kots install` command, see [install](/reference/
 ## Prerequisites
 
 Before you install an application with the kots CLI, you must complete the following prerequisites:
+
+* Install the kots CLI. See [Installing the kots CLI](/reference/kots-cli-getting-started).
 
 * Create a ConfigValues manifest file to define your configuration preferences for the application. Ensure that you can access the ConfigValues file that you create from your installation environment.
 
@@ -34,16 +36,16 @@ Before you install an application with the kots CLI, you must complete the follo
   
 
 * (Existing Clusters Only) To install in an existing cluster, complete the prerequisites for your environment: 
-  * **Online**: [Prerequisites](installing-existing-cluster#prerequisites)
-  * **Air Gap**: [Prerequisites](installing-existing-cluster-airgapped#prerequisites)
+  * **Online**: See [Prerequisites](installing-existing-cluster#prerequisites) in _Online Existing Cluster Installation_.
+  * **Air Gap**: See [Prerequisites](installing-existing-cluster-airgapped#prerequisites) in _Air Gap Existing Cluster Installation_.
 
 * (Kubernetes Installer Only) To install in a VM or bare metal server with the Replicated Kubernetes installer, complete the prerequisites for your environment: 
-  * **Online**: [Prerequisites](installing-embedded-cluster#prerequisites)
-  * **Air Gap**: [Prerequisites](installing-embedded-airgapped#prerequisites)
+  * **Online**: See [Prerequisites](installing-embedded-cluster#prerequisites) in _Online Installation with the Kubernetes Installer_.
+  * **Air Gap**: See [Prerequisites](installing-embedded-airgapped#prerequisites) in _Air Gap Installation with the Kubernetes Installer_.
 
 * (Kubernetes Installer Only) You must have run the Kubernetes installer installation script in your VM or bare metal server to provision the cluster and install the Replicated app manager in the cluster. See one of the following, depending on your installation environment:
-  * **Online**: [Provision the Cluster](installing-embedded-cluster#provision-cluster)
-  * **Air Gap**: [Provision the Cluster](installing-embedded-airgapped#air-gap)  
+  * **Online**: See [Provision the Cluster](installing-embedded-cluster#provision-cluster) in _Online Installation with the Kubernetes Installer_.
+  * **Air Gap**: See [Provision the Cluster](installing-embedded-airgapped#air-gap) in _Air Gap Installation with the Kubernetes Installer_. 
 ## Installation Commands
 
 This section provides the `kots install` commands that you can use to automate installation in an existing cluster or in a Kubernetes installer cluster. It includes commands for both online and air gap environments.
@@ -149,11 +151,37 @@ Replace:
 
 ## (Optional) Access the Admin Console
 
-When you use automation to install an application, you include the `--no-port-forward` flag. The `--no-port-forward` flag prevents the kots CLI from automatically opening a port forward to the admin console. After you install, you can optionally open a port forward to log in to the admin console
+When you use automation to install an application, you include the `--no-port-forward` flag. The `--no-port-forward` flag prevents the kots CLI from automatically opening a port forward to the admin console. After you install, you can optionally open a port forward to log in to the admin console in a browser window at `https://localhost:8800`.
 
-You can run the following command to access the admin console at `http://localhost:8800`:
+To access the admin console:
 
-```
-kubectl kots admin-console --namespace NAMESPACE
-```
-Replace `NAMESPACE` with the namespace where the app manager was installed. The admin console runs in the same namespace where the app manager was installed. By default, the app manager is installed in the `default` namespace.
+1. If you installed in a VM where you cannot open a browser window, forward a port on your local machine to `localhost:8800` on the remote VM using the SSH client:
+
+  ```bash
+  ssh -L LOCAL_PORT:localhost:8800 USERNAME@IP_ADDRESS
+  ```
+  Replace:
+   * `LOCAL_PORT` with the port on your local machine to forward. For example, `9900` or `8800`.
+   * `USERNAME` with your username for the VM.
+   * `IP_ADDRESS` with the IP address for the VM.
+
+  **Example**:
+
+  The following example shows using the SSH client to forward port 8800 on your local machine to `localhost:8800` on the remote VM.
+  
+  ```bash
+  ssh -L 8800:localhost:8800 user@ip-addr
+  ```
+
+1. Run the following command to open localhost port 8800, which forwards to the admin console service:
+
+  ```bash
+  kubectl kots admin-console --namespace NAMESPACE
+  ```
+  Replace `NAMESPACE` with the namespace where the admin console was installed. By default, the app manager installs the admin console in the `default` namespace.
+
+1. Open a browser window and go to `https://localhost:8800`.
+
+1. Log in to the admin console using the password that you created as part of the `kots install` command.
+
+For more information about the `kots admin-console` command, see [admin-console](/reference/kots-cli-admin-console-index) in the _kots CLI_ documentation.
