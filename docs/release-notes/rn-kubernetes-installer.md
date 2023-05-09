@@ -4,6 +4,93 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.05.08-0
+
+Released on May 8, 2023
+
+### New Features {#new-features-v2023-05-08-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) versions 1.27.1, 1.27.0, 1.26.4, 1.25.9 and 1.24.13.
+* Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) version 3.6.0.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-04-20T17-56-55Z.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) versions 0.63.0-45.19.0, 0.63.0-45.20.0, 0.63.0-45.21.0.
+* Adds [Goldpinger add-on](https://kurl.sh/docs/add-ons/goldpinger) version 3.7.0-6.0.1.
+* Updates [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) runc version from v1.1.5 to v1.1.7.
+* Adds the ability to bypass kubeadm upgrade preflight errors and warnings using the spec property [`kubernetes.upgradeIgnorePreflightErrors`](https://kurl.sh/docs/add-ons/kubernetes#advanced-install-options:~:text=upgradeIgnorePreflightErrors) or the flag [`--kubernetes-upgrade-ignore-preflight-errors=`](https://kurl.sh/docs/install-with-kurl/advanced-options#:~:text=internal%2Dload%2Dbalancer-,kubernetes%2Dupgrade%2Dignore%2Dpreflight%2Derrors,-Bypass%20kubeadm%20upgrade).
+* Adds the ability to configure the maximum number of Pods that can run on each node (default 110) using the spec property [`kubernetes.maxPodsPerNode`](https://kurl.sh/docs/add-ons/kubernetes#advanced-install-options:~:text=the%20Kubernetes%20documentation.-,maxPodsPerNode,-The%20maximum%20number) or the flag [`--kubernetes-max-pods-per-node=`](https://kurl.sh/docs/install-with-kurl/advanced-options#:~:text=preflight%2Derrors%3DCoreDNSUnsupportedPlugins-,kubernetes%2Dmax%2Dpods%2Dper%2Dnode,-The%20maximum%20number).
+
+### Improvements {#improvements-v2023-05-08-0}
+* Reduces OpenEBS resource usage by removing NDM.
+* Removes the `rook-upgrade` task.
+
+### Bug Fixes {#bug-fixes-v2023-05-08-0}
+* Fixes an issue on RHEL 7 based distributions that caused the script to improperly calculate the bundle size when upgrading multiple Kubernetes versions and print the message 'total_archive_size + "935": syntax error: operand expected (error token is ""935"")'.
+* Fixes an issue where high availability MinIO deployments were not migrated to Rook's object store.
+* Fixes an issue that caused Rook upgrades of more than one minor version to upgrade to the latest patch version for the target minor version rather than to the specified patch version.
+* Fixes an issue when upgrading Rook from v1.4.x or later in an air gap environment that caused the script to fail with ImagePullBackoff errors due to the failure to prompt the user to load images on remote nodes.
+
+## v2023.04.24-0
+
+Released on April 24, 2023
+
+### New Features {#new-features-v2023-04-24-0}
+* Updates the [Kubernetes add-on](https://kurl.sh/docs/add-ons/kubernetes) to support upgrading Kubernetes by more than two minor versions at the same time using a single spec. For air gap instances, users must provdide a package with the required assets during upgrade. For more information, see [Upgrading](https://kurl.sh/docs/install-with-kurl/upgrading#kubernetes) in the kURL documentation.
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.4.
+* Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) versions 2.8.1-20230417 and 2.6.5-20230417 to address the following high and critical severity CVEs: CVE-2023-27536, CVE-2023-27533, CVE-2023-27534, CVE-2023-27535.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) versions 0.63.0-45.10.1 and 0.63.0-45.15.0.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-04-13T03-08-07Z.
+
+### Improvements {#improvements-v2023-04-24-0}
+* Updates kURL to use the `kurl-install-directory` specified for host os repositories. Previously, this was hardcoded to `/var/lib/kurl`.
+
+### Bug Fixes {#bug-fixes-v2023-04-24-0}
+* Fixes an issue to ensure that the tasks.sh reset script respects the `kurl-install-directory` flag or discovers the directory from the cluster.
+* Fixes an issue that caused the installation script to prompt for a load balancer address when running the installer with `ekco-enable-internal-load-balancer`.
+
+## v2023.04.13-0
+
+Released on April 13, 2023
+
+### New Features {#new-features-v2023-04-13-0}
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.3.
+* Adds [Weave add-on](https://kurl.sh/docs/add-ons/weave) version 2.8.1-20230406 to address the following high severity CVE: CVE-2023-0464.
+* Updates the [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.10.2 with new kurlsh/s3cmd image to address the following high severity CVE: CVE-2023-0464.
+
+### Bug Fixes {#bug-fixes-v2023-04-13-0}
+* Fixes an issue that causes migrations from Docker to containerd on multi-node clusters to fail with the error "Downgrading containerd is not supported".
+* Fixes an issue that could cause installations to fail with the error "/var/lib/kurl does not exist" when using the `kurl-install-directory` flag.
+
+## v2023.04.11-0
+
+Released on April 11, 2023
+
+### New Features {#new-features-v2023-04-11-0}
+* Adds support for RHEL and Rocky Linux 9.
+* Makes the [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) mandatory.
+* Updates kURL to always install the latest version of the [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) add-on, even if the EKCO add-on is not specified or if a different version is specified.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.26.5, and removes all versions earlier than 0.26.5.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-03-24T21-41-23Z.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.63.0-45.8.0, 0.63.0-45.8.1, and 0.63.0-45.9.1.
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.24.3.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.20.
+* Updates the [Registry add-on](https://kurl.sh/docs/add-ons/registry) version 2.8.1 with new kurlsh/s3cmd image to address the following high severity CVE: CVE-2023-0464.
+
+### Improvements {#improvements-v2023-04-11-0}
+* Adds a preflight check to ensure sufficient disk space is available for the Containerd, Rook, and OpenEBS add-ons.
+* Adds a preflight check to ensure Kubernetes API Server is healthy prior to Kubernetes upgrades.
+* Adds a preflight check to ensure Kubernetes API Server load balancer health prior to Kubernetes upgrades.
+* Adds a preflight check to ensure Kubernetes API and ETCD certificates are present and valid prior to Kubernetes upgrades.
+* Adds a preflight check to ensure nodes are healthy prior to Kubernetes upgrades.
+* Adds a preflight check to ensure that kURL Pod(s) are running prior to Kubernetes upgrades.
+* Adds a preflight check to ensure that MinIO pods are running prior to migrating object store data from Rook.
+* Adds a preflight check to ensure that OpenEBS and Rook-Ceph are healthy prior to migrating from Rook to OpenEBS.
+* Adds a preflight check to ensure that Longhorn and OpenEBS are healthy prior to migrating from Longhorn to OpenEBS.
+* Adds a preflight check to ensure that Longhorn and Rook-Ceph are healthy prior to migrating from Longhorn to Rook Ceph.
+* Adds a preflight check to prevent unsupported migrations from Longhorn to OpenEBS versions earlier than 3.3.0 and without an object store when Registry is present.
+* Adds the ability to upgrade the containerd add-on in a kURL cluster by two minor versions at the same time.
+
+### Bug Fixes {#bug-fixes-v2023-04-11-0}
+* Fixes an issue that could cause rerunning the install script to fail if the Kubernetes binaries are installed but the cluster was never installed or configured.
+
 ## v2023.03.28-0
 
 Released on March 28, 2023

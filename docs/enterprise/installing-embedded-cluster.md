@@ -2,12 +2,16 @@ import KurlAbout from "../partials/install/_kurl-about.mdx"
 import PrereqsEmbeddedCluster from "../partials/install/_prereqs-embedded-cluster.mdx"
 import HaLoadBalancerAbout from "../partials/install/_ha-load-balancer-about.mdx"
 import HaLoadBalancerPrereq from "../partials/install/_ha-load-balancer-prereq.mdx"
-
-
+import HAStep from "../partials/install/_embedded-ha-step.mdx"
+import LoginPassword from "../partials/install/_embedded-login-password.mdx"
+import InstallApp from "../partials/install/_embedded-admin-console-step.mdx"
+import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
+import LicenseFile from "../partials/install/_license-file-prereq.mdx"
+import KotsCliInstall from "../partials/install/_kots-cli-install.mdx"
 
 # Online Installation with the Kubernetes Installer
 
-This topic explains how to install an application on an embedded cluster provisioned by the Replicated Kubernetes installer.
+This topic describes how to use Replicated to install an application in an embedded cluster provisioned by the Replicated Kubernetes installer. The procedure explains how to install with and without high availability mode.
 
 <KurlAbout/>
 
@@ -23,48 +27,56 @@ Complete the following prerequisites:
 
 <PrereqsEmbeddedCluster/>
 
+<LicenseFile/>
+
 <HaLoadBalancerPrereq/>
-    
 
-## Install the Application {#online}
+## Install the Application
 
-This procedure explains how to install the the application in an online environment, with and without high availability mode.
+This procedure describes how to provision a cluster with the Kubernetes installer, install the app manager, then install and deploy the application.
 
 To install the application:
 
-1. Run one of the following commands:
+1. Run one of the following commands to create the cluster with the Kubernetes installer and install the app manager:
 
-    * For the latest version of the application:
+    * For a regular installation, run:
 
       ```bash
       curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash
-      ```
-
-    * For a specific version of the application, use the `app-version-label` flag and the version label for a particular version of your vendor's application:
-
-      ```shell
-      curl https://k8s.kurl.sh/APP_SLUG | sudo bash -s app-version-label=VERSION_LABEL
       ```
     
     * For high availability mode:
 
       ```bash
       curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash -s ha
-        ```
+      ```
     
-    Replace, where applicable:
-     * `APP_SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
-     * `VERSION_LABEL` with the label for the version of the application to install. For example, `--app-version-label=3.0.1`.
+    Replace `APP_SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
 
-1. (High Availability Only) If you did not preconfigure a load balancer, you are prompted during the installation. Do one of the following:
+    :::note
+    <LoginPassword/>
+    :::
 
-    - If you are using the internal load balancer, leave the prompt blank and proceed with the installation.
+1. <HAStep/> 
 
-    - If you are using an external load balancer, pass the load balancer address.
+1. Install the application using one of the following methods:
 
-1. Note the `Kotsadm` and `Login with password (will not be shown again)` fields in the output of the installation command. 
+    <InstallApp/>
 
-1. Log in to the admin console to complete the application setup, run preflight checks, and deploy. See [Completing Application Setup and Deploying](installing-app-setup).
+    - **kots CLI:** To install and deploy the application with the kots CLI, run the following command:
+
+      ```bash
+      kubectl kots install APP_NAME \
+      --license-file PATH_TO_LICENSE_FILE \
+      --config-values PATH_TO_CONFIG_VALUES \
+      --namespace ADMIN_CONSOLE_NAMESPACE \
+      --shared-password PASSWORD
+      ```
+
+      Replace:
+      <KotsCliInstall/>
+
+      For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
 
 ## Next Step
 

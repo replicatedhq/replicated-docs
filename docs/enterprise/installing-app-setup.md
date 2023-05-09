@@ -1,6 +1,6 @@
-# Completing Application Setup and Deploying
+# Deploying the Application using the Admin Console
 
-This topic describes how to access the Replicated admin console to complete the application setup, run preflight checks, and deploy.
+This topic describes how to access the Replicated admin console to provide the license file, define your configuration values, run preflight checks, and deploy the application.
 
 ## Prerequisite
 
@@ -8,7 +8,7 @@ This procedure assumes that you have already installed the admin console on eith
 
 ## Access the Admin Console and Deploy the Application
 
-To complete application setup and deploy from the admin console:
+To deploy the application using the admin console:
 
 1. Access the admin console on port 8800:
    * **Existing cluster**: If the port forward is active, go to [http://localhost:8800](http://localhost:8800) to access the admin console.

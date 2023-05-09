@@ -78,7 +78,7 @@ To transition to a different registry custom domain:
 1. Ensure that all customers update to the new release so that they no longer use the old registry custom domain.
 1. Click **Remove** next to the unused domain in the list to remove it from the vendor portal. Click **Yes, remove domain**.
 
-    :::warning
+    :::important
     When you remove a registry custom domain from the vendor portal, any installations that still reference that custom domain will break. Ensure that a custom domain is no longer in use before you remove it from the vendor portal.
     :::
 

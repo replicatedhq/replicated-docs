@@ -1,0 +1,33 @@
+**Correct**:
+
+```yaml
+spec:
+  groups:
+  - name: authentication
+    title: Authentication
+    description: Configure application authentication below.
+    - name: jwt_file
+      title: jwt_file
+      type: file // valid item type
+      validation:
+        regex:
+          pattern: "^[A-Za-z0-9-_]+.[A-Za-z0-9-_]+.[A-Za-z0-9-_]*$"
+          message: "JWT is invalid"
+```
+
+**Incorrect**:
+
+```yaml
+spec:
+  groups:
+  - name: authentication
+    title: Authentication
+    description: Configure application authentication below.
+    - name: jwt_file
+      title: jwt_file
+      type: bool // invalid item type
+      validation:
+        regex:
+          pattern: "^[A-Za-z0-9-_]+.[A-Za-z0-9-_]+.[A-Za-z0-9-_]*$"
+          message: "JWT is invalid"
+```

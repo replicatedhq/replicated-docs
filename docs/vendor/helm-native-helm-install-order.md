@@ -1,12 +1,12 @@
+import HooksLimitation from "../partials/helm/_hooks-limitation.mdx"
+
 # Defining Installation Order for Native Helm Charts
 
-When deploying applications with native Helm charts, the Replicated app manager directs Helm v3 to install your `HelmChart` resources on the cluster. In parallel, the app manager deploys any other manifest files within your application.
-
-Native Helm charts are `HelmChart` custom resources in your application that are installed and managed directly by Helm v3. Native Helm charts have the `useHelmInstall` property set to `true`. For more information about using native Helm charts with Replicated, see [About Deploying with Helm](helm-overview).
+This topic describes how to use the `weight` property to define the installation order for charts deployed with the native Helm method. For more information about using native Helm charts with Replicated, see [About Deploying Helm Charts](helm-overview).
 
 ## About Native Helm Chart Installation Weight
 
-For native Helm charts, you can add a `weight` property to the `HelmChart` custom resource manifest file to define the order in which Helm installs the charts.
+For Helm charts deployed with native Helm, you can add a `weight` property to the `HelmChart` custom resource manifest file to define the order in which Helm installs the charts.
 
 This is useful if you have multiple `HelmChart` custom resources in your application, and it is important that the resources referenced in one or more Helm charts are deployed before one or more other Helm charts.
 
@@ -67,7 +67,6 @@ If you do not add a `weight` to native Helm charts in your application, you can 
 
 For more information about using Helm dependencies, see [Chart Dependencies](https://helm.sh/docs/topics/charts/#chart-dependencies) in the Helm documentation.
 
-
 ## Hooks
 
 Helm hooks enable more control over when Helm installs the resources in your Helm charts. This is useful if you want to bundle actions as part of a release. For example, you can build in a database backup as part of the upgrade process while ensuring that the backup occurs prior to upgrading the rest of the resources.
@@ -75,15 +74,13 @@ Helm hooks enable more control over when Helm installs the resources in your Hel
 Replicated supports using some Helm hooks with native Helm charts. If you use hooks in your native Helm charts, you can use the `weight` property to further manage the installation order of resources. For example, if you include a pre-install hook in Helm chart A that requires a resource from Helm chart B, you can add a lower `weight` to chart B to ensure that the app manager directs Helm to install chart B before chart A.
 
 The following hooks are supported:
-* `pre-install`: Executes after resources are rendered but before any resources are installed.
-* `post-install`: Executes after resources are installed.
-* `pre-upgrade`: Executes after resources are rendered but before any resources are upgraded.
-* `post-upgrade`: Executes after resources are upgraded.
-* `pre-delete`: Executes before any resources are deleted.
-* `post-delete`: Executes after resources are deleted.
+  * `pre-install`: Executes after resources are rendered but before any resources are installed.
+  * `post-install`: Executes after resources are installed.
+  * `pre-upgrade`: Executes after resources are rendered but before any resources are upgraded.
+  * `post-upgrade`: Executes after resources are upgraded.
+  * `pre-delete`: Executes before any resources are deleted.
+  * `post-delete`: Executes after resources are deleted.
 
-The following hooks are not supported and are ignored if they are present:
-* `pre-rollback`: Executes after resources are rendered but before any resources are rolled back.
-* `post-rollback`: Executes after resources are rolled back.
+<HooksLimitation/>
 
-For more information about Helm hooks and weights, see the [Helm docs](https://helm.sh/docs/topics/charts_hooks/).
+For more information about Helm hooks and weights, see the [Chart Hooks](https://helm.sh/docs/topics/charts_hooks/) in the Helm documentation.

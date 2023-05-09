@@ -74,8 +74,15 @@ const sidebars = {
               'vendor/team-management-rbac-resource-names',
           ],
         },
-        'vendor/team-management-google-auth',
-        'vendor/team-management-saml-auth',
+        {
+          type: 'category',
+          label: 'Configuring Authentication',
+          items: [
+            'vendor/team-management-two-factor-auth',
+            'vendor/team-management-google-auth',
+            'vendor/team-management-saml-auth',
+         ],
+       },
         'vendor/custom-domains',
       ],
     },
@@ -86,8 +93,9 @@ const sidebars = {
         'vendor/releases-about',
         'vendor/releases-about-channels',
         'vendor/releases-creating-channels',
-        'vendor/helm-release',
+        'vendor/helm-release-creating-package',
         'vendor/releases-creating-releases',
+        'vendor/releases-creating-cli',
         {
           type: 'category',
           label: 'Integrating with CI/CD',
@@ -96,7 +104,18 @@ const sidebars = {
             'vendor/tutorial-ci-cd-integration',
           ],
         },
-        `vendor/releases-updating`,
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Helm Chart Deployment',
+      items: [
+        'vendor/helm-overview',
+        'vendor/helm-install',
+        'vendor/helm-release',
+        'vendor/helm-native-helm-install-order',
+        'vendor/helm-optional-charts',
+        'vendor/helm-optional-value-keys',
       ],
     },
     {
@@ -111,24 +130,6 @@ const sidebars = {
               'vendor/admin-console-customize-config-screen',
               'vendor/config-screen-map-inputs',
               'vendor/helm-mapping-example',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Helm Chart Deployment',
-          items: [
-              {
-              type: 'category',
-              label: 'Overview',
-              items: [
-                'vendor/helm-overview',
-                'vendor/helm-processing',
-              ],
-            },
-            'vendor/helm-install',
-            'vendor/helm-native-helm-install-order',
-            'vendor/helm-optional-charts',
-            'vendor/helm-optional-value-keys',
           ],
         },
         {
@@ -151,22 +152,10 @@ const sidebars = {
         },
         'vendor/packaging-ingress',
         'vendor/packaging-kots-versions',    
-        'vendor/packaging-include-resources',
         'vendor/namespaces',
         'vendor/packaging-rbac',
         'vendor/packaging-using-tls-certs',
-        'vendor/packaging-cleaning-up-jobs',
         'vendor/identity-service-configuring',
-        {
-          type: 'category',
-          label: 'Kubernetes Operators',
-          items: [
-            'vendor/operator-packaging-about',
-            'vendor/operator-defining-additional-images',
-            'vendor/operator-referencing-images',
-            'vendor/operator-defining-additional-namespaces',
-          ],
-        },
       ],
     },  
     {
@@ -224,6 +213,24 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Managing Resources and Objects',
+      items: [
+        'vendor/packaging-include-resources',
+        'vendor/packaging-cleaning-up-jobs',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Kubernetes Operators',
+      items: [
+        'vendor/operator-packaging-about',
+        'vendor/operator-defining-additional-images',
+        'vendor/operator-referencing-images',
+        'vendor/operator-defining-additional-namespaces',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Distribute Your Application',
       items: [
         'vendor/distributing-workflow',
@@ -267,6 +274,7 @@ const sidebars = {
         'vendor/policies-vulnerability-patch',
         'vendor/policies-support-lifecycle',
         'vendor/policies-data-transmission',
+        'vendor/policies-infrastructure-and-subprocessors',
         {
           type: 'link',
           label: 'Security at Replicated',
@@ -522,6 +530,7 @@ const sidebars = {
             'enterprise/image-registry-rate-limits',
           ],
         },
+        'enterprise/updating-patching-with-kustomize',
         {
           type: 'category',
           label: 'Updating',
@@ -529,7 +538,6 @@ const sidebars = {
             'enterprise/updating-apps',
             'enterprise/updating-app-manager',
             'enterprise/updating-embedded-cluster',
-            'enterprise/updating-patching-with-kustomize',
             'enterprise/updating-licenses',
             'enterprise/updating-tls-cert',
           ],

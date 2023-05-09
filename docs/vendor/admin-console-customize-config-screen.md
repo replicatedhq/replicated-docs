@@ -2,7 +2,7 @@
 
 This topic describes how to use the Config custom resource manifest file to add and edit fields in the Replicated admin console configuration screen. For more information about the configuration screen, see [About the Configuration Screen](config-screen-about).
 
-## Overview of the Config Custom Resource
+## About the Config Custom Resource
 
 To include a configuration screen in the Replicated admin console for your application, you add a Config custom resource manifest file to the release in the Replicated vendor portal.
 
@@ -12,7 +12,29 @@ You define the fields that appear on the configuration screen as an array of `gr
 
    There are several types of `items` supported in the Config manifest that allow you to collect different types of user inputs. For example, you can use the `password` input type to create a text field on the configuration screen that hides user input.
 
-For more information about the syntax of the Config custom resource manifest, see [Config](../reference/custom-resource-config) in the _Custom Resources_ section.
+For more information about the syntax of the Config custom resource manifest, see [Config](/reference/custom-resource-config).
+
+## About Regular Expression Validation
+
+You can use [RE2 regular expressions](https://github.com/google/re2/wiki/Syntax) (regex) to validate user input for config items, ensuring conformity to certain standards, such as valid email addresses, password complexity rules, IP addresses, and URLs. This prevents users from deploying an application with a verifiably invalid configuration.
+
+You add the `validation`, `regex`, `pattern` and `message` fields to items in the Config custom resource. Validation is supported for `text`, `textarea`, `password` and `file` config item types. For more information about regex validation fields, see [Item Validation](/reference/custom-resource-config#item-validation) in _Config_.
+
+The following example shows a common password complexity rule:
+
+```
+- name: smtp-settings
+    title: SMTP Settings
+    items:
+    - name: smtp_password
+      title: SMTP Password
+      type: password
+      help_text: Set SMTP password
+      validation:
+        regex: 
+          pattern: ^(?:[\w@#$%^&+=!*()_\-{}[\]:;"'<>,.?\/|]){8,16}$
+          message: The password must be between 8 and 16 characters long and can contain a combination of uppercase letter, lowercase letters, digits, and special characters.
+```
 
 ## Add Fields to the Configuration Screen
 
@@ -70,7 +92,7 @@ To add fields to the admin console configuration screen:
 
    The following screenshot shows how the SMTP Settings group from the example YAML above displays in the admin console configuration screen during application installation:
 
-   ![User input fields on the configuration screen for the SMTP settings](../../static/images/config-screen-smtp-example-large.png)
+   ![User input fields on the configuration screen for the SMTP settings](/images/config-screen-smtp-example-large.png)
 
 1. (Optional) Add default values for the fields. You can add default values using one of the following properties:
    * **With the `default` property**: When you include the `default` key, the Replicated app manager uses this value when rendering the manifest files for your application. The value then displays as a placeholder on the configuration screen in the admin console for your users. The app manager only uses the default value if the user does not provide a different value.
@@ -82,7 +104,22 @@ To add fields to the admin console configuration screen:
      :::
 
    * **With the `value` property**: When you include the `value` key, the app manager does not overwrite this value during an application update. The value that you provide for the `value` key is visually indistinguishable from other values that your user provides on the admin console configuration screen. The app manager treats user-supplied values and the value that you provide for the `value` key as the same.
-1. (Optional) Mark fields as required by including `required: true`. When there are required fields, the user is prevented from proceeding with the installation until they provide a valid value for required fields.
+
+2. (Optional) Add regular expressions to validate user input for `text`, `textarea`, `password` and `file` config item types. For more information, see [About Regular Expression Validation](#about-regular-expression-validation).
+
+    **Example**:
+
+    ```yaml
+    - name: smtp_host
+      title: SMTP Hostname
+      help_text: Set SMTP Hostname
+      type: text
+      validation:
+        regex: ​
+          pattern: ^[a-zA-Z]([a-zA-Z0-9\-]+[\.]?)*[a-zA-Z0-9]$
+          message: Valid hostname starts with a letter (uppercase/lowercase), followed by zero or more groups of letters (uppercase/lowercase), digits, or hyphens, optionally followed by a period. Ends with a letter or digit.
+    ```  
+3. (Optional) Mark fields as required by including `required: true`. When there are required fields, the user is prevented from proceeding with the installation until they provide a valid value for required fields.
 
    **Example**:
 
@@ -91,9 +128,9 @@ To add fields to the admin console configuration screen:
      title: SMTP Password
      type: password
      required: true
-    ```      
+  ```      
 
-1. Save and promote the release to a development environment to test your changes.
+4. Save and promote the release to a development environment to test your changes.
 
 ## Next Steps
 

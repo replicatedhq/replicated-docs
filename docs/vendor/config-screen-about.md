@@ -1,8 +1,6 @@
 # About the Configuration Screen
 
-Applications can include a configuration screen in the Replicated admin console to collect required or optional values from your users that are used to run your application.
-
-For more information about how to add custom fields to the configuration screen, see [Creating and Editing Configuration Fields](admin-console-customize-config-screen).
+Applications can include a configuration screen in the Replicated admin console to collect required or optional values from your users that are used to run your application. You can use regular expressions to validate user input for some fields, such as passwords and email addresses. For more information about how to add custom fields to the configuration screen, see [Creating and Editing Configuration Fields](admin-console-customize-config-screen).
 
 If you use a Helm chart for your application in Replicated, your users provide any values specific to their environment from the configuration screen, rather than in a Helm chart `values.yaml` file.
 

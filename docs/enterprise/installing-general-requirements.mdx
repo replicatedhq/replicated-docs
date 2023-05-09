@@ -1,4 +1,5 @@
 import DockerCompatibility from "../partials/image-registry/_docker-compatibility.mdx"
+import KubernetesCompatibility from "../partials/install/_kubernetes-compatibility.mdx"
 
 # Requirements for Installation
 
@@ -23,21 +24,13 @@ The following table lists the browser requirements for the latest Replicated adm
 
 ## Kubernetes Version Compatibility
 
-Each release of the open source KOTS project maintains compatibility with the current Kubernetes version, and the two most recent versions at the time of its release. This includes support against all patch releases of the corresponding Kubernetes version.
+Each release of the Replicated app manager maintains compatibility with the current Kubernetes version, and the two most recent versions at the time of its release. This includes support against all patch releases of the corresponding Kubernetes version.
 
-Kubernetes versions 1.22 and earlier are end-of-life (EOL). Kubernetes version 1.23 is nearing EOL. For more information about Kubernetes versions, see [Release History](https://kubernetes.io/releases/) in the Kubernetes documentation.
+Kubernetes versions 1.23 and earlier are end-of-life (EOL). For more information about Kubernetes versions, see [Release History](https://kubernetes.io/releases/) in the Kubernetes documentation.
 
-Replicated recommends upgrading to a KOTS version that is compatible with Kubernetes 1.24 and higher.
+Replicated recommends using a version of the app manager that is compatible with Kubernetes 1.24 and higher.
 
-:::note
-The app manager is based on the open source KOTS project. The app manager version is the same as the KOTS version. For example, KOTS v1.92 is the same as the app manager v1.92.
-:::
-
-| KOTS Versions   | Kubernetes Compatibility |
-|-----------------|---------------------------|
-| v1.71 and later | v1.25, 1.24, v1.23 |
-| v1.66 to v1.70 | v1.23 |
-| v1.61 to v1.65 | v1.23 |
+<KubernetesCompatibility/>
 
 
 ## Existing Cluster Requirements
@@ -260,11 +253,11 @@ Because the Kubernetes installer is based on the open source kURL project, which
 
 ## Private Registry Requirements
 
-Private registries are required for air gap environments because you push the admin console container images to a private registry during installation. For online environments, it is optional to use private registries.  
+A private image registry is required for air gap installations. For air gap installations in existing clusters, you must provide credentials for a compatible private registry during installation. For air gap installations in Kubernetes installer clusters, the Kubernetes installer automatically uses the open source kURL registry add-on to meet the private registry requirement. For more information, see [Registry Add-on](https://kurl.sh/docs/add-ons/registry) in the kURL documentation.
 
 Private registry settings can be changed at any time. For more information, see [Using Private Registries](image-registry-settings).
 
-Make sure that you use a compatible registry. The app manager has been tested for compatibility with the following registries:
+The app manager has been tested for compatibility with the following registries:
 
 <DockerCompatibility/>
 
@@ -279,11 +272,12 @@ No outbound internet access is required for air gapped installations.
 |----------------------|-------------------------------|-------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Docker Hub           | Required                      | Required                      | Some dependencies of KOTS are hosted as public images in Docker Hub.                                                                                                                                                                                                                                                                                       |
 | replicated.app       | Required                      | Required                      | Upstream application YAML and metadata is pulled from replicated.app. The current running version of the application (if any) will be sent, in addition to a license ID and an application IDs are sent to replicated.app to authenticate and receive these YAML files. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA. |
-| proxy.replicated.com | Required&#42;                 | Required&#42;                 | Private Docker images are proxied through proxy.replicated.com. The on-prem docker client uses a license ID to authenticate to proxy.replicated.com. This domain is owned by Replicated, Inc which is headquartered in Los Angeles, CA.                                                                                                                       |
+| proxy.replicated.com | Required&#42;                 | Required&#42;                 | Private Docker images are proxied through proxy.replicated.com. This domain is owned by Replicated, Inc which is headquartered in Los Angeles, CA.                                                                                                                       |
+| proxy-auth.replicated.com | Required&#42;                 | Required&#42;                 | To pull private images through proxy.replicated.com, the on-prem Docker client must authenticate with this service using a license ID. This domain is owned by Replicated, Inc which is headquartered in Los Angeles, CA.                                                                                                                       |
 | registry.replicated.com | Required&#42;&#42;         | Required&#42;&#42;            | Some applications host private images in the Replicated private registry at this domain. The on-prem docker client uses a license ID to authenticate to registry.replicated.com. This domain is owned by Replicated, Inc which is headquartered in Los Angeles, CA.
 | kots.io              | Required                      | Not Required                  | Requests are made to this domain when you are installing the kots CLI. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.|
 | github.com           | Required                      | Not Required                  | Requests are made to this domain when you are installing the kots CLI. |
-| k8s.kurl.sh          | Not Required                  | Required                      | Kubernetes cluster installation scripts and artifacts are served from [kurl.sh](https://kurl.sh). An application identifier is sent in a URL path, and bash scripts and binary executables are served from kurl.sh. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.                                                     |
+| k8s.kurl.sh<br />s3.kurl.sh          | Not Required                  | Required                      | Kubernetes cluster installation scripts and artifacts are served from [kurl.sh](https://kurl.sh). An application identifier is sent in a URL path, and bash scripts and binary executables are served from kurl.sh. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.                                                     |
 | amazonaws.com        | Not Required                  | Required                      | tar.gz packages are downloaded from Amazon S3 during embedded cluster installations. For information about dynamically scraping the IP ranges to allowlist for accessing these packages, see [AWS IP address ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html#aws-ip-download) in the AWS documentation.                                                         |
 
 &#42; Required only if the application uses the Replicated proxy service. Contact your application vendor for more information.

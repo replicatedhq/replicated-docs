@@ -11,10 +11,12 @@ The application vendor uses a Kubernetes installer specification file to specify
 
 For more information about how the script updates the versions of Kubernetes, the app manager, and any additional add-ons running in your cluster, see the following sections:
 * [Kubernetes Updates](#kubernetes)
-* [Multi-version Kubernetes Updates](#kubernetes-multi)
+* [Air Gap Multi-version Kubernetes Updates](#kubernetes-multi)
 * [Add-ons and App Manager Updates](#add-ons)
 
 ### Kubernetes Updates {#kubernetes}
+
+You can use the installation script to upgrade Kubernetes by one or more minor versions. The Kubernetes upgrade process steps through one minor version at a time. For example, upgrades from Kubernetes 1.19.x to 1.26.x install versions 1.20.x, 1.21x, 1.22.x, 1.23.x, 1.24.x, and 1.25.x before installing 1.26.x.
 
 The installation script automatically detects when the Kubernetes version in your cluster must be updated. When a Kubernetes upgrade is required, the script first prints a prompt: `Drain local node and apply upgrade?`. When you confirm the prompt, it drains and upgrades the local primary node where the script is running.
 
@@ -22,15 +24,28 @@ Then, if there are any remote primary nodes to upgrade, the script drains each s
 
 The script polls the status of each remote node until it detects that the Kubernetes upgrade is complete. Then, it uncordons the node and proceeds to cordon and drain the next node. This process ensures that only one node is cordoned at a time. After upgrading all primary nodes, the script performs the same operation sequentially on all remote secondary nodes.
 
-### Multi-version Kubernetes Updates {#kubernetes-multi}
+### Air Gap Multi-version Kubernetes Updates {#kubernetes-multi}
 
-The Kubernetes installer supports upgrading at most two minor versions of Kubernetes at a time. When upgrading two minor versions at one time, the installation script first installs the skipped minor version before installing the target version. For example, when you upgrade directly from Kubernetes 1.22.x to 1.24.x, the script first completes the installation of 1.23.x before installing 1.24.x. 
+To upgrade Kubernetes by more than one minor version in air gap clusters, you must provide a package that includes the assets required for the upgrade.
 
-If the script detects that the version of Kubernetes in your cluster is more than two minor versions earlier than the target version, it prints an error message similar to the following: `The currently installed kubernetes version is 1.23.16. The requested version to upgrade to is 1.26.0. Kurl can only be upgraded two minor versions at time. Please install 1.25.x. first.`
+When you run the installation script to upgrade, the script searches for the package in the `/var/lib/kurl/assets/` directory. The script then lists any required assets that are missing, prints a command to download the missing assets as a `.tar.gz` package, and prompts you to provide an absolute path to the package in your local directory. For example:
 
-To update Kubernetes when your currently installed version is more than two minor versions behind the target version, contact your application vendor for an additional Kubernetes installer installation script that specifies the prerequisite Kubernetes version indicated in the error message.
+```
+⚙  Upgrading Kubernetes from 1.23.17 to 1.26.3
+This involves upgrading from 1.23 to 1.24, 1.24 to 1.25, and 1.25 to 1.26.
+This may take some time.
+⚙  Downloading assets required for Kubernetes 1.23.17 to 1.26.3 upgrade
+The following packages are not available locally, and are required:
+   kubernetes-1.24.12.tar.gz
+   kubernetes-1.25.8.tar.gz
 
-After you update Kubernetes in your cluster to the prerequisite version, you can continue with the upgrade by running the target installation script. For example, to upgrade from Kubernetes 1.23.x to 1.26.x, first run an installation script that specifies Kubernetes 1.25.x. Then, run the target installation script that specifies 1.26.x.
+You can download them with the following command:
+
+   curl -LO https://kurl.sh/bundle/version/v2023.04.24-0/19d41b7/packages/kubernetes-1.24.12,kubernetes-1.25.8.tar.gz
+
+Please provide the path to the file on the server.
+Absolute path to file:
+```
 
 ### Add-ons and App Manager Updates {#add-ons}
 
@@ -110,3 +125,7 @@ To update the cluster in an air gap environment:
       <InstallerRequirements/>
 
 1. <UpgradePrompt/>
+   
+   :::note
+   If Kubernetes must be upgraded by more than one minor version, the script automatically searches for the required Kubernetes assets in the `/var/lib/kurl/assets/` directory. If the assets are not available, the script prints a command to download the assets as a `tar.gz` package. Download and provide the absolute path to the package when prompted to continue with the upgrade.
+   :::

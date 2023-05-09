@@ -42,7 +42,7 @@ The **Current State** section displays the following event data about the status
 
 * **App status**: The status of the application. Possible statuses are Ready, Updating, Degraded, Unavailable, and Missing. The app manager computes the application status based on the status informers that you configure for the application. For more information about how to configure status informers, see [Displaying Application Status](/vendor/admin-console-display-app-status).
 
-* **App version**: The version label of the currently running release. You define the version label when you promote the release to a channel in the vendor portal. For more information about how to create version labels, see [Creating and Promoting Releases](releases-creating-releases).
+* **App version**: The version label of the currently running release. You define the version label when you promote the release to a channel in the vendor portal. For more information about how to create version labels, see [Managing Releases with the Vendor Portal](releases-creating-releases).
 
    If there is no version label for the release, then the vendor portal displays the release sequence in the **App version** field. You can find the sequence number associated with a release by running the `replicated release ls` command. See [release ls](/reference/replicated-cli-release-ls) in the _replicated CLI_ documentation.
 

@@ -28,9 +28,18 @@ Semantic versioning is available with the Replicated app manager v1.58.0 and lat
 
 - For existing applications created before February 23, 2022, semantic versioning is disabled by default on all channels.
 
-When you enable semantic versioning on a channel, the version label for a release promoted to that channel is verified to ensure that it is a valid semantic version. For more information about valid semantic versions, see [Semantic Versioning 2.0.0](https://semver.org).
+Semantic versioning is recommended because it makes versioning more predictable for users and lets you enforce versioning so that no one uses an incorrect version.
+
+To use semantic versioning:
+
+1. Enable semantic versioning on a channel, if it is not enabled by default. Click the **Edit channel settings** icon, and turn on the **Enable semantic versioning** toggle.
+1. Assign a semantic version number when you promote a release.
+
+Releases promoted to a channel with semantic versioning enabled are verified to ensure that the release version label is a valid semantic version. For more information about valid semantic versions, see [Semantic Versioning 2.0.0](https://semver.org).
 
 If you enable semantic versioning for a channel and then promote releases to it, Replicated recommends that you do not later disable semantic versioning for that channel.
+
+You can enable semantic versioning on a channel that already has releases promoted to it without semantic versioning. Any subsequently promoted releases must use semantic versioning. In this case, the channel will have releases with and without semantic version numbers. For information about how Replicated organizes  these release sequences, see [Semantic Versioning Sequences](#semantic-versioning-sequence).
 
 ### Release Properties
 
@@ -42,13 +51,13 @@ By default, Replicated uses release sequence numbers to organize and order relea
 
 #### Release Sequences
 
-In the vendor portal, each release is automatically assigned a unique, monotonically-increasing sequence number. You can use this number as a fallback to identify a promoted or draft release, if you do not set the `Version label` field during promotion. For more information, see [Creating Releases with Standard Manifest Files](releases-creating-releases#using-the-vendor-portal) or [Creating Releases with Helm Charts](helm-release#ui).
+In the vendor portal, each release is automatically assigned a unique, monotonically-increasing sequence number. You can use this number as a fallback to identify a promoted or draft release, if you do not set the `Version label` field during promotion. For more information, see [Managing Releases with the Vendor Portal](releases-creating-releases).
 
 The following graphic shows release sequence numbers in the vendor portal:
 
 ![Release sequence numbers](/images/release-sequences.png)
 
-[View a larger version of this image](/images/release-sequences.png)
+[View a larger version](/images/release-sequences.png)
 
 #### Instance Sequences 
 
@@ -61,6 +70,12 @@ Note that instance sequences are only tracked by app manager instances, and the 
 The following graphic shows instance sequence numbers on the Replicated admin console dashboard:
 
 ![Instance sequence numbers](/images/instance-sequences.png)
+
+#### Channel Sequences
+
+When a release is promoted to a channel, a channel sequence number is assigned. This unique sequence number increases montonically and tracks the order in which releases were promoted to a channel. While the channel sequence is not visible in the vendor portal, you can see it in certain URLs. For example, a release with **release sequence** of `170` can have a **channel sequence** of `125`. The air gap download URL for that release on that channel can contain `125` in the URL, even though the release sequence is `170`.
+
+Ordering is more complex if some or all of the releases in a channel have a semantic version label and semantic versioning is enabled for the channel. For more information, see [Semantic Versioning Sequence](#semantic-versioning-sequence).
 
 #### Semantic Versioning Sequence
 

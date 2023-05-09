@@ -27,6 +27,8 @@ import VolumesHostPaths from "../partials/linter-rules/_volumes-host-paths.mdx"
 import VolumeDockerSock from "../partials/linter-rules/_volume-docker-sock.mdx"
 import HardcodedNamespace from "../partials/linter-rules/_hardcoded-namespace.mdx"
 import ConfigOptionInvalidType from "../partials/linter-rules/_config-option-invalid-type.mdx"
+import ConfigOptionInvalidRegexValidator from "../partials/linter-rules/_config-option-invalid-regex-validator.mdx"
+import ConfigOptionRegexValidatorInvalidType from "../partials/linter-rules/_config-option-regex-validator-invalid-type.mdx"
 import RepeatOptionMissingTemplate from "../partials/linter-rules/_repeat-option-missing-template.mdx"
 import RepeatOptionMissingValuesByGroup from "../partials/linter-rules/_repeat-option-missing-valuesByGroup.mdx"
 import RepeatOptionMalformedYAMLPath from "../partials/linter-rules/_repeat-option-malformed-yamlpath.mdx"
@@ -278,6 +280,57 @@ For more information, see [LintConfig](custom-resource-lintconfig).
     <th>Applies To</th>
     <td>Files with <code>kind: Config</code> and <code>apiVersion: kots.io/v1beta1</code>.
     </td>
+  </tr>
+</table>
+
+### config-option-invalid-regex-validator
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Enforces valid [RE2 regular expressions](https://github.com/google/re2/wiki/Syntax) pattern when regex validation is present.</p>
+      <p>For more information, see <a href="/reference/custom-resource-config#validation">Validation</a> in <em>Config</em>.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>Files with <code>kind: Config</code> and <code>apiVersion: kots.io/v1beta1</code>.
+    </td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><ConfigOptionInvalidRegexValidator/></td>
+  </tr>
+</table>
+
+### config-option-regex-validator-invalid-type
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Enforces valid item type when regex validation is present.</p>
+      <p>Item type should be <code>text</code>|<code>textarea</code>|<code>password</code>|<code>file</code></p>
+      <p>For more information, see <a href="/reference/custom-resource-config#validation">Validation</a> in <em>Config</em>.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>Files with <code>kind: Config</code> and <code>apiVersion: kots.io/v1beta1</code>.
+    </td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><ConfigOptionRegexValidatorInvalidType/></td>
   </tr>
 </table>
 

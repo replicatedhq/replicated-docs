@@ -75,7 +75,7 @@
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/tutorial-installing-air-gap-existing-cluster-gcp"
-  to="https://docs.replicated.com/enterprise/installing-existing-cluster#air-gap"
+  to="https://docs.replicated.com/enterprise/installing-existing-cluster-airgapped"
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/releases-promoting"
@@ -91,6 +91,10 @@
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/helm-installing-native-helm"
+  to="https://docs.replicated.com/vendor/helm-overview"
+
+  [[redirects]]
+  from="https://docs.replicated.com/vendor/helm-processing"
   to="https://docs.replicated.com/vendor/helm-overview"
   
 ###################################################
