@@ -1,6 +1,7 @@
 import PrereqsExistingCluster from "../partials/install/_prereqs-existing-cluster.mdx"
 import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
 import LicenseFile from "../partials/install/_license-file-prereq.mdx"
+import AppInstall from "../partials/install/_app-setup-install.mdx"
 
 # Air Gap Installation in Existing Clusters
 
@@ -28,7 +29,7 @@ Complete the following prerequisites:
 
 <LicenseFile/>
 
-## Install the App Manager {#air-gap}
+## Step 1: Install the App Manager {#air-gap}
 
 When installing an application with the Replicated app manager from a `.airgap` package, the container images and application manifests are provided by the application vendor in an archive that can be used to deliver the artifacts into the cluster.
 
@@ -109,6 +110,8 @@ To install the application:
 
     After the `kots install` command installs the admin console and the application on the cluster, it creates a port forward to the admin console. The admin console is exposed internally on the cluster and can only be accessed using a port forward.
 
-## Next Step: Install and Deploy the Application    
+## Step 2: Install and Deploy the Application    
 
 Log in to the admin console to provide the license file, define your configuration values, run preflight checks, and deploy. See [Deploying the Application using the Admin Console](installing-app-setup).
+
+<AppInstall/>

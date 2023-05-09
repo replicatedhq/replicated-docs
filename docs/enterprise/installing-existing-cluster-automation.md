@@ -35,7 +35,7 @@ Before you can use the kots CLI to automate installation, you must complete the 
   * [Online Prerequisites](installing-embedded-cluster#prerequisites)
   * [Air Gap Prerequisites](installing-embedded-airgapped#prerequisites)
 
-* (Kubernetes Installer Only) Before you can use the kots CLI to install an application in a VM or bare metal server, you must first run the Kubernetes installer installation script to provision a cluster and install the Replicated app manager. See:
+* (Kubernetes Installer Only) Before you can use the kots CLI to install an application in a Kubernetes installer cluster, you must first run the Kubernetes installer installation script to provision the cluster. See:
   * [Online Installation with the Kubernetes Installer](installing-embedded-cluster)
   * [Air Gap Installation with the Kubernetes Installer](installing-embedded-airgapped)  
 ## Installation Commands
