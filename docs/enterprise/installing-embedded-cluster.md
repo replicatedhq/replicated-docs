@@ -7,9 +7,9 @@ import LoginPassword from "../partials/install/_embedded-login-password.mdx"
 import InstallApp from "../partials/install/_embedded-admin-console-step.mdx"
 import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
 import LicenseFile from "../partials/install/_license-file-prereq.mdx"
-import KotsCliInstall from "../partials/install/_kots-cli-install.mdx"
 import AppInstall from "../partials/install/_app-setup-install.mdx"
 import AppInstallIntro from "../partials/install/_app-install-intro.mdx"
+import ContinueToInstall from "../partials/install/_continue-to-install-step.mdx"
 
 # Online Installation with the Kubernetes Installer
 
@@ -33,9 +33,9 @@ Complete the following prerequisites:
 
 <HaLoadBalancerPrereq/>
 
-## Provision the Cluster
+## Provision the Cluster {#provision-cluster}
 
-This procedure describes how to provision a cluster with the Kubernetes installer and install the Replicated app manager in the cluster. You will use the app manager to install and deploy the application in the cluster.
+This procedure describes how to provision a cluster with the Kubernetes installer and install the Replicated app manager in the cluster. The app manager deploys an admin console, which provides a user interface for installing and deploying the application.
 
 To provision a cluster with the Kubernetes installer:
 
@@ -57,13 +57,11 @@ To provision a cluster with the Kubernetes installer:
 
 1. <HAStep/> 
 
-The installation command can take several minutes to complete. When the installation command completes
+1. <LoginPassword/>
 
-:::note
-<LoginPassword/>
-:::
+<ContinueToInstall/>
 
-## Install and Deploy the Application
+## Install and Deploy the Application {#install-app} 
 
 <AppInstallIntro/>
 

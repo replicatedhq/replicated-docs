@@ -3,6 +3,7 @@ import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
 import LicenseFile from "../partials/install/_license-file-prereq.mdx"
 import AppInstall from "../partials/install/_app-setup-install.mdx"
 import KotsInstallPrompts from "../partials/install/_kots-install-prompts.mdx"
+import ContinueToInstall from "../partials/install/_continue-to-install-step.mdx"
 
 # Air Gap Installation in Existing Clusters
 
@@ -70,7 +71,7 @@ To install the app manager:
 
    ```shell
    kubectl kots install APP_NAME \
-     --kotsadm-registry REGISTRY_ADDRESS \
+     --kotsadm-registry REGISTRY_HOST \
      --kotsadm-namespace REGISTRY_NAMESPACE \
      --registry-username RO-USERNAME \
      --registry-password RO-PASSWORD
@@ -80,7 +81,7 @@ To install the app manager:
 
    * `APP_NAME` with a name for the application.
    
-   * `REGISTRY_ADDRESS` with the address for the private registry where you pushed the images the previous step. For example, `private.registry.host`.
+   * `REGISTRY_HOST` with the hostname for the private registry where you pushed the images the previous step. For example, `private.registry.host`.
    
    * `REGISTRY_NAMESPACE` with the namespace in the private registry where you pushed the images in the previous step. For example, if you pushed the images to `my-registry.example.com/app-name/image:tag`, then `app-name` is the registry namespace.
    
@@ -96,7 +97,7 @@ To install the app manager:
 
 1. <KotsInstallPrompts/>
 
-Continue to [Install and Deploy the Application](#install-app) below to log in to the admin console and install the application.    
+<ContinueToInstall/>    
 
 ## Install and Deploy the Application {#install-app}    
 

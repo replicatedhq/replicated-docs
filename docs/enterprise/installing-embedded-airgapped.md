@@ -7,8 +7,8 @@ import LoginPassword from "../partials/install/_embedded-login-password.mdx"
 import InstallApp from "../partials/install/_embedded-admin-console-step.mdx"
 import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
 import LicenseFile from "../partials/install/_license-file-prereq.mdx"
-import KotsCliInstall from "../partials/install/_kots-cli-install.mdx"
 import AppInstall from "../partials/install/_app-setup-install.mdx"
+import ContinueToInstall from "../partials/install/_continue-to-install-step.mdx"
 
 # Air Gap Installation with the Kubernetes Installer
 
@@ -36,7 +36,7 @@ Complete the following prerequisites:
 
 ## Provision the Cluster {#air-gap}
 
-This procedure describes how to provision a cluster with the Kubernetes installer and install the Replicated app manager in the cluster. You will use the app manager to install and deploy the application in the cluster.
+This procedure describes how to provision a cluster with the Kubernetes installer and install the Replicated app manager in the cluster. The app manager deploys an admin console, which provides a user interface for installing and deploying the application.
 
 To install the application:
 
@@ -68,13 +68,13 @@ To install the application:
       cat install.sh | sudo bash -s airgap ha
       ```
 
-    :::note
-    <LoginPassword/>
-    :::
+1. <HAStep/>
 
-  1. <HAStep/>
+1. <LoginPassword/>
 
-## Install and Deploy the Application  
+<ContinueToInstall/>  
+
+## Install and Deploy the Application {#install-app} 
 
 Log in to the admin console to provide the license file and `.airgap` bundle, define your configuration values, run preflight checks, and deploy.
   

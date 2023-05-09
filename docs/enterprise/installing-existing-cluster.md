@@ -3,6 +3,7 @@ import LicenseFile from "../partials/install/_license-file-prereq.mdx"
 import AppInstall from "../partials/install/_app-setup-install.mdx"
 import AppInstallIntro from "../partials/install/_app-install-intro.mdx"
 import KotsInstallPrompts from "../partials/install/_kots-install-prompts.mdx"
+import ContinueToInstall from "../partials/install/_continue-to-install-step.mdx"
 
 # Online Installation in Existing Clusters
 
@@ -38,9 +39,9 @@ To install the app manager:
 
 1. <KotsInstallPrompts/>
 
-Continue to [Install and Deploy the Application](#install-app) below to log in to the admin console and install the application.
+<ContinueToInstall/>
 
-## Install and Deploy the Application
+## Install and Deploy the Application {#install-app} 
 
 <AppInstallIntro/>
 
