@@ -41,7 +41,7 @@ Complete the following prerequisites:
 
 <ProvisionClusterIntro/>
 
-To install the application:
+To provision a cluster with the Kubernetes installer:
 
 1. In your installation environment, run the following command to download the `.tar.gz` air gap bundle for the Kubernetes installer:
 

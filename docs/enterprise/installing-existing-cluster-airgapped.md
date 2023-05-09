@@ -39,7 +39,7 @@ Complete the following prerequisites:
 
 ## Install the App Manager {#air-gap}
 
-This procedure describes how to install the Replicated app manager in your existing cluster using the `kotsadm.tar.gz` air gap bundle. The app manager deploys an admin console, which provides a user interface for installing and deploying the application.
+This procedure describes how to install the Replicated app manager in your existing cluster using the `kotsadm.tar.gz` air gap bundle. The app manager deploys the Replicated admin console, which provides a user interface for installing and managing the application.
 
 To install the app manager:
 
