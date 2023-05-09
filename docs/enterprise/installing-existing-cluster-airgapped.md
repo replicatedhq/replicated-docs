@@ -2,10 +2,11 @@ import PrereqsExistingCluster from "../partials/install/_prereqs-existing-cluste
 import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
 import LicenseFile from "../partials/install/_license-file-prereq.mdx"
 import AppInstall from "../partials/install/_app-setup-install.mdx"
+import KotsInstallPrompts from "../partials/install/_kots-install-prompts.mdx"
 
 # Air Gap Installation in Existing Clusters
 
-This topic describes how to use Replicated to install an application in an air gap environment. Procedures are provided for installing using an existing Kubernetes cluster.
+This topic describes how to use the Replicated to install an application in an air gap environment. Procedures are provided for installing using an existing Kubernetes cluster.
 
 ## About Private Registries
 
@@ -29,57 +30,62 @@ Complete the following prerequisites:
 
 <LicenseFile/>
 
-## Step 1: Install the App Manager {#air-gap}
+* Download the `kotsadm.tar.gz` air gap bundle from the kots release page on GitHub. The `kotsadm.tar.gz` air gap bundle includes the container images for the Replicated admin console. See [Releases](https://github.com/replicatedhq/kots/releases) in the kots GitHub repository.
 
-When installing an application with the Replicated app manager from a `.airgap` package, the container images and application manifests are provided by the application vendor in an archive that can be used to deliver the artifacts into the cluster.
+## Install the App Manager {#air-gap}
 
-This feature is only available for licenses that have the air gapped feature enabled.
+This procedure describes how to install the Replicated app manager in your existing cluster using the `kotsadm.tar.gz` air gap bundle. The app manager deploys an admin console, which provides a user interface for installing and deploying the application.
 
-You can install the admin console using the kots CLI plugin for the kubectl command-line tool. To install the admin console, you use the admin console binary bundle, `kotsadm.tar.gz`.
-
-To install the application:
+To install the app manager:
 
 1. Install the kots CLI plugin. See [Install without Root Access](/reference/kots-cli-getting-started#install-without-root-access) in the kots CLI reference section.
 
-1. Download `kotsadm.tar.gz` from the kots release page on GitHub. See [Releases](https://github.com/replicatedhq/kots/releases) in the kots GitHub repository.
-
-1. Run the following command to confirm that the asset version matches the kots CLI version:
+1. Run the following command to confirm that the kots CLI version matches the version of the `kotsadm.tar.gz` air gap bundle that you downloaded:
 
   ```shell
   kubectl kots version
   ```
 
-1. Run the following command to extract admin console container images and push them into a private registry:
+1. Run the following command to extract container images from the `kotsadm.tar.gz` bundle and push the images to your private registry:
 
    ```shell
-   kubectl kots admin-console push-images ./kotsadm.tar.gz private.registry.host/app-name \
+   kubectl kots admin-console push-images ./kotsadm.tar.gz REGISTRY_ADDRESS \
      --registry-username RW_USERNAME \
      --registry-password RW_PASSWORD
    ```
 
     Replace:
 
+    * `REGISTRY_ADDRESS` with the address for the private registry where you want to push the images. For example, `private.registry.host/app-name`.
+    
     * `RW_USERNAME` with the username for an account that has read and write access to the private image registry.
 
     * `RW_PASSWORD` with the password for the account with read and write access.
+    
     :::note
     Replicated does not store or reuse these credentials.
     :::
 
-1. Install the admin console using the images that you pushed in the previous step:
+1. Run the following command to install the app manager using the images that you pushed in the previous step:
 
    ```shell
-   kubectl kots install app-name \
-     --kotsadm-namespace app-name \
-     --kotsadm-registry private.registry.host \
+   kubectl kots install APP_NAME \
+     --kotsadm-registry REGISTRY_ADDRESS \
+     --kotsadm-namespace REGISTRY_NAMESPACE \
      --registry-username RO-USERNAME \
      --registry-password RO-PASSWORD
    ```
 
    Replace:
 
+   * `APP_NAME` with a name for the application.
+   
+   * `REGISTRY_ADDRESS` with the address for the private registry where you pushed the images the previous step. For example, `private.registry.host`.
+   
+   * `REGISTRY_NAMESPACE` with the namespace in the private registry where you pushed the images in the previous step. For example, if you pushed the images to `my-registry.example.com/app-name/image:tag`, then `app-name` is the registry namespace.
+   
    * `RO_USERNAME` with the username for an account that has read-only access to the private image registry.
-
+   
    * `RO_PASSWORD` with the password for the read-only account.
 
    :::note
@@ -88,30 +94,12 @@ To install the application:
    Replicated uses these credentials to pull the images. To allow Replicated to pull images, the credentials are automatically created as an imagePullSecret on all of the admin console Pods.
    :::
 
-1. When prompted by the `kots install` command:
-   1. Provide the namespace where you want to deploy the application and the admin console.
-   1. Create a new password for logging in to the admin console.
+1. <KotsInstallPrompts/>
 
-     **Example**:
+Continue to [Install and Deploy the Application](#install-app) below to log in to the admin console and install the application.    
 
-     ```shell
-     $ kubectl kots install application-name
-     Enter the namespace to deploy to: application-name
-       • Deploying Admin Console
-         • Creating namespace ✓
-         • Waiting for datastore to be ready ✓
-     Enter a new password to be used for the Admin Console: ••••••••
-       • Waiting for Admin Console to be ready ✓
+## Install and Deploy the Application {#install-app}    
 
-       • Press Ctrl+C to exit
-       • Go to http://localhost:8800 to access the Admin Console
-
-     ```   
-
-    After the `kots install` command installs the admin console and the application on the cluster, it creates a port forward to the admin console. The admin console is exposed internally on the cluster and can only be accessed using a port forward.
-
-## Step 2: Install and Deploy the Application    
-
-Log in to the admin console to provide the license file, define your configuration values, run preflight checks, and deploy. See [Deploying the Application using the Admin Console](installing-app-setup).
+Log in to the admin console to provide the license file and `.airgap` bundle, define your configuration values, run preflight checks, and deploy the application.
 
 <AppInstall/>

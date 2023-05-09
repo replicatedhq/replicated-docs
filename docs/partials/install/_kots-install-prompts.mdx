@@ -1,0 +1,21 @@
+When prompted by the `kots install` command:
+  1. Provide the namespace where you want to install both the app manager and the application.
+  1. Create a new password for logging in to the admin console UI.
+
+    **Example**:
+
+    ```shell
+    $ kubectl kots install application-name
+    Enter the namespace to deploy to: application-name
+      • Deploying Admin Console
+        • Creating namespace ✓
+        • Waiting for datastore to be ready ✓
+    Enter a new password to be used for the Admin Console: ••••••••
+      • Waiting for Admin Console to be ready ✓
+
+      • Press Ctrl+C to exit
+      • Go to http://localhost:8800 to access the Admin Console
+
+    ```   
+
+  After the `kots install` command completes, it creates a port forward to the admin console. The admin console is exposed internally on the cluster and can only be accessed using a port forward.

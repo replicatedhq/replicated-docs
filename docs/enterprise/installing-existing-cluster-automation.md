@@ -1,5 +1,6 @@
 import ConfigValuesExample from "../partials/configValues/_configValuesExample.mdx"
 import KotsCliInstall from "../partials/install/_kots-cli-install.mdx"
+import AppInstall from "../partials/install/_app-setup-install.mdx"
 
 # Installing with Automation
 
@@ -84,7 +85,7 @@ kubectl kots install APP_NAME \
   --config-values PATH_TO_CONFIGVALUES_FILE \
   --shared-password PASSWORD \
   --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
-  --namespace APP_NAMESPACE \
+  --namespace NAMESPACE \
   --kotsadm-namespace ADMIN_CONSOLE_NAMESPACE \
   --kotsadm-registry PRIVATE_REGISTRY_HOST \
   --registry-username READ_WRITE_USERNAME \
@@ -94,11 +95,23 @@ kubectl kots install APP_NAME \
 
 Replace:
 
+* `APP_NAME` with a name for the application.
+
+* `PATH_TO_LICENSE_FILE` with the path to the license file that you downloaded.
+
+* `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file. See [Prerequisites](#prerequisites) above.
+
+* `PASSWORD` with a shared password for accessing the admin console.
 
 * `PATH_TO_AIRGAP_BUNDLE` with the path in your local directory to the `.airgap` bundle for the application. The air gap bundle is provided by your application vendor.
-* `ADMIN_CONSOLE_NAMESPACE` with the namespace where you want the admin console to be installed.
+
+* `NAMESPACE` with the namespace 
+
+* `ADMIN_CONSOLE_NAMESPACE` 
+
 * `PRIVATE_REGISTRY_HOST` with the hostname for the private image registry where you pushed the admin console images in the previous step.
-* `READ_WRITE_USERNAME` and `READ_WRITE_PASSWORD` with credentials with read write permissions to the private image registry where you pushed the admin console images in the previous step.
+
+* `READ_WRITE_USERNAME` and `READ_WRITE_PASSWORD` with credentials with read write permissions to the private image registry where you previously pushed the admin console images.
 
 ### Air Gap Kubernetes Installer Cluster
 
@@ -108,23 +121,33 @@ The following is the kots CLI command for installing an application in a Kuberne
 kubectl kots install APP_NAME \
   --license-file PATH_TO_LICENSE_FILE \
   --config-values PATH_TO_CONFIG_VALUES \
-  --namespace ADMIN_CONSOLE_NAMESPACE \
+  --namespace NAMESPACE \
   --shared-password PASSWORD \
   --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
   --no-port-forward
 ```
 
 Replace:
-<KotsCliInstall/>
+
+* `APP_NAME` with a name for the application.
+
+* `PATH_TO_LICENSE_FILE` with the path to the license file that you downloaded.
+
+* `PATH_TO_CONFIG_VALUES` with the path to the ConfigValues manifest file.
+
+* `NAMESPACE` with the namespace where the admin console is installed. **Default:** `default`
+
+* `PASSWORD` with a shared password for accessing the admin console.
 
 * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle that you downloaded.
 
 ## (Optional) Access the Admin Console
 
-By default, the kots install command opens a port forward to the admin console. `--no-port-forward` is an optional flag that disables the default port forward.
+By default, the kots install command opens a port forward to the admin console. `--no-port-forward` is an optional flag that disables the default port forward. It is common to use the `--no-port-forward` flag for automated installations.
 
 If you include `--no-port-forward`, you can run the following command after the installation command completes to access the admin console at `http://localhost:8800`:
 
 ```
 kubectl kots admin-console --namespace NAMESPACE
 ```
+Replace `NAMESPACE` with the namespace where the admin console was installed. **Default**: `default`.

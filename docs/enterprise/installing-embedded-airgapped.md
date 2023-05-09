@@ -8,6 +8,7 @@ import InstallApp from "../partials/install/_embedded-admin-console-step.mdx"
 import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
 import LicenseFile from "../partials/install/_license-file-prereq.mdx"
 import KotsCliInstall from "../partials/install/_kots-cli-install.mdx"
+import AppInstall from "../partials/install/_app-setup-install.mdx"
 
 # Air Gap Installation with the Kubernetes Installer
 
@@ -33,9 +34,9 @@ Complete the following prerequisites:
 
 <HaLoadBalancerPrereq/>
 
-## Install the Application {#air-gap}
+## Provision the Cluster {#air-gap}
 
-This procedure describes how to provision a cluster with the Kubernetes installer, install the app manager, then install and deploy the application.
+This procedure describes how to provision a cluster with the Kubernetes installer and install the Replicated app manager in the cluster. You will use the app manager to install and deploy the application in the cluster.
 
 To install the application:
 
@@ -72,11 +73,9 @@ To install the application:
     :::
 
   1. <HAStep/>
+
+## Install and Deploy the Application  
+
+Log in to the admin console to provide the license file and `.airgap` bundle, define your configuration values, run preflight checks, and deploy.
   
-  1. Install the application using one of the following methods:
-
-      <InstallApp/>
-
-## Next Step
-
-(Optional) You can add nodes to the cluster. See [Adding Nodes to Kubernetes Installer Clusters](cluster-management-add-nodes).
+<AppInstall/>
