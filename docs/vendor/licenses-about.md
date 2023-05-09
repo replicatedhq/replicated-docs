@@ -81,10 +81,22 @@ The following shows an example of the **Customers** page:
 [View a larger version of this image](/images/customer-page.png)
 
 From the **Customers** page, you can do the following:
-<!-- * View insights about the adoption rate of each version of your application across your customers. For more information, see [Adoption Rate (Beta)](customer-adoption). -->
+
 * Create new customers
+
 * Download a CSV file with details about each customer
+
+* View insights about the adoption rate of each version of your application across your customers. For more information, see [Adoption Rate (Beta)](customer-adoption).
+
 * Click the **Manage customer** button to edit details such as the customer name and email, the custom license fields assigned to the customer, and the license expiration policy.
+
 * Download the license file for each customer
+
 * Click the **Customer reporting** button to view data about the active application instances associated with each customer. For more information, see [Customer Reporting](customer-reporting).
+
+* View instance details for each customer, including the version of the application that this instance is running, the Kubernetes distribution of the cluster, the last check-in time, and more:
+
+  <img width="800px" src="/images/customer-page-details.png" />
+
+  [View a larger version of this image](/images/customer-page-details.png)
 * Archive customers
