@@ -31,8 +31,8 @@ To configure a custom RBAC policy:
 
     ![Create RBAC Policy](/images/policy-create.png) 
 
-    - For information and examples of policy definition, see [Policy Definition](#policy-definition) and [Role-based Policy Examples](#role-based-policy-examples).
-    - For information and examples of rule order, see [Rule Order](#rule-order).
+    - For more information and examples of policy definition, see [Policy Definition](#policy-definition) and [Role-based Policy Examples](#role-based-policy-examples).
+    - For more information and examples of rule order, see [Rule Order](#rule-order).
     - For a list of resource names, see [RBAC Resource Names](team-management-rbac-resource-names).
 
   1. Click **Create Policy** to create a new policy, or click **Update Policy** to update an existing policy.
