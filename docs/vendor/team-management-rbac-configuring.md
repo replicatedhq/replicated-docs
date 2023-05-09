@@ -1,6 +1,6 @@
 import CollabRbacResourcesImportant from "../partials/collab-repo/_collab-rbac-resources-important.mdx"
 
-# Configuring Custom RBAC Policies
+# Configuring RBAC Policies
 
 This topic describes how to use role-based access policies (RBAC) to grant or deny team members permissions to use Replicated services in the vendor portal.
 
@@ -12,9 +12,9 @@ You can configure custom RBAC policies if you are on the Enterprise pricing plan
 
 You can also create custom RBAC policies in the vendor portal to manage user access and permissions in the Replicated collab repository in GitHub. For more information, see [Managing Access to the Collab Repository](team-management-github-username).
 
-## Configure RBAC
+## Configure a Custom RBAC Policy
 
-To configure custom RBAC policies:
+To configure a custom RBAC policy:
 
 1. From the vendor portal [Team page](https://vendor.replicated.com/team), select **RBAC** from the left menu.
 
@@ -25,44 +25,17 @@ To configure custom RBAC policies:
 
       <CollabRbacResourcesImportant/>
 
-1. Edit the fields in the policy dialog. In the **Definition** pane, specify the `allow` and `denied` arrays in the resources key to create limits for the role. 
+1. Edit the fields in the policy dialog. In the **Definition** pane, specify the `allow` and `denied` arrays in the resources key to create limits for the role.
+
+  The default policy allows everything and the **Config help** pane displays any errors.
 
     ![Create RBAC Policy](/images/policy-create.png) 
 
-   Note the following:
+    - For information and examples of policy definition, see [Policy Definition](#policy-definition) and [Role-based Policy Examples](#role-based-policy-examples).
+    - For information and examples of rule order, see [Rule Order](#rule-order).
+    - For a list of resource names, see [RBAC Resource Names](team-management-rbac-resource-names).
 
-    - The default policy allows everything.
-    - The **Config help** pane displays any errors.
-    - Resource names are hierarchical, and support wildcards and globs. For more information, see [RBAC Resource Names](team-management-rbac-resource-names).
-    - Conflicting rules have predictable behavior. For more information, see [Rule Order](team-management-rbac-about).
-
-  **Example**
-
-  This example limits any user with this role to viewing a specific application and a specific channel for that application.
-
-    ```
-    {
-      "v1": {
-        "name": "Policy Name",
-        "resources": {
-          "allowed": [
-            "kots/app/appID/list",
-            "kots/app/appID/read",
-            "kots/app/appID/channel/channelID/list",
-            "kots/app/appID/channel/channelID/read"
-          ],
-          "denied": []
-        }
-      }
-    }
-    ```
-  The example above uses an application ID and a channel ID to scope the permissions of the RBAC policy. To find your application and channel IDs, do the following:
-
-    - To get the application ID, click **Settings > Show Application ID (Advanced)** in the vendor portal.
-
-    - To get the channel ID, click **Channels** in the vendor portal. Then click the Release History link for the channel that you want to limit access to. The channel ID displays in your browser URL.
-
-1. Click **Create Policy** to create a new policy, or click **Update Policy** to update an existing policy.
+  1. Click **Create Policy** to create a new policy, or click **Update Policy** to update an existing policy.
 
     :::note
     Click **Cancel** to exit without saving changes.
@@ -72,13 +45,11 @@ To configure custom RBAC policies:
 
     - Assign policies to existing team members. See [Edit Permissions](team-management#edit-permissions) in _Managing Team Members_.
     - Specify a policy when inviting new team members. See [Invite Members](team-management#invite-members) in _Managing Team Members_.
-    - Set a default policy for auto-joining a team. See [Enable Users to Auto-join Your Team](team-management##enable-users-to-auto-join-your-team) in _Managing Team Members_.
+    - Set a default policy for auto-joining a team. See [Enable Users to Auto-join Your Team](team-management#enable-users-to-auto-join-your-team) in _Managing Team Members_.
 
 ## Policy Definition
 
-A policy is defined in a single JSON document.
-
-**Example**
+A policy is defined in a single JSON document:
 
 ```
 {
@@ -102,6 +73,32 @@ The primary content of a policy document is the resources key. The resources key
 Resource names are hierarchical, and support wildcards and globs. For a complete list of resource names that can be defined in a policy document, see [RBAC Resource Names](team-management-rbac-resource-names).
 
 When a policy document has conflicting rules, the behavior is predictable. For more information about conflicting rules, see [Rule Order](#rule-order).
+
+### Policy Definition Example
+
+  The following policy definition example limits any user with this role to viewing a specific application and a specific channel for that application:
+
+    ```
+    {
+      "v1": {
+        "name": "Policy Name",
+        "resources": {
+          "allowed": [
+            "kots/app/appID/list",
+            "kots/app/appID/read",
+            "kots/app/appID/channel/channelID/list",
+            "kots/app/appID/channel/channelID/read"
+          ],
+          "denied": []
+        }
+      }
+    }
+    ```
+  The example above uses an application ID and a channel ID to scope the permissions of the RBAC policy. To find your application and channel IDs, do the following:
+
+  - To get the application ID, click **Settings > Show Application ID (Advanced)** in the vendor portal.
+
+  - To get the channel ID, click **Channels** in the vendor portal. Then click the Release History link for the channel that you want to limit access to. The channel ID displays in your browser URL.
 
 ## Rule Order
 
