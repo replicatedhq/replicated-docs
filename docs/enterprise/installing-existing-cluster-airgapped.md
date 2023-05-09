@@ -107,4 +107,4 @@ To install the app manager:
 
 <AppInstallIntroAirGap/>
 
-<AppInstall/>
+<InstallApp/>

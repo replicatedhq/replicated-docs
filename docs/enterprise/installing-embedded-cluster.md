@@ -63,8 +63,12 @@ To provision a cluster with the Kubernetes installer:
 
 1. <ContinueToInstall/>
 
+   Alternatively, you can use the kots CLI to automate the installation of the application rather than logging in to the admin console. For more information, see [Installing with Automation](installing-existing-cluster-automation).
+
 ## Install and Deploy the Application {#install-app} 
 
 <AppInstallIntroOnline/>
+
+Alternatively, you can use the kots CLI to automate the installation of the application rather than logging in to the admin console. For more information, see [Installing with Automation](installing-existing-cluster-automation).
 
 <InstallApp/>

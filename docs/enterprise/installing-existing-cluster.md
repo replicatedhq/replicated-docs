@@ -49,4 +49,4 @@ To install the app manager:
 
 <AppInstallIntroOnline/>
 
-<AppInstall/>
+<InstallApp/>
