@@ -1,6 +1,6 @@
 # Configuring Password Policies
 
-You can configure password complexity at the team level to ensure that team members set more secure passwords on their accounts.
+You can configure password complexity at the team level to ensure that team members set account passwords that meet your organization's security requirements.
 
 To configure a password policy:
 
