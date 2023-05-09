@@ -120,6 +120,10 @@
 [[redirects]]
   from="https://docs.replicated.com/enterprise/image-registry-airgap"
   to="https://docs.replicated.com/enterprise/installing-general-requirements"
+
+[[redirects]]
+  from="https://docs.replicated.com/enterprise/installing-app-setup"
+  to="https://docs.replicated.com/enterprise/installing-existing-cluster#install-app"
    
 ###################################################
 # Redirects To the References Section

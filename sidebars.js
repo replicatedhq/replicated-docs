@@ -490,7 +490,6 @@ const sidebars = {
               items: [
                 'enterprise/installing-existing-cluster',
                 'enterprise/installing-existing-cluster-airgapped',
-                'enterprise/installing-app-setup',
               ],
             },
             {
