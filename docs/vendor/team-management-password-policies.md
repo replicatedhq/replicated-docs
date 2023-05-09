@@ -6,7 +6,9 @@ To configure a password policy:
 
 1. In the [vendor portal](https://vendor.replicated.com), select **Team > Password Policies**.
 
-    <img src="/images/password-policies.png" alt="Password Policies in vendor portal" width="300"/>
+    <img src="/images/password-policies.png" alt="Password Policies in vendor portal" width="500"/>
+
+    [View a larger image](/images/password-policies.png)
 
 1. Do one of the following:
 
