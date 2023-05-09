@@ -1,14 +1,17 @@
 import KurlAbout from "../partials/install/_kurl-about.mdx"
-import PrereqsEmbeddedCluster from "../partials/install/_prereqs-embedded-cluster.mdx"
 import HaLoadBalancerAbout from "../partials/install/_ha-load-balancer-about.mdx"
+import ProvisionClusterIntro from "../partials/install/_provision-cluster-intro.mdx"
+import AppInstallIntroAirGap from "../partials/install/_install-app-admin-console-intro-air-gap.mdx"
+
+import PrereqsEmbeddedCluster from "../partials/install/_prereqs-embedded-cluster.mdx"
 import HaLoadBalancerPrereq from "../partials/install/_ha-load-balancer-prereq.mdx"
-import HAStep from "../partials/install/_embedded-ha-step.mdx"
-import LoginPassword from "../partials/install/_embedded-login-password.mdx"
-import InstallApp from "../partials/install/_embedded-admin-console-step.mdx"
 import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
 import LicenseFile from "../partials/install/_license-file-prereq.mdx"
-import AppInstall from "../partials/install/_app-setup-install.mdx"
+
+import HAStep from "../partials/install/_embedded-ha-step.mdx"
+import LoginPassword from "../partials/install/_embedded-login-password.mdx"
 import ContinueToInstall from "../partials/install/_continue-to-install-step.mdx"
+import InstallApp from "../partials/install/_install-app-admin-console.mdx"
 
 # Air Gap Installation with the Kubernetes Installer
 
@@ -36,7 +39,7 @@ Complete the following prerequisites:
 
 ## Provision the Cluster {#air-gap}
 
-This procedure describes how to provision a cluster with the Kubernetes installer and install the Replicated app manager in the cluster. The app manager deploys an admin console, which provides a user interface for installing and deploying the application.
+<ProvisionClusterIntro/>
 
 To install the application:
 
@@ -72,10 +75,10 @@ To install the application:
 
 1. <LoginPassword/>
 
-<ContinueToInstall/>  
+1. <ContinueToInstall/>  
 
 ## Install and Deploy the Application {#install-app} 
 
-Log in to the admin console to provide the license file and `.airgap` bundle, define your configuration values, run preflight checks, and deploy.
+<InstallAppIntroAirGap/>
   
-<AppInstall/>
+<InstallApp/>

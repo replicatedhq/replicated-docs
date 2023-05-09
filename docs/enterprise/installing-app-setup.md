@@ -1,4 +1,4 @@
-import AppInstall from "../partials/install/_app-setup-install.mdx"
+
 
 # Deploying the Application with the Admin Console
 
@@ -10,4 +10,3 @@ This procedure assumes that you have already installed the Replicated app manage
 
 ## Install and Deploy the Application
 
-<AppInstall/>

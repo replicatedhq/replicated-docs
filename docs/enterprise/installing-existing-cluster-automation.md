@@ -1,5 +1,4 @@
 import ConfigValuesExample from "../partials/configValues/_configValuesExample.mdx"
-import AppInstall from "../partials/install/_app-setup-install.mdx"
 import PlaceholdersGlobal from "../partials/install/_placeholders-global.mdx"
 import PlaceholderAirgapBundle from "../partials/install/_placeholder-airgap-bundle.mdx"
 import PlaceholderNamespaceEmbedded from "../partials/install/_placeholder-namespace-embedded.mdx"
@@ -34,15 +33,15 @@ Before you install an application with the kots CLI, you must complete the follo
   Your application vendor provides details about the required and optional configuration fields to include in the ConfigValues file.
   
 
-* (Existing Clusters Only) To install an application in an existing cluster, complete the prerequisites for your environment: 
+* (Existing Clusters Only) To install in an existing cluster, complete the prerequisites for your environment: 
   * **Online**: [Prerequisites](installing-existing-cluster#prerequisites)
   * **Air Gap**: [Prerequisites](installing-existing-cluster-airgapped#prerequisites)
 
-* (Kubernetes Installer Only) To install an application in a VM or bare metal server with the Replicated Kubernetes installer, complete the prerequisites for your environment: 
+* (Kubernetes Installer Only) To install in a VM or bare metal server with the Replicated Kubernetes installer, complete the prerequisites for your environment: 
   * **Online**: [Prerequisites](installing-embedded-cluster#prerequisites)
   * **Air Gap**: [Prerequisites](installing-embedded-airgapped#prerequisites)
 
-* (Kubernetes Installer Only) Before you can use the kots CLI to install an application, you must first run the Kubernetes installer installation script to provision the cluster. See one of the following, depending on your installation environment:
+* (Kubernetes Installer Only) You must have run the Kubernetes installer installation script in your VM or bare metal server to provision the cluster and install the Replicated app manager in the cluster. See one of the following, depending on your installation environment:
   * **Online**: [Provision the Cluster](installing-embedded-cluster#provision-cluster)
   * **Air Gap**: [Provision the Cluster](installing-embedded-airgapped#air-gap)  
 ## Installation Commands

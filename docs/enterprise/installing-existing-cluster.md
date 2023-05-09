@@ -1,9 +1,12 @@
+import AppInstallIntroOnline from "../partials/install/_install-app-admin-console-intro-online.mdx"
+
 import PrereqsExistingCluster from "../partials/install/_prereqs-existing-cluster.mdx"
+import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
 import LicenseFile from "../partials/install/_license-file-prereq.mdx"
-import AppInstall from "../partials/install/_app-setup-install.mdx"
-import AppInstallIntro from "../partials/install/_app-install-intro.mdx"
-import KotsInstallPrompts from "../partials/install/_kots-install-prompts.mdx"
+
+import InstallCommandPrompts from "../partials/install/_kots-install-prompts.mdx"
 import ContinueToInstall from "../partials/install/_continue-to-install-step.mdx"
+import InstallApp from "../partials/install/_install-app-admin-console.mdx"
 
 # Online Installation in Existing Clusters
 
@@ -37,12 +40,12 @@ To install the app manager:
   kubectl kots install application-name
   ``` 
 
-1. <KotsInstallPrompts/>
+1. <InstallCommandPrompts/>
 
-<ContinueToInstall/>
+1. <ContinueToInstall/>
 
 ## Install and Deploy the Application {#install-app} 
 
-<AppInstallIntro/>
+<AppInstallIntroOnline/>
 
 <AppInstall/>

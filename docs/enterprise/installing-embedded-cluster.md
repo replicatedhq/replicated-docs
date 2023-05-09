@@ -1,15 +1,16 @@
 import KurlAbout from "../partials/install/_kurl-about.mdx"
-import PrereqsEmbeddedCluster from "../partials/install/_prereqs-embedded-cluster.mdx"
 import HaLoadBalancerAbout from "../partials/install/_ha-load-balancer-about.mdx"
+import ProvisionClusterIntro from "../partials/install/_provision-cluster-intro.mdx"
+import AppInstallIntroOnline from "../partials/install/_install-app-admin-console-intro-online.mdx"
+
+import PrereqsEmbeddedCluster from "../partials/install/_prereqs-embedded-cluster.mdx"
 import HaLoadBalancerPrereq from "../partials/install/_ha-load-balancer-prereq.mdx"
+import LicenseFile from "../partials/install/_license-file-prereq.mdx"
+
 import HAStep from "../partials/install/_embedded-ha-step.mdx"
 import LoginPassword from "../partials/install/_embedded-login-password.mdx"
-import InstallApp from "../partials/install/_embedded-admin-console-step.mdx"
-import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
-import LicenseFile from "../partials/install/_license-file-prereq.mdx"
-import AppInstall from "../partials/install/_app-setup-install.mdx"
-import AppInstallIntro from "../partials/install/_app-install-intro.mdx"
 import ContinueToInstall from "../partials/install/_continue-to-install-step.mdx"
+import InstallApp from "../partials/install/_install-app-admin-console.mdx"
 
 # Online Installation with the Kubernetes Installer
 
@@ -35,7 +36,7 @@ Complete the following prerequisites:
 
 ## Provision the Cluster {#provision-cluster}
 
-This procedure describes how to provision a cluster with the Kubernetes installer and install the Replicated app manager in the cluster. The app manager deploys an admin console, which provides a user interface for installing and deploying the application.
+<ProvisionClusterIntro/>
 
 To provision a cluster with the Kubernetes installer:
 
@@ -59,10 +60,10 @@ To provision a cluster with the Kubernetes installer:
 
 1. <LoginPassword/>
 
-<ContinueToInstall/>
+1. <ContinueToInstall/>
 
 ## Install and Deploy the Application {#install-app} 
 
-<AppInstallIntro/>
+<AppInstallIntroOnline/>
 
-<AppInstall/>
+<InstallApp/>
