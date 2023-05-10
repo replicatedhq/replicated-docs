@@ -70,7 +70,6 @@ const sidebars = {
            label: 'Configuring Role-based Access Control',
            items: [
               'vendor/team-management-rbac-configuring',
-              "vendor/team-management-rbac-about",
               'vendor/team-management-rbac-resource-names',
           ],
         },
