@@ -8,6 +8,10 @@ This topic describes how to manage team members in the Replicated vendor portal,
 ## Viewing Team Members
 The [Team](https://vendor.replicated.com/team/members) page provides a list of all accounts currently associated with or invited to your team. Each row contains information about the user, including their two-factor authentication (2FA) status and role-based access control (RBAC) role, and lets administrators take additional actions, such as remove, re-invite, and edit permissions.
 
+<img src="/images/teams-view.png" alt="View team members list in the vendor portal" width="600"/>
+
+[View a larger image](/images/teams-view.png)
+
 All users, including read-only, can see the name of the RBAC role assigned to each team member. When SAML authentication is enabled, users with the built-in read-only policy cannot see the RBAC role assigned to team members.
 
 ## Invite Members
@@ -22,6 +26,8 @@ To invite a new team member:
 1. From the [Team Members](https://vendor.replicated.com/team/members) page, click **Invite member**.
 
   The Invite team member dialog opens.
+
+  <img src="/images/teams-invite-member.png" alt="Invite team member dialog in the vendor portal" width="400"/>
 
 1. Enter the email address of the member.
 
@@ -50,9 +56,12 @@ You can edit the policy that is assigned to a member at any time. For example, y
 To edit permissions for individual team members:
 
 1. From the the Team Members list, click **Edit permissions** next to a members name.
-1. Select an RBAC policy from the dropdown list, and click **Save**.
 
-    <CollabRbacImportant/>
+1. Select an RBAC policy from the **Permissions** dropdown list, and click **Save**.
+
+  <img src="/images/teams-edit-permissions.png" alt="Edit team member permissions in the vendor portal" width="400"/>
+
+  <CollabRbacImportant/>
 
 ## Enable Users to Auto-join Your Team
 By default, users must be invited to your team. Team administrators can use the auto-join feature to allow users from the same email domain to join their team automatically. This applies to users registering with an email, or with Google authentication if it is enabled for the team. The auto-join feature does not apply to SAML authentication because SAML users log in using their SAML provider's application portal instead of the vendor portal.
@@ -63,6 +72,9 @@ To enable users to auto-join your team:
 
 1. From the Team Members page, click **Auto-join** from the left navigation.
 1. Enable the **Allow all users from my domain to be added to my team** toggle.
+
+    <img src="/images/teams-auto-join.png" alt="Auto join dialog in the vendor portal" width="600"/>
+
 1. For **Default RBAC policy level for new accounts**, you can use the default Read Only policy or select another policy from the list. This RBAC policy is applied to all users who join the team with the auto-join feature.
    <CollabRbacImportant/>
 
