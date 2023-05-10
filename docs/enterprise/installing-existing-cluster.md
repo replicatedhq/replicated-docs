@@ -35,7 +35,7 @@ To install the app manager:
   curl https://kots.io/install | bash
   kubectl kots install APP_NAME
   ``` 
-  Replace `APP_NAME` with the unique slug for the application. The application slug is included in the installation command provided by your application vendor.
+  Replace `APP_NAME` with a name for the application. This is the unique name that the app manager will use to refer to the application that you install.
 
   **Example:**
 
