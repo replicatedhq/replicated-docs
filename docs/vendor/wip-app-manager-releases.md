@@ -1,4 +1,4 @@
-# App Manager Custom Resources
+# About KOTS Custom Resources
 
 How do you get them features into your app????
 

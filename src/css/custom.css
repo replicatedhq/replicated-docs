@@ -53,7 +53,7 @@ article {
 
 li.menu__list-item > h5 {
   text-transform: uppercase;
-  margin: 1.5rem 0;
+  margin: 1.25rem 0;
   /* border-top: 1px solid rgba(88,88,88,0.2); */
   padding-top: 20px;
 }
@@ -62,9 +62,9 @@ li.menu__list-item > h5 {
   border-top: 1px solid rgba(88,88,88,0.5);
 } */
 
-.footer--dark {
+/* .footer--dark {
     --ifm-footer-background-color: #ffffff;
-}
+} */
 
 .alert--warning {
   --ifm-alert-background-color: var( --ifm-color-danger-contrast-background );

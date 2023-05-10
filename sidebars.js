@@ -20,16 +20,19 @@ const sidebars = {
 
   appManager: [
     {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},
+    {type:'doc', id:'intro-replicated', label: 'About KOTS and kURL'},
+    // VENDOR KOTS & KURL DOCS
+    {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true}, 
+    
     {
       type: 'category', 
       label: 'Introduction',
       items: [
-        {type:'doc', id:'intro-replicated', label: 'What is the App Manager?'},
         'vendor/wip-install-options-about',
         'vendor/wip-app-manager-releases',
         'vendor/wip-first-release',
       ],
-    },    
+    },  
     {
       type: 'category',
       label: 'Helm Charts',
@@ -41,20 +44,34 @@ const sidebars = {
         'vendor/helm-optional-value-keys',
       ],
     },
-    // {type: 'ref', id: 'vendor/private-images-about', label: 'Replicated Proxied OCI Registry -->'},
+    {
+      type: 'category',
+      label: 'Kubernetes Installers with kURL',
+      items: [
+        'vendor/packaging-embedded-kubernetes',
+        'vendor/packaging-installer-storage',
+        'vendor/preflight-host-preflights',
+        'vendor/installer-history',
+        {type: 'link', label: 'kURL Documentation', href: 'https://kurl.sh/docs/introduction/'}
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Private Registries',
+      items: [
+        'vendor/private-images-about',
+        'vendor/packaging-private-images',
+        'vendor/private-images-replicated',
+        'vendor/private-images-tags-digests',
+        'vendor/packaging-private-registry-security',
+        'vendor/tutorial-ecr-private-images',
+      ],
+    },
     {
       type: 'category',
       label: 'Backup and Restore',
       items: [
         'vendor/snapshots-overview',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Kubernetes Installers',
-      items: [
-        'vendor/packaging-embedded-kubernetes',
-        {type: 'link', label: 'kURL Documentation', href: 'https://kurl.sh/docs/introduction/'}
       ],
     },
     {
@@ -85,19 +102,71 @@ const sidebars = {
         'vendor/admin-console-customize-app-icon',
       ],
     },
+    // managing stuff
     {
       type: 'category', 
-      label: 'Advanced Guides',
+      label: 'Managing KOTS',
       items: [
-        'vendor/packaging-ingress', 
+        'vendor/packaging-rbac',
+        'vendor/packaging-kots-versions',
       ],
     },
-    {type: 'ref', id: 'enterprise/installing-overview', label: 'Admin Console Docs'}
+    {
+      type: 'category', 
+      label: 'Managing Kubernetes Resources and Objects',
+      items: [
+        'vendor/packaging-cleaning-up-jobs',
+        'vendor/packaging-include-resources', 
+      ],
+    },
+    // KOTS reference
+    {
+      type: 'category',
+      label: 'Reference',
+      items: [
+        'reference/cron-expressions',
+        {
+          type: 'category',
+          label: 'Custom Resources',
+          items: [
+            'reference/custom-resource-about',
+            'reference/custom-resource-application',
+            'reference/custom-resource-backup',
+            'reference/custom-resource-config',
+            'reference/custom-resource-helmchart',
+            'reference/custom-resource-identity',
+            'reference/custom-resource-lintconfig',
+            'reference/custom-resource-preflight',
+            'reference/custom-resource-redactor',
+            'reference/custom-resource-sig-application',  
+          ],
+        },
+        'reference/linter',
+        {
+          type: 'category',
+          label: 'Template Functions',
+          items: [
+            'reference/template-functions-about',
+            'reference/template-functions-config-context',
+            'reference/template-functions-identity-context',
+            'reference/template-functions-kurl-context',
+            'reference/template-functions-license-context',
+            'reference/template-functions-static-context',
+          ],
+        },
+      ]
+    },
+    // ENTERPRISE DOCS
+    {type: 'html', value: '<h5>Install and Manage</h5>', defaultStyle: true},
+    {type: 'ref', id: 'enterprise/wip-admin-console-intro', label: 'Admin Console'},
+    {type: 'ref', id: 'reference/kots-cli-getting-started', label: 'kots CLI'},
+    ,
   ],
 
   enterprise: [
     {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},
     {type: 'ref', id: 'intro-replicated', 'label': '<-- Back to App Manager'},
+    'enterprise/wip-admin-console-intro',
     {
       type: 'category',
       label: 'Installing an Application',
@@ -128,6 +197,83 @@ const sidebars = {
         'enterprise/delete-admin-console',
       ],
     },
+    {
+      type: 'category',
+      label: 'Private Registries',
+      items: [
+        'enterprise/image-registry-settings',
+        'enterprise/image-registry-embedded-cluster',
+        'enterprise/image-registry-rate-limits',
+      ],
+    },
+    'enterprise/updating-patching-with-kustomize',
+    {
+      type: 'category',
+      label: 'Updating',
+      items: [
+        'enterprise/updating-apps',
+        'enterprise/updating-app-manager',
+        'enterprise/updating-embedded-cluster',
+        'enterprise/updating-licenses',
+        'enterprise/updating-tls-cert',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'GitOps',
+      items: [
+        'enterprise/gitops-workflow',
+        'enterprise/gitops-managing-secrets',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Managing User Access',
+      items: [
+        'enterprise/auth-changing-passwords',
+        'enterprise/auth-identity-provider',
+        'enterprise/auth-configuring-rbac',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Monitoring',
+      items: [
+          'enterprise/monitoring-applications',
+          'enterprise/monitoring-external-prometheus',
+      ],   
+    },
+    {
+      type: 'category',
+      label: 'Backup and Restore',
+      items: [
+        'enterprise/snapshots-understanding',
+        {
+          type: 'category',
+          label: 'Configuring Backup Storage',
+          items: [
+            'enterprise/snapshots-velero-cli-installing',
+            'enterprise/snapshots-configuring-hostpath',
+            'enterprise/snapshots-configuring-nfs',
+            'enterprise/snapshots-storage-destinations',
+            'enterprise/snapshots-velero-installing-config',
+          ],
+        },
+        'enterprise/snapshots-creating',
+        'enterprise/snapshots-restoring-full',
+        'enterprise/snapshots-updating-with-admin-console',
+        'enterprise/snapshots-troubleshooting-backup-restore',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Troubleshooting',
+      items: [
+        'enterprise/status-viewing-details',
+        'enterprise/troubleshooting-an-app',
+      ],
+    },
+    {type: 'html', value: '<h5>reference</h5>', defaultStyle: true},
     {
       type: 'category',
       label: 'kots CLI',
@@ -291,8 +437,18 @@ const sidebars = {
         'vendor/licenses-referencing-fields',
       ],
     },
-    {type: 'category', items: ['vendor/private-images-about'], label: 'Proxied Image Registry'},
-    {type: 'category', items: ['vendor/reliability-matrix'], label: 'Reliability Matrix'},
+    {
+      type: 'category', 
+      items: ['vendor/wip-image-registry'], 
+      label: 'Proxied Image Registry'
+    },
+    {
+      type: 'category', 
+      label: 'Reliability Matrix',
+      items: [
+        'vendor/reliability-matrix'
+      ], 
+    },
     { 
       type: 'category',
       label: 'Preflight Checks and Support Bundles',
@@ -302,34 +458,86 @@ const sidebars = {
       ],   
     },
     {type: 'category', items: ['vendor/instance-insights-event-data'], label: 'Insights and Telemetry'},
-    {type: 'ref', id: 'intro-replicated', label: 'App Manager and Admin Console'},
+    {type: 'ref', id: 'intro-replicated', label: 'KOTS and kURL'},
     // TOOLS
-    {type: 'html', value: '<h5>Tools</h5>', defaultStyle: true},
+    {type: 'html', value: '<h5>Vendor Tools</h5>', defaultStyle: true},
     {type: 'ref', id: 'replicated-sdk/sdk-getting-started', label: 'Replicated SDK'},
-    {type: 'ref', id: 'replicated-sdk/sdk-getting-started', label: 'Vendor API'},
-    {type: 'ref', id: 'replicated-sdk/sdk-getting-started', label: 'replicated CLI'},
+    {
+      type: 'category',
+      label: 'Vendor API v3',
+      items: [
+        {
+          type: 'doc',
+          id: 'reference/vendor-api-using'
+        },
+        {
+          type: 'link',
+          label: 'Vendor API v3 Documentation',
+          href: 'https://replicated-vendor-api.readme.io/v3/'
+        },
+      ],
+    },
+    {
+      type: 'category',
+      label: 'replicated CLI',
+      items: [
+        'reference/replicated-cli-installing',
+        'reference/replicated-cli-tokens',
+        'reference/replicated-cli-app-create',
+        'reference/replicated-cli-app-delete',
+        'reference/replicated-cli-app-ls',
+        'reference/replicated-cli-channel-create',
+        'reference/replicated-cli-channel-delete',
+        'reference/replicated-cli-channel-disable-semver',
+        'reference/replicated-cli-channel-enable-semver',
+        'reference/replicated-cli-channel-inspect',
+        'reference/replicated-cli-channel-ls',
+        'reference/replicated-cli-customer-create',
+        'reference/replicated-cli-customer-download-license',
+        'reference/replicated-cli-customer-ls',
+        'reference/replicated-cli-installer-create',
+        'reference/replicated-cli-installer-ls',
+        'reference/replicated-cli-registry-add',
+        'reference/replicated-cli-registry-add-dockerhub',
+        'reference/replicated-cli-registry-add-ecr',
+        'reference/replicated-cli-registry-add-gcr',
+        'reference/replicated-cli-registry-add-ghcr',
+        'reference/replicated-cli-registry-add-other',
+        'reference/replicated-cli-registry-add-quay',
+        'reference/replicated-cli-registry-logs',
+        'reference/replicated-cli-registry-ls',
+        'reference/replicated-cli-registry-rm',
+        'reference/replicated-cli-registry-test',
+        'reference/replicated-cli-release-create',
+        'reference/replicated-cli-release-download',
+        'reference/replicated-cli-release-lint',
+        'reference/replicated-cli-release-ls',
+        'reference/replicated-cli-release-promote',
+        'reference/replicated-cli-release-update',
+      ],
+    },
+
     // POLICIES
     {type: 'html', value: '<h5>Policies</h5>', defaultStyle: true},
-    {type: 'doc', id: 'vendor/policies-vulnerability-patch'},
-    {type: 'doc', id: 'vendor/policies-support-lifecycle'},
-    {type: 'doc', id: 'vendor/policies-data-transmission'},
+    {
+      type: 'category',
+      label: 'Replicated Policies',
+      items: [
+        'vendor/policies-vulnerability-patch',
+        'vendor/policies-support-lifecycle',
+        'vendor/policies-data-transmission',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Replicated Data Storage',
+      items: [
+        'vendor/data-availability',
+        'vendor/offsite-backup'
+      ],
+    },
     {type: 'link',label: 'Security at Replicated',href: 'https://www.replicated.com/security/'},
-  ],
-
-  proxyOCIRegistry: [
-    {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},
-    'vendor/private-images-about',
-    'vendor/private-images-replicated',
-  ],
-
-  reliabilityMatrix: [
-    {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},
-    'vendor/reliability-matrix',
-  ],
-
-  telemetry: [
-    {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},
-    'vendor/instance-insights-event-data',
+    
   ],
 
   sdk: [
@@ -505,10 +713,10 @@ const sidebars = {
   //         ],
   //       },
   //       'vendor/packaging-ingress',
-  //       'vendor/packaging-kots-versions',    
-  //       'vendor/packaging-include-resources',
+  //           
+  //       
   //       'vendor/namespaces',
-  //       'vendor/packaging-rbac',
+  //       
   //       'vendor/packaging-using-tls-certs',
   //       'vendor/packaging-cleaning-up-jobs',
   //       'vendor/identity-service-configuring',

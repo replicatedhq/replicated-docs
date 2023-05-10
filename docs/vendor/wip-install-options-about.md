@@ -1,4 +1,4 @@
-# About Deploying with the App Manager
+# About Deploying Apps with KOTS
 
 Your app can use helm charts, standard manifests, k8s operators
 
