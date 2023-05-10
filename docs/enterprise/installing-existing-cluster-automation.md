@@ -173,15 +173,15 @@ To access the admin console:
   ssh -L 8800:localhost:8800 user@ip-addr
   ```
 
-1. Run the following command to open localhost port 8800, which forwards to the admin console service:
+1. Run the following kots CLI command to open localhost port 8800, which forwards to the admin console service:
 
   ```bash
   kubectl kots admin-console --namespace NAMESPACE
   ```
   Replace `NAMESPACE` with the namespace where the admin console was installed. By default, the app manager installs the admin console in the `default` namespace.
 
+  For more information about the `kots admin-console` command, see [admin-console](/reference/kots-cli-admin-console-index) in the _kots CLI_ documentation.
+
 1. Open a browser window and go to `https://localhost:8800`.
 
 1. Log in to the admin console using the password that you created as part of the `kots install` command.
-
-For more information about the `kots admin-console` command, see [admin-console](/reference/kots-cli-admin-console-index) in the _kots CLI_ documentation.

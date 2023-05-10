@@ -1,5 +1,6 @@
 import AppInstallIntroOnline from "../partials/install/_install-app-admin-console-intro-online.mdx"
 import IntroExisting from "../partials/install/_intro-existing.mdx"
+import KotsAbout from "../partials/install/_kots-about.mdx"
 
 import PrereqsExistingCluster from "../partials/install/_prereqs-existing-cluster.mdx"
 import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
@@ -22,7 +23,9 @@ Complete the following prerequisites:
 
 ## Install the App Manager {#online}
 
-This procedure describes how to install the Replicated app manager in your existing cluster. The app manager deploys an admin console, which provides a user interface for installing and deploying the application.
+This procedure describes how to install the Replicated app manager in your existing cluster.
+
+<KotsAbout/>
 
 To install the app manager:
 

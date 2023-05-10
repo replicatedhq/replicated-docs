@@ -6,9 +6,9 @@ To install the application using the admin console:
       If you need to reopen the port forward to the admin console, run the following command:
 
       ```shell
-      kubectl kots admin-console -n APP_NAMESPACE
+      kubectl kots admin-console -n NAMESPACE
       ```
-      Replace `APP_NAMESPACE` with the namespace on the cluster where you installed the application.
+      Replace `NAMESPACE` with the namespace where the app manager is installed. By default, the app manager is installed in the `default` namespace.
 
    * **Kubernetes installer cluster**: Go to the address provided in the `Kotsadm` field in the output of the installation command. For example, `Kotsadm: http://34.171.140.123:8800`.
 

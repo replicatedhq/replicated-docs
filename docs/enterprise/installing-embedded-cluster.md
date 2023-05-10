@@ -3,6 +3,7 @@ import HaLoadBalancerAbout from "../partials/install/_ha-load-balancer-about.mdx
 import ProvisionClusterIntro from "../partials/install/_provision-cluster-intro.mdx"
 import AppInstallIntroOnline from "../partials/install/_install-app-admin-console-intro-online.mdx"
 import IntroEmbedded from "../partials/install/_intro-embedded.mdx"
+import KotsAbout from "../partials/install/_kots-about.mdx"
 
 import PrereqsEmbeddedCluster from "../partials/install/_prereqs-embedded-cluster.mdx"
 import HaLoadBalancerPrereq from "../partials/install/_ha-load-balancer-prereq.mdx"
@@ -39,6 +40,8 @@ Complete the following prerequisites:
 
 <ProvisionClusterIntro/>
 
+<KotsAbout/>
+
 To provision a cluster with the Kubernetes installer:
 
 1. Run one of the following commands to create the cluster with the Kubernetes installer:
@@ -55,7 +58,7 @@ To provision a cluster with the Kubernetes installer:
       curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash -s ha
       ```
     
-    Replace `APP_SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
+    Replace `APP_SLUG` with the unique identifier for the application. The application slug is included in the installation command provided by your application vendor.
 
 1. <HAStep/> 
 
@@ -68,7 +71,5 @@ To provision a cluster with the Kubernetes installer:
 ## Install and Deploy the Application {#install-app} 
 
 <AppInstallIntroOnline/>
-
-Alternatively, you can use the kots CLI to automate the installation of the application rather than logging in to the admin console. For more information, see [Installing with Automation](installing-existing-cluster-automation).
 
 <InstallApp/>

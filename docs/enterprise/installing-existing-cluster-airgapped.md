@@ -1,5 +1,6 @@
 import AppInstallIntroAirGap from "../partials/install/_install-app-admin-console-intro-air-gap.mdx"
 import IntroExisting from "../partials/install/_intro-existing.mdx"
+import KotsAbout from "../partials/install/_kots-about.mdx"
 
 import PrereqsExistingCluster from "../partials/install/_prereqs-existing-cluster.mdx"
 import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
@@ -13,6 +14,7 @@ import InstallApp from "../partials/install/_install-app-admin-console.mdx"
 
 <IntroExisting/>
 
+The procedures in this topic apply to installation environments that do not have access to the internet.
 ## About Private Registries
 
 Air gapped networks must have a Docker image registry that is available inside the network. The app manager rewrites the application image names in all application manifests to read from the on-premises registry, and it re-tags and pushes the images to the on-premises registry. When authenticating to the registry, credentials with `push` permissions are required.
@@ -39,7 +41,9 @@ Complete the following prerequisites:
 
 ## Install the App Manager {#air-gap}
 
-This procedure describes how to install the Replicated app manager in your existing cluster using the `kotsadm.tar.gz` air gap bundle. The app manager deploys the Replicated admin console, which provides a user interface for installing and managing the application.
+This procedure describes how to install the Replicated app manager in your existing cluster using the `kotsadm.tar.gz` air gap bundle.
+
+<KotsAbout/>
 
 To install the app manager:
 
@@ -54,14 +58,14 @@ To install the app manager:
 1. Run the following command to extract container images from the `kotsadm.tar.gz` bundle and push the images to your private registry:
 
    ```shell
-   kubectl kots admin-console push-images ./kotsadm.tar.gz REGISTRY_ADDRESS \
+   kubectl kots admin-console push-images ./kotsadm.tar.gz REGISTRY_HOST \
      --registry-username RW_USERNAME \
      --registry-password RW_PASSWORD
    ```
 
     Replace:
 
-    * `REGISTRY_ADDRESS` with the address for the private registry where you want to push the images. For example, `private.registry.host/app-name`.
+    * `REGISTRY_HOST` with the hostname for the private registry. For example, `private.registry.host`.
     
     * `RW_USERNAME` with the username for an account that has read and write access to the private image registry.
 
@@ -83,11 +87,11 @@ To install the app manager:
 
    Replace:
 
-   * `APP_NAME` with a name for the application.
+   * `APP_NAME` with a name for the application. This is the unique name that the app manager will use to refer to the application that you install.
    
-   * `REGISTRY_HOST` with the hostname for the private registry where you pushed the images the previous step. For example, `private.registry.host`.
+   * `REGISTRY_HOST` with the hostname for the private registry where you pushed the images. For example, `private.registry.host`.
    
-   * `REGISTRY_NAMESPACE` with the namespace in the private registry where you pushed the images in the previous step. For example, if you pushed the images to `my-registry.example.com/app-name/image:tag`, then `app-name` is the registry namespace.
+   * `REGISTRY_NAMESPACE` with the namespace in the private registry where you pushed the images. For example, if you pushed the images to `my-registry.example.com/app-name/image:tag`, then `app-name` is the registry namespace.
    
    * `RO_USERNAME` with the username for an account that has read-only access to the private image registry.
    

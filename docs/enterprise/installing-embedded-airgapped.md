@@ -2,6 +2,8 @@ import KurlAbout from "../partials/install/_kurl-about.mdx"
 import HaLoadBalancerAbout from "../partials/install/_ha-load-balancer-about.mdx"
 import ProvisionClusterIntro from "../partials/install/_provision-cluster-intro.mdx"
 import AppInstallIntroAirGap from "../partials/install/_install-app-admin-console-intro-air-gap.mdx"
+import IntroEmbedded from "../partials/install/_intro-embedded.mdx"
+import KotsAbout from "../partials/install/_kots-about.mdx"
 
 import PrereqsEmbeddedCluster from "../partials/install/_prereqs-embedded-cluster.mdx"
 import HaLoadBalancerPrereq from "../partials/install/_ha-load-balancer-prereq.mdx"
@@ -15,7 +17,9 @@ import InstallApp from "../partials/install/_install-app-admin-console.mdx"
 
 # Air Gap Installation with the Kubernetes Installer
 
-This topic describes how to use Replicated to install an application in an air gap environment, using the Replicated Kubernetes installer to provision an embedded cluster on a virtual machine or on bare metal. The procedure explains how to install with and without high availability mode.
+<IntroEmbedded/>
+
+The procedures in this topic apply to installation environments that do not have access to the internet.
 
 <KurlAbout/>
 
@@ -40,6 +44,8 @@ Complete the following prerequisites:
 ## Provision the Cluster {#air-gap}
 
 <ProvisionClusterIntro/>
+
+<KotsAbout/>
 
 To provision a cluster with the Kubernetes installer:
 
@@ -77,10 +83,8 @@ To provision a cluster with the Kubernetes installer:
 
 1. <ContinueToInstall/>
 
-   Alternatively, you can use the kots CLI to automate the installation of the application rather than logging in to the admin console. For more information, see [Installing with Automation](installing-existing-cluster-automation).
-
 ## Install and Deploy the Application {#install-app} 
 
-<InstallAppIntroAirGap/>
+<AppInstallIntroAirGap/>
   
 <InstallApp/>
