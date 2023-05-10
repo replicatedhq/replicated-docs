@@ -8,7 +8,7 @@ This topic describes how to manage team members in the Replicated vendor portal,
 ## Viewing Team Members
 The [Team](https://vendor.replicated.com/team/members) page provides a list of all accounts currently associated with or invited to your team. Each row contains information about the user, including their two-factor authentication (2FA) status and role-based access control (RBAC) role, and lets administrators take additional actions, such as remove, re-invite, and edit permissions.
 
-<img src="/images/teams-view.png" alt="View team members list in the vendor portal" width="600"/>
+<img src="/images/teams-view.png" alt="View team members list in the vendor portal" width="700"/>
 
 [View a larger image](/images/teams-view.png)
 
@@ -27,7 +27,7 @@ To invite a new team member:
 
   The Invite team member dialog opens.
 
-  <img src="/images/teams-invite-member.png" alt="Invite team member dialog in the vendor portal" width="400"/>
+  <img src="/images/teams-invite-member.png" alt="Invite team member dialog in the vendor portal" width="500"/>
 
 1. Enter the email address of the member.
 
@@ -73,9 +73,12 @@ To enable users to auto-join your team:
 1. From the Team Members page, click **Auto-join** from the left navigation.
 1. Enable the **Allow all users from my domain to be added to my team** toggle.
 
-    <img src="/images/teams-auto-join.png" alt="Auto join dialog in the vendor portal" width="600"/>
+  <img src="/images/teams-auto-join.png" alt="Auto join dialog in the vendor portal" width="600"/>
+
+  [View a larger image](/images/teams-auto-join.png)
 
 1. For **Default RBAC policy level for new accounts**, you can use the default Read Only policy or select another policy from the list. This RBAC policy is applied to all users who join the team with the auto-join feature.
+
    <CollabRbacImportant/>
 
 
