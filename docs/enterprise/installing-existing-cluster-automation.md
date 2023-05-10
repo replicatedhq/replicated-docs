@@ -22,8 +22,6 @@ For more information about the `kots install` command, see [install](/reference/
 
 Before you install an application with the kots CLI, you must complete the following prerequisites:
 
-* Install the kots CLI. See [Installing the kots CLI](/reference/kots-cli-getting-started).
-
 * Create a ConfigValues manifest file to define your configuration preferences for the application. Ensure that you can access the ConfigValues file that you create from your installation environment.
 
   The following is an example of a ConfigValues file:
@@ -34,6 +32,7 @@ Before you install an application with the kots CLI, you must complete the follo
 
   Your application vendor provides details about the required and optional configuration fields to include in the ConfigValues file.
   
+* (Existing Clusters Only) Install the kots CLI. See [Installing the kots CLI](/reference/kots-cli-getting-started).
 
 * (Existing Clusters Only) To install in an existing cluster, complete the prerequisites for your environment: 
   * **Online**: See [Prerequisites](installing-existing-cluster#prerequisites) in _Online Existing Cluster Installation_.
@@ -45,7 +44,8 @@ Before you install an application with the kots CLI, you must complete the follo
 
 * (Kubernetes Installer Only) You must have run the Kubernetes installer installation script in your VM or bare metal server to provision the cluster and install the Replicated app manager in the cluster. See one of the following, depending on your installation environment:
   * **Online**: See [Provision the Cluster](installing-embedded-cluster#provision-cluster) in _Online Installation with the Kubernetes Installer_.
-  * **Air Gap**: See [Provision the Cluster](installing-embedded-airgapped#air-gap) in _Air Gap Installation with the Kubernetes Installer_. 
+  * **Air Gap**: See [Provision the Cluster](installing-embedded-airgapped#air-gap) in _Air Gap Installation with the Kubernetes Installer_.
+   
 ## Installation Commands
 
 This section provides the `kots install` commands that you can use to automate installation in an existing cluster or in a Kubernetes installer cluster. It includes commands for both online and air gap environments.
