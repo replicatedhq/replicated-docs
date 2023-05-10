@@ -99,6 +99,10 @@ To conditionally include and exclude the `admin-console` Helm chart:
     # Helm chart Chart.yaml file
 
     apiVersion: v2
+    name: myapp
+    version: 1.2.3
+    appVersion: 3.2.1
+    type: application
     ...
     dependencies:
     - name: admin-console
@@ -254,7 +258,7 @@ To conditionally include and exclude the `admin-console` Helm chart:
 
       ```yaml
       # Replicated HelmChart custom resource file
-      
+
       apiVersion: kots.io/v1beta1
       kind: HelmChart
       metadata:
