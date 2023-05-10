@@ -99,10 +99,8 @@ To conditionally include and exclude the `admin-console` Helm chart:
     # Helm chart Chart.yaml file
 
     apiVersion: v2
-    name: myapp
-    version: 1.2.3
-    appVersion: 3.2.1
-    type: application
+    name: samplechart
+    version: 3.1.7
     ...
     dependencies:
     - name: admin-console
@@ -149,7 +147,7 @@ To conditionally include and exclude the `admin-console` Helm chart:
 
 1. Package your Helm chart, and add the packaged chart to a release in the Replicated vendor portal. For more information, see [Creating Releases with the Vendor Portal](releases-creating-release).
 
-1. In the release, create or open the HelmChart custom resource manifest file. A HelmChart custom resource manifest file has `kind: HelmChart` and `apiVersion: kots.io/v1beta1`. For more information, see [HelmChart](/reference/custom-resource-helmchart) in the _References_ section.
+1. In the release, create or open the Replicated HelmChart custom resource manifest file. A HelmChart custom resource manifest file has `kind: HelmChart` and `apiVersion: kots.io/v1beta1`. For more information, see [HelmChart](/reference/custom-resource-helmchart) in the _References_ section.
 
   **Example:**
 
@@ -185,31 +183,10 @@ To conditionally include and exclude the `admin-console` Helm chart:
             enabled: false
       ```
 
-      KOTS Install and Embedded Cluster installations read this static value of `false` from the HelmChart custom resource, which prevents the `admin-console` Helm chart from deploying. Helm Install installations ignore this static value, and instead read the value of `true` from the `values.yaml` file that you added in a previous step.
-
-      **Example:**
-
-      ```yaml
-      # Replicated HelmChart custom resource file
-
-      apiVersion: kots.io/v1beta1
-      kind: HelmChart
-      metadata:
-        name: samplechart
-      spec:
-        chart:
-          name: samplechart
-          chartVersion: 3.1.7
-          releaseName: samplechart-release-v1
-        values:
-          admin-console:
-            enabled: false  
-      ```     
+      KOTS Install and Embedded Cluster installations read this static value of `false` from the HelmChart custom resource, which prevents the `admin-console` Helm chart from deploying. Helm Install installations ignore this static value, and instead read the value of `true` from the `values.yaml` file that you added in a previous step.   
 
    1. If your HelmChart custom resource includes an `optionalValues` field, set `recursiveMerge` to `true`. This prevents the `admin-console` field in `values` from being overwritten by the fields in `optionalValues`.
 
-      **Example:**
-
       ```yaml
       # Replicated HelmChart custom resource file
 
@@ -218,13 +195,7 @@ To conditionally include and exclude the `admin-console` Helm chart:
       metadata:
         name: samplechart
       spec:
-        chart:
-          name: samplechart
-          chartVersion: 3.1.7
-          releaseName: samplechart-release-v1
-        values:
-          admin-console:
-            enabled: false
+        ...
         optionalValues:
         - when: "repl{{ ConfigOptionEquals `example_config_option`}}"
           recursiveMerge: true
@@ -254,27 +225,29 @@ To conditionally include and exclude the `admin-console` Helm chart:
 
       For more information, see [builder](/reference/custom-resource-helmchart#builder) in _HelmChart_.
 
-      **Example:**
+  **Example:**
 
-      ```yaml
-      # Replicated HelmChart custom resource file
+  The following shows an example of a HelmChart custom resource file with the required `values.admin-console.enabled` and `builder.admin-console.enabled` fields:
 
-      apiVersion: kots.io/v1beta1
-      kind: HelmChart
-      metadata:
-        name: samplechart
-      spec:
-        chart:
-          name: samplechart
-          chartVersion: 3.1.7
-          releaseName: samplechart-release-v1
-        values:
-          admin-console:
-            enabled: false
-        builder:
-          admin-console:
-            enabled: false              
-      ```
+  ```yaml
+  # Replicated HelmChart custom resource file
+
+  apiVersion: kots.io/v1beta1
+  kind: HelmChart
+  metadata:
+    name: samplechart
+  spec:
+    chart:
+      name: samplechart
+      chartVersion: 3.1.7
+      releaseName: samplechart-release-v1
+    values:
+      admin-console:
+        enabled: false
+    builder:
+      admin-console:
+        enabled: false              
+  ```
   1. Save and promote the release to a development environment to test your changes.      
 
 ## Example: Delivering Custom License Fields
