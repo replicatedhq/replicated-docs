@@ -31,13 +31,12 @@ const sidebars = {
       items: [
         {type:'doc', id:'intro-replicated', label: 'About KOTS and kURL'},
         'vendor/wip-install-options-about',
-        'vendor/wip-app-manager-releases',
-        'vendor/wip-first-release',
         {
           type: 'category',
           label: 'Plan a Production Release',
           items: [
             'vendor/distributing-workflow',
+            'vendor/wip-first-release',
             'vendor/planning-questionnaire',
           ],
         },

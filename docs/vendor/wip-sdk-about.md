@@ -1,5 +1,7 @@
 # About the Replicated SDK Helm Chart
 
+Vendors who install their application with Helm can use the Replicated SDK to integrate their application with core Replicated functionality while continuing to use their own installation process. The SDK is simply installed by Helm alongside the application, providing vendors access to telemetry, licensing, entitlements, update checks, and more, with little to no configuration needed.
+
 ## Use Cases
 The SDK provides a number of APIs (reference) that can be used to embed Replicated functionality and application information into your application.
 
