@@ -114,6 +114,36 @@ const config = {
             ],
           },
           {
+            title: 'Policies',
+            items: [
+              {
+                label: 'Vulnerability Patch',
+                to: 'vendor/policies-vulnerability-patch',
+              },
+              {
+                label: 'Data Transmission',
+                to: 'vendor/policies-data-transmission',
+              },
+              {
+                label: 'Security at Replicated',
+                href: 'https://www.replicated.com/security/',
+              },
+            ],
+          },
+          {
+            title: 'Support',
+            items: [
+              {
+                label: 'Support Lifecycle',
+                to: 'vendor/policies-support-lifecycle',
+              },
+              {
+                label: 'Request Support',
+                href: 'vendor/support-submit-request',
+              },
+            ],
+          },
+          {
             title: 'Community',
             items: [
               {
@@ -127,7 +157,7 @@ const config = {
             ],
           },
           {
-            title: 'More',
+            title: 'Company',
             items: [
               {
                 label: 'Blog',

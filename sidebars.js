@@ -20,7 +20,44 @@ const sidebars = {
 
   appManager: [
     {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},
+    // {type: 'html', value: '<h5>Introduction</h5>', defaultStyle: true}, 
     {type:'doc', id:'intro-replicated', label: 'About KOTS and kURL'},
+    {
+      type: 'category',
+      label: 'Getting Started Tutorials',
+      items: [
+        {
+          type: 'category',
+          label: 'UI Tutorial',
+          items: [
+            'vendor/tutorial-ui-setup',
+            'vendor/tutorial-ui-create-app',
+            'vendor/tutorial-ui-create-release',
+            'vendor/tutorial-ui-create-customer',
+            'vendor/tutorial-ui-install-app-manager',
+            'vendor/tutorial-ui-deploy-app',
+            'vendor/tutorial-ui-create-new-version',
+            'vendor/tutorial-ui-update-app',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'CLI Tutorial',
+          items: [
+            'vendor/tutorial-cli-setup',
+            'vendor/tutorial-cli-install-cli',
+            'vendor/tutorial-cli-create-app',
+            'vendor/tutorial-cli-manifests',
+            'vendor/tutorial-cli-create-release',
+            'vendor/tutorial-cli-create-customer',
+            'vendor/tutorial-cli-install-app-manager',
+            'vendor/tutorial-cli-deploy-app',
+            'vendor/tutorial-cli-create-new-version',
+            'vendor/tutorial-cli-update-app',
+          ],
+        },
+      ],
+    },
     // VENDOR KOTS & KURL DOCS
     {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true}, 
     
@@ -31,8 +68,24 @@ const sidebars = {
         'vendor/wip-install-options-about',
         'vendor/wip-app-manager-releases',
         'vendor/wip-first-release',
+        {
+          type: 'category',
+          label: 'Plan a Production Release',
+          items: [
+            'vendor/distributing-workflow',
+            'vendor/planning-questionnaire',
+          ],
+        },
       ],
     },  
+    {
+      type: 'category',
+      label: 'Distribute Your App',
+      items: [
+        'vendor/releases-sharing-license-install-script',
+        'vendor/releases-configvalues',
+      ],
+    },
     {
       type: 'category',
       label: 'Helm Charts',
@@ -83,25 +136,42 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Status Informers',
+      label: 'Admin Console Features and Branding',
       items: [
-        'vendor/admin-console-display-app-status',
-      ],
+        {
+          type: 'category',
+          label: 'Status Informers',
+          items: [
+            'vendor/admin-console-display-app-status',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Prometheus Monitoring',
+          items: [
+            'vendor/admin-console-prometheus-monitoring',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Custom Admin Console Branding',
+          items: [
+            'vendor/admin-console-customize-app-icon',
+          ],
+        },
+      ]
     },
     {
       type: 'category',
-      label: 'Prometheus Monitoring',
+      label: 'Kubernetes Operators',
       items: [
-        'vendor/admin-console-prometheus-monitoring',
+        'vendor/operator-packaging-about',
+        'vendor/operator-defining-additional-images',
+        'vendor/operator-referencing-images',
+        'vendor/operator-defining-additional-namespaces',
       ],
     },
-    {
-      type: 'category',
-      label: 'Custom Admin Console Branding',
-      items: [
-        'vendor/admin-console-customize-app-icon',
-      ],
-    },
+    'vendor/identity-service-configuring',
     // managing stuff
     {
       type: 'category', 
@@ -109,6 +179,7 @@ const sidebars = {
       items: [
         'vendor/packaging-rbac',
         'vendor/packaging-kots-versions',
+        'vendor/packaging-air-gap-excluding-minio',
       ],
     },
     {
@@ -117,6 +188,15 @@ const sidebars = {
       items: [
         'vendor/packaging-cleaning-up-jobs',
         'vendor/packaging-include-resources', 
+        'vendor/packaging-using-tls-certs',
+        {
+          type: 'category',
+          label: 'Adding Persistent Data Stores',
+          items: [
+            'vendor/database-config-adding-options',
+            'vendor/tutorial-adding-db-config',
+          ],
+        },
       ],
     },
     // KOTS reference
@@ -394,7 +474,7 @@ const sidebars = {
     {type: 'html', value: '<h5>Product</h5>', defaultStyle: true},
     {
       type: 'category', 
-      label: 'Vendor Team',
+      label: 'Vendor Portal Team',
       items: [    
           'vendor/vendor-portal-creating-account',
           'vendor/team-management',
@@ -720,16 +800,7 @@ const sidebars = {
   //       'vendor/packaging-using-tls-certs',
   //       'vendor/packaging-cleaning-up-jobs',
   //       'vendor/identity-service-configuring',
-  //       {
-  //         type: 'category',
-  //         label: 'Kubernetes Operators',
-  //         items: [
-  //           'vendor/operator-packaging-about',
-  //           'vendor/operator-defining-additional-images',
-  //           'vendor/operator-referencing-images',
-  //           'vendor/operator-defining-additional-namespaces',
-  //         ],
-  //       },
+  //       
   //     ],
   //   },  
   //   {

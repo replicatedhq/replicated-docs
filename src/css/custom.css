@@ -51,12 +51,19 @@ article {
     font-weight: bold;
 }
 
+
+li.menu__list-item > a.back-to-home {
+  font-size: larger;
+}
+
 li.menu__list-item > h5 {
   text-transform: uppercase;
   margin: 1.25rem 0;
   /* border-top: 1px solid rgba(88,88,88,0.2); */
   padding-top: 20px;
 }
+
+
 
 /* [data-theme='dark'] li.menu__list-item > h5 {
   border-top: 1px solid rgba(88,88,88,0.5);
