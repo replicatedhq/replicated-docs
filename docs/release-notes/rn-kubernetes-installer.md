@@ -9,20 +9,17 @@ toc_max_heading_level: 2
 Released on May 11, 2023
 
 ### New Features {#new-features-v2023-05-11-0}
-* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.24.4.
-* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.26.5.
-* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.65.1-45.26.0.
-* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-05-04T21-44-30Z.
-* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.21.5.
-* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.21.
 * Adds the ability to have fine grained control over the Rook-Ceph node and device storage configuration through the [`rook.nodes`](https://kurl.sh/docs/add-ons/rook#per-node-storage-configuration) property of the spec.
-* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.25.0.
-* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.65.1-45.27.1.
-* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.27.1.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.21.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.21.5.
 * Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.5.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-05-04T21-44-30Z.
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) versions 1.24.4 and 1.25.0.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) versions 0.65.1-45.26.0 and 0.65.1-45.27.1.
+* Upgrades [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) to version 0.27.1.
 
 ### Bug Fixes {#bug-fixes-v2023-05-11-0}
-* Fixes the in cluster preflights check error `Error: run preflight: collect results: failed to check RBAC for collectors` which makes the installation fails when the config `/etc/kubernetes/admin.conf` is not found.
+* Fixes an issue that causes installations to fail when running preflight checks and the file `/etc/kubernetes/admin.conf` is not found due to a failed previous Kubernetes installation.
 
 ## v2023.05.08-0
 
