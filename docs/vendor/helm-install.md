@@ -225,29 +225,29 @@ To conditionally include and exclude the `admin-console` Helm chart:
 
       For more information, see [builder](/reference/custom-resource-helmchart#builder) in _HelmChart_.
 
-  **Example:**
+      **Example:**
 
-  The following shows an example of a HelmChart custom resource file with the required `values.admin-console.enabled` and `builder.admin-console.enabled` fields:
+      The following shows an example of a HelmChart custom resource file with the required `values.admin-console.enabled` and `builder.admin-console.enabled` fields:
 
-  ```yaml
-  # Replicated HelmChart custom resource file
+      ```yaml
+      # Replicated HelmChart custom resource file
 
-  apiVersion: kots.io/v1beta1
-  kind: HelmChart
-  metadata:
-    name: samplechart
-  spec:
-    chart:
-      name: samplechart
-      chartVersion: 3.1.7
-      releaseName: samplechart-release-v1
-    values:
-      admin-console:
-        enabled: false
-    builder:
-      admin-console:
-        enabled: false              
-  ```
+      apiVersion: kots.io/v1beta1
+      kind: HelmChart
+      metadata:
+        name: samplechart
+      spec:
+        chart:
+          name: samplechart
+          chartVersion: 3.1.7
+          releaseName: samplechart-release-v1
+        values:
+          admin-console:
+            enabled: false
+        builder:
+          admin-console:
+            enabled: false              
+      ```
   1. Save and promote the release to a development environment to test your changes.      
 
 ## Example: Delivering Custom License Fields
