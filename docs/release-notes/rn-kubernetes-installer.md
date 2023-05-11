@@ -4,6 +4,23 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.05.11-0
+
+Released on May 11, 2023
+
+### New Features {#new-features-v2023-05-11-0}
+* Adds the ability to have fine-grained control over the Rook-Ceph node and device storage configuration through the [`rook.nodes`](https://kurl.sh/docs/add-ons/rook#per-node-storage-configuration) property of the specification.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.21.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.21.5.
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.5.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-05-04T21-44-30Z.
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) versions 1.24.4 and 1.25.0.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) versions 0.65.1-45.26.0 and 0.65.1-45.27.1.
+* Upgrades [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) to version 0.27.1.
+
+### Bug Fixes {#bug-fixes-v2023-05-11-0}
+* Fixes an issue that causes installations to fail when running preflight checks and the file `/etc/kubernetes/admin.conf` is not found due to a previous failed Kubernetes installation.
+
 ## v2023.05.08-0
 
 Released on May 8, 2023
