@@ -9,7 +9,7 @@ toc_max_heading_level: 2
 Released on May 11, 2023
 
 ### New Features {#new-features-v2023-05-11-0}
-* Adds the ability to have fine-grained control over the Rook-Ceph node and device storage configuration through the [`rook.nodes`](https://kurl.sh/docs/add-ons/rook#per-node-storage-configuration) property of the spec.
+* Adds the ability to have fine-grained control over the Rook-Ceph node and device storage configuration through the [`rook.nodes`](https://kurl.sh/docs/add-ons/rook#per-node-storage-configuration) property of the `spec`.
 * Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.21.
 * Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.21.5.
 * Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.5.
