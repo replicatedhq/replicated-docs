@@ -29,20 +29,38 @@ This procedure describes how to install the Replicated app manager in your exist
 
 To install the app manager:
 
-1. Run the following command to install the kots CLI and the app manager:
+1. Run one of these commands to install the kots CLI and the app manager. As part of the command, you also specify a name and version for the application that you will install as part of the [Install and Deploy the Application](#install-app) procedure that follows.
 
-  ```shell
-  curl https://kots.io/install | bash
-  kubectl kots install APP_NAME
-  ``` 
-  Replace `APP_NAME` with a name for the application. This is the unique name that the app manager will use to refer to the application that you install.
+    * **For the latest application version**:
+    
+      ```shell
+      curl https://kots.io/install | bash
+      kubectl kots install APP_NAME
+      ``` 
+    * **For a specific application version**:
 
-  **Example:**
+      ```shell
+      curl https://kots.io/install | bash
+      kubectl kots install APP_NAME --app-version-label=VERSION_LABEL
+      ```
 
-  ```shell
-  curl https://kots.io/install | bash
-  kubectl kots install application-name
-  ``` 
+    Replace, where applicable:
+    
+    * Replace `APP_NAME` with a name for the application. This is the unique name that the app manager will use to refer to the application that you install.
+  
+    * `VERSION_LABEL` with the label for the version of the application to install. For example, `--app-version-label=3.0.1`.  
+
+    **Examples:**
+
+    ```shell
+    curl https://kots.io/install | bash
+    kubectl kots install application-name
+    ``` 
+
+    ```shell
+    curl https://kots.io/install | bash
+    kubectl kots install application-name --app-version-label=3.0.1
+    ``` 
 
 1. <InstallCommandPrompts/>
 

@@ -1,6 +1,7 @@
 import AppInstallIntroAirGap from "../partials/install/_install-app-admin-console-intro-air-gap.mdx"
 import IntroExisting from "../partials/install/_intro-existing.mdx"
 import KotsAbout from "../partials/install/_kots-about.mdx"
+import IntroAirGap from "../partials/install/_intro-air-gap.mdx"
 
 import PrereqsExistingCluster from "../partials/install/_prereqs-existing-cluster.mdx"
 import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
@@ -14,7 +15,8 @@ import InstallApp from "../partials/install/_install-app-admin-console.mdx"
 
 <IntroExisting/>
 
-The procedures in this topic apply to installation environments that do not have access to the internet.
+<IntroAirGap/>
+
 ## About Private Registries
 
 Air gapped networks must have a Docker image registry that is available inside the network. The app manager rewrites the application image names in all application manifests to read from the on-premises registry, and it re-tags and pushes the images to the on-premises registry. When authenticating to the registry, credentials with `push` permissions are required.

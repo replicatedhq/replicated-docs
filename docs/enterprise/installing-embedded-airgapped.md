@@ -3,6 +3,7 @@ import HaLoadBalancerAbout from "../partials/install/_ha-load-balancer-about.mdx
 import ProvisionClusterIntro from "../partials/install/_provision-cluster-intro.mdx"
 import AppInstallIntroAirGap from "../partials/install/_install-app-admin-console-intro-air-gap.mdx"
 import IntroEmbedded from "../partials/install/_intro-embedded.mdx"
+import IntroAirGap from "../partials/install/_intro-air-gap.mdx"
 import KotsAbout from "../partials/install/_kots-about.mdx"
 
 import PrereqsEmbeddedCluster from "../partials/install/_prereqs-embedded-cluster.mdx"
@@ -19,7 +20,7 @@ import InstallApp from "../partials/install/_install-app-admin-console.mdx"
 
 <IntroEmbedded/>
 
-The procedures in this topic apply to installation environments that do not have access to the internet.
+<IntroAirGap/>
 
 <KurlAbout/>
 

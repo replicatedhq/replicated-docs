@@ -8,13 +8,15 @@ import IntroEmbedded from "../partials/install/_automation-intro-embedded.mdx"
 
 # Installing with Automation
 
-This topic describes using the kots CLI to automate installation in online and air gap environments.
+This topic describes using the Replicated kots CLI to automate the installation of an application in online and air gap clusters.
 
 ## About Installing with Automation
 
-You can automate the installation of an application in your existing cluster or in a cluster that you created with the Replicated Kubernetes installer. To automate installation, you create an installation command with the Replicated kots CLI. The `kots install` command that you create depends on the type of cluster and if your installation environment has access to the internet.
+You can automate the installation of an application in your existing cluster or in a cluster that you previously created with the Replicated Kubernetes installer. To automate installation, you create an installation command with the Replicated kots CLI `kots install` command.
 
-In an automated installation, you provide all the information required to install and deploy the application with the `kots install` command, rather than providing this information in the Replicated admin console. For example, rather than uploading your license file in the admin console UI, you provide your license file with the `kots install` command using the `--license` flag. 
+In an automated installation, you provide all the information required to install and deploy the application with the `kots install` command, rather than providing this information in the Replicated admin console. For example, rather than uploading your license file for the application in the admin console UI, you provide your license file with the `kots install` command using the `--license` flag.
+
+The flags that you use with the `kots install` command vary depending on the type of your cluster (existing cluster or Kubernetes installer cluster) and on the cluster's internet access (online environment or air gap environment).
 
 For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
 
@@ -24,7 +26,7 @@ Before you install an application with the kots CLI, you must complete the follo
 
 * Create a ConfigValues manifest file to define your configuration preferences for the application. Ensure that you can access the ConfigValues file that you create from your installation environment.
 
-  The following is an example of a ConfigValues file:
+  **Example:**
 
   <ConfigValuesExample/>
 
@@ -34,17 +36,16 @@ Before you install an application with the kots CLI, you must complete the follo
   
 * (Existing Clusters Only) Install the kots CLI. See [Installing the kots CLI](/reference/kots-cli-getting-started).
 
-* (Existing Clusters Only) To install in an existing cluster, complete the prerequisites for your environment: 
+* (Existing Clusters Only) Complete the prerequisites for your environment: 
   * **Online**: See [Prerequisites](installing-existing-cluster#prerequisites) in _Online Existing Cluster Installation_.
-  * **Air Gap**: See [Prerequisites](installing-existing-cluster-airgapped#prerequisites) in _Air Gap Existing Cluster Installation_.
+  * **Air Gap**: See [Prerequisites](installing-existing-cluster-airgapped#prerequisites) in _Air Gap Existing Cluster Installation_. 
 
-* (Kubernetes Installer Only) To install in a VM or bare metal server with the Replicated Kubernetes installer, complete the prerequisites for your environment: 
-  * **Online**: See [Prerequisites](installing-embedded-cluster#prerequisites) in _Online Installation with the Kubernetes Installer_.
-  * **Air Gap**: See [Prerequisites](installing-embedded-airgapped#prerequisites) in _Air Gap Installation with the Kubernetes Installer_.
+* (Kubernetes Installer Only) This topic assumes that you have already run the Kubernetes installer installation script in your VM or bare metal server to provision a cluster. After you have provisioned a cluster, you can then use the `kots install` command to install an application in the cluster.
 
-* (Kubernetes Installer Only) You must have run the Kubernetes installer installation script in your VM or bare metal server to provision the cluster and install the Replicated app manager in the cluster. See one of the following, depending on your installation environment:
-  * **Online**: See [Provision the Cluster](installing-embedded-cluster#provision-cluster) in _Online Installation with the Kubernetes Installer_.
-  * **Air Gap**: See [Provision the Cluster](installing-embedded-airgapped#air-gap) in _Air Gap Installation with the Kubernetes Installer_.
+  For information about how to provision a cluster with the Kubernetes installer, see the following:
+
+    * **Online**: See [Prerequisites](installing-embedded-cluster#prerequisites) and [Provision the Cluster](installing-embedded-cluster#provision-cluster) in _Online Installation with the Kubernetes Installer_.
+    * **Air Gap**: See [Prerequisites](installing-embedded-airgapped#prerequisites) and [Provision the Cluster](installing-embedded-airgapped#air-gap) in _Air Gap Installation with the Kubernetes Installer_.
    
 ## Installation Commands
 
@@ -151,7 +152,11 @@ Replace:
 
 ## (Optional) Access the Admin Console
 
-When you use automation to install an application, you include the `--no-port-forward` flag. The `--no-port-forward` flag prevents the kots CLI from automatically opening a port forward to the admin console. After you install, you can optionally open a port forward to log in to the admin console in a browser window at `https://localhost:8800`.
+When you install an application in an existing cluster or when you provision a cluster with the Kubernetes installer, you also install the Replicated app manager in the cluster. The app manager deploys the Replicated admin console. The admin console is a user interface where you can manage and upgrade your application instances.
+
+By default, during installation, the app manager automatically opens localhost port 8800 to provide access to the admin console UI. The `--no-port-forward` flag in the `kots install` command prevents the app manager from creating a port forward to the admin console.
+
+After you install with the `--no-port-forward` flag, you can optionally create a port forward so that you can log in to the admin console in a browser window.
 
 To access the admin console:
 
