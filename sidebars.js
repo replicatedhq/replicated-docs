@@ -21,10 +21,31 @@ const sidebars = {
   appManager: [
     {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},
     // {type: 'html', value: '<h5>Introduction</h5>', defaultStyle: true}, 
-    {type:'doc', id:'intro-replicated', label: 'About KOTS and kURL'},
+    
+    // VENDOR KOTS & KURL DOCS
+    {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true}, 
+    
+    {
+      type: 'category', 
+      label: 'Introduction to KOTS and kURL',
+      items: [
+        {type:'doc', id:'intro-replicated', label: 'About KOTS and kURL'},
+        'vendor/wip-install-options-about',
+        'vendor/wip-app-manager-releases',
+        'vendor/wip-first-release',
+        {
+          type: 'category',
+          label: 'Plan a Production Release',
+          items: [
+            'vendor/distributing-workflow',
+            'vendor/planning-questionnaire',
+          ],
+        },
+      ],
+    }, 
     {
       type: 'category',
-      label: 'Getting Started Tutorials',
+      label: 'Tutorials',
       items: [
         {
           type: 'category',
@@ -57,27 +78,7 @@ const sidebars = {
           ],
         },
       ],
-    },
-    // VENDOR KOTS & KURL DOCS
-    {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true}, 
-    
-    {
-      type: 'category', 
-      label: 'Introduction',
-      items: [
-        'vendor/wip-install-options-about',
-        'vendor/wip-app-manager-releases',
-        'vendor/wip-first-release',
-        {
-          type: 'category',
-          label: 'Plan a Production Release',
-          items: [
-            'vendor/distributing-workflow',
-            'vendor/planning-questionnaire',
-          ],
-        },
-      ],
-    },  
+    }, 
     {
       type: 'category',
       label: 'Distribute Your App',
@@ -472,6 +473,7 @@ const sidebars = {
       ],
     },
     {type: 'html', value: '<h5>Product</h5>', defaultStyle: true},
+    'vendor/wip-main-intro',
     {
       type: 'category', 
       label: 'Vendor Portal Team',
@@ -492,6 +494,15 @@ const sidebars = {
           'vendor/team-management-saml-auth',
           'vendor/custom-domains',
         ], 
+    },
+    {
+      type: 'category',
+      label: 'Replicated SDK Helm Chart',
+      items: [
+        'vendor/wip-sdk-about',
+        'vendor/wip-sdk-add',
+        'vendor/wip-sdk-install',
+      ],
     },
     {
       type: 'category',
@@ -540,8 +551,8 @@ const sidebars = {
     {type: 'category', items: ['vendor/instance-insights-event-data'], label: 'Insights and Telemetry'},
     {type: 'ref', id: 'intro-replicated', label: 'KOTS and kURL'},
     // TOOLS
-    {type: 'html', value: '<h5>Vendor Tools</h5>', defaultStyle: true},
-    {type: 'ref', id: 'replicated-sdk/sdk-getting-started', label: 'Replicated SDK'},
+    {type: 'html', value: '<h5>Developer Tools</h5>', defaultStyle: true},
+    {type: 'ref', id: 'replicated-sdk/sdk-getting-started', label: 'Replicated SDK API'},
     {
       type: 'category',
       label: 'Vendor API v3',
