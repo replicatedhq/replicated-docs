@@ -82,15 +82,13 @@ kubectl kots install APP_NAME \
   --shared-password PASSWORD \
   --license-file PATH_TO_LICENSE \
   --config-values PATH_TO_CONFIGVALUES \
-  --namespace NAMESPACE \
+  --namespace default \
   --no-port-forward
 ```
 
 Replace:
 
 <PlaceholdersGlobal/>
-
-<PlaceholderNamespaceEmbedded/>
 
 ### Air Gap Existing Cluster 
 
@@ -138,7 +136,7 @@ kubectl kots install APP_NAME \
   --license-file PATH_TO_LICENSE \
   --config-values PATH_TO_CONFIGVALUES \
   --airgap-bundle PATH_TO_AIRGAP_BUNDLE \
-  --namespace NAMESPACE \
+  --namespace default \
   --no-port-forward
 ```
 
@@ -147,8 +145,6 @@ Replace:
 <PlaceholdersGlobal/>
 
 <PlaceholderAirgapBundle/>
-
-<PlaceholderNamespaceEmbedded/>
 
 ## (Optional) Access the Admin Console
 

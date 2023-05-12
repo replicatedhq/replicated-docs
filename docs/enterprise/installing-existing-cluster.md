@@ -9,6 +9,7 @@ import LicenseFile from "../partials/install/_license-file-prereq.mdx"
 import InstallCommandPrompts from "../partials/install/_kots-install-prompts.mdx"
 import ContinueToInstall from "../partials/install/_continue-to-install-step.mdx"
 import InstallApp from "../partials/install/_install-app-admin-console.mdx"
+import AppNameUI from "../partials/install/_placeholder-app-name-UI.mdx"
 
 # Online Installation in Existing Clusters
 
@@ -46,7 +47,7 @@ To install the app manager:
 
     Replace, where applicable:
     
-    * Replace `APP_NAME` with a name for the application. This is the unique name that the app manager will use to refer to the application that you install.
+    <AppNameUI/>
   
     * `VERSION_LABEL` with the label for the version of the application to install. For example, `--app-version-label=3.0.1`.  
 

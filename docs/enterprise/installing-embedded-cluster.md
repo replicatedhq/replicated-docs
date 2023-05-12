@@ -13,6 +13,7 @@ import HAStep from "../partials/install/_embedded-ha-step.mdx"
 import LoginPassword from "../partials/install/_embedded-login-password.mdx"
 import ContinueToInstall from "../partials/install/_continue-to-install-step.mdx"
 import InstallApp from "../partials/install/_install-app-admin-console.mdx"
+import AppNameUI from "../partials/install/_placeholder-app-name-UI.mdx"
 
 # Online Installation with the Kubernetes Installer
 
@@ -49,16 +50,18 @@ To provision a cluster with the Kubernetes installer:
     * For a regular installation, run:
 
       ```bash
-      curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash
+      curl -sSL https://k8s.kurl.sh/APP_NAME | sudo bash
       ```
     
     * For high availability mode:
 
       ```bash
-      curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash -s ha
+      curl -sSL https://k8s.kurl.sh/APP_NAME | sudo bash -s ha
       ```
-    
-    Replace `APP_SLUG` with the unique identifier for the application. The application slug is included in the installation command provided by your application vendor.
+      
+  Replace:
+
+    <AppNameUI/>
 
 1. <HAStep/> 
 
