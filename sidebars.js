@@ -38,17 +38,27 @@ const sidebars = {
             'vendor/distributing-workflow',
             'vendor/wip-first-release',
             'vendor/planning-questionnaire',
+            'vendor/namespaces',
+            // {
+            //   type: 'category',
+            //   label: 'Integrating with CI/CD',
+            //   items: [
+            //     'vendor/repository-workflow-and-tagging-releases',
+            //     'vendor/tutorial-ci-cd-integration',
+            //   ],
+            // },
           ],
         },
       ],
-    }, 
+    },
+     
     {
       type: 'category',
       label: 'Tutorials',
       items: [
         {
           type: 'category',
-          label: 'UI Tutorial',
+          label: 'UI Installation',
           items: [
             'vendor/tutorial-ui-setup',
             'vendor/tutorial-ui-create-app',
@@ -62,7 +72,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'CLI Tutorial',
+          label: 'CLI Installation',
           items: [
             'vendor/tutorial-cli-setup',
             'vendor/tutorial-cli-install-cli',
@@ -76,16 +86,9 @@ const sidebars = {
             'vendor/tutorial-cli-update-app',
           ],
         },
+        
       ],
     }, 
-    {
-      type: 'category',
-      label: 'Distribute Your App',
-      items: [
-        'vendor/releases-sharing-license-install-script',
-        'vendor/releases-configvalues',
-      ],
-    },
     {
       type: 'category',
       label: 'Helm Charts',
@@ -104,6 +107,7 @@ const sidebars = {
         'vendor/packaging-embedded-kubernetes',
         'vendor/packaging-installer-storage',
         'vendor/preflight-host-preflights',
+        'vendor/identity-service-configuring',
         'vendor/installer-history',
         {type: 'link', label: 'kURL Documentation', href: 'https://kurl.sh/docs/introduction/'}
       ],
@@ -171,7 +175,7 @@ const sidebars = {
         'vendor/operator-defining-additional-namespaces',
       ],
     },
-    'vendor/identity-service-configuring',
+    
     // managing stuff
     {
       type: 'category', 
@@ -197,6 +201,22 @@ const sidebars = {
             'vendor/tutorial-adding-db-config',
           ],
         },
+      ],
+    },
+    {
+      type: 'category',
+      label: 'CI/CD',
+      items: [
+        'vendor/repository-workflow-and-tagging-releases',
+        'vendor/tutorial-ci-cd-integration',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Distribute Your App',
+      items: [
+        'vendor/releases-sharing-license-install-script',
+        'vendor/releases-configvalues',
       ],
     },
     // KOTS reference
@@ -805,7 +825,7 @@ const sidebars = {
   //       'vendor/packaging-ingress',
   //           
   //       
-  //       'vendor/namespaces',
+  //       
   //       
   //       'vendor/packaging-using-tls-certs',
   //       'vendor/packaging-cleaning-up-jobs',

@@ -1,4 +1,4 @@
-# Tutorial: Integrating with an Existing CI/CD Platform
+# Integrating with an Existing CI/CD Platform
 
 This tutorial demonstrates how you can package and release an application with Replicated within your existing continuous integration and continuous deployment (CI/CD) platform.
 
