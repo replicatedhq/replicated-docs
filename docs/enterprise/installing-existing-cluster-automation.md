@@ -14,7 +14,7 @@ This topic describes using the Replicated kots CLI to automate the installation 
 
 You can automate the installation of an application in your existing cluster or in a cluster that you previously created with the Replicated Kubernetes installer. To automate installation, you create an installation command with the Replicated kots CLI `kots install` command.
 
-In an automated installation, you provide all the information required to install and deploy the application with the `kots install` command, rather than providing this information in the Replicated admin console. For example, rather than uploading your license file for the application in the admin console UI, you provide your license file with the `kots install` command using the `--license` flag.
+In an automated installation, you provide all the information required to install and deploy the application with the `kots install` command, rather than providing this information in the Replicated admin console. For example, rather than uploading your license file for the application in the admin console UI, you provide your license file with the `kots install` command using the `--license-file` flag.
 
 The flags that you use with the `kots install` command vary depending on the type of your cluster (existing cluster or Kubernetes installer cluster) and on the cluster's internet access (_online_ environment with internet access or _air gap_ environment without internet access).
 
