@@ -1,9 +1,19 @@
+import AppInstallIntroOnline from "../partials/install/_install-app-admin-console-intro-online.mdx"
+import IntroExisting from "../partials/install/_intro-existing.mdx"
+import KotsAbout from "../partials/install/_kots-about.mdx"
+
 import PrereqsExistingCluster from "../partials/install/_prereqs-existing-cluster.mdx"
+import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
 import LicenseFile from "../partials/install/_license-file-prereq.mdx"
+
+import InstallCommandPrompts from "../partials/install/_kots-install-prompts.mdx"
+import ContinueToInstall from "../partials/install/_continue-to-install-step.mdx"
+import InstallApp from "../partials/install/_install-app-admin-console.mdx"
+import AppNameUI from "../partials/install/_placeholder-app-name-UI.mdx"
 
 # Online Installation in Existing Clusters
 
-This topic describes how to use Replicated to install an application in an existing Kubernetes cluster in an online environment.
+<IntroExisting/>
 
 ## Prerequisites
 
@@ -12,52 +22,53 @@ Complete the following prerequisites:
 <PrereqsExistingCluster/> 
 <LicenseFile/>
 
-## Install the Application {#online}
+## Install the App Manager {#online}
 
-You can install an application to an existing Kubernetes cluster that contains nodes that can access the internet. In an online installation, the Replicated app manager pulls container images from the upstream registries directly.
+This procedure describes how to install the Replicated app manager in your existing cluster.
 
-To install the application:
+<KotsAbout/>
 
-1. Run one of the following commands to install the app manager:
+To install the app manager:
 
-    * For the latest version of the application:
+1. Run one of these commands to install the kots CLI and the app manager. As part of the command, you also specify a name and version for the application that you will install as part of the [Install and Deploy the Application](#install-app) procedure that follows.
 
-      ```shell
-      curl https://kots.io/install | bash
-      kubectl kots install APP_SLUG
-      ```
-
-    * For a specific version of the application, use the `app-version-label` flag and the version label for a particular version of your vendor's application:
-
-      ```shell
-      curl https://kots.io/install | bash
-      kubectl kots install APP_SLUG --app-version-label=VERSION_LABEL
-      ```
+    * **For the latest application version**:
     
+      ```shell
+      curl https://kots.io/install | bash
+      kubectl kots install APP_NAME
+      ``` 
+    * **For a specific application version**:
+
+      ```shell
+      curl https://kots.io/install | bash
+      kubectl kots install APP_NAME --app-version-label=VERSION_LABEL
+      ```
+
     Replace, where applicable:
-     * `APP_SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
-     * `VERSION_LABEL` with the label for the version of the application to install. For example, `--app-version-label=3.0.1`.
+    
+    <AppNameUI/>
+  
+    * `VERSION_LABEL` with the label for the version of the application to install. For example, `--app-version-label=3.0.1`.  
 
-1. When prompted by the `kots install` command:
-   1. Provide the namespace where you want to deploy the application and the admin console.
-   1. Create a new password for logging in to the admin console.
+    **Examples:**
 
-     **Example**:
+    ```shell
+    curl https://kots.io/install | bash
+    kubectl kots install application-name
+    ``` 
 
-     ```shell
-     $ kubectl kots install application-name
-     Enter the namespace to deploy to: application-name
-       • Deploying Admin Console
-         • Creating namespace ✓
-         • Waiting for datastore to be ready ✓
-     Enter a new password to be used for the Admin Console: ••••••••
-       • Waiting for Admin Console to be ready ✓
+    ```shell
+    curl https://kots.io/install | bash
+    kubectl kots install application-name --app-version-label=3.0.1
+    ``` 
 
-       • Press Ctrl+C to exit
-       • Go to http://localhost:8800 to access the Admin Console
+1. <InstallCommandPrompts/>
 
-     ```
+1. <ContinueToInstall/>
 
-    After the `kots install` command installs the admin console and the application on the cluster, it creates a port forward to the admin console. The admin console is exposed internally on the cluster and can only be accessed using a port forward.
+## Install and Deploy the Application {#install-app} 
 
-1. Log in to the admin console to provide the license file, define your configuration values, run preflight checks, and deploy. See [Deploying the Application using the Admin Console](installing-app-setup).
+<AppInstallIntroOnline/>
+
+<InstallApp/>

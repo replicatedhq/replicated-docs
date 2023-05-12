@@ -1,17 +1,26 @@
 import KurlAbout from "../partials/install/_kurl-about.mdx"
-import PrereqsEmbeddedCluster from "../partials/install/_prereqs-embedded-cluster.mdx"
 import HaLoadBalancerAbout from "../partials/install/_ha-load-balancer-about.mdx"
+import ProvisionClusterIntro from "../partials/install/_provision-cluster-intro.mdx"
+import AppInstallIntroAirGap from "../partials/install/_install-app-admin-console-intro-air-gap.mdx"
+import IntroEmbedded from "../partials/install/_intro-embedded.mdx"
+import IntroAirGap from "../partials/install/_intro-air-gap.mdx"
+import KotsAbout from "../partials/install/_kots-about.mdx"
+
+import PrereqsEmbeddedCluster from "../partials/install/_prereqs-embedded-cluster.mdx"
 import HaLoadBalancerPrereq from "../partials/install/_ha-load-balancer-prereq.mdx"
-import HAStep from "../partials/install/_embedded-ha-step.mdx"
-import LoginPassword from "../partials/install/_embedded-login-password.mdx"
-import InstallApp from "../partials/install/_embedded-admin-console-step.mdx"
 import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
 import LicenseFile from "../partials/install/_license-file-prereq.mdx"
-import KotsCliInstall from "../partials/install/_kots-cli-install.mdx"
+
+import HAStep from "../partials/install/_embedded-ha-step.mdx"
+import LoginPassword from "../partials/install/_embedded-login-password.mdx"
+import ContinueToInstall from "../partials/install/_continue-to-install-step.mdx"
+import InstallApp from "../partials/install/_install-app-admin-console.mdx"
 
 # Air Gap Installation with the Kubernetes Installer
 
-This topic describes how to use Replicated to install an application in an air gap environment, using the Replicated Kubernetes installer to provision an embedded cluster on a virtual machine or on bare metal. The procedure explains how to install with and without high availability mode.
+<IntroEmbedded/>
+
+<IntroAirGap/>
 
 <KurlAbout/>
 
@@ -33,11 +42,13 @@ Complete the following prerequisites:
 
 <HaLoadBalancerPrereq/>
 
-## Install the Application {#air-gap}
+## Provision the Cluster {#air-gap}
 
-This procedure describes how to provision a cluster with the Kubernetes installer, install the app manager, then install and deploy the application.
+<ProvisionClusterIntro/>
 
-To install the application:
+<KotsAbout/>
+
+To provision a cluster with the Kubernetes installer:
 
 1. In your installation environment, run the following command to download the `.tar.gz` air gap bundle for the Kubernetes installer:
 
@@ -67,33 +78,14 @@ To install the application:
       cat install.sh | sudo bash -s airgap ha
       ```
 
-    :::note
-    <LoginPassword/>
-    :::
+1. <HAStep/>
 
-  1. <HAStep/>
+1. <LoginPassword/>
+
+1. <ContinueToInstall/>
+
+## Install and Deploy the Application {#install-app} 
+
+<AppInstallIntroAirGap/>
   
-  1. Install the application using one of the following methods:
-
-      <InstallApp/>
-
-      - **kots CLI:** To install and deploy the application with the kots CLI, run the following command:
-        
-        ```bash
-        kubectl kots install APP_NAME \
-        --license-file PATH_TO_LICENSE_FILE \
-        --config-values PATH_TO_CONFIG_VALUES \
-        --namespace ADMIN_CONSOLE_NAMESPACE \
-        --shared-password PASSWORD \
-        --airgap-bundle PATH_TO_AIRGAP_BUNDLE
-        ```
-
-        Replace:
-        <KotsCliInstall/>
-        
-        * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle that you downloaded.
-
-        For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
-## Next Step
-
-(Optional) You can add nodes to the cluster. See [Adding Nodes to Kubernetes Installer Clusters](cluster-management-add-nodes).
+<InstallApp/>

@@ -495,7 +495,6 @@ const sidebars = {
           items: [
             'enterprise/installing-overview',
             'enterprise/installing-general-requirements',
-            'enterprise/installing-stateful-component-requirements',
             'enterprise/sbom-validating',
             {
               type: 'category',
@@ -503,7 +502,6 @@ const sidebars = {
               items: [
                 'enterprise/installing-existing-cluster',
                 'enterprise/installing-existing-cluster-airgapped',
-                'enterprise/installing-existing-cluster-automation',
               ],
             },
             {
@@ -515,8 +513,9 @@ const sidebars = {
                 'enterprise/cluster-management-add-nodes',
               ],
             },
-            'enterprise/installing-app-setup',
-            'enterprise/delete-admin-console',
+            
+            'enterprise/installing-existing-cluster-automation',
+            'enterprise/installing-stateful-component-requirements',
           ],
         },
         {
@@ -593,6 +592,7 @@ const sidebars = {
           items: [
             'enterprise/status-viewing-details',
             'enterprise/troubleshooting-an-app',
+            'enterprise/delete-admin-console',
           ],
         },
       ],

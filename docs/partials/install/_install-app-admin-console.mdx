@@ -1,14 +1,4 @@
-# Deploying the Application using the Admin Console
-
-This topic describes how to access the Replicated admin console to provide the license file, define your configuration values, run preflight checks, and deploy the application.
-
-## Prerequisite
-
-This procedure assumes that you have already installed the admin console on either an existing cluster or on a cluster provisioned by the Replicated Kubernetes installer.
-
-## Access the Admin Console and Deploy the Application
-
-To deploy the application using the admin console:
+To install the application using the admin console:
 
 1. Access the admin console on port 8800:
    * **Existing cluster**: If the port forward is active, go to [http://localhost:8800](http://localhost:8800) to access the admin console.
@@ -16,9 +6,9 @@ To deploy the application using the admin console:
       If you need to reopen the port forward to the admin console, run the following command:
 
       ```shell
-      kubectl kots admin-console -n APP_NAMESPACE
+      kubectl kots admin-console -n NAMESPACE
       ```
-      Replace `APP_NAMESPACE` with the namespace on the cluster where you installed the application.
+      Replace `NAMESPACE` with the namespace where the app manager is installed.
 
    * **Kubernetes installer cluster**: Go to the address provided in the `Kotsadm` field in the output of the installation command. For example, `Kotsadm: http://34.171.140.123:8800`.
 

@@ -1,17 +1,23 @@
 import KurlAbout from "../partials/install/_kurl-about.mdx"
-import PrereqsEmbeddedCluster from "../partials/install/_prereqs-embedded-cluster.mdx"
 import HaLoadBalancerAbout from "../partials/install/_ha-load-balancer-about.mdx"
+import ProvisionClusterIntro from "../partials/install/_provision-cluster-intro.mdx"
+import AppInstallIntroOnline from "../partials/install/_install-app-admin-console-intro-online.mdx"
+import IntroEmbedded from "../partials/install/_intro-embedded.mdx"
+import KotsAbout from "../partials/install/_kots-about.mdx"
+
+import PrereqsEmbeddedCluster from "../partials/install/_prereqs-embedded-cluster.mdx"
 import HaLoadBalancerPrereq from "../partials/install/_ha-load-balancer-prereq.mdx"
+import LicenseFile from "../partials/install/_license-file-prereq.mdx"
+
 import HAStep from "../partials/install/_embedded-ha-step.mdx"
 import LoginPassword from "../partials/install/_embedded-login-password.mdx"
-import InstallApp from "../partials/install/_embedded-admin-console-step.mdx"
-import AirGapBundle from "../partials/install/_airgap-bundle-prereq.mdx"
-import LicenseFile from "../partials/install/_license-file-prereq.mdx"
-import KotsCliInstall from "../partials/install/_kots-cli-install.mdx"
+import ContinueToInstall from "../partials/install/_continue-to-install-step.mdx"
+import InstallApp from "../partials/install/_install-app-admin-console.mdx"
+import AppNameUI from "../partials/install/_placeholder-app-name-UI.mdx"
 
 # Online Installation with the Kubernetes Installer
 
-This topic describes how to use Replicated to install an application in an embedded cluster provisioned by the Replicated Kubernetes installer. The procedure explains how to install with and without high availability mode.
+<IntroEmbedded/>
 
 <KurlAbout/>
 
@@ -31,53 +37,42 @@ Complete the following prerequisites:
 
 <HaLoadBalancerPrereq/>
 
-## Install the Application
+## Provision the Cluster {#provision-cluster}
 
-This procedure describes how to provision a cluster with the Kubernetes installer, install the app manager, then install and deploy the application.
+<ProvisionClusterIntro/>
 
-To install the application:
+<KotsAbout/>
 
-1. Run one of the following commands to create the cluster with the Kubernetes installer and install the app manager:
+To provision a cluster with the Kubernetes installer:
+
+1. Run one of the following commands to create the cluster with the Kubernetes installer:
 
     * For a regular installation, run:
 
       ```bash
-      curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash
+      curl -sSL https://k8s.kurl.sh/APP_NAME | sudo bash
       ```
     
     * For high availability mode:
 
       ```bash
-      curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash -s ha
+      curl -sSL https://k8s.kurl.sh/APP_NAME | sudo bash -s ha
       ```
-    
-    Replace `APP_SLUG` with the unique slug for the application. The application slug is included in the installation command provided by the vendor.
+      
+  Replace:
 
-    :::note
-    <LoginPassword/>
-    :::
+    <AppNameUI/>
 
 1. <HAStep/> 
 
-1. Install the application using one of the following methods:
+1. <LoginPassword/>
 
-    <InstallApp/>
+1. <ContinueToInstall/>
 
-    - **kots CLI:** To install and deploy the application with the kots CLI, run the following command:
+   Alternatively, you can use the kots CLI to automate the installation of the application rather than logging in to the admin console. For more information, see [Installing with Automation](installing-existing-cluster-automation).
 
-      ```bash
-      kubectl kots install APP_NAME \
-      --license-file PATH_TO_LICENSE_FILE \
-      --config-values PATH_TO_CONFIG_VALUES \
-      --namespace ADMIN_CONSOLE_NAMESPACE \
-      --shared-password PASSWORD
-      ```
+## Install and Deploy the Application {#install-app} 
 
-      Replace:
-      <KotsCliInstall/>
+<AppInstallIntroOnline/>
 
-      For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
-
-## Next Step
-
-(Optional) You can add nodes to the cluster. See [Adding Nodes to Kubernetes Installer Clusters](cluster-management-add-nodes).
+<InstallApp/>

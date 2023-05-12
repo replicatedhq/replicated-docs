@@ -12,7 +12,7 @@ For example, if your application does TLS termination, your deployment would nee
 
 ### Get the TLS Secret
 
-The Kubernetes installer sets up a Kubernetes secret called `kotsadm-tls`. The secret stores the TLS certificate, key, and hostname. Initially, the secret has an annotation set called `acceptAnonymousUploads`. This indicates that a new TLS certificate can be uploaded by the end customer during the deployment process. For more information about deployment, see [Deploying the Application using the Admin Console](/enterprise/installing-app-setup).
+The Kubernetes installer sets up a Kubernetes secret called `kotsadm-tls`. The secret stores the TLS certificate, key, and hostname. Initially, the secret has an annotation set called `acceptAnonymousUploads`. This indicates that a new TLS certificate can be uploaded by the end customer during the deployment process. For more information about deployment, see [About Installing an Application](/enterprise/installing-overview) in the _Enterprise User_ documentation.
 
 Before you can reference the TLS certificate in other resources, you must get the `kotsadm-tls` secret output.
 
