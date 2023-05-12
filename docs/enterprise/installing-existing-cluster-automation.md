@@ -183,7 +183,7 @@ To access the admin console:
   ```bash
   kubectl kots admin-console --namespace NAMESPACE
   ```
-  Replace `NAMESPACE` with the namespace where the admin console was installed. By default, the app manager installs the admin console in the `default` namespace.
+  Replace `NAMESPACE` with the namespace where the admin console was installed.
 
   For more information about the `kots admin-console` command, see [admin-console](/reference/kots-cli-admin-console-index) in the _kots CLI_ documentation.
 
