@@ -1,14 +1,14 @@
 # Using Custom Domains (Beta)
 
-This topic describes using custom domains to alias Replicated endpoints, and how to configure them using the Replicated vendor portal. For information about using the API instead, see [Using the Vendor API v3](/reference/vendor-api-using) in _Reference_.
+This topic describes using custom domains to alias Replicated endpoints, and how to configure them using the Replicated vendor portal. It also describes how to configure a custom domain for your customer download portal.
 
-## About Custom Domains
+## About Custom Registry Domains
 
 You can use custom domains as aliases for the Replicated registry, the proxy service, and the download portal by creating Canonical Name (CNAME) records for your domains.
 
 Replicated domains are external to your domain and require additional security reviews by your customer. Using custom domains as aliases can bring the domains inside an existing security review and reduce your exposure.
 
-Using the Replicated vendor portal or the vendor API, you configure custom domains at the Team level.
+Using the Replicated vendor portal or the vendor API, you configure custom domains at the Team level. For information about using the API instead, see [Using the Vendor API v3](/reference/vendor-api-using).
 
 Verification of the domain is required using TXT records that undergo separate verification checks for:
 
@@ -23,6 +23,10 @@ For registry and proxy domains only, you also specify the domains in the Applica
 - Roll out domain name changes in phases to prevent the application from breaking in production environments
 
 For more information about registries, see [Connecting to a Private Registry](packaging-private-images).
+
+## About Custom Download Portal Domains
+
+You can specify a custom domain for your customer download portal instead of using the default get.replicated.com. You can set one download portal custom domain for all of your customers, or set multiple custom domains and optionally set one custom domain as the default download portal.
 
 For more information about the download portal, see [Share Files through the Download Portal](releases-sharing-license-install-script#download-portal) in _Share License Files and Releases_.
 
@@ -45,9 +49,15 @@ To configure a custom domain for one of these services:
 
 1. Log in to the [vendor portal](https://vendor.replicated.com), and click **Team > Custom Domains**.
 
+  <img src="/images/custom-domains-page.png" alt="Custom registry domains options in the vendor portal" width="600"/>
+
+  [View a larger image](/images/custom-domains-page.png)
+
 1. In the **Custom domains...** pane for either the Replicated registry or the proxy service, click **Add your first custom domain** for your first domain, or click **Add new domain** for additional domains.
 
-  The **Configure a custom domain** wizard opens.
+  The **Configure a custom domain** wizard opens for the registry type you chose.
+
+  <img src="/images/custom-domains-configure.png" alt="Configure custom domains wizard in the vendor portal" width="600"/>
 
 1. For **Domain**, enter the custom domain to use for images pushed to the Replicated registry or to proxy using the proxy service. Click **Save & continue**.
 
@@ -74,6 +84,11 @@ To transition to a different registry custom domain:
 1. From the vendor portal, click **Teams > Custom Domains**.
 1. Click **Add domain to a release** next to a domain in the Replicated registry or proxy service lists to begin using a newly configured domain. Then do the following:
     1. Copy the snippet from the **Configure a custom domain** dialog that opens, and click **Ok, got it!**.
+
+      <img src="/images/custom-domains-snippet.png" alt="Copy custom domains snippet in the vendor portal" width="600"/>
+
+      [View a larger image](/images/custom-domains-snippet.png)
+
     1. Create a new release and add the code snippet to the Application custom resource manifest file to create the new field for either `proxyRegistryDomain` or `replicatedRegistryDomain`. For more information, see [proxyRegistryDomain](../reference/custom-resource-application#proxyRegistryDomain) and [replicatedRegistryDomain](../reference/custom-resource-application#replicatedRegistryDomain) in the _Application_ section.
 1. Ensure that all customers update to the new release so that they no longer use the old registry custom domain.
 1. Click **Remove** next to the unused domain in the list to remove it from the vendor portal. Click **Yes, remove domain**.
@@ -88,11 +103,17 @@ You can configure the download portal to use a custom domain instead of the defa
 
 To configure a custom domain for the download portal:
 
-1. Log in to the [vendor portal](https://vendor.replicated.com), and click **Team > Custom Domains**.
+1. Log in to the [vendor portal](https://vendor.replicated.com), and click **Team > Custom Domains**. Scroll down to the **Custom domain for the download portal** pane. 
 
-1. In the **Custom domain for the download portal** pane, click **Add your first custom domain** for your first domain, or click **Add new domain** for additional domains.
+  <img src="/images/custom-domains-download-portal.png" alt="Download portal custom domains pane in the vendor portal" width="600"/>
+
+  [View a larger image](/images/custom-domains-download-portal.png)
+
+1. Click **Add your first custom domain** for your first domain, or click **Add new domain** for additional domains.
 
   The **Configure a custom domain** wizard opens.
+
+  <img src="/images/custom-domains-download-configure.png" alt="Configure download portal custom domain dialog in the vendor portal" width="600"/>
 
 1. For **Domain**, enter the custom domain to use for the download portal. Click **Save & continue**.
 
@@ -118,4 +139,5 @@ You can set a download portal custom domain as the default at any time.
 To set a download portal custom domain as the default:
 
 1. From the vendor portal, click **Teams > Custom Domains**.
-1. In the **Custom domain for the download portal** pane, click **Set as default domain** next to the domain that you want use as the default. Click **Yes, set as default**.
+1. In the **Custom domain for the download portal** pane, click **Set as default domain** next to the domain that you want use as the default. 
+1. In the confirmation dialog that opens, click **Yes, set as default**.
