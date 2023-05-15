@@ -17,12 +17,16 @@ To get started with a tutorial that demonstrates how to use the replicated CLI t
 
 ## About the Replicated Documentation
 
-The Replicated product documentation guides vendors through packaging, distributing, and updating their application with Replicated. To begin packaging your production application with Replicated, see [How to Package and Distribute a Production Application](vendor/distributing-workflow).
+The Replicated product documentation includes information about the Replicated features for application vendors and for their enterprise end users.
 
-The _Reference_ section includes reference documentation for Replicated custom resources, template functions, CLIs, and the Vendor API.
+### Distribute and Support (Vendor)
 
-The _Enterprise User Documentation_ includes information for the enterprise users of applications delivered with Replicated. The topics in this section describe how enterprise users can install, update, manage, backup and restore, and monitor the application.
+The _Distribute and Support_ section includes documentation for application vendors. This section describes how to package, distribute, and support an application with the Replicated app manager. It includes information about managing channels, releases, and customers in the Replicated vendor portal. It also describes how to configure features such as preflight checks, support bundles, backup and restore, and Kubernetes installers for your application. For more information, see [What is Replicated?](intro-replicated) and [How to Create and Test Releases for Your Application](/vendor/distributing-workflow).
 
-Vendors can use the Enterprise documentation to test the installation and management their application with Replicated. Vendors can also clone the Enterprise content from the replicated-docs repository and include it with their application documentation. For more information, see [replicated-docs](https://github.com/replicatedhq/replicated-docs) in GitHub.
+### Install and Manage (Enterprise User)
 
+The _Install and Manage_ section includes documentation for the enterprise users of applications distributed with Replicated. This section describes how to use the Replicated admin console and the Replicated kots CLI to install, update, manage, back up and restore, and monitor application instances. For more information, see [About Installing an Application](/enterprise/installing-overview).
 
+Vendors can use the documentation in this section to test the installation and management of their application with the admin console and kots CLI.
+
+Vendors can also use the content in this section to write their own documentation for their applications. For more information about writing documentation, see the [replicated-docs](https://github.com/replicatedhq/replicated-docs) repository in GitHub.
