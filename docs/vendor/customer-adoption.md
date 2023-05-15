@@ -25,7 +25,7 @@ The **Adoption** report also displays the number of customers assigned to the se
 You can filter the graph and metrics in the **Adoption** report by:
 * License type (Paid, Trial, Dev, or Community)
 * Time period (the previous month, three months, six months, or twelve months)
-* Release channel where the instance license is assigned, such as Stable or Beta
+* Release channel to which instance licenses are assigned, such as Stable or Beta
 
 ## Adoption Graph {#graph}
 
