@@ -95,6 +95,7 @@ const sidebars = {
         'vendor/custom-domains',
       ],
     },
+    {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true},
     {
       type: 'category',
       label: 'Plan a Production Release',
@@ -217,6 +218,8 @@ const sidebars = {
       label: 'Managing Resources and Objects',
       items: [
         'vendor/packaging-include-resources',
+        'vendor/database-config-adding-options',
+        'vendor/tutorial-adding-db-config',
         'vendor/packaging-cleaning-up-jobs',
         'vendor/packaging-ingress',
       ],
@@ -229,14 +232,6 @@ const sidebars = {
         'vendor/operator-defining-additional-images',
         'vendor/operator-referencing-images',
         'vendor/operator-defining-additional-namespaces',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Persistent Data Stores',
-      items: [
-        'vendor/database-config-adding-options',
-        'vendor/tutorial-adding-db-config',
       ],
     },
     {
@@ -266,34 +261,11 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Support your Application',
+      label: 'Supporting your Application',
       items: [
         'vendor/support-inspecting-support-bundles',
         'vendor/support-submit-request',
         'vendor/support-host-support-bundles',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Policies',
-      items: [
-        'vendor/policies-vulnerability-patch',
-        'vendor/policies-support-lifecycle',
-        'vendor/policies-data-transmission',
-        'vendor/policies-infrastructure-and-subprocessors',
-        {
-          type: 'link',
-          label: 'Security at Replicated',
-          href: 'https://www.replicated.com/security/'
-        },
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Replicated Data Storage',
-      items: [
-        'vendor/data-availability',
-        'vendor/offsite-backup'
       ],
     },
     {
@@ -491,6 +463,7 @@ const sidebars = {
         },
       ],
     },
+    {type: 'html', value: '<h5>install and manage</h5>', defaultStyle: true},
     {
       type: 'category',
       label: 'Enterprise User Documentation',
@@ -602,6 +575,25 @@ const sidebars = {
           ],
         },
       ],
+    },
+    {type: 'html', value: '<h5>policies</h5>', defaultStyle: true},
+    'vendor/policies-vulnerability-patch',
+    'vendor/policies-support-lifecycle',
+    'vendor/policies-data-transmission',
+    'vendor/policies-infrastructure-and-subprocessors',
+    
+    {
+      type: 'category',
+      label: 'Replicated Data Storage',
+      items: [
+        'vendor/data-availability',
+        'vendor/offsite-backup'
+      ],
+    },
+    {
+      type: 'link',
+      label: 'Security at Replicated',
+      href: 'https://www.replicated.com/security/'
     },
   ],
 };
