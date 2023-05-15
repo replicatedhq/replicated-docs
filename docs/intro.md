@@ -19,9 +19,9 @@ To get started with a tutorial that demonstrates how to use the replicated CLI t
 
 The Replicated product documentation guides vendors through packaging, distributing, and updating their application with Replicated. To begin packaging your production application with Replicated, see [How to Package and Distribute a Production Application](vendor/distributing-workflow).
 
-The Reference section includes reference documentation for Replicated custom resources, template functions, CLIs, and the Vendor API.
+The _Reference_ section includes reference documentation for Replicated custom resources, template functions, CLIs, and the Vendor API.
 
-The Enterprise section includes information for the enterprise users of applications delivered with Replicated. The topics in this section describe how enterprise users can install, update, manage, backup and restore, and monitor the application.
+The _Enterprise User Documentation_ includes information for the enterprise users of applications delivered with Replicated. The topics in this section describe how enterprise users can install, update, manage, backup and restore, and monitor the application.
 
 Vendors can use the Enterprise documentation to test the installation and management their application with Replicated. Vendors can also clone the Enterprise content from the replicated-docs repository and include it with their application documentation. For more information, see [replicated-docs](https://github.com/replicatedhq/replicated-docs) in GitHub.
 
