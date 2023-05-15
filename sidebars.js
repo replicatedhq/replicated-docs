@@ -98,7 +98,7 @@ const sidebars = {
     {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true},
     {
       type: 'category',
-      label: 'Plan an Application Release',
+      label: 'Planning a Production Release',
       items: [
         'vendor/distributing-workflow',
         'vendor/planning-questionnaire',
@@ -244,7 +244,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Share a Release',
+      label: 'Sharing Releases',
       items: [
         'vendor/releases-sharing-license-install-script',        
         'vendor/releases-configvalues',
