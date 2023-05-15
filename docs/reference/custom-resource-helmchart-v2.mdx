@@ -18,13 +18,13 @@ import Intro from "../partials/helm/_helm-cr-intro.mdx"
 
 # HelmChart v2
 
-The HelmChart v2 custom resource applies to the native Helm v2 installation.
+The HelmChart v2 custom resource supports the native Helm v2 installation. This v2 installation method does a Helm install or upgrade on the vendor’s chart, and bypasses existing Kustomize logic to re-write images, inject pull secrets, and add backup labels and annotations.  As a vendor, you must configure a combination of Replicated and Helm templating to re-write images, inject pull secrets, and add backup labels and annotations.
 
 <Intro/>
 
 ## Example
 
-The following is an example manifest file for the HelmChart custom resource:
+The following is an example manifest file for the HelmChart v2 custom resource:
 
 ```yaml
 apiVersion: kots.io/v1beta2
@@ -129,9 +129,10 @@ spec:
 <Namespace/>
 
 ## builder
+
 The `builder` field is required for the following use cases:
 
-* To support online installations that are configured to push and pull from a private registry (so `disable image push` is _not_ selected), vendors must provide the necessary values in the `builder` field to render the helm chart with all necessary images
+* To support online installations that are configured to push and pull from a private registry (where `disable image push` is _not_ selected), vendors must provide the necessary values in the `builder` field to render the helm chart with all necessary images
 
 * To create an `.airgap` bundle for a release that uses Helm charts, the Replicated vendor portal renders templates of the Helm charts with `helm template`. The `builder` key specifies the values from the Helm chart `values.yaml` file that the vendor portal uses to create the `.airgap` bundle. For more information, see [Air Gap](/vendor/helm-overview#air-gap) in _About Deploying Helm Charts_.
 
