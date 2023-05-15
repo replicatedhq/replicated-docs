@@ -12,7 +12,7 @@ Released on May 15, 2023
 * Adds [Registry add-on](https://kurl.sh/docs/add-ons/registry) version 2.8.2.
 
 ### Bug Fixes {#bug-fixes-v2023-05-15-0}
-* Adds fixes to rnsure that the Firewalld check verifies if it is enabled and active, and provide more comprehensive information.
+* Adds fixes to ensure that the Firewalld check verifies if it is enabled and active, and provide more comprehensive information.
 
 ## v2023.05.11-0
 
