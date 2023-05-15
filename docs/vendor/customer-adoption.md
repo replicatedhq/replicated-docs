@@ -37,7 +37,9 @@ The following shows an example of an adoption rate graph with three months of da
 
 [View a larger version of this image](/images/adoption_rate_graph.png)
 
-As shown in the image above, the graph plots the number of active instances in each week in the selected time period. Additionally, the graph uses colors to represent the application versions that were active in each week. The key to the left of the graph shows the unique color that is assigned to each application version. You can use this color-coding to see at a glance the percent of active instances that were running different versions of your application across the selected time period.
+As shown in the image above, the graph plots the number of active instances in each week in the selected time period, grouped by the version each instance is running. The key to the left of the graph shows the unique color that is assigned to each application version. You can use this color-coding to see at a glance the percent of active instances that were running different versions of your application across the selected time period. 
+
+Newer versions will enter at the bottom of the area chart, with older versions shown higher up.
 
 You can also hover over a color-coded section in the graph to view the number and percentage of active instances that were running the version in a given period.
 
