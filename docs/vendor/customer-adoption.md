@@ -93,7 +93,7 @@ The following table describes each metric in the **Adoption** section, including
         <p><em>Median relative age</em> is the median value across all active instances for the selected time period and channel.</p>
         <p><strong>Formula</strong>: <code>median(relative_age(instance_version))</code></p>
       </td>
-      <td><p>Decrease towards the median time between your releases</p></td>
+      <td><p>Depends on your release cadence - best in class for vendors who ship every 4-8 weeks is 60 days or less</p></td>
     </tr>
     <tr>
       <td>Upgrades completed</td>
