@@ -249,7 +249,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Distribute Your Application',
+      label: 'Share a Release',
       items: [
         'vendor/releases-sharing-license-install-script',        
         'vendor/releases-configvalues',
