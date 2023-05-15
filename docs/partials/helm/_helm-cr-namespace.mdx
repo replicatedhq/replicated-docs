@@ -1,0 +1,4 @@
+The `namespace` key specifies an alternative namespace where the app manager installs the Helm chart. **Default:** The Helm chart is installed in the same namespace as the admin console. The `namespace` attribute can be parsed by template functions. For more information about template functions, see [About template function contexts](template-functions-about).
+
+
+If you specify a namespace in the HelmChart `namespace` field, you must also include the same namespace in the `additionalNamespaces` field of the Application custom resource manifest file. The app manager creates the namespaces listed in the `additionalNamespaces` field during installation. For more information, see [additionalNamespaces](custom-resource-application#additionalnamespaces) in the _Application_ reference.

@@ -1,0 +1,12 @@
+The `when` field in `optionalValues` provides a string-based method that is evaluated by template functions. The `when` field defers evaluation of the conditional to render time in the customer environment. 
+
+To write the `when` conditional statement, use template functions. The following example shows a conditional statement for selecting a database option on the admin console configuration screen:
+
+```yaml
+optionalValues:
+  - when: "repl{{ ConfigOptionEquals `postgres_type` `external_postgres`}}"
+```  
+
+For more information about using optional values, see [Configuring Optional Value Keys](/vendor/helm-optional-value-keys). 
+
+For more information about the syntax for template functions, see [About Template Function Contexts](template-functions-about).

@@ -293,6 +293,7 @@ const sidebars = {
             'reference/custom-resource-application',
             'reference/custom-resource-backup',
             'reference/custom-resource-config',
+            'reference/custom-resource-helmchart-v2',
             'reference/custom-resource-helmchart',
             'reference/custom-resource-identity',
             'reference/custom-resource-lintconfig',
