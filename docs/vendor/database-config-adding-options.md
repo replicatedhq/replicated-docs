@@ -2,7 +2,7 @@
 
 This topic provides recommendations for managing stateful services that you install into existing clusters.
 
-## Adding Preflight Checks for Stateful Services
+## Preflight Checks for Stateful Services
 
 If you expect to also install stateful services into existing clusters, you will likely want to expose [preflight analyzers that check for the existence of a storage class](https://troubleshoot.sh/reference/analyzers/storage-class/).
 

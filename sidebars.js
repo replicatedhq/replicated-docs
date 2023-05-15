@@ -98,7 +98,7 @@ const sidebars = {
     {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true},
     {
       type: 'category',
-      label: 'Plan a Production Release',
+      label: 'Plan an Application Release',
       items: [
         'vendor/distributing-workflow',
         'vendor/planning-questionnaire',
