@@ -245,8 +245,8 @@ const sidebars = {
       label: 'Insights and Reporting',
       items: [
          'vendor/instance-insights-event-data',
-         'vendor/customer-reporting',
          'vendor/customer-adoption',
+         'vendor/customer-reporting',
          'vendor/instance-insights-details',
        ],
     },

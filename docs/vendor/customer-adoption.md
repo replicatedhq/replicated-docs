@@ -95,7 +95,7 @@ The following table describes each metric in the **Adoption** section, including
         <p><em>Median relative age</em> is the median value across all active instances for the selected time period and channel.</p>
         <p><strong>Formula</strong>: <code>median(relative_age(instance_version))</code></p>
       </td>
-      <td><p>Depends on your release cadence - best in class for vendors who ship every 4-8 weeks is 60 days or less</p></td>
+      <td><p>Depends on release cadence. For vendors who ship every four to eight weeks, decrease the median relative age towards 60 days or fewer.</p></td>
     </tr>
     <tr>
       <td>Upgrades completed</td>
@@ -105,7 +105,7 @@ The following table describes each metric in the **Adoption** section, including
         <p>The instance does <em>not</em> need to become available (as indicated by reaching a Ready state) after deploying the new version for the upgrade to be counted as complete.</p>
         <p><strong>Formula</strong>: <code>sum(instance.upgrade_count) across all instances</code></p>
       </td>
-      <td>No clear target, more upgrades is better. Unless you're reducing your total number of live instances, you should expect this number to increase over any previous period</td>
+      <td>Increase compared to any previous period, unless you reduce your total number of live instances.</td>
     </tr>
   </tbody>
 </table>
