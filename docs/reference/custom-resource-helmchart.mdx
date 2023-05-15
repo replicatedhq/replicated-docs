@@ -13,8 +13,7 @@ import OptionalValuesWhen from "../partials/helm/_helm-cr-optional-values-when.m
 import OptionalValuesRecursiveMerge from "../partials/helm/_helm-cr-optional-values-recursive-merge.mdx"
 import Namespace from "../partials/helm/_helm-cr-namespace.mdx"
 import Intro from "../partials/helm/_helm-cr-intro.mdx"
-
-
+import BuilderAirgapIntro from "../partials/helm/_helm-cr-builder-airgap-intro.mdx"
 
 # HelmChart v1
 
@@ -153,7 +152,7 @@ Native Helm installations always deploy using Helm v3.
 
 ## builder
 
-To create an `.airgap` bundle for a release that uses Helm charts, the Replicated vendor portal renders templates of the Helm charts with `helm template`. The `builder` key specifies the values from the Helm chart `values.yaml` file that the vendor portal uses to create the `.airgap` bundle. For more information, see [Air Gap](/vendor/helm-overview#air-gap) in _About Deploying Helm Charts_.
+<BuilderAirgapIntro/>
 
 <HelmBuilderRequirements/>
 
