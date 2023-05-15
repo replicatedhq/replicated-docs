@@ -103,7 +103,7 @@ The following table describes each metric in the **Adoption** section, including
         <p>The instance does <em>not</em> need to become available (as indicated by reaching a Ready state) after deploying the new version for the upgrade to be counted as complete.</p>
         <p><strong>Formula</strong>: <code>sum(instance.upgrade_count) across all instances</code></p>
       </td>
-      <td>Increase towards the total number of upgrades available across instances for the selected time period and channel</td>
+      <td>No clear target, more upgrades is better. Unless you're reducing your total number of live instances, you should expect this number to increase over any previous period</td>
     </tr>
   </tbody>
 </table>
