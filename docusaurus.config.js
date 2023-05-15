@@ -85,13 +85,68 @@ const config = {
                 to: 'release-notes/rn-whats-new',
               },
               {
-                label: 'Getting Started Tutorials',
+                label: 'Tutorials',
                 to: 'vendor/tutorial-ui-setup',
+              },
+              {
+                label: 'Enterprise User',
+                to: 'enterprise/installing-overview',
+              },
+              {
+                label: 'Custom Resources',
+                to: 'enterprise/custom-resource-about',
               },
             ],
           },
           {
-            title: 'Community',
+            title: 'Security',
+            items: [
+              {
+                label: 'Vulnerability Patch',
+                to: 'vendor/policies-vulnerability-patch',
+              },
+              {
+                label: 'Data Transmission',
+                to: 'vendor/policies-data-transmission',
+              },
+              {
+                label: 'Infrastructure and Subprocessor Providers',
+                to: 'vendor/policies-infrastructure-and-subprocessors',
+              },
+              {
+                label: 'Security at Replicated',
+                href: 'https://www.replicated.com/security/',
+              },
+            ],
+          },
+          {
+            title: 'Replicated Data Storage',
+            items: [
+              {
+                label: 'Data Availability and Continuity',
+                to: 'vendor/data-availability',
+              },
+              {
+                label: 'Offsite Data Backup',
+                to: 'vendor/offsite-backup',
+              }, 
+            ],
+          },
+          {
+            title: 'Support',
+            items: [
+              {
+                label: 'Support Lifecycle',
+                to: 'vendor/policies-support-lifecycle',
+              },
+              {
+                label: 'Submit a Support Request',
+                to: 'vendor/support-submit-request',
+              },
+            ],
+          },
+          {
+            title: 'Community and More',
             items: [
               {
                 label: 'Discourse',
@@ -101,14 +156,9 @@ const config = {
                 label: 'Twitter',
                 href: 'https://twitter.com/replicatedhq',
               },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
               {
-                label: 'Blog',
-                to: 'https://replicated.com/blog',
+                label: 'Replicated Blog',
+                href: 'https://replicated.com/blog',
               },
               {
                 label: 'GitHub',

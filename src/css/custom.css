@@ -139,6 +139,31 @@ ol ol ol {
   justify-content: center !important;
 }
 
+/* Sidebar styling */
+
+.back-to-home__div {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  padding-left: .5em;
+}
+
+.back-to-home__link-text {
+  margin: 1em 0;
+  font-weight: 600;
+}
+
+.back-to-home__link-text:hover {
+  text-decoration: none;
+}
+
+.back-to-home__arrow {
+  transform: rotate(180deg);
+  max-width: 1.5rem; 
+}
 
 /* Release Note label styling */
 

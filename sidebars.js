@@ -18,9 +18,33 @@ const sidebars = {
 
   // But you can create a sidebar manually
 
-  tutorialSidebar: [
+  policiesSidebar: [
+    {type: 'html', value:'<div class="back-to-home__div menu__link"><img class="back-to-home__arrow" src="/images/arrow-black.png"><a class="back-to-home__link-text" href="../intro-replicated">Back to Home</a></div>'},
+    'vendor/policies-vulnerability-patch',
+    'vendor/policies-support-lifecycle',
+    'vendor/policies-data-transmission',
+    'vendor/policies-infrastructure-and-subprocessors',
+    'vendor/data-availability',
+    'vendor/offsite-backup',
+    {
+      type: 'link',
+      label: 'Security at Replicated',
+      href: 'https://www.replicated.com/security/'
+    },
+  ],
 
+  tutorialSidebar: [
     'intro',
+    {
+      type: 'category',
+      className: 'main-section',
+      label: 'Release Notes',
+      items: [
+        'release-notes/rn-whats-new',
+        'release-notes/rn-app-manager',
+        'release-notes/rn-kubernetes-installer'
+      ],
+    },
     'intro-replicated',
     {
       type: 'category',
@@ -87,6 +111,15 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Plan a Production Release',
+      items: [
+        'vendor/distributing-workflow',
+        'vendor/planning-questionnaire',
+        'vendor/namespaces',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Channels and Releases',
       items: [
         'vendor/releases-about',
@@ -95,14 +128,6 @@ const sidebars = {
         'vendor/helm-release-creating-package',
         'vendor/releases-creating-releases',
         'vendor/releases-creating-cli',
-        {
-          type: 'category',
-          label: 'Integrating with CI/CD',
-          items: [
-            'vendor/repository-workflow-and-tagging-releases',
-            'vendor/tutorial-ci-cd-integration',
-          ],
-        },
       ],
     },
     {
@@ -118,45 +143,26 @@ const sidebars = {
       ],
     },
     {
-      type: 'category',
-      label: 'Packaging an Application',
-      items: [
-        {
-            type: 'category',
-            label: 'Customizing the Configuration Screen',
-            items: [
-              'vendor/config-screen-about',
-              'vendor/admin-console-customize-config-screen',
-              'vendor/config-screen-map-inputs',
-              'vendor/helm-mapping-example',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Adding Persistent Data Stores',
-          items: [
-            'vendor/database-config-adding-options',
-            'vendor/tutorial-adding-db-config',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Customizing the Admin Console and Download Portal',
-          items: [
-            'vendor/admin-console-customize-app-icon',
-            'vendor/admin-console-display-app-status',
-            'vendor/admin-console-adding-buttons-links',
-            'vendor/admin-console-prometheus-monitoring',
-          ],
-        },
-        'vendor/packaging-ingress',
-        'vendor/packaging-kots-versions',    
-        'vendor/namespaces',
-        'vendor/packaging-rbac',
-        'vendor/packaging-using-tls-certs',
-        'vendor/identity-service-configuring',
+        type: 'category',
+        label: 'Customizing the Configuration Screen',
+        items: [
+          'vendor/config-screen-about',
+          'vendor/admin-console-customize-config-screen',
+          'vendor/config-screen-map-inputs',
+          'vendor/helm-mapping-example',
       ],
-    },  
+    },
+    
+    {
+      type: 'category',
+      label: 'Customizing the Admin Console and Download Portal',
+      items: [
+        'vendor/admin-console-customize-app-icon',
+        'vendor/admin-console-display-app-status',
+        'vendor/admin-console-adding-buttons-links',
+        'vendor/admin-console-prometheus-monitoring',
+      ],
+    }, 
     {
       type: 'category',
       label: 'Private Registries',
@@ -177,6 +183,15 @@ const sidebars = {
         'vendor/preflight-support-bundle-creating',
         'vendor/support-modular-support-bundle-specs',
         'vendor/support-online-support-bundle-specs',
+        {
+          type: 'category',
+          label: 'Support your Application',
+          items: [
+            'vendor/support-inspecting-support-bundles',
+            'vendor/support-submit-request',
+            'vendor/support-host-support-bundles',
+          ],
+        },
       ],
     },
     {
@@ -196,6 +211,8 @@ const sidebars = {
         'vendor/packaging-installer-storage',
         'vendor/preflight-host-preflights',
         'vendor/installer-history',
+        'vendor/packaging-using-tls-certs',
+        'vendor/identity-service-configuring',
       ],
     },
     {
@@ -212,10 +229,20 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Managing App Manager',
+      items: [
+        'vendor/packaging-rbac',
+        'vendor/packaging-air-gap-excluding-minio',
+        'vendor/packaging-kots-versions',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Managing Resources and Objects',
       items: [
         'vendor/packaging-include-resources',
         'vendor/packaging-cleaning-up-jobs',
+        'vendor/packaging-ingress',
       ],
     },
     {
@@ -230,56 +257,60 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Adding Persistent Data Stores',
+      items: [
+        'vendor/database-config-adding-options',
+        'vendor/tutorial-adding-db-config',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'CI/CD',
+      items: [
+        'vendor/repository-workflow-and-tagging-releases',
+        'vendor/tutorial-ci-cd-integration',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Distribute Your Application',
       items: [
-        'vendor/distributing-workflow',
-        'vendor/planning-questionnaire',
         'vendor/releases-sharing-license-install-script',
-        'vendor/packaging-air-gap-excluding-minio',
         'vendor/releases-configvalues',
       ],
     },
     {
       type: 'category',
-      label: 'Reporting',
+      label: 'Insights and Telemetry',
       items: [
          'vendor/customer-reporting',
          'vendor/instance-insights-details',
          'vendor/instance-insights-event-data',
        ],
     },
-    {
-      type: 'category',
-      label: 'Replicated Data Storage',
-      items: [
-        'vendor/data-availability',
-        'vendor/offsite-backup'
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Support',
-      items: [
-        'vendor/support-inspecting-support-bundles',
-        'vendor/support-submit-request',
-        'vendor/support-host-support-bundles',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Policies',
-      items: [
-        'vendor/policies-vulnerability-patch',
-        'vendor/policies-support-lifecycle',
-        'vendor/policies-data-transmission',
-        'vendor/policies-infrastructure-and-subprocessors',
-        {
-          type: 'link',
-          label: 'Security at Replicated',
-          href: 'https://www.replicated.com/security/'
-        },
-      ],
-    },
+    // {
+    //   type: 'category',
+    //   label: 'Replicated Data Storage',
+    //   items: [
+    //     'vendor/data-availability',
+    //     'vendor/offsite-backup'
+    //   ],
+    // },
+    // {
+    //   type: 'category',
+    //   label: 'Policies',
+    //   items: [
+    //     'vendor/policies-vulnerability-patch',
+    //     'vendor/policies-support-lifecycle',
+    //     'vendor/policies-data-transmission',
+    //     'vendor/policies-infrastructure-and-subprocessors',
+    //     {
+    //       type: 'link',
+    //       label: 'Security at Replicated',
+    //       href: 'https://www.replicated.com/security/'
+    //     },
+    //   ],
+    // },
     {
       type: 'category',
       label: 'Reference',
@@ -473,16 +504,6 @@ const sidebars = {
             },
           ],
         },
-      ],
-    },
-    {
-      type: 'category',
-      className: 'main-section',
-      label: 'Release Notes',
-      items: [
-        'release-notes/rn-whats-new',
-        'release-notes/rn-app-manager',
-        'release-notes/rn-kubernetes-installer'
       ],
     },
     {
