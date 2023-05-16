@@ -16,7 +16,7 @@ If you have questions about this workflow, you can post a question on our [Commu
 
 Complete the following items before you create the first release for your application:
 
-- Ensure that you have a Kubernetes-deployable application that contains `deployment.yaml` and `services.yaml` files.
+- Ensure that you have a Kubernetes-deployable application that contains `deployment.yaml` and `services.yaml` files. Replicated recommends that you architect the application to deploy into a single namespace. For more information, see [Managing Application Namespaces](namespaces).
 - Set up a development server that you can use to install and test each release.
 - Create an account in the Replicated vendor portal. See [Creating a Vendor Account](vendor-portal-creating-account).
 - Complete a tutorial to create a release for a sample application and then install the application in a development environment:
@@ -67,11 +67,11 @@ Complete the following procedures to import your application files then create a
   Skip this step if your images are open-source or public, or if you are using Kubernetes Operators.
   :::
 
-1. If you are providing your users with a cluster hosted on a VM, create a Kubernetes installer. See [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
+1. If you intend to provide a specification that your users can run to provision a cluster in their environment, create a Kubernetes installer. See [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
 
-1. Promote the release to the Unstable channel. For information about promoting releases, see [Managing Releases with the Vendor Portal](releases-creating-releases).
+1. Promote the release to the default Unstable channel. For information about promoting releases, see [Managing Releases with the Vendor Portal](releases-creating-releases).
 
-1. Create a license file in the vendor portal. You need a license file to test your release. See [Creating a Customer](releases-creating-customer).
+1. Create a license file in the vendor portal and assign the license to the Unstable channel. You need a license file to test your releases. See [Creating a Customer](releases-creating-customer).
 
 1. Test the release by installing in a development environment with the license file that you created. For information about how to install an application, see [Overview of Installing an Application](/enterprise/installing-overview).
 
@@ -79,9 +79,9 @@ After you install the first release for your application, return to the vendor p
 
 ## Add Functionality to Your Releases {#iterate}
 
-Add functionality to your releases. The following table gives a suggested order, but you can add functionality in any order. These features can be used with Kubernetes Operators, except where noted.
+You add app manager features and functionality to your application by creating and promoting additional releases on the Unstable channel. Test each release in your development environment until you are ready to share the application with your customers. 
 
-Update, promote, and test each release in your development environment until you are ready to share the application with your customers.
+The following table gives a suggested order, but you can add functionality in any order. The functionality described in the table can be used with Kubernetes Operators, except where noted.
 
 <table>
   <tr>
@@ -94,7 +94,7 @@ Update, promote, and test each release in your development environment until you
   </tr>
   <tr>
     <td>Status Informers</td>
-    <td>Status informers are supported Kubernetes resources that the app manager watches for changes in state. Add one or more status informers to display application status for your users on the admin console dashboard and to get insights on the status of application instances running in customer environments. See <a href="admin-console-display-app-status">Displaying Application Status</a>.</td>
+    <td>Status informers are supported Kubernetes resources that the app manager watches for changes in state. Add one or more status informers to display the current application status for your users on the admin console dashboard. Additionally, status informers allow you to get insights on the status of application instances running in customer environments. See <a href="admin-console-display-app-status">Displaying Application Status</a>.</td>
   </tr>
   <tr>
     <td>Preflight Checks and Support Bundles</td>

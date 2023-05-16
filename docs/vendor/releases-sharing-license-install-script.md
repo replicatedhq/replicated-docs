@@ -1,4 +1,4 @@
-# Sharing Releases
+# Sharing a Release
 
 This topic describes how to share a release with your customers. It includes information about accessing the Replicated download portal, downloading license files and air gap bundles, and retrieving the installation commands from the Replicated vendor portal.
 
