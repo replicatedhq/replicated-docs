@@ -4,9 +4,9 @@ import Chart from "../partials/helm/_helm-cr-chart.mdx"
 import ChartName from "../partials/helm/_helm-cr-chart-name.mdx"
 import ChartVersion from "../partials/helm/_helm-cr-chart-version.mdx"
 import ChartReleaseName from "../partials/helm/_helm-cr-chart-release-name.mdx"
-import Weight from "../partials/helm/_helm-cr-weight.mdx"
 import HelmUpgradeFlags from "../partials/helm/_helm-cr-upgrade-flags.mdx"
 import Values from "../partials/helm/_helm-cr-values.mdx"
+import Weight from "../partials/helm/_helm-cr-weight.mdx"
 import Exclude from "../partials/helm/_helm-cr-exclude.mdx"
 import OptionalValues from "../partials/helm/_helm-cr-optional-values.mdx"
 import OptionalValuesWhen from "../partials/helm/_helm-cr-optional-values-when.mdx"
@@ -14,6 +14,8 @@ import OptionalValuesRecursiveMerge from "../partials/helm/_helm-cr-optional-val
 import Namespace from "../partials/helm/_helm-cr-namespace.mdx"
 import Intro from "../partials/helm/_helm-cr-intro.mdx"
 import BuilderAirgapIntro from "../partials/helm/_helm-cr-builder-airgap-intro.mdx"
+import BuilderExample from "../partials/helm/_helm-cr-builder-example.mdx"
+
 
 # HelmChart v1
 
@@ -158,21 +160,4 @@ Native Helm installations always deploy using Helm v3.
 
 **Example:**
 
-The following example demonstrates how to add a conditional `postgresql` resource to the `builder` key.
-
-`postgresql` is defined as a conditional resource in the `values` key of the HelmChart custom resource:
-
-```yaml
-  values:
-    postgresql:
-      enabled: repl{{ ConfigOptionEquals `postgres_type` `embedded_postgres`}}
-```
-As shown above, `postgresql` is included only when the user selects the `embedded_postgres` option.
-
-To ensure the vendor portal includes this conditional `postgresql` resource in `.airgap` bundles, add the same `postgresql` value to the `builder` key with `enabled` set to `true`:
-
-```yaml
-  builder:
-    postgresql:
-      enabled: true
-```
+<BuilderExample/>
