@@ -174,29 +174,23 @@ const sidebars = {
     },
     {
       type: 'category', 
-      label: 'Managing Kubernetes Resources and Objects',
+      label: 'Managing Resources and Objects',
       items: [
         'vendor/packaging-cleaning-up-jobs',
         'vendor/packaging-include-resources', 
         'vendor/packaging-using-tls-certs',
-        {
-          type: 'category',
-          label: 'Adding Persistent Data Stores',
-          items: [
-            'vendor/database-config-adding-options',
-            'vendor/tutorial-adding-db-config',
-          ],
-        },
+        'vendor/database-config-adding-options',
+        'vendor/tutorial-adding-db-config',
       ],
     },
-    {
-      type: 'category',
-      label: 'CI/CD',
-      items: [
-        'vendor/repository-workflow-and-tagging-releases',
-        'vendor/tutorial-ci-cd-integration',
-      ],
-    },
+    // {
+    //   type: 'category',
+    //   label: 'CI/CD',
+    //   items: [
+    //     'vendor/repository-workflow-and-tagging-releases',
+    //     'vendor/tutorial-ci-cd-integration',
+    //   ],
+    // },
     {
       type: 'category',
       label: 'Distribute Your App',
