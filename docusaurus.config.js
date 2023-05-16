@@ -85,46 +85,8 @@ const config = {
                 to: 'release-notes/rn-whats-new',
               },
               {
-                label: 'Tutorials',
+                label: 'Getting Started Tutorials',
                 to: 'vendor/tutorial-ui-setup',
-              },
-              {
-                label: 'Enterprise User',
-                to: 'enterprise/installing-overview',
-              },
-            ],
-          },
-          {
-            title: 'Security Policies',
-            items: [
-              {
-                label: 'Vulnerability Patch',
-                to: 'vendor/policies-vulnerability-patch',
-              },
-              {
-                label: 'Data Transmission',
-                to: 'vendor/policies-data-transmission',
-              },
-              {
-                label: 'Infrastructure and Processor Providers',
-                to: 'vendor/policies-infrastructure-and-subprocessors',
-              },
-            ],
-          },
-          {
-            title: 'Support',
-            items: [
-              {
-                label: 'Release Notes',
-                to: 'release-notes/rn-whats-new',
-              },
-              {
-                label: 'Tutorials',
-                to: 'vendor/tutorial-ui-setup',
-              },
-              {
-                label: 'Enterprise User',
-                to: 'enterprise/installing-overview',
               },
             ],
           },
