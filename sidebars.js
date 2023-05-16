@@ -21,40 +21,18 @@ const sidebars = {
   appManager: [
     {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},
     // {type: 'html', value: '<h5>Introduction</h5>', defaultStyle: true}, 
-    
-    // VENDOR KOTS & KURL DOCS
-    {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true}, 
-    
+
     {
       type: 'category', 
-      label: 'Introduction to KOTS and kURL',
+      label: 'Introduction',
       items: [
         {type:'doc', id:'intro-replicated', label: 'About KOTS and kURL'},
         'vendor/wip-install-options-about',
-        {
-          type: 'category',
-          label: 'Plan a Production Release',
-          items: [
-            'vendor/distributing-workflow',
-            'vendor/wip-first-release',
-            'vendor/planning-questionnaire',
-            'vendor/namespaces',
-            // {
-            //   type: 'category',
-            //   label: 'Integrating with CI/CD',
-            //   items: [
-            //     'vendor/repository-workflow-and-tagging-releases',
-            //     'vendor/tutorial-ci-cd-integration',
-            //   ],
-            // },
-          ],
-        },
       ],
     },
-     
     {
       type: 'category',
-      label: 'Tutorials',
+      label: 'Getting Started Tutorials',
       items: [
         {
           type: 'category',
@@ -89,6 +67,26 @@ const sidebars = {
         
       ],
     }, 
+    
+    // VENDOR KOTS & KURL DOCS
+    {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true}, 
+    {
+      type: 'category',
+      label: 'Planning to Distribute to Customers',
+      items: [
+        'vendor/distributing-workflow',
+        'vendor/planning-questionnaire',
+        'vendor/namespaces',
+        // {
+        //   type: 'category',
+        //   label: 'Integrating with CI/CD',
+        //   items: [
+        //     'vendor/repository-workflow-and-tagging-releases',
+        //     'vendor/tutorial-ci-cd-integration',
+        //   ],
+        // },
+      ],
+    },
     {
       type: 'category',
       label: 'Helm Charts',
@@ -114,7 +112,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Private Registries',
+      label: 'Replicated Private Registry',
       items: [
         'vendor/private-images-about',
         'vendor/packaging-private-images',
@@ -140,22 +138,10 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Admin Console Features and Branding',
+      label: 'Admin Console and Download Portal Customization',
       items: [
-        {
-          type: 'category',
-          label: 'Status Informers',
-          items: [
-            'vendor/admin-console-display-app-status',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Prometheus Monitoring',
-          items: [
-            'vendor/admin-console-prometheus-monitoring',
-          ],
-        },
+        'vendor/admin-console-display-app-status',
+        'vendor/admin-console-prometheus-monitoring',
         {
           type: 'category',
           label: 'Custom Admin Console Branding',
@@ -258,122 +244,127 @@ const sidebars = {
     },
     // ENTERPRISE DOCS
     {type: 'html', value: '<h5>Install and Manage</h5>', defaultStyle: true},
-    {type: 'ref', id: 'enterprise/wip-admin-console-intro', label: 'Admin Console'},
-    {type: 'ref', id: 'reference/kots-cli-getting-started', label: 'kots CLI'},
-    ,
-  ],
+  //   {type: 'ref', id: 'enterprise/wip-admin-console-intro', label: 'Admin Console'},
+  //   {type: 'ref', id: 'reference/kots-cli-getting-started', label: 'kots CLI'},
+  // ],
 
-  enterprise: [
-    {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},
-    {type: 'ref', id: 'intro-replicated', 'label': '<-- Back to App Manager'},
-    'enterprise/wip-admin-console-intro',
+  // enterprise: [
+    // {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},
+    // {type: 'ref', id: 'intro-replicated', 'label': '<-- Back to App Manager'},
     {
       type: 'category',
-      label: 'Installing an Application',
+      label: 'Admin Console',
       items: [
-        'enterprise/installing-overview',
-        'enterprise/installing-general-requirements',
-        'enterprise/installing-stateful-component-requirements',
-        'enterprise/sbom-validating',
+        'enterprise/wip-admin-console-intro',
         {
           type: 'category',
-          label: 'Installing in Existing Clusters',
+          label: 'Installing an Application',
           items: [
-            'enterprise/installing-existing-cluster',
-            'enterprise/installing-existing-cluster-airgapped',
-            'enterprise/installing-existing-cluster-automation',
+            'enterprise/installing-overview',
+            'enterprise/installing-general-requirements',
+            'enterprise/installing-stateful-component-requirements',
+            'enterprise/sbom-validating',
+            {
+              type: 'category',
+              label: 'Installing in Existing Clusters',
+              items: [
+                'enterprise/installing-existing-cluster',
+                'enterprise/installing-existing-cluster-airgapped',
+                'enterprise/installing-existing-cluster-automation',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Installing with the Kubernetes Installer',
+              items: [
+                'enterprise/installing-embedded-cluster',
+                'enterprise/installing-embedded-airgapped',
+                'enterprise/cluster-management-add-nodes',
+              ],
+            },
+            'enterprise/installing-app-setup',
+            'enterprise/delete-admin-console',
           ],
         },
         {
           type: 'category',
-          label: 'Installing with the Kubernetes Installer',
+          label: 'Private Registries',
           items: [
-            'enterprise/installing-embedded-cluster',
-            'enterprise/installing-embedded-airgapped',
-            'enterprise/cluster-management-add-nodes',
+            'enterprise/image-registry-settings',
+            'enterprise/image-registry-embedded-cluster',
+            'enterprise/image-registry-rate-limits',
           ],
         },
-        'enterprise/installing-app-setup',
-        'enterprise/delete-admin-console',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Private Registries',
-      items: [
-        'enterprise/image-registry-settings',
-        'enterprise/image-registry-embedded-cluster',
-        'enterprise/image-registry-rate-limits',
-      ],
-    },
-    'enterprise/updating-patching-with-kustomize',
-    {
-      type: 'category',
-      label: 'Updating',
-      items: [
-        'enterprise/updating-apps',
-        'enterprise/updating-app-manager',
-        'enterprise/updating-embedded-cluster',
-        'enterprise/updating-licenses',
-        'enterprise/updating-tls-cert',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'GitOps',
-      items: [
-        'enterprise/gitops-workflow',
-        'enterprise/gitops-managing-secrets',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Managing User Access',
-      items: [
-        'enterprise/auth-changing-passwords',
-        'enterprise/auth-identity-provider',
-        'enterprise/auth-configuring-rbac',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Monitoring',
-      items: [
-          'enterprise/monitoring-applications',
-          'enterprise/monitoring-external-prometheus',
-      ],   
-    },
-    {
-      type: 'category',
-      label: 'Backup and Restore',
-      items: [
-        'enterprise/snapshots-understanding',
+        'enterprise/updating-patching-with-kustomize',
         {
           type: 'category',
-          label: 'Configuring Backup Storage',
+          label: 'Updating',
           items: [
-            'enterprise/snapshots-velero-cli-installing',
-            'enterprise/snapshots-configuring-hostpath',
-            'enterprise/snapshots-configuring-nfs',
-            'enterprise/snapshots-storage-destinations',
-            'enterprise/snapshots-velero-installing-config',
+            'enterprise/updating-apps',
+            'enterprise/updating-app-manager',
+            'enterprise/updating-embedded-cluster',
+            'enterprise/updating-licenses',
+            'enterprise/updating-tls-cert',
           ],
         },
-        'enterprise/snapshots-creating',
-        'enterprise/snapshots-restoring-full',
-        'enterprise/snapshots-updating-with-admin-console',
-        'enterprise/snapshots-troubleshooting-backup-restore',
+        {
+          type: 'category',
+          label: 'GitOps',
+          items: [
+            'enterprise/gitops-workflow',
+            'enterprise/gitops-managing-secrets',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Managing User Access',
+          items: [
+            'enterprise/auth-changing-passwords',
+            'enterprise/auth-identity-provider',
+            'enterprise/auth-configuring-rbac',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Monitoring',
+          items: [
+              'enterprise/monitoring-applications',
+              'enterprise/monitoring-external-prometheus',
+          ],   
+        },
+        {
+          type: 'category',
+          label: 'Backup and Restore',
+          items: [
+            'enterprise/snapshots-understanding',
+            {
+              type: 'category',
+              label: 'Configuring Backup Storage',
+              items: [
+                'enterprise/snapshots-velero-cli-installing',
+                'enterprise/snapshots-configuring-hostpath',
+                'enterprise/snapshots-configuring-nfs',
+                'enterprise/snapshots-storage-destinations',
+                'enterprise/snapshots-velero-installing-config',
+              ],
+            },
+            'enterprise/snapshots-creating',
+            'enterprise/snapshots-restoring-full',
+            'enterprise/snapshots-updating-with-admin-console',
+            'enterprise/snapshots-troubleshooting-backup-restore',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Troubleshooting',
+          items: [
+            'enterprise/status-viewing-details',
+            'enterprise/troubleshooting-an-app',
+          ],
+        },
       ],
-    },
-    {
-      type: 'category',
-      label: 'Troubleshooting',
-      items: [
-        'enterprise/status-viewing-details',
-        'enterprise/troubleshooting-an-app',
-      ],
-    },
-    {type: 'html', value: '<h5>reference</h5>', defaultStyle: true},
+    },  
+    // {type: 'html', value: '<h5>reference</h5>', defaultStyle: true},
     {
       type: 'category',
       label: 'kots CLI',

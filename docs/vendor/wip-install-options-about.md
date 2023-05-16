@@ -1,4 +1,4 @@
-# About Deploying Apps with KOTS
+# About Distributing Apps with KOTS
 
 Your app can use helm charts, standard manifests, k8s operators. KOTS support air gap
 
