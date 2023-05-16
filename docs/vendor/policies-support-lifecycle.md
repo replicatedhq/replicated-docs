@@ -80,6 +80,12 @@ The End of Replicated Support date is the End Of Life (EOL) date for the Kuberne
     <th>End of Replicated Support</th>
   </tr>  
   <tr>
+    <td>1.27</td>
+    <td>v1.98.4 and later</td>
+    <td>v2023.05.08-0</td>
+    <td>2024-06-28</td>
+  </tr>
+  <tr>
     <td>1.26</td>
     <td>v1.93.1 and later</td>
     <td>v2023.01.03-0 and later</td>
