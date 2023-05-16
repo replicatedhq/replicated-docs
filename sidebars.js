@@ -254,9 +254,10 @@ const sidebars = {
       type: 'category',
       label: 'Insights and Telemetry',
       items: [
+         'vendor/instance-insights-event-data',
+         'vendor/customer-adoption',
          'vendor/customer-reporting',
          'vendor/instance-insights-details',
-         'vendor/instance-insights-event-data',
        ],
     },
     {
