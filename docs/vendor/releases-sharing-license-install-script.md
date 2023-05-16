@@ -18,6 +18,8 @@ You can either share these files and installation commands directly with a custo
 
 To share a license file and air gap bundles with a customer, you can send the customer their unique link and password for the download portal. Users can log in to the download portal to access their license file and air gap bundles, if applicable.
 
+For information about using a custom domain for the download portal, see [Configure Download Portal Domains](custom-domains#configure-download-portal-domains) in _Using Custom Domains (Beta)_
+
 To share license files and air gap bundles through the download portal:
 
 1. In the [vendor portal](https://vendor.replicated.com), on the **Customers** page, click on the name of the customer.
