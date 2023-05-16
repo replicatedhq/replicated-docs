@@ -19,7 +19,8 @@ const sidebars = {
   // But you can create a sidebar manually
 
   appManager: [
-    {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},
+    {type: 'ref', id: 'intro', 'label': 'Back to Home'},
+    {type: 'html', value: '<h5></h5>'},
     // {type: 'html', value: '<h5>Introduction</h5>', defaultStyle: true}, 
 
     {
@@ -640,11 +641,11 @@ const sidebars = {
     'replicated-sdk/sdk-getting-started',
   ],
 
-  troubleshoot: [
-    {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},
-    'vendor/preflight-support-bundle-creating',
-    {type: 'link', label: 'Troubleshoot Documentation', href: 'https://troubleshoot.sh/docs/collect/'}
-  ],
+  // troubleshoot: [
+  //   {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},
+  //   'vendor/preflight-support-bundle-creating',
+  //   {type: 'link', label: 'Troubleshoot Documentation', href: 'https://troubleshoot.sh/docs/collect/'}
+  // ],
 
   // vendorPortal: [
   //   {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},

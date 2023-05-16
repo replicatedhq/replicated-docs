@@ -25,7 +25,7 @@ const config = {
         docs: {
           routeBasePath: '/', // Serve the docs at the site's root
           sidebarPath: require.resolve('./sidebars.js'),
-          breadcrumbs: false,
+          breadcrumbs: true,
           // Please change this to your repo.
           editUrl: 'https://github.com/replicatedhq/replicated-docs/edit/main/',
           admonitions: {
