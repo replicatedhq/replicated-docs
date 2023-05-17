@@ -180,14 +180,8 @@ const sidebars = {
         'vendor/support-modular-support-bundle-specs',
         'vendor/support-online-support-bundle-specs',
         'vendor/support-host-support-bundles',
-        {
-          type: 'category',
-          label: 'Supporting your Application',
-          items: [
-            'vendor/support-inspecting-support-bundles',
-            'vendor/support-submit-request',    
-          ],
-        },
+        'vendor/support-inspecting-support-bundles',
+        'vendor/support-submit-request',
       ],
     },
     {

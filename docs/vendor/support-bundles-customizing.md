@@ -1,12 +1,19 @@
 # Customizing a Support Bundle
 
-Customizing a support bundle is unique to your application. Replicated app manager provides the ability to generate support bundles from the admin console without vendors needing to configure anything. However, there may be application-related data that you want to collect and analyze for troubleshooting.
+Customizing a support bundle is unique to your application. This topic gives guidance to help you customize a support bundle.
+
+
+## About App Manager Support Bundles
+
+Replicated app manager provides the ability to generate support bundles from the admin console without vendors needing to configure anything. However, there may be application-related data that you want to collect and analyze for troubleshooting.
 
 By default, support bundles contain a large number of commonly used, best practice collectors. The default `clusterInfo` and `clusterResources` collectors gather a large amount of data that is useful when remotely installing or debugging a Kubernetes application. You can supplement, edit, or exclude the default collectors and analyzers. You can also add redactors to the default redactors.
 
 ## Customize an App Manager Support Bundle
 
-This procedure provides a basic understanding and some key considerations to help guide you. For more information about configuring support bundles, see [Collecting Data](https://troubleshoot.sh/docs/collect/), [Redacting Data](https://troubleshoot.sh/docs/redact/), and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation. You can also see the entire default specification at [spec.yaml](https://github.com/replicatedhq/kots/blob/main/pkg/supportbundle/defaultspec/spec.yaml) in the kots repository.
+This procedure provides a basic understanding and some key considerations to help guide you. For more information about configuring support bundles, see [Collecting Data](https://troubleshoot.sh/docs/collect/), [Redacting Data](https://troubleshoot.sh/docs/redact/), and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation. 
+
+You can also see the entire default specification at [spec.yaml](https://github.com/replicatedhq/kots/blob/main/pkg/supportbundle/defaultspec/spec.yaml) in the kots repository.
 
 To customize a support bundle for app manager installations:
 
