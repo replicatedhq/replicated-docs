@@ -40,7 +40,7 @@ spec:
 
 If a bug is discovered at any time after the release of the specification above, Replicated can write an analyzer for it in an online specification. By adding a URI link to the online specification, the support bundle uses the assets hosted in the online repository, which is kept current.
 
-The `uri` field is added to the specification as a raw file link. Replicated hosts the online specification on [GitHub](https://github.com/replicatedhq/troubleshoot-specs/blob/main/in-cluster/ekco.yaml).
+The `uri` field is added to the specification as a raw file link. Replicated hosts the online specification on [GitHub](https://github.com/replicatedhq/troubleshoot-specs/blob/main/in-cluster/default.yaml).
 
 **Example: Release v1.1.0**
 
@@ -50,7 +50,7 @@ kind: SupportBundle
 metadata:
   name: ekco
 spec:
-  uri: https://raw.githubusercontent.com/replicatedhq/troubleshoot-specs/main/in-cluster/ekco.yaml
+  uri: https://raw.githubusercontent.com/replicatedhq/troubleshoot-specs/main/in-cluster/default.yaml
   collectors: [...]
   analyzers: [...]
 ```

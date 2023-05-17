@@ -121,7 +121,7 @@ To generate a host support bundle:
     - Run the following command to download a host support bundle YAML file from the Troubleshoot repository that can help troubleshoot a degraded Kubernetes installer cluster:
 
     ```
-    kubectl support-bundle https://raw.githubusercontent.com/replicatedhq/troubleshoot-specs/main/host/cluster-down.yaml
+    kubectl support-bundle https://raw.githubusercontent.com/replicatedhq/troubleshoot-specs/main/host/default.yaml
     ```
   :::note
   For air gap environments, download the YAML file and copy it to the air gap machine.
