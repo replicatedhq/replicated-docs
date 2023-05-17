@@ -134,7 +134,7 @@ The `builder` field is required for the following use cases:
 
 * <BuilderAirgapIntro/>
 
-* To support online installations that are configured to push and pull from a private registry, where `disable image push` is _not_ selected. You must provide the necessary values in the `builder` field to render the Helm chart with all of the necessary images so that the app manager knows where to pull the images from to push them into the private registry.
+* To support online installations that are configured to push and pull from a private registry, where the `--disable-image-push` flag is _not_ enabled for the `kots install` command. You must provide the necessary values in the `builder` field to render the Helm chart with all of the necessary images so that the app manager knows where to pull the images from to push them into the private registry.
 
   If you already support an air gap installation, use the same `builder` field configuration for this online installation use case. No additional changes are needed.
 
