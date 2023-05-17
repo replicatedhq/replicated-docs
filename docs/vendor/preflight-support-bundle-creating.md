@@ -1,6 +1,6 @@
 # About Preflight Checks and Support Bundles
 
-Preflight checks and support bundles collect and analyze data in the environment to ensure requirements are met and to help users troubleshoot issues.
+This topic describes how preflight checks and support bundles collect and analyze data in the environment to ensure requirements are met and to help users troubleshoot issues.
 
 ## Preflight Checks 
 
@@ -11,17 +11,21 @@ the cluster before they install and upgrade your application. Thorough preflight
 
 You can set the `strict` flag on preflight analyzers to enforce that requirements, such as supported Kubernetes versions, are met for initial installations or updated releases.
 
+For more information about defining preflight checks, see [Defining Preflight Checks](preflight-defining).
+
 ## Support Bundles 
 
-Support bundles let you collect and analyze troubleshooting data
-from customer environments to help you diagnose problems with application
-deployments.
+Support bundles let you collect and analyze troubleshooting data from customer environments to help you diagnose problems with application deployments.
 
 :::note
 For app manager installations, customers generate support bundles from the Replicated admin console, where analyzers can immediately suggest solutions to common problems. Customers can also share support bundles with your support team from the admin console.
 :::
 
 Your support team can upload the support bundle to the Replicated vendor portal to view and interpret the analysis, and open a support request ticket if needed. Severity 1 issues are resolved three times faster when submitted with support bundles.
+
+For more information about customizing a support bundle, see [Customizing a Support Bundle](support-bundles-customizing).
+
+## Workflow: Collect, Redact, Analyze
 
 The following diagram illustrates the workflow for preflight checks and support bundles:
 
