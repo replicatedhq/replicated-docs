@@ -101,6 +101,22 @@ We've seen this issue with Velero version 1.5.4 and opened up this issue with th
 
 Upgrade Velero to 1.9.0. You can upgrade using the Replicated Kubernetes installer. Or, to follow the Velero upgrade instructions, see [Upgrading to Velero 1.9](https://velero.io/docs/v1.9/upgrade-to-1.9/) in the Velero documentation.
 
+### Partial Snapshot Restore Finishes With Warnings
+
+#### Symptom
+
+In the Replicated admin console, when the partial snapshot restore completes, you see warnings indicating that Endpoint resources were not restored:
+
+![Snapshot Troubleshoot Restore Warnings](/images/snapshot-troubleshoot-restore-warnings.png)
+
+#### Cause
+
+The resource restore priority was changed in Velero 1.10.3 and 1.11.0, which leads to this warning when restoring Endpoint resources: https://github.com/vmware-tanzu/velero/issues/6280.
+
+#### Solution
+
+These warnings do not necessarily mean that the restore itself failed. The endpoints likely do exist as they are created by Kubernetes when the related Service resources were restored. However, if you want to prevent end-users from encountering these warnings, continue using Velero version 1.10.2 or earlier.
+
 ## Snapshot Creation is Failing
 
 ### Timeout Error when Creating a Snapshot
