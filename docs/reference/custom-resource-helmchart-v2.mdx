@@ -18,7 +18,7 @@ import BuilderExample from "../partials/helm/_helm-cr-builder-example.mdx"
 
 # HelmChart v2
 
-The HelmChart v2 custom resource supports the native Helm v2 installation. This v2 installation method does a Helm install or upgrade on your Helm chart without modifying it with Kustomize. This is superior to the v1 installation method because it results in Helm installations that can be reproduced outside of the app manager, and it enables the use of additional Helm functionality that was not available in v1. Because this method bypasses existing Kustomize logic to rewrite images, inject pull secrets, and add backup labels, you must configure a combination of Replicated and Helm templating for the images, pull secrets, and backup labels.
+The HelmChart v2 custom resource supports the native Helm v2 installation. This v2 installation method does a Helm install or upgrade on your Helm chart without modifying it with Kustomize. This recommended method is an improvement to the v1 installation method because it results in Helm installations that can be reproduced outside of the app manager, and it enables the use of additional Helm functionality that was not available in v1. Because this method bypasses existing Kustomize logic to rewrite images, inject pull secrets, and add backup labels, you must configure a combination of Replicated and Helm templating for the images, pull secrets, and backup labels.
 
 <Intro/>
 
