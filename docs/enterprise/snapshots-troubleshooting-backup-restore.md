@@ -95,7 +95,7 @@ example-nginx-77b878b4f-zwv2h         3/3     Running     0          4m15s
 
 #### Cause
 
-We've seen this issue with Velero version 1.5.4 and opened up this issue with the project to inspect the root cause: https://github.com/vmware-tanzu/velero/issues/3686. However we have not experienced this using Velero 1.6.0 or greater.
+We have seen this issue with Velero version 1.5.4 and opened up this issue with the project to inspect the root cause: https://github.com/vmware-tanzu/velero/issues/3686. However we have not experienced this using Velero 1.6.0 or greater.
 
 #### Solution
 
@@ -111,11 +111,11 @@ In the Replicated admin console, when the partial snapshot restore completes, yo
 
 #### Cause
 
-The resource restore priority was changed in Velero 1.10.3 and 1.11.0, which leads to this warning when restoring Endpoint resources: https://github.com/vmware-tanzu/velero/issues/6280.
+The resource restore priority was changed in Velero 1.10.3 and 1.11.0, which leads to this warning when restoring Endpoint resources. For more information about this issue, see [the issue details](https://github.com/vmware-tanzu/velero/issues/6280) in GitHub.
 
 #### Solution
 
-These warnings do not necessarily mean that the restore itself failed. The endpoints likely do exist as they are created by Kubernetes when the related Service resources were restored. However, if you want to prevent end-users from encountering these warnings, continue using Velero version 1.10.2 or earlier.
+These warnings do not necessarily mean that the restore itself failed. The endpoints likely do exist as they are created by Kubernetes when the related Service resources were restored. However, to prevent encountering these warnings, use Velero version 1.10.2 or earlier.
 
 ## Snapshot Creation is Failing
 
