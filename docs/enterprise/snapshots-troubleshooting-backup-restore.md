@@ -101,7 +101,7 @@ We have seen this issue with Velero version 1.5.4 and opened up this issue with 
 
 Upgrade Velero to 1.9.0. You can upgrade using the Replicated Kubernetes installer. Or, to follow the Velero upgrade instructions, see [Upgrading to Velero 1.9](https://velero.io/docs/v1.9/upgrade-to-1.9/) in the Velero documentation.
 
-### Partial Snapshot Restore Finishes With Warnings
+### Partial Snapshot Restore Finishes with Warnings
 
 #### Symptom
 
