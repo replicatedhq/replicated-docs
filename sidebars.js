@@ -110,7 +110,6 @@ const sidebars = {
       label: 'Helm Chart Deployment',
       items: [
         'vendor/helm-overview',
-        'vendor/helm-install',
         'vendor/helm-release',
         'vendor/helm-native-helm-install-order',
         'vendor/helm-optional-charts',
@@ -164,7 +163,6 @@ const sidebars = {
         'vendor/private-images-about',
         'vendor/packaging-private-images',
         'vendor/private-images-replicated',
-        'vendor/helm-image-registry',
         'vendor/private-images-tags-digests',
         'vendor/packaging-private-registry-security',
         'vendor/tutorial-ecr-private-images',
