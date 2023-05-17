@@ -134,7 +134,7 @@ The `builder` field is required for the following use cases:
 
 * <BuilderAirgapIntro/>
 
-* To support online installations that are configured to push and pull from a private registry. In this case, your customer must not set the `--disable-image-push` flag to `true` for the `kots install` command or disable pushing the images to a registry in the admin console. 
+* To support online installations that are configured to push and pull from a private registry. In this case, your customer must not enable the `--disable-image-push` flag for the `kots install` command or disable pushing the images to a registry in the admin console. By default, pushing images to a registry is enabled.
 
   You must provide the necessary values in the `builder` field to render the Helm chart with all of the necessary images so that the app manager knows where to pull the images from to push them into the private registry.
 
