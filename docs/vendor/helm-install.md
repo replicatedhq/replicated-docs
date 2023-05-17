@@ -30,13 +30,7 @@ For Helm Install installations, Replicated does _not_ inject any static values f
 
 This means that you can include static values in the `values` field when it is required to make a change in the release that affects only KOTS Install and Embedded Cluster installations. For example, you might need to deliver a Helm chart dependency with your application for only helm CLI installations. You can use static values in the HelmChart custom resource `values` field to ensure that the dependency is excluded from the release for KOTS Install and Embedded Cluster installations.
 
-For examples of how to use templated and static values in the HelmChart custom resource `values` field to support all installation methods, see the following procedures:
-* [Delivering the Admin Console with your Application](#deliver-admin-console)
-* [Using Private Registries](#private-images)
-
 ## About Installing with the helm CLI
-
-### Overview
 
 When you promote an application to a release channel, Replicated extracts any Helm charts included in the release. These charts are pushed as OCI objects to the Replicated private registry at `registry.replicated.com`. The Helm chart is pushed to the _channel_.
 
@@ -52,7 +46,7 @@ The `values.yaml` in your Chart is rendered with a customer-specific license. Ea
 
 Before Replicated renders the `values.yaml`, it is not assumed to be a valid YAML format in order to allow flow control and conditional template functions to optionally write some fields to the `values.yaml` file. Replicated renders template functions in the `values.yaml` for each customer, as the Helm chart is served to the customer.
 
-### Chart Versioning
+## Chart Versioning
 
 The chart version is used as the image tag in the OCI registry and must comply with image tag format requirements. A valid tag can contain only lowercase and uppercase letters, digits, underscores, periods, and dashes.
 
@@ -63,192 +57,6 @@ The chart version must also comply with the Semantic Versioning (SemVer) specifi
 The `helm install` method is Beta and has the following limitations:
 
 <HelmCLILimitations/>
-
-## Delivering the Admin Console with your Application {#deliver-admin-console}
-
-By default, when your users install your application using the helm CLI, the admin console is not included. This section describes how to deliver the admin console alongside your application.
-
-### Overview of Delivering the Admin Console
-
-To deliver the admin console with your application for Helm Install installations, include the `admin-console` Helm chart in the `dependencies` field of your `Chart.yaml` file.
-
-When you include the `admin-console` Helm chart as a dependency, Replicated injects values into the Helm chart `values.yaml` file when the chart is pulled by your users. These values provide the license ID for the customer, which enables the admin console to authenticate with the image registry and check for updates.
-
-The following shows the formatting of the `replicated` and `license_id` fields that Replicated adds to the `values.yaml` file:
-
-```
-replicated:
-  license_id: abcdef123
-```
-
-The functionality of the admin console delivered by the `admin-console` Helm chart differs from that of the admin console available for KOTS Install or Embedded Cluster installations.
-
-This is because Helm, rather than the admin console, manages the lifecycle of the application when users install with the helm CLI. For example, instead of including an Upgrade button, the admin console delivered by the `admin-console` Helm chart provides the correct `helm upgrade` commands for users.
-
-### Add the admin-console Chart
-
-This procedure shows how to add the `admin-console` Helm chart as a conditional dependency of your Helm chart.
-
-It also shows how to exclude the `admin-console` Helm chart when your users install with either the KOTS Install or Embedded Cluster installation methods. It is important to exclude the `admin-console` chart in this scenario because both the kots CLI and the Kubernetes installer already install the admin console by default.
-
-To conditionally include and exclude the `admin-console` Helm chart:
-
-1.  In the Helm chart `Chart.yaml` file, add the `admin-console` Helm chart to the `dependencies` field:
-
-   ```yaml
-    # Helm chart Chart.yaml file
-
-    apiVersion: v2
-    name: samplechart
-    version: 3.1.7
-    ...
-    dependencies:
-    - name: admin-console
-      version: "1.83.0"
-      repository: "oci://registry.replicated.com/library"
-      condition: admin-console.enabled
-   ```
-
-   The following table describes the fields:
-   <table>
-     <tr>
-       <th>Field</th>
-       <th>Description</th>
-     </tr>
-     <tr>
-       <td><code>name</code></td>
-       <td>The name of the <code>admin-console</code> Helm chart.</td>
-     </tr>
-     <tr>
-       <td><code>version</code></td>
-       <td>The version of the admin console to deliver with your application. Replicated recommends that you use the latest version. For more information about the available versions, see the <a href="/release-notes/rn-app-manager">App Manager Release Notes</a>.</td>
-     </tr>
-     <tr>
-       <td><code>repository</code></td>
-       <td>The URL for the Replicated private image registry where the <code>admin-console</code> Helm chart is accessed.</td>
-     </tr>
-     <tr>
-       <td><code>condition</code></td>
-       <td><p>A conditional statement that defines when the <code>admin-console</code> chart is included.</p>
-       <p>In the next step of this procedure, you create an <code>admin-console</code> field in the <code>values.yaml</code> file of your Helm chart that maps to this conditional statement.</p></td>
-     </tr>
-   </table>
-
-1. In the `values.yaml` file, add the following fields that map to the `condition` field in the `Chart.yaml` file:
-
-   ```yaml
-   # Helm chart values.yaml file
-
-   admin-console:
-     enabled: true
-   ```
-
-   Helm Install installations read this `true` value from the `values.yaml` file and include the `admin-console` Helm chart in the deployment.
-
-1. Package your Helm chart, and add the packaged chart to a release in the Replicated vendor portal. For more information, see [Creating Releases with the Vendor Portal](releases-creating-release).
-
-1. In the release, create or open the Replicated HelmChart custom resource manifest file. A HelmChart custom resource manifest file has `kind: HelmChart` and `apiVersion: kots.io/v1beta1`. For more information, see [HelmChart](/reference/custom-resource-helmchart) in the _References_ section.
-
-  **Example:**
-
-  ```yaml
-  # Replicated HelmChart custom resource file
-
-  apiVersion: kots.io/v1beta1
-  kind: HelmChart
-  metadata:
-    name: samplechart
-  spec:
-    chart:
-      name: samplechart
-      chartVersion: 3.1.7
-      releaseName: samplechart-release-v1
-  ```
-
-1. Edit the HelmChart manifest file to exclude the `admin-console` Helm chart during KOTS Install and Embedded Cluster installations:
-
-   1. Add the following to the `values` field:
-
-      ```yaml
-      # Replicated HelmChart custom resource file
-
-      apiVersion: kots.io/v1beta1
-      kind: HelmChart
-      metadata:
-        name: samplechart
-      spec:
-        ...
-        values:
-          admin-console:
-            enabled: false
-      ```
-
-      KOTS Install and Embedded Cluster installations read this static value of `false` from the HelmChart custom resource, which prevents the `admin-console` Helm chart from deploying. Helm Install installations ignore this static value, and instead read the value of `true` from the `values.yaml` file that you added in a previous step.   
-
-   1. If your HelmChart custom resource includes an `optionalValues` field, set `recursiveMerge` to `true`. This prevents the `admin-console` field in `values` from being overwritten by the fields in `optionalValues`.
-
-      ```yaml
-      # Replicated HelmChart custom resource file
-
-      apiVersion: kots.io/v1beta1
-      kind: HelmChart
-      metadata:
-        name: samplechart
-      spec:
-        ...
-        optionalValues:
-        - when: "repl{{ ConfigOptionEquals `example_config_option`}}"
-          recursiveMerge: true
-          values:
-            example_key: example_value
-      ```     
-
-      For more information, see [recursiveMerge](/reference/custom-resource-helmchart#optionalvaluesrecursivemerge) in _HelmChart_.
-
-   1. Add the following to the `builder` field:
-
-      ```yaml
-      # Replicated HelmChart custom resource file
-
-      apiVersion: kots.io/v1beta1
-      kind: HelmChart
-      metadata:
-        name: samplechart
-      spec:
-        ...
-        builder:
-          admin-console:
-            enabled: false
-      ```
-
-      Values in the `builder` field provide a way to render the chart with all images and manifests. A common use case for the `builder` field in Replicated is to create packages for delivering an application to an air gap environment.
-
-      For more information, see [builder](/reference/custom-resource-helmchart#builder) in _HelmChart_.
-
-      **Example:**
-
-      The following shows an example of a HelmChart custom resource file with the required `values.admin-console.enabled` and `builder.admin-console.enabled` fields:
-
-      ```yaml
-      # Replicated HelmChart custom resource file
-
-      apiVersion: kots.io/v1beta1
-      kind: HelmChart
-      metadata:
-        name: samplechart
-      spec:
-        chart:
-          name: samplechart
-          chartVersion: 3.1.7
-          releaseName: samplechart-release-v1
-        values:
-          admin-console:
-            enabled: false
-        builder:
-          admin-console:
-            enabled: false              
-      ```
-  1. Save and promote the release to a development environment to test your changes.      
 
 ## Example: Delivering Custom License Fields
 
