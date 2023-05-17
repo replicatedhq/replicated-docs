@@ -53,7 +53,7 @@ For app manager installations, the following information is redacted by default:
 This functionality cannot be disabled in the Replicated app manager. You can add custom redactors to support bundles only.
 :::
 
-For more detail on what information the default redactors detect, see the [Redact](https://troubleshoot.sh/docs/redact/) section in the Troubleshoot documentation.
+For more information about redacted data, see the [Redact](https://troubleshoot.sh/docs/redact/) section in the Troubleshoot documentation.
 
 ## Analyzers
 Analyzers use the non-redacted data from the collectors to identify issues. The outcomes that you specify are displayed to customers.
