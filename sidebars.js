@@ -179,9 +179,6 @@ const sidebars = {
         'vendor/support-bundles-customizing',
         'vendor/support-modular-support-bundle-specs',
         'vendor/support-online-support-bundle-specs',
-        'vendor/support-host-support-bundles',
-        'vendor/support-inspecting-support-bundles',
-        'vendor/support-submit-request',
       ],
     },
     {
@@ -259,6 +256,15 @@ const sidebars = {
       items: [
         'vendor/data-availability',
         'vendor/offsite-backup'
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Support',
+      items: [
+        'vendor/support-inspecting-support-bundles',
+        'vendor/support-submit-request',
+        'vendor/support-host-support-bundles',
       ],
     },
     {

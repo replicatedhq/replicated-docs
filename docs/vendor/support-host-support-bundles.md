@@ -1,4 +1,4 @@
-# Configuring Host Support Bundles
+# Collecting Host Support Bundles
 
 This topic describes how to configure host collectors and analyzers to help customers generate host support bundles to troubleshoot Kubernetes installer provisioned clusters (embedded clusters).
 
