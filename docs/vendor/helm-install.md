@@ -1,11 +1,9 @@
 import HelmCLILimitations from "../partials/helm/_helm-cli-limitations.mdx"
+import HelmCliNotice from "../partials/helm/_helm-cli-notice.mdx"
 
 # Supporting helm CLI Installations (Beta)
 
-:::note
-The Helm CLI installation option is deprecated.
-:::
-
+<HelmCliNotice/>
 Some enterprise users prefer or require a Helm chart to install using the `helm` CLI. This is often because Helm is already approved and the customer has a custom CI pipeline that is compatible with Helm charts. Replicated has introduced Beta support to enable these users to use Helm to install your application.
 
 ## Prerequisites

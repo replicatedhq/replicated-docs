@@ -1,8 +1,8 @@
+import HelmCliNotice from "../partials/helm/_helm-cli-notice.mdx"
+
 # Using Private Registries for helm CLI Installations (Beta)
 
-:::note
-The Helm CLI installation option is deprecated.
-:::
+<HelmCliNotice/>
 
 This topic describes the steps required to connect to an external private registry or the Replicated private registry to support installations with the helm CLI. For more information about supporting installations with the helm CLI, see [Supporting helm CLI Installations (Beta)](helm-install).
 
