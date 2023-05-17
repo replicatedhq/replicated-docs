@@ -3,6 +3,7 @@ import HelmBuilderRequirements from "../partials/helm/_helm-builder-requirements
 import Chart from "../partials/helm/_helm-cr-chart.mdx"
 import ChartName from "../partials/helm/_helm-cr-chart-name.mdx"
 import ChartVersion from "../partials/helm/_helm-cr-chart-version.mdx"
+import ChartReleaseName from "../partials/helm/_helm-cr-chart-release-name.mdx"
 import HelmUpgradeFlags from "../partials/helm/_helm-cr-upgrade-flags.mdx"
 import Values from "../partials/helm/_helm-cr-values.mdx"
 import Weight from "../partials/helm/_helm-cr-weight.mdx"
@@ -93,11 +94,7 @@ spec:
 
 ## releaseName
 
-Specifies the release name to use when installing this instance of the Helm chart. Defaults to the chart name.
-
-The release name must be unique across all charts deployed in the namespace. To deploy multiple instances of the same Helm chart in a release, you must add an additional HelmChart custom resource with a unique release name for each instance of the Helm chart.
-
-Must be a valid Helm release name that matches regex `^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$` and is no longer than 53 characters.
+<ChartReleaseName/>
 
 ## weight
 
