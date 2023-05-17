@@ -13,10 +13,6 @@ This topic describes the options and processes for using Replicated to deploy ap
 
 Helm is a popular package manager for Kubernetes applications. Using Replicated to distribute applications packaged with Helm provides additional functionality not available through Helm, such as preflight checks, support bundles, a user interface for collecting user configuration values, support for using private images, and more.
 
-When you distribute an application packaged with Helm, your users can install and manage the application with either the Replicated app manager or the helm CLI.
-
-Additionally, you can create a single release that supports both app manager and helm CLI installation options. For more information about supporting helm CLI in the same release, see [About Supporting helm CLI Installations (Beta)](helm-install#about).
-
 The following table show an overview of the Helm installation options:
 
 <table>
@@ -38,20 +34,7 @@ The following table show an overview of the Helm installation options:
   <td><ul><li>Existing clusters</li><li>Kubernetes installer clusters</li><li>Air gap</li></ul></td>
   <td><ul><li>Not recommended for new installations</li><li>Limited functionality for Helm hooks</li></ul></td>
 </tr>
-<tr>
-  <td><a href="helm-overview#helm-cli">helm CLI (Beta)</a></td>
-  <td>No</td>
-  <td>Existing online clusters</td>
-  <td><ul><li>Limited Replicated features</li></ul></td>
-</tr>
 </table>
-
-## Limitations
-
-There are different limitations depending on if your customers install and manage the application with the app manager or if they use the helm CLI directly. For more information, see:
-
-* [Limitations](helm-release#replicated-helm-limitations) in _Supporting Native Helm and Replicated Helm_
-* [Limitations](helm-install#limitations) in _Supporting helm CLI Installations (Beta)_
 
 ## App Manager Deployment
 
@@ -168,21 +151,3 @@ The resulting deployment is comprised of standard Kubernetes manifests. Therefor
 ### Air Gap
 
 The app manager supports native Helm and Replicated Helm installations into air gap environments. When a user installs a Helm chart-based application in an air gap environment, the chart processing is managed in the end user environment. This means that the app manager can use user-supplied values, license values, and existing values to create deployable manifests. For more information, see [`builder`](/reference/custom-resource-helmchart#builder) in the _HelmChart_ reference.
-
-
-## helm CLI Deployment (Beta) {#helm-cli}
-
-Users can also install an application packaged with a Helm chart into an existing cluster using the helm CLI. When users install with the helm CLI directly, Helm, rather than the app manager, manages the lifecycle of the application.
-
-Deploying an application with the helm CLI differs from the _native Helm_ deployment method described above because, when users install with the helm CLI directly, they have access to all Helm functionality. Some enterprise users prefer or require using the helm CLI because their existing CI/CD pipeline is already compatible with Helm charts. Similarly, enterprise users might have organizational policies that require using Helm to manage applications.
-
-Users do not have access to certain Replicated features when they install and manage the application with the helm CLI directly. This is because the app manager does not manage the lifecycle of the application. For example, users must update the application using the `helm upgrade` command, rather than using the admin console UI or the kots CLI.
-
-For more information about how to package an application with Replicated so that users can install using the helm CLI, see [Supporting helm CLI Installations (Beta)](helm-install).
-
-
-
-
-
-
-

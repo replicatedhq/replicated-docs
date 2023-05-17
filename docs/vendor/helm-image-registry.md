@@ -1,10 +1,10 @@
 # Using Private Registries for helm CLI Installations (Beta)
 
-This topic describes the steps required to connect to an external private registry or the Replicated private registry to support installations with the helm CLI. For more information about supporting installations with the helm CLI, see [Supporting helm CLI Installations (Beta)](helm-install).
-
 :::note
-Allowing users to install with the helm CLI is an Beta feature. To enable this feature on your account, log in to your vendor portal account. Select **Support** > **Request a feature**, and submit a feature request for "Helm CLI install option".
+The Helm CLI installation option is deprecated.
 :::
+
+This topic describes the steps required to connect to an external private registry or the Replicated private registry to support installations with the helm CLI. For more information about supporting installations with the helm CLI, see [Supporting helm CLI Installations (Beta)](helm-install).
 
 ## Overview of Using Private Registries
 
