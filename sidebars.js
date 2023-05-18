@@ -547,7 +547,17 @@ const sidebars = {
         {type: 'link', label: 'Troubleshoot Documentation', href: 'https://troubleshoot.sh/docs/collect/'}
       ],   
     },
-    {type: 'category', items: ['vendor/instance-insights-event-data'], label: 'Insights and Telemetry'},
+    
+    {
+      type: 'category', 
+      label: 'Insights and Telemetry',
+      items: [
+        'vendor/customer-reporting',
+        'vendor/instance-insights-details',
+        'vendor/instance-insights-event-data',
+      ], 
+      
+    },
     {type: 'ref', id: 'intro-replicated', label: 'KOTS and kURL'},
     // TOOLS
     {type: 'html', value: '<h5>Developer Tools</h5>', defaultStyle: true},
