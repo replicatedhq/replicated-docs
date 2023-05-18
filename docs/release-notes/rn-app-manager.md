@@ -23,9 +23,6 @@ Support for Kubernetes: 1.24, 1.25, 1.26, and 1.27
 
 ### Improvements {#improvements-1-99-0}
 * Applies application status informers before deploying the actual resources. This can be helpful in cases where deployments can take a long time as the statuses will be available while the deployment is happening.
-* Updates the minio/minio image to RELEASE.2023-05-04T21-44-30Z.
-* Updates the minio/mc image to RELEASE.2023-05-04T18-10-16Z.
-* Updates the rqlite/rqlite image to 7.17.0.
 * Updates the replicated/local-volume-provider image to v0.5.3 to resolve CVE-2022-4415 and CVE-2022-3821 with high severity.
 * Replace the misleading call-to-action button that could mistakenly lead the user to believe it initiates the instance restore process.
 
