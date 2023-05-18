@@ -6,6 +6,29 @@ import KubernetesCompatibility from "../partials/install/_kubernetes-compatibili
 
 # App Manager Release Notes
 
+## 1.99.0
+
+Released on May 18, 2023
+
+Support for Kubernetes: 1.24, 1.25, and 1.26
+
+### New Features {#new-features-1-99-0}
+* Adds a new Native Helm installation method that leverages the `kots.io.v1beta2` HelmChart custom resource.
+
+### Improvements {#improvements-1-99-0}
+* Applies application status informers before deploying the actual resources. This can be helpful in cases where deployments can take a long time as the statuses will be available while the deployment is happening.
+* Updates the minio/minio image to RELEASE.2023-05-04T21-44-30Z.
+* Updates the minio/mc image to RELEASE.2023-05-04T18-10-16Z.
+* Updates the rqlite/rqlite image to 7.17.0.
+* Updates the replicated/local-volume-provider image to v0.5.3 to resolve CVE-2022-4415 and CVE-2022-3821 with high severity.
+* Replace the misleading call-to-action button that could mistakenly lead the user to believe it initiates the instance restore process.
+
+### Bug Fixes {#bug-fixes-1-99-0}
+* Fixes a bug where the rqlite collector was unable to collect a data dump if the name of the rqlite container was changed.
+* Enhances formatting to accommodate lengthy strings.
+* Fixes an issue where re-running preflights during the initial install could cause the UI to incorrectly show a status of "Currently pending version".
+* Fixes an issue where re-running preflights during the initial install could cause the application to be re-deployed.
+
 ## Kubernetes Compatibility
 
 The following table lists the versions of Kubernetes that are compatible with each version of the app manager:
