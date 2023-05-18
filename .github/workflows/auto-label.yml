@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.DOCS_GH_PAT }}
           script: |
             const labels = ['type::feature', 'type::docs']
             github.rest.issues.addLabels({
