@@ -583,11 +583,16 @@ const sidebars = {
     },
     // POLICIES
     {type: 'html', value: '<h5>policies</h5>', defaultStyle: true},
-    'vendor/policies-vulnerability-patch',
-    'vendor/policies-support-lifecycle',
-    'vendor/policies-data-transmission',
-    'vendor/policies-infrastructure-and-subprocessors',
-    
+    {
+      type: 'category',
+      label: 'Replicated Policies',
+      items: [
+        'vendor/policies-vulnerability-patch',
+        'vendor/policies-support-lifecycle',
+        'vendor/policies-data-transmission',
+        'vendor/policies-infrastructure-and-subprocessors',
+      ],
+    },
     {
       type: 'category',
       label: 'Replicated Data Storage',
