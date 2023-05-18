@@ -47,27 +47,28 @@ article {
     margin: 10px 25px;
 }
 
-.menu__link--active {
+/* Sidebar styling */
+
+/* .menu__link--active {
     font-weight: bold;
+} */
+
+.menu__list-item__home-link > a {
+  font-weight: bold;
 }
 
-
-li.menu__list-item > a.back-to-home {
-  font-size: larger;
-}
-
-li.menu__list-item > h5 {
+.menu__list-item > h5 {
   text-transform: uppercase;
   margin: 1.25rem 0;
   /* border-top: 1px solid rgba(88,88,88,0.2); */
   padding-top: 20px;
 }
 
-
-
-/* [data-theme='dark'] li.menu__list-item > h5 {
+/* [data-theme='dark'] menu__list-item > h5 {
   border-top: 1px solid rgba(88,88,88,0.5);
 } */
+
+/* end sidebar styling */
 
 /* .footer--dark {
     --ifm-footer-background-color: #ffffff;
@@ -189,6 +190,16 @@ h3[id^="bug-fixes"] {
   font-size: 20px;
 }
 
+h3[id^="known-issues"] {
+  background-color: #9778f4;
+  border-radius: 7px!important;
+  color: #fff;
+  width: max-content;
+  padding: 0.2em 0.6em 0.2em;
+  font-weight: 500;
+  font-size: 20px;
+}
+
 h3[id^="new-features"] a {
   color: #fff;
   opacity: .5;
@@ -207,4 +218,9 @@ h3[id^="bug-fixes"] a {
   text-decoration: none;
 }
 
+h3[id^="known-issues"] a {
+  color: #fff;
+  opacity: .5;
+  text-decoration: none;
+}
 

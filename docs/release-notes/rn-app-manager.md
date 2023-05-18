@@ -18,6 +18,12 @@ Support for Kubernetes: 1.24, 1.25, and 1.26
 * Updates the log in page to say **Log in to APP_NAME admin console** instead of **Log in to APP_NAME**.
 * Upgrades the MinIO image to RELEASE.2023-03-24T21-41-23Z to resolve CVE-2023-0286 with high severity, and CVE-2022-4304, CVE-2022-4450, and CVE-2023-0215 with medium severity.
 
+### Known Issues
+
+* Known Issues label test
+
+### Bug Fixes
+
 ## 1.96.3
 
 Released on March 29, 2023

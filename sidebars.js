@@ -19,7 +19,7 @@ const sidebars = {
   // But you can create a sidebar manually
 
   appManager: [
-    {type: 'ref', id: 'intro', 'label': 'Back to Home'},
+    {type: 'ref', id: 'intro', 'label': 'Back to Home', className: 'menu__list-item__home-link'},
     {type: 'html', value: '<h5></h5>'},
     // {type: 'html', value: '<h5>Introduction</h5>', defaultStyle: true}, 
 
