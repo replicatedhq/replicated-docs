@@ -16,19 +16,20 @@ import Intro from "../partials/helm/_helm-cr-intro.mdx"
 import BuilderAirgapIntro from "../partials/helm/_helm-cr-builder-airgap-intro.mdx"
 import BuilderExample from "../partials/helm/_helm-cr-builder-example.mdx"
 
+# HelmChart v2 (Beta)
 
-# HelmChart v1
+> Introduced in Replicated app manager v1.99.0
 
-The HelmChart v1 custom resource applies to the native Helm and Replicated Helm installations. For more information, see [Supporting Native Helm and Replicated Helm](/vendor/helm-release).
+The HelmChart v2 custom resource supports the native Helm v2 installation. This v2 installation method does a Helm install or upgrade of your Helm chart without modifying it with Kustomize. This is an improvement to the v1 installation method because it results in Helm installations that can be reproduced outside of the app manager, and it enables the use of additional Helm functionality that was not available in v1. Because this method bypasses existing Kustomize logic to rewrite images, inject pull secrets, and add backup labels, you must configure a combination of Replicated and Helm templating for the images, pull secrets, and backup labels.
 
 <Intro/>
 
 ## Example
 
-The following is an example manifest file for the HelmChart v1 custom resource:
+The following is an example manifest file for the HelmChart v2 custom resource:
 
 ```yaml
-apiVersion: kots.io/v1beta1
+apiVersion: kots.io/v1beta2
 kind: HelmChart
 metadata:
   name: samplechart
@@ -37,19 +38,12 @@ spec:
   chart:
     name: samplechart
     chartVersion: 3.1.7
-    releaseName: samplechart-release-1
+  
+  releaseName: samplechart-release-1
 
   exclude: "repl{{ ConfigOptionEquals `include_chart` `include_chart_no`}}"
 
-  # helmVersion identifies the Helm Version used to render the chart. Default is v3.
-  helmVersion: v3
-
-  # useHelmInstall identifies whether this Helm chart will use the
-  # Replicated Helm installation (false) or native Helm installation (true). Default is false.
-  # Native Helm installations are only available for Helm v3 charts.
-  useHelmInstall: true
-
-  # weight determines the order that charts with "useHelmInstall: true" are applied, with lower weights first.
+  # weight determines the order that charts are applied, with lower weights first.
   weight: 42
 
   # helmUpgradeFlags specifies additional flags to pass to the `helm upgrade` command.
@@ -100,37 +94,15 @@ spec:
 
 <ChartVersion/>
 
-### chart.releaseName
-
-> Introduced in Replicated app manager v1.73.0
+## releaseName
 
 <ChartReleaseName/>
-
-## helmVersion
-
-Identifies the Helm Version used to render the chart. Acceptable values are `v2` or `v3`. `v3` is the default when no value is specified, and `v3` is required for native Helm installations.
-
-:::note
-<VersionLimitation/>
-:::
-
-## useHelmInstall
-
-Identifies whether this Helm chart will use the Replicated Helm installation (`false`) or native Helm installation (`true`). Replicated recommends that you set this to `true` because native Helm is the preferred method. **Default:** `false`
-
-Native Helm can only be set for new charts. Modifying this flag in existing charts for existing applications is not supported because charts installed with Replicated Helm cannot be migrated to native Helm. However, you can add native Helm charts to an existing release that already uses Replicated Helm. Each chart is installed using the specified installation method for that chart, indicated by the value of the `useHelmInstall` flag.
-
-Native Helm installations always deploy using Helm v3.
 
 ## weight
 
 <Weight/>
 
 ## helmUpgradeFlags
-
-:::note
-`helmUpgradeFlags` is available in the app manager v1.75.0 and later.
-:::
 
 <HelmUpgradeFlags/>
 
@@ -152,10 +124,6 @@ Native Helm installations always deploy using Helm v3.
 
 ### optionalValues[].recursiveMerge
 
-:::note
-`recursiveMerge` is available in the app manager v1.38.0 and later.
-:::
-
 <OptionalValuesRecursiveMerge/>
 
 ## namespace
@@ -164,7 +132,15 @@ Native Helm installations always deploy using Helm v3.
 
 ## builder
 
-<BuilderAirgapIntro/>
+The `builder` field is required for the following use cases:
+
+* <BuilderAirgapIntro/>
+
+* To support online installations that are configured to push and pull from a private registry. In this case, your customer must not enable the `--disable-image-push` flag for the `kots install` command or disable pushing the images to a registry in the admin console. By default, pushing images to a registry is enabled.
+
+  You must provide the necessary values in the `builder` field to render the Helm chart with all of the necessary images so that the app manager knows where to pull the images from to push them into the private registry.
+
+  If you already support an air gap installation, use the same `builder` field configuration for this online installation use case. No additional changes are needed.
 
 <HelmBuilderRequirements/>
 
