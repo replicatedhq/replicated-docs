@@ -73,7 +73,7 @@ const sidebars = {
     {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true}, 
     {
       type: 'category',
-      label: 'Planning to Distribute to Customers',
+      label: 'Planning',
       items: [
         'vendor/distributing-workflow',
         'vendor/planning-questionnaire',
@@ -193,7 +193,7 @@ const sidebars = {
     // },
     {
       type: 'category',
-      label: 'Distribute Your App',
+      label: 'Share Releases',
       items: [
         'vendor/releases-sharing-license-install-script',
         'vendor/releases-configvalues',
