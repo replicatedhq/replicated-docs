@@ -113,14 +113,13 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Replicated Private Registry',
+      label: 'Private Image Registries',
       items: [
         'vendor/private-images-about',
         'vendor/packaging-private-images',
-        'vendor/private-images-replicated',
         'vendor/private-images-tags-digests',
-        'vendor/packaging-private-registry-security',
         'vendor/tutorial-ecr-private-images',
+        'vendor/private-images-replicated',
       ],
     },
     {
@@ -535,11 +534,6 @@ const sidebars = {
     },
     {
       type: 'category', 
-      items: ['vendor/wip-image-registry'], 
-      label: 'Proxied Image Registry'
-    },
-    {
-      type: 'category', 
       label: 'Reliability Matrix',
       items: [
         'vendor/reliability-matrix'
@@ -632,6 +626,7 @@ const sidebars = {
         'vendor/offsite-backup'
       ],
     },
+    'vendor/packaging-private-registry-security',
     {type: 'link',label: 'Security at Replicated',href: 'https://www.replicated.com/security/'},
     
   ],
