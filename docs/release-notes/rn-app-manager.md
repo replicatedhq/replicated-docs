@@ -6,11 +6,17 @@ import KubernetesCompatibility from "../partials/install/_kubernetes-compatibili
 
 # App Manager Release Notes
 
+## Kubernetes Compatibility
+
+The following table lists the versions of Kubernetes that are compatible with each version of the app manager:
+
+<KubernetesCompatibility/>
+
 ## 1.99.0
 
 Released on May 18, 2023
 
-Support for Kubernetes: 1.24, 1.25, and 1.26
+Support for Kubernetes: 1.24, 1.25, 1.26, and 1.27
 
 ### New Features {#new-features-1-99-0}
 * Adds a new Native Helm installation method that leverages the `kots.io.v1beta2` HelmChart custom resource.
@@ -28,12 +34,6 @@ Support for Kubernetes: 1.24, 1.25, and 1.26
 * Enhances formatting to accommodate lengthy strings.
 * Fixes an issue where re-running preflights during the initial install could cause the UI to incorrectly show a status of "Currently pending version".
 * Fixes an issue where re-running preflights during the initial install could cause the application to be re-deployed.
-
-## Kubernetes Compatibility
-
-The following table lists the versions of Kubernetes that are compatible with each version of the app manager:
-
-<KubernetesCompatibility/>
 
 ## 1.98.3
 
