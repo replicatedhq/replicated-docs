@@ -561,7 +561,13 @@ const sidebars = {
     {type: 'ref', id: 'intro-replicated', label: 'KOTS and kURL'},
     // TOOLS
     {type: 'html', value: '<h5>Developer Tools</h5>', defaultStyle: true},
-    {type: 'ref', id: 'replicated-sdk/sdk-getting-started', label: 'Replicated SDK API'},
+    {
+      type: 'category',  
+      label: 'Replicated SDK API',
+      items: [
+        'replicated-sdk/sdk-getting-started',
+      ]
+    },
     {
       type: 'category',
       label: 'Vendor API v3',
@@ -641,10 +647,10 @@ const sidebars = {
     
   ],
 
-  sdk: [
-    {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},
-    'replicated-sdk/sdk-getting-started',
-  ],
+  // sdk: [
+  //   {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},
+  //   'replicated-sdk/sdk-getting-started',
+  // ],
 
   // troubleshoot: [
   //   {type: 'ref', id: 'intro', 'label': '<-- Back to Home'},

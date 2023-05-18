@@ -1,4 +1,4 @@
-# API Reference
+# (Placeholder) API Reference
 
 
 The SDK can be accessed at kots-sdk:3000. To verify this, run kubectl get service and look for the appropriate service.
