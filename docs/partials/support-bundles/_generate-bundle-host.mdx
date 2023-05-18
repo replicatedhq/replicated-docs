@@ -1,0 +1,41 @@
+For Kubernetes installer provisioned clusters (embedded clusters), you can generate a host support bundle. Use this method when:
+
+- A cluster is down
+- The application is not installed
+- The admin console is not working
+- To debug a host-specific performance and configuration problems even when the cluster is running
+
+Your vendor typically provides a host support bundle YAML file that you run with a command to generate the host support bundle. You can also create a your own host support bundle YAML file. For more information about creating a YAML file, see [All Host Collectors and Analyzers](https://troubleshoot.sh/docs/host-collect-analyze/all/) in the Troubleshoot documentation.
+
+If you want to use a default YAML file from the Troubleshoot.sh repository for troubleshooting a degraded cluster, follow the command in the steps below.
+
+Root access is typically not required to run the host collectors and analyzers. However, depending on what is being collected, you might need to run the support-bundle binary with elevated permissions. For example, if you run the `filesystemPerformance` host collector against `/var/lib/etcd` and the user running the binary does not have permissions on this directory, the collection process fails.
+
+To generate a host support bundle:
+
+1. Do one of the following:
+
+    - Save the host support bundle YAML file on the host.
+
+    - Run the following command to download a host support bundle YAML file from the Troubleshoot repository that can help troubleshoot a degraded Kubernetes installer cluster:
+
+    ```
+    kubectl support-bundle https://raw.githubusercontent.com/replicatedhq/troubleshoot-specs/main/host/default.yaml
+    ```
+  :::note
+  For air gap environments, download the YAML file and copy it to the air gap machine.
+  :::
+
+1. Run the following command on the host to generate a host support bundle:
+
+  ```
+  ./support-bundle --interactive=false PATH/FILE.yaml
+  ```
+  Replace:
+
+    - `PATH` with the path to the host support bundle YAML file.
+    - `FILE` with the name of the host support bundle YAML file from your vendor.
+
+1. Share the host support bundle with your vendor's support team, if needed.
+
+1. Repeat these steps for each node because there is no method to generate host support bundles on remote hosts. If you have a multi-node Kubernetes cluster, you must run the support-bundle binary on each node and generate a host support bundle for each node.

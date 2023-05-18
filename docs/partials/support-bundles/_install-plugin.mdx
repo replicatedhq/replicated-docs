@@ -1,0 +1,45 @@
+Install or update the support-bundle plugin (a kubectl plugin) before you generate a support bundle using the CLI. The plugin is required to generate a support bundle.
+
+You can install the support-bundle plugin using krew or install it manually from the release archives.
+
+:::note
+If your application was installed using a Replicated Kubernetes installer script, then `kubectl` and the `support-bundle` plugin should already be present on all of the control plane nodes.
+:::
+
+#### Install using krew
+
+To install the support-bundle plugin using krew, do one of the following actions:
+
+- If krew is _not_ installed already, run the following command:
+
+    ```
+    curl https://krew.sh/support-bundle | bash
+    ```
+
+- If krew is installed already, run the following command:
+
+    ```
+    kubectl krew install support-bundle
+    ```
+
+#### Install Manually
+
+If you do not want to install the plugin using krew or want an easier way to install the plugin in an air gapped environment, you can install the plugin manually from the release archives.
+
+To install the support-bundle plugin manually:
+
+1. Run the following command to download and unarchive the latest release, and move the plugin to your $PATH:
+
+  ```
+  curl -L https://github.com/replicatedhq/troubleshoot/releases/latest/download/support-bundle_linux_amd64.tar.gz | tar xzvf -
+  sudo mv ./support-bundle /usr/local/bin/kubectl-support-bundle
+  ```
+  :::note
+  If you do not have root access, or choose not to add the support-bundle plugin to your path, you can run the binary directly from where you unzipped it by executing `./support-bundle`.  If you choose not to put the plugin into your $PATH, then replace all instances of `kubectl support-bundle` in these instructions with `./support-bundle` or with the absolute path to the binary.
+  :::
+
+1. (Optional) Run the following command to test that the installation is working:
+
+  ```
+  kubectl support-bundle --help
+  ```
