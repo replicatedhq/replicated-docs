@@ -35,7 +35,7 @@ spec:
   releaseNotes: These are our release notes
   allowRollback: false
   kubectlVersion: ">=1.22.0 <1.25.0"
-  kustomizeVersion: ">= 4.0.0"
+  kustomizeVersion: ">= 5.0.0"
   targetKotsVersion: "1.60.0"
   minKotsVersion: "1.40.0"
   requireMinimalRBACPrivileges: false
@@ -241,7 +241,7 @@ spec:
       <p>When <code>kustomizeVersion</code> is unspecified, the app manager uses the latest supported version of Kustomize.</p>
       <p>The following major versions of Kustomize are supported:</p>
       <ul>
-        <li>4.x.x.</li>
+        <li>5.x.x.</li>
       </ul>
     </td>
   </tr>
