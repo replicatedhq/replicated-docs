@@ -19,7 +19,7 @@ Released on May 18, 2023
 Support for Kubernetes: 1.24, 1.25, 1.26, and 1.27
 
 ### New Features {#new-features-1-99-0}
-* Adds a new native Helm v2 installation method (Beta) that leverages the `kots.io/v1beta2` HelmChart custom resource. This v2 installation method does a Helm installation or upgrade of your Helm chart without modifying the chart with Kustomize. This is an improvement to the v1 installation method because it results in Helm installations that can be reproduced outside of the app manager, and it enables the use of additional Helm functionality that was not available in v1.
+* Adds a new native Helm v2 installation method (Beta) that leverages the `kots.io/v1beta2` HelmChart custom resource. This v2 installation method does a Helm installation or upgrade of your Helm chart without modifying the chart with Kustomize. This is an improvement to the v1 installation method because it results in Helm installations that can be reproduced outside of the app manager, and it enables the use of additional Helm functionality that was not available in v1. See [HelmChart v2 (Beta)](/reference/custom-resource-helmchart-v2) in the _Custom Resources_ section.
 
 ### Improvements {#improvements-1-99-0}
 * Applies application status informers before deploying the actual resources. This is helpful in cases where deployments take a long time, because the statuses are now available while the deployment happens.
