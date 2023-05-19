@@ -7,7 +7,7 @@ custom license fields for a customer, see [Managing Custom License Fields](licen
 
 All applications that are packaged and delivered through the Replicated vendor
 portal include built-in license fields. Built-in fields are reserved field names
-and are available in every customer license.
+and are available in every customer license. These license fields can be configured using the Vendor API or the Identity Context template functions. For more information, see [Using the Vendor API v3](/reference/vendor-api-using) and [Identity Context](/reference/template-functions-identity-context).
 
 The following table describes each built-in license field that you can define for a
 customer.

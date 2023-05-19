@@ -154,7 +154,6 @@ const sidebars = {
         'vendor/namespaces',
         'vendor/packaging-rbac',
         'vendor/packaging-using-tls-certs',
-        'vendor/identity-service-configuring',
       ],
     },  
     {
