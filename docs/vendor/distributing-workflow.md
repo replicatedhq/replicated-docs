@@ -114,10 +114,6 @@ Update, promote, and test each release in your development environment until you
     <td>Share the Kubernetes installer TLS certificate with other Kubernetes resources.</td>
   </tr>
   <tr>
-    <td><a href="identity-service-configuring">Enabling and Configuring Identity Service (Beta)</a></td>
-    <td>Control access to the application for Kubernetes installer-created clusters.</td>
-  </tr>
-  <tr>
     <td><a href="packaging-include-resources">Including Conditional Resources</a></td>
     <td>Include and exclude resources based on a customer's configuration choices, such as an external database or an embedded database.</td>
   </tr>
