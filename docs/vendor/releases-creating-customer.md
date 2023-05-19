@@ -16,7 +16,9 @@ To create a customer:
 
 1. In the **Customer type** pane, set the customer type, which is used solely for reporting purposes. Customer access to your application is not affected by the type you assign to them. **Options:** Development, Trial, Paid, Community **Default:** Trial. For more information, see [About Customer License Types](licenses-about-types).
 
-1. In the **License options** pane, enable the options that you have added to your application package. The available license options are:
+1. In the **License options** pane, enable the options that you have added to your application package. For more information, see [About built-in license fields](licenses-using-builtin-fields).
+
+    The available license options are:
 
     <table>
         <tr>
@@ -33,7 +35,7 @@ To create a customer:
         </tr>
         <tr>
           <td>Identity Service Enabled</td>
-          <td>Enables installations to integrate with third party identity service providers to provision RBAC for customer authenticating from the admin console.</td>
+          <td>Enables installations to integrate with third-party identity service providers to provision RBAC for customer authenticating from the admin console.</td>
         </tr>
         <tr>
           <td>Support Bundle Upload Enabled</td>
@@ -44,8 +46,6 @@ To create a customer:
           <td>Enables customers to create snapshots for backup and restore. Vendors must also add a Backup custom resource. See <a href="/reference/custom-resource-backup">Backup</a>.</td>
         </tr>
       </table>
-
-    For more information, see [About built-in license fields](licenses-using-builtin-fields).
 
 1. (Optional) You can add custom fields that let you securely deliver customer-specific values or entitlements to the installation. The custom fields you create apply to all customers. For more information, see [Managing Custom License Fields](licenses-adding-custom-fields).|
 
