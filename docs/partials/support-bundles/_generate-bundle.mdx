@@ -1,29 +1,27 @@
-Support bundles are generated from support bundle specifications provided by the vendor. Specification types include manifest files in the cluster, specifications that are accessible online, and specifications embedded in Kubernetes Secrets or ConfigMap objects. Your vendor can inform you of any online specifications or Kubernetes objects, if applicable.
-
-You can generate a merged support bundle archive from multiple specifications.
+Support bundles are generated from one or more support bundle specifications provided by the vendor. Specification types include manifest files in the cluster, specifications that are accessible online, and specifications embedded in Kubernetes Secrets or ConfigMap objects. Your vendor can inform you of any online specifications or Kubernetes objects, if applicable.
 
 When support bundle specifications are contained in Secrets or ConfigMaps, you can run an automatic discovery in the cluster and generate a merged support bundle.
 
+You can manually generate a support bundle from one specification or generate a merged support bundle archive from multiple specifications.
+
 You must use the support-bundle CLI to perform these tasks.
 
-#### Discover Specifications and Generate a Bundle
+#### Automatically Discover and Generate a Bundle
 
-You can run an automatic discovery of specifications contained in Secrets or ConfigMaps in the cluster and generate a merged support bundle using the `--load-cluster-specs` flag. This can be easier than manually typing each specification on the command line.
-
-Run the following command to generate a bundle with all of the specifications discovered in the cluster:
+Run the following command to automatically discover all of the specifications contained in Secrets or ConfigMaps in the cluster and generate a merged support bundle:
 
   ```bash
   kubectl support-bundle --load-cluster-specs
   ```
 The `--load-cluster-specs` flag can be combined with multiple specifications, such as URLs or specifications that match a custom label. For more information, see [Discover Cluster Specs](https://troubleshoot.sh/docs/support-bundle/discover-cluster-specs/) in the Troubleshoot documentation.
 
-#### Generate from Multiple Specifications
+#### Manually Generate a Bundle
 
-You can generate a merged support bundle from any combination of the support bundle specification types. For more information, see [Collect a Support Bundle Using Multiple Specs](https://troubleshoot.sh/docs/support-bundle/collecting/#collect-a-support-bundle-using-multiple-specs) in the Troubleshoot documentation.
+You can manually generate a support bundle from one or more specifications. A merged support bundle can be created from any combination of the support bundle specification types. For more information, see [Collect a Support Bundle Using Multiple Specs](https://troubleshoot.sh/docs/support-bundle/collecting/#collect-a-support-bundle-using-multiple-specs) in the Troubleshoot documentation.
 
 The following examples show some possible combinations:
 
-- Using multiple files:
+- Using one or more files:
 
   ```bash
   kubectl support-bundle ./PATH_TO_FILE1 ./PATH_TO_FILE2 ./PATH_TO_FILE3
