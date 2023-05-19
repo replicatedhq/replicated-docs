@@ -1,12 +1,12 @@
 Support bundles are generated from one or more support bundle specifications provided by the vendor. Specification types include manifest files in the cluster, specifications that are accessible online, and specifications embedded in Kubernetes Secrets or ConfigMap objects. Your vendor can inform you of any online specifications or Kubernetes objects, if applicable.
 
-There are two methods to generating support bundles from one or more specifications. If your installation includes multiple specifications, both of these methods will generate a merged support bundle for you.
+There are two methods to generating support bundles from one or more specifications. If your installation includes multiple specifications, both of these methods will generate a merged support bundle for you:
 
-- Automatically discover cluster specifications
-- Manually generate a support bundle from any specification type
+- [Automatically discover cluster specifications](#discover)
+- [Manually generate a support bundle from any specification type](#manual)
 
 
-#### Automatically Discover and Generate a Bundle
+#### Automatically Discover Cluster Specifications {#discover}
 
 When support bundle specifications are contained in Secrets or ConfigMaps, you can run an automatic discovery in the cluster and generate a merged support bundle.
 
@@ -17,7 +17,7 @@ Run the following command to automatically discover all of the specifications in
   ```
 The `--load-cluster-specs` flag can be combined with multiple specifications, such as URLs or specifications that match a custom label. For more information, see [Discover Cluster Specs](https://troubleshoot.sh/docs/support-bundle/discover-cluster-specs/) in the Troubleshoot documentation.
 
-#### Manually Generate a Bundle
+#### Manually Generate a Support Bundle {#manual}
 
 You can manually generate a support bundle from one or more specifications, and from any combination of specification types. A merged support bundle is created when you specify multiple specifications. For more information, see [Collect a Support Bundle Using Multiple Specs](https://troubleshoot.sh/docs/support-bundle/collecting/#collect-a-support-bundle-using-multiple-specs) in the Troubleshoot documentation.
 
