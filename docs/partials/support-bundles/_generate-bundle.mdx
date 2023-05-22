@@ -1,27 +1,19 @@
-Support bundles are generated from one or more support bundle specifications provided by the vendor. Specification types include manifest files in the cluster, specifications that are accessible online, and specifications embedded in Kubernetes Secrets or ConfigMap objects. Your vendor can inform you of any online specifications or Kubernetes objects, if applicable.
+Support bundles are generated from one or more support bundle specifications. Specification locations include YAML manifest files in the cluster, URLs, stdin, and Secrets or ConfigMap objects embedded in a Kubernetes cluster. For more information, see [Collecting a Support Bundle](https://troubleshoot.sh/docs/support-bundle/collecting/) and [Discover Cluster Specs](https://troubleshoot.sh/docs/support-bundle/discover-cluster-specs/) in the Troubleshoot documentation.
 
-There are two methods to generating support bundles from one or more specifications. If your installation includes multiple specifications, both of these methods will generate a merged support bundle for you:
+The following examples show some possible CLI commands to generate a support bundle for one or more specifications and locations:
 
-- [Automatically discover cluster specifications](#discover)
-- [Manually generate a support bundle from any specification type](#manual)
-
-
-#### Automatically Discover Cluster Specifications {#discover}
-
-When support bundle specifications are contained in Secrets or ConfigMaps, you can run an automatic discovery in the cluster and generate a merged support bundle.
-
-Run the following command to automatically discover all of the specifications in the cluster and generate a merged support bundle:
+- Automatically discover specifications in the cluster that are contained in Secrets or ConfigMaps:
 
   ```bash
   kubectl support-bundle --load-cluster-specs
   ```
-The `--load-cluster-specs` flag can be combined with multiple specifications, such as URLs or specifications that match a custom label. For more information, see [Discover Cluster Specs](https://troubleshoot.sh/docs/support-bundle/discover-cluster-specs/) in the Troubleshoot documentation.
+- Automatically discover specifications found in the cluster that match a custom label:
 
-#### Manually Generate a Support Bundle {#manual}
+  ```bash
+  kubectl support-bundle --load-cluster-specs -l troubleshoot.io/kind=LABEL
+  ```
 
-You can manually generate a support bundle from one or more specifications, and from any combination of specification types. A merged support bundle is created when you specify multiple specifications. For more information, see [Collect a Support Bundle Using Multiple Specs](https://troubleshoot.sh/docs/support-bundle/collecting/#collect-a-support-bundle-using-multiple-specs) in the Troubleshoot documentation.
-
-The following examples show some possible combinations:
+  Replace `LABEL` with the label name.
 
 - Using one or more files:
 
@@ -30,12 +22,6 @@ The following examples show some possible combinations:
   ```
 
   Replace `PATH_TO_FILE` with the path and YAML file name for each file.
-
-  **Example:**
-
-  ```bash
-  kubectl support-bundle manifests/redis/troubleshoot.yaml manifests/mysql/troubleshoot.yaml manifests/nginx/troubleshoot.yaml
-  ```
 
 - Using a URL and a specification in the cluster:
 
@@ -48,10 +34,3 @@ The following examples show some possible combinations:
 
   - `URL` with the online specification location provided by your vendor
   - `PATH_TO_FILE` with the path and YAML file name
-
-  **Example:**
-  
-  ```bash
-  kubectl support-bundle https://raw.githubusercontent.com/replicatedhq/troubleshoot-specs/main/in-cluster/default.yaml \
-  ./support-bundle-spec-1.yaml
-  ```  
