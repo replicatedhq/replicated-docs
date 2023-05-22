@@ -4,6 +4,28 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.05.22-0
+
+Released on May 22, 2023
+
+### New Features {#new-features-v2023-05-22-0}
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.65.1-45.27.2.
+* Enable collectd usage within ubuntu 22.04.
+* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.11.0.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.65.1-45.28.0.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.27.2 1.26.5 1.25.10 1.24.14 1.23.17 1.22.17.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-05-18T00-05-36Z.
+* Adds further log information for Docker Proxy settings configuration.
+* Adds further log information for containerd installs and configuration on versions equals and upper than 1.5.10.
+
+### Bug Fixes {#bug-fixes-v2023-05-22-0}
+* Fixes an issue with the [Weave add-on](https://kurl.sh/docs/add-ons/weave) that prevents symbolic links to /opt/cni/bin from working.
+* Fixes weave `2.8.1-20230417` and `2.6.5-20230417` to not fail when /opt/cni has a symbolic link.
+* Adds check to verify if the Pod(s) are running for Rook upgrades from 1.x to 1.4.9.
+* Revert changes for weave 2.6.5-20230417.
+* Improves stability of upgrades to Rook version 1.5.12.
+* Fixes an issue that causes Rook upgrades from 1.0.4 to 1.8.x+ to fail with error "pod has unsupported owner ReplicaSet".
+
 ## v2023.05.15-0
 
 Released on May 15, 2023
