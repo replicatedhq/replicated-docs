@@ -19,7 +19,7 @@ Released on May 22, 2023
 * Adds further log information for containerd installations and configuration on version 1.5.10 or later.
 
 ### Bug Fixes {#bug-fixes-v2023-05-22-0}
-* Fixes an issue with the [Weave add-on](https://kurl.sh/docs/add-ons/weave) that prevented symbolic links to /opt/cni/bin from working.
+* Fixes an issue with the [Weave add-on](https://kurl.sh/docs/add-ons/weave) for version 2.8.1-20230417 that prevented symbolic links to /opt/cni/bin from working.
 * Fixes an issue that caused Rook upgrades from 1.0.4 to 1.8.x or later to fail with the error "pod has unsupported owner ReplicaSet".
 * Improves stability of upgrades to Rook version 1.5.12.
 * Updates the [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.11.0 with new replicated/local-volume-provider image version v0.5.3 to address the following high severity CVE: CVE-2022-29458.
