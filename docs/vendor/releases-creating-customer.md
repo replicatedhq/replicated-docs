@@ -26,7 +26,7 @@ To create a customer:
           <th width="70%">Description</th>
         </tr>
         <tr>
-          <td>Air gap</td>
+          <td>Airgap Download Enabled</td>
           <td>Enables new installations with this license to install from an air gap package or from an online installation.</td>
         </tr>
         <tr>
