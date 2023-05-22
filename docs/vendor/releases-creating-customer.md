@@ -1,6 +1,6 @@
 # Creating a Customer
 
-After you promote your first release to a channel, you create a customer. Additional customers can be added as needed.
+This topic describes how to create a customer. Additional customers can be added as needed.
 
 Each customer that you create in the Replicated vendor portal has a unique license file. Each customer license uniquely identifies the customer and the application, specifies their release channel, and defines entitlement information about the customer. For more information about customer licenses, see [About Customers](licenses-about).
 
@@ -35,7 +35,7 @@ To create a customer:
         </tr>
         <tr>
           <td>Identity Service Enabled</td>
-          <td>Enables installations to integrate with third-party identity service providers to provision RBAC for customer authenticating from the admin console.</td>
+          <td>Enables installations to integrate with third-party identity service providers to provision RBAC for customers authenticating from the admin console.</td>
         </tr>
         <tr>
           <td>Support Bundle Upload Enabled</td>

@@ -101,10 +101,7 @@
   from="https://docs.replicated.com/vendor/team-management-rbac-about"
   to="https://docs.replicated.com/vendor/team-management-rbac-configuring"
 
-[[redirects]]
-  from="https://docs.replicated.com/vendor/identity-service-configuring"
-  to="https://docs.replicated.com/vendor/releases-creating-customer"
-  
+ 
 ###################################################
 # Redirects To the Enterprise Section
 ###################################################
