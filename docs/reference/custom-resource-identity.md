@@ -1,3 +1,7 @@
+:::important
+This topic has been deleted from the product documentation because this Beta feature being deprecated.
+:::
+
 # Identity (Beta)
 
 The Identity custom resource allows you to configure the Replicated identity service for your application.

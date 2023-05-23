@@ -35,7 +35,7 @@ To create a customer:
         </tr>
         <tr>
           <td>Identity Service Enabled</td>
-          <td>Enables installations to integrate with third-party identity service providers to provision RBAC for customers authenticating from the admin console.</td>
+          <td>Enables customers to integrate with third-party identity service providers to provision RBAC for authenticating to the admin console.</td>
         </tr>
         <tr>
           <td>Support Bundle Upload Enabled</td>
