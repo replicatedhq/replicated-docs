@@ -36,7 +36,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
       <p>The following describes how <code>--undeploy</code> removes application resources:</p>
       <ul>
         <li>For applications deployed with <code>kubectl apply</code> (including standalone manifest files and Helm charts deployed with the <a href="/vendor/helm-overview#replicated-helm">Replicated Helm</a> method), <code>--undeploy</code> identifies and removes resources based on a <code>kots.io/app-slug: &lt;app_slug&gt;</code> annotation that is applied to all application resources during deployment. </li>
-        <li>For applications deployed with the <a href="/vendor/helm-overview#native">Native Helm</a> method, <code>--undeploy</code> runs <code>helm uninstall</code>.</li>
+        <li>For applications deployed with the <a href="/vendor/helm-overview#native">native Helm</a> method, <code>--undeploy</code> runs <code>helm uninstall</code>.</li>
       </ul>  
       </td>
   </tr>
