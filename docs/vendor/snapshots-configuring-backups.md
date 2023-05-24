@@ -81,7 +81,7 @@ To configure backups:
       uri: Secret To Not Include
 
     ```
-1. (Optional) If you are distributing your application with the Kubernetes installer, Replicated recommends that you include the Velero add-on so that customers do not have to manually install Velero on their cluster. For more information about the Kubernetes installer, see [Creating a Kubernetes Installer Specification](packaging-embedded-kubernetes).
+1. (Optional) If you are distributing your application with Replicated kURL, Replicated recommends that you include the kURL Velero add-on so that customers do not have to manually install Velero on their cluster. For more information about distributing with kURL, see [Creating a Kubernetes Installer Specification](packaging-embedded-kubernetes).
 
 ## Next Step
 

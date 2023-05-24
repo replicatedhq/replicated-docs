@@ -75,15 +75,15 @@ The **Instances** section displays the following details about each active insta
 * Details about the cluster where the instance is installed, including:
    * The Kubernetes distribution for the cluster, if applicable.
    * The Kubernetes version running in the cluster.
-   * Whether the instance is installed in a Kubernetes installer (kURL) cluster.
-   * (Kubernetes Installer Clusters Only) The number of nodes ready in the cluster.
-     The following shows an example of the Nodes field for an instance installed in a Kubernetes installer cluster.
+   * Whether the instance is installed in a Replicated kURL cluster (embedded cluster).
+   * (Embedded Clusters Only) The number of nodes ready in the cluster.
+     The following shows an example of the Nodes field for an instance installed in an embedded cluster.
      ![Instance with 1/1 nodes ready](/images/kurl-instance-row.png)
      [View a larger version of this image](/images/kurl-instance-row.png)
-   * The app manager version running in the cluster.
+   * The KOTS version running in the cluster.
    * The cloud provider and region, if applicable.
 * Instance uptime data, including:
    * The timestamp of the last recorded check-in for the instance. A check-in is recorded when any of the following occur:
       <AppCheckin/>
-   * An uptime graph of the previous two weeks. For more information about how the vendor portal determines uptime, see [Instance Uptime](https://docs.replicated.com/vendor/instance-insights-details#instance-uptime) in _Instance Details_.
+   * An uptime graph of the previous two weeks. For more information about how the vendor portal determines uptime, see [Instance Uptime](instance-insights-details#instance-uptime) in _Instance Details_.
    * The uptime ratio in the previous two weeks.
