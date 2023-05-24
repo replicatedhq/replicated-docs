@@ -39,35 +39,35 @@ To invite a new team member:
 
   People invited to join your team receive an email notification to accept the invitation. They must follow the link in the email to accept the invitation and join the team. If they do not have a Replicated account already, they can create one that complies with your password policies, 2FA, and Google authentication requirements. If an invited user's email address is already associated with a Replicated account, by accepting your invitation, they automatically leave their current team and join the team that you have invited them to.
 
-## Re-invite Members
+## Re-invite or Remove Prospective Members
 
-Invitations expire after 7 days. If a prospective member has not accepted their invitation in this timeframe, you can re-invite them without having to re-enter their details. You must be an administrator to perform this action.
+Invitations expire after 7 days. If a prospective member has not accepted their invitation in this time frame, you can re-invite them without having to re-enter their details. You can also remove the prospective member from the list.
 
-To re-invite a prospective member:
+You must be an administrator to perform this action.
 
-1. Click **Reinvite** below the user's email address on the Team Members page.
+To re-invite or remove a prospective member, do one of the following on the **Team Members** page:
 
-1. Click **Reinvite** in the confirmation dialog.
+* Click **Reinvite** from the row with the user's email address, and then click **Reinvite** in the confirmation dialog.
 
-## Edit Permissions
+* Click **Remove** from the row with the user's email address, and then click **Delete Invitation** in the confirmation dialog.
+
+## Edit Policy Permissions
 
 You can edit the RBAC policy that is assigned to a member at any time.
 
+  <CollabRbacImportant/>
 
-
-To edit permissions for individual team members:
+To edit policy permissions for individual team members:
 
 1. From the the Team Members list, click **Edit permissions** next to a members name.
 
   :::note
-  The two-factor authentication (2FA) status displays on the **Team members** page. Enabling or disabling it for a team is managed from the **Multifactor Auth** page. For more information about configuring 2FA, see [Managing Two-Factor Authentication](team-management-two-factor-auth).
+  The two-factor authentication (2FA) status displays on the **Team members** page, but it is not configured on this page. For more information about configuring 2FA, see [Managing Two-Factor Authentication](team-management-two-factor-auth).
   :::
 
 1. Select an RBAC policy from the **Permissions** dropdown list, and click **Save**. For information about configuring the RBAC policies that display in this list, see [Configuring RBAC Policies](team-management-rbac-configuring).
 
   <img src="/images/teams-edit-permissions.png" alt="Edit team member permissions in the vendor portal" width="400"/>
-
-  <CollabRbacImportant/>
 
 ## Enable Users to Auto-join Your Team
 By default, users must be invited to your team. Team administrators can use the auto-join feature to allow users from the same email domain to join their team automatically. This applies to users registering with an email, or with Google authentication if it is enabled for the team. The auto-join feature does not apply to SAML authentication because SAML users log in using their SAML provider's application portal instead of the vendor portal.
