@@ -8,7 +8,7 @@ You can use custom domains as aliases for the Replicated registry, the proxy ser
 
 Replicated domains are external to your domain and require additional security reviews by your customer. Using custom domains as aliases can bring the domains inside an existing security review and reduce your exposure.
 
-Using the Replicated vendor portal or the vendor API, you configure custom domains at the Team level. For information about using the API instead, see [Using the Vendor API v3](/reference/vendor-api-using).
+Using the vendor portal or the vendor API, you configure custom domains at the Team level. For information about using the API instead, see [Using the Vendor API v3](/reference/vendor-api-using).
 
 Verification of the domain is required using TXT records that undergo separate verification checks for:
 

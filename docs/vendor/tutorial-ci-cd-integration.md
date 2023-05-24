@@ -70,8 +70,8 @@ make release
 
 ## Helm Chart
 
-The steps below show how to modify a repo containing a Helm chart to be deployable as an application.
-This section assumes you have reviewed the [About Deploying Helm Charts](helm-overview) content, and are familiar with how the Replicated app manager processes Helm charts as part of an application.
+The steps below show how to modify a repository containing a Helm chart to be deployable as an application.
+This section assumes you have reviewed the [About Deploying Helm Charts](helm-overview) content, and are familiar with how Replicated KOTS processes Helm charts as part of an application.
 
 - Start from a basic Helm Chart structure, which could look something like this:
 
@@ -101,7 +101,7 @@ kots/
 EOF
 ```
 
-- Make a copy of a [kots directory](https://github.com/replicatedhq/replicated-automation/tree/master/vendor/helm-influxdb/kots) from the Replicated kots apps repo and place it in your Chart's root dir.
+- Make a copy of a [`kots` directory](https://github.com/replicatedhq/replicated-automation/tree/master/vendor/helm-influxdb/kots) from the Replicated KOTS repository and place it in your Chart's root dir.
 
 - Update `spec.chart.name` and `spec.chart.chartVersion` in `kots/helm-chart.yaml` to match your chart.
 

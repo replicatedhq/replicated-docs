@@ -45,7 +45,7 @@ To create and promote a release in the vendor portal:
   </tr>
   <tr>
     <td>Requirements</td>
-    <td><p>Select <strong>Prevent this release from being skipped during upgrades</strong> to mark the release as required. When a release is required, the admin console requires users to upgrade to that version before they can upgrade to a later version.</p><p>For example, if you select <strong>Prevent this release from being skipped during upgrades</strong> for release v2.0.0, users with v1.0.0 deployed must upgrade to v2.0.0 before they can upgrade to a version later than v2.0.0, such as v2.1.0.</p><p>Required releases are supported in the app manager v1.68.0 and later.</p><p>After users deploy a required version, they can no longer redeploy (roll back to) versions earlier than the required version, even if <code>allowRollback</code> is <code>true</code> in the Application custom resource manifest. See <a href="../reference/custom-resource-application#allowrollback">allowRollback</a> in the <i>Application</i> custom resource topic.</p></td>
+    <td><p>Select <strong>Prevent this release from being skipped during upgrades</strong> to mark the release as required. When a release is required, KOTS requires users to upgrade to that version before they can upgrade to a later version.</p><p>For example, if you select <strong>Prevent this release from being skipped during upgrades</strong> for release v2.0.0, users with v1.0.0 deployed must upgrade to v2.0.0 before they can upgrade to a version later than v2.0.0, such as v2.1.0.</p><p>Required releases are supported in Replicated KOTS v1.68.0 and later.</p><p>After users deploy a required version, they can no longer redeploy (roll back to) versions earlier than the required version, even if <code>allowRollback</code> is <code>true</code> in the Application custom resource manifest. See <a href="../reference/custom-resource-application#allowrollback">allowRollback</a> in the <i>Application</i> custom resource topic.</p></td>
   </tr>
   <tr>
     <td>Release notes</td>
@@ -86,7 +86,7 @@ To edit a draft release:
 
 You can archive releases to remove them from view on the Releases page. 
 
-Archiving a release that has been promoted does not remove the release from the channel's Release History page or prevent the app manager from downloading the archived release.
+Archiving a release that has been promoted does not remove the release from the channel's Release History page or prevent KOTS from downloading the archived release.
 
 To archive one or more releases:
 
