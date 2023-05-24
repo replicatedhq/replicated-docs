@@ -2,13 +2,13 @@
 
 This topic describes how to connect to an external private registry using the Replicated vendor portal or the replicated CLI.
 
-For information about how the Replicated app manager processes images in external private registries, see [About Using an External Registry](private-images-about).
+For information about how Replicated KOTS processes images in external private registries, see [About Using an External Registry](private-images-about).
 
 For information about using the Replicated private registry, see [Push Images to the Replicated Private Registry](private-images-replicated).
 
 ## About Using External Private Registries
 
-When packaging an application with Replicated, you can include private
+When packaging an application with Replicated KOTS, you can include private
 images for the application without distributing registry credentials
 to your customer.
 
@@ -18,7 +18,7 @@ If you use the Replicated private registry or proxy service, you can configure c
 
 ## Supported Registries
 
-Replicated recommends that application vendors use one the following external private registries, which have been tested for compatibility with the app manager:
+Replicated recommends that application vendors use one the following external private registries, which have been tested for compatibility with KOTS:
 
 * Amazon Elastic Container Registry (ECR)
 * DockerHub
@@ -30,8 +30,7 @@ You can also configure access to most other external registries if the registry 
 
 ## Configure Access to an External Registry
 
-You can provide the credentials for an external registry in the vendor portal to grant the app manager proxy access to the private application images in the
-registry.
+You can provide the credentials for an external registry in the vendor portal to grant KOTS proxy access to the private application images in the registry.
 
 All applications in your vendor portal Team have access to the external registry that you add. This means that you can use the images in the external registry across multiple apps in the Team.
 
