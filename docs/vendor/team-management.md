@@ -51,13 +51,19 @@ To re-invite a prospective member:
 
 ## Edit Permissions
 
-You can edit the policy that is assigned to a member at any time. For example, you can assign a different policy that gives access to additional resources.
+You can edit the RBAC policy that is assigned to a member at any time.
+
+
 
 To edit permissions for individual team members:
 
 1. From the the Team Members list, click **Edit permissions** next to a members name.
 
-1. Select an RBAC policy from the **Permissions** dropdown list, and click **Save**.
+  :::note
+  The two-factor authentication (2FA) status displays on the **Team members** page. Enabling or disabling it for a team is managed from the **Multifactor Auth** page. For more information about configuring 2FA, see [Managing Two-Factor Authentication](team-management-two-factor-auth).
+  :::
+
+1. Select an RBAC policy from the **Permissions** dropdown list, and click **Save**. For information about configuring the RBAC policies that display in this list, see [Configuring RBAC Policies](team-management-rbac-configuring).
 
   <img src="/images/teams-edit-permissions.png" alt="Edit team member permissions in the vendor portal" width="400"/>
 
