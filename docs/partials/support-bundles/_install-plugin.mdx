@@ -6,17 +6,26 @@ You can install the support-bundle plugin using krew or install it manually from
 If your application was installed using a Replicated Kubernetes installer script, then `kubectl` and the `support-bundle` plugin is already present on all of the control plane nodes. You can skip this prerequisite.
 :::
 
-#### Install using krew
+#### Install or Upgrade using krew
 
-To install the support-bundle plugin using krew:
+To install the support-bundle plugin using krew, do one of the following:
 
-1. If krew is _not_ installed already, go to the to install krew. For more information, see [Installing](https://krew.sigs.k8s.io/docs/user-guide/setup/install/) in the Krew documentation.
-
+* If krew is _not_ installed already, run the following command to install krew and the support-bundle plugin at the same time:
+  
+    ```
+    curl https://krew.sh/support-bundle | bash
+    ```
     
-1. Run the following command to install the support-bundle plugin to your path:
+* If krew is installed already, run the following command to install the plug-in: 
 
     ```
     kubectl krew install support-bundle
+    ```
+
+* To upgrade your existing support-bundle plugin using krew:
+
+    ```
+    kubectl krew upgrade support-bundle
     ```
 
 #### Install Manually
