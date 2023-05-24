@@ -1,12 +1,14 @@
 # Creating and Editing Configuration Fields
 
-This topic describes how to use the Config custom resource manifest file to add and edit fields in the Replicated admin console configuration screen. For more information about the configuration screen, see [About the Configuration Screen](config-screen-about).
+This topic describes how to use the Config custom resource manifest file to add and edit fields in the Replicated admin console configuration screen.
 
 ## About the Config Custom Resource
 
-To include a configuration screen in the Replicated admin console for your application, you add a Config custom resource manifest file to the release in the Replicated vendor portal.
+Applications distributed with Replicated KOTS can include a configuration screen in the admin console to collect required or optional values from your users that are used to run your application. For more information about the configuration screen, see [About the Configuration Screen](config-screen-about).
 
-You define the fields that appear on the configuration screen as an array of `groups` and `items` in the Config custom resource manifest:
+To include a configuration screen in the admin console for your application, you add a Config custom resource manifest file to a release for the application.
+
+You define the fields that appear on the configuration screen as an array of `groups` and `items` in the Config custom resource:
    * `groups`: A set of `items`. Each group must have a `name`, `title`, `description`, and `items`. For example, you can create a group of several user input fields that are all related to configuring an SMTP mail server.
    * `items`: An array of user input fields. Each array under `items` must have a `name`, `title`, and `type`. You can also include several optional properties. For example, in a group for configuring a SMTP mail server, you can have user input fields under `items` for the SMTP hostname, port, username, and password.
 
@@ -37,12 +39,6 @@ The following example shows a common password complexity rule:
 ```
 
 ## Add Fields to the Configuration Screen
-
-Applications can include a configuration screen in the Replicated admin console to collect required or optional values from your users that are used to run your application.
-
-Add and edit fields on the admin console configuration screen by editing the Config custom resource manifest file.
-
-After you create fields in the Config manifest file, you then map the fields to other manifest files in your application to apply the user-supplied values. If you use a Helm chart for your application, you map the fields that you add to the `values.yaml` file. For more information, see [Next Steps](#next-steps) below.
 
 To add fields to the admin console configuration screen:
 
@@ -95,7 +91,7 @@ To add fields to the admin console configuration screen:
    ![User input fields on the configuration screen for the SMTP settings](/images/config-screen-smtp-example-large.png)
 
 1. (Optional) Add default values for the fields. You can add default values using one of the following properties:
-   * **With the `default` property**: When you include the `default` key, the Replicated app manager uses this value when rendering the manifest files for your application. The value then displays as a placeholder on the configuration screen in the admin console for your users. The app manager only uses the default value if the user does not provide a different value.
+   * **With the `default` property**: When you include the `default` key, KOTS uses this value when rendering the manifest files for your application. The value then displays as a placeholder on the configuration screen in the admin console for your users. KOTS only uses the default value if the user does not provide a different value.
 
      :::note
      If you change the `default` value in a later release of your application, installed instances of your application receive the updated value only if your users did not change the default from what it was when they initially installed the application.
@@ -103,7 +99,7 @@ To add fields to the admin console configuration screen:
      If a user did change a field from its default, the admin console does not overwrite the value they provided.
      :::
 
-   * **With the `value` property**: When you include the `value` key, the app manager does not overwrite this value during an application update. The value that you provide for the `value` key is visually indistinguishable from other values that your user provides on the admin console configuration screen. The app manager treats user-supplied values and the value that you provide for the `value` key as the same.
+   * **With the `value` property**: When you include the `value` key, KOTS does not overwrite this value during an application update. The value that you provide for the `value` key is visually indistinguishable from other values that your user provides on the admin console configuration screen. KOTS treats user-supplied values and the value that you provide for the `value` key as the same.
 
 2. (Optional) Add regular expressions to validate user input for `text`, `textarea`, `password` and `file` config item types. For more information, see [About Regular Expression Validation](#about-regular-expression-validation).
 
@@ -134,6 +130,6 @@ To add fields to the admin console configuration screen:
 
 ## Next Steps
 
-After you add user input fields to the configuration screen, you use template functions to map the user-supplied values to manifest files in your release. If you use a Helm chart for your application in Replicated, you map the values to the Helm chart `values.yaml` file using the Replicated `HelmChart` custom resource.
+After you add user input fields to the configuration screen, you use template functions to map the user-supplied values to manifest files in your release. If you use a Helm chart for your application, you map the values to the Helm chart `values.yaml` file using the HelmChart custom resource.
 
 For more information, see [Mapping User-Supplied Values](config-screen-map-inputs).
