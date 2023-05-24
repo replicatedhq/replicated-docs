@@ -39,7 +39,7 @@ To invite a new team member:
 
   People invited to join your team receive an email notification to accept the invitation. They must follow the link in the email to accept the invitation and join the team. If they do not have a Replicated account already, they can create one that complies with your password policies, 2FA, and Google authentication requirements. If an invited user's email address is already associated with a Replicated account, by accepting your invitation, they automatically leave their current team and join the team that you have invited them to.
 
-## Re-invite or Remove Prospective Members
+## Managing Invitations
 
 Invitations expire after 7 days. If a prospective member has not accepted their invitation in this time frame, you can re-invite them without having to re-enter their details. You can also remove the prospective member from the list.
 
