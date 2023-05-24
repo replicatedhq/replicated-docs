@@ -25,7 +25,7 @@ To [do this task]: [For example, "To create a customer license:"]
     </tr>
     <tr>
       <td>Field Name</td>
-      <td>[Example description: The type of customer is used solely for reporting purposes. Their access to your app is not affected by the type you assign to them. <strong>Options:</strong> Development, Trial, Paid, Community. <strong>Default:</strong> Trial. For more information, see LINK.]</td>
+      <td>Example description: The type of customer is used solely for reporting purposes. Their access to your app is not affected by the type you assign to them. <strong>Options:</strong> Development, Trial, Paid, Community. <strong>Default:</strong> Trial. For more information, see <a href="releases-creating-customer">Creating a Customer</a>.</td>
     </tr>
     <tr>
       <td></td>

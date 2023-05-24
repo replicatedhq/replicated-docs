@@ -154,7 +154,6 @@ const sidebars = {
         'vendor/namespaces',
         'vendor/packaging-rbac',
         'vendor/packaging-using-tls-certs',
-        'vendor/identity-service-configuring',
       ],
     },  
     {
@@ -296,7 +295,6 @@ const sidebars = {
             'reference/custom-resource-config',
             'reference/custom-resource-helmchart-v2',
             'reference/custom-resource-helmchart',
-            'reference/custom-resource-identity',
             'reference/custom-resource-lintconfig',
             'reference/custom-resource-preflight',
             'reference/custom-resource-redactor',
