@@ -41,7 +41,7 @@ To invite a new team member:
 
 ## Managing Invitations
 
-Invitations expire after 7 days. If a prospective member has not accepted their invitation in this time frame, you can re-invite them without having to re-enter their details. You can also remove the prospective member from the list.
+Invitations expire after 7 days. If a prospective member has not accepted their invitation in this time frame, you can re-invite them without having to reenter their details. You can also remove the prospective member from the list.
 
 You must be an administrator to perform this action.
 
