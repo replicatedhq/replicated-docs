@@ -16,7 +16,7 @@ It is split into 5 sections:
 
 This guide assumes you have:
 
-* A running instance of the Replicated admin console (`kotsadm`) to iterate against in either an existing cluster or a Replicated Kubernetes installer-created cluster. If you do not have a running instance of the admin console on an existing or Kubernetes installer cluster, complete one of the following getting started tutorials to package and install a sample application:
+* A running instance of the Replicated admin console (`kotsadm`) to iterate against in either an existing cluster or a Replicated kURL cluster (embedded cluster). If you do not have a running instance of the admin console on an existing or Kubernetes installer cluster, complete one of the following getting started tutorials to package and install a sample application:
    * [UI Tutorial](tutorial-ui-setup)
    * [CLI Tutorial](tutorial-cli-setup)
 * A local git checkout of your application manifests.
@@ -139,7 +139,7 @@ The core of this guide will be around how to give your end users the option to d
 * Bring their own PostgreSQL instance for your app to connect to
 * Use an "embedded" database bundled in with the application
 
-The first step here is to present that option to the user, then we'll walk through implementing each scenario in the app manager.
+The first step here is to present that option to the user, then we'll walk through implementing each scenario.
 The `kots.io/v1beta1` `Config` resource controls what configuration options are presented to the end user.
 If you followed one of the "Getting Started" guides, you probably have a `config.yaml` in your manifests that looks something like the following YAML file:
 

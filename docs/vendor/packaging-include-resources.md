@@ -1,18 +1,22 @@
 # Including Optional and Conditional Resources
 
-Often, vendors need a way to optionally install resources depending on customers configuration choices. A common example is giving the customer the choice to install a new database or use an existing database.
+This topic describes how to use Replicated KOTS annotations and Replicated template functions to include or exclude optional resources based on a conditional statement.
+
+## About Including and Excluding Resources
+
+Often, vendors need a way to optionally install resources depending on customers' configuration choices. A common example is giving the customer the choice to install a new database or use an existing database.
 
 In this scenario, when a customer chooses to bring their own database, it is not desirable to deploy the optional database resources (StatefulSet, Service, etc.). This means that the customer-supplied configuration input values may result in optional Kubernetes manifests that should not be installed.
 
-To provide optional resource installation, the app manager uses [annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) and [template functions](../reference/template-functions-about) to conditionally include or exclude resources.
+## KOTS Annotations
 
-## App Manager Annotations
+To support optional resource installation, KOTS uses annotations and template functions. For information about Kubernetes annotations, see [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) in the Kubernetes documentation. For information about the Replicated template functions, see [About Template Functions](/reference/template-functions-about) in _Template Functions_.
 
-#### Please Note
+You can use the KOTS `kots.io/exclude` and `kots.io/when` annotations to conditionally include or exclude resources.
 
-By default, if neither `kots.io/exclude` nor `kots.io/when` annotations are present on a resource, the resource will be included.
+By default, if neither `kots.io/exclude` nor `kots.io/when` is present on a resource, the resource is included.
 
-Only one of the following annotations can be present on a resource. If both are present, the `kots.io/exclude` annotation will be applied, and the `kots.io/when` annotation will be ignored.
+Only one of the `kots.io/exclude` nor `kots.io/when` annotations can be present on a resource. If both are present, the `kots.io/exclude` annotation is applied, and the `kots.io/when` annotation is ignored.
 
 ### Exclude A Resource
 
@@ -20,11 +24,13 @@ Only one of the following annotations can be present on a resource. If both are 
 
 When this annotation is present on a resource and evaluates to `'true'`, the resource will not be included in the `kustomization.yaml` file and will not be written to disk.
 
-**NOTE**: Kubernetes annotations cannot be booleans and must be strings, so make sure to quote this.
+:::note
+Kubernetes annotations cannot be booleans and must be strings, so make sure to quote this.
+:::
 
 #### Example
 
-The following example WILL NOT include the postgres `StatefulSet` when the user has not selected the `install_postgres` checkbox.
+The following example does _not_ include the postgres `StatefulSet` if the user has _not_ selected the `install_postgres` checkbox.
 
 ```yaml
 apiVersion: apps/v1
@@ -54,15 +60,18 @@ spec:
 ```
 
 ### Include A Resource
+
 `kots.io/when: '<bool>'`
 
-When this annotation is present on a resource and evaluates to `'false'`, the resource will not be included in the `kustomization.yaml` file and will not be written to disk.
+When this annotation is present on a resource and evaluates to `'false'`, the resource is not included in the `kustomization.yaml` file and is not written to disk.
 
-**NOTE**: Kubernetes annotations cannot be booleans and must be strings, so make sure to quote this.
+:::note
+Kubernetes annotations cannot be booleans and must be strings, so make sure to quote this.
+:::
 
 #### Example
 
-The following example WILL include the postgres `StatefulSet` when the user has selected the `install_postgres` checkbox.
+The following example _does_ include the postgres `StatefulSet` when the user has selected the `install_postgres` checkbox.
 
 ```yaml
 apiVersion: apps/v1
@@ -96,13 +105,13 @@ spec:
 
 `kots.io/placeholder '<bool>' '<string>'`
 
-The app manager uses placeholder annotations as a way to use template logic to specify optional annotations without breaking the base YAML or needing to always include the annotation key.
+KOTS uses placeholder annotations as a way to use template logic to specify optional annotations without breaking the base YAML or needing to always include the annotation key.
 
-Use case: Providing custom Ingress annotations for a customer-provided Ingress controller.
+One use case is providing custom Ingress annotations for a customer-provided Ingress controller.
 
 Example:
 
-```
+```yaml
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -114,7 +123,7 @@ metadata:
 
 When the condition evaluates to `true`, it is replaced with the value of the desired annotation in the final rendered YAML:
 
-```
+```yaml
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -126,7 +135,7 @@ metadata:
 
 When the condition evaluates to `false`, the annotation does not appear in the final rendered YAML:
 
-```
+```yaml
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -137,7 +146,7 @@ metadata:
 
 A config option value can be used as part of the annotation value, for example:
 
-```
+```yaml
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -149,7 +158,7 @@ metadata:
 
 You can specify multiple annotations using the same placeholder annotation:
 
-```
+```yaml
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
