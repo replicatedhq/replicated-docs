@@ -19,7 +19,7 @@ Released on May 25, 2023
 ### Bug Fixes {#bug-fixes-v2023-05-25-0}
 * Fixes issue where the additionalNoProxyAddresses value was not properly propagated through the additional-no-proxy-addresse flag in the outputted commands 
 * Fixes OpenSSL calls used to configure Rook AddOn by explicitly specifying the digest method in order to support RHEL 9.2
-* Fixes OpenSSL calls used to configure Registry AddOn by explicitly specifying the digest method in order to support RHEL 9.2.
+* Fixes OpenSSL calls used to configure Registry AddOn by explicitly specifying the digest method in order to support RHEL 9.2
 
 ## v2023.05.22-0
 
