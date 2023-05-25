@@ -194,7 +194,6 @@ const sidebars = {
         'vendor/preflight-host-preflights',
         'vendor/installer-history',
         'vendor/packaging-using-tls-certs',
-        'vendor/identity-service-configuring',
       ],
     },
     {
