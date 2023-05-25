@@ -11,7 +11,7 @@ Some enterprise users prefer or require a Helm chart to install using the `helm`
 ## Prerequisites
 
 To support installations with the helm CLI, you must:
-  * Have an application that contains one or more Helm charts. For information about how to create a release, see [Creating Releases with the Vendor Portal](releases-creating-release).
+  * Have an application that contains one or more Helm charts. For information about how to create a release, see [Managing Releases with the Vendor Portal](releases-creating-releases).
   * If your application uses private images, update your Helm chart to deliver the required image pull secret and to reference the Replicated proxy service. For more information, see [Using Private Registries for helm CLI Installations (Beta)](helm-image-registry).
 
 ## About Supporting helm CLI Installations {#about}
