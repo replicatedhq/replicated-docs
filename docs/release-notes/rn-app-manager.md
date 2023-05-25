@@ -12,6 +12,26 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <KubernetesCompatibility/>
 
+## 1.99.0
+
+Released on May 18, 2023
+
+Support for Kubernetes: 1.24, 1.25, and 1.26
+
+### New Features {#new-features-1-99-0}
+* Adds a new native Helm v2 installation method (Beta) that leverages the `kots.io/v1beta2` HelmChart custom resource. This v2 installation method does a Helm installation or upgrade of your Helm chart without modifying the chart with Kustomize. This is an improvement to the v1 installation method because it results in Helm installations that can be reproduced outside of the app manager, and it enables the use of additional Helm functionality that was not available in v1. See [HelmChart v2 (Beta)](/reference/custom-resource-helmchart-v2) in the _Custom Resources_ section.
+
+### Improvements {#improvements-1-99-0}
+* Applies application status informers before deploying the actual resources. This is helpful in cases where deployments take a long time, because the statuses are now available while the deployment happens.
+* Updates the replicated/local-volume-provider image to v0.5.3 to resolve CVE-2022-4415 and CVE-2022-3821 with high severity.
+* Replace the misleading call-to-action button on the instance snapshot restore modal, which could have mistakenly lead the user to believe the instance restore was initiated.
+* Enhances formatting to accommodate lengthy strings for fields such as the application name and config item names.
+
+### Bug Fixes {#bug-fixes-1-99-0}
+* Fixes a bug where the rqlite collector was unable to collect a data dump if the name of the rqlite container changed.
+* Fixes an issue where re-running preflights during the initial installation could cause the UI to incorrectly show a status of "Currently pending version".
+* Fixes an issue where re-running preflights during the initial installation could cause the application to be re-deployed.
+
 ## 1.98.3
 
 Released on May 5, 2023

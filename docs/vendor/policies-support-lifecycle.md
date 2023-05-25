@@ -33,34 +33,28 @@ Replicated will provide support for products per our terms and services until th
     <th width="25%">End of Life</th>
   </tr>
   <tr>
-    <td><a href="https://docs.replicated.com/">Replicated (KOTS SDK)</a></td>
+    <td>Replicated (Replicated SDK)</td>
+    <td>Alpha</td>
+    <td>N/A</td>
+    <td>N/A</td>
+  </tr>
+  <tr>
+    <td><a href="[https://docs.replicated.com/](https://docs.replicated.com/intro-replicated#app-manager)">Replicated (KOTS Installer)</a></td>
+    <td>GA</td>
+    <td>N/A</td>
+    <td>N/A</td>
+  </tr>
+    <tr>
+    <td><a href="https://docs.replicated.com/intro-replicated#kubernetes-installer">Replicated (kURL Installer)</a></td>
     <td>GA</td>
     <td>N/A</td>
     <td>N/A</td>
   </tr>
   <tr>
-    <td><a href="https://help.replicated.com/docs/native/getting-started/overview/">Replicated Classic (Native SDK)</a></td>
+    <td><a href="https://help.replicated.com/docs/native/getting-started/overview/">Replicated Classic (Native Installer)</a></td>
     <td>LA</td>
     <td>2023-12-31&#42;</td>
     <td>2024-12-31&#42;</td>
-  </tr>
-  <tr>
-    <td><a href="https://help.replicated.com/docs/kubernetes/getting-started/overview/">Replicated Classic (AKA SDK)</a></td>
-    <td>EOL</td>
-    <td>2022-02-28</td>
-    <td>2022-12-31</td>
-  </tr>
-  <tr>
-    <td><a href="https://help.replicated.com/docs/ship/getting-started/overview/">Replicated Classic (Ship SDK)</a></td>
-    <td>EOL</td>
-    <td>2022-02-28</td>
-    <td>2022-12-31&#42;</td>
-  </tr>
-  <tr>
-    <td><a href="https://help.replicated.com/docs/swarm/getting-started/overview/">Replicated Classic (Swarm SDK)</a></td>
-    <td>EOL</td>
-    <td>2022-02-28</td>
-    <td>2022-12-31&#42;</td>
   </tr>
 </table>
 
@@ -80,6 +74,12 @@ The End of Replicated Support date is the End Of Life (EOL) date for the Kuberne
     <th>End of Replicated Support</th>
   </tr>  
   <tr>
+    <td>1.27</td>
+    <td>TBD</td>
+    <td>v2023.05.08-0 and later</td>
+    <td>2024-06-28</td>
+  </tr>
+  <tr>
     <td>1.26</td>
     <td>v1.93.1 and later</td>
     <td>v2023.01.03-0 and later</td>
@@ -97,14 +97,8 @@ The End of Replicated Support date is the End Of Life (EOL) date for the Kuberne
     <td>v2022.06.01-0 and later</td>
     <td>2023-07-28</td>
   </tr>
-  <tr>
-    <td>1.23</td>
-    <td>v1.61.0 and later</td>
-    <td>v2022.01.28-0 and later</td>
-    <td>2023-02-28</td>
-  </tr>
 </table>
 
 The information contained herein is believed to be accurate as of the date of publication, but updates and revisions may be posted periodically and without notice.
 
-Last modified January 13, 2023.
+Last modified May 23, 2023.

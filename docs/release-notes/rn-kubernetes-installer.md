@@ -4,6 +4,26 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.05.22-0
+
+Released on May 22, 2023
+
+### New Features {#new-features-v2023-05-22-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) versions 1.27.2, 1.26.5, 1.25.10 and 1.24.14.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) versions 0.65.1-45.27.2 and 0.65.1-45.28.0.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-05-18T00-05-36Z.
+* Enables the [Collectd add-on](https://kurl.sh/docs/add-ons/collectd) for Ubuntu 22.04.
+
+### Improvements {#improvements-v2023-05-22-0}
+* Adds further log information for Docker Proxy settings configuration.
+* Adds further log information for containerd installations and configuration on version 1.5.10 or later.
+
+### Bug Fixes {#bug-fixes-v2023-05-22-0}
+* Fixes an issue with the [Weave add-on](https://kurl.sh/docs/add-ons/weave) for version 2.8.1-20230417 that prevented symbolic links to /opt/cni/bin from working.
+* Fixes an issue that caused Rook upgrades from 1.0.4 to 1.8.x or later to fail with the error "pod has unsupported owner ReplicaSet".
+* Improves stability of upgrades to Rook version 1.5.12.
+* Updates the [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.11.0 with new replicated/local-volume-provider image version v0.5.3 to address the following high severity CVE: CVE-2022-29458.
+
 ## v2023.05.15-0
 
 Released on May 15, 2023

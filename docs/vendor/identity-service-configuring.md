@@ -1,3 +1,6 @@
+:::important
+This topic is deleted from the product documentation because this Beta feature is deprecated.
+:::
 
 # Enabling and Configuring Identity Service (Beta)
 

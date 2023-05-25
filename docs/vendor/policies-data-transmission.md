@@ -13,4 +13,6 @@ By default, no additional data is collected and transmitted from the instance to
 
 All data is encrypted in transit according to industry best practices. For more information about Replicated's security practices, see [Security at Replicated](https://www.replicated.com/security/) on the Replicated website.
 
-Last modified December 29, 2022
+For more information about application instance data fields that the Replicated vendor portal uses to generate events for instances, see [About Instance and Event Data](/vendor/instance-insights-event-data).
+
+Last modified May 24, 2023
