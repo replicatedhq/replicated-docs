@@ -4,6 +4,25 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer Release Notes
 
+## v2023.05.25-0
+
+Released on May 25, 2023
+
+### New Features {#new-features-v2023-05-25-0}
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.6.
+* Adds support for Oracle Linux 8.8.
+* Adds support for rocky9.2.
+* Improve Registry Addon logs.
+
+### Bug Fixes {#bug-fixes-v2023-05-25-0}
+* Fixes handling of the additional-no-proxy-addresses flag in the installation script's join command output.
+* Fixes duplication of values in the join command when both user-configured additional_no_proxy_addresses and default values are provided.
+* Fixes issue where the additionalNoProxyAddresses value was not properly propagated through the additional_no_proxy_addresses flag in the join command.
+* Fixes handling of the additional-no-proxy-addresses flag when upgrade installs in multi-node for the command outputted to upgrade remote nodes.
+* Fixes handling of the additional-no-proxy-addresses flag when upgrade the kubernetes version on installs in multi-node for the command outputted to upgrade remote nodes.
+* Fixes OpenSSL calls used to configure Rook AddOn by explicitly specifying the digest method in order to support RHEL 9.2.
+* Fixes OpenSSL calls used to configure Registry AddOn by explicitly specifying the digest method in order to support RHEL 9.2.
+
 ## v2023.05.22-0
 
 Released on May 22, 2023
