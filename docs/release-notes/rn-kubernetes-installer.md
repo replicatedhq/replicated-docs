@@ -11,7 +11,7 @@ Released on May 25, 2023
 ### New Features {#new-features-v2023-05-25-0}
 * Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.6.
 * Adds support for Oracle Linux 8.8.
-* Adds support for rocky9.2.
+* Adds support for Rocky Linux 9.2 and RHEL 9.2
 
 ### Improvements {#improvements-v2023-05-22-0}
 * Improve logs for Registry Addon
