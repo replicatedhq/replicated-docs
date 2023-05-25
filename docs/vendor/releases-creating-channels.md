@@ -73,4 +73,4 @@ To archive a channel with the vendor portal or the replicated CLI:
 
 ## Related Topic
 
-[How to Package and Distribute an Application](distributing-workflow)
+[How to Create Releases for Your Application](distributing-workflow)

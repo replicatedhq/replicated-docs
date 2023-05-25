@@ -21,6 +21,16 @@ const sidebars = {
   tutorialSidebar: [
 
     'intro',
+    {
+      type: 'category',
+      className: 'main-section',
+      label: 'Release Notes',
+      items: [
+        'release-notes/rn-whats-new',
+        'release-notes/rn-app-manager',
+        'release-notes/rn-kubernetes-installer'
+      ],
+    },
     'intro-replicated',
     {
       type: 'category',
@@ -85,77 +95,16 @@ const sidebars = {
         'vendor/custom-domains',
       ],
     },
+    {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true},
+    'vendor/distributing-workflow',
     {
       type: 'category',
-      label: 'Channels and Releases',
+      label: 'Planning',
       items: [
-        'vendor/releases-about',
-        'vendor/releases-about-channels',
-        'vendor/releases-creating-channels',
-        'vendor/helm-release-creating-package',
-        'vendor/releases-creating-releases',
-        'vendor/releases-creating-cli',
-        {
-          type: 'category',
-          label: 'Integrating with CI/CD',
-          items: [
-            'vendor/repository-workflow-and-tagging-releases',
-            'vendor/tutorial-ci-cd-integration',
-          ],
-        },
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Helm Chart Deployment',
-      items: [
-        'vendor/helm-overview',
-        'vendor/helm-install',
-        'vendor/helm-release',
-        'vendor/helm-native-helm-install-order',
-        'vendor/helm-optional-charts',
-        'vendor/helm-optional-value-keys',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Packaging an Application',
-      items: [
-        {
-            type: 'category',
-            label: 'Customizing the Configuration Screen',
-            items: [
-              'vendor/config-screen-about',
-              'vendor/admin-console-customize-config-screen',
-              'vendor/config-screen-map-inputs',
-              'vendor/helm-mapping-example',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Adding Persistent Data Stores',
-          items: [
-            'vendor/database-config-adding-options',
-            'vendor/tutorial-adding-db-config',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Customizing the Admin Console and Download Portal',
-          items: [
-            'vendor/admin-console-customize-app-icon',
-            'vendor/admin-console-display-app-status',
-            'vendor/admin-console-adding-buttons-links',
-            'vendor/admin-console-prometheus-monitoring',
-          ],
-        },
-        'vendor/packaging-ingress',
-        'vendor/packaging-kots-versions',    
+        'vendor/planning-questionnaire',
         'vendor/namespaces',
-        'vendor/packaging-rbac',
-        'vendor/packaging-using-tls-certs',
       ],
-    },  
+    },
     {
       type: 'category',
       label: 'Private Registries',
@@ -167,6 +116,84 @@ const sidebars = {
         'vendor/private-images-tags-digests',
         'vendor/packaging-private-registry-security',
         'vendor/tutorial-ecr-private-images',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Customer Licenses',
+      items: [
+        'vendor/licenses-about',
+        'vendor/licenses-about-types',
+        'vendor/releases-creating-customer',
+        'vendor/licenses-using-builtin-fields',
+        'vendor/licenses-adding-custom-fields',
+        'vendor/licenses-referencing-fields',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Channels and Releases',
+      items: [
+        'vendor/releases-about',
+        'vendor/releases-about-channels',
+        'vendor/releases-creating-channels',
+        'vendor/helm-release-creating-package',
+        'vendor/releases-creating-releases',
+        'vendor/releases-creating-cli',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Helm Charts',
+      items: [
+        'vendor/helm-overview',
+        'vendor/helm-install',
+        'vendor/helm-release',
+        'vendor/helm-native-helm-install-order',
+        'vendor/helm-optional-charts',
+        'vendor/helm-optional-value-keys',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Admin Console and Download Portal Customization',
+      items: [
+        'vendor/admin-console-customize-app-icon',
+        'vendor/admin-console-display-app-status',
+        'vendor/admin-console-adding-buttons-links',
+        'vendor/admin-console-prometheus-monitoring',
+      ],
+    },
+    {
+        type: 'category',
+        label: 'Configuration Screen',
+        items: [
+          'vendor/config-screen-about',
+          'vendor/admin-console-customize-config-screen',
+          'vendor/config-screen-map-inputs',
+          'vendor/helm-mapping-example',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Managing Resources and Objects',
+      items: [
+        'vendor/packaging-include-resources',
+        'vendor/database-config-adding-options',
+        'vendor/tutorial-adding-db-config',
+        'vendor/packaging-cleaning-up-jobs',
+        'vendor/packaging-ingress',
+      ],
+    }, 
+    {
+      type: 'category',
+      label: 'Kubernetes Installers',
+      items: [
+        'vendor/packaging-embedded-kubernetes',
+        'vendor/packaging-installer-storage',
+        'vendor/preflight-host-preflights',
+        'vendor/installer-history',
+        'vendor/packaging-using-tls-certs',
       ],
     },
     {
@@ -189,32 +216,11 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Kubernetes Installers',
+      label: 'Managing App Manager',
       items: [
-        'vendor/packaging-embedded-kubernetes',
-        'vendor/packaging-installer-storage',
-        'vendor/preflight-host-preflights',
-        'vendor/installer-history',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Customer Licenses',
-      items: [
-        'vendor/licenses-about',
-        'vendor/licenses-about-types',
-        'vendor/releases-creating-customer',
-        'vendor/licenses-using-builtin-fields',
-        'vendor/licenses-adding-custom-fields',
-        'vendor/licenses-referencing-fields',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Managing Resources and Objects',
-      items: [
-        'vendor/packaging-include-resources',
-        'vendor/packaging-cleaning-up-jobs',
+        'vendor/packaging-kots-versions', 
+        'vendor/packaging-rbac', 
+        'vendor/packaging-air-gap-excluding-minio',
       ],
     },
     {
@@ -229,18 +235,23 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Distribute Your Application',
+      label: 'CI/CD',
       items: [
-        'vendor/distributing-workflow',
-        'vendor/planning-questionnaire',
-        'vendor/releases-sharing-license-install-script',
-        'vendor/packaging-air-gap-excluding-minio',
+        'vendor/repository-workflow-and-tagging-releases',
+        'vendor/tutorial-ci-cd-integration',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Distributing Your Application',
+      items: [
+        'vendor/releases-sharing-license-install-script',        
         'vendor/releases-configvalues',
       ],
     },
     {
       type: 'category',
-      label: 'Insights and Reporting',
+      label: 'Insights and Telemetry',
       items: [
          'vendor/instance-insights-event-data',
          'vendor/customer-adoption',
@@ -250,34 +261,11 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Replicated Data Storage',
-      items: [
-        'vendor/data-availability',
-        'vendor/offsite-backup'
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Support',
+      label: 'Supporting Your Application',
       items: [
         'vendor/support-inspecting-support-bundles',
         'vendor/support-submit-request',
         'vendor/support-host-support-bundles',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Policies',
-      items: [
-        'vendor/policies-vulnerability-patch',
-        'vendor/policies-support-lifecycle',
-        'vendor/policies-data-transmission',
-        'vendor/policies-infrastructure-and-subprocessors',
-        {
-          type: 'link',
-          label: 'Security at Replicated',
-          href: 'https://www.replicated.com/security/'
-        },
       ],
     },
     {
@@ -301,151 +289,7 @@ const sidebars = {
             'reference/custom-resource-sig-application',  
           ],
         },
-        {
-          type: 'category',
-          label: 'kots CLI',
-          items: [
-            'reference/kots-cli-getting-started',
-            'reference/kots-cli-global-flags',
-            {
-                type: 'category',
-                label: 'admin console',
-                items: [
-                  'reference/kots-cli-admin-console-index',
-                  'reference/kots-cli-admin-console-garbage-collect-images',
-                  'reference/kots-cli-admin-console-generate-manifests',
-                  'reference/kots-cli-admin-console-push-images',
-                  'reference/kots-cli-admin-console-upgrade',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'backup',
-              items: [
-                'reference/kots-cli-backup-index',
-                'reference/kots-cli-backup-ls',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'docker',
-              items: [
-                'reference/kots-cli-docker-index',
-                'reference/kots-cli-docker-ensure-secret',
-              ],
-            },
-            'reference/kots-cli-download',
-            'reference/kots-cli-enable-ha',
-            {
-              type: 'category',
-              label: 'get',
-              items: [
-                'reference/kots-cli-get-index',
-                'reference/kots-cli-get-apps',
-                'reference/kots-cli-get-backups',
-                'reference/kots-cli-get-config',
-                'reference/kots-cli-get-restores',
-                'reference/kots-cli-get-versions',
-              ],
-            },
-            {
-              type: 'category',
-              label: 'identity-service',
-              items: [
-                'reference/kots-cli-identity-service-index',
-                'reference/kots-cli-identity-service-enable-shared-password',
-              ],
-            },
-            'reference/kots-cli-install',
-            'reference/kots-cli-pull',
-            'reference/kots-cli-remove',
-            'reference/kots-cli-reset-password',
-            'reference/kots-cli-reset-tls',
-            {
-              type: 'category',
-              label: 'restore',
-              items: [
-                'reference/kots-cli-restore-index',
-                'reference/kots-cli-restore-ls',
-              ],
-            },
-            {
-                type: 'category',
-                label: 'set',
-                items: [
-                  'reference/kots-cli-set-index',
-                  'reference/kots-cli-set-config',
-              ],
-            },
-            'reference/kots-cli-upload',
-            {
-                type: 'category',
-                label: 'upstream',
-                items: [
-                  'reference/kots-cli-upstream',
-                  'reference/kots-cli-upstream-download',
-                  'reference/kots-cli-upstream-upgrade',
-              ],
-            },
-            {
-                type: 'category',
-                label: 'velero',
-                items: [
-                  
-                  'reference/kots-cli-velero-configure-aws-s3',
-                  'reference/kots-cli-velero-configure-azure',
-                  'reference/kots-cli-velero-configure-gcp',
-                  'reference/kots-cli-velero-configure-hostpath',
-                  'reference/kots-cli-velero-configure-internal',
-                  'reference/kots-cli-velero-configure-nfs',
-                  'reference/kots-cli-velero-configure-other-s3',
-                  'reference/kots-cli-velero-ensure-permissions',
-                  'reference/kots-cli-velero-index',
-                  'reference/kots-cli-velero-print-fs-instructions',
-              ],
-            },
-          ],
-        },
         'reference/linter',
-        {
-          type: 'category',
-          label: 'replicated CLI',
-          items: [
-            'reference/replicated-cli-installing',
-            'reference/replicated-cli-tokens',
-            'reference/replicated-cli-app-create',
-            'reference/replicated-cli-app-delete',
-            'reference/replicated-cli-app-ls',
-            'reference/replicated-cli-channel-create',
-            'reference/replicated-cli-channel-delete',
-            'reference/replicated-cli-channel-disable-semver',
-            'reference/replicated-cli-channel-enable-semver',
-            'reference/replicated-cli-channel-inspect',
-            'reference/replicated-cli-channel-ls',
-            'reference/replicated-cli-customer-create',
-            'reference/replicated-cli-customer-download-license',
-            'reference/replicated-cli-customer-ls',
-            'reference/replicated-cli-installer-create',
-            'reference/replicated-cli-installer-ls',
-            'reference/replicated-cli-registry-add',
-            'reference/replicated-cli-registry-add-dockerhub',
-            'reference/replicated-cli-registry-add-ecr',
-            'reference/replicated-cli-registry-add-gcr',
-            'reference/replicated-cli-registry-add-ghcr',
-            'reference/replicated-cli-registry-add-other',
-            'reference/replicated-cli-registry-add-quay',
-            'reference/replicated-cli-registry-logs',
-            'reference/replicated-cli-registry-ls',
-            'reference/replicated-cli-registry-rm',
-            'reference/replicated-cli-registry-test',
-            'reference/replicated-cli-release-create',
-            'reference/replicated-cli-release-download',
-            'reference/replicated-cli-release-lint',
-            'reference/replicated-cli-release-ls',
-            'reference/replicated-cli-release-promote',
-            'reference/replicated-cli-release-update',
-          ],
-        },
         {
           type: 'category',
           label: 'Template Functions',
@@ -458,36 +302,14 @@ const sidebars = {
             'reference/template-functions-static-context',
           ],
         },
-        {
-          type: 'category',
-          label: 'Vendor API v3',
-          items: [
-            {
-              type: 'doc',
-              id: 'reference/vendor-api-using'
-            },
-            {
-              type: 'link',
-              label: 'Vendor API v3 Documentation',
-              href: 'https://replicated-vendor-api.readme.io/v3/'
-            },
-          ],
-        },
+        
       ],
     },
+    // INSTALL AND MANAGE (ENTERPRISE USER)
+    {type: 'html', value: '<h5>install and manage</h5>', defaultStyle: true},
     {
       type: 'category',
-      className: 'main-section',
-      label: 'Release Notes',
-      items: [
-        'release-notes/rn-whats-new',
-        'release-notes/rn-app-manager',
-        'release-notes/rn-kubernetes-installer'
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Enterprise User Documentation',
+      label: 'KOTS',
       items: [
         {
           type: 'category',
@@ -596,6 +418,192 @@ const sidebars = {
           ],
         },
       ],
+    },
+    {
+      type: 'category',
+      label: 'kots CLI',
+      items: [
+        'reference/kots-cli-getting-started',
+        'reference/kots-cli-global-flags',
+        {
+            type: 'category',
+            label: 'admin console',
+            items: [
+              'reference/kots-cli-admin-console-index',
+              'reference/kots-cli-admin-console-garbage-collect-images',
+              'reference/kots-cli-admin-console-generate-manifests',
+              'reference/kots-cli-admin-console-push-images',
+              'reference/kots-cli-admin-console-upgrade',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'backup',
+          items: [
+            'reference/kots-cli-backup-index',
+            'reference/kots-cli-backup-ls',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'docker',
+          items: [
+            'reference/kots-cli-docker-index',
+            'reference/kots-cli-docker-ensure-secret',
+          ],
+        },
+        'reference/kots-cli-download',
+        'reference/kots-cli-enable-ha',
+        {
+          type: 'category',
+          label: 'get',
+          items: [
+            'reference/kots-cli-get-index',
+            'reference/kots-cli-get-apps',
+            'reference/kots-cli-get-backups',
+            'reference/kots-cli-get-config',
+            'reference/kots-cli-get-restores',
+            'reference/kots-cli-get-versions',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'identity-service',
+          items: [
+            'reference/kots-cli-identity-service-index',
+            'reference/kots-cli-identity-service-enable-shared-password',
+          ],
+        },
+        'reference/kots-cli-install',
+        'reference/kots-cli-pull',
+        'reference/kots-cli-remove',
+        'reference/kots-cli-reset-password',
+        'reference/kots-cli-reset-tls',
+        {
+          type: 'category',
+          label: 'restore',
+          items: [
+            'reference/kots-cli-restore-index',
+            'reference/kots-cli-restore-ls',
+          ],
+        },
+        {
+            type: 'category',
+            label: 'set',
+            items: [
+              'reference/kots-cli-set-index',
+              'reference/kots-cli-set-config',
+          ],
+        },
+        'reference/kots-cli-upload',
+        {
+            type: 'category',
+            label: 'upstream',
+            items: [
+              'reference/kots-cli-upstream',
+              'reference/kots-cli-upstream-download',
+              'reference/kots-cli-upstream-upgrade',
+          ],
+        },
+        {
+            type: 'category',
+            label: 'velero',
+            items: [
+              
+              'reference/kots-cli-velero-configure-aws-s3',
+              'reference/kots-cli-velero-configure-azure',
+              'reference/kots-cli-velero-configure-gcp',
+              'reference/kots-cli-velero-configure-hostpath',
+              'reference/kots-cli-velero-configure-internal',
+              'reference/kots-cli-velero-configure-nfs',
+              'reference/kots-cli-velero-configure-other-s3',
+              'reference/kots-cli-velero-ensure-permissions',
+              'reference/kots-cli-velero-index',
+              'reference/kots-cli-velero-print-fs-instructions',
+          ],
+        },
+      ],
+    },
+    // DEVELOPER TOOLS
+    {type: 'html', value: '<h5>Developer tools</h5>', defaultStyle: true},
+    {
+      type: 'category',
+      label: 'replicated CLI',
+      items: [
+        'reference/replicated-cli-installing',
+        'reference/replicated-cli-tokens',
+        'reference/replicated-cli-app-create',
+        'reference/replicated-cli-app-delete',
+        'reference/replicated-cli-app-ls',
+        'reference/replicated-cli-channel-create',
+        'reference/replicated-cli-channel-delete',
+        'reference/replicated-cli-channel-disable-semver',
+        'reference/replicated-cli-channel-enable-semver',
+        'reference/replicated-cli-channel-inspect',
+        'reference/replicated-cli-channel-ls',
+        'reference/replicated-cli-customer-create',
+        'reference/replicated-cli-customer-download-license',
+        'reference/replicated-cli-customer-ls',
+        'reference/replicated-cli-installer-create',
+        'reference/replicated-cli-installer-ls',
+        'reference/replicated-cli-registry-add',
+        'reference/replicated-cli-registry-add-dockerhub',
+        'reference/replicated-cli-registry-add-ecr',
+        'reference/replicated-cli-registry-add-gcr',
+        'reference/replicated-cli-registry-add-ghcr',
+        'reference/replicated-cli-registry-add-other',
+        'reference/replicated-cli-registry-add-quay',
+        'reference/replicated-cli-registry-logs',
+        'reference/replicated-cli-registry-ls',
+        'reference/replicated-cli-registry-rm',
+        'reference/replicated-cli-registry-test',
+        'reference/replicated-cli-release-create',
+        'reference/replicated-cli-release-download',
+        'reference/replicated-cli-release-lint',
+        'reference/replicated-cli-release-ls',
+        'reference/replicated-cli-release-promote',
+        'reference/replicated-cli-release-update',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Vendor API v3',
+      items: [
+        {
+          type: 'doc',
+          id: 'reference/vendor-api-using'
+        },
+        {
+          type: 'link',
+          label: 'Vendor API v3 Documentation',
+          href: 'https://replicated-vendor-api.readme.io/v3/'
+        },
+      ],
+    },
+    // POLICIES
+    {type: 'html', value: '<h5>policies</h5>', defaultStyle: true},
+    {
+      type: 'category',
+      label: 'Replicated Policies',
+      items: [
+        'vendor/policies-vulnerability-patch',
+        'vendor/policies-support-lifecycle',
+        'vendor/policies-data-transmission',
+        'vendor/policies-infrastructure-and-subprocessors',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Replicated Data Storage',
+      items: [
+        'vendor/data-availability',
+        'vendor/offsite-backup'
+      ],
+    },
+    {
+      type: 'link',
+      label: 'Security at Replicated',
+      href: 'https://www.replicated.com/security/'
     },
   ],
 };

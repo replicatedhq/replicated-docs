@@ -51,4 +51,6 @@ To create a customer:
 
 1. Click **Save Changes**.
 
-1. Click the **Download license** icon on the **Customers** page to test your application and distribute your production release to customers.
+## Related Topic
+
+[How to Create Releases for Your Application](distributing-workflow)
