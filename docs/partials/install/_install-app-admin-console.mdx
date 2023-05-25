@@ -8,20 +8,20 @@ To install the application using the admin console:
       ```shell
       kubectl kots admin-console -n NAMESPACE
       ```
-      Replace `NAMESPACE` with the namespace where the app manager is installed.
+      Replace `NAMESPACE` with the namespace where KOTS is installed.
 
-   * **Kubernetes installer cluster**: Go to the address provided in the `Kotsadm` field in the output of the installation command. For example, `Kotsadm: http://34.171.140.123:8800`.
+   * **Embedded cluster**: Go to the address provided in the `Kotsadm` field in the output of the installation command. For example, `Kotsadm: http://34.171.140.123:8800`.
 
-1. (Kubernetes Installer Cluster Only) On the Bypass Browser TLS warning page, review the information about how to bypass the browser TLS warning, and then click **Continue to Setup**.
+1. (Embedded Cluster Only) On the Bypass Browser TLS warning page, review the information about how to bypass the browser TLS warning, and then click **Continue to Setup**.
 
-1. (Kubernetes Installer Cluster Only) On the HTTPS page, do one of the following:
+1. (Embedded Cluster Only) On the HTTPS page, do one of the following:
 
     - To use the self-signed TLS certificate only, enter the hostname (required) if you are using the identity service. If you are not using the identity service, the hostname is optional. Click **Skip & continue**.
     - To use a custom certificate only, enter the hostname (required) if you are using the identity service. If you are not using the identity service, the hostname is optional. Then upload a private key and SSL certificate to secure communication between your browser and the admin console. Click **Upload & continue**.
 
 1. Log in to the admin console:
    * **Existing cluster**: Log in with the password that you created during installation.
-   * **Kubernetes installer cluster**: Log in with the password that was provided in the `Login with password (will not be shown again):` field in the output of the installation command.
+   * **Embedded cluster**: Log in with the password that was provided in the `Login with password (will not be shown again):` field in the output of the installation command.
 
    ![Secure Console](/images/secure-console.png)
 
@@ -35,7 +35,7 @@ To install the application using the admin console:
 
    ![Initial Config](/images/initial-config.png)
 
-1. Complete the preflight checks. The admin console automatically runs preflight checks (conformance tests) against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application.
+1. Complete the preflight checks. KOTS automatically runs preflight checks (conformance tests) against the target namespace and cluster to ensure that the environment meets the minimum requirements to support the application.
 
    * If there are no preflight check warnings or failures, continue with deployment.
    * If there are any preflight check warnings and failures:
@@ -44,11 +44,11 @@ To install the application using the admin console:
       :::note
       Replicated recommends that you address any warnings or failures, rather than dismissing them. Preflight checks help ensure that your environment meets the requirements for application deployment.
       :::
-      * If you are installing with minimal role-based access control (RBAC), the admin console recognizes if the preflight checks failed due to insufficient privileges.
+      * If you are installing with minimal role-based access control (RBAC), KOTS recognizes if the preflight checks failed due to insufficient privileges.
 
-      When this occurs, a kubectl preflight command displays that lets you manually run the preflight checks. The results are then automatically uploaded to the admin console.
+      When this occurs, a kubectl preflight command displays that lets you manually run the preflight checks. The results are then automatically uploaded to KOTS.
 
-  After preflight checks are complete, Replicated deploys the admin console and the application, and the admin console dashboard opens:
+  After preflight checks are complete, KOTS deploys the admin console and the application, and the admin console dashboard opens:
 
   ![Graphs on the admin console dashboard](/images/kotsadm-dashboard-graph.png)     
 
@@ -56,9 +56,9 @@ To install the application using the admin console:
    1. Click the menu in the top right corner of the admin console, then click **Change password**.
    1. Enter a new password in the dialog, and click **Change Password** to save.
 
-   Replicated strongly recommends that you change the password from the default provided during installation on a Kubernetes installer provisioned cluster. For more information, see [Changing an Admin Console Password](auth-changing-passwords).
+   Replicated strongly recommends that you change the password from the default provided during installation on an embedded cluster. For more information, see [Changing an Admin Console Password](auth-changing-passwords).
 
-1. (Kubernetes Installer Cluster Only) Add primary and secondary nodes to the cluster. You might add nodes to either meet application requirements defined by the vendor or to support your usage of the application. See [Adding Nodes to Kubernetes Installer Clusters](cluster-management-add-nodes).
+1. (Embedded Cluster Only) Add primary and secondary nodes to the cluster. You might add nodes to either meet application requirements defined by the vendor or to support your usage of the application. See [Adding Nodes to Embedded Clusters](cluster-management-add-nodes).
    :::note
    Reach out to your application vendor for information about any node requirements.
    :::
