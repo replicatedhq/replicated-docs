@@ -195,7 +195,7 @@ The tables in this section include the following details about each event type:
   </tr>  
     <tr>
     <td><code>kurlOSFlavor</code>*</td>
-    <td><p>One or more operating systems detected across cluster nodes.</p>
+       <td><p>(<a href="https://trello.com/c/5ielISXf/165-surface-os-versions-in-instance-insights">Coming Soon</a>) One or more operating systems detected across cluster nodes.</p>
     <p><strong>Note:</strong> Applies only to clusters provisioned by the Kubernetes installer.</p>
     </td>
     <td>string</td>
@@ -203,7 +203,7 @@ The tables in this section include the following details about each event type:
   </tr>
   <tr>
     <td><code>kurlOSVersion</code>*</td>
-    <td><p>One or more operating systems detected across cluster nodes.</p>
+    <td><p>(<a href="https://trello.com/c/5ielISXf/165-surface-os-versions-in-instance-insights">Coming Soon</a>) One or more operating systems detected across cluster nodes.</p>
     <p><strong>Note:</strong> Applies only to clusters provisioned by the Kubernetes installer.</p>
     </td>
     <td>string</td>
