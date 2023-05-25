@@ -9,11 +9,10 @@ Welcome! This topic describes how to get started with Replicated as a software v
 
 ## Get Started with Replicated
 
-The documentation includes UI-based and CLI-based tutorials that are designed to help software vendors learn about Replicated by completing common tasks with a sample application.
+The documentation includes UI-based and CLI-based tutorials that are designed to help software vendors learn about Replicated by completing common tasks with a sample application. Replicated strongly recommends that you complete both of the following tutorials before you get started implementing features with your own application:
 
-To get started with a tutorial that demonstrates how to use the Replicated vendor portal to create and promote releases, see [Introduction and Setup](/vendor/tutorial-ui-setup) in _UI Tutorial_.
-
-To get started with a tutorial that demonstrates how to use the replicated CLI to create and promote releases, see [Introduction and Setup](/vendor/tutorial-ui-setup) in _CLI Tutorial_.
+* **Vendor portal and Admin Console UI Tutorial**: Shows how to use the Replicated vendor portal to create and promote releases, then install with the Replicated admin console. See [Introduction and Setup](/vendor/tutorial-ui-setup) in _UI Tutorial_.
+* **replicated CLI and kots CLI Tutorial**: Shows how to use the replicated CLI to create and promote releases, then install with the Replicated kots CLI. See [Introduction and Setup](/vendor/tutorial-cli-setup) in _CLI Tutorial_.
 
 ## About the Replicated Documentation
 
@@ -21,7 +20,7 @@ The Replicated product documentation includes information about the Replicated f
 
 ### Distribute and Support (Vendor)
 
-The _Distribute and Support_ section includes documentation for application vendors. This section describes how to package, distribute, and support an application with the Replicated app manager. It includes information about managing channels, releases, and customers in the Replicated vendor portal. It also describes how to configure features such as preflight checks, support bundles, backup and restore, and Kubernetes installers for your application. For more information, see [What is Replicated?](intro-replicated) and [How to Create and Test Releases for Your Application](/vendor/distributing-workflow).
+The _Distribute and Support_ section includes documentation for application vendors. This section describes how to package, distribute, and support an application with the Replicated app manager. It includes information about managing channels, releases, and customers in the Replicated vendor portal. It also describes how to configure features such as preflight checks, support bundles, backup and restore, and Kubernetes installers for your application. For more information, see [What is Replicated?](intro-replicated) and [How to Create Releases for Your Application](/vendor/distributing-workflow).
 
 ### Install and Manage (Enterprise User)
 

@@ -29,4 +29,4 @@ To create a customer:
 
 ## Related Topic
 
-[How to Package and Distribute an Application](distributing-workflow)
+[How to Create Releases for Your Application](distributing-workflow)

@@ -96,13 +96,38 @@ const sidebars = {
       ],
     },
     {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true},
+    'vendor/distributing-workflow',
     {
       type: 'category',
       label: 'Planning',
       items: [
-        'vendor/distributing-workflow',
         'vendor/planning-questionnaire',
         'vendor/namespaces',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Private Registries',
+      items: [
+        'vendor/private-images-about',
+        'vendor/packaging-private-images',
+        'vendor/private-images-replicated',
+        'vendor/helm-image-registry',
+        'vendor/private-images-tags-digests',
+        'vendor/packaging-private-registry-security',
+        'vendor/tutorial-ecr-private-images',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Customer Licenses',
+      items: [
+        'vendor/licenses-about',
+        'vendor/licenses-about-types',
+        'vendor/releases-creating-customer',
+        'vendor/licenses-using-builtin-fields',
+        'vendor/licenses-adding-custom-fields',
+        'vendor/licenses-referencing-fields',
       ],
     },
     {
@@ -119,7 +144,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Helm Chart Deployment',
+      label: 'Helm Charts',
       items: [
         'vendor/helm-overview',
         'vendor/helm-install',
@@ -127,6 +152,16 @@ const sidebars = {
         'vendor/helm-native-helm-install-order',
         'vendor/helm-optional-charts',
         'vendor/helm-optional-value-keys',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Admin Console and Download Portal Customization',
+      items: [
+        'vendor/admin-console-customize-app-icon',
+        'vendor/admin-console-display-app-status',
+        'vendor/admin-console-adding-buttons-links',
+        'vendor/admin-console-prometheus-monitoring',
       ],
     },
     {
@@ -138,18 +173,28 @@ const sidebars = {
           'vendor/config-screen-map-inputs',
           'vendor/helm-mapping-example',
       ],
+    },
+    {
+      type: 'category',
+      label: 'Managing Resources and Objects',
+      items: [
+        'vendor/packaging-include-resources',
+        'vendor/database-config-adding-options',
+        'vendor/tutorial-adding-db-config',
+        'vendor/packaging-cleaning-up-jobs',
+        'vendor/packaging-ingress',
+      ],
     }, 
     {
       type: 'category',
-      label: 'Private Registries',
+      label: 'Kubernetes Installers',
       items: [
-        'vendor/private-images-about',
-        'vendor/packaging-private-images',
-        'vendor/private-images-replicated',
-        'vendor/helm-image-registry',
-        'vendor/private-images-tags-digests',
-        'vendor/packaging-private-registry-security',
-        'vendor/tutorial-ecr-private-images',
+        'vendor/packaging-embedded-kubernetes',
+        'vendor/packaging-installer-storage',
+        'vendor/preflight-host-preflights',
+        'vendor/installer-history',
+        'vendor/packaging-using-tls-certs',
+        'vendor/identity-service-configuring',
       ],
     },
     {
@@ -172,56 +217,11 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Kubernetes Installers',
-      items: [
-        'vendor/packaging-embedded-kubernetes',
-        'vendor/packaging-installer-storage',
-        'vendor/preflight-host-preflights',
-        'vendor/installer-history',
-        'vendor/packaging-using-tls-certs',
-        'vendor/identity-service-configuring',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Admin Console and Download Portal Customization',
-      items: [
-        'vendor/admin-console-customize-app-icon',
-        'vendor/admin-console-display-app-status',
-        'vendor/admin-console-adding-buttons-links',
-        'vendor/admin-console-prometheus-monitoring',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Customer Licenses',
-      items: [
-        'vendor/licenses-about',
-        'vendor/licenses-about-types',
-        'vendor/releases-creating-customer',
-        'vendor/licenses-using-builtin-fields',
-        'vendor/licenses-adding-custom-fields',
-        'vendor/licenses-referencing-fields',
-      ],
-    },
-    {
-      type: 'category',
       label: 'Managing App Manager',
       items: [
         'vendor/packaging-kots-versions', 
         'vendor/packaging-rbac', 
         'vendor/packaging-air-gap-excluding-minio',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Managing Resources and Objects',
-      items: [
-        'vendor/packaging-include-resources',
-        'vendor/database-config-adding-options',
-        'vendor/tutorial-adding-db-config',
-        'vendor/packaging-cleaning-up-jobs',
-        'vendor/packaging-ingress',
       ],
     },
     {
@@ -244,7 +244,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Sharing Releases',
+      label: 'Distributing Your Application',
       items: [
         'vendor/releases-sharing-license-install-script',        
         'vendor/releases-configvalues',
@@ -262,7 +262,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Supporting your Application',
+      label: 'Supporting Your Application',
       items: [
         'vendor/support-inspecting-support-bundles',
         'vendor/support-submit-request',
@@ -310,7 +310,7 @@ const sidebars = {
     {type: 'html', value: '<h5>install and manage</h5>', defaultStyle: true},
     {
       type: 'category',
-      label: 'Admin Console',
+      label: 'KOTS',
       items: [
         {
           type: 'category',

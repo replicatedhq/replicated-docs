@@ -1,4 +1,4 @@
-# How to Create and Test Releases for Your Application
+# How to Create Releases for Your Application
 
 This topic provides prerequisites and a workflow for creating the first release for your application, iterating, and testing.
 
@@ -16,7 +16,7 @@ If you have questions about this workflow, you can post a question on our [Commu
 
 Complete the following items before you create the first release for your application:
 
-- Ensure that you have a Kubernetes-deployable application that contains `deployment.yaml` and `services.yaml` files. Replicated recommends that you architect the application to deploy into a single namespace. For more information, see [Managing Application Namespaces](namespaces).
+- Ensure that you have a Kubernetes application or Helm chart that includes at least one Deployment and one Service. Replicated recommends that you architect the application to deploy into a single namespace. For more information, see [Application Namespaces](namespaces).
 - Set up a development server that you can use to install and test each release.
 - Create an account in the Replicated vendor portal. See [Creating a Vendor Account](vendor-portal-creating-account).
 - Complete a tutorial to create a release for a sample application and then install the application in a development environment:
@@ -24,7 +24,7 @@ Complete the following items before you create the first release for your applic
   * [UI Tutorial](tutorial-ui-setup)
 - (Recommended) To help you plan, Replicated recommends that you send a questionnaire to your customers to gather information about their environments. See [Customer Application Deployment Questionnaire](planning-questionnaire).
 
-## Create and Test Your Initial Release
+## Plan, Promote, and Test Your Initial Release
 
 Because of the depth and breadth of extensions available in the Replicated platform, Replicated recommends that you create and test releases for your application in small iterations before releasing to customers. With the interdependencies and synergies among Replicated features, it can be helpful to know which features to explore first. Some integrations, like image management and preflight checks, are required or highly recommended. Other features can be integrated in any order after you create your first releases.
 
