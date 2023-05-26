@@ -1,30 +1,30 @@
 import VMRequirements from "../partials/getting-started/_vm-requirements.mdx"
 
-# Step 4: Install the App Manager
+# Step 4: Install KOTS
 
-Get the installation commands from the Unstable channel so that you can test the installation process for the application release that you promoted. The first step in installing and deploying the application in your Kubernetes cluster is to install the Replicated app manager.
+Get the installation commands from the Unstable channel so that you can test the installation process for the application release that you promoted. The first step in installing and deploying the application in a cluster is to install Replicated KOTS.
 
-The app manager is the Replicated component that lets your users install, manage, and upgrade your application. Users can interact with the app manager through a user interface, called the Replicated admin console, or through a CLI, called the kots CLI.
+KOTS is the Replicated component that lets your users install, manage, and upgrade your application. Users can interact with KOTS through the Replicated admin console or through the kots CLI.
 
-The app manager can be installed into an existing Kubernetes cluster, or using the Replicated Kubernetes installer on a virtual machine (VM). The Kubernetes installer provisioned cluster is also known as an _embedded cluster_.
+KOTS can be either installed in an existing Kubernetes cluster or in an _embedded cluster_ created by Replicated kURL.
 
 Choose either installation option:
 * [Install in an Existing Cluster](#existing)
-* [Install in a Kubernetes Installer Cluster](#kubernetes-installer)
+* [Install in an Embedded Cluster Cluster](#embedded)
 
 ## Install in an Existing Cluster {#existing}
 
-When you install the app manager on existing cluster, you use a pre-built Kubernetes cluster and deploy your application into a namespace.
+When you install KOTS in existing cluster, you use a pre-built Kubernetes cluster and deploy your application into a namespace.
 
 You can see the installation script options at the bottom of each channel on the Channels page in the vendor portal.
 
 ![Installation Methods](/images/guides/kots/installation-methods-existing.png)
 
-To install the app manager:
+To install KOTS:
 
 1. Copy the **KOTS Install** command from the Unstable channel in the vendor portal. Make sure your kubectl context is set to your existing cluster and run the install command on the command line.
 
-  The script installs the latest app manager version as a `kubectl` plugin. For more information about installing an application with the kots CLI, see [install](../reference/kots-cli-install/) in the kots CLI documentation.
+  The script installs the latest KOTS version as a `kubectl` plugin. For more information about installing an application with the kots CLI, see [install](../reference/kots-cli-install/) in the kots CLI documentation.
 
   **Example:**
 
@@ -55,15 +55,15 @@ To install the app manager:
 
 1. Go to the [Next step](#next-step) section.
 
-## Install in a Kubernetes Installer Cluster {#kubernetes-installer}
+## Install in a Embedded  Cluster {#embedded}
 
-The app manager can be installed as a Kubernetes installer provisioned cluster (embedded cluster), which provisions a plain virtual machine (VM).
+KOTS can be installed in an embedded cluster by running the kURL installation script on a VM or bare metal server.
 
-You can see the installation script options at the bottom of each channel on the Channels page in the vendor portal. For this tutorial, you use the Embedded Cluster option for the Kubernetes installer.
+You can see the installation script options at the bottom of each channel on the Channels page in the vendor portal. For this tutorial, you use the **Embedded Cluster** option for kURL.
 
 ![Installation Methods](/images/guides/kots/installation-methods-embedded.png)
 
-To install the app manager on a VM using the Kubernetes installer:
+To install KOTS in an embedded cluster:
 
 1. Use SSH to authenticate to the VM that you created as part of [Set Up the Environment](tutorial-ui-setup#set-up-the-environment).
 
@@ -83,7 +83,7 @@ To install the app manager on a VM using the Kubernetes installer:
   curl -sSL https://kurl.sh/my-test-app-unstable | sudo bash
   ```
 
-  This script installs Docker, Kubernetes, and the Replicated admin console containers (kotsadm).
+  This script installs Docker, Kubernetes, and the admin console containers (kotsadm).
 
   Installation takes approximately 5-10 minutes.
 
@@ -119,7 +119,7 @@ To install the app manager on a VM using the Kubernetes installer:
   kurl-proxy-kotsadm-5f7fb75f47-b7jbz   1/1     Running   0          60m
   ```
 
-  At this point, Kubernetes and the Replicated admin console are running, but the application is not deployed yet.
+  At this point, Kubernetes and the admin console are running, but the application is not deployed yet.
 
 ## Next Step
 

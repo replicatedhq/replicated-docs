@@ -62,7 +62,7 @@ Users can run commands with the kots command-line interface (CLI) to install and
 
 Replicated kURL allows application vendors to create a custom Kubernetes distribution to share with their users. Vendors can share their kURL distribution with users as a URL for installation in online environments, or as a downloadable package for installation in air gapped environments.
 
-kURL has a built-in integration with KOTS through its KOTS add-on. With this integration, users can run a kURL installation script in their virtual machine (VM) or bare metal server that both creates a cluster and automatically installs KOTS in the cluster. Clusters installed with kURL are called _embedded clusters_.
+kURL has a built-in integration with KOTS through its KOTS add-on. With this integration, users can run a kURL installation script in their virtual machine (VM) or bare metal server that creates a cluster and then automatically installs KOTS in the cluster. Clusters created by kURL are called _embedded clusters_.
 
 For information about how to install applications on embedded clusters, see [Installing with kURL](/enterprise/installing-embedded-cluster). For information about how to create a specification for kURL, see [Creating a Kubernetes Installer](/vendor/packaging-embedded-kubernetes).
 
