@@ -1,28 +1,32 @@
 # Orchestrating Resource Deployment
 
-Often, vendors need a way to control the manner in which Kubernetes resources are deployed. For example, some applications require that certain resources are deployed and in a ready state before other resources can be deployed.
+Vendors often need to control the how Kubernetes resources are deployed. For example, some applications require that certain resources are deployed in a Ready state before other resources can be deployed.
 
-To give the vendor more control over the deployment of Kubernetes resources, the app manager uses [annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) to allow for more fine-grained control over the order in which resources are deployed.
+To give you more control over the deployment of Kubernetes resources, Replicated KOTS uses annotations to allow for more fine-grained control over the order in which resources are deployed.
 
-## App Manager Annotations
+## KOTS Annotations
+
+The following sections describe how KOTS uses annotations to control resource deployment. For more information about annotations, see [annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) in the Kubernetes documentation.
 
 ### Deployment Phases
 
-If a creation or deletion phase is not specified for a resource, it will be created or deleted as part of the default phase `'0'`. Phases can be any positive or negative integer ranging from `'-9999'` to `'9999'`.
+If a creation or deletion phase is not specified for a resource, the resource is created or deleted as part of the default phase `'0'`. Phases can be any positive or negative integer ranging from `'-9999'` to `'9999'`.
 
-`kots.io/creation-phase: '<integer>'`
+#### `kots.io/creation-phase: '<integer>'`
 
-When this annotation is present on a resource, the app manager will group the resource into the specified creation phase. The app manager deploys each phase in order from lowest to highest. Resources within the same phase are deployed same order that Helm installs resources ([see Helm docs](https://helm.sh/docs/intro/using_helm/#:~:text=Helm%20installs%20resources%20in%20the,order)).
+When this annotation is present on a resource, KOTS groups the resource into the specified creation phase. KOTS deploys each phase in order from lowest to highest. Resources within the same phase are deployed in the same order that Helm installs resources. For more information, see [Using Helm](https://helm.sh/docs/intro/using_helm/#:~:text=Helm%20installs%20resources%20in%20the,order) in the Helm documentation.
 
-`kots.io/deletion-phase: '<integer>'`
+#### `kots.io/deletion-phase: '<integer>'`
 
-When this annotation is present on a resource, the app manager will group the resource into the specified deletion phase. The app manager deletes each phase in order from lowest to highest. Resources within the same phase are deleted in the reverse order from which they were created.
+When this annotation is present on a resource, KOTS groups the resource into the specified deletion phase. KOTS deletes each phase in order from lowest to highest. Resources within the same phase are deleted in the reverse order from which they were created.
 
-**NOTE**: Kubernetes annotations cannot be integers and must be strings, so make sure to quote this.
+:::note
+Kubernetes annotations cannot be integers and must be strings, so make sure to quote this.
+:::
 
 #### Example
 
-The following example will deploy the `CustomResourceDefinition` before the default creation phase and will delete it after the default deletion phase.
+The following example deploys the `CustomResourceDefinition` before the default creation phase and deletes the resource after the default deletion phase.
 
 ```yaml
 apiVersion: apiextensions.k8s.io/v1
@@ -37,15 +41,17 @@ metadata:
 
 ### Wait for a Resource to be Ready
 
-`kots.io/wait-for-ready: '<bool>'`
+#### `kots.io/wait-for-ready: '<bool>'`
 
-When this annotation is present on a resource and evaluates to `'true'`, the app manager will wait for the resource to be in a ready state before deploying any other resources. This leverages the same logic as application [status informers](/vendor/admin-console-display-app-status#about-status-informers) to determine if a resource is ready. If there is no existing status informer for a given resource type, the app manager will wait until the resource exists and is queryable from the Kubernetes API server.
+When this annotation is present on a resource and evaluates to `'true'`, KOTS waits for the resource to be in a Ready state before deploying any other resources. This leverages the same logic as application status informers to determine if a resource is ready. If there is no existing status informer for a given resource type, KOTS waits until the resource exists and is queryable from the Kubernetes API server. For more information about status informers, see [Displaying Application Status](/vendor/admin-console-display-app-status#about-status-informers).
 
-**NOTE**: Kubernetes annotations cannot be booleans and must be strings, so make sure to quote this.
+:::note
+Kubernetes annotations cannot be booleans and must be strings, so make sure to quote this.
+:::
 
 #### Example
 
-The following example will cause the app manager to wait for the postgres `StatefulSet` to be ready before continuing to deploy other resources.
+The following example causes KOTS to wait for the postgres `StatefulSet` to be ready before continuing to deploy other resources.
 
 ```yaml
 apiVersion: apps/v1
@@ -77,15 +83,15 @@ spec:
 
 ### Wait for Resource Properites
 
-`kots.io/wait-for-properties: '<jsonpath>=<value>,<jsonpath>=<value>'`
+#### `kots.io/wait-for-properties: '<jsonpath>=<value>,<jsonpath>=<value>'`
 
-When this annotation is present on a resource, the app manager will wait for one or more specified resource properties to match the desired values before continuing to deploy other resources. The value for this annotation is a comma-separated list of key-value pairs, where the key is a JSONPath specifying the path to the property and the value is the desired value for the property.
+When this annotation is present on a resource, KOTS waits for one or more specified resource properties to match the desired values before continuing to deploy other resources. The value for this annotation is a comma-separated list of key-value pairs, where the key is a JSONPath specifying the path to the property and the value is the desired value for the property.
 
-Use case: Waiting for a custom resource to exist is often not sufficient. This annotation allows the vendor to define what "ready" means.
+This annotation can be useful when waiting for a custom resource to exist is not sufficient. This annotation lets you define what _ready_ means.
 
 #### Example
 
-The following example will cause the app manager to wait for a custom resource to reach a desired state. In this case, it will wait until each of the three status properties have the desired values.
+The following example causes KOTS to wait for a custom resource to reach a desired state. In this case, KOTS waits until each of the three status properties have the desired values.
 
 ```
 kind: MyResource
