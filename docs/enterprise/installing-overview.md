@@ -9,8 +9,8 @@ Before you install an application, consider the following installation options.
 ### Install With or Without an Existing Cluster
 
 With KOTS, you can install an application in one of two ways:
-* **With an existing cluster**: You can install an application onto an existing Kubernetes cluster that meets the system requirements. For more information, see [Existing Cluster Requirements](installing-general-requirements#existing-cluster-requirements) in _Installation Requirements_.
-* **Without an existing cluster**: If you do not have an existing Kubernetes cluster, the Replicated kURL installer can create an embedded cluster for you on a virtual machine or a bare metal server. For more information, see [Embedded Cluster Requirements](installing-general-requirements#embedded-cluster-requirements) in _Installation Requirements_.
+* **With an existing cluster**: You can install an application in an existing Kubernetes cluster that meets the system requirements. For more information, see [Existing Cluster Requirements](installing-general-requirements#existing-cluster-requirements) in _Installation Requirements_.
+* **Without an existing cluster**: If you do not have an existing Kubernetes cluster, the Replicated kURL installer can create an embedded cluster for you in a virtual machine or a bare metal server. For more information, see [Embedded Cluster Requirements](installing-general-requirements#embedded-cluster-requirements) in _Installation Requirements_.
 
 Most software vendors support both options and require the customer to determine their preferred method of deployment.
 
@@ -35,7 +35,7 @@ The kubectl command-line tool access used must have read and write access to the
 
 Additionally, by default, KOTS creates a ClusterRole and ClusterRoleBinding with permissions to all namespaces unless otherwise specified by the application vendor.
 
-For more information about the role-based access control (RBAC) requirements for KOTS, see [RBAC Requirements](installing-general-requirements#rbac-requirements) in _Requirements for Installation_.
+For more information about the role-based access control (RBAC) requirements for KOTS, see [RBAC Requirements](installing-general-requirements#rbac-requirements) in _Installation Requirements_.
 
 ### Deploy Images to Local Registries
 

@@ -20,7 +20,7 @@ import AppNameUI from "../partials/install/_placeholder-app-name-UI.mdx"
 
 ## About Private Registries
 
-Air gapped networks must have a Docker image registry that is available inside the network.  rewrites the application image names in all application manifests to read from the on-premises registry, and it re-tags and pushes the images to the on-premises registry. When authenticating to the registry, credentials with `push` permissions are required.
+Air gapped networks must have a Docker image registry that is available inside the network. KOTS rewrites the application image names in all application manifests to read from the on-premises registry, and it re-tags and pushes the images to the on-premises registry. When authenticating to the registry, credentials with `push` permissions are required.
 
 A single application expects to use a single namespace in the Docker image registry. The namespace name can be any valid URL-safe string, supplied at installation time. A registry typically expects the namespace to exist before any images can be pushed into it.
 

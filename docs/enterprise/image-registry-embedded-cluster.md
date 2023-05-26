@@ -2,7 +2,7 @@
 
 The Replicated kURL installer includes the kURL Registry add-on, which can be used to host application images on embedded clusters.
 
-When installing in an air gapped environment, the embedded kURL registry is automatically used to host all application images.
+For air gap installations, the embedded kURL registry is automatically used to host all application images.
 
 For more information about the kURL Registry add-on, see [Registry Add-On](https://kurl.sh/docs/add-ons/registry) in the kURL documentation.
 
@@ -53,4 +53,4 @@ This feature is currently only supported when used with the embedded kURL regist
 If the KOTS instance is configured to use a different registry, disable this feature to prevent image loss.
 
 #### Application Rollbacks
-Currently image garbage collection has no effect when the `allowRollback` field in the `application.yaml` file is set to `true`. For more information, see [Application](/reference/custom-resource-application) in _Custom Resources_.
+Currently image garbage collection has no effect when the `allowRollback` field in the `application.yaml` file is set to `true`. For more information, see [Application](/reference/custom-resource-application).
