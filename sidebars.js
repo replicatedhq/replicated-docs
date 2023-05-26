@@ -179,6 +179,7 @@ const sidebars = {
       label: 'Managing Resources and Objects',
       items: [
         'vendor/packaging-include-resources',
+        'vendor/orchestrating-resource-deployment',
         'vendor/database-config-adding-options',
         'vendor/tutorial-adding-db-config',
         'vendor/packaging-cleaning-up-jobs',
