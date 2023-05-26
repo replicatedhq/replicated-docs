@@ -6,6 +6,12 @@ import KubernetesCompatibility from "../partials/install/_kubernetes-compatibili
 
 # App Manager Release Notes
 
+## Kubernetes Compatibility
+
+The following table lists the versions of Kubernetes that are compatible with each version of the app manager:
+
+<KubernetesCompatibility/>
+
 ## 1.100.0
 
 Released on May 26, 2023
@@ -24,12 +30,6 @@ Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
 * Fixes an issue where Helm charts deployed using the native Helm installation method were uninstalled then reinstalled when the chart version changes / is updated.
 * Fixes an issue in embedded clusters where images from native Helm v2 (Beta) charts were incorrectly being removed from the in-cluster registry, potentially leading to failed deployments.
 * Bumps the Helm version used by KOTS to 3.12.0 to fix an issue where Native Helm installations were failing on Kubernetes 1.27.
-
-## Kubernetes Compatibility
-
-The following table lists the versions of Kubernetes that are compatible with each version of the app manager:
-
-<KubernetesCompatibility/>
 
 ## 1.99.0
 
