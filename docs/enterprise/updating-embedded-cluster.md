@@ -1,18 +1,18 @@
 import InstallerRequirements from "../partials/updating/_installerRequirements.mdx"
 import UpgradePrompt from "../partials/updating/_upgradePrompt.mdx"
 
-# Updating Kubernetes Installer Clusters
+# Updating Embedded Clusters
 
-This topic describes how to upgrade the versions of Kubernetes, the Replicated app manager, and add-ons in a cluster created by the Replicated Kubernetes installer.
+This topic describes how to upgrade the versions of Kubernetes, Replicated KOTS, and kURL add-ons in an embedded cluster.
 
-## About Updating Clusters 
+## About Updating Embedded Clusters 
 
-The application vendor uses a Kubernetes installer specification file to specify the add-ons and the version of Kubernetes that are deployed to your cluster. To update your cluster based on this installer specification file, you run the Kubernetes installer installation script.
+The application vendor uses a Replicated kURL installer specification file to specify the kURL add-ons and the Kubernetes version that are deployed to your cluster. To update your cluster, you run the kURL installation script.
 
-For more information about how the script updates the versions of Kubernetes, the app manager, and any additional add-ons running in your cluster, see the following sections:
+For more information about how the script updates the versions of Kubernetes, KOTS, and any additional add-ons running in your cluster, see the following sections:
 * [Kubernetes Updates](#kubernetes)
 * [Air Gap Multi-version Kubernetes Updates](#kubernetes-multi)
-* [Add-ons and App Manager Updates](#add-ons)
+* [Add-ons and KOTS Updates](#add-ons)
 
 ### Kubernetes Updates {#kubernetes}
 
@@ -47,11 +47,11 @@ Please provide the path to the file on the server.
 Absolute path to file:
 ```
 
-### Add-ons and App Manager Updates {#add-ons}
+### Add-ons and KOTS Updates {#add-ons}
 
-If the application vendor updated any add-ons in the Kubernetes installer specification since the last time that you ran the installation script in your cluster, the script automatically updates the add-ons after completing any required Kubernetes upgrade.
+If the application vendor updated any add-ons in the kURL installer specification since the last time that you ran the installation script in your cluster, the script automatically updates the add-ons after completing any required Kubernetes upgrade.
 
-For a complete list of add-ons that can be included in the Kubernetes installer specification, including the KOTS add-on, see [Add-ons](https://kurl.sh/docs/add-ons/antrea) in the kURL documentation.
+For a complete list of add-ons that can be included in the kURL installer specification, including the KOTS add-on, see [Add-ons](https://kurl.sh/docs/add-ons/antrea) in the kURL documentation.
 
 #### Containerd and Docker Add-on Updates
 
@@ -61,13 +61,13 @@ The installation script also supports migrating from Docker to Containerd as Doc
 
 For information about the container runtime add-ons, see [Containerd Add-On](https://kurl.sh/docs/add-ons/containerd) and [Docker Add-On](https://kurl.sh/docs/add-ons/docker) in the kURL documentation.
 
-#### App Manager Updates (KOTS Add-on)
+#### KOTS Updates (KOTS Add-on)
 
-The version of the app manager installed in your cluster is set by the KOTS add-on provided in the Kubernetes installer specification file. For example, if the version of the app manager running in your cluster is 1.92.0, and the vendor updates the KOTS add-on in the Kubernetes installer specification to use 1.92.1, then the app manager version in your cluster is updated to 1.92.1 when you run the installation script.
+The version of KOTS installed in your cluster is set by the KOTS add-on provided in the kURL installer specification file. For example, if the version of KOTS running in your cluster is 1.92.0, and the vendor updates the KOTS add-on in the kURL installer specification to use 1.92.1, then the KOTS version in your cluster is updated to 1.92.1 when you run the installation script.
 
 ## Update
 
-This section includes procedures for updating Kubernetes installer clusters in online and air gapped environments.
+This section includes procedures for updating embedded clusters in online and air gapped environments.
 
 :::note
 The Kubernetes scheduler automatically reschedules Pods to other nodes during maintenance. Any deployments or StatefulSets with a single replica experience downtime while being rescheduled.
@@ -77,7 +77,7 @@ The Kubernetes scheduler automatically reschedules Pods to other nodes during ma
 
 To update the cluster in an online environment:
 
-1. Run the Kubernetes installer script on any primary node in the cluster:
+1. Run the kURL installation script on any primary node in the cluster:
 
    ```
    curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash -s ADVANCED_OPTIONS
@@ -112,7 +112,7 @@ To update the cluster in an air gap environment:
    When you run the installation script in the next step, the script also performs a check for required images and prompts you to run the `load-images` command if any images are missing.
    :::
 
-1. Run the Kubernetes installer script on any primary node in the cluster with the `airgap` option:
+1. Run the kURL installation script on any primary node in the cluster with the `airgap` option:
 
    ```
    curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash -s airgap OTHER_ADVANCED_OPTIONS

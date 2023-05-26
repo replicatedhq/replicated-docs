@@ -1,14 +1,14 @@
 # Patching with Kustomize
 
-Replicated leverages Kustomize to let you make kustomization patches to an application outside of the options available in the Replicated admin console Configuration page. _Kustomizations_ are the Kustomize configuration objects, defined in kustomization.yaml files, that describe how to transform or generate other Kubernetes objects.
+Replicated KOTS leverages Kustomize to let you make kustomization patches to an application outside of the options available in the Replicated admin console **Config** page. _Kustomizations_ are the Kustomize configuration objects, defined in kustomization.yaml files, that describe how to transform or generate other Kubernetes objects.
 
-These kustomizations, which are configured on the View files page of the admin console, overlay the application resource files and can persist after release updates. For example, you can kustomize the number of replicas that you want to continually use in your environment or specify what `nodeSelectors` to use for a deployment.
+These kustomizations overlay the application resource files and can persist after release updates. For example, you can kustomize the number of replicas that you want to continually use in your environment or specify what `nodeSelectors` to use for a deployment.
 
 For more information, see the [Kustomize website](https://kustomize.io).
 
 ## About the Directory Structure
 
-You can patch an application with Kutomize from the View files page in the admin console. The View files page shows the Kubernetes manifest files for the application.
+You can patch an application with Kustomize from the **View files** page in the admin console. The **View files** page shows the Kubernetes manifest files for the application.
 
 The following images shows an example of the file directory on the View files page:
 
@@ -58,7 +58,7 @@ The following table describes the `base` directory and whether custom changes pe
     <tr>
       <td><code>base</code></td>
       <td>No</td>
-      <td><p>After the Replicated app manager processes and renders the <code>upstream</code>, it puts those files in the <code>base</code> directory.</p><p>Only the deployable application files, such as files deployable with <code>kubectl apply</code>, are placed here.</p><p>Any non-deployable manifests, such as template functions, preflight checks, and configuration options, are removed.</p></td>
+      <td><p>After the KOTS processes and renders the <code>upstream</code>, it puts those files in the <code>base</code> directory.</p><p>Only the deployable application files, such as files deployable with <code>kubectl apply</code>, are placed here.</p><p>Any non-deployable manifests, such as template functions, preflight checks, and configuration options, are removed.</p></td>
     </tr>
 </table>
 
@@ -78,7 +78,7 @@ The `overlays` directory contains the following subdirectories that apply specif
       <tr>
         <td><code>midstream</code></td>
         <td>No</td>
-        <td><p>Contains app manager-specific kustomizations, such as:</p>
+        <td><p>Contains KOTS-specific kustomizations, such as:</p>
         <ul>
           <li>Backup labels, such as those used to configure Velero.</li>
           <li>Image pull secret definitions and patches to inject the <code>imagePullSecret</code> field into relevant manifests (such as deployments, stateful sets, and jobs).</li>
@@ -117,7 +117,7 @@ The following table describes the `rendered` directory and whether custom change
     <tr>
       <td><code>rendered</code></td>
       <td>No</td>
-      <td><p>Contains the final rendered application manifests that are deployed to the cluster.</p><p>The rendered files are created when the app manager processes the <code>base</code> by applying the corresponding overlays and the user-defined kustomizations. The app manager puts the rendered files in the <code>rendered</code> directory.</p></td>
+      <td><p>Contains the final rendered application manifests that are deployed to the cluster.</p><p>The rendered files are created when KOTS processes the <code>base</code> by applying the corresponding overlays and the user-defined kustomizations. KOTS puts the rendered files in the <code>rendered</code> directory.</p></td>
     </tr>
     <tr>
       <td><code>rendered/charts</code></td>
@@ -128,7 +128,7 @@ The following table describes the `rendered` directory and whether custom change
 
 ### skippedFiles
 
-The `skippedFiles` directory lists files that the app manager is not able to process or render, such as invalid YAML files.
+The `skippedFiles` directory lists files that KOTS is not able to process or render, such as invalid YAML files.
 
 The `_index.yaml` file contains metadata and details about the errors, such as which files they were found in and sometimes the line number of the error.
 

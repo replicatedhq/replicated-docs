@@ -20,7 +20,7 @@ When you promote a new release specifying a minimum KOTS version that is later t
 
 The admin console temporarily displays an error message that informs the user that they must update KOTS before downloading the application version. This error also displays when the user checks for updates with the [`kots upstream upgrade`](/reference/kots-cli-upstream-upgrade) command.
 
-KOTS cannot update itself automatically, and users cannot update KOTS from the admin console. For more information on updating KOTS, see [Updating the App Manager](/enterprise/updating-app-manager) and [Updating Kubernetes Installer Clusters](/enterprise/updating-embedded-cluster).
+KOTS cannot update itself automatically, and users cannot update KOTS from the admin console. For more information on updating KOTS, see [Updating KOTS](/enterprise/updating-app-manager) and [Updating Embedded Clusters](/enterprise/updating-embedded-cluster).
 
 After updating KOTS to the minimum version or later, users can use the admin console or the [`kots upstream download`](/reference/kots-cli-upstream-download) command to download the release and subsequently deploy it.
 
