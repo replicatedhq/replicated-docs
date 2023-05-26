@@ -101,7 +101,7 @@ kots/
 EOF
 ```
 
-- Make a copy of a [`kots` directory](https://github.com/replicatedhq/replicated-automation/tree/master/vendor/helm-influxdb/kots) from the Replicated KOTS repository and place it in your Chart's root dir.
+- Make a copy of a [`kots` directory](https://github.com/replicatedhq/replicated-automation/tree/master/vendor/helm-influxdb/kots) from the `replicated-automation` repository and place it in your Chart's root dir.
 
 - Update `spec.chart.name` and `spec.chart.chartVersion` in `kots/helm-chart.yaml` to match your chart.
 

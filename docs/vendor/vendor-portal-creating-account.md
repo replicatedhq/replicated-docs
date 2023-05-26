@@ -2,8 +2,6 @@
 
 To get started with Replicated, you must create a Replicated vendor account. When you create your account, you are also prompted to create an application. To create additional applications in the future, log in to the Replicated vendor portal and select **Create new app** from the Applications drop-down list.
 
-The vendor portal is the user interface where vendors define how to use Replicated features for their application, such as customer license files, image registries, create releases, and so on.
-
 To create a vendor account:
 
 1. Go to the [vendor portal](https://vendor.replicated.com), and select **Sign up**.
