@@ -8,17 +8,15 @@ To give the vendor more control over the deployment of Kubernetes resources, the
 
 ### Deployment Phases
 
-#### Please Note
-
 If a creation or deletion phase is not specified for a resource, it will be created or deleted as part of the default phase `'0'`. Phases can be any positive or negative integer ranging from `'-9999'` to `'9999'`.
 
 `kots.io/creation-phase: '<integer>'`
 
-When this annotation is present on a resource, the app manager will group the resource into the specified creation phase. The app manager deploys resources from each phase in order from lowest to highest.
+When this annotation is present on a resource, the app manager will group the resource into the specified creation phase. The app manager deploys each phase in order from lowest to highest. Resources within the same phase are deployed same order that Helm installs resources ([see Helm docs](https://helm.sh/docs/intro/using_helm/#:~:text=Helm%20installs%20resources%20in%20the,order)).
 
 `kots.io/deletion-phase: '<integer>'`
 
-When this annotation is present on a resource, the app manager will group the resource into the specified deletion phase. The app manager deletes resources from each phase in order from lowest to highest.
+When this annotation is present on a resource, the app manager will group the resource into the specified deletion phase. The app manager deletes each phase in order from lowest to highest. Resources within the same phase are deleted in the reverse order from which they were created.
 
 **NOTE**: Kubernetes annotations cannot be integers and must be strings, so make sure to quote this.
 
