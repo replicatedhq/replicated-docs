@@ -12,6 +12,25 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <KubernetesCompatibility/>
 
+## 1.100.0
+
+Released on May 26, 2023
+
+Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
+
+### New Features {#new-features-1-100-0}
+* Adds support for `kots.io/creation-phase` and `kots.io/deletion-phase` annotations to control the order in which native Kubernetes resources are created and deleted, respectively.
+* Adds support for a `kots.io/wait-for-ready` annotation, which causes the app manager to wait for a native Kubernetes resource to be ready before continuing with the deployment.
+* Adds support for a `kots.io/wait-for-properties` annotation, which causes the app manager to wait for one or more properties to match a desired value before continuing with the deployment.
+
+### Improvements {#improvements-1-100-0}
+* Updates the github.com/cloudflare/circl module to v1.3.3 to resolve CVE-2023-1732 with medium severity.
+
+### Bug Fixes {#bug-fixes-1-100-0}
+* Fixes an issue where Helm charts deployed using the native Helm installation method were uninstalled then reinstalled when the chart version changed or was updated.
+* Fixes an issue in embedded clusters where images from native Helm v2 (Beta) charts were incorrectly removed from the in-cluster registry, potentially leading to failed deployments.
+* Bumps the Helm version used by KOTS to 3.12.0 to fix an issue where native Helm installations were failing on Kubernetes 1.27.
+
 ## 1.99.0
 
 Released on May 18, 2023
