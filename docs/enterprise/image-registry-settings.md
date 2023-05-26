@@ -30,15 +30,15 @@ To configure private registry settings for a online cluster:
 
     <ImageRegistrySettings/>
 
-1. Click **Test Connection** to test the connection between the admin console and the private registry host.
+1. Click **Test Connection** to test the connection between Replicated KOTS and the private registry host.
 
 1. Click **Save changes**.
 
-1. (Optional) Click **Stop using registry** if you want to remove the registry settings from the app manager.
+1. (Optional) Click **Stop using registry** if you want to remove the registry settings from KOTS.
 
 ## Change Private Registries in Air Gap Clusters {#air-gap}
 
-During air gap installations, you configure a private registry where the app manager pushes images. You can change the private registry settings at any time in the admin console.
+During air gap installations, you configure a private registry where KOTS pushes images. You can change the private registry settings at any time in the admin console.
 
 To change private registry settings for an air gap cluster:
 
@@ -67,12 +67,12 @@ To change private registry settings for an air gap cluster:
     </tr>
     <tr>
       <td>Registry Namespace</td>
-      <td>Specify the registry namespace. For air gap environments, this setting overwrites the registry namespace that you pushed images to when you installed the Replicated app manager.</td>
+      <td>Specify the registry namespace. For air gap environments, this setting overwrites the registry namespace that you pushed images to when you installed KOTSr.</td>
     </tr>
   </table>
 
-1. Deselect the **Disable Pushing Images to Private Registry** checkbox. This action re-enables the app manager to push images to your registry.
+1. Deselect the **Disable Pushing Images to Private Registry** checkbox. This action re-enables KOTS to push images to your registry.
 
-1. Click **Test Connection** to test the connection between the admin console and the private registry host.
+1. Click **Test Connection** to test the connection between KOTS and the private registry host.
 
 1. Click **Save changes**.
