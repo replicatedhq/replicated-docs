@@ -3,7 +3,7 @@ import KubernetesCompatibility from "../partials/install/_kubernetes-compatibili
 
 # Installation Requirements
 
-This topic describes the requirements for installing applications with Replicated KOTS and Replicated kURL installers.
+This topic describes the requirements for installing applications with the Replicated KOTS and Replicated kURL installers.
 
 :::note
 This topic does not include any requirements specific to your software vendor. Ensure that you meet any additional requirements for the application defined by your software vendor.
@@ -11,7 +11,7 @@ This topic does not include any requirements specific to your software vendor. E
 
 ## Supported Browsers
 
-The following table lists the browser requirements for the latest Replicated admin console.
+The following table lists the browser requirements for the Replicated admin console with the latest version of KOTS.
 
 | Browser              | Support     |
 |----------------------|-------------|
@@ -41,7 +41,7 @@ To install KOTS in an existing cluster, your environment must meet the following
 
 To install the admin console on an existing cluster, the cluster must meet the following requirements:
 
-* **Admin console minimum requirements**: The admin console requires a minimum of 5GB of disk space on the cluster. This includes 4GB for the object store PersistentVolume and 1GB for the rqlite PersistentVolume. The admin console pod requests 100m CPU resources and 100Mi memory. Existing clusters that have LimitRanges specified must support these values. For more information, see [Requirements for Admin Console State](installing-stateful-component-requirements).
+* **Admin console minimum requirements**: The admin console requires a minimum of 5GB of disk space on the cluster. This includes 4GB for the object store PersistentVolume and 1GB for the rqlite PersistentVolume. The admin console pod requests 100m CPU resources and 100Mi memory. Existing clusters that have LimitRanges specified must support these values. For more information, see [Installing Without Object Storage](installing-stateful-component-requirements).
 * **Kubernetes version compatibility**: The version of Kubernetes running on the cluster must be compatible with the version of KOTS that you use to install the application. This compatibility requirement does not include any specific and additional requirements defined by the software vendor for the application.
 
    For more information about the versions of Kubernetes that are compatible with each version of KOTS, see [Kubernetes Version Compatibility](#kubernetes-version-compatibility) above.
@@ -224,7 +224,7 @@ To install or upgrade KOTS with namespace-scoped access, the user must have _one
 
 ## Embedded Cluster Requirements {#embedded-cluster-requirements}
 
-To install KOTS in an embedded cluster created by the kURL installer, your environment must meet the following requirements.
+To install KOTS in an embedded cluster created by kURL, your environment must meet the following requirements.
 
 ### Minimum System Requirements
 
@@ -238,7 +238,7 @@ To install KOTS in an embedded cluster created by the kURL installer, your envir
 
 ### Additional System Requirements
 
-Because the kURL installer is based on the open source kURL project, which is maintained by Replicated, you must meet the additional kURL system requirements when applicable:
+You must meet the additional kURL system requirements when applicable:
 
 - **Supported Operating Systems**: For supported operating systems, see [Supported Operating Systems](https://kurl.sh/docs/install-with-kurl/system-requirements#supported-operating-systems) in the kURL documentation.
 

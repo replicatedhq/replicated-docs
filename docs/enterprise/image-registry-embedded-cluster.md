@@ -33,7 +33,7 @@ Deleted images can be reloaded from air gap bundles using the `admin-console pus
 
 For an example of using the `admin-console push-images` command, see [Air Gap Installation in Existing Clusters](installing-existing-cluster-airgapped).
 
-The registry address and namespace can be found on the Registry Settings page in the Replicated admin console.
+The registry address and namespace can be found on the **Registry Settings** page in the Replicated admin console.
 The registry username and password can be found in the `registry-creds` secret in the default namespace.
 
 ### Limitations
