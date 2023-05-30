@@ -51,7 +51,7 @@ Kubernetes annotations cannot be booleans and must be strings, so make sure to q
 
 #### Example
 
-The following example causes KOTS to wait for the postgres `StatefulSet` to be ready before continuing to deploy other resources.
+The following example causes KOTS to wait for the Postgres `StatefulSet` to be ready before continuing to deploy other resources.
 
 ```yaml
 apiVersion: apps/v1
