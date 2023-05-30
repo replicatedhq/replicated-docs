@@ -1,12 +1,12 @@
 # Step 8: Create a New Version
 
-In this step, you make an edit to the Replicated Config custom resource manifest file in the `replicated-cli-tutorial/manifests` directory for the `cli-tutorial` application to create a new field on the **Config** page in the admin console. You will then create and promote a new release to the Unstable channel with your changes.
+In this step, you make an edit to the Config custom resource manifest file in the `replicated-cli-tutorial/manifests` directory for the `cli-tutorial` application to create a new field on the **Config** page in the admin console. You will then create and promote a new release to the Unstable channel with your changes.
 
 To create and promote a new version of the application:
 
 1. In your local directory, go to the the `replicated-cli-tutorial/manifests` folder and open the `kots-config.yaml` file in a text editor.
 
-1. Copy and paste the following YAML into the file under the `example_default_value` field to create a new text field on the Configure App Name page:
+1. Copy and paste the following YAML into the file under the `example_default_value` field to create a new text field on the **Config** page:
 
    ```yaml
     - name: more_text

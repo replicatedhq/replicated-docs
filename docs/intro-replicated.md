@@ -50,20 +50,18 @@ KOTS is an open source project that is maintained by Replicated. For more inform
 
 ### Admin Console
 
-The Replicated admin console is a graphical user interface (GUI) for KOTS. The admin console includes built-in functionality that allows users to install, manage, update, configure, monitor, backup and restore, and troubleshoot their application instance.
+The Replicated admin console is a graphical user interface (GUI) for interacting with KOTS. The admin console includes built-in functionality that allows users to install, manage, update, configure, monitor, backup and restore, and troubleshoot their application instances.
 
 ![Admin Console Dashboard](/images/guides/kots/application.png)
 
 ### kots CLI
 
-Users can run commands with the kots command-line interface (CLI) to install and manage their application instance programmatically. The kots CLI interacts with KOTS and provides an alternative to using the admin console. For more information, see [Installing the kots CLI](/reference/kots-cli-getting-started).
+The the kots command-line interface (CLI) is a kubectl plugin. Users can run commands with the kots CLI to install and manage their application instances with KOTS programmatically. For more information, see [Installing the kots CLI](/reference/kots-cli-getting-started).
 
 ## kURL
 
-Replicated kURL allows application vendors to create a custom Kubernetes distribution to share with their users. Vendors can share their kURL distribution with users as a URL for installation in online environments, or as a downloadable package for installation in air gapped environments.
+Replicated kURL allows software vendors to create a custom Kubernetes distributions to share with their users for installation in online or air gapped environments. kURL has a built-in integration with KOTS through its KOTS add-on. With this integration, users can run a kURL installation script in their virtual machine (VM) or bare metal server that creates a cluster and then automatically installs KOTS in the cluster. Clusters created by kURL are called _embedded clusters_.
 
-kURL has a built-in integration with KOTS through its KOTS add-on. With this integration, users can run a kURL installation script in their virtual machine (VM) or bare metal server that creates a cluster and then automatically installs KOTS in the cluster. Clusters created by kURL are called _embedded clusters_.
-
-For information about how to install applications on embedded clusters, see [Installing with kURL](/enterprise/installing-embedded-cluster). For information about how to create a specification for kURL, see [Creating a Kubernetes Installer](/vendor/packaging-embedded-kubernetes).
+For information about how to install applications in embedded clusters, see [Installing with kURL](/enterprise/installing-embedded-cluster). For information about how to create a specification for kURL, see [Creating a Kubernetes Installer](/vendor/packaging-embedded-kubernetes).
 
 kURL is an open source project that is maintained by Replicated. For more information, see the [kURL repository](https://github.com/replicatedhq/kURL) in GitHub and the [kURL documentation](https://kurl.sh).

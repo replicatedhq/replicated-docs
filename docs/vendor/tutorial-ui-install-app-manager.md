@@ -2,27 +2,25 @@ import VMRequirements from "../partials/getting-started/_vm-requirements.mdx"
 
 # Step 4: Install KOTS
 
-Get the installation commands from the Unstable channel so that you can test the installation process for the application release that you promoted. The first step in installing and deploying the application in a cluster is to install Replicated KOTS.
+Get the installation commands from the Unstable channel so that you can test the installation process for the application release that you promoted. The first step in installing and deploying the application in a cluster is to install KOTS.
 
-KOTS is the Replicated component that lets your users install, manage, and upgrade your application. Users can interact with KOTS through the Replicated admin console or through the kots CLI.
+KOTS is the Replicated component that lets your users install, manage, and upgrade your application. Users can interact with KOTS through the admin console or through the kots CLI.
 
 KOTS can be either installed in an existing Kubernetes cluster or in an _embedded cluster_ created by Replicated kURL.
 
 Choose either installation option:
 * [Install in an Existing Cluster](#existing)
-* [Install in an Embedded Cluster Cluster](#embedded)
+* [Install in an Embedded Cluster](#embedded)
 
 ## Install in an Existing Cluster {#existing}
 
-When you install KOTS in existing cluster, you use a pre-built Kubernetes cluster and deploy your application into a namespace.
+To install KOTS in an existing cluster:
 
-You can see the installation script options at the bottom of each channel on the Channels page in the vendor portal.
+1. Make sure your kubectl context is set to your cluster.
 
-![Installation Methods](/images/guides/kots/installation-methods-existing.png)
+1. Copy the **KOTS Install** command from the Unstable channel in the vendor portal.
 
-To install KOTS:
-
-1. Copy the **KOTS Install** command from the Unstable channel in the vendor portal. Make sure your kubectl context is set to your existing cluster and run the install command on the command line.
+  ![Installation Methods](/images/guides/kots/installation-methods-existing.png)
 
   The script installs the latest KOTS version as a `kubectl` plugin. For more information about installing an application with the kots CLI, see [install](../reference/kots-cli-install/) in the kots CLI documentation.
 
@@ -35,7 +33,7 @@ To install KOTS:
 
 1. For `Enter installation path (leave blank for /usr/local/bin):`, use the default and press **Enter**.
 
-1. For `Enter a new password to be used for the Admin Console:`, provide a password to access the admin console. You use this password in a later step to access the admin console user interface and deploy the application.
+1. For `Enter a new password to be used for the Admin Console:`, provide a password to access the admin console. You use this password in a later step to access the admin console and deploy the application.
 
   When the admin console is ready, the script prints the https://localhost:8800 URL where you can access the admin console.
 
@@ -59,10 +57,6 @@ To install KOTS:
 
 KOTS can be installed in an embedded cluster by running the kURL installation script on a VM or bare metal server.
 
-You can see the installation script options at the bottom of each channel on the Channels page in the vendor portal. For this tutorial, you use the **Embedded Cluster** option for kURL.
-
-![Installation Methods](/images/guides/kots/installation-methods-embedded.png)
-
 To install KOTS in an embedded cluster:
 
 1. Use SSH to authenticate to the VM that you created as part of [Set Up the Environment](tutorial-ui-setup#set-up-the-environment).
@@ -76,6 +70,8 @@ To install KOTS in an embedded cluster:
   Replace NAME with the name of the cluster.
 
 1. Copy the **Embedded Cluster** command from the Unstable channel in the vendor portal and run it on the cluster.
+
+  ![Installation Methods](/images/guides/kots/installation-methods-embedded.png)
 
   **Example:**
 

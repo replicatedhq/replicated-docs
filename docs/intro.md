@@ -16,11 +16,11 @@ The documentation includes UI-based and CLI-based tutorials that are designed to
 
 ## About the Replicated Documentation
 
-The Replicated product documentation includes information about the Replicated features for application vendors and for their enterprise end users.
+The Replicated product documentation includes information about the Replicated features for software vendors and for their enterprise end users.
 
 ### Distribute and Support (Vendor)
 
-The _Distribute and Support_ section includes documentation for application vendors. This section describes how to package, distribute, and support an application with Replicated KOTS. It includes information about managing channels, releases, and customers in the Replicated vendor portal. It also describes how to configure features such as preflight checks, support bundles, backup and restore, and Kubernetes installers for your application. For more information, see [What is Replicated?](intro-replicated) and [How to Create Releases for Your Application](/vendor/distributing-workflow).
+The _Distribute and Support_ section includes documentation for software vendors. This section describes how to package, distribute, and support an application with Replicated KOTS. It includes information about managing channels, releases, and customers in the Replicated vendor portal. It also describes how to configure features such as preflight checks, support bundles, backup and restore, and Kubernetes installers for your application. For more information, see [What is Replicated?](intro-replicated) and [How to Create Releases for Your Application](/vendor/distributing-workflow).
 
 ### Install and Manage (Enterprise User)
 

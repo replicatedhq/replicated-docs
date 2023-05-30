@@ -1,22 +1,22 @@
 # Step 5: Deploy the Application
 
-After you run the installation script from the previous step, the admin console and Kubernetes are running, but the application is not deployed yet. This is also what your customer will be experiencing when installing your application.
+After you run the installation script from the previous step, the admin console and Kubernetes are running, but the application is not deployed yet.
 
 This procedure shows you how to deploy the application by logging into the admin console, uploading the license file that you created as part of [Step 3: Create a Customer](tutorial-ui-create-customer), completing the application configuration settings, and running the preflight checks.
 
-To deploy the application:
+To install and deploy the application:
 
-1. In a browser, enter the URL `http://localhost:8800` (existing clusters) or `http://[ip-address]:8800` (embedded clusters) and the password from [Step 4: Install the App Manager](tutorial-ui-install-app-manager).
+1. In a browser, enter the URL `http://localhost:8800` (existing clusters) or `http://[ip-address]:8800` (embedded clusters) and the password from [Step 4: Install KOTS](tutorial-ui-install-app-manager).
 
-1. (Embedded clusters only) On the Bypass Browser TLS warning page, click **Continue to Setup**.
+1. (Embedded clusters Only) On the Bypass Browser TLS warning page, click **Continue to Setup**.
 
-1. (Embedded clusters only) On the HTTPS page, click **Skip & continue** to use the self-signed TLS certificate and omit the hostname.
+1. (Embedded clusters Only) On the HTTPS page, click **Skip & continue** to use the self-signed TLS certificate and omit the hostname.
 
 1. On the Upload license page, select the customer license YAML file or drag and drop the license file from your desktop. Click **Upload license**.
 
   The admin console can pull the application YAML and containers now.
 
-1. On the Configure App Name page, select the **Customize Text Inputs** checkbox. In the **Text Example** field, enter any text. For example, `Hello`.
+1. On the configuration screen, select the **Customize Text Inputs** checkbox. In the **Text Example** field, enter any text. For example, `Hello`.
 
   This page displays configuration settings that are specific to the application. Software vendors define the fields that are displayed on this page in the Config custom resource. For more information, see [Config](/reference/custom-resource-config) in _Reference_.
 
@@ -28,7 +28,7 @@ To deploy the application:
 
 1. Click **Continue**.
 
-  The preflight checks run automatically. In the Results from your preflight checks list, look for the status of the number of nodes in the cluster. It should show the pass or warning messages that you configured earlier, depending on your cluster setup.
+  The preflight checks run automatically. In the **Results from your preflight checks** list, look for the status of the number of nodes in the cluster. It should show the pass or warning messages that you configured earlier, depending on your cluster setup.
 
   ![Preflight Results](/images/preflight-warning.png)
 
@@ -38,7 +38,7 @@ To deploy the application:
 
   ![Cluster](/images/guides/kots/application-tutorial-ui.png)
 
-  On the Dashboard tab, users can take various actions, including viewing the application status, opening the application, checking for application updates, syncing their license, and setting up application monitoring on the cluster with Prometheus.
+  On the **Dashboard** tab, users can take various actions, including viewing the application status, opening the application, checking for application updates, syncing their license, and setting up application monitoring on the cluster with Prometheus.
 
 1. Click **Open App** to view the application in your browser.
 
