@@ -2,7 +2,7 @@
 
 Replicated strongly recommends that applications are architected to deploy a single application into a single namespace when possible. 
 
-If you are distributing your application with the Replicated app manager (KOTS), you can implement an architecture in which a single application is deployed into a single namespace.
+If you are distributing your application with Replicated KOTS, you can implement an architecture in which a single application is deployed into a single namespace.
 
 To do this, omit any namespace in the application manifests `metadata.namespace`. Do not use the Config custom resource object to make the namespace user-configurable.
 

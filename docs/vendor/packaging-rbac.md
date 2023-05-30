@@ -1,12 +1,12 @@
-# Configuring App Manager RBAC
+# Configuring KOTS RBAC
 
-This topic describes role-based access control (RBAC) for the Replicated app manager in existing cluster installations, including information about how to change the default cluster-scoped RBAC permissions granted to the app manager.
+This topic describes role-based access control (RBAC) for Replicated KOTS in existing cluster installations. It includes information about how to change the default cluster-scoped RBAC permissions granted to KOTS.
 
 ## About Cluster-scoped RBAC
 
-When a user installs your application in an existing cluster, Kubernetes RBAC resources are created to allow the app manager to install and manage the application.
+When a user installs your application in an existing cluster, Kubernetes RBAC resources are created to allow KOTS to install and manage the application.
 
-By default, the following ClusterRole and ClusterRoleBinding resources are created that grant the app manager access to all resources across all namespaces in the cluster:
+By default, the following ClusterRole and ClusterRoleBinding resources are created that grant KOTS access to all resources across all namespaces in the cluster:
 
 ```yaml
 apiVersion: "rbac.authorization.k8s.io/v1"
@@ -36,9 +36,9 @@ Alternatively, if your application does not require access to resources across a
 
 ## About Namespace-scoped RBAC {#min-rbac}
 
-Rather that use the default cluster-scoped RBAC, you can configure your application so that the RBAC permissions granted to the app manager are limited to a target namespace or namespaces.
+Rather that use the default cluster-scoped RBAC, you can configure your application so that the RBAC permissions granted to KOTS are limited to a target namespace or namespaces.
 
-Namespace-scoped RBAC is supported for applications that use Kubernetes Operators or multiple namespaces. During application installation, if there are `additionalNamespaces` specified in the Application custom resource manifest file, then Roles and RoleBindings are created to grant the app manager access to resources in all specified namespaces.
+Namespace-scoped RBAC is supported for applications that use Kubernetes Operators or multiple namespaces. During application installation, if there are `additionalNamespaces` specified in the Application custom resource manifest file, then Roles and RoleBindings are created to grant KOTS access to resources in all specified namespaces.
 
 By default, for namespace-scoped installations, the following Role and RoleBinding resources are created that grant the app manager permissions to all resources in a target namespace:
 
@@ -70,7 +70,7 @@ For information about how to enable namespace-scoped RBAC for your application, 
 
 ### Enable Namespace-scoped RBAC {#enable}
 
-To enable namespace-scoped RBAC permissions for the app manager, specify one of the following options in the Application custom resource manifest file:
+To enable namespace-scoped RBAC permissions for KOTS, specify one of the following options in the Application custom resource manifest file:
 
 * `supportMinimalRBACPrivileges`: Set to `true` to make namespace-scoped RBAC optional for existing cluster installations. When `supportMinimalRBACPrivileges` is `true`, cluster-scoped RBAC is used by default and users must pass the `--use-minimal-rbac` flag with the installation or upgrade command to use namespace-scoped RBAC. 
 
