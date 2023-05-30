@@ -5,7 +5,7 @@ This topic describes creating a Replicated Kubernetes installer to distribute yo
 ## About Installing an Application Without an Existing Cluster
 
 When you package and release your application with Replicated, your customers can
-install the application without an existing Kubernetes cluster. You use the Replicated Kubernetes installer to provision a new cluster on a virtual machine (VM). This allows customers who do not have an existing cluster to install your application without provisioning a cluster themselves.
+install the application without an existing Kubernetes cluster. You use the Replicated Kubernetes installer (kURL) to provision an embedded cluster on a virtual machine (VM) or bare metal. This allows customers who do not have an existing cluster to install your application without provisioning a cluster themselves.
 
 There are two possible methods for creating a Kubernetes installer:
 
@@ -24,9 +24,7 @@ There are two possible methods for creating a Kubernetes installer:
   </tr>
 </table>
 
-The Kubernetes installer is based on the open source kURL project, which is maintained
-by Replicated. For more information, see [Introduction to kURL](https://kurl.sh/docs/introduction/)
-in the kURL open source documentation.
+The Kubernetes installer is based on Replicated kURL. For more information, see [Introduction to kURL](https://kurl.sh/docs/introduction/) in the kURL documentation.
 
 ## Include a Kubernetes Installer in an Application Release (Beta)
 
@@ -40,13 +38,13 @@ To include the Kubernetes installer in the application release:
 
 1. From the landing page at [kurl.sh](https://kurl.sh/), configure the add-ons and options for your Installer YAML. Note the following requirements and guidelines for configuring the Installer:
 
-    - You must include the KOTS add-on to provision the Replicated admin console. See [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) in the kURL documentation.
+    - You must include the kURL KOTS add-on to provision the Replicated admin console. See [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) in the kURL documentation.
 
     - You must include the EKCO add-on, which performs maintenance tasks to ensure the cluster is healthy with minimal manual operation. See [EKCO Add-on](https://kurl.sh/docs/add-ons/ekco) in the kURL documentation.
 
     - To use Replicated snapshots, Velero must be installed on the cluster. Replicated recommends that you include the Velero add-on in your Kubernetes installer manifest so that your customers do not have to manually install Velero.
 
-    - You must select storage add-ons based on the app manager requirements and the unique requirements for your application. For more information, see [About Selecting Storage Add-ons](packaging-installer-storage).
+    - You must select storage add-ons based on the Replicated KOTS requirements and the unique requirements for your application. For more information, see [About Selecting Storage Add-ons](packaging-installer-storage).
 
     - Kubernetes installers that are included in releases must pin specific add-on versions and cannot pin `latest` versions or x-ranges (such as 1.2.x). Pinning specific versions ensures the most testable and reproducible installations.
 
@@ -62,7 +60,7 @@ To include the Kubernetes installer in the application release:
 
 ### Include Supporting Preflight Checks
 
-> Introduced in Replicated app manager v1.74.0
+> Introduced in Replicated KOTS v1.74.0
 
 One goal of including a Kubernetes installer in a release is to more tightly couple a particular release with a particular Kubernetes installer. If you want to encourage or ensure that your customers run the updated Kubernetes installer before upgrading to the corresponding release, a preflight check can be used to compare the installer that is included in the release against the installer that is currently deployed.
 
@@ -101,7 +99,7 @@ To create a separate Kubernetes installer:
 
 1. Edit the file. Note the following requirements and guidelines for configuring the Installer:
 
-    - You must include the KOTS add-on to provision the Replicated admin console. See [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) in the kURL documentation.
+    - You must include the KOTS add-on to provision the admin console. See [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) in the kURL documentation.
 
     - You must include the EKCO add-on, which performs maintenance tasks to ensure the cluster is healthy with minimal manual operation. See [EKCO Add-on](https://kurl.sh/docs/add-ons/ekco) in the kURL documentation.
 

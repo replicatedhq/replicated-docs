@@ -18,9 +18,9 @@ import BuilderExample from "../partials/helm/_helm-cr-builder-example.mdx"
 
 # HelmChart v2 (Beta)
 
-> Introduced in Replicated app manager v1.99.0
+> Introduced in Replicated KOTS v1.99.0
 
-The HelmChart v2 custom resource supports the native Helm v2 installation. This v2 installation method does a Helm install or upgrade of your Helm chart without modifying it with Kustomize. This is an improvement to the v1 installation method because it results in Helm installations that can be reproduced outside of the app manager, and it enables the use of additional Helm functionality that was not available in v1. Because this method bypasses existing Kustomize logic to rewrite images, inject pull secrets, and add backup labels, you must configure a combination of Replicated and Helm templating for the images, pull secrets, and backup labels.
+The HelmChart v2 custom resource supports the native Helm v2 installation. This v2 installation method does a Helm install or upgrade of your Helm chart without modifying it with Kustomize. This is an improvement to the v1 installation method because it results in Helm installations that can be reproduced outside of KOTS, and it enables the use of additional Helm functionality that was not available in v1. Because this method bypasses existing Kustomize logic to rewrite images, inject pull secrets, and add backup labels, you must configure a combination of Replicated and Helm templating for the images, pull secrets, and backup labels.
 
 <Intro/>
 
@@ -138,7 +138,7 @@ The `builder` field is required for the following use cases:
 
 * To support online installations that are configured to push and pull from a private registry. In this case, your customer must not enable the `--disable-image-push` flag for the `kots install` command or disable pushing the images to a registry in the admin console. By default, pushing images to a registry is enabled.
 
-  You must provide the necessary values in the `builder` field to render the Helm chart with all of the necessary images so that the app manager knows where to pull the images from to push them into the private registry.
+  You must provide the necessary values in the `builder` field to render the Helm chart with all of the necessary images so that KOTS knows where to pull the images from to push them into the private registry.
 
   If you already support an air gap installation, use the same `builder` field configuration for this online installation use case. No additional changes are needed.
 
