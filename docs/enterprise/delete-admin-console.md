@@ -6,7 +6,7 @@ This topic describes how to remove installed applications and delete the Replica
 
 ## Remove an Application
 
-The kots CLI `kots remove` command removes the reference to an installed application from the admin console. When you use `kots remove`, the admin console no longer manages the application because the record of that application’s installation is removed. This means that you can no longer manage the application through the admin console or through the kots CLI.
+The Replicated kots CLI `kots remove` command removes the reference to an installed application from the admin console. When you use `kots remove`, the admin console no longer manages the application because the record of that application’s installation is removed. This means that you can no longer manage the application through the admin console or through the kots CLI.
 
 By default, `kots remove` does not delete any of the installed Kubernetes resources for the application from the cluster. To remove both the reference to an application from the admin console and remove any resources for the application from the cluster, you can run `kots remove` with the `--undeploy` flag.
 
@@ -24,7 +24,7 @@ To remove an application:
 
 1. Run _one_ of the following commands:
 
-   * **Remove only the reference to the application from the admin console**: 
+   * Remove only the reference to the application from the admin console: 
 
      ```
      kubectl kots remove APP_SLUG -n NAMESPACE
@@ -33,7 +33,7 @@ To remove an application:
      * `APP_SLUG` with the slug for the application that you want to remove.
      * `NAMESPACE` with the name of the namespace where the admin console is installed.
 
-   * **Remove the reference to the application from the admin console and remove its resources from the cluster**:
+   * Remove the reference to the application from the admin console and remove its resources from the cluster:
 
       ```
       kubectl kots remove APP_SLUG -n NAMESPACE --undeploy
@@ -46,14 +46,14 @@ To remove an application:
 
 ## Delete the Admin Console
 
-When you install an application with the admin console, Replicated also creates the Kubernetes resources for the admin console itself on the cluster. The admin console includes Deployments and Services, Secrets, and other resources such as StatefulSets and PersistentVolumeClaims.
+When you install an application with the admin console, Replicated KOTS also creates the Kubernetes resources for the admin console itself on the cluster. The admin console includes Deployments and Services, Secrets, and other resources such as StatefulSets and PersistentVolumeClaims.
 
-By default, Replicated also creates Kubernetes ClusterRole and ClusterRoleBinding resources that grant permissions to the admin console on the cluster level. These `kotsadm-role` and `kotsadm-rolebinding` resources are managed outside of the namespace where the admin console is installed. Alternatively, when the admin console is installed with namespace-scoped access, Replicated creates Role and RoleBinding resources inside the namespace where the admin console is installed.
+By default, KOTS also creates Kubernetes ClusterRole and ClusterRoleBinding resources that grant permissions to the admin console on the cluster level. These `kotsadm-role` and `kotsadm-rolebinding` resources are managed outside of the namespace where the admin console is installed. Alternatively, when the admin console is installed with namespace-scoped access, KOTS creates Role and RoleBinding resources inside the namespace where the admin console is installed.
 
 If you need to completely delete the admin console and an application installation, such as during testing, follow one of these procedures depending on the type of cluster where you installed the admin console:
 
 * **Existing cluster**: Manually delete the admin console Kubernetes objects and resources from the cluster. See [Delete from an Existing Cluster](#delete-from-an-existing-cluster) below.
-* **Kubernetes installer cluster**: Remove Kubernetes from the VM where the cluster is installed. See [Delete from a Kubernetes Installer Cluster](#delete-from-a-kubernetes-installer-cluster) below.
+* **Embedded cluster**: Remove Kubernetes from the VM where the cluster is installed. See [Delete from an Embedded Cluster](#delete-from-a-kubernetes-installer-cluster) below.
 
 :::note
 These procedures do not uninstall the kots CLI. To uninstall the kots CLI, see [Uninstall](https://docs.replicated.com/reference/kots-cli-getting-started#uninstall) in _Installing the kots CLI_.
@@ -93,21 +93,21 @@ To delete the admin console from an existing cluster:
    kubectl delete clusterrolebinding kotsadm-rolebinding
    ```
 
-### Delete from a Kubernetes Installer Cluster
+### Delete from an Embedded Cluster
 
-If you installed on a cluster created by the Kubernetes installer, Replicated installs the admin console in the `default` namespace. Kubernetes does not allow the `default` namespace to be deleted.
+If you installed on a cluster created by Replicated kURL, KOTS installs the admin console in the `default` namespace. Kubernetes does not allow the `default` namespace to be deleted.
 
-To delete the admin console from a Kubernetes installer-created cluster, use the kURL `tasks.sh` `reset` command to remove Kubernetes from the system.
+To delete the admin console from an embedded cluster, use the kURL `tasks.sh` `reset` command to remove Kubernetes from the system.
 
 :::important
 The `reset` command is intended to be used only on development servers. It has the potential to leave your machine in an unrecoverable state. It is not recommended unless you are able to discard this server and provision a new one.
 :::
 
-Instead of using the `reset` command, you can also discard your current VM, and recreate the VM with a new OS to reinstall the admin console and an application.
+Instead of using the `reset` command, you can also discard your current VM (if you are using one) and recreate the VM with a new OS to reinstall the admin console and an application.
 
-For more information about the `reset` command, see [Resetting a Node](https://kurl.sh/docs/install-with-kurl/adding-nodes#resetting-a-node) in the open source kURL documentation.
+For more information about the `reset` command, see [Resetting a Node](https://kurl.sh/docs/install-with-kurl/adding-nodes#resetting-a-node) in the kURL documentation.
 
-To delete the admin console from a Kubernetes installer-created cluster:
+To delete the admin console from an embedded cluster:
 
 1. Run the following command to remove Kubernetes from the system:
 
