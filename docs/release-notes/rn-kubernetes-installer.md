@@ -8,7 +8,7 @@ toc_max_heading_level: 2
 
 Released on May 30, 2023
 
-### New Features {#new-features-v2023-05-30-0}
+### Improvements {#improvements-v2023-05-30-0}
 * Added check to ensure connectivity to the registry via Containerd to the join command. This check helps identify misconfigurations, including invalid Proxy settings.
 * Adds Proxy config check to the installer script.
 
