@@ -24,7 +24,7 @@ The _Distribute and Support_ section includes documentation for application vend
 
 ### Install and Manage (Enterprise User)
 
-The _Install and Manage_ section includes documentation for the enterprise users of applications distributed with Replicated. This section describes how to use the Replicated admin console and the Replicated kots CLI to install, update, manage, back up and restore, and monitor application instances. For more information, see [About Installing an Application](/enterprise/installing-overview).
+The _Install and Manage_ section includes documentation for the enterprise users of applications distributed with KOTS. This section describes how to use the Replicated admin console and the Replicated kots CLI to install, update, manage, back up and restore, and monitor application instances. For more information, see [About Installing an Application](/enterprise/installing-overview).
 
 Vendors can use the documentation in this section to test the installation and management of their application with the admin console and kots CLI.
 

@@ -4,7 +4,7 @@ This topic provides prerequisites and a workflow for creating the first release 
 
 ## About Releasing your Application
 
-A release for your application can include a set of standard Kubernetes manifests, Helm charts, or Kubernetes Operators. (While an operator is technically deployed either using plain Kubernetes manifests or a Helm chart, we list it separately because of the advanced image management work needed to effectively deliver Operators into customer environments.) In addition to your application files, a release also includes [Replicated custom resources](/reference/custom-resource-about) that are used to invoke various app manager functions.
+A release for your application can include a set of standard Kubernetes manifests, Helm charts, or Kubernetes Operators. (While an operator is technically deployed either using plain Kubernetes manifests or a Helm chart, we list it separately because of the advanced image management work needed to effectively deliver Operators into customer environments.) In addition to your application files, a release also includes [Replicated custom resources](/reference/custom-resource-about) that are used to invoke various Replicated KOTS functions.
 
 For more information about releases, see [About Releases](releases-about).
 
@@ -67,7 +67,7 @@ Complete the following procedures to import your application files then create a
   Skip this step if your images are open-source or public, or if you are using Kubernetes Operators.
   :::
 
-1. If you intend to provide a specification that your users can run to provision a cluster in their environment, create a Kubernetes installer. See [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
+1. If you intend to provide a Replicated kURL specification that your users can run to provision a cluster in their environment, create a Kubernetes installer. See [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
 
 1. Promote the release to the default Unstable channel. For information about promoting releases, see [Managing Releases with the Vendor Portal](releases-creating-releases).
 
@@ -79,7 +79,7 @@ After you install the first release for your application, return to the vendor p
 
 ## Add Functionality to Your Releases {#iterate}
 
-You add app manager features and functionality to your application by creating and promoting additional releases on the Unstable channel. Test each release in your development environment until you are ready to share the application with your customers. 
+You integrate with KOTS features and add additional functionality to your application by creating and promoting additional releases on the Unstable channel. Test each release in your development environment until you are ready to share the application with your customers. 
 
 The following table gives a suggested order, but you can add functionality in any order. The functionality described in the table can be used with Kubernetes Operators, except where noted.
 
@@ -94,7 +94,7 @@ The following table gives a suggested order, but you can add functionality in an
   </tr>
   <tr>
     <td>Status Informers</td>
-    <td>Status informers are supported Kubernetes resources that the app manager watches for changes in state. Add one or more status informers to display the current application status for your users on the admin console dashboard. Additionally, status informers allow you to get insights on the status of application instances running in customer environments. See <a href="admin-console-display-app-status">Displaying Application Status</a>.</td>
+    <td>Status informers are supported Kubernetes resources that KOTS watches for changes in state. Add one or more status informers to display the current application status for your users on the admin console dashboard. Additionally, status informers allow you to get insights on the status of application instances running in customer environments. See <a href="admin-console-display-app-status">Displaying Application Status</a>.</td>
   </tr>
   <tr>
     <td>Preflight Checks and Support Bundles</td>
@@ -109,7 +109,7 @@ The following table gives a suggested order, but you can add functionality in an
     <td>Enable snapshots so that end users can back up and restore their application data. See <a href="snapshots-configuring-backups">Configuring Backup and Restore</a>.</td>
   </tr>
   <tr>
-    <td>App Manager Annotations</td>
+    <td>KOTS Annotations</td>
     <td>
     <p>Add annotations to manage resources and objects in your release:</p>
     <ul>
@@ -123,9 +123,9 @@ The following table gives a suggested order, but you can add functionality in an
     <td>Customize the branding and application icon displayed in the admin console and the download portal. You can also customize the functionality of the admin console, such as adding ports and port forwarding, adding custom graphs, and more. See the <a href="admin-console-customize-app-icon">Admin Console and Download Portal Customization</a> section.</td>
   </tr>
   <tr>
-    <td>Minimum and Target App Manager Versions</td>
+    <td>Minimum and Target KOTS Versions</td>
     <td>
-    <p>Specify the minimum or target versions of the app manager that are required for users to install your application release. See <a href="packaging-kots-versions">Setting Minimum and Target Versions for KOTS</a>.</p>
+    <p>Specify the minimum or target versions of KOTS that are required for users to install your application release. See <a href="packaging-kots-versions">Setting Minimum and Target Versions for KOTS</a>.</p>
     </td>
   </tr>
 </table>
