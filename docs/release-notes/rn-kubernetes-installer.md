@@ -14,7 +14,7 @@ Released on May 30, 2023
 
 ### Bug Fixes {#bug-fixes-v2023-05-30-0}
 * Fixes an issue where the longhorn to openebs migration preparation preflight failed due to the following error: `error scaling down pods using longhorn volumes: error scaling down *v1.statefulset default/kotsadm-rqlite: Operation cannot be fulfilled on statefulsets.apps "kotsadm-rqlite": the object has been modified; please apply your changes to the latest version and try again`.
-* Fixes an issue with Longhorn volumes not able to be rolled back after a storage migration with the `error: Error: error rolling back volume ... replicas: Operation cannot be fulfilled on volumes.longhorn.io ...`.
+* Fixes an issue with Longhorn volumes not able to be rolled back after a storage migration with the error: `error rolling back volume ... replicas: Operation cannot be fulfilled on volumes.longhorn.io ...`.
 * Fixes an issue uninstalling Weave by removing interfaces first and removing lib/weave for weave versions equals or upper than `0.21.5`.
 
 ## v2023.05.25-0
