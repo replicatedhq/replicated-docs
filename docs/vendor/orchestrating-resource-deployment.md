@@ -21,7 +21,7 @@ When this annotation is present on a resource, KOTS groups the resource into the
 When this annotation is present on a resource, KOTS groups the resource into the specified deletion phase. KOTS deletes each phase in order from lowest to highest. Resources within the same phase are deleted in the reverse order from which they were created.
 
 :::note
-Kubernetes annotations cannot be integers and must be strings, so make sure to quote the integer in the annotation.
+Make sure to quote the integer in the annotation because otherwise Kubernetes annotations must be strings.
 :::
 
 #### Example
@@ -46,7 +46,7 @@ metadata:
 When this annotation is present on a resource and evaluates to `'true'`, KOTS waits for the resource to be in a Ready state before deploying any other resources. This leverages the same logic as application status informers to determine if a resource is ready. If there is no existing status informer for a given resource type, KOTS waits until the resource exists and is queryable from the Kubernetes API server. For more information about status informers, see [Displaying Application Status](/vendor/admin-console-display-app-status#about-status-informers).
 
 :::note
-Kubernetes annotations cannot be booleans and must be strings, so make sure to quote this.
+Make sure to quote the boolean in the annotation because otherwise Kubernetes annotations must be strings.
 :::
 
 #### Example
@@ -87,7 +87,7 @@ spec:
 
 When this annotation is present on a resource, KOTS waits for one or more specified resource properties to match the desired values before continuing to deploy other resources. The value for this annotation is a comma-separated list of key-value pairs, where the key is a JSONPath specifying the path to the property and the value is the desired value for the property.
 
-This annotation can be useful when waiting for a custom resource to exist is not sufficient. This annotation lets you define what _ready_ means.
+This annotation can be useful when waiting for a custom resource to exist is not sufficient. This annotation lets you define what Ready means.
 
 #### Example
 
