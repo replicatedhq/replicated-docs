@@ -81,7 +81,7 @@ spec:
 ```
 
 
-### Wait for Resource Properites
+### Wait for Resource Properties
 
 #### `kots.io/wait-for-properties: '<jsonpath>=<value>,<jsonpath>=<value>'`
 
