@@ -21,7 +21,7 @@ When this annotation is present on a resource, KOTS groups the resource into the
 When this annotation is present on a resource, KOTS groups the resource into the specified deletion phase. KOTS deletes each phase in order from lowest to highest. Resources within the same phase are deleted in the reverse order from which they were created.
 
 :::note
-You must quote the integer in the annotation because otherwise Kubernetes annotations must be strings.
+You must quote the integer in the annotation because Kubernetes annotations must be strings.
 :::
 
 #### Example
