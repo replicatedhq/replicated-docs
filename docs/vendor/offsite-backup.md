@@ -9,7 +9,7 @@ an offsite Google Cloud Provider (GCP) storage location. This helps to mitigate
 any potential data loss caused by an outage to AWS.
 
 :::note
-The offsite data backup add-on is available only to [Replicated Enterprise](https://www.replicated.com/pricing/) customers at an additional cost. Please contact your customer success representative if you are interested in this feature. 
+The offsite data backup add-on is available only to [Replicated Enterprise](https://www.replicated.com/pricing/) customers at an additional cost. Please [open a product request](https://vendor.replicated.com/support?requestType=feature) if you are interested in this feature. 
 :::
 
 ## Overview
