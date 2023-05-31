@@ -1,6 +1,6 @@
 # Updating KOTS
 
-This topic describes how to update the version of Replicated KOTS running in your cluster. For information about the latest versions of KOTS, see [KOTS Release Notes](/release-notes/rn-app-manager).
+This topic describes how to update the version of Replicated KOTS running in your cluster. For information about the latest versions of KOTS, see [App Manager (KOTS) Release Notes](/release-notes/rn-app-manager).
 
 :::note
 Downgrading KOTS to a version earlier than what is currently deployed is not supported.
