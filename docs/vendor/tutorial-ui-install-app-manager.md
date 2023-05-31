@@ -55,7 +55,7 @@ To install KOTS in an existing cluster:
 
 ## Install in a Embedded  Cluster {#embedded}
 
-KOTS can be installed in an embedded cluster by running the kURL installation script on a VM or bare metal server.
+You can run the kURL installation script on a VM or bare metal server to create the embedded cluster and install KOTS.
 
 To install KOTS in an embedded cluster:
 

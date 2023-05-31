@@ -56,7 +56,7 @@ The Replicated admin console is a graphical user interface (GUI) for interacting
 
 ### kots CLI
 
-The the kots command-line interface (CLI) is a kubectl plugin. Users can run commands with the kots CLI to install and manage their application instances with KOTS programmatically. For more information, see [Installing the kots CLI](/reference/kots-cli-getting-started).
+The kots command-line interface (CLI) is a kubectl plugin. Users can run commands with the kots CLI to install and manage their application instances with KOTS programmatically. For more information, see [Installing the kots CLI](/reference/kots-cli-getting-started).
 
 ## kURL
 
