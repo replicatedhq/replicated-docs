@@ -8,7 +8,7 @@ After starting out with Replicated, most teams grow, adding more developers, sup
 
 ### Enabling SAML in Your Vendor Account
 
-To enable SAML in your vendor portal account, you must have an Enterprise plan. For access to SAML, you can contact Replicated in Slack or through [Support](https://vendor.replicated.com/support). For information about the Enterprise plan, see [pricing](https://www.replicated.com/pricing/).
+To enable SAML in your vendor portal account, you must have an Enterprise plan. For access to SAML, you can contact Replicated through [Support](https://vendor.replicated.com/support). For information about the Enterprise plan, see [pricing](https://www.replicated.com/pricing/).
 
 ### SCIM
 
@@ -24,7 +24,7 @@ Replicated supports Role Based Access Control (RBAC) in the vendor portal. To us
 
 ## Downloading Certificates from Supported SAML providers
 
-You must retrieve the metadata and .509 public certificate files from your SAML provide before configuring Replicated.
+You must retrieve the metadata and .509 public certificate files from your SAML provider before configuring SAML in the vendor portal.
 
 Replicated tests several SAML providers, but the service should be compatible with any SAML 2.0 compliant service provider. We provide full support for the following SAML providers:
 
@@ -58,7 +58,7 @@ To configure Okta and download the required files:
   | Field Name              | Description                                                                                     |
   | :---------------------- | ----------------------------------------------------------------------------------------------- |
   | Single Sign On URL      | Set this to `https://id.replicated.com/v1/saml`.                                                  |
-  | Audience URI (SP Entity ID) | Displays on the vendor portal [SAML authentication](https://vendor.replicated.com/team/saml-authentication) tab, and is unique to your team in Replicated. |
+  | Audience URI (SP Entity ID) | Displays on the vendor portal [SAML authentication](https://vendor.replicated.com/team/saml-authentication) tab, and is unique to your team. |
   | Name ID Format          | Change this to `EmailAddress`.                                                                  |
 
 1. Click **Next**.
@@ -82,7 +82,7 @@ When you initially configure SAML, we do not recommend that you disable username
 To configure SAML:
 
 1. Log in to the vendor portal [Team Members page](https://vendor.replicated.com/team/members) as a user with Admin access.
-1. Click [SAML Authentication](https://vendor.replicated.com/team/saml-authentication) from the left menu. If you do not see these options, contact Replicated in Slack or through [Support](https://vendor.replicated.com/support).
+1. Click [SAML Authentication](https://vendor.replicated.com/team/saml-authentication) from the left menu. If you do not see these options, contact [Support](https://vendor.replicated.com/support).
 
  The SAML Authentication page opens.
 
@@ -106,7 +106,7 @@ To enable SAML enforcement:
 
 1. Select either or both login method options in the the Manage your SAML authentication pane. Allowing both login methods is a good way to test SAML without risking any interruption for the rest of your team.
 
-  **Enable SAML for team logins** - Allows members of your team to log in to the vendor portal from your SSO provider. This option does not remove, change, or restrict any other authentication that methods you have configured on Replicated. If you enable SAML and your team already is logging in with accounts provisioned in Replicated, they will be able to continue logging in with those accounts.
+  **Enable SAML for team logins** - Allows members of your team to log in to the vendor portal from your SSO provider. This option does not remove, change, or restrict any other authentication that methods you have configured in the vendor portal. If you enable SAML and your team already is logging in with accounts provisioned in the vendor portal, they will be able to continue logging in with those accounts.
 
   **Only allow SAML logins** - Prevents any non-SAML accounts from logging in. Replicated does not delete the existing accounts. If you turn on this option and then later disable it, accounts that never logged in using SAML will be able to log in again. If an account exists outside of SAML and then is authenticated with SAML, the account is converted and cannot authenticate using a password again.
 

@@ -1,8 +1,6 @@
 # Creating a Vendor Account
 
-To get started with Replicated, you must create a Replicated vendor account. When you create your account, you are also prompted to create an application. To create additional applications in the future, log in to the vendor portal and select **Create new app** from the Applications drop-down list.
-
-The vendor portal is the user interface where vendors define Kubernetes manifest files, including application manifests and custom resource manifests, for their application. These files describe to the app manager how to package the application for distribution. Vendors can also use the vendor portal to manage other artifacts, such as customer license files, image registries, and release channels.
+To get started with Replicated, you must create a Replicated vendor account. When you create your account, you are also prompted to create an application. To create additional applications in the future, log in to the Replicated vendor portal and select **Create new app** from the Applications drop-down list.
 
 To create a vendor account:
 
@@ -46,3 +44,4 @@ To create a vendor account:
 # Next steps
 * Invite team members to collaborate with you in vendor portal. See [Invite Members](team-management#invite-members).
 * Learn about how to package, test, iterate, and distribute your production application. See [How to Create Releases for Your Application](distributing-workflow).
+

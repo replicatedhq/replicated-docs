@@ -2,13 +2,13 @@ import CollabRbacResourcesImportant from "../partials/collab-repo/_collab-rbac-r
 
 # Configuring RBAC Policies
 
-This topic describes how to use role-based access policies (RBAC) to grant or deny team members permissions to use Replicated services in the vendor portal.
+This topic describes how to use role-based access policies (RBAC) to grant or deny team members permissions to use Replicated services in the Replicated vendor portal.
 
 ## About RBAC Policies
 
 By default, every team has two policies created automatically: **Admin** and **Read Only**. These default policies are not configurable.
 
-You can configure custom RBAC policies if you are on the Enterprise pricing plan. Creating custom RBAC policies lets you limit which areas of the Replicated vendor portal are accessible to team members, and control read and read/write privileges to groups based on their role. For example, you can limit access for the sales team to one application and to specific channels.
+You can configure custom RBAC policies if you are on the Enterprise pricing plan. Creating custom RBAC policies lets you limit which areas of the vendor portal are accessible to team members, and control read and read/write privileges to groups based on their role. For example, you can limit access for the sales team to one application and to specific channels.
 
 You can also create custom RBAC policies in the vendor portal to manage user access and permissions in the Replicated collab repository in GitHub. For more information, see [Managing Access to the Collab Repository](team-management-github-username).
 
