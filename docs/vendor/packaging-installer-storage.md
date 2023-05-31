@@ -1,6 +1,6 @@
 # About Selecting Storage Add-ons
 
-This topic provides guidance for selecting the kURL add-ons to include in your Kubernetes installer manifest file to provide highly available data storage in embedded clusters.
+This topic provides guidance for selecting the Replicated kURL add-ons to include in your Kubernetes installer manifest file to provide highly available data storage in embedded clusters.
 
 ## Overview of Storage Add-ons
 
@@ -62,9 +62,9 @@ If your application does not require three or more nodes in the cluster where it
 
 If you use OpenEBS Local PV for single node clusters, you can optionally exclude the MinIO add-on. Excluding the MinIO add-on disables S3-object storage for KOTS. If you use only the OpenEBS add-on and exclude the MinIO add-on, then you must set the `disableS3` field to `true` in the KOTS add-on. For more information, see [Effects of the disableS3 Flag](https://kurl.sh/docs/add-ons/kotsadm#effects-of-the-disables3-flag) in _KOTS Add-on_ in the kURL documentation.
 
-When both the MinIO and OpenEBS add-ons are included in the Kubernetes installer, KOTS stores support bundle and application archives in MinIO object storage.
+When both the MinIO and OpenEBS add-ons are included in the Kubernetes installer specification, KOTS stores support bundle and application archives in MinIO object storage.
 
-The Kubernetes installer has a supported migration path from either Rook or Longhorn to OpenEBS v3.3.0 or later. For more information about how to migrate data to OpenEBS, see [Migrating to Change CSI Add-On](https://kurl.sh/docs/install-with-kurl/migrating-csi) in the kURL documentation.
+kURL has a supported migration path from either Rook or Longhorn to OpenEBS v3.3.0 or later. For more information about how to migrate data to OpenEBS, see [Migrating to Change CSI Add-On](https://kurl.sh/docs/install-with-kurl/migrating-csi) in the kURL documentation.
 
 The following is an example specification that uses OpenEBS v3.3.x with Local PV:
 
@@ -104,7 +104,7 @@ The kURL EKCO add-on provides an operator that manages data in rqlite and in the
 
 With both OpenEBS Local PV and MinIO in the embedded cluster, KOTS uses OpenEBS Local PV to provision the PVs on each node that MinIO uses for local storage. Without MinIO, KOTS stores support bundle and application archive data locally in a PV on a single node in the cluster, which can cause loss of data if the node is unavailable.
 
-The Kubernetes installer has a supported migration path from either Rook or Longhorn to OpenEBS v3.3.0 or later. For more information about how to migrate data to OpenEBS, see [Migrating to Change CSI Add-On](https://kurl.sh/docs/install-with-kurl/migrating-csi) in the kURL documentation.
+kURL has a supported migration path from either Rook or Longhorn to OpenEBS v3.3.0 or later. For more information about how to migrate data to OpenEBS, see [Migrating to Change CSI Add-On](https://kurl.sh/docs/install-with-kurl/migrating-csi) in the kURL documentation.
 
 #### Requirements
 
@@ -147,7 +147,7 @@ In addition to the version history, application metadata, and other data for man
 
 The kURL EKCO add-on manages data in Ceph and in rqlite to ensure that the data is properly distributed across multiple nodes in the cluster and has high availability. The EKCO operator also performs several tasks to maintain the health of the Ceph cluster. For more information about how the EKCO add-on manages data in Rook Ceph, see [Rook](https://kurl.sh/docs/add-ons/ekco#rook) in _EKCO add-on_ in the kURL documentation.
 
-The Kubernetes installer has a supported migration path from Longhorn to Rook. For more information about how to migrate data from Longhorn to Rook, see [Migrating to Change CSI Add-On](https://kurl.sh/docs/install-with-kurl/migrating-csi) in the kURL documentation.
+kURL has a supported migration path from Longhorn to Rook. For more information about how to migrate data from Longhorn to Rook, see [Migrating to Change CSI Add-On](https://kurl.sh/docs/install-with-kurl/migrating-csi) in the kURL documentation.
 
 #### Requirements
 

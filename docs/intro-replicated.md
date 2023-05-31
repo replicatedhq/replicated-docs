@@ -10,7 +10,7 @@ For an overview of the key use cases for software vendors that Replicated serves
 
 Replicated includes components and features that make it easier for you to manage and deploy applications, and for enterprise users to install and manage their instance of your application.
 
-The following diagram shows the Replicated components as they relate to you as a vendor packaging your application, and the deployment to an existing cluster and a cluster provisioned by the Replicated Kubernetes installer on a VM.
+The following diagram shows the Replicated components as they relate to you as a vendor packaging your application, and the deployment to an existing cluster and a cluster provisioned by Replicated kURL on a VM.
 
 ![What is Replicated?](/images/replicated-components-diagram.png)
 

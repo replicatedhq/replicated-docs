@@ -2,15 +2,13 @@
 
 This topic describes the process of setting up backup storage for the Replicated snapshots feature.
 
+## Configuring Backup Storage for Embedded Clusters
 
+You must configure a backup storage destination before you can create backups. This procedure describes how to configure backup storage for snapshots for _embedded clusters_ created by Replicated kURL.
 
-## Configuring Backup Storage for Kubernetes Installer Clusters
+To configure snapshots for embedded clusters:
 
-You must configure a backup storage destination before you can create backups.
-
-Follow this process to configure the snapshots feature:
-
-1. On the Snapshots tab in the admin console, click **Check for Velero** to see whether Velero was installed by the Kubernetes installer.
+1. On the Snapshots tab in the admin console, click **Check for Velero** to see whether kURL already installed Velero in the embedded cluster.
 
 1. If Velero was installed, update the default internal storage settings in the admin console because internal storage is insufficient for full backups. See [Updating Settings in the Admin Console](snapshots-updating-with-admin-console).
 

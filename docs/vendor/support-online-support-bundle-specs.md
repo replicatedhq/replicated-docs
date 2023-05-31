@@ -10,7 +10,7 @@ If you are using a modular approach to designing support bundles, you can use mu
 
 This example shows how Replicated could set up a URI link for one of its own components. You can follow a similar process to link to your own online repository for your support bundles.
 
-The Replicated Kubernetes installer includes the kURL EKCO add-on for maintenance on embedded clusters, such as automating certificate rotation or data migration tasks. 
+Replicated kURL includes an EKCO add-on for maintenance on embedded clusters, such as automating certificate rotation or data migration tasks. 
 Replicated can ship this component with a support bundle manifest that warns users if they do not have this add-on installed or if it is not running in the cluster. For more information about support bundles, see [Customize a Support Bundle](preflight-support-bundle-creating#customize-a-support-bundle).
 
 **Example: Release v1.0.0**
