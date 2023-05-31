@@ -8,7 +8,7 @@ You must add annotations for each volume that you want to back up. For more info
 
 The Backup custom resource also supports optional resource installations so that the feature can be dynamically enabled based on a license field or a config option. For more information, see [Include Optional and Conditional Resources](/vendor/packaging-include-resources).
 
-Full backups are recommended because they give the flexibility of restoring full data, the application only, or the app manager only. For an example of a full backup and a list of the supported fields, see [Example](#example) and [Fields](#fields).
+Full backups are recommended because they give the flexibility of restoring full data, the application only, or the Replicated admin console only. For an example of a full backup and a list of the supported fields, see [Example](#example) and [Fields](#fields).
 
 Partial backups (application only) are supported but not recommended. For partial backups, you can use all of the fields that Velero supports. For information about the supported fields for partial backups, see [Backups](https://velero.io/docs/v1.10/api-types/backup/) in the Velero documentation.
 
