@@ -10,7 +10,7 @@ To export a port and a button on the Replicated admin console dashboard to the a
 ## Add a button to the dashboard
 
 It’s recommended that every application include an application custom resource as defined by [Kubernetes SIG Apps](https://github.com/kubernetes-sigs/application).
-The app manager uses this as metadata and will not require or use an in-cluster controller to handle this custom resource.
+KOTS this as metadata and will not require or use an in-cluster controller to handle this custom resource.
 An application that follows best practices will never require cluster admin privileges or any cluster-wide components to be installed.
 
 The Application custom resource includes many fields, but the one that we are going to examine in this document is the links:
@@ -22,7 +22,7 @@ Each link contains two fields, description and url.
 The description field is the title of the button that will be added to the admin console.
 The url field should be the url of your application.
 
-You can use the service name in place of the host name and the app manager will rewrite the URL with hostname in the browser.
+You can use the service name in place of the host name and KOTS will rewrite the URL with hostname in the browser.
 
 #### Example
 
@@ -46,7 +46,7 @@ spec:
 
 ## Additional ports and port forwarding
 
-When running the `kubectl` plugin for the kots CLI, the app manager can add additional ports that are defined in the application to the port-forward tunnel.
+When running the `kubectl` plugin for the kots CLI, KOTS can add additional ports that are defined in the application to the port-forward tunnel.
 This is useful for internal services such as application admin controls and other services that should not be exposed to all users.
 It's also recommended to list the primary application port(s) here to make verification of the installation possible before ingress is installed.
 
