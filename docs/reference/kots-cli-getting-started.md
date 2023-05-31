@@ -1,6 +1,6 @@
 # Installing the kots CLI
 
-Replicated KOTS uses the kots CLI to help users install and manage applications. The kots CLI is a kubectl plugin that runs locally on any computer.
+Users can interact with the Replicated kots CLI to install and manage applications with Replicated KOTS. The kots CLI is a kubectl plugin that runs locally on any computer.
 
 
 ## Prerequisite
