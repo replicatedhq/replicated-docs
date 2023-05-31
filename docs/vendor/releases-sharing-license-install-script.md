@@ -1,20 +1,46 @@
-# Sharing License Files and Releases
+# Sharing a Release
 
-This topic describes how to share license files and installation commands for any promoted application version with
-your customers.
+This topic describes how to share a release with your customers. It includes information about accessing the Replicated download portal, downloading license files and air gap bundles, and retrieving the installation commands from the Replicated vendor portal.
 
-For more information about how customers use license files and installation commands to install your application,
-see [Overview of Installing an Application with the App Manager](../enterprise/installing-overview).
+## About Sharing Releases
+
+After you promote a release to a channel in the vendor portal, you can share the release with your customers. Your customers require the following assets to install your application for the first time with the Replicated app manager:
+
+* A license file
+* The installation command available in the vendor portal
+* (Air Gap Only) The air gap bundle for the release
+
+Additionally, to support automated installations with the Replicated kots CLI, you must provide a template of the ConfigValues file for the release. For more information, see [Sharing a ConfigValues File](releases-configvalues).
+
+You can either share these files and installation commands directly with a customer, or you can provide the customer with a link to the Replicated download portal. See [(Optional) Share Files through the Download Portal](#download-portal) below.
+
+## (Optional) Share Files through the Download Portal {#download-portal}
+
+To share a license file and air gap bundles with a customer, you can send the customer their unique link and password for the download portal. Users can log in to the download portal to access their license file and air gap bundles, if applicable.
+
+For information about using a custom domain for the download portal, see [Configure Download Portal Domains](custom-domains#configure-download-portal-domains) in _Using Custom Domains (Beta)_
+
+To share license files and air gap bundles through the download portal:
+
+1. In the [vendor portal](https://vendor.replicated.com), on the **Customers** page, click on the name of the customer.
+1. In the Download portal section, click **Generate new password**.
+1. Save the password that appears in the pop-up window. Your customer uses
+this password to log in to the download portal.
+1. Click **Copy URL** to copy the URL to the download portal to your clipboard.
+This is the URL where your customer can access the download portal.
+1. (Optional) Click **Visit download portal** to log in to the download portal
+and preview your customer's experience.
+1. Send the URL and password for the download portal to your customer.
 
 ## Download the Customer License
 
-To install your application, your customer must upload a valid license file. This section describes how to download a license file for online or air gap installations so that you can share it with your customer.
+To install your application, your customer must provide a valid license file. This section describes how to download a license file for online or air gap installations so that you can share it with your customer.
 
 ### Download Online Licenses
 
 To download a license file for online installations:
 
-1. In the [vendor portal](https://vendor.replicated.com), open the Customers page.
+1. In the [vendor portal](https://vendor.replicated.com), open the **Customers** page.
 1. Click the download license icon on the right side of a customer row.
 
 ### Download Air Gap Licenses {#air-gap-license}
@@ -23,7 +49,7 @@ The air gap license option lets you install the `.airgap` bundle. Without this e
 
 To enable the air gap entitlement and download the updated license:
 
-1. Click **[App Name] > Customer > [Customer Name]**.
+1.  In the [vendor portal](https://vendor.replicated.com), click **[App Name] > Customer > [Customer Name]**.
 
   ![Airgap Customers](/images/guides/kots/airgap-customers.png)
 
@@ -33,15 +59,13 @@ To enable the air gap entitlement and download the updated license:
 
 1. Click **Download license** to download the updated air gapped enabled YAML license.
 
-## Share Installation Commands
+## Get Installation Commands
 
 Your customers install your application using an installation command that you share. The installation command is unique to the channel and the installation method for the application.
 
-You can also share installation commands for specific versions of the application. This is useful when a customer needs to install a particular version or when you need to install and troubleshoot a version.
+You can also share installation commands for specific versions of the application. This is useful when a customer needs to install a particular version or when you need to install and troubleshoot a version. Typically you do not need to share a specific version for air gap installations because the customer can select the application version in the download portal, and the correct assets are available automatically. For more information, see [(Optional) Share Files through the Download Portal](#download-portal).
 
-Typically you do not need to share a specific version for air gap installations because the customer can select the application version in the download portal, and the correct assets are available automatically. For more information, see [Share Files through the Download Portal](#download-portal).
-
-To view the installation commands that you can share with customers:
+To get the installation commands:
 
 1. In the [vendor portal](https://vendor.replicated.com), on the **Channels** page, find the channel to which the customer is assigned.
 
@@ -52,6 +76,7 @@ To view the installation commands that you can share with customers:
       1. Click **Install Commands** for a specific version. Then, click either **Existing Cluster** or **Embedded Cluster** to view and copy the desired installation command.
 
         ![Existing Cluster Command](/images/existing-cluster-command.png)
+
 
 ## Download Bundles for Air Gap Installations
 
@@ -114,28 +139,3 @@ To download the Kubernetes installer bundle for channels other than Stable:
     Replace `CHANNEL_NAME` with the exact name of the channel, which can include uppercase letters or special characters, such as `Unstable` or `my-custom-channel`.
 
     The output shows valid URLs for all three installation types. Copy the `curl` command with the air gap URL.
-
-## Share Files through the Download Portal {#download-portal}
-
-To share a license file and any required air gap bundles with a customer, you can do the following:
-
-* Download the license file and air gap bundles and send them to your customer directly.
-* Send your customer a link to the Replicated download portal where they can download
-the license file and bundles.
-
-To share the license file and any air gap bundles through the download portal:
-
-1. In the [vendor portal](https://vendor.replicated.com), on the Customer page, click on the name of the customer.
-1. In the Download portal section, click **Generate new password**.
-1. Save the password that appears in the pop-up window. Your customer uses
-this password to log in to the download portal.
-1. Click **Copy URL** to copy the URL to the download portal to your clipboard.
-This is the URL where your customer can access the download portal.
-1. (Optional) Click **Visit download portal** to log in to the download portal
-and preview your customer's experience.
-1. Send the URL and password for the download portal to your customer.
-
-## Related Topics
-
-- [How to Package and Distribute an Application](distributing-workflow)
-- [Creating a Kubernetes Installer](packaging-embedded-kubernetes)

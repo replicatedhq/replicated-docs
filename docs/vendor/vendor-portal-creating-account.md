@@ -42,5 +42,6 @@ To create a vendor account:
    :::
 
 # Next steps
-* Invite team members to collaborate with you in the vendor portal. See [Invite Members](team-management#invite-members).
-* Learn about how to package, test, iterate, and distribute your production application. See [How to Package and Distribute a Production Application](distributing-workflow).
+* Invite team members to collaborate with you in vendor portal. See [Invite Members](team-management#invite-members).
+* Learn about how to package, test, iterate, and distribute your production application. See [How to Create Releases for Your Application](distributing-workflow).
+
