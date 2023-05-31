@@ -45,7 +45,7 @@ Redactors censor sensitive customer information from the data gathered by the co
 - Database connection strings
 - URLs that include usernames and passwords
 
-This functionality cannot be disabled in the Replicated app manager. You can add custom redactors to support bundles only.
+This functionality cannot be disabled in Replicated KOTS. You can add custom redactors to support bundles only.
 
 For more detail on what information the default redactors detect, see the [Redact](https://troubleshoot.sh/docs/redact/) section in the Troubleshoot documentation.
 
@@ -56,7 +56,7 @@ Analyzer outcomes for preflight checks differ from the outcomes for support bund
 
 - Preflight checks use analyzers to determine pass, fail, and warning outcomes, and display messages to a customer during installation. For example, you can define a fail or warning outcome if the Kubernetes version on the cluster does not meet the minimum version that your application supports.
 
-- Support bundles use analyzers to help identify potential problems. When a support bundle is uploaded to the Replicated vendor portal, it is extracted and automatically analyzed. The goal of this process is to surface known issues or hints of what might be a problem. Analyzers produce outcomes that contain custom messages to explain what the problem might be.
+- Support bundles use analyzers to help identify potential problems. When a support bundle is uploaded to the vendor portal, it is extracted and automatically analyzed. The goal of this process is to surface known issues or hints of what might be a problem. Analyzers produce outcomes that contain custom messages to explain what the problem might be.
 
 
 ## Define Preflight Checks
@@ -135,11 +135,11 @@ To define preflight checks:
 
 ## Customize a Support Bundle
 
-Customizing a support bundle is unique to your application. Replicated app manager provides the ability to generate support bundles from the admin console without vendors needing to configure anything. However, there may be application-related data that you want to collect and analyze for troubleshooting.
+Customizing a support bundle is unique to your application. Replicated KOTS provides the ability to generate support bundles from the admin console without vendors needing to configure anything. However, there may be application-related data that you want to collect and analyze for troubleshooting.
 
 By default, support bundles contain a large number of commonly used, best practice collectors. The default `clusterInfo` and `clusterResources` collectors gather a large amount of data that is useful when remotely installing or debugging a Kubernetes application. You can supplement, edit, or exclude the default collectors and analyzers. You can also add redactors to the default redactors.
 
-This procedure provides a basic understanding and some key considerations to help guide you. For more information about configuring support bundles, see [Collecting Data](https://troubleshoot.sh/docs/collect/), [Redacting Data](https://troubleshoot.sh/docs/redact/), and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation. You can also see the entire default specification at [spec.yaml](https://github.com/replicatedhq/kots/blob/main/pkg/supportbundle/defaultspec/spec.yaml) in the kots repository.
+This procedure provides a basic understanding and some key considerations to help guide you. For more information about configuring support bundles, see [Collecting Data](https://troubleshoot.sh/docs/collect/), [Redacting Data](https://troubleshoot.sh/docs/redact/), and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation. You can also see the entire default specification at [spec.yaml](https://github.com/replicatedhq/kots/blob/main/pkg/supportbundle/defaultspec/spec.yaml) in the Replicated kots repository.
 
 To customize a support bundle:
 
@@ -240,10 +240,10 @@ To customize a support bundle:
     - **Regular expressions:** Analyze arbitrary data.
     - **Databases:** Check the version and connection status.
 
-1. (Optional) To add redactors to the default redactors that are automatically provided by the app manager, add the Redactor custom resource manifest (`kind: Redactor`) to your release. Then add Redactor custom resource fields to the manifest as needed. For more information, see [Redactor](/reference/custom-resource-redactor) in the Reference section.
+1. (Optional) To add redactors to the default redactors that are automatically provided by KOTS, add the Redactor custom resource manifest (`kind: Redactor`) to your release. Then add Redactor custom resource fields to the manifest as needed. For more information, see [Redactor](/reference/custom-resource-redactor) in the Reference section.
 
   :::note
-  The default redactors included with Replicated app manager cannot be disabled.
+  The default redactors included with KOTS cannot be disabled.
   :::
 
 1. Add the manifest files to the application that you are packaging and distributing with Replicated.

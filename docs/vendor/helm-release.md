@@ -6,17 +6,17 @@ import HooksLimitation from "../partials/helm/_hooks-limitation.mdx"
 
 # Supporting Native Helm and Replicated Helm
 
-This topic describes the HelmChart custom resource that is required for native Helm and Replicated Helm installations with the Replicated app manager. It also describes the limitations for native Helm and Replicated Helm installations.
+This topic describes the HelmChart custom resource that is required for native Helm and Replicated Helm installations with the Replicated KOTS. It also describes the limitations for native Helm and Replicated Helm installations.
 
 ## Limitations {#replicated-helm-limitations}
 
-The following limitations apply when using the app manager for native Helm and Replicated Helm installations:
+The following limitations apply when using KOTS for native Helm and Replicated Helm installations:
 * <ReplicatedHelmDeprecated/>
 * <TemplateLimitation/>
 * <VersionLimitation/>
 
   For more information, see [helmVersion](/reference/custom-resource-helmchart#helmversion) in _HelmChart_.
-* The name specified in the HelmChart custom resource must be an exact match to the actual Helm chart name that is provided to Replicated. If the Helm chart names do not match, then the installation can error or fail. See [HelmChart](/reference/custom-resource-helmchart) in _Custom Resources_.
+* The name specified in the HelmChart custom resource must be an exact match to the actual Helm chart name that is provided to KOTS. If the Helm chart names do not match, then the installation can error or fail. See [HelmChart](/reference/custom-resource-helmchart) in _Custom Resources_.
 
 * The following limitations apply to the native Helm deployment method only:
 
@@ -28,9 +28,9 @@ The following limitations apply when using the app manager for native Helm and R
 
 The app manager supports using native Helm and Replicated Helm to deliver enterprise applications as Helm charts, or including Helm charts as components of an application. An application can use more than one Helm chart, and can use more than a single instance of any Helm chart.
 
-You must add a HelmChart custom resource manifest file (`kind: HelmChart`) for each Helm chart that you add to a release. You then configure the HelmChart custom resource to provide the necessary instructions to the app manager for processing and preparing the chart for deployment, such as whether to use the native Helm or Replicated Helm installation. 
+You must add a HelmChart custom resource manifest file (`kind: HelmChart`) for each Helm chart that you add to a release. You then configure the HelmChart custom resource to provide the necessary instructions to KOTS for processing and preparing the chart for deployment, such as whether to use the native Helm or Replicated Helm installation. 
 
-The HelmChart custom resource lets you create a mapping between the `values.yaml` file and the admin console Config page. This allows values to be changed in the chart based on user-provided configuration settings.
+The HelmChart custom resource lets you create a mapping between the `values.yaml` file and the Replicated admin console Config page. This allows values to be changed in the chart based on user-provided configuration settings.
 
 Other options include adding conditional statements that exclude certain Helm charts, depending on the user's input. You can also configure optional value keys that allow dynamic deployment, such as allowing users to configure an external database.
 
@@ -39,7 +39,7 @@ For native Helm, you can also configure hooks and weights to define the installa
 
 ## Add a HelmChart Custom Resource
 
-Add a unique HelmChart custom resource to the release for each Helm chart that you are deploying with the app manager.
+Add a unique HelmChart custom resource to the release for each Helm chart that you are deploying with KOTS.
 
 For more information about creating releases, see [Managing Releases with the Vendor Portal](releases-creating-releases) and [Managing Releases with the CLI](releases-creating-cli).
 
