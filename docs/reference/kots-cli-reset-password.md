@@ -1,6 +1,6 @@
 # reset-password
 
-If you’ve deployed an application with the admin console, the `kots reset-password` command will change the bcrypted password hash in the cluster, allowing you to log in again.
+If you deployed an application with the Replicated admin console, the `kots reset-password` command will change the bcrypted password hash in the cluster, allowing you to log in again.
 
 ### Usage
 ```bash

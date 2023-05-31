@@ -1,9 +1,11 @@
 # velero configure-internal
 
-**NOTE**: The following command is only applicable to embedded kURL kubernetes clusters and NOT recommended for production usage.
-Please consider setting up one of the other [available storage destinations](../enterprise/snapshots-storage-destinations).
+:::important
+The following command is applicable only to embedded clusters created by Replicated kURL and is _not_ recommended for production usage.
+Consider configuring one of the other available storage destinations. See [Configuring Other Storage Destinations](/enterprise/snapshots-storage-destinations).
+:::
 
-Configures snapshots to use the internal object store on embedded clusters as a storage destination.
+Configures snapshots to use the internal object store in embedded clusters as a storage destination.
 
 ### Usage
 
