@@ -13,9 +13,9 @@ The following shows an example of how an Unavailable status displays on the admi
 
 <img src="/images/kotsadm-dashboard-appstatus.png" alt="Unavailable status on the admin console dashboard" width="500px"/>
 
-To display application status on the admin console dashboard, you add one or more _status informers_. Status informers are supported Kubernetes resources for your application that you add to the `statusInformers` property of the Application custom resource manifest file. The app manager watches all Kubernetes resources that you add for changes in state.
+To display application status on the admin console dashboard, you add one or more _status informers_. Status informers are supported Kubernetes resources for your application that you add to the `statusInformers` property of the Application custom resource manifest file. Replicated KOTS watches all Kubernetes resources that you add for changes in state.
 
-Because status informers can help users diagnose and troubleshoot problems with their application instance, Replicated recommends that you add at least one resource to the `statusInformers` property for the app manager to watch. For more information, see [Add Status Informers](#add-status-informers) below.
+Because status informers can help users diagnose and troubleshoot problems with their application instance, Replicated recommends that you add at least one resource to the `statusInformers` property for KOTS to watch. For more information, see [Add Status Informers](#add-status-informers) below.
 
 The following resource types are supported for displaying application status:
 
@@ -28,13 +28,13 @@ The following resource types are supported for displaying application status:
 
 You can target resources of the supported types that are deployed in any of the following ways:
 
-* Deployed directly by the Replicated app manager.
-* Deployed by a Kubernetes Operator that is deployed by the app manager. For more information, see [About Packaging a Kubernetes Operator Application](operator-packaging-about).
+* Deployed directly by KOTS.
+* Deployed by a Kubernetes Operator that is deployed by KOTS. For more information, see [About Packaging a Kubernetes Operator Application](operator-packaging-about).
 * Deployed by Helm. For more information, see [About Deploying Helm Charts](helm-overview).
 
 ### Resource Statuses
 
-The Replicated app manager records the status of each Kubernetes resource that you add to the `statusInformers` property. Possible resource statuses are Ready, Updating, Degraded, Unavailable, and Missing.
+KOTS records the status of each Kubernetes resource that you add to the `statusInformers` property. Possible resource statuses are Ready, Updating, Degraded, Unavailable, and Missing.
 
 The following table lists the supported Kubernetes resources and the conditions that contribute to each status:
 
@@ -42,9 +42,9 @@ The following table lists the supported Kubernetes resources and the conditions 
 
 ### Aggregate Application Status
 
-When you add more than one Kubernetes resource to the `statusInformers` property, the app manager aggregates all resource statuses to display a single application status on the admin console dashboard.
+When you add more than one Kubernetes resource to the `statusInformers` property, KOTS aggregates all resource statuses to display a single application status on the admin console dashboard.
 
-The app manager uses the least available resource status to represent the aggregate application status. For example, if at least one resource has an Unavailable status, then the aggregate application status is Unavailable.
+KOTS uses the least available resource status to represent the aggregate application status. For example, if at least one resource has an Unavailable status, then the aggregate application status is Unavailable.
 
 <AggregateStatus/>
 
