@@ -4,15 +4,15 @@ This topic describes concepts about creating and promoting releases, editing rel
 
 ## Overview of Releases
 
-You can use the Replicated vendor portal to create and release versions of your application to various release channels. The vendor portal hosts a built-in YAML editor and linter to help you write and validate manifest files.
+You can use the vendor portal to create and release versions of your application to various release channels. The vendor portal hosts a built-in YAML editor and linter to help you write and validate manifest files.
 
-Alternatively, you can use the replicated CLI and API to automate releases. For more information about using the CLI, see [Installing the replicated CLI](/reference/replicated-cli-installing). For information about the API, see [Using the Vendor API v3](/reference/vendor-api-using).
+Alternatively, you can use the replicated CLI and vendor API to automate releases. For more information about using the CLI, see [Installing the replicated CLI](/reference/replicated-cli-installing). For information about the API, see [Using the Vendor API v3](/reference/vendor-api-using).
 
 Application files can be either Helm charts or Kubernetes manifest files, which can include standard manifests such as Deployment and Service resources.
 
 ### Custom Resources
 
-Replicated includes several custom resources that you can add to your releases, which are packaged as part of the application but not deployed to the cluster. Custom resources are consumed by the app manager, the admin console, or by other kubectl plugins to control the application experience. For more information, see [About Custom Resources](/reference/custom-resource-about).
+When you deploy your application with Replicated KOTS you can use custom resources to control the application experience. For more information, see [About Custom Resources](/reference/custom-resource-about).
 
 ### Release Promotion
 
@@ -22,7 +22,7 @@ Every customer license file that you create in the vendor portal is assigned to 
 
 ### Semantic Versioning
 
-Semantic versioning is available with the Replicated app manager v1.58.0 and later. Note the following:
+Semantic versioning is available with the Replicated KOTS v1.58.0 and later. Note the following:
 
 - For applications created in the vendor portal on or after February 23, 2022, semantic versioning is enabled by default on the Stable and Beta channels. Semantic versioning is disabled on the Unstable channel by default.
 
@@ -39,7 +39,7 @@ Releases promoted to a channel with semantic versioning enabled are verified to 
 
 If you enable semantic versioning for a channel and then promote releases to it, Replicated recommends that you do not later disable semantic versioning for that channel.
 
-You can enable semantic versioning on a channel that already has releases promoted to it without semantic versioning. Any subsequently promoted releases must use semantic versioning. In this case, the channel will have releases with and without semantic version numbers. For information about how Replicated organizes  these release sequences, see [Semantic Versioning Sequences](#semantic-versioning-sequence).
+You can enable semantic versioning on a channel that already has releases promoted to it without semantic versioning. Any subsequently promoted releases must use semantic versioning. In this case, the channel will have releases with and without semantic version numbers. For information about how Replicated organizes these release sequences, see [Semantic Versioning Sequences](#semantic-versioning-sequence).
 
 ### Release Properties
 
@@ -61,13 +61,13 @@ The following graphic shows release sequence numbers in the vendor portal:
 
 #### Instance Sequences 
 
-When an app manager instance checks for an application update, the vendor portal returns a release identifier (a sequence number or a version label) to the instance. The admin console then assigns the release a unique instance sequence number. This instance sequence is separate from a release sequence in the vendor portal. The instance sequence in the admin console starts at 0 and increments for each release identifier that is returned when the app manager checks for an update.
+When a KOTS instance checks for an application update, the vendor portal returns a release identifier (a sequence number or a version label) to the instance. The Replicated admin console then assigns the release a unique instance sequence number. This instance sequence is separate from a release sequence in the vendor portal. The instance sequence in the admin console starts at 0 and increments for each release identifier that is returned when KOTS checks for an update.
 
 A single release sequence, such as `181`, can have multiple instance sequences in the deployed instances, depending on when those instances came online and how many other releases were seen before release sequence `181`.
 
-Note that instance sequences are only tracked by app manager instances, and the vendor portal has no knowledge of these numbers.
+Note that instance sequences are only tracked by KOTS instances, and the vendor portal has no knowledge of these numbers.
 
-The following graphic shows instance sequence numbers on the Replicated admin console dashboard:
+The following graphic shows instance sequence numbers on the admin console dashboard:
 
 ![Instance sequence numbers](/images/instance-sequences.png)
 
@@ -123,4 +123,4 @@ You can do the following tasks on the **Draft** page:
 
 - Select the Config custom resource to preview how your application's Config page will look to your customers. The **Config preview** pane only appears when you select that file. For more information, see [About the Configuration Screen](config-screen-about).
 
-- Select the Application custom resource to preview how your application icon will look in the Replicated admin console. The **Application icon preview** only appears when you select that file. For more information, see [Customizing the Application Icon](admin-console-customize-app-icon).
+- Select the Application custom resource to preview how your application icon will look in the admin console. The **Application icon preview** only appears when you select that file. For more information, see [Customizing the Application Icon](admin-console-customize-app-icon).

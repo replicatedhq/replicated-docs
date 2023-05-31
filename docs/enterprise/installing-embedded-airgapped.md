@@ -16,7 +16,7 @@ import LoginPassword from "../partials/install/_embedded-login-password.mdx"
 import ContinueToInstall from "../partials/install/_continue-to-install-step.mdx"
 import InstallApp from "../partials/install/_install-app-admin-console.mdx"
 
-# Air Gap Installation with the Kubernetes Installer
+# Air Gap Installation with kURL
 
 <IntroEmbedded/>
 
@@ -26,7 +26,7 @@ import InstallApp from "../partials/install/_install-app-admin-console.mdx"
 
 ## About High Availability Mode
 
-Air gap installations can use high availability (HA) mode with the Kubernetes installer.
+Air gap installations can use high availability (HA) mode with the kURL installer.
 
 <HaLoadBalancerAbout/>
 
@@ -42,15 +42,15 @@ Complete the following prerequisites:
 
 <HaLoadBalancerPrereq/>
 
-## Provision the Cluster {#air-gap}
+## Provision the Embedded Cluster {#air-gap}
 
 <ProvisionClusterIntro/>
 
 <KotsAbout/>
 
-To provision a cluster with the Kubernetes installer:
+To provision an embedded cluster:
 
-1. In your installation environment, run the following command to download the `.tar.gz` air gap bundle for the Kubernetes installer:
+1. In your installation environment, run the following command to download the `.tar.gz` air gap bundle for the kURL installer:
 
    ```bash
    curl -LO https://k8s.kurl.sh/bundle/FILENAME.tar.gz
@@ -64,7 +64,7 @@ To provision a cluster with the Kubernetes installer:
    tar -xvzf FILENAME.tar.gz
    ```
 
-1. Run one of the following commands to create the cluster with the Kubernetes installer and install the app manager in air gap mode: 
+1. Run one of the following commands to create the cluster with the kURL installer and install KOTS in air gap mode: 
 
     - For a regular installation, run:
 

@@ -140,8 +140,8 @@ spec:
   <tr>
     <th>Description</th>
     <td>
-      <p>An array of additional namespaces as strings that the app manager creates on the cluster. For more information, see <a href="/vendor/operator-defining-additional-namespaces">Defining Additional Namespaces</a>.</p>
-      <p>In addition to creating the additional namespaces, the app manager ensures that the application secret exists in the namespaces. The app manager also ensures that this application secret has access to pull the application images, including both images that are used and any images you add in the <code>additionalImages</code> field. This pull secret is automatically added to all manifest files that use private images.</p>
+      <p>An array of additional namespaces as strings that Replicated KOTS creates on the cluster. For more information, see <a href="/vendor/operator-defining-additional-namespaces">Defining Additional Namespaces</a>.</p>
+      <p>In addition to creating the additional namespaces, KOTS ensures that the application secret exists in the namespaces. KOTS also ensures that this application secret has access to pull the application images, including both images that are used and any images you add in the <code>additionalImages</code> field. This pull secret is automatically added to all manifest files that use private images.</p>
       <p>For dynamically created namespaces, specify <code>"*"</code>.</p>
     </td>
   </tr>
@@ -161,7 +161,7 @@ spec:
   <tr>
     <th>Description</th>
     <td><p>An array of strings that reference images to be included in air gap bundles and pushed to the local registry during installation.</p>
-    <p>The app manager detects images from the PodSpecs in the application. Some applications, such as Operators, might need to include additional images that are not referenced until runtime. For more information, see <a href="/vendor/operator-defining-additional-images">Defining Additional Images</a>.
+    <p>KOTS detects images from the PodSpecs in the application. Some applications, such as Operators, might need to include additional images that are not referenced until runtime. For more information, see <a href="/vendor/operator-defining-additional-images">Defining Additional Images</a>.
     </p></td>
   </tr>
   <tr>
@@ -182,11 +182,11 @@ spec:
   <tr>
     <th>Description</th>
     <td>
-      <p>Specifies the version of the kubectl command-line tool that the app manager uses.</p>
+      <p>Specifies the version of the kubectl command-line tool that KOTS uses.</p>
       <p>You can specify an optional Semantic Version range for <code>kubectlVersion</code>, as defined by blang. See <a href="https://github.com/blang/semver#ranges">Ranges</a> in the blang GitHub repository. The latest supported version in the provided range is used.</p>
       <p>If the specified version or range does not match any supported versions, the latest version from the above list of supported versions is used.</p>  
       <p>For backwards compatibility, exact versions are also supported.
-      When an exact version is specified, the app manager chooses the matching version if it is supported. If the specific version is not supported, the app manager chooses the latest supported minor and patch version for the specified major version.</p>
+      When an exact version is specified, KOTS chooses the matching version if it is supported. If the specific version is not supported, KOTS chooses the latest supported minor and patch version for the specified major version.</p>
     </td>
   </tr>
   <tr>
@@ -196,16 +196,16 @@ spec:
   <tr>
     <th>Default</th>
     <td>
-     <p>When <code>kubectlVersion</code> is unspecified, the app manager uses the latest supported version of kubectl. The following minor versions are supported:</p>
+     <p>When <code>kubectlVersion</code> is unspecified, KOTS uses the latest supported version of kubectl. The following minor versions are supported:</p>
      <ul>
-       <li>1.24.x (Added in <a href="/release-notes/rn-app-manager#1710">app manager v1.71.0</a>)</li>
-       <li>1.23.x (Added in <a href="/release-notes/rn-app-manager#1610">app manager v1.61.0</a>)</li>
-       <li>1.22.x (Added in <a href="/release-notes/rn-app-manager#1593">app manager v1.59.3</a>)</li>
-       <li>1.21.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">app manager v1.48.0</a>)</li>
-       <li>1.20.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">app manager v1.48.0</a>)</li>
-       <li>1.19.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">app manager v1.22.0</a>)</li>
-       <li>1.18.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">app manager v1.22.0</a>)</li>
-       <li>1.17.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">app manager v1.22.0</a>)</li>
+       <li>1.24.x (Added in <a href="/release-notes/rn-app-manager#1710">KOTS v1.71.0</a>)</li>
+       <li>1.23.x (Added in <a href="/release-notes/rn-app-manager#1610">KOTS v1.61.0</a>)</li>
+       <li>1.22.x (Added in <a href="/release-notes/rn-app-manager#1593">KOTS v1.59.3</a>)</li>
+       <li>1.21.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">KOTS v1.48.0</a>)</li>
+       <li>1.20.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">KOTS v1.48.0</a>)</li>
+       <li>1.19.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">KOTS v1.22.0</a>)</li>
+       <li>1.18.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">KOTS v1.22.0</a>)</li>
+       <li>1.17.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">KOTS v1.22.0</a>)</li>
        <li>1.16.x</li>
        <li>1.14.x</li>
      </ul>
@@ -223,10 +223,10 @@ spec:
   <tr>
     <th>Description</th>
     <td>
-      <p>Specifies the version of Kustomize that the app manager uses.</p>
+      <p>Specifies the version of Kustomize that KOTS uses.</p>
     <p>You can specify a Semantic Version range, as defined by blang. See <a href="https://github.com/blang/semver#ranges">Ranges</a> in the blang GitHub repository. The latest supported version in the provided range is used.</p>
     <p>For backwards compatibility, exact versions are also supported.
-    When an exact version is specified, the app manager chooses the matching version if it is supported. If the specific version is not supported, the app manager chooses the latest supported minor and patch version for the specified major version.</p>
+    When an exact version is specified, KOTS chooses the matching version if it is supported. If the specific version is not supported, KOTS chooses the latest supported minor and patch version for the specified major version.</p>
       </td>
   </tr>
   <tr>
@@ -238,7 +238,7 @@ spec:
   <tr>
     <th>Default</th>
     <td>
-      <p>When <code>kustomizeVersion</code> is unspecified, the app manager uses the latest supported version of Kustomize.</p>
+      <p>When <code>kustomizeVersion</code> is unspecified, KOTS uses the latest supported version of Kustomize.</p>
       <p>The following major versions of Kustomize are supported:</p>
       <ul>
         <li>5.x.x.</li>
@@ -257,8 +257,8 @@ spec:
   <tr>
     <th>Description</th>
     <td><p><code>requireMinimalRBACPrivileges</code> applies to existing clusters only.</p>
-    <p>Requires minimal role-based access control (RBAC) be used for all customer installations. When set to <code>true</code>, the app manager creates a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.</p>
-    <p>For additional requirements and limitations related to using namespace-scoped RBAC, see <a href="/vendor/packaging-rbac#min-rbac">About Namespace-scoped RBAC</a> in <em>Configuring App Manager RBAC</em>.</p>
+    <p>Requires minimal role-based access control (RBAC) be used for all customer installations. When set to <code>true</code>, KOTS creates a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.</p>
+    <p>For additional requirements and limitations related to using namespace-scoped RBAC, see <a href="/vendor/packaging-rbac#min-rbac">About Namespace-scoped RBAC</a> in <em>Configuring KOTS RBAC</em>.</p>
       </td>
   </tr>
   <tr>
@@ -281,9 +281,9 @@ spec:
   <tr>
     <th>Description</th>
     <td><p><code>supportMinimalRBACPrivileges</code> applies to existing clusters only.</p>
-    <p>Allows minimal role-based access control (RBAC) be used for all customer installations. When set to <code>true</code>, the app manager supports creating a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.</p>
+    <p>Allows minimal role-based access control (RBAC) be used for all customer installations. When set to <code>true</code>, KOTS supports creating a namespace-scoped Role and RoleBinding, instead of the default cluster-scoped ClusterRole and ClusterRoleBinding.</p>
     <p> Minimal RBAC is not used by default. It is only used when the <code>--use-minimal-rbac</code> flag is passed to the <code>kots install</code> command.</p>
-    <p>For additional requirements and limitations related to using namespace-scoped RBAC, see <a href="/vendor/packaging-rbac#min-rbac">About Namespace-scoped RBAC</a> in <em>Configuring App Manager RBAC</em>.</p>
+    <p>For additional requirements and limitations related to using namespace-scoped RBAC, see <a href="/vendor/packaging-rbac#min-rbac">About Namespace-scoped RBAC</a> in <em>Configuring KOTS RBAC</em>.</p>
       </td>
   </tr>
   <tr>
@@ -307,11 +307,11 @@ spec:
     <th>Description</th>
     <td>
       <p>Extra ports (additional to the :8800 admin console port) that are port-forwarded when running the <code>kots admin-console</code> command. With ports specified, the kots CLI can establish port-forwarding to simplify connections to the deployed application.</p>
-      <p>You can use the <code>ports</code> field to create a port-forward to a service that has a <code>ClusterIP</code> type. For clusters provisioned by the Kubernetes installer, you can also create a custom link to a service that has a <code>NodePort</code> type.</p>
-      <p>For more information about configuring a custom link in Kubernetes installer clusters to a <code>NodePort</code> type service, see <a href="/vendor/admin-console-adding-buttons-links">Adding Buttons and Links</a>.</p>
+      <p>You can use the <code>ports</code> field to create a port-forward to a service that has a <code>ClusterIP</code> type. For embedded clusters provisioned by Replicated kURL, you can also create a custom link to a service that has a <code>NodePort</code> type.</p>
+      <p>For more information about configuring a custom link in embedded clusters to a <code>NodePort</code> type service, see <a href="/vendor/admin-console-adding-buttons-links">Adding Buttons and Links</a>.</p>
       <p><code>ports</code> has the following fields:</p>
       <ul>
-        <li><code>ports.serviceName</code>: The name of the service that has a <code>ClusterIP</code> type or <code>NodePort</code> type if using the Kubernetes installer, that receives the traffic.</li>
+        <li><code>ports.serviceName</code>: The name of the service that has a <code>ClusterIP</code> type or <code>NodePort</code> type if using kURL, that receives the traffic.</li>
         <li><code>ports.servicePort</code>: The <code>ClusterIP</code> port to forward traffic.</li>
         <li><code>ports.localPort</code>: If set, the port to map on the local workstation.
         If not set, this is the same as <code>servicePort</code>.</li>
@@ -390,7 +390,7 @@ spec:
     <th>Description</th>
     <td>
       <p>The custom domain used for proxy.replicated.com. For more information, see <a href="/vendor/custom-domains#registry">Custom Registry Domains</a>.</p>
-      <p>Introduced in app manager v1.91.1.</p>
+      <p>Introduced in KOTS v1.91.1.</p>
     </td>
   </tr>
   <tr>
@@ -409,8 +409,8 @@ spec:
   <tr>
     <th>Description</th>
     <td>
-      <p>The app manager (KOTS) version that is targeted by the release. For more information, see <a href="/vendor/packaging-kots-versions">Setting Minimum and Target Versions for KOTS</a>.</p>
-      <p>Introduced in app manager v1.62.0.</p>
+      <p>The KOTS version that is targeted by the release. For more information, see <a href="/vendor/packaging-kots-versions">Setting Minimum and Target Versions for KOTS</a>.</p>
+      <p>Introduced in KOTS v1.62.0.</p>
     </td>
   </tr>
   <tr>
@@ -429,8 +429,8 @@ spec:
   <tr>
     <th>Description</th>
     <td>
-      <p>The minimum app manager (KOTS) version that is required by the release. For more information, see <a href="/vendor/packaging-kots-versions">Setting Minimum and Target Versions for KOTS</a>.</p>
-      <p>Introduced in app manager v1.62.0.</p>
+      <p>The minimum KOTS version that is required by the release. For more information, see <a href="/vendor/packaging-kots-versions">Setting Minimum and Target Versions for KOTS</a>.</p>
+      <p>Introduced in KOTS v1.62.0.</p>
     </td>
   </tr>
   <tr>

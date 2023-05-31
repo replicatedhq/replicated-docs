@@ -12,11 +12,11 @@ This topic describes using the Replicated kots CLI to automate the installation 
 
 ## About Installing with Automation
 
-You can automate the installation of an application in your existing cluster or in a cluster that you previously created with the Replicated Kubernetes installer. To automate installation, you create an installation command with the Replicated kots CLI `kots install` command.
+You can automate the installation of an application in your existing cluster or in an embedded cluster that you previously created with the Replicated kURL installer. To automate installation, you create an installation command with the kots CLI `kots install` command.
 
 In an automated installation, you provide all the information required to install and deploy the application with the `kots install` command, rather than providing this information in the Replicated admin console. For example, rather than uploading your license file for the application in the admin console UI, you provide your license file with the `kots install` command using the `--license-file` flag.
 
-The flags that you use with the `kots install` command vary depending on the type of your cluster (existing cluster or Kubernetes installer cluster) and on the cluster's internet access (_online_ environment with internet access or _air gap_ environment without internet access).
+The flags that you use with the `kots install` command vary depending on the type of your cluster (existing cluster or embedded cluster) and on the cluster's internet access (_online_ environment with internet access or _air gap_ environment without internet access).
 
 For more information about the `kots install` command, see [install](/reference/kots-cli-install) in the kots CLI documentation.
 
@@ -37,19 +37,19 @@ Before you install an application with the kots CLI, you must complete the follo
 * (Existing Clusters Only) Install the kots CLI. See [Installing the kots CLI](/reference/kots-cli-getting-started).
 
 * (Existing Clusters Only) Complete the prerequisites for your environment: 
-  * **Online**: See [Prerequisites](installing-existing-cluster#prerequisites) in _Online Existing Cluster Installation_.
-  * **Air Gap**: See [Prerequisites](installing-existing-cluster-airgapped#prerequisites) in _Air Gap Existing Cluster Installation_. 
+  * **Online**: See [Prerequisites](installing-existing-cluster#prerequisites) in _Online Installation in Existing Clusters_.
+  * **Air Gap**: See [Prerequisites](installing-existing-cluster-airgapped#prerequisites) in _Air Gap Installation in Existing Clusters_. 
 
-* (Kubernetes Installer Only) This topic assumes that you have already run the Kubernetes installer installation script in your VM or bare metal server to provision a cluster. After you have provisioned a cluster, you can then use the `kots install` command to install an application in the cluster.
+* (Embedded Clusters Only) This topic assumes that you have already run the kURL installation script on your VM or bare metal server to provision an embedded cluster. After you have provisioned a cluster, you can then use the `kots install` command to install an application in the cluster.
 
-  For information about how to provision a cluster with the Kubernetes installer, see the following:
+  For information about how to provision an embedded cluster with the kURL installer, see the following:
 
-    * **Online**: See [Prerequisites](installing-embedded-cluster#prerequisites) and [Provision the Cluster](installing-embedded-cluster#provision-cluster) in _Online Installation with the Kubernetes Installer_.
-    * **Air Gap**: See [Prerequisites](installing-embedded-airgapped#prerequisites) and [Provision the Cluster](installing-embedded-airgapped#air-gap) in _Air Gap Installation with the Kubernetes Installer_.
+    * **Online**: See [Prerequisites](installing-embedded-cluster#prerequisites) and [Provision the Embedded Cluster](installing-embedded-cluster#provision-cluster) in _Online Installation with kURL_.
+    * **Air Gap**: See [Prerequisites](installing-embedded-airgapped#prerequisites) and [Provision the Embedded Cluster](installing-embedded-airgapped#air-gap) in _Air Gap Installation with kURL_.
    
 ## Installation Commands
 
-This section provides the `kots install` commands that you can use to automate installation in an existing cluster or in a Kubernetes installer cluster. It includes commands for both online and air gap environments.
+This section provides the `kots install` commands that you can use to automate installation in an existing cluster or in an embedded cluster. It includes commands for both online and air gap environments.
 
 ### Online Existing Cluster
 
@@ -71,11 +71,11 @@ Replace:
 
 <PlaceholderNamespaceExisting/>
 
-### Online Kubernetes Installer Cluster
+### Online Embedded Cluster
 
 <IntroEmbedded/>
 
-The following is the kots CLI command for installing an application in a Kubernetes installer cluster that has access to the internet:
+The following is the kots CLI command for installing an application in an embedded cluster that has access to the internet:
 
 ```bash
 kubectl kots install APP_NAME \
@@ -124,11 +124,11 @@ Replace:
 
 * `READ_WRITE_USERNAME` and `READ_WRITE_PASSWORD` with credentials with read write permissions to the private registry where you pushed the images.
 
-### Air Gap Kubernetes Installer Cluster
+### Air Gap Embedded Cluster
 
 <IntroEmbedded/>
 
-The following is the kots CLI command for installing an application in a Kubernetes installer cluster that does not have access to the internet:
+The following is the kots CLI command for installing an application in an embedded cluster that does not have access to the internet:
 
 ```bash
 kubectl kots install APP_NAME \
@@ -148,9 +148,9 @@ Replace:
 
 ## (Optional) Access the Admin Console
 
-When you install an application in an existing cluster or when you provision a cluster with the Kubernetes installer, you also install the Replicated app manager in the cluster. The app manager deploys the Replicated admin console. The admin console is a user interface where you can manage and upgrade your application instances.
+When you install an application in an existing cluster or when you provision an embedded cluster with the kURL installer, you also install KOTS in the cluster. KOTS deploys the admin console. The admin console is a user interface where you can manage and upgrade your application instances.
 
-By default, during installation, the app manager automatically opens localhost port 8800 to provide access to the admin console UI. The `--no-port-forward` flag in the `kots install` command prevents the app manager from creating a port forward to the admin console.
+By default, during installation, KOTS automatically opens localhost port 8800 to provide access to the admin console. The `--no-port-forward` flag in the `kots install` command prevents KOTS from creating a port forward to the admin console.
 
 After you install with the `--no-port-forward` flag, you can optionally create a port forward so that you can log in to the admin console in a browser window.
 

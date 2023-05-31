@@ -19,9 +19,9 @@ Released on May 26, 2023
 Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
 
 ### New Features {#new-features-1-100-0}
-* Adds support for `kots.io/creation-phase` and `kots.io/deletion-phase` annotations to control the order in which native Kubernetes resources are created and deleted, respectively.
-* Adds support for a `kots.io/wait-for-ready` annotation, which causes the app manager to wait for a native Kubernetes resource to be ready before continuing with the deployment.
-* Adds support for a `kots.io/wait-for-properties` annotation, which causes the app manager to wait for one or more properties to match a desired value before continuing with the deployment.
+* Adds support for `kots.io/creation-phase` and `kots.io/deletion-phase` annotations to control the order in which native Kubernetes resources are created and deleted, respectively. See [Deployment Phases](/vendor/orchestrating-resource-deployment#deployment-phases) in _Orchestrating Resource Deployment_.
+* Adds support for a `kots.io/wait-for-ready` annotation, which causes KOTS to wait for a native Kubernetes resource to be ready before continuing with the deployment. See [Waiting for a Resource to be Ready](/vendor/orchestrating-resource-deployment#wait-for-a-resource-to-be-ready) in _Orchestrating Resource Deployment_.
+* Adds support for a `kots.io/wait-for-properties` annotation, which causes KOTS to wait for one or more properties to match a desired value before continuing with the deployment. See [Wait for Resource Properties](/vendor/orchestrating-resource-deployment#wait-for-resource-properties) in _Orchestrating Resource Deployment_.
 
 ### Improvements {#improvements-1-100-0}
 * Updates the github.com/cloudflare/circl module to v1.3.3 to resolve CVE-2023-1732 with medium severity.
@@ -1017,7 +1017,7 @@ Released on April 8, 2022
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### New Features
-* Adds the ability to switch from a community license to a different license for the same application. See [Changing a Community License](../enterprise/updating-licenses#changing-a-community-license).
+* Adds the ability to switch from a community license to a different license for the same application. See [Changing a Community License](/enterprise/updating-licenses#change-community-licenses).
 
 ### Improvements
 * The [ensure-secret](/reference/kots-cli-docker-ensure-secret) command now creates a new application version, based on the latest version, that adds the Docker Hub image pull secret to all Kubernetes manifests that have images. This avoids Docker Hub's rate limiting.

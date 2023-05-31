@@ -14,21 +14,21 @@ Grants the holder permission to view the catalog events and triggers available f
 
 ### kots/app/create
 
-When allowed, the holder will be allowed to create new kots applications.
+When allowed, the holder will be allowed to create new applications.
 
 ### kots/app/[:appId]/read
-Grants the holder permission to view the kots application. If the holder does not have permissions to view an application, it will not appear in lists.
+Grants the holder permission to view the application. If the holder does not have permissions to view an application, it will not appear in lists.
 
 ### kots/externalregistry/list
-Grants the holder the ability to list external docker registry for kots application(s).
+Grants the holder the ability to list external docker registry for application(s).
 
 ### kots/externalregistry/create
 
-Grants the holder the ability to link a new external docker registry to kots application(s).
+Grants the holder the ability to link a new external docker registry to application(s).
 
 ### kots/externalregistry/[:registryName]/delete
 
-Grants the holder the ability to delete the specified linked external docker registry in kots application(s).
+Grants the holder the ability to delete the specified linked external docker registry in application(s).
 
 ### kots/app/[:appId]/channel/create
 

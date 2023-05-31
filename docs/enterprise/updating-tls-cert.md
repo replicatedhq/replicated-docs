@@ -1,14 +1,14 @@
-# Updating TLS Certificates on a Kubernetes Installer Cluster
+# Updating TLS Certificates on Embedded Clusters
 
-For Kubernetes installer provisioned clusters, the default app manager self-signed certificate automatically renews 30 days before the expiration date.
+For embedded clusters, the default Replicated KOTS self-signed certificate automatically renews 30 days before the expiration date.
 
 If you have uploaded a custom TLS certificate instead, then no renewal is attempted, even if the certificate is expired. In this case, you must manually upload a new custom certificate.
 
-For information about TLS renewal for registry and Kubernetes control plane with the Kubernetes installer, see [TLS Certificates](https://kurl.sh/docs/install-with-kurl/setup-tls-certs) in the kURL documentation.
+For information about TLS renewal for registry and Kubernetes control plane with Replicated kURL, see [TLS Certificates](https://kurl.sh/docs/install-with-kurl/setup-tls-certs) in the kURL documentation.
 
 ## Update Custom TLS Certificates
 
-If you are using a custom TLS certificate in a Kubernetes installer cluster, you manually upload a new certificate when the previous one expires.                
+If you are using a custom TLS certificate in an embedded cluster, you manually upload a new certificate when the previous one expires.                
 
 :::important
 Adding the `acceptAnonymousUploads` annotation temporarily creates a vulnerability for an attacker to maliciously upload TLS certificates. After TLS certificates have been uploaded, the vulnerability is closed again.

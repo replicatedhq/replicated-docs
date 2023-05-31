@@ -193,22 +193,6 @@ The tables in this section include the following details about each event type:
     <td></td>
     <td></td>
   </tr>  
-    <tr>
-    <td><code>kurlOSFlavor</code>*</td>
-    <td><p>One or more operating systems detected across cluster nodes.</p>
-    <p><strong>Note:</strong> Applies only to clusters provisioned by the Kubernetes installer.</p>
-    </td>
-    <td>string</td>
-    <td>Cloud Region</td>
-  </tr>
-  <tr>
-    <td><code>kurlOSVersion</code>*</td>
-    <td><p>One or more operating systems detected across cluster nodes.</p>
-    <p><strong>Note:</strong> Applies only to clusters provisioned by the Kubernetes installer.</p>
-    </td>
-    <td>string</td>
-    <td>Operating System Version</td>
-  </tr>
 </table>
 
 ### KOTS Status Events {#kots}

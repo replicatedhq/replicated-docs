@@ -15,7 +15,7 @@ import ContinueToInstall from "../partials/install/_continue-to-install-step.mdx
 import InstallApp from "../partials/install/_install-app-admin-console.mdx"
 import AppNameUI from "../partials/install/_placeholder-app-name-UI.mdx"
 
-# Online Installation with the Kubernetes Installer
+# Online Installation with kURL
 
 <IntroEmbedded/>
 
@@ -23,7 +23,7 @@ import AppNameUI from "../partials/install/_placeholder-app-name-UI.mdx"
 
 ## About High Availability Mode
 
-Online installations can use high availability (HA) mode with the Kubernetes installer.
+Online installations can use high availability (HA) mode with the kURL installer.
 
 <HaLoadBalancerAbout/>
 
@@ -37,15 +37,15 @@ Complete the following prerequisites:
 
 <HaLoadBalancerPrereq/>
 
-## Provision the Cluster {#provision-cluster}
+## Provision the Embedded Cluster {#provision-cluster}
 
 <ProvisionClusterIntro/>
 
 <KotsAbout/>
 
-To provision a cluster with the Kubernetes installer:
+To provision an embedded cluster:
 
-1. Run one of the following commands to create the cluster with the Kubernetes installer:
+1. Run one of the following commands to create the cluster with the kURL installer:
 
     * For a regular installation, run:
 
@@ -69,7 +69,7 @@ To provision a cluster with the Kubernetes installer:
 
 1. <ContinueToInstall/>
 
-   Alternatively, you can use the kots CLI to automate the installation of the application rather than logging in to the admin console. For more information, see [Installing with Automation](installing-existing-cluster-automation).
+   Alternatively, you can use the Replicated kots CLI to automate the installation of the application rather than logging in to the admin console. For more information, see [Installing with Automation](installing-existing-cluster-automation).
 
 ## Install and Deploy the Application {#install-app} 
 

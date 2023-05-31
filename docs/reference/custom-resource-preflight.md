@@ -65,7 +65,7 @@ The following fields are supported on all optional collectors for preflights and
   </tr>
   <tr>
     <td><code>exclude</code></td>
-    <td>(Optional) Based on the runtime available configuration, a conditional can be specified in the <code>exclude</code> field. This is useful for deployment techniques that allow templating for Replicated app manager and the optional Helm component. When this value is <code>true</code>, the collector is not included.</td>
+    <td>(Optional) Based on the runtime available configuration, a conditional can be specified in the <code>exclude</code> field. This is useful for deployment techniques that allow templating for Replicated KOTS and the optional Helm component. When this value is <code>true</code>, the collector is not included.</td>
   </tr>
 </table>
 
@@ -108,7 +108,7 @@ The following fields are supported on all optional analyzers for preflights and 
   </tr>
   <tr>
     <td><code>exclude</code></td>
-    <td>(Optional) Based on the runtime available configuration, a conditional can be specified in the <code>exclude</code> field. This is useful for deployment techniques that allow templating for Replicated app manager and the optional Helm component. When this value is <code>true</code>, the analyzer is not included.</td>
+    <td>(Optional) Based on the runtime available configuration, a conditional can be specified in the <code>exclude</code> field. This is useful for deployment techniques that allow templating for KOTS and the optional Helm component. When this value is <code>true</code>, the analyzer is not included.</td>
   </tr>
   <tr>
     <td><code>strict</code></td>
@@ -118,7 +118,7 @@ The following fields are supported on all optional analyzers for preflights and 
 
 ### Analyzer Example
 
-This is an example of an analyzer definition with a strict preflight check and `exclude` set for installations that do not use the Kubernetes installer. In this case, the strict preflight is enforced on a Kubernetes installer cluster but not on an existing cluster or air gap cluster.
+This is an example of an analyzer definition with a strict preflight check and `exclude` set for installations that do not use Replicated kURL. In this case, the strict preflight is enforced on an embedded cluster but not on an existing cluster or air gap cluster.
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2

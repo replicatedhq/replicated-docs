@@ -1,12 +1,12 @@
 # Updating an Application
 
-You can update an application using the Replicated admin console or the kots CLI.
+You can update an application using the Replicated admin console or the Replicated kots CLI.
 See [Update an Application in the Admin Console](#update-an-application-in-the-admin-console)
 or [Update an Application with the kots CLI](#update-an-application-with-the-kots-cli) below.
 
 ## Update an Application in the Admin Console
 
-You can manually update an application in the Version History tab of the Replicated admin console.
+You can manually update an application in the Version History tab of the admin console.
 This method works for both online and air gapped installations.
 
 For applications installed in an online environment, you can also configure the
@@ -117,11 +117,11 @@ kubectl kots upstream upgrade <app slug> \
 
 Adding the `--deploy` flag will also automatically deploy this version.
 
-### Air Gapped Installations on a Kubernetes Installer-Created Cluster
+### Air Gapped Installations on an Embedded Cluster
 
-> Introduced in the Replicated app manager v1.34.0
+> Introduced in the KOTS v1.34.0
 
-To update the application in an air gapped environment with a Kubernetes installer-created cluster, download the new application air gap bundle, and run the following command:
+To update the application in an air gapped environment with Replicated kURL, download the new application air gap bundle, and run the following command:
 
 ```bash
 kubectl kots upstream upgrade APP_SLUG --airgap-bundle PATH_TO_AIRGAP_BUNDLE -n NAMESPACE

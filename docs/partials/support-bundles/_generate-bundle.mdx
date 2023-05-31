@@ -1,0 +1,36 @@
+Support bundles are generated from one or more support bundle specifications. Specification locations include YAML manifest files in the cluster, URLs, stdin, and Secrets or ConfigMap objects embedded in a Kubernetes cluster. For more information, see [Collecting a Support Bundle](https://troubleshoot.sh/docs/support-bundle/collecting/) and [Discover Cluster Specs](https://troubleshoot.sh/docs/support-bundle/discover-cluster-specs/) in the Troubleshoot documentation.
+
+The following examples show some possible CLI commands to generate a support bundle for one or more specifications and locations:
+
+- Automatically discover specifications in the cluster that are contained in Secrets or ConfigMaps:
+
+  ```bash
+  kubectl support-bundle --load-cluster-specs
+  ```
+- Automatically discover specifications found in the cluster that match a custom label:
+
+  ```bash
+  kubectl support-bundle --load-cluster-specs -l LABEL
+  ```
+
+  Replace `LABEL` with the label name.
+
+- Using one or more files:
+
+  ```bash
+  kubectl support-bundle ./PATH_TO_FILE1 ./PATH_TO_FILE2 ./PATH_TO_FILE3
+  ```
+
+  Replace `PATH_TO_FILE` with the path and YAML file name for each file.
+
+- Using a URL and a specification in the cluster:
+
+  ```bash
+  kubectl support-bundle URL \
+  ./PATH_TO_FILE 
+  ```
+  
+  Replace:
+
+  - `URL` with the online specification location provided by your vendor
+  - `PATH_TO_FILE` with the path and YAML file name
