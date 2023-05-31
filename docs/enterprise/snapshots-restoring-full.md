@@ -2,12 +2,12 @@ import RestoreTable from "../partials/snapshots/_restoreTable.mdx"
 
 # Restoring from Backups
 
-Full restores and admin console only restores must be done using the kots CLI because the admin console gets recreated and the admin console UI is disconnected during this process.
+Full restores and Replicated admin console only restores must be done using the Replicated kots CLI because the admin console gets recreated and the admin console UI is disconnected during this process.
 
 Partial restores (application only) can be done using the:
 
 - kots CLI from a full backup
-- admin console from either a full or partial backup
+- Admin console from either a full or partial backup
 
 For more information about the restore process, see [About Restores](snapshots-understanding#restores) in _About Backup and Restore_.
 
@@ -22,8 +22,8 @@ From a full backup, you can do any of the following types of restores using the 
 Use the corresponding CLI procedure for your environment:
 
 - [Existing Clusters](#existing)
-- [Online Kubernetes Installer Clusters](#online)
-- [Air Gapped Kubernetes Installer Clusters](#air-gapped)
+- [Online Embedded Clusters](#online)
+- [Air Gapped Embedded Clusters](#air-gapped)
 
 
 ### Existing Clusters {#existing}
@@ -49,13 +49,13 @@ To restore a backup on an existing cluster:
     
     For more information about the available restore options, including application only and admin console only, see [restore](/reference/kots-cli-restore-index/) in _Reference_.
 
-### Online Kubernetes Installer Clusters {#online}
+### Online Embedded Clusters {#online}
 
 If you are restoring to a healthy cluster, you can skip the installation and configuration steps and continue to running the `get backups` and `restore` commands in the last two steps.
 
-To restore a backup on a Kubernetes installer-created cluster:
+To restore a backup on an embedded cluster:
 
-1. (New or Unhealthy Clusters Only) Provision a Kubernetes installer cluster and install the application. See [Online Installation with the Kubernetes Installer](installing-embedded-cluster).
+1. (New or Unhealthy Clusters Only) Provision an embedded cluster with Replicated kURL and install the application. See [Online Installation with kURL](installing-embedded-cluster).
 
 1. (New or Unhealthy Clusters Only) Configure a storage destination that holds the backup you want to use:
 
@@ -74,11 +74,11 @@ To restore a backup on a Kubernetes installer-created cluster:
     
     For more information about the available restore options, including application only and admin console only, see [restore](/reference/kots-cli-restore-index/) in _Reference_.
 
-### Air Gapped Kubernetes Installer Clusters {#air-gapped}
+### Air Gapped Embedded Clusters {#air-gapped}
 
-To restore a backup on an air gapped Kubernetes installer cluster:
+To restore a backup on an air gapped embedded cluster:
 
-1. Run the following command to install a new cluster and provide the Kubernetes installer with the correct registry IP address. The Kubernetes installer must be able to assign the same IP address to the embedded private image registry in the new cluster.
+1. Run the following command to install a new cluster and provide kURL with the correct registry IP address. kURL must be able to assign the same IP address to the embedded private image registry in the new cluster.
 
     ```bash
     cat install.sh | sudo bash -s airgap kurl-registry-ip=IP

@@ -17,7 +17,7 @@ Run the following command to enable the admin console to access the Velero names
    * `ADMIN_CONSOLE_NAMESPACE` with the namespace on the cluster where the admin console is running.
    * `VELERO_NAMESPACE` with the namespace on the cluster where Velero is installed.
 
-  For more information, see [`velero ensure-permissions`](/reference/kots-cli-velero-ensure-permissions/) in the kots CLI documentation. For more information about RBAC privileges for the admin console, see [Kubernetes RBAC](../vendor/packaging-rbac).
+  For more information, see [`velero ensure-permissions`](/reference/kots-cli-velero-ensure-permissions/) in the kots CLI documentation. For more information about RBAC privileges for the admin console, see [Kubernetes RBAC](/vendor/packaging-rbac).
 
 ## Increase the Memory Limit
 

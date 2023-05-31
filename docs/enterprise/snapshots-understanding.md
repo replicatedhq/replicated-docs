@@ -25,7 +25,7 @@ Full backups are recommended because they support all types of restores. For exa
 
 You can restore backups to existing healthy clusters or to new clusters. Additionally, you can restore to an existing cluster when the admin console or the application are unhealthy.
 
-From a full backup, you can perform any of the following types of restores from the kots CLI:
+From a full backup, you can perform any of the following types of restores from the Replicated kots CLI:
 
 - **Full restore:** Restores the admin console and the application
 - **Partial restore:** Restores the application only
@@ -41,7 +41,7 @@ You can also use the admin console to do a partial restore (application only) fr
 
 ## About Storage Destinations
 
-For disaster recovery snapshots, backups should be configured to use a storage destination that exists outside of the cluster. This is especially true for installations on cluster created with the Replicated Kubernetes installer, because the default storage location on these clusters is internal.
+For disaster recovery snapshots, backups should be configured to use a storage destination that exists outside of the cluster. This is especially true for installations on cluster created with the Replicated kURL, because the default storage location on these clusters is internal.
 
 You can use a storage provider that is compatible with Velero as the storage destination for backups created with the Replicated snapshots feature. For a list of the compatible storage providers, see [Providers](https://velero.io/docs/v1.9/supported-providers/) in the Velero documentation.
 
@@ -54,7 +54,7 @@ You initially configure backups on a supported storage provider backend using th
 - Network File System (NFS)
 - Host Path
 
-Kubernetes installers that include the Velero add-on also include a locally-provisioned object store. By default, Kubernetes installer clusters are preconfigured in the admin console to store backups in the locally-provisioned object store. This object store is sufficient for only rollbacks and downgrades and is not a suitable configuration for disaster recovery. Replicated recommends that you configure a snapshots storage destination that is external to the cluster in the admin console for Kubernetes installer clusters.
+kURL installers that include the Velero add-on also include a locally-provisioned object store. By default, embedded clusters are preconfigured in the admin console to store backups in the locally-provisioned object store. This object store is sufficient for only rollbacks and downgrades and is not a suitable configuration for disaster recovery. Replicated recommends that you configure a snapshots storage destination that is external to the cluster in the admin console for embedded clusters.
 
 ## Limitations and Considerations
 
@@ -72,13 +72,9 @@ Kubernetes installers that include the Velero add-on also include a locally-prov
 
 ## Velero Version Compatibility
 
-The following table lists which versions of Velero are compatible with each version of the app manager.
+The following table lists which versions of Velero are compatible with each version of KOTS.
 
-:::note
-The app manager is based on the open source KOTS project, which is maintained by Replicated.
-:::
-
-| App manager and KOTS versions | Velero version |
+| KOTS version | Velero version |
 |------|-------------|
 | 1.15 to 1.20.2 | 1.2.0 |
 | 1.20.3 and later | 1.5.1 through 1.9.x |
