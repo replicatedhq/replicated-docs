@@ -1,8 +1,6 @@
 # Step 7: Configure the Application
 
-After you run the installation script and deploy the application, you can access the Replicated admin console.
-
-This procedure shows you how to make a configuration change for the application, which is a typical task performed by customers.
+After you install KOTS, you can log in to the admin console. This procedure shows you how to make a configuration change for the application from the admin console, which is a typical task performed by end users.
 
 To configure the application:
 
@@ -12,15 +10,15 @@ To configure the application:
   kubectl kots admin-console --namespace NAMESPACE
   ```
 
-  Replace `NAMESPACE` with the namespace where the app manager is installed.
+  Replace `NAMESPACE` with the namespace where KOTS is installed.
 
-1. Enter the password that you created in [Step 6: Install the App Manager](tutorial-cli-install-app-manager) to log in to the admin console.
+1. Enter the password that you created in [Step 6: Install KOTS and the Application](tutorial-cli-install-app-manager) to log in to the admin console.
 
   The admin console dashboard opens. On the admin console **Dashboard** tab, users can take various actions, including viewing the application status, opening the application, checking for application updates, syncing their license, and setting up application monitoring on the cluster with Prometheus.
 
     ![admin console app dashboard](/images/tutorials/tutorial-admin-console-dashboard.png)
 
-1. On the Config tab, select the **Customize Text Inputs** checkbox. In the **Text Example** field, enter any text. For example, `Hello`.
+1. On the **Config** tab, select the **Customize Text Inputs** checkbox. In the **Text Example** field, enter any text. For example, `Hello`.
 
     ![admin console configuration tab](/images/tutorials/tutorial-install-config-tab.png)
 

@@ -1,10 +1,10 @@
 # Tutorial: Using ECR for Private Images
 
-The Replicated app manager supports working with private images stored in Amazon's Elastic Container Registry (ECR).
+Replicated KOTS supports working with private images stored in Amazon's Elastic Container Registry (ECR).
 
 ## Objective
 
-The purpose of this tutorial is to walk you through how to configure Replicated to pull images from a private registry in Amazon's Elastic Container Registry (ECR). This tutorial demonstrates the differences between using public and private images in Replicated.
+The purpose of this tutorial is to walk you through how to configure KOTS to pull images from a private registry in Amazon's Elastic Container Registry (ECR). This tutorial demonstrates the differences between using public and private images with Replicated.
 
 ## Prerequisites
 
@@ -285,7 +285,7 @@ Looking at the `deployment.yaml` upstream file, we see the image path as we set 
 
 ![admin-console-view-files-upstream-release2](/images/guides/kots/priv-reg-ecr-upstream-file-rel2.png)
 
-Since the app manager is able to detect that it cannot pull this image anonymously, it then tries to proxy the private registries configured. Looking at the `kustomization.yaml` downstream file we can see that the image path is changed to use the Replicated proxy.
+Because KOTS is able to detect that it cannot pull this image anonymously, it then tries to proxy the private registries configured. Looking at the `kustomization.yaml` downstream file we can see that the image path is changed to use the Replicated proxy.
 
 ![admin-console-view-files-downstream-release2](/images/guides/kots/priv-reg-ecr-downstream-file-rel2.png)
 

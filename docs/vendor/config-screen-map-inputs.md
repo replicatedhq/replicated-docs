@@ -10,17 +10,13 @@ You use the values that your users provide in the admin console configuration sc
 
 For example, if you provide an embedded database with your application, you might add a field on the admin console configuration screen where users input a password for the embedded database. You can then map the password that your user supplies in this field to the Secret manifest file for the database in your application.
 
-Similarly, you can include fields on the configuration screen where your users can enable a custom ingress controller for the cluster. You then map these user-supplied values to the Ingress custom resources in your application.
-
 For a tutorial of mapping database configuration options in a sample application, see [Tutorial: Adding Database Configuration Options](tutorial-adding-db-config).
-
-For an example of adding custom Ingress resources based on user-supplied configuration, see [Configuring Cluster Ingress](packaging-ingress).
 
 You can also conditionally deploy custom resources depending on the user input for a given field. For example, if a customer chooses to use their own database with your application rather than an embedded database option, it is not desirable to deploy the optional database resources such as a StatefulSet and a Service.
 
 For more information about including optional resources conditionally based on user-supplied values, see [Including Optional and Conditional Resources](packaging-include-resources).
 
-## Using Template Functions to Map Values
+## About Mapping Values with Template Functions
 
 To map user-supplied values, you use Replicated template functions. The template functions are based on the Go text/template libraries. To use template functions, you add them as strings in the custom resource manifest files in your application.
 
@@ -30,7 +26,7 @@ For more information about the syntax of the template functions for mapping conf
 
 ## Map User-Supplied Values
 
-Follow one of these procedures to map user inputs from the configuration screen, depending on if you use a Helm chart for your application in Replicated:
+Follow one of these procedures to map user inputs from the configuration screen, depending on if you use a Helm chart for your application:
 
 * **Without Helm**: See [Map Values to Manifest Files](#map-values-to-manifest-files).
 * **With Helm**: See [Map Values to a Helm Chart](#map-values-to-a-helm-chart).
@@ -97,9 +93,9 @@ To map user-supplied values from the configuration screen to manifest files in y
 
 ### Map Values to a Helm Chart
 
-The `values.yaml` file in a Helm chart defines parameters that are specific to each environment in which the chart will be deployed. With Replicated, your users provide these values through the configuration screen in the admin console. You customize the configuration screen based on the required and optional configuration fields that you want to expose to your users.
+The `values.yaml` file in a Helm chart defines parameters that are specific to each environment in which the chart will be deployed. With Replicated KOTS, your users provide these values through the configuration screen in the admin console. You customize the configuration screen based on the required and optional configuration fields that you want to expose to your users.
 
-To map the values that your users provide in the admin console configuration screen to your Helm chart `values.yaml` file, you create a Replicated HelmChart custom resource.
+To map the values that your users provide in the admin console configuration screen to your Helm chart `values.yaml` file, you create a HelmChart custom resource.
 
 To follow a tutorial that maps values from the configuration screen to a Helm chart, see [Example: Mapping the Configuration Screen to Helm Values](helm-mapping-example).
 

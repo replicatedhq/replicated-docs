@@ -1,8 +1,6 @@
 # Step 6: Create a New Version
 
-In this step, you edit the Replicated Config custom resource file to create a new field on the admin console Configure App Name page.
-
-You then promote the new release to the Unstable channel with your changes.
+In this step, you edit the Replicated Config custom resource file to create a new field on the admin console **Config** page. You then promote the new release to the Unstable channel with your changes.
 
 To create and promote a new version of the application:
 
@@ -10,7 +8,7 @@ To create and promote a new version of the application:
 
   The YAML editor opens and shows the contents of the most recently created release. This gives you everything that you have done so far.
 
-1. In the `kots-config.yaml` file, copy and paste the following YAML into the file under the `example_default_value` field to create a new text field on the admin console Configure App Name page:
+1. In the `kots-config.yaml` file, copy and paste the following YAML into the file under the `example_default_value` field to create a new text field on the admin console **Config** page:
 
   ```yaml
    - name: more_text

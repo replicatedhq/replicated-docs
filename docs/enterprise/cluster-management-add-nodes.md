@@ -1,10 +1,10 @@
-# Adding Nodes to Kubernetes Installer Clusters
+# Adding Nodes to Embedded Clusters
 
-This topic describes how to add primary and secondary nodes to a Kubernetes installer provisioned cluster (embedded cluster) in the Replicated admin console.
+This topic describes how to add primary and secondary nodes to an embedded cluster (provisioned by the Replicated kURL installer) using the Replicated admin console.
 
 ## Overview of Adding Nodes
 
-You can generate commands in the admin console to join additional primary and secondary nodes to a Kubernetes installer provisioned cluster. Primary nodes run services that control the cluster. Secondary nodes run services that control the pods that host the application containers. Adding nodes can help manage resources to ensure that your application runs smoothly.
+You can generate commands in the admin console to join additional primary and secondary nodes to an embedded cluster. Primary nodes run services that control the cluster. Secondary nodes run services that control the pods that host the application containers. Adding nodes can help manage resources to ensure that your application runs smoothly.
 
 For high availability clusters, Kubernetes recommends using at least 3 primary nodes, and that you use an odd number of nodes to help with leader selection if machine or zone failure occurs. For more information, see [Creating Highly Available Clusters with kubeadm](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/) in the Kubernetes documentation.
 

@@ -5,7 +5,7 @@ It is possible, for native Helm and Replicated Helm installations, to either ove
 
 ## Override Values
 
-If the Helm chart `values.yaml` contains a static value that must be overridden when deploying using the Replicated app manager, set the value to `"null"` (including the quotation marks) in the HelmChart custom resource manifest file.
+If the Helm chart `values.yaml` contains a static value that must be overridden when deploying using the Replicated KOTS, set the value to `"null"` (including the quotation marks) in the HelmChart custom resource manifest file.
 
 Typically this situation happens when you are including a community chart as a dependency in your own chart. You cannot control how the community chart is built and structured, and you might want to change some of the default behavior that the community chart does not easily expose. For more information, see [Deleting a Default Key](https://helm.sh/docs/chart_template_guide/values_files/#deleting-a-default-key) in the Helm documentation.
 
@@ -46,7 +46,7 @@ externalDatabase:
 ```
 If a user wants to configure an external database, you can enable this dynamically through your deployment by adding an `optionalValues` section to the `kind: HelmChart` custom resource, instead of attempting to modify the render logic in the Helm chart.
 
-The `optionalValues` section includes a `when` condition that instructs the app manager how to determine if these keys should be merged. It also includes a `recursiveMerge` field that defines how to merge the dataset.
+The `optionalValues` section includes a `when` condition that instructs KOTS how to determine if these keys should be merged. It also includes a `recursiveMerge` field that defines how to merge the dataset.
 
 For example, the HelmChart custom resource can be configured as follows:
 

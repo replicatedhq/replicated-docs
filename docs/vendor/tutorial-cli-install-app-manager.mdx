@@ -1,10 +1,10 @@
-# Step 6: Install the App Manager and Application
+# Step 6: Install KOTS and the Application
 
-The next step is to test the installation process for the application release that you promoted. Using the kots CLI, you will install the Replicated app manager and the sample application in your existing Kubernetes cluster.
+The next step is to test the installation process for the application release that you promoted. Using the kots CLI, you will install KOTS and the sample application in your cluster.
 
-The _app manager_ is the Replicated component that allows your users to install, manage, and upgrade your application. Users can interact with the app manager through a user interface, called the Replicated admin console, or through a CLI, called the kots CLI.
+KOTS is the Replicated component that allows your users to install, manage, and upgrade your application. Users can interact with KOTS through the admin console or through the kots CLI.
 
-To install the app manager and the application:
+To install KOTS and the application:
 
 1. From the `replicated-cli-tutorial` directory, run the following command to get the installation commands for the Unstable channel, where you promoted the release for the `cli-tutorial` application:
 
@@ -38,8 +38,8 @@ To install the app manager and the application:
     ```
     This command prints information about the channel, including the commands for installing in:
     * An existing cluster
-    * An _embedded_ cluster created by the Replicated Kubernetes installer
-    * An air gap cluster that is not connected to the Internet
+    * An _embedded cluster_ created by Replicated kURL
+    * An air gap cluster that is not connected to the internet
 
 1. If you have not already, configure kubectl access to the cluster you provisioned as part of [Set Up the Environment](tutorial-cli-setup#set-up-the-environment). For more information about setting the context for kubectl, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
 
@@ -59,7 +59,7 @@ To install the app manager and the application:
 
     - `LICENSE_YAML` with the local path to your license file.
     - `PASSWORD` with a password to access the admin console.
-    - `NAMESPACE` with the namespace where the app manager and application will be installed.
+    - `NAMESPACE` with the namespace where KOTS and application will be installed.
 
   When the admin console is ready, the script prints the `https://localhost:8800` URL where you can access the admin console and the `http://localhost:8888` URL where you can access the application.
 
@@ -79,13 +79,13 @@ To install the app manager and the application:
   • Go to http://localhost:8888 to access the application
    ```
 
-1. Verify that the Pods are running for the example NGNIX service and for kotsadm, which is the app manager:
+1. Verify that the Pods are running for the example NGNIX service and for kotsadm:
 
   ```bash
   kubectl get pods --namespace NAMESPACE
   ```
 
-  Replace `NAMESPACE` with the namespace where the app manager and application was installed.
+  Replace `NAMESPACE` with the namespace where KOTS and application was installed.
 
   **Example output:**
 

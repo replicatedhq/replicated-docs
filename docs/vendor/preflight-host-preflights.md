@@ -1,19 +1,19 @@
-# Customizing Host Preflight Checks for Kubernetes Installers
+# Customizing Host Preflight Checks for kURL
 
-This topic provides information about how to customize host preflight checks for Kubernetes installers.
+This topic provides information about how to customize host preflight checks for Replicated kURL.
 
 ## About Host Preflight Checks
-You can include host preflight checks with Kubernetes installers to verify that infrastructure requirements are met for:
+You can include host preflight checks with kURL to verify that infrastructure requirements are met for:
 
 - Kubernetes
-- Kubernetes installer add-ons
+- kURL add-ons
 - Your application
 
 This helps to ensure successful installation and the ongoing health of the cluster.
 
 While host preflights are intended to ensure requirements are met for running the cluster, you can also use them to codify some of your application requirements so that users get feedback even earlier in the installation process, rather than waiting to run preflights after the cluster is already installed. For more information about application checks, collectors, and analyzers, see [Customizing Preflight Checks and Support Bundles](preflight-support-bundle-creating).
 
-Default host preflight checks verify conditions such as operating system and disk usage. Default host preflight failures block the installation from continuing and exit with a non-zero return code. Users can then update their environment and run the Kubernetes installer again to re-run the host preflight checks.
+Default host preflight checks verify conditions such as operating system and disk usage. Default host preflight failures block the installation from continuing and exit with a non-zero return code. Users can then update their environment and run the kURL installation script again to re-run the host preflight checks.
 
 Host preflight checks run automatically. The default host preflight checks that run can vary, depending on whether the installation is new, an upgrade, joining a node, or an air gap installation. Additionally, some checks only run when certain add-ons are enabled in the installer. For a complete list of default host preflight checks, see [Default Host Preflights](https://kurl.sh/docs/install-with-kurl/host-preflights#default-host-preflights) in the kURL documentation.
 
@@ -29,13 +29,13 @@ For more information about customizing host preflights, see [Customize Host Pref
 
 ## Customize Host Preflight Checks
 
-The default host preflights run automatically as part of your Kubernetes installer. You can customize the host preflight checks by disabling them entirely, adding customizations to the default checks to make them more restrictive, or completely customizing them. You can also customize the outcomes to enforce warnings or ignore failures.
+The default host preflights run automatically as part of your kURL installation. You can customize the host preflight checks by disabling them entirely, adding customizations to the default checks to make them more restrictive, or completely customizing them. You can also customize the outcomes to enforce warnings or ignore failures.
 
 This procedure gives examples of the customization options.
 
 To customize host preflight checks:
 
-1. Create a Kubernetes installer (`kind: Installer`). For more information, see [Creating a Kubernetes Installer](https://docs.replicated.com/vendor/packaging-embedded-kubernetes).
+1. Create a Kubernetes Installer (`kind: Installer`). For more information, see [Creating a Kubernetes Installer](https://docs.replicated.com/vendor/packaging-embedded-kubernetes).
 
 1. (Optional) To disable the default host preflight checks for Kubernetes and all included add-ons, add the `kurl` field to your Installer manifest and add `kurl.excludeBuiltinHostPreflights: true` to your Installer manifest. In this case, no host preflight checks are run.
 

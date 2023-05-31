@@ -2,7 +2,20 @@
 toc_max_heading_level: 2
 ---
 
-# Kubernetes Installer Release Notes
+# Kubernetes Installer (kURL) Release Notes
+
+## v2023.05.30-0
+
+Released on May 30, 2023
+
+### Improvements {#improvements-v2023-05-30-0}
+* Adds check to ensure connectivity to the registry with Containerd. This check helps identify misconfigurations, including invalid proxy settings.
+* Adds a message informing the user of preflight check results when preflight checks have been ignored using the `host-preflight-ignore` flag.
+
+### Bug Fixes {#bug-fixes-v2023-05-30-0}
+* Fixes an issue where the Longhorn to OpenEBS migration preparation preflight check failed due to the following error: `error scaling down pods using longhorn volumes: error scaling down *v1.statefulset default/kotsadm-rqlite: Operation cannot be fulfilled on statefulsets.apps "kotsadm-rqlite": the object has been modified; please apply your changes to the latest version and try again`.
+* Fixes an issue with Longhorn volumes were not able to be rolled back after a storage migration with the error: `error rolling back volume ... replicas: Operation cannot be fulfilled on volumes.longhorn.io ...`.
+* Fixes an issue uninstalling Weave by removing interfaces first and then removing lib/weave for Weave versions `0.21.5` and later.
 
 ## v2023.05.25-0
 

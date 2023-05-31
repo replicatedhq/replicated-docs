@@ -6,7 +6,7 @@ To begin, create an application object in the vendor portal:
 
 1. Log in (or create a new team) to the [vendor portal](https://vendor.replicated.com).
 
-  After signing up and activating your account, the Create application page opens. If you are logging in with an existing account, select Create new app from the application drop-down list.
+  After signing up and activating your account, the **Create application** page opens. If you are logging in with an existing account, select **Create new app** from the application drop-down list.
 
 1. Enter a name for the new application, such as Starter Application or NGINX Example.
 
