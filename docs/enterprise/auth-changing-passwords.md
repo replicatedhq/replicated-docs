@@ -1,8 +1,8 @@
 # Changing an Admin Console Password
 
-When you install for the first time with the Kubernetes installer, the Replicated admin console is secured with a single shared password that is set automatically for all users. We recommend that you change this to a new, unique password for security purposes as this automated password is displayed to the user in plain text.
+When you install for the first time with Replicated kURL, the Replicated admin console is secured with a single shared password that is set automatically for all users. Replicated recommends that you change this to a new, unique password for security purposes as this automated password is displayed to the user in plain text.
 
-The admin console password is salted and one-way hashed using bcrypt. The irreversible hash is stored in a secret named `kotsadm-password`. The password is not retrievable if lost. If you lose your admin console password, reset your password to access the admin console.
+The admin console password is salted and one-way hashed using bcrypt. The irreversible hash is stored in a Secret named `kotsadm-password`. The password is not retrievable if lost. If you lose your admin console password, reset your password to access the admin console.
 
 For more information about bcrypt, see [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) on Wikipedia.
 
@@ -17,7 +17,7 @@ To change your admin console password:
 1. In the Change Admin Console Password dialog, edit the fields.
 
     - The new password must be at least 6 characters and must not be the same as your current password.
-    - The New Password and Confirm New Password fields must match each other.
+    - The **New Password** and **Confirm New Password** fields must match each other.
 
 1. Click **Change Password**.
 

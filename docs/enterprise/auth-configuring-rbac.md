@@ -14,21 +14,15 @@ To configure role based access control (RBAC) for the admin console:
 
 The admin console comes with pre-defined identity service roles that can be assigned to groups when you configure RBAC for the admin console.
 
-## Cluster Admin Role
+- **Read Access:** This role has read permissions to all resources.
 
-### Read Access
-This role has read permissions to all resources.
+- **Write Access:** This role has write permissions to all resources.
 
-### Write Access
-This role has write permissions to all resources.
+## Support Roles
 
-## Support Role
+- **Read Access:** This role has read permissions to all resources except the application's file tree.
 
-### Read Access
-This role has read permissions to all resources except the application's file tree.
+- **Write Access:** This role has write permissions to the following resources:
 
-### Write Access
-This role has write permissions to the following resources:
-
-* Support bundles
-* Preflight checks
+    * Support bundles
+    * Preflight checks

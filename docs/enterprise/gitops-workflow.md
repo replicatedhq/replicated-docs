@@ -1,10 +1,10 @@
 # Pushing Updates to a GitOps Workflow
 
-This topic describes how to enable a GitOps workflow for your application. In a GitOps workflow, the admin console pushes all updates to the application to a Git repository that you specify.
+This topic describes how to enable a GitOps workflow for your application. In a GitOps workflow, the Replicated admin console pushes all updates to the application to a Git repository that you specify.
 
 ## Overview of the GitOps Workflow
 
-The Replicated admin console default workflow is configured to receive updates, show the changes, and deploy the updates to the cluster. You can enable a GitOps workflow instead. When using a GitOps workflow, changes from the admin console are pushed to a private Git repository, where an existing CI/CD process can execute the delivery of manifests to the cluster. Changes can include local configuration changes and upstream updates from your vendor (such as application and license updates).
+The admin console default workflow is configured to receive updates, show the changes, and deploy the updates to the cluster. You can enable a GitOps workflow instead. When using a GitOps workflow, changes from the admin console are pushed to a private Git repository, where an existing CI/CD process can execute the delivery of manifests to the cluster. Changes can include local configuration changes and upstream updates from your vendor (such as application and license updates).
 
 If you have more than one application installed, you can selectively enable a GitOps workflow for each application.
 
@@ -18,7 +18,7 @@ You can change your GitOps settings or disable a GitOps workflow at any time fro
 
 - The GitOps workflow is not supported for releases that use the native Helm chart installation method.
 
-- To enable pushing updates through the GitOps workflow, you must first follow the installation workflow for the application using the admin console or the kots CLI. If the preflight checks pass during installation, then the application is deployed.
+- To enable pushing updates through the GitOps workflow, you must first follow the installation workflow for the application using the admin console or the Replicated kots CLI. If the preflight checks pass during installation, then the application is deployed.
 
 - After you have completed the installation workflow, you can enable GitOps for all subsequent application updates. It is not required that the application deploy successfully to enable GitOps. For example, if the preflight checks fail during the installation workflow and the application is not deployed, you can still enable GitOps for subsequent application updates.
 
@@ -58,7 +58,7 @@ To enable pushing updates to a GitOps workflow:
         </tr>
         <tr>
           <td>Path</td>
-          <td>Enter the folder name in the repository where the application deployment file will be committed. If you leave this field blank, the Replicated app manager creates a folder for you. However, the best practice is to manually create a folder in the repository labeled with the application name and dedicated for the deployment file only.</td>
+          <td>Enter the folder name in the repository where the application deployment file will be committed. If you leave this field blank, the Replicated KOTS creates a folder for you. However, the best practice is to manually create a folder in the repository labeled with the application name and dedicated for the deployment file only.</td>
           </tr>
       </table>
 

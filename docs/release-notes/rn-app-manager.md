@@ -1017,7 +1017,7 @@ Released on April 8, 2022
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### New Features
-* Adds the ability to switch from a community license to a different license for the same application. See [Changing a Community License](../enterprise/updating-licenses#changing-a-community-license).
+* Adds the ability to switch from a community license to a different license for the same application. See [Changing a Community License](/enterprise/updating-licenses#change-community-licenses).
 
 ### Improvements
 * The [ensure-secret](/reference/kots-cli-docker-ensure-secret) command now creates a new application version, based on the latest version, that adds the Docker Hub image pull secret to all Kubernetes manifests that have images. This avoids Docker Hub's rate limiting.
