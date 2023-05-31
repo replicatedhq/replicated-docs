@@ -59,4 +59,4 @@ To support end users with backup and restore, use the following resources:
 
 - Review the Limitations and Considerations section to make sure an end users system is compliant. See [Limitations and Considerations](/enterprise/snapshots-understanding#limitations-and-considerations) in _Enterprise_.
 
-- Check that the installed Velero version and app manager version are compatible. See [Velero Version Compatibility](/enterprise/snapshots-understanding#velero-version-compatibility) in _Enterprise_.
+- Check that the installed Velero version and KOTS version are compatible. See [Velero Version Compatibility](/enterprise/snapshots-understanding#velero-version-compatibility) in _Enterprise_.

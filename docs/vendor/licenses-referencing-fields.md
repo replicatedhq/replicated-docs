@@ -22,7 +22,7 @@ application runtime. See [Query License Fields from the API](#query-license-fiel
 To enforce entitlements when your customer installs or updates your application,
 you can reference custom license fields in a Kubernetes manifest.
 
-The Replicated app manager uses the `LicenseFieldValue` template function to read
+Replicated KOTS uses the `LicenseFieldValue` template function to read
 license fields when a customer installs or updates your application. For more
 information, see [LicenseFieldValue](../reference/template-functions-license-context#licensefieldvalue).
 

@@ -62,15 +62,15 @@ Replicated will provide support for products per our terms and services until th
 
 ## Supported Versions
 
-The following table lists the versions of the Replicated app manager and Replicated Kubernetes installer that are supported on each Kubernetes version.
+The following table lists the versions of Replicated KOTS and Replicated kURL that are supported on each Kubernetes version.
 
 The End of Replicated Support date is the End Of Life (EOL) date for the Kubernetes version. The EOL date for each Kubernetes version is published on the [Releases](https://kubernetes.io/releases/) page in the Kubernetes documentation. 
 
 <table>
   <tr>
     <th>Kubernetes Version</th>
-    <th>App Manager Versions</th>
-    <th>Kubernetes Installer Versions</th>
+    <th>KOTS Versions</th>
+    <th>kURL Versions</th>
     <th>End of Replicated Support</th>
   </tr>  
   <tr>
@@ -101,4 +101,4 @@ The End of Replicated Support date is the End Of Life (EOL) date for the Kuberne
 
 The information contained herein is believed to be accurate as of the date of publication, but updates and revisions may be posted periodically and without notice.
 
-Last modified May 30, 2023.
+Last modified May 31, 2023.

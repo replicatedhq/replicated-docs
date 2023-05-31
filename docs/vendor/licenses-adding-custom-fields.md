@@ -60,7 +60,7 @@ To update a custom license field:
 
 ## Delete Custom License Fields
 
-Deleted license fields and their values do not appear in the customer's license in any location, including your view in the vendor portal, the downloaded YAML version of the license, and the app manager license screen.
+Deleted license fields and their values do not appear in the customer's license in any location, including your view in the vendor portal, the downloaded YAML version of the license, and the admin console license screen.
 
 By default, deleting a license field also deletes all of the values associated with the field in each customer record.
 
@@ -69,7 +69,7 @@ Only administrators can delete license fields.
 :::important
 Replicated recommends that you take care when deleting license fields.
 
-Outages can occur for existing deployments if your application or the app manager configuration screen expect a license file to provide a required value.
+Outages can occur for existing deployments if your application or the admin console **Config** page expect a license file to provide a required value.
 :::
 
 To delete a custom license field:
