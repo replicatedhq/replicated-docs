@@ -3,7 +3,7 @@
 This topic provides information about how to define preflight checks and customize support
 bundles for your application release.
 
-Host preflight checks are also supported for Kubernetes installers. For more information about host preflight checks, see [Customizing Host Preflight Checks for Kubernetes Installers](preflight-host-preflights).
+Host preflight checks are also supported for Replicated kURL. For more information about host preflight checks, see [Customizing Host Preflight Checks for kURL](preflight-host-preflights).
 
 
 ## About Preflight Checks and Support Bundles
@@ -139,7 +139,7 @@ Customizing a support bundle is unique to your application. Replicated KOTS prov
 
 By default, support bundles contain a large number of commonly used, best practice collectors. The default `clusterInfo` and `clusterResources` collectors gather a large amount of data that is useful when remotely installing or debugging a Kubernetes application. You can supplement, edit, or exclude the default collectors and analyzers. You can also add redactors to the default redactors.
 
-This procedure provides a basic understanding and some key considerations to help guide you. For more information about configuring support bundles, see [Collecting Data](https://troubleshoot.sh/docs/collect/), [Redacting Data](https://troubleshoot.sh/docs/redact/), and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation. You can also see the entire default specification at [spec.yaml](https://github.com/replicatedhq/kots/blob/main/pkg/supportbundle/defaultspec/spec.yaml) in the Replicated kots repository.
+This procedure provides a basic understanding and some key considerations to help guide you. For more information about configuring support bundles, see [Collecting Data](https://troubleshoot.sh/docs/collect/), [Redacting Data](https://troubleshoot.sh/docs/redact/), and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation. You can also see the entire default specification at [spec.yaml](https://github.com/replicatedhq/kots/blob/main/pkg/supportbundle/defaultspec/spec.yaml) in the kots repository.
 
 To customize a support bundle:
 

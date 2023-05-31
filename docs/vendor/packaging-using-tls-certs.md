@@ -1,12 +1,12 @@
 # Using TLS Certificates
 
-Replicated KOTS provides default self-signed certificates that renew automatically. For embedded clusters, the self-signed certificate renews 30 days before expiration when you enable the EKCO add-on version 0.7.0 and later.
+Replicated KOTS provides default self-signed certificates that renew automatically. For embedded clusters, the self-signed certificate renews 30 days before expiration when you enable the kURL EKCO add-on version 0.7.0 and later.
 
 Custom TLS options are supported:
 
 - **Existing clusters:** The expectation is for the end customer to bring their own Ingress Controller such as Contour or Istio and upload their own `kubernetes.io/tls` secret. For an example, see [Ingress with TLS](https://kubernetes.io/docs/concepts/services-networking/ingress/#tls) in the Kubernetes documentation.
 
-- **Embedded clusters:** End customers can upload a custom TLS certificate. The Kubernetes installer creates a TLS secret that can reused by other Kubernetes resources, such as Deployment or Ingress, which can be easier than providing and maintaining multiple certificates. As a vendor, you can enable the use of custom TLS certificates with these additional resources.
+- **Embedded clusters:** End customers can upload a custom TLS certificate. Replicated kURL creates a TLS secret that can reused by other Kubernetes resources, such as Deployment or Ingress, which can be easier than providing and maintaining multiple certificates. As a vendor, you can enable the use of custom TLS certificates with these additional resources.
 
 For example, if your application does TLS termination, your deployment would need the TLS secret. Or if the application is connecting to another deployment that is also secured using the same SSL certificate (which may not be a trusted certificate), the custom TLS certificate can be used to do validation without relying on the trust chain.
 

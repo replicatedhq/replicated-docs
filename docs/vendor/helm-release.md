@@ -6,7 +6,7 @@ import HooksLimitation from "../partials/helm/_hooks-limitation.mdx"
 
 # Supporting Native Helm and Replicated Helm
 
-This topic describes the HelmChart custom resource that is required for native Helm and Replicated Helm installations with the Replicated KOTS. It also describes the limitations for native Helm and Replicated Helm installations.
+This topic describes the HelmChart custom resource that is required for native Helm and Replicated Helm installations with Replicated KOTS. It also describes the limitations for native Helm and Replicated Helm installations.
 
 ## Limitations {#replicated-helm-limitations}
 

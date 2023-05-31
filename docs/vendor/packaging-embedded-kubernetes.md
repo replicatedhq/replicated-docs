@@ -5,7 +5,7 @@ This topic describes creating a Replicated Kubernetes installer to distribute yo
 ## About Installing an Application Without an Existing Cluster
 
 When you package and release your application with Replicated, your customers can
-install the application without an existing Kubernetes cluster. You use the Replicated Kubernetes installer (kURL) to provision an embedded cluster on a virtual machine (VM) or bare metal. This allows customers who do not have an existing cluster to install your application without provisioning a cluster themselves.
+install the application without an existing Kubernetes cluster. You use the Replicated kURL to create an embedded cluster on a virtual machine (VM) or a bare metal server. This allows customers who do not have an existing cluster to install your application without provisioning a cluster themselves.
 
 There are two possible methods for creating a Kubernetes installer:
 
@@ -23,8 +23,6 @@ There are two possible methods for creating a Kubernetes installer:
     <td>The installer is created and promoted to a channel separately from an application release. <br></br><br></br> The installation command uses the Kubernetes installer that is currently promoted to the channel. When you install a previous application version with the currently promoted Kubernetes installer, problems can occur because the application version might not have been tested with the current installer.</td>
   </tr>
 </table>
-
-The Kubernetes installer is based on Replicated kURL. For more information, see [Introduction to kURL](https://kurl.sh/docs/introduction/) in the kURL documentation.
 
 ## Include a Kubernetes Installer in an Application Release (Beta)
 

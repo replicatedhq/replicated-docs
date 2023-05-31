@@ -13,7 +13,7 @@ This topic describes the options and processes for using Replicated KOTS to depl
 
 Helm is a popular package manager for Kubernetes applications. Using KOTS to distribute applications packaged with Helm provides additional functionality not available through Helm, such as preflight checks, support bundles, a user interface for collecting user configuration values, support for using private images, and more.
 
-When you distribute an application packaged with Helm, your users can install and manage the application with either the KOTS or the helm CLI.
+When you distribute an application packaged with Helm, your users can install and manage the application with either KOTS or the helm CLI.
 
 Additionally, you can create a single release that supports both KOTS and helm CLI installation options. For more information about supporting helm CLI in the same release, see [About Supporting helm CLI Installations (Beta)](helm-install#about).
 
@@ -55,7 +55,7 @@ There are different limitations depending on if your customers install and manag
 
 ## KOTS Deployment
 
-Users can install an application packaged with Helm charts using KOTS in either an existing cluster or a cluster provisioned by the Replicated Kubernetes installer (kURL). KOTS also supports Helm installations into air gap environments. For more information, see [Air Gap](air-gap).
+Users can install an application packaged with Helm charts using KOTS in either an existing cluster or a cluster created by the Replicated kURL. KOTS also supports Helm installations into air gap environments. For more information, see [Air Gap](air-gap).
 
 As an application vendor, you specify whether KOTS uses the _native Helm_ or _Replicated Helm_ method to deploy your Helm chart-based application. You specify the deployment method in the `useHelmInstall` field of the Replicated HelmChart custom resource manifest file for the Helm chart. For more information, see [useHelmInstall](/reference/custom-resource-helmchart#usehelminstall) in _HelmChart_.
 

@@ -2,7 +2,7 @@
 
 An application can include several recommended, but optional, custom resources.
 These custom resources are packaged as part of the application, but are not deployed to the cluster.
-The custom resources defined here are included to control the application experience. They are consumed by the Replicated KOTS, the Replicated admin console, or by other kubectl plugins.
+The custom resources defined here are included to control the application experience. They are consumed by Replicated KOTS, the Replicated admin console, or by other kubectl plugins.
 
 | Group/Version | Kind | Description |
 |---------------|------|-------------|
