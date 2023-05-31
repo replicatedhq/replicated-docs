@@ -329,7 +329,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Installing with the Kubernetes Installer',
+              label: 'Installing with kURL',
               items: [
                 'enterprise/installing-embedded-cluster',
                 'enterprise/installing-embedded-airgapped',

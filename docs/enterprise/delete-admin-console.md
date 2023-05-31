@@ -67,7 +67,7 @@ If you installed the admin console with namespace-scoped access, then the admin 
 
 The application vendor can require, support, or not support namespace-scoped installations. For more information, see [supportMinimalRBACPrivileges](/reference/custom-resource-application#supportminimalrbacprivileges) and [requireMinimalRBACPrivileges](/reference/custom-resource-application#requireminimalrbacprivileges) in _Application_.
 
-For more information about installing with cluster- or namespace-scoped access, see [RBAC Requirements](/enterprise/installing-general-requirements#rbac-requirements) in _Requirements for Installation_.
+For more information about installing with cluster- or namespace-scoped access, see [RBAC Requirements](/enterprise/installing-general-requirements#rbac-requirements) in _Installation Requirements_.
 
 To delete the admin console from an existing cluster:
 
