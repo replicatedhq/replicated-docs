@@ -14,12 +14,38 @@ kubectl kots remove [app-slug] -n [namespace]
 
 This command supports all [global flags](kots-cli-global-flags) and also:
 
-
-| Flag         | Type   | Description                                                            |
-|:-------------|--------|------------------------------------------------------------------------|
-| `--force`    |  bool  | Removes the reference even if the application has already been deployed. |
-| `--undeploy` |  bool  | Undeploys the application by deleting all its resources from the cluster. When `--undeploy` is set, the `--force` flag is set automatically. |
-| `-n`         | string | Removes the application from the specified namespace. Replace [namespace] with the actual namespace designation or use `default` for the default namespace. |
+<table>
+  <tr>
+    <th width="20%">Flag</th>
+    <th width="10%">Type</th>
+    <th width="70%">Description</th>
+  </tr>
+  <tr>
+    <td><code>--force</code></td>
+    <td><code>bool</code></td>
+    <td>
+      <p>Removes the reference even if the application has already been deployed.</p>
+    </td>
+  </tr>
+  <tr>
+    <td><code>--undeploy</code></td>
+    <td><code>bool</code></td>
+    <td>
+      <p>Un-deploys the application by deleting all its resources from the cluster. When <code>--undeploy</code> is set, the <code>--force</code> flag is set automatically.</p>
+      <p><strong>Note:</strong> <code>--undeploy</code> can remove application resources only from the namespace where the app manager is installed and from any namespaces provided in the <a href="custom-resource-application#additionalnamespaces">additionalNamespaces</a> field in the Application custom resource.</p>
+      <p>The following describes how <code>--undeploy</code> removes application resources:</p>
+      <ul>
+        <li>For applications deployed with <code>kubectl apply</code> (including standalone manifest files and Helm charts deployed with the <a href="/vendor/helm-overview#replicated-helm">Replicated Helm</a> method), <code>--undeploy</code> identifies and removes resources based on a <code>kots.io/app-slug: &lt;app_slug&gt;</code> annotation that is applied to all application resources during deployment. </li>
+        <li>For applications deployed with the <a href="/vendor/helm-overview#native">native Helm</a> method, <code>--undeploy</code> runs <code>helm uninstall</code>.</li>
+      </ul>  
+      </td>
+  </tr>
+  <tr>
+    <td><code>-n</code></td>
+    <td><code>string</code></td>
+    <td><p>The namespace where the target application is deployed. Use <code>default</code> for the default namespace.</p></td>
+  </tr>
+</table>
 
 ### Example
 ```bash

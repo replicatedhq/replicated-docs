@@ -139,6 +139,13 @@ ol ol ol {
   justify-content: center !important;
 }
 
+/*Sidebar Styling*/
+
+.menu__list-item > h5 {
+  text-transform: uppercase;
+  margin: 2.5rem 0 1.5rem 0;
+}
+
 
 /* Release Note label styling */
 

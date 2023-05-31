@@ -22,15 +22,15 @@ Complete the following prerequisites:
 <PrereqsExistingCluster/> 
 <LicenseFile/>
 
-## Install the App Manager {#online}
+## Install KOTS {#online}
 
-This procedure describes how to install the Replicated app manager in your existing cluster.
+This procedure describes how to install KOTS in your existing cluster.
 
 <KotsAbout/>
 
-To install the app manager:
+To install KOTS:
 
-1. Run one of these commands to install the kots CLI and the app manager. As part of the command, you also specify a name and version for the application that you will install as part of the [Install and Deploy the Application](#install-app) procedure that follows.
+1. Run one of these commands to install the Replicated kots CLI and KOTS. As part of the command, you also specify a name and version for the application that you will install as part of the [Install and Deploy the Application](#install-app) procedure that follows.
 
     * **For the latest application version**:
     

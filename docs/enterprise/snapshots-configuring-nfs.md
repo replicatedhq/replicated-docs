@@ -39,7 +39,7 @@ To install Velero and configure NFS storage in an online environment:
   ```
 
   Replace:
-    - `NAME` with the namespace where the admin console is installed and running
+    - `NAME` with the namespace where the Replicated admin console is installed and running
     - `PATH` with the path that is exported by the NFS server
     - `HOST` with the hostname or IP address of the NFS server
 

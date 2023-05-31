@@ -40,7 +40,7 @@ To install Velero and configure host path storage in online environments:
     ```
 
     Replace:
-      - `NAME` with the namespace where the admin console is installed and running
+      - `NAME` with the namespace where the Replicated admin console is installed and running
       - `PATH` with the path to the directory where the backups will be stored
 
     For more information about required storage destination flags, see [`velero`](/reference/kots-cli-velero-index) in _Reference_.

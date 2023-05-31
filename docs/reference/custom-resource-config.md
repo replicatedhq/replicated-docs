@@ -820,7 +820,7 @@ spec:
 
 **After repeatable config processing:**
 
-**Note**: This phase is internal to configuration rendering for the app manager. This example is only provided to further explain the templating process.*
+**Note**: This phase is internal to configuration rendering for KOTS. This example is only provided to further explain the templating process.*
 
 ```yaml
 apiVersion: v1
@@ -912,7 +912,7 @@ spec:
 
 **After repeatable config processing:**
 
-**Note**: This phase is internal to configuration rendering for the app manager. This example is only provided to further explain the templating process.*
+**Note**: This phase is internal to configuration rendering for KOTS. This example is only provided to further explain the templating process.*
 
 ```yaml
 apiVersion: v1

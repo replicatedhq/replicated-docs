@@ -6,7 +6,7 @@ import SelectOneExample from "../partials/configValues/_selectOneExample.mdx"
 import TextExample from "../partials/configValues/_textExample.mdx"
 import TextAreaExample from "../partials/configValues/_textareaExample.mdx"
 
-# Downloading the ConfigValues File
+# Sharing a ConfigValues File
 
 This topic describes how to access and download the ConfigValues file for an installed application instance so that you can share the file with your users.
 

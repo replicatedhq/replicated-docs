@@ -29,7 +29,7 @@ You can create a full backup with the following methods:
 
 ### Create a Backup with the CLI {#cli-backup}
 
-To create a full backup with the kots CLI, run the following command:
+To create a full backup with the Replicated kots CLI, run the following command:
 
    ```
    kubectl kots backup --namespace NAMESPACE

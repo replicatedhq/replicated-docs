@@ -137,6 +137,6 @@ kubectl support-bundle secret/default/flannel-troubleshoot-spec secret/default/v
 
 To automatically discover and generate a bundle for all of the specifications in a given namespace or cluster, you can use the `troubleshoot.io/kind` label with the `--load-cluster-specs` flag. This flag can also be combined with input for a URL. For more information about using this flag, see [Generate a Merged Support Bundle](/enterprise/troubleshooting-an-app/#generate-a-merged-support-bundle).
 
-The Troubleshoot analysis screen in the admin console shows the results of all of the analyzers defined in your chosen manifests, and the contents are available in a single bundle.
+The Troubleshoot analysis screen in the Replicated admin console shows the results of all of the analyzers defined in your chosen manifests, and the contents are available in a single bundle.
 
  For real use case specifications that you can use as templates, see the [troubleshoot-specs repo](https://github.com/replicatedhq/troubleshoot-specs) on GitHub.

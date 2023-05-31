@@ -4,7 +4,7 @@ toc_max_heading_level: 2
 
 import KubernetesCompatibility from "../partials/install/_kubernetes-compatibility.mdx"
 
-# App Manager Release Notes
+# App Manager (KOTS) Release Notes
 
 ## Kubernetes Compatibility
 
@@ -12,11 +12,30 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <KubernetesCompatibility/>
 
+## 1.100.0
+
+Released on May 26, 2023
+
+Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
+
+### New Features {#new-features-1-100-0}
+* Adds support for `kots.io/creation-phase` and `kots.io/deletion-phase` annotations to control the order in which native Kubernetes resources are created and deleted, respectively. See [Deployment Phases](/vendor/orchestrating-resource-deployment#deployment-phases) in _Orchestrating Resource Deployment_.
+* Adds support for a `kots.io/wait-for-ready` annotation, which causes KOTS to wait for a native Kubernetes resource to be ready before continuing with the deployment. See [Waiting for a Resource to be Ready](/vendor/orchestrating-resource-deployment#wait-for-a-resource-to-be-ready) in _Orchestrating Resource Deployment_.
+* Adds support for a `kots.io/wait-for-properties` annotation, which causes KOTS to wait for one or more properties to match a desired value before continuing with the deployment. See [Wait for Resource Properties](/vendor/orchestrating-resource-deployment#wait-for-resource-properties) in _Orchestrating Resource Deployment_.
+
+### Improvements {#improvements-1-100-0}
+* Updates the github.com/cloudflare/circl module to v1.3.3 to resolve CVE-2023-1732 with medium severity.
+
+### Bug Fixes {#bug-fixes-1-100-0}
+* Fixes an issue where Helm charts deployed using the native Helm installation method were uninstalled then reinstalled when the chart version changed or was updated.
+* Fixes an issue in embedded clusters where images from native Helm v2 (Beta) charts were incorrectly removed from the in-cluster registry, potentially leading to failed deployments.
+* Bumps the Helm version used by KOTS to 3.12.0 to fix an issue where native Helm installations were failing on Kubernetes 1.27.
+
 ## 1.99.0
 
 Released on May 18, 2023
 
-Support for Kubernetes: 1.24, 1.25, 1.26, and 1.27
+Support for Kubernetes: 1.24, 1.25, and 1.26
 
 ### New Features {#new-features-1-99-0}
 * Adds a new native Helm v2 installation method (Beta) that leverages the `kots.io/v1beta2` HelmChart custom resource. This v2 installation method does a Helm installation or upgrade of your Helm chart without modifying the chart with Kustomize. This is an improvement to the v1 installation method because it results in Helm installations that can be reproduced outside of the app manager, and it enables the use of additional Helm functionality that was not available in v1. See [HelmChart v2 (Beta)](/reference/custom-resource-helmchart-v2) in the _Custom Resources_ section.
@@ -998,7 +1017,7 @@ Released on April 8, 2022
 Support for Kubernetes: 1.21, 1.22, and 1.23
 
 ### New Features
-* Adds the ability to switch from a community license to a different license for the same application. See [Changing a Community License](../enterprise/updating-licenses#changing-a-community-license).
+* Adds the ability to switch from a community license to a different license for the same application. See [Changing a Community License](/enterprise/updating-licenses#change-community-licenses).
 
 ### Improvements
 * The [ensure-secret](/reference/kots-cli-docker-ensure-secret) command now creates a new application version, based on the latest version, that adds the Docker Hub image pull secret to all Kubernetes manifests that have images. This avoids Docker Hub's rate limiting.

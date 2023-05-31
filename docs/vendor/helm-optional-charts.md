@@ -6,10 +6,10 @@ This topic applies to the Native Helm and Replicated KOTS deployment methods.
 
 ## About Optional Helm Charts
 
-By default, the Replicated app manager creates an instance of a Helm chart for every HelmChart custom resource manifest file in the upstream application manifests. However, you can configure your application so that the app manager excludes certain Helm charts based on a conditional statement. 
+By default, KOTS creates an instance of a Helm chart for every HelmChart custom resource manifest file in the upstream application manifests. However, you can configure your application so that KOTS excludes certain Helm charts based on a conditional statement. 
 
 To create this conditional statement, you add a Replicated template function to an `exclude` field in the HelmChart custom resource file. For example, you can add a template function that evaluates to `true` or `false` depending on the user's selection for a configuration field on the Replicated admin console Config page.
-The app manager renders the template function in the `exclude` field, and excludes the chart if the template function evaluates to `true`.
+KOTS renders the template function in the `exclude` field, and excludes the chart if the template function evaluates to `true`.
 
 For all optional components, Replicated recommends that you add a configuration option to allow the user to optionally enable or disable the component.
 This lets you support enterprises that want everything to run in the cluster and those that want to bring their own services for stateful components.
@@ -115,7 +115,7 @@ Next, package the Helm chart and add it to the release in the vendor portal:
 
 1. Drag and drop the `.tgz` file into the file tree of the release. The vendor portal automatically creates a new file with `kind: HelmChart` named `postgresql.yaml`, which references the `.tgz` file you uploaded.
 
-   For more information about adding Helm charts to a release in the vendor portal, see [Creating Releases with the Vendor Portal](releases-creating-release).
+   For more information about adding Helm charts to a release in the vendor portal, see [Managing Releases with the Vendor Portal](releases-creating-releases).
 
 ### Step 4: Edit the HelmChart Custom Resource
 

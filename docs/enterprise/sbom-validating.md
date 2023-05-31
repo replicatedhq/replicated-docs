@@ -1,6 +1,6 @@
 # Validating SBOM Signatures
 
-This topic describes the process to perform the validation of software bill of material (SBOM) signatures for Replicated app manager (KOTS), Kubernetes installers (kURL), and Troubleshoot releases.
+This topic describes the process to perform the validation of software bill of material (SBOM) signatures for Replicated KOTS, Replicated kURL, and Troubleshoot releases.
 
 ## About Software Bills of Materials
 
@@ -35,7 +35,7 @@ To validate a KOTS SBOM signature:
 
 ## Validate a kURL SBOM Signature
 
-If a Kubernetes installer used, then signed SBOMs for kURL Go and Javascript dependencies are combined into a TAR file and are included with the release.
+If a kURL installer is used, then signed SBOMs for kURL Go and Javascript dependencies are combined into a TAR file and are included with the release.
 
 To validate a kURL SBOM signature:
 

@@ -13,7 +13,7 @@ If you are changing from one provider to another provider, make sure that you me
 
 You can update storage destination settings for online and air gapped environments at any time using the admin console. 
 
-Additionally, if you used a Kubernetes installer that automatically installed Velero for you, Replicated recommends that you change the default internal storage because it is not sufficient for disaster recovery.
+Additionally, if Velero was automatically installed by Replicated kURL, then Replicated recommends that you change the default internal storage because it is not sufficient for disaster recovery.
 
 To update storage destination settings:
 

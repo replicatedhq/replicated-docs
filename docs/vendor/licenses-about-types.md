@@ -64,7 +64,7 @@ license. Because several of your community users might use the same community
 license, this allows you to upgrade a single user to a new license without changing the
 community license for all users. This also allows you to upgrade a user
 from a shared community license without requiring them to reinstall the application. For more information,
-see [Changing a Community License](../enterprise/updating-licenses#changing-a-community-license)
+see [Change Community Licenses](/enterprise/updating-licenses#change-community-licenses)
 in _Updating Licenses_. 
 * **No air gapped support**: Community licenses cannot support air gapped installations.
 * **No expiration**: Community licenses cannot include an expiration date.

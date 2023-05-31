@@ -39,7 +39,7 @@ To update the application:
 Congratulations! As part of this tutorial, you:
 
 - Created and promoted a release for a Kubernetes application using the vendor portal
-- Installed the application in a Kubernetes cluster
+- Installed the application in a cluster
 - Edited the manifest files for the application:
     - Added a preflight check
     - Added a new configuration field and used template functions to reference the field
@@ -50,6 +50,6 @@ As a next step you can:
 
 - Learn how to use the CLI to perform these steps and manage your release YAML in a git repository. See the [CLI Tutorial](tutorial-cli-setup).
 
-- Continue to iterate on your sample application by integrating other app manager features. For ideas on features and functionality, see [Adding Functionality to Your Releases](distributing-workflow#adding-functionality-to-your-releases)  in _How to Package and Distribute a Production Application_.
+- Continue to iterate on your sample application by integrating other app manager features. For ideas on features and functionality, see [Adding Functionality to Your Releases](distributing-workflow#adding-functionality-to-your-releases)  in _How to Create Releases for Your Application_.
 
-- Make more customizations to the fields that appear on the Configure App screen in the admin console screen. This screen is used to collect the configuration that your application needs from the customer. Values are available to your app as text templates or input values to Helm Charts.
+- Make more customizations to the fields that appear on the **Config** page in the admin console screen. This screen is used to collect the configuration that your application needs from the customer. Values are available to your app as text templates or input values to Helm Charts.

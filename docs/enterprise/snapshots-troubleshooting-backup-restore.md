@@ -1,7 +1,6 @@
 # Troubleshooting Backup and Restore
 
-When a snapshot fails, a support bundle will be collected and stored automatically.
-Because this is a point-in-time collection of all logs and system state at the time of the failed snapshot, this is a good place to view the logs.
+When a snapshot fails, a support bundle will be collected and stored automatically. Because this is a point-in-time collection of all logs and system state at the time of the failed snapshot, this is a good place to view the logs.
 
 ## Velero is Crashing
 
@@ -95,17 +94,17 @@ example-nginx-77b878b4f-zwv2h         3/3     Running     0          4m15s
 
 #### Cause
 
-We have seen this issue with Velero version 1.5.4 and opened up this issue with the project to inspect the root cause: https://github.com/vmware-tanzu/velero/issues/3686. However we have not experienced this using Velero 1.6.0 or greater.
+We have seen this issue with Velero version 1.5.4 and opened up this issue with the project to inspect the root cause: https://github.com/vmware-tanzu/velero/issues/3686. However we have not experienced this using Velero 1.6.0 or later.
 
 #### Solution
 
-Upgrade Velero to 1.9.0. You can upgrade using the Replicated Kubernetes installer. Or, to follow the Velero upgrade instructions, see [Upgrading to Velero 1.9](https://velero.io/docs/v1.9/upgrade-to-1.9/) in the Velero documentation.
+Upgrade Velero to 1.9.0. You can upgrade using Replicated kURL. Or, to follow the Velero upgrade instructions, see [Upgrading to Velero 1.9](https://velero.io/docs/v1.9/upgrade-to-1.9/) in the Velero documentation.
 
 ### Partial Snapshot Restore Finishes with Warnings
 
 #### Symptom
 
-In the Replicated admin console, when the partial snapshot restore completes, you see warnings indicating that Endpoint resources were not restored:
+In the admin console, when the partial snapshot restore completes, you see warnings indicating that Endpoint resources were not restored:
 
 ![Snapshot Troubleshoot Restore Warnings](/images/snapshot-troubleshoot-restore-warnings.png)
 

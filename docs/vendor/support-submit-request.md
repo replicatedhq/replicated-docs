@@ -4,7 +4,7 @@ You can submit a support request and a support bundle using the Replicated vendo
 
 :::note
 
-If your customer cannot generate a support bundle using the admin console and needs an alternative method, see [Generating Support Bundles](/enterprise/troubleshooting-an-app).
+If your customer cannot generate a support bundle using the Replicated admin console and needs an alternative method, see [Generating Support Bundles](/enterprise/troubleshooting-an-app).
 :::
 
 ### Prerequisites

@@ -1,0 +1,45 @@
+import InstallPlugin from "../partials/support-bundles/_install-plugin.mdx"
+import GenerateBundle from "../partials/support-bundles/_generate-bundle.mdx"
+import GenerateBundleAdminConsole from "../partials/support-bundles/_generate-bundle-admin-console.mdx"
+import GenerateBundleCliAdminConsole from "../partials/support-bundles/_generate-bundle-cli-admin-console.mdx"
+import GenerateBundleHost from "../partials/support-bundles/_generate-bundle-host.mdx"
+import GenerateBundleDefaultKots from "../partials/support-bundles/_generate-bundle-default-kots.mdx"
+
+
+# Generating Support Bundles
+
+The Replicated admin console includes a Troubleshoot page where you can generate an analysis and review remediation suggestions for troubleshooting an application. You can download a support bundle to share with your vendor.
+
+Alternatively, you can generate a support bundle using the support-bundle CLI. For embedded clusters, you can also generate a host support bundle.
+
+## Generate a Support Bundle using the Admin Console
+
+<GenerateBundleAdminConsole/>
+
+## Generating a Support Bundle using the CLI
+
+You can generate a support bundle using the support-bundle CLI instead of the admin console. For example, the admin console might not be available if you are using a Replicated kURL installer and the installation fails. Or perhaps you need to use a more recent version of the support-bundle plugin than what is embedded in the admin console.
+
+### Prerequisite: Install the Plugin {#plugin}
+
+<InstallPlugin/>
+
+### Generate a Bundle (KOTS v1.94.2 and Later)
+
+:::note
+To generate support bundles on earlier versions of Replicated KOTS, see [Generate a Bundle (KOTS v1.94.1 and Earlier)](#earlier-versions).
+:::
+
+<GenerateBundle/>
+
+### Generate a Bundle (KOTS v1.94.1 and Earlier){#earlier-versions}
+
+<GenerateBundleCliAdminConsole/>
+
+### Generate a Host Support Bundle
+
+<GenerateBundleHost/>
+
+### Generate a Bundle with a Default kots.io File
+
+<GenerateBundleDefaultKots/>

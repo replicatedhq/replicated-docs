@@ -4,7 +4,7 @@ import CheckVersion from "../partials/snapshots/_checkVersion.mdx"
 
 # Configuring Other Storage Destinations
 
-This topic describes installing Velero and configuring storage for Amazon Web Service (AWS), Google Cloud Provide (GCP), Microsoft Azure, and S3-compatible providers.
+This topic describes installing Velero and configuring storage for Amazon Web Service (AWS), Google Cloud Provider (GCP), Microsoft Azure, and S3-compatible providers.
 
 To configure host path or NFS as a storage destination, see [Configuring a Host Path Storage Destination](snapshots-configuring-hostpath) and [Configuring an NFS Storage Destination](snapshots-configuring-nfs).
 
@@ -117,7 +117,7 @@ kubectl kots velero configure-other-s3 \
 
 Replace:
 
-- NAME with the name of the namespace where the admin console is installed and running
+- NAME with the name of the namespace where the Replicated admin console is installed and running
 - ENDPOINT with the s3 endpoint
 - REGION with the region where the bucket exists 
 - BUCKET with the name of the object storage bucket where backups should be stored
@@ -140,7 +140,7 @@ If no Velero installation is detected, instructions are displayed to install Vel
 
 ## Configure S3-Compatible Storage for Air Gapped Environments
 
-> Introduced in the Replicated app manager v1.94.0
+> Introduced in Replicated KOTS v1.94.0
 
 The following S3-compatible object stores are supported for storing backups with Velero:
 

@@ -6,7 +6,7 @@ Alternatively, you can use the Replicated vendor portal user interface for the s
 
 ## Prerequisites
 
-This guide already assumes that you have created a team and an initial application in the vendor portal. For more information, see [How to Package and Distribute a Production Application](/vendor/distributing-workflow). 
+This guide already assumes that you have created a team and an initial application in the vendor portal. For more information, see [How to Create Releases for Your Application](/vendor/distributing-workflow). 
 
 You also need:
 
