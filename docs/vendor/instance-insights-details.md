@@ -136,7 +136,7 @@ The **Instance Information** section displays the following details about the cl
 * For **First Seen**, the timestamp of the first event that the vendor portal generated for the instance. For more information about how the vendor portal generates events, see [About Events](instance-insights-event-data#about-events) in _Event Data_.
 * If detected, the cloud provider and region where the cluster is running. For example, `GCP: us-central1`.
 
-In addition to the details listed above, the **Instance Information** section also displays the following for clusters provisioned by the Replicated Kubernetes installer:
+In addition to the details listed above, the **Instance Information** section also displays the following for embedded clusters provisioned by Replicated kURL:
 * Node operating systems
 * Node operating systems versions
 * Total number of cluster nodes
