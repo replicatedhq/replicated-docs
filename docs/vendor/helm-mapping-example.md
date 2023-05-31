@@ -1,8 +1,8 @@
 # Example: Mapping the Configuration Screen to Helm Values
 
-The Replicated app manager allows you to map the the Replicated admin console configuration screen to the Helm `values.yaml` file. This example shows a possible configuration for the Grafana platform.
+Replicated KOTS allows you to map the values that your users provides through the Replicated admin console configuration screen to your Helm chart `values.yaml` file. This example shows a possible configuration for the Grafana platform.
 
-For more information about customizing the configuration screen, see [Customizing the Configuration Screen](admin-console-customize-config-screen).
+For more information about customizing the configuration screen, see [Creating and Editing Configuration Fields](admin-console-customize-config-screen).
 
 ## Choosing Values
 
