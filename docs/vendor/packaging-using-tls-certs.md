@@ -1,6 +1,6 @@
 # Using TLS Certificates
 
-Replicated KOTS provides default self-signed certificates that renew automatically. For embedded clusters, the self-signed certificate renews 30 days before expiration when you enable the kURL EKCO add-on version 0.7.0 and later.
+Replicated KOTS provides default self-signed certificates that renew automatically. For embedded clusters, the self-signed certificate renews 30 days before expiration when you enable the Replicated kURL EKCO add-on version 0.7.0 and later.
 
 Custom TLS options are supported:
 
@@ -12,7 +12,7 @@ For example, if your application does TLS termination, your deployment would nee
 
 ### Get the TLS Secret
 
-The Kubernetes installer sets up a Kubernetes secret called `kotsadm-tls`. The secret stores the TLS certificate, key, and hostname. Initially, the secret has an annotation set called `acceptAnonymousUploads`. This indicates that a new TLS certificate can be uploaded by the end customer during the deployment process. For more information about deployment, see [About Installing an Application](/enterprise/installing-overview) in the _Enterprise User_ documentation.
+kURL sets up a Kubernetes secret called `kotsadm-tls`. The secret stores the TLS certificate, key, and hostname. Initially, the secret has an annotation set called `acceptAnonymousUploads`. This indicates that a new TLS certificate can be uploaded by the end customer during the deployment process. For more information about deployment, see [About Installing an Application](/enterprise/installing-overview) in the _Enterprise User_ documentation.
 
 Before you can reference the TLS certificate in other resources, you must get the `kotsadm-tls` secret output.
 

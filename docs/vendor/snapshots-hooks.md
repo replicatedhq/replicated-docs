@@ -15,7 +15,7 @@ Some common examples of how to use a hook to create backups are:
 - Restore a database file only if that file exists
 - Perform required setup tasks in a restored Pod before the application containers can start
 
-Additionally, for Kubernetes installer clusters, you must write custom backup and restore hooks to enable back ups for any object-stored data that is not KOTS-specific and does not use persistentVolumeClaims (PVCs). For more information about object-stored data, see [Other Object Stored Data](snapshots-overview#other-object-stored-data) in _Backup and Restore_.
+Additionally, for embedded clusters created by Replicated kURL, you must write custom backup and restore hooks to enable back ups for any object-stored data that is not KOTS-specific and does not use persistentVolumeClaims (PVCs). For more information about object-stored data, see [Other Object Stored Data](snapshots-overview#other-object-stored-data) in _Backup and Restore_.
 
 For more information about backup and restore hooks, see [Backup Hooks](https://velero.io/docs/v1.10/backup-hooks/) and [Restore Hooks](https://velero.io/docs/v1.10/restore-hooks) in the Velero documentation.
 

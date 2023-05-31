@@ -2,7 +2,7 @@
 
 (Deprecated) Runs the rqlite StatefulSet as three replicas for data replication and high availability.
 
-This command is deprecated and will be removed in a future release. The EKCO add-on for the Kubernetes installer now scales up the rqlite StatefulSet automatically when three or more nodes are healthy and the OpenEBS localpv storage class is available. For more information, see [EKCO add-on](https://kurl.sh/docs/add-ons/ekco#kotsadm) in the kURL documentation.
+This command is deprecated and will be removed in a future release. The EKCO add-on for Replicated kURL now scales up the rqlite StatefulSet automatically when three or more nodes are healthy and the OpenEBS localpv storage class is available. For more information, see [EKCO add-on](https://kurl.sh/docs/add-ons/ekco#kotsadm) in the kURL documentation.
 
 ## Usage
 ```bash
