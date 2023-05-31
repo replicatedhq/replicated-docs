@@ -1,38 +1,14 @@
 # Installing the replicated CLI
 
-The replicated CLI is an optional command-line interface that helps vendors package applications using a command-line interface, including the management of releases, channels, customers, and entitlements.
-
-Alternatively, you can use the Replicated vendor portal user interface for the same purposes.
+Vendors can use the replicated CLI to manage their applications with Replicated programmatically, rather than using the Replicated vendor portal.
 
 ## Prerequisites
 
-This guide already assumes that you have created a team and an initial application in the vendor portal. For more information, see [How to Create Releases for Your Application](/vendor/distributing-workflow). 
+Complete the following prerequisites before installing and using the replicated CLI:
 
-You also need:
-
-* [curl](https://curl.haxx.se/) (For running CLI directly on linux/mac)
-* [docker](https://www.docker.com) (For running CLI through docker container)
-
-
-## Configure the Environment
-
-You must set up two environment variables to interact with the [vendor portal](https://vendor.replicated.com): `REPLICATED_APP` and `REPLICATED_API_TOKEN`.
-
-
-* `REPLICATED_APP` should be set to the name of your application, as shown in the URL path at https://vendor.replicated.com/apps. _Note that this is **case sensitive**_
-![Vendor Application Slug](/images/vendor-app-slug.png)
-
-* `REPLICATED_API_TOKEN` should be set to a service account token created at [https://vendor.replicated.com/team/serviceaccounts](https://vendor.replicated.com/team/serviceaccounts), or a user token created in the vendor portal. To create a user token, go to [https://vendor.replicated.com/account-settings](https://vendor.replicated.com/account-settings).
-![Vendor Service Account Token](/images/vendor-service-account-token.png)
-
-Ensure the token has `Read/Write` access or you cannot create new releases.
-After you have the values, set them in your environment.
-
-For Linux or Mac environments:
-```bash
-export REPLICATED_APP=my_kots_app
-export REPLICATED_API_TOKEN=d5cdf814bae01b211a8e891593dc12e1158238d27932d082a32b98706e576216
-```
+* Install [curl](https://curl.haxx.se/) (For running CLI directly on linux/mac)
+* Install [docker](https://www.docker.com) (For running CLI through docker container)
+* To use the replicated CLI, you must have a team and an application in the vendor portal. For more information, see [Creating a Vendor Account](/vendor/vendor-portal-creating-account). 
 
 ## Install the replicated CLI
 
@@ -98,3 +74,23 @@ docker.exe run \
 ```
 
 For simplicity, we will represent usage assuming the CLI has been downloaded and installed to the desktop.
+
+## Set Environment Variables
+
+You must set up two environment variables to interact with the vendor portal through the replicated CLI: `REPLICATED_APP` and `REPLICATED_API_TOKEN`:
+
+  * `REPLICATED_APP` must be set to the name of your application, as shown in the URL path at https://vendor.replicated.com/apps. _Note that the app name is **case sensitive**_.
+  ![Vendor Application Slug](/images/vendor-app-slug.png)
+
+  * `REPLICATED_API_TOKEN` must be set to a service account token created at [https://vendor.replicated.com/team/serviceaccounts](https://vendor.replicated.com/team/serviceaccounts), or a user token created in the vendor portal. To create a user token, go to [https://vendor.replicated.com/account-settings](https://vendor.replicated.com/account-settings).
+  :::note
+  The token must have `Read/Write` access to create new releases.
+  :::
+  ![Vendor Service Account Token](/images/vendor-service-account-token.png)
+
+To set the environment variables in Linux or Mac environments:
+
+```bash
+export REPLICATED_APP=my_kots_app
+export REPLICATED_API_TOKEN=d5cdf814bae01b211a8e891593dc12e1158238d27932d082a32b98706e576216
+```

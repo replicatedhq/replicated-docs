@@ -1,10 +1,11 @@
 # Using the Vendor API v3
 
-The Vendor API v3 is the API to manage applications, releases, customers, licenses, and everything related to an application managed by the Replicated app manager.
+The Vendor API v3 is the API to manage applications, releases, customers, licenses, and everything related to an application managed by the Replicated vendor portal.
 
-The [replicated CLI](replicated-cli-installing) is an implementation of the Vendor API v3, however you can directly use the Replicated Vendor API when it's preferred over the CLI.
+The [replicated CLI](replicated-cli-installing) is an implementation of the Vendor API v3.
 
 ## Types of Available API Tokens
+
 - **Service Accounts:** Independent RBAC Policies, useful for operations that are not tied to a particular user (such as CI/CD or integrations).
 - **User API Tokens:** Tied to a user account so the user inherits the RBAC policy and only exists if the user exists in the team. Any changes to the user's RBAC are applied to all User API Tokens.
 - **Team API Tokens:** Deprecated and unable to be generated. However, you can migrate to Service Accounts instead.

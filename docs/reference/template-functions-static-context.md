@@ -332,7 +332,7 @@ ParseUint returns the unsigned integer value represented by the string with opti
 
 ## TLSCert
 
-**Deprecation Notice**: This function has been superseded in the Replicated app manager v1.26.0 by the sprig crypto functions. For more information, see [Example: Using Variables to Generate TLS Certificates and Keys](template-functions-config-context#tls-cert-example) in _Config Context_. For more information about the sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the sprig documentation.
+**Deprecation Notice**: This function has been superseded in Replicated KOTS v1.26.0 by the sprig crypto functions. For more information, see [Example: Using Variables to Generate TLS Certificates and Keys](template-functions-config-context#tls-cert-example) in _Config Context_. For more information about the sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the sprig documentation.
 
 ```go
 func TLSCert(certName string, cn string, ips []interface{}, alternateDNS []interface{}, daysValid int) string
@@ -353,7 +353,7 @@ repl{{ TLSCert "my_custom_cert" "foo.com" (list "10.0.0.1" "10.0.0.2") (list "ba
 
 ## TLSKey
 
-**Deprecation Notice**: This function has been superseded in the app manager v1.26.0 by the sprig crypto functions. For more information, see [Example: Using Variables to Generate TLS Certificates and Keys](template-functions-config-context#tls-cert-example) in _Config Context_. For more information about the sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the sprig documentation.
+**Deprecation Notice**: This function has been superseded in KOTS v1.26.0 by the sprig crypto functions. For more information, see [Example: Using Variables to Generate TLS Certificates and Keys](template-functions-config-context#tls-cert-example) in _Config Context_. For more information about the sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the sprig documentation.
 
 ```go
 func TLSKey(certName string, cn string, ips []interface{}, alternateDNS []interface{}, daysValid int) string
@@ -367,7 +367,7 @@ repl{{ TLSKey "my_custom_cert" "foo.com" (list "10.0.0.1" "10.0.0.2") (list "bar
 
 ## TLSCACert
 
-**Deprecation Notice**: This function has been superseded in the app manager v1.26.0 by the sprig crypto functions. For more information, see [Example: Using Variables to Generate TLS Certificates and Keys](template-functions-config-context#tls-cert-example) in _Config Context_. For more information about the sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the sprig documentation.
+**Deprecation Notice**: This function has been superseded in KOTS v1.26.0 by the sprig crypto functions. For more information, see [Example: Using Variables to Generate TLS Certificates and Keys](template-functions-config-context#tls-cert-example) in _Config Context_. For more information about the sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the sprig documentation.
 
 
 ```go
@@ -384,7 +384,7 @@ repl{{ TLSCACert "foo.com" 365 }}
 
 ## TLSCertFromCA
 
-**Deprecation Notice**: This function has been superseded in the app manager v1.26.0 by the sprig crypto functions. For more information, see [Example: Using Variables to Generate TLS Certificates and Keys](template-functions-config-context#tls-cert-example) in _Config Context_. For more information about the sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the sprig documentation.
+**Deprecation Notice**: This function has been superseded in KOTS v1.26.0 by the sprig crypto functions. For more information, see [Example: Using Variables to Generate TLS Certificates and Keys](template-functions-config-context#tls-cert-example) in _Config Context_. For more information about the sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the sprig documentation.
 
 ```go
 func TLSCertFromCA(caName string, certName string, cn string, ips []interface{}, alternateDNS []interface{}, daysValid int) string
@@ -397,7 +397,7 @@ repl{{ TLSCertFromCA "foo.com" "my_custom_cert" "bar.com" (list "10.0.0.1" "10.0
 
 ## TLSKeyFromCA
 
-**Deprecation Notice**: This function has been superseded in the app manager v1.26.0 by the sprig crypto functions. For more information, see [Example: Using Variables to Generate TLS Certificates and Keys](template-functions-config-context#tls-cert-example) in _Config Context_. For more information about the sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the sprig documentation.
+**Deprecation Notice**: This function has been superseded in KOTS v1.26.0 by the sprig crypto functions. For more information, see [Example: Using Variables to Generate TLS Certificates and Keys](template-functions-config-context#tls-cert-example) in _Config Context_. For more information about the sprig crypto function, see [Cryptographic and Security Functions](http://masterminds.github.io/sprig/crypto.html) in the sprig documentation.
 
 ```go
 func TLSKeyFromCA(caName string, certName string, cn string, ips []interface{}, alternateDNS []interface{}, daysValid int) string
@@ -461,7 +461,7 @@ repl{{ HTTPSProxy }}
 ```go
 func HTTPProxy() string
 ```
-HTTPProxy returns the address of the proxy that the Replicated admin console is configured to use.
+HTTPProxy returns the address of the proxy that the admin console is configured to use.
 ```yaml
 repl{{ HTTPProxy }}
 ```
@@ -480,7 +480,7 @@ repl{{ NoProxy }}
 func KotsVersion() string
 ```
 
-KotsVersion returns the current version of the app manager. **Note**: The app manager is based on the KOTS open source project. The current KOTS version is the same as the current app manager version.
+KotsVersion returns the current version of KOTS.
 
 ```yaml
 repl{{ KotsVersion }}
