@@ -527,6 +527,7 @@ const sidebars = {
     },
     // DEVELOPER TOOLS
     {type: 'html', value: '<h5>Developer tools</h5>', defaultStyle: true},
+    'reference/replicated-sdk-apis',
     {
       type: 'category',
       label: 'replicated CLI',
