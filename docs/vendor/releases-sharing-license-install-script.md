@@ -4,11 +4,11 @@ This topic describes how to share a release with your customers. It includes inf
 
 ## About Sharing Releases
 
-After you promote a release to a channel in the vendor portal, you can share the release with your customers. Your customers require the following assets to install your application for the first time with the Replicated app manager:
+After you promote a release to a channel in the vendor portal, you can share the release with your customers. Your customers require the following assets to install your application for the first time with Replicated KOTS:
 
 * A license file
 * The installation command available in the vendor portal
-* (Air Gap Only) The air gap bundle for the release
+* (Air Gap Only) The `.airgap` bundle for the release
 
 Additionally, to support automated installations with the Replicated kots CLI, you must provide a template of the ConfigValues file for the release. For more information, see [Sharing a ConfigValues File](releases-configvalues).
 
@@ -53,7 +53,7 @@ To enable the air gap entitlement and download the updated license:
 
   ![Airgap Customers](/images/guides/kots/airgap-customers.png)
 
-1. Click **License options > Airgap Download Enabled**, and **Save Changes**. This lets the app manager use the `.airgap` bundle.
+1. Click **License options > Airgap Download Enabled**, and **Save Changes**. This lets KOTS use the `.airgap` bundle.
 
   ![Airgap Download License](/images/guides/kots/airgap-download-license.png)
 
@@ -82,13 +82,13 @@ To get the installation commands:
 
 To support air gap installations, you must share an air gap bundle in addition to the customer license.
 
-For air gap installations on Kubernetes installer provisioned clusters, you must also share the Kubernetes installer air gap bundle. The Kubernetes installer bundle provides the open source components to run the cluster: Docker, Kubernetes, the admin console, Weave, Contour, Rook, Registry and a number of other [add-ons](https://kurl.sh/add-ons).
+For air gap installations in _embedded clusters_ provisioned by Replicated kURL, you must also share the kURL air gap bundle. The kURL bundle provides the open source components to run the cluster: Docker, Kubernetes, the admin console, Weave, Contour, Rook, Registry and a number of other [add-ons](https://kurl.sh/add-ons).
 
-The Kubernetes installer bundle is kept separate from the `.airgap` app bundle for the following reasons:
+The kURL bundle is kept separate from the `.airgap` app bundle for the following reasons:
 
-* The Kubernetes installer bundle can get quite large, so this method lets you update your application with a smaller bundle size.
+* The kURL bundle can get quite large, so this method lets you update your application with a smaller bundle size.
 
-* The release cadence of the `.airgap` bundle is generally higher in comparison to the Kubernetes installer components, which only needs to be updated when the underlying cluster components or add-ons need to be updated.
+* The release cadence of the `.airgap` bundle is generally higher in comparison to the kURL components, which only needs to be updated when the underlying cluster components or add-ons need to be updated.
 
 ### Build and Download the Air Gap Bundle {#air-gap-bundle}
 
@@ -111,13 +111,13 @@ To download the `.airgap` bundle:
 
 1. Click **Download Bundle** to download the `.airgap` bundle. Keep this file on your local laptop to access the Replicated admin console in later steps.
 
-### Download the Kubernetes Installer Bundle {#installer-bundle}
+### Download the kURL Bundle {#installer-bundle}
 
-For installations on clusters created by the Kubernetes installer (embedded clusters), customers must provide a Kubernetes installer air gap bundle in addition to the `.airgap` bundle and license file.
+For embedded cluster installations, customers must provide a kURL air gap bundle in addition to the `.airgap` bundle and license file.
 
-The Kubernetes installer bundle is specific to the channel. Run the following commands to download the Kubernetes installer bundle for the Stable channel or other channels.
+The kURL bundle is specific to the channel. Run the following commands to download the kURL bundle for the Stable channel or other channels.
 
-**Download the Kubernetes installer bundle for the Stable channel**
+**Download the kURL bundle for the Stable channel**
 
 ```shell
 export REPLICATED_APP=YOUR_APP_SLUG
@@ -126,9 +126,9 @@ curl -LS https://k8s.kurl.sh/bundle/$REPLICATED_APP.tar.gz -o $REPLICATED_APP.ta
 
 Replace `YOUR_APP_SLUG` with the application slug. You can find the slug on the Application Settings page in the [vendor portal](https://vendor.replicated.com/apps).
 
-**Download the Kubernetes installer bundle for other channels**
+**Download the kURL bundle for other channels**
 
-To download the Kubernetes installer bundle for channels other than Stable:
+To download the kURL bundle for channels other than Stable:
 
 1. Install the replicated CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
 1. Run the following command to get the air gap URL:

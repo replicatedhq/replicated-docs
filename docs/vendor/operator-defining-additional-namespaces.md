@@ -1,7 +1,7 @@
 # Defining Additional Namespaces
 
 Operators often need to be able to manage resources in multiple namespaces in the cluster.
-When deploying an application to an existing cluster, the Replicated app manager creates a Kubernetes Role and RoleBinding that are limited to only accessing the namespace that the application is being installed into.
+When deploying an application to an existing cluster, Replicated KOTS creates a Kubernetes Role and RoleBinding that are limited to only accessing the namespace that the application is being installed into.
 
 In addition to RBAC policies, clusters running in air gap environments or clusters that are configured to use a local registry also need to ensure that image pull secrets exist in all namespaces that the operator will manage resource in.
 
@@ -34,7 +34,7 @@ An operator can reliably depend on this secret existing in all installs (online 
 
 Some applications need access to dynamically created namespaces or even all namespaces.
 In this case, an application spec can list `"*"` as one of its `addtionalNamespaces` in the Application manifest file.
-When the app manager encounters the wildcard, it will not create any namespaces, but it will ensure that the application image pull secret is copied to all namespaces.
+When KOTS encounters the wildcard, it will not create any namespaces, but it will ensure that the application image pull secret is copied to all namespaces.
 The admin console will run an informer internally to watch namespaces in the cluster, and when a new namespace is created, the secret will automatically be copied to it.
 
 ```yaml
@@ -47,5 +47,5 @@ spec:
     - "*"
 ```
 
-When the wildcard (`"*"`) is listed in `additionalNamespaces`, the app manager will use a ClusterRole and ClusterRoleBinding for the admin console.
+When the wildcard (`"*"`) is listed in `additionalNamespaces`, KOTS will use a ClusterRole and ClusterRoleBinding for the admin console.
 This will ensure that the admin console will continue to have permissions to all newly created namespaces, even after the install has finished.

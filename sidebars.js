@@ -217,7 +217,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Managing App Manager',
+      label: 'Managing KOTS',
       items: [
         'vendor/packaging-kots-versions', 
         'vendor/packaging-rbac', 
