@@ -509,7 +509,7 @@ repl{{ ConfigOptionData "my_file_upload" | YamlEscape }}
 
 ## KubernetesVersion
 
-> Introduced in Replicated app manager v1.92.0
+> Introduced in KOTS v1.92.0
 
 ```go
 func KubernetesVersion() string
@@ -532,7 +532,7 @@ For more complex comparisons, see [Semantic Version Functions](https://mastermin
 
 ## KubernetesMajorVersion
 
-> Introduced in Replicated app manager v1.92.0
+> Introduced in KOTS v1.92.0
 
 ```go
 func KubernetesMajorVersion() string
@@ -553,7 +553,7 @@ This returns `true` if the Kubernetes major version is less than `2`.
 
 ## KubernetesMinorVersion
 
-> Introduced in Replicated app manager v1.92.0
+> Introduced in KOTS v1.92.0
 
 ```go
 func KubernetesMinorVersion() string

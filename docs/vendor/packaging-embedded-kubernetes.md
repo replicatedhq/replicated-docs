@@ -103,7 +103,7 @@ To create a separate Kubernetes installer:
 
     - To use Replicated snapshots, Velero must be installed on the cluster. Replicated recommends that you include the Velero add-on in your Kubernetes installer manifest so that your customers do not have to manually install Velero.
 
-    - You must select storage add-ons based on the app manager requirements and the unique requirements for your application. For more information, see [About Selecting Storage Add-ons](packaging-installer-storage).
+    - You must select storage add-ons based on KOTS requirements and the unique requirements for your application. For more information, see [About Selecting Storage Add-ons](packaging-installer-storage).
 
     For more information about creating a Kubernetes installer and the available add-ons, see [Create An Installer](https://kurl.sh/docs/create-installer/) in the kURL open source documentation.
 

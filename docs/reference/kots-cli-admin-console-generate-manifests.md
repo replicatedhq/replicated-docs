@@ -6,7 +6,7 @@ Running this command will create a directory on the workstation containing the R
 
 `generate-manifests` does not support generating manifests for Red Hat OpenShift clusters or GKE Autopilot clusters if executed without a Kubernetes cluster context.
 
-To upgrade an app manager instance that has ever been on version 1.72.0 or earlier, you must run `generate-manifests` with a Kubernetes cluster context.
+To upgrade a KOTS instance that has ever been on version 1.72.0 or earlier, you must run `generate-manifests` with a Kubernetes cluster context.
 
 ### Usage
 ```bash
