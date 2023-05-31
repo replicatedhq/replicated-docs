@@ -3,9 +3,9 @@
 When distributing an application, it’s helpful to make sure that the person or process performing the installation can easily verify that the application is running.
 Networking and ingress is handled differently in each cluster and this makes it difficult to provide a consistent URL at application packaging time, and even likely requires that the cluster operator creates firewall rules before they can test the application installation.
 
-The Replicated app manager and admin console can provide a port-forward tunnel that will work more consistently to provide an easy way for the cluster operator to open one or more links directly to the application before ingress and firewalls are configured.
+Replicated KOTS can provide a port-forward tunnel that will work more consistently to provide an easy way for the cluster operator to open one or more links directly to the application before ingress and firewalls are configured.
 
-To export a port and a button on the admin console dashboard to the application, a couple of additional steps are necessary.
+To export a port and a button on the Replicated admin console dashboard to the application, a couple of additional steps are necessary.
 
 ## Add a button to the dashboard
 

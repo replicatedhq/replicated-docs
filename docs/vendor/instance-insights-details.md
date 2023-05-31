@@ -132,7 +132,7 @@ The **Instance Information** section displays the following details about the cl
 
 * The Kubernetes distribution for the cluster. For example, GKE or EKS.
 * The version of Kubernetes running in the cluster.
-* The Replicated app manager (KOTS) version installed in the cluster.
+* The KOTS version installed in the cluster.
 * For **First Seen**, the timestamp of the first event that the vendor portal generated for the instance. For more information about how the vendor portal generates events, see [About Events](instance-insights-event-data#about-events) in _Event Data_.
 * If detected, the cloud provider and region where the cluster is running. For example, `GCP: us-central1`.
 

@@ -106,7 +106,7 @@ mariadb:
 
 ## Example: Recursive Merge
 
-The `recursiveMerge` boolean defines how the app manager merges the values and `optionalValues` datasets when the conditional statement in the `when` field is `true`.
+The `recursiveMerge` boolean defines how Replicated KOTS merges the values and `optionalValues` datasets when the conditional statement in the `when` field is `true`.
 
 Then, the admin console uses the values from this merged dataset and from the Helm chart `values.yaml` file when deploying the application.
 

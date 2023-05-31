@@ -12,12 +12,12 @@ Using an external private image registry or the Replicated private registry for 
 
 In addition to the image pull secret, using an external private registry also requires that you add credentials for the registry to the vendor portal so that Replicated can access the image through the Replicated proxy service.
 
-For installations that use the helm CLI rather than the app manager, Replicated cannot automatically inject an image pull secret nor patch the image name to reference the proxy service in the Helm chart for your application, so additional configuration is required.
+For installations that use the helm CLI rather than Replicated KOTS, Replicated cannot automatically inject an image pull secret nor patch the image name to reference the proxy service in the Helm chart for your application, so additional configuration is required.
 
 To use a private registry for helm CLI installations, complete the following procedures:
 1. [Deliver Image Pull Secrets](#pull-secret)
 1. [Reference the Proxy Service](#proxy-service)
-1. [(Optional) Support Both Helm CLI and App Manager Installations](#helm-and-kots)
+1. [(Optional) Support Both Helm CLI and KOTS Installations](#helm-and-kots)
 
 ## Deliver Image Pull Secrets {#pull-secret}
 
@@ -172,15 +172,15 @@ To update the image name to reference the proxy service:
 
 1. Save and promote the release to a development environment to test your changes.
 
-1. To use the same private registry for both helm CLI and app manager installations, continue to [(Optional) Support Both Helm CLI and App Manager Installations](#helm-and-kots) below.
+1. To use the same private registry for both helm CLI and KOTS installations, continue to [(Optional) Support Both Helm CLI and KOTS Installations](#helm-and-kots) below.
 
-## (Optional) Support Both helm CLI and App Manager Installations {#helm-and-kots}
+## (Optional) Support Both helm CLI and KOTS Installations {#helm-and-kots}
 
-As an application vendor, you can support both helm CLI and app manager installations from the same release. For more information, see [About Supporting helm CLI installations](helm-install) in _Supporting helm CLI Installations (Beta)_.
+As an application vendor, you can support both helm CLI and KOTS installations from the same release. For more information, see [About Supporting helm CLI installations](helm-install) in _Supporting helm CLI Installations (Beta)_.
 
-To support both types of installations with your private registry from a single release, you must update the release to add your registry URL as a static value in the HelmChart custom resource. This allows the app manager to automatically patch the image name to reference `proxy.replicated.com`. Helm Install installations ignore this static value, and instead use the `proxy.replicated.com` URL that you added to the `values.yaml` file previously.
+To support both types of installations with your private registry from a single release, you must update the release to add your registry URL as a static value in the HelmChart custom resource. This allows KOTS to automatically patch the image name to reference `proxy.replicated.com`. Helm Install installations ignore this static value, and instead use the `proxy.replicated.com` URL that you added to the `values.yaml` file previously.
 
-To use your private registry in both helm CLI and app manager installations:
+To use your private registry in both helm CLI and KOTS installations:
 
 1. In the release that you want to update, open the HelmChart custom resource manifest file. A HelmChart custom resource manifest file has `kind: HelmChart` and `apiVersion: kots.io/v1beta1`.
 
@@ -223,4 +223,4 @@ To use your private registry in both helm CLI and app manager installations:
        apiImageRepository: quay.io/my-org/api:v1.0.1
    ```
 
-1. Save and promote the release to a development environment to test that you can install with both the helm CLI and the app manager.
+1. Save and promote the release to a development environment to test that you can install with both the helm CLI and KOTS.
