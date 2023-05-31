@@ -1,10 +1,10 @@
 # Referencing Images
 
-The Replicated app manager is responsible for delivering and ensuring that all container images (automatically detected and additionalImages) are pushed to the customer's private, internal registry.
-Additionally, the app manager creates Kustomize patches to rewrite image names and inject image pull secrets to all pods.
+Replicated KOTS is responsible for delivering and ensuring that all container images (automatically detected and additionalImages) are pushed to the customer's private, internal registry.
+Additionally, KOTS creates Kustomize patches to rewrite image names and inject image pull secrets to all pods.
 
-The app manager cannot modify pods that are created at runtime by the Operator.
-To support this in all environments, the Operator code should use app manager functionality to determine the image name and image pull secrets for all pods when they are created.
+KOTS cannot modify pods that are created at runtime by the Operator.
+To support this in all environments, the Operator code should use KOTS functionality to determine the image name and image pull secrets for all pods when they are created.
 
 There are several template functions available to assist with this.
 This may require 2 new environment variables to be added to a manager to read these values.
@@ -62,7 +62,7 @@ env:
 Private, local images will need to reference an image pull secret to be pulled.
 The value of the secret's `.dockerconfigjson` is provided in a template function, and the application can write this pull secret as a new secret to the namespace.
 If the application is deploying the pod to the same namespace as the Operator, the pull secret will already exist in the namespace, and the secret name can be obtained using the [ImagePullSecretName](../reference/template-functions-config-context/#imagepullsecretname) template function.
-The app manager will create this secret automatically, but only in the namespace that the Operator is running in.
+KOTS will create this secret automatically, but only in the namespace that the Operator is running in.
 It's the responsibility of the application developer (the Operator code) to ensure that this secret is present in any namespace that new pods will be deployed to.
 
 This template function returns the base64-encoded, docker auth that can be written directly to a secret, and referenced in the `imagePullSecrets` attribute of the PodSpec.

@@ -1,6 +1,6 @@
-Specifies additional flags to pass to the `helm upgrade` command for charts that use native Helm. These flags are passed in addition to any flags the app manager passes by default. The values specified here take precedence if the app manager already passes the same flag. The `helmUpgradeFlags` attribute can be parsed by template functions. For more information about template functions, see [About template function contexts](template-functions-about).
+Specifies additional flags to pass to the `helm upgrade` command for charts that use native Helm. These flags are passed in addition to any flags Replicated KOTS passes by default. The values specified here take precedence if KOTS already passes the same flag. The `helmUpgradeFlags` attribute can be parsed by template functions. For more information about template functions, see [About template function contexts](template-functions-about).
 
-The app manager uses `helm upgrade` for _all_ deployments of an application, not just upgrades, by specifying the `--install` flag. For non-boolean flags that require an additional argument, such as `--timeout 1200s`, you must use an equal sign (`=`) or specify the additional argument separately in the array. 
+KOTS uses `helm upgrade` for _all_ deployments of an application, not just upgrades, by specifying the `--install` flag. For non-boolean flags that require an additional argument, such as `--timeout 1200s`, you must use an equal sign (`=`) or specify the additional argument separately in the array. 
 
 **Example:**
 

@@ -32,7 +32,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
     <td><code>bool</code></td>
     <td>
       <p>Un-deploys the application by deleting all its resources from the cluster. When <code>--undeploy</code> is set, the <code>--force</code> flag is set automatically.</p>
-      <p><strong>Note:</strong> <code>--undeploy</code> can remove application resources only from the namespace where the app manager is installed and from any namespaces provided in the <a href="custom-resource-application#additionalnamespaces">additionalNamespaces</a> field in the Application custom resource.</p>
+      <p><strong>Note:</strong> <code>--undeploy</code> can remove application resources only from the namespace where KOTS is installed and from any namespaces provided in the <a href="custom-resource-application#additionalnamespaces">additionalNamespaces</a> field in the Application custom resource.</p>
       <p>The following describes how <code>--undeploy</code> removes application resources:</p>
       <ul>
         <li>For applications deployed with <code>kubectl apply</code> (including standalone manifest files and Helm charts deployed with the <a href="/vendor/helm-overview#replicated-helm">Replicated Helm</a> method), <code>--undeploy</code> identifies and removes resources based on a <code>kots.io/app-slug: &lt;app_slug&gt;</code> annotation that is applied to all application resources during deployment. </li>

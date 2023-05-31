@@ -35,7 +35,7 @@ It is unlikely that the license change will prompt any changes to the applicatio
 
 Your customer uses the Replicated admin console to synchronize the licenses on their instances. For online instances, license updates are pulled from the vendor portal when:
 
-- An automatic or manual update check is performed by the Replicated app manager.
+- An automatic or manual update check is performed by Replicated KOTS.
 - A customer selects **Sync license** in the admin console.
 - An app status changes. See [About Instance Reporting](instance-insights-details#about-reporting) in _Instance Details_.
 

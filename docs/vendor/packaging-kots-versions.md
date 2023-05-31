@@ -23,7 +23,7 @@ After updating KOTS to the minimum version or later, users can use the admin con
 
 ## Using Target KOTS Versions
 
->Introduced in app manager v1.62.0.
+>Introduced in KOTS v1.62.0.
 
 Including `targetKotsVersion` in the Application custom resource enforces compatibility checks for new installations. It blocks the installation if a user tries to install a version of KOTS that is later than the target version. For example, this can prevent users from installing a version of KOTS that you have not tested yet.
 
