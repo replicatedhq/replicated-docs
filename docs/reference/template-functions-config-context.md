@@ -193,7 +193,7 @@ A common use case for the `LocalImageName` function is to ensure that a Kubernet
 
 * If there is no private registry configured in the customer's environment and the image does not need to be proxied, return `remoteImageName` without changes.
 
-For more information about the Replicated registry proxy service, see [How KOTS Accesses Private Images](/vendor/packaging-private-images#how-kots-accesses-private-images) in _Connecting to an Image Registry_.
+For more information about the Replicated registry proxy service, see [How KOTS Accesses Private Images](/vendor/private-images-about#how-kots-accesses-private-images) in _About Using an External Registry_.
 
 ## LocalRegistryImagePullSecret
 
@@ -202,7 +202,7 @@ func LocalRegistryImagePullSecret() string
 ```
 
 Returns the base64 encoded local registry image pull secret value.
-This is often needed when an operator is deploying images to a namespace that is not managed by the Replicated app manager.
+This is often needed when an operator is deploying images to a namespace that is not managed by Replicated KOTS.
 Image pull secrets must be present in the namespace of the pod.
 
 ```yaml
@@ -274,7 +274,9 @@ Then, you can access the result using the [`ConfigOption`](#configoption) functi
 
 The following Config custom resource example demonstrates how to generate a certificate authority (CA), a certificate, and a key using [Sprig](http://masterminds.github.io/sprig/) functions. It also shows how to use a hidden `tls_json` configuration field that contains all the generated values in JSON format, and then reference the `tls_json` field in other configuration fields.
 
-**Warning**: Default values are treated as ephemeral. The following certificate chain is recalculated each time the application configuration is modified. Be sure that your application can handle updating these parameters dynamically.
+:::important
+Default values are treated as ephemeral. The following certificate chain is recalculated each time the application configuration is modified. Be sure that your application can handle updating these parameters dynamically.
+:::
 
 ```yaml
 apiVersion: kots.io/v1beta1

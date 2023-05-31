@@ -135,7 +135,7 @@ You can also schedule the job to operate at fixed intervals, starting at the tim
 @every DURATION
 ```
 
-Replace `DURATION` with a string that is accepted by time.ParseDuration, with the exception of seconds. Seconds are not supported by the app manager. For more information about duration strings, see [time.ParseDuration](http://golang.org/pkg/time/#ParseDuration) in the Go Time documentation.
+Replace `DURATION` with a string that is accepted by time.ParseDuration, with the exception of seconds. Seconds are not supported by Replicated KOTS. For more information about duration strings, see [time.ParseDuration](http://golang.org/pkg/time/#ParseDuration) in the Go Time documentation.
 
 As with standard cron expressions, the interval does not include the job runtime. For example, if a job is scheduled to run every 10 minutes, and the job takes 4 minutes to run, there are 6 minutes of idle time between each run.
 

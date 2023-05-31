@@ -2,11 +2,9 @@
 
 ## kURL Context Functions
 
-For applications installed on clusters created by the Replicated Kubernetes installer, you can use template functions to show all options the cluster was installed with.
+For applications installed on _embedded clusters_ created by Replicated kURL, you can use template functions to show all options the cluster was installed with.
 
 The creation of the Installer custom resource will reflect both install script changes made by posting YAML to the Kubernetes installer API and changes made with -s flags at runtime. These functions are not available on the config page.
-
-The Kubernetes installer is based on the open source kURL project, which is maintained by Replicated. For more information about kURL, see [Introduction to kURL](https://kurl.sh/docs/introduction/) in the kURL documentation.
 
 KurlBool, KurlInt, KurlString, and KurlOption all take a string yamlPath as a param.
 This path is the path from the manifest file, and is delineated between addon and subfield by a period ’.’.

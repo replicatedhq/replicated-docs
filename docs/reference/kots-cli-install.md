@@ -1,7 +1,7 @@
 # install
 
-Installs the application and the admin console directly to a cluster.
-The `kots install` command pulls Kubernetes manifests from the remote upstream, deploys the manifests to the specified cluster, installs the Replicated admin console, and sets up port forwarding to make the admin console accessible on port 8800.
+Installs the application and the Replicated admin console directly to a cluster.
+The `kots install` command pulls Kubernetes manifests from the remote upstream, deploys the manifests to the specified cluster, installs the admin console, and sets up port forwarding to make the admin console accessible on port 8800.
 Alternatively, you can specify the `--port` flag to override the default port.
 
 ### Usage

@@ -1,6 +1,6 @@
 # set
 
-Configure kots resources.
+Configure KOTS resources.
 
 ### Usage
 

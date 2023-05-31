@@ -1,6 +1,6 @@
 # velero ensure-permissions
 
-Ensures the necessary permissions that enables the Admin Console to access Velero.
+Ensures the necessary permissions that enables Replicated KOTS to access Velero.
 
 ### Usage
 

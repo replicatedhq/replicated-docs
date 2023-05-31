@@ -1,7 +1,7 @@
 # admin-console garbage-collect-images
 
 Starts image garbage collection.
-The admin console must be running and an application must be installed in order to use this command.
+The Replicated admin console must be running and an application must be installed in order to use this command.
 
 ### Usage
 ```bash

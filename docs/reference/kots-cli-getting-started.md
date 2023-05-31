@@ -1,14 +1,14 @@
 # Installing the kots CLI
 
-The Replicated app manager uses the kots CLI, which is a `kubectl`-based plugin, to help manage Kubernetes Off-The-Shelf software. This plugin runs locally on any computer that has `kubectl` installed.
+Users can interact with the Replicated kots CLI to install and manage applications with Replicated KOTS. The kots CLI is a kubectl plugin that runs locally on any computer.
 
 
 ## Prerequisite
 
-Before you install the kots CLI, install [kubectl](https://kubernetes.io/docs/tasks/tools/) on your machine.
+Install kubectl, the Kubernetes command-line tool. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
 
 :::note
-If you are using an embedded Kubernetes installer-created cluster, both tools are already pre-installed. For more information, see [Online Installation with the Kubernetes Installer](/enterprise/installing-embedded-cluster) and [Air Gap Installation with the Kubernetes Installer](/enterprise/installing-embedded-airgapped).
+If you are using an embedded cluster created with Replicated kURL, kURL already installed both kubectl and the kots CLI when provisioning the cluster. For more information, see [Online Installation with kURL](/enterprise/installing-embedded-cluster) and [Air Gap Installation with kURL](/enterprise/installing-embedded-airgapped).
 :::
 
 ## Install
