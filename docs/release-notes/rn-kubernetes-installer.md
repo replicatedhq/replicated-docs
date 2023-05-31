@@ -2,7 +2,7 @@
 toc_max_heading_level: 2
 ---
 
-# Kubernetes Installer Release Notes
+# Kubernetes Installer (kURL) Release Notes
 
 ## v2023.05.30-0
 

@@ -4,7 +4,7 @@ toc_max_heading_level: 2
 
 import KubernetesCompatibility from "../partials/install/_kubernetes-compatibility.mdx"
 
-# App Manager Release Notes
+# App Manager (KOTS) Release Notes
 
 ## Kubernetes Compatibility
 
