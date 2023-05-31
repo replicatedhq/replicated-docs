@@ -10,7 +10,7 @@ To export a port and a button on the Replicated admin console dashboard to the a
 ## Add a button to the dashboard
 
 It’s recommended that every application include an application custom resource as defined by [Kubernetes SIG Apps](https://github.com/kubernetes-sigs/application).
-KOTS this as metadata and will not require or use an in-cluster controller to handle this custom resource.
+KOTS uses this as metadata and will not require or use an in-cluster controller to handle this custom resource.
 An application that follows best practices will never require cluster admin privileges or any cluster-wide components to be installed.
 
 The Application custom resource includes many fields, but the one that we are going to examine in this document is the links:
