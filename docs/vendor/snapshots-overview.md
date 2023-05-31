@@ -6,27 +6,27 @@ This topic describes how vendors enable the backup and restore feature, the type
 
 ## About Backup and Restore
 
-As a vendor, you can enable Replicated snapshots to support backup and restore for your enterprise users.
+As a vendor, when you distribute your application with Replicated KOTS you can enable Replicated snapshots to support backup and restore for your enterprise users.
 
 Snapshots uses the Velero open source project as the backend to back up Kubernetes manifests and persistent volumes. Velero is a mature, fully-featured application. For more information, see the [Velero documentation](https://velero.io/docs/).
 
-In addition to the default functionality that Velero provides, the Replicated app manager exposes hooks that let you inject scripts that can execute both before and after a backup, and before and after a restore. For more information, see [Configuring Backup and Restore Hooks](snapshots-hooks).
+In addition to the default functionality that Velero provides, KOTS exposes hooks that let you inject scripts that can execute both before and after a backup, and before and after a restore. For more information, see [Configuring Backup and Restore Hooks](snapshots-hooks).
 
-The app manager provides a detailed interface and the kots CLI so that your users can fully manage the backup and restore process. For more information, see [Understanding Backup and Restore for Enterprise Users](#how-users).
+KOTS provides the Replicated admin console and the Replicated kots CLI so that your users can fully manage the backup and restore process. For more information, see [Understanding Backup and Restore for Enterprise Users](#how-users).
 
 ## What Data is Backed Up
 
-Full backups include the admin console and all application data, including KOTS-specific object-stored data. For Kubernetes installer clusters (embedded clusters), this also backs up the Docker registry, which is required for air gapped installations.
+Full backups include the admin console and all application data, including KOTS-specific object-stored data. For Replicated kURL clusters (embedded clusters), this also backs up the Docker registry, which is required for air gapped installations.
 
 ### Other Object-Stored Data
 
-For Kubernetes installer clusters, you might be using object-stored data that is not specific to the KOTS add-on. 
+For embedded clusters, you might be using object-stored data that is not specific to the kURL KOTS add-on. 
 
 For object-stored data that is not KOTS-specific and does not use persistentVolumeClaims (PVCs), you must write custom backup and restore hooks to enable back ups for that object-stored data. For example, Rook and Ceph do not use PVCs and so require custom backup and restore hooks. For more information about writing custom hooks, see [Configuring Backup and Restore Hooks](snapshots-hooks).
 
 ### Pod Volume Data
 
-Replicated only supports the restic backup program for pod volume data.
+Replicated supports only the restic backup program for pod volume data.
 
 By default, Velero requires that you opt-in to have pod volumes backed up. In the Backup resource that you configure to enable snapshots, you must annotate each specific volume that you want to back up. For more information about including and excluding pod volumes, see [Configuring Backups](snapshots-configuring-backups). 
 

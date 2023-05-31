@@ -6,9 +6,9 @@ This topic describes the application instance data fields that the Replicated ve
 
 ## How the Vendor Portal Collects Instance Data {#about-reporting}
 
-For application instances installed in online customer environments, the Replicated app manager periodically sends a small amount of instance data to the vendor portal, including properties such as the current version and status of the instance.
+For application instances installed in online customer environments, Replicated KOTS periodically sends a small amount of instance data to the vendor portal, including properties such as the current version and status of the instance.
 
-The app manager sends this instance data to the vendor portal when any of the following _check-ins_ occur:
+KOTS sends this instance data to the vendor portal when any of the following _check-ins_ occur:
 
 <Checkins/>
 
@@ -17,9 +17,9 @@ The primary purpose of this instance data is to help the cloud-hosted update ser
 For a full overview of what data might be included, see the [Replicated Data Transmission Policy](https://docs.replicated.com/vendor/policies-data-transmission).
 ## How the Vendor Portal Generates Events
 
-When the vendor portal receives instance data from the app manager, it evaluates each data field to determine if there was a change in its value. For each field that changes in value, the vendor portal creates an _event_ to record the change. For example, a change from `ready` to `degraded` in the `appStatus` data field generates an event in the vendor portal.
+When the vendor portal receives instance data from KOTS, it evaluates each data field to determine if there was a change in its value. For each field that changes in value, the vendor portal creates an _event_ to record the change. For example, a change from `ready` to `degraded` in the `appStatus` data field generates an event in the vendor portal.
 
-In addition to creating events for changes in data fields sent by the app manager, the vendor portal also generates events for changes in the value of a computed metric. For example, the vendor portal computes a `numberVersionsBehind` metric that tracks the number of versions behind the latest available version for the instance. When the instance checks for updates and the vendor portal identifies a new version that is available to the instance, then the vendor portal generates an event to indicate the change in the value of the `numberVersionsBehind` metric. The vendor portal updates the values of computed metrics each time the app manager sends instance data.
+In addition to creating events for changes in data fields sent by KOTS, the vendor portal also generates events for changes in the value of a computed metric. For example, the vendor portal computes a `numberVersionsBehind` metric that tracks the number of versions behind the latest available version for the instance. When the instance checks for updates and the vendor portal identifies a new version that is available to the instance, then the vendor portal generates an event to indicate the change in the value of the `numberVersionsBehind` metric. The vendor portal updates the values of computed metrics each time KOTS sends instance data.
 
 Each event that the vendor portal generates for application instances has the following fields:
 
@@ -39,10 +39,10 @@ The vendor portal has the following limitations for reporting instance data and 
 * **Active instances only**: Instance data is available only for active application instances. An instance is considered inactive when its most recent check-in was more than two weeks ago. An instance can become inactive if it is decommissioned, stops checking for updates, or otherwise stops reporting.
 
    The vendor portal continues to display data for an inactive instance from its most-recently seen state. This means that data for an inactive instance might continue to show a Ready status after the instance becomes inactive. Replicated recommends that you use the timestamp in the **Last Check-in** field to understand if an instance might have become inactive, causing its data to be out-of-date.
-* **Instance data freshness**: The rate at which data is updated in the vendor portal varies depends on how often the vendor portal receives instance data from the app manager. The vendor portal receives instance data when any of the following occur:
+* **Instance data freshness**: The rate at which data is updated in the vendor portal varies depends on how often the vendor portal receives instance data from KOTS. The vendor portal receives instance data when any of the following occur:
   <Checkins/>
-* **Event timestamps**: The timestamp of events displayed on the **Instances details** page is the timestamp when the Replicated Vendor API received the instance data from the app manager. The timestamp of events does not necessarily reflect the timestamp of when the event occurred.
-* **Caching for Kubernetes installer cluster data**: For clusters created with the Replicated Kubernetes installer, the app manager stores the counts of total nodes and ready nodes in a cache for five minutes. If the app manager sends instance data to the vendor portal within the five minute window, then the reported data for total nodes and ready nodes reflects the data in the cache. This means that events displayed on the **Instances details** page for the total nodes and ready nodes can show values that differ from the current values of these fields.  
+* **Event timestamps**: The timestamp of events displayed on the **Instances details** page is the timestamp when the Replicated Vendor API received the instance data from KOTS. The timestamp of events does not necessarily reflect the timestamp of when the event occurred.
+* **Caching for kURL cluster data**: For clusters created with Replicated kURL (embedded clusters), KOTS stores the counts of total nodes and ready nodes in a cache for five minutes. If KOTS sends instance data to the vendor portal within the five minute window, then the reported data for total nodes and ready nodes reflects the data in the cache. This means that events displayed on the **Instances details** page for the total nodes and ready nodes can show values that differ from the current values of these fields.  
 ## Types of Events
 
 This section describes each type of event that the vendor portal generates for active application instances. Events in the vendor portal are grouped into the following categories:
@@ -73,7 +73,7 @@ The tables in this section include the following details about each event type:
     <td><code>appStatus</code></td>
     <td>
       <p>A string that represents the status of the application.</p>
-      <p>Possible values: Ready, Updating, Degraded, Unavailable, Missing. For more information about how the app manager determines <code>appStatus</code>, see <a href="/enterprise/status-viewing-details#resource-statuses">Resource Statuses</a> in <em>Viewing Status Details</em>.</p>
+      <p>Possible values: Ready, Updating, Degraded, Unavailable, Missing. For more information about how KOTS determines <code>appStatus</code>, see <a href="/enterprise/status-viewing-details#resource-statuses">Resource Statuses</a> in <em>Viewing Status Details</em>.</p>
     </td>
     <td>string</td>
     <td>App Status</td>
@@ -104,11 +104,11 @@ The tables in this section include the following details about each event type:
   <tr>
     <td><code>isKurl</code></td>
     <td>
-      <p>Indicates if the cluster was provisioned by the Replicated Kubernetes installer.</p>
+      <p>Indicates if the cluster was provisioned by kURL.</p>
       <p>Possible values:</p>
       <ul>
-        <li><code>kURL</code>: The cluster is provisioned by the Kubernetes installer.</li>
-        <li><code>Existing</code>: The cluster is <em>not</em> provisioned by the Kubernetes installer.</li>
+        <li><code>kURL</code>: The cluster is provisioned by kURL.</li>
+        <li><code>Existing</code>: The cluster is <em>not</em> provisioned by kURL.</li>
       </ul>
       <p>See <a href="packaging-embedded-kubernetes">Creating a Kubernetes Installer</a>.</p>
     </td>
@@ -139,22 +139,22 @@ The tables in this section include the following details about each event type:
   <tr>
     <td><code>kurlNodeCountTotal</code></td>
     <td><p>Total number of nodes in the cluster.</p>
-    <p><strong>Note:</strong> Applies only to clusters provisioned by the Kubernetes installer.</p></td>
+    <p><strong>Note:</strong> Applies only to clusters provisioned by kURL.</p></td>
     <td>number</td>
     <td>kURL Nodes Total</td>
   </tr>
   <tr>
     <td><code>kurlNodeCountReady</code></td>
     <td><p>Number of nodes in the cluster that are in a healthy state and ready to run Pods.</p>
-    <p><strong>Note:</strong> Applies only to clusters provisioned by the Kubernetes installer.</p>
+    <p><strong>Note:</strong> Applies only to clusters provisioned by kURL.</p>
     </td>
     <td>number</td>
     <td>kURL Nodes Ready</td>
   </tr>
   <tr>
     <td><code>kurlInstallerSpecID</code></td>
-    <td><p>The ID of the Kubernetes installer specification that provisioned the cluster. An installer specification is a manifest file that has <code>apiVersion: cluster.kurl.sh/v1beta1</code> and <code>kind: Installer</code>. A <code>kurlInstallerSpecID</code> event indicates that a new Installer specification was added. See <a href="packaging-embedded-kubernetes">Creating a Kubernetes Installer</a>.</p>
-    <p><strong>Note:</strong> Applies only to clusters provisioned by the Kubernetes installer.</p>
+    <td><p>The ID of the Kubernetes installer specification that kURL used to provision the cluster. An installer specification is a manifest file that has <code>apiVersion: cluster.kurl.sh/v1beta1</code> and <code>kind: Installer</code>. A <code>kurlInstallerSpecID</code> event indicates that a new Installer specification was added. See <a href="packaging-embedded-kubernetes">Creating a Kubernetes Installer</a>.</p>
+    <p><strong>Note:</strong> Applies only to clusters provisioned by kURL.</p>
     </td>
     <td>string</td>
     <td>New kURL Installer</td>
@@ -192,7 +192,7 @@ The tables in this section include the following details about each event type:
     </td>
     <td></td>
     <td></td>
-  </tr>  
+  </tr>
 </table>
 
 ### KOTS Status Events {#kots}
@@ -206,7 +206,7 @@ The tables in this section include the following details about each event type:
   </tr>
   <tr>
     <td><code>kotsVersion</code></td>
-    <td>The version of the Replicated app manager that the instance is running. The app manager version is displayed as a Semantic Versioning compliant string.</td>
+    <td>The version of KOTS that the instance is running. KOTS version is displayed as a Semantic Versioning compliant string.</td>
     <td>string</td>
     <td>KOTS Version</td>
   </tr> 
@@ -225,7 +225,7 @@ The tables in this section include the following details about each event type:
     <td><code>numberVersionsBehind</code></td>
     <td>
       <p>The number of versions between the version that the instance is currently running and the latest version available on the channel.</p>
-      <p>The <code>numberVersionsBehind</code> metric is computed by the vendor portal each time the app manager sends instance data.</p>
+      <p>The <code>numberVersionsBehind</code> metric is computed by the vendor portal each time KOTS sends instance data.</p>
     </td>
     <td>number</td>
     <td>Versions Behind</td>
