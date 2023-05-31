@@ -1,4 +1,4 @@
-# Updating TLS Certificates on an Embedded Cluster
+# Updating TLS Certificates on Embedded Clusters
 
 For embedded clusters, the default Replicated KOTS self-signed certificate automatically renews 30 days before the expiration date.
 

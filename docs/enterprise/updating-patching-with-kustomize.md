@@ -58,7 +58,7 @@ The following table describes the `base` directory and whether custom changes pe
     <tr>
       <td><code>base</code></td>
       <td>No</td>
-      <td><p>After the KOTS processes and renders the <code>upstream</code>, it puts those files in the <code>base</code> directory.</p><p>Only the deployable application files, such as files deployable with <code>kubectl apply</code>, are placed here.</p><p>Any non-deployable manifests, such as template functions, preflight checks, and configuration options, are removed.</p></td>
+      <td><p>After KOTS processes and renders the <code>upstream</code>, it puts those files in the <code>base</code> directory.</p><p>Only the deployable application files, such as files deployable with <code>kubectl apply</code>, are placed here.</p><p>Any non-deployable manifests, such as template functions, preflight checks, and configuration options, are removed.</p></td>
     </tr>
 </table>
 

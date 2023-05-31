@@ -1,6 +1,6 @@
 # Consuming Prometheus Metrics Externally
 
-This topic describes how to consume Prometheus metrics in embedded clusters, provisioned by Replicated kURL, from a monitoring service that is outside the cluster.
+This topic describes how to consume Prometheus metrics in _embedded clusters_ created by Replicated kURL from a monitoring service that is outside the cluster.
 
 ## About the Prometheus NodePort Service
 
