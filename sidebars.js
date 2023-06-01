@@ -165,13 +165,6 @@ const sidebars = {
         'vendor/admin-console-prometheus-monitoring',
       ],
     },
-    // {
-    //   type: 'category',
-    //   label: 'Custom Domains',
-    //   items: [
-        // 'vendor/custom-domains',
-    //   ]
-    // },
     {
         type: 'category',
         label: 'Configuration Screen',
