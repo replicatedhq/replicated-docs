@@ -4,7 +4,7 @@ import Limitations from "../partials/custom-domains/_limitations.mdx"
 
 # Using Custom Domains for the Replicated Registry and Proxy (Beta)
 
-This topic describes how to configure custom domains to alias the Replicated private registry and Replicated proxy service.
+This topic describes how to add and use custom domains to alias the Replicated private registry and Replicated proxy service.
 
 ## About Custom Domains
 
@@ -54,7 +54,7 @@ To configure a custom domain for one of these services:
      Replicated recommends that you do _not_ set a domain as the default until you are ready for it to be used by customers. To test a domain before you set it as the default, you can first assign the domain to a release channel used for development.
      :::
 
-   * To add the new custom domain without setting it as the default, click **Not now**.  
+   * To make the new custom domain active without setting it as the default, click **Not now**.  
 
    For more information about the options for using custom domains, see [Use a Custom Domain](#use) below. 
 
