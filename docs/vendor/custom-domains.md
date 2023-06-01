@@ -1,8 +1,9 @@
 import CustomDomainsAbout from "../partials/custom-domains/_custom-domains-about.mdx"
 import UseCustomDomain from "../partials/custom-domains/_use-custom-domain.mdx"
 import Limitations from "../partials/custom-domains/_limitations.mdx"
+import Wizard from "../partials/custom-domains/_wizard.mdx"
 
-# Using Custom Domains for the Replicated Registry and Proxy (Beta)
+# Using Custom Domains for the Replicated Registry and Proxy Service
 
 This topic describes how to add and use custom domains to alias the Replicated private registry and Replicated proxy service.
 
@@ -10,55 +11,19 @@ This topic describes how to add and use custom domains to alias the Replicated p
 
 <CustomDomainsAbout/>
 
-By default, the Replicated private registry uses the domain `registry.replicated.com` and the proxy service uses the domain `proxy.replicated.com`. You can add one or more custom domains for the Replicated registry and proxy service.
+By default, the Replicated private registry uses the domain `registry.replicated.com` and the proxy service uses the domain `proxy.replicated.com`. You can add custom domains so that customer-facing URLs for images and Helm charts pushed to Replicated private registry, and images proxied from external private registries, reflect your company's brand.
 
 ## Limitations
 
 <Limitations/>
 
-## Add a Custom Registry or Proxy Domain
+## Configure a Custom Registry or Proxy Domain
 
-You can add custom domains for the Replicated private registry and the Replicated proxy service.
+To add and configure a custom domain for the Replicated private registry or proxy service:
 
-To configure a custom domain for one of these services:
+<Wizard/>
 
-1. Log in to the [vendor portal](https://vendor.replicated.com) and go to **Custom Domains**.
-
-  ****CHANGE SCREENSHOT****
-  <img src="/images/custom-domains-page.png" alt="Custom registry domains options in the vendor portal" width="600"/>
-
-  [View a larger image](/images/custom-domains-page.png)
-
-1. Under **Custom domains for the Replicated registry** or **Custom domains for the proxy service**, click **Add your first custom domain** for your first domain, or click **Add new domain** for additional domains.
-
-  The **Configure a custom domain** wizard opens for the registry type you chose.
-
-  <img src="/images/custom-domains-configure.png" alt="Configure custom domains wizard in the vendor portal" width="600"/>
-
-1. For **Domain**, enter the custom domain to use for images pushed to the Replicated registry or to proxy using the proxy service. Click **Save & continue**.
-
-1. For **Create CNAME**, copy the text string and use it to create a CNAME record in your DNS account. Click **Continue**.
-
-1. For **Verify ownership**, copy the text string and use it to create a TXT record in your DNS account. Click **Validate & continue**.
-
-  Your changes can take up to 24 hours to propagate.
-
-1. For **TLS cert creation verification**, copy the text string and use it to create a TXT record in your DNS account. Click **Validate & continue**.
-
-    Your changes can take up to 24 hours to propagate.
-
-1. For **Use domain**, do one of the following:
-   * To set the new domain as the default, click **Yes, set as default**.
-
-     :::note
-     Replicated recommends that you do _not_ set a domain as the default until you are ready for it to be used by customers. To test a domain before you set it as the default, you can first assign the domain to a release channel used for development.
-     :::
-
-   * To make the new custom domain active without setting it as the default, click **Not now**.  
-
-   For more information about the options for using custom domains, see [Use a Custom Domain](#use) below. 
-
-## Use a Custom Domain {#use}
+## Use a Custom Domain for the Replicated Registry or Proxy {#use}
 
 <UseCustomDomain/>
 
