@@ -1,10 +1,20 @@
-# Replicated SDK APIs
+# Replicated SDK API (Beta)
 
-The Replicated SDK provides APIs that you can use to embed Replicated functionality and application information into your application.
+:::note
+The Replicated SDK is Beta and is not recommended for production use.
+:::
 
 ## Access the Replicated SDK API
 
+The Replicated SDK provides an API that you can use to embed Replicated functionality and application information into your application.
+
 Access the Replicated SDK API at `replicated:3000`.
+
+Example:
+
+```
+curl replicated:3000/api/v1/license/info
+```
 
 To verify the location of the Replicated SDK API service, run `kubectl get service` and look for the appropriate service.
 
