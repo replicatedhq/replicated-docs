@@ -1,0 +1,30 @@
+After you add one or more custom domains to the vendor portal, you can use a custom domain by setting it as the default or by assigning it on an individual release channel.
+
+### Set a Default Domain
+
+When you set a registry or proxy custom domain as the default, it is used by default for all new releases promoted to any channel that does not . Setting a default is useful for ensuring that the same domain is used across all channels.
+
+:::note
+Setting a new default domain default does _not_ affect any channels where you previously selected a custom domain override.
+:::
+
+To set a custom domain as the default:
+
+1. In the vendor portal, go to **Custom Domains**.
+
+1. Next to the target domain, click **Set as default**.
+
+1. In the confirmation dialog that opens, click **Yes, set as default**.
+
+### Assign a Domain to a Channel {#channel-domain}
+
+You can assign a domain to an individual channel by editing the channel settings. When you assign a domain to a channel, the channel always uses the selected domain rather than any domain that is set as the default. Assigning a domain to a release channel is useful when:
+
+* You need to override a default domain for a specific channel, such as if you need to use a different domain for your Beta and Stable channels.
+* You need to test a domain in a development environment before you set the domain as the default.
+
+To assign a custom domain to a channel:
+
+1. In the vendor portal, go to **Channels**, and click the settings icon for the target channel.
+
+1. Under **Custom domain overrides**, in the drop-down for the target Replicated endpoint, select the domain to use for the channel. For more information about channel settings, see [Channel Settings](releases-about-channels#channel-settings) in _About Channels_.

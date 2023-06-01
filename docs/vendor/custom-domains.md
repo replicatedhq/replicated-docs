@@ -1,4 +1,6 @@
 import CustomDomainsAbout from "../partials/custom-domains/_custom-domains-about.mdx"
+import UseCustomDomain from "../partials/custom-domains/_use-custom-domain.mdx"
+import Limitations from "../partials/custom-domains/_limitations.mdx"
 
 # Using Custom Domains for the Replicated Registry and Proxy (Beta)
 
@@ -12,11 +14,7 @@ By default, the Replicated private registry uses the domain `registry.replicated
 
 ## Limitations
 
-Using custom domains has the following limitations:
-
-- A single custom domain cannot be used for multiple endpoints. For example, a single domain can map to `registry.replicated.com` for any number of applications, but cannot map to both `registry.replicated.com` and `proxy.replicated.com`, even if the applications are different.
-
-- Custom domains cannot be used to alias replicated.app (release manifests), api.replicated.com (platform market API), or other services.
+<Limitations/>
 
 ## Add a Custom Registry or Proxy Domain
 
@@ -24,14 +22,14 @@ You can add custom domains for the Replicated private registry and the Replicate
 
 To configure a custom domain for one of these services:
 
-1. Log in to the [vendor portal](https://vendor.replicated.com), select the target application, and click **Custom Domains**.
+1. Log in to the [vendor portal](https://vendor.replicated.com) and go to **Custom Domains**.
 
   ****CHANGE SCREENSHOT****
   <img src="/images/custom-domains-page.png" alt="Custom registry domains options in the vendor portal" width="600"/>
 
   [View a larger image](/images/custom-domains-page.png)
 
-1. In the **Custom domains...** pane for either the Replicated registry or the proxy service, click **Add your first custom domain** for your first domain, or click **Add new domain** for additional domains.
+1. Under **Custom domains for the Replicated registry** or **Custom domains for the proxy service**, click **Add your first custom domain** for your first domain, or click **Add new domain** for additional domains.
 
   The **Configure a custom domain** wizard opens for the registry type you chose.
 
@@ -49,9 +47,20 @@ To configure a custom domain for one of these services:
 
     Your changes can take up to 24 hours to propagate.
 
-## Use a Custom Domain
+1. For **Use domain**, do one of the following:
+   * To set the new domain as the default, click **Yes, set as default**.
 
-After you add one or more custom domains to the vendor portal, you can use a custom domain by setting it as the default and by assigning it to an individual channel.
+     :::note
+     Replicated recommends that you do _not_ set a domain as the default until you are ready for it to be used by customers. To test a domain before you set it as the default, you can first assign the domain to a release channel used for development.
+     :::
+
+   * To add the new custom domain without setting it as the default, click **Not now**.  
+
+   For more information about the options for using custom domains, see [Use a Custom Domain](#use) below. 
+
+## Use a Custom Domain {#use}
+
+<UseCustomDomain/>
 
 ## Remove a Custom Registry or Proxy Domain
 
