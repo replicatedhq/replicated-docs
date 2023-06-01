@@ -14,7 +14,6 @@ import Graphs from "../partials/custom-resource-application/_graphs.mdx"
 import GraphsTemplates from "../partials/custom-resource-application/_graphs-templates.mdx"
 import TargetKotsVersion from "../partials/custom-resource-application/_targetKotsVersion.mdx"
 import MinKotsVersion from "../partials/custom-resource-application/_minKotsVersion.mdx"
-import ProxyRegistryDomain from "../partials/custom-resource-application/_proxyRegistryDomain.mdx"
 
 # Application
 
@@ -382,25 +381,6 @@ spec:
       <p>Yes</p>
     </td>
   </tr>    
-</table>
-
-## proxyRegistryDomain
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>The custom domain used for proxy.replicated.com. For more information, see <a href="/vendor/custom-domains#registry">Custom Registry Domains</a>.</p>
-      <p>Introduced in KOTS v1.91.1.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><ProxyRegistryDomain/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>
 </table>
 
 ## targetKotsVersion

@@ -92,7 +92,6 @@ const sidebars = {
             'vendor/team-management-saml-auth',
          ],
        },
-        'vendor/custom-domains',
       ],
     },
     {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true},
@@ -112,10 +111,11 @@ const sidebars = {
         'vendor/private-images-about',
         'vendor/packaging-private-images',
         'vendor/private-images-replicated',
-        'vendor/helm-image-registry',
+        'vendor/custom-domains',
         'vendor/private-images-tags-digests',
         'vendor/packaging-private-registry-security',
         'vendor/tutorial-ecr-private-images',
+        'vendor/helm-image-registry',
       ],
     },
     {
@@ -159,11 +159,19 @@ const sidebars = {
       label: 'Admin Console and Download Portal Customization',
       items: [
         'vendor/admin-console-customize-app-icon',
+        'vendor/custom-domains-download-portal',
         'vendor/admin-console-display-app-status',
         'vendor/admin-console-adding-buttons-links',
         'vendor/admin-console-prometheus-monitoring',
       ],
     },
+    // {
+    //   type: 'category',
+    //   label: 'Custom Domains',
+    //   items: [
+        // 'vendor/custom-domains',
+    //   ]
+    // },
     {
         type: 'category',
         label: 'Configuration Screen',
