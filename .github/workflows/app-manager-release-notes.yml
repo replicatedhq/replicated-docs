@@ -28,7 +28,7 @@ jobs:
 
     - name: Update Release Notes
       env:
-        PATTERN: ".+_RELEASE_NOTES_PLACEHOLDER_.+"
+        PATTERN: ".+RELEASE_NOTES_PLACEHOLDER.+"
       run: |
         cat <<EOT >> /tmp/release-notes.txt
 

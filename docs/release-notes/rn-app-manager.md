@@ -12,7 +12,7 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <KubernetesCompatibility/>
 
-<!--_RELEASE_NOTES_PLACEHOLDER_-->
+<!--RELEASE_NOTES_PLACEHOLDER-->
 
 ## 1.100.0
 
