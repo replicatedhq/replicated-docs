@@ -28,7 +28,7 @@ jobs:
 
     - name: Update Release Notes
       env:
-        PATTERN: "# App Manager Release Notes"
+        PATTERN: "<KubernetesCompatibility\/>"
       run: |
         cat <<EOT >> /tmp/release-notes.txt
 
