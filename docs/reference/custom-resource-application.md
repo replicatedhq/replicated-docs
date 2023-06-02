@@ -387,7 +387,7 @@ spec:
 ## proxyRegistryDomain
 
 :::important
-`proxyRegistryDomain` is deprecated. For information about how to use custom domain for the Replicated proxy service, see [Using Custom Domains for the Replicated Registry and Proxy Service](/vendor/custom-domains).
+`proxyRegistryDomain` is deprecated. For information about how to use a custom domain for the Replicated proxy service, see [Using Custom Domains for the Replicated Registry and Proxy Service](/vendor/custom-domains).
 :::
 
 <table>	
