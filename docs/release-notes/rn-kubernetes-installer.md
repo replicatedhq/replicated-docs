@@ -4,6 +4,8 @@ toc_max_heading_level: 2
 
 # Kubernetes Installer (kURL) Release Notes
 
+<!--RELEASE_NOTES_PLACEHOLDER-->
+
 ## v2023.05.30-0
 
 Released on May 30, 2023
