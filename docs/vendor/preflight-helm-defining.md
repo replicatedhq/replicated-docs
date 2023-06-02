@@ -23,7 +23,7 @@ If you do not require the pre-install or pre-upgrade hook to run during the Helm
 
 To define preflight checks:
 
-1. Create a specification...
+1. Create a specification...[Secrets Info to be added]
 
 1. <PreflightsAddCollectors/>
 
