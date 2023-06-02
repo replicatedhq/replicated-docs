@@ -52,8 +52,6 @@ Each release channel has settings. You can customize the settings for a channel 
 
 The following shows the **Channel Settings** dialog that you can access by clicking the settings icon on a channel:
 
-****UPDATE SCREENSHOT****
-
 <img src="/images/channel-settings.png" alt="Channel Settings dialog in the vendor portal" width="350"/>
 
 [View a larger version of this image](/images/channel-settings.png)
