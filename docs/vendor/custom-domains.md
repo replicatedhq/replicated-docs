@@ -11,7 +11,7 @@ This topic describes how to add and use custom domains to alias the Replicated p
 
 <CustomDomainsAbout/>
 
-By default, the Replicated private registry uses the domain `registry.replicated.com` and the proxy service uses the domain `proxy.replicated.com`. You can add custom domains so that customer-facing URLs for images and Helm charts pushed to Replicated private registry, and images proxied from external private registries, reflect your company's brand.
+By default, the Replicated private registry uses the domain `registry.replicated.com` and the proxy service uses the domain `proxy.replicated.com`. You can add custom domains so that customer-facing URLs for images and Helm charts pulled from the Replicated private registry, and images proxied from external private registries, reflect your company's brand.
 
 ## Limitations
 
