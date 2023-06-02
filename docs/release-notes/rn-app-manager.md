@@ -14,6 +14,19 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.100.1
+
+Released on June 2, 2023
+
+Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
+
+### Improvements {#improvements-1-100-1}
+* Updates the rqlite/rqlite image to 7.19.0 to resolve CVE-2023-1255 with medium severity.
+* Updates the way custom domains for the Replicated registry and proxy service are used. If a default or channel-specific custom domain is configured, that custom domain is associated with a release when it is promoted to a channel. KOTS will rewrite images using that custom domain. The `replicatedRegistryDomain` and `proxyRegistryDomain` fields in the Application custom resource are deprecated but continue to work to give time to migrate to the new mechanism.
+
+### Bug Fixes {#bug-fixes-1-100-1}
+* Kots starts to support different proxies for HTTP and HTTPS access.
+
 ## 1.100.0
 
 Released on May 26, 2023
