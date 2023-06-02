@@ -11,7 +11,7 @@ This topic describes how to add and use custom domains for the Replicated downlo
 
 <CustomDomainsAbout/>
 
-By default, the download portal uses the domain `get.replicated.com`. You can add one or more custom domains so that the customer-facing download portal domain reflect your company's brand. For more information about how customers access the download portal, see [Share Files through the Download Portal](releases-sharing-license-install-script#download-portal) in _Share License Files and Releases_.
+By default, the download portal uses the domain `get.replicated.com`. You can add one or more custom domains so that the customer-facing download portal domain reflects your company's brand. For more information about how customers access the download portal, see [Share Files through the Download Portal](releases-sharing-license-install-script#download-portal) in _Share License Files and Releases_.
 
 ## Limitations
 
