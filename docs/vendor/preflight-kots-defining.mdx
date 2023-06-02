@@ -1,0 +1,34 @@
+import PreflightsAddCollectors from "../partials/preflights/_preflights-add-collectors.mdx"
+import PreflightsAddAnalyzers from "../partials/preflights/_preflights-add-analyzers.mdx"
+import PreflightsAddStrict from "../partials/preflights/_preflights-add-strict.mdx"
+
+
+# Define Preflight Checks for KOTS
+
+You define preflight checks based on your application needs. Preflight checks are not included by default. This procedure provides a basic understanding and some key considerations to help guide you.
+
+For more information about defining preflight checks, see [Preflight Checks](https://troubleshoot.sh/docs/preflight/introduction/), [Collecting Data](https://troubleshoot.sh/docs/collect/), and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation. For basic examples of checking CPU, memory, and disk capacity, see [Node Resources Analyzer](https://troubleshoot.sh/reference/analyzers/node-resources/) in the Troubleshoot documentation.
+
+To define preflight checks:
+
+1. Create a Preflight custom resource manifest file (`kind: Preflight`) in your release.
+
+      ```yaml
+      apiVersion: troubleshoot.sh/v1beta2
+      kind: Preflight
+      metadata:
+         name: collectors
+      spec:
+         collectors: []
+     ```
+1. <PreflightsAddCollectors/>
+
+1. <PreflightsAddAnalyzers/>
+
+1. <PreflightsAddStrict/>
+
+1. Add the manifest files to the application that you are packaging and distributing with Replicated.
+
+1. Save and promote the release to a development environment to test your changes.
+
+
