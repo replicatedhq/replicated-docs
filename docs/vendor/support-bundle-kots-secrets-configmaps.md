@@ -34,11 +34,13 @@ kubectl apply -f kURL/addons/flannel/template/yaml/troubleshoot.yaml
 # secret default/flannel-troubleshoot-spec created
 ```
 
-## Testing Your Specifications
+## Test Your Specifications
 
-For testing purposes, you can install the application in a development environment and collect a merged support bundle for some or all of the specifications in the cluster. 
+For testing purposes, you can install the application in a development environment and collect a merged support bundle for some or all of the specifications in the cluster.
 
-To generate an aggregate bundle, first use `kubectl get secrets` to get a list of specifications that match the label and key in the Secret specification: 
+There are multiple ways to generate a merged support bundle. For example, to automatically discover and generate a bundle for all of the specifications in a given namespace or cluster, you can run `kubectl supportbundle --load-cluster-specs`. This command can also be combined with input for a URL. For more information, see [Generate a Bundle (KOTS v1.94.2 and Later)](/enterprise/troubleshooting-an-app/#generate-a-bundle-kots-v1942-and-later).
+
+To generate an aggregate bundle using labels, you can first use `kubectl get secrets` to get a list of specifications that match the label and key in the Secret specification: 
 
 ```bash
 kubectl get secrets --all-namespaces -l troubleshoot.io/kind=support-bundle-spec
@@ -56,8 +58,6 @@ Then generate a merged support bundle for any of the specifications listed. The 
 ```bash
 kubectl support-bundle secret/default/flannel-troubleshoot-spec secret/default/velero-troubleshoot-spec
 ```
-
-To automatically discover and generate a bundle for all of the specifications in a given namespace or cluster, you can use the `troubleshoot.io/kind` label with the `--load-cluster-specs` flag. This flag can also be combined with input for a URL. For more information about using this flag, see [Generate a Merged Support Bundle](/enterprise/troubleshooting-an-app/#generate-a-merged-support-bundle).
 
 The Troubleshoot analysis screen in the Replicated admin console shows the results of all of the analyzers defined in your chosen manifests, and the contents are available in a single bundle.
 

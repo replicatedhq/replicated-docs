@@ -1,13 +1,13 @@
-# About Modular Support Bundles
+# About Modular Specifications
 
 Preflight and support bundle specifications can be designed using a modular approach. This helps teams develop specifications that are scoped to individual components or microservices in a large application and avoid merge conflicts. 
 
 You can create separate YAML files or use a combination of YAML files, URLs, and Kubernetes Secrets or ConfigMaps. 
 
-For support bundles, customers can use the support-bundle CLI to generate a merged support bundle archive from multiple resources. For more information, see [Example: Specifications by Component](#component) below.
+For support bundles, customers can use the support-bundle CLI to generate a merged support bundle archive from multiple resources. For more information, see [Example: Support Bundle Specifications by Component](#component) below.
 
 
-## Example: Specifications by Component {#component}
+## Example: Support Bundle Specifications by Component {#component}
 
 Using a modular approach for an application that ships MySQL, NGINX, and Redis, your team can add collectors and analyzers in using a separate support bundle specification for each component.
 

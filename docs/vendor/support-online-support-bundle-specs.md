@@ -6,14 +6,13 @@ The schema supports a `uri://` field that, when set, causes the support bundle g
 
 You can keep the online specification current with collectors and analyzers to manage bug fixes. When a customer generates a support bundle, the online specification can detect those potential problems in the cluster and let them know know how to fix it. Without the URI link option, you must wait for the next time your customers update their applications or Kubernetes versions to get notified of potential problems. The URI link option is particularly useful for customers that do not update their application routinely.
 
-If you are using a modular approach to designing support bundles, you can use multiple online specifications. Each specification supports one URI link. For more information about modular specifications, see [About Creating Modular and Discoverable Support Bundles](support-modular-support-bundle-specs).
+If you are using a modular approach to designing support bundles, you can use multiple online specifications. Each specification supports one URI link. For more information about modular specifications, see [About Modular Support Bundles](support-modular-support-bundle-specs).
 
 ## Example: URI Linking to a Source Repository
 
 This example shows how Replicated could set up a URI link for one of its own components. You can follow a similar process to link to your own online repository for your support bundles.
 
-Replicated kURL includes an EKCO add-on for maintenance on embedded clusters, such as automating certificate rotation or data migration tasks. 
-Replicated can ship this component with a support bundle manifest that warns users if they do not have this add-on installed or if it is not running in the cluster. For more information about support bundles, see [Customize a Support Bundle](preflight-support-bundle-creating#customize-a-support-bundle).
+Replicated kURL includes an EKCO add-on for maintenance on embedded clusters, such as automating certificate rotation or data migration tasks. Replicated can ship this component with a support bundle manifest that warns users if they do not have this add-on installed or if it is not running in the cluster.
 
 **Example: Release v1.0.0**
 
