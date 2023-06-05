@@ -1,0 +1,32 @@
+import InstallPlugin from "../partials/support-bundles/_install-plugin.mdx"
+import GenerateBundle from "../partials/support-bundles/_generate-bundle.mdx"
+
+
+# Generating Support Bundles
+
+For Helm charts and KOTS installations, support bundles can be generated using these CLI commands.
+
+:::note
+For KOTS, using the admin console and additional CLI options are available. For more information, see [Generating Support Bundles](https://docs.replicated.com/enterprise/troubleshooting-an-app) in the KOTS documentation.
+:::
+
+## Prerequisite
+
+<InstallPlugin/>
+
+
+## Generate a Bundle
+
+These methods are supported for Helm charts and for KOTS version 1.94.2 and later. For automatic discovery, Helm charts must use Secrets or ConfigMaps with the label `troubleshoot.sh/kind: support-bundle`.
+
+<GenerateBundle/>
+
+## Generate a Support Bundle when a Helm Installation Fails
+
+If an installation fails and you want to collect a support bundle to assist with diagnostics, you can use a Replicated default specification to generate the support bundle.
+
+Run the following command:
+
+```
+kubectl support-bundle https://raw.githubusercontent.com/replicatedhq/troubleshoot-specs/main/in-cluster/default.yaml
+```

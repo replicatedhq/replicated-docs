@@ -2,7 +2,7 @@ import PreflightsAddAnalyzers from "../partials/preflights/_preflights-add-analy
 import PreflightsAddStrict from "../partials/preflights/_preflights-add-strict.mdx"
 
 
-# Define Preflight Checks for Helm
+# Define Helm Preflight Checks
 
 This topic describes the options for using preflight checks with Helm, how to define preflight hooks and weights for installing or upgrading an application, configuring preflight checks as a secret, and example preflight files for different scenarios.
 

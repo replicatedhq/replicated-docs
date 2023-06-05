@@ -1,4 +1,4 @@
-# Configure Discoverable Support Bundles for KOTS
+# Configure KOTS Discoverable Support Bundles
 
 When you create support bundle specifications within Kubernetes Secret or ConfigMap resources, your customers can automatically discover support bundle specifications and generate a merged support bundle.
 

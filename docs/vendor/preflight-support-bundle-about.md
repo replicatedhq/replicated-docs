@@ -63,7 +63,7 @@ Analyzer outcomes for preflight checks differ from the outcomes for support bund
 
 ## Specification Types and Locations
 
-The preflight and support bundle tools require configuration using specifications that can be located in a variety of places:
+[Placeholder] The preflight and support bundle tools require configuration using specifications that can be located in a variety of places:
 
 - Files, one or more YAML files on your local filesystem
 - URLS, such as https://preflight.domain.com

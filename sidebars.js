@@ -210,6 +210,7 @@ const sidebars = {
           items: [
              'vendor/preflight-helm-defining',
              'vendor/preflight-kots-defining',
+             'vendor/preflight-running',
          ],
         },
         {
@@ -219,6 +220,7 @@ const sidebars = {
             'vendor/support-bundle-helm-customizing',
             'vendor/support-bundle-kots-customizing',
             'vendor/support-bundle-kots-secrets-configmaps',
+            'vendor/support-bundle-generating',
         ],
         },
       ],
