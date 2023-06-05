@@ -1,6 +1,6 @@
-# About the Replicated SDK Helm Chart
+# About the Replicated SDK
 
-This topic describes the Replicated SDK Helm chart.
+This topic provides an introduction to using the Replicated SDK Helm chart to use Replicated functionality with your application Helm chart.
 
 ## Overview
 

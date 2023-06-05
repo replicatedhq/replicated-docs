@@ -1,4 +1,4 @@
-# Using the SDK in Your Helm Chart
+# Deploying the SDK with Your Helm Chart
 
 This topic describes how to begin using the Replicated SDK by declaring it as a dependency in your Helm chart, then promoting a release with the Helm chart in the Replicated vendor portal. 
 
