@@ -4,13 +4,15 @@ This topic describes how to use development mode with the Replicated SDK to iter
 
 ## About Development Mode
 
-Replicated SDK has a development mode that helps you develop locally without needing to make real changes in the vendor portal or in your environment to test particular features and scenarios.
+You can use the Replicated SDK in a development mode to develop locally without needing to make real changes in the Replicated vendor portal or in your environment to test features and scenarios.
 
 Development mode lets you provide mock data for certain SDK APIs in order to simulate the scenarios you want to test.
 
-To develop against the SDK, you need to initialize the SDK with a valid development license from the vendor portal.
+![architecture diagram of sdk development mode](/images/sdk-development-mode-diagram.png)
 
 ## Create a Development License
+
+To develop against the SDK, you need to initialize the SDK with a valid development license from the vendor portal.
 
 The SDK runs in development mode when it is initialized with a development license.
 
