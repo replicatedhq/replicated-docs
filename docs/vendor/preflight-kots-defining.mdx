@@ -1,4 +1,6 @@
 import PreflightsAddAnalyzers from "../partials/preflights/_preflights-add-analyzers.mdx"
+import PreflightsAddStrict from "../partials/preflights/_preflights-add-strict.mdx"
+
 
 # Define Preflight Checks for KOTS
 
@@ -18,7 +20,7 @@ To define preflight checks:
       spec:
          collectors: []
      ```
-1. Add collectors to define information to be collected for analysis during the analyze phase. For example, you can collect information about the MySQL version that is running in a cluster.
+1. Add collectors to define information to be collected for analysis during the analyze phase. For example, you can collect information about the MySQL version that is running in a cluster:
 
    ```yaml
    apiVersion: troubleshoot.sh/v1beta2
@@ -31,17 +33,15 @@ To define preflight checks:
             collectorName: mysql
             uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
    ```
-   Replicated recommends replacing using a template function for the URI to avoid exposing sensitive information. For more information about template functions, see [[About Template Functions](/reference/template-functions-about).
+   Replicated recommends replacing using a template function for the URI to avoid exposing sensitive information. For more information about template functions, see [About Template Functions](/reference/template-functions-about).
 
 1. <PreflightsAddAnalyzers/>
 
-1. (Optional) Set any preflight analyzers to `strict: true` if you want to enforce requirements for the chosen analyzers. Note the following considerations:
+1. <PreflightsAddStrict/> 
 
-  - Any `fail` outcomes for that analyzer block the deployment of the release until your specified requirement is met.
-  -  If a `strict` collector requires cluster scope and minimal RBAC mode is set, then the collector is skipped during the preflight check.
-  - Strict preflight analyzers are ignored if the `exclude` flag is also used.
+      For more information about cluster privileges, see `requireMinimalRBACPrivileges` for name-scoped access in [Configuring Role-Based Access](packaging-rbac#namespace-scoped-access).
 
-    For more information about strict preflight checks, see [`strict`](https://troubleshoot.sh/docs/analyze/#strict) in the Troubleshoot documentation. For more information about cluster privileges, see `requireMinimalRBACPrivileges` for name-scoped access in [Configuring Role-Based Access](packaging-rbac#namespace-scoped-access).
+   The following example shows a strict analyzer for MySQL versions:
 
     ```yaml
     apiVersion: troubleshoot.sh/v1beta2

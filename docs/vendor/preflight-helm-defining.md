@@ -1,8 +1,10 @@
 import PreflightsAddAnalyzers from "../partials/preflights/_preflights-add-analyzers.mdx"
+import PreflightsAddStrict from "../partials/preflights/_preflights-add-strict.mdx"
+
 
 # Define Preflight Checks for Helm
 
-This topic describes the options for using preflight checks with Helm, how to define preflight hooks and weights for installing or upgrading an application, configuring preflight checks as a secret, and example YAMl files for different scenarios.
+This topic describes the options for using preflight checks with Helm, how to define preflight hooks and weights for installing or upgrading an application, configuring preflight checks as a secret, and example preflight files for different scenarios.
 
 ## About Helm Preflight Checks
 
@@ -98,7 +100,7 @@ To define preflight checks as a Secret:
         name: preflights
         spec: …
     ```
-1. Add collectors to define information to be collected for analysis during the analyze phase. For example, you can collect information about the MySQL version that is running in a cluster.
+1. Add collectors to define information to be collected for analysis during the analyze phase. For example, you can collect information about the MySQL version that is running in a cluster:
 
     ```yaml
     apiVersion: v1
@@ -127,13 +129,9 @@ To define preflight checks as a Secret:
 
 1. <PreflightsAddAnalyzers/>
 
-1. (Optional) Set any preflight analyzers to `strict: true` if you want to enforce requirements for the chosen analyzers. Note the following considerations:
+1. <PreflightsAddStrict/>
 
-    - Any `fail` outcomes for that analyzer block the deployment of the release until your specified requirement is met.
-    -  If a `strict` collector requires cluster scope and minimal RBAC mode is set, then the collector is skipped during the preflight check.
-    - Strict preflight analyzers are ignored if the `exclude` flag is also used.
-
-        For more information about strict preflight checks, see [`strict`](https://troubleshoot.sh/docs/analyze/#strict) in the Troubleshoot documentation. For more information about cluster privileges, see `requireMinimalRBACPrivileges` for name-scoped access in [Configuring Role-Based Access](packaging-rbac#namespace-scoped-access).
+    The following examples shows a strict analyzer for MySQL versions:
 
     ```yaml
     apiVersion: v1
@@ -172,6 +170,7 @@ To define preflight checks as a Secret:
                 - pass:
                     message: The MySQL server is ready
     ```
+1. Test your preflight checks in a development environment.
 
 ## Examples
 

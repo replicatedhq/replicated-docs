@@ -63,23 +63,22 @@ Analyzer outcomes for preflight checks differ from the outcomes for support bund
 
 ## Specification Types and Locations
 
-Draft/Placeholder for this stuff:
+The preflight and support bundle tools require configuration using specifications that can be located in a variety of places:
 
-The preflight and support-bundle tools require a configuration as an input.  These are commonly referred to as 'specs', and can be located in a variety of places:
-- file - e.g. preflight.yaml on your local filesystem
-- url - e.g. https://preflight.replicated.com
-- stdin (specify - on the command line)
-- a secret in a Kubernetes cluster
+- Files, one or more YAML files on your local filesystem
+- URLS, such as https://preflight.domain.com
+- stdin specified on the command line
+- Secrets or ConfigMaps in a Kubernetes cluster
 
 ### Helm Specification Guidance
 
-Decide which Helm option to use:
+[Placeholder] Decide which Helm option to use:
 
 - [Use cases, pros, and cons]
 
 
 ### KOTS Specification Guidance
 
-Decide which Helm option to use:
+[Placeholder] Decide which Helm option to use:
 
 - [Use cases, pros, and cons]
