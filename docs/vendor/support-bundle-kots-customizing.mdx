@@ -1,3 +1,8 @@
+import SupportBundleAddLogs from "../partials/support-bundles/_support-bundle-add-logs.mdx"
+import SupportBundleCustomCollectors from "../partials/support-bundles/_support-bundle-custom-collectors.mdx"
+import SupportBundleAddAnalyzers from "../partials/support-bundles/_support-bundle-add-analyzers.mdx"
+
+
 # Customize Support Bundles for KOTS
 
 Customizing a support bundle is unique to your application. Replicated KOTS provides the ability to generate support bundles from the admin console without vendors needing to configure anything. However, there may be application-related data that you want to collect and analyze for troubleshooting.
@@ -55,17 +60,7 @@ To customize a support bundle:
   ```
   Replace `APP_NAMESPACE` with the name of the namespace.
 
-1. (Recommended) Add application Pod logs and set the collection limits for the number of lines logged. Typically the selector attribute is matched to the labels.
-
-    1. To get the labels for an application, either inspect the YAML or run the following command to see what labels are used:
-
-      ```
-      kubectl get pods --show-labels
-      ```
-
-    1. After the labels are discovered, create collectors to include logs from these pods in a bundle. Depending on the complexity of an application's labeling schema, you might need a few different declarations of the logs collector. You can include the `logs` collector specification multiple times.
-
-      The limits field can support `maxAge` or `maxLines`. This limits the output to the constraints provided. **Default:** `maxLines: 10000`
+1. <SupportBundleAddLogs/>
 
       **Example:**
 
@@ -84,26 +79,9 @@ To customize a support bundle:
               maxLines: 10000
       ```            
 
-1. Add any custom collectors to the file. Collectors that Replicated recommends considering are:
+1. <SupportBundleCustomCollectors/>
 
-    - **Kubernetes resources:** Use for custom resource definitions (CRDs), secrets, and ConfigMaps, if they are required for your application to work.
-    - **Databases:** Return a selection of rows or entire tables.
-    - **Volumes:** Ensure that an application's persistent state files exist, are readable/writeable, and have the right permissions.
-    - **Pods:** Run a pod from a custom image.
-    - **Files:** Copy files from pods and hosts.
-    - **HTTP:** Consume your own application APIs with HTTP requests. If your application has its own API that serves status, metrics, performance data, and so on, this information can be collected and analyzed.
-
-1. Add analyzers based on conditions that you expect for your application. For example, you might require that a cluster have at least 2 CPUs and 4GB memory available.
-
-  Good analyzers clearly identify failure modes. For example, if you can identify a log message from your database component that indicates a problem, you should write an analyzer that checks for that log.
-
-  At a minimum, include application log analyzers. A simple text analyzer can detect specific log lines and inform an end user of remediation steps.
-
-  Analyzers that Replicated recommends considering are:
-
-    - **Resource statuses:** Check the status of various resources, such as Deployments, StatefulSets, Jobs, and so on.
-    - **Regular expressions:** Analyze arbitrary data.
-    - **Databases:** Check the version and connection status.
+1. <SupportBundleAddAnalyzers/>
 
 1. (Optional) To add redactors to the default redactors that are automatically provided by KOTS, add the Redactor custom resource manifest (`kind: Redactor`) to your release. Then add Redactor custom resource fields to the manifest as needed. For more information, see [Redactor](/reference/custom-resource-redactor) in the Reference section.
 

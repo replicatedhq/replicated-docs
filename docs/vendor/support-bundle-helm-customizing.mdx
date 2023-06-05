@@ -1,0 +1,63 @@
+import SupportBundleAddLogs from "../partials/support-bundles/_support-bundle-add-logs.mdx"
+import SupportBundleCustomCollectors from "../partials/support-bundles/_support-bundle-custom-collectors.mdx"
+import SupportBundleAddAnalyzers from "../partials/support-bundles/_support-bundle-add-analyzers.mdx"
+
+
+# Customize Support Bundles for Helm
+
+Customizing a support bundle is unique to your application and depends on what kind of data you need to troubleshoot. This procedure provides a basic understanding and some key considerations to help guide you. For more information, see [Collecting Data](https://troubleshoot.sh/docs/collect/) and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation.
+
+Additionally, this procedure shows using a Secret to contain a support bundle specification with your Helm chart, which allows customers to automatically discover and generate a support bundle without specifying a long URL. Using a Secret also allows the specification to be templated using information in the `values.yaml` file.
+
+To customize a support bundle as a Secret:
+
+1. Create a Secret (`kind: Secret`) containing the specification. Alternatively, you can use a ConfigMap (`kind: configMap`) if the specification will not contain private information.
+
+  You must include the following:
+
+    - `Label` - Label the secret definition as `troubleshoot.sh/kind: support-bundle`
+    - `stringData` - Specify a `stringData` field with a key named `support-bundle-spec`
+
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: some-name
+      labels:
+        troubleshoot.sh/kind: support-bundle
+    stringData:
+      support-bundle-spec: |-
+        spec:
+    ```
+1. (Optional) Add the `clusterInfo` and `clusterResources` collectors to collect a large amount of data to help with installation and debugging. For `clusterResources`, you can add the default namespace or additional namespaces to the `namespaces` field.
+
+1. <SupportBundleAddLogs/>
+
+    **Example:**
+
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: some-name
+      labels:
+        troubleshoot.sh/kind: support-bundle
+    stringData:
+      support-bundle-spec: |-
+        spec:
+          collectors:
+          - logs:
+            selector:
+              - app=api
+            namespace: default
+            limits:
+              maxLines: 10000
+    ```
+
+1. <SupportBundleCustomCollectors/>
+
+1. <SupportBundleAddAnalyzers/>
+
+1. (Optional) Add redactors to prevent sensitive data from being collected when support bundles are generated. For more information, see [Redacting Data](https://troubleshoot.sh/docs/redact/) in the Troubleshoot documentation.
+
+1. When using Secrets, you can also add templating for the specification in the `values.yaml` file.

@@ -1,0 +1,8 @@
+Add any custom collectors to the file. Collectors that Replicated recommends considering are:
+
+- **Kubernetes resources:** Use for custom resource definitions (CRDs), secrets, and ConfigMaps, if they are required for your application to work.
+- **Databases:** Return a selection of rows or entire tables.
+- **Volumes:** Ensure that an application's persistent state files exist, are readable/writeable, and have the right permissions.
+- **Pods:** Run a pod from a custom image.
+- **Files:** Copy files from pods and hosts.
+- **HTTP:** Consume your own application APIs with HTTP requests. If your application has its own API that serves status, metrics, performance data, and so on, this information can be collected and analyzed.

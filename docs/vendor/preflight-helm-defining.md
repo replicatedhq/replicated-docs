@@ -1,5 +1,8 @@
-# Define Preflight Checks for Helm
 import PreflightsAddAnalyzers from "../partials/preflights/_preflights-add-analyzers.mdx"
+
+# Define Preflight Checks for Helm
+
+This topic describes the options for using preflight checks with Helm, how to define preflight hooks and weights for installing or upgrading an application, configuring preflight checks as a secret, and example YAMl files for different scenarios.
 
 ## About Helm Preflight Checks
 
@@ -65,14 +68,16 @@ Options include:
 The preflights checks you run are dependent on your application needs. This procedure gives some guidance about how to think about using collectors and analyzers, as you design your preflight checks. For more information about defining preflight checks, see [Collecting Data](https://troubleshoot.sh/docs/collect/)
 and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation.
 
-Additionally, this procedure uses a Secret with `pre-install` and `pre-upgrade` hook and weight annotations. You can omit these annotations if you want the checks to run during installation instead or if you want to run the preflights before using the `helm template` command to trigger the checks before installation.
+Additionally, this procedure uses a Secret with `pre-install` and `pre-upgrade` hook and weight annotations. You can omit these annotations if you want the checks to run during installation instead or if you want to run the preflight checks before using the `helm template` command to trigger the checks before installation.
 
 To define preflight checks as a Secret:
 
-1. Create a Secret specification (`kind: Secret`). You must include the following:
+1. Create a Secret specification (`kind: Secret`). Alternatively, you can use a ConfigMap (`kind: configMap`) if the specification will not contain private information.
 
-    - `Label` - The secret definition should be labeled `troubleshoot.sh/kind: preflight`
-    - `stringData` - You must specify `stringData` and add a key named `preflight.yaml` under it so that the preflight binary can use this Secret when it runs from the CLI.
+  You must include the following:
+
+    - `Label` - Label the secret definition as `troubleshoot.sh/kind: preflight`
+    - `stringData` - Specify a `stringData` field with a key named `preflight.yaml` so that the preflight binary can use this Secret when it runs from the CLI.
 
     ```yaml
     apiVersion: v1
