@@ -1,4 +1,4 @@
-# 
+# Customize Support Bundles for Helm
 
 [Placeholder] The support-bundle program is capable of gathering multiple specs, from multiple sources, and executing based on an aggregate of those.  If you are writing a Helm chart for your application, typically it is simplest to distribute a secret containing that support bundle spec with the application, so that folks can easily find it without needing to specify a long url.  This also allows the spec to be templated using information in values.yaml.
 

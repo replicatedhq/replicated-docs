@@ -206,33 +206,21 @@ const sidebars = {
         'vendor/support-modular-support-bundle-specs',
         {
           type: 'category',
-          label: 'Preflight Checks for Helm',
+          label: 'Preflight Checks',
           items: [
              'vendor/preflight-helm-defining',
+             'vendor/preflight-kots-defining',
          ],
         },
         {
           type: 'category',
-          label: 'Preflight Checks for KOTS',
+          label: 'Support Bundles',
           items: [
-             'vendor/preflight-kots-defining',
-         ],
-       },
-       {
-        type: 'category',
-        label: 'Support Bundles for Helm',
-        items: [
-           'vendor/support-bundle-helm-customizing',
-       ],
-       },
-       {
-        type: 'category',
-        label: 'Support Bundles for KOTS',
-        items: [
-           'vendor/support-bundle-kots-customizing',
-           'vendor/support-bundle-kots-secrets-configmaps',
-       ],
-     },
+            'vendor/support-bundle-helm-customizing',
+            'vendor/support-bundle-kots-customizing',
+            'vendor/support-bundle-kots-secrets-configmaps',
+        ],
+        },
       ],
     },
     {

@@ -1,7 +1,5 @@
 # Define Preflight Checks for Helm
-import PreflightsAddCollectors from "../partials/preflights/_preflights-add-collectors.mdx"
 import PreflightsAddAnalyzers from "../partials/preflights/_preflights-add-analyzers.mdx"
-import PreflightsAddStrict from "../partials/preflights/_preflights-add-strict.mdx"
 
 ## About Helm Preflight Checks
 
@@ -46,7 +44,7 @@ Options include:
 
 - Storing a Secret in the cluster.
 - Providing a URL or a YAML file, without templating from `values.yaml`, such as a `preflight https://my-preflight.url.com`, or `preflight preflight.yaml`.
-- Using a template to create the preflight specification. This is a custom resource definition (CRD), but it is not installed in the cluster. The template can be wrapped in an `{{ if` so that it is only rendered when specified. For example, to run preflights you can run `helm template mychart --set renderpreflights=true --values values.yaml | preflight -`
+- Using a template to create the preflight specification. This is a custom resource definition (CRD), but it is not installed in the cluster. The template can be wrapped in an `{{ if` so that it is only rendered when specified, for example: `helm template mychart --set renderpreflights=true --values values.yaml | preflight -`
 
     For example:
 
@@ -64,17 +62,17 @@ Options include:
 
 ## Define Preflight Checks as Secrets
 
-[Placeholder] 
+The preflights checks you run are dependent on your application needs. This procedure gives some guidance about how to think about using collectors and analyzers, as you design your preflight checks. For more information about defining preflight checks, see [Collecting Data](https://troubleshoot.sh/docs/collect/)
+and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation.
 
+Additionally, this procedure uses a Secret with `pre-install` and `pre-upgrade` hook and weight annotations. You can omit these annotations if you want the checks to run during installation instead or if you want to run the preflights before using the `helm template` command to trigger the checks before installation.
 
-To define preflight checks as Secrets:
+To define preflight checks as a Secret:
 
 1. Create a Secret specification (`kind: Secret`). You must include the following:
 
-    The secret definition should be labeled `troubleshoot.sh/kind: preflight`
-    have data under a key named `preflight.yaml` so that the preflight binary can also use this secret when run from the CLI.
-
-    The following example shows pre-install and pre-upgrade hooks and weights, which can be omitted if you want the checks to run during installation instead:
+    - `Label` - The secret definition should be labeled `troubleshoot.sh/kind: preflight`
+    - `stringData` - You must specify `stringData` and add a key named `preflight.yaml` under it so that the preflight binary can use this Secret when it runs from the CLI.
 
     ```yaml
     apiVersion: v1
@@ -95,23 +93,86 @@ To define preflight checks as Secrets:
         name: preflights
         spec: …
     ```
-  
+1. Add collectors to define information to be collected for analysis during the analyze phase. For example, you can collect information about the MySQL version that is running in a cluster.
 
-
-1. <PreflightsAddCollectors/>
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+    name: preflight-secret
+    labels:
+        troubleshoot.sh/kind: preflight
+    annotations:
+        "helm.sh/hook": pre-install, pre-upgrade
+        "helm.sh/hook-weight": "-6"
+        "helm.sh/hook-delete-policy": before-hook-creation, hook-succeeded, hook-failed
+    stringData:
+    preflight.yaml: |-
+        apiVersion: troubleshoot.sh/v1beta2
+        kind: Preflight
+        metadata:
+        name: preflights
+        spec:
+            collectors:
+            - mysql:
+                collectorName: mysql
+                uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
+    ```
+    Replicated recommends replacing using a template function for the URI to avoid exposing sensitive information. For more information about template functions, see [About Template Functions](/reference/template-functions-about).
 
 1. <PreflightsAddAnalyzers/>
 
-1. <PreflightsAddStrict/>
+1. (Optional) Set any preflight analyzers to `strict: true` if you want to enforce requirements for the chosen analyzers. Note the following considerations:
 
+    - Any `fail` outcomes for that analyzer block the deployment of the release until your specified requirement is met.
+    -  If a `strict` collector requires cluster scope and minimal RBAC mode is set, then the collector is skipped during the preflight check.
+    - Strict preflight analyzers are ignored if the `exclude` flag is also used.
 
-For more information about defining preflight checks, see [Collecting Data](https://troubleshoot.sh/docs/collect/) and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation. 
+        For more information about strict preflight checks, see [`strict`](https://troubleshoot.sh/docs/analyze/#strict) in the Troubleshoot documentation. For more information about cluster privileges, see `requireMinimalRBACPrivileges` for name-scoped access in [Configuring Role-Based Access](packaging-rbac#namespace-scoped-access).
 
-For basic examples of checking CPU, memory, and disk capacity, see [Node Resources Analyzer](https://troubleshoot.sh/reference/analyzers/node-resources/) in the Troubleshoot documentation.
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+    name: preflight-secret
+    labels:
+        troubleshoot.sh/kind: preflight
+    annotations:
+        "helm.sh/hook": pre-install, pre-upgrade
+        "helm.sh/hook-weight": "-6"
+        "helm.sh/hook-delete-policy": before-hook-creation, hook-succeeded, hook-failed
+    stringData:
+    preflight.yaml: |-
+        apiVersion: troubleshoot.sh/v1beta2
+        kind: Preflight
+        metadata:
+        name: preflights
+        spec:
+            collectors:
+            - mysql:
+                collectorName: mysql
+                uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
+            analyzers:
+            - mysql:
+                strict: true
+                checkName: Must be MySQL 8.x or later
+                collectorName: mysql
+                outcomes:
+                - fail:
+                    when: connected == false
+                    message: Cannot connect to MySQL server
+                - fail:
+                    when: version < 8.x
+                    message: The MySQL server must be at least version 8
+                - pass:
+                    message: The MySQL server is ready
+    ```
 
 ## Examples
 
 ### Pod Definition
+
+The following Pod Definition example show the use of `pre-install` and `pre-upgrade` hooks:
 
 ```yaml
 apiVersion: v1
@@ -139,7 +200,9 @@ spec:
           mountPath: /preflights
 ```
 
-### RBAC Settings
+### ClusterRole
+
+The following example shows RBAC settings for `ClusterRole` with preflight checks. It also shows `preflight-install` and `preflight-upgrade` hooks and weights.
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -199,20 +262,14 @@ rules:
     verbs:
       - "get"
       - "list"
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: preflights-sa
-  annotations:
-    "helm.sh/hook": pre-install, pre-upgrade
-    "helm.sh/hook-weight": "-6"
-    "helm.sh/hook-delete-policy": before-hook-creation, hook-succeeded, hook-failed
-secrets:
-  - name: preflights-sa-secret
+```
 
 
----
+### ClusterRoleBinding
+
+The following example shows RBAC settings for `ClusterRoleBinding` with preflight checks. It also shows `preflight-install` and `preflight-upgrade` hooks and weights.
+
+```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -229,4 +286,20 @@ roleRef:
   kind: ClusterRole
   name: preflights-role
   apiGroup: rbac.authorization.k8s.io
-````
+```
+
+### ServiceAccount Secrets
+
+The following example shows settings for `ServiceAccount` with preflight checks as Secrets. It also shows `preflight-install` and `preflight-upgrade` hooks and weights.
+
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: preflights-sa
+  annotations:
+    "helm.sh/hook": pre-install, pre-upgrade
+    "helm.sh/hook-weight": "-6"
+    "helm.sh/hook-delete-policy": before-hook-creation, hook-succeeded, hook-failed
+secrets:
+  - name: preflights-sa-secret

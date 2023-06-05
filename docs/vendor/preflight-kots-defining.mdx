@@ -1,7 +1,4 @@
-import PreflightsAddCollectors from "../partials/preflights/_preflights-add-collectors.mdx"
 import PreflightsAddAnalyzers from "../partials/preflights/_preflights-add-analyzers.mdx"
-import PreflightsAddStrict from "../partials/preflights/_preflights-add-strict.mdx"
-
 
 # Define Preflight Checks for KOTS
 
@@ -21,11 +18,56 @@ To define preflight checks:
       spec:
          collectors: []
      ```
-1. <PreflightsAddCollectors/>
+1. Add collectors to define information to be collected for analysis during the analyze phase. For example, you can collect information about the MySQL version that is running in a cluster.
+
+   ```yaml
+   apiVersion: troubleshoot.sh/v1beta2
+   kind: Preflight
+   metadata:
+      name: supported-mysql-version
+   spec:
+      collectors:
+         - mysql:
+            collectorName: mysql
+            uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
+   ```
+   Replicated recommends replacing using a template function for the URI to avoid exposing sensitive information. For more information about template functions, see [[About Template Functions](/reference/template-functions-about).
 
 1. <PreflightsAddAnalyzers/>
 
-1. <PreflightsAddStrict/>
+1. (Optional) Set any preflight analyzers to `strict: true` if you want to enforce requirements for the chosen analyzers. Note the following considerations:
+
+  - Any `fail` outcomes for that analyzer block the deployment of the release until your specified requirement is met.
+  -  If a `strict` collector requires cluster scope and minimal RBAC mode is set, then the collector is skipped during the preflight check.
+  - Strict preflight analyzers are ignored if the `exclude` flag is also used.
+
+    For more information about strict preflight checks, see [`strict`](https://troubleshoot.sh/docs/analyze/#strict) in the Troubleshoot documentation. For more information about cluster privileges, see `requireMinimalRBACPrivileges` for name-scoped access in [Configuring Role-Based Access](packaging-rbac#namespace-scoped-access).
+
+    ```yaml
+    apiVersion: troubleshoot.sh/v1beta2
+    kind: Preflight
+    metadata:
+      name: supported-mysql-version
+    spec:
+      collectors:
+        - mysql:
+            collectorName: mysql
+            uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
+        analyzers:
+        - mysql:
+            strict: true
+            checkName: Must be MySQL 8.x or later
+            collectorName: mysql
+            outcomes:
+              - fail:
+                  when: connected == false
+                  message: Cannot connect to MySQL server
+              - fail:
+                  when: version < 8.x
+                  message: The MySQL server must be at least version 8
+              - pass:
+                  message: The MySQL server is ready
+      ```
 
 1. Add the manifest files to the application that you are packaging and distributing with Replicated.
 
