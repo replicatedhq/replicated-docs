@@ -148,10 +148,8 @@ const sidebars = {
       items: [
         'vendor/replicated-sdk-overview',
         'vendor/replicated-sdk-using',
-        'vendor/replicated-sdk-development',
         'vendor/replicated-sdk-installing',
-        'vendor/replicated-sdk-app-updates',
-        'vendor/replicated-sdk-entitlements',
+        'vendor/replicated-sdk-development',
       ],
     },
     {

@@ -1,20 +1,18 @@
 # Using Development Mode
 
-This topic describes how to use development mode with the Replicated SDK to iterate on and test changes locally.
+This topic describes how to use development mode with the Replicated SDK to test changes locally.
 
 ## About Development Mode
 
-You can use the Replicated SDK in a development mode to develop locally without needing to make real changes in the Replicated vendor portal or in your environment to test features and scenarios.
+You can use the Replicated SDK in development mode to develop locally without needing to make real changes in the Replicated vendor portal or in your environment. Development mode lets you provide mock data for certain Replicated SDK APIs in order to test specific features and scenarios.
 
-Development mode lets you provide mock data for certain SDK APIs in order to simulate the scenarios you want to test.
+To use development mode, you initialize the Replicated SDK using a valid development license created in the Replicated vendor portal. The following diagram demonstrates how the Replicated SDK uses the development license and mock data to run in development mode:
 
 ![architecture diagram of sdk development mode](/images/sdk-development-mode-diagram.png)
 
+As shown in the diagram above, the Replicated SDK 
+
 ## Create a Development License
-
-To develop against the SDK, you need to initialize the SDK with a valid development license from the vendor portal.
-
-The SDK runs in development mode when it is initialized with a development license.
 
 To create a development license:
 

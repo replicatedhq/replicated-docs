@@ -2,15 +2,15 @@
 
 This topic describes how to install Helm chart applications that include the Replicated SDK Helm chart as a dependency.
 
-## About License Verification and SDK Initialization
+## About Installing Your Application and the SDK
 
-Your customers log in to the Replicated registry using their license ID to pull your chart from the registry. This ensures that any customer who pulls your chart has a valid, unexpired license.
+Your customers log in to the Replicated registry using their license ID to pull your chart from the Replicated registry. This ensures that any customer who pulls your chart has a valid, unexpired license.
 
 When a Helm chart is pulled from the Replicated registry, the registry injects certain values into the chart in the `replicated` section of the Helm chart `values.yaml` file. These values include license and release information that the SDK uses for initialization.
 
 ## Prerequisites
 
-To install a Helm chart and the Replicated SDK, you must have a customer in the vendor portal with the email address field filled out. This email address is only used as a username for the Replicated registry and is never contacted in any way. For more information about creating and editing customers in the vendor portal, see [Creating a Customer](/vendor/releases-creating-customer).
+To install a Helm chart and the Replicated SDK, you must have a customer in the vendor portal with a valid email address. This email address is only used as a username for the Replicated registry and is never contacted in any way. For more information about creating and editing customers in the vendor portal, see [Creating a Customer](/vendor/releases-creating-customer).
 
 ## Install
 
