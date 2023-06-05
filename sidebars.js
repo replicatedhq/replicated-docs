@@ -220,6 +220,13 @@ const sidebars = {
        },
        {
         type: 'category',
+        label: 'Support Bundles for Helm',
+        items: [
+           'vendor/support-bundle-helm-customizing',
+       ],
+       },
+       {
+        type: 'category',
         label: 'Support Bundles for KOTS',
         items: [
            'vendor/support-bundle-kots-customizing',
