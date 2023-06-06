@@ -12,7 +12,7 @@ Built-in redactors run by default for preflight checks and support bundles to pr
 
 ## Basic Manifest Files
 
-To define preflight checks or customize the default support bundle settings, add the corresponding custom resource manifest file to your release. Then add custom collector and analyzer specifications to the custom resource manifest file. For more information about these troubleshoot features and how to configure them, see [Configuring Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-creating/).
+To define preflight checks or customize the default support bundle settings, add the corresponding custom resource manifest file to your release. Then add custom collector and analyzer specifications to the custom resource manifest file. For more information about these troubleshoot features and how to configure them, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about).
 
 The following sections show basic manifest files for the Preflight and Support Bundle custom resources that you can start with.
 

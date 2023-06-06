@@ -43,7 +43,7 @@ This command supports all [global flags](kots-cli-global-flags) and also:
 | `--set`                     | strings| Values to pass to Helm when running `helm template`. |
 | `--shared-password`         | string | Shared password to use when deploying the admin console.  |
 | `--skip-compatibility-check`| bool   | Set to `true` to skip compatibility checks between the current KOTS version and the application. **Default:** `false` |
-| `--skip-preflights`         | bool   | Set to `true` to skip preflight checks. **Default:** `false`. If any strict preflight checks are configured, the `--skip-preflights` flag is not honored because strict preflight checks must run and contain no failures before the application is deployed. For more information, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles).|
+| `--skip-preflights`         | bool   | Set to `true` to skip preflight checks. **Default:** `false`. If any strict preflight checks are configured, the `--skip-preflights` flag is not honored because strict preflight checks must run and contain no failures before the application is deployed. For more information, see [Define KOTS Preflight Checks](/vendor/preflight-kots-defining).|
 | `--skip-rbac-check`         | bool   | Set to `true` to bypass RBAC check. **Default:** `false`|
 | `--skip-registry-check`     | bool   | Set to `true` to skip the connectivity test and validation of the provided registry information. **Default:** `false`|
 | `--strict-security-context` | bool   | Set to `true` to explicitly enable explicit security contexts for all KOTS pods and containers. **Default:** `false`. **Note**: Might not work for some storage providers. |

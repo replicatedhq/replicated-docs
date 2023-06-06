@@ -1068,7 +1068,7 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 ### New Features
 * Adds support for installing a specific application version. For more information about installing a specific application version, see [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster and [Online Installation with the Kubernetes Installer](/enterprise/installing-embedded-cluster).
 * Extends the ability of status informers to detect if the application is being updated.
-* Adds the ability to provide a strict preflight, which cannot be skipped and must not have any failure outcomes. Any failure outcomes will prevent the user from deploying the application. For more information on strict preflights, see [About preflight checks and support bundles​](/vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles) in Creating Preflight Checks and Support Bundles.
+* Adds the ability to provide a strict preflight, which cannot be skipped and must not have any failure outcomes. Any failure outcomes will prevent the user from deploying the application. For more information on strict preflights, see [Define KOTS Preflight Checks​](/vendor/preflight-kots-defining).
 * New versions can automatically be deployed in the admin console, regardless of whether the vendor uses semantic versioning. For more information about automatically deploying new versions, see [Configure Automatic Updates​](/enterprise/updating-apps#configure-automatic-updates) in Updating an Application.
 
 ### Bug Fixes
