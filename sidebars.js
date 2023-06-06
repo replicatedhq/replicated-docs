@@ -144,7 +144,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Helm Charts with the Replicated SDK',
+      label: 'Replicated SDK Helm Chart',
       items: [
         'vendor/replicated-sdk-overview',
         'vendor/replicated-sdk-using',
@@ -154,7 +154,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Helm Charts with KOTS',
+      label: 'Deploying Helm Charts with KOTS',
       items: [
         'vendor/helm-overview',
         'vendor/helm-install',

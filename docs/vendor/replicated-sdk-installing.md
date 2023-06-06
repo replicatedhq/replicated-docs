@@ -1,4 +1,4 @@
-# Installing Helm Charts and the SDK
+# Installing an Application and the SDK
 
 This topic describes how to install Helm chart applications that include the Replicated SDK Helm chart as a dependency.
 

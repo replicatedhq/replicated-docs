@@ -1,22 +1,22 @@
-# Replicated SDK API (Beta)
+# Replicated SDK APIs (Beta)
+
+The Replicated SDK provides APIs that you can use to embed Replicated functionality into your Helm chart application. For more information about how to get started with the Replicated SDK, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
 
 :::note
 The Replicated SDK is Beta and is not recommended for production use.
 :::
 
-## Access the Replicated SDK API
+## Authentication
 
-The Replicated SDK provides an API that you can use to embed Replicated functionality and application information into your application.
+The Replicated SDK APIs require the ID for a customer license created in the Replicated vendor portal to authenticate and initialize in an environment.
 
-Access the Replicated SDK API at `replicated:3000`.
+After the SDK is installed, the Replicated SDK API service is exposed at `replicated:3000`. For example, you can run `curl replicated:3000/api/v1/license/info` to get details about the customer license file from the license API.
 
-Example:
+To verify the location of the Replicated SDK API service, you can run `kubectl get service`.
 
-```
-curl replicated:3000/api/v1/license/info
-```
+## Rate Limits
 
-To verify the location of the Replicated SDK API service, run `kubectl get service` and look for the appropriate service.
+?
 
 ## app
 
@@ -30,7 +30,7 @@ List details about an application instance, including the app name, location of 
 
 Response:
 
-```
+```json
 {
   "appSlug": "alex-echo-server-helm",
   "appName": "alex-echo-server-helm",
@@ -59,7 +59,7 @@ List details about the releases that are available for an application instance, 
 
 Response:
 
-```
+```json
 [
   {
     "versionLabel": "0.1.15",
@@ -80,7 +80,7 @@ List details about the releases that an application instance has installed previ
 
 Response:
 
-```
+```json
 {
   "releases": [
     {
@@ -110,7 +110,7 @@ List details about the customer license file, including the license ID, type, th
 
 Response:
 
-```
+```json
 {
   "licenseID": REDACTED,
   "channelID": "2CBDxNwDH1xyYiIXRTjiB7REjKX",
@@ -129,7 +129,7 @@ Response:
 
 Response:
 
-```
+```json
 {
   "expires_at": {
     "name": "expires_at",
@@ -167,7 +167,7 @@ curl replicated:3000/api/v1/license/fields/expires_at
 
 Response:
 
-```
+```json
 {
   "name": "expires_at",
   "title": "Expiration",
@@ -179,3 +179,45 @@ Response:
   }
 }
 ```
+
+## Examples
+
+This section provides some example use cases for the Replicated SDK APIs.
+
+### Support Update Checks 
+
+You can check for updates to the application by using the get application updates API. This is useful to inform customers about updates to the application. For example, a banner can display in your application when updates are available, encouraging users to update and providing update instructions to them.
+
+To upgrade your application, users must log in to the Replicated registry and then perform a Helm upgrade. Consider the following example commands:
+
+```
+helm registry login registry.replicated.com --username alexp@replicated.com --password LICENSE_ID
+```
+
+```
+helm upgrade echo-server oci://registry.replicated.com/alex-echo-server-helm/echo-server
+```
+
+The registry login command requires three components: the registry domain, the username, and the password.
+
+The registry domain can be hardcoded for now, though this will be available programmatically once custom domains are fully supported.
+
+The username and password are both available from the get license info API in the customerEmail and licenseID fields.
+
+The install command requires five components: the release name, the release namespace, the registry domain, the app slug, and the channel slug.
+
+Again, the registry domain can be hardcoded for now, though this will be available programmatically once custom domains are fully supported.
+
+The other four components are available from the get application information API in the currentRelease.helmReleaseName, currentRelease.helmReleaseNamespace, appSlug, and currentRelease.channelSlug.
+
+### Verify Licenses
+
+You can check a customer’s license information with the `license` API. License entitlements can be checked with the `get license fields` and `get license field` APIs.
+
+License information, including license fields, is kept up to date by the SDK to reflect changes to the license in real time. In your application, you can revoke access when a license expires, expose additional product functionality dynamically based on entitlement values, and more.
+
+For example, although customers must have a valid license to log in to the registry and pull your chart, you can check the license expiration at runtime if you want to revoke access to the application when a license expires.
+
+You can check the license expiration with the get license field API by setting `expires_at` as the license field path parameter. For example, /api/v1/license/fields/expires_at.
+
+License fields are cryptographically signed to ensure their integrity. For information on how to verify license fields in your application, see Verify License Fields.

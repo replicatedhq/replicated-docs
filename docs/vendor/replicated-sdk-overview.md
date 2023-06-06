@@ -1,26 +1,17 @@
 # About the Replicated SDK
 
-This topic provides an introduction to the Replicated SDK.
+The Replicated SDK is a Helm chart that you can add as a dependency in your application Helm chart. The Replicated SDK is installed in customer environments by Helm alongside your application Helm chart, providing access to Replicated features, including telemetry, customer licensing and entitlements, version update checks, and more.
 
-## Overview
+## How the SDK Initializes in a Customer Environment
 
-Vendors who distribute their application with Helm can use the Replicated SDK to integrate their application with Replicated features. The Replicated SDK is installed by Helm alongside the application Helm chart, providing vendors access to telemetry, licensing and entitlements, update checks, and more.
+A release that includes your packaged Helm chart must be created and promoted to a channel. When a release containing one or more Helm charts is promoted to a channel, the charts are pushed to the Replicated registry. To install both your application and the SDK, your customers pull the charts from the Replicated registry using their unique license ID. This ensures that any customer who pulls your chart has a valid, unexpired license.
 
-## About Installing the SDK
-
-A release that includes your packaged Helm chart must be created and promoted to a channel. When a release containing one or more Helm charts is promoted to a channel, the charts are pushed to the Replicated registry. Your customers pull the charts from the Replicated registry to install both your application and the SDK.
-
-The following diagram shows how the Replicated SDK 
+The following diagram shows how the Replicated SDK uses the customer license during installation to initialize in a customer environment:
 
 ![diagram of the replicated sdk in a custom environment](/images/sdk-overview-diagram.png)
 
 As shown in the diagram above, the Replicated SDK is installed in a customer environment using a customer license ID. The SDK initializes using the Replicated License API to get license-specific entitlement information from the Replicated vendor portal. Your application APIs use Helm to query information about the customer environment, such as user-supplied configuration values. 
 
-### License Verification
-
-Each of your customers must log in to the Replicated registry using their license ID before they can pull your chart. For example, `helm registry login registry.replicated.com --username alexp@replicated.com --password LICENSE_ID`. This ensures that any customer who pulls your chart has a valid, unexpired license.
-
-### SDK Initialization
 When a Helm chart is pulled from the Replicated registry, the registry injects certain values into the chart in the replicated section of the values file. These values include license and release information that the SDK uses for initialization.
 
 The following is an example of a Helm values file containing only the information injected by the Replicated registry:
@@ -56,10 +47,14 @@ replicated:
   ```
 
 Values in the global section can be used by your Helm chart. For example, if your application needs to know about an entitlement before the SDK is up and running, your application can reference that entitlement in the global values. Once the SDK is up and running, entitlements should be retrieved using the SDK’s APIs, because those values will be continually updated, unlike the chart’s values.
+## SDK APIs 
 
+The SDK provides APIs that can be used to embed Replicated functionality and application information into your application.
 
-## About Using Replicated Features with the SDK 
+For example, if your application includes an admin console, the SDK APIs can be used to extend that admin console to include messages when new updates are available, license and entitlement information.
 
-The SDK provides a number of APIs that can be used to embed Replicated functionality and application information into your application.
+## Development Mode
 
-For example, if your application includes an admin console, the SDK APIs can be used to extend that admin console to include messages when new updates are available, license and entitlement information
+You can also run the Replicated SDK in development mode by initializing with a developer license. Development mode allows you to test changes locally without having to create a release in the vendor portal or pull your Helm chart from the Replicated registry in a development environment.
+
+For more information about developing against the Replicated SDK in development mode, see [Using Development Mode](replicated-sdk-development).
