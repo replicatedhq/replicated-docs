@@ -22,7 +22,7 @@ The **Channels** page in the vendor portal includes information about each chann
 
 The following shows an example of a channel in the vendor portal **Channels** page:
 
-<img src="/images/channel-card.png" alt="Channel card in the vendor portal" width="300"/>
+<img src="/images/channel-card.png" alt="Channel card in the vendor portal" width="400"/>
 
 [View a larger version of this image](/images/channel-card.png)
 
@@ -38,7 +38,7 @@ As shown in the image above, you can do the following from the **Channels** page
 
    You can also click **Release history** to access the history of all releases promoted to the channel. From the **Release History** page, you can view the installation commands and YAML files, build and download the air gap bundle, and edit the release properties for each release promoted to the channel.
 
-   <img src="/images/channels-release-history.png" alt="Release history page in the vendor portal" width="600"/>
+   <img src="/images/channels-release-history.png" alt="Release history page in the vendor portal" width="750"/>
 
    [View a larger version of this image](/images/channel-card.png)
 
@@ -52,7 +52,7 @@ Each release channel has settings. You can customize the settings for a channel 
 
 The following shows the **Channel Settings** dialog that you can access by clicking the settings icon on a channel:
 
-<img src="/images/channel-settings.png" alt="Channel Settings dialog in the vendor portal" width="350"/>
+<img src="/images/channel-settings.png" alt="Channel Settings dialog in the vendor portal" width="500"/>
 
 [View a larger version of this image](/images/channel-settings.png)
 
