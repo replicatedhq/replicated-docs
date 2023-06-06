@@ -15,6 +15,7 @@ import GraphsTemplates from "../partials/custom-resource-application/_graphs-tem
 import TargetKotsVersion from "../partials/custom-resource-application/_targetKotsVersion.mdx"
 import MinKotsVersion from "../partials/custom-resource-application/_minKotsVersion.mdx"
 import ProxyRegistryDomain from "../partials/custom-resource-application/_proxyRegistryDomain.mdx"
+import ReplicatedRegistryDomain from "../partials/custom-resource-application/_replicatedRegistryDomain.mdx"
 
 # Application
 
@@ -385,22 +386,51 @@ spec:
 </table>
 
 ## proxyRegistryDomain
-<table>
-  <tr>
-    <th>Description</th>
-    <td>
-      <p>The custom domain used for proxy.replicated.com. For more information, see <a href="/vendor/custom-domains#registry">Custom Registry Domains</a>.</p>
-      <p>Introduced in KOTS v1.91.1.</p>
-    </td>
-  </tr>
-  <tr>
-    <th>Example</th>
-    <td><ProxyRegistryDomain/></td>
-  </tr>
-  <tr>
-    <th>Supports Go templates?</th>
-    <td>No</td>
-  </tr>
+
+:::important
+`proxyRegistryDomain` is deprecated. For information about how to use a custom domain for the Replicated proxy service, see [Using Custom Domains for the Replicated Registry and Proxy Service](/vendor/custom-domains).
+:::
+
+<table>	
+  <tr>	
+    <th>Description</th>	
+    <td>	
+      <p>The custom domain used for proxy.replicated.com. For more information, see <a href="/vendor/custom-domains">Using Custom Domains for the Replicated Registry and Proxy Service</a>.</p>	
+      <p>Introduced in KOTS v1.91.1.</p>	
+    </td>	
+  </tr>	
+  <tr>	
+    <th>Example</th>	
+    <td><ProxyRegistryDomain/></td>	
+  </tr>	
+  <tr>	
+    <th>Supports Go templates?</th>	
+    <td>No</td>	
+  </tr>	
+</table>
+
+## replicatedRegistryDomain
+
+:::important
+`replicatedRegistryDomain` is deprecated. For information about how to use a custom domain for the Replicated registry, see [Using Custom Domains for the Replicated Registry and Proxy Service](/vendor/custom-domains).
+:::
+
+<table>	
+  <tr>	
+    <th>Description</th>	
+    <td>	
+      <p>The custom domain used for registry.replicated.com. For more information, see <a href="/vendor/custom-domains">Using Custom Domains for the Replicated Registry and Proxy Service</a>.</p>	
+      <p>Introduced in KOTS v1.91.1.</p>	
+    </td>	
+  </tr>	
+  <tr>	
+    <th>Example</th>	
+    <td><ReplicatedRegistryDomain/></td>	
+  </tr>	
+  <tr>	
+    <th>Supports Go templates?</th>	
+    <td>No</td>	
+  </tr>	
 </table>
 
 ## targetKotsVersion
