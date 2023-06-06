@@ -49,9 +49,11 @@ replicated:
 Values in the global section can be used by your Helm chart. For example, if your application needs to know about an entitlement before the SDK is up and running, your application can reference that entitlement in the global values. Once the SDK is up and running, entitlements should be retrieved using the SDK’s APIs, because those values will be continually updated, unlike the chart’s values.
 ## SDK APIs 
 
-The SDK provides APIs that can be used to embed Replicated functionality and application information into your application.
+The SDK provides APIs that can be used to embed Replicated functionality into your application.
 
-For example, if your application includes an admin console, the SDK APIs can be used to extend that admin console to include messages when new updates are available, license and entitlement information.
+For example, if your application includes a UI where users manage their application instance, then you can use the get application updates API to include messages in the UI when new versions of the application are available for upgrade. You could also use the get license field API to check the customer's license expiration at runtime. This would allow you to revoke access to the application when a license expires.
+
+For more information about the available Replicated SDK APIs, including example use cases, see [Replicated SDK APIs (Beta)](/reference/replicated-sdk-apis).
 
 ## Development Mode
 
