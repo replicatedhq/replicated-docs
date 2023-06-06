@@ -4,7 +4,7 @@ import PreflightsAddStrict from "../partials/preflights/_preflights-add-strict.m
 
 # Define Helm Preflight Checks
 
-This topic describes the options for using preflight checks with Helm, how to define preflight hooks and weights for installing or upgrading an application, configuring preflight checks as a secret, and example preflight files for different scenarios.
+This topic describes the options for using preflight checks with Helm, how to define preflight hooks and weights for installing or upgrading an application, configuring preflight checks as Secrets or ConfigMaps, and example preflight specifications for different scenarios.
 
 ## About Helm Preflight Checks
 
@@ -15,16 +15,18 @@ For Helm, preflight checks can be run in two different ways, at different times:
 - Before the installation, to confirm the target cluster has the resources required for a successful install.
 - During the installation, as a pre-install or pre-upgrade hook. The hook runs a Pod from the preflight image and supplies the specification to that as a Secret. The hook runs automatically immediately prior to installation.
 
-When you supply the output of `helm template` to the preflight command as stdin, the command filters the stream and searches for:
+When you supply the output of `helm template` to the preflight command as stdin, the command filters the stream and searches for the following specifications and runs them:
 
 -  Secrets or ConfigMaps containing preflight specifications
--  CRDs of `kind: preflight` and runs those
+-  Custom resources of `kind: preflight`
 
-If you do not require the pre-install or pre-upgrade hook to run during the Helm installation, you can just specify the preflight specification as a Secret in your Helm templates to make the specification readable by the preflight binary.
+If you do not require the `pre-install` or `pre-upgrade` hook to run during the Helm installation, you can just specify the preflight specification as a Secret in your Helm templates to make the specification readable by the preflight binary.
+
+For more information about specification types, see [Helm Specification Guidance](vendor/preflight-support-bundle-about#helm) in _About Preflight CHecks and Support Bundles_. 
 
 ## Using Hooks
 
-To run a preflight check for your application during the installation, you have the option to run the checks as hooks. To add hooks to your chart, consider adding the following resources to your templates:
+To run a preflight check for your application during the installation, you have the option to run the checks as hooks. To add hooks to your chart, consider adding the following resources to your Helm templates:
 
 - A Secret containing the preflight specification
 - A Pod or Job definition using the preflight image, which executes the check itself
@@ -43,15 +45,17 @@ You can also wrap the pre-install hook in an `{{ if` , so that `helm install` do
 
 ## Working Without Hooks
 
-If you do not want to use `pre-install` or `pre-upgrade` hooks, you can create a Preflight resource that can be read from stdin and still take advantage of templating available with Helm.
+If you do not want to use `pre-install` or `pre-upgrade` hooks, you can create a resource that can be read from stdin and still take advantage of Helm templates.
 
-Options include:
+Resource options include:
 
 - Storing a Secret in the cluster.
 - Providing a URL or a YAML file, without templating from `values.yaml`, such as a `preflight https://my-preflight.url.com`, or `preflight preflight.yaml`.
-- Using a template to create the preflight specification. This is a custom resource definition (CRD), but it is not installed in the cluster. The template can be wrapped in an `{{ if` so that it is only rendered when specified, for example: `helm template mychart --set renderpreflights=true --values values.yaml | preflight -`
+- Using a Helm template to create a Preflight custom resource, but the custom resource is not installed in the cluster. For more information about Preflight custom resource, see [Preflight and Support Bundle](/reference/custom-resource-preflight).
 
-    For example:
+  The template can be wrapped in an `{{ if` so that it is only rendered when specified, such as: `helm template mychart --set renderpreflights=true --values values.yaml | preflight -`
+
+    **Example**:
 
     ```yaml
     {{ if .Values.renderpreflights }}
@@ -67,14 +71,14 @@ Options include:
 
 ## Define Preflight Checks as Secrets
 
-The preflights checks you run are dependent on your application needs. This procedure gives some guidance about how to think about using collectors and analyzers, as you design your preflight checks. For more information about defining preflight checks, see [Collecting Data](https://troubleshoot.sh/docs/collect/)
+The preflight checks you run are dependent on your application needs. This procedure gives some guidance about how to think about using collectors and analyzers, as you design your preflight checks. For more information about defining preflight checks, see [Collecting Data](https://troubleshoot.sh/docs/collect/)
 and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation.
 
 Additionally, this procedure uses a Secret with `pre-install` and `pre-upgrade` hook and weight annotations. You can omit these annotations if you want the checks to run during installation instead or if you want to run the preflight checks before using the `helm template` command to trigger the checks before installation.
 
 To define preflight checks as a Secret:
 
-1. Create a Secret specification (`kind: Secret`). Alternatively, you can use a ConfigMap (`kind: configMap`) if the specification will not contain private information.
+1. Create a Secret specification (`kind: Secret`). Alternatively, you can use a ConfigMap (`kind: configMap`) if the specification will not collect private information from the cluster.
 
   You must include the following:
 
@@ -131,7 +135,7 @@ To define preflight checks as a Secret:
 
 1. <PreflightsAddStrict/>
 
-    The following examples shows a strict analyzer for MySQL versions:
+    The following example shows a strict analyzer for MySQL versions:
 
     ```yaml
     apiVersion: v1
@@ -176,7 +180,7 @@ To define preflight checks as a Secret:
 
 ### Pod Definition
 
-The following Pod Definition example show the use of `pre-install` and `pre-upgrade` hooks:
+The following Pod Definition example show the use of `pre-install` and `pre-upgrade` hooks.
 
 ```yaml
 apiVersion: v1

@@ -1,6 +1,6 @@
 # Running Helm Preflight Checks
 
-You can run Helm preflight checks before and after installing an application. Additionally, your preflight checks can include one or more specifications.
+You can run Helm preflight checks before running `helm install` and during the installation of an application. Additionally, your preflight checks can include one or more specification types and resources.
 
 ## Prerequisite
 
@@ -52,4 +52,4 @@ Replace:
 - `CHART` with the name of the Helm chart.
 - `FILENAME` with the name of the local values file.
 
-The `--atomic` flag deletes any failed resources. If a failure occurs during the preflight checks, the error message displays the name of the Pod log file in the cluster. CHeck the log files for information about the failure that you can use for troubleshooting.
+The `--atomic` flag deletes any failed resources. If a failure occurs during the preflight checks, the error message displays the name of the Pod log file in the cluster. Check the log files for information about the failure that you can use for troubleshooting.
