@@ -1,18 +1,22 @@
 # About the Replicated SDK
 
-The Replicated SDK is a Helm chart that you can add as a dependency in your application Helm chart. The Replicated SDK is installed in customer environments by Helm alongside your application Helm chart, providing access to Replicated features, including telemetry, customer licensing and entitlements, version update checks, and more.
+The Replicated SDK is a Helm chart that you can install alongside your application Helm chart as a dependency. The Replicated SDK allows you to use Replicated features with your application, such as getting telemetry on instances of your application running in customer environments, enforcing customer licenses and entitlements during installation and at runtime, and adding update checks to alert your customers when new versions of your application are available for upgrade.
+
+To get started with the Replicated SDK, edit your application Helm chart to declare the SDK as a dependency, then promote a new release with your Helm chart to a channel in the Replicated vendor portal. For more information about using the Replicated SDK, see [Deploying the Replicated SDK with Your Application](/vendor/replicated-sdk-using).
 
 ## How the SDK Initializes in a Customer Environment
 
-A release that includes your packaged Helm chart must be created and promoted to a channel. When a release containing one or more Helm charts is promoted to a channel, the charts are pushed to the Replicated registry. To install both your application and the SDK, your customers pull the charts from the Replicated registry using their unique license ID. This ensures that any customer who pulls your chart has a valid, unexpired license.
+After a release containing one or more Helm charts is promoted to a channel in the vendor portal, the vendor portal automatically pushes the charts to the Replicated registry. The Replicated registry is a private image registry hosted by Replicated at `registry.replicated.com`. For information about security for the Replicated registry, see [Replicated Private Registry Security](packaging-private-registry-security).
 
-The following diagram shows how the Replicated SDK uses the customer license during installation to initialize in a customer environment:
+Your customers install both your application and the Replicated SDK in their environment using the helm CLI. As part of the installation process, your customers first pull your Helm chart from the Replicated registry by authenticating with their unique license ID. This step ensures that any customer who pulls your chart has a valid, unexpired license. The following diagram shows how the Replicated SDK uses the customer license during installation to initialize in a customer environment:
 
 ![diagram of the replicated sdk in a custom environment](/images/sdk-overview-diagram.png)
 
-As shown in the diagram above, the Replicated SDK is installed in a customer environment using a customer license ID. The SDK initializes using the Replicated License API to get license-specific entitlement information from the Replicated vendor portal. Your application APIs use Helm to query information about the customer environment, such as user-supplied configuration values. 
+As shown in the diagram above, the Replicated SDK is installed in a customer environment using a customer license ID. The SDK initializes using the Replicated License API to get license-specific entitlement information for the customer from the vendor portal. In the customer environment, your application APIs use Helm to query information about the environment. 
 
-When a Helm chart is pulled from the Replicated registry, the registry injects certain values into the chart in the replicated section of the values file. These values include license and release information that the SDK uses for initialization.
+When a Helm chart is pulled from the Replicated registry, the Replicated registry also injects certain values into the chart in the `replicated` field in the Helm values file. These values include license and release information that the Replicated SDK uses for initialization.
+
+Additionally, the `global` section of the Helm values file contains values that your Helm chart can use before the SDK is initialized.
 
 The following is an example of a Helm values file containing only the information injected by the Replicated registry:
 
@@ -36,17 +40,16 @@ replicated:
   channelSequence: 75
   created_at: "2023-05-12T17:44:10Z"
   license: |
-    <Omitted to save space>
-  license_id: <REDACTED>
+    <The full customer license appears in the license field>
+  license_id: WJldGExCmtpbmQ6IEN...
   releaseCreatedAt: "2023-05-12T17:43:51Z"
   releaseIsRequired: false
-  releaseNotes: ""
+  releaseNotes: "My release notes"
   releaseSequence: 81
-  username: alexp@replicated.com
+  username: username@example.com
   versionLabel: 0.1.70
-  ```
+```
 
-Values in the global section can be used by your Helm chart. For example, if your application needs to know about an entitlement before the SDK is up and running, your application can reference that entitlement in the global values. Once the SDK is up and running, entitlements should be retrieved using the SDK’s APIs, because those values will be continually updated, unlike the chart’s values.
 ## SDK APIs 
 
 The SDK provides APIs that can be used to embed Replicated functionality into your application.

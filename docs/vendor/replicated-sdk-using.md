@@ -4,7 +4,7 @@ This topic describes how to begin using the Replicated SDK by declaring it as a 
 
 ## Prerequisite
 
-To enable the Replicated SDK to report the status of your application to the vendor portal, add the following labels on resources deployed as part of your Helm chart:
+Before you begin using the Replicated SDK, add the following labels on all resources deployed as part of your Helm chart:
 
 ```yaml
 labels:
@@ -12,6 +12,8 @@ labels:
   app.kubernetes.io/managed-by: {{ .Release.Service}}
   app.kubernetes.io/name: {{ .Chart.Name }}
 ``` 
+
+These are standard Helm labels that enable the Replicated SDK to report the status of installed instances of your application to the vendor portal so that you can view telemetry.
 
 ## Declare the SDK as a Dependency
 

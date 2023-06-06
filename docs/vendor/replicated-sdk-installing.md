@@ -10,7 +10,10 @@ When a Helm chart is pulled from the Replicated registry, the registry injects c
 
 ## Prerequisites
 
-To install a Helm chart and the Replicated SDK, you must have a customer in the vendor portal with a valid email address. This email address is only used as a username for the Replicated registry and is never contacted in any way. For more information about creating and editing customers in the vendor portal, see [Creating a Customer](/vendor/releases-creating-customer).
+Before you can install your Helm chart and the Replicated SDK, ensure that you meet the following prerequisites:
+
+* To install a Helm chart and the Replicated SDK, you must have a customer in the vendor portal with a valid email address. This email address is only used as a username for the Replicated registry and is never contacted in any way. For more information about creating and editing customers in the vendor portal, see [Creating a Customer](/vendor/releases-creating-customer).
+* The **Show Helm Install Tab** feature flag must be enabled for your team in the vendor portal.
 
 ## Install
 
