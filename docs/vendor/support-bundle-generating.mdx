@@ -17,13 +17,12 @@ For KOTS, using the admin console and additional CLI options are available. For 
 
 ## Generate a Bundle
 
-These methods are supported for Helm charts and for KOTS version 1.94.2 and later. For automatic discovery, Helm charts must use Secrets or ConfigMaps with the label `troubleshoot.sh/kind: support-bundle`.
-
+The following methods are supported for Helm charts and for KOTS version 1.94.2 and later.
 <GenerateBundle/>
 
-## Generate a Support Bundle when a Helm Installation Fails
+## Generate a Bundle when a Helm Installation Fails
 
-If an installation fails and you want to collect a support bundle to assist with diagnostics, you can use a Replicated default specification to generate the support bundle.
+If a Helm installation fails and you want to collect a support bundle to assist with diagnostics, you can use a Replicated default specification to generate the support bundle.
 
 Run the following command:
 

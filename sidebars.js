@@ -221,7 +221,25 @@ const sidebars = {
             'vendor/support-bundle-kots-customizing',
             'vendor/support-bundle-kots-secrets-configmaps',
             'vendor/support-bundle-generating',
-        ],
+         ],
+        },
+        {
+          type: 'category',
+          label: 'Custom Resources',
+          items: [
+            'reference/custom-resource-preflight',
+            'reference/custom-resource-redactor',
+
+         ],
+        },
+        {
+          type: 'category',
+          label: 'Supporting Your Application',
+          items: [
+            'vendor/support-inspecting-support-bundles',
+            'vendor/support-submit-request',
+            'vendor/support-host-support-bundles',
+          ],
         },
       ],
     },
@@ -281,15 +299,6 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Supporting Your Application',
-      items: [
-        'vendor/support-inspecting-support-bundles',
-        'vendor/support-submit-request',
-        'vendor/support-host-support-bundles',
-      ],
-    },
-    {
-      type: 'category',
       label: 'Reference',
       items: [
         'reference/cron-expressions',
@@ -304,8 +313,6 @@ const sidebars = {
             'reference/custom-resource-helmchart-v2',
             'reference/custom-resource-helmchart',
             'reference/custom-resource-lintconfig',
-            'reference/custom-resource-preflight',
-            'reference/custom-resource-redactor',
             'reference/custom-resource-sig-application',  
           ],
         },
