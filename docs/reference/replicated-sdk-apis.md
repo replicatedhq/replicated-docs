@@ -6,17 +6,11 @@ The Replicated SDK provides APIs that you can use to embed Replicated functional
 The Replicated SDK is Beta and is not recommended for production use.
 :::
 
-## Authentication
+## Access the SDK APIs
 
-The Replicated SDK APIs require the ID for a customer license created in the Replicated vendor portal to authenticate and initialize in an environment.
+The Replicated SDK APIs require the ID for a customer license created in the Replicated vendor portal to authenticate and initialize in an environment. To develop against the SDK in development mode, the SDK requires a development license. For information about licenses, see [About Customer License Types](licenses-about-types).
 
-After the SDK is installed, the Replicated SDK API service is exposed at `replicated:3000`. For example, you can run `curl replicated:3000/api/v1/license/info` to get details about the customer license file from the license API.
-
-To verify the location of the Replicated SDK API service, you can run `kubectl get service`.
-
-## Rate Limits
-
-?
+After the SDK is installed, the Replicated SDK API service is exposed at `replicated:3000`. To verify the location of the Replicated SDK API service, you can run `kubectl get service` in the appropriate namespace.
 
 ## app
 
@@ -32,9 +26,9 @@ Response:
 
 ```json
 {
-  "appSlug": "alex-echo-server-helm",
-  "appName": "alex-echo-server-helm",
-  "helmChartURL": "oci://registry.replicated.com/alex-echo-server-helm/stable/echo-server",
+  "appSlug": "my-app",
+  "appName": "My App",
+  "helmChartURL": "oci://registry.replicated.com/my-app/stable/my-helm-chart",
   "currentRelease": {
     "versionLabel": "0.1.72",
     "channelID": "2CBDxNwDH1xyYiIXRTjiB7REjKX",
@@ -42,9 +36,9 @@ Response:
     "isRequired": false,
     "createdAt": "2023-05-28T16:31:21Z",
     "releaseNotes": "",
-    "helmReleaseName": "echo-server",
+    "helmReleaseName": "helm-release",
     "helmReleaseRevision": 5,
-    "helmReleaseNamespace": "echo-server-helm"
+    "helmReleaseNamespace": "my-helm-chart"
   }
 }
 ```
@@ -112,11 +106,11 @@ Response:
 
 ```json
 {
-  "licenseID": REDACTED,
+  "licenseID": "YiIXRTjiB7R...",
   "channelID": "2CBDxNwDH1xyYiIXRTjiB7REjKX",
   "channelName": "Stable",
   "customerName": "Builders Plan Tester",
-  "customerEmail": "alexp@replicated.com",
+  "customerEmail": "username@example.com",
   "licenseType": "dev"
 }
 ```
@@ -191,7 +185,7 @@ You can check for updates to the application by using the get application update
 To upgrade your application, users must log in to the Replicated registry and then perform a Helm upgrade. Consider the following example commands:
 
 ```
-helm registry login registry.replicated.com --username alexp@replicated.com --password LICENSE_ID
+helm registry login registry.replicated.com --username username@example.com --password LICENSE_ID
 ```
 
 ```

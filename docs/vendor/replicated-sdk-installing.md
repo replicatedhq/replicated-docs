@@ -17,9 +17,34 @@ Before you can install your Helm chart and the Replicated SDK, ensure that you m
 
 ## Install
 
-To install a Helm chart along with the Replicated SDK, you first log in to the Replicated registry where the Helm chart was pushed using a customer license ID. Then, you use the helm CLI to install the Helm chart.
+To install a Helm chart application along with the Replicated SDK, you first authenticate to the Replicated registry where the Helm chart was pushed using a customer license ID. Then, you use the helm CLI to install.
+
+To install a Helm chart application and the Replicated SDK:
 
 1. In the vendor portal, go to **Customers** and click on the target customer.
+
 1. Click **Helm install instructions**.
-1. Run the first command to log into the Replicated registry.
-1. 
+
+1. In the **Helm install instructions** dialog, run the first command to log into the Replicated registry:
+
+   ```
+   helm registry login registry.replicated.com --username EMAIL_ADDRESS --password LICENSE_ID
+   ```
+   Replace `EMAIL_ADDRESS` and `LICENSE_ID` with the customer email address and license provided in the command in the **Helm install instructions** dialog.
+
+1. (Optional) Run the second command to ...
+
+1. (Optional) Run the third command to ...
+
+1. Run the fourth command to install the chart or charts using Helm:
+
+    ```
+    helm install RELEASE_NAME oci://registry.replicated.com/APP_SLUG/CHART_NAME
+    ```
+    Replace `RELEASE_NAME`, `APP_SLUG`, and `CHART_NAME` with the unique ID for the customer license provided in the command in the **Helm install instructions** dialog.
+
+1. Verify that the Replicated SDK was installed by getting the Kubernetes Deployments in the appropriate namespace:
+
+   ```
+   kubectl get deployments
+   ```

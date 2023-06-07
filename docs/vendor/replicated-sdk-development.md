@@ -10,41 +10,42 @@ To use development mode, you initialize the Replicated SDK using a valid develop
 
 ![architecture diagram of sdk development mode](/images/sdk-development-mode-diagram.png)
 
-As shown in the diagram above, the Replicated SDK 
+As shown in the diagram above, the Replicated SDK initializes with a developer license and uses mock data that you POST as a JSON object with the `/api/v1/mock-data` API.
 
-## Create a Development License
+To use development mode, complete the following procedures:
+1. [Create a Development License](#license)
+1. [Initialize the SDK with Your Development License](#initialize)
+1. [Provide Mock Data](#mock-data)
+
+## Create a Development License {#license}
 
 To create a development license:
 
-1. Go to the vendor portal and select Customer from the left menu. Click + Create customer.
+1. In the vendor portal, click **Customers**. Click **Create customer**.
+1. Assign the customer to whichever channel you want to use for your testing.
+1. For **Customer type**, select **Development**.
+1. Click **Save Changes**.
+1. Click **Download license** to download the license.
 
-1. When filling in the required fields. assign the customer to whichever channel you want to use for your testing.
-
-1. Select Development for Customer type.
-
-1. Click Save Changes.
-
-1. Click Download license to download the license.
-
-## Initialize the SDK with Your Development License
+## Initialize the SDK with Your Development License {#initialize}
 
 In production use, the license information is injected by the Replicated registry when the chart is pulled. When developing against the chart locally, you need to provide this information yourself to initialize the SDK.
 
 There are different ways to do this depending on your development environment.
 
-### Initializing with a Helm Chart
+### Initialize with a Helm Chart
 
 If your development environment supports Helm, you can deploy the SDK as a Helm chart. You should first follow the steps in Declaring the SDK as a Dependency. Then you can deploy your Helm chart and the SDK together in your development environment.
 
-### Initializing with a Container Image
+### Initialize with a Container Image
 
-Some development environments do not support Helm. In this case, developers will create and apply a Kubernetes Deployment to deploy the SDK.
+Some development environments do not support Helm. In this case, you can create and apply a Kubernetes Deployment to deploy the SDK.
 
 To do this, copy the Deployment used by the SDK Helm chart and make some small changes so it works in your environment.
 
 To create the SDK Deployment:
 
-1. Base64 encode the license you created and downloaded.
+1. Base64 encode the license that you created and downloaded.
 
     **Example:**
 
@@ -58,7 +59,7 @@ To create the SDK Deployment:
 
 1. Deploy the SDK.
 
-## Providing Mock Data
+## Provide Mock Data {#mock-data}
 
 To use development mode, you provide mock data to the SDK so that you can test your changes in different scenarios.
 

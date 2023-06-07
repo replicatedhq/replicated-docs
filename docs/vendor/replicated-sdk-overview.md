@@ -30,6 +30,7 @@ When a customer pulls your Helm chart from the Replicated registry, the Replicat
 The following is an example of a Helm values file containing only the information injected by the Replicated registry when your customer pulls the Helm chart from the Replicated registry during installation:
 
 ```yaml
+# Helm values.yaml
 global:
   licenseFields:
     expires_at:
