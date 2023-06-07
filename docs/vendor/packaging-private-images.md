@@ -43,22 +43,134 @@ To configure access to your private images in an external registry using the ven
 
    <img src="/images/add-external-registry.png" alt="/images/add-external-registry.png" width="400px"></img>
 
-1. Click the **Other Registry** or **DockerHub** tab.
-1. Complete the fields in the dialog:
-<table>
-  <tr>
-    <th width="30%">Field</th>
-    <th width="70%">Instructions</th>
-  </tr>
-  <tr>
-    <td>Endpoint</td>
-    <td>Enter the endpoint, such as quay.io, index.docker.io, or gcr.io.</td>
-  </tr>
-  <tr>
-    <td>Username and Password</td>
-    <td>Provide the username and password for an account that has pull access to the private registry.<br/><br/>For Amazon ECR registries, provide the Access Key ID and Secret Key for a Service Account User that has pull access to the registry. See <a href="tutorial-ecr-private-images#setting-up-the-service-account-user">Setting up the Service Account User</a>.<br/><br/>Replicated stores your username and password encrypted and securely. Your credentials and the encryption key do not leave Replicated servers.</td>
-  </tr>
-</table>
+1. In the **Provider** drop-down, select your private registry provider. 
+
+1. Complete the fields in the dialog, depending on the provider that you chose:
+
+   :::note
+   Replicated stores your credentials encrypted and securely. Your credentials and the encryption key do not leave Replicated servers.
+   :::
+
+   * **Amazon ECR**
+      <table>
+        <tr>
+          <th width="30%">Field</th>
+          <th width="70%">Instructions</th>
+        </tr>
+        <tr>
+          <td>Endpoint</td>
+          <td>Enter the endpoint for the registry.</td>
+        </tr>
+        <tr>
+          <td>Access Key ID</td>
+          <td>Enter the Access Key ID for a Service Account User that has pull access to the registry. See <a href="tutorial-ecr-private-images#setting-up-the-service-account-user">Setting up the Service Account User</a>.</td>
+        </tr>
+        <tr>
+          <td>Secret Access Key</td>
+          <td>Enter the Secret Access Key for the Service Account User.</td>
+        </tr>
+      </table>  
+
+    * **DockerHub**
+
+      <table>
+        <tr>
+          <th width="30%">Field</th>
+          <th width="70%">Instructions</th>
+        </tr>
+        <tr>
+          <td>Endpoint</td>
+          <td>Enter the endpoint for the registry, such as index.docker.io.</td>
+        </tr>
+        <tr>
+          <td>Auth Type</td>
+          <td>Select the authentication type for a DockerHub account that has pull access to the registry.</td>
+        </tr>
+        <tr>
+          <td>Username</td>
+          <td>Enter the username for the account.</td>
+        </tr>
+        <tr>
+          <td>Password or Token</td>
+          <td>Enter the password or token for the account, depending on the authentication type you selected.</td>
+        </tr>
+      </table> 
+
+    * **GitHub Container Registry**
+
+      <table>
+        <tr>
+          <th width="30%">Field</th>
+          <th width="70%">Instructions</th>
+        </tr>
+        <tr>
+          <td>Endpoint</td>
+          <td>Enter the endpoint for the registry.</td>
+        </tr>
+        <tr>
+          <td>Username</td>
+          <td>Enter the username for an account that has pull access to the registry.</td>
+        </tr>
+        <tr>
+          <td>GitHub Token</td>
+          <td>Enter the token for the account.</td>
+        </tr>
+      </table>
+
+    * **Google Container Registry**
+
+      <table>
+        <tr>
+          <th width="30%">Field</th>
+          <th width="70%">Instructions</th>
+        </tr>
+        <tr>
+          <td>Endpoint</td>
+          <td>Enter the endpoint for the registry, such as gcr.io.</td>
+        </tr>
+        <tr>
+          <td>Service Account JSON Key</td>
+          <td><p>Enter the JSON Key for a Service Account in Google Cloud Platform that is assigned the Storage Object Viewer role.</p><p>For more information about creating a Service Account, see <a href="https://cloud.google.com/container-registry/docs/access-control">Access Control with IAM</a> in the Google Cloud documentation.</p></td>
+        </tr>
+      </table>   
+
+    * **Quay.io**
+
+      <table>
+        <tr>
+          <th width="30%">Field</th>
+          <th width="70%">Instructions</th>
+        </tr>
+        <tr>
+          <td>Endpoint</td>
+          <td>Enter the endpoint for the registry, such as quay.io.</td>
+        </tr>
+        <tr>
+          <td>Username and Password</td>
+          <td>Enter the username and password for an account that has pull access to the registry.</td>
+        </tr>
+      </table>
+
+    * **Other**
+
+      <table>
+        <tr>
+          <th width="30%">Field</th>
+          <th width="70%">Instructions</th>
+        </tr>
+        <tr>
+          <td>Endpoint</td>
+          <td>Enter the endpoint for the registry, such as example.registry.com.</td>
+        </tr>
+        <tr>
+          <td>Username and Password</td>
+          <td>Enter the username and password for an account that has pull access to the registry.</td>
+        </tr>
+      </table>
+
+1. For **Image name & tag**, enter the image name and image tag and click **Test** to confirm that the vendor portal can access the image. For example, `api:v1.0.1`.
+
+1. Click **Link registry**.
 
 ### Using the CLI
 
