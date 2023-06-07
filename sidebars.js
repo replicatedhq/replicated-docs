@@ -91,7 +91,8 @@ const sidebars = {
             'vendor/team-management-google-auth',
             'vendor/team-management-saml-auth',
          ],
-       },
+        },
+        'vendor/team-management-slack-config',
       ],
     },
     {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true},
@@ -259,6 +260,7 @@ const sidebars = {
          'vendor/customer-adoption',
          'vendor/customer-reporting',
          'vendor/instance-insights-details',
+         'vendor/instance-notifications-config',
        ],
     },
     {
