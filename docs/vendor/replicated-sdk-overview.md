@@ -1,6 +1,10 @@
+import Beta from "../partials/replicated-sdk/_beta.mdx"
+
 # About the Replicated SDK
 
 This topic provides an introduction to how to use the Replicated SDK with your Helm chart application.
+
+<Beta/>
 
 ## Overview
 
@@ -13,7 +17,7 @@ The Replicated SDK is a Helm chart that can be installed alongside your applicat
 
 To get started with the Replicated SDK, edit your application Helm chart to declare the SDK as a dependency, then promote a new release with your Helm chart to a channel in the Replicated vendor portal. For more information about using the Replicated SDK, see [Deploying the Replicated SDK With Your Application](/vendor/replicated-sdk-using).
 
-## How the SDK Initializes in a Customer Environment
+## How the SDK Initializes in a Customer Environment {#about-sdk-initialize}
 
 After a release containing one or more Helm charts is promoted to a channel in the vendor portal, the vendor portal automatically pushes the charts to the Replicated registry. The Replicated registry is a private image registry hosted by Replicated at `registry.replicated.com`. For information about security for the Replicated registry, see [Replicated Private Registry Security](packaging-private-registry-security).
 

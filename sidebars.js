@@ -144,7 +144,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Replicated SDK Helm Chart',
+      label: 'Replicated SDK Helm Chart (Beta)',
       items: [
         'vendor/replicated-sdk-overview',
         'vendor/replicated-sdk-using',
