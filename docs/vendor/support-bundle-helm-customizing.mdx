@@ -1,6 +1,7 @@
 import SupportBundleAddLogs from "../partials/support-bundles/_support-bundle-add-logs.mdx"
 import SupportBundleCustomCollectors from "../partials/support-bundles/_support-bundle-custom-collectors.mdx"
 import SupportBundleAddAnalyzers from "../partials/support-bundles/_support-bundle-add-analyzers.mdx"
+import PreflightsHelmGuidance from "../partials/preflights/_preflights-helm-guidance.mdx"
 
 
 # Customize Helm Support Bundles
@@ -9,7 +10,7 @@ Customizing a support bundle is unique to your application and depends on what k
 
 Additionally, this procedure shows using a Secret to contain a support bundle specification with your Helm chart, which allows customers to automatically discover and generate a support bundle without specifying a long URL. Using a Secret also allows the specification to be templated using information in the `values.yaml` file.
 
-For more information about specification types, see [Helm Specification Guidance](vendor/preflight-support-bundle-about#helm) in _About Preflight CHecks and Support Bundles_.
+<PreflightsHelmGuidance/>
 
 To customize a support bundle as a Secret:
 
@@ -65,3 +66,5 @@ To customize a support bundle as a Secret:
 1. (Optional) Add redactors to prevent sensitive data from being collected when support bundles are generated. For more information, see [Redacting Data](https://troubleshoot.sh/docs/redact/) in the Troubleshoot documentation.
 
 1. When using Secrets, you can also add Helm templates for the specification in the `values.yaml` file.
+
+1. Test your support bundle in a development environment. For more information, see [Generating Support Bundles](support-bundle-generating).

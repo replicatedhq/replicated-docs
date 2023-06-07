@@ -1,6 +1,7 @@
 import SupportBundleAddLogs from "../partials/support-bundles/_support-bundle-add-logs.mdx"
 import SupportBundleCustomCollectors from "../partials/support-bundles/_support-bundle-custom-collectors.mdx"
 import SupportBundleAddAnalyzers from "../partials/support-bundles/_support-bundle-add-analyzers.mdx"
+import PreflightsKotsGuidance from "../partials/preflights/_preflights-kots-guidance.mdx"
 
 
 # Customize KOTS Support Bundles
@@ -11,7 +12,9 @@ By default, support bundles contain a large number of commonly used, best practi
 
 This procedure provides a basic understanding and some key considerations to help guide you. For more information about configuring support bundles, see [Collecting Data](https://troubleshoot.sh/docs/collect/), [Redacting Data](https://troubleshoot.sh/docs/redact/), and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation. You can also see the entire default specification at [spec.yaml](https://github.com/replicatedhq/kots/blob/main/pkg/supportbundle/defaultspec/spec.yaml) in the kots repository.
 
-To customize a support bundle:
+<PreflightsKotsGuidance/>
+
+To customize a support bundle for KOTS:
 
 1. Create a SupportBundle custom resource manifest file (`kind: SupportBundle`) in your release.
 1. Use one of the following support bundle template options to start populating your manifest file:

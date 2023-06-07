@@ -1,5 +1,6 @@
 import PreflightsAddAnalyzers from "../partials/preflights/_preflights-add-analyzers.mdx"
 import PreflightsAddStrict from "../partials/preflights/_preflights-add-strict.mdx"
+import PreflightsHelmGuidance from "../partials/preflights/_preflights-helm-guidance.mdx"
 
 
 # Define Helm Preflight Checks
@@ -22,7 +23,7 @@ When you supply the output of `helm template` to the preflight command as stdin,
 
 If you do not require the `pre-install` or `pre-upgrade` hook to run during the Helm installation, you can just specify the preflight specification as a Secret in your Helm templates to make the specification readable by the preflight binary.
 
-For more information about specification types, see [Helm Specification Guidance](vendor/preflight-support-bundle-about#helm) in _About Preflight CHecks and Support Bundles_. 
+<PreflightsHelmGuidance/> 
 
 ## Using Hooks
 
@@ -74,7 +75,9 @@ Resource options include:
 The preflight checks you run are dependent on your application needs. This procedure gives some guidance about how to think about using collectors and analyzers, as you design your preflight checks. For more information about defining preflight checks, see [Collecting Data](https://troubleshoot.sh/docs/collect/)
 and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation.
 
-Additionally, this procedure uses a Secret with `pre-install` and `pre-upgrade` hook and weight annotations. You can omit these annotations if you want the checks to run during installation instead or if you want to run the preflight checks before using the `helm template` command to trigger the checks before installation.
+Additionally, this procedure uses a Secret with `pre-install` and `pre-upgrade` hook and weight annotations. You can omit these annotations if you want the checks to run during installation instead or if you want to run the preflight checks before using the `helm template` command to trigger the checks before installation. 
+
+<PreflightsHelmGuidance/>
 
 To define preflight checks as a Secret:
 
@@ -174,7 +177,7 @@ To define preflight checks as a Secret:
                 - pass:
                     message: The MySQL server is ready
     ```
-1. Test your preflight checks in a development environment.
+1. Test your preflight checks in a development environment. For more information, see [Running Helm Preflight Checks](preflight-running).
 
 ## Examples
 
