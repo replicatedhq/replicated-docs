@@ -22,8 +22,8 @@ Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
 
 ### Bug Fixes {#bug-fixes-1-100-2}
 * Fixes an issue where the ConfigValues were not being saved for multi-doc yaml releases.
-* Fixes an issue where the Config spec would be missing from the rendered multi-doc release yaml within the kotsKinds folder.
-* Input items can be set to readonly, preventing the users from editing the fields in the UI in the config page.
+* Fixes an issue where the Config spec was missing from the rendered multi-doc release yaml within the kotsKinds folder.
+* Fixes an issue with readonly input items, preventing the users from editing the fields in the UI in the config page.
 
 ## 1.100.1
 
