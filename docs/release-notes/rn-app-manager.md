@@ -21,8 +21,8 @@ Released on June 7, 2023
 Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
 
 ### Bug Fixes {#bug-fixes-1-100-2}
-* Fixes an issue where the ConfigValues were not saved when a release contained multiple YAML files.
-* Fixes an issue where the Config specification was missing from the rendered multiple YAML release in the kotsKinds folder.
+* Fixes an issue where the Config values were not saved when a release contained a multiple-document YAML file.
+* Fixes an issue where the Config specification was missing from the rendered release with the multiple-document YAML file in the kotsKinds folder.
 * Fixes an issue that allowed users to edit `readonly` Config items.
 
 ## 1.100.1
