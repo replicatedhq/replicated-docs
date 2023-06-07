@@ -102,7 +102,7 @@ The following tables can help guide you in deciding which options to use for pre
 
 #### Secrets Without Hooks
 
-Secrets containing a preflight specification without `pre-install` or `pre-upgrade` hooks:
+Lets you provide preflight checks using Secrets without `pre-install` or `pre-upgrade` hooks:
 
 <table>
     <tr>
@@ -121,7 +121,7 @@ Secrets containing a preflight specification without `pre-install` or `pre-upgra
 
 #### Secrets With Hooks
 
-Secrets containing a preflight specification with `pre-install` or `pre-upgrade` hooks:
+Lets you provide preflight checks using Secrets with `pre-install` or `pre-upgrade` hooks:
 
   <table>
     <tr>
@@ -139,7 +139,9 @@ Secrets containing a preflight specification with `pre-install` or `pre-upgrade`
   </table>
 
 
-  #### Preflight CRD in a Template - Not a Hook
+#### Preflight Custom Resource in a Template - Not a Hook
+
+Lets you provide preflight checks using a Preflight custom resource in a Helm template:
 
   <table>
     <tr>
@@ -156,9 +158,9 @@ Secrets containing a preflight specification with `pre-install` or `pre-upgrade`
     </tr>
   </table>
 
-  #### YAML Files
+#### YAML Files
 
-  This option requires one or more `preflight preflight.yaml` files.
+Lets you provide preflight checks using one or more YAML files:
 
   <table>
     <tr>
@@ -175,9 +177,9 @@ Secrets containing a preflight specification with `pre-install` or `pre-upgrade`
     </tr>
   </table>
 
-  #### URLs
+#### URLs
 
-Lets you provide preflight checks using one or more URLs, such as `preflight https://my-preflight.url.com`.
+Lets you provide preflight checks using one or more URLs:
 
   <table>
     <tr>
@@ -201,6 +203,8 @@ The following table can help guide you in deciding which options to use for supp
 
 #### Secrets
 
+Lets you provide support bundle specifications using one or more Secrets:
+
 <table>
     <tr>
       <th>Use Cases</th>
@@ -217,6 +221,8 @@ The following table can help guide you in deciding which options to use for supp
   </table>
 
 #### ConfigMap
+
+Lets you provide support bundle specifications using one or more ConfigMaps:
 
 <table>
     <tr>
@@ -235,6 +241,8 @@ The following table can help guide you in deciding which options to use for supp
 
 #### YAML Files
 
+Lets you provide support bundle specifications using one or more YAML files:
+
 <table>
     <tr>
       <th>Use Cases</th>
@@ -252,6 +260,7 @@ The following table can help guide you in deciding which options to use for supp
 
 #### URLs
 
+Lets you provide support bundle specifications using one or more URLs:
 
 <table>
     <tr>
@@ -260,7 +269,7 @@ The following table can help guide you in deciding which options to use for supp
     </tr>
     <tr>
       <th>Advantages</th>
-      <td><p>Allows vendors to update the support-bundle specification out-of-band from the application to provide notifications of possible issues, fixes, and prevention information.</p><p>If the URI is unavailable or unparseable, the support bundle ise generated using the original specification in the cluster.</p><p>Easy to iterate against as a team.</p></td>
+      <td><p>Allows vendors to update the support-bundle specification out-of-band from the application to provide notifications of possible issues, fixes, and prevention information.</p><p>If the URI is unavailable or unparseable, the support bundle is generated using the original specification in the cluster.</p><p>Easy to iterate against as a team.</p></td>
     </tr>
     <tr>
       <th>Limitations</th>
