@@ -59,7 +59,7 @@ To configure access to your private images in an external registry using the ven
         </tr>
         <tr>
           <td>Endpoint</td>
-          <td>Enter the endpoint for the registry.</td>
+          <td>Enter the host name for the registry.</td>
         </tr>
         <tr>
           <td>Access Key ID</td>
@@ -80,7 +80,7 @@ To configure access to your private images in an external registry using the ven
         </tr>
         <tr>
           <td>Endpoint</td>
-          <td>Enter the endpoint for the registry, such as index.docker.io.</td>
+          <td>Enter the host name for the registry, such as index.docker.io.</td>
         </tr>
         <tr>
           <td>Auth Type</td>
@@ -88,7 +88,7 @@ To configure access to your private images in an external registry using the ven
         </tr>
         <tr>
           <td>Username</td>
-          <td>Enter the username for the account.</td>
+          <td>Enter the host name for the account.</td>
         </tr>
         <tr>
           <td>Password or Token</td>
@@ -105,7 +105,7 @@ To configure access to your private images in an external registry using the ven
         </tr>
         <tr>
           <td>Endpoint</td>
-          <td>Enter the endpoint for the registry.</td>
+          <td>Enter the host name for the registry.</td>
         </tr>
         <tr>
           <td>Username</td>
@@ -126,7 +126,7 @@ To configure access to your private images in an external registry using the ven
         </tr>
         <tr>
           <td>Endpoint</td>
-          <td>Enter the endpoint for the registry, such as gcr.io.</td>
+          <td>Enter the host name for the registry, such as gcr.io.</td>
         </tr>
         <tr>
           <td>Service Account JSON Key</td>
@@ -143,7 +143,7 @@ To configure access to your private images in an external registry using the ven
         </tr>
         <tr>
           <td>Endpoint</td>
-          <td>Enter the endpoint for the registry, such as quay.io.</td>
+          <td>Enter the host name for the registry, such as quay.io.</td>
         </tr>
         <tr>
           <td>Username and Password</td>
@@ -160,7 +160,7 @@ To configure access to your private images in an external registry using the ven
         </tr>
         <tr>
           <td>Endpoint</td>
-          <td>Enter the endpoint for the registry, such as example.registry.com.</td>
+          <td>Enter the host name for the registry, such as example.registry.com.</td>
         </tr>
         <tr>
           <td>Username and Password</td>
@@ -168,7 +168,7 @@ To configure access to your private images in an external registry using the ven
         </tr>
       </table>
 
-1. For **Image name & tag**, enter the image name and image tag and click **Test** to confirm that the vendor portal can access the image. For example, `api:v1.0.1`.
+1. For **Image name & tag**, enter the image name and image tag and click **Test** to confirm that the vendor portal can access the image. For example, `api:v1.0.1` or `my-app/api:v1.01`.
 
 1. Click **Link registry**.
 
