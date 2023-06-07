@@ -17,7 +17,7 @@ labels:
   app.kubernetes.io/name: {{ .Chart.Name }}
 ``` 
 
-These are standard Helm labels that enable the Replicated SDK to report the status of installed instances of your application to the vendor portal so that you can view insights on instances running in customer environments.
+These are standard Helm labels that enable the Replicated SDK to report the status of installed instances of your application to the vendor portal so that you can view insights on instances running in customer environments. For more information about viewing insights and telemetry in the vendor portal, see [Instance Details](instance-insights-details).
 
 ## Declare the SDK as a Dependency
 
@@ -58,20 +58,23 @@ Continue to [Add Your Helm Chart to a Release](#release) below to add the `.tgz`
 
 After you package the Helm chart with the Replicated SDK as a dependency, you can add the `.tgz` file to a release in the vendor portal. When you promote the release to a channel, the vendor portal automatically pushes your Helm chart to the Replicated registry where your customers can then pull the chart. For more information, see [How the SDK Initializes in a Customer Environment](#about-sdk-initialize).
 
+You can also create and promote releases with the replicated CLI rather than using the vendor portal. For more information, see [Managing Releases with the CLI](releases-creating-cli).
+
 To create and promote a release in the vendor portal:
 
 1. In the vendor portal, go to **Releases** > **Create a release**.
 
-1. () Delete any existing files from the release that the vendor portal created by default. These files are relevant only to applications deployed with Replicated KOTS. Your packaged Helm chart is the only file that you need to include in the release.
+1. Do one of the following to add your Helm chart to the release:
 
-1. Add your Helm chart `.tgz` file to the release by dragging and dropping it into the text editor or by clicking **New File** at the bottom of the file tree.
+   * In the **Upload Helm chart** modal, upload your Helm chart `.tgz` file.
+   * Drag and drop your Helm chart `.tgz` file into the file tree.
 
-1. (KOTS Only) If you are prompted to select a Helm install method, click **OK**. This step is relevant only for releases distributed with KOTS.
+   Your Helm chart files appear in the file tree of the release.
 
-1. Click **Save Release** then click **Promote**. In the **Promote Release** dialog, edit the fields:
-   1. For **Channel**, select the channel that your team uses for development. If you are not sure which channel to use, use the Unstable channel.
-   1. (Optional) For **Version label**, enter a version label for this release.
-   1. For **Requirements**, leave **Prevent this release from being skipped during upgrades** disabled.
+1. If you are prompted to select a Helm install method, click **OK**. This option is relevant only for releases distributed with KOTS.
+
+1. Click **Save Release** then click **Promote**. In the **Promote Release** dialog, edit the following fields:
+   1. For **Channel**, select the channel that your team uses for development. If you are not sure which channel to use, use the default Unstable channel.
    1. (Optional) For **Release notes**, add release notes to describe the updates in this release.
 
-After the release is promoted, the vendor portal pushes your Helm chart to the Replicated registry.
+After the release is promoted, the vendor portal pushes your Helm chart to the Replicated registry. For information about how to install the release in a development environment with Helm, see [Installing an Application and the SDK](replicated-sdk-installing). 

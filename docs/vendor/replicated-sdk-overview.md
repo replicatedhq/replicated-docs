@@ -8,7 +8,7 @@ This topic provides an introduction to how to use the Replicated SDK with your H
 
 ## Overview
 
-The Replicated SDK is a Helm chart that can be installed alongside your application Helm chart as a dependency. The Replicated SDK allows you to install your application with Helm while still having access to Replicated features such as:
+The Replicated SDK is a Helm chart that can be installed as a small service alongside your application Helm chart. The Replicated SDK allows you to install your application with Helm while having access to Replicated features such as:
 
 * Getting telemetry and insights on instances of your application running in customer environments 
 * Enforcing customer licenses and entitlements during installation and at runtime 

@@ -26,14 +26,28 @@ To use the Replicated SDK in development mode, complete the following procedures
 To create a development license:
 
 1. In the vendor portal, click **Customers**. Click **Create customer**.
-1. Assign the customer to whichever channel you want to use for your testing.
-1. For **Customer type**, select **Development**.
+
+1. Complete the following fields:
+    
+    1. For **Customer name**, add a name for the customer.
+    
+    1. For **Assigned channel**, assign the customer to the channel that you use for testing.
+    
+    1. For **Customer type**, select **Development**.
+    
+    1. For **Customer email**, add the email address that you want to use for the developer license.
+
+   ![create customer page in the vendor portal](/images/create-customer-development-mode.png)
+
+   [View a larger version of this image](/images/create-customer-development-mode.png)
+
 1. Click **Save Changes**.
+
 1. Click **Download license** to download the license.
 
 ## Initialize the SDK With Your Development License {#initialize}
 
-When using the Replicated SDK outside of development mode, the Replicated registry automatically injects customer-specific license information when the customer pulls for the chart from the registry. When developing against the chart locally, you need to manually provide the license information to initialize the SDK in your development environment.
+When the Replicated SDK is installed in a customer environment, the Replicated registry automatically injects customer-specific license information. When developing against the chart locally, you need to manually provide the license information to initialize the SDK in your development environment.
 
 To provide license information to the SDK, you can either use a Helm chart or a container image, depending on your development environment.
 
@@ -43,7 +57,7 @@ If your development environment supports Helm, you can deploy the SDK as a Helm 
 
 To initialize the SDK with a Helm chart:
 
-1. Follow the steps in [Declare the SDK as a Dependency](replicated-sdk-using#declare-the-sdk-as-a-dependency). 
+1. Follow the steps in [Declare the SDK as a Dependency](replicated-sdk-using#declare-the-sdk-as-a-dependency) to add the Replicated SDK as a dependency and repackage your Helm chart. 
 1. Deploy your Helm chart and the SDK together in your development environment:
 
    ```
@@ -56,15 +70,18 @@ If your development environment does not support Helm, create and apply a Kubern
 
 To create the SDK Deployment:
 
-1. Base64 encode the license that you created and downloaded as part of [Create a Development License](#license).
+<!-- 1. Base64 encode the license that you created and downloaded as part of [Create a Development License](#license).
 
     **Example:**
 
     ```
     cat license.yaml | base64
-    ```
+    ``` -->
 
-1. Copy the Deployment YAML file and the associated Secret from the SDK repository. Paste the Deployment YAML file where you develop.
+1. Go to the [replicated-sdk](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/templates/) repository in GitHub. Copy the following YAML files and paste them where you develop:
+   
+   * `replicated-deployment.yaml` 
+   * `replicated-secret.yaml` 
 
 1. Set the license environment variable.
 
