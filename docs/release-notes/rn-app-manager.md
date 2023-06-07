@@ -21,9 +21,9 @@ Released on June 7, 2023
 Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
 
 ### Bug Fixes {#bug-fixes-1-100-2}
-* Fixes an issue where the ConfigValues were not being saved for multi-doc yaml releases.
-* Fixes an issue where the Config spec was missing from the rendered multi-doc release yaml within the kotsKinds folder.
-* Fixes an issue with readonly input items, preventing the users from editing the fields in the UI in the config page.
+* Fixes an issue where the config values were not saved when a release contained multi-doc YAML.
+* Fixes an issue where the Config spec was missing from the rendered multi-doc release YAML within the kotsKinds folder.
+* Fixes an issue that allowed users to edit `readonly` config items.
 
 ## 1.100.1
 
