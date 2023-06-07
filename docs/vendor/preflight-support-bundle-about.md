@@ -220,7 +220,7 @@ Lets you provide support bundle specifications using one or more Secrets:
     </tr>
   </table>
 
-#### ConfigMap
+#### ConfigMaps
 
 Lets you provide support bundle specifications using one or more ConfigMaps:
 

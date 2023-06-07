@@ -11,10 +11,10 @@ This topic describes the options for using preflight checks with Helm, how to de
 
 You define preflight checks based on your application needs. Preflight checks are not included by default. This procedure provides a basic understanding and some key considerations to help guide you.
 
-For Helm, preflight checks can be run in two different ways, at different times:
+For Helm, preflight checks can be run in two different ways, at different times. Replicated recommends that you use both of these methods to help ensure that your customer environment will support your application _before_ running the installation. Set up your preflight checks to run:
 
-- Before the installation, to confirm the target cluster has the resources required for a successful install.
-- During the installation, as a pre-install or pre-upgrade hook. The hook runs a Pod from the preflight image and supplies the specification to that as a Secret. The hook runs automatically immediately prior to installation.
+- Before running the `helm install` command, without hooks, to confirm the target cluster has the resources required for a successful install.
+- During the installation, using `pre-install` and `pre-upgrade` hooks with `helm install`. The hooks run a Pod from the preflight image and supply the specification to that as a Secret or ConfigMap. The hooks run automatically immediately before installing the application, and prevent the installation if the preflight checks fail.
 
 When you supply the output of `helm template` to the preflight command as stdin, the command filters the stream and searches for the following specifications and runs them:
 
