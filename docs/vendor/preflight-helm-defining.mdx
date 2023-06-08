@@ -1,6 +1,8 @@
 import PreflightsAddAnalyzers from "../partials/preflights/_preflights-add-analyzers.mdx"
 import PreflightsAddStrict from "../partials/preflights/_preflights-add-strict.mdx"
 import PreflightsHelmGuidance from "../partials/preflights/_preflights-helm-guidance.mdx"
+import ConfigmapNote from "../partials/preflights/_configmap-note.mdx"
+
 
 
 # Define Helm Preflight Checks
@@ -21,7 +23,7 @@ When you supply the output of `helm template` to the preflight command as stdin,
 
 You can create a resource that can be read from stdin and still take advantage of Helm templates.
 
-## Preflight Locations
+## Specification Types
 
 The following tables can help guide you in deciding which options to use for preflight checks.
 
@@ -121,19 +123,17 @@ Lets you provide preflight checks using one or more URLs:
 
 Replicated recommends using Secrets to define preflight checks. Using Secrets protects secure information in a cluster, and allows the use of Helm templates to customize preflight checks based on the values unique to a customer's environment.
 
-:::note
-Alternatively, you can use a ConfigMap (`kind: configMap`) if the specification will not collect private information from the cluster.
-:::
+<ConfigmapNote/>
 
 Any preflight checks you run are dependent on your application needs. This example gives some guidance about how to think about using collectors and analyzers to design preflight checks. For more information about defining preflight checks, see [Collecting Data](https://troubleshoot.sh/docs/collect/)
 and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation.
 
-To define preflight checks as a Secret, create a Secret specification (`kind: Secret`). You must include the following fields:
+To define preflight checks as a Secret, create a specification using `kind: Secret`. You must include the following fields:
 
 - `Label` - Label the secret definition as `troubleshoot.sh/kind: preflight`
-- `stringData` - Specify a `stringData` field with a key named `preflight.yaml` so that the preflight binary can use this Secret when it runs from the CLI.
+- `stringData` - Specify a `stringData` field with a key named `preflight.yaml` so that the preflight binary can use this Secret when it runs from the CLI
 
-The following example shows preflight checks using a Secret. For more examples, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples) in GitHub.
+The following example shows preflight checks using a Secret. For more examples, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples/preflight) in GitHub.
 
 ```yaml
 apiVersion: v1
