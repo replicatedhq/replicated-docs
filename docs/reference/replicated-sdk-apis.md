@@ -174,6 +174,26 @@ Response:
 }
 ```
 
+## mock-data
+
+### Set the mock data
+
+POST `/api/v1/mock-data`
+
+accepts a JSON request body to set the mock data.
+
+### List the mock data
+
+GET/api/v1/mock-data
+
+returns the entire mock data JSON object.
+
+### Delete the mock data
+
+DELETE `/api/v1/mock-data`
+
+deletes the mock data.
+
 ## Examples
 
 This section provides some example use cases for the Replicated SDK APIs.
@@ -182,27 +202,33 @@ This section provides some example use cases for the Replicated SDK APIs.
 
 You can check for updates to the application by using the get application updates API. This is useful to inform customers about updates to the application. For example, a banner can display in your application when updates are available, encouraging users to update and providing update instructions to them.
 
-To upgrade your application, users must log in to the Replicated registry and then perform a Helm upgrade. Consider the following example commands:
+To upgrade your application, users must log in to the Replicated registry and then perform a Helm upgrade.
 
-```
-helm registry login registry.replicated.com --username username@example.com --password LICENSE_ID
-```
+For example:
 
-```
-helm upgrade echo-server oci://registry.replicated.com/alex-echo-server-helm/echo-server
+```bash
+helm registry login registry.replicated.com --username alexp@replicated.com --password LICENSE_ID
 ```
 
-The registry login command requires three components: the registry domain, the username, and the password.
-
-The registry domain can be hardcoded for now, though this will be available programmatically once custom domains are fully supported.
+The registry login command requires: 
+* the registry domain, 
+* the username, and 
+* the password.
 
 The username and password are both available from the get license info API in the customerEmail and licenseID fields.
 
-The install command requires five components: the release name, the release namespace, the registry domain, the app slug, and the channel slug.
+```bash
+helm upgrade echo-server oci://registry.replicated.com/alex-echo-server-helm/echo-server
+```
 
-Again, the registry domain can be hardcoded for now, though this will be available programmatically once custom domains are fully supported.
+The install command requires: 
+* the release name, 
+* the release namespace, 
+* the registry domain, 
+* the app slug, and 
+* the channel slug.
 
-The other four components are available from the get application information API in the currentRelease.helmReleaseName, currentRelease.helmReleaseNamespace, appSlug, and currentRelease.channelSlug.
+The other four components are available from the get application information API in the `currentRelease.helmReleaseName`, `currentRelease.helmReleaseNamespace`, `appSlug`, and `currentRelease.channelSlug`.
 
 ### Verify Licenses
 

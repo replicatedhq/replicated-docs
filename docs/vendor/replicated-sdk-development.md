@@ -83,13 +83,18 @@ To create the SDK Deployment:
    * `replicated-deployment.yaml` 
    * `replicated-secret.yaml` 
 
-1. Set the license environment variable.
+1. In the Secret object, set the license environment variable to the ID of the development license that you created.
 
-1. Deploy the SDK.
+1. Deploy the SDK:
+
+   ```
+   kubectl apply -f PATH_TO_DEPLOYMENT_FILE
+   ```
+   Where `PATH_TO_DEPLOYMENT_FILE` is the location in your local directory where you saved the Deployment file.
 
 ## Create and Provide Mock Data {#mock-data}
 
-In development mode, you provide mock data to the SDK so that you can test your changes in different scenarios. For example, if you are developing a page where users can check for updates, you can mock the /api/v1/app/updates API to create scenarios in which there are any number of releases available for upgrade, without having to promote releases in the vendor portal.
+In development mode, you provide mock data to the SDK so that you can test your changes in different scenarios. For example, if you are developing a page where users can check for updates, you can provide mock data to the `/api/v1/app/updates` API to create scenarios in which there are any number of releases available for upgrade, without having to promote releases in the vendor portal.
 
 You provide mock data to the Replicated SDK as a JSON object. If you do not provide mock data for a particular API, that API functions normally.
 
@@ -178,7 +183,7 @@ To provide mock data to the SDK at runtime:
     curl replicated:3000/api/v1/mock-data
     ```
 
-1. Call the SDK APIs from your application to use the mock data.
+1. Call the APIs from your application to use the mock data. Repeat the steps above to continue iterating.
 
 1. (Optional) Stop the SDK from using mock data:
 
@@ -200,4 +205,10 @@ To provide mock data to the SDK at deployment:
         mockData: '{"currentRelease":{"versionLabel":"1.0.0","isRequired":false,"createdAt":"2023-05-23T21:10:57Z","releaseNotes":"I'm glad this is deployed","helmReleaseName":"alex-test","helmReleaseRevision":10,"helmReleaseNamespace":"testing"},"availableReleases":[{"versionLabel":"1.0.1","releaseNotes":"A patch release is all","isRequired":false,"createdAt":"2023-05-23T21:10:57Z","helmReleaseNamespace":"testing"},{"versionLabel":"2.0.0","releaseNotes":"A new major version!","isRequired":false,"createdAt":"2023-05-23T21:10:57Z","helmReleaseName":"please no"}],"deployedReleases":[{"versionLabel":"0.0.1","createdAt":"2023-05-23T21:10:57Z","releaseNotes":"The first patch version","isRequired":true,"helmReleaseName":"alex-test","helmReleaseRevision":8,"helmReleaseNamespace":"testing"},{"versionLabel":"0.0.2","createdAt":"2023-05-23T21:10:57Z","releaseNotes":"The second patch release","isRequired":false,"helmReleaseName":"alex-test","helmReleaseRevision":9,"helmReleaseNamespace":"testing"}]}'
     ```
 
-1. Call the SDK APIs from your application to use the mock data.
+1. Call the APIs from your application to use the mock data. Repeat the steps above to continue iterating.
+
+1. (Optional) Stop the SDK from using mock data:
+
+    ```bash
+    curl -X DELETE replicated:3000/api/v1/mock-data
+    ```
