@@ -102,7 +102,7 @@ The following tables can help guide you in deciding which options to use for pre
 
 #### Secrets Without Hooks
 
-Lets you provide preflight checks using Secrets without `pre-install` or `pre-upgrade` hooks:
+Lets you provide preflight checks using Secrets:
 
 <table>
     <tr>
@@ -119,34 +119,14 @@ Lets you provide preflight checks using Secrets without `pre-install` or `pre-up
     </tr>
 </table>
 
-#### Secrets With Hooks
-
-Lets you provide preflight checks using Secrets with `pre-install` or `pre-upgrade` hooks:
-
-  <table>
-    <tr>
-      <th>Use Cases</th>
-      <td><p>Runs preflight checks using the <code>helm install</code> command before actually installing the application.</p><p>Allows customization of preflight checks based on values unique to the customer.</p></td>
-    </tr>
-    <tr>
-      <th>Advantages</th>
-      <td><p>Supports helm templating, which can also be used to run preflights before installation.</p><p>Allows the use of template functions in a Secret.</p><p>Stops the installation if the preflight checks fail, unless you make the preflight checks optional through a template function.</p></td>
-    </tr>
-    <tr>
-      <th>Limitations</th>
-      <td><p>Not applicable.</p></td>
-    </tr>
-  </table>
-
-
-#### Preflight Custom Resource in a Template - Not a Hook
+#### Preflight Custom Resource in a Template
 
 Lets you provide preflight checks using a Preflight custom resource in a Helm template:
 
   <table>
     <tr>
       <th>Use Cases</th>
-      <td><p>Lets customers run the <code>helm template</code> command to trigger preflight checks before installation. This requires that the preflight is defined in a resource that can be read through stdin.</p><p>Allows customizization of preflight checks based on values unique to the customer</p></td>
+      <td><p>Lets customers run the <code>helm template</code> command to trigger preflight checks before installation. This requires that the preflight is defined in a resource that can be read through stdin.</p><p>Allows customization of preflight checks based on values unique to the customer</p></td>
     </tr>
     <tr>
       <th>Advantages</th>

@@ -5,48 +5,20 @@ import PreflightsHelmGuidance from "../partials/preflights/_preflights-helm-guid
 
 # Define Helm Preflight Checks
 
-This topic describes the options for using preflight checks with Helm, how to define preflight hooks and weights for installing or upgrading an application, configuring preflight checks as Secrets or ConfigMaps, and example preflight specifications for different scenarios.
+You define preflight checks based on your application needs. Replicated recommends that you use prelight checks to help ensure that your customers' environments support your application _before_ running the installation. 
 
-## About Helm Preflight Checks
+Preflight checks are not included by default, so you must enable them. This procedure provides a basic understanding and some key considerations to help guide you in enabling them for your application.
 
-You define preflight checks based on your application needs. Preflight checks are not included by default. This procedure provides a basic understanding and some key considerations to help guide you.
+Preflight checks run before running the `helm install` command, without hooks, to confirm the target cluster has the resources required for a successful install.
 
-For Helm, preflight checks can be run in two different ways, at different times. Replicated recommends that you use both of these methods to help ensure that your customer environment will support your application _before_ running the installation. Set up your preflight checks to run:
-
-- Before running the `helm install` command, without hooks, to confirm the target cluster has the resources required for a successful install.
-- During the installation, using `pre-install` and `pre-upgrade` hooks with `helm install`. The hooks run a Pod from the preflight image and supply the specification to that as a Secret or ConfigMap. The hooks run automatically immediately before installing the application, and prevent the installation if the preflight checks fail.
-
-When you supply the output of `helm template` to the preflight command as stdin, the command filters the stream and searches for the following specifications and runs them:
+When you supply the output of `helm template` to the preflight command as stdin, the command filters the stream and searches for and runs the following specifications:
 
 -  Secrets or ConfigMaps containing preflight specifications
 -  Custom resources of `kind: preflight`
 
-If you do not require the `pre-install` or `pre-upgrade` hook to run during the Helm installation, you can just specify the preflight specification as a Secret in your Helm templates to make the specification readable by the preflight binary.
-
 <PreflightsHelmGuidance/> 
 
-## Using Hooks
-
-To run a preflight check for your application during the installation, you have the option to run the checks as hooks. To add hooks to your chart, consider adding the following resources to your Helm templates:
-
-- A Secret containing the preflight specification
-- A Pod or Job definition using the preflight image, which executes the check itself
-- If you want to use the output of the `clusterResources` collector, your Pod must run with some cluster privileges that might require a `serviceAccount`, `clusterRole`, and a `clusterRoleBinding`.
-
-All the resources above must have the following annotations to mark them as a `pre-install` or `pre-upgrade` hook, and must also tell Helm whether to delete these resources after execution:
-
-```yaml
-annotations:
-   "helm.sh/hook": pre-install, pre-upgrade
-   "helm.sh/hook-delete-policy": before-hook-creation, hook-succeeded, hook-failed
-```
-You can optionally set weights to if you want the resources to be created in a specific order.
-
-You can also wrap the pre-install hook in an `{{ if` , so that `helm install` does not run the hook unless the condition, such as a value in `values.yaml`, is `true`.
-
-## Working Without Hooks
-
-If you do not want to use `pre-install` or `pre-upgrade` hooks, you can create a resource that can be read from stdin and still take advantage of Helm templates.
+You can create a resource that can be read from stdin and still take advantage of Helm templates.
 
 Resource options include:
 
@@ -95,12 +67,8 @@ To define preflight checks as a Secret:
     name: preflight-secret
     labels:
         troubleshoot.sh/kind: preflight
-    annotations:
-        "helm.sh/hook": pre-install, pre-upgrade
-        "helm.sh/hook-weight": "-6"
-        "helm.sh/hook-delete-policy": before-hook-creation, hook-succeeded, hook-failed
     stringData:
-    preflight.yaml: |-
+      preflight.yaml: |-
         apiVersion: troubleshoot.sh/v1beta2
         kind: Preflight
         metadata:
@@ -179,138 +147,3 @@ To define preflight checks as a Secret:
     ```
 1. Test your preflight checks in a development environment. For more information, see [Running Helm Preflight Checks](preflight-running).
 
-## Examples
-
-### Pod Definition
-
-The following Pod Definition example show the use of `pre-install` and `pre-upgrade` hooks.
-
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: preflight-check
-  annotations:
-    "helm.sh/hook": pre-install, pre-upgrade
-    "helm.sh/hook-delete-policy": before-hook-creation, hook-succeeded, hook-failed
-spec:
-  restartPolicy: Never
-  volumes:
-    - name: preflights
-      secret:
-        secretName: preflight-secret
-  containers:
-    - name: pre-install-job
-      image:  replicated/preflight:latest
-      command:
-        - "preflight"
-        - "--interactive=false"
-        - "/preflights/preflight.yaml"
-      volumeMounts:
-        - name: preflights
-          mountPath: /preflights
-```
-
-### ClusterRole
-
-The following example shows RBAC settings for `ClusterRole` with preflight checks. It also shows `preflight-install` and `preflight-upgrade` hooks and weights.
-
-```yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: preflights-role
-  annotations:
-    "helm.sh/hook": pre-install, pre-upgrade
-    "helm.sh/hook-weight": "-6"
-    "helm.sh/hook-delete-policy": before-hook-creation, hook-succeeded, hook-failed
-rules:
-  - apiGroups:
-      - ""
-    resources:
-      - "namespaces"
-    verbs:
-      - "get"
-      - "watch"
-      - "list"
-  - apiGroups:
-      - ""
-    resources:
-      - "nodes"
-    verbs:
-      - "get"
-      - "watch"
-      - "list"
-  - apiGroups:
-      - ""
-    resources:
-      - "pods"
-    verbs:
-      - "get"
-      - "watch"
-      - "list"
-      - "create"
-  - apiGroups:
-      - "apiextensions.k8s.io"
-    resources:
-      - "customresourcedefinitions"
-    verbs:
-      - "get"
-      - "watch"
-      - "list"
-  - apiGroups:
-      - "storage.k8s.io"
-    resources:
-      - "storageclasses"
-    verbs:
-      - "get"
-      - "watch"
-      - "list"
-  - apiGroups:
-      - ""
-    resources:
-      - "pods/log"
-    verbs:
-      - "get"
-      - "list"
-```
-
-
-### ClusterRoleBinding
-
-The following example shows RBAC settings for `ClusterRoleBinding` with preflight checks. It also shows `preflight-install` and `preflight-upgrade` hooks and weights.
-
-```yaml
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: preflights-binding
-  annotations:
-    "helm.sh/hook": pre-install, pre-upgrade
-    "helm.sh/hook-weight": "-6"
-    "helm.sh/hook-delete-policy": before-hook-creation, hook-succeeded, hook-failed
-subjects:
-- kind: ServiceAccount
-  name: preflights-sa
-  namespace: default
-roleRef:
-  kind: ClusterRole
-  name: preflights-role
-  apiGroup: rbac.authorization.k8s.io
-```
-
-### ServiceAccount Secrets
-
-The following example shows settings for `ServiceAccount` with preflight checks as Secrets. It also shows `preflight-install` and `preflight-upgrade` hooks and weights.
-
-```yaml
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: preflights-sa
-  annotations:
-    "helm.sh/hook": pre-install, pre-upgrade
-    "helm.sh/hook-weight": "-6"
-    "helm.sh/hook-delete-policy": before-hook-creation, hook-succeeded, hook-failed
-secrets:
-  - name: preflights-sa-secret
