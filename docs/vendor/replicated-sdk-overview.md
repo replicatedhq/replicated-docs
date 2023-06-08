@@ -21,7 +21,7 @@ To get started with the Replicated SDK, edit your application Helm chart to decl
 
 The following diagram shows how the Replicated SDK uses the customer license during installation to initialize in a customer environment:
 
-![diagram of the replicated sdk in a custom environment](/images/sdk-overview-diagram.png)
+<img src="/images/sdk-overview-diagram.png" alt="diagram of the replicated sdk in a custom environment" width="600px"/> 
 
 As shown in the diagram above, after a release containing one or more Helm charts is promoted to a channel in the vendor portal, the vendor portal automatically pushes the charts to the Replicated registry. The Replicated registry is a private image registry hosted by Replicated at `registry.replicated.com`. For information about security for the Replicated registry, see [Replicated Private Registry Security](packaging-private-registry-security).
 
