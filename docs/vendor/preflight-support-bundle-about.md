@@ -63,9 +63,11 @@ Analyzer outcomes for preflight checks differ from the outcomes for support bund
 
 ## Specification Types
 
-The preflight and support bundle tools require configuration using specifications that can be of different types and located in a variety of places. Multiple specifications and multiple specification types are supported.
+The preflight and support bundle tools require configuration using specifications that can be of different types and located in a variety of places. 
 
-The following table gives a brief description of the available types. For more information about the uses with Helm charts, see [Helm Specification Guidance](#helm).
+Using multiple specifications and multiple specification types are supported. For more information about using a modular approach to designing preflight and support bundle specifications, see [About Modular Specifications](support-modular-support-bundle-specs).
+
+The following table gives a brief description of the available types:
 
 <table>
     <tr>
@@ -74,186 +76,14 @@ The following table gives a brief description of the available types. For more i
     </tr>
     <tr>
       <td>YAML Files</td>
-      <td>Located on the local file system. Useful for air gap installations.</td>
+      <td>Located on the local file system. Can be useful for air gap installations.</td>
     </tr>
     <tr>
       <td>URLs</td>
-      <td>Stored in an online repository.</td>
+      <td>Stored in an online repository. Easy to iterate against as a team.</td>
     </tr>
     <tr>
       <td>Secrets or ConfigMaps</td>
-      <td>Stored in a Kubernetes cluster. Supports automatic discovery for support bundles. Secrets can be used to keep private information secure.</td>
-    </tr>
-    <tr>
-      <td>stdin</td>
-      <td>Supported for preflights. Specified on the command line.</td>
+      <td>Stored in a Kubernetes cluster. Secrets can be used to keep private information secure. Also supports automatic discovery for support bundles.</td>
     </tr>
   </table>
-
-
-## Helm Specification Guidance {#helm}
-
-For Helm charts, the following additional guidance can help you decide which specification types to use.
-
-
-### Preflight Guidance
-
-The following tables can help guide you in deciding which options to use for preflight checks.
-
-#### Secrets Without Hooks
-
-Lets you provide preflight checks using Secrets:
-
-<table>
-    <tr>
-      <th>Use Cases</th>
-      <td><p>Uses helm templating to trigger preflight checks before running the <code>helm install</code> command. This requires that the preflight must be defined in a resource that can be read through stdin.</p><p>Allows customization of the preflight checks based on values unique to the customer.</p></td>
-    </tr>
-    <tr>
-      <th>Advantages</th>
-      <td><p>Allows using template functions in a Secret.</p><p>Secrets do not need to be wrapped in a condition because Secrets are installed in the cluster.</p></td>
-    </tr>
-    <tr>
-      <th>Limitations</th>
-      <td><p>Not applicable.</p></td>
-    </tr>
-</table>
-
-#### Preflight Custom Resource in a Template
-
-Lets you provide preflight checks using a Preflight custom resource in a Helm template:
-
-  <table>
-    <tr>
-      <th>Use Cases</th>
-      <td><p>Lets customers run the <code>helm template</code> command to trigger preflight checks before installation. This requires that the preflight is defined in a resource that can be read through stdin.</p><p>Allows customization of preflight checks based on values unique to the customer.</p></td>
-    </tr>
-    <tr>
-      <th>Advantages</th>
-      <td><p>Using a template supports adding conditional statements with template functions.</p><p>Can be read from stdin.</p></td>
-    </tr>
-    <tr>
-      <th>Limitations</th>
-      <td><p>The custom resource must be wrapped in a condition because the custom resource cannot be installed in the cluster.</p></td>
-    </tr>
-  </table>
-
-#### YAML Files
-
-Lets you provide preflight checks using one or more YAML files:
-
-  <table>
-    <tr>
-      <th>Use Cases</th>
-      <td><p>Supports air gap environments.</p><p>Allows customers to run preflight checks before installation.</p><p>Vendor does not need to customize the preflight checks based on the customer.</p></td>
-    </tr>
-    <tr>
-      <th>Advantages</th>
-      <td><p>Easy because no customization.</p></td>
-    </tr>
-    <tr>
-      <th>Limitations</th>
-      <td><p>Cannot easily add hooks in the future.</p><p>It becomes burdensome for the customer when there are multiple files that must be run.</p><p>Does not support templating.</p></td>
-    </tr>
-  </table>
-
-#### URLs
-
-Lets you provide preflight checks using one or more URLs:
-
-  <table>
-    <tr>
-      <th>Use Cases</th>
-      <td><p>Allows customers to run preflight checks before installation.</p><p>Vendor does not need to customize the preflight checks based on the customer.</p></td>
-    </tr>
-    <tr>
-      <th>Advantages</th>
-      <td><p>Easy to iterate against as a team.</p></td>
-    </tr>
-    <tr>
-      <th>Limitations</th>
-      <td><p>Does not work for air gap environments. </p><p>Cannot easily add hooks in the future.</p><p></p>It becomes burdensome for the customer if there are multiple URLs that must be run.<p>Does not support templating, unless templating is being used on the server side.</p></td>
-    </tr>
-  </table>
-
-
-### Support Bundle Guidance
-
-The following table can help guide you in deciding which options to use for support bundles.
-
-#### Secrets
-
-Lets you provide support bundle specifications using one or more Secrets:
-
-<table>
-    <tr>
-      <th>Use Cases</th>
-      <td><p>Lets customers automatically discover all of the support bundle specifications as Secrets in a cluster.</p></td>
-    </tr>
-    <tr>
-      <th>Advantages</th>
-      <td><p>Does not require manual input of specifications by customers when generating support bundles.</p><p>Can be used with custom labels.</p><p>Can contain private information.</p><p>Easier to distribute than other options because Secrets are co-located in the Helm chart.</p><p>Allows the specification to be templated using information in the <code>values.yaml</code> file.</p></td>
-    </tr>
-    <tr>
-      <th>Limitations</th>
-      <td><p>Not applicable.</p></td>
-    </tr>
-  </table>
-
-#### ConfigMaps
-
-Lets you provide support bundle specifications using one or more ConfigMaps:
-
-<table>
-    <tr>
-      <th>Use Cases</th>
-      <td><p>Lets customer automatically discover all of the support bundle specifications in a cluster.</p></td>
-    </tr>
-    <tr>
-      <th>Advantages</th>
-      <td><p>Does not require manual input of specifications by customers when generating support bundles.</p><p>Can be used with custom labels.</p></td>
-    </tr>
-    <tr>
-      <th>Limitations</th>
-      <td><p>Should not be used to contain private information.</p></td>
-    </tr>
-  </table>
-
-#### YAML Files
-
-Lets you provide support bundle specifications using one or more YAML files:
-
-<table>
-    <tr>
-      <th>Use Cases</th>
-      <td><p>Useful for air gap when customization is not needed with templates or local information, and the vendor can send the customer a file to use.</p><p>Can help to troubleshoot air gap installations that fail, as no secrets are able to be installed.</p></td>
-    </tr>
-    <tr>
-      <th>Advantages</th>
-      <td><p>Easy to create.</p></td>
-    </tr>
-    <tr>
-      <th>Limitations</th>
-      <td><p>File names must be manually typed in to generate a support bundle, and there might be multiple files or long file names.</p><p>Customers must find out what the file names and paths are.</p><p>Does not use templating against the <code>values.yaml</code> file.</p></td>
-    </tr>
-  </table>
-
-#### URLs
-
-Lets you provide support bundle specifications using one or more URLs:
-
-<table>
-    <tr>
-      <th>Use Cases</th>
-      <td><p>The cluster can link to online support bundle specifications when the URI is included in the support bundle specification that is installed in the cluster, however the updated online specification cannot be templated.</p></td>
-    </tr>
-    <tr>
-      <th>Advantages</th>
-      <td><p>Allows vendors to update the support-bundle specification out-of-band from the application to provide notifications of possible issues, fixes, and prevention information.</p><p>If the URI is unavailable or unparseable, the support bundle is generated using the original specification in the cluster.</p><p>Easy to iterate against as a team.</p></td>
-    </tr>
-    <tr>
-      <th>Limitations</th>
-      <td><p>URLs must be manually typed in to generate a support bundle, and there might be multiple strings and long strings.</p><p>Vendors must provide customers with the URL strings.</p><p>Does not support air gap environments.</p></td>
-    </tr>
-  </table>
-

@@ -8,6 +8,89 @@ import PreflightsHelmGuidance from "../partials/preflights/_preflights-helm-guid
 
 Customizing a support bundle is unique to your application and depends on what kind of data you need to troubleshoot. This procedure provides a basic understanding and some key considerations to help guide you. For more information, see [Collecting Data](https://troubleshoot.sh/docs/collect/) and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation.
 
+### Support Bundle Guidance
+
+The following table can help guide you in deciding which options to use for support bundles.
+
+#### Secrets
+
+Lets you provide support bundle specifications using one or more Secrets:
+
+<table>
+    <tr>
+      <th>Use Cases</th>
+      <td><p>Lets customers automatically discover all of the support bundle specifications as Secrets in a cluster.</p></td>
+    </tr>
+    <tr>
+      <th>Advantages</th>
+      <td><p>Does not require manual input of specifications by customers when generating support bundles.</p><p>Can be used with custom labels.</p><p>Can contain private information.</p><p>Easier to distribute than other options because Secrets are co-located in the Helm chart.</p><p>Allows the specification to be templated using information in the <code>values.yaml</code> file.</p></td>
+    </tr>
+    <tr>
+      <th>Limitations</th>
+      <td><p>Not applicable.</p></td>
+    </tr>
+  </table>
+
+#### ConfigMaps
+
+Lets you provide support bundle specifications using one or more ConfigMaps:
+
+<table>
+    <tr>
+      <th>Use Cases</th>
+      <td><p>Lets customer automatically discover all of the support bundle specifications in a cluster.</p></td>
+    </tr>
+    <tr>
+      <th>Advantages</th>
+      <td><p>Does not require manual input of specifications by customers when generating support bundles.</p><p>Can be used with custom labels.</p></td>
+    </tr>
+    <tr>
+      <th>Limitations</th>
+      <td><p>Should not be used to contain private information.</p></td>
+    </tr>
+  </table>
+
+#### YAML Files
+
+Lets you provide support bundle specifications using one or more YAML files:
+
+<table>
+    <tr>
+      <th>Use Cases</th>
+      <td><p>Useful for air gap when customization is not needed with templates or local information, and the vendor can send the customer a file to use.</p><p>Can help to troubleshoot air gap installations that fail, as no secrets are able to be installed.</p></td>
+    </tr>
+    <tr>
+      <th>Advantages</th>
+      <td><p>Easy to create.</p></td>
+    </tr>
+    <tr>
+      <th>Limitations</th>
+      <td><p>File names must be manually typed in to generate a support bundle, and there might be multiple files or long file names.</p><p>Customers must find out what the file names and paths are.</p><p>Does not use templating against the <code>values.yaml</code> file.</p></td>
+    </tr>
+  </table>
+
+#### URLs
+
+Lets you provide support bundle specifications using one or more URLs:
+
+<table>
+    <tr>
+      <th>Use Cases</th>
+      <td><p>The cluster can link to online support bundle specifications when the URI is included in the support bundle specification that is installed in the cluster, however the updated online specification cannot be templated.</p></td>
+    </tr>
+    <tr>
+      <th>Advantages</th>
+      <td><p>Allows vendors to update the support-bundle specification out-of-band from the application to provide notifications of possible issues, fixes, and prevention information.</p><p>If the URI is unavailable or unparseable, the support bundle is generated using the original specification in the cluster.</p><p>Easy to iterate against as a team.</p></td>
+    </tr>
+    <tr>
+      <th>Limitations</th>
+      <td><p>URLs must be manually typed in to generate a support bundle, and there might be multiple strings and long strings.</p><p>Vendors must provide customers with the URL strings.</p><p>Does not support air gap environments.</p></td>
+    </tr>
+  </table>
+
+
+
+
 Additionally, this procedure shows using a Secret to contain a support bundle specification with your Helm chart, which allows customers to automatically discover and generate a support bundle without specifying a long URL. Using a Secret also allows the specification to be templated using information in the `values.yaml` file.
 
 <PreflightsHelmGuidance/>

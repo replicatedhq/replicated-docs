@@ -1,9 +1,9 @@
-(Optional) Set any preflight analyzers to `strict: true` if you want to enforce requirements for the chosen analyzers. For more information about strict preflight checks, see [`strict`](https://troubleshoot.sh/docs/analyze/#strict) in the Troubleshoot documentation.
+You can set any preflight analyzers to `strict: true` if you want to enforce requirements for the chosen analyzers. For more information about strict preflight checks, see [`strict`](https://troubleshoot.sh/docs/analyze/#strict) in the Troubleshoot documentation.
 
-  Note the following considerations:
+Note the following considerations:
 
-  - Any `fail` outcomes for that analyzer block the deployment of the release until your specified requirement is met.
-  -  If a `strict` collector requires cluster scope and minimal RBAC mode is set, then the collector is skipped during the preflight check.
-  - Strict preflight analyzers are ignored if the `exclude` flag is also used.
+- Any `fail` outcomes for that analyzer block the deployment of the release until your specified requirement is met.
+-  If a `strict` collector requires cluster scope and minimal RBAC mode is set, then the collector is skipped during the preflight check.
+- Strict preflight analyzers are ignored if the `exclude` flag is also used.
 
     

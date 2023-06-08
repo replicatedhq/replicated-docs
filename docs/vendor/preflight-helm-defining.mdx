@@ -21,149 +21,117 @@ When you supply the output of `helm template` to the preflight command as stdin,
 
 You can create a resource that can be read from stdin and still take advantage of Helm templates.
 
-Resource options that support Helm templates are:
+## Preflight Locations
 
-- Storing a Secret or ConfigMap in the cluster. See [Define Preflight Checks as Secrets](#secrets).
-- Using a Helm template to create a Preflight custom resource. See [Define a Preflight Custom Resource](#custom-resource).
+The following tables can help guide you in deciding which options to use for preflight checks.
 
-## Define Preflight Checks as Secrets {#secrets}
+### Secrets
 
-The preflight checks you run are dependent on your application needs. This procedure gives some guidance about how to think about using collectors and analyzers, as you design your preflight checks. For more information about defining preflight checks, see [Collecting Data](https://troubleshoot.sh/docs/collect/)
+Replicated recommends using Secrets to provide preflight checks:
+
+<table>
+    <tr>
+      <th>Use Cases</th>
+      <td><p>Uses helm templating to trigger preflight checks before running the <code>helm install</code> command. This requires that the preflight must be defined in a resource that can be read through stdin.</p><p>Allows customization of the preflight checks based on values unique to the customer.</p></td>
+    </tr>
+    <tr>
+      <th>Advantages</th>
+      <td><p>Allows using template functions in a Secret.</p><p>Secrets do not need to be wrapped in a condition because Secrets are installed in the cluster.</p></td>
+    </tr>
+    <tr>
+      <th>Supports Templating?</th>
+      <td><p>Yes</p></td>
+    </tr>
+    <tr>
+      <th>Limitations</th>
+      <td><p>Not applicable</p></td>
+    </tr>
+</table>
+
+### Preflight Custom Resource
+
+Lets you provide preflight checks using a Preflight custom resource in a Helm template:
+
+  <table>
+    <tr>
+      <th>Use Cases</th>
+      <td><p>Lets customers run the <code>helm template</code> command to trigger preflight checks before installation. This requires that the preflight is defined in a resource that can be read through stdin.</p><p>Allows customization of preflight checks based on values unique to the customer.</p></td>
+    </tr>
+    <tr>
+      <th>Advantages</th>
+      <td><p>Using a template supports adding conditional statements with template functions.</p><p>Can be read from stdin.</p></td>
+    </tr>
+    <tr>
+      <th>Supports Templating?</th>
+      <td>Yes</td>
+    </tr>
+    <tr>
+      <th>Limitations</th>
+      <td><p>The custom resource must be wrapped in a condition because the custom resource cannot be installed in the cluster.</p></td>
+    </tr>
+  </table>
+
+### YAML Files
+
+Lets you provide preflight checks using one or more YAML files:
+
+  <table>
+    <tr>
+      <th>Use Cases</th>
+      <td><p>Can be used in air gap environments, depending on the vendor's installation design.</p><p>Vendor does not need to customize the preflight checks based on a customer's unique values.</p></td>
+    </tr>
+    <tr>
+      <th>Advantages</th>
+      <td><p>Easy because there is no customization for customer-specific values.</p></td>
+    </tr>
+    <tr>
+      <th>Supports Templating?</th>
+      <td><p>No</p></td>
+    </tr>
+    <tr>
+      <th>Limitations</th>
+      <td><p>Cannot easily add hooks in the future.</p><p>It becomes burdensome for the customer when there are multiple files that must be run.</p></td>
+    </tr>
+  </table>
+
+### URLs
+
+Lets you provide preflight checks using one or more URLs:
+
+  <table>
+    <tr>
+      <th>Use Cases</th>
+      <td>Vendor does not need to customize the preflight checks based on a customer's unique values.</td>
+    </tr>
+    <tr>
+      <th>Advantages</th>
+      <td>Easy to iterate against as a team.</td>
+    </tr>
+    <tr>
+      <th>Supports Templating?</th>
+      <td>Does not support templating, unless templating is being used on the server side.</td>
+    </tr>
+    <tr>
+      <th>Limitations</th>
+      <td><p>Does not work for air gap environments.</p><p>Cannot easily add hooks in the future.</p><p>Burdensome for the customer if there are multiple URLs that must be run.</p></td>
+    </tr>
+  </table>
+
+## Define Preflight Checks as Secrets
+
+Replicated recommends using Secrets to define preflight checks. Using Secrets protects secure information in a cluster, and allows the use of Helm templates to customize preflight checks based on the values unique to a customer's environment.
+
+:::note
+Alternatively, you can use a ConfigMap (`kind: configMap`) if the specification will not collect private information from the cluster.
+:::
+
+Any preflight checks you run are dependent on your application needs. This example gives some guidance about how to think about using collectors and analyzers to design preflight checks. For more information about defining preflight checks, see [Collecting Data](https://troubleshoot.sh/docs/collect/)
 and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation.
 
-<PreflightsHelmGuidance/>
+To define preflight checks as a Secret, create a Secret specification (`kind: Secret`). You must include the following fields:
 
-To define preflight checks as a Secret:
-
-1. Create a Secret specification (`kind: Secret`). Alternatively, you can use a ConfigMap (`kind: configMap`) if the specification will not collect private information from the cluster.
-
-  You must include the following:
-
-    - `Label` - Label the secret definition as `troubleshoot.sh/kind: preflight`
-    - `stringData` - Specify a `stringData` field with a key named `preflight.yaml` so that the preflight binary can use this Secret when it runs from the CLI.
-
-    ```yaml
-    apiVersion: v1
-    kind: Secret
-    metadata:
-    name: preflight-secret
-    labels:
-        troubleshoot.sh/kind: preflight
-    stringData:
-      preflight.yaml: |-
-        apiVersion: troubleshoot.sh/v1beta2
-        kind: Preflight
-        metadata:
-        name: preflights
-        spec: …
-    ```
-1. Add collectors to define information to be collected for analysis during the analyze phase. For example, you can collect information about the MySQL version that is running in a cluster:
-
-    ```yaml
-    apiVersion: v1
-    kind: Secret
-    metadata:
-    name: preflight-secret
-    labels:
-        troubleshoot.sh/kind: preflight
-    stringData:
-      preflight.yaml: |-
-        apiVersion: troubleshoot.sh/v1beta2
-        kind: Preflight
-        metadata:
-        name: preflights
-        spec:
-            collectors:
-            - mysql:
-                collectorName: mysql
-                uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
-    ```
-    Replicated recommends replacing using a template function for the URI to avoid exposing sensitive information. For more information about template functions, see [About Template Functions](/reference/template-functions-about).
-
-1. <PreflightsAddAnalyzers/>
-
-1. <PreflightsAddStrict/>
-
-    The following example shows a strict analyzer for MySQL versions:
-
-    ```yaml
-    apiVersion: v1
-    kind: Secret
-    metadata:
-    name: preflight-secret
-    labels:
-        troubleshoot.sh/kind: preflight
-    stringData:
-      preflight.yaml: |-
-        apiVersion: troubleshoot.sh/v1beta2
-        kind: Preflight
-        metadata:
-        name: preflights
-        spec:
-            collectors:
-            - mysql:
-                collectorName: mysql
-                uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
-            analyzers:
-            - mysql:
-                strict: true
-                checkName: Must be MySQL 8.x or later
-                collectorName: mysql
-                outcomes:
-                - fail:
-                    when: connected == false
-                    message: Cannot connect to MySQL server
-                - fail:
-                    when: version < 8.x
-                    message: The MySQL server must be at least version 8
-                - pass:
-                    message: The MySQL server is ready
-    ```
-1. Test your preflight checks in a development environment. For more information, see [Running Helm Preflight Checks](preflight-running).
-
-## Define a Preflight Custom Resource as a Template {#custom-resource}
-
-The Preflight custom resource lets you provide preflight checks in a Helm template, which allows you to customize preflight checks based on values that are unique to your customers. 
-
-You must use conditional statements in the custom resource because it is not installed in the cluster. Instead, the custom resource is read using stdin. Customers run the `helm template` command to trigger the preflight checks before installation.
-
-For more information about Preflight custom resource, see [Preflight and Support Bundle](/reference/custom-resource-preflight).
-
-To define a custom resource as a template:
-
-1. Create a Preflight custom resource YAML file using `kind: Preflight`. The following is a basic example:
-
-    ```yaml
-    apiVersion: troubleshoot.sh/v1beta2
-    kind: Preflight
-    metadata:
-    name: sample
-    spec:
-    collectors: []
-    analyzers: []
-    ```
-
-1. Wrap the custom resource template in an `{{ if` so that it is only rendered when specified, such as: `helm template mychart --set renderpreflights=true --values values.yaml | preflight -`
-
-    **Example**:
-
-    ```yaml
-    {{ if .Values.renderpreflights }}
-    apiVersion: troubleshoot.sh/v1beta2
-    kind: Preflight
-    metadata:
-    name: example
-    spec:
-    collectors:
-    etc etc
-    {{ end }}
-    ```
-
-1. Configure collectors and analyzers as needed.
-
-1. Run `helm template` in a development environment to test your preflight checks.
-
-## Example
+- `Label` - Label the secret definition as `troubleshoot.sh/kind: preflight`
+- `stringData` - Specify a `stringData` field with a key named `preflight.yaml` so that the preflight binary can use this Secret when it runs from the CLI.
 
 The following example shows preflight checks using a Secret. For more examples, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples) in GitHub.
 
@@ -226,3 +194,88 @@ stringData:
                   message: The MySQL server is ready
         {{ end }}
 ```
+
+### Collectors
+
+Add collectors to define information to be collected for analysis during the analyze phase. For example, you can collect information about the MySQL version that is running in a cluster:
+
+```yaml
+   spec:
+      collectors:
+        - mysql:
+        collectorName: mysql
+        uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
+```
+Replicated recommends replacing using a template function for the URI to avoid exposing sensitive information. For more information about template functions, see [About Template Functions](/reference/template-functions-about).
+
+### Analyzers
+<PreflightsAddAnalyzers/>
+
+### `strict` Analyzers
+
+<PreflightsAddStrict/>
+
+The following example shows a strict analyzer for MySQL versions:
+
+```yaml
+spec:
+  collectors:
+  - mysql:
+      collectorName: mysql
+      uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
+  analyzers:
+  - mysql:
+      strict: true
+      checkName: Must be MySQL 8.x or later
+      collectorName: mysql
+      outcomes:
+      - fail:
+          when: connected == false
+          message: Cannot connect to MySQL server
+      - fail:
+          when: version < 8.x
+          message: The MySQL server must be at least version 8
+      - pass:
+          message: The MySQL server is ready
+```
+## Define a Preflight Custom Resource as a Template
+
+The Preflight custom resource lets you provide preflight checks in a Helm template, which allows you to customize preflight checks based on values that are unique to your customers. 
+
+You must use conditional statements in the custom resource because it is not installed in the cluster. Instead, the custom resource is read using stdin. Customers run the `helm template` command to trigger the preflight checks before installation.
+
+For more information about Preflight custom resource, see [Preflight and Support Bundle](/reference/custom-resource-preflight).
+
+To define a custom resource as a template:
+
+1. Create a Preflight custom resource YAML file using `kind: Preflight`. Wrap the custom resource template in an `{{ if` so that it is only rendered when specified in the `values.yaml file. For example, `helm template mychart --set renderpreflights=true --values values.yaml | preflight -`.
+
+    **Example**:
+
+    ```yaml
+    {{ if .Values.renderpreflights }}
+    apiVersion: troubleshoot.sh/v1beta2
+    kind: Preflight
+    metadata:
+      name: example-name
+    spec:
+      collectors: []
+      analyzers: []
+    {{ end }}
+    ```
+
+1. Configure collectors and analyzers as needed.
+
+1. Configure your `values.yaml` file with Helm templating to support the Preflight custom resource.
+
+  **Example:**
+
+  ```yaml
+  renderpreflights: example-name
+  ```
+
+## Next Step
+
+Test your preflight checks in a development environment. For more information, see [Running Helm Preflight Checks](preflight-running).
+
+
