@@ -1,11 +1,7 @@
-(Recommended) Add application Pod logs and set the collection limits for the number of lines logged. Typically the selector attribute is matched to the labels.
+Replicated recommends adding application Pod logs and set the collection limits for the number of lines logged. Typically the selector attribute is matched to the labels.
 
-1. To get the labels for an application, either inspect the YAML or run the following command to see what labels are used:
+To get the labels for an application, either inspect the YAML or run `kubectl get pods --show-labels`.
 
-    ```
-    kubectl get pods --show-labels
-    ```
+After the labels are discovered, create collectors to include logs from these pods in a bundle. Depending on the complexity of an application's labeling schema, you might need a few different declarations of the logs collector. You can include the `logs` collector as many times as needed.
 
-1. After the labels are discovered, create collectors to include logs from these pods in a bundle. Depending on the complexity of an application's labeling schema, you might need a few different declarations of the logs collector. You can include the `logs` collector specification multiple times.
-
-    The limits field can support `maxAge` or `maxLines`. This limits the output to the constraints provided. **Default:** `maxLines: 10000`
+The limits field can support `maxAge` or `maxLines`. This limits the output to the constraints provided. **Default:** `maxLines: 10000`

@@ -14,7 +14,7 @@ This topic provides a basic understanding and some key considerations to help gu
 
 <PreflightsKotsGuidance/>
 
-## Customize the Custom Resource
+## Customize the Support Bundle Resource
 
 To customize a support bundle for KOTS, create a SupportBundle custom resource manifest file (`kind: SupportBundle`) in your release.
 
@@ -33,7 +33,7 @@ Use one of the following support bundle template options to start populating you
   ```
 - To fully customize the support bundle, including editing or excluding the default collectors and analyzers, copy the default `spec.yaml` file to your manifest file. For the default YAML file, see [spec.yaml](https://github.com/replicatedhq/kots/blob/main/pkg/supportbundle/defaultspec/spec.yaml) in the kots repository.
 
-The following example shows a simplified specification:
+The following example shows a simplified specification with some edits to the default settings:
 
 ```yaml
   apiVersion: troubleshoot.sh/v1beta2
@@ -47,13 +47,32 @@ The following example shows a simplified specification:
       - clusterResources:
         namespaces:
         - default
-        - APP_NAMESPACE
+        - my-app-namespace
       - logs:
             selector:
               - app=api
-            namespace: default
+            namespace: my-app-namespace
             limits:
               maxLines: 10000
+      analyzers:
+      - clusterVersion:
+          outcomes:
+            - fail:
+                when: "< 1.22.0"
+                message: The Admin Console requires at least Kubernetes 1.22.0
+            - pass:
+                message: Your cluster meets the recommended and required versions of Kubernetes
+      - nodeResources:
+        checkName: Node status check
+        outcomes:
+          - fail:
+              when: "nodeCondition(Ready) == False"
+              message: "Not all nodes are online."
+          - warn:
+              when: "nodeCondition(Ready) == Unknown"
+              message: "Not all nodes are online."
+          - pass:
+              message: "All nodes are online."
   ```
 
 ### Cluster Collectors
