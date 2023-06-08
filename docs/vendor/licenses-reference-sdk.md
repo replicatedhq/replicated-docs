@@ -1,10 +1,10 @@
 # Referencing License Fields With the SDK
 
-This topic describes how to reference license fields in your Helm chart when you are distributing your application with the Replicated SDK.
+This topic describes how to reference license fields in your Helm chart when you distribute the Replicated SDK with your application.
 
 ## Overview
 
-When you distribute the Replicated SDK alongside your Helm chart application, you can use either the SDK APIs or the Helm chart values file to check license fields and customer entitlements at the time of deployment or during runtime.
+When you distribute the Replicated SDK alongside your Helm chart application, you can use the SDK APIs to reference license fields and check customer entitlements during runtime. You can also add references to license fields in the Helm chart values file to check customer entitlements at the time of deployment, before the SDK has been initialized.
 
 License fields are cryptographically signed to ensure their integrity. For information on how to verify license fields in your application, see [Verifying Licenses Fields With the SDK](licenses-verify-fields-sdk-api).
 
@@ -12,19 +12,18 @@ License fields are cryptographically signed to ensure their integrity. For infor
 
 Declare the Replicated SDK as a dependency in your Helm chart application. See [Deploying the Replicated SDK With Your Application](replicated-sdk-using).
 
-## Reference License Fields at Runtime
+## About Referencing License Fields at Runtime
 
-After the Replicated SDK is initialized and running in the customer environment, you can retrieve entitlements using the SDK APIs.
+The SDK retrieves up-to-date customer license information from the vendor portal during runtime. This means that any changes that you make to customer licenses are reflected in real time in the customer environment. For example, you could revoke access to your application when a license expires, expose additional product functionality dynamically based on entitlements, and more.
 
-License information, including license fields, is kept up to date by the SDK to reflect changes to the license in real time.
+After the Replicated SDK is initialized and running in a customer environment, you can use the following SDK APIs to get information about the license that was used to install:
+* `/api/v1/license/info`: Get license details, including the license ID, the channel the customer is assigned, and the license type.
+* `/api/v1/license/fields`: List all the fields in the license.  
+* `/api/v1/license/fields/{field_name}`: List details about a specific license field, including the field name, description, type, and the value.
 
-You can check a customer’s license information with the get license info API. License entitlements can be checked with the get license fields and get license field APIs. You can check the license expiration with the get license field API by setting expires_at as the license field path parameter. For example, /api/v1/license/fields/expires_at.
+For more information about the SDK APIs for checking license details, see [license](/reference/replicated-sdk-apis) in _Replicated SDK APIs (Beta)_.
 
-Although customers must have a valid license to log in to the registry and pull your chart, you can check the license expiration at runtime if you want to revoke access to the application when a license expires.
-
-For example, you can revoke access when a license expires, expose additional product functionality dynamically based on entitlement values, and more.
-
-## Reference License Fields Before Installation
+## About Referencing License Fields Before Installation
 
 You can reference license entitlements in the `global` field of your Helm chart values file so that you can check customer entitlements before the Replicated SDK is initialized in the customer environment.
 

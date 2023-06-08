@@ -60,7 +60,7 @@ For more information about how to install an application and the Replicated SDK 
 
 The Replicated SDK provides APIs that you can use to embed Replicated functionality into your application.
 
-For example, if your application includes a UI where users manage their application instance, then you can use the `/api/v1/app/updates` API to include messages in the UI to encourage users to upgrade when new versions are available. You could also use the `/api/v1/license/fields` API to check the customer's license expiration at runtime, which allows you to revoke access to the application when a license expires.
+For example, if your application includes a UI where users manage their application instance, then you can use the `/api/v1/app/updates` API to include messages in the UI that encourage users to upgrade when new versions are available. You could also revoke access to the application when a license expires using the `/api/v1/license/fields` API.
 
 For more information about the available Replicated SDK APIs, including example use cases, see [Replicated SDK APIs (Beta)](/reference/replicated-sdk-apis).
 

@@ -1,35 +1,33 @@
 # Verifying Licenses Fields With the SDK
 
-This topic describes how to verify custom license fields for your customers for use with the Replicated SDK license API.
+This topic describes how to verify the signature of custom license fields when you distribute the Replicated SDK with your application.
 
 ## Overview
 
-License fields include the license’s expiration and any custom entitlements you’ve configured. To prevent man-in-the-middle attacks or spoofing by your customers, license fields are cryptographically signed to ensure their integrity. In your application, you can verify the signature to ensure the integrity of each license field you use.
+License fields include the expiration date and any custom fields that you have added. To prevent man-in-the-middle attacks or spoofing by your customers, license fields are cryptographically signed to ensure their integrity. In your application, you can verify the signature to ensure the integrity of each license field you use.
+
+For more information about referencing license fields in your application when you are using the Replicated SDK, see [Referencing License Fields With the SDK](licenses-reference-sdk).
 
 ## Prerequisite
 
 The **Foundation Plan Signature Verification** feature flag must be enabled for your team in the Replicated vendor portal.
 
-## Getting the Public Key
+## Use Your Public Key to Verify License Field Signatures
 
-A public key is required to verify the signatures of license fields. This public key is available in the vendor portal on an application’s Settings page.
+A public key is required to verify the signatures of license fields. This public key is available in the vendor portal on the application's **Settings** page.
 
-To access the public key:
+You can use the public key to decrypt a license field’s signature and compare this to the license field value returned by the API. Signatures are base64 encoded and must be decoded before being decrypted.
 
-1. Go to the Settings page for your application.
+To use your public key to verify license field signatures:
 
-1. Click the Signature Verification tab at the top.
+1. In the [vendor portal](https://vendor.replicated.com), go to the **Settings** page.
 
-1. Copy your public key.
+1. Click the **Signature Verification** tab.
 
-## Using the Public Key to Verify License Field Signatures
+   ![signature verification page](/images/signature-verification.png)
 
-The public key can be used to decrypt a license field’s signature and compare this to the license field value returned by the API.
+1. Under **Your public key**, copy the key and save it in a secure location.
 
-Signatures are base64 encoded and must be decoded before being decrypted.
+1. Under **Verification**, select the tab for the necessary programming language, and copy the code sample provided.
 
-To verify the license field signature:
-
-1. On the **Signature Verification** page, go to the **Verification** section.
-
-1. Use the code samples for verifying a signature. Code samples are provided for Go, Node.js, TypeScript, and Python.
+Use the code sample and the public key in your application to verify the integrity of license field signatures.
