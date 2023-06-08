@@ -5,10 +5,13 @@ import PreflightsHelmGuidance from "../partials/preflights/_preflights-helm-guid
 
 # Define Helm Preflight Checks
 
+ This topic provides a basic understanding and some key considerations about Helm preflight checks to help guide you in enabling them for your application.
+
+## About Helm Preflight Checks
+
 You define preflight checks based on your application needs. Replicated recommends that you use prelight checks to help ensure that your customers' environments support your application _before_ running the installation. 
 
-Preflight checks are not included by default, so you must enable them. This procedure provides a basic understanding and some key considerations to help guide you in enabling them for your application.
-
+Preflight checks are not included by default, so you must enable them.
 Preflight checks run before running the `helm install` command, without hooks, to confirm the target cluster has the resources required for a successful install.
 
 When you supply the output of `helm template` to the preflight command as stdin, the command filters the stream and searches for and runs the following specifications:
@@ -16,38 +19,17 @@ When you supply the output of `helm template` to the preflight command as stdin,
 -  Secrets or ConfigMaps containing preflight specifications
 -  Custom resources of `kind: preflight`
 
-<PreflightsHelmGuidance/> 
-
 You can create a resource that can be read from stdin and still take advantage of Helm templates.
 
-Resource options include:
+Resource options that support Helm templates are:
 
-- Storing a Secret in the cluster.
-- Providing a URL or a YAML file, without templating from `values.yaml`, such as a `preflight https://my-preflight.url.com`, or `preflight preflight.yaml`.
-- Using a Helm template to create a Preflight custom resource, but the custom resource is not installed in the cluster. For more information about Preflight custom resource, see [Preflight and Support Bundle](/reference/custom-resource-preflight).
+- Storing a Secret or ConfigMap in the cluster. See [Define Preflight Checks as Secrets](#secrets).
+- Using a Helm template to create a Preflight custom resource. See [Define a Preflight Custom Resource](#custom-resource).
 
-  The template can be wrapped in an `{{ if` so that it is only rendered when specified, such as: `helm template mychart --set renderpreflights=true --values values.yaml | preflight -`
-
-    **Example**:
-
-    ```yaml
-    {{ if .Values.renderpreflights }}
-    apiVersion: troubleshoot.sh/v1beta2
-    kind: Preflight
-    metadata:
-    name: example
-    spec:
-    collectors:
-    etc etc
-    {{ end }}
-    ```
-
-## Define Preflight Checks as Secrets
+## Define Preflight Checks as Secrets {#secrets}
 
 The preflight checks you run are dependent on your application needs. This procedure gives some guidance about how to think about using collectors and analyzers, as you design your preflight checks. For more information about defining preflight checks, see [Collecting Data](https://troubleshoot.sh/docs/collect/)
 and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation.
-
-Additionally, this procedure uses a Secret with `pre-install` and `pre-upgrade` hook and weight annotations. You can omit these annotations if you want the checks to run during installation instead or if you want to run the preflight checks before using the `helm template` command to trigger the checks before installation. 
 
 <PreflightsHelmGuidance/>
 
@@ -84,12 +66,8 @@ To define preflight checks as a Secret:
     name: preflight-secret
     labels:
         troubleshoot.sh/kind: preflight
-    annotations:
-        "helm.sh/hook": pre-install, pre-upgrade
-        "helm.sh/hook-weight": "-6"
-        "helm.sh/hook-delete-policy": before-hook-creation, hook-succeeded, hook-failed
     stringData:
-    preflight.yaml: |-
+      preflight.yaml: |-
         apiVersion: troubleshoot.sh/v1beta2
         kind: Preflight
         metadata:
@@ -115,12 +93,8 @@ To define preflight checks as a Secret:
     name: preflight-secret
     labels:
         troubleshoot.sh/kind: preflight
-    annotations:
-        "helm.sh/hook": pre-install, pre-upgrade
-        "helm.sh/hook-weight": "-6"
-        "helm.sh/hook-delete-policy": before-hook-creation, hook-succeeded, hook-failed
     stringData:
-    preflight.yaml: |-
+      preflight.yaml: |-
         apiVersion: troubleshoot.sh/v1beta2
         kind: Preflight
         metadata:
@@ -147,3 +121,108 @@ To define preflight checks as a Secret:
     ```
 1. Test your preflight checks in a development environment. For more information, see [Running Helm Preflight Checks](preflight-running).
 
+## Define a Preflight Custom Resource as a Template {#custom-resource}
+
+The Preflight custom resource lets you provide preflight checks in a Helm template, which allows you to customize preflight checks based on values that are unique to your customers. 
+
+You must use conditional statements in the custom resource because it is not installed in the cluster. Instead, the custom resource is read using stdin. Customers run the `helm template` command to trigger the preflight checks before installation.
+
+For more information about Preflight custom resource, see [Preflight and Support Bundle](/reference/custom-resource-preflight).
+
+To define a custom resource as a template:
+
+1. Create a Preflight custom resource YAML file using `kind: Preflight`. The following is a basic example:
+
+    ```yaml
+    apiVersion: troubleshoot.sh/v1beta2
+    kind: Preflight
+    metadata:
+    name: sample
+    spec:
+    collectors: []
+    analyzers: []
+    ```
+
+1. Wrap the custom resource template in an `{{ if` so that it is only rendered when specified, such as: `helm template mychart --set renderpreflights=true --values values.yaml | preflight -`
+
+    **Example**:
+
+    ```yaml
+    {{ if .Values.renderpreflights }}
+    apiVersion: troubleshoot.sh/v1beta2
+    kind: Preflight
+    metadata:
+    name: example
+    spec:
+    collectors:
+    etc etc
+    {{ end }}
+    ```
+
+1. Configure collectors and analyzers as needed.
+
+1. Run `helm template` in a development environment to test your preflight checks.
+
+## Example
+
+The following example shows preflight checks using a Secret. For more examples, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples) in GitHub.
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  labels:
+    troubleshoot.sh/kind: preflight
+  name: "{{ .Release.Name }}-preflight-config"
+stringData:
+  # This is the preflight spec that will be used to run the preflight checks
+  # Note: here we demonstrate using Helm's templating to conditionally run a preflight check based on a value
+  # plus getting some configuration from the local values.yaml file
+  preflight.yaml: |
+    apiVersion: troubleshoot.sh/v1beta2
+    kind: Preflight
+    metadata:
+      name: preflight-sample
+    spec:
+      {{ if eq .Values.global.mariadb.enabled false }}
+      collectors:
+          - mysql:
+            collectorName: mysql
+            uri: '{{ .Values.global.externalDatabase.user }}:{{ .Values.global.externalDatabase.password }}@tcp({{ .Values.global.externalDatabase.host }}:{{ .Values.global.externalDatabase.port }})/{{ .Values.global.externalDatabase.database }}?tls=false'
+      {{ end }}
+      analyzers:
+        - nodeResources:
+            checkName: Node Count Check
+            outcomes:
+              - fail:
+                  when: 'count() > {{ .Values.global.maxNodeCount }}'
+                  message: "The cluster has more than {{ .Values.global.maxNodeCount }} nodes."
+              - pass:
+                  message: You have the correct number of nodes.
+        - clusterVersion:
+            outcomes:
+              - fail:
+                  when: "< 1.16.0"
+                  message: The application requires at least Kubernetes 1.16.0, and recommends 1.18.0.
+                  uri: https://kubernetes.io
+              - warn:
+                  when: "< 1.18.0"
+                  message: Your cluster meets the minimum version of Kubernetes, but we recommend you update to 1.18.0 or later.
+                  uri: https://kubernetes.io
+              - pass:
+                  message: Your cluster meets the recommended and required versions of Kubernetes.
+        {{ if eq .Values.global.mariadb.enabled false }}
+        - mysql:
+            checkName: Must be MySQL 8.x or later
+            collectorName: mysql
+            outcomes:
+              - fail:
+                  when: connected == false
+                  message: Cannot connect to MySQL server
+              - fail:
+                  when: version < 8.x
+                  message: The MySQL server must be at least version 8
+              - pass:
+                  message: The MySQL server is ready
+        {{ end }}
+```

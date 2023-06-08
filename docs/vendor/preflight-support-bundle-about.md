@@ -126,7 +126,7 @@ Lets you provide preflight checks using a Preflight custom resource in a Helm te
   <table>
     <tr>
       <th>Use Cases</th>
-      <td><p>Lets customers run the <code>helm template</code> command to trigger preflight checks before installation. This requires that the preflight is defined in a resource that can be read through stdin.</p><p>Allows customization of preflight checks based on values unique to the customer</p></td>
+      <td><p>Lets customers run the <code>helm template</code> command to trigger preflight checks before installation. This requires that the preflight is defined in a resource that can be read through stdin.</p><p>Allows customization of preflight checks based on values unique to the customer.</p></td>
     </tr>
     <tr>
       <th>Advantages</th>
