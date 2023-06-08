@@ -10,7 +10,7 @@ This topic provides an introduction to how to use the Replicated SDK with your H
 
 The Replicated SDK is a Helm chart that can be installed as a small service alongside your application Helm chart. The Replicated SDK allows you to install your application with Helm while having access to Replicated features such as:
 
-* Telemetry and insights on instances of your application running in customer environments 
+* Insights on instances of your application running in customer environments 
 * Customer license and entitlements enforcement during installation and at runtime 
 * Preflight checks to verify the customer environment meets requirements before installation 
 * Update checks to alert your customers when new versions of your application are available for upgrade
@@ -38,34 +38,21 @@ The following is an example of a Helm values file containing only the informatio
 replicated:
   app:
     configValues: YXBpVmVyc2lvbjoga290cy5pby92MWJldGExCmtpbmQ6IENvbmZpZ1ZhbHVlcwpzcGVjOgogIHZhbHVlczoge30=
-  appName: alex-echo-server-helm
+  appName: my-app
   channelID: 2CBDxNwDH1xyYiIXRTjiB7REjKX
   channelName: Stable
   channelSequence: 75
   created_at: "2023-05-12T17:44:10Z"
   license: |
-    <The full customer license appears in the license field>
+# The full customer license appears in the license field
   license_id: WJldGExCmtpbmQ6IEN...
   releaseCreatedAt: "2023-05-12T17:43:51Z"
   releaseIsRequired: false
-  releaseNotes: "My release notes"
+  releaseNotes: "Some release notes"
   releaseSequence: 81
   username: username@example.com
   versionLabel: 0.1.70
 ```
-
-<!-- global:
-  licenseFields:
-    expires_at:
-      description: License Expiration
-      name: expires_at
-      signature:
-        v1: iZBpESXx7fpdtnbMKingYHiJH42rP8fPs0x8izy1mODckGBwVoA/3NmNhbTty7gbibvvmw6rbsCEFvaKBTW4zoEWKicQ9hJWKVIWsYH27HYZghvRCxxz4akUxW5/BWsX5DTwfcEAyEUSUvgCo9ba9IYchvrQSEupHzG/r5LM/dKV4aojCqIodkdB+yZKyfm4xo4e9ZWtWyQgVVmzOlIPOwUspTi0GtUK3T99r/JkPd4od8q6CdkuNKDJ9lg2h5/TQSRrJtkp7DeJT1byUkELw4t2mTXMmNK/nMMl8u/TWt1rvKrR2KOBw1i+nFG5N8sfRbfyPOYSxbhR8CkXatnVKA==
-      title: Expiration
-      value: "2023-05-30T00:00:00Z"
-      valueType: String
-
-As shown in the example above, you can also add values to the `global` field of the Helm values file that your Helm chart uses before the Replicated SDK is initialized. For example, you could include an `expires_at` field under `global` with the unique license expiry date for the customer to reference before the SDK is installed and running in the customer environment. -->
 
 For more information about how to install an application and the Replicated SDK with Helm, see [Installing an Application and the SDK](replicated-sdk-installing).
 
@@ -73,9 +60,21 @@ For more information about how to install an application and the Replicated SDK 
 
 The Replicated SDK provides APIs that you can use to embed Replicated functionality into your application.
 
-For example, if your application includes a UI where users manage their application instance, then you can use the `/api/v1/app/updates` API to include messages in the UI when new versions of your application are available for upgrade. You could also use the `/api/v1/license/fields` API to check the customer's license expiration at runtime, which allows you to revoke access to the application when a license expires.
+For example, if your application includes a UI where users manage their application instance, then you can use the `/api/v1/app/updates` API to include messages in the UI to encourage users to upgrade when new versions are available. You could also use the `/api/v1/license/fields` API to check the customer's license expiration at runtime, which allows you to revoke access to the application when a license expires.
 
 For more information about the available Replicated SDK APIs, including example use cases, see [Replicated SDK APIs (Beta)](/reference/replicated-sdk-apis).
+
+## Customer Reporting and Instance Insights {#insights}
+
+The Replicated SDK provides access to operational telemetry like customer reporting and insights on application instances running in customer environments. 
+
+The following shows an example of the **Instance Details** page in the vendor portal, including application version and status details, instance uptime, and cluster details such as the cloud provider, cloud region, and the Kubernetes version and distribution:
+
+![instance details full page](/images/instance-details.png)
+
+For more information about view customer and instance insights in the vendor portal, see [Customer Reporting](customer-reporting) and [Instance Details](instance-insights-details).
+
+The Replicated SDK does not require any additional configuration to get access to instance data. The SDK uses the values injected by the Replicated registry in your Helm chart values file during initialization to automatically send information about the instance back to the vendor portal.
 
 ## Development Mode
 

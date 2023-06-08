@@ -240,4 +240,4 @@ For example, although customers must have a valid license to log in to the regis
 
 You can check the license expiration with the get license field API by setting `expires_at` as the license field path parameter. For example, /api/v1/license/fields/expires_at.
 
-License fields are cryptographically signed to ensure their integrity. For information on how to verify license fields in your application, see Verify License Fields.
+License fields are cryptographically signed to ensure their integrity.
