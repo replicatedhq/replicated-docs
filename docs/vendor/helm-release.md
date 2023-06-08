@@ -28,7 +28,9 @@ The following limitations apply when using KOTS for native Helm and Replicated H
 
 KOTS supports using native Helm and Replicated Helm to deliver enterprise applications as Helm charts, or including Helm charts as components of an application. An application can use more than one Helm chart, and can use more than a single instance of any Helm chart.
 
-You must add a HelmChart custom resource manifest file (`kind: HelmChart`) for each Helm chart that you add to a release. You then configure the HelmChart custom resource to provide the necessary instructions to KOTS for processing and preparing the chart for deployment, such as whether to use the native Helm or Replicated Helm installation. 
+You must add a HelmChart custom resource manifest file (`kind: HelmChart`) for each Helm chart that you add to a release. You then configure the HelmChart custom resource to provide the necessary instructions to KOTS for processing and preparing the chart for deployment, such as whether to use the native Helm or Replicated Helm installation.
+
+For more information about the HelmChart custom resource fields, see [HelmChart](/reference/custom-resource-helmchart) in the _Custom Resources_ section.
 
 The HelmChart custom resource lets you create a mapping between the `values.yaml` file and the Replicated admin console Config page. This allows values to be changed in the chart based on user-provided configuration settings.
 
