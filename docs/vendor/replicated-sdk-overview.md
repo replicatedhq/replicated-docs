@@ -36,15 +36,13 @@ The following is an example of a Helm values file containing only the informatio
 ```yaml
 # Helm values.yaml
 replicated:
-  app:
-    configValues: YXBpVmVyc2lvbjoga290cy5pby92MWJldGExCmtpbmQ6IENvbmZpZ1ZhbHVlcwpzcGVjOgogIHZhbHVlczoge30=
   appName: my-app
   channelID: 2CBDxNwDH1xyYiIXRTjiB7REjKX
   channelName: Stable
   channelSequence: 75
   created_at: "2023-05-12T17:44:10Z"
   license: |
-# The full customer license appears in the license field
+# The full customer license appears here in the license field
   license_id: WJldGExCmtpbmQ6IEN...
   releaseCreatedAt: "2023-05-12T17:43:51Z"
   releaseIsRequired: false
@@ -66,18 +64,19 @@ For more information about the available Replicated SDK APIs, including example 
 
 ## Customer Reporting and Instance Insights {#insights}
 
-The Replicated SDK provides access to operational telemetry like customer reporting and insights on application instances running in customer environments. 
+The Replicated SDK provides access to operational telemetry like customer reporting and insights on application instances running in customer environments. When you distribute your application with the SDK, you can view these insights in the vendor portal.
+
+The Replicated SDK does not require any additional configuration to get access to instance data. The SDK uses the values injected by the Replicated registry in your Helm chart values file during initialization to automatically send information about the instance back to the vendor portal.
 
 The following shows an example of the **Instance Details** page in the vendor portal, including application version and status details, instance uptime, and cluster details such as the cloud provider, cloud region, and the Kubernetes version and distribution:
 
 ![instance details full page](/images/instance-details.png)
+[View a larger version of this image](/images/instance-details.png)
 
-For more information about view customer and instance insights in the vendor portal, see [Customer Reporting](customer-reporting) and [Instance Details](instance-insights-details).
-
-The Replicated SDK does not require any additional configuration to get access to instance data. The SDK uses the values injected by the Replicated registry in your Helm chart values file during initialization to automatically send information about the instance back to the vendor portal.
+For more information about viewing customer and instance insights in the vendor portal, see [Customer Reporting](customer-reporting) and [Instance Details](instance-insights-details).
 
 ## Development Mode
 
-You can run the Replicated SDK in development mode to more quickly add features and test releases of your application. Development mode allows you to test changes locally without having to create a release in the vendor portal or pull your Helm chart from the Replicated registry in a development environment.
+You can run the Replicated SDK in development mode to more quickly add features and test releases of your application. Development mode allows you to test changes locally without having to create a release in the vendor portal and then pull your Helm chart from the Replicated registry.
 
-To use development mode, you initialize the SDK with a developer license, rather than pulling the chart from the Replicated registry. For more information about using development mode, see [Using Development Mode](replicated-sdk-development).
+To use development mode, you initialize the SDK with a developer license. For more information about using development mode, see [Using Development Mode](replicated-sdk-development).

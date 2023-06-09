@@ -25,7 +25,7 @@ For more information about the SDK APIs for checking license details, see [licen
 
 ## About Referencing License Fields Before Installation
 
-You can reference license entitlements in the `global` field of your Helm chart values file so that you can check customer entitlements before the Replicated SDK is initialized in the customer environment.
+You can reference license entitlements in the `global.licenseFields` field of your Helm chart values file so that you can check customer entitlements before the Replicated SDK is initialized in the customer environment.
 
 For example, you could include an `expires_at` field under `global` with the unique license expiry date for the customer to reference before the SDK is installed and running in the customer environment.
 

@@ -2,7 +2,7 @@ import Beta from "../partials/replicated-sdk/_beta.mdx"
 
 # Deploying the Replicated SDK With Your Application
 
-This topic describes how to begin using the Replicated SDK by declaring it as a dependency in your application Helm chart, then promoting a new release with your Helm chart in the Replicated vendor portal. 
+This topic describes how to begin using the Replicated SDK by declaring the SDK as a dependency in your application Helm chart, then promoting a new release with your Helm chart in the Replicated vendor portal. 
 
 <Beta/>
 
@@ -17,7 +17,7 @@ labels:
   app.kubernetes.io/name: {{ .Chart.Name }}
 ``` 
 
-These are standard Helm labels that enable the Replicated SDK to report the status of installed instances of your application to the vendor portal so that you can view insights on instances running in customer environments. For more information about viewing insights and telemetry in the vendor portal, see [Instance Details](instance-insights-details).
+These are standard Helm labels that enable the Replicated SDK to report the status of installed instances of your application to the vendor portal so that you can view insights on instances running in customer environments. For more information about viewing insights and telemetry in the vendor portal when you distribute with the SDK, see [Customer Reporting and Instance Insights](replicated-sdk-overview#insights) in _About the Replicated SDK_.
 
 ## Declare the SDK as a Dependency
 
@@ -25,10 +25,9 @@ You can distribute the Replicated SDK with your application by declaring it as a
 
 Replicated recommends that your application is installed as a single chart that includes all necessary charts as dependencies. However, if your application is installed as multiple charts, declare the SDK as a dependency of the chart that customers install first.
 
-
 To declare the Replicated SDK as a dependency:
 
-1. Edit your Helm chart’s `Chart.yaml` file to add the SDK as a dependency:
+1. Edit your Helm chart’s `Chart.yaml` file to add the following dependency:
 
    ```yaml
    # Chart.yaml
@@ -37,6 +36,7 @@ To declare the Replicated SDK as a dependency:
      repository: oci://registry.replicated.com/library
      version: 0.0.1-alpha.15
    ```
+   For the latest version information for the Replicated SDK, see **LINK**.
 
 1. From your local directory where the `Chart.yaml` file is saved, run the following command to update the chart’s dependencies:
 
@@ -56,9 +56,9 @@ Continue to [Add Your Helm Chart to a Release](#release) below to add the `.tgz`
 
 ## Promote a Release with Your Helm Chart {#release}   
 
-After you package the Helm chart with the Replicated SDK as a dependency, you can add the `.tgz` file to a release in the vendor portal. When you promote the release to a channel, the vendor portal automatically pushes your Helm chart to the Replicated registry where your customers can then pull the chart. For more information, see [How the SDK Initializes in a Customer Environment](#about-sdk-initialize).
+After you package your Helm chart with the Replicated SDK as a dependency, you can add the `.tgz` file to a release in the vendor portal. When you promote the release to a channel, the vendor portal automatically pushes your Helm chart to the Replicated registry where your customers can then pull the chart. For more information, see [How the SDK Initializes in a Customer Environment](#about-sdk-initialize).
 
-You can also create and promote releases with the replicated CLI rather than using the vendor portal. For more information, see [Managing Releases with the CLI](releases-creating-cli).
+The following steps demonstrate how to create and promote a release using the vendor portal. You can also create and promote releases with the replicated CLI. For more information, see [Managing Releases with the CLI](releases-creating-cli).
 
 To create and promote a release in the vendor portal:
 
@@ -77,4 +77,4 @@ To create and promote a release in the vendor portal:
    1. For **Channel**, select the channel that your team uses for development. If you are not sure which channel to use, use the default Unstable channel.
    1. (Optional) For **Release notes**, add release notes to describe the updates in this release.
 
-After the release is promoted, the vendor portal pushes your Helm chart to the Replicated registry. For information about how to install the release in a development environment with Helm, see [Installing an Application and the SDK](replicated-sdk-installing). 
+After the release is promoted, the vendor portal automatically pushes your Helm chart to the Replicated registry. For information about how to install the release in a development environment with Helm, see [Installing an Application and the SDK](replicated-sdk-installing). 
