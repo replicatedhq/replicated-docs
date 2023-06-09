@@ -10,18 +10,24 @@ toc_max_heading_level: 2
 
 Released on June 9, 2023
 
+:::important
+Previously releases has a known issue that can lead the system to a critical state when you are upgrading from Weave to Flannel. This known issue is resolved v2023.06.09-0. To avoid this known issue, do not upgrade with configurations to migrate from Weave to Flannel using previous releases and Flannel versions which are lower than 0.21.5. Note that the bug fixes were not backport to Flannel versions lower than 0.21.5. 
+:::
+
 ### New Features {#new-features-v2023-06-09-0}
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.65.1-46.5.0.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.27.1.
 * Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.7.
 * Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) version 3.7.0.
-* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) versions 0.65.1-46.5.0 and 0.65.1-46.6.0.
-* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.27.1.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.65.1-46.6.0.
 
-### Improvements {#improvements-v2023-05-22-0}
-* The installer has been enhanced to utilize the HTTP_PROXY and HTTPS_PROXY environment variables during the configuration of the container runtime.
+### Improvements {#improvements-v2023-06-09-0}
+* Enhanced to utilize the HTTP_PROXY and HTTPS_PROXY environment variables during the configuration of the container runtime.
+* Increase the Flannel waiting time to check that it is available and improve log in case of failures. This change are valid only for Flannel versions equals and upper than 0.21.5.
 
 ### Bug Fixes {#bug-fixes-v2023-06-09-0}
+* Fixes issue faced when migrating from weave to flannel where pods get stuck and ensure that weave is properly removed. This bug fix was introduced for Flannel versions equals and upper than 0.21.5.
 * Fixes an issue that could cause Rook upgrades from version 1.0.4 to 1.7.x to fail with error rook-ceph-migrator pod not found.
-* Fixes an issue that may cause migrations from Weave to Flannel to fail when the Rook Addon is installed.
 
 ## v2023.05.30-0
 
