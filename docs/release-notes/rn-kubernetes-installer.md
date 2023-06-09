@@ -19,7 +19,7 @@ Released on June 9, 2023
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.65.1-46.6.0.
 
 ### Improvements {#improvements-v2023-06-09-0}
-* Enhanced to utilize the HTTP_PROXY and HTTPS_PROXY environment variables during the configuration of the container runtime.
+* Enhance proxy installs by enabling the use of HTTP_PROXY and HTTPS_PROXY environment variables during the configuration of the container runtime.
 * Increase the Flannel waiting time to check that it is available and improve log in case of failures. This change are valid only for Flannel versions equals and upper than 0.21.5.
 
 ### Bug Fixes {#bug-fixes-v2023-06-09-0}
