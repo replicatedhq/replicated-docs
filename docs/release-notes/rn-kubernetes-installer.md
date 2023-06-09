@@ -16,8 +16,10 @@ Released on June 9, 2023
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) versions 0.65.1-46.5.0 and 0.65.1-46.6.0.
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.27.1.
 
-### Bug Fixes {#bug-fixes-v2023-06-09-0}
+### Improvements {#improvements-v2023-05-22-0}
 * The installer has been enhanced to utilize the HTTP_PROXY and HTTPS_PROXY environment variables during the configuration of the container runtime.
+
+### Bug Fixes {#bug-fixes-v2023-06-09-0}
 * Fixes an issue that could cause Rook upgrades from version 1.0.4 to 1.7.x to fail with error rook-ceph-migrator pod not found.
 * Fixes an issue that may cause migrations from Weave to Flannel to fail when the Rook Addon is installed.
 
