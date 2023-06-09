@@ -14,16 +14,16 @@ Released on June 9, 2023
 ### New Features {#new-features-v2023-06-09-0}
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.65.1-46.5.0.
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.27.1.
-* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.7.
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) version 1.11.7.
 * Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) version 3.7.0.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.65.1-46.6.0.
 
 ### Improvements {#improvements-v2023-06-09-0}
-* Enhance proxy installs by enabling the use of HTTP_PROXY and HTTPS_PROXY environment variables during the configuration of the container runtime.
+* Enhance proxy installations by enabling the use of HTTP_PROXY and HTTPS_PROXY environment variables during the configuration of the container runtime.
 
 ### Bug Fixes {#bug-fixes-v2023-06-09-0}
-* Fixes issue when migrating from Weave to Flannel where pods get stuck. Moreover, the Weave to Flannel migration now ensures that Weave is properly removed. This fix applies to Flannel versions 0.21.5 and later.
-* Fixes an issue that could cause Rook upgrades from version 1.0.4 to 1.7.x to fail with error rook-ceph-migrator pod not found.
+* Fixes issue when migrating from Weave to Flannel where Pods get stuck. Also ensures that Weave is properly removed during the Weave to Flannel migration. This fix applies to Flannel versions 0.21.5 and later.
+* Fixes an issue that could cause Rook upgrades from version 1.0.4 to 1.7.x to fail with `error rook-ceph-migrator pod not found`.
 
 ## v2023.05.30-0
 
