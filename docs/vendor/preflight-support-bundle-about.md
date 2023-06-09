@@ -87,3 +87,5 @@ The following table gives a brief description of the available types:
       <td><p>Stored in a Kubernetes cluster. Secrets can be used to keep private information secure.</p><p>Also supports automatic discovery for support bundles.</p></td>
     </tr>
   </table>
+
+  For more use cases and guidance of specification types with Helm charts, see [Define Helm Preflight Checks](preflight-helm-defining) and [Customize Helm Support Bundles](support-bundle-helm-customizing).
