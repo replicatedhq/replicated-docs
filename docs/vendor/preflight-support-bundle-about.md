@@ -80,10 +80,10 @@ The following table gives a brief description of the available types:
     </tr>
     <tr>
       <td>URLs</td>
-      <td>Stored in an online repository. Easy to iterate against as a team.</td>
+      <td><p>Stored in an online repository. Easy to iterate against as a team.</p><p>Allows updating support bundle specifications to notify customers of potential problems and fixes in between application updates.</p></td>
     </tr>
     <tr>
       <td>Secrets or ConfigMaps</td>
-      <td>Stored in a Kubernetes cluster. Secrets can be used to keep private information secure. Also supports automatic discovery for support bundles.</td>
+      <td><p>Stored in a Kubernetes cluster. Secrets can be used to keep private information secure.</p><p>Also supports automatic discovery for support bundles.</p></td>
     </tr>
   </table>
