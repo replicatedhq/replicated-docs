@@ -20,16 +20,24 @@ Replace:
 
 Before running the `helm install` command, your customers run preflight checks using the local values file that you provide. This lets customers verify that their environments meet the installation requirements before they run the actual installation. You can ask them to send you the results of the preflight checks if needed.
 
-Run the preflights using a local values file to override chart defaults:
+- Run the preflights using a local values file to override chart defaults:
 
-```
-helm template oci://REGISTRY/APP_NAME/CHART --values FILENAME.yaml | kubectl preflight -
-```
-Replace:
+    ```
+    helm template oci://REGISTRY/APP_NAME/CHART --values FILENAME.yaml | kubectl preflight -
+    ```
+    Replace:
 
-- `REGISTRY` with the registry domain. For example, registry.domain.com
-- `APP_NAME` with the name of the application.
-- `CHART` with the name of the Helm chart.
-- `FILENAME` with the name of the local values file.
+    - `REGISTRY` with the registry domain. For example, registry.domain.com
+    - `APP_NAME` with the name of the application.
+    - `CHART` with the name of the Helm chart.
+    - `FILENAME` with the name of the local values file.
 
-The output shows the success, warning, or fail message each preflight check, depending on how they were configured.
+    The output shows the success, warning, or fail message each preflight check, depending on how they were configured.
+
+- If you are using a Preflight custom resource, run the preflights using the `helm template` command with the `--set VALUES=true` flag to use the template values.
+
+    For example:
+
+    ```
+    helm template oci://REGISTRY/APP_NAME/CHART --set renderpreflights=true --values FILENAME.yaml | kubectl preflight -
+    ```
