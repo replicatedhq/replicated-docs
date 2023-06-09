@@ -11,11 +11,10 @@ toc_max_heading_level: 2
 Released on June 9, 2023
 
 ### New Features {#new-features-v2023-06-09-0}
-* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.65.1-46.5.0.
-* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.27.1.
 * Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.7.
 * Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) version 3.7.0.
-* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.65.1-46.6.0.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) versions 0.65.1-46.5.0 and 0.65.1-46.6.0.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.27.1.
 
 ### Bug Fixes {#bug-fixes-v2023-06-09-0}
 * Fixes issue where script get stuck to delete Pods when it is migrating from weave to flannel. Bug fixed addressed only to 0.21.5.
