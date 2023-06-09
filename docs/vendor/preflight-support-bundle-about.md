@@ -61,13 +61,13 @@ Analyzer outcomes for preflight checks differ from the outcomes for support bund
 
 - Support bundles use analyzers to help identify potential problems. When a support bundle is uploaded to the vendor portal, it is extracted and automatically analyzed. The goal of this process is to surface known issues or hints of what might be a problem. Analyzers produce outcomes that contain custom messages to explain what the problem might be.
 
-## Specification Types
+## Specification Locations and Access
 
-The preflight and support bundle tools require configuration using specifications that can be of different types and located in a variety of places. 
+The preflight and support bundle specifications can be located and accessed in various ways. 
 
-Using multiple specifications and multiple specification types are supported. For more information about using a modular approach to designing preflight and support bundle specifications, see [About Modular Specifications](support-modular-support-bundle-specs).
+Additionally, using multiple specifications and multiple specification locations are supported. For more information about using multiple specifications to design preflight and support bundle specifications, see [About Modular Specifications](support-modular-support-bundle-specs).
 
-The following table gives a brief description of the available types:
+The following table gives a brief description of the available ways to store and access your preflight and support bundle specifications:
 
 <table>
     <tr>
@@ -76,16 +76,25 @@ The following table gives a brief description of the available types:
     </tr>
     <tr>
       <td>YAML Files</td>
-      <td>Located on the local file system. Can be useful for air gap installations.</td>
+      <td>Specifications can be distributed directly to your customers and stored on their local file systems. Can be useful for air gap installations.</td>
     </tr>
     <tr>
       <td>URLs</td>
-      <td><p>Stored in an online repository. Easy to iterate against as a team.</p><p>Allows updating support bundle specifications to notify customers of potential problems and fixes in between application updates.</p></td>
+      <td><p>Specifications can be hosted online at a URL. Easy to iterate against as a team.</p><p>This also allows updating support bundle specifications in between application updates to notify customers of potential problems and fixes.</p></td>
     </tr>
     <tr>
-      <td>Secrets or ConfigMaps</td>
-      <td><p>Stored in a Kubernetes cluster. Secrets can be used to keep private information secure.</p><p>Also supports automatic discovery for support bundles.</p></td>
+      <td>OCI Registry</td>
+      <td><p>Specifications are located in an image registry.</p></td>
+    </tr>
+    <tr>
+      <td>stdin</td>
+      <td><p>Specifications are provided as stdin from a Helm chart using `-` as the argument. Can be used by Helm installations, and is compatible with using Helm templates.</p></td>
     </tr>
   </table>
 
-  For more use cases and guidance of specification types with Helm charts, see [Define Helm Preflight Checks](preflight-helm-defining) and [Customize Helm Support Bundles](support-bundle-helm-customizing).
+  For information about how to write the specifications, see:
+  
+  - [Define Helm Preflight Checks](preflight-helm-defining)
+  - [Define KOTS Preflight Checks](preflight-kots-defining)
+  - [Customize Helm Support Bundles](support-bundle-helm-customizing)
+  - [Customize KOTS Support Bundles](support-bundles-kots-customizing)
