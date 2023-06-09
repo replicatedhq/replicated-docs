@@ -22,7 +22,7 @@ Released on June 9, 2023
 * Enhance proxy installs by enabling the use of HTTP_PROXY and HTTPS_PROXY environment variables during the configuration of the container runtime.
 
 ### Bug Fixes {#bug-fixes-v2023-06-09-0}
-* Fixes issue faced when migrating from weave to flannel where pods get stuck and ensure that weave is properly removed. This bug fix was introduced for Flannel versions equals and upper than 0.21.5.
+* Fixes issue when migrating from Weave to Flannel where pods get stuck. Moreover, the Weave to Flannel migration now ensures that Weave is properly removed. This fix applies to Flannel versions 0.21.5 and later.
 * Fixes an issue that could cause Rook upgrades from version 1.0.4 to 1.7.x to fail with error rook-ceph-migrator pod not found.
 
 ## v2023.05.30-0
