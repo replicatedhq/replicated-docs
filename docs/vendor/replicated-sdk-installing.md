@@ -29,24 +29,33 @@ To install a Helm chart application and the Replicated SDK:
 
 1. In the **Helm install instructions** dialog, run the first command to log into the Replicated registry:
 
-   ```
+   ```bash
    helm registry login registry.replicated.com --username EMAIL_ADDRESS --password LICENSE_ID
    ```
    Replace `EMAIL_ADDRESS` and `LICENSE_ID` with the values provided in the command in the **Helm install instructions** dialog.
 
-1. (Optional) Run the second command to ...
+1. (Optional) Run the second command to install the preflight plugin:
 
-1. (Optional) Run the third command to ...
+   ```bash
+   curl https://krew.sh/preflight | bash
+   ```
+
+1. (Optional) Run the third command to run preflight checks to confirm that your installation environment meets the requirements for the application:
+
+   ```bash
+   kubectl preflight oci://registry.replicated.com/APP_SLUG
+   ```
+   Replace `APP_SLUG` with the value provided in the command in the **Helm install instructions** dialog.
 
 1. Run the fourth command to install the chart or charts using Helm:
 
+    ```bash
+    helm install RELEASE_NAME oci://registry.replicated.com/APP_SLUG/CHANNEL_NAME/CHART_NAME
     ```
-    helm install RELEASE_NAME oci://registry.replicated.com/APP_SLUG/CHART_NAME
-    ```
-    Replace `RELEASE_NAME`, `APP_SLUG`, and `CHART_NAME` with the values provided in the command in the **Helm install instructions** dialog.
+    Replace `RELEASE_NAME`, `APP_SLUG`, `CHANNEL_NAME`, and `CHART_NAME`, with the values provided in the command in the **Helm install instructions** dialog.
 
 1. Verify that the Replicated SDK was installed by getting the Kubernetes Deployments in the appropriate namespace:
 
-   ```
+   ```bash
    kubectl get deployments
    ```

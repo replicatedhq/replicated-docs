@@ -198,7 +198,7 @@ deletes the mock data.
 
 This section provides some example use cases for the Replicated SDK APIs.
 
-### Support Update Checks 
+### Support Update Checks in Your Admin Console 
 
 You can check for updates to the application by using the get application updates API. This is useful to inform customers about updates to the application. For example, a banner can display in your application when updates are available, encouraging users to update and providing update instructions to them.
 
@@ -229,3 +229,28 @@ The install command requires:
 * the channel slug.
 
 The other four components are available from the get application information API in the `currentRelease.helmReleaseName`, `currentRelease.helmReleaseNamespace`, `appSlug`, and `currentRelease.channelSlug`.
+
+### Check the License Expiration Date
+
+In the vendor portal, 
+
+Get the details for the `expires_at`
+
+```
+curl replicated:3000/api/v1/license/fields/expires_at
+```
+
+Response:
+
+```json
+{
+  "name": "expires_at",
+  "title": "Expiration",
+  "description": "License Expiration",
+  "value": "2023-05-30T00:00:00Z",
+  "valueType": "String",
+  "signature": {
+    "v1": "c6rsImpilJhW0eK+Kk37jeRQvBpvWgJeXK2MD0YBlIAZEs1zXpmvwLdfcoTsZMOj0lZbxkPN5dPhEPIVcQgrzfzwU5HIwQbwc2jwDrLBQS4hGOKdxOWXnBUNbztsHXMqlAYQsmAhspRLDhBiEoYpFV/8oaaAuNBrmRu/IVAW6ahB4KtP/ytruVdBup3gn1U/uPAl5lhzuBifaW+NDFfJxAXJrhdTxMBxzfdKa6dGmlGu7Ou/xqDU1bNF3AuWoP3C78GzSBQrD1ZPnu/d+nuEjtakKSX3EK6VUisNucm8/TFlEVKUuX7hex7uZ9Of+UgS1GutQXOhXzfMZ7u+0zHXvQ=="
+  }
+}
+```

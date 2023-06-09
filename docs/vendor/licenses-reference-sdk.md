@@ -21,7 +21,7 @@ After the Replicated SDK is initialized and running in a customer environment, y
 * `/api/v1/license/fields`: List all the fields in the license.  
 * `/api/v1/license/fields/{field_name}`: List details about a specific license field, including the field name, description, type, and the value.
 
-For more information about the SDK APIs for checking license details, see [license](/reference/replicated-sdk-apis) in _Replicated SDK APIs (Beta)_.
+For more information about the SDK APIs for checking license details, see [license](/reference/replicated-sdk-apis#license) in _Replicated SDK APIs (Beta)_.
 
 ## About Referencing License Fields Before Installation
 
