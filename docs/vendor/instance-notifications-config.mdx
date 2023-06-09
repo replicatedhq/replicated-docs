@@ -16,20 +16,66 @@ To configure Slack notifications for an instance:
 
     <img src="/images/customer-instances.png" alt="Customer instances list in the vendor portal" width="600"/>
 
-1. On the Instance Details page, click **Slack Notifications**. From the dropdown list select one of the following options:
+1. On the Instance Details page, click **Slack Notifications**. From the dropdown list, select one of the following options:
 
-    - **App status:** Sends notifications for status changes only to the Slack channel.
+    - **App status:** Sends notifications for critical application status changes only to the Slack channel.
     - **All changes:** Sends notifications for all changes to the Slack channel.
     - **Ignore:** Turns off notifications to the Slack channel.
 
 1. Repeat these steps for every instance that you want to receive Slack notifications for.
 
-## Configure Email Notifications
 
-To configure email notifications for an instance:
+
+## Configure Email and In-App Notifications
+
+You can subscribe to email and in-app notifications that display in your view of the vendor portal.
+
+To configure email notifications and in-app notification for an instance:
 
 1. Go to **Applications > Customers**, and click an instance under a customer that you want to receive notifications for.
 
     <img src="/images/customer-instances.png" alt="Customer instances list in the vendor portal" width="600"/>
 
 1. On the Instance Details page, click **My Notifications**.
+
+1. On the Instance Details page, click **My Notifications**. From the dropdown list, select one of the following options:
+
+    - **App status:** Sends notifications for critical application status changes only to the Slack channel.
+    - **All changes:** Sends notifications for all changes to the Slack channel.
+    - **Ignore:** Turns off notifications to the Slack channel.
+
+1. Repeat these steps for every instance that you want to receive Slack notifications for.
+
+
+## Test Notifications Are Working
+
+After you enable notifications for a running development instance, test that your notifications are working as expected.
+
+Do this by forcing your application into a non-ready state. For example, you can delete one or more application Pods and wait for a Replication controller to recreate them.
+
+Then look for notifications:
+
+- In the assigned Slack channel
+- As an event stream on the **Instance details** page
+
+:::note
+There is a 30-second buffer between event detection and notifications being sent. This buffer provides better roll-ups and reduces noise.
+:::
+
+## View Details and Manage Subscriptions
+
+You can manage the notifications that you are subscribed to. This includes:
+
+- Viewing details about an instance and drilling down to see the instance details, a bundle, or the release that triggered the notification.
+- Unsubscribing from an instance notification completely. This can be useful when you are no longer responsible for monitoring a specific customer instance and want to remove all activity.
+- Changing the level of participation or frequency of an instance notifications. For example, if you only want to be notified in certain circumstances, such as when you are @mentioned.
+
+To view details and manage notifications:
+
+1. In the vendor portal, go to your **Account Settings** page.
+
+1. From the left menu, click **Notifications**.
+
+    The **Notifications** page displays the list of notifications you received.
+
+1. (Optional) 

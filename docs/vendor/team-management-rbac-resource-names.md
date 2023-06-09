@@ -58,6 +58,14 @@ Grants the holder permission to trigger airgap builds for the specified channel.
 
 Grants the holder permission to get an airgap bundle download URL for any release on the specified channel.
 
+### kots/app/[:appId]/customer/[:customerId]/slack-notifications/read
+
+Grants the holder permission to view the notifications subscription level on the customer instance page. See [Configure Notifications](instance-notifications-config).
+
+### kots/app/[:appId]/customer/[:customerId]/slack-notifications/update
+
+Grants the holder permission to edit the notifications subscription level on the customer instance page. See [Configure Notifications](instance-notifications-config).
+
 ### kots/app/[:appId]/installer/create
 
 Grants the holder permission to create Kubernetes installers. For more information, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
@@ -189,6 +197,14 @@ Grants the holder permission to invite additional people to the team.
 ### team/members/delete
 
 Grants the holder permission to delete other team members.
+
+### team/notifications/slack-webhook/read
+
+Grants the holder permission to read Slack webhook destinations. See [Configuring Slack Notifications](team-management-slack-config).
+
+### team/notifications/slack-webhook/update
+
+Grants the holder permission to edit Slack webhook destinations. See [Configuring Slack Notifications](team-management-slack-config).
 
 ### team/serviceaccount/list
 
