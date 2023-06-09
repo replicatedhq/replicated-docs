@@ -14,14 +14,13 @@ import ConfigmapNote from "../partials/preflights/_configmap-note.mdx"
 You define preflight checks based on your application needs. Replicated recommends that you use prelight checks to help ensure that your customers' environments support your application _before_ running the installation. 
 
 Preflight checks are not included by default, so you must enable them.
-Preflight checks run before running the `helm install` command, without hooks, to confirm the target cluster has the resources required for a successful install.
+Preflight checks run using a `helm template` command before running the installation to confirm the target cluster has the resources required for a successful installation.
 
 When you supply the output of `helm template` to the preflight command as stdin, the command filters the stream and searches for and runs the following specifications:
 
 -  Secrets or ConfigMaps containing preflight specifications
 -  Custom resources of `kind: preflight`
 
-You can create a resource that can be read from stdin and still take advantage of Helm templates.
 
 ## Specification Types
 
@@ -242,13 +241,13 @@ spec:
 
 The Preflight custom resource lets you provide preflight checks in a Helm template, which allows you to customize preflight checks based on values that are unique to your customers. 
 
-You must use conditional statements in the custom resource because it is not installed in the cluster. Instead, the custom resource is read using stdin. Customers run the `helm template` command to trigger the preflight checks before installation.
+You must use conditional statements in the custom resource because it is not installed in the cluster. Instead, the custom resource is read using stdin.
 
 For more information about Preflight custom resource, see [Preflight and Support Bundle](/reference/custom-resource-preflight).
 
 To define a custom resource as a template:
 
-1. Create a Preflight custom resource YAML file using `kind: Preflight`. Wrap the custom resource template in an `{{ if` so that it is only rendered when specified in the `values.yaml file. For example, `helm template mychart --set renderpreflights=true --values values.yaml | preflight -`.
+1. Create a Preflight custom resource YAML file using `kind: Preflight`. Wrap the custom resource template in an `{{ if` so that it is only rendered when specified in the `values.yaml` file.
 
     **Example**:
 
@@ -273,6 +272,8 @@ To define a custom resource as a template:
   ```yaml
   renderpreflights: example-name
   ```
+
+1. Run the `helm template` command with the `--set` flag to test that the preflights are working with the templating. For example, `helm template mychart --set renderpreflights=true --values values.yaml | kubectl preflight -`.
 
 ## Next Step
 
