@@ -136,8 +136,6 @@ stringData:
     metadata:
       name: support-bundle
     spec:
-      hostCollectors:
-        - hostOS: {}
       collectors:
         - clusterInfo: {}
         - clusterResources: {}
@@ -164,38 +162,15 @@ stringData:
         - clusterVersion:
             outcomes:
               - fail:
-                  when: "< 1.16.0"
-                  message: The application requires at least Kubernetes 1.16.0 or later
+                  when: "< 1.22.0"
+                  message: The application requires at least Kubernetes 1.22.0 or later
                   uri: https://kubernetes.io
               - warn:
-                  when: "< 1.17.0"
-                  message: Your cluster meets the minimum version of Kubernetes, but we recommend you update to 1.17.0 or later.
+                  when: "< 1.23.0"
+                  message: Your cluster meets the minimum version of Kubernetes, but we recommend you update to 1.23.0 or later.
                   uri: https://kubernetes.io
               - pass:
                   message: Your cluster meets the recommended and required versions of Kubernetes.
-        - customResourceDefinition:
-            customResourceDefinitionName: rook
-            outcomes:
-              - fail:
-                  message: The Rook CRD was not found in the cluster.
-                  uri: https://kurl.sh/docs/add-ons/rook/some/path/that/does/not/exist/for/the/sake/of/having/a/very/long/url.md
-              - pass:
-                  message: Rook is installed and available.
-        - containerRuntime:
-            outcomes:
-              - fail:
-                  when: "== docker"
-                  message: The application does not support docker
-              - pass:
-                  message: A supported container runtime was found
-        - storageClass:
-            checkName: Required storage classes
-            storageClassName: "microk8s-hostpath"
-            outcomes:
-              - fail:
-                  message: The microk8s storage class thing was not found
-              - pass:
-                  message: All good on storage classes
         - nodeResources:
             checkName: Must have at least 3 nodes in the cluster
             outcomes:
@@ -221,11 +196,11 @@ stringData:
             - fail:
                 when: "min(ephemeralStorageCapacity) < 40Gi"
                 message: Nodes in this cluster do not have at least 40 GB of ephemeral storage.
-                uri: https://kurl.sh/docs/install-with-kurl/system-requirements
+                uri: https://domain.com/docs/system-requirements
             - warn:
                 when: "min(ephemeralStorageCapacity) < 100Gi"
                 message: Nodes in this cluster are recommended to have at least 100 GB of ephemeral storage.
-                uri: https://kurl.sh/docs/install-with-kurl/system-requirements
+                uri: https://domain.com/docs/system-requirements
             - pass:
                 message: The nodes in this cluster have enough ephemeral storage.
         - ingress:
