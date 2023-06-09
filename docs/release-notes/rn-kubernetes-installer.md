@@ -10,9 +10,6 @@ toc_max_heading_level: 2
 
 Released on June 9, 2023
 
-:::important
-Previously releases has a known issue that can lead the system to a critical state when you are upgrading from Weave to Flannel. This known issue is resolved v2023.06.09-0. To avoid this known issue, do not upgrade with configurations to migrate from Weave to Flannel using previous releases and Flannel versions which are lower than 0.21.5. Note that the bug fixes were not backport to Flannel versions lower than 0.21.5. 
-:::
 
 ### New Features {#new-features-v2023-06-09-0}
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.65.1-46.5.0.
