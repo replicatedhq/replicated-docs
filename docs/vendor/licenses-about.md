@@ -11,18 +11,17 @@ Each customer that you create in the Replicated vendor portal has a unique licen
 
 Each customer license includes several fields that uniquely identify the customer and the application, specify the release channel, and define the customer's _entitlements_. Entitlement information describes the details of the license, such as if the license has an expiration date or what application functionality the customer has access to.
 
-![Customer details page in the vendor portal](/images/customer-details.png)
-[View a larger version of this image](/images/customer-details.png)
-
 Replicated securely delivers these entitlements to the application and makes them available in the Kubernetes manifest files or at runtime using the Replicated admin console API.
 
 For more information about how to create and manage customers, see [Creating and Managing](releases-creating-customer).
 
 ### Channel Assignment
 
-You assign customers to channels in the vendor portal to control access to your application releases. Customers can install or upgrade to releases that are promoted to the channel to which they are assigned. For example, assigning a customer to your Beta channel allows that customer to install or upgrade to only releases promoted to the Beta channel.
+You assign customers to channels in the vendor portal to control their access to your application releases. Customers can install or upgrade to releases that are promoted to the channel they are assigned. For example, assigning a customer to your Beta channel allows that customer to install or upgrade to only releases promoted to the Beta channel.
 
 <ChangeChannel/>
+
+For example, assume that the latest release that was promoted to the Stable channel is v1.25.0. You had marked v1.24.0 as required by selecting **Prevent this release from being skipped** when you promoted it to the Stable channel. If you edit a customer to assign them to the Stable channel, then the customer must upgrade to v1.25.0, even though v1.24.0 was marked as required.
 
 ### Built-in and Custom License Fields
 
@@ -44,13 +43,10 @@ By default, an application with an expired license continues to run, but is prev
 
 ## About the Customers Page
 
-The vendor portal **Customers** page displays details about each customer license that you create, including the channel the customer is assigned, the type of license, the number of active application instances installed with the license, and more.
-
 The following shows an example of the **Customers** page:
 
-![Customer page showing three customers](/images/customer-page.png)
-
-[View a larger version of this image](/images/customer-page.png)
+![Customer page showing three customers](/images/customers-page.png)
+[View a larger version of this image](/images/customers-page.png)
 
 From the **Customers** page, you can do the following:
 
@@ -60,7 +56,7 @@ From the **Customers** page, you can do the following:
 
 * View insights about the adoption rate of each version of your application across your customers. For more information, see [Adoption Rate (Beta)](customer-adoption).
 
-* Click the **Manage customer** button to edit details such as the customer name and email, the custom license fields assigned to the customer, and the license expiration policy.
+* Click the **Manage customer** button to edit details such as the customer name and email, the custom license fields assigned to the customer, and the license expiration policy. For more information, see [Creating and Managing Customers](releases-creating-customer).
 
 * Download the license file for each customer
 
@@ -68,7 +64,44 @@ From the **Customers** page, you can do the following:
 
 * View instance details for each customer, including the version of the application that this instance is running, the Kubernetes distribution of the cluster, the last check-in time, and more:
 
-  <img width="800px" src="/images/customer-page-details.png" />
+  <img width="800px" src="/images/customer-reporting-details.png" />
+  
+  [View a larger version of this image](/images/customer-reporting-details.png)
 
-  [View a larger version of this image](/images/customer-page-details.png)
-* Archive customers
+* Archive customers.  For more information, see [Creating and Managing Customers](releases-creating-customer).
+
+* Click on a customer in the **Customers** page to access the following customer-specific pages:
+  * [Reporting](#reporting-page)
+  * [Customer details](#customer-details-page)
+  * [Support bundles](#support-bundles-page)
+
+### Reporting Page
+
+The **Reporting** page for a customer displays data about the active application instances associated with each customer. The following shows an example of the **Reporting** page for a customer that has two active application instances:
+
+![Customer reporting page in the vendor portal](/images/customer-reporting-page.png)
+[View a larger version of this image](/images/customer-reporting-page.png)
+
+For more information about interpreting the data on the **Reporting** page, see [Customer Reporting](customer-reporting).
+
+### Customer Details Page
+
+The **Customer details** page for a customer displays details about the customer license, including the customer name and email, the license expiration policy, custom license fields, and more.
+
+The following shows an example of the **Customer details** page:
+
+![Customer details page in the vendor portal](/images/customer-details.png)
+[View a larger version of this image](/images/customer-details.png)
+
+From the **Customer details** page, you can view and edit the customer's license fields or archive the customer. For more information, see [Creating and Managing Customers](releases-creating-customer).
+
+### Support Bundles Page
+
+The **Support bundles** page for a customer displays details about the support bundles collected from the customer. Customers can provide support bundles through the Replicated admin console, or you can upload support bundles manually in the vendor portal by going to **Troubleshoot > Upload a support bundle**. For more information about uploading and analyzing support bundles, see [Inspecting Support Bundles](support-inspecting-support-bundles).
+
+The following shows an example of the **Support bundles** page:
+
+![Support bundles page in the vendor portal](/images/customer-support-bundles.png)
+[View a larger version of this image](/images/customer-support-bundles.png)
+
+As shown in the screenshot above, the **Support bundles** page lists details about the collected support bundles, such as the date the support bundle was collected and the debugging insights found. You can click on a support bundle to view it in the **Support bundle analysis** page. You can also click **Delete** to delete the support bundle, or click **Customer Reporting** to view the **Reporting** page for the customer.
