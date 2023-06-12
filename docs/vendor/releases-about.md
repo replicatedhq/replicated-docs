@@ -1,3 +1,5 @@
+import ChangeChannel from "../partials/customers/_change-channel.mdx"
+
 # About Releases
 
 This topic describes concepts about creating and promoting releases, editing release properties, and information about the Releases page in the Replicated vendor portal.
@@ -43,7 +45,24 @@ You can enable semantic versioning on a channel that already has releases promot
 
 ### Release Properties
 
-You cannot edit the YAML files in a release after the release is promoted to a channel. However, each release has properties, such as the release notes, the version label, and the required status, that you can edit from the channel Release History page in the vendor portal. For more information, see [About the Channels Page](releases-about-channels#about-the-channels-page) in _About Release Channels_.
+Each release has the following properties:
+
+* **Version label**: The version label for the release. If semantic versioning is enabled for the channel, you must use a valid semantic version. For more information, see [Semantic Versioning](#semantic-versioning) above.
+
+* **Requirements**: You can select **Prevent this release from being skipped** during upgrades to mark the release as required. When a release is required, Replicated KOTS requires users to upgrade to that version before they can upgrade to a later version. Required releases have the following limitations:
+  * Required releases are supported in KOTS v1.68.0 and later.
+  * After users deploy a required version, they can no longer redeploy (roll back to) versions earlier than the required version, even if `allowRollback` is true in the Application custom resource manifest. See `allowRollback` in the Application custom resource topic.
+  * If you change the channel an existing customer is assigned, the admin console always fetches the latest release on the new channel, regardless of any required releases on the channel. For more information, see [Channel Assignment](licenses-about#channel-assignment) in _About Customer Licenses_.
+
+* **Release notes (supports markdown)**: Detailed release notes for the release. The release notes support markdown and are shown to your customer.
+
+You define release properties when you promote a release to a channel. You can edit release properties at any time from the channel **Release History** page in the vendor portal. For more information about the **Release History** page, see [About the Channels Page](releases-about-channels#about-the-channels-page) in _About Release Channels_.
+
+The following shows an example of the release properties dialog:
+
+<img src="/images/release-properties.png" width="500px" alt="release properties dialog for a release with version label 0.1.22"/>
+
+[View a larger version of this image](/images/release-properties.png)
 
 ### Release Sequencing
 

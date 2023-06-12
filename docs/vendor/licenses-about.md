@@ -7,13 +7,11 @@ This topic provides an overview of customer licenses, including information abou
 
 ## Overview of Customer Licenses
 
-Each customer that you create in the Replicated vendor portal has a unique license file. Your customers use their license when they install or update your application. Customers can also update, or _sync_, the license file from the Replicated admin console. For more information, see [Updating licenses](/enterprise/updating-licenses).
+Each customer that you create in the Replicated vendor portal has a unique license file. Your customers use their license when they install or update your application.
 
-Each customer license includes several fields that uniquely identify the customer and the application, specify the release channel, and define the customer's _entitlements_. Entitlement information describes the details of the license, such as if the license has an expiration date or what application functionality the customer has access to.
+Each customer license includes several fields that uniquely identify the customer and the application, specify the release channel, and define the customer's entitlements, such as if the license has an expiration date or what application functionality the customer can access. Replicated securely delivers these entitlements to the application and makes them available in the Kubernetes manifest files or at runtime using the Replicated admin console API.
 
-Replicated securely delivers these entitlements to the application and makes them available in the Kubernetes manifest files or at runtime using the Replicated admin console API.
-
-For more information about how to create and manage customers, see [Creating and Managing](releases-creating-customer).
+For more information about how to create and manage customers, see [Creating and Managing Customers](releases-creating-customer).
 
 ### Channel Assignment
 
@@ -21,7 +19,7 @@ You assign customers to channels in the vendor portal to control their access to
 
 <ChangeChannel/>
 
-For example, assume that the latest release that was promoted to the Stable channel is v1.25.0. You had marked v1.24.0 as required by selecting **Prevent this release from being skipped** when you promoted it to the Stable channel. If you edit a customer to assign them to the Stable channel, then the customer must upgrade to v1.25.0, even though v1.24.0 was marked as required.
+For more information about how to sync licenses in the admin console, see [Updating licenses](/enterprise/updating-licenses).
 
 ### Built-in and Custom License Fields
 
