@@ -1,12 +1,21 @@
 # About Online Support Bundle Specifications
 
-You can make the definition of one or more support bundle specifications available online in a source repository and link to it from the specifications in the cluster. This approach lets you update collectors and analyzers outside of the application release and notify customers of potential problems and fixes in between application updates. 
+You can make the definition of one or more support bundle specifications available online in a source repository and link to it from the specifications in the cluster. This approach lets you update collectors and analyzers outside of the application release and notify customers of potential problems and fixes in between application updates.
 
 The schema supports a `uri://` field that, when set, causes the support bundle generation to use the online specification. If the URI is unreachable or unparseable, any collectors or analyzers in the specification in the cluster are used as a fallback. 
 
 You can keep the online specification current with collectors and analyzers to manage bug fixes. When a customer generates a support bundle, the online specification can detect those potential problems in the cluster and let them know know how to fix it. Without the URI link option, you must wait for the next time your customers update their applications or Kubernetes versions to get notified of potential problems. The URI link option is particularly useful for customers that do not update their application routinely.
 
 If you are using a modular approach to designing support bundles, you can use multiple online specifications. Each specification supports one URI link. For more information about modular specifications, see [About Modular Support Bundles](support-modular-support-bundle-specs).
+
+## Limitations
+
+The following limitations apply to using URLs to store support bundle specifications:
+
+- URLs must be manually typed in to generate a support bundle, and there might be multiple strings and long strings.
+- Vendors must provide customers with the URL strings.
+- Does not support air gap environments.
+- Does not support templating for Helm installations.
 
 ## Example: URI Linking to a Source Repository
 

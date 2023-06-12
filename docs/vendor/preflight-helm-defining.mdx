@@ -6,11 +6,13 @@ import PreflightsAbout from "../partials/preflights/_preflights-about.mdx"
 import PreflightsDefine from "../partials/preflights/_preflights-define.mdx"
 import PreflightsCrNote from "../partials/preflights/_preflights-cr-note.mdx"
 import AnalyzersNote from "../partials/preflights/_analyzers-note.mdx"
+import RedactorsAbout from "../partials/redactors/_redactors-about.mdx"
 
 
-# Define Helm Preflight Checks
 
- This topic provides a basic understanding and some key considerations about Helm preflight checks to help guide you in enabling them for your application.
+# Define Preflight Checks for Helm Installations
+
+ This topic provides a basic understanding and some key considerations about preflight checks for Helm installations to help guide you in defining them for your application.
 
 ## About Helm Preflight Checks
 
@@ -171,9 +173,13 @@ spec:
           message: The MySQL server is ready
 ```
 
+## Redactors
+
+<RedactorsAbout/>
+
 ## Example
 
-The following example shows a preflight support bundle specification in a Secret for a Helm installation:
+The following example shows a preflight support bundle specification in a Secret for a Helm installation. For more examples, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples/preflight) in GitHub.
 
 ```yaml
 apiVersion: v1

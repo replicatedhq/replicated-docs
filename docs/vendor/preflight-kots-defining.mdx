@@ -8,10 +8,9 @@ import SecretsConfig from "../partials/preflights/_secrets-config.mdx"
 import AnalyzersNote from "../partials/preflights/_analyzers-note.mdx"
 
 
+# Define Preflight Checks for KOTS
 
-# Define KOTS Preflight Checks
-
- This topic provides a basic understanding and some key considerations about Helm preflight checks to help guide you in enabling them for your application.
+ This topic provides a basic understanding and some key considerations about preflight checks for KOTS installations to help guide you in defining them for your application.
 
 ## About KOTS Preflight Checks
 
@@ -153,7 +152,7 @@ spec:
 
 ## Example
 
-The following example shows a preflight support bundle specification wrapped in a Secret for a KOTS installation:
+The following example shows a preflight support bundle specification wrapped in a Secret for a KOTS installation. For more examples, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples/preflight) in GitHub.
 
 ```yaml
 apiVersion: v1

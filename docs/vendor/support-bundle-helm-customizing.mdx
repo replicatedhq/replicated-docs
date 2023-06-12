@@ -2,107 +2,31 @@ import SupportBundleAddLogs from "../partials/support-bundles/_support-bundle-ad
 import SupportBundleCustomCollectors from "../partials/support-bundles/_support-bundle-custom-collectors.mdx"
 import SupportBundleAddAnalyzers from "../partials/support-bundles/_support-bundle-add-analyzers.mdx"
 import ConfigmapNote from "../partials/support-bundles/_configmap-note.mdx"
+import PreflightsSbNote from "../partials/preflights/_preflights-sb-note.mdx"
+import SupportBundleDefine from "../partials/support-bundles/_support-bundle-define.mdx"
+import RedactorsAbout from "../partials/redactors/_redactors-about.mdx"
 
 
-# Customize Helm Support Bundles
+# Customize Support Bundles for Helm Installations
 
-Customizing a support bundle is unique to your application and depends on what kind of data you need to troubleshoot. This procedure provides a basic understanding and some key considerations to help guide you. For more information, see [Collecting Data](https://troubleshoot.sh/docs/collect/) and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation.
+This topic provides a basic understanding and some key considerations about support bundle specifications for Helm installations to help guide you in defining them for your application.
 
-### Specification Types
+## About Support Bundles
 
-The following table can help guide you in deciding which options to use for support bundles.
+Customizing a support bundle is unique to your application and depends on what kind of data you need to troubleshoot. Replicated recommends designing comprehensive support bundle specifications to give you the most insight to problems in your customer environments and the help reduce your support burden. 
 
-#### Secrets
+<PreflightsSbNote/>
 
-Replicated recommends using Secrets to provide support bundle specifications:
+## Input Kind
 
-<table>
-    <tr>
-      <th>Use Cases</th>
-      <td><p>Lets customers automatically discover all of the support bundle specifications as Secrets in a cluster.</p></td>
-    </tr>
-    <tr>
-      <th>Advantages</th>
-      <td><p>Does not require manual input of filenames when generating support bundles.</p><p>Can be used with custom labels.</p><p>Can contain private information.</p><p>Easier to distribute than other options because Secrets are co-located in the Helm chart.</p></td>
-    </tr>
-    <tr>
-      <th>Supports Templating?</th>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th>Limitations</th>
-      <td><p>Not applicable</p></td>
-    </tr>
-  </table>
+You can create support bundle specification using the following kinds:
 
-#### ConfigMaps
+- Secret (`kind: Secret`)
+- Support Bundle custom resource (`kind: SupportBundle`)
 
-Lets you provide support bundle specifications using one or more ConfigMaps:
+## Limitations
 
-<table>
-    <tr>
-      <th>Use Cases</th>
-      <td><p>Lets customer automatically discover all of the support bundle specifications in a cluster.</p></td>
-    </tr>
-    <tr>
-      <th>Advantages</th>
-      <td><p>Does not require manual input of filenames when generating support bundles.</p><p>Can be used with custom labels.</p></td>
-    </tr>
-    <tr>
-      <th>Supports Templating?</th>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th>Limitations</th>
-      <td><p>Not secure for containing private information. Use Secrets for security instead.</p></td>
-    </tr>
-  </table>
-
-#### YAML Files
-
-Lets you provide support bundle specifications using one or more YAML files:
-
-<table>
-    <tr>
-      <th>Use Cases</th>
-      <td><p>Useful for air gap when customization is not needed. The vendor can send the customer a file to use.</p><p>Can help to troubleshoot air gap installations that fail because information can be gathered without installing a Secret.</p></td>
-    </tr>
-    <tr>
-      <th>Advantages</th>
-      <td><p>Easy to create.</p></td>
-    </tr>
-    <tr>
-      <th>Supports Templating?</th>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th>Limitations</th>
-      <td><p>File names must be manually typed in to generate a support bundle, and there might be multiple files or long file names.</p><p>Customers must find out what the file names and paths are.</p></td>
-    </tr>
-  </table>
-
-#### URLs
-
-Lets you provide support bundle specifications using one or more URLs. For more information about using URLs, see [About Online Support Bundle Specifications](support-online-support-bundle-specs).
-
-<table>
-    <tr>
-      <th>Use Cases</th>
-      <td><p>The cluster can link to updated support bundle specifications online when the URI is included in the support bundle specification that is installed in the cluster.</p></td>
-    </tr>
-    <tr>
-      <th>Advantages</th>
-      <td><p>Allows vendors to update the support-bundle specification out-of-band from the application to provide notifications of possible issues, fixes, and prevention information.</p><p>If the URI is unavailable or unparseable, the support bundle is generated using the original specification in the cluster.</p><p>Easy to iterate against as a team.</p></td>
-    </tr>
-    <tr>
-      <th>Supports Templating?</th>
-      <td>No, the updated online specification cannot be templated.</td>
-    </tr>
-    <tr>
-      <th>Limitations</th>
-      <td><p>URLs must be manually typed in to generate a support bundle, and there might be multiple strings and long strings.</p><p>Vendors must provide customers with the URL strings.</p><p>Does not support air gap environments.</p></td>
-    </tr>
-  </table>
+YAML file and URL locations do not support Helm templating.
 
 ## Define Support Bundles as Secrets
 
@@ -114,6 +38,104 @@ To customize a support bundle as a Secret, create a specification using `kind: S
 
 - `Label` - Label the secret definition as `troubleshoot.sh/kind: support-bundle`
 - `stringData` - Specify a `stringData` field with a key named `support-bundle-spec`
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  labels:
+    troubleshoot.sh/kind: support-bundle
+  name: {{ .Release.Name }}-support-bundle
+  namespace: {{ .Release.Namespace }}
+type: Opaque
+stringData:
+  # This is the support bundle spec that will be used to generate the support bundle
+  # Notes: we use {{ .Release.Namespace }} to ensure that the support bundle is scoped to the release namespace
+  # We can use any of Helm's templating features here, including {{ .Values.someValue }}
+  support-bundle-spec: |
+    apiVersion: troubleshoot.sh/v1beta2
+    kind: SupportBundle
+    metadata:
+      name: support-bundle
+    spec:
+      collectors: []
+      analyzers: []
+```
+
+## Define the Support Bundle Specification
+
+<SupportBundleDefine/>
+
+### Cluster Collectors
+
+You can add the `clusterInfo` and `clusterResources` collectors if you want to collect a large amount of data to help with installation and debugging. For `clusterResources`, you can add the default namespace or additional namespaces using the `namespaces` field.
+
+The following example shows `clusterInfo` and `clusterResources` collectors with an additional namespace specified for the application.
+
+```yaml
+spec:
+  collectors:
+    - clusterInfo: []
+    - clusterResources:
+      namespaces:
+      - default
+      - my-app-namespace
+```
+### Pod Log Collectors
+
+<SupportBundleAddLogs/>
+
+The following example shows a Pod log collector:
+
+```yaml
+spec:
+      collectors:
+        - clusterInfo: {}
+        - clusterResources: {}
+        - logs:
+            selector:
+              - app=someapp
+              - component=nginx
+            namespace: {{ .Release.Namespace }}
+            limits:
+              maxAge: 720h # 30*24
+              maxLines: 10000
+              maxBytes: 5000000
+```
+
+### Other Recommended Collectors
+
+<SupportBundleCustomCollectors/>
+
+### Analyzers
+
+<SupportBundleAddAnalyzers/>
+
+The following example shows a deployment status collector with messages that can inform the customer as to the cause of an issue. You can customize the message to help guide customers to fix the issue on their own.
+
+```yaml
+spec:
+      collectors: []
+      analyzers: 
+        - deploymentStatus:
+            name: api
+            namespace: default
+            outcomes:
+              - fail:
+                  when: "< 1"
+                  message: The API deployment does not have any ready replicas.
+              - warn:
+                  when: "= 1"
+                  message: The API deployment has only a single ready replica.
+              - pass:
+                  message: There are multiple replicas of the API deployment ready.
+```
+
+### Redactors
+
+<RedactorsAbout/>
+
+## Example
 
 The following example shows a support bundle specification as a Secret. For more examples, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples/support-bundle) in GitHub.
 
@@ -233,26 +255,6 @@ stringData:
               - pass:
                   message: Said hi!
 ```
-
-### Cluster Collectors
-
-You can add the `clusterInfo` and `clusterResources` collectors if you want to collect a large amount of data to help with installation and debugging. For `clusterResources`, you can add the default namespace or additional namespaces to the `namespaces` field.
-
-### Pod Log Collectors
-
-<SupportBundleAddLogs/>
-
-### Other Recommended Collectors
-
-<SupportBundleCustomCollectors/>
-
-### Analyzers
-
-<SupportBundleAddAnalyzers/>
-
-### Redactors
-
-Troubleshoot has built-in redactors to prevent sensitive data from being collected when support bundles are generated. You can add more redactors if needed. For more information, see [Redacting Data](https://troubleshoot.sh/docs/redact/) in the Troubleshoot documentation.
 
 ## Next Steps
 

@@ -65,7 +65,10 @@ Analyzer outcomes for preflight checks differ from the outcomes for support bund
 
 The preflight and support bundle specifications can be located and accessed in various ways. 
 
-Additionally, using multiple specifications and multiple specification locations are supported. For more information about using multiple specifications to design preflight and support bundle specifications, see [About Modular Specifications](support-modular-support-bundle-specs).
+Additionally, using multiple specifications and multiple specification locations are supported. For more information about using:
+
+- Multiple specifications to design preflight and support bundle specifications, see [About Modular Specifications](support-modular-support-bundle-specs).
+- Using URLs for support bundles, see [About Online Support Bundle Specifications](support-online-support-bundle-specs).
 
 The following table gives a brief description of the available ways to store and access your preflight and support bundle specifications:
 
@@ -75,19 +78,19 @@ The following table gives a brief description of the available ways to store and
       <th width="75%">Description</th>
     </tr>
     <tr>
-      <td>YAML Files</td>
+      <th>YAML Files</th>
       <td>Specifications can be distributed directly to your customers and stored on their local file systems. Can be useful for air gap installations.</td>
     </tr>
     <tr>
-      <td>URLs</td>
+      <th>URLs</th>
       <td><p>Specifications can be hosted online at a URL. Easy to iterate against as a team.</p><p>This also allows updating support bundle specifications in between application updates to notify customers of potential problems and fixes.</p></td>
     </tr>
     <tr>
-      <td>OCI Registry</td>
+      <th>OCI Registry</th>
       <td><p>Specifications are located in an image registry.</p></td>
     </tr>
     <tr>
-      <td>stdin</td>
+      <th>stdin</th>
       <td><p>Specifications are provided as stdin from a Helm chart using `-` as the argument. Can be used by Helm installations, and is compatible with using Helm templates.</p></td>
     </tr>
   </table>
