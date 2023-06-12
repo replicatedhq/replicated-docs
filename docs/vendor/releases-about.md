@@ -56,7 +56,7 @@ Each release has the following properties:
 
 * **Release notes (supports markdown)**: Detailed release notes for the release. The release notes support markdown and are shown to your customer.
 
-You define release properties when you promote a release to a channel. You can edit release properties at any time from the channel **Release History** page in the vendor portal. For more information about the **Release History** page, see [About the Channels Page](releases-about-channels#about-the-channels-page) in _About Release Channels_.
+You define release properties when you promote a release to a channel. You can edit release properties at any time from the channel **Release History** page in the vendor portal. For more information about the **Release History** page, see [Channels Page](releases-about-channels#channels-page) in _About Release Channels_.
 
 The following shows an example of the release properties dialog:
 
