@@ -2,6 +2,7 @@ import SupportBundleAddLogs from "../partials/support-bundles/_support-bundle-ad
 import SupportBundleCustomCollectors from "../partials/support-bundles/_support-bundle-custom-collectors.mdx"
 import SupportBundleAddAnalyzers from "../partials/support-bundles/_support-bundle-add-analyzers.mdx"
 import PreflightsSpecLocations from "../partials/preflights/_preflights-spec-locations.mdx"
+import PreflightsSbNote from "../partials/preflights/_preflights-sb-note.mdx"
 
 
 # Customize Support Bundles for KOTS
@@ -14,7 +15,8 @@ Replicated KOTS provides the ability to generate support bundles from the admin 
 
 You can customize the default support bundle specification by adding, editing, or excluding the default collectors and analyzers.
 
-This topic provides a basic understanding and some key considerations to help guide you. For more information about configuring support bundles, see [Collecting Data](https://troubleshoot.sh/docs/collect/), [Redacting Data](https://troubleshoot.sh/docs/redact/), and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation. 
+<PreflightsSbNote/>
+
 
 <PreflightsSpecLocations/>
 
@@ -36,6 +38,98 @@ Use one of the following support bundle template options to start populating you
       analyzers: []
   ```
 - To fully customize the support bundle, including editing or excluding the default collectors and analyzers, copy the default `spec.yaml` file to your manifest file. For the default YAML file, see [spec.yaml](https://github.com/replicatedhq/kots/blob/main/pkg/supportbundle/defaultspec/spec.yaml) in the kots repository.
+
+
+
+### Cluster Collectors
+
+Although Replicated recommends including the default `clusterInfo` and `clusterResources` collectors because they collect a large amount of data to help with installation and debugging, you can set the `exclude` field to `true` to exclude them.
+
+If  `clusterResources` is defined in your specification, the default namespace cannot be removed, but you can add a namespace to the `namespaces` field.
+
+The following example shows the `clusterInfo` collector will run because the `exlcude` field is set to the default value `false`. Additionally, there is a second namespace being used for the application.
+
+```yaml
+spec:
+    collectors:
+      - clusterInfo:
+        exclude: false
+      - clusterResources:
+        namespaces:
+        - default
+        - my-app-namespace
+```
+
+### Pod Log Collectors
+
+<SupportBundleAddLogs/>
+
+The following example shows an API log file set with the default value for `maxLines`:
+
+```yaml
+spec:
+    collectors:
+      - clusterInfo:
+      - clusterResources:
+        exclude: false
+      - clusterResources:
+        namespaces:
+        - default
+        - my-app-namespace
+      - logs:
+            selector:
+              - app=api
+            namespace: my-app-namespace
+            limits:
+              maxLines: 10000
+```
+
+### Recommended Collectors
+
+<SupportBundleCustomCollectors/>
+
+### Analyzers
+
+<SupportBundleAddAnalyzers/>
+
+The following example shows an analyzer for a minimum version of Kubernetes that can be run on the cluster, and an analyzer to check the status of the nodes. You can customize the messages to help guide customers to fix the issue on their own.
+
+```yaml
+spec:
+    collectors:
+      - clusterInfo:
+      - clusterResources:
+    analyzers:
+      - clusterVersion:
+          outcomes:
+            - fail:
+                when: "< 1.22.0"
+                message: The Admin Console requires at least Kubernetes 1.22.0
+            - pass:
+                message: Your cluster meets the recommended and required versions of Kubernetes
+      - nodeResources:
+        checkName: Node status check
+        outcomes:
+          - fail:
+              when: "nodeCondition(Ready) == False"
+              message: "Not all nodes are online."
+          - warn:
+              when: "nodeCondition(Ready) == Unknown"
+              message: "Not all nodes are online."
+          - pass:
+              message: "All nodes are online."
+```     
+### Redactors
+
+To add redactors to the default redactors that are automatically provided by KOTS, add the Redactor custom resource manifest (`kind: Redactor`) to your release. Then add Redactor custom resource fields to the manifest as needed. For more information, see [Redactor](/reference/custom-resource-redactor) in the Reference section.
+
+:::note
+The default redactors included with KOTS cannot be disabled.
+:::
+
+## Examples
+
+### Simplified Specification
 
 The following example shows a simplified specification with some edits to the default settings:
 
@@ -79,33 +173,7 @@ The following example shows a simplified specification with some edits to the de
               message: "All nodes are online."
   ```
 
-### Cluster Collectors
-
-Although Replicated recommends including the default `clusterInfo` and `clusterResources` collectors because they collect a large amount of data to help with installation and debugging, you can set the `exclude` field to `true` to exclude them.
-
-If  `clusterResources` is defined in your specification, the default namespace cannot be removed, but you can add a namespace to the `namespaces` field.
-
-### Pod Log Collectors
-
-<SupportBundleAddLogs/>
-
-### Recommended Collectors
-
-<SupportBundleCustomCollectors/>
-
-### Analyzers
-
-<SupportBundleAddAnalyzers/>
-
-### Redactors
-
-To add redactors to the default redactors that are automatically provided by KOTS, add the Redactor custom resource manifest (`kind: Redactor`) to your release. Then add Redactor custom resource fields to the manifest as needed. For more information, see [Redactor](/reference/custom-resource-redactor) in the Reference section.
-
-:::note
-The default redactors included with KOTS cannot be disabled.
-:::
-
-## Example
+### Full Specification
 
 The following example shows a full specification for KOTS. To get the most current full specification, see [spec.yaml](https://github.com/replicatedhq/kots/blob/main/pkg/supportbundle/defaultspec/spec.yaml) in the kots repository.
 

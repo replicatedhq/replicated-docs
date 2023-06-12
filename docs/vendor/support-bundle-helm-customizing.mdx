@@ -3,6 +3,7 @@ import SupportBundleCustomCollectors from "../partials/support-bundles/_support-
 import SupportBundleAddAnalyzers from "../partials/support-bundles/_support-bundle-add-analyzers.mdx"
 import ConfigmapNote from "../partials/support-bundles/_configmap-note.mdx"
 import PreflightsSbNote from "../partials/preflights/_preflights-sb-note.mdx"
+import PreflightsSpecLocations from "../partials/preflights/_preflights-spec-locations.mdx"
 import SupportBundleDefine from "../partials/support-bundles/_support-bundle-define.mdx"
 import RedactorsAbout from "../partials/redactors/_redactors-about.mdx"
 
@@ -16,6 +17,8 @@ This topic provides a basic understanding and some key considerations about supp
 Customizing a support bundle is unique to your application and depends on what kind of data you need to troubleshoot. Replicated recommends designing comprehensive support bundle specifications to give you the most insight to problems in your customer environments and the help reduce your support burden. 
 
 <PreflightsSbNote/>
+
+<PreflightsSpecLocations/>
 
 ## Input Kind
 
@@ -90,8 +93,8 @@ The following example shows a Pod log collector:
 ```yaml
 spec:
       collectors:
-        - clusterInfo: {}
-        - clusterResources: {}
+        - clusterInfo: []
+        - clusterResources: []
         - logs:
             selector:
               - app=someapp
