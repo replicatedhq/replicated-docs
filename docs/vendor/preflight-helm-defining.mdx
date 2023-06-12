@@ -1,7 +1,12 @@
 import PreflightsAddAnalyzers from "../partials/preflights/_preflights-add-analyzers.mdx"
 import PreflightsAddStrict from "../partials/preflights/_preflights-add-strict.mdx"
-import PreflightsHelmGuidance from "../partials/preflights/_preflights-helm-guidance.mdx"
-import ConfigmapNote from "../partials/preflights/_configmap-note.mdx"
+import PreflightsSpecLocations from "../partials/preflights/_preflights-spec-locations.mdx"
+import SecretsConfig from "../partials/preflights/_secrets-config.mdx"
+import PreflightsAbout from "../partials/preflights/_preflights-about.mdx"
+import PreflightsDefine from "../partials/preflights/_preflights-define.mdx"
+import PreflightsCrNote from "../partials/preflights/_preflights-cr-note.mdx"
+import AnalyzersNote from "../partials/preflights/_analyzers-note.mdx"
+
 
 # Define Helm Preflight Checks
 
@@ -9,12 +14,11 @@ import ConfigmapNote from "../partials/preflights/_configmap-note.mdx"
 
 ## About Helm Preflight Checks
 
-You define preflight checks based on your application needs. Replicated recommends that you use preflight checks to help ensure that your customers' environments support your application _before_ running the installation. 
+<PreflightsAbout/>
 
-Preflight checks are not included by default, so you must enable them.
 Preflight checks run using a `helm template` command before running the installation to confirm the target cluster has the resources required for a successful installation.
 
-## Input Kinds
+## Input Kind
 
 When you run `helm template` with the preflight command as stdin, the command filters the stream and runs the following inputs:
 
@@ -28,11 +32,7 @@ Secrets and Config maps are installed in the cluster. Preflight custom resources
 
 ## Create a Secret
 
-Replicated recommends writing your preflight checks specification in one or more Secrets. Using Secrets protects secure information in a cluster.
-
-<ConfigmapNote/>
-
-Create a Secret as a YAML file with `kind: Secret` and add a basic preflight specification. 
+<SecretsConfig/> 
 
 You must include the following fields:
 
@@ -63,7 +63,7 @@ Next, define the preflight checks specification by adding collectors and analyze
 
 The Preflight custom resource lets you provide preflight checks in a Helm template. If you use this input, you must use conditional statements in the custom resource because it is not installed in the cluster. Instead, the custom resource is read using stdin.
 
-For more information about Preflight custom resource, see [Preflight and Support Bundle](/reference/custom-resource-preflight).
+<PreflightsCrNote/>
 
 To define a Preflight custom resource as a template:
 
@@ -96,12 +96,9 @@ Next, define the preflight checks specification by adding collectors and analyze
 
 ## Define the Preflight Checks Specification {#preflights}
 
-Any preflight checks you run are dependent on your application needs. This example gives some guidance about how to think about using collectors and analyzers to design preflight checks. For more information about defining preflight checks, see [Collecting Data](https://troubleshoot.sh/docs/collect/)
-and [Analyzing Data](https://troubleshoot.sh/docs/analyze/) in the Troubleshoot documentation.
+<PreflightsDefine/>
 
-For more examples, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples/preflight) in GitHub.
-
-## Collectors
+### Collectors
 
 Add collectors to define information to be collected for analysis during the analyze phase. For example, you can collect information about the MySQL version that is running in a cluster:
 
@@ -117,22 +114,47 @@ spec:
 
 Replicated recommends using a Helm template for the URI to avoid exposing sensitive information.
 
-## Analyzers
+### Analyzers
 
 <PreflightsAddAnalyzers/>
 
-## `strict` Analyzers
-
-<PreflightsAddStrict/>
-
-The following example shows a strict analyzer for MySQL versions:
+The following example shows an analyzer for the MySQL collector above:
 
 ```yaml
 spec:
   collectors:
   - mysql:
       collectorName: mysql
-      uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
+      uri: '{{ .Values.global.externalDatabase.user }}:{{ .Values.global.externalDatabase.password }}@tcp({{ .Values.global.externalDatabase.host }}:{{ .Values.global.externalDatabase.port }})/{{ .Values.global.externalDatabase.database }}?tls=false'
+  analyzers:
+  - mysql:
+      checkName: Must be MySQL 8.x or later
+      collectorName: mysql
+      outcomes:
+      - fail:
+          when: connected == false
+          message: Cannot connect to MySQL server
+      - fail:
+          when: version < 8.x
+          message: The MySQL server must be at least version 8
+      - pass:
+          message: The MySQL server is ready
+```
+
+<AnalyzersNote/>
+
+### `strict` Analyzers
+
+<PreflightsAddStrict/>
+
+The following example shows the `strict` field set to `true` for MySQL versions:
+
+```yaml
+spec:
+  collectors:
+  - mysql:
+      collectorName: mysql
+      uri: '{{ .Values.global.externalDatabase.user }}:{{ .Values.global.externalDatabase.password }}@tcp({{ .Values.global.externalDatabase.host }}:{{ .Values.global.externalDatabase.port }})/{{ .Values.global.externalDatabase.database }}?tls=false'
   analyzers:
   - mysql:
       strict: true
@@ -188,11 +210,11 @@ stringData:
         - clusterVersion:
             outcomes:
               - fail:
-                  when: "< 1.16.0"
-                  message: The application requires at least Kubernetes 1.16.0, and recommends 1.18.0.
+                  when: "< 1.22.0"
+                  message: The application requires at least Kubernetes 1.22.0, and recommends 1.23.0.
                   uri: https://kubernetes.io
               - warn:
-                  when: "< 1.18.0"
+                  when: "< 1.23.0"
                   message: Your cluster meets the minimum version of Kubernetes, but we recommend you update to 1.18.0 or later.
                   uri: https://kubernetes.io
               - pass:
