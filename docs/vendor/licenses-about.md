@@ -21,7 +21,7 @@ You assign customers to channels in the vendor portal to control their access to
 
 For example, if the latest release promoted to the Beta channel is version 1.25.0 and version 1.10.0 is marked as required, when you edit an existing customer to assign them to the Beta channel, then the admin console always fetches 1.25.0, even though 1.10.0 is marked as required.
 
-For more information about how to sync licenses in the admin console, see [Updating licenses](/enterprise/updating-licenses).
+For more information about required releases, see [Release Properties](releases-about#release-properties) in _About Releases_. For more information about how to sync licenses in the admin console, see [Updating licenses](/enterprise/updating-licenses).
 
 ### Built-in and Custom License Fields
 
