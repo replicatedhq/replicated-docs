@@ -6,6 +6,7 @@ import PreflightsSbNote from "../partials/preflights/_preflights-sb-note.mdx"
 import PreflightsSpecLocations from "../partials/preflights/_preflights-spec-locations.mdx"
 import SupportBundleDefine from "../partials/support-bundles/_support-bundle-define.mdx"
 import RedactorsAbout from "../partials/redactors/_redactors-about.mdx"
+import PreflightSbHelmTemplates from "../partials/preflights/_preflight-sb-helm-templates.mdx"
 
 
 # Customize Support Bundles for Helm Installations
@@ -41,6 +42,7 @@ To customize a support bundle as a Secret, create a specification using `kind: S
 
 - `Label` - Label the secret definition as `troubleshoot.sh/kind: support-bundle`
 - `stringData` - Specify a `stringData` field with a key named `support-bundle-spec`
+- `{{ .Release.Namespace }}` to ensure that the specification is scoped to the release namespace.
 
 ```yaml
 apiVersion: v1
@@ -68,6 +70,8 @@ stringData:
 ## Define the Support Bundle Specification
 
 <SupportBundleDefine/>
+
+<PreflightSbHelmTemplates/>
 
 ### Cluster Collectors
 

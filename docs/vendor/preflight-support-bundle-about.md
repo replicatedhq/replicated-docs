@@ -20,9 +20,9 @@ deployments.
 
   Customers generate support bundles from the command line, where analyzers can immediately suggest solutions to common problems. Customers can share the results with your team by sending you the resulting tar.gz file.
   
-  Replicated KOTS customers can also generate support bundles and share them with your support team from the admin console.
+  Replicated KOTS customers can also generate support bundles from the Replicated admin console and share them with your support team.
 
-  Your support team can upload the support bundle to the Replicated vendor portal to view and interpret the analysis. If you need help resolving an issue, you can open an issue on the [Community site](https://community.replicated.com/). 
+  For any installation, your support team can upload the support bundle to the Replicated vendor portal to view and interpret the analysis. If you need help resolving an issue, you can open an issue on the [Community site](https://community.replicated.com/). 
   
   You can also open a support request ticket with Replicated if you have an SLA. Severity 1 issues are resolved three times faster when submitted with support bundles.
 
@@ -63,14 +63,14 @@ Analyzer outcomes for preflight checks differ from the outcomes for support bund
 
 ## Specification Locations and Access
 
-The preflight and support bundle specifications can be located and accessed in various ways. 
+Preflight and support bundle specifications can be located and accessed in various ways. 
 
 Additionally, using multiple specifications and multiple specification locations are supported. For more information about using:
 
-- Multiple specifications to design preflight and support bundle specifications, see [About Modular Specifications](support-modular-support-bundle-specs).
-- Using URLs for support bundles, see [About Online Support Bundle Specifications](support-online-support-bundle-specs).
+- Multiple specifications for preflight or support bundle specifications, see [About Modular Specifications](support-modular-support-bundle-specs).
+- URLs for support bundles, see [About Online Support Bundle Specifications](support-online-support-bundle-specs).
 
-The following table gives a brief description of the available ways to store and access your preflight and support bundle specifications:
+The following table gives a brief description of the available options to store and access your preflight and support bundle specifications:
 
 <table>
     <tr>
@@ -91,13 +91,13 @@ The following table gives a brief description of the available ways to store and
     </tr>
     <tr>
       <th>stdin</th>
-      <td><p>Specifications are provided as stdin from a Helm chart using `-` as the argument. Can be used by Helm installations, and is compatible with using Helm templates.</p></td>
+      <td><p>Specifications are provided as stdin from a Helm chart using <code>-</code> as the argument. Can be used by Helm installations, and is compatible with using Helm templates.</p></td>
     </tr>
   </table>
 
   For information about how to write the specifications, see:
   
-  - [Define Helm Preflight Checks](preflight-helm-defining)
-  - [Define KOTS Preflight Checks](preflight-kots-defining)
-  - [Customize Helm Support Bundles](support-bundle-helm-customizing)
-  - [Customize KOTS Support Bundles](support-bundles-kots-customizing)
+  - [Define Preflight Checks for Helm Installations](preflight-helm-defining)
+  - [Define Preflight Checks for KOTS](preflight-kots-defining)
+  - [Customize Support Bundles for Helm Installations](support-bundle-helm-customizing)
+  - [Customize Support Bundles for KOTS](support-bundles-kots-customizing)

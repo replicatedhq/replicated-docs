@@ -204,6 +204,7 @@ const sidebars = {
         'vendor/preflight-support-bundle-about',
         'vendor/support-online-support-bundle-specs',
         'vendor/support-modular-support-bundle-specs',
+        'vendor/preflight-sb-helm-templates-about',
         {
           type: 'category',
           label: 'Preflight Checks',

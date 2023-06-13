@@ -7,12 +7,12 @@ import PreflightsDefine from "../partials/preflights/_preflights-define.mdx"
 import PreflightsCrNote from "../partials/preflights/_preflights-cr-note.mdx"
 import AnalyzersNote from "../partials/preflights/_analyzers-note.mdx"
 import RedactorsAbout from "../partials/redactors/_redactors-about.mdx"
-
+import PreflightSbHelmTemplates from "../partials/preflights/_preflight-sb-helm-templates.mdx"
 
 
 # Define Preflight Checks for Helm Installations
 
- This topic provides a basic understanding and some key considerations about preflight checks for Helm installations to help guide you in defining them for your application.
+This topic provides a basic understanding and some key considerations about preflight checks for Helm installations to help guide you in defining them for your application.
 
 ## About Helm Preflight Checks
 
@@ -22,7 +22,7 @@ Preflight checks run using a `helm template` command before running the installa
 
 ## Input Kind
 
-When you run `helm template` with the preflight command as stdin, the command filters the stream and runs the following inputs:
+When you run `helm template` command as stdin, the command filters the stream and runs the following inputs:
 
 -  Secret (`kind: Secret`)
 -  ConfigMap (`kind: ConfigMap`)
@@ -30,16 +30,17 @@ When you run `helm template` with the preflight command as stdin, the command fi
 
 All of these input options allow customization of preflight checks based on values unique to the customer, using Helm templates with conditional statements.
 
-Secrets and Config maps are installed in the cluster. Preflight custom resources cannot be installed in the cluster and so must be wrapped in a condition.
+Secrets and Config maps are installed in the cluster. Preflight custom resources cannot be installed in the cluster, and so must be wrapped in a condition.
 
 ## Create a Secret
 
 <SecretsConfig/> 
 
-You must include the following fields:
+You must include the following:
 
 - `Label` - Label the secret definition as `troubleshoot.sh/kind: preflight`
 - `stringData` - Specify a `stringData` field with a key named `preflight.yaml` so that the preflight binary can use this Secret when it runs from the CLI
+- `{{ .Release.Namespace }}` to ensure that the specification is scoped to the release namespace.
 
 ```yaml
 apiVersion: v1
@@ -95,10 +96,12 @@ To define a Preflight custom resource as a template:
 
 Next, define the preflight checks specification by adding collectors and analyzers. Optionally, you can add to the default redactors. For more information, see [Define the Preflight Checks Specification](#preflights).
 
-
 ## Define the Preflight Checks Specification {#preflights}
 
 <PreflightsDefine/>
+
+<PreflightSbHelmTemplates/>
+
 
 ### Collectors
 
