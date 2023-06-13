@@ -20,7 +20,7 @@ To create a customer:
 
 1. For **Customer email**, enter the email address for the customer. The customer email address is required for Helm installations. This email address is never used send emails to customers.
 
-1. For **Assigned channel**, assign the customer to one of your channels. You can select any channel that has at least one release. The channel a customer is assigned determines the application releases that they can install. For more information, see [Channel Assignment](licenses-about#channel-assignment) in _About Customers_.
+1. For **Assigned channel**, assign the customer to one of your channels. You can select any channel that has at least one release. The channel a customer is assigned to determines the application releases that they can install. For more information, see [Channel Assignment](licenses-about#channel-assignment) in _About Customers_.
 
    :::note
    <ChangeChannel/>
@@ -67,12 +67,14 @@ To create a customer:
 
 ## Archive a Customer
 
-When you archive a license in the vendor portal, it is hidden in the default license search and becomes read-only. Archival does not affect the utility of license files downloaded before the license was archived. Archiving a license affects only how the license is displayed in the vendor portal.
+When you archive a customer in the vendor portal, the customer is hidden from search by default and becomes read-only. Archival does not affect the utility of license files downloaded before the customer was archived.
 
-To expire a license, set an expiration date and policy before you archive.
+To expire a license, set an expiration date and policy in the **Expiration policy** field before you archive the customer.
 
 To archive a customer:
 
-1. In the vendor portal, click **Customers > Customer details**.
+1. In the vendor portal, click **Customers**. Select the target customer then click the **Customer details** tab.
 
-1. Click **Archive Customer**.
+1. Click **Archive Customer**. In the confirmation dialog, click **Archive Customer** again.
+
+You can unarchive by clicking **Unarchive Customer** in the customer's **Customer details** page.

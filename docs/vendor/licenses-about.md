@@ -19,9 +19,9 @@ You assign customers to channels in the vendor portal to control their access to
 
 <ChangeChannel/>
 
-For example, if the latest release promoted to the Beta channel is version 1.25.0 and version 1.10.0 is marked as required, when you edit an existing customer to assign them to the Beta channel, then the admin console always fetches 1.25.0, even though 1.10.0 is marked as required.
+For example, if the latest release promoted to the Beta channel is version 1.25.0 and version 1.10.0 is marked as required, when you edit an existing customer to assign them to the Beta channel, then the admin console always fetches 1.25.0, even though 1.10.0 is marked as required. The required release 1.10.0 is ignored and is not available to the customer for upgrade.
 
-For more information about required releases, see [Release Properties](releases-about#release-properties) in _About Releases_. For more information about how to sync licenses in the admin console, see [Updating licenses](/enterprise/updating-licenses).
+For more information about how to mark a release as required, see [Release Properties](releases-about#release-properties) in _About Releases_. For more information about how to synchronize licenses in the admin console, see [Updating Licenses](/enterprise/updating-licenses).
 
 ### Built-in and Custom License Fields
 
@@ -97,7 +97,7 @@ From the **Customer details** page, you can view and edit the customer's license
 
 ### Support Bundles Page
 
-The **Support bundles** page for a customer displays details about the support bundles collected from the customer. Customers can provide support bundles through the Replicated admin console, or you can upload support bundles manually in the vendor portal by going to **Troubleshoot > Upload a support bundle**. For more information about uploading and analyzing support bundles, see [Inspecting Support Bundles](support-inspecting-support-bundles).
+The **Support bundles** page for a customer displays details about the support bundles collected from the customer. Customers with the **Support Bundle Upload Enabled** entitlement can provide support bundles through the Replicated admin console, or you can upload support bundles manually in the vendor portal by going to **Troubleshoot > Upload a support bundle**. For more information about uploading and analyzing support bundles, see [Inspecting Support Bundles](support-inspecting-support-bundles).
 
 The following shows an example of the **Support bundles** page:
 
