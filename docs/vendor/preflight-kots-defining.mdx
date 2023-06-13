@@ -3,6 +3,7 @@ import PreflightsAddStrict from "../partials/preflights/_preflights-add-strict.m
 import PreflightsSpecLocations from "../partials/preflights/_preflights-spec-locations.mdx"
 import PreflightsAbout from "../partials/preflights/_preflights-about.mdx"
 import PreflightsDefine from "../partials/preflights/_preflights-define.mdx"
+import PreflightsDefineXref from "../partials/preflights/_preflights-define-xref.mdx"
 import PreflightsCrNote from "../partials/preflights/_preflights-cr-note.mdx"
 import SecretsConfig from "../partials/preflights/_secrets-config.mdx"
 import AnalyzersNote from "../partials/preflights/_analyzers-note.mdx"
@@ -75,6 +76,8 @@ Next, define the preflight checks specification by adding collectors and analyze
 
 <PreflightsDefine/>
 
+<PreflightsDefineXref/>
+
 ### Collectors
 
 Add collectors to define information to be collected for analysis during the analyze phase. For example, you can collect information about the MySQL version that is running in a cluster:
@@ -92,6 +95,8 @@ Add collectors to define information to be collected for analysis during the ana
    ```
 
 Replicated recommends using a template function for the URI, as shown above, to avoid exposing sensitive information. For more information about template functions, see [About Template Functions](/reference/template-functions-about).
+
+<PreflightsDefineXref/>
 
 ### Analyzers
 
@@ -117,6 +122,8 @@ spec:
           - pass:
               message: The MySQL server is ready
 ```
+
+<PreflightsDefineXref/>
 
 <AnalyzersNote/>
 
@@ -150,9 +157,13 @@ spec:
               message: The MySQL server is ready
 ```
 
+<PreflightsDefineXref/>
+
 ## Example
 
 The following example shows a preflight support bundle specification wrapped in a Secret for a KOTS installation. For more examples, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples/preflight) in GitHub.
+
+<PreflightsDefineXref/>
 
 ```yaml
 apiVersion: v1

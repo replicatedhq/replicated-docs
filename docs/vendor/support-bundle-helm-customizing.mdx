@@ -5,6 +5,7 @@ import ConfigmapNote from "../partials/support-bundles/_configmap-note.mdx"
 import PreflightsSbNote from "../partials/preflights/_preflights-sb-note.mdx"
 import PreflightsSpecLocations from "../partials/preflights/_preflights-spec-locations.mdx"
 import SupportBundleDefine from "../partials/support-bundles/_support-bundle-define.mdx"
+import PreflightsDefineXref from "../partials/preflights/_preflights-define-xref.mdx"
 import RedactorsAbout from "../partials/redactors/_redactors-about.mdx"
 import PreflightSbHelmTemplates from "../partials/preflights/_preflight-sb-helm-templates.mdx"
 
@@ -71,6 +72,8 @@ stringData:
 
 <SupportBundleDefine/>
 
+<PreflightsDefineXref/>
+
 <PreflightSbHelmTemplates/>
 
 ### Cluster Collectors
@@ -88,6 +91,9 @@ spec:
       - default
       - my-app-namespace
 ```
+
+<PreflightsDefineXref/>
+
 ### Pod Log Collectors
 
 <SupportBundleAddLogs/>
@@ -109,6 +115,8 @@ spec:
               maxLines: 10000
               maxBytes: 5000000
 ```
+
+<PreflightsDefineXref/>
 
 ### Other Recommended Collectors
 
@@ -138,6 +146,8 @@ spec:
                   message: There are multiple replicas of the API deployment ready.
 ```
 
+<PreflightsDefineXref/>
+
 ### Redactors
 
 <RedactorsAbout/>
@@ -145,6 +155,8 @@ spec:
 ## Example
 
 The following example shows a support bundle specification as a Secret. For more examples, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples/support-bundle) in GitHub.
+
+<PreflightsDefineXref/>
 
 ```yaml
 apiVersion: v1

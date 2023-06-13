@@ -4,6 +4,7 @@ import PreflightsSpecLocations from "../partials/preflights/_preflights-spec-loc
 import SecretsConfig from "../partials/preflights/_secrets-config.mdx"
 import PreflightsAbout from "../partials/preflights/_preflights-about.mdx"
 import PreflightsDefine from "../partials/preflights/_preflights-define.mdx"
+import PreflightsDefineXref from "../partials/preflights/_preflights-define-xref.mdx"
 import PreflightsCrNote from "../partials/preflights/_preflights-cr-note.mdx"
 import AnalyzersNote from "../partials/preflights/_analyzers-note.mdx"
 import RedactorsAbout from "../partials/redactors/_redactors-about.mdx"
@@ -100,6 +101,8 @@ Next, define the preflight checks specification by adding collectors and analyze
 
 <PreflightsDefine/>
 
+<PreflightsDefineXref/>
+
 <PreflightSbHelmTemplates/>
 
 
@@ -116,6 +119,8 @@ spec:
             uri: '{{ .Values.global.externalDatabase.user }}:{{ .Values.global.externalDatabase.password }}@tcp({{ .Values.global.externalDatabase.host }}:{{ .Values.global.externalDatabase.port }})/{{ .Values.global.externalDatabase.database }}?tls=false'
       {{ end }}
 ```
+
+<PreflightsDefineXref/>
 
 Replicated recommends using a Helm template for the URI to avoid exposing sensitive information.
 
@@ -145,6 +150,7 @@ spec:
       - pass:
           message: The MySQL server is ready
 ```
+<PreflightsDefineXref/>
 
 <AnalyzersNote/>
 
@@ -175,6 +181,7 @@ spec:
       - pass:
           message: The MySQL server is ready
 ```
+<PreflightsDefineXref/>
 
 ## Redactors
 
@@ -183,6 +190,8 @@ spec:
 ## Example
 
 The following example shows a preflight support bundle specification in a Secret for a Helm installation. For more examples, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples/preflight) in GitHub.
+
+<PreflightsDefineXref/>
 
 ```yaml
 apiVersion: v1

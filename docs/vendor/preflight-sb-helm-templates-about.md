@@ -1,6 +1,6 @@
 # About Helm Templates
 
-You can use Helm templates to configure collectors and analyzers for preflight checks and support bundles.
+You can use Helm templates to configure collectors and analyzers for preflight checks and support bundles for Helm installations.
 
 Helm templates can be useful when you need to:
 
