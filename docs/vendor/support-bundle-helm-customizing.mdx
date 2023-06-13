@@ -78,7 +78,7 @@ stringData:
 
 ### Cluster Collectors
 
-You can add the `clusterInfo` and `clusterResources` collectors if you want to collect a large amount of data to help with installation and debugging. For `clusterResources`, you can add the default namespace or additional namespaces using the `namespaces` field.
+You can add the `clusterInfo` and `clusterResources` collectors if you want to collect a large amount of data to help with installation and debugging, such as the Kubernetes version, nodes, and storage classes in the cluster. For `clusterResources`, you can use the default namespace and add additional namespaces using the `namespaces` field.
 
 The following example shows `clusterInfo` and `clusterResources` collectors with an additional namespace specified for the application.
 
@@ -98,7 +98,7 @@ spec:
 
 <SupportBundleAddLogs/>
 
-The following example shows a Pod log collector:
+The following example shows a Pod log collector for nginx scoped to a specific namespace using `{{ .Release.Namespace }}`:
 
 ```yaml
 spec:
@@ -126,7 +126,7 @@ spec:
 
 <SupportBundleAddAnalyzers/>
 
-The following example shows a deployment status collector with messages that can inform the customer as to the cause of an issue. You can customize the message to help guide customers to fix the issue on their own.
+The following example shows a deployment status collector with messages that can inform the customer as to the cause of an issue if the deployment fails. You can customize the message to help guide customers to fix the issue on their own.
 
 ```yaml
 spec:

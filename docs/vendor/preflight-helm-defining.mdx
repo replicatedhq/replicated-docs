@@ -120,15 +120,15 @@ spec:
       {{ end }}
 ```
 
-<PreflightsDefineXref/>
+Replicated recommends using a Helm template for the URI to avoid exposing sensitive information. The Helm template maps to the `values.yaml` file to populate the connection string for the MySQL database.
 
-Replicated recommends using a Helm template for the URI to avoid exposing sensitive information.
+<PreflightsDefineXref/>
 
 ### Analyzers
 
 <PreflightsAddAnalyzers/>
 
-The following example shows an analyzer for the MySQL collector above:
+The following example shows an analyzer for the MySQL collector above. This analyzer specifies a `fail` outcome if the MySQL version is less than the minimum required. Then, specify a message to display that informs your customer of the reasons for the failure and steps they can take to fix the issue.
 
 ```yaml
 spec:
