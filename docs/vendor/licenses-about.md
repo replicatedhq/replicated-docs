@@ -5,7 +5,7 @@ import ChangeChannel from "../partials/customers/_change-channel.mdx"
 
 This topic provides an overview of customer licenses, including information about license types, the **Customers** page in the Replicated vendor portal, and how Replicated uses the customer entitlement information that you provide in license files.
 
-## Overview of Customer Licenses
+## Overview
 
 Each customer that you create in the Replicated vendor portal has a unique license file. Your customers use their license when they install or update your application.
 
@@ -18,6 +18,8 @@ For more information about how to create and manage customers, see [Creating and
 You assign customers to channels in the vendor portal to control their access to your application releases. Customers can install or upgrade to releases that are promoted to the channel they are assigned. For example, assigning a customer to your Beta channel allows that customer to install or upgrade to only releases promoted to the Beta channel.
 
 <ChangeChannel/>
+
+For example, if the latest release promoted to the Beta channel is version 1.25.0 and version 1.10.0 is marked as required, when you edit an existing customer to assign them to the Beta channel, then the admin console always fetches 1.25.0, even though 1.10.0 is marked as required.
 
 For more information about how to sync licenses in the admin console, see [Updating licenses](/enterprise/updating-licenses).
 
