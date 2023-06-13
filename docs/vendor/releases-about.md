@@ -47,7 +47,7 @@ You can enable semantic versioning on a channel that already has releases promot
 
 ### Release Properties
 
-Each release has properties. You define release properties when you promote a release to a channel. You can edit release properties at any time from the channel **Release History** page in the vendor portal. For more information about the **Release History** page, see [Channels Page](releases-about-channels#channels-page) in _About Release Channels_.
+Each release has properties. You define release properties when you promote a release to a channel. You can edit release properties at any time from the channel **Release History** page in the vendor portal. For more information, see [Edit Release Properties](releases-creating-releases#edit-release-properties) in _Managing Releases with the Vendor Portal_.
 
 The following shows an example of the release properties dialog:
 
