@@ -8,13 +8,13 @@ The Replicated SDK is Beta and is not recommended for production use.
 
 ## Access the SDK APIs
 
-The Replicated SDK APIs require the ID for a customer license created in the Replicated vendor portal to authenticate and initialize in an environment. To develop against the SDK in development mode, the SDK requires a development license. For information about licenses, see [About Customer License Types](licenses-about-types).
+The Replicated SDK APIs require the ID for a customer license created in the Replicated vendor portal to authenticate and initialize in an environment. For information about creating customer licenses, see [Creating and Managing Customers](/vendor/releases-creating-customer).
 
 After the SDK is installed, the Replicated SDK API service is exposed at `replicated:3000`. To verify the location of the Replicated SDK API service, you can run `kubectl get service` in the appropriate namespace.
 
 ## app
 
-### Get application information
+### GET application information
 
 List details about an application instance, including the app name, location of the Helm chart in the Replicated OCI registry, and details about the current application release that the instance is running. 
 
@@ -43,7 +43,7 @@ Response:
 }
 ```
 
-### Get application updates
+### GET application updates
 
 List details about the releases that are available for an application instance, including the version label, created timestamp, and release notes for the releases available for update.
 
@@ -64,7 +64,7 @@ Response:
 ]
 ```
 
-### Get application history
+### GET application history
 
 List details about the releases that an application instance has installed previously.
 
@@ -94,7 +94,7 @@ Response:
 
 ## license
 
-### Get license details
+### GET license details
 
 List details about the customer license file, including the license ID, type, the customer name, and the channel the customer is assigned.
 
@@ -115,7 +115,7 @@ Response:
 }
 ```
 
-### Get license fields
+### GET all license fields
 
 ```
 /api/v1/license/fields
@@ -147,7 +147,7 @@ Response:
 }
 ```
 
-### Get license field
+### GET a license field
 
 ```
 /api/v1/license/fields/{field_name}
@@ -176,23 +176,29 @@ Response:
 
 ## mock-data
 
-### Set the mock data
+### POST mock data
 
-POST `/api/v1/mock-data`
+Accepts a JSON request body to set the mock data.
 
-accepts a JSON request body to set the mock data.
+```
+/api/v1/mock-data
+```
 
-### List the mock data
+### GET mock data
 
-GET/api/v1/mock-data
+Returns the entire mock data JSON object.
 
-returns the entire mock data JSON object.
+```
+/api/v1/mock-data
+```
 
-### Delete the mock data
+### DELETE mock data
 
-DELETE `/api/v1/mock-data`
+Deletes the mock data.
 
-deletes the mock data.
+```
+/api/v1/mock-data
+```
 
 ## Examples
 
@@ -229,28 +235,3 @@ The install command requires:
 * the channel slug.
 
 The other four components are available from the get application information API in the `currentRelease.helmReleaseName`, `currentRelease.helmReleaseNamespace`, `appSlug`, and `currentRelease.channelSlug`.
-
-### Check the License Expiration Date
-
-In the vendor portal, 
-
-Get the details for the `expires_at`
-
-```
-curl replicated:3000/api/v1/license/fields/expires_at
-```
-
-Response:
-
-```json
-{
-  "name": "expires_at",
-  "title": "Expiration",
-  "description": "License Expiration",
-  "value": "2023-05-30T00:00:00Z",
-  "valueType": "String",
-  "signature": {
-    "v1": "c6rsImpilJhW0eK+Kk37jeRQvBpvWgJeXK2MD0YBlIAZEs1zXpmvwLdfcoTsZMOj0lZbxkPN5dPhEPIVcQgrzfzwU5HIwQbwc2jwDrLBQS4hGOKdxOWXnBUNbztsHXMqlAYQsmAhspRLDhBiEoYpFV/8oaaAuNBrmRu/IVAW6ahB4KtP/ytruVdBup3gn1U/uPAl5lhzuBifaW+NDFfJxAXJrhdTxMBxzfdKa6dGmlGu7Ou/xqDU1bNF3AuWoP3C78GzSBQrD1ZPnu/d+nuEjtakKSX3EK6VUisNucm8/TFlEVKUuX7hex7uZ9Of+UgS1GutQXOhXzfMZ7u+0zHXvQ=="
-  }
-}
-```
