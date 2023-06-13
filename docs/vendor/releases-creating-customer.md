@@ -6,7 +6,7 @@ This topic describes how to create and manage customers in the Replicated vendor
 
 ## Create a Customer
 
-This procedure describes how to create a new customer in the vendor portal. You can edit customer details at any time in the vendor portal  by going to **Customers > Customer details**.
+This procedure describes how to create a new customer in the vendor portal. You can edit customer details at any time in the vendor portal by going to the **Customer details** for a customer. For more information, see [Customer Details Page](licenses-about#customer-details-page) in _About Customers_.
 
 To create a customer:
 
@@ -20,7 +20,7 @@ To create a customer:
 
 1. For **Customer email**, enter the email address for the customer. The customer email address is required for Helm installations. This email address is never used send emails to customers.
 
-1. For **Assigned channel**, assign the customer to one of your channels. You can select any channel that has at least one release. The channel a customer is assigned determines the application releases that they can install. For more information, see [Channel Assignment](licenses-about#channel-assignment) in _About Customer Licenses_.
+1. For **Assigned channel**, assign the customer to one of your channels. You can select any channel that has at least one release. The channel a customer is assigned determines the application releases that they can install. For more information, see [Channel Assignment](licenses-about#channel-assignment) in _About Customers_.
 
    :::note
    <ChangeChannel/>
