@@ -46,6 +46,8 @@ To create a custom license field:
    | Is this field is required? | If checked, this prevents the creation of customers unless this field is explicitly defined with a value. |
    | Is this field hidden? | If checked, the field is not visible to your customer in the admin console. The field is still visible to you in the vendor portal. |
 
+<img width="1219" alt="Creating a new License Field" src="https://github.com/replicatedhq/replicated-docs/assets/3730605/f158fcb6-667a-45c8-a5d7-737a918b0546">
+
 
 ## Update Custom License Fields
 
@@ -57,6 +59,18 @@ To update a custom license field:
    :::important
    Enabling **Is this field is required?** updates the license field to be required on all new and existing licenses. If you enable **Is this field is required?**, you must either set a default value for the field or manually update each existing license file to provide a value for the field.
    :::
+   
+## Set Customer-Specific Values for Custom License Fields
+
+To set a customer value for a custom license field:
+
+1. Log in to the vendor portal and select the application.
+1. Navigate to the "Manage" tab for an individual customer
+1. Set values for custom license fields in the bottom right corner
+
+<img width="1219" alt="Setting Custom License Fields for a Customer" src="https://github.com/replicatedhq/replicated-docs/assets/3730605/f29038b8-d7bb-43c5-bf7d-9efea4dd33ff">
+
+
 
 ## Delete Custom License Fields
 
