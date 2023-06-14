@@ -54,22 +54,29 @@ To declare the Replicated SDK as a dependency:
 
 Continue to [Add Your Helm Chart to a Release](#release) below to add the `.tgz` file to a release in the vendor portal.   
 
-## Promote a Release with Your Helm Chart {#release}   
+## Add Your Helm Chart to a Release {#release}   
 
-After you package your Helm chart with the Replicated SDK as a dependency, you can add the `.tgz` file to a release in the vendor portal. When you promote the release to a channel, the vendor portal automatically pushes your Helm chart to the Replicated registry where your customers can then pull the chart. For more information, see [How the SDK Initializes in a Customer Environment](#about-sdk-initialize).
+After you package your Helm chart with the Replicated SDK as a dependency, you can add the `.tgz` file to a release in the vendor portal. When you promote the release to a channel, the vendor portal automatically pushes your Helm chart to the Replicated registry where your customers can then pull the chart. For more information, see [How the SDK Runs in a Customer Environment](#about-sdk-initialize).
 
 The following steps demonstrate how to create and promote a release using the vendor portal. You can also create and promote releases with the replicated CLI. For more information, see [Managing Releases with the CLI](releases-creating-cli).
 
-To create and promote a release in the vendor portal:
+To create and promote a release with your Helm chart in the vendor portal:
 
 1. In the vendor portal, go to **Releases** > **Create a release**.
 
 1. Do one of the following to add your Helm chart to the release:
 
    * In the **Upload Helm chart** modal, upload your Helm chart `.tgz` file.
-   * Drag and drop your Helm chart `.tgz` file into the file tree.
+     
+     ![upload helm chart modal](/images/upload-helm-chart-modal.png)
+     [View a larger version of this image](/images/upload-helm-chart-modal.png)
+     
+   * If the **Upload Helm chart** modal does not appear, drag and drop your Helm chart `.tgz` file from your local directory into the file tree.
 
    Your Helm chart files appear in the file tree of the release.
+
+   ![wordpress helm chart files in the vendor portal release file tree](/images/helm-chart-file-tree.png)
+   [View a larger version of this image](/images/helm-chart-file-tree.png)
 
 1. If you are prompted to select a Helm install method, click **OK**. This option is relevant only for releases distributed with KOTS.
 

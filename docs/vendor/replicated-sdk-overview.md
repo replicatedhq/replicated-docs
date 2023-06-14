@@ -29,7 +29,7 @@ Then, customers can install the Replicated SDK alongside your application by fir
 
 Finally, when the SDK is installed and initialized in the customer environment, you can use the SDK API to get customer-specific license information from the vendor portal during runtime. You can also use the API to get details about the instance from the customer environment and from the vendor portal. For more information about working with the SDK API, see [Replicated SDK API (Beta)](/reference/replicated-sdk-apis).
 
-## SDK Initialization with Replicated Values
+## SDK Initialization with Replicated Values {#replicated-values}
 
 When a customer pulls your Helm chart from the Replicated registry, the Replicated registry injects values into the `replicated` field of the Helm chart values file to initialize the SDK. These values provide information about the following:
 * The customer's license and entitlement details
