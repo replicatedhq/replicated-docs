@@ -4,22 +4,20 @@ This topic describes how to reference license fields in your Helm chart when you
 
 ## Overview
 
-When you distribute the Replicated SDK alongside your Helm chart application, you can use the SDK APIs to reference license fields and check customer entitlements during runtime. You can also add references to license fields in the Helm chart values file to check customer entitlements at the time of deployment, before the SDK has been initialized.
-
-License fields are cryptographically signed to ensure their integrity. For information on how to verify license fields in your application, see [Verifying Licenses Fields With the SDK](licenses-verify-fields-sdk-api).
+When you distribute the Replicated SDK alongside your Helm chart, you can use the SDK `/license` API to reference license fields and check customer entitlements during runtime. You can also add references to license fields in the Helm chart values file to check customer entitlements at the time of deployment, before the SDK has been initialized.
 
 ## Referencing License Fields at Runtime
 
-The SDK retrieves up-to-date customer license information from the vendor portal during runtime. This means that any changes that you make to customer licenses are reflected in real time in the customer environment. For example, you can revoke access to your application when a license expires, expose additional product functionality dynamically based on entitlements, and more.
+The SDK retrieves up-to-date customer license information from the vendor portal during runtime. This means that any changes to customer licenses are reflected in real time in the customer environment. For example, you can revoke access to your application when a license expires, expose additional product functionality dynamically based on entitlements, and more.
 
-After the Replicated SDK is initialized and running in a customer environment, you can use the following Replicated SDK API endpoints to get information about the license that was used to install:
+After the Replicated SDK is initialized and running in a customer environment, you can use the following SDK API endpoints to get information about the license that was used to install:
 * `/api/v1/license/info`: List license details, including the license ID, the channel the customer is assigned, and the license type.
 * `/api/v1/license/fields`: List all the fields in the license.  
 * `/api/v1/license/fields/{field_name}`: List details about a specific license field, including the field name, description, type, and the value.
 
-For more information, see [license](/reference/replicated-sdk-apis#license) in _Replicated SDK APIs (Beta)_.
+For more information about these endpoints, see [license](/reference/replicated-sdk-apis#license) in _Replicated SDK APIs (Beta)_.
 
-When you include logic in your application to check customer license entitlements at runtime, Replicated recommends that you also use signature verification to ensure the integrity of each license field you use. For more information, see 
+License fields are cryptographically signed to ensure their integrity. When you include logic in your application to check customer license entitlements at runtime, Replicated recommends that you also use signature verification to ensure the integrity of each license field you use. For more information, see [Verifying Licenses Fields With the SDK](licenses-verify-fields-sdk-api)
 
 ### Example: Revoke Access at Runtime
 
@@ -67,9 +65,9 @@ To revoke access to your application when a license expires:
 ## Referencing License Fields Before Installation
 
 You can reference license entitlements in the `global.licenseFields` field of your Helm chart values file to verify customer entitlements before the Replicated SDK is initialized in the customer environment. For example, you could include an `expires_at` field under `global` with the unique license expiry date for the customer to reference before the SDK is installed and running in the customer environment.
-### Example: Prevent Access at Deployment
+### Example: Prevent Access Before Installation
 
-You can use the Replicated SDK API `/api/v1/license/fields/{field_name}` endpoint to revoke a customer's access to your application during runtime when their license file expires.
+You can use the license `expires_at` field and the Replicated SDK API `/api/v1/license/fields/{field_name}` endpoint to revoke a customer's access to your application during runtime when their license expires.
 
 To revoke access to your application when a license expires:
 
