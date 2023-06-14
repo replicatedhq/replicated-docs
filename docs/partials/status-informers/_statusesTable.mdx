@@ -51,7 +51,7 @@
     </tr>
     <tr>
       <th>Unknown</th>
-      <td colSpan="6">Unknown is a special deployment status that may be returned from the [Vendor API](https://docs.replicated.com/reference/vendor-api-using) indicating that no data points exist for a queried time period. For example, many instances check in (by default) every 4 hours. If you were to query a time period which falls entirely since the instance's last checkin, then the API will return an `Unknown` status for that period. This may indicate that an instance has shut down and is no longer reporting back, or it may just mean that the time period queried is entirely **after** the last instance checkin.</td>
+      <td colSpan="6">Unknown is a special deployment status that indicates that no data points exist for a queried time period. An Unknown status might indicate that an instance has shut down and stopped checking in. Alternatively, an Unknown status might indicate that you queried instance data for a time period that begins and ends after the instance's last checkin with the <a href="/reference/vendor-api-using">Vendor API</a>. By default, instances check in every 4 hours. For more information about instance checkins, see <a href="/vendor/instance-insights-event-data#about-reporting">How the Vendor Portal Collects Instance Data</a> in <em>About Instance and Event Data</em>.</td>
     </tr>
   </tbody>
 </table>
