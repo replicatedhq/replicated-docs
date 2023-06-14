@@ -47,8 +47,7 @@
     </tr>
     <tr>
       <th>Missing</th>
-      
-    </tr>
+      <td colSpan="6">Missing is an initial deployment status indicating that informers have not reported their status because the application has just been deployed and the underlying resource has not been created yet. After the resource is created, the status changes. However, if a resource changes from another status to Missing, then the resource was either deleted or the informers failed to report a status.</td>    </tr>
     <tr>
       <th>Unknown</th>
       <td colSpan="6">Unknown is a special deployment status that may be returned from the [Vendor API](https://docs.replicated.com/reference/vendor-api-using) indicating that no data points exist for a queried time period. For example, many instances check in (by default) every 4 hours. If you were to query a time period which falls entirely since the instance's last checkin, then the API will return an `Unknown` status for that period. This may indicate that an instance has shut down and is no longer reporting back, or it may just mean that the time period queried is entirely **after** the last instance checkin.</td>
