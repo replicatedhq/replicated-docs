@@ -6,10 +6,6 @@ This topic describes how to get entitlement information from customer licenses w
 
 When you distribute the Replicated SDK alongside your Helm chart, you can use the SDK API `license` endpoints to reference license fields and check customer entitlements during runtime. You can also add references to license fields in the `global` section of the Helm chart values file to check customer entitlements at the time of deployment, before the SDK has been initialized.
 
-See the sections below for more information:
-* [Getting Entitlements at Runtime with the API](#runtime)
-* [Getting Entitlements Before Installation](#before-install)
-
 ## Checking Entitlements at Runtime with the API {#runtime}
 
 The SDK retrieves up-to-date customer license information from the vendor portal during runtime. This means that any changes to customer licenses are reflected in real time in the customer environment. For example, you can revoke access to your application when a license expires, expose additional product functionality dynamically based on entitlements, and more.
@@ -57,7 +53,7 @@ To revoke access to your application when a license expires:
       "value": "2023-05-30T00:00:00Z",
       "valueType": "String",
       "signature": {
-        "v1": "c6rsImpilJhW0eK+Kk37jeRQvBpvWgJeXK2MD0YBlIAZEs1zXpmvwLdfcoTsZMOj0lZbxkPN5dPhEPIVcQgrzfzwU5HIwQbwc2jwDrLBQS4hGOKdxOWXnBUNbztsHXMqlAYQsmAhspRLDhBiEoYpFV/8oaaAuNBrmRu/IVAW6ahB4KtP/ytruVdBup3gn1U/uPAl5lhzuBifaW+NDFfJxAXJrhdTxMBxzfdKa6dGmlGu7Ou/xqDU1bNF3AuWoP3C78GzSBQrD1ZPnu/d+nuEjtakKSX3EK6VUisNucm8/TFlEVKUuX7hex7uZ9Of+UgS1GutQXOhXzfMZ7u+0zHXvQ=="
+        "v1": "c6rsImpilJhW0eK+Kk37jeRQvBpvWgJeXK2M..."
       }
     }
     ```
