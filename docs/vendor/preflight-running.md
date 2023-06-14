@@ -4,17 +4,26 @@ You can run Helm preflight checks before running `helm install` and during the i
 
 ## Prerequisite
 
-Customers must install the preflight plug-in, which is a client-side utility that adds a single binary to their path:
+Customers must install the preflight plug-in, which is a client-side utility that adds a single binary to their path.
 
-```
-helm registry login registry.replicated.com --username USERNAME --password PASSWORD
-curl https://krew.sh/preflight | bash
-```
+To install the preflight plug-in:
+
+1. Log in to the registry where the Helm chart and preflight specification were pushed to:
+
+    ```
+    helm registry login REGISTRY_DOMAIN --username USERNAME --password PASSWORD
+    ```
+
 Replace:
 
-- `USERNAME` with the username that has access to the helm registry.
-- `PASSWORD` with the password for the helm registry.
+- `REGISTRY_DOMAIN` with the registry domain that contains the Helm chart.
+- `USERNAME` with the username that has access to the registry.
+- `PASSWORD` with the password for the registry.
 
+1. Run the following command to install the preflight plug-in using krew:
+    ```
+    curl https://krew.sh/preflight | bash
+    ```
 
 ## Run Preflights Checks
 

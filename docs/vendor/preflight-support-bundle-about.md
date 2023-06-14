@@ -1,7 +1,7 @@
 # About Preflight Checks and Support Bundles
 
-This topic provides information about how to define preflight checks and customize support
-bundles for your application release.
+This topic provides information about preflight checks and customize support
+bundles that can be used to troubleshoot your application release before and after installation.
 
 Host preflight checks are also supported for Replicated kURL. For more information about host preflight checks, see [Customizing Host Preflight Checks for kURL](preflight-host-preflights).
 
@@ -61,16 +61,13 @@ Analyzer outcomes for preflight checks differ from the outcomes for support bund
 
 - Support bundles use analyzers to help identify potential problems. When a support bundle is uploaded to the vendor portal, it is extracted and automatically analyzed. The goal of this process is to surface known issues or hints of what might be a problem. Analyzers produce outcomes that contain custom messages to explain what the problem might be.
 
-## Specification Locations and Access
+## About Specifications and Distribution
 
-Preflight and support bundle specifications can be located and accessed in various ways. 
+To use preflight checks and support bundles with your application, you define collectors, redactors, and analyzers in a YAML specification. Using multiple specifications is supported. For more information about using multiple specifications for preflight or support bundles, see [About Modular Specifications](support-modular-support-bundle-specs).
 
-Additionally, using multiple specifications and multiple specification locations are supported. For more information about using:
+Depending on whether your customers install with Replicated KOTS or install with Helm, you have multiple options for making these specifications available to your customers. You can also use a combination of distributions methods, such as YAML files and URLs.
 
-- Multiple specifications for preflight or support bundle specifications, see [About Modular Specifications](support-modular-support-bundle-specs).
-- URLs for support bundles, see [About Online Support Bundle Specifications](support-online-support-bundle-specs).
-
-The following table gives a brief description of the available options to store and access your preflight and support bundle specifications:
+The following table gives a brief description of the available options to distribute preflight and support bundle specifications:
 
 <table>
     <tr>
@@ -78,20 +75,20 @@ The following table gives a brief description of the available options to store 
       <th width="75%">Description</th>
     </tr>
     <tr>
-      <th>YAML Files</th>
-      <td>Specifications can be distributed directly to your customers and stored on their local file systems. Can be useful for air gap installations.</td>
+      <th>Manual Distribution</th>
+      <td><p>Specifications are manually distributed specifications to customers, who then store the files on their local file systems. This distribution method can be useful for Helm installations that are air gapped.</p></td>
     </tr>
     <tr>
       <th>URLs</th>
-      <td><p>Specifications can be hosted online at a URL. Easy to iterate against as a team.</p><p>This also allows updating support bundle specifications in between application updates to notify customers of potential problems and fixes.</p></td>
+      <td><p>Specifications are hosted online at a URL. This allows updating support bundle specifications in between application updates to automatically notify customers of potential problems and fixes. See <a href="support-online-support-bundle-specs">About Online Support Bundle Specifications</a></p><p>Does not support Helm templates.</p></td>
     </tr>
     <tr>
       <th>OCI Registry</th>
-      <td><p>Specifications are located in an image registry.</p></td>
+      <td><p>Specifications are located in an image registry.</p><p>Compatible with Helm templates.</p></td>
     </tr>
     <tr>
       <th>stdin</th>
-      <td><p>Specifications are provided as stdin from a Helm chart using <code>-</code> as the argument. Can be used by Helm installations, and is compatible with using Helm templates.</p></td>
+      <td><p>Preflight specifications are provided as stdin using <code>-</code> as the argument.</p><p>Compatible with Helm templates.</p><p>Cannot be used for support bundle specifications.</p></td>
     </tr>
   </table>
 
@@ -101,3 +98,17 @@ The following table gives a brief description of the available options to store 
   - [Define Preflight Checks for KOTS](preflight-kots-defining)
   - [Customize Support Bundles for Helm Installations](support-bundle-helm-customizing)
   - [Customize Support Bundles for KOTS](support-bundles-kots-customizing)
+
+## Running Preflight Checks in Clusters
+
+For Replicated KOTS, your customers run their preflight checks as part of the KOTS installation. To run preflight checks without the installation, such as for testing purposes, you can run the preflight checks using the CLI.
+
+For Helm installations, preflight checks are run using the `helm template` command.
+
+For more information about running preflight checks for KOTS or Helm installations using the CLI, see [Running Preflight Checks](preflight-running).
+
+## Generating Support Bundles
+
+Replicated KOTS customers can generate support bundles using the Replicated admin console or the CLI. For Helm installations, customers generate support bundles using the CLI.
+
+For more information about generating support bundles, see [Generating Support Bundles](support-bundle-generating).
