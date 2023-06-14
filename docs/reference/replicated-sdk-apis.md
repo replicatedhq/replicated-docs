@@ -1,10 +1,10 @@
+import Beta from "../partials/replicated-sdk/_beta.mdx"
+
 # Replicated SDK APIs (Beta)
 
 The Replicated SDK provides APIs that you can use to embed Replicated functionality into your Helm chart application. For more information about how to get started with the Replicated SDK, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
 
-:::note
-The Replicated SDK is Beta and is not recommended for production use.
-:::
+<Beta/>
 
 ## Access the SDK APIs
 
@@ -12,7 +12,9 @@ The Replicated SDK APIs require the ID for a customer license created in the Rep
 
 After the SDK is installed, the Replicated SDK API service is exposed at `replicated:3000`. To verify the location of the Replicated SDK API service, you can run `kubectl get service` in the appropriate namespace.
 
-## app
+## App API
+
+This section describes the App API endpoints.
 
 ### GET /app/info
 
@@ -92,7 +94,9 @@ Response:
 }
 ```
 
-## license
+## License API
+
+This section describes the License API endpoints.
 
 ### GET /license/info
 
@@ -178,11 +182,13 @@ Response:
 }
 ```
 
-## mock-data
+## Mock Data API
+
+This section describes the Mock Data API endpoints. The Mock Data API provides endpoints for working with data when developing against the SDK in integration mode. For information about integration mode, see [Using Integration Mode](/vendor/replicated-sdk-development).
 
 ### POST mock-data
 
-POST mock data for use developing against the Replicated SDK in integration mode. Accepts a JSON request body to set the mock data. For information about integration mode, see [Using Integration Mode](/vendor/replicated-sdk-development).
+Publish mock data for use developing against the Replicated SDK in integration mode. Accepts a JSON request body to set the mock data. For information about integration mode, see [Using Integration Mode](/vendor/replicated-sdk-development).
 
 ```
 /api/v1/mock-data
@@ -206,11 +212,11 @@ Delete the mock data JSON object that you are using to develop against the Repli
 
 ## Examples
 
-This section provides example use cases for the Replicated SDK API.
+This section provides example use cases for the Replicated SDK APIs.
 
 ### Support Update Checks in Your Admin Console 
 
-The Replicated SDK API `api/v1/app/updates` endpoint returns details about new releases that are available to an instance for upgrade. If your application includes an admin console, you could use the `api/v1/app/updates` endpoint to allow your users to easily check for available updates from the admin console.
+The `api/v1/app/updates` endpoint returns details about new releases that are available to an instance for upgrade. If your application includes an admin console, you could use the `api/v1/app/updates` endpoint to allow your users to easily check for available updates from the admin console.
 
 Additionally, to make it easier for users to upgrade to new versions of your application, you could provide customer-specific upgrade instructions in your admin console by injecting values returned by the `/api/v1/license/info` endpoint. 
 
