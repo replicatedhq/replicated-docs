@@ -12,9 +12,7 @@ The Replicated SDK API is available after the Replicated SDK is installed and in
 
 After the SDK is installed, the Replicated SDK API service is exposed at `replicated:3000`. To verify the location of the Replicated SDK API service, you can run `kubectl get service` in the appropriate namespace.
 
-## App API
-
-This section describes the App API endpoints.
+## app
 
 ### GET /app/info
 
@@ -94,9 +92,7 @@ Response:
 }
 ```
 
-## License API
-
-This section describes the License API endpoints.
+## license
 
 ### GET /license/info
 
@@ -182,9 +178,9 @@ Response:
 }
 ```
 
-## Mock Data API
+## mock-data
 
-This section describes the Mock Data API endpoints. The Mock Data API provides endpoints for working with data when developing against the SDK in integration mode. For information about integration mode, see [Using Integration Mode](/vendor/replicated-sdk-development).
+This section describes the mock-data endpoints for working with data when developing against the SDK in integration mode. For information about integration mode, see [Using Integration Mode](/vendor/replicated-sdk-development).
 
 ### POST mock-data
 
@@ -212,7 +208,7 @@ Delete the mock data JSON object that you are using to develop against the Repli
 
 ## Examples
 
-This section provides example use cases for the Replicated SDK APIs.
+This section provides example use cases for the Replicated SDK API.
 
 ### Support Update Checks in Your Admin Console 
 
@@ -225,7 +221,7 @@ The following example shows how you could include a page in your application's a
 ![a user interface showing a list of available releases and a dialog with helm upgrade instructions](/images/slackernews-update-instructions.png)
 [View a larger version of this image](/images/slackernews-update-instructions.png)
 
-To use the SDK APIs to check for available application updates and provide customer-specific upgrade instructions:
+To use the SDK API to check for available application updates and provide customer-specific upgrade instructions:
 
 1. From your admin console application, call the `api/v1/app/updates` endpoint to return available updates for the application instance. Use the response to display available upgrades for the customer.
 
@@ -272,7 +268,7 @@ To use the SDK APIs to check for available application updates and provide custo
         helm upgrade echo-server oci://registry.replicated.com/echo-server-helm/echo-server
         ```
 
-        The upgrade command requires the following: 
+       The following describes where the values in the `helm upgrade` command are available:
 
         * **Release name**: The Helm release notes is available from the `/api/v1/app/info` endpoint in the `currentRelease.helmReleaseName` field.
         * **Release namespace**: The Helm release namespace is available from the `/api/v1/app/info` endpoint in the `currentRelease.helmReleaseNamespace` field.

@@ -1,6 +1,6 @@
 import Beta from "../partials/replicated-sdk/_beta.mdx"
 
-# Using Development Mode
+# WIP Using Integration Mode
 
 This topic describes how to use development mode with the Replicated SDK to test changes locally.
 

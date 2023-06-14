@@ -82,7 +82,7 @@ For more information about the available Replicated SDK API, including example u
 
 ## Customer Reporting and Instance Insights {#insights}
 
-The Replicated SDK provides access to operational telemetry like customer reporting and insights on application instances running in customer environments. When you distribute your application with the SDK, you can view these insights in the vendor portal.
+The Replicated SDK provides access to operational telemetry including customer reporting and insights on application instances running in customer environments. When you distribute your application with the SDK, you can view these insights in the vendor portal.
 
 The Replicated SDK does not require any additional configuration to get access to instance data. The SDK uses the values injected by the Replicated registry in your Helm chart values file during initialization to automatically send information about the instance back to the vendor portal.
 
@@ -93,8 +93,8 @@ The following shows an example of the **Instance Details** page in the vendor po
 
 For more information about viewing customer and instance insights in the vendor portal, see [Customer Reporting](customer-reporting) and [Instance Details](instance-insights-details).
 
-## Development Mode
+## Integration Mode
 
-You can run the Replicated SDK in development mode to more quickly add features and test releases of your application. Development mode allows you to test changes locally without having to create a release in the vendor portal and then pull your Helm chart from the Replicated registry.
+You can run the Replicated SDK in integration mode to more quickly test new functionality for your application. Integration mode allows you to use mock data to test changes locally without having to create a release in the vendor portal and then pull your Helm chart from the Replicated registry.
 
-To use development mode, you initialize the SDK with a developer license. For more information about using development mode, see [Using Development Mode](replicated-sdk-development).
+For more information, see [Using Integration Mode](replicated-sdk-development).
