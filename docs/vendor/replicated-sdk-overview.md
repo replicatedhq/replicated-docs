@@ -56,7 +56,7 @@ replicated:
     spec:
       appSlug: my-app
       ...       
-  # The full customer license is displayed
+  # The full customer license is injected
   license_id: WJldGExCmtpbmQ6IEN...
   releaseCreatedAt: "2023-05-12T17:43:51Z"
   releaseIsRequired: false
@@ -78,7 +78,7 @@ The Replicated SDK provides and API that you can use to embed Replicated functio
 
 For example, if your application includes a UI where users manage their application instance, then you can use the `/api/v1/app/updates` endpoint to include messages in the UI that encourage users to upgrade when new versions are available. You could also revoke access to the application when a license expires using the `/api/v1/license/fields` endpoint.
 
-For more information about the available Replicated SDK API, including example use cases, see [Replicated SDK API (Beta)](/reference/replicated-sdk-apis).
+For more information about the Replicated SDK API endpoints, see [Replicated SDK API (Beta)](/reference/replicated-sdk-apis).
 
 ## Customer Reporting and Instance Insights {#insights}
 

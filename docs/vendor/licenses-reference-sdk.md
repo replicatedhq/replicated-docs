@@ -1,12 +1,16 @@
-# Referencing License Fields With the SDK
+# Checking Entitlements with the SDK
 
-This topic describes how to reference license fields in your Helm chart when you distribute the Replicated SDK with your application. For more information about the Replicated SDK, see [About the Replicated SDK](replicated-sdk-overview).
+This topic describes how to get entitlement information from customer licenses when you distribute the Replicated SDK with your application Helm chart. For more information about the Replicated SDK, see [About the Replicated SDK](replicated-sdk-overview).
 
 ## Overview
 
-When you distribute the Replicated SDK alongside your Helm chart, you can use the SDK `/license` API to reference license fields and check customer entitlements during runtime. You can also add references to license fields in the Helm chart values file to check customer entitlements at the time of deployment, before the SDK has been initialized.
+When you distribute the Replicated SDK alongside your Helm chart, you can use the SDK API `license` endpoints to reference license fields and check customer entitlements during runtime. You can also add references to license fields in the `global` section of the Helm chart values file to check customer entitlements at the time of deployment, before the SDK has been initialized.
 
-## Referencing License Fields at Runtime
+See the sections below for more information:
+* [Getting Entitlements at Runtime with the API](#runtime)
+* [Getting Entitlements Before Installation](#before-install)
+
+## Checking Entitlements at Runtime with the API {#runtime}
 
 The SDK retrieves up-to-date customer license information from the vendor portal during runtime. This means that any changes to customer licenses are reflected in real time in the customer environment. For example, you can revoke access to your application when a license expires, expose additional product functionality dynamically based on entitlements, and more.
 
@@ -15,9 +19,9 @@ After the Replicated SDK is initialized and running in a customer environment, y
 * `/api/v1/license/fields`: List all the fields in the license.  
 * `/api/v1/license/fields/{field_name}`: List details about a specific license field, including the field name, description, type, and the value.
 
-For more information about these endpoints, see [license](/reference/replicated-sdk-apis#license) in _Replicated SDK APIs (Beta)_.
+For more information about these endpoints, see [license](/reference/replicated-sdk-apis#license) in _Replicated SDK API (Beta)_.
 
-License fields are cryptographically signed to ensure their integrity. When you include logic in your application to check customer license entitlements at runtime, Replicated recommends that you also use signature verification to ensure the integrity of each license field you use. For more information, see [Verifying Licenses Fields With the SDK](licenses-verify-fields-sdk-api)
+License fields are cryptographically signed to ensure their integrity. When you include logic in your application to check customer license entitlements at runtime, Replicated recommends that you also use signature verification to ensure the integrity of each license field you use. For more information, see [Verifying Licenses Field Signatures With the SDK](licenses-verify-fields-sdk-api)
 
 ### Example: Revoke Access at Runtime
 
@@ -37,7 +41,7 @@ To revoke access to your application when a license expires:
 
   [View a larger version of this image](/images/customer-expiration-policy.png)
 
-1. Call the `/license` API from your application to retrieve the `expires_at` field that you defined in the previous step:
+1. In your application, use the `/api/v1/license/fields/expires_at` endpoint get the `expires_at` field that you defined in the previous step.
 
     ```bash
     curl replicated:3000/api/v1/license/fields/expires_at
@@ -60,9 +64,11 @@ To revoke access to your application when a license expires:
 
 1. Add logic to your application to revoke access if the current date and time matches the expiration date of the license.
 
-1. Use signature verification in your application to ensure the integrity of the license field. See [Verifying License Fields With the SDK](licenses-verify-fields-sdk-api).
+1. Use signature verification in your application to ensure the integrity of the license field. See [Verifying License Field Signatures With the SDK](licenses-verify-fields-sdk-api).
 
-## Referencing License Fields Before Installation
+1. To test your changes, create a new release and promote it to a development channel, such as Unstable. Install the release in a development environment using the license ID for the customer that you created or edited. For more information, see [Installing an Application and the SDK](replicated-sdk-installing).
+
+## Checking Entitlements Before Installation {#before-install}
 
 You can reference license entitlements in the `global.licenseFields` field of your Helm chart values file to verify customer entitlements before the Replicated SDK is initialized in the customer environment. For example, you could include an `expires_at` field under `global` with the unique license expiry date for the customer to reference before the SDK is installed and running in the customer environment.
 ### Example: Prevent Access Before Installation
@@ -83,30 +89,7 @@ To revoke access to your application when a license expires:
 
   [View a larger version of this image](/images/customer-expiration-policy.png)
 
-1. Call the `/license` API to get information about the `expires_at` field that you defined in the previous step:
-
-    ```bash
-    curl replicated:3000/api/v1/license/fields/expires_at
-    ```
-
-    **Example response**:
-
-    ```json
-    {
-      "name": "expires_at",
-      "title": "Expiration",
-      "description": "License Expiration",
-      "value": "2023-05-30T00:00:00Z",
-      "valueType": "String",
-      "signature": {
-        "v1": "c6rsImpilJhW0eK+Kk37jeRQvBpvWgJeXK2MD0YBlIAZEs1zXpmvwLdfcoTsZMOj0lZbxkPN5dPhEPIVcQgrzfzwU5HIwQbwc2jwDrLBQS4hGOKdxOWXnBUNbztsHXMqlAYQsmAhspRLDhBiEoYpFV/8oaaAuNBrmRu/IVAW6ahB4KtP/ytruVdBup3gn1U/uPAl5lhzuBifaW+NDFfJxAXJrhdTxMBxzfdKa6dGmlGu7Ou/xqDU1bNF3AuWoP3C78GzSBQrD1ZPnu/d+nuEjtakKSX3EK6VUisNucm8/TFlEVKUuX7hex7uZ9Of+UgS1GutQXOhXzfMZ7u+0zHXvQ=="
-      }
-    }
-    ```
-
-1. Copy the contents of the `/api/v1/license/fields/expires_at` JSON response.
-
-1. Open the `values.yaml` file for your Helm chart. Under the `global.license` fields, paste the contents of the `/api/v1/license/fields/expires_at` JSON response using the indentation shown in the following example:
+1. In the `values.yaml` file for your Helm chart, under the `global.license` field, paste the contents of the `/api/v1/license/fields/expires_at` JSON response using the indentation shown in the following example:
 
     ```yaml
     # Helm chart values.yaml
@@ -119,5 +102,7 @@ To revoke access to your application when a license expires:
           value: "2023-05-30T00:00:00Z"
           valueType: String
           signature:
-            v1: iZBpESXx7fpdtnbMKingYHiJH42rP8fPs0x8izy1mODckGBwVoA/3NmNhbTty7gbibvvmw6rbsCEFvaKBTW4zoEWKicQ9hJWKVIWsYH27HYZghvRCxxz4akUxW5/BWsX5DTwfcEAyEUSUvgCo9ba9IYchvrQSEupHzG/r5LM/dKV4aojCqIodkdB+yZKyfm4xo4e9ZWtWyQgVVmzOlIPOwUspTi0GtUK3T99r/JkPd4od8q6CdkuNKDJ9lg2h5/TQSRrJtkp7DeJT1byUkELw4t2mTXMmNK/nMMl8u/TWt1rvKrR2KOBw1i+nFG5N8sfRbfyPOYSxbhR8CkXatnVKA==   
+            v1: iZBpESXx7fpdtnbMKingYHiJH42rP8fPs0x8izy1mODckGBwVoA... 
     ```
+
+1. To test your changes, create a new release and promote it to a development channel, such as Unstable. Install the release in a development environment using the license ID for the customer that you created or edited. For more information, see [Installing an Application and the SDK](replicated-sdk-installing).    

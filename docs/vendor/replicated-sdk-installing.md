@@ -12,7 +12,7 @@ To install an application Helm chart and the Replicated SDK, ensure that you mee
 
 * The license ID used to install must be associated with a valid email address. This email address is only used as a username for the Replicated registry and is never contacted in any way. For more information about creating and editing customers in the vendor portal, see [Creating a Customer](/vendor/releases-creating-customer).
 * The **Show Helm Install Tab** feature flag must be enabled for your team in the vendor portal.
-* (Optional) To run preflight checks before installing, you must have configured a preflight check specification for your application. For more information, see [About Preflight Checks and Support Bundles](preflight-support-bundle-creating). **UPDATE LINK FOR NEW TOPICS**
+* (Optional) To run preflight checks before installing, you must have configured a preflight check specification for your application. For more information, see [About Preflight Checks and Support Bundles](preflight-support-bundle-creating).
 
 ## Install
 
