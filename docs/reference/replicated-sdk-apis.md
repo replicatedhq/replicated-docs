@@ -14,7 +14,7 @@ After the SDK is installed, the Replicated SDK API service is exposed at `replic
 
 ## app
 
-### GET application information
+### GET /app/info
 
 List details about an application instance, including the app name, location of the Helm chart in the Replicated OCI registry, and details about the current application release that the instance is running. 
 
@@ -43,9 +43,9 @@ Response:
 }
 ```
 
-### GET application updates
+### GET /app/updates
 
-List details about the releases that are available for an application instance, including the version label, created timestamp, and release notes for the releases available for update.
+List details about the releases that are available to an application instance for upgrade, including the version label, created timestamp, and release notes.
 
 ```
 /api/v1/app/updates
@@ -59,12 +59,12 @@ Response:
     "versionLabel": "0.1.15",
     "isRequired": false,
     "createdAt": "2023-05-12T15:48:45.000Z",
-    "releaseNotes": ""
+    "releaseNotes": "Awesome new features!"
   }
 ]
 ```
 
-### GET application history
+### GET /app/history
 
 List details about the releases that an application instance has installed previously.
 
@@ -94,9 +94,9 @@ Response:
 
 ## license
 
-### GET license details
+### GET /license/info
 
-List details about the customer license file, including the license ID, type, the customer name, and the channel the customer is assigned.
+List details about the license file that was used to install, including the license ID, type, the customer name, and the channel the customer is assigned.
 
 ```
 /api/v1/license/info
@@ -115,7 +115,9 @@ Response:
 }
 ```
 
-### GET all license fields
+### GET /license/fields
+
+List details about all the fields in the license file that was used to install, including the field names, descriptions, values, and signatures.
 
 ```
 /api/v1/license/fields
@@ -147,13 +149,15 @@ Response:
 }
 ```
 
-### GET a license field
+### GET /license/fields/{field_name}
+
+List details about one of the fields in the license file that was used to install, including the field name, description, value, and signature.
 
 ```
 /api/v1/license/fields/{field_name}
 ```
 
-Example:
+Example request:
 
 ```
 curl replicated:3000/api/v1/license/fields/expires_at
@@ -176,25 +180,25 @@ Response:
 
 ## mock-data
 
-### POST mock data
+### POST mock-data
 
-Accepts a JSON request body to set the mock data.
-
-```
-/api/v1/mock-data
-```
-
-### GET mock data
-
-Returns the entire mock data JSON object.
+POST mock data for use developing against the Replicated SDK in integration mode. Accepts a JSON request body to set the mock data. For information about integration mode, see [Using Integration Mode](/vendor/replicated-sdk-development).
 
 ```
 /api/v1/mock-data
 ```
 
-### DELETE mock data
+### GET mock-data
 
-Deletes the mock data.
+List the mock data JSON object that you are using to develop against the Replicated SDK in integration mode. For information about integration mode, see [Using Integration Mode](/vendor/replicated-sdk-development).
+
+```
+/api/v1/mock-data
+```
+
+### DELETE mock-data
+
+Delete the mock data JSON object that you are using to develop against the Replicated SDK in integration mode. For information about integration mode, see [Using Integration Mode](/vendor/replicated-sdk-development).
 
 ```
 /api/v1/mock-data
@@ -202,36 +206,61 @@ Deletes the mock data.
 
 ## Examples
 
-This section provides some example use cases for the Replicated SDK APIs.
+This section provides example use cases for the Replicated SDK API.
 
 ### Support Update Checks in Your Admin Console 
 
-You can check for updates to the application by using the get application updates API. This is useful to inform customers about updates to the application. For example, a banner can display in your application when updates are available, encouraging users to update and providing update instructions to them.
+You can check for updates to the application using the `api/v1/app/updates` endpoint. This is useful to inform customers about updates to the application. For example, you can display a banner in your application admin console when updates are available, encouraging users to update and providing update instructions.
 
-To upgrade your application, users must log in to the Replicated registry and then perform a Helm upgrade.
+To upgrade, your customers must first log in to the Replicated registry where they can pull your Helm chart, then they can run `helm upgrade`. You can use the SDK API endpoints to construct customer specific commands to provide in your application's admin console to make it easier for you users to upgrade.
 
-For example:
+To use the SDK APIs to check for available application updates and construct upgrade instructions for your users:
 
-```bash
-helm registry login registry.replicated.com --username alexp@replicated.com --password LICENSE_ID
-```
+1. In your application admin console, call the `api/v1/app/updates` endpoint to check for available updates for the application instance. Use the response to display available upgrades for the customer in your admin console:
 
-The registry login command requires: 
-* the registry domain, 
-* the username, and 
-* the password.
+   ```bash 
+   curl replicated:3000/api/v1/app/updates
+   ```
 
-The username and password are both available from the get license info API in the customerEmail and licenseID fields.
+   **Example response**:
 
-```bash
-helm upgrade echo-server oci://registry.replicated.com/alex-echo-server-helm/echo-server
-```
+    ```json
+    [
+      {
+        "versionLabel": "0.1.15",
+        "isRequired": false,
+        "createdAt": "2023-05-12T15:48:45.000Z",
+        "releaseNotes": "Awesome new features!"
+      }
+    ]
+    ```
 
-The install command requires: 
-* the release name, 
-* the release namespace, 
-* the registry domain, 
-* the app slug, and 
-* the channel slug.
+1. Construct the `helm registry login` command and display it in your admin console:
 
-The other four components are available from the get application information API in the `currentRelease.helmReleaseName`, `currentRelease.helmReleaseNamespace`, `appSlug`, and `currentRelease.channelSlug`.
+   **Example**:
+
+    ```bash
+    helm registry login registry.replicated.com --username alexp@replicated.com --password LICENSE_ID
+    ```
+
+    The `helm registry login` command requires the following: 
+
+    * **Registry domain**: The domain for the registry where your Helm chart is pushed. The registry domain is either `replicated.registry.com` or a custom domain that you added.
+    * **Customer email**: The customer email address is available from the `/api/v1/license/info` endpoint in the `customerEmail` field.
+    * **Customer license ID**:The customer license ID from the `/api/v1/license/info` endpoint in the `licenseID` field.
+
+1. Construct the `helm upgrade` command and display it in your admin console:
+
+   **Example**:
+
+    ```bash
+    helm upgrade echo-server oci://registry.replicated.com/echo-server-helm/echo-server
+    ```
+
+    The upgrade command requires the following: 
+
+    * **Release name**: The Helm release notes is available from the `/api/v1/app/info` endpoint in the `currentRelease.helmReleaseName` field.
+    * **Release namespace**: The Helm release namespace is available from the `/api/v1/app/info` endpoint in the `currentRelease.helmReleaseNamespace` field.
+    * **Registry domain**: The domain for the registry where your Helm chart is pushed. The registry domain is either `replicated.registry.com` or a custom domain that you added. 
+    * **App slug**: The app slug is available from the `/api/v1/app/info` endpoint in the `appSlug` field. 
+    * **Channel slug**: The channel slug is available from the `/api/v1/app/info` endpoint in the `currentRelease.channelSlug` field.
