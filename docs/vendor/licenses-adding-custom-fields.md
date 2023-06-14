@@ -35,6 +35,10 @@ To create a custom license field:
 
 1. On the **License Fields** page, click **Create a custom field**.
 
+   <img width="500" alt="create a new License Field dialog" src="/images/license-add-custom-field.png"/>
+
+   [View a larger version of this image](/images/license-add-custom-field.png)
+
 1. Complete the following fields:
 
    | Field                  | Description           |
@@ -43,11 +47,8 @@ To create a custom license field:
    | Title| The display name for the field. This is how the field appears in the vendor portal and the admin console. You can change the title in the vendor portal. |
    | Type| The field type. Supported formats include integer, string, text (multi-line string), and boolean values. This value cannot be changed. |
    | Default | The default value for the field for both existing and new customers. It is a best practice to provide a default value when possible. |
-   | Is this field is required? | If checked, this prevents the creation of customers unless this field is explicitly defined with a value. |
-   | Is this field hidden? | If checked, the field is not visible to your customer in the admin console. The field is still visible to you in the vendor portal. |
-
-<img width="1219" alt="Creating a new License Field" src="https://github.com/replicatedhq/replicated-docs/assets/3730605/f158fcb6-667a-45c8-a5d7-737a918b0546">
-
+   | Required | If checked, this prevents the creation of customers unless this field is explicitly defined with a value. |
+   | Hidden | If checked, the field is not visible to your customer in the admin console. The field is still visible to you in the vendor portal. |
 
 ## Update Custom License Fields
 
@@ -62,15 +63,16 @@ To update a custom license field:
    
 ## Set Customer-Specific Values for Custom License Fields
 
-To set a customer value for a custom license field:
+To set a customer-specific value for a custom license field:
 
 1. Log in to the vendor portal and select the application.
-1. Navigate to the "Manage" tab for an individual customer
-1. Set values for custom license fields in the bottom right corner
+1. Click **Customers**.
+1. For the target customer, click the **Manage customer** button.
+1. Under **Custom fields**, enter values for the target custom license fields for the customer.
 
-<img width="1219" alt="Setting Custom License Fields for a Customer" src="https://github.com/replicatedhq/replicated-docs/assets/3730605/f29038b8-d7bb-43c5-bf7d-9efea4dd33ff">
+   <img width="600" alt="Custom license fields section in the customer details page" src="/images/customer-license-custom-fields.png"/>
 
-
+   [View a larger version of this image](/images/customer-license-custom-fields.png)
 
 ## Delete Custom License Fields
 
