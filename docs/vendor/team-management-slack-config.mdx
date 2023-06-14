@@ -3,17 +3,19 @@ import NotificationsAbout from "../partials/instance-insights/_notifications-abo
 
 # Configuring a Slack Webhook (Alpha)
 
-Vendors can configure a Slack webhook to enable notifications to be sent to a shared Slack channel. The notifications provide visibility about customer instance statuses.
+As a vendor, anyone on your team can set up Slack notifications, which are sent to a shared Slack channel. Notifications give your team visibility into customer instance statuses and changes.
 
 <NotificationsAbout/>
 
 While email notifications are specific to each user, Slack notifications settings are shared, viewable, and editable by the entire team. Any changes made by a team member impacts the team.
 
-## Limitation
+## Limitations
 
-While this feature is in alpha, only one slack channel per team is supported.
+As an Alpha feature, the following limitations apply:
 
-Notifications configuration actions do not currently support RBAC policies for granular permissions.
+- Only one Slack channel per team is supported.
+
+- RBAC policies are not supported for configuring granular permissions.
 
 ## Prerequisite
 
@@ -23,7 +25,7 @@ Make sure to keep the URL secure because it contains a Secret that allows write 
 
 ## Configure the Webhook in the Vendor Portal
 
-When you enable Slack notifications for a team, you first configure the Slack webhook in the vendor portal. Typically you do this one time. Then you can configure notifications for the customer instances.
+When you enable Slack notifications for a team, you must first configure the Slack webhook in the vendor portal. Typically you do this one time. Then you can configure notifications for individual customer instances.
 
 To configure the Slack webhook:
 
