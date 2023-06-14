@@ -5,7 +5,7 @@ import NotificationsAbout from "../partials/instance-insights/_notifications-abo
 
 <NotificationsAbout/>
 
-Teams can receive notifications about customer insights through a Slack channel. Individual users can also receive notifications about instance statuses through email.
+Teams can receive notifications about customer insights through a Slack channel. Individual users can also receive email notifications.
 
 ## Prerequisite
 
@@ -13,11 +13,11 @@ For Slack notifications, you must enable notifications at the Team level before 
 
 ## Configure Notifications
 
-Follow this procedure to configure Slack or email notifications. 
+Follow this procedure to configure Slack or email notifications for instances. 
 
-To configure notifications for an instance:
+To configure notifications:
 
-1. Go to **Applications > Customers**, and click an instance under a customer that you want to receive notifications for.
+1. Go to **Applications > Customers**, and click an active customer instance that you want to receive notifications for.
 
     <img src="/images/customer-instances.png" alt="Customer instances list in the vendor portal" width="600"/>
 
@@ -25,7 +25,7 @@ To configure notifications for an instance:
 
     <img width="600px" src="/images/instance-notifications.png" />
 
-1. From the **Configure Instance Notifications** dialog, select **Slack Notifications** or use the default **My Notification** tab for email notifications.
+1. From the **Configure Instance Notifications** dialog, select the **Slack Notifications** tab or use the default **My Notifications** tab for email notifications.
  
     <img width="400px" src="/images/instance-notifications-dialog.png" />
 
@@ -44,9 +44,9 @@ To configure notifications for an instance:
 
 After you enable notifications for a running development instance, test that your notifications are working as expected.
 
-Do this by forcing your application into a non-ready state. For example, you can delete one or more application Pods and wait for a Replication controller to recreate them.
+Do this by forcing your application into a non-ready state. For example, you can delete one or more application Pods and wait for a ReplicationController to recreate them.
 
-Then look for notifications in the assigned Slack channel. You also receive an email if you enabled email notifications.
+Then, look for notifications in the assigned Slack channel. You also receive an email if you enabled email notifications.
 
 :::note
 There is a 30-second buffer between event detection and notifications being sent. This buffer provides better roll-ups and reduces noise.
