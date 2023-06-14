@@ -1,14 +1,14 @@
 import Beta from "../partials/replicated-sdk/_beta.mdx"
 
-# Replicated SDK APIs (Beta)
+# Replicated SDK API (Beta)
 
-The Replicated SDK provides APIs that you can use to embed Replicated functionality into your Helm chart application. For more information about how to get started with the Replicated SDK, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
+The Replicated SDK provides an API that you can use to embed Replicated functionality into your Helm chart application. For more information about how to get started with the Replicated SDK, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
 
 <Beta/>
 
-## Access the SDK APIs
+## Access the SDK API
 
-The Replicated SDK APIs require the ID for a customer license created in the Replicated vendor portal to authenticate and initialize in an environment. For information about creating customer licenses, see [Creating and Managing Customers](/vendor/releases-creating-customer).
+The Replicated SDK API is available after the Replicated SDK is installed and initialized in a cluster. For information about installing the SDK, see [Installing an Application and the SDK](/vendor/replicated-sdk-installing).
 
 After the SDK is installed, the Replicated SDK API service is exposed at `replicated:3000`. To verify the location of the Replicated SDK API service, you can run `kubectl get service` in the appropriate namespace.
 
