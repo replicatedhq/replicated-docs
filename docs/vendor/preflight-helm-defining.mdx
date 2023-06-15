@@ -39,9 +39,11 @@ Secrets and Config maps are installed in the cluster. Preflight custom resources
 
 You must include the following:
 
-- `Label` - Label the secret definition as `troubleshoot.sh/kind: preflight`
-- `stringData` - Specify a `stringData` field with a key named `preflight.yaml` so that the preflight binary can use this Secret when it runs from the CLI
-- `{{ .Release.Namespace }}` to ensure that the specification is scoped to the release namespace.
+- `Label`: Label the secret definition as `troubleshoot.sh/kind: preflight`
+- `stringData`: Specify a `stringData` field with a key named `preflight.yaml` so that the preflight binary can use this Secret when it runs from the CLI
+-  `name`: Specify a `"{{ .Release.Namespace }}-NAME` to ensure that the specification is scoped to the release namespace. Replace `NAME` with the namespace where the release will be deployed.
+
+**Example:**
 
 ```yaml
 apiVersion: v1
@@ -65,7 +67,7 @@ Next, define the preflight checks specification by adding collectors and analyze
 
 ## Create a Preflight Custom Resource
 
-The Preflight custom resource lets you provide preflight checks in a Helm template. If you use this input, you must use conditional statements in the custom resource because it is not installed in the cluster. Instead, the custom resource is read using stdin.
+The Preflight custom resource lets you provide preflight checks in a Helm template without using `stringData`. If you use this input, you must use conditional statements in the custom resource because the custom resource definition is not installed in the cluster. The custom resource is read using stdin.
 
 <PreflightsCrNote/>
 

@@ -27,11 +27,7 @@ Customizing a support bundle is unique to your application and depends on what k
 You can create support bundle specification using the following kinds:
 
 - Secret (`kind: Secret`)
-- Support Bundle custom resource (`kind: SupportBundle`)
-
-## Limitations
-
-YAML file and URL locations do not support Helm templating.
+- SupportBundle custom resource (`kind: SupportBundle`)
 
 ## Define Support Bundles as Secrets
 
@@ -66,6 +62,21 @@ stringData:
     spec:
       collectors: []
       analyzers: []
+```
+## Create a SupportBundle Custom Resource
+
+If you do not want to use Secrets, you can create a SupportBundle custom resource (`kind: SupportBundle`) instead. You share this specification through a URL, at a registry link, or manually as a file. Helm templates are supported when the specification is distributed using an OCI registry.
+
+Create a SupportBundle custom resource manifest file (`kind: SupportBundle`) using the following basic support bundle template. For more information about this custom resource, see [Preflight and Support Bundle](/reference/custom-resource-preflight).
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: SupportBundle
+metadata:
+  name: collectors
+spec:
+  collectors: []
+  analyzers: []
 ```
 
 ## Define the Support Bundle Specification

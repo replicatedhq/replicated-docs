@@ -91,35 +91,61 @@ When you add the `clusterPodStatuses` analyzer template function values (such as
 The following example shows an analyzer that uses Troubleshoot templates and the override for Helm:
 
 ```yaml
-analyzers:
-    - clusterPodStatuses:
-        name: unhealthy
-        namespaces:
-          - default
-          - myapp-namespace
-        outcomes:
-          - fail:
-              when: "== CrashLoopBackOff"
-              message: {{ `Pod {{ .Namespace }}/{{ .Name }} is in a CrashLoopBackOff state.` }}
-          - fail:
-              when: "== ImagePullBackOff"
-              message: {{ `Pod {{ .Namespace }}/{{ .Name }} is in a ImagePullBackOff state.` }}
-          - fail:
-              when: "== Pending"
-              message: {{ `Pod {{ .Namespace }}/{{ .Name }} is in a Pending state.` }}
-          - fail:
-              when: "== Evicted"
-              message: {{ `Pod {{ .Namespace }}/{{ .Name }} is in a Evicted state.` }}
-          - fail:
-              when: "== Terminating"
-              message: {{ `Pod {{ .Namespace }}/{{ .Name }} is in a Terminating state.` }}
-          - fail:
-              when: "== Init:Error"
-              message: {{ `Pod {{ .Namespace }}/{{ .Name }} is in an Init:Error state.` }}
-          - fail:
-              when: "== Init:CrashLoopBackOff"
-              message: {{ `Pod {{ .Namespace }}/{{ .Name }} is in an Init:CrashLoopBackOff state.` }}
-          - fail:
-              when: "!= Healthy" # Catch all unhealthy pods. A pod is considered healthy if it has a status of Completed, or Running and all of its containers are ready.
-              message: {{ `Pod {{ .Namespace }}/{{ .Name }} is unhealthy with a status of {{ .Status.Reason }}.` }}
+# This is the support bundle config secret that will be used to generate the support bundle
+apiVersion: v1
+kind: Secret
+metadata:
+  labels:
+    troubleshoot.sh/kind: support-bundle
+  name: {{ .Release.Name }}-support-bundle
+  namespace: {{ .Release.Namespace }}
+type: Opaque
+stringData:
+  # This is the support bundle spec that will be used to generate the support bundle
+  # Notes: we use {{ .Release.Namespace }} to ensure that the support bundle is scoped to the release namespace
+  # We can use any of Helm's templating features here, including {{ .Values.someValue }}
+  support-bundle-spec: |
+    apiVersion: troubleshoot.sh/v1beta2
+    kind: SupportBundle
+    metadata:
+      name: support-bundle
+    spec:
+      collectors:
+        - clusterInfo: {}
+        - clusterResources: {}
+        - logs:
+            selector:
+              - app=someapp
+            namespace: {{ .Release.Namespace }}
+      analyzers:
+        - clusterPodStatuses:
+            name: unhealthy
+            namespaces:
+              - default
+              - myapp-namespace
+            outcomes:
+              - fail:
+                  when: "== CrashLoopBackOff"
+                  message: {{ `Pod {{ .Namespace }}/{{ .Name }} is in a CrashLoopBackOff state.` }}
+              - fail:
+                  when: "== ImagePullBackOff"
+                  message: {{ `Pod {{ .Namespace }}/{{ .Name }} is in a ImagePullBackOff state.` }}
+              - fail:
+                  when: "== Pending"
+                  message: {{ `Pod {{ .Namespace }}/{{ .Name }} is in a Pending state.` }}
+              - fail:
+                  when: "== Evicted"
+                  message: {{ `Pod {{ .Namespace }}/{{ .Name }} is in a Evicted state.` }}
+              - fail:
+                  when: "== Terminating"
+                  message: {{ `Pod {{ .Namespace }}/{{ .Name }} is in a Terminating state.` }}
+              - fail:
+                  when: "== Init:Error"
+                  message: {{ `Pod {{ .Namespace }}/{{ .Name }} is in an Init:Error state.` }}
+              - fail:
+                  when: "== Init:CrashLoopBackOff"
+                  message: {{ `Pod {{ .Namespace }}/{{ .Name }} is in an Init:CrashLoopBackOff state.` }}
+              - fail:
+                  when: "!= Healthy" # Catch all unhealthy pods. A pod is considered healthy if it has a status of Completed, or Running and all of its containers are ready.
+                  message: {{ `Pod {{ .Namespace }}/{{ .Name }} is unhealthy with a status of {{ .Status.Reason }}.` }}
 ```
