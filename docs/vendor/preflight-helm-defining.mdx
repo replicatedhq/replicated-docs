@@ -1,5 +1,4 @@
 import PreflightsAddAnalyzers from "../partials/preflights/_preflights-add-analyzers.mdx"
-import PreflightsAddStrict from "../partials/preflights/_preflights-add-strict.mdx"
 import PreflightsSpecLocations from "../partials/preflights/_preflights-spec-locations.mdx"
 import SecretsConfig from "../partials/preflights/_secrets-config.mdx"
 import PreflightsAbout from "../partials/preflights/_preflights-about.mdx"
@@ -155,35 +154,6 @@ spec:
 <PreflightsDefineXref/>
 
 <AnalyzersNote/>
-
-### `strict` Analyzers
-
-<PreflightsAddStrict/>
-
-The following example shows the `strict` field set to `true` for MySQL versions:
-
-```yaml
-spec:
-  collectors:
-  - mysql:
-      collectorName: mysql
-      uri: '{{ .Values.global.externalDatabase.user }}:{{ .Values.global.externalDatabase.password }}@tcp({{ .Values.global.externalDatabase.host }}:{{ .Values.global.externalDatabase.port }})/{{ .Values.global.externalDatabase.database }}?tls=false'
-  analyzers:
-  - mysql:
-      strict: true
-      checkName: Must be MySQL 8.x or later
-      collectorName: mysql
-      outcomes:
-      - fail:
-          when: connected == false
-          message: Cannot connect to MySQL server
-      - fail:
-          when: version < 8.x
-          message: The MySQL server must be at least version 8
-      - pass:
-          message: The MySQL server is ready
-```
-<PreflightsDefineXref/>
 
 ## Redactors
 
