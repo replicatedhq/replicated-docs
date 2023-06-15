@@ -4,7 +4,6 @@ import SupportBundleAddAnalyzers from "../partials/support-bundles/_support-bund
 import ConfigmapNote from "../partials/support-bundles/_configmap-note.mdx"
 import PreflightsSbNote from "../partials/preflights/_preflights-sb-note.mdx"
 import PreflightsSpecLocations from "../partials/preflights/_preflights-spec-locations.mdx"
-import SupportBundleDefine from "../partials/support-bundles/_support-bundle-define.mdx"
 import PreflightsDefineXref from "../partials/preflights/_preflights-define-xref.mdx"
 import RedactorsAbout from "../partials/redactors/_redactors-about.mdx"
 import PreflightSbHelmTemplates from "../partials/preflights/_preflight-sb-helm-templates.mdx"
@@ -24,7 +23,7 @@ Customizing a support bundle is unique to your application and depends on what k
 
 ## Input Kind
 
-You can create support bundle specification using the following kinds:
+You can create support bundle specifications using the following kinds:
 
 - Secret (`kind: Secret`)
 - SupportBundle custom resource (`kind: SupportBundle`)
@@ -40,6 +39,8 @@ To customize a support bundle as a Secret, create a specification using `kind: S
 - `Label` - Label the secret definition as `troubleshoot.sh/kind: support-bundle`
 - `stringData` - Specify a `stringData` field with a key named `support-bundle-spec`
 - `{{ .Release.Namespace }}` to ensure that the specification is scoped to the release namespace.
+
+**Example:**
 
 ```yaml
 apiVersion: v1
@@ -65,9 +66,9 @@ stringData:
 ```
 ## Create a SupportBundle Custom Resource
 
-If you do not want to use Secrets, you can create a SupportBundle custom resource (`kind: SupportBundle`) instead. You share this specification through a URL, at a registry link, or manually as a file. Helm templates are supported when the specification is distributed using an OCI registry.
+If you do not want to use Secrets, you can create a SupportBundle custom resource instead. Helm templates are supported when the specification is distributed using an OCI registry.
 
-Create a SupportBundle custom resource manifest file (`kind: SupportBundle`) using the following basic support bundle template. For more information about this custom resource, see [Preflight and Support Bundle](/reference/custom-resource-preflight).
+Create a SupportBundle custom resource (`kind: SupportBundle`) using the following basic support bundle template. For more information about this custom resource, see [Preflight and Support Bundle](/reference/custom-resource-preflight).
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -81,7 +82,7 @@ spec:
 
 ## Define the Support Bundle Specification
 
-<SupportBundleDefine/>
+Defining support bundle specifications depends on your application's needs. This section gives some guidance about how to think about using collectors and analyzers to design support bundles.
 
 <PreflightsDefineXref/>
 
@@ -158,10 +159,6 @@ spec:
 ```
 
 <PreflightsDefineXref/>
-
-### Redactors
-
-<RedactorsAbout/>
 
 ## Example
 

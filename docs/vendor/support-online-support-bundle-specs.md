@@ -8,7 +8,7 @@ You update collectors and analyzers in the online specification to manage bug fi
 
 If you are using a modular approach to designing support bundles, you can use multiple online specifications. Each specification supports one URI link. For more information about modular specifications, see [About Modular Support Bundles](support-modular-support-bundle-specs).
 
-## Limitations
+<!--## Limitations
 
 The following limitations apply to using URLs to store support bundle specifications:
 
@@ -16,6 +16,8 @@ The following limitations apply to using URLs to store support bundle specificat
 - Vendors must provide customers with the URL strings.
 - Does not support air gap environments.
 - Does not support templating for Helm installations.
+-->
+
 
 ## Example: URI Linking to a Source Repository
 

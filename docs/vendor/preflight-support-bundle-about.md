@@ -65,9 +65,7 @@ Analyzer outcomes for preflight checks differ from the outcomes for support bund
 
 ## About Specifications
 
-To use preflight checks and support bundles with your application, you define collectors, redactors, and analyzers in a YAML specification. Using multiple specifications is supported. For more information about using multiple specifications for preflight or support bundles, see [About Modular Specifications](support-modular-support-bundle-specs).
-
-Depending on whether your customers install with Replicated KOTS or install with Helm, you have multiple options for making these specifications available to your customers.
+To use preflight checks and support bundles with your application, you define collectors and analyzers in a YAML specification. Using multiple specifications is supported. For more information about using multiple specifications for preflight or support bundles, see [About Modular Specifications](support-modular-support-bundle-specs).
 
 For information about how to write the specifications, see:
   
@@ -104,9 +102,9 @@ For information about how to write the specifications, see:
 
 ## Running Preflight Checks
 
-For Replicated KOTS, your customers run their preflight checks as part of the KOTS installation.
+For Replicated KOTS installations, your customers run preflight checks as part of the installation.
 
-For running preflight checks with Helm installations, see [Running Preflight Checks for Helm Installations](preflight-running).
+For Helm installations, your customers run preflight checks before they run the installation command. For more information, see [Running Preflight Checks for Helm Installations](preflight-running).
 
 ## Generating Support Bundles
 
@@ -114,6 +112,6 @@ Replicated KOTS customers can generate support bundles using the Replicated admi
 
 For Helm installations, customers generate support bundles using the CLI.
 
-For more information about generating support bundles for KOTS and Helm using the CLI, see [Generating Support Bundles](support-bundle-generating).
+For more information about generating support bundles for KOTS and Helm installations, see [Generating Support Bundles](support-bundle-generating).
 
 You can use the vendor portal to run an analysis and inspect a customer's support bundle if they need help troubleshooting. For more information, see [Inspecting Support Bundles](support-inspecting-support-bundles).
