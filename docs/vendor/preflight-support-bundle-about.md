@@ -48,7 +48,9 @@ Redactors censor sensitive customer information from the data gathered by the co
 - Database connection strings
 - URLs that include usernames and passwords
 
-This functionality can be disabled by adding the `--redact=false` flag to the command. Replicated recommends leaving the redactors enabled for security purposes. You can add custom redactors to support bundles only.
+This functionality can be disabled by adding the `--redact=false` flag to the command. Replicated recommends leaving the redactors enabled for security purposes. 
+
+KOTS supports adding custom redactors to support bundles.
 
 For more detail on what information the default redactors detect, see the [Redact](https://troubleshoot.sh/docs/redact/) section in the Troubleshoot documentation.
 
@@ -61,11 +63,11 @@ Analyzer outcomes for preflight checks differ from the outcomes for support bund
 
 - Support bundles use analyzers to help identify potential problems. When a support bundle is uploaded to the vendor portal, it is extracted and automatically analyzed. The goal of this process is to surface known issues or hints of what might be a problem. Analyzers produce outcomes that contain custom messages to explain what the problem might be.
 
-## About Specifications and Distribution
+## About Specifications
 
 To use preflight checks and support bundles with your application, you define collectors, redactors, and analyzers in a YAML specification. Using multiple specifications is supported. For more information about using multiple specifications for preflight or support bundles, see [About Modular Specifications](support-modular-support-bundle-specs).
 
-Depending on whether your customers install with Replicated KOTS or install with Helm, you have multiple options for making these specifications available to your customers. You can also use a combination of distributions methods, such as YAML files and URLs.
+Depending on whether your customers install with Replicated KOTS or install with Helm, you have multiple options for making these specifications available to your customers.
 
 For information about how to write the specifications, see:
   
@@ -74,7 +76,7 @@ For information about how to write the specifications, see:
   - [Customize Support Bundles for Helm Installations](support-bundle-helm-customizing)
   - [Customize Support Bundles for KOTS](support-bundles-kots-customizing)
 
-The following table gives a brief description of the available options to distribute preflight and support bundle specifications:
+<!-- The following table gives a brief description of the available options to distribute preflight and support bundle specifications:
 
 <table>
     <tr>
@@ -98,17 +100,20 @@ The following table gives a brief description of the available options to distri
       <td><p>Preflight specifications are provided as stdin using <code>-</code> as the argument.</p><p>Compatible with Helm templates.</p><p>Cannot be used for support bundle specifications.</p></td>
     </tr>
   </table>
+-->
 
-## Running Preflight Checks in Clusters
+## Running Preflight Checks
 
-For Replicated KOTS, your customers run their preflight checks as part of the KOTS installation. To run preflight checks without the installation, such as for testing purposes, you can run the preflight checks using the CLI.
+For Replicated KOTS, your customers run their preflight checks as part of the KOTS installation.
 
-For Helm installations, preflight checks are run using the `helm template` command.
-
-For more information about running preflight checks for KOTS or Helm installations using the CLI, see [Running Preflight Checks](preflight-running).
+For running preflight checks with Helm installations, see [Running Preflight Checks for Helm Installations](preflight-running).
 
 ## Generating Support Bundles
 
-Replicated KOTS customers can generate support bundles using the Replicated admin console or the CLI. For Helm installations, customers generate support bundles using the CLI.
+Replicated KOTS customers can generate support bundles using the Replicated admin console or the CLI. 
 
-For more information about generating support bundles, see [Generating Support Bundles](support-bundle-generating).
+For Helm installations, customers generate support bundles using the CLI.
+
+For more information about generating support bundles for KOTS and Helm using the CLI, see [Generating Support Bundles](support-bundle-generating).
+
+You can use the vendor portal to run an analysis and inspect a customer's support bundle if they need help troubleshooting. For more information, see [Inspecting Support Bundles](support-inspecting-support-bundles).

@@ -22,7 +22,7 @@ Preflight checks run using a `helm template` command before running the installa
 
 ## Input Kind
 
-When you run `helm template` command as stdin, the command filters the stream and runs the following inputs:
+When you run `helm template` command to produce a stream of stdout and pipe the result to `preflight -`, the `preflight` command filters the stream for and runs the following kinds:
 
 -  Secret (`kind: Secret`)
 -  ConfigMap (`kind: ConfigMap`)
@@ -72,7 +72,7 @@ The Preflight custom resource lets you provide preflight checks in a Helm templa
 
 To define a Preflight custom resource as a template:
 
-1. Create a Preflight custom resource YAML file using `kind: Preflight`. Wrap the custom resource template in an `{{ if` so that it is only rendered when specified in the `values.yaml` file.
+1. Create a Preflight custom resource YAML file using `kind: Preflight`. Wrap the custom resource template in an `{{ if` so that it is only rendered when specified in the `values.yaml` file or on the helm CLI.
 
     **Example**:
 
@@ -88,13 +88,13 @@ To define a Preflight custom resource as a template:
     {{ end }}
     ```
 
-1. Configure your `values.yaml` file with Helm templating to support the Preflight custom resource.
+1. Configure your `values.yaml` file to enable the Preflight custom resource.
 
-  **Example:**
+    **Example:**
 
-  ```yaml
-  renderpreflights: example-name
-  ```
+    ```yaml
+    renderpreflights: true
+    ```
 
 Next, define the preflight checks specification by adding collectors and analyzers. Optionally, you can add to the default redactors. For more information, see [Define the Preflight Checks Specification](#preflights).
 
@@ -161,7 +161,7 @@ spec:
 
 ## Example
 
-The following example shows a preflight support bundle specification in a Secret for a Helm installation. For more examples, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples/preflight) in GitHub.
+The following example shows a preflight specification in a Secret for a Helm installation. For more examples, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples/preflight) in GitHub.
 
 <PreflightsDefineXref/>
 

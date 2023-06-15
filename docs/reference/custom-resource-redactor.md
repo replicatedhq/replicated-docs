@@ -1,10 +1,12 @@
-# Redactor
+# Redactor (KOTS)
 
-Preflight checks and support bundles include built-in redactors that hide sensitive customer data before it is analyzed. These default redactors hide passwords, tokens, AWS secrets, database connection strings, and URLs that contain usernames and passwords.
+For Replicated KOTS and Helm installations, preflight checks and support bundles include built-in redactors that hide sensitive customer data before it is analyzed. These default redactors hide passwords, tokens, AWS secrets, database connection strings, and URLs that contain usernames and passwords.
 
-The default redactors cannot be disabled, but you can add custom redactors to support bundles using the Redactor custom resource manifest file. For example, you can redact API keys or account numbers, depending on your customer needs. For more information about redactors, see [Redacting Data](https://troubleshoot.sh/docs/redact/) in the Troubleshoot documentation.
+The default redactors can be disabled using the command line only. Replicated recommends leaving the redactors enabled.
 
-## Basic Manifest File
+For KOTS, you can add custom redactors to support bundles using the Redactor custom resource manifest file. For example, you can redact API keys or account numbers, depending on your customer needs. For more information about redactors, see [Redacting Data](https://troubleshoot.sh/docs/redact/) in the Troubleshoot documentation.
+
+## Defining Custom Redactors
 
 You can add custom redactors to the following basic Redactor custom resource manifest file (`kind: Redactor`):
 
@@ -65,7 +67,7 @@ The `removals` object is required and defines the redactions that occur. This ob
   </tr>
 </table>
 
-## Example Redactor
+## KOTS Redactor Example
 
 The following example shows `regex` and `yamlPath` redaction for a support bundle:
 

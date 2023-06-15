@@ -113,18 +113,18 @@ The following example shows a Pod log collector for nginx scoped to a specific n
 
 ```yaml
 spec:
-      collectors:
-        - clusterInfo: []
-        - clusterResources: []
-        - logs:
-            selector:
-              - app=someapp
-              - component=nginx
-            namespace: {{ .Release.Namespace }}
-            limits:
-              maxAge: 720h # 30*24
-              maxLines: 10000
-              maxBytes: 5000000
+  collectors:
+    - clusterInfo: []
+    - clusterResources: []
+    - logs:
+        selector:
+          - app=someapp
+          - component=nginx
+        namespace: {{ .Release.Namespace }}
+          limits:
+          maxAge: 720h # 30*24
+          maxLines: 10000
+          maxBytes: 5000000
 ```
 
 <PreflightsDefineXref/>
@@ -141,20 +141,20 @@ The following example shows a deployment status collector with messages that can
 
 ```yaml
 spec:
-      collectors: []
-      analyzers: 
-        - deploymentStatus:
-            name: api
-            namespace: default
-            outcomes:
-              - fail:
-                  when: "< 1"
-                  message: The API deployment does not have any ready replicas.
-              - warn:
-                  when: "= 1"
-                  message: The API deployment has only a single ready replica.
-              - pass:
-                  message: There are multiple replicas of the API deployment ready.
+  collectors: []
+  analyzers: 
+    - deploymentStatus:
+        name: api
+        namespace: default
+        outcomes:
+          - fail:
+              when: "< 1"
+              message: The API deployment does not have any ready replicas.
+          - warn:
+              when: "= 1"
+              message: The API deployment has only a single ready replica.
+          - pass:
+              message: There are multiple replicas of the API deployment ready.
 ```
 
 <PreflightsDefineXref/>
@@ -286,8 +286,6 @@ stringData:
                   message: Said hi!
 ```
 
-## Next Steps
+## Next Step
 
-- When using Secrets, you can also add Helm templates for the specification in the `values.yaml` file.
-
-- Test your support bundle in a development environment. For more information, see [Generating Support Bundles](support-bundle-generating).
+Test your support bundle in a development environment. For more information, see [Generating Support Bundles](support-bundle-generating).
