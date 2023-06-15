@@ -67,6 +67,13 @@ To use preflight checks and support bundles with your application, you define co
 
 Depending on whether your customers install with Replicated KOTS or install with Helm, you have multiple options for making these specifications available to your customers. You can also use a combination of distributions methods, such as YAML files and URLs.
 
+For information about how to write the specifications, see:
+  
+  - [Define Preflight Checks for Helm Installations](preflight-helm-defining)
+  - [Define Preflight Checks for KOTS](preflight-kots-defining)
+  - [Customize Support Bundles for Helm Installations](support-bundle-helm-customizing)
+  - [Customize Support Bundles for KOTS](support-bundles-kots-customizing)
+
 The following table gives a brief description of the available options to distribute preflight and support bundle specifications:
 
 <table>
@@ -91,13 +98,6 @@ The following table gives a brief description of the available options to distri
       <td><p>Preflight specifications are provided as stdin using <code>-</code> as the argument.</p><p>Compatible with Helm templates.</p><p>Cannot be used for support bundle specifications.</p></td>
     </tr>
   </table>
-
-  For information about how to write the specifications, see:
-  
-  - [Define Preflight Checks for Helm Installations](preflight-helm-defining)
-  - [Define Preflight Checks for KOTS](preflight-kots-defining)
-  - [Customize Support Bundles for Helm Installations](support-bundle-helm-customizing)
-  - [Customize Support Bundles for KOTS](support-bundles-kots-customizing)
 
 ## Running Preflight Checks in Clusters
 
