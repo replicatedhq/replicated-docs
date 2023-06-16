@@ -28,13 +28,13 @@ jobs:
 
     - name: Update Release Notes
       env:
-        PATTERN: "# App Manager Release Notes"
+        PATTERN: ".+RELEASE_NOTES_PLACEHOLDER.+"
       run: |
         cat <<EOT >> /tmp/release-notes.txt
 
         ${{ steps.release-notes.outputs.release-notes }}
         EOT
-        sed -i -e "/$PATTERN/r /tmp/release-notes.txt" docs/release-notes/rn-app-manager.md
+        sed -i -E "/$PATTERN/r /tmp/release-notes.txt" docs/release-notes/rn-app-manager.md
         rm -rf /tmp/release-notes.txt
 
     - name: Create Pull Request # creates a PR if there are differences

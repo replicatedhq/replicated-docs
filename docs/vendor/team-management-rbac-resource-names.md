@@ -130,21 +130,25 @@ Grants the holder permission to update the files saved in release sequence `[:se
 
 Grants the holder permission to read the files at release sequence `[:sequence]` in the specified application(s).
 
-### kots/customhostname/list
+### kots/app/[:appId]/customhostname/list
 
 Grants the holder permission to view custom hostnames for the team.
 
-### kots/customhostname/create
+### kots/app/[:appId]/customhostname/create
 
 Grants the holder permission to create custom hostnames for the team.
 
-### kots/customhostname/delete
+### kots/app/[:appId]/customhostname/delete
 
 Grants the holder permission to delete custom hostnames for the team.
 
-### kots/customhostname/default
+### kots/app/[:appId]/customhostname/default/set
 
-Grants the holder permission to set default custom hostnames, which is currently used for the download portal.
+Grants the holder permission to set default custom hostnames.
+
+### kots/app/[:appId]/customhostname/default/unset
+
+Grants the holder permission to unset the default custom hostnames.
 
 ## Registry
 

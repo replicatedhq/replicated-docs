@@ -71,7 +71,7 @@ Complete the following procedures to import your application files then create a
 
 1. Promote the release to the default Unstable channel. For information about promoting releases, see [Managing Releases with the Vendor Portal](releases-creating-releases).
 
-1. Create a license file in the vendor portal and assign the license to the Unstable channel. You need a license file to test your releases. See [Creating a Customer](releases-creating-customer).
+1. Create a license file in the vendor portal and assign the license to the Unstable channel. You need a license file to test your releases. See [Creating and Managing Customers](releases-creating-customer).
 
 1. Test the release by installing in a development environment with the license file that you created. For information about how to install an application, see [Overview of Installing an Application](/enterprise/installing-overview).
 
