@@ -70,11 +70,5 @@ spec:
         uri: rediss://default:password@hostname:6379
 ```
 
-A single support bundle archive can be generated from a combination of these manifests: 
-
-```bash
-kubectl support-bundle manifests/redis/troubleshoot.yaml manifests/mysql/troubleshoot.yaml manifests/nginx/troubleshoot.yaml
-```
-
-For more information about generating merged support bundles, see [Generate a Merged Support Bundle](/enterprise/troubleshooting-an-app/#generate-a-merged-support-bundle).
-
+A single support bundle archive can be generated from a combination of these manifests using the `kubectl support-bundle --load-cluster-specs` command. 
+For more information and additional options, see [Generating Support Bundles](suport-bundle-generating).
