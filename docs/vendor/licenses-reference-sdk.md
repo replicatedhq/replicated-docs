@@ -1,14 +1,16 @@
-# Checking Entitlements with the SDK
+# Checking Entitlements for Helm Installations
 
-This topic describes how to get entitlement information from customer licenses when you distribute the Replicated SDK with your application Helm chart. For more information about the Replicated SDK, see [About the Replicated SDK](replicated-sdk-overview).
+This topic describes how to get entitlement information from customer licenses to support installations with Helm.
 
 ## Overview
 
-When you distribute the Replicated SDK alongside your Helm chart, you can use the SDK API `license` endpoints to reference license fields and check customer entitlements during runtime. You can also add references to license fields in the `global` section of the Helm chart values file to check customer entitlements at the time of deployment, before the SDK has been initialized.
+You can add references to customer license fields in the `global` section of the Helm chart values file to check customer entitlements at the time of deployment.
 
-## Checking Entitlements at Runtime with the API {#runtime}
+Additionally, when you distribute the Replicated SDK alongside your Helm chart, you can use the SDK API `license` endpoints to reference license fields and check customer entitlements during runtime.  For more information about the Replicated SDK, see [About the Replicated SDK](replicated-sdk-overview).
 
-The SDK retrieves up-to-date customer license information from the vendor portal during runtime. This means that any changes to customer licenses are reflected in real time in the customer environment. For example, you can revoke access to your application when a license expires, expose additional product functionality dynamically based on entitlements, and more.
+## Checking Entitlements at Runtime with the SDK API {#runtime}
+
+The Replicated SDK retrieves up-to-date customer license information from the vendor portal during runtime. This means that any changes to customer licenses are reflected in real time in the customer environment. For example, you can revoke access to your application when a license expires, expose additional product functionality dynamically based on entitlements, and more.
 
 After the Replicated SDK is initialized and running in a customer environment, you can use the following SDK API endpoints to get information about the license that was used to install:
 * `/api/v1/license/info`: List license details, including the license ID, the channel the customer is assigned, and the license type.
@@ -101,4 +103,4 @@ To revoke access to your application when a license expires:
             v1: iZBpESXx7fpdtnbMKingYHiJH42rP8fPs0x8izy1mODckGBwVoA... 
     ```
 
-1. To test your changes, create a new release and promote it to a development channel, such as Unstable. Install the release in a development environment using the license ID for the customer that you created or edited. For more information, see [Installing an Application and the SDK](replicated-sdk-installing).    
+1. To test your changes, create a new release and promote it to a development channel, such as Unstable. Install the release in a development environment using the license ID for the customer that you created or edited. 

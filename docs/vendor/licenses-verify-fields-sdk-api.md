@@ -1,4 +1,4 @@
-# Verifying License Field Signatures with the SDK
+# Verifying License Field Signatures
 
 This topic describes how to verify the signature of license fields when you use the Replicated SDK API to check customer entitlements in your Helm chart application during runtime.
 

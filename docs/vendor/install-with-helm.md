@@ -1,26 +1,21 @@
-import Beta from "../partials/replicated-sdk/_beta.mdx"
+# Installing an Application with Helm (Beta)
 
-# Installing an Application and the SDK
-
-This topic describes how to install Helm chart applications that include the Replicated SDK as a dependency.
-
-<Beta/>
+This topic describes how to use Helm to install releases that contain one or more Helm charts.
 
 ## Prerequisites
 
-To install an application Helm chart and the Replicated SDK, ensure that you meet the following prerequisites:
+Before you install, complete the following prerequisites:
 
-* The license ID used to install must be associated with a valid email address. This email address is only used as a username for the Replicated registry and is never contacted in any way. For more information about creating and editing customers in the vendor portal, see [Creating a Customer](/vendor/releases-creating-customer).
+* You must have a license with a valid email address. This email address is only used as a username for the Replicated registry and is never contacted in any way. For more information about creating and editing customers in the vendor portal, see [Creating a Customer](/vendor/releases-creating-customer).
 * The **Show Helm Install Tab** feature flag must be enabled for your team in the vendor portal.
+* (Optional) To install the Replicated SDK with your application, declare the SDK as a dependency in your chart.
 * (Optional) To run preflight checks before installing, you must have configured a preflight check specification for your application. For more information, see [About Preflight Checks and Support Bundles](preflight-support-bundle-creating).
 
 ## Install
 
-To install, you first pull your chart from the Replicated registry using the email address and license ID associated with a customer in the vendor portal. This step ensures that any customer who pulls your chart has a valid, unexpired license.
+To install, you first pull your chart from the Replicated registry using the email address and license ID associated with a customer in the vendor portal. Then, use Helm to install the chart. If you declared the Replicated SDK as a dependency, then the SDK is installed alongside your application.
 
-When a Helm chart is pulled from the Replicated registry, the registry uses the unique license ID to inject certain values into the chart in the `replicated` section of the Helm chart `values.yaml` file. These values include license and release information that the SDK uses for initialization. For more information about the values injected by the Replicated registry, see [SDK Initialization with Replicated Values](replicated-sdk-overview#replicated-values) in _About the Replicated SDK_.
-
-To install a Helm chart application and the Replicated SDK:
+To install a Helm chart:
 
 1. In the vendor portal, go to **Customers** and click on the target customer.
 
@@ -57,11 +52,16 @@ To install a Helm chart application and the Replicated SDK:
     ```
     Replace `RELEASE_NAME`, `APP_SLUG`, `CHANNEL_NAME`, and `CHART_NAME`, with the values provided in the command in the **Helm install instructions** dialog.
 
-1. Verify that the application and the Replicated SDK were installed by getting the Kubernetes Deployments in the appropriate namespace:
+1. Verify that the application was installed by getting the Kubernetes Deployments in the appropriate namespace:
 
    ```bash
    kubectl get deployments
    ```
+
+   :::note
+   If you includes the Replicated SDK as a dependency of your Helm chart, you can also see the SDK listed in your Deployments.
+   :::
+
 1. (Optional) In the vendor portal, click **Customers**. You can see that the customer you used to install is marked as **Active** and that details about the application instance that you installed are listed under the customer name. 
 
    **Example**:

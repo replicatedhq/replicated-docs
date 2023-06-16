@@ -1,6 +1,6 @@
 import Beta from "../partials/replicated-sdk/_beta.mdx"
 
-# WIP Using Integration Mode
+# Developing in Integration Mode (Beta)
 
 This topic describes how to use development mode with the Replicated SDK to test changes locally.
 
@@ -11,12 +11,6 @@ This topic describes how to use development mode with the Replicated SDK to test
 You can use the Replicated SDK in development mode to develop locally without needing to make real changes in the Replicated vendor portal or in your environment. Development mode lets you provide mock data for the `/app` Replicated SDK APIs in order to test specific features and scenarios.
 
 To use development mode, you initialize the Replicated SDK using a valid development license created in the Replicated vendor portal and then provide the SDK with mock data. 
-
-<!-- The following diagram demonstrates how the Replicated SDK uses the development license and mock data to run in development mode:
-
-![architecture diagram of sdk development mode](/images/sdk-development-mode-diagram.png)
-
-As shown in the diagram above, the Replicated SDK initializes with a developer license ID to get information about the application release and license entitlements. The SDK uses mock data that you POST as a JSON object with the `/api/v1/mock-data` API. -->
 
 To use the Replicated SDK in development mode, complete the following procedures:
 1. [Create a Development License](#license)

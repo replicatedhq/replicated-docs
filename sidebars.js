@@ -146,26 +146,41 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Replicated SDK Helm Chart (Beta)',
-      items: [
-        'vendor/replicated-sdk-overview',
-        'vendor/replicated-sdk-using',
-        'vendor/replicated-sdk-installing',
-        'vendor/replicated-sdk-development',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Deploying Helm Charts with KOTS',
+      label: 'Distributing Helm Charts',
       items: [
         'vendor/helm-overview',
-        'vendor/helm-install',
-        'vendor/helm-release',
-        'vendor/helm-native-helm-install-order',
-        'vendor/helm-optional-charts',
-        'vendor/helm-optional-value-keys',
+        {
+          type: 'category',
+          label: 'Distributing with Helm (Beta)',
+          items: [
+            'vendor/helm-install',
+            'vendor/helm-install-release',
+            'vendor/install-with-helm',
+            {
+              type: 'category',
+              label: 'Replicated SDK (Beta)',
+              items: [
+                'vendor/replicated-sdk-overview',
+                'vendor/replicated-sdk-using',
+                'vendor/replicated-sdk-development',
+              ]
+            },
+            
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Distributing Helm Charts with KOTS',
+          items: [
+            'vendor/helm-native-about',
+            'vendor/helm-release',
+            'vendor/helm-native-helm-install-order',
+            'vendor/helm-optional-charts',
+            'vendor/helm-optional-value-keys',
+          ],
+        },
       ],
-    },
+    },   
     {
       type: 'category',
       label: 'Admin Console and Download Portal Customization',
