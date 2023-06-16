@@ -6,7 +6,7 @@ This topic describes release channels, including the default channels and the **
 
 The vendor portal includes release channels where you promote your application releases and assign customers. These channels are designed to align with your software development lifecycle. For example, you can have a channel in the vendor portal where you promote alpha or beta releases, and a separate channel where you promote releases that are generally available.
 
-You assign customers to channels in the vendor portal to control access to your application releases. Customers can install or upgrade to releases that are promoted to the channel to which they are assigned. For example, assigning a customer to your Beta channel allows that customer to install or upgrade to only releases promoted to the Beta channel. You can change the channel to which a customer is assigned at any time. For more information, see [Creating a Customer](releases-creating-customer).
+You assign customers to channels in the vendor portal to control access to your application releases. Customers can install or upgrade to releases that are promoted to the channel to which they are assigned. For example, assigning a customer to your Beta channel allows that customer to install or upgrade to only releases promoted to the Beta channel. You can change the channel to which a customer is assigned at any time. For more information, see [Creating and Managing Customers](releases-creating-customer).
 
 The vendor portal includes the following channels by default:
 

@@ -5,7 +5,7 @@ portal include built-in license fields. Built-in fields are reserved field names
 and are available in every customer license. These license fields can be configured using the Vendor API or the vendor portal, and can be used through License Context template functions. For more information about using built-in license fields, see:
 
 - [Using the Vendor API v3](/reference/vendor-api-using)
-- [Creating a Customer](releases-creating-customer)
+- [Creating and Managing Customers](releases-creating-customer)
 - [License Context](/reference/template-functions-license-context)
 
 For information about creating custom license fields for a customer, see [Managing Custom License Fields](licenses-adding-custom-fields).

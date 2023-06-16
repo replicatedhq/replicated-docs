@@ -37,7 +37,7 @@ To enable the snapshots backup and restore feature for your users, you must:
 - Have the snapshots entitlement enabled in your Replicated vendor account. For account entitlements, contact the Replicated TAM team.
 - Define a manifest for creating backups. See [Configuring Backups](snapshots-configuring-backups).
 - When needed, configure backup and restore hooks. See [Configuring Backup and Restore Hooks](snapshots-hooks).
-- Enable the **Allow Snapshot** option in customer licenses. See [Creating a Customer](releases-creating-customer).
+- Enable the **Allow Snapshot** option in customer licenses. See [Creating and Managing Customers](releases-creating-customer).
 
 ## Understanding Backup and Restore for Enterprise Users {#how-users}
 
