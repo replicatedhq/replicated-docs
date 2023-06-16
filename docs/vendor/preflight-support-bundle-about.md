@@ -72,7 +72,7 @@ For information about how to write the specifications, see:
   - [Define Preflight Checks for Helm Installations](preflight-helm-defining)
   - [Define Preflight Checks for KOTS](preflight-kots-defining)
   - [Customize Support Bundles for Helm Installations](support-bundle-helm-customizing)
-  - [Customize Support Bundles for KOTS](support-bundles-kots-customizing)
+  - [Customize Support Bundles for KOTS](support-bundle-kots-customizing)
 
 <!-- The following table gives a brief description of the available options to distribute preflight and support bundle specifications:
 

@@ -25,20 +25,20 @@ To install the preflight plug-in:
     curl https://krew.sh/preflight | bash
     ```
 
-## Run Preflights Checks
+## Run Preflight Checks
 
-Before running the `helm install` command, your customers run preflight checks using the local values file that you provide. This lets customers verify that their environments meet the installation requirements before they run the actual installation. 
+Before running the `helm install` command, your customers run the preflight checks to verify that their environments meet the installation requirements before they run the actual installation. 
 
-The output shows the success, warning, or fail message each preflight check, depending on how they were configured.You can ask customers to send you the results of the preflight checks if needed.
+The output shows the success, warning, or fail message for each preflight check, depending on how they were configured. You can ask customers to send you the results of the preflight checks if needed.
 
-- To run the basic preflights command:
+- To run the basic `preflight` command:
 
     ```
     helm template oci://REGISTRY/APP_NAME/CHART | kubectl preflight -
     ```
+    Replace `REGISTRY` with the registry domain where your Helm chart is located. This can be the Replicated registry or a custom domain.
 
-
-- If preflights are dependent on customer values, run the preflights using the values file to override chart defaults:
+- If preflight checks are dependent on customer values, run the preflights using the values file to override chart defaults:
 
     ```
     helm template oci://REGISTRY/APP_NAME/CHART --values FILENAME.yaml | kubectl preflight -
@@ -46,7 +46,7 @@ The output shows the success, warning, or fail message each preflight check, dep
 
     Replace:
 
-    - `REGISTRY` with the registry domain. This can be the Replicated registry or a custom domain.
+    - `REGISTRY` with the registry domain where your Helm chart is located. This can be the Replicated registry or a custom domain.
     - `APP_NAME` with the name of the application.
     - `CHART` with the name of the Helm chart.
     - `FILENAME` with the name of the values file.
