@@ -652,14 +652,12 @@ A `regex` can be used to validate whether an item's value matches the provided r
 
 A repeatable config item copies a YAML array entry or YAML document for as many values as are provided. Any number of values can be added to a repeatable item to generate additional copies.
 
-**Note**: Repeatable Items only work for text, textarea, and file types.
-
 To make an item repeatable, set `repeatable` to true:
 
 ```yaml
     - name: ports
       items:
-      - name: service_port
+      - name: serviceport
         title: Service Port
         type: text
         repeatable: true
@@ -673,6 +671,11 @@ Repeatable items do not use the `default` or `value` fields, but instead a `valu
       ports:
         port-default-1: "80"
 ```
+
+### Limitations
+
+* Repeatable Items only work for text, textarea, and file types.
+* Repeatable config item names must only consist of lower case alphanumeric characters.
 
 ### Template Targets
 
@@ -706,8 +709,8 @@ If the `yamlPath` field is not present, the entire YAML document matching the `t
 The repeat items are called with the delimeters `repl[[ .itemName ]]` or `[[repl .itemName ]]`. These delimiters can be placed anywhere inside of the `yamlPath` target node:
 
 ```yaml
-    - port: repl{{ ConfigOption "[[repl .service_port ]]" | ParseInt }}
-      name: '[[repl .service_port ]]'
+    - port: repl{{ ConfigOption "[[repl .serviceport ]]" | ParseInt }}
+      name: '[[repl .serviceport ]]'
 ```
 This repeatable templating is not compatible with sprig templating functions. It is designed for inserting repeatable `keys` into the manifest. Repeatable templating can be placed inside of Replicated config templating.
 
@@ -720,7 +723,7 @@ Repeatable items are processed in order of the template targets in the Config Sp
 ```yaml
     - name: ports
       items:
-      - name: service_port
+      - name: serviceport
         title: Service Port
         type: text
         repeatable: true
@@ -770,7 +773,7 @@ In these examples, the default service port of "80" is included with the release
 ```yaml
     - name: ports
       items:
-      - name: service_port
+      - name: serviceport
         title: Service Port
         type: text
         repeatable: true
@@ -794,10 +797,10 @@ metadata:
 spec:
   values:
     port-default-1:
-      repeatableItem: service_port
+      repeatableItem: serviceport
       value: "80"
-    service_port-8jdn2bgd:
-      repeatableItem: service_port
+    serviceport-8jdn2bgd:
+      repeatableItem: serviceport
       value: "443"
 ```
 
@@ -811,8 +814,8 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: repl{{ ConfigOption "[[repl .service_port ]]" | ParseInt }}
-    name: '[[repl .service_port ]]'
+  - port: repl{{ ConfigOption "[[repl .serviceport ]]" | ParseInt }}
+    name: '[[repl .serviceport ]]'
   selector:
     app: repeat_example
     component: my-deployment
@@ -833,8 +836,8 @@ spec:
   ports:
   - port: repl{{ ConfigOption "port-default-1" | ParseInt }}
     name: 'port-default-1'
-  - port: repl{{ ConfigOption "service_port-8jdn2bgd" | ParseInt }}
-    name: 'service_port-8jdn2bgd'
+  - port: repl{{ ConfigOption "serviceport-8jdn2bgd" | ParseInt }}
+    name: 'serviceport-8jdn2bgd'
   selector:
     app: repeat_example
     component: my-deployment
@@ -853,7 +856,7 @@ spec:
   - port: 80
     name: port-default-1
   - port: 443
-    name: service_port-8jdn2bgd
+    name: serviceport-8jdn2bgd
   selector:
     app: repeat_example
     component: my-deployment
@@ -864,7 +867,7 @@ spec:
 ```yaml
     - name: ports
       items:
-      - name: service_port
+      - name: serviceport
         title: Service Port
         type: text
         repeatable: true
@@ -887,10 +890,10 @@ metadata:
 spec:
   values:
     port-default-1:
-      repeatableItem: service_port
+      repeatableItem: serviceport
       value: "80"
-    service_port-8jdn2bgd:
-      repeatableItem: service_port
+    serviceport-8jdn2bgd:
+      repeatableItem: serviceport
       value: "443"
 ```
 
@@ -904,10 +907,10 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: repl{{ ConfigOption "[[repl .service_port ]]" | ParseInt }}
+  - port: repl{{ ConfigOption "[[repl .serviceport ]]" | ParseInt }}
   selector:
     app: repeat_example
-    component: repl[[ .service_port ]]
+    component: repl[[ .serviceport ]]
 ```
 
 **After repeatable config processing:**
@@ -931,15 +934,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: service_port-8jdn2bgd
+  name: serviceport-8jdn2bgd
   namespace: my-app
 spec:
   type: NodePort
   ports:
-  - port: repl{{ ConfigOption "service_port-8jdn2bgd" | ParseInt }}
+  - port: repl{{ ConfigOption "serviceport-8jdn2bgd" | ParseInt }}
   selector:
     app: repeat_example
-    component: service_port-8jdn2bgd
+    component: serviceport-8jdn2bgd
 ```
 
 **Resulting manifest:**
@@ -960,7 +963,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: service_port-8jdn2bgd
+  name: serviceport-8jdn2bgd
   namespace: my-app
 spec:
   type: NodePort
@@ -968,5 +971,5 @@ spec:
   - port: 443
   selector:
     app: repeat_example
-    component: service_port-8jdn2bgd
+    component: serviceport-8jdn2bgd
 ```
