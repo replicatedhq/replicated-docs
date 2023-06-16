@@ -72,7 +72,7 @@ make release
 
 The steps below show how to modify a repository containing a Helm chart to be deployable as an application.
 
-This section assumes you have reviewed the [About Deploying Helm Charts](helm-overview) content, and are familiar with how Replicated KOTS processes Helm charts as part of an application.
+This section assumes you have reviewed the [About Distributing Helm Charts with KOTS](/vendor/helm-native-about) content, and are familiar with how Replicated KOTS processes Helm charts as part of an application.
 
 - Start from a basic Helm Chart structure, which could look something like this:
 

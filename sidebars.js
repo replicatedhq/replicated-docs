@@ -156,15 +156,11 @@ const sidebars = {
             'vendor/helm-install',
             'vendor/helm-install-release',
             'vendor/install-with-helm',
-            {
-              type: 'category',
-              label: 'Replicated SDK (Beta)',
-              items: [
+
                 'vendor/replicated-sdk-overview',
                 'vendor/replicated-sdk-using',
                 'vendor/replicated-sdk-development',
-              ]
-            },
+
             
           ],
         },

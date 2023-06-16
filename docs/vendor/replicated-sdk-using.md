@@ -57,6 +57,6 @@ Continue to [Add Your Helm Chart to a Release](#release) below to add the `.tgz`
 
 ## Add Your Helm Chart to a Release {#release}   
 
-After you package your Helm chart with the Replicated SDK as a dependency, you can add the `.tgz` file to a release in the vendor portal. When you promote the release to a channel, the vendor portal automatically pushes your Helm chart to the Replicated registry where your customers can then pull the chart. For more information, see [How the SDK Runs in a Customer Environment](#about-sdk-initialize).
+After you package your Helm chart with the Replicated SDK as a dependency, you can add the `.tgz` file to a release in the vendor portal. When you promote the release to a channel, the vendor portal automatically pushes your Helm chart to the Replicated registry where your customers can then pull the chart. For more information, see [How the SDK Runs in a Customer Environment](replicated-sdk-overview#about-sdk-initialize).
 
 <HelmReleaseSteps/>

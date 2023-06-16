@@ -12,7 +12,7 @@ Before you install, complete the following prerequisites:
 
 ## Install
 
-To install, you first pull your chart from the Replicated registry using the email address and license ID associated with a customer in the vendor portal. Then, use Helm to install the chart. If you declared the Replicated SDK as a dependency, then the SDK is installed alongside your application. For more information about the SDK, see [About the Replicated SDK](replicated-sdk-overview).
+To install, you first pull your chart from the Replicated registry using the email address and license ID associated with a customer in the vendor portal. Then, use Helm to install the chart. If you declared the Replicated SDK as a dependency, then the SDK is installed alongside your application. For more information about the SDK, see [About the Replicated SDK (Beta)](replicated-sdk-overview).
 
 To install a Helm chart:
 
