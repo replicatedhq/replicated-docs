@@ -674,7 +674,7 @@ Repeatable items do not use the `default` or `value` fields, but instead a `valu
 
 ### Limitations
 
-* Repeatable Items only work for text, textarea, and file types.
+* Repeatable items work only for text, textarea, and file types.
 * Repeatable config item names must only consist of lower case alphanumeric characters.
 
 ### Template Targets
