@@ -1,35 +1,35 @@
 import Beta from "../partials/replicated-sdk/_beta.mdx"
 
-# Developing in Integration Mode (Beta)
+# Developing with the SDK API in Integration Mode (Beta)
 
-This topic describes how to use development mode with the Replicated SDK to test changes locally.
+This topic describes how to use integration mode with the Replicated SDK to test changes locally.
 
 <Beta/>
 
 ## About Development Mode
 
-You can use the Replicated SDK in development mode to develop locally without needing to make real changes in the Replicated vendor portal or in your environment. Development mode lets you provide mock data for the `/app` Replicated SDK APIs in order to test specific features and scenarios.
+You can use the Replicated SDK in integration mode to develop locally without needing to make real changes in the Replicated vendor portal or in your environment. Integration mode lets you provide mock data for the Replicated SDK API `app` endpoints in order to test specific features and scenarios. For more information, see [app](/reference/replicated-sdk-apis#app) in _Replicated SDK API (Beta)_.
 
-To use development mode, you initialize the Replicated SDK using a valid development license created in the Replicated vendor portal and then provide the SDK with mock data. 
+To use integration mode, you initialize the Replicated SDK using a valid development license created in the Replicated vendor portal and then provide the SDK with mock data. 
 
-To use the Replicated SDK in development mode, complete the following procedures:
+To use the Replicated SDK in integration mode, complete the following procedures:
 1. [Create a Development License](#license)
-1. [Initialize the SDK With Your Development License](#initialize)
+1. [Initialize the SDK](#initialize)
 1. [Create and Provide Mock Data](#mock-data)
 
 ## Limitation
 
-Development mode has the following limitation:
-
-You cannot provide mock data to test the `/license` APIs because the Replicated SDK requires a valid license to initialize. The `/license` APIs will always return data from the development license that you use to initialize.
+You cannot provide mock data to test the `license` API endpoints because the Replicated SDK requires a valid license to initialize. The `license` endpoints will always return data from the development license that you use to initialize. To test license field values with the API, you can provide the values in the development license that you create. See [Create a Development License](#license) below.
 
 ## Create a Development License {#license}
 
-To use development mode, you first need to create a development license that you can use to initialize the SDK. For information about licenses, see [About Customer License Types](licenses-about-types).
+To use integration mode, you first need to create a development license that you can use to initialize the SDK. When you create the development license, you can add values to any license fields that you want to use in testing.
+
+For information about development licenses, see [About Customer License Types](licenses-about-types).
 
 To create a development license:
 
-1. In the vendor portal, click **Customers > Create customer**.
+1. In the vendor portal, go to **Customers** and click **Create customer**.
 
 1. Complete the following fields:
     
@@ -39,78 +39,42 @@ To create a development license:
     
     1. For **Customer type**, select **Development**.
     
-    1. For **Customer email**, add the email address that you want to use for the developer license.
+    1. For **Customer email**, add the email address that you want to use for the license.
 
    ![create customer page in the vendor portal](/images/create-customer-development-mode.png)
    [View a larger version of this image](/images/create-customer-development-mode.png)
 
-1. (Optional) For **Expiration date** add an expiration date.
+1. (Optional) Add any license field values that you want to use for testing:
 
-1. (Optional) Add custom entitlements for the development license.
+   1. For **Expiration policy**, you can add an expiration date for the license. 
+
+   1. For **Custom fields**, you can add values for any custom license fields in your application. For information about how to create custom license fields, see [Managing Custom License Fields](/vendor/licenses-adding-custom-fields).
 
 1. Click **Save Changes**.
 
 1. Click **Download license**.
 
-1. Open the license file. Copy the value of the `licenseID` field.
+1. Open the license file and copy the value of the `licenseID` field.
 
-Continue to [Initialize the SDK With Your Development License](#initialize) to initialize the SDK in development mode with the development license ID.
+## Initialize the SDK {#initialize}
 
-## Initialize the SDK With Your Development License {#initialize}
+In production use, customer-specific information like the license and the current release on the assigned channel is injected into the chart by the Replicated registry when the chart is pulled. For more information about the values that the Replicated registry automatically injects, see [Replicated Helm Values](/vendor/helm-install#replicated-values) in _About Distributing with Helm (Beta)_.
 
-When the Replicated SDK is installed in a customer environment, the Replicated registry automatically injects customer-specific license information. When developing against the chart locally, you need to manually provide the license information to initialize the SDK in your development environment.
+When developing against the chart locally in integration mode, you can provide the license ID to initialize the SDK instead of reproducing all the Helm values that the registry normally injects.
 
-To provide license information to the SDK, you can either use a Helm chart or a container image, depending on what your development environment supports.
+To initialize the SDK for use in integration mode:
 
-### Initialize With Helm {#helm-initialize}
+1. In the [SDK Helm chart](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml.tmpl), open the `values.yaml` file.
 
-If your development environment supports Helm, you can deploy the SDK as a Helm chart.
+1. Paste the ID from your development license in the `integration.licenseID` field:
 
-To initialize the SDK by deploying with Helm:
-
-1. Follow the steps in [Declare the SDK as a Dependency](replicated-sdk-using#declare-the-sdk-as-a-dependency) to add the Replicated SDK as a dependency in your Helm chart, package the chart, and promote a release in the vendor portal.
-
-1. Pull your Helm chart from the Replicated registry, using the development license that you created to authenticate:
-
-    ```bash
-    helm registry login registry.replicated.com --username EMAIL_ADDRESS --password LICENSE_ID
+    ```yaml
+     # Replicated SDK values.yaml file
+     integration:
+       licenseID: DEV_LICENSE_ID
     ```
 
-    Replace:
-    * `EMAIL_ADDRESS` with the email address associated with the development license.
-    * `LICENSE_ID` with the ID for the development license.
-
-1. Follow the steps in [Install](replicated-sdk-installing#install) to install your Helm chart and the SDK.
-
-    **Example**:
-
-    ```bash
-    helm install my-helm-release oci://registry.replicated.com/my-app/unstable/my-helm-chart
-    ```
-
-### Initialize With a Container Image {#container-initialize}
-
-If your development environment does not support Helm, create and apply a Kubernetes Deployment to deploy the SDK. To do this, copy the Deployment used by the SDK Helm chart and make some small changes so that it works in your environment.
-
-To initialize by deploying the SDK as a Kubernetes Deployment:
-
-1. Go to the [replicated-sdk](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/templates/) repository in GitHub. Copy the following YAML files and paste them where you develop:
-   
-   * `replicated-deployment.yaml` 
-   * `replicated-secret.yaml` 
-
-1. In the Secret object, set the value of the `REPLICATED_LICENSE_ID` environment variable to the ID of the development license that you created. For example:
-
-   ```yaml
-   REPLICATED_LICENSE_ID: 6CYEzsYZqJP8k...
-   ```
-
-1. Deploy the SDK:
-
-   ```
-   kubectl apply -f PATH_TO_DEPLOYMENT_FILE
-   ```
-   Replace `PATH_TO_DEPLOYMENT_FILE` with the path to the Deployment file that you saved in your local directory.
+1. Add the SDK Helm chart as a dependency in your application Helm chart.          
 
 ## Create and Provide Mock Data {#mock-data}
 
@@ -120,9 +84,7 @@ You provide mock data to the Replicated SDK as a JSON object.
 
 ### Create the JSON Object {#json}
 
-You provide data to the SDK in development mode by creating a JSON object. The JSON object contains fields where you can add mock values for a current release, available releases, and previously deployed releases.
-
-The following describes these fields:
+You provide data to the SDK in development mode by creating a JSON object. The JSON object contains fields where you can add mock values for a current release, available releases, and previously deployed releases:
 
 * **`currentRelease`**: The `currentRelease` field defines the currently deployed release of the application. The SDK uses this value to mock the `/api/v1/app/info` API endpoint. The `appSlug`, `appName`, `helmChartURL`, and `channelName` fields do not need to be provided in the mock since this data can be obtained from the provided development license.
 * **`availableReleases`**: The `availableReleases` array defines the releases promoted to the channel after the current release. In other words, the releases that are available for update. This is used to mock the `/api/v1/app/updates` API endpoint.
@@ -138,22 +100,22 @@ The example below shows a JSON object with mock data. This example includes all 
     "versionLabel": "1.0.0",
     "isRequired": false,
     "createdAt": "2023-05-23T21:10:57Z",
-    "releaseNotes": "I'm glad this is deployed",
-    "helmReleaseName": "alex-test",
+    "releaseNotes": "First release!",
+    "helmReleaseName": "sdk-test",
     "helmReleaseRevision": 10,
     "helmReleaseNamespace": "testing"
 },
 "availableReleases": [
     {
     "versionLabel": "1.0.1",
-    "releaseNotes": "A patch release is all",
+    "releaseNotes": "New patch version",
     "isRequired": false,
     "createdAt": "2023-05-23T21:10:57Z",
     "helmReleaseNamespace": "testing"
     },
     {
     "versionLabel": "2.0.0",
-    "releaseNotes": "A new major version!",
+    "releaseNotes": "New major version",
     "isRequired": false,
     "createdAt": "2023-05-23T21:10:57Z",
     "helmReleaseName": "please no"
@@ -165,7 +127,7 @@ The example below shows a JSON object with mock data. This example includes all 
     "createdAt": "2023-05-23T21:10:57Z",
     "releaseNotes": "The first patch version",
     "isRequired": true,
-    "helmReleaseName": "alex-test",
+    "helmReleaseName": "sdk-test",
     "helmReleaseRevision": 8,
     "helmReleaseNamespace": "testing"
     },
@@ -174,7 +136,7 @@ The example below shows a JSON object with mock data. This example includes all 
     "createdAt": "2023-05-23T21:10:57Z",
     "releaseNotes": "The second patch release",
     "isRequired": false,
-    "helmReleaseName": "alex-test",
+    "helmReleaseName": "sdk-test",
     "helmReleaseRevision": 9,
     "helmReleaseNamespace": "testing"
     }
@@ -190,6 +152,8 @@ After you create a JSON object with the mock data that you want to test, you can
 
 To provide mock data to the SDK at runtime:
 
+1. Deploy your Helm chart.
+
 1. Update the SDK to use the mock data by POSTing the JSON object you created to the SDK’s `/api/v1/mock-data` API:
 
     ```bash
@@ -202,7 +166,7 @@ To provide mock data to the SDK at runtime:
     curl replicated:3000/api/v1/mock-data
     ```
 
-1. Call the `/app` SDK APIs from your application to use the mock data. See [app](/reference/replicated-sdk-apis#app) in _Replicated SDK APIs (Beta)_.
+1. Make requests to the `app` endpoints the SDK API from your application to use the mock data. See [app](/reference/replicated-sdk-apis#app) in _Replicated SDK API (Beta)_.
 
 1. (Optional) Repeat the steps above to continue iterating.
 
@@ -216,19 +180,38 @@ To provide mock data to the SDK at runtime:
 
 To provide mock data to the SDK at deployment:
 
-1. Deploy your Helm chart and pass the mock data to the `replicated.dev.mockData` value.
+1. In the `replicated.integration.mockData` field of your Helm chart values file, add your mock data.
 
     **Example:**
 
     ```yaml
     replicated:
-      dev:
-        licenseID: 'MY_LICENSE_ID'
-        mockData: '{"currentRelease":{"versionLabel":"1.0.0","isRequired":false,"createdAt":"2023-05-23T21:10:57Z","releaseNotes":"I'm glad this is deployed","helmReleaseName":"alex-test","helmReleaseRevision":10,"helmReleaseNamespace":"testing"},"availableReleases":[{"versionLabel":"1.0.1","releaseNotes":"A patch release is all","isRequired":false,"createdAt":"2023-05-23T21:10:57Z","helmReleaseNamespace":"testing"},{"versionLabel":"2.0.0","releaseNotes":"A new major version!","isRequired":false,"createdAt":"2023-05-23T21:10:57Z","helmReleaseName":"please no"}],"deployedReleases":[{"versionLabel":"0.0.1","createdAt":"2023-05-23T21:10:57Z","releaseNotes":"The first patch version","isRequired":true,"helmReleaseName":"alex-test","helmReleaseRevision":8,"helmReleaseNamespace":"testing"},{"versionLabel":"0.0.2","createdAt":"2023-05-23T21:10:57Z","releaseNotes":"The second patch release","isRequired":false,"helmReleaseName":"alex-test","helmReleaseRevision":9,"helmReleaseNamespace":"testing"}]}'
+        integration:
+        mockData:
+            helmChartURL: oci://registry.replicated.com/dev-app/dev-channel/dev-parent-chart
+            currentRelease:
+            versionLabel: 0.1.3
+            isRequired: false
+            releaseNotes: "release notes 0.1.3"
+            createdAt: 2023-05-23T20:58:07Z
+            deployedAt: 2023-05-23T21:58:07Z
+            helmReleaseName: dev-parent-chart
+            helmReleaseRevision: 3
+            helmReleaseNamespace: default
+            deployedReleases:
+            - versionLabel: 0.1.1
+            isRequired: false
+            releaseNotes: "release notes 0.1.1"
+            createdAt: 2023-05-21T20:58:07Z
+            deployedAt: 2023-05-21T21:58:07Z
+            helmReleaseName: dev-parent-chart
+            helmReleaseRevision: 1
+            helmReleaseNamespace: default
     ```
-    Replace `MY_LICENSE_ID` with the ID for the development license that you are using for development mode.
 
-1. Call the `/app` SDK APIs from your application to use the mock data. See [app](/reference/replicated-sdk-apis#app) in _Replicated SDK APIs (Beta)_.
+1. Deploy your Helm chart.
+
+1. Make requests to the `app` endpoints the SDK API from your application to use the mock data. See [app](/reference/replicated-sdk-apis#app) in _Replicated SDK API (Beta)_.
 
 1. (Optional) Repeat the steps above to continue iterating.
 
