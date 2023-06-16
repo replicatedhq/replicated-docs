@@ -219,7 +219,6 @@ const sidebars = {
           items: [
             'vendor/support-bundle-helm-customizing',
             'vendor/support-bundle-kots-customizing',
-            'vendor/support-bundle-kots-secrets-configmaps',
          ],
         },
         {

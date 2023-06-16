@@ -38,7 +38,6 @@ To customize a support bundle as a Secret, create a specification using `kind: S
 
 - `Label` - Label the secret definition as `troubleshoot.sh/kind: support-bundle`
 - `stringData` - Specify a `stringData` field with a key named `support-bundle-spec`
-- `{{ .Release.Namespace }}` to ensure that the specification is scoped to the release namespace.
 
 **Example:**
 
@@ -49,11 +48,9 @@ metadata:
   labels:
     troubleshoot.sh/kind: support-bundle
   name: {{ .Release.Name }}-support-bundle
-  namespace: {{ .Release.Namespace }}
-type: Opaque
 stringData:
   # This is the support bundle spec that will be used to generate the support bundle
-  # Notes: we use {{ .Release.Namespace }} to ensure that the support bundle is scoped to the release namespace
+  # Notes: You can use {{ .Release.Namespace }} to ensure that the support bundle is scoped to the release namespace
   # We can use any of Helm's templating features here, including {{ .Values.someValue }}
   support-bundle-spec: |
     apiVersion: troubleshoot.sh/v1beta2

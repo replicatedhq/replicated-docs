@@ -40,7 +40,6 @@ You must include the following:
 
 - `Label`: Label the secret definition as `troubleshoot.sh/kind: preflight`
 - `stringData`: Specify a `stringData` field with a key named `preflight.yaml` so that the preflight binary can use this Secret when it runs from the CLI
--  `name`: Specify a `"{{ .Release.Namespace }}-NAME` to ensure that the specification is scoped to the release namespace. Replace `NAME` with the namespace where the release will be deployed.
 
 **Example:**
 
