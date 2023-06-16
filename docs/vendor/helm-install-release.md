@@ -1,7 +1,7 @@
 import HelmReleaseSteps from "../partials/helm/_helm-release-steps.mdx"
 import HelmChartPackage from "../partials/helm/_helm-chart-package-steps.mdx"
 
-# Adding Your Helm Chart to a Release
+# Creating a Release with Your Helm Chart
 
 This topic describes how to support Helm installations when you distribute your application with Replicated.
 

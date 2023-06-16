@@ -5,10 +5,6 @@ import HelmDiagramOverview from "../partials/helm/_helm-diagram-overview.mdx"
 
 This topic provides an overview of allowing your customers to install with Helm when you distribute your Helm chart application with Replicated.
 
-:::note
-Allowing users to install with the Helm is an Beta feature. To enable this feature on your account, log in to your vendor portal account. Select **Support** > **Request a feature**, and submit a feature request for "Helm CLI install option".
-:::
-
 ## About Helm Installations with Replicated
 
 The following diagram shows how Helm charts distributed with Replicated are installed in customer environments:
@@ -18,6 +14,8 @@ The following diagram shows how Helm charts distributed with Replicated are inst
 <HelmDiagramOverview/>
 
 For more information about how to install an application with Helm, see [Installing an Application with Helm (Beta)](install-with-helm).
+
+For information about how to get started distributing your Helm chart with Replicated, see [Add Your Helm Chart to a Release](helm-install-release).
 
 ## Replicated Helm Values {#replicated-values}
 

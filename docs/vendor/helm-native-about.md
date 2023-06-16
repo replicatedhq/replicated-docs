@@ -4,15 +4,15 @@ import VersionLimitation from "../partials/helm/_helm-version-limitation.mdx"
 import HooksLimitation from "../partials/helm/_hooks-limitation.mdx"
 import ReplicatedHelmDeprecated from "../partials/helm/_replicated-deprecated.mdx"
 
-# About Native Helm and Replicated Helm
+# About Distributing Helm Charts with KOTS
 
 This topic provides and overview of the native Helm and Replicated Helm methods for deploying Helm chart with Replicated KOTS.
 
 ## Overview
 
-Users can install an application packaged with Helm charts using KOTS in either an existing cluster or a cluster created by the Replicated kURL. KOTS also supports installations into air gap environments. For more information, see [Air Gap Installations](#air-gap) below.
+When you distribute your Helm chart application with KOTS, your users have access to all of the KOTS features, including the Replicated admin console, backup and restore with Snapshots, support for air gap installations, and support for installations into embedded clusters created by Replicated kURL. An application deployed with KOTS can use more than one Helm chart, can include Helm charts as components, and can use more than a single instance of any Helm chart.
 
-KOTS supports using _native Helm_ and _Replicated Helm_ to deliver enterprise applications as Helm charts, or including Helm charts as components of an application. An application can use more than one Helm chart, and can use more than a single instance of any Helm chart. As an application vendor, you specify whether KOTS uses the native Helm or Replicated Helm method to deploy your Helm chart-based application.
+KOTS supports using the _native Helm_ and _Replicated Helm_ installation methods to deliver Helm charts. As an application vendor, you specify whether KOTS uses the native Helm or Replicated Helm method.
 
 ### Native Helm (Recommended) {#native}
 
@@ -120,7 +120,7 @@ KOTS supports native Helm and Replicated Helm installations into air gap environ
 
 ## Limitations {#replicated-helm-limitations}
 
-The following limitations apply when using KOTS for native Helm and Replicated Helm installations:
+The following limitations apply when using KOTS to install Helm charts:
 * <ReplicatedHelmDeprecated/>
 * <TemplateLimitation/>
 * <VersionLimitation/>
