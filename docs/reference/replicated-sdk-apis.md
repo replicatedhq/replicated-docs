@@ -1,4 +1,5 @@
 import Beta from "../partials/replicated-sdk/_beta.mdx"
+import LicenseExpirationExample from "../partials/replicated-sdk/_license-expiration-sdk-example.mdx"
 
 # Replicated SDK API (Beta)
 
@@ -275,3 +276,7 @@ To use the SDK API to check for available application updates and provide custom
         * **Registry domain**: The domain for the registry where your Helm chart is pushed. The registry domain is either `replicated.registry.com` or a custom domain that you added. 
         * **App slug**: The app slug is available from the `/api/v1/app/info` endpoint in the `appSlug` field. 
         * **Channel slug**: The channel slug is available from the `/api/v1/app/info` endpoint in the `currentRelease.channelSlug` field.
+
+### Revoke Access at Runtime When a License Expires        
+
+<LicenseExpirationExample/>

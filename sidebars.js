@@ -128,7 +128,7 @@ const sidebars = {
         'vendor/licenses-using-builtin-fields',
         'vendor/licenses-adding-custom-fields',
         'vendor/licenses-referencing-fields',
-        'vendor/licenses-reference-sdk',
+        'vendor/licenses-reference-helm',
         'vendor/licenses-verify-fields-sdk-api',
       ],
     },

@@ -1,4 +1,3 @@
-import HelmCLILimitations from "../partials/helm/_helm-cli-limitations.mdx"
 import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
 import HelmDiagramOverview from "../partials/helm/_helm-diagram-overview.mdx"
 
@@ -14,19 +13,13 @@ Allowing users to install with the Helm is an Beta feature. To enable this featu
 
 The following diagram shows how Helm charts distributed with Replicated are installed in customer environments:
 
-<img src="/images/helm-install-diagram.png" alt="diagram of the replicated sdk in a custom environment" width="600px"/> 
+<img src="/images/helm-install-diagram.png" alt="diagram of a helm chart in a custom environment" width="600px"/> 
 
 <HelmDiagramOverview/>
 
 For more information about how to install an application with Helm, see [Installing an Application with Helm (Beta)](install-with-helm).
 
-## Limitations
-
-Deploying with Helm is Beta and has the following limitations:
-
-<HelmCLILimitations/>
-
-## About Replicated Helm Values {#replicated-values}
+## Replicated Helm Values {#replicated-values}
 
 When a customer pulls your Helm chart from the Replicated registry, the Replicated registry injects values into the `replicated` field of the Helm chart values file. These values provide information about the following:
 * The customer's license and entitlement details
