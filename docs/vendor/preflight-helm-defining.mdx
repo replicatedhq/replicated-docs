@@ -22,7 +22,11 @@ Preflight checks run using a `helm template` command before running the installa
 
 ## Input Kind
 
-When you run `helm template` command to produce a stream of stdout and pipe the result to `preflight -`, the `preflight` command filters the stream for and runs the following kinds:
+To run preflight checks, you use the open source preflight kubectl plugin. For information about the preflight plugin, see [Getting Started](https://troubleshoot.sh/docs/) in the open source Troubleshoot documentation.
+
+The preflight plugin requires the preflight check specification that you write. For Helm installations, you provide this specification by running `helm template` to produce a stream of stdout and pipe the result to `preflight -`. The `preflight` plugin then automatically filters the stream of stdout for certain input kinds to find and run preflight specifications.
+
+The preflight plugin searches your Helm chart for preflight specifications in the following input kinds:
 
 -  Secret (`kind: Secret`)
 -  ConfigMap (`kind: ConfigMap`)
