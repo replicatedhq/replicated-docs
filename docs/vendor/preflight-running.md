@@ -14,11 +14,11 @@ To install the preflight plug-in:
     helm registry login REGISTRY_DOMAIN --username USERNAME --password PASSWORD
     ```
 
-Replace:
+    Replace:
 
-- `REGISTRY_DOMAIN` with the registry domain that contains the Helm chart.
-- `USERNAME` with the username that has access to the registry.
-- `PASSWORD` with the password for the registry.
+    - `REGISTRY_DOMAIN` with the registry domain that contains the Helm chart.
+    - `USERNAME` with the username that has access to the registry.
+    - `PASSWORD` with the password for the registry.
 
 1. Run the following command to install the preflight plug-in using krew:
     ```
@@ -33,12 +33,13 @@ The output shows the success, warning, or fail message each preflight check, dep
 
 To run the preflights using a local values file to override chart defaults:
 
-    ```
-    helm template oci://REGISTRY/APP_NAME/CHART --values FILENAME.yaml | kubectl preflight -
-    ```
-    Replace:
+```
+helm template oci://REGISTRY/APP_NAME/CHART --values FILENAME.yaml | kubectl preflight -
+```
 
-    - `REGISTRY` with the registry domain. This can be the Replicated registry or a custom domain.
-    - `APP_NAME` with the name of the application.
-    - `CHART` with the name of the Helm chart.
-    - `FILENAME` with the name of the local values file.
+Replace:
+
+- `REGISTRY` with the registry domain. This can be the Replicated registry or a custom domain.
+- `APP_NAME` with the name of the application.
+- `CHART` with the name of the Helm chart.
+- `FILENAME` with the name of the local values file.
