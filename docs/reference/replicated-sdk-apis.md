@@ -3,13 +3,13 @@ import LicenseExpirationExample from "../partials/replicated-sdk/_license-expira
 
 # Replicated SDK API (Beta)
 
-The Replicated SDK provides an API that you can use to embed Replicated functionality into your Helm chart application. For more information about how to get started with the Replicated SDK, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
+The Replicated SDK provides an API that you can use to embed Replicated functionality into your Helm chart application. For more information about how to get started with the Replicated SDK, see [About the Replicated SDK (Beta)](/vendor/replicated-sdk-overview).
 
 <Beta/>
 
 ## Access the SDK API
 
-The Replicated SDK API is available after the Replicated SDK is installed and initialized in a cluster. For information about installing the SDK, see [Installing an Application and the SDK](/vendor/replicated-sdk-installing).
+The Replicated SDK API is available after the Replicated SDK is installed and initialized in a cluster. For information about installing the SDK, see [Installing an Application with Helm (Beta)](/vendor/install-with-helm).
 
 After the SDK is installed, the Replicated SDK API service is exposed at `replicated:3000`. To verify the location of the Replicated SDK API service, you can run `kubectl get service` in the appropriate namespace.
 
@@ -185,7 +185,7 @@ This section describes the mock-data endpoints for working with data when develo
 
 ### POST mock-data
 
-Publish mock data for use developing against the Replicated SDK in integration mode. Accepts a JSON request body to set the mock data. For information about integration mode, see [Using Integration Mode](/vendor/replicated-sdk-development).
+Publish mock data for use developing against the Replicated SDK in integration mode. Accepts a JSON request body to set the mock data.
 
 ```
 /api/v1/mock-data
@@ -193,7 +193,7 @@ Publish mock data for use developing against the Replicated SDK in integration m
 
 ### GET mock-data
 
-List the mock data JSON object that you are using to develop against the Replicated SDK in integration mode. For information about integration mode, see [Using Integration Mode](/vendor/replicated-sdk-development).
+List the mock data JSON object that you are using to develop against the Replicated SDK in integration mode.
 
 ```
 /api/v1/mock-data
@@ -201,7 +201,7 @@ List the mock data JSON object that you are using to develop against the Replica
 
 ### DELETE mock-data
 
-Delete the mock data JSON object that you are using to develop against the Replicated SDK in integration mode. For information about integration mode, see [Using Integration Mode](/vendor/replicated-sdk-development).
+Delete the mock data JSON object that you are using to develop against the Replicated SDK in integration mode.
 
 ```
 /api/v1/mock-data

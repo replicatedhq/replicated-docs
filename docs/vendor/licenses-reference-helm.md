@@ -2,13 +2,13 @@ import LicenseExpirationExample from "../partials/replicated-sdk/_license-expira
 
 # Checking Entitlements for Helm Installations
 
-This topic describes how to get entitlement information from customer licenses to support installations with Helm.
+This topic describes how to get entitlement information from customer licenses in applications installed with Helm.
 
 ## Overview
 
-You can add references to customer license fields in the `global` section of the Helm chart values file to check customer entitlements at the time of deployment.
+When you distribute your Helm chart application with Replicated, you can add references to customer license fields in the `global` section of the Helm chart values file to check customer entitlements at the time of deployment. For more information, see [About Distributing with Helm (Beta)](helm-install).
 
-Additionally, when you distribute the Replicated SDK alongside your Helm chart, you can use the SDK API `license` endpoints to reference license fields and check customer entitlements during runtime.  For more information about the Replicated SDK, see [About the Replicated SDK](replicated-sdk-overview).
+Additionally, when you distribute the Replicated SDK alongside your Helm chart, you can use the SDK API `license` endpoints to reference license fields and check customer entitlements during runtime.  For more information about the Replicated SDK, see [About the Replicated SDK (Beta)](replicated-sdk-overview).
 
 ## Checking Entitlements at Runtime with the SDK API {#runtime}
 
@@ -21,7 +21,7 @@ After the Replicated SDK is initialized and running in a customer environment, y
 
 For more information about these endpoints, see [license](/reference/replicated-sdk-apis#license) in _Replicated SDK API (Beta)_.
 
-License fields are cryptographically signed to ensure their integrity. When you include logic in your application to check customer license entitlements at runtime, Replicated recommends that you also use signature verification to ensure the integrity of each license field you use. For more information, see [Verifying Licenses Field Signatures With the SDK](licenses-verify-fields-sdk-api)
+License fields are cryptographically signed to ensure their integrity. When you include logic in your application to check customer license entitlements at runtime, Replicated recommends that you also use signature verification to ensure the integrity of each license field you use. For more information, see [Verifying Licenses Field Signatures](licenses-verify-fields-sdk-api)
 
 ### Example: Revoke Access at Runtime
 
