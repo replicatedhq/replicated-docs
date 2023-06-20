@@ -74,6 +74,7 @@ To initialize the SDK for use in integration mode:
        integration:
          licenseID: DEV_LICENSE_ID
     ```
+    ```
 
 1. Add the SDK Helm chart as a dependency in your application Helm chart.          
 
