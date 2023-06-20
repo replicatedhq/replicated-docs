@@ -1,7 +1,7 @@
 import Beta from "../partials/replicated-sdk/_beta.mdx"
 import HelmReleaseSteps from "../partials/helm/_helm-release-steps.mdx"
 
-# Using the SDK With Your Application (Beta)
+# Using the SDK With Your Application (Alpha)
 
 This topic describes how to begin using the Replicated SDK by declaring it as a dependency in your application Helm chart. 
 
@@ -37,7 +37,7 @@ To declare the Replicated SDK as a dependency:
      repository: oci://registry.replicated.com/library
      version: 0.0.1-alpha.15
    ```
-   For the latest version information for the Replicated SDK, see **LINK**.
+   For the latest version information for the Replicated SDK, see the [replicated-sdk](https://github.com/replicatedhq/replicated-sdk/tags) repository in GitHub.
 
 1. From your local directory where the `Chart.yaml` file is saved, run the following command to update the chart’s dependencies:
 

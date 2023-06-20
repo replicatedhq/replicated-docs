@@ -17,7 +17,7 @@ To create a Helm chart package:
       You can also pass the names of a specific repository or repositories that you want to update in the `helm repo update` command. For more information, see [Helm Repo Update](https://helm.sh/docs/helm/helm_repo_update/) in the Helm documentation.
       :::
       
-   1. Download the latest copy of the desired Helm chart from a repository. Run:
+   1. Download the latest copy of the desired Helm chart from a repository:
 
       ```
       helm fetch REPO_NAME/CHART_NAME
@@ -32,12 +32,12 @@ To create a Helm chart package:
 
    1. In your local directory, `cd` to the location of the `Chart.yaml` file for the Helm chart.
 
-   1. If the `Chart.yaml` file includes any dependencies, update the `charts/` directory. Run:
+   1. If the `Chart.yaml` file includes any dependencies, update the `charts/` directory:
 
       ```
       helm dependency update
       ```
-   1. Package the Helm chart. Run:
+   1. Package the Helm chart:
 
       ```
       helm package .

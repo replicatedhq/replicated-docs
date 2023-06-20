@@ -2,7 +2,7 @@ import Beta from "../partials/replicated-sdk/_beta.mdx"
 import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
 import HelmDiagramOverview from "../partials/helm/_helm-diagram-overview.mdx"
 
-# About the Replicated SDK (Beta)
+# About the Replicated SDK (Alpha)
 
 This topic provides an introduction to using the Replicated SDK with your Helm chart application.
 
@@ -12,7 +12,7 @@ This topic provides an introduction to using the Replicated SDK with your Helm c
 
 <SDKOverview/>
 
-For more information about using the Replicated SDK, see [Using the SDK With Your Application (Beta)](/vendor/replicated-sdk-using).
+For more information about using the Replicated SDK, see [Using the SDK With Your Application (Alpha)](/vendor/replicated-sdk-using).
 
 ## How the SDK Runs in a Customer Environment {#about-sdk-initialize}
 
@@ -38,7 +38,7 @@ For more information about the Replicated SDK API endpoints, see [Replicated SDK
 
 The Replicated SDK provides access to operational telemetry including customer reporting and insights on application instances running in customer environments. When you distribute your application with the SDK, you can view these insights in the vendor portal.
 
-The Replicated SDK does not require any additional configuration to get access to instance data. The SDK uses the values injected by the Replicated registry in your Helm chart values file during initialization to automatically send information about the instance back to the vendor portal.
+The Replicated SDK does not require any additional configuration to get access to instance data. The SDK uses the values injected by the Replicated registry in your Helm chart values file to automatically send information about the instance back to the vendor portal.
 
 The following shows an example of the **Instance Details** page in the vendor portal, including application version and status details, instance uptime, and cluster details such as the cloud provider, cloud region, and the Kubernetes version and distribution:
 
