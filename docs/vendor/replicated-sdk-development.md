@@ -78,7 +78,7 @@ To initialize the SDK for use in integration mode:
 
 ## Create and Provide Mock Data {#mock-data}
 
-In development mode, you provide mock data to the SDK so that you can test your changes in different scenarios. For example, if you are developing a page where users can check for updates, you can provide mock data to the `/api/v1/app/updates` API endpoint to create scenarios in which there are any number of releases available for upgrade, without having to promote releases in the vendor portal.
+In integration mode, you provide mock data to the SDK so that you can test your changes in different scenarios. For example, if you are developing a page where users can check for updates, you can provide mock data to the `/api/v1/app/updates` API endpoint to create scenarios in which there are any number of releases available for upgrade, without having to promote releases in the vendor portal.
 
 You provide mock data to the Replicated SDK as a JSON object.
 
