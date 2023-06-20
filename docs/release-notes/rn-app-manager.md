@@ -14,6 +14,20 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.100.3
+
+Released on June 20, 2023
+
+Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
+
+### Improvements {#improvements-1-100-3}
+* Updates the github.com/dexidp/dex module to v2.36.0 (git hash v0.0.0-20230320125501-2bb4896d120e) to resolve CVE-2020-26290 with critical severity.
+* Updates the github.com/sigstore/rekor module to v1.2.0 to resolve CVE-2023-30551 with high severity and CVE-2023-33199 with medium severity.
+* Updates the github.com/gin-gonic/gin module to v1.9.1 in the kurl-proxy to resolve CVE-2023-26125 and CVE-2023-29401 with medium severity.
+
+### Bug Fixes {#bug-fixes-1-100-3}
+* Fixes an issue where [repeatable items](/reference/custom-resource-config#repeatable-items) did not work as expected on the Config page.
+
 ## 1.100.2
 
 Released on June 7, 2023
