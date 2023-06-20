@@ -26,7 +26,7 @@ Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
 * Updates the github.com/gin-gonic/gin module to v1.9.1 in the kurl-proxy to resolve CVE-2023-26125 and CVE-2023-29401 with medium severity.
 
 ### Bug Fixes {#bug-fixes-1-100-3}
-* Fixes an issue where the [repeatable config items](/reference/custom-resource-config#repeatable-items) UI did not work as expected.
+* Fixes an issue where [repeatable items](/reference/custom-resource-config#repeatable-items) did not work as expected on the Config page.
 
 ## 1.100.2
 
