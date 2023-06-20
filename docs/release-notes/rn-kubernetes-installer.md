@@ -17,7 +17,8 @@ Released on June 20, 2023
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-06-09T07-32-12Z.
 * Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.17.
 * Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.8.
-
+### Improvements {#improvements-v2023-06-20-0}
+* Enhance migration from weave to flannel to preserve custom IP Tables rules added
 ### Bug Fixes {#bug-fixes-v2023-06-20-0}
 * Fixes all previous Flannel versions by backporting the fixes introduced in the latest release v2023.06.09-0 to solve the problems faced when migrate from weave to flannel. 
 * Fixes MinIO PVC resizing race condition for versions equals and upper then `2023-06-09T07-32-12Z` .
