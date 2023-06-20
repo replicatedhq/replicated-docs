@@ -10,7 +10,7 @@ This topic provides an overview of the native Helm and Replicated Helm methods f
 
 ## Overview
 
-When you distribute your Helm chart application with KOTS, your users have access to all of the KOTS features, including the Replicated admin console, backup and restore with Snapshots, support for air gap installations, and support for installations into embedded clusters created by Replicated kURL. An application deployed with KOTS can use more than one Helm chart, can include Helm charts as components, and can use more than a single instance of any Helm chart.
+When you distribute your Helm chart application with KOTS, your users have access to all of the KOTS features, including the Replicated admin console, backup and restore with snapshots, support for air gap installations, and support for installations into embedded clusters created by Replicated kURL. An application deployed with KOTS can use more than one Helm chart, can include Helm charts as components, and can use more than a single instance of any Helm chart.
 
 KOTS supports using the _native Helm_ and _Replicated Helm_ installation methods to deliver Helm charts. As an application vendor, you specify whether KOTS uses the native Helm or Replicated Helm method.
 
