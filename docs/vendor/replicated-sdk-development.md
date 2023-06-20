@@ -66,12 +66,13 @@ To initialize the SDK for use in integration mode:
 
 1. In the [SDK Helm chart](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml.tmpl), open the `values.yaml` file.
 
-1. Paste the ID from your development license in the `integration.licenseID` field:
+1. Paste the ID from your development license in the `replicated.integration.licenseID` field:
 
     ```yaml
-     # Replicated SDK values.yaml file
-     integration:
-       licenseID: DEV_LICENSE_ID
+     # values.yaml file
+     replicated:
+       integration:
+         licenseID: DEV_LICENSE_ID
     ```
 
 1. Add the SDK Helm chart as a dependency in your application Helm chart.          
