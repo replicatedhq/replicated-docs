@@ -22,7 +22,7 @@ The following diagram shows how the Replicated SDK is installed and runs in a cu
 
 <HelmDiagramOverview/>
 
-Finally, the SDK is initialized in the customer environment using values that the Replicated registry injects in the Helm chart values file, such as customer license and release information. You can use the SDK API to get customer-specific license information from the vendor portal during runtime. You can also use the API to get details about the instance from the customer environment and from the vendor portal.
+Finally, the SDK is initialized in the customer environment using values that the Replicated registry injects in the Helm chart values file. After the SDK is initialized, you can use the SDK API to get customer-specific license information from the vendor portal during runtime. You can also use the API to get details about the instance from the customer environment and from the vendor portal.
 
 For more information about installing with Helm, see [Installing an Application with Helm (Beta)](install-with-helm).
 

@@ -11,7 +11,7 @@ The Replicated SDK provides an API that you can use to embed Replicated function
 
 The Replicated SDK API is available after the Replicated SDK is installed and initialized in a cluster. For information about installing the SDK, see [Installing an Application with Helm (Beta)](/vendor/install-with-helm).
 
-After the SDK is installed, the Replicated SDK API service is exposed at `replicated:3000`. To verify the location of the Replicated SDK API service, you can run `kubectl get service` in the appropriate namespace.
+After the SDK is installed, the Replicated SDK API service is exposed at `replicated:3000`. To verify where the Replicated SDK API service can be accessed, you can run `kubectl get service -A`.
 
 ## app
 
@@ -215,7 +215,7 @@ This section provides example use cases for the Replicated SDK API.
 
 The `api/v1/app/updates` endpoint returns details about new releases that are available to an instance for upgrade. If your application includes an admin console, you could use the `api/v1/app/updates` endpoint to allow your users to easily check for available updates from the admin console.
 
-Additionally, to make it easier for users to upgrade to new versions of your application, you could provide customer-specific upgrade instructions in your admin console by injecting values returned by the `/api/v1/license/info` endpoint. 
+Additionally, to make it easier for users to upgrade to new versions of your application, you could provide customer-specific upgrade instructions in your admin console by injecting values returned by the `/api/v1/license/info` and `/api/vi/app/info` endpoints. 
 
 The following example shows how you could include a page in your application's admin console that lists available updates and also provides customer-specific upgrade instructions:  
 
