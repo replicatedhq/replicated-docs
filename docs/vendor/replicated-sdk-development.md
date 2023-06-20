@@ -10,7 +10,7 @@ This topic describes how to use integration mode with the Replicated SDK to test
 
 You can use the Replicated SDK in integration mode to develop locally without needing to make real changes in the Replicated vendor portal or in your environment. Integration mode lets you provide mock data for the Replicated SDK API `app` endpoints in order to test specific features and scenarios. For more information, see [app](/reference/replicated-sdk-apis#app) in _Replicated SDK API (Beta)_.
 
-To use integration mode, you initialize the Replicated SDK using a valid development license created in the Replicated vendor portal and then provide the SDK with mock data. 
+To use integration mode, you initialize the Replicated SDK using the ID of a valid development license created in the Replicated vendor portal and then provide the SDK with mock data. 
 
 To use the Replicated SDK in integration mode, complete the following procedures:
 1. [Create a Development License](#license)
