@@ -10,6 +10,10 @@ toc_max_heading_level: 2
 
 Released on June 20, 2023
 
+:::important
+Previously releases has a known issue that may lead the system to a critical state when you are upgrading from Weave to Flannel. This known issue was sorted out for Flannel versions equals and upper than `0.21.5` in the previous release v2023.06.09-0 and backported to all Flannel versions on this release. If you want to upgrade migrating from Weave to Flannel, please ensure that you use this or future releases. 
+:::
+
 ### New Features {#new-features-v2023-06-20-0}
 * Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.22.0.
 * Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.25.0.
