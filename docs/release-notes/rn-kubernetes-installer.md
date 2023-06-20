@@ -6,6 +6,21 @@ toc_max_heading_level: 2
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.06.20-0
+
+Released on June 20, 2023
+
+### New Features {#new-features-v2023-06-20-0}
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.22.0.
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.25.0.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.65.2-46.8.0.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-06-09T07-32-12Z.
+* Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.17.
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.8.
+
+### Bug Fixes {#bug-fixes-v2023-06-20-0}
+* Fixes previous Flannel version by backporting the fixes introduced in the latest release v2023.06.09-0 to solve the problems faced when migrate from weave to flannel.
+
 ## v2023.06.09-0
 
 Released on June 9, 2023
