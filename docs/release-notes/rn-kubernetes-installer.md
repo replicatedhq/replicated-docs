@@ -16,19 +16,19 @@ Previously releases has a known issue that may lead the system to a critical sta
 
 ### New Features {#new-features-v2023-06-20-0}
 * Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.22.0.
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.8.
 * Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.25.0.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.65.2-46.8.0.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-06-09T07-32-12Z.
 * Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.17.
-* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.8.
 
 ### Improvements {#improvements-v2023-06-20-0}
-* Enhance migration from weave to flannel to preserve custom IP Tables rules added
+* Enhances the migration from Weave to Flannel to preserve custom IP Tables rules.
 
 ### Bug Fixes {#bug-fixes-v2023-06-20-0}
-* Fixes all previous Flannel versions by backporting the fixes introduced in the latest release v2023.06.09-0 to solve the problems faced when migrate from weave to flannel. 
-* Fixes MinIO PVC resizing race condition for versions equals and upper then `2023-06-09T07-32-12Z` .
-* Fixes migration from weave to flannel to allow the installer re-try to run the migration when an error is faced.
+* Fixes all previous Flannel versions by backporting the fixes introduced in the latest release v2023.06.09-0 to solve the problems faced when migrating from Weave to Flannel. 
+* Fixes MinIO PVC resizing race condition for versions equals to or greater than `2023-06-09T07-32-12Z`.
+* Fixes the migration from Weave to Flannel to allow the installer to retry the migration when an error is faced.
 
 ## v2023.06.09-0
 
