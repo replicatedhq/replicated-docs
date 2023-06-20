@@ -1,3 +1,5 @@
+import PreflightsStrict from "../partials/preflights/_preflights-strict.mdx"
+
 # upstream upgrade
 
 The `kots upstream upgrade` fetches the latest version of the upstream application.
@@ -30,11 +32,8 @@ kubectl kots upstream upgrade [app-slug] [flags]
 
 
 #### About Strict Preflight Checks
-If any strict preflight checks are configured, the `--skip-preflights` flag is not honored because preflight checks must run and contain no failures before the application is deployed.
 
-When the `--deploy` option is provided and there are strict preflight checks, the preflight checks always run. The deployment waits for up to 15 minutes for the preflight checks to complete. If the checks complete without strict preflight failures, the release deploys. If the checks do not complete within 15 minutes, the release does not deploy. If there are one or more strict preflight failures, the release does not deploy.
-
-For more information about strict preflight checks, see [About Preflight Checks and Support Bundles](../vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles).
+<PreflightsStrict/>
 
 
 ## Example

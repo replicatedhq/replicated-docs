@@ -1,0 +1,245 @@
+import PreflightsAddAnalyzers from "../partials/preflights/_preflights-add-analyzers.mdx"
+import PreflightsAddStrict from "../partials/preflights/_preflights-add-strict.mdx"
+import PreflightsSpecLocations from "../partials/preflights/_preflights-spec-locations.mdx"
+import PreflightsAbout from "../partials/preflights/_preflights-about.mdx"
+import PreflightsDefine from "../partials/preflights/_preflights-define.mdx"
+import PreflightsDefineXref from "../partials/preflights/_preflights-define-xref.mdx"
+import PreflightsCrNote from "../partials/preflights/_preflights-cr-note.mdx"
+import SecretsConfig from "../partials/preflights/_secrets-config.mdx"
+import AnalyzersNote from "../partials/preflights/_analyzers-note.mdx"
+
+
+# Define Preflight Checks for KOTS
+
+ This topic provides a basic understanding and some key considerations about preflight checks for Replicated KOTS installations to help guide you in defining them for your application.
+
+## About KOTS Preflight Checks
+
+<PreflightsAbout/> 
+
+Preflights are added to your application package and run automatically before installing the application.
+
+<PreflightsSpecLocations/>
+
+## Input Kind
+
+When you run preflight checks with KOTS, you add the Preflight custom resource (`kind: Preflight`) to your release.
+
+## Create a Preflight Custom Resource
+
+Create a Preflight custom resource for KOTS. The following example shows a basic Preflight custom resource manifest file (`kind: Preflight`) in your release.
+
+<PreflightsCrNote/>
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+  name: preflights
+spec:
+  collectors: []
+  analyzers: []
+```
+
+Next, define the preflight checks specification by adding collectors and analyzers. Optionally, you can add to the default redactors. For more information, see [Define the Preflight Checks Specification](#kots-preflights).
+
+## Define the Preflight Checks Specification {#kots-preflights}
+
+<PreflightsDefine/>
+
+<PreflightsDefineXref/>
+
+### Collectors
+
+Add collectors to define information to be collected for analysis during the analyze phase. For example, you can collect information about the MySQL version that is running in a cluster:
+
+   ```yaml
+   apiVersion: troubleshoot.sh/v1beta2
+   kind: Preflight
+   metadata:
+      name: supported-mysql-version
+   spec:
+      collectors:
+        - mysql:
+            collectorName: mysql
+            uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
+   ```
+
+Replicated recommends using a template function for the URI, as shown above, to avoid exposing sensitive information. For more information about template functions, see [About Template Functions](/reference/template-functions-about).
+
+<PreflightsDefineXref/>
+
+### Analyzers
+
+<PreflightsAddAnalyzers/>
+
+```yaml
+spec:
+  collectors:
+    - mysql:
+        collectorName: mysql
+        uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
+  analyzers:
+    - mysql:
+        checkName: Must be MySQL 8.x or later
+        collectorName: mysql
+        outcomes:
+          - fail:
+              when: connected == false
+              message: Cannot connect to MySQL server
+          - fail:
+              when: version < 8.x
+              message: The MySQL server must be at least version 8
+          - pass:
+              message: The MySQL server is ready
+```
+
+<PreflightsDefineXref/>
+
+<AnalyzersNote/>
+
+### `strict` Analyzers
+
+<PreflightsAddStrict/> 
+
+For more information about cluster privileges, see `requireMinimalRBACPrivileges` for name-scoped access in [Configuring Role-Based Access](packaging-rbac#namespace-scoped-access).
+
+The following example shows the `strict` field set to `true` for MySQL versions:
+
+```yaml
+spec:
+  collectors:
+    - mysql:
+        collectorName: mysql
+        uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
+  analyzers:
+    - mysql:
+        strict: true
+        checkName: Must be MySQL 8.x or later
+        collectorName: mysql
+        outcomes:
+          - fail:
+              when: connected == false
+              message: Cannot connect to MySQL server
+          - fail:
+              when: version < 8.x
+              message: The MySQL server must be at least version 8
+          - pass:
+              message: The MySQL server is ready
+```
+
+<PreflightsDefineXref/>
+
+## Example
+
+The following example shows a preflight support bundle specification for a KOTS installation. For more examples, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples/preflight) in GitHub.
+
+<PreflightsDefineXref/>
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+      name: supported-mysql-version
+spec:
+  collectors:
+    - mysql:
+        collectorName: mysql
+        uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
+  analyzers:
+    - mysql:
+        strict: true
+        checkName: Must be MySQL 8.x or later
+        collectorName: mysql
+        outcomes:
+          - fail:
+              when: connected == false
+              message: Cannot connect to MySQL server
+          - fail:
+              when: version < 8.x
+              message: The MySQL server must be at least version 8
+          - pass:
+              message: The MySQL server is ready
+    - clusterVersion:
+      outcomes:
+        - fail:
+            when: "< 1.20.0"
+            message: This application requires at least Kubernetes 1.20.0, and recommends 1.22.0.
+            uri: https://www.kubernetes.io
+        - warn:
+            when: "< 1.22.0"
+            message: Your cluster meets the minimum version of Kubernetes, but we recommend you update to 1.22.0 or later.
+            uri: https://kubernetes.io
+        - pass:
+            when: ">= 1.22.0"
+            message: Your cluster meets the recommended and required versions of Kubernetes.
+    - containerRuntime:
+        outcomes:
+          - pass:
+              when: "== containerd"
+              message: containerd container runtime was found.
+          - fail:
+              message: Did not find containerd container runtime.
+    - storageClass:
+        checkName: Required storage classes
+        storageClassName: "default"
+        outcomes:
+          - fail:
+              message: Could not find a storage class called default.
+          - pass:
+              message: All good on storage classes
+    - nodeResources:
+        checkName: Must have at least 3 nodes in the cluster, with 5 recommended
+        outcomes:
+        - fail:
+            when: "count() < 3"
+            message: This application requires at least 3 nodes.
+            uri: https://kurl.sh/docs/install-with-kurl/adding-nodes
+        - warn:
+            when: "count() < 5"
+            message: This application recommends at last 5 nodes.
+            uri: https://kurl.sh/docs/install-with-kurl/adding-nodes
+        - pass:
+            message: This cluster has enough nodes.
+    - nodeResources:
+        checkName: Every node in the cluster must have at least 8 GB of memory, with 32 GB recommended
+        outcomes:
+        - fail:
+            when: "min(memoryCapacity) < 8Gi"
+            message: All nodes must have at least 8 GB of memory.
+            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
+        - warn:
+            when: "min(memoryCapacity) < 32Gi"
+            message: All nodes are recommended to have at least 32 GB of memory.
+            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
+        - pass:
+            message: All nodes have at least 32 GB of memory.
+    - nodeResources:
+        checkName: Total CPU Cores in the cluster is 4 or greater
+        outcomes:
+          - fail:
+              when: "sum(cpuCapacity) < 4"
+              message: The cluster must contain at least 4 cores
+              uri: https://kurl.sh/docs/install-with-kurl/system-requirements
+          - pass:
+              message: There are at least 4 cores in the cluster
+    - nodeResources:
+        checkName: Every node in the cluster must have at least 40 GB of ephemeral storage, with 100 GB recommended
+        outcomes:
+        - fail:
+            when: "min(ephemeralStorageCapacity) < 40Gi"
+            message: All nodes must have at least 40 GB of ephemeral storage.
+            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
+        - warn:
+            when: "min(ephemeralStorageCapacity) < 100Gi"
+            message: All nodes are recommended to have at least 100 GB of ephemeral storage.
+            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
+        - pass:
+            message: All nodes have at least 100 GB of ephemeral storage.   
+```
+
+## Next Step
+
+Save and promote the release to a development environment to test your changes. For more information about installing with KOTS, see [About Installing an Application](/enterprise/installing-overview).
+
+

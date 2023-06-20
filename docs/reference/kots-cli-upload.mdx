@@ -1,3 +1,5 @@
+import PreflightsStrict from "../partials/preflights/_preflights-strict.mdx"
+
 # upload
 
 Upload Kubernetes manifests from the local filesystem, creating a new version of the application that can be deployed.
@@ -29,11 +31,8 @@ Any `plainText` values in the `upstream/userdata/config.yaml` file will be re-en
 If both an encrypted and plainText value is provided on a single item, the plainText value will overwrite the encrypted value, if they differ.
 
 #### About Strict Preflight Checks
-If any strict preflight checks are configured, the `--skip-preflights` flag are not honored because the preflight checks must run and contain no failures before the application is deployed.
 
-When the `--deploy` option is provided and there are strict preflight checks, the preflight checks always run. The deployment waits for up to 15 minutes for the preflight checks to complete. If the checks complete without strict preflight failures, the release deploys. If the checks do not complete within 15 minutes, the release does not deploy. If there are one or more strict preflight failures, the release does not deploy.
-
-For more information about strict preflight checks, see [About Preflight Checks and Support Bundles](../vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles).
+<PreflightsStrict/>
 
 
 ## Examples
