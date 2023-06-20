@@ -4,7 +4,7 @@ import HooksLimitation from "../partials/helm/_hooks-limitation.mdx"
 
 This topic describes how to use the `weight` property to define the installation order for charts deployed with the native Helm method. For more information about using native Helm charts with Replicated KOTS, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).
 
-/vendor/helm-native-about## About Native Helm Chart Installation Weight
+## About Native Helm Chart Installation Weight
 
 For Helm charts deployed with native Helm, you can add a `weight` property to the `HelmChart` custom resource manifest file to define the order in which Helm installs the charts.
 

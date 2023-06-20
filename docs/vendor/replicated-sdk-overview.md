@@ -26,6 +26,60 @@ Finally, the SDK is initialized in the customer environment using values that th
 
 For more information about installing with Helm, see [Installing an Application with Helm (Beta)](install-with-helm).
 
+## Replicated Helm Values {#replicated-values}
+
+When a customer pulls your Helm chart from the Replicated registry, the Replicated registry injects values into the `global.replicated` and `replicated` fields of the Helm chart values file. 
+
+The following is an example of a Helm values file containing only the information injected by the Replicated registry:
+
+```yaml
+# Helm values.yaml
+global:
+  replicated:
+    dockerconfigjson: eyJhdXRocyI6eyJd1dIRk5NbEZFVGsxd2JGUmFhWGxYWm5scloyNVRSV1pPT2pKT2NGaHhUVEpSUkU1...
+    licenseFields:
+      expires_at:
+        description: License Expiration
+        name: expires_at
+        signature:
+          v1: iZBpESXx7fpdtnbMKingYHiJH42rP8fPs0x8izy1mODckGBwVoA... 
+        title: Expiration
+        value: "2023-05-30T00:00:00Z"
+        valueType: String
+replicated:
+  appName: my-app
+  channelID: 2CBDxNwDH1xyYiIXRTjiB7REjKX
+  channelName: Stable
+  channelSequence: 75
+  created_at: "2023-05-12T17:44:10Z"
+  license: | 
+    apiVersion: kots.io/v1beta1
+    kind: License
+    metadata:
+      name: examplename
+    spec:
+      appSlug: my-app
+      ...       
+  # The full customer license is injected
+  license_id: WJldGExCmtpbmQ6IEN...
+  releaseCreatedAt: "2023-05-12T17:43:51Z"
+  releaseIsRequired: false
+  releaseNotes: "Some release notes"
+  releaseSequence: 81
+  username: username@example.com
+  versionLabel: 0.1.70
+```
+
+The values in the `global.replicated` field provide information about the following:
+* Details about the fields in the customer's license, such as the field name, description, signature, and value
+* A base64 encoded Docker configuration file. If you use the Replicated proxy service to proxy images from an external private registry, you can use the `global.replicated.dockerconfigjson` field to create an image pull secret for the proxy service. For more information, see [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry) in the Kubernetes documentation. 
+
+These values in the `replicated` field provide information about the following:
+* The full customer license and the license ID
+* The target application release from the vendor portal
+
+The Replicated SDK uses these values in the `replicated` field to initialize in a customer environment.
+
 ## SDK API 
 
 The Replicated SDK provides and API that you can use to embed Replicated functionality into your application.

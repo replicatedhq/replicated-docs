@@ -2,13 +2,11 @@ import LicenseExpirationExample from "../partials/replicated-sdk/_license-expira
 
 # Checking Entitlements for Helm Installations
 
-This topic describes how to get entitlement information from customer licenses in applications installed with Helm.
+This topic describes how to check entitlement information from customer licenses in applications installed with Helm.
 
-## Overview
+## Requirement
 
-When you distribute your Helm chart application with Replicated, you can add references to customer license fields in the `global` section of the Helm chart values file to check customer entitlements at the time of deployment. For more information, see [About Distributing with Helm (Beta)](helm-install).
-
-Additionally, when you distribute the Replicated SDK alongside your Helm chart, you can use the SDK API `license` endpoints to reference license fields and check customer entitlements during runtime.  For more information about the Replicated SDK, see [About the Replicated SDK (Beta)](replicated-sdk-overview).
+To check entitlements at runtime or before installation in your Helm chart application, you must include the Replicated SDK as a dependency of your application. For more information, see [Using the SDK with Your Application (Alpha)](replicated-sdk-using).
 
 ## Checking Entitlements at Runtime with the SDK API {#runtime}
 
@@ -29,12 +27,30 @@ License fields are cryptographically signed to ensure their integrity. When you 
 
 ## Checking Entitlements Before Installation {#before-install}
 
-You can reference license entitlements in the `global.licenseFields` field of your Helm chart values to verify customer entitlements before the Replicated SDK is initialized in the customer environment. For example, you could include an `expires_at` field under `global` with the unique license expiry date for the customer to reference before the SDK is installed and running in the customer environment.
+When you include the Replicated SDK as a dependency of your Helm chart application, the Replicated registry automatically injects customer entitlement information in the `global.replicated.licenseFields` field of your Helm chart values. For example:
+
+```yaml
+# Helm chart values.yaml
+global:
+  replicated:
+    licenseFields:
+      expires_at:
+        description: License Expiration
+        name: expires_at
+        signature:
+          v1: iZBpESXx7fpdtnbMKingYHiJH42rP8fPs0x8izy1mODckGBwVoA... 
+        title: Expiration
+        value: "2023-05-30T00:00:00Z"
+        valueType: String  
+```
+
+You can access the values in the `global.replicated.licenseFields` field from your Helm templates to check customer entitlements before installation. For more information about the fields that the Replicated registry automatically injects, see [Replicated Helm Values](/vendor/replicated-sdk-overview#replicated-values) in _About the Replicated SDK (Alpha)_.
+
 ### Example: Prevent Access Before Installation
 
-You can use the license `expires_at` field and the Replicated SDK API `/api/v1/license/fields/{field_name}` endpoint to revoke a customer's access to your application during runtime when their license expires.
+You can use the license `expires_at` field to prevent a customer from installing your application if their license is expired.
 
-To revoke access to your application when a license expires:
+To prevent access to your application if a license is expired:
 
 1. In the vendor portal, click **Customers**. Select the target customer and click the **Customer details** tab. Alternatively, click **+ Create customer** to create a new customer.
 
@@ -48,20 +64,6 @@ To revoke access to your application when a license expires:
 
   [View a larger version of this image](/images/customer-expiration-policy.png)
 
-1. In the `values.yaml` file for your Helm chart, under the `global.license` field, paste the contents of the `/api/v1/license/fields/expires_at` JSON response using the indentation shown in the following example:
-
-    ```yaml
-    # Helm chart values.yaml
-    global:
-      licenseFields:
-        expires_at:
-          name: expires_at
-          title: Expiration
-          description: License Expiration
-          value: "2023-05-30T00:00:00Z"
-          valueType: String
-          signature:
-            v1: iZBpESXx7fpdtnbMKingYHiJH42rP8fPs0x8izy1mODckGBwVoA... 
-    ```
+1. Update your Helm templates with one or more directives to access the `global.replicated.licenseFields.expires_at` field. For example, `{{ .Values.global.replicated.licenseFields.expires_at }}`. For more information about accessing values files from Helm templates, see [Values Files](https://helm.sh/docs/chart_template_guide/values_files/) in the _Chart Template Guide_ section of the Helm documentation.
 
 1. To test your changes, create a new release and promote it to a development channel, such as Unstable. Install the release in a development environment using the license ID for the customer that you created or edited. 

@@ -8,11 +8,11 @@ Before you install, complete the following prerequisites:
 
 * You must have a license with a valid email address. This email address is only used as a username for the Replicated registry and is never contacted in any way. For more information about creating and editing customers in the vendor portal, see [Creating a Customer](/vendor/releases-creating-customer).
 * The **Show Helm Install Tab** feature flag must be enabled for your team in the vendor portal.
-* (Optional) To run preflight checks before installing, you must have configured a preflight check specification for your application. For more information, see [About Preflight Checks and Support Bundles](preflight-support-bundle-creating).
+* (Optional) To run preflight checks before installing, you must have configured a preflight check specification for your application.
 
 ## Install
 
-To install, you first pull your chart from the Replicated registry using the email address and license ID associated with a customer in the vendor portal. Then, use Helm to install the chart. If you declared the Replicated SDK as a dependency, then the SDK is installed alongside your application. For more information about the SDK, see [About the Replicated SDK (Beta)](replicated-sdk-overview).
+If you declared the Replicated SDK as a dependency of your Helm chart, then the SDK is installed alongside your application. For more information about the SDK, see [About the Replicated SDK (Beta)](replicated-sdk-overview).
 
 To install a Helm chart:
 
@@ -50,16 +50,6 @@ To install a Helm chart:
     helm install RELEASE_NAME oci://registry.replicated.com/APP_SLUG/CHANNEL_SLUG/CHART_NAME
     ```
     Replace `RELEASE_NAME`, `APP_SLUG`, `CHANNEL_SLUG`, and `CHART_NAME`, with the values provided in the command in the **Helm install instructions** dialog.
-
-1. Verify that the application was installed by getting the Kubernetes Deployments in the appropriate namespace:
-
-   ```bash
-   kubectl get deployments
-   ```
-
-   :::note
-   If you includes the Replicated SDK as a dependency of your Helm chart, you can also see the SDK listed in your Deployments.
-   :::
 
 1. (Optional) In the vendor portal, click **Customers**. You can see that the customer you used to install is marked as **Active** and that details about the application instance that you installed are listed under the customer name. 
 
