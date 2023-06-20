@@ -86,7 +86,7 @@ You provide mock data to the Replicated SDK as a JSON object.
 
 ### Create the JSON Object {#json}
 
-You provide data to the SDK in development mode by creating a JSON object. The JSON object contains fields where you can add mock values for a current release, available releases, and previously deployed releases:
+You provide data to the SDK in integration mode by creating a JSON object. The JSON object contains fields where you can add mock values for a current release, available releases, and previously deployed releases:
 
 * **`currentRelease`**: The `currentRelease` field defines the currently deployed release of the application. The SDK uses this value to mock the `/api/v1/app/info` API endpoint. The `appSlug`, `appName`, `helmChartURL`, and `channelName` fields do not need to be provided in the mock since this data can be obtained from the provided development license.
 * **`availableReleases`**: The `availableReleases` array defines the releases promoted to the channel after the current release. In other words, the releases that are available for update. This is used to mock the `/api/v1/app/updates` API endpoint.
