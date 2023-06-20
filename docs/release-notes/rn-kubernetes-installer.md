@@ -11,7 +11,7 @@ toc_max_heading_level: 2
 Released on June 20, 2023
 
 :::important
-Previous to this release is a known issue that may put the system in a critical state when migrating from Weave to Flannel. Please ensure that you use this or future releases when migrating from Weage to Flannel. 
+Previous to this release is a known issue that may put the system in a critical state when migrating from Weave to Flannel. Please ensure that you use this or future releases when migrating from Weave to Flannel. 
 :::
 
 ### New Features {#new-features-v2023-06-20-0}
