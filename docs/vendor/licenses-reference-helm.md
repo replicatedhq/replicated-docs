@@ -29,7 +29,7 @@ License fields are cryptographically signed to ensure their integrity. When you 
 
 ## Checking Entitlements Before Installation {#before-install}
 
-You can reference license entitlements in the `global.licenseFields` field of your Helm chart values file to verify customer entitlements before the Replicated SDK is initialized in the customer environment. For example, you could include an `expires_at` field under `global` with the unique license expiry date for the customer to reference before the SDK is installed and running in the customer environment.
+You can reference license entitlements in the `global.licenseFields` field of your Helm chart values to verify customer entitlements before the Replicated SDK is initialized in the customer environment. For example, you could include an `expires_at` field under `global` with the unique license expiry date for the customer to reference before the SDK is installed and running in the customer environment.
 ### Example: Prevent Access Before Installation
 
 You can use the license `expires_at` field and the Replicated SDK API `/api/v1/license/fields/{field_name}` endpoint to revoke a customer's access to your application during runtime when their license expires.
