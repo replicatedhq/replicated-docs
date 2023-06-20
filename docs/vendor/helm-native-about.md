@@ -18,7 +18,7 @@ KOTS supports using the _native Helm_ and _Replicated Helm_ installation methods
 
 With the native Helm deployment method, KOTS uses the Helm binary to install and manage the lifecycle of the chart resources that are part of the application. Native Helm is the preferred method because it supports more features of Helm, such as hooks and weights.
 
-When you use native Helm deployment, KOTS renders your Helm manifests with Replicated templating in the HelmChart custom resource, without making changes to your `Chart.yaml` and `values.yaml` file. The templating maps to your `values.yaml` file and allows KOTS to deploy the native Helm charts.
+When you use native Helm deployment, KOTS renders your Helm manifests with Replicated templating in the HelmChart custom resource, without making changes to your `Chart.yaml` and `values.yaml` file. The templating maps to your `values.yaml` file and allows KOTS to deploy the Helm charts.
 
 The following diagram shows how Replicated processes native Helm charts for deployment to a Kubernetes cluster:
 
