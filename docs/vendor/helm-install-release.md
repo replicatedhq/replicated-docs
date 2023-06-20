@@ -9,7 +9,7 @@ This topic describes how to support Helm installations when you distribute your 
 
 To distribute your Helm chart application with Helm, you can package your Helm chart and add it to a release in the Replicated vendor portal. After you promote the release, the vendor portal pushes your Helm chart to the Replicated registry where your customers can then authenticate to pull the chart and install with Helm. For more information, see [About Distributing with Helm (Beta)](helm-install).
 
-To use Replicated functionality in your application such as instance insights and telemetry, entitlement verification at runtime, and instance update checks, you can also include the Replicated SDK with your Helm chart as a dependency. For more information, see [About the Replicated SDK (Beta)](replicated-sdk-overview).
+To use Replicated functionality in your application such as instance insights and telemetry, entitlement verification at runtime, and instance update checks, you can also include the Replicated SDK with your Helm chart as a dependency. For more information, see [About the Replicated SDK (Alpha)](replicated-sdk-overview).
 ## Prerequisites
 
 Before you add your Helm chart to a release, complete the following prerequisites:

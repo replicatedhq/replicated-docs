@@ -37,4 +37,4 @@ The following limitations apply when using Helm to install applications distribu
 
 <SDKOverview/>
 
-For more information, see [About the Replicated SDK (Beta)](replicated-sdk-overview).
+For more information, see [About the Replicated SDK (Alpha)](replicated-sdk-overview).

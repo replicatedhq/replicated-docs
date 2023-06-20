@@ -86,7 +86,7 @@ The Replicated SDK provides and API that you can use to embed Replicated functio
 
 For example, if your application includes a UI where users manage their application instance, then you can use the `/api/v1/app/updates` endpoint to include messages in the UI that encourage users to upgrade when new versions are available. You could also revoke access to the application when a license expires using the `/api/v1/license/fields` endpoint.
 
-For more information about the Replicated SDK API endpoints, see [Replicated SDK API (Beta)](/reference/replicated-sdk-apis).
+For more information about the Replicated SDK API endpoints, see [Replicated SDK API (Alpha)](/reference/replicated-sdk-apis).
 
 ## Customer Reporting and Instance Insights {#insights}
 
@@ -105,4 +105,4 @@ For more information about viewing customer and instance insights in the vendor 
 
 You can run the Replicated SDK in integration mode to more quickly test new functionality for your application. Integration mode allows you to use mock data to test changes locally without having to create a release in the vendor portal and then pull your Helm chart from the Replicated registry.
 
-For more information, see [Developing in Integration Mode (Beta)](replicated-sdk-development).
+For more information, see [Developing against the SDK API (Alpha)](replicated-sdk-development).
