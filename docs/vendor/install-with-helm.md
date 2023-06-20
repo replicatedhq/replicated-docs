@@ -31,25 +31,16 @@ To install a Helm chart:
    ```
    Replace `EMAIL_ADDRESS` and `LICENSE_ID` with the values provided in the command in the **Helm install instructions** dialog.
 
-1. (Optional) Run the second command to install the preflight plugin:
-
-   ```bash
-   curl https://krew.sh/preflight | bash
-   ```
-
-1. (Optional) Run the third command to run preflight checks to confirm that your installation environment meets the requirements for the application:
-
-   ```bash
-   kubectl preflight oci://registry.replicated.com/APP_SLUG
-   ```
-   Replace `APP_SLUG` with the value provided in the command in the **Helm install instructions** dialog.
-
 1. Run the fourth command to install using Helm:
 
     ```bash
     helm install RELEASE_NAME oci://registry.replicated.com/APP_SLUG/CHANNEL_SLUG/CHART_NAME
     ```
     Replace `RELEASE_NAME`, `APP_SLUG`, `CHANNEL_SLUG`, and `CHART_NAME`, with the values provided in the command in the **Helm install instructions** dialog.
+
+    :::note
+    The channel slug is not required if the release is promoted to the Stable channel.
+    :::
 
 1. (Optional) In the vendor portal, click **Customers**. You can see that the customer you used to install is marked as **Active** and that details about the application instance that you installed are listed under the customer name. 
 
