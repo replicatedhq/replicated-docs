@@ -1,8 +1,8 @@
 import Beta from "../partials/replicated-sdk/_beta.mdx"
 
-# Developing with the SDK API in Integration Mode (Beta)
+# Developing with the SDK API (Alpha)
 
-This topic describes how to use integration mode with the Replicated SDK to test changes locally.
+This topic describes how to enable integration mode for the Replicated SDK to develop and test changes locally.
 
 <Beta/>
 
@@ -52,9 +52,15 @@ To create a development license:
 
 1. Click **Save Changes**.
 
-1. Click **Download license**.
+1. Get the license ID:
 
-1. Open the license file and copy the value of the `licenseID` field.
+   1. On the **Customer details** page for the customer you created, click **Helm install instructions**.
+
+      ![Helm install instructions button on the customer details page](/images/helm-install-instructions-button.png)
+
+   1. In the **Helm install instructions** dialog, in the `helm registry login` command, copy the license ID value that is provided with the `--password` flag.
+
+      ![Red box surrounding the password value in the Helm install instructions dialog](/images/license-id-helm-install-password.png)
 
 ## Initialize the SDK {#initialize}
 
@@ -64,35 +70,40 @@ When developing against the chart locally in integration mode, you can provide t
 
 To initialize the SDK for use in integration mode:
 
-1. In the [SDK Helm chart](https://github.com/replicatedhq/replicated-sdk/blob/main/chart/values.yaml.tmpl), open the `values.yaml` file.
+1. Add the SDK Helm chart as a dependency in your application Helm chart. See [Using the Replicated SDK with Your Application (Alpha)](replicated-sdk-using).
 
-1. Paste the ID from your development license in the `replicated.integration.licenseID` field:
+1. In the values file for your Helm chart, paste the ID of your development license in the `replicated.integration.licenseID` field:
 
-    ```yaml
-     # values.yaml file
-     replicated:
-       integration:
-         licenseID: DEV_LICENSE_ID
-    ```
-    ```
-
-1. Add the SDK Helm chart as a dependency in your application Helm chart.          
+  ```yaml
+  # Helm chart values.yaml file
+  replicated:
+    integration:
+      licenseID: DEV_LICENSE_ID
+  ```         
 
 ## Create and Provide Mock Data {#mock-data}
 
 In integration mode, you provide mock data to the SDK so that you can test your changes in different scenarios. For example, if you are developing a page where users can check for updates, you can provide mock data to the `/api/v1/app/updates` API endpoint to create scenarios in which there are any number of releases available for upgrade, without having to promote releases in the vendor portal.
 
-You provide mock data to the Replicated SDK as a JSON object.
+### About Mock Data
 
-### Create the JSON Object {#json}
+The mock data object that you create contains fields where you can add mock values for a current release, available releases, and previously deployed releases:
 
-You provide data to the SDK in integration mode by creating a JSON object. The JSON object contains fields where you can add mock values for a current release, available releases, and previously deployed releases:
+* **`currentRelease`**: Defines the currently deployed release of the application. The SDK uses this value to mock the `/api/v1/app/info` API endpoint. The `appSlug`, `appName`, `helmChartURL`, and `channelName` fields do not need to be provided in the mock data because this data can be obtained from the provided development license.
+* **`availableReleases`**: Defines the releases promoted to the channel after the current release. In other words, the releases that are available for update. This is used to mock the `/api/v1/app/updates` API endpoint.
+* **`deployedReleases`**: Defines the previously deployed releases. This is used to mock the `/api/v1/app/history` API endpoint.
 
-* **`currentRelease`**: The `currentRelease` field defines the currently deployed release of the application. The SDK uses this value to mock the `/api/v1/app/info` API endpoint. The `appSlug`, `appName`, `helmChartURL`, and `channelName` fields do not need to be provided in the mock since this data can be obtained from the provided development license.
-* **`availableReleases`**: The `availableReleases` array defines the releases promoted to the channel after the current release. In other words, the releases that are available for update. This is used to mock the `/api/v1/app/updates` API endpoint.
-* **`deployedReleases`**: The `deployedReleases` array defines the previously deployed releases. This is used to mock the `/api/v1/app/history` API endpoint.
-
+:::note
 It is not required to provide mock data in each of these fields. If you do not provide mock data for a particular API, that API functions normally.
+:::
+
+You can create mock data in JSON or YAML format:
+* [JSON Example](#json-example)
+* [YAML Example](#yaml-example)
+
+#### JSON Example
+
+JSON format is supported for POSTing mock data with the SDK API `mock-data` endpoint.
 
 The example below shows a JSON object with mock data. This example includes all the available fields for the mock data that you can provide to the SDK in development mode.
 
@@ -120,7 +131,7 @@ The example below shows a JSON object with mock data. This example includes all 
     "releaseNotes": "New major version",
     "isRequired": false,
     "createdAt": "2023-05-23T21:10:57Z",
-    "helmReleaseName": "please no"
+    "helmReleaseName": "release-name"
     }
 ],
 "deployedReleases": [
@@ -146,13 +157,57 @@ The example below shows a JSON object with mock data. This example includes all 
 }
 ```
 
-### Provide Mock Data to the SDK {#provide-data}
+#### YAML Example
 
-After you create a JSON object with the mock data that you want to test, you can share the JSON object with the SDK at runtime or at the time of deployment.
+YAML formatted is supported for providing mock data at the time of deployment.
 
-#### POST Mock Data at Runtime
+The example below shows mock data in YAML. This example includes all the available fields for the mock data that you can provide to the SDK in development mode.
+
+```yaml
+currentRelease:
+  versionLabel: 0.1.3
+  isRequired: false
+  releaseNotes: "release notes 0.1.3"
+  createdAt: 2023-05-23T20:58:07Z
+  deployedAt: 2023-05-23T21:58:07Z
+  helmReleaseName: dev-parent-chart
+  helmReleaseRevision: 3
+  helmReleaseNamespace: default
+availableReleases:
+  versionLabel: 1.0.1,
+  releaseNotes: "New patch version"
+  isRequired: false
+  createdAt: 2023-05-23T21:10:57Z,
+  helmReleaseNamespace: "testing"
+  versionLabel: "2.0.0"
+  releaseNotes: "New major version"
+  isRequired: false,
+  createdAt: 2023-05-23T21:10:57Z,
+  helmReleaseName: dev
+deployedReleases:
+- versionLabel: 0.1.1
+  isRequired: false
+  releaseNotes: "release notes 0.1.1"
+  createdAt: 2023-05-21T20:58:07Z
+  deployedAt: 2023-05-21T21:58:07Z
+  helmReleaseName: dev-parent-chart
+  helmReleaseRevision: 1
+  helmReleaseNamespace: default
+- versionLable: 0.1.0
+  isRequired: false
+  releaseNotes: "release notes 0.1.0"
+  createdAt: 2023-05-15T12:15:07Z
+  deployedAt: 2023-05-15T13:26:07Z
+  helmReleaseName: dev-parent-chart
+  helmReleaseRevision: 1
+  helmReleaseNamespace: default
+```
+
+### Provide Mock Data at Runtime
 
 To provide mock data to the SDK at runtime:
+
+1. Create mock data as a JSON object.
 
 1. Deploy your Helm chart.
 
@@ -178,7 +233,7 @@ To provide mock data to the SDK at runtime:
     curl -X DELETE replicated:3000/api/v1/mock-data
     ```
 
-#### Pass Mock Data at Deployment
+### Provide Mock Data at Deployment
 
 To provide mock data to the SDK at deployment:
 
@@ -188,10 +243,10 @@ To provide mock data to the SDK at deployment:
 
     ```yaml
     replicated:
-        integration:
+      integration:
         mockData:
-            helmChartURL: oci://registry.replicated.com/dev-app/dev-channel/dev-parent-chart
-            currentRelease:
+          helmChartURL: oci://registry.replicated.com/dev-app/dev-channel/dev-parent-chart
+          currentRelease:
             versionLabel: 0.1.3
             isRequired: false
             releaseNotes: "release notes 0.1.3"
@@ -200,8 +255,8 @@ To provide mock data to the SDK at deployment:
             helmReleaseName: dev-parent-chart
             helmReleaseRevision: 3
             helmReleaseNamespace: default
-            deployedReleases:
-            - versionLabel: 0.1.1
+          deployedReleases:
+          - versionLabel: 0.1.1
             isRequired: false
             releaseNotes: "release notes 0.1.1"
             createdAt: 2023-05-21T20:58:07Z

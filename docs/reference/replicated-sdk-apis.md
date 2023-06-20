@@ -97,7 +97,7 @@ Response:
 
 ### GET /license/info
 
-List details about the license file that was used to install, including the license ID, type, the customer name, and the channel the customer is assigned.
+List details about the license that was used to install, including the license ID, type, the customer name, and the channel the customer is assigned.
 
 ```
 /api/v1/license/info
@@ -118,7 +118,7 @@ Response:
 
 ### GET /license/fields
 
-List details about all the fields in the license file that was used to install, including the field names, descriptions, values, and signatures.
+List details about all the fields in the license that was used to install, including the field names, descriptions, values, and signatures.
 
 ```
 /api/v1/license/fields
@@ -152,7 +152,7 @@ Response:
 
 ### GET /license/fields/{field_name}
 
-List details about one of the fields in the license file that was used to install, including the field name, description, value, and signature.
+List details about one of the fields in the license that was used to install, including the field name, description, value, and signature.
 
 ```
 /api/v1/license/fields/{field_name}
