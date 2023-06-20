@@ -271,7 +271,7 @@ To use the SDK API to check for available application updates and provide custom
 
        The following describes where the values in the `helm upgrade` command are available:
 
-        * **Release name**: The Helm release notes is available from the `/api/v1/app/info` endpoint in the `currentRelease.helmReleaseName` field.
+        * **Release name**: The Helm release name is available from the `/api/v1/app/info` endpoint in the `currentRelease.helmReleaseName` field.
         * **Release namespace**: The Helm release namespace is available from the `/api/v1/app/info` endpoint in the `currentRelease.helmReleaseNamespace` field.
         * **Registry domain**: The domain for the registry where your Helm chart is pushed. The registry domain is either `replicated.registry.com` or a custom domain that you added. 
         * **App slug**: The app slug is available from the `/api/v1/app/info` endpoint in the `appSlug` field. 
