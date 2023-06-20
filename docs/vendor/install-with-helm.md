@@ -47,9 +47,9 @@ To install a Helm chart:
 1. Run the fourth command to install using Helm:
 
     ```bash
-    helm install RELEASE_NAME oci://registry.replicated.com/APP_SLUG/CHANNEL_NAME/CHART_NAME
+    helm install RELEASE_NAME oci://registry.replicated.com/APP_SLUG/CHANNEL_SLUG/CHART_NAME
     ```
-    Replace `RELEASE_NAME`, `APP_SLUG`, `CHANNEL_NAME`, and `CHART_NAME`, with the values provided in the command in the **Helm install instructions** dialog.
+    Replace `RELEASE_NAME`, `APP_SLUG`, `CHANNEL_SLUG`, and `CHART_NAME`, with the values provided in the command in the **Helm install instructions** dialog.
 
 1. Verify that the application was installed by getting the Kubernetes Deployments in the appropriate namespace:
 
