@@ -6,7 +6,7 @@ import ReplicatedHelmDeprecated from "../partials/helm/_replicated-deprecated.md
 
 # About Distributing Helm Charts with KOTS
 
-This topic provides and overview of the native Helm and Replicated Helm methods for deploying Helm chart with Replicated KOTS.
+This topic provides an overview of the native Helm and Replicated Helm methods for deploying Helm chart with Replicated KOTS.
 
 ## Overview
 
