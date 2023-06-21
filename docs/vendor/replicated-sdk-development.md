@@ -103,7 +103,7 @@ You can create mock data in JSON or YAML format:
 
 #### JSON Example
 
-JSON format is supported for POSTing mock data with the SDK API `mock-data` endpoint.
+JSON format is supported for POSTing mock data to the SDK API `mock-data` endpoint during runtime. See [Provide Mock Data at Runtime](#provide-runtime).
 
 The example below shows a JSON object with mock data. This example includes all the available fields for the mock data that you can provide to the SDK in development mode.
 
@@ -159,7 +159,7 @@ The example below shows a JSON object with mock data. This example includes all 
 
 #### YAML Example
 
-YAML formatted is supported for providing mock data at the time of deployment.
+YAML format is supported for providing mock data in the Helm chart values file before deployment. See [Provide Mock Data at Deployment](#provide-deployment).
 
 The example below shows mock data in YAML. This example includes all the available fields for the mock data that you can provide to the SDK in development mode.
 
@@ -203,7 +203,9 @@ deployedReleases:
   helmReleaseNamespace: default
 ```
 
-### Provide Mock Data at Runtime
+### Provide Mock Data at Runtime {#provide-runtime}
+
+You can provide mock data at runtime by creating data in JSON and then POSTing the JSON data object to the `/api/v1/mock-data` endpoint. 
 
 To provide mock data to the SDK at runtime:
 
@@ -211,7 +213,7 @@ To provide mock data to the SDK at runtime:
 
 1. Deploy your Helm chart.
 
-1. Update the SDK to use the mock data by POSTing the JSON object you created to the SDK’s `/api/v1/mock-data` API:
+1. Update the SDK to use the mock data by POSTing the JSON object you created to the `/api/v1/mock-data` endpoint:
 
     ```bash
     curl -d @mock.json -X POST replicated:3000/api/v1/mock-data
@@ -233,11 +235,13 @@ To provide mock data to the SDK at runtime:
     curl -X DELETE replicated:3000/api/v1/mock-data
     ```
 
-### Provide Mock Data at Deployment
+### Provide Mock Data at Deployment {#provide-deployment}
+
+You can provide mock data before deploying your application by adding mock data in YAML to the Helm chart values file.
 
 To provide mock data to the SDK at deployment:
 
-1. In the `replicated.integration.mockData` field of your Helm chart values file, add your mock data.
+1. In the `replicated.integration.mockData` field of your Helm chart values file, add your mock data in YAML.
 
     **Example:**
 
@@ -264,6 +268,7 @@ To provide mock data to the SDK at deployment:
             helmReleaseName: dev-parent-chart
             helmReleaseRevision: 1
             helmReleaseNamespace: default
+            ...
     ```
 
 1. Deploy your Helm chart.
