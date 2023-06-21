@@ -37,7 +37,7 @@ Response:
     "isRequired": false,
     "createdAt": "2023-05-28T16:31:21Z",
     "releaseNotes": "",
-    "helmReleaseName": "helm-release",
+    "helmReleaseName": "my-helm-chart",
     "helmReleaseRevision": 5,
     "helmReleaseNamespace": "my-helm-chart"
   }
@@ -181,7 +181,7 @@ Response:
 
 ## mock-data
 
-This section describes the mock-data endpoints for working with data when developing against the SDK in integration mode. For information about integration mode, see [Developing Against the SDK API (Alpha)](/vendor/replicated-sdk-development).
+This section describes the mock-data endpoints for working with data when developing against the SDK in integration mode. For information about integration mode, see [Developing Against the SDK (Alpha)](/vendor/replicated-sdk-development).
 
 ### POST mock-data
 
@@ -266,16 +266,19 @@ To use the SDK API to check for available application updates and provide custom
       **Example**:
 
         ```bash
-        helm upgrade echo-server oci://registry.replicated.com/echo-server-helm/echo-server
+        helm upgrade echo-server oci://registry.replicated.com/echo-server-app/unstable/echo-server
         ```
 
        The following describes where the values in the `helm upgrade` command are available:
 
-        * **Release name**: The Helm release name is available from the `/api/v1/app/info` endpoint in the `currentRelease.helmReleaseName` field.
-        * **Release namespace**: The Helm release namespace is available from the `/api/v1/app/info` endpoint in the `currentRelease.helmReleaseNamespace` field.
-        * **Registry domain**: The domain for the registry where your Helm chart is pushed. The registry domain is either `replicated.registry.com` or a custom domain that you added. 
-        * **App slug**: The app slug is available from the `/api/v1/app/info` endpoint in the `appSlug` field. 
-        * **Channel slug**: The channel slug is available from the `/api/v1/app/info` endpoint in the `currentRelease.channelSlug` field.
+        * **Registry domain**: The domain for the registry where your Helm chart is pushed. The registry domain is either `replicated.registry.com` or a custom domain that you added.
+        * **Chart name**: The Helm chart name is available from the `/api/v1/app/info` endpoint in the `currentRelease.helmReleaseName` field. In the example above, the chart name is `echo-server`. 
+        * **App slug**: The app slug is available from the `/api/v1/app/info` endpoint in the `appSlug` field. In the example above, the app slug is `echo-server-app`.
+        * **Channel slug**: The channel slug is available from the `/api/v1/app/info` endpoint in the `currentRelease.channelSlug` field. In the example above, the channel slug is `unstable`. 
+
+          :::note
+          The channel slug is not required if the release is promoted to the Stable channel. 
+          :::
 
 ### Revoke Access at Runtime When a License Expires        
 

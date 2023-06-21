@@ -31,6 +31,8 @@ To install a Helm chart:
    ```
    Replace `EMAIL_ADDRESS` and `LICENSE_ID` with the values provided in the command in the **Helm install instructions** dialog.
 
+1. Skip the second and third commands. For more information, see [About Preflight Checks and Support Bundles](https://docs.replicated.com/vendor/preflight-support-bundle-about).
+
 1. Run the fourth command to install using Helm:
 
     ```bash

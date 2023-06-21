@@ -28,7 +28,7 @@ For more information about installing with Helm, see [Installing an Application 
 
 ## Replicated Helm Values {#replicated-values}
 
-When a customer pulls your Helm chart from the Replicated registry, the Replicated registry injects values into the `global.replicated` and `replicated` fields of the Helm chart values file. 
+When a customer installs your Helm chart from the Replicated registry, the Replicated registry injects values into the `global.replicated` and `replicated` fields of the Helm chart values file. 
 
 The following is an example of a Helm values file containing only the information injected by the Replicated registry:
 
@@ -103,6 +103,6 @@ For more information about viewing customer and instance insights in the vendor 
 
 ## Integration Mode
 
-You can run the Replicated SDK in integration mode to more quickly test new functionality for your application. Integration mode allows you to use mock data to test changes locally without having to create a release in the vendor portal and then pull your Helm chart from the Replicated registry.
+You can run the Replicated SDK in integration mode to more quickly test new functionality for your application. Integration mode allows you to use mock data to test changes locally without having to create a release in the vendor portal and then install your Helm chart from the Replicated registry.
 
-For more information, see [Developing against the SDK API (Alpha)](replicated-sdk-development).
+For more information, see [Developing Against the SDK (Alpha)](replicated-sdk-development).

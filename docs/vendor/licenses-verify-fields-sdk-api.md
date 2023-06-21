@@ -1,12 +1,10 @@
 # Verifying License Field Signatures
 
-This topic describes how to verify the signatures of license fields when you use the Replicated SDK API to check customer entitlements in your Helm chart application during runtime.
+This topic describes how to verify the signatures of license fields when you check customer entitlements in your Helm chart application.
 
 ## Overview
 
-You can use the Replicated SDK API `license` endpoints to get details about a customer's license during runtime. For more information, see [license](/reference/replicated-sdk-apis#license) in _Replicated SDK API (Beta)_.
-
-To prevent man-in-the-middle attacks or spoofing by your customers, license fields are cryptographically signed to ensure their integrity. The following shows an example of the signature in a license field returned by the `api/vq/license/fields/expires_at` endpoint:
+To prevent man-in-the-middle attacks or spoofing by your customers, license fields are cryptographically signed to ensure their integrity. The following shows an example of the signature in a license field returned by the Replicated SDK API `api/vq/license/fields/expires_at` endpoint:
 
 ```json
 {
@@ -21,15 +19,18 @@ To prevent man-in-the-middle attacks or spoofing by your customers, license fiel
 }
 ```
 
-When you include logic in your application to check customer license entitlements at runtime, Replicated recommends that you also use signature verification to ensure the integrity of each license field you use. For more information about checking entitlements in your application when you are using the Replicated SDK, see [Checking Entitlements with the SDK](licenses-reference-sdk).
+Replicated recommends that you use signature verification to ensure the integrity of each license field you use in your application. For more information about checking entitlements in your application when you are using the Replicated SDK, see [Checking Entitlements for Helm Installations](licenses-reference-helm).
 
-## Prerequisite
+## Requirements
 
-The **Foundation Plan Signature Verification** feature flag must be enabled for your team in the Replicated vendor portal.
+Using signature verification has the following requirements:
+
+* The **Foundation Plan Signature Verification** feature flag must be enabled for your team in the Replicated vendor portal.
+* To check entitlements at runtime or before installation in your Helm chart application, you must include the Replicated SDK as a dependency of your application. For more information, see [Using the SDK with Your Application (Alpha)](replicated-sdk-using).
 
 ## Use Your Public Key to Verify License Field Signatures
 
-To verify the signatures of license fields, you use a public key to decrypt the signature of a license field and compare it to the license field value returned by the SDK API.
+To verify the signatures of license fields, you use a public key to decrypt the signature of a license field and compare it to the license field value returned by the SDK API `license` endpoint. For more information, see [license](/reference/replicated-sdk-apis#license) in _Replicated SDK API (Beta)_.
 
 To use your public key to verify license field signatures:
 
