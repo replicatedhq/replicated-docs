@@ -1,5 +1,3 @@
-The following steps demonstrate how to create and promote a release using the vendor portal. You can also create and promote releases with the replicated CLI.
-
 To create and promote a release with your Helm chart in the vendor portal:
 
 1. In the vendor portal, go to **Releases** > **Create a release**.
@@ -22,8 +20,8 @@ To create and promote a release with your Helm chart in the vendor portal:
 
 1. Click **Save Release** then click **Promote**. In the **Promote Release** dialog, edit the following fields:
    1. For **Channel**, select the channel that your team uses for development. If you are not sure which channel to use, use the default Unstable channel.
-   1. For **Version label**, the vendor portal automatically populates this field with the version in your Helm chart `Chart.yaml` file. If you have multiple Helm charts in your release, the vendor portal chooses the version from one of the `Chart.yaml` files. The version label must match the version in one of the Helm charts in your release.
+   1. For **Version label**, the vendor portal automatically populates this field with the version in your Helm chart `Chart.yaml` file. If you have multiple Helm charts in your release, the vendor portal chooses the version from one of the `Chart.yaml` files. The version label must match the version of one of the Helm charts in your release.
    1. If the **Prevent this release from being skipped during upgrades** option is displayed, leave it unselected. This option applies only to releases installed with KOTS. For more information about this option for KOTS installations, see [Create a Release](/vendor/releases-creating-releases#create-a-release) in _Managing Releases in the Vendor Portal_. 
    1. (Optional) For **Release notes**, add release notes to describe the updates in this release.
 
-After the release is promoted, the vendor portal automatically pushes your Helm chart to the Replicated registry. For information about how to install the release in a development environment with Helm, see [Installing an Application with Helm (Beta)](install-with-helm). 
+After the release is promoted, your Helm chart is automatically pushed to the Replicated registry. For information about how to install the release in a development environment with Helm, see [Installing an Application with Helm (Beta)](install-with-helm). 

@@ -8,7 +8,7 @@ This topic provides an overview of allowing your customers to install with Helm 
 
 ## About Helm Installations with Replicated
 
-The following diagram shows how Helm charts distributed with Replicated are installed in customer environments:
+The following diagram shows how Helm charts distributed with Replicated are installed with Helm in customer environments:
 
 <img src="/images/helm-install-diagram.png" alt="diagram of a helm chart in a custom environment" width="600px"/> 
 
@@ -23,7 +23,6 @@ For information about how to get started distributing your Helm chart with Repli
 The following limitations apply when using Helm to install applications distributed with Replicated:
 
 * <Beta/>
-
 * Replicated does not support Helm installations into air gap environments.
 * Helm installations do not provide access to any of the features of the Replicated KOTS installer, including:
   * The Replicated admin console

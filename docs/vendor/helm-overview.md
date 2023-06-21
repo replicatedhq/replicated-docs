@@ -14,7 +14,7 @@ Helm is a popular package manager for Kubernetes applications. Replicated suppor
 
 Using KOTS to distribute applications packaged with Helm provides additional functionality not available through Helm, such as a user interface for collecting user configuration values and backup and restore with snapshots.
 
-The following table show an overview of the Helm installation options:
+The following table shows an overview of the Helm installation options:
 
 <table>
 <tr>
@@ -27,7 +27,7 @@ The following table show an overview of the Helm installation options:
   <td><a href="helm-install">Helm (Beta)</a></td>
   <td>No</td>
   <td><ul><li>Install and manage the chart with Helm</li><li>Additional Replicated features available through the Replicated SDK</li></ul></td>
-  <td>Promote a release with your Helm chart in the vendor portal. See <a href="/vendor/helm-install-release">Adding Your Helm Chart to a Release</a>.</td>  
+  <td>Promote a release with your Helm chart. See <a href="/vendor/helm-install-release">Adding Your Helm Chart to a Release</a>.</td>  
 </tr>
 <tr>
   <td><a href="helm-native-about">Native Helm</a></td>

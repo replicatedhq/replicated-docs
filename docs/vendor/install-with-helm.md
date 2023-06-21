@@ -1,14 +1,19 @@
+import FeatureFlag from "../partials/helm/_feature-flag.mdx"
+import Beta from "../partials/helm/_helm-install-beta.mdx"
+
 # Installing an Application with Helm (Beta)
 
-This topic describes how to use Helm to install releases created in the Replicated vendor portal that contain one or more Helm charts.
+This topic describes how to use Helm to install releases that contain one or more Helm charts.
 
+:::note
+<Beta/>
+:::
 ## Prerequisites
 
 Before you install, complete the following prerequisites:
 
-* You must have a customer in the vendor portal with a valid email address. This email address is only used as a username for the Replicated registry and is never contacted in any way. For more information about creating and editing customers in the vendor portal, see [Creating a Customer](/vendor/releases-creating-customer).
-* The **Show Helm Install Tab** feature flag must be enabled for your team in the vendor portal.
-* (Optional) To run preflight checks before installing, you must configure a preflight check specification for your application. See [About Preflight Checks and Support Bundles](https://docs.replicated.com/vendor/preflight-support-bundle-about).
+* You must have a customer in the Replicated vendor portal with a valid email address. This email address is only used as a username for the Replicated registry and is never contacted in any way. For more information about creating and editing customers in the vendor portal, see [Creating a Customer](/vendor/releases-creating-customer).
+* <FeatureFlag/>
 
 ## Install
 
@@ -31,7 +36,7 @@ To install a Helm chart:
    ```
    Replace `EMAIL_ADDRESS` and `LICENSE_ID` with the values provided in the command in the **Helm install instructions** dialog.
 
-1. Skip the second and third commands about preflight checks. For more information, see [About Preflight Checks and Support Bundles](https://docs.replicated.com/vendor/preflight-support-bundle-about).
+1. Skip the second and third commands for installing the preflight plugin and running preflight checks. For more information about configuring and running preflight checks, see [About Preflight Checks and Support Bundles](https://docs.replicated.com/vendor/preflight-support-bundle-about).
 
 1. Run the fourth command to install using Helm:
 

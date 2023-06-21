@@ -74,7 +74,7 @@ The values in the `global.replicated` field provide information about the follow
 * Details about the fields in the customer's license, such as the field name, description, signature, and value
 * A base64 encoded Docker configuration file. If you use the Replicated proxy service to proxy images from an external private registry, you can use the `global.replicated.dockerconfigjson` field to create an image pull secret for the proxy service. For more information, see [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry) in the Kubernetes documentation. 
 
-These values in the `replicated` field provide information about the following:
+The values in the `replicated` field provide information about the following:
 * The full customer license and the license ID
 * The target application release from the vendor portal
 
@@ -82,9 +82,9 @@ The Replicated SDK uses these values in the `replicated` field to initialize in 
 
 ## SDK API 
 
-The Replicated SDK provides and API that you can use to embed Replicated functionality into your application.
+The Replicated SDK provides an API that you can use to embed Replicated functionality into your application.
 
-For example, if your application includes a UI where users manage their application instance, then you can use the `/api/v1/app/updates` endpoint to include messages in the UI that encourage users to upgrade when new versions are available. You could also revoke access to the application when a license expires using the `/api/v1/license/fields` endpoint.
+For example, if your application includes a UI where users manage their application instance, then you can use the `/api/v1/app/updates` endpoint to include messages in the UI that encourage users to upgrade when new versions are available. You could also revoke access to the application during runtime when a license expires using the `/api/v1/license/fields` endpoint.
 
 For more information about the Replicated SDK API endpoints, see [Replicated SDK API (Alpha)](/reference/replicated-sdk-apis).
 
