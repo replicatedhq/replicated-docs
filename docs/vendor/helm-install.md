@@ -28,6 +28,7 @@ The following limitations apply when using Helm to install applications distribu
   * The Replicated admin console
   * Strict preflight checks that block installation
   * Backup and restore with snapshots
+  * Required releases with the **Prevent this release from being skipped during upgrades** option
 
 ## Replicated SDK
 
