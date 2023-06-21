@@ -25,12 +25,9 @@ The following limitations apply when using Helm to install applications distribu
 * <Beta/>
 
 * Replicated does not support Helm installations into air gap environments.
-
-* Helm installations do not provide access to any of the features of Replicated KOTS, including:
+* Helm installations do not provide access to any of the features of the Replicated KOTS installer, including:
   * The Replicated admin console
-  
   * Strict preflight checks that block installation
-
   * Backup and restore with snapshots
 
 ## Replicated SDK
