@@ -118,7 +118,7 @@ Add collectors to define information to be collected for analysis during the ana
 spec:
       {{ if eq .Values.global.mariadb.enabled false }}
       collectors:
-          - mysql:
+        - mysql:
             collectorName: mysql
             uri: '{{ .Values.global.externalDatabase.user }}:{{ .Values.global.externalDatabase.password }}@tcp({{ .Values.global.externalDatabase.host }}:{{ .Values.global.externalDatabase.port }})/{{ .Values.global.externalDatabase.database }}?tls=false'
       {{ end }}
@@ -183,7 +183,7 @@ stringData:
     spec:
       {{ if eq .Values.global.mariadb.enabled false }}
       collectors:
-          - mysql:
+        - mysql:
             collectorName: mysql
             uri: '{{ .Values.global.externalDatabase.user }}:{{ .Values.global.externalDatabase.password }}@tcp({{ .Values.global.externalDatabase.host }}:{{ .Values.global.externalDatabase.port }})/{{ .Values.global.externalDatabase.database }}?tls=false'
       {{ end }}

@@ -56,11 +56,11 @@ The following example shows the `clusterInfo` collector will run because the `ex
 spec:
     collectors:
       - clusterInfo:
-        exclude: false
+          exclude: false
       - clusterResources:
-        namespaces:
-        - default
-        - my-app-namespace
+          namespaces:
+          - default
+          - my-app-namespace
 ```
 
 <PreflightsDefineXref/>
@@ -76,11 +76,11 @@ spec:
     collectors:
       - clusterInfo:
       - clusterResources:
-        exclude: false
+          exclude: false
       - clusterResources:
-        namespaces:
-        - default
-        - my-app-namespace
+          namespaces:
+          - default
+          - my-app-namespace
       - logs:
             selector:
               - app=api
@@ -147,11 +147,11 @@ The following example shows a simplified specification with some edits to the de
   spec:
     collectors:
       - clusterInfo:
-        exclude: false
+          exclude: false
       - clusterResources:
-        namespaces:
-        - default
-        - my-app-namespace
+          namespaces:
+          - default
+          - my-app-namespace
       - logs:
             selector:
               - app=api
