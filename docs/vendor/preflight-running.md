@@ -34,19 +34,19 @@ The output shows the success, warning, or fail message for each preflight check,
 - To run the basic `preflight` command:
 
     ```
-    helm template oci://REGISTRY/APP_NAME/CHART | kubectl preflight -
+    helm template oci://REGISTRY/APP_NAME/CHANNEL/CHART | kubectl preflight -
     ```
-    Replace `REGISTRY` with the registry domain where your Helm chart is located. This can be the Replicated registry or a custom domain.
 
 - If preflight checks are dependent on customer values, run the preflights using the values file to override chart defaults:
 
     ```
-    helm template oci://REGISTRY/APP_NAME/CHART --values FILENAME.yaml | kubectl preflight -
+    helm template oci://REGISTRY/APP_NAME/CHANNEL/CHART --values FILENAME.yaml | kubectl preflight -
     ```
 
     Replace:
 
     - `REGISTRY` with the registry domain where your Helm chart is located. This can be the Replicated registry or a custom domain.
     - `APP_NAME` with the name of the application.
+    - `CHANNEL` with the release channel.
     - `CHART` with the name of the Helm chart.
     - `FILENAME` with the name of the values file.
