@@ -26,7 +26,7 @@ metadata:
 spec:
   {{ if eq .Values.global.mariadb.enabled false }}
   collectors:
-      - mysql:
+    - mysql:
         collectorName: mysql
         uri: '{{ .Values.global.externalDatabase.user }}:{{ .Values.global.externalDatabase.password }}@tcp({{ .Values.global.externalDatabase.host }}:{{ .Values.global.externalDatabase.port }})/{{ .Values.global.externalDatabase.database }}?tls=false'
   {{ end }}

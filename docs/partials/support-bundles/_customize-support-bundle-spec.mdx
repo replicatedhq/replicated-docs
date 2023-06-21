@@ -10,9 +10,9 @@ When customizing your support bundle specifications, consider the following guid
   spec:
     collectors:
       - clusterInfo:
-        exclude: false
+          exclude: false
       - clusterResources:
-        exclude: false
+          exclude: false
   ```
 - You can edit the default collector properties. If  `clusterResources` is defined in your specification, the default namespace cannot be removed, but you can add a namespace to the `namespaces` field.
 
@@ -24,11 +24,11 @@ When customizing your support bundle specifications, consider the following guid
   spec:
     collectors:
       - clusterInfo:
-        exclude: false
+          exclude: false
       - clusterResources:
-        namespaces:
-        - default
-        - APP_NAMESPACE
+          namespaces:
+          - default
+          - APP_NAMESPACE
   ```
   Replace `APP_NAMESPACE` with the application namespace.
 
