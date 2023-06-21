@@ -217,9 +217,12 @@ The `api/v1/app/updates` endpoint returns details about new releases that are av
 
 Additionally, to make it easier for users to upgrade to new versions of your application, you could provide customer-specific upgrade instructions in your admin console by injecting values returned by the `/api/v1/license/info` and `/api/vi/app/info` endpoints. 
 
-The following example shows how you could include a page in your application's admin console that lists available updates and also provides customer-specific upgrade instructions:  
+The following examples show how you could include a page in your application's admin console that lists available updates and also provides customer-specific upgrade instructions:  
 
-![a user interface showing a list of available releases and a dialog with helm upgrade instructions](/images/slackernews-update-instructions.png)
+![a user interface showing a list of available releases](/images/slackernews-update-page.png)
+[View a larger version of this image](/images/slackernews-update-page.png)
+
+![user-specific application upgrade instructions displayed in a dialog](/images/slackernews-update-instructions.png)
 [View a larger version of this image](/images/slackernews-update-instructions.png)
 
 To use the SDK API to check for available application updates and provide customer-specific upgrade instructions:
@@ -243,7 +246,7 @@ To use the SDK API to check for available application updates and provide custom
     ]
     ```
 
-1. For each available release, add logic that displays the required upgrade commands with customer-specific values. To upgrade, users must first run `helm registry login` to authenticate to the Replicated registry and pull your chart. Then, they run `helm upgrade`. 
+1. For each available release, add logic that displays the required upgrade commands with customer-specific values. To upgrade, users must first run `helm registry login` to authenticate to the Replicated registry. Then, they can run `helm upgrade`.
 
   Complete the following steps to inject customer-specific values into the `helm registry login` and `helm upgrade` commands:
 
