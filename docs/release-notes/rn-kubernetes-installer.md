@@ -6,6 +6,30 @@ toc_max_heading_level: 2
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.06.20-0
+
+Released on June 20, 2023
+
+:::important
+Versions earlier than v2023.06.20-0 contain a known issue that might put the system in a critical state when migrating from Weave to Flannel. Use v2023.06.20-0 or later when migrating from Weave to Flannel. 
+:::
+
+### New Features {#new-features-v2023-06-20-0}
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.22.0.
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.11.8.
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.25.0.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.65.2-46.8.0.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-06-09T07-32-12Z.
+* Adds [Sonobuoy add-on](https://kurl.sh/docs/add-ons/sonobuoy) version 0.56.17.
+
+### Improvements {#improvements-v2023-06-20-0}
+* Enhances the migration from Weave to Flannel to preserve custom IP Tables rules.
+
+### Bug Fixes {#bug-fixes-v2023-06-20-0}
+* Fixes all previous Flannel versions by backporting the fixes introduced in the latest release v2023.06.09-0 to solve the problems faced when migrating from Weave to Flannel. 
+* Fixes MinIO PVC resizing race condition for versions equals to or greater than `2023-06-09T07-32-12Z`.
+* Fixes the migration from Weave to Flannel to allow the installer to retry the migration when an error is faced.
+
 ## v2023.06.09-0
 
 Released on June 9, 2023
