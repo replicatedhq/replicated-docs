@@ -120,38 +120,38 @@ The example below shows a JSON object with mock data. This example includes all 
 },
 "availableReleases": [
     {
-    "versionLabel": "1.0.1",
-    "releaseNotes": "New patch version",
-    "isRequired": false,
-    "createdAt": "2023-05-23T21:10:57Z",
-    "helmReleaseNamespace": "testing"
+        "versionLabel": "1.0.1",
+        "releaseNotes": "New patch version",
+        "isRequired": false,
+        "createdAt": "2023-05-23T21:10:57Z",
+        "helmReleaseNamespace": "testing"
     },
     {
-    "versionLabel": "2.0.0",
-    "releaseNotes": "New major version",
-    "isRequired": false,
-    "createdAt": "2023-05-23T21:10:57Z",
-    "helmReleaseName": "release-name"
+        "versionLabel": "2.0.0",
+        "releaseNotes": "New major version",
+        "isRequired": false,
+        "createdAt": "2023-05-23T21:10:57Z",
+        "helmReleaseName": "release-name"
     }
 ],
 "deployedReleases": [
     {
-    "versionLabel": "0.0.1",
-    "createdAt": "2023-05-23T21:10:57Z",
-    "releaseNotes": "The first patch version",
-    "isRequired": true,
-    "helmReleaseName": "sdk-test",
-    "helmReleaseRevision": 8,
-    "helmReleaseNamespace": "testing"
+        "versionLabel": "0.0.1",
+        "createdAt": "2023-05-23T21:10:57Z",
+        "releaseNotes": "The first patch version",
+        "isRequired": true,
+        "helmReleaseName": "sdk-test",
+        "helmReleaseRevision": 8,
+        "helmReleaseNamespace": "testing"
     },
     {
-    "versionLabel": "0.0.2",
-    "createdAt": "2023-05-23T21:10:57Z",
-    "releaseNotes": "The second patch release",
-    "isRequired": false,
-    "helmReleaseName": "sdk-test",
-    "helmReleaseRevision": 9,
-    "helmReleaseNamespace": "testing"
+        "versionLabel": "0.0.2",
+        "createdAt": "2023-05-23T21:10:57Z",
+        "releaseNotes": "The second patch release",
+        "isRequired": false,
+        "helmReleaseName": "sdk-test",
+        "helmReleaseRevision": 9,
+        "helmReleaseNamespace": "testing"
     }
   ]
 }
