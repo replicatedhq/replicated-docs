@@ -255,7 +255,7 @@ To use the SDK API to check for available application updates and provide custom
       **Example**:
 
         ```bash
-        helm registry login registry.replicated.com --username namep@example.com --password LICENSE_ID
+        helm registry login registry.replicated.com --username name@example.com --password LICENSE_ID
         ```
 
         The following describes where the values in the `helm registry login` command are available: 
