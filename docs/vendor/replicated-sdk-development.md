@@ -174,7 +174,7 @@ currentRelease:
   helmReleaseRevision: 3
   helmReleaseNamespace: default
 availableReleases:
-  versionLabel: 1.0.1,
+- versionLabel: 1.0.1,
   releaseNotes: "New patch version"
   isRequired: false
   createdAt: 2023-05-23T21:10:57Z,
