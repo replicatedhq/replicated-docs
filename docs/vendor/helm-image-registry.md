@@ -6,11 +6,11 @@ This topic describes the steps required to connect to an external private regist
 
 If your application images are available in a private image registry exposed to the Internet, such as Docker Hub, Amazon Elastic Container Registry (ECR), or Google Container Registry (GCR), then the unique customer licenses that you create for your application can grant proxy, or _pull-through_, access to the assignee without exposing registry credentials to your customer.
 
-To grant access to an external private registry for installations with Helm, you can use the Replicated SDK and the Replicated proxy service. When you include the Replicated SDK with your Helm chart application, a `global.replicated.dockerconfigjson` field is automatically injected in the Helm chart values after customers provide their license ID during installation. The `global.replicated.dockerconfigjson` field contains a base64 encoded Docker configuration file that you can use to create a pull secret for accessing to your private images through the Replicated proxy service at `proxy.replicated.com`.
+To grant access to an external private registry for Helm installations, you can use the Replicated SDK and the Replicated proxy service. When you include the Replicated SDK with your Helm chart application, a `global.replicated.dockerconfigjson` field is automatically injected in the Helm chart values after customers provide their license ID during installation. The `global.replicated.dockerconfigjson` field contains a base64 encoded Docker configuration file that you can use to create a pull secret for accessing your private images through the Replicated proxy service at `proxy.replicated.com`.
 
 For more information about the Replicated SDK, see [About the Replicated SDK (Alpha)](https://deploy-preview-1200--replicated-docs.netlify.app/vendor/replicated-sdk-overview).
 
-For more information about how Kubernetes uses the `kubernetes.io/dockerconfigjson` Secret type to authenticate to a private image registry, see [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) in the Kubernetes documentation.
+For information about how Kubernetes uses the `kubernetes.io/dockerconfigjson` Secret type to authenticate to a private image registry, see [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) in the Kubernetes documentation.
 
 ## Prerequisites
 
@@ -81,9 +81,9 @@ To use an external registry and the proxy service for Helm installations:
    * `PROXY_SERVICE_IMAGE_URL` with the URL for the private image on `proxy.replicated.com`.
       The proxy service URL uses the following format: `proxy.replicated.com/proxy/APP_NAME/EXTERNAL_REGISTRY_IMAGE_URL`, where `APP_NAME` is the name of your application and `EXTERNAL_REGISTRY_IMAGE_URL` is the path to the private image on your external registry.
 
-      :::note
-      If you configured a custom domain for the proxy service, use the custom domain instead of `proxy.replicated.com`. For more information, see [Using Custom Domains for the Replicated Registry and Proxy Service](custom-domains).
-      :::
+    :::note
+    If you configured a custom domain for the proxy service, use the custom domain instead of `proxy.replicated.com`. For more information, see [Using Custom Domains for the Replicated Registry and Proxy Service](custom-domains).
+    :::
 
    **Example:**
 
@@ -115,6 +115,6 @@ To use an external registry and the proxy service for Helm installations:
              image: '{{ .Values.apiImageRepository }}:{{ .Values.apiImageTag }}'
    ```
 
-1. Package your Helm chart and add it to a release. See [Managing Releases with Vendor Portal](releases-creating-release).
+1. Package your Helm chart and add it to a release. See [Managing Releases with Vendor Portal](releases-creating-releases).
 
 1. Promote the release to a development environment to test your changes.
