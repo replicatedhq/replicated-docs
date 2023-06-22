@@ -1,6 +1,7 @@
 import ChangeChannel from "../partials/customers/_change-channel.mdx"
 import RequiredReleasesLimitations from "../partials/releases/_required-releases-limitations.mdx"
 import RequiredReleasesDescription from "../partials/releases/_required-releases-description.mdx"
+import VersionLabelReqsHelm from "../partials/releases/_version-label-reqs-helm.mdx"
 
 # About Releases
 
@@ -8,42 +9,17 @@ This topic describes concepts about creating and promoting releases, editing rel
 
 ## Overview of Releases
 
-You can use the vendor portal to create and release versions of your application to various release channels. The vendor portal hosts a built-in YAML editor and linter to help you write and validate manifest files.
+A _release_ represents a single version of your application. You can promote releases to one or more channels to either test the release internally or share the release with customers. For example, while you are developing and testing releases, you can promote releases to a channel reserved for development, such as the default Unstable channel.
 
-Alternatively, you can use the replicated CLI and vendor API to automate releases. For more information about using the CLI, see [Installing the replicated CLI](/reference/replicated-cli-installing). For information about the API, see [Using the Vendor API v3](/reference/vendor-api-using).
+Each release contains application files. Application files can be Helm charts or Kubernetes manifest files, such as Deployment and Service resources. Additionally, releases that support installation with Replicated KOTS contain Replicated custom resources to configure KOTS functionality. For releases that use YAML manifests, the vendor portal hosts a built-in YAML editor and linter to help you write and validate manifest files.  
 
-Application files can be either Helm charts or Kubernetes manifest files, which can include standard manifests such as Deployment and Service resources.
-
-### Custom Resources
-
-When you deploy your application with Replicated KOTS you can use custom resources to control the application experience. For more information, see [About Custom Resources](/reference/custom-resource-about).
+You can use the vendor portal to create and release versions of your application to various release channels. Alternatively, you can use the replicated CLI and vendor API to automate releases. For more information about using the CLI, see [Installing the replicated CLI](/reference/replicated-cli-installing). For information about the API, see [Using the Vendor API v3](/reference/vendor-api-using).
 
 ### Release Promotion
 
-After you save a release, you can promote it to any of your release channels. While you are developing and testing an application release, Replicated recommends that you promote to a channel that does not have any customers assigned, such as the default Unstable channel. When you are ready to share your application with customers, you can then promote to a channel where customers are assigned, such as the default Beta or Stable channels. For more information about channels, see [About Release Channels](releases-about-channels).
+After you save a release, you can promote it to any of your release channels. While you are developing and testing releases, Replicated recommends that you promote to a channel that does not have any customers assigned, such as the default Unstable channel. When you are ready to share your application with customers, you can then promote a release to a channel where customers are assigned, such as the Beta or Stable channels. For more information about channels, see [About Release Channels](releases-about-channels).
 
 Every customer license file that you create in the vendor portal is assigned to a channel. Each time you promote a new release to a channel, customers assigned to that channel can update their installed application instance to the new release version.
-
-### Semantic Versioning
-
-Semantic versioning is available with the Replicated KOTS v1.58.0 and later. Note the following:
-
-- For applications created in the vendor portal on or after February 23, 2022, semantic versioning is enabled by default on the Stable and Beta channels. Semantic versioning is disabled on the Unstable channel by default.
-
-- For existing applications created before February 23, 2022, semantic versioning is disabled by default on all channels.
-
-Semantic versioning is recommended because it makes versioning more predictable for users and lets you enforce versioning so that no one uses an incorrect version.
-
-To use semantic versioning:
-
-1. Enable semantic versioning on a channel, if it is not enabled by default. Click the **Edit channel settings** icon, and turn on the **Enable semantic versioning** toggle.
-1. Assign a semantic version number when you promote a release.
-
-Releases promoted to a channel with semantic versioning enabled are verified to ensure that the release version label is a valid semantic version. For more information about valid semantic versions, see [Semantic Versioning 2.0.0](https://semver.org).
-
-If you enable semantic versioning for a channel and then promote releases to it, Replicated recommends that you do not later disable semantic versioning for that channel.
-
-You can enable semantic versioning on a channel that already has releases promoted to it without semantic versioning. Any subsequently promoted releases must use semantic versioning. In this case, the channel will have releases with and without semantic version numbers. For information about how Replicated organizes these release sequences, see [Semantic Versioning Sequences](#semantic-versioning-sequence).
 
 ### Release Properties
 
@@ -57,9 +33,14 @@ The following shows an example of the release properties dialog:
 
 As shown in the screenshot above, the release has the following properties:
 
-* **Version label**: The version label for the release. If semantic versioning is enabled for the channel, you must use a valid semantic version. For more information, see [Semantic Versioning](#semantic-versioning) above.
+* **Version label**: The version label for the release. Version labels have the following requirements:
 
-* **Requirements**: You can select **Prevent this release from being skipped during upgrades** to mark the release as required.
+  * For releases that support installation with KOTS, if semantic versioning is enabled for the channel, you must use a valid semantic version. For more information, see [Semantic Versioning](#semantic-versioning) above.
+
+  * For releases that support installation with Helm only:
+    <VersionLabelReqsHelm/>
+
+* **Requirements**: For releases distributed with Replicated KOTS, you can select **Prevent this release from being skipped during upgrades** to mark the release as required.
 
   <RequiredReleasesDescription/> 
 
@@ -121,9 +102,30 @@ Then, you enable semantic versioning on that channel. The admin console sequence
 
 For information about how enterprise application users check for application updates in the admin console, see [Checking for Updates](/enterprise/updating-apps#checking-for-updates).
 
+### Semantic Versioning
+
+Semantic versioning is available with the Replicated KOTS v1.58.0 and later. Note the following:
+
+- For applications created in the vendor portal on or after February 23, 2022, semantic versioning is enabled by default on the Stable and Beta channels. Semantic versioning is disabled on the Unstable channel by default.
+
+- For existing applications created before February 23, 2022, semantic versioning is disabled by default on all channels.
+
+Semantic versioning is recommended because it makes versioning more predictable for users and lets you enforce versioning so that no one uses an incorrect version.
+
+To use semantic versioning:
+
+1. Enable semantic versioning on a channel, if it is not enabled by default. Click the **Edit channel settings** icon, and turn on the **Enable semantic versioning** toggle.
+1. Assign a semantic version number when you promote a release.
+
+Releases promoted to a channel with semantic versioning enabled are verified to ensure that the release version label is a valid semantic version. For more information about valid semantic versions, see [Semantic Versioning 2.0.0](https://semver.org).
+
+If you enable semantic versioning for a channel and then promote releases to it, Replicated recommends that you do not later disable semantic versioning for that channel.
+
+You can enable semantic versioning on a channel that already has releases promoted to it without semantic versioning. Any subsequently promoted releases must use semantic versioning. In this case, the channel will have releases with and without semantic version numbers. For information about how Replicated organizes these release sequences, see [Semantic Versioning Sequences](#semantic-versioning-sequence).
+
 ## About the Draft Release Page
 
-You click **Releases > Create Release** in the vendor portal to open the **Draft** page. This page provides a YAML editor to add, edit, and delete your application files and Replicated custom resources.
+For releases that support installation with KOTS, the **Draft** page provides a YAML editor to add, edit, and delete your application files and Replicated custom resources. You click **Releases > Create Release** in the vendor portal to open the **Draft** page. 
 
 The following shows an example of the **Draft** page in the vendor portal:
 
