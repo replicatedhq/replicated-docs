@@ -29,11 +29,11 @@ Response:
 {
   "appSlug": "my-app",
   "appName": "My App",
-  "helmChartURL": "oci://registry.replicated.com/my-app/stable/my-helm-chart",
+  "helmChartURL": "oci://registry.replicated.com/my-app/beta/my-helm-chart",
   "currentRelease": {
     "versionLabel": "0.1.72",
     "channelID": "2CBDxNwDH1xyYiIXRTjiB7REjKX",
-    "channelName": "Stable",
+    "channelName": "Beta",
     "isRequired": false,
     "createdAt": "2023-05-28T16:31:21Z",
     "releaseNotes": "",
@@ -265,14 +265,14 @@ To use the SDK API to check for available application updates and provide custom
     1. Inject customer-specific values into the `helm upgrade` command:
 
         ```bash
-        helm upgrade [-n NAMESPACE] [RELEASE_NAME] HELM_CHART_URL
+        helm upgrade -n NAMESPACE RELEASE_NAME HELM_CHART_URL
         ```
 
        The following describes where the values in the `helm upgrade` command are available:
 
         * `NAMESPACE`: The release namespace is available from the `/api/v1/app/info` endpoint in the `currentRelease.helmReleaseNamespace`
         
-        * `RELEASE_NAME`: The Helm chart name is available from the `/api/v1/app/info` endpoint in the `currentRelease.helmReleaseName` field.
+        * `RELEASE_NAME`: The release name is available from the `/api/v1/app/info` endpoint in the `currentRelease.helmReleaseName` field.
         
         * `HELM_CHART_URL`: The URL of the Helm chart at the OCI registry is available from the `/api/v1/app/info` endpoint in the `helmChartURL` field.
 
