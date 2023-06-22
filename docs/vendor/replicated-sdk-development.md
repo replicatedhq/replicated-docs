@@ -314,6 +314,10 @@ To provide mock data to the SDK at deployment:
 
 1. (Optional) Repeat the steps above to continue iterating.
 
+   :::note
+   A POST request to the `/mock-data` endpoint overwrites the entire data object. To update a single piece of mock data, you have to POST the entire mock data object.
+   :::
+
 1. (Optional) Stop the SDK from using mock data:
 
     ```bash
