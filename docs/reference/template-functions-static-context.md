@@ -344,8 +344,8 @@ TLSCert takes the following parameters
 - Unique name that identifies the certificate.  
 This is a not a part of the returned certificate.
 - Subject’s common name (cn)
-- Optional list of IPs; may be nil
-- Optional list of alternate DNS names; may be nil
+- Optional list of IPs; may be `()`
+- Optional list of alternate DNS names; may be `()`
 - Cert validity duration in days
 ```yaml
 repl{{ TLSCert "my_custom_cert" "foo.com" (list "10.0.0.1" "10.0.0.2") (list "bar.com" "bat.com") 365 }}
