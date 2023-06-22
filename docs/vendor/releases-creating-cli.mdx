@@ -2,25 +2,36 @@ import RepositoryCicdNote from "../partials/releases/_repository-cicd-note.mdx"
 
 # Managing Releases with the CLI
 
-This topic describes how to use the replicated CLI to create and promote versions of your application.
+This topic describes how to use the replicated CLI to create and promote releases.
 
-<RepositoryCicdNote/>
+## Prerequisites
 
-## Create a Release
+Before you create a release using the replicated CLI, complete the following prerequisites:
 
-Before you can create your first release using the replicated CLI, make sure that the following requirements are met:
-
-- Install the replicated CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
+* Install the replicated CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
   
-- Create a new application using the `replicated app create APP_NAME` command. You only need to do this procedure one time for each application that you want to deploy. See [`app create`](/reference/replicated-cli-app-create) in _Reference_.
+* Create a new application using the `replicated app create APP_NAME` command. You only need to do this procedure one time for each application that you want to deploy. See [`app create`](/reference/replicated-cli-app-create) in _Reference_.
 
-- If you are using Helm charts, make sure that you first create the Helm chart package. See [Creating a Helm Chart Package](helm-release-creating-package).
+* Set the `REPLICATED_APP` and `REPLICATED_API_TOKEN` environment variables. See [Set the Environment Variables](/reference/replicated-cli-installing#set-environment-variables) in _Installing the replicated CLI_.
 
-- Make sure that you have an application directory that contains your application files.
+  **Example**:
+
+  ```bash
+  export REPLICATED_APP=my-app-slug
+  export REPLICATED_API_TOKEN=1234abcd
+  ```
+
+  :::note
+  The token environment variable is valid for a single session. You must export it for each new session.
+  :::
+
+## Create a Release From a Local Directory
+
+You can use the replicated CLI to create a release from the local directory that contains your application files.
 
 To create and promote a new release:
 
-1. Export the token environment variable. The token environment variable is valid for a single session. You must export it for each new session.
+1. If your release contains any Helm charts, package the Helm charts and add the `.tgz` files to the local directory with your application files. See [Creating a Helm Chart Package](helm-release-creating-package).
 
 1. Lint the application manifest files and ensure that there are no errors in the YAML:
 
@@ -71,3 +82,25 @@ To create and promote a new release:
   ```
   replicated release ls
   ```
+
+## Create a Release With a Helm Chart Only
+
+For applications that contain a single Helm chart, you can use the `--chart` flag to add your Helm chart to a release, rather than pointing to a local directory with your application files.
+
+To create a release for an application that contains a Helm chart:
+
+1. Package your Helm chart into a `.tgz`. See [Creating a Helm Chart Package](helm-release-creating-package).
+
+1. Create a release and promote it to the Unstable channel:
+   
+   ```bash
+   replicated release create --chart=CHART_TGZ_FILE --promote=Unstable
+   ```
+
+   Replace `CHART_TGZ_FILE` with the `.tgz` Helm chart package. For example, --chart=my-chart-1.0.0.tgz.
+
+1. Verify that the release was promoted to the channel:
+
+  ```
+  replicated release ls
+  ```   
