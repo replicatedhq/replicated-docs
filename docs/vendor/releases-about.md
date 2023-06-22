@@ -125,7 +125,7 @@ You can enable semantic versioning on a channel that already has releases promot
 
 ## About the Draft Release Page
 
-For releases that support installation with KOTS, the **Draft** page provides a YAML editor to add, edit, and delete your application files and Replicated custom resources. You click **Releases > Create Release** in the vendor portal to open the **Draft** page. 
+For applications that support installation with KOTS, the **Draft** page provides a YAML editor to add, edit, and delete your application files and Replicated custom resources. You click **Releases > Create Release** in the vendor portal to open the **Draft** page. 
 
 The following shows an example of the **Draft** page in the vendor portal:
 
