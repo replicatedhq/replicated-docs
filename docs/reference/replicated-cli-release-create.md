@@ -10,7 +10,8 @@ Create a new release using a collection of application manifest files.
 replicated release create --yaml-dir YAML_DIR [flags]
 ```
 
-* _`YAML_DIR` corresponds to the root directory of the YAML application manifest files._
+* You must use either the `yaml-dir` or `chart` flag when creating a release, one or the other is required.
+* _`yaml-dir` corresponds to the root directory of the YAML application manifest files._
 * _Additional flags returned by `--help` that are not supported in Replicated have been omitted from the list below_
 
 <table>
@@ -20,6 +21,11 @@ replicated release create --yaml-dir YAML_DIR [flags]
     <th width="50%">Description</th>
   </tr>
   <YamlDir/>
+  <tr>
+    <td><code>--chart</code></td>
+    <td>string</td>
+    <td>The path to the Helm chart for a release. <strong>(Required)</strong></td>
+  </tr>
   <tr>
     <td><code>--promote</code></td>
     <td>string</td>
@@ -56,6 +62,16 @@ replicated release create --yaml-dir YAML_DIR [flags]
 replicated release create --yaml-dir ./manifests
 
   • Reading manifests from ./manifests ✓
+  • Creating Release ✓
+    • SEQUENCE: 58
+```
+
+### `--chart`
+
+```bash
+replicated release create --chart=my-chart-1.0.0.tgz
+
+  • Reading chart from my-chart-1.0.0.tgz ✓
   • Creating Release ✓
     • SEQUENCE: 58
 ```
