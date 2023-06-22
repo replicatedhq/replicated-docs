@@ -246,42 +246,35 @@ To use the SDK API to check for available application updates and provide custom
     ]
     ```
 
-1. For each available release, add logic that displays the required upgrade commands with customer-specific values. To upgrade, users must first run `helm registry login` to authenticate to the Replicated registry. Then, they can run `helm upgrade`.
-
-  Complete the following steps to inject customer-specific values into the `helm registry login` and `helm upgrade` commands:
+1. For each available release, add logic that displays the required upgrade commands with customer-specific values. To upgrade, users must first run `helm registry login` to authenticate to the Replicated registry. Then, they can run `helm upgrade`:
 
     1. Inject customer-specific values into the `helm registry login` command:
 
-      **Example**:
+      ```bash
+      helm registry login REGISTRY_DOMAIN --username EMAIL --password LICENSE_ID
+      ```
 
-        ```bash
-        helm registry login registry.replicated.com --username name@example.com --password LICENSE_ID
-        ```
+      The `helm registry login` command requires the following components: 
 
-        The following describes where the values in the `helm registry login` command are available: 
-
-        * **Registry domain**: The domain for the registry where your Helm chart is pushed. The registry domain is either `replicated.registry.com` or a custom domain that you added.
-        * **Customer email**: The customer email address is available from the `/api/v1/license/info` endpoint in the `customerEmail` field.
-        * **Customer license ID**: The customer license ID is available from the `/api/v1/license/info` endpoint in the `licenseID` field.
+        * `REGISTRY_DOMAIN`: The domain for the registry where your Helm chart is pushed. The registry domain is either `replicated.registry.com` or a custom domain that you added.
+        
+        * `EMAIL`: The customer email address is available from the `/api/v1/license/info` endpoint in the `customerEmail` field.
+        
+        * `LICENSE_ID` The customer license ID is available from the `/api/v1/license/info` endpoint in the `licenseID` field.
 
     1. Inject customer-specific values into the `helm upgrade` command:
 
-      **Example**:
-
         ```bash
-        helm upgrade echo-server oci://registry.replicated.com/echo-server-app/unstable/echo-server
+        helm upgrade [-n NAMESPACE] [RELEASE_NAME] HELM_CHART_URL
         ```
 
        The following describes where the values in the `helm upgrade` command are available:
 
-        * **Registry domain**: The domain for the registry where your Helm chart is pushed. The registry domain is either `replicated.registry.com` or a custom domain that you added.
-        * **Chart name**: The Helm chart name is available from the `/api/v1/app/info` endpoint in the `currentRelease.helmReleaseName` field. In the example above, the chart name is `echo-server`. 
-        * **App slug**: The app slug is available from the `/api/v1/app/info` endpoint in the `appSlug` field. In the example above, the app slug is `echo-server-app`.
-        * **Channel slug**: The channel slug is available from the `/api/v1/app/info` endpoint in the `currentRelease.channelSlug` field. In the example above, the channel slug is `unstable`. 
-
-          :::note
-          The channel slug is not required if the release is promoted to the Stable channel. 
-          :::
+        * `NAMESPACE`: The release namespace is available from the `/api/v1/app/info` endpoint in the `currentRelease.helmReleaseNamespace`
+        
+        * `RELEASE_NAME`: The Helm chart name is available from the `/api/v1/app/info` endpoint in the `currentRelease.helmReleaseName` field.
+        
+        * `HELM_CHART_URL`: The URL of the Helm chart at the OCI registry is available from the `/api/v1/app/info` endpoint in the `helmChartURL` field.
 
 ### Revoke Access at Runtime When a License Expires        
 

@@ -109,6 +109,7 @@ The example below shows a JSON object with mock data. This example includes all 
 
 ```json
 {
+"helmChartURL": "oci://charts.mycompany.com/appslug/channelslug/chartname",
 "currentRelease": {
     "versionLabel": "1.0.0",
     "isRequired": false,
@@ -164,6 +165,7 @@ YAML format is supported for providing mock data in the Helm chart values file b
 The example below shows mock data in YAML. This example includes all the available fields for the mock data that you can provide to the SDK in development mode.
 
 ```yaml
+helmChartURL: oci://registry.replicated.com/dev-app/dev-channel/dev-parent-chart
 currentRelease:
   versionLabel: 0.1.3
   isRequired: false
@@ -173,17 +175,6 @@ currentRelease:
   helmReleaseName: dev-parent-chart
   helmReleaseRevision: 3
   helmReleaseNamespace: default
-availableReleases:
-- versionLabel: 1.0.1,
-  releaseNotes: "New patch version"
-  isRequired: false
-  createdAt: 2023-05-23T21:10:57Z,
-  helmReleaseNamespace: "testing"
-  versionLabel: "2.0.0"
-  releaseNotes: "New major version"
-  isRequired: false,
-  createdAt: 2023-05-23T21:10:57Z,
-  helmReleaseName: dev
 deployedReleases:
 - versionLabel: 0.1.1
   isRequired: false
@@ -193,14 +184,33 @@ deployedReleases:
   helmReleaseName: dev-parent-chart
   helmReleaseRevision: 1
   helmReleaseNamespace: default
-- versionLable: 0.1.0
+- versionLabel: 0.1.2
   isRequired: false
-  releaseNotes: "release notes 0.1.0"
-  createdAt: 2023-05-15T12:15:07Z
-  deployedAt: 2023-05-15T13:26:07Z
+  releaseNotes: "release notes 0.1.2"
+  createdAt: 2023-05-22T20:58:07Z
+  deployedAt: 2023-05-22T21:58:07Z
   helmReleaseName: dev-parent-chart
-  helmReleaseRevision: 1
+  helmReleaseRevision: 2
   helmReleaseNamespace: default
+- versionLabel: 0.1.3
+  isRequired: false
+  releaseNotes: "release notes 0.1.3"
+  createdAt: 2023-05-23T20:58:07Z
+  deployedAt: 2023-05-23T21:58:07Z
+  helmReleaseName: dev-parent-chart
+  helmReleaseRevision: 3
+  helmReleaseNamespace: default
+availableReleases:
+- versionLabel: 0.1.4
+  isRequired: true
+  releaseNotes: "release notes 0.1.4"
+  createdAt: 2023-05-24T20:58:07Z
+  deployedAt: 2023-05-24T21:58:07Z
+- versionLabel: 0.1.5
+  isRequired: false
+  releaseNotes: "release notes 0.1.5"
+  createdAt: 2023-06-01T20:58:07Z
+  deployedAt: 2023-06-01T21:58:07Z
 ```
 
 ### Provide Mock Data at Runtime {#provide-runtime}
@@ -268,7 +278,34 @@ To provide mock data to the SDK at deployment:
             helmReleaseName: dev-parent-chart
             helmReleaseRevision: 1
             helmReleaseNamespace: default
-            ...
+          - versionLabel: 0.1.2
+            isRequired: false
+            releaseNotes: "release notes 0.1.2"
+            createdAt: 2023-05-22T20:58:07Z
+            deployedAt: 2023-05-22T21:58:07Z
+            helmReleaseName: dev-parent-chart
+            helmReleaseRevision: 2
+            helmReleaseNamespace: default
+          - versionLabel: 0.1.3
+            isRequired: false
+            releaseNotes: "release notes 0.1.3"
+            createdAt: 2023-05-23T20:58:07Z
+            deployedAt: 2023-05-23T21:58:07Z
+            helmReleaseName: dev-parent-chart
+            helmReleaseRevision: 3
+            helmReleaseNamespace: default
+          availableReleases:
+          - versionLabel: 0.1.4
+            isRequired: true
+            releaseNotes: "release notes 0.1.4"
+            createdAt: 2023-05-24T20:58:07Z
+            deployedAt: 2023-05-24T21:58:07Z
+          - versionLabel: 0.1.5
+            isRequired: false
+            releaseNotes: "release notes 0.1.5"
+            createdAt: 2023-06-01T20:58:07Z
+            deployedAt: 2023-06-01T21:58:07Z
+          ...
     ```
 
 1. Deploy your Helm chart.
