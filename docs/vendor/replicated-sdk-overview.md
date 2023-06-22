@@ -78,7 +78,7 @@ The values in the `replicated` field provide information about the following:
 * The full customer license and the license ID
 * The target application release from the vendor portal
 
-The Replicated SDK uses these values in the `replicated` field to initialize in a customer environment.
+The Replicated SDK uses the values in the `replicated` field to initialize in a customer environment.
 
 ## SDK API 
 
