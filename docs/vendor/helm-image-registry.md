@@ -19,11 +19,11 @@ For information about how Kubernetes uses the `kubernetes.io/dockerconfigjson` S
 * (Optional) To use a custom domain for the proxy service instead of `proxy.replicated.com`, see [Using Custom Domains for the Replicated Registry and Proxy Service](custom-domains).
 ## Deliver Image Pull Secrets to the Proxy Service
 
-This procedure shows how to create an image pull secret for the proxy service and then template the image names in your Helm chart to use `proxy.replicated.com` instead of your private registry URL.
+This procedure shows how to create an image pull secret for the proxy service and then override your private registry URL during installation to use `proxy.replicated.com` instead.
 
 To use an external registry and the proxy service for Helm installations:
 
-1. In your Helm chart templates, create a Kubernetes Secret with the following to evaluate if the `global.replicated.dockerconfigjson` value is set, and then write the rendered value into a Secret on the cluster:
+1. In your Helm chart templates, create a Kubernetes Secret to evaluate if the `global.replicated.dockerconfigjson` value is set, and then write the rendered value into a Secret on the cluster:
 
    ```yaml
    # /templates/replicated-secret.yaml
@@ -39,34 +39,36 @@ To use an external registry and the proxy service for Helm installations:
    {{ end }}
    ```
 
-1. Create a field in your Helm chart values file with the location of the private image on `proxy.replicated.com`:
+1. Ensure that you have a field in your Helm chart values file for your image repository URL, and that any references to the image in your Helm chart access the field from your values file.  
 
-   ```yaml
-   # values.yaml
-
-   FIELD_NAME: PROXY_SERVICE_IMAGE_URL
-   ```
-   Replace:
-   * `FIELD_NAME` with any name for the field.
-   * `PROXY_SERVICE_IMAGE_URL` with the URL for the private image on `proxy.replicated.com`.
-      The proxy service URL uses the following format: `proxy.replicated.com/proxy/APP_SLUG/EXTERNAL_REGISTRY_IMAGE_URL`, where `APP_SLUG` is the name of your application and `EXTERNAL_REGISTRY_IMAGE_URL` is the path to the private image on your external registry.
-
-    :::note
-    If you configured a custom domain for the proxy service, use the custom domain instead of `proxy.replicated.com`. For more information, see [Using Custom Domains for the Replicated Registry and Proxy Service](custom-domains).
-    :::
-
-   **Example:**
+   **Example**:
 
    ```yaml
    # values.yaml
    ...
    images:
      myapp:
-       apiImageRepository: proxy.replicated.com/proxy/my-kots-app/quay.io/my-org/api
+       # Add image URL in the values file
+       apiImageRepository: quay.io/my-org/api
        apiImageTag: v1.0.1
    ```
+   ```yaml
+   # /templates/deployment.yaml
 
-1. In your Helm chart templates, add the `imagePullSecret` that you created to any manifests that reference the private image:
+   apiVersion: apps/v1
+   kind: Deployment
+   metadata:
+    name: example
+   spec:
+     template:
+       spec:
+         containers:
+           - name: api
+             # Access the apiImageRepository field from the values file
+             image: {{ .Values.images.myapp.apiImageRepository }}:{{ .Values.images.myapp.apiImageTag }}
+   ```
+
+1. In your Helm chart templates, add the `replicated` image pull secret that you created to any manifests that reference the private image:
 
    ```yaml
    # /templates/example.yaml
@@ -82,7 +84,7 @@ To use an external registry and the proxy service for Helm installations:
     ```yaml
     # /templates/deployment.yaml
     ...
-    image: "{{ .Values.images.myapp.apiImageRepository }}:{{ .Values.images.myapp.taapiImageTag }}"
+    image: "{{ .Values.images.myapp.apiImageRepository }}:{{ .Values.images.myapp.apiImageTag }}"
     {{ if .Values.global.replicated.dockerconfigjson }}
     imagePullSecrets:
       - name: replicated
@@ -91,29 +93,36 @@ To use an external registry and the proxy service for Helm installations:
     ports:
     - containerPort: 3000
       name: http
-    ``` 
+    ```
 
-1. Update any references to the image in your Helm chart to access the field you created in your values file:
+1. Package your Helm chart and add it to a release. Promote the release to a development channel. See [Managing Releases with Vendor Portal](releases-creating-releases).
 
-   ```yaml
-   image: '{{ .Values.FIELD_NAME }}'
-   ```
+1. Install the chart in a development environment to test your changes:
 
-   **Example:**
+   1. Create a local `values.yaml` file to override the default external registry image URL with the URL for the image on `proxy.replicated.com`.
+   
+      The proxy service URL has the following format: `proxy.replicated.com/proxy/APP_SLUG/EXTERNAL_REGISTRY_IMAGE_URL`
+      
+      Where:
+      * `APP_SLUG` is the slug of your Replicated application.
+      * `EXTERNAL_REGISTRY_IMAGE_URL` is the path to the private image on your external registry.
 
-   ```yaml
-   apiVersion: apps/v1
-   kind: Deployment
-   metadata:
-    name: example
-   spec:
-     template:
-       spec:
-         containers:
-           - name: api
-             image: '{{ .Values.images.myapp.apiImageRepository }}:{{ .Values.images.myapp.apiImageTag }}'
-   ```
+      **Example**
+      ```yaml
+      # A local values.yaml file
+      ...
+      images:
+        myapp:
+          apiImageRepository: proxy.replicated.com/proxy/my-app/quay.io/my-org/api
+          apiImageTag: v1.0.1
 
-1. Package your Helm chart and add it to a release. See [Managing Releases with Vendor Portal](releases-creating-releases).
+      ```
 
-1. Promote the release to a development environment to test your changes.
+      :::note
+      If you configured a custom domain for the proxy service, use the custom domain instead of `proxy.replicated.com`. For more information, see [Using Custom Domains for the Replicated Registry and Proxy Service](custom-domains).
+      :::
+   
+   1. Log in to the Replicated registry and install the chart, passing the local `values.yaml` file you created with the `--values` flag. See [Installing an Application with Helm (Beta)](https://deploy-preview-1200--replicated-docs.netlify.app/vendor/install-with-helm).
+
+
+    
