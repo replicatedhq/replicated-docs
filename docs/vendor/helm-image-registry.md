@@ -59,7 +59,7 @@ To use an external registry and the proxy service for Helm installations:
     ...
     image: {{ .Values.images.myapp.repository }}{{ .Values.images.myapp.tag }}
     imagePullPolicy: {{ .Values.images.myapp.pullPolicy }}
-    {{ if .Values.gloabl.replicated.dockerconfigjson }}
+    {{ if .Values.global.replicated.dockerconfigjson }}
     imagePullSecrets:
       - name: replicated
     {{ end }}
