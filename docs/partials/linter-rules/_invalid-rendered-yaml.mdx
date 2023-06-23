@@ -1,4 +1,3 @@
-For a given HelmChart
 ```yaml
 apiVersion: kots.io/v1beta1
 kind: HelmChart
@@ -15,7 +14,7 @@ spec:
     nginx_image: repl{{ ConfigOption `nginx_image`}}
 ```
 
-**Correct config**:
+**Correct Config**:
 ```yaml
 apiVersion: kots.io/v1beta1
 kind: Config
@@ -32,7 +31,7 @@ spec:
           default: "nginx"
 ```
 
-**resulting rendered helm chart**
+**Resulting Rendered Helm Chart**:
 ```yaml
 apiVersion: kots.io/v1beta1
 kind: HelmChart
@@ -48,7 +47,7 @@ spec:
   values:
     nginx_image: nginx
 ```
-**Incorrect config**:
+**Incorrect Config**:
 ```yaml
 apiVersion: kots.io/v1beta1
 kind: Config
@@ -64,7 +63,7 @@ spec:
           default: "***HIDDEN***"
 ```
 
-**resulting lint error**
+**Resulting Lint Error**:
 ```json
 {
   "lintExpressions": [
@@ -79,7 +78,7 @@ spec:
   "isLintingComplete": false
 }
 ```
-**incorrectly rendered helm chart**
+**Incorrectly Rendered Helm Chart**:
 ```yaml
 apiVersion: kots.io/v1beta1
 kind: HelmChart
