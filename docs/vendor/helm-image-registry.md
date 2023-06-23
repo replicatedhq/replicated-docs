@@ -82,7 +82,7 @@ To use an external registry and the proxy service for Helm installations:
     ```yaml
     # /templates/deployment.yaml
     ...
-    image: {{ .Values.images.myapp.apiImageRepository }}:{{ .Values.images.myapp.taapiImageTag }}
+    image: '{{ .Values.images.myapp.apiImageRepository }}:{{ .Values.images.myapp.taapiImageTag }}'
     {{ if .Values.global.replicated.dockerconfigjson }}
     imagePullSecrets:
       - name: replicated
@@ -111,7 +111,7 @@ To use an external registry and the proxy service for Helm installations:
        spec:
          containers:
            - name: api
-             image: {{ .Values.images.myapp.apiImageRepository }}:{{ .Values.images.myapp.apiImageTag }}
+             image: '{{ .Values.images.myapp.apiImageRepository }}:{{ .Values.images.myapp.apiImageTag }}'
    ```
 
 1. Package your Helm chart and add it to a release. See [Managing Releases with Vendor Portal](releases-creating-releases).
