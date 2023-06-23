@@ -79,8 +79,6 @@ To use an external registry and the proxy service for Helm installations:
 
    **Example:**
 
-   The following example shows the `imagePullSecrets` field in a `templates/deployment.yaml` file that also injects values for the image registry URL, image tag, and `imagePullPolicy`.
-
     ```yaml
     # /templates/deployment.yaml
     ...
