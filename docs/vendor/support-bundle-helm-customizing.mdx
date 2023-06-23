@@ -21,14 +21,14 @@ Customizing a support bundle is unique to your application and depends on what k
 
 <PreflightsSpecLocations/>
 
-## Input Kind
+## Choose an Input Kind
 
 You can create support bundle specifications using the following kinds:
 
 - Secret (`kind: Secret`)
 - SupportBundle custom resource (`kind: SupportBundle`)
 
-## Define Support Bundles as Secrets
+### Create a Secret (Recommended)
 
 Replicated recommends using Secrets to contain a support bundle specifications in your Helm chart. This method allows customers to automatically discover and generate a support bundle without specifying a long URL. Using Secrets also allows specifications to be templated using information in the `values.yaml` file.
 
@@ -61,7 +61,7 @@ stringData:
       collectors: []
       analyzers: []
 ```
-## Create a SupportBundle Custom Resource
+### Create a SupportBundle Custom Resource
 
 If you do not want to use Secrets, you can create a SupportBundle custom resource instead. Helm templates are supported when the specification is distributed using an OCI registry.
 

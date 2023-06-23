@@ -14,19 +14,17 @@ import PreflightSbHelmTemplates from "../partials/preflights/_preflight-sb-helm-
 
 This topic provides a basic understanding and some key considerations about preflight checks for Helm installations to help guide you in defining them for your application.
 
-## About Helm Preflight Checks
+## About Preflight Checks for Helm Charts
 
 <PreflightsAbout/>
 
 Preflight checks run using a `helm template` command before running the installation to confirm the target cluster has the resources required for a successful installation.
 
-## Input Kind
+## Choose an Input Kind
 
-To run preflight checks, you use the open source preflight kubectl plugin. For information about the preflight plugin, see [Getting Started](https://troubleshoot.sh/docs/) in the open source Troubleshoot documentation.
+You run preflight checks with the open source preflight kubectl plugin. For information about the preflight plugin, see [Getting Started](https://troubleshoot.sh/docs/) in the open source Troubleshoot documentation.
 
-The preflight plugin requires the preflight check specification that you write. For Helm installations, you provide this specification by running `helm template` to produce a stream of stdout and pipe the result to `preflight -`. The `preflight` plugin then automatically filters the stream of stdout for certain input kinds to find and run preflight specifications.
-
-The preflight plugin searches your Helm chart for preflight specifications in the following input kinds:
+The plugin requires a preflight check specification as input. For Helm installations, you provide this specification by running `helm template` to produce a stream of stdout and pipe the result to `preflight -`. The preflight plugin automatically finds and runs preflight specifications by filtering the stream of stdout for the following input kinds:
 
 -  Secret (`kind: Secret`)
 -  ConfigMap (`kind: ConfigMap`)
@@ -34,9 +32,7 @@ The preflight plugin searches your Helm chart for preflight specifications in th
 
 All of these input options allow customization of preflight checks based on values unique to the customer, using Helm templates with conditional statements.
 
-Secrets and Config maps are installed in the cluster. Preflight custom resources cannot be installed in the cluster, and so must be wrapped in a condition.
-
-## Create a Secret
+### Create a Secret (Recommended)
 
 <SecretsConfig/> 
 
@@ -67,9 +63,9 @@ stringData:
 
 Next, define the preflight checks specification by adding collectors and analyzers. For more information, see [Define the Preflight Checks Specification](#preflights).
 
-## Create a Preflight Custom Resource
+### Create a Preflight Custom Resource
 
-The Preflight custom resource lets you provide preflight checks in a Helm template without using `stringData`. If you use this input, you must use conditional statements in the custom resource because the custom resource definition is not installed in the cluster. The custom resource is read using stdin.
+The Preflight custom resource lets you provide preflight checks in a Helm template without using `stringData`. If you use this input kind, you must use conditional statements because the custom resource definition is not installed in the cluster.
 
 <PreflightsCrNote/>
 
