@@ -34,6 +34,7 @@ import RepeatOptionMissingValuesByGroup from "../partials/linter-rules/_repeat-o
 import RepeatOptionMalformedYAMLPath from "../partials/linter-rules/_repeat-option-malformed-yamlpath.mdx"
 import ConfigOptionPasswordType from "../partials/linter-rules/_config-option-password-type.mdx"
 import ConfigOptionIsCircular from "../partials/linter-rules/_config-option-is-circular.mdx"
+import InvalidRenderedYaml from "../partials/linter-rules/_invalid-rendered-yaml.mdx"
 import InvalidType from "../partials/linter-rules/_invalid_type.mdx"
 import InvalidYaml from "../partials/linter-rules/_invalid-yaml.mdx"
 import LinterDefinition from "../partials/linter-rules/_linter-definition.mdx"
@@ -691,6 +692,31 @@ For more information, see [LintConfig](custom-resource-lintconfig).
   <tr>
     <th>Example</th>
     <td><p>Example of correct YAML for this rule:</p><InvalidMinKOTS/></td>
+  </tr>
+</table>
+
+### invalid-rendered-yaml
+
+<table>
+  <tr>
+    <th>Description</th>
+    <td>
+      <p>Enforces valid YAML after rendering the manifests using the Config spec.</p>
+    </td>
+  </tr>
+  <tr>
+    <th>Level</th>
+    <td>Error</td>
+  </tr>
+  <tr>
+    <th>Applies To</th>
+    <td>
+      YAML files
+    </td>
+  </tr>
+  <tr>
+    <th>Example</th>
+    <td><InvalidRenderedYaml/></td>
   </tr>
 </table>
 
