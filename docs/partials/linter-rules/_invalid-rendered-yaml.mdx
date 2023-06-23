@@ -12,7 +12,7 @@ spec:
   useHelmInstall: true
   builder: {}
   values:
-    nginx_image: repl{{ ConfigOption `nginx_image`}}
+    image: repl{{ ConfigOption `nginx_image`}}
 ```
 
 **Correct Config**:
@@ -46,7 +46,7 @@ spec:
   useHelmInstall: true
   builder: {}
   values:
-    nginx_image: nginx
+    image: nginx
 ```
 **Incorrect Config**:
 ```yaml
