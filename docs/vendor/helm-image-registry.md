@@ -44,7 +44,7 @@ To use an external registry and the proxy service for Helm installations:
    ```yaml
    # /templates/example.yaml
    ...
-   {{ if .Values.gloabl.replicated.dockerconfigjson }}
+   {{ if .Values.global.replicated.dockerconfigjson }}
    imagePullSecrets:
      - name: replicated
    {{ end }}
