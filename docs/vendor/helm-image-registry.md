@@ -4,7 +4,7 @@ This topic describes the steps required to connect to an external private regist
 
 ## Overview
 
-If your application images are available in a private image registry exposed to the Internet, such as Docker Hub, Amazon Elastic Container Registry (ECR), or Google Container Registry (GCR), then the unique customer licenses that you create for your application can grant proxy, or _pull-through_, access to the assignee without exposing registry credentials to your customer.
+If your application images are available in a private image registry exposed to the Internet, such as Docker Hub or Amazon Elastic Container Registry (ECR), then the unique customer licenses that you create for your application can grant proxy, or _pull-through_, access to the assignee without exposing registry credentials to your customer.
 
 To grant access to an external private registry for Helm installations, you can use the Replicated SDK and the Replicated proxy service. When you include the Replicated SDK with your Helm chart application, a `global.replicated.dockerconfigjson` field is automatically injected in the Helm chart values after customers provide their license ID during installation. The `global.replicated.dockerconfigjson` field contains a base64 encoded Docker configuration file that you can use to create a pull secret for accessing your private images through the Replicated proxy service at `proxy.replicated.com`.
 
@@ -39,36 +39,6 @@ To use an external registry and the proxy service for Helm installations:
    {{ end }}
    ```
 
-1. In your Helm chart templates, add the following to any manifests that reference the private image:
-
-   ```yaml
-   # /templates/example.yaml
-   ...
-   {{ if .Values.global.replicated.dockerconfigjson }}
-   imagePullSecrets:
-     - name: replicated
-   {{ end }}
-   ```
-
-   **Example:**
-
-   The following example shows the `imagePullSecrets` field in a `templates/deployment.yaml` file that also injects values for the image registry URL, image tag, and `imagePullPolicy`.
-
-    ```yaml
-    # /templates/deployment.yaml
-    ...
-    image: {{ .Values.images.myapp.repository }}:{{ .Values.images.myapp.tag }}
-    imagePullPolicy: {{ .Values.images.myapp.pullPolicy }}
-    {{ if .Values.global.replicated.dockerconfigjson }}
-    imagePullSecrets:
-      - name: replicated
-    {{ end }}
-    name: myapp
-    ports:
-    - containerPort: 3000
-      name: http
-    ``` 
-
 1. Create a field in your Helm chart values file with the location of the private image on `proxy.replicated.com`:
 
    ```yaml
@@ -89,12 +59,43 @@ To use an external registry and the proxy service for Helm installations:
 
    ```yaml
    # values.yaml
-
-   apiImageRepository: proxy.replicated.com/proxy/my-kots-app/quay.io/my-org/api
-   apiImageTag: v1.0.1
+   ...
+   images:
+     myapp:
+       apiImageRepository: proxy.replicated.com/proxy/my-kots-app/quay.io/my-org/api
+       apiImageTag: v1.0.1
    ```
 
-1. Wherever you reference the image location in your Helm chart, to access the field that you created in the previous step:
+1. In your Helm chart templates, add the `imagePullSecret` that you created to any manifests that reference the private image:
+
+   ```yaml
+   # /templates/example.yaml
+   ...
+   {{ if .Values.global.replicated.dockerconfigjson }}
+   imagePullSecrets:
+     - name: replicated
+   {{ end }}
+   ```
+
+   **Example:**
+
+   The following example shows the `imagePullSecrets` field in a `templates/deployment.yaml` file that also injects values for the image registry URL, image tag, and `imagePullPolicy`.
+
+    ```yaml
+    # /templates/deployment.yaml
+    ...
+    image: {{ .Values.images.myapp.apiImageRepository }}:{{ .Values.images.myapp.taapiImageTag }}
+    {{ if .Values.global.replicated.dockerconfigjson }}
+    imagePullSecrets:
+      - name: replicated
+    {{ end }}
+    name: myapp
+    ports:
+    - containerPort: 3000
+      name: http
+    ``` 
+
+1. Update any references to the image in your Helm chart to access the field you created in your values file:
 
    ```yaml
    image: '{{ .Values.FIELD_NAME }}'
@@ -112,7 +113,7 @@ To use an external registry and the proxy service for Helm installations:
        spec:
          containers:
            - name: api
-             image: '{{ .Values.apiImageRepository }}:{{ .Values.apiImageTag }}'
+             image: {{ .Values.images.myapp.apiImageRepository }}:{{ .Values.images.myapp.apiImageTag }}
    ```
 
 1. Package your Helm chart and add it to a release. See [Managing Releases with Vendor Portal](releases-creating-releases).
