@@ -31,7 +31,7 @@ You can use the replicated CLI to create a release from the local directory that
 
 To create and promote a new release:
 
-1. If your release contains any Helm charts, package the Helm charts and add the `.tgz` files to the local directory with your application files. See [Creating a Helm Chart Package](helm-release-creating-package).
+1. If your release contains any Helm charts, package the Helm charts and add the `.tgz` files to the local directory with your application files. See [Creating a Helm Chart Package](helm-release-creating-package). For KOTS installs, each chart will also need [an acompanying HelmChart custom resource](helm-release#about-the-helmchart-custom-resource). The below examples assume you have a local directory at `PATH_TO_APP_DIR` containing you application manifests. For an example of what might be in a manifests directory, you can check out [replicated-starter-helm ](https://github.com/replicatedhq/replicated-starter-helm/tree/main/manifests) or [kots-sentry](https://github.com/replicatedhq/kots-sentry/tree/main/manifests).
 
 1. Lint the application manifest files and ensure that there are no errors in the YAML:
 
@@ -41,7 +41,7 @@ To create and promote a new release:
 
   Replace `PATH_TO_APP_DIR` with path to the directory of the application files.
 
-  For more information about linting, see [release lint](/reference/replicated-cli-release-lint) and [Linter Rules](/reference/linter) in _Reference_.
+  For more information about linting, see [release lint](/reference/replicated-cli-release-lint) and [Linter Rules](/reference/linter) in _Reference_. 
 
 1. Create a new release:
 
@@ -50,12 +50,18 @@ To create and promote a new release:
     ```
     Replace `PATH_TO_APP_DIR` with the path to the directory of the application files.
 
-   For more information, see [release create](/reference/replicated-cli-release-create) or [release update](/reference/replicated-cli-release-update) in _Reference_.
+   For more information, see [release create](/reference/replicated-cli-release-create) or [release update](/reference/replicated-cli-release-update) in _Reference_. 
+
+1. Verify that the release was created
+
+    ```bash
+    replicated release ls
+    ```
 
 1. Continue to edit and lint the release as needed, then update the release:
 
     ```
-    replicated release update SEQUENCE --yaml-dir PATH-TO-APP-DIRECTORY
+    replicated release update SEQUENCE --yaml-dir PATH_TO_APP_DIR
     ```
     Replace:
       
@@ -67,13 +73,13 @@ To create and promote a new release:
 1. Promote the release when you are ready to test it. Releases cannot be edited after they are promoted. To make changes after promotion, you have to create a new release.
 
     ```
-    replicated release promote SEQUENCE CHANNEL_ID
+    replicated release promote SEQUENCE CHANNEL_NAME_OR_ID
     ```
 
     Replace:
       
     -  `SEQUENCE` with the release sequence number.
-    -  `CHANNEL_ID` with the channel ID or case sensitive name of the channel.
+    -  `CHANNEL_NAME_OR_ID` with the channel ID or case sensitive name of the channel.
 
     For more information, see [release promote](/reference/replicated-cli-release-promote) in the replicated CLI documentation.
 
@@ -83,9 +89,23 @@ To create and promote a new release:
   replicated release ls
   ```
 
+#### Tying it all together
+
+You can combine the steps above to lint, create, and promote a release in one step with
+
+  ```
+  replicated release create --yaml-dir PATH_TO_APP_DIR --lint-release --promote CHANNEL_NAME_OR_ID
+  ```
+
+As before, verify your release with 
+
+  ```
+  replicated release ls
+  ```
+
 ## Create a Release With a Helm Chart Only
 
-For applications that contain a single Helm chart, you can use the `--chart` flag to add your Helm chart to a release, rather than pointing to a local directory with your application files.
+For applications that contain only a single Helm chart, you can skip creating a directory for manifests and use the `--chart` flag to add your Helm chart to a release.
 
 To create a release for an application that contains a Helm chart:
 
@@ -97,7 +117,7 @@ To create a release for an application that contains a Helm chart:
    replicated release create --chart=CHART_TGZ_FILE --promote=Unstable
    ```
 
-   Replace `CHART_TGZ_FILE` with the `.tgz` Helm chart package. For example, --chart=my-chart-1.0.0.tgz.
+   Replace `CHART_TGZ_FILE` with the `.tgz` Helm chart package. For example, --chart=my-chart-1.0.0.tgz. As above in [Create a Release from a Local Directory](#create-a-release-from-a-local-directory), the `--promote` flag is optional.
 
 1. Verify that the release was promoted to the channel:
 
