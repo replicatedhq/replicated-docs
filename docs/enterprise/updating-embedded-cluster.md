@@ -106,14 +106,14 @@ To update the cluster in an air gap environment:
    tar -xvzf FILENAME.tar.gz
    ```
 
-1. Run the following script to ensure all required images are available:
+1. Run the following KURL script to ensure all required images are available:
 
    ```
    cat tasks.sh | sudo bash -s load-images
    ```
 
    :::note
-   The installation script that you run in the next step also performs a check for required images and prompts you to run the `load-images` command if any images are missing.
+   The kURL installation script that you run in the next step also performs a check for required images and prompts you to run the `load-images` command if any images are missing.
    :::
 
 1. Run the kURL installation script on any primary node in the cluster with the `airgap` option:
