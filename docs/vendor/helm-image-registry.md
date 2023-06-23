@@ -79,7 +79,7 @@ To use an external registry and the proxy service for Helm installations:
    Replace:
    * `FIELD_NAME` with any name for the field.
    * `PROXY_SERVICE_IMAGE_URL` with the URL for the private image on `proxy.replicated.com`.
-      The proxy service URL uses the following format: `proxy.replicated.com/proxy/APP_NAME/EXTERNAL_REGISTRY_IMAGE_URL`, where `APP_NAME` is the name of your application and `EXTERNAL_REGISTRY_IMAGE_URL` is the path to the private image on your external registry.
+      The proxy service URL uses the following format: `proxy.replicated.com/proxy/APP_SLUG/EXTERNAL_REGISTRY_IMAGE_URL`, where `APP_SLUG` is the name of your application and `EXTERNAL_REGISTRY_IMAGE_URL` is the path to the private image on your external registry.
 
     :::note
     If you configured a custom domain for the proxy service, use the custom domain instead of `proxy.replicated.com`. For more information, see [Using Custom Domains for the Replicated Registry and Proxy Service](custom-domains).
