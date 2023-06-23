@@ -19,7 +19,7 @@ For information about how Kubernetes uses the `kubernetes.io/dockerconfigjson` S
 * (Optional) To use a custom domain for the proxy service instead of `proxy.replicated.com`, see [Using Custom Domains for the Replicated Registry and Proxy Service](custom-domains).
 ## Deliver Image Pull Secrets to the Proxy Service
 
-This procedure shows how to create an image pull secret for the proxy service then template the image names in your Helm chart to use `proxy.replicated.com` instead of your private registry URL.
+This procedure shows how to create an image pull secret for the proxy service and then template the image names in your Helm chart to use `proxy.replicated.com` instead of your private registry URL.
 
 To use an external registry and the proxy service for Helm installations:
 
