@@ -14,7 +14,7 @@ For information about how Kubernetes uses the `kubernetes.io/dockerconfigjson` S
 
 ## Prerequisites
 
-* Declare the Replicated SDK as a dependency in your Helm chart. See [Using the SDK With Your Application (Alpha)](https://deploy-preview-1200--replicated-docs.netlify.app/vendor/replicated-sdk-using)
+* Declare the Replicated SDK as a dependency in your Helm chart. See [Using the SDK With Your Application (Alpha)](https://deploy-preview-1200--replicated-docs.netlify.app/vendor/replicated-sdk-using).
 * Provide read-only credentials for the external private registry in your Replicated account. This allows Replicated to access the images through the Replicated proxy service. See [Configure Access to an External Registry](packaging-private-images#configure-access-to-an-external-registry) in _Connecting to an Image Registry_.
 * (Optional) To use a custom domain for the proxy service instead of `proxy.replicated.com`, see [Using Custom Domains for the Replicated Registry and Proxy Service](custom-domains).
 ## Deliver Image Pull Secrets to the Proxy Service
