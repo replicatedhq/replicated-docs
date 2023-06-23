@@ -100,7 +100,11 @@ For air gap installations, you must load images on each node in the cluster befo
 
 To update the cluster in an air gap environment:
 
-1. Download and extract the `.airgap` bundle to every node in the cluster.
+1. Download the kURL `.tar.gz` bundle provided by your software vendor and extract the contents to every node in the cluster:
+
+   ```bash
+   tar -xvzf FILENAME.tar.gz
+   ```
 
 1. Run the following script to ensure all required images are available:
 
@@ -109,17 +113,15 @@ To update the cluster in an air gap environment:
    ```
 
    :::note
-   When you run the installation script in the next step, the script also performs a check for required images and prompts you to run the `load-images` command if any images are missing.
+   The installation script that you run in the next step also performs a check for required images and prompts you to run the `load-images` command if any images are missing.
    :::
 
 1. Run the kURL installation script on any primary node in the cluster with the `airgap` option:
 
    ```
-   curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash -s airgap OTHER_ADVANCED_OPTIONS
+   cat install.sh -s airgap OTHER_ADVANCED_OPTIONS
    ```
-   Replace:
-   * `APP_SLUG` with the unique slug for the application from your application vendor.
-   * `OTHER_ADVANCED_OPTIONS` optionally with any flags listed in [Advanced Options](https://kurl.sh/docs/install-with-kurl/advanced-options) in the kURL documentation.
+   Replace `OTHER_ADVANCED_OPTIONS` optionally with any flags listed in [Advanced Options](https://kurl.sh/docs/install-with-kurl/advanced-options) in the kURL documentation.
    
      See the following recommendations for advanced options:
       <InstallerRequirements/>
