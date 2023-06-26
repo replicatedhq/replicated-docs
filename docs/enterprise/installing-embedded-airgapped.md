@@ -40,7 +40,7 @@ Complete the following prerequisites:
 
 <LicenseFile/>
 
-* Download the `.tar.gz` air gap bundle for the kURL installer provided by your software vendor. Ensure that you can access the downloaded bundle from the environment where you will install the application.
+* Download the `.tar.gz` air gap bundle for the kURL installer provided by your software vendor. Ensure that you can access the downloaded bundle from the environment where you will install the application. For more information about the kURL `.tar.gz` bundle, see [Download the kURL Bundle](/vendor/releases-sharing-license-install-script#installer-bundle) in _Sharing a Release_.
 
 <HaLoadBalancerPrereq/>
 
