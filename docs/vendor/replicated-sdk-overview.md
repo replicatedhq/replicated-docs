@@ -63,7 +63,6 @@ replicated:
   # The full customer license is injected
   license_id: WJldGExCmtpbmQ6IEN...
   releaseCreatedAt: "2023-05-12T17:43:51Z"
-  releaseIsRequired: false
   releaseNotes: "Some release notes"
   releaseSequence: 81
   username: username@example.com

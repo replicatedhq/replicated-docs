@@ -34,7 +34,6 @@ Response:
     "versionLabel": "0.1.72",
     "channelID": "2CBDxNwDH1xyYiIXRTjiB7REjKX",
     "channelName": "Beta",
-    "isRequired": false,
     "createdAt": "2023-05-28T16:31:21Z",
     "releaseNotes": "",
     "helmReleaseName": "my-helm-chart",
@@ -58,7 +57,6 @@ Response:
 [
   {
     "versionLabel": "0.1.15",
-    "isRequired": false,
     "createdAt": "2023-05-12T15:48:45.000Z",
     "releaseNotes": "Awesome new features!"
   }
@@ -82,7 +80,6 @@ Response:
       "versionLabel": "0.1.70",
       "channelID": "2CBDxNwDH1xyYiIXRTjiB7REjKX",
       "channelName": "Stable",
-      "isRequired": false,
       "createdAt": "2023-05-12T17:43:51Z",
       "releaseNotes": "",
       "helmReleaseName": "echo-server",
@@ -239,7 +236,6 @@ To use the SDK API to check for available application updates and provide custom
     [
       {
         "versionLabel": "0.1.15",
-        "isRequired": false,
         "createdAt": "2023-05-12T15:48:45.000Z",
         "releaseNotes": "Awesome new features!"
       }
