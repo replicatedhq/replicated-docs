@@ -43,6 +43,8 @@ Because air gap licenses are signed with the updated fields, a regenerated licen
 
 Unless a customer is upgrading from a community license, it is not possible to replace one license file with another license file without completely reinstalling the application. Using the vendor portal to change the license type prevents end customers from having to reinstall. 
 
+After installing an application with a community license, enterprise users can change their community license to a different license. Because several of your community users might use the same community license, this allows you to upgrade a single user to a new license without changing the community license for all users. This also allows you to upgrade a user from a shared community license without requiring them to reinstall the application. For more information, see [Change Community Licenses](/enterprise/updating-licenses#change-community-licenses) in _Updating Licenses_. 
+
 Updating from a community license to another type cannot be reverted. For more information about community licenses, see [Community Licenses](#community-licenses).
 
 ## Community Licenses
@@ -51,31 +53,20 @@ Community licenses are intended for use with a free or low cost version
 of your application. For example, you could use community licenses for an
 open source version of your application.
 
-:::note
-Community licenses are available as part of the [Enterprise Plan](https://www.replicated.com/pricing). To enable community licenses, submit a [request to enable the feature](https://vendor.replicated.com/support?requestType=feature&productArea=vendor&title=Request+to+Enable+Community+Licenses)
-:::
+### Limitations
 
 Community licenses function in the same the other types of licenses, with the following
 exceptions:
 
-* **Support for changing to a different license**: After installing an application with
-a community license, enterprise users can change their community license to a different
-license. Because several of your community users might use the same community
-license, this allows you to upgrade a single user to a new license without changing the
-community license for all users. This also allows you to upgrade a user
-from a shared community license without requiring them to reinstall the application. For more information,
-see [Change Community Licenses](/enterprise/updating-licenses#change-community-licenses)
-in _Updating Licenses_. 
-* **No air gapped support**: Community licenses cannot support air gapped installations.
-* **No expiration**: Community licenses cannot include an expiration date.
-* **Marking in the admin console**: When a community license is installed, the
-admin console indicates this to differentiate the experience.
-The license tile on the Dashboard page is highlighted in yellow and with the words
-"Community Edition".
+* Community license users are not supported by the Replicated Support team.
+* Community licenses cannot support air gapped installations.
+* Community licenses cannot include an expiration date.
+* When a community license is installed, the admin console indicates this to differentiate the experience. The license tile on the Dashboard page is highlighted in yellow and with the words "Community Edition".
+
    ![Community License Dashboard](/images/community-license-dashboard.png)
-* **Support bundle**: Because community licenses are not designed to include the
-same level of support as paid licenses, all support bundles and analysis in the
-admin console will be clearly marked as Community Edition.
-The same functionality is included in the support bundle and analysis, there is
-just additional marking to help differentiate.
+   [View a larger version of this image](/images/community-license-dashboard.png)
+
+* Because community licenses are not designed to include the same level of support as paid licenses, all support bundles and analysis in the admin console are clearly marked as Community Edition. The same functionality is included in the support bundle and analysis, there is just additional marking to help differentiate.
+
    ![Community License Support Bundle](/images/community-license-bundle.png)
+   [View a larger version of this image](/images/community-license-bundle.png)
