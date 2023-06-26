@@ -43,8 +43,6 @@ Because air gap licenses are signed with the updated fields, a regenerated licen
 
 Unless a customer is upgrading from a community license, it is not possible to replace one license file with another license file without completely reinstalling the application. Using the vendor portal to change the license type prevents end customers from having to reinstall. 
 
-After installing an application with a community license, enterprise users can change their community license to a different license. Because several of your community users might use the same community license, this allows you to upgrade a single user to a new license without changing the community license for all users. This also allows you to upgrade a user from a shared community license without requiring them to reinstall the application. For more information, see [Change Community Licenses](/enterprise/updating-licenses#change-community-licenses) in _Updating Licenses_. 
-
 Updating from a community license to another type cannot be reverted. For more information about community licenses, see [Community Licenses](#community-licenses).
 
 ## Community Licenses
@@ -52,6 +50,8 @@ Updating from a community license to another type cannot be reverted. For more i
 Community licenses are intended for use with a free or low cost version
 of your application. For example, you could use community licenses for an
 open source version of your application.
+
+After installing an application with a community license, enterprise users can change their community license to a different license. Because several of your community users might use the same community license, this allows you to upgrade a single user to a new license without changing the community license for all users. This also allows you to upgrade a user from a shared community license without requiring them to reinstall the application. For more information, see [Change Community Licenses](/enterprise/updating-licenses#change-community-licenses) in _Updating Licenses_. 
 
 ### Limitations
 
