@@ -52,11 +52,13 @@ Complete the following prerequisites:
 
 To provision an embedded cluster:
 
-1. Extract the contents of the kURL `.tar.gz` bundle that you downloaded:
+1. In your installation environment, extract the contents of the kURL `.tar.gz` bundle that you downloaded:
 
    ```bash
    tar -xvzf FILENAME.tar.gz
    ```
+
+   Replace `FILENAME` with the name of the file.
 
 1. Run one of the following commands to create the cluster and install KOTS in air gap mode: 
 
