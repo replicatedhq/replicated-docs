@@ -112,7 +112,6 @@ The example below shows a JSON object with mock data. This example includes all 
     "helmChartURL": "oci://charts.mycompany.com/appslug/channelslug/chartname",
     "currentRelease": {
         "versionLabel": "1.0.0",
-        "isRequired": false,
         "createdAt": "2023-05-23T21:10:57Z",
         "releaseNotes": "First release!",
         "helmReleaseName": "sdk-test",
@@ -123,14 +122,12 @@ The example below shows a JSON object with mock data. This example includes all 
         {
             "versionLabel": "1.0.1",
             "releaseNotes": "New patch version",
-            "isRequired": false,
             "createdAt": "2023-05-23T21:10:57Z",
             "helmReleaseNamespace": "testing"
         },
         {
             "versionLabel": "2.0.0",
             "releaseNotes": "New major version",
-            "isRequired": false,
             "createdAt": "2023-05-23T21:10:57Z",
             "helmReleaseName": "release-name"
         }
@@ -140,7 +137,6 @@ The example below shows a JSON object with mock data. This example includes all 
             "versionLabel": "0.0.1",
             "createdAt": "2023-05-23T21:10:57Z",
             "releaseNotes": "The first patch version",
-            "isRequired": true,
             "helmReleaseName": "sdk-test",
             "helmReleaseRevision": 8,
             "helmReleaseNamespace": "testing"
@@ -149,7 +145,6 @@ The example below shows a JSON object with mock data. This example includes all 
             "versionLabel": "0.0.2",
             "createdAt": "2023-05-23T21:10:57Z",
             "releaseNotes": "The second patch release",
-            "isRequired": false,
             "helmReleaseName": "sdk-test",
             "helmReleaseRevision": 9,
             "helmReleaseNamespace": "testing"
@@ -168,7 +163,6 @@ The example below shows mock data in YAML. This example includes all the availab
 helmChartURL: oci://registry.replicated.com/dev-app/dev-channel/dev-parent-chart
 currentRelease:
   versionLabel: 0.1.3
-  isRequired: false
   releaseNotes: "release notes 0.1.3"
   createdAt: 2023-05-23T20:58:07Z
   deployedAt: 2023-05-23T21:58:07Z
@@ -177,7 +171,6 @@ currentRelease:
   helmReleaseNamespace: default
 deployedReleases:
 - versionLabel: 0.1.1
-  isRequired: false
   releaseNotes: "release notes 0.1.1"
   createdAt: 2023-05-21T20:58:07Z
   deployedAt: 2023-05-21T21:58:07Z
@@ -185,7 +178,6 @@ deployedReleases:
   helmReleaseRevision: 1
   helmReleaseNamespace: default
 - versionLabel: 0.1.2
-  isRequired: false
   releaseNotes: "release notes 0.1.2"
   createdAt: 2023-05-22T20:58:07Z
   deployedAt: 2023-05-22T21:58:07Z
@@ -193,7 +185,6 @@ deployedReleases:
   helmReleaseRevision: 2
   helmReleaseNamespace: default
 - versionLabel: 0.1.3
-  isRequired: false
   releaseNotes: "release notes 0.1.3"
   createdAt: 2023-05-23T20:58:07Z
   deployedAt: 2023-05-23T21:58:07Z
@@ -202,12 +193,10 @@ deployedReleases:
   helmReleaseNamespace: default
 availableReleases:
 - versionLabel: 0.1.4
-  isRequired: true
   releaseNotes: "release notes 0.1.4"
   createdAt: 2023-05-24T20:58:07Z
   deployedAt: 2023-05-24T21:58:07Z
 - versionLabel: 0.1.5
-  isRequired: false
   releaseNotes: "release notes 0.1.5"
   createdAt: 2023-06-01T20:58:07Z
   deployedAt: 2023-06-01T21:58:07Z
@@ -262,7 +251,6 @@ To provide mock data to the SDK at deployment:
           helmChartURL: oci://registry.replicated.com/dev-app/dev-channel/dev-parent-chart
           currentRelease:
             versionLabel: 0.1.3
-            isRequired: false
             releaseNotes: "release notes 0.1.3"
             createdAt: 2023-05-23T20:58:07Z
             deployedAt: 2023-05-23T21:58:07Z
@@ -271,7 +259,6 @@ To provide mock data to the SDK at deployment:
             helmReleaseNamespace: default
           deployedReleases:
           - versionLabel: 0.1.1
-            isRequired: false
             releaseNotes: "release notes 0.1.1"
             createdAt: 2023-05-21T20:58:07Z
             deployedAt: 2023-05-21T21:58:07Z
@@ -279,7 +266,6 @@ To provide mock data to the SDK at deployment:
             helmReleaseRevision: 1
             helmReleaseNamespace: default
           - versionLabel: 0.1.2
-            isRequired: false
             releaseNotes: "release notes 0.1.2"
             createdAt: 2023-05-22T20:58:07Z
             deployedAt: 2023-05-22T21:58:07Z
@@ -287,7 +273,6 @@ To provide mock data to the SDK at deployment:
             helmReleaseRevision: 2
             helmReleaseNamespace: default
           - versionLabel: 0.1.3
-            isRequired: false
             releaseNotes: "release notes 0.1.3"
             createdAt: 2023-05-23T20:58:07Z
             deployedAt: 2023-05-23T21:58:07Z
@@ -296,12 +281,10 @@ To provide mock data to the SDK at deployment:
             helmReleaseNamespace: default
           availableReleases:
           - versionLabel: 0.1.4
-            isRequired: true
             releaseNotes: "release notes 0.1.4"
             createdAt: 2023-05-24T20:58:07Z
             deployedAt: 2023-05-24T21:58:07Z
           - versionLabel: 0.1.5
-            isRequired: false
             releaseNotes: "release notes 0.1.5"
             createdAt: 2023-06-01T20:58:07Z
             deployedAt: 2023-06-01T21:58:07Z
