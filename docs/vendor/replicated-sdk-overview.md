@@ -105,4 +105,4 @@ For more information about viewing customer and instance insights in the vendor 
 
 You can run the Replicated SDK in integration mode to more quickly test new functionality for your application. Integration mode allows you to use mock data to test changes locally without having to create a release in the vendor portal and then install your Helm chart from the Replicated registry.
 
-For more information, see [Developing Against the SDK (Alpha)](replicated-sdk-development).
+For more information, see [Developing Against the SDK API (Alpha)](replicated-sdk-development).

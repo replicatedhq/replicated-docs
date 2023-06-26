@@ -181,7 +181,7 @@ Response:
 
 ## mock-data
 
-This section describes the mock-data endpoints for working with data when developing against the SDK in integration mode. For information about integration mode, see [Developing Against the SDK (Alpha)](/vendor/replicated-sdk-development).
+This section describes the mock-data endpoints for working with data when developing against the SDK in integration mode. For information about integration mode, see [Developing Against the SDK API (Alpha)](/vendor/replicated-sdk-development).
 
 ### POST mock-data
 

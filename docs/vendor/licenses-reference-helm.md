@@ -1,6 +1,6 @@
 import LicenseExpirationExample from "../partials/replicated-sdk/_license-expiration-sdk-example.mdx"
 
-# Checking Entitlements for Helm Installations
+# Checking Entitlements for Helm Installations (Alpha)
 
 This topic describes how to check entitlement information from customer licenses in applications installed with Helm.
 
@@ -19,7 +19,7 @@ After the Replicated SDK is initialized and running in a customer environment, y
 
 For more information about these endpoints, see [license](/reference/replicated-sdk-apis#license) in _Replicated SDK API (Beta)_.
 
-License fields are cryptographically signed to ensure their integrity. Replicated recommends that you use signature verification to ensure the integrity of each license field you use. For more information, see [Verifying Licenses Field Signatures](licenses-verify-fields-sdk-api).
+License fields are cryptographically signed to ensure their integrity. Replicated recommends that you use signature verification to ensure the integrity of each license field you use. For more information, see [Verifying Licenses Field Signatures (Alpha)](licenses-verify-fields-sdk-api).
 
 ### Example: Revoke Access at Runtime
 
