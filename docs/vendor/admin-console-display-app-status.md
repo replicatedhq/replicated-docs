@@ -30,7 +30,7 @@ You can target resources of the supported types that are deployed in any of the 
 
 * Deployed directly by KOTS.
 * Deployed by a Kubernetes Operator that is deployed by KOTS. For more information, see [About Packaging a Kubernetes Operator Application](operator-packaging-about).
-* Deployed by Helm. For more information, see [About Deploying Helm Charts](helm-overview).
+* Deployed by Helm. For more information, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).
 
 ### Resource Statuses
 

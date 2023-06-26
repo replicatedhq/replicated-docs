@@ -129,6 +129,8 @@ const sidebars = {
         'vendor/releases-creating-customer',
         'vendor/licenses-adding-custom-fields',
         'vendor/licenses-referencing-fields',
+        'vendor/licenses-reference-helm',
+        'vendor/licenses-verify-fields-sdk-api',
       ],
     },
     {
@@ -145,16 +147,37 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Helm Charts',
+      label: 'Distributing Helm Charts',
       items: [
         'vendor/helm-overview',
-        'vendor/helm-install',
-        'vendor/helm-release',
-        'vendor/helm-native-helm-install-order',
-        'vendor/helm-optional-charts',
-        'vendor/helm-optional-value-keys',
+        {
+          type: 'category',
+          label: 'Distributing with Helm (Beta)',
+          items: [
+            'vendor/helm-install',
+            'vendor/helm-install-release',
+            'vendor/install-with-helm',
+
+                'vendor/replicated-sdk-overview',
+                'vendor/replicated-sdk-using',
+                'vendor/replicated-sdk-development',
+
+            
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Distributing Helm Charts with KOTS',
+          items: [
+            'vendor/helm-native-about',
+            'vendor/helm-release',
+            'vendor/helm-native-helm-install-order',
+            'vendor/helm-optional-charts',
+            'vendor/helm-optional-value-keys',
+          ],
+        },
       ],
-    },
+    },   
     {
       type: 'category',
       label: 'Admin Console and Download Portal Customization',
@@ -556,6 +579,7 @@ const sidebars = {
     },
     // DEVELOPER TOOLS
     {type: 'html', value: '<h5>Developer tools</h5>', defaultStyle: true},
+    'reference/replicated-sdk-apis',
     {
       type: 'category',
       label: 'replicated CLI',

@@ -1,0 +1,37 @@
+To create and promote a release with your Helm chart in the vendor portal:
+
+1. In the vendor portal, go to **Releases** > **Create a release**.
+
+1. Do one of the following to add your Helm chart to the release:
+
+   * In the **Upload Helm chart** modal, upload your Helm chart `.tgz` file.
+     
+     ![upload helm chart modal](/images/upload-helm-chart-modal.png)
+     [View a larger version of this image](/images/upload-helm-chart-modal.png)
+     
+   * If the **Upload Helm chart** modal does not appear, drag and drop your Helm chart `.tgz` file from your local directory into the file tree.
+
+   Your Helm chart files appear in the file tree of the release.
+
+   ![wordpress helm chart files in the vendor portal release file tree](/images/helm-chart-file-tree.png)
+   [View a larger version of this image](/images/helm-chart-file-tree.png)
+
+1. If you are prompted to select a Helm install method, select **Native Helm (Recommended)** and click **OK**. This option is relevant only for releases that are installed with KOTS. For more information about the Helm chart installation method for KOTS, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).
+
+1. Click **Save Release** then click **Promote**. In the **Promote Release** dialog, edit the following fields:
+   
+   1. For **Channel**, select the channel that your team uses for development. If you are not sure which channel to use, use the default Unstable channel.
+   
+   1. For **Version label**:
+   
+      * If you have one Helm chart in your release, the vendor portal automatically populates **Version label** with the value of the `version` field in the `Chart.yaml` file. 
+ 
+      * If you have more than one Helm chart in your release, the vendor portal automatically populates **Version label** with the value of the `version` field in one of the `Chart.yaml` files. You can change the version label to any `version` specified in any of the `Chart.yaml` files included in the release.
+
+   1. If the **Prevent this release from being skipped during upgrades** option is displayed, you can optionally select it to mark the release as required for KOTS installations. This options does not apply to installations with Helm. For more information about this option for KOTS installations, see [Create a Release](/vendor/releases-creating-releases#create-a-release) in _Managing Releases in the Vendor Portal_. 
+   
+   1. (Optional) For **Release notes**, add release notes to describe the updates in this release.
+
+   For more information about these properties, see [Release Properties](releases-about-releases#release-properties) in _About Releases_.
+
+After the release is promoted, your Helm chart is automatically pushed to the Replicated registry. For information about how to install the release in a development environment with Helm, see [Installing an Application with Helm (Beta)](install-with-helm). 

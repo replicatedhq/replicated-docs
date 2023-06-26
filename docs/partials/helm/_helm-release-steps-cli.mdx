@@ -1,0 +1,28 @@
+To create and promote a release with your Helm chart using the CLI:
+
+1. Install the replicated CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
+
+1. Set the environment variables:
+     * Set the `REPLICATED_APP` environment variable to the slug for your application in the vendor portal. 
+     * Set the `REPLICATED_API_TOKEN` environment variable to your user API token from the vendor portal.
+     
+    See [Set Environment Variables](/reference/replicated-cli-installing#set-environment-variables) in _Installing the replicated CLI_.
+
+    **Example**:
+
+    ```bash
+    export REPLICATED_APP=my-app-slug
+    export REPLICATED_API_TOKEN=1234abcd
+    ```
+1. Create a release and promote it to the Unstable channel:
+
+   ```bash
+   replicated release create --chart=CHART_TGZ_FILE --promote=Unstable
+   ```
+   Replace `CHART_TGZ_FILE` with the `.tgz` Helm chart package that you created. For example, `--chart=my-chart-1.0.0.tgz`.
+
+1. Confirm the release was created:
+
+   ```
+   replicated release ls
+   ```
