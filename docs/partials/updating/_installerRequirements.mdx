@@ -1,13 +1,5 @@
-* **installer-spec-file**: If you used the `installer-spec-file` flag to pass a `patch.yaml` file when you installed, you must pass the same `patch.yaml` file when you upgrade. This prevents the installer from overwriting any configuration from your `patch.yaml` file and making changes to the add-ons in your cluster. For example:
-
-   ```
-   curl https://kurl.sh/latest | sudo bash -s installer-spec-file="./patch.yaml"
-   ```
+* **installer-spec-file**: If you used the `installer-spec-file` flag to pass a `patch.yaml` file when you installed, you must pass the same `patch.yaml` file when you upgrade. This prevents the installer from overwriting any configuration from your `patch.yaml` file and making changes to the add-ons in your cluster. For example: `installer-spec-file="./patch.yaml"`.
 
 * **app-version-label**: By default, the script also upgrades your application to the latest version when you run the installation script.
 
-   You can specify a target application version with the `app-version-label` flag. To avoid upgrading your application version, set the `app-version-label` flag to the currently installed application version. For example:
-
-   ```
-   curl https://kurl.sh/latest | sudo bash -s app-version-label=1.5.0
-   ```
+   You can specify a target application version with the `app-version-label` flag. To avoid upgrading your application version, set the `app-version-label` flag to the currently installed application version. For example: `app-version-label=1.5.0`.

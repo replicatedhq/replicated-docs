@@ -100,26 +100,31 @@ For air gap installations, you must load images on each node in the cluster befo
 
 To update the cluster in an air gap environment:
 
-1. Download and extract the `.airgap` bundle to every node in the cluster.
+1. On each node in the cluster, download the kURL `.tar.gz` bundle provided by your software vendor and extract the contents:
 
-1. Run the following script to ensure all required images are available:
+   ```bash
+   tar -xvzf FILENAME.tar.gz
+   ```
+   Replace `FILENAME` with the name of the kURL `.tar.gz` bundle.
+
+   For more information about the kURL `.tar.gz` bundle, see [Download the kURL Bundle](/vendor/releases-sharing-license-install-script#installer-bundle) in _Sharing a Release_.
+
+1. Run the following KURL script to ensure all required images are available:
 
    ```
    cat tasks.sh | sudo bash -s load-images
    ```
 
    :::note
-   When you run the installation script in the next step, the script also performs a check for required images and prompts you to run the `load-images` command if any images are missing.
+   The kURL installation script that you run in the next step also performs a check for required images and prompts you to run the `load-images` command if any images are missing.
    :::
 
 1. Run the kURL installation script on any primary node in the cluster with the `airgap` option:
 
    ```
-   curl -sSL https://k8s.kurl.sh/APP_SLUG | sudo bash -s airgap OTHER_ADVANCED_OPTIONS
+   cat install.sh -s airgap OTHER_ADVANCED_OPTIONS
    ```
-   Replace:
-   * `APP_SLUG` with the unique slug for the application from your application vendor.
-   * `OTHER_ADVANCED_OPTIONS` optionally with any flags listed in [Advanced Options](https://kurl.sh/docs/install-with-kurl/advanced-options) in the kURL documentation.
+   Replace `OTHER_ADVANCED_OPTIONS` optionally with any flags listed in [Advanced Options](https://kurl.sh/docs/install-with-kurl/advanced-options) in the kURL documentation.
    
      See the following recommendations for advanced options:
       <InstallerRequirements/>

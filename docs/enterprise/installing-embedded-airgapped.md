@@ -40,6 +40,8 @@ Complete the following prerequisites:
 
 <LicenseFile/>
 
+* Download the `.tar.gz` air gap bundle for the kURL installer provided by your software vendor. Ensure that you can access the downloaded bundle from the environment where you will install the application. For more information about the kURL `.tar.gz` bundle, see [Download the kURL Bundle](/vendor/releases-sharing-license-install-script#installer-bundle) in _Sharing a Release_.
+
 <HaLoadBalancerPrereq/>
 
 ## Provision the Embedded Cluster {#air-gap}
@@ -50,21 +52,15 @@ Complete the following prerequisites:
 
 To provision an embedded cluster:
 
-1. In your installation environment, run the following command to download the `.tar.gz` air gap bundle for the kURL installer:
-
-   ```bash
-   curl -LO https://k8s.kurl.sh/bundle/FILENAME.tar.gz
-   ```
-
-   Replace `FILENAME` with the name of the `.tar.gz` bundle provided by your application vendor. For example, `curl -LO https://k8s.kurl.sh/bundle/my-app.tar.gz`.
-
-1. Extract the contents of the bundle that you downloaded:
+1. In your installation environment, extract the contents of the kURL `.tar.gz` bundle that you downloaded:
 
    ```bash
    tar -xvzf FILENAME.tar.gz
    ```
 
-1. Run one of the following commands to create the cluster with the kURL installer and install KOTS in air gap mode: 
+   Replace `FILENAME` with the name of the kURL `.tar.gz` bundle.
+
+1. Run one of the following commands to create the cluster and install KOTS in air gap mode: 
 
     - For a regular installation, run:
 
