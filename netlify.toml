@@ -101,6 +101,10 @@
   from="https://docs.replicated.com/vendor/team-management-rbac-about"
   to="https://docs.replicated.com/vendor/team-management-rbac-configuring"
 
+[[redirect]]
+  from="https://docs.replicated.com/vendor/preflight-support-bundle-creating"
+  to="https://docs.replicated.com/vendor/preflight-support-bundle-about"
+
  
 ###################################################
 # Redirects To the Enterprise Section

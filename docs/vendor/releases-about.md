@@ -1,3 +1,7 @@
+import ChangeChannel from "../partials/customers/_change-channel.mdx"
+import RequiredReleasesLimitations from "../partials/releases/_required-releases-limitations.mdx"
+import RequiredReleasesDescription from "../partials/releases/_required-releases-description.mdx"
+
 # About Releases
 
 This topic describes concepts about creating and promoting releases, editing release properties, and information about the Releases page in the Replicated vendor portal.
@@ -43,7 +47,25 @@ You can enable semantic versioning on a channel that already has releases promot
 
 ### Release Properties
 
-You cannot edit the YAML files in a release after the release is promoted to a channel. However, each release has properties, such as the release notes, the version label, and the required status, that you can edit from the channel Release History page in the vendor portal. For more information, see [About the Channels Page](releases-about-channels#about-the-channels-page) in _About Release Channels_.
+Each release has properties. You define release properties when you promote a release to a channel. You can edit release properties at any time from the channel **Release History** page in the vendor portal. For more information, see [Edit Release Properties](releases-creating-releases#edit-release-properties) in _Managing Releases with the Vendor Portal_.
+
+The following shows an example of the release properties dialog:
+
+<img src="/images/release-properties.png" width="500px" alt="release properties dialog for a release with version label 0.1.22"/>
+
+[View a larger version of this image](/images/release-properties.png)
+
+As shown in the screenshot above, the release has the following properties:
+
+* **Version label**: The version label for the release. If semantic versioning is enabled for the channel, you must use a valid semantic version. For more information, see [Semantic Versioning](#semantic-versioning) above.
+
+* **Requirements**: You can select **Prevent this release from being skipped during upgrades** to mark the release as required.
+
+  <RequiredReleasesDescription/> 
+
+  <RequiredReleasesLimitations/>
+
+* **Release notes (supports markdown)**: Detailed release notes for the release. The release notes support markdown and are shown to your customer.
 
 ### Release Sequencing
 

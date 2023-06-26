@@ -71,7 +71,7 @@ Complete the following procedures to import your application files then create a
 
 1. Promote the release to the default Unstable channel. For information about promoting releases, see [Managing Releases with the Vendor Portal](releases-creating-releases).
 
-1. Create a license file in the vendor portal and assign the license to the Unstable channel. You need a license file to test your releases. See [Creating a Customer](releases-creating-customer).
+1. Create a license file in the vendor portal and assign the license to the Unstable channel. You need a license file to test your releases. See [Creating and Managing Customers](releases-creating-customer).
 
 1. Test the release by installing in a development environment with the license file that you created. For information about how to install an application, see [Overview of Installing an Application](/enterprise/installing-overview).
 
@@ -98,7 +98,7 @@ The following table gives a suggested order, but you can add functionality in an
   </tr>
   <tr>
     <td>Preflight Checks and Support Bundles</td>
-    <td>Define preflight checks to test for system compliance during the installation process and reduce the number of support escalations. <br></br><br></br>Enable support bundles to collect and analyze troubleshooting data from your customers' clusters to help you diagnose problems with application deployments. See <a href="preflight-support-bundle-creating">Configuring Preflight Checks and Support Bundles</a></td>
+    <td>Define preflight checks to test for system compliance during the installation process and reduce the number of support escalations. <br></br><br></br>Enable support bundles to collect and analyze troubleshooting data from your customers' clusters to help you diagnose problems with application deployments. See <a href="preflight-support-bundle-about">About Preflight Checks and Support Bundles</a></td>
   </tr>
   <tr>
     <td>Kubernetes Installers</td>

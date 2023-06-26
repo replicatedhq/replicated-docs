@@ -12,6 +12,43 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <KubernetesCompatibility/>
 
+<!--RELEASE_NOTES_PLACEHOLDER-->
+
+## 1.100.3
+
+Released on June 20, 2023
+
+Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
+
+### Improvements {#improvements-1-100-3}
+* Updates the github.com/dexidp/dex module to v2.36.0 (git hash v0.0.0-20230320125501-2bb4896d120e) to resolve CVE-2020-26290 with critical severity.
+* Updates the github.com/sigstore/rekor module to v1.2.0 to resolve CVE-2023-30551 with high severity and CVE-2023-33199 with medium severity.
+* Updates the github.com/gin-gonic/gin module to v1.9.1 in the kurl-proxy to resolve CVE-2023-26125 and CVE-2023-29401 with medium severity.
+
+### Bug Fixes {#bug-fixes-1-100-3}
+* Fixes an issue where [repeatable items](/reference/custom-resource-config#repeatable-items) did not work as expected on the Config page.
+
+## 1.100.2
+
+Released on June 7, 2023
+
+Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
+
+### Bug Fixes {#bug-fixes-1-100-2}
+* Fixes an issue where the Config values were not saved when a release contained a multiple-document YAML file.
+* Fixes an issue where the Config specification was missing from the rendered release in the kotsKinds folder if the release contained a multiple-document YAML file.
+* Fixes an issue that allowed users to edit `readonly` Config items.
+
+## 1.100.1
+
+Released on June 2, 2023
+
+Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
+
+### Improvements {#improvements-1-100-1}
+* Updates the way custom domains for the Replicated private registry and proxy service are used. If a default or channel-specific custom domain is configured, that custom domain is associated with a release when it is promoted to a channel. KOTS will rewrite images using that custom domain. The `replicatedRegistryDomain` and `proxyRegistryDomain` fields in the Application custom resource are deprecated but continue to work to give time to migrate to the new mechanism.
+* Updates the rqlite/rqlite image to 7.19.0 to resolve CVE-2023-1255 with medium severity.
+
 ## 1.100.0
 
 Released on May 26, 2023
@@ -258,7 +295,7 @@ Support for Kubernetes: 1.23, 1.24, 1.25, and 1.26
 
 ### Improvements {#improvements-1-94-2}
 * Updates kurl_proxy go mod gopkg.in/yaml.v3 to resolve CVE-2022-28948 with high severity.
-* Support bundles generated from the admin console now include collectors and analyzers from all support bundle specifications found in the cluster. This includes support bundle specifications found in Secret and ConfigMap objects. For more information about how to make support bundle specifications discoverable in a cluster, see [About Modular and Discoverable Support Bundles](/vendor/support-modular-support-bundle-specs).
+* Support bundles generated from the admin console now include collectors and analyzers from all support bundle specifications found in the cluster. This includes support bundle specifications found in Secret and ConfigMap objects. For more information about how to generate support bundles using discovery, see [Generating Support Bundles](/vendor/support-bundle-generating#generate-a-bundle).
 
 ### Bug Fixes {#bug-fixes-1-94-2}
 * Fixes a bug that didn't properly display config items that had the `affix` property.
@@ -1068,7 +1105,7 @@ Support for Kubernetes: 1.21, 1.22, and 1.23
 ### New Features
 * Adds support for installing a specific application version. For more information about installing a specific application version, see [Online Installation in Existing Clusters](/enterprise/installing-existing-cluster and [Online Installation with the Kubernetes Installer](/enterprise/installing-embedded-cluster).
 * Extends the ability of status informers to detect if the application is being updated.
-* Adds the ability to provide a strict preflight, which cannot be skipped and must not have any failure outcomes. Any failure outcomes will prevent the user from deploying the application. For more information on strict preflights, see [About preflight checks and support bundles​](/vendor/preflight-support-bundle-creating#about-preflight-checks-and-support-bundles) in Creating Preflight Checks and Support Bundles.
+* Adds the ability to provide a strict preflight, which cannot be skipped and must not have any failure outcomes. Any failure outcomes will prevent the user from deploying the application. For more information on strict preflights, see [Define KOTS Preflight Checks​](/vendor/preflight-kots-defining).
 * New versions can automatically be deployed in the admin console, regardless of whether the vendor uses semantic versioning. For more information about automatically deploying new versions, see [Configure Automatic Updates​](/enterprise/updating-apps#configure-automatic-updates) in Updating an Application.
 
 ### Bug Fixes

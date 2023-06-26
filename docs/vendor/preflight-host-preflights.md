@@ -11,7 +11,7 @@ You can include host preflight checks with kURL to verify that infrastructure re
 
 This helps to ensure successful installation and the ongoing health of the cluster.
 
-While host preflights are intended to ensure requirements are met for running the cluster, you can also use them to codify some of your application requirements so that users get feedback even earlier in the installation process, rather than waiting to run preflights after the cluster is already installed. For more information about application checks, collectors, and analyzers, see [Customizing Preflight Checks and Support Bundles](preflight-support-bundle-creating).
+While host preflights are intended to ensure requirements are met for running the cluster, you can also use them to codify some of your application requirements so that users get feedback even earlier in the installation process, rather than waiting to run preflights after the cluster is already installed. For more information about application checks, collectors, and analyzers, see [About Preflight Checks and Support Bundles](preflight-support-bundle-about).
 
 Default host preflight checks verify conditions such as operating system and disk usage. Default host preflight failures block the installation from continuing and exit with a non-zero return code. Users can then update their environment and run the kURL installation script again to re-run the host preflight checks.
 

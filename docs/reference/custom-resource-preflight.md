@@ -1,24 +1,26 @@
 # Preflight and Support Bundle
 
-Preflight checks use collectors and analyzers to provide cluster operators with clear feedback for any missing requirements or incompatibilities in the target environment before an application is deployed. Preflight checks are not automatically included in releases, so you must define them if you want to include them with a release.
+You can define preflight checks and support bundle specifications for Replicated KOTS and Helm installations. 
 
-Support bundles collect and analyze troubleshooting data from a cluster and help diagnose problems with application deployments. Default support bundles are automatically included with releases, and can be customized.
+Preflight collectors and analyzers provide cluster operators with clear feedback for any missing requirements or incompatibilities in the target environment before an application is deployed. Preflight checks are not automatically included in releases, so you must define them if you want to include them with a release.
 
-Collectors and analyzers are configured in the Preflight and Support Bundle custom resource manifest files.
+Support bundles collect and analyze troubleshooting data from a cluster and help diagnose problems with application deployments. For KOTS, default support bundles are automatically included with releases, and can be customized. For Helm installations, support bundles are not pre-enabled and must be defined if you want to use them.
+
+Collectors and analyzers are configured in Preflight and Support Bundle custom resources.
 
 :::note
-Built-in redactors run by default for preflight checks and support bundles to protect customers' sensitive information. To add custom redactors to a support bundle, use the Redactor custom manifest file. For more information about the Redactor custom manifest file, see [Redactor](custom-resource-redactor).
+Built-in redactors run by default for preflight checks and support bundles to protect sensitive information.
 :::
 
-## Basic Manifest Files
+## Defining Custom Resources
 
-To define preflight checks or customize the default support bundle settings, add the corresponding custom resource manifest file to your release. Then add custom collector and analyzer specifications to the custom resource manifest file. For more information about these troubleshoot features and how to configure them, see [Configuring Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-creating/).
+To define preflight checks or customize the default support bundle settings, add the corresponding custom resource YAML to your release. Then add custom collector and analyzer specifications to the custom resource. For more information about these troubleshoot features and how to configure them, see [About Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-about).
 
-The following sections show basic manifest files for the Preflight and Support Bundle custom resources that you can start with.
+The following sections show basic Preflight and Support Bundle custom resource definitions.
 
 ### Preflight
 
-The Preflight manifest file uses `kind: Preflight`:
+The Preflight custom resource uses `kind: Preflight`:
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -32,7 +34,7 @@ spec:
 
 ### Support Bundle
 
-The Support Bundle manifest file uses `kind: SupportBundle`:
+The Support Bundle custom resource uses `kind: SupportBundle`:
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -65,13 +67,13 @@ The following fields are supported on all optional collectors for preflights and
   </tr>
   <tr>
     <td><code>exclude</code></td>
-    <td>(Optional) Based on the runtime available configuration, a conditional can be specified in the <code>exclude</code> field. This is useful for deployment techniques that allow templating for Replicated KOTS and the optional Helm component. When this value is <code>true</code>, the collector is not included.</td>
+    <td>(Optional) Based on the runtime available configuration, a conditional can be specified in the <code>exclude</code> field. This is useful for deployment techniques that allow templating for Replicated KOTS and the optional KOTS Helm component. When this value is <code>true</code>, the collector is not included.</td>
   </tr>
 </table>
 
-### Collector Example
+### KOTS Collector Example
 
-This is an example of collector definition for a support bundle:
+This is an example of collector definition for a KOTS support bundle:
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -108,17 +110,17 @@ The following fields are supported on all optional analyzers for preflights and 
   </tr>
   <tr>
     <td><code>exclude</code></td>
-    <td>(Optional) Based on the runtime available configuration, a conditional can be specified in the <code>exclude</code> field. This is useful for deployment techniques that allow templating for KOTS and the optional Helm component. When this value is <code>true</code>, the analyzer is not included.</td>
+    <td>(Optional) For KOTS only, a condition based on the runtime available configuration can be specified in the <code>exclude</code> field. This is useful for deployment techniques that allow templating for KOTS and the optional KOTS Helm component. When this value is <code>true</code>, the analyzer is not included.</td>
   </tr>
   <tr>
     <td><code>strict</code></td>
-    <td>(Optional) An analyzer can be set to <code>strict: true</code> so that <code>fail</code> outcomes for that analyzer prevent the release from deploying until the vendor-specified requirements are met. When <code>exclude: true</code> is also specified, <code>exclude</code> overrides <code>strict</code> and the analyzer is not executed.</td>
+    <td>(Optional) For KOTS only, an analyzer can be set to <code>strict: true</code> so that <code>fail</code> outcomes for that analyzer prevent the release from deploying until the vendor-specified requirements are met. When <code>exclude: true</code> is also specified, <code>exclude</code> overrides <code>strict</code> and the analyzer is not executed.</td>
   </tr>
 </table>
 
-### Analyzer Example
+### KOTS Analyzer Example
 
-This is an example of an analyzer definition with a strict preflight check and `exclude` set for installations that do not use Replicated kURL. In this case, the strict preflight is enforced on an embedded cluster but not on an existing cluster or air gap cluster.
+This is an example of an KOTS analyzer definition with a strict preflight check and `exclude` set for installations that do not use Replicated kURL. In this case, the strict preflight is enforced on an embedded cluster but not on an existing cluster or air gap cluster.
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2

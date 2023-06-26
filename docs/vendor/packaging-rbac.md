@@ -22,6 +22,8 @@ rules:
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
+metadata:
+  name: kotsadm-rolebinding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -56,6 +58,8 @@ rules:
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
+metadata:
+  name: kotsadm-rolebinding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -86,7 +90,7 @@ The following limitations apply when using the `requireMinimalRBACPrivileges` or
 
 * **Existing clusters only**: The `requireMinimalRBACPrivileges` and `supportMinimalRBACPrivileges` options apply only to installations in existing clusters.
 
-* **Preflight checks**: When namespace-scoped access is enabled, preflight checks cannot read resources outside the namespace where KOTS is installed. The preflight checks continue to function, but return less data. For more information, see [Define Preflight Checks and Support Bundles](/vendor/preflight-support-bundle-creating#define-preflight-checks).
+* **Preflight checks**: When namespace-scoped access is enabled, preflight checks cannot read resources outside the namespace where KOTS is installed. The preflight checks continue to function, but return less data. For more information, see [Define KOTS Preflight Checks](/vendor/preflight-kots-defining).
 
 * **Velero namespace access**: Namespace-scoped RBAC does not grant access to the namespace where Velero is installed in the cluster. Velero is a requirement for configuring backup and restore with snapshots. 
 

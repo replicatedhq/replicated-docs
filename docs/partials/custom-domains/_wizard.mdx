@@ -1,0 +1,27 @@
+1. In the [vendor portal](https://vendor.replicated.com), go to **Custom Domains**. 
+
+1. In the section for the target Replicated endpoint, click **Add your first custom domain** for your first domain, or click **Add new domain** for additional domains.
+
+  The **Configure a custom domain** wizard opens.
+
+  <img src="/images/custom-domains-download-configure.png" alt="custom domain wizard" width="600"/>
+
+1. For **Domain**, enter the custom domain. Click **Save & continue**.
+
+1. For **Create CNAME**, copy the text string and use it to create a CNAME record in your DNS account. Click **Continue**.
+
+1. For **Verify ownership**, copy the text string and use it to create a TXT record in your DNS account. Click **Validate & continue**.
+
+  Your changes can take up to 24 hours to propagate.
+
+1. For **TLS cert creation verification**, copy the text string and use it to create a TXT record in your DNS account. Click **Validate & continue**.
+
+    Your changes can take up to 24 hours to propagate.
+
+1. For **Use Domain**, to set the new domain as the default, click **Yes, set as default**. Otherwise, click **Not now**.
+
+  :::note
+  Replicated recommends that you do _not_ set a domain as the default until you are ready for it to be used by customers.
+  :::
+
+The vendor portal marks the domain as **Configured** after the verification checks for ownership and TLS certificate creation are complete.

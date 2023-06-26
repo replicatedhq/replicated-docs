@@ -91,8 +91,8 @@ const sidebars = {
             'vendor/team-management-google-auth',
             'vendor/team-management-saml-auth',
          ],
-       },
-        'vendor/custom-domains',
+        },
+        'vendor/team-management-slack-config',
       ],
     },
     {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true},
@@ -112,10 +112,11 @@ const sidebars = {
         'vendor/private-images-about',
         'vendor/packaging-private-images',
         'vendor/private-images-replicated',
-        'vendor/helm-image-registry',
+        'vendor/custom-domains',
         'vendor/private-images-tags-digests',
         'vendor/packaging-private-registry-security',
         'vendor/tutorial-ecr-private-images',
+        'vendor/helm-image-registry',
       ],
     },
     {
@@ -124,8 +125,8 @@ const sidebars = {
       items: [
         'vendor/licenses-about',
         'vendor/licenses-about-types',
-        'vendor/releases-creating-customer',
         'vendor/licenses-using-builtin-fields',
+        'vendor/releases-creating-customer',
         'vendor/licenses-adding-custom-fields',
         'vendor/licenses-referencing-fields',
         'vendor/licenses-reference-helm',
@@ -182,6 +183,7 @@ const sidebars = {
       label: 'Admin Console and Download Portal Customization',
       items: [
         'vendor/admin-console-customize-app-icon',
+        'vendor/custom-domains-download-portal',
         'vendor/admin-console-display-app-status',
         'vendor/admin-console-adding-buttons-links',
         'vendor/admin-console-prometheus-monitoring',
@@ -224,9 +226,46 @@ const sidebars = {
       type: 'category',
       label: 'Preflights and Support Bundles',
       items: [
-        'vendor/preflight-support-bundle-creating',
-        'vendor/support-modular-support-bundle-specs',
+        'vendor/preflight-support-bundle-about',
         'vendor/support-online-support-bundle-specs',
+        'vendor/support-modular-support-bundle-specs',
+        'vendor/preflight-sb-helm-templates-about',
+        {
+          type: 'category',
+          label: 'Preflight Checks',
+          items: [
+             'vendor/preflight-helm-defining',
+             'vendor/preflight-kots-defining',
+         ],
+        },
+        {
+          type: 'category',
+          label: 'Support Bundles',
+          items: [
+            'vendor/support-bundle-helm-customizing',
+            'vendor/support-bundle-kots-customizing',
+         ],
+        },
+        {
+          type: 'category',
+          label: 'Custom Resources',
+          items: [
+            'reference/custom-resource-preflight',
+            'reference/custom-resource-redactor',
+
+         ],
+        },
+        {
+          type: 'category',
+          label: 'Supporting Your Application',
+          items: [
+            'vendor/preflight-running',
+            'vendor/support-bundle-generating',
+            'vendor/support-inspecting-support-bundles',
+            'vendor/support-submit-request',
+            'vendor/support-host-support-bundles',
+          ],
+        },
       ],
     },
     {
@@ -281,16 +320,8 @@ const sidebars = {
          'vendor/customer-adoption',
          'vendor/customer-reporting',
          'vendor/instance-insights-details',
+         'vendor/instance-notifications-config',
        ],
-    },
-    {
-      type: 'category',
-      label: 'Supporting Your Application',
-      items: [
-        'vendor/support-inspecting-support-bundles',
-        'vendor/support-submit-request',
-        'vendor/support-host-support-bundles',
-      ],
     },
     {
       type: 'category',
@@ -308,8 +339,6 @@ const sidebars = {
             'reference/custom-resource-helmchart-v2',
             'reference/custom-resource-helmchart',
             'reference/custom-resource-lintconfig',
-            'reference/custom-resource-preflight',
-            'reference/custom-resource-redactor',
             'reference/custom-resource-sig-application',  
           ],
         },

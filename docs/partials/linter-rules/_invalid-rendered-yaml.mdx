@@ -1,0 +1,97 @@
+**Example Helm Chart**:
+```yaml
+apiVersion: kots.io/v1beta1
+kind: HelmChart
+metadata:
+  name: nginx-chart
+spec:
+  chart:
+    name: nginx-chart
+    chartVersion: 0.1.0
+  helmVersion: v3
+  useHelmInstall: true
+  builder: {}
+  values:
+    image: repl{{ ConfigOption `nginx_image`}}
+```
+
+**Correct Config**:
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Config
+metadata:
+  name: nginx-config
+spec:
+  groups:
+    - name: nginx-deployment-config
+      title: nginx deployment config
+      items:
+        - name: nginx_image
+          title: image
+          type: text
+          default: "nginx"
+```
+
+**Resulting Rendered Helm Chart**:
+```yaml
+apiVersion: kots.io/v1beta1
+kind: HelmChart
+metadata:
+  name: nginx-chart
+spec:
+  chart:
+    name: nginx-chart
+    chartVersion: 0.1.0
+  helmVersion: v3
+  useHelmInstall: true
+  builder: {}
+  values:
+    image: nginx
+```
+**Incorrect Config**:
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Config
+metadata:
+  name: nginx-config
+spec:
+  groups:
+    - name: nginx-deployment-config
+      items:
+        - name: nginx_image
+          title: image
+          type: text
+          default: "***HIDDEN***"
+```
+
+**Resulting Lint Error**:
+```json
+{
+  "lintExpressions": [
+    {
+      "rule": "invalid-rendered-yaml",
+      "type": "error",
+      "message": "yaml: did not find expected alphabetic or numeric character: image: ***HIDDEN***",
+      "path": "nginx-chart.yaml",
+      "positions": null
+    }
+  ],
+  "isLintingComplete": false
+}
+```
+**Incorrectly Rendered Helm Chart**:
+```yaml
+apiVersion: kots.io/v1beta1
+kind: HelmChart
+metadata:
+  name: nginx-chart
+spec:
+  chart:
+    name: nginx-chart
+    chartVersion: 0.1.0
+  helmVersion: v3
+  useHelmInstall: true
+  builder: {}
+  values:
+    image: ***HIDDEN***
+```
