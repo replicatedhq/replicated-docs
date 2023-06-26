@@ -8,13 +8,13 @@ If your application images are available in a private image registry exposed to 
 
 To grant access to an external private registry for Helm installations, you can use the Replicated SDK and the Replicated proxy service. When you include the Replicated SDK with your Helm chart application, a `global.replicated.dockerconfigjson` field is automatically injected in the Helm chart values after customers provide their license ID during installation. The `global.replicated.dockerconfigjson` field contains a base64 encoded Docker configuration file that you can use to create a pull secret for accessing your private images through the Replicated proxy service at `proxy.replicated.com`.
 
-For more information about the Replicated SDK, see [About the Replicated SDK (Alpha)](https://deploy-preview-1200--replicated-docs.netlify.app/vendor/replicated-sdk-overview).
+For more information about the Replicated SDK, see [About the Replicated SDK (Alpha)](replicated-sdk-overview).
 
 For information about how Kubernetes uses the `kubernetes.io/dockerconfigjson` Secret type to authenticate to a private image registry, see [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/) in the Kubernetes documentation.
 
 ## Prerequisites
 
-* Declare the Replicated SDK as a dependency in your Helm chart. See [Using the SDK With Your Application (Alpha)](https://deploy-preview-1200--replicated-docs.netlify.app/vendor/replicated-sdk-using).
+* Declare the Replicated SDK as a dependency in your Helm chart. See [Using the SDK With Your Application (Alpha)](replicated-sdk-using).
 * Provide read-only credentials for the external private registry in your Replicated account. This allows Replicated to access the images through the Replicated proxy service. See [Configure Access to an External Registry](packaging-private-images#configure-access-to-an-external-registry) in _Connecting to an Image Registry_.
 * (Optional) To use a custom domain for the proxy service instead of `proxy.replicated.com`, see [Using Custom Domains for the Replicated Registry and Proxy Service](custom-domains).
 ## Deliver Image Pull Secrets for the Proxy Service
@@ -122,7 +122,7 @@ To use an external registry and the proxy service for Helm installations:
       If you configured a custom domain for the proxy service, use the custom domain instead of `proxy.replicated.com`. For more information, see [Using Custom Domains for the Replicated Registry and Proxy Service](custom-domains).
       :::
    
-   1. Log in to the Replicated registry and install the chart, passing the local `values.yaml` file you created with the `--values` flag. See [Installing an Application with Helm (Beta)](https://deploy-preview-1200--replicated-docs.netlify.app/vendor/install-with-helm).
+   1. Log in to the Replicated registry and install the chart, passing the local `values.yaml` file you created with the `--values` flag. See [Installing an Application with Helm (Beta)](install-with-helm).
 
 
     
