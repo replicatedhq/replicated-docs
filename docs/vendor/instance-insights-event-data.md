@@ -12,7 +12,7 @@ This section describes how instance data is delivered to the vendor portal for i
 
 For application instances installed with Helm, the Replicated SDK provides access to insights on application instances running in customer environments.
 
-To initialize in a customer environment, the Replicated SDK uses values that are injected by the Replicated registry in your Helm chart values file during installation. The SDK automatically sends information to the vendor portal when the status of an instance changes.
+To initialize in a customer environment, the Replicated SDK uses values that are injected by the Replicated registry in your Helm chart values file during installation. The SDK uses labels that you add to all resources deployed as part of your Helm chart to automatically send data to the vendor portal when the status of a resource changes.
 
 For more information about how to distribute the Replicated SDK with your application, see **LINK**.
 
