@@ -58,7 +58,7 @@ To provision an embedded cluster:
    tar -xvzf FILENAME.tar.gz
    ```
 
-   Replace `FILENAME` with the name of the file.
+   Replace `FILENAME` with the name of the kURL `.tar.gz` bundle.
 
 1. Run one of the following commands to create the cluster and install KOTS in air gap mode: 
 

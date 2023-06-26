@@ -100,11 +100,12 @@ For air gap installations, you must load images on each node in the cluster befo
 
 To update the cluster in an air gap environment:
 
-1. Download the kURL `.tar.gz` bundle provided by your software vendor and extract the contents to every node in the cluster:
+1. On each node in the cluster, download the kURL `.tar.gz` bundle provided by your software vendor and extract the contents:
 
    ```bash
    tar -xvzf FILENAME.tar.gz
    ```
+   Replace `FILENAME` with the name of the kURL `.tar.gz` bundle.
 
 1. Run the following KURL script to ensure all required images are available:
 
