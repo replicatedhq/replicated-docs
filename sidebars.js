@@ -111,12 +111,12 @@ const sidebars = {
       items: [
         'vendor/private-images-about',
         'vendor/packaging-private-images',
+        'vendor/helm-image-registry',
         'vendor/private-images-replicated',
         'vendor/custom-domains',
         'vendor/private-images-tags-digests',
         'vendor/packaging-private-registry-security',
         'vendor/tutorial-ecr-private-images',
-        'vendor/helm-image-registry',
       ],
     },
     {
