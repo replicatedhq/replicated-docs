@@ -7,7 +7,7 @@ import KotsHelmCrDescription from "../partials/helm/_kots-helm-cr-description.md
 
 # About Distributing Helm Charts with KOTS
 
-This topic provides an overview of how Replicated KOTS deploys Helm charts.
+This topic provides an overview of how Replicated KOTS deploys Helm charts, including the supported installation methods and limitations.
 
 ## Overview
 
@@ -19,13 +19,17 @@ For more information about how to add your Helm chart and the HelmChart custom r
 
 ## Installation Methods
 
-For Replicated KOTS v1.99.0 and later, Replicated recommends using the native Helm v2 installation method.
-
+KOTS supports the following methods for installing Helm charts:
+* Native Helm v2 (Recommended)
+* Native Helm v1
+* Replicated Helm
 ### Native Helm v2 (Recommended)
 
-With native Helm v2, KOTS does a Helm install or upgrade of your Helm chart directly.
+> Introduced in Replicated KOTS v1.99.0
 
-The v2 installation method does a Helm install or upgrade of your Helm chart without modifying it with Kustomize. This is an improvement to the v1 installation method because it results in Helm installations that can be reproduced outside of KOTS, and it enables the use of additional Helm functionality that was not available in v1. Because this method bypasses existing Kustomize logic to rewrite images, inject pull secrets, and add backup labels, you must configure a combination of Replicated and Helm templating for the images, pull secrets, and backup labels.
+With native Helm v2, KOTS does a Helm install or upgrade of your Helm chart directly. The native Helm v2 installation method supports using Helm templating and all Helm functionality.
+
+Native Helm v2 differs from v1 in that KOTS does _not_ modify the chart with Kustomize to rewrite images, inject pull secrets, and add backup labels. Because KOTS does not modify the Helm chart, native Helm v2 results in Helm installations that can be reproduced outside of KOTS.
 
 ### Native Helm v1 {#native}
 
@@ -135,10 +139,7 @@ To support air gap installations of your Helm chart with KOTS, you configure the
 
 The following limitations apply when using KOTS to install Helm charts:
 
-* <VersionLimitation/>
-
-  For more information, see [helmVersion](/reference/custom-resource-helmchart#helmversion) in _HelmChart_.
-* The name specified in the HelmChart custom resource must be an exact match to the actual Helm chart name that is provided to KOTS. If the Helm chart names do not match, then the installation can error or fail. See [HelmChart](/reference/custom-resource-helmchart) in _Custom Resources_.
+The name specified in the HelmChart custom resource must be an exact match to the actual Helm chart name that is provided to KOTS. If the Helm chart names do not match, then the installation can error or fail. See [HelmChart](/reference/custom-resource-helmchart) in _Custom Resources_.
 
 ### Native Helm v2 Limitations
 
@@ -166,6 +167,10 @@ The following limitations apply to native Helm v1:
 
 * <TemplateLimitation/>
 
+* <VersionLimitation/>
+
+  For more information, see [helmVersion](/reference/custom-resource-helmchart#helmversion) in _HelmChart_.
+
 ### Replicated Helm Limitations
 
 The following limitations apply to Replicated Helm:
@@ -173,3 +178,7 @@ The following limitations apply to Replicated Helm:
 * <ReplicatedHelmDeprecated/>
 
 * <TemplateLimitation/>
+
+* <VersionLimitation/>
+
+  For more information, see [helmVersion](/reference/custom-resource-helmchart#helmversion) in _HelmChart_.

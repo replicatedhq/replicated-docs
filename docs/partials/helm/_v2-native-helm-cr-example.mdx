@@ -24,29 +24,41 @@ spec:
     - 1200s
     - --history-max=15
 
-  # values are used in the customer environment, as a pre-render step
-  # these values will be supplied to helm template
+  # values are used in the customer environment as a pre-render step
+  # these values are supplied to helm template
   values:
     postgresql:
       enabled: repl{{ ConfigOptionEquals `postgres_type` `embedded_postgres`}}
 
   optionalValues:
-    - when: "repl{{ ConfigOptionEquals `postgres_type` `external_postgres`}}"
-      recursiveMerge: false
-      values:
-        postgresql:
-          postgresqlDatabase: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_database`}}repl{{ end}}"
-          postgresqlUsername: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_username`}}repl{{ end}}"
-          postgresqlHost: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_host`}}repl{{ end}}"
-          postgresqlPassword: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_password`}}repl{{ end}}"
-          postgresqlPort: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_port`}}repl{{ end}}"
+  - when: "repl{{ ConfigOptionEquals `postgres_type` `external_postgres`}}"
+    recursiveMerge: false
+    values:
+      postgresql:
+        postgresqlDatabase: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_database`}}repl{{ end}}"
+        postgresqlUsername: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_username`}}repl{{ end}}"
+        postgresqlHost: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_host`}}repl{{ end}}"
+        postgresqlPassword: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_password`}}repl{{ end}}"
+        postgresqlPort: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_port`}}repl{{ end}}"
+  # adds backup labels to postgresql if the license supports snapshots
+  - when: "repl{{ LicenseFieldValue `isSnapshotSupported` }}"
+    recursiveMerge: true
+    values:
+      postgresql:
+        commonLabels:
+          kots.io/backup: velero
+          kots.io/app-slug: my-app
+        podLabels:
+          kots.io/backup: velero
+          kots.io/app-slug: my-app  
 
   # namespace allows for a chart to be installed in an alternate namespace to
   # the default
   namespace: samplechart-namespace
 
-  # builder values provide a way to render the chart with all images
-  # and manifests. this is used in Replicated to create `.airgap` packages
+  # builder values render the chart with all images and manifests.
+  # builder is used to create `.airgap` packages and to support end users
+  # who use private registries
   builder:
     postgresql:
       enabled: true
