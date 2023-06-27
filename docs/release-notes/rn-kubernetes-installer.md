@@ -11,15 +11,15 @@ toc_max_heading_level: 2
 Released on June 27, 2023
 
 ### New Features {#new-features-v2023-06-27-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.27.3 1.26.6 1.25.11 1.24.15.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-06-19T19-52-50Z.
-* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.27.3 1.26.6 1.25.11 1.24.15 1.23.17 1.22.17.
-* Change preflight to allow installer run against RHEL 8.8.
-* Adds preflight check when Registry add-on is set to ensure that an object store or storage provision is also be in place. Otherwise, fails the install to prevent issues scenarios.
-* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.11.0.
+* Adds support for RHEL 8.8.
+* Adds a preflight check to require an object store or storage provider when using the Registry add-on.
+* Updates the Velero add-on version 1.11.0 with new replicated/local-volume-provider image version v0.5.4.
 
 ### Bug Fixes {#bug-fixes-v2023-06-27-0}
-* Fixes Rook Ceph status prometheus and modules when migrating from Rook and we check the status is unhealthy with the errors `Module 'dashboard' has failed` and ` Module 'prometheus' has failed` to allow the migration continue.
-* Fixes issue where Velero deployment did not rollout successfully when using kURL version `v2023.06.20-0`.
+* Fixes an issue that prevented migrating away from Rook-Ceph when the `dashboard` or `prometheus` modules were unhealthy.
+* Fixes an issue preventing Velero deployment rollout when using kURL version `v2023.06.20-0`.
 
 ## v2023.06.20-0
 
