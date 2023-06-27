@@ -30,10 +30,16 @@ The following table shows an overview of the Helm installation options:
   <td>Promote a release with your Helm chart. See <a href="/vendor/helm-install-release">Adding Your Helm Chart to a Release</a>.</td>  
 </tr>
 <tr>
-  <td><a href="helm-native-about">Native Helm</a></td>
+  <td><a href="helm-native-about">Native Helm v2</a></td>
   <td>Yes</td>
-  <td><ul><li>Recommended type for KOTS</li><li>Supports more Helm options, including hooks and weights</li><li>Supports air gap and kURL clusters</li></ul></td>
-  <td>Set <code>useHelmInstall</code> to <code>true</code> in the Replicated HelmChart custom resource. See <a href="/vendor/helm-release">Creating a Release with Your Helm Chart for KOTS</a>.</td>
+  <td><ul><li>Recommended type for KOTS</li><li>Uses Helm directly</li><li>Supports air gap and kURL clusters</li></ul></td>
+  <td>Add a Replicated HelmChart v2 custom resource. See <a href="/vendor/helm-release">Creating a Release with Your Helm Chart for KOTS</a>.</td>
+</tr>
+<tr>
+  <td><a href="helm-native-about">Native Helm v1</a></td>
+  <td>Yes</td>
+  <td><ul><li>Supports more Helm options, including hooks and weights</li><li>Supports air gap and kURL clusters</li></ul></td>
+  <td>Set <code>useHelmInstall</code> to <code>true</code> in the Replicated HelmChart v1 custom resource. See <a href="/vendor/helm-release">Creating a Release with Your Helm Chart for KOTS</a>.</td>
 </tr>
 <tr>
   <td><a href="helm-native-about">Replicated Helm</a></td>

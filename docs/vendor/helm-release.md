@@ -1,97 +1,59 @@
 import ReplicatedHelmDeprecated from "../partials/helm/_replicated-deprecated.mdx"
 import HelmChartPackage from "../partials/helm/_helm-chart-package-steps.mdx"
+import V2Example from "../partials/helm/_v2-native-helm-cr-example.mdx"
+import KotsHelmCrDescription from "../partials/helm/_kots-helm-cr-description.mdx"
 
 # Creating a Release with Your Helm Chart for KOTS
 
-This topic describes how to use the HelmChart custom resource to support native Helm and Replicated Helm installations with Replicated KOTS.
+This topic describes how to support Helm chart installations with Replicated KOTS. For information about creating releases with Helm charts for installation with Helm, see [Creating a Release with Your Helm Chart (Beta)](helm-install-release).
 
 ## Overview
 
-To deploy Helm charts with KOTS, you must add a HelmChart custom resource manifest file (`kind: HelmChart`) for each Helm chart that you add to a release. You then configure the HelmChart custom resource to provide the necessary instructions to KOTS for processing and preparing the chart for deployment, such as whether to use the native Helm or Replicated Helm installation. For more information about the HelmChart custom resource, see [HelmChart](/reference/custom-resource-helmchart).
+<KotsHelmCrDescription/>
 
-The HelmChart custom resource lets you create a mapping between the `values.yaml` file and the Replicated admin console Config page. This allows values to be changed in the chart based on user-provided configuration settings.
+For more information about the HelmChart custom resource, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
-Other options include adding conditional statements that exclude certain Helm charts, depending on the user's input. You can also configure optional value keys that allow dynamic deployment, such as allowing users to configure an external database. For native Helm, you can also configure hooks and weights to define the installation order and bundle actions, such as performing database backups before upgrading.
-
-For more information about using KOTS to deploy your Helm charts, see [About Distributing Helm Charts with KOTS](helm-native-about).
+To create a release with your Helm chart for installation with KOTS:
+1. [Package the Helm Chart](#package)
+1. [Add the Helm Chart and HelmChart Custom Resource to a Release](#release)
 
 ## Package the Helm Chart {#package}
 
 <HelmChartPackage/>
 
-## Create and Promote a Release {#release}
+## Add the Helm Chart and HelmChart Custom Resource to a Release {#release}
 
-After you package your Helm chart, add it to a release along with the HelmChart custom resource manifest file.
-
-For more information about creating releases, see [Managing Releases with the Vendor Portal](releases-creating-releases) and [Managing Releases with the CLI](releases-creating-cli).
+After you package your Helm chart, add it to a release along with the HelmChart custom resource manifest file. For more information about creating releases, see [Managing Releases with the Vendor Portal](releases-creating-releases) and [Managing Releases with the CLI](releases-creating-cli).
 
 ### Using the Vendor Portal
 
-To add a HelmChart custom resource using the vendor portal:
+When you add a Helm chart to a release using the vendor portal, the vendor portal automatically adds a HelmChart custom resource.
+
+To add a Helm chart and HelmChart custom resource to a release using the vendor portal:
 
 1. Drag and drop a Helm chart TGZ file to a release in the vendor portal. 
-1. In the **Select Helm Install Method** dialog, select **Native Helm (Recommended)** or **Replicated Helm** from the dropdown list. Click **OK**. 
+1. In the **Select Helm Install Method** dialog, select the installation method that you want KOTS to use for the release. Native Helm v2 is recommended. Click **OK**. 
 
-  ![Select Helm Install Method. Native Helm is recommended for greater Helm chart support.](/images/helm-select-install-method.png)
+  Replicated automatically creates a HelmChart custom resource manifest that uses the naming convention `CHART_NAME.yaml`.
 
-  Replicated automatically creates a corresponding HelmChart custom resource manifest that uses the naming convention `CHART_NAME.yaml`.
-
-  For example, the following screenshot shows a HelmChart custom resource named `postgres.yaml` in the vendor portal YAML editor:
-
-  ![Postgres Helm Chart](/images/postgres-helm-chart.png)
-
-  [View a larger image](/images/postgres-helm-chart.png)
-
-1. Configure the HelmChart custom resource. For more information, see [HelmChart](/reference/custom-resource-helmchart) in _Custom Resources_.
+1. Configure the HelmChart custom resource. For more information, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
 1. Repeat these steps for each Helm chart in your release.
+
+1. Save and promote the release. See [Create a Release](releases-creating-releases#create-a-release) in _Managing Releases with the Vendor Portal_.
 
 ### Using the CLI
 
-To add a HelmChart custom resource using the replicated CLI:
+To create a release with a Helm chart using the replicated CLI:
   
-1. Manually add a HelmChart custom resource (`kind: HelmChart` and `apiVersion: kots.io/v1beta1`) to the local directory with your TGZ file. Give the chart a unique name, using the naming convention `CHART_NAME.yaml`.
+1. Create a HelmChart custom resource (`kind: HelmChart` and `apiVersion: kots.io/v1beta2`) and add it to the local directory with your TGZ file. Give the chart a unique name, using the naming convention `CHART_NAME.yaml`.
 
   **Example:**
       
-  ```yaml
-  apiVersion: kots.io/v1beta1
-  kind: HelmChart
-  metadata:
-    name: CHART_NAME
-  spec:
-    # chart identifies a matching chart from a .tgz
-    chart:
-      name: CHART_NAME
-      chartVersion: CHART_VERSION
+  <V2Example/>
 
-    # helmVersion identifies the Helm Version used to render the chart. Default is v3.
-    helmVersion: v3
-
-    # useHelmInstall identifies whether this Helm chart will use the
-    # Replicated Helm installation (false) or native Helm installation (true). Default is false.
-    # Native Helm installations are only available for Helm v3 charts.
-    useHelmInstall: true
-
-    # values are used in the customer environment, as a pre-render step
-    # these values will be supplied to helm template
-    values: {}
-
-    # builder values provide a way to render the chart with all images
-    # and manifests. this is used in Replicated to create `.airgap` packages
-    builder: {}
-  ```
-        
-1. To use native Helm, set the `useHelmInstall` flag to `true`. Native Helm is recommended for greater Helm support. To use Replicated Helm, use the default value `false`.
-
-1. Configure the HelmChart custom resource. For more information, see [HelmChart](/reference/custom-resource-helmchart) in _Custom Resources_.
+1. Configure the HelmChart custom resource. See [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
 1. Repeat these steps for each Helm chart in your release.
 
-## Additional Resources
-
-For more information and examples of HelmChart configuration options, see:
-
-- [Defining Installation Order for Native Helm Charts](helm-native-helm-install-order)
-- [Including Optional Charts](helm-optional-charts)
-- [Configuring Optional Value Keys](helm-optional-value-keys)
+1. Create and promote the release. See [Create a Release ](releases-creating-cli#create-a-release) _Managing Releases with the CLI_.

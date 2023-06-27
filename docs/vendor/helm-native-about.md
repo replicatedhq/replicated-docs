@@ -3,24 +3,33 @@ import TemplateLimitation from "../partials/helm/_helm-template-limitation.mdx"
 import VersionLimitation from "../partials/helm/_helm-version-limitation.mdx"
 import HooksLimitation from "../partials/helm/_hooks-limitation.mdx"
 import ReplicatedHelmDeprecated from "../partials/helm/_replicated-deprecated.mdx"
+import KotsHelmCrDescription from "../partials/helm/_kots-helm-cr-description.mdx"
 
 # About Distributing Helm Charts with KOTS
 
-This topic provides an overview of the native Helm and Replicated Helm methods for deploying Helm chart with Replicated KOTS.
+This topic provides an overview of how Replicated KOTS deploys Helm charts.
 
 ## Overview
 
 When you distribute your Helm chart application with KOTS, your users have access to all of the KOTS features, including the Replicated admin console, backup and restore with snapshots, support for air gap installations, and support for installations into embedded clusters created by Replicated kURL. An application deployed with KOTS can use more than one Helm chart, can include Helm charts as components, and can use more than a single instance of any Helm chart.
 
-KOTS supports using the _native Helm_ and _Replicated Helm_ installation methods to deliver Helm charts. As an application vendor, you specify whether KOTS uses the native Helm or Replicated Helm method.
+<KotsHelmCrDescription/>
 
-### Native Helm (Recommended) {#native}
+For more information about how to add your Helm chart and the HelmChart custom resource to a release, see [Creating a Release with Your Helm Chart for KOTS](helm-release).
 
-With the native Helm deployment method, KOTS uses the Helm binary to install and manage the lifecycle of the chart resources that are part of the application. Native Helm is the preferred method because it supports more features of Helm, such as hooks and weights.
+## Installation Methods
 
-When you use native Helm deployment, KOTS renders your Helm manifests with Replicated templating in the HelmChart custom resource, without making changes to your `Chart.yaml` and `values.yaml` file. The templating maps to your `values.yaml` file and allows KOTS to deploy the Helm charts.
+For Replicated KOTS v1.99.0 and later, Replicated recommends using the native Helm v2 installation method.
 
-The following diagram shows how Replicated processes native Helm charts for deployment to a Kubernetes cluster:
+### Native Helm v2 (Recommended)
+
+With native Helm v2, KOTS does a Helm install or upgrade of your Helm chart directly.
+
+The v2 installation method does a Helm install or upgrade of your Helm chart without modifying it with Kustomize. This is an improvement to the v1 installation method because it results in Helm installations that can be reproduced outside of KOTS, and it enables the use of additional Helm functionality that was not available in v1. Because this method bypasses existing Kustomize logic to rewrite images, inject pull secrets, and add backup labels, you must configure a combination of Replicated and Helm templating for the images, pull secrets, and backup labels.
+
+### Native Helm v1 {#native}
+
+The following diagram shows how KOTS processes Helm charts for deployment with the native Helm v1 method:
 
 ![Native Helm Deployment to Cluster](/images/native-helm-flowchart.png)
 
@@ -116,20 +125,51 @@ The resulting deployment is comprised of standard Kubernetes manifests. Therefor
 
 ## Air Gap Installations
 
-KOTS supports native Helm and Replicated Helm installations into air gap environments. When a user installs a Helm chart-based application in an air gap environment, the chart processing is managed in the end user environment. This means that KOTS can use user-supplied values, license values, and existing values to create deployable manifests. For more information, see [`builder`](/reference/custom-resource-helmchart#builder) in the _HelmChart_ reference.
+KOTS supports installations into air gap environments. When a user installs an application with one or more Helm charts in an air gap environment, the chart processing is managed in the end user environment. This means that KOTS can use user-supplied values, license values, and existing values to create deployable manifests.
+
+To support air gap installations of your Helm chart with KOTS, you configure the `builders` field in the HelmChart custom resource. For more information, see [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
 ## Limitations {#replicated-helm-limitations}
 
+### General Limitations
+
 The following limitations apply when using KOTS to install Helm charts:
-* <ReplicatedHelmDeprecated/>
-* <TemplateLimitation/>
+
 * <VersionLimitation/>
 
   For more information, see [helmVersion](/reference/custom-resource-helmchart#helmversion) in _HelmChart_.
 * The name specified in the HelmChart custom resource must be an exact match to the actual Helm chart name that is provided to KOTS. If the Helm chart names do not match, then the installation can error or fail. See [HelmChart](/reference/custom-resource-helmchart) in _Custom Resources_.
 
-* The following limitations apply to the native Helm deployment method only:
+### Native Helm v2 Limitations
 
-  <NativeHelmLimitations/>
+The following limitations apply to native Helm v2:
 
-  * <HooksLimitation/>
+* Supported with KOTS v1.99.0 and later.
+
+* In order to support online installations that are configured to push and pull from a private registry (aka “disable image push” is NOT selected), vendors must provide the necessary values in the `builder` field to render the helm chart with all necessary images - this is the same concept that is used in the airgap builder. If the vendor is already doing this to support airgap installs, then no changes would be required, but if they are not supporting airgap installs and are not using the builder field, then they would need to add the necessary values there to support this install flow for this specific use case.
+
+* Last-mile kustomization is not supported in this install flow because Kustomize is not used
+Existing Replicated Helm installs still cannot be upgraded to this new Native Helm install flow for the same reasons as the existing Native Helm
+
+* The rendered manifests shown in the `rendered` directory, which are used for diffing, may not exactly reflect the final manifests that will be deployed to the cluster.  This is because those manifests are generated using `helm template`, which is not run with cluster context, so may contain different values for the `lookup` and `Capabilities` functions.  These functions are not supported at all in the current Native Helm, so this is still a net benefit since they can be used, just not shown in the diff.
+
+* When migrating a release from v1beta1 to v1beta2, the diff viewer will show a large diff since the underlying file structure of the rendered manifests is completely different. In the old flow, we `helm template` the chart, split up the resources, build a new chart with it, run kustomize, and then write the results back to the new chart.  In the new flow, we simply run `helm template` and just show the user that output in the diff viewer.
+
+
+### Native Helm v1 Limitations
+
+The following limitations apply to native Helm v1:
+
+<NativeHelmLimitations/>
+
+* <HooksLimitation/>
+
+* <TemplateLimitation/>
+
+### Replicated Helm Limitations
+
+The following limitations apply to Replicated Helm:
+
+* <ReplicatedHelmDeprecated/>
+
+* <TemplateLimitation/>

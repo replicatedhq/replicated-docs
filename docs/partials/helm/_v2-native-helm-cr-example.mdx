@@ -1,0 +1,53 @@
+```yaml
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  # chart identifies a matching chart from a .tgz
+  chart:
+    name: samplechart
+    chartVersion: 3.1.7
+  
+  releaseName: samplechart-release-1
+
+  exclude: "repl{{ ConfigOptionEquals `include_chart` `include_chart_no`}}"
+
+  # weight determines the order that charts are applied, with lower weights first.
+  weight: 42
+
+  # helmUpgradeFlags specifies additional flags to pass to the `helm upgrade` command.
+  helmUpgradeFlags:
+    - --skip-crds
+    - --no-hooks
+    - --timeout
+    - 1200s
+    - --history-max=15
+
+  # values are used in the customer environment, as a pre-render step
+  # these values will be supplied to helm template
+  values:
+    postgresql:
+      enabled: repl{{ ConfigOptionEquals `postgres_type` `embedded_postgres`}}
+
+  optionalValues:
+    - when: "repl{{ ConfigOptionEquals `postgres_type` `external_postgres`}}"
+      recursiveMerge: false
+      values:
+        postgresql:
+          postgresqlDatabase: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_database`}}repl{{ end}}"
+          postgresqlUsername: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_username`}}repl{{ end}}"
+          postgresqlHost: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_host`}}repl{{ end}}"
+          postgresqlPassword: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_password`}}repl{{ end}}"
+          postgresqlPort: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_port`}}repl{{ end}}"
+
+  # namespace allows for a chart to be installed in an alternate namespace to
+  # the default
+  namespace: samplechart-namespace
+
+  # builder values provide a way to render the chart with all images
+  # and manifests. this is used in Replicated to create `.airgap` packages
+  builder:
+    postgresql:
+      enabled: true
+```      
