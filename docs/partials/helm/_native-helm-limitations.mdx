@@ -1,4 +1,3 @@
 * Available only for Helm V3.
-* Supported only for new installations, which must be promoted to a new channel. Migrating existing Replicated Helm applications to native Helm is not supported. However, you can add native Helm charts to an existing Replicated Helm release. For more information, see [`useHelmInstall`](/reference/custom-resource-helmchart#usehelminstall) in _HelmChart_.
 * Not supported with GitOps workflows. For more information, see [Pushing Updates to a GitOps Workflow](/enterprise/gitops-workflow) in the _Enterprise_ documentation.
 * Hook weights below -9999 are not supported. All hook weights must be set to a value above -9999 to ensure the Replicated image pull secret is deployed before any resources are pulled.

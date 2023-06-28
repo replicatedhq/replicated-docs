@@ -1,6 +1,6 @@
 import V2Example from "../partials/helm/_v2-native-helm-cr-example.mdx"
 
-# Using Native Helm v2
+# Configuring the HelmChart v2 Custom Resource
 
 This topic describes how to support Helm chart installations with the KOTS native Helm v2 method. It also includes guidance for migrating from native Helm v1 to native Helm v2. 
 
@@ -150,7 +150,7 @@ The following example shows how to add backup labels for snapshots in the `optio
           kots.io/app-slug: craig-helm
 ```
 
-## Migrating from Native Helm v1 to v2
+## Migrating from v1beta1 to v1beta2 {#migrating}
 
 This section includes consideration for migrating from the native Helm v1 installation method to native Helm v2 for your application.
 
