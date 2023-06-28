@@ -22,30 +22,36 @@ For more information about how to configure the `builder` key, see [`builder`](/
 
 ## Rewrite Image Names
 
-This section describes how to rewrite image names in your HelmChart v2 custom resource so that KOTS can access your application's public or private images. There are different ways to rewrite the image names in the HelmChart v2 custom resource depending on if your images are in a public or private repository, and if you support the use of local private registries for your users:
-* If you support the use of local registries for air gap or online installations, see [With Support For Local Registries](#with-local) below.
-* If you do _not_ support air gap installations or the use of local registries for online installations, see [Without Support For Local Registries](#without-local) below.
+This section describes how to rewrite image names in the `values` key of your HelmChart v2 custom resource so that KOTS can locate your application's public or private images during installation and upgrade.
 
-### With Support For Local Registries {#with-local}
+To locate images, KOTS requires:
+* The registry domain. For private images, this is the domain of the Registry proxy service at `proxy.replicated.com`. For public images, this is the domain of your external registry.
+* The path to the image repository on the registry. For private images accessed through the proxy service, the path has the following format: `/proxy/APP_SLUG/EXTERNAL_REGISTRY_IMAGE_URL`, where `APP_SLUG` is the slug of your Replicated application and `EXTERNAL_REGISTRY_IMAGE_URL` is the path to the private image on your external registry.
 
-If your users push images to a local private registry, you can use a ternary operator with the HasLocalRegistry, LocalRegistryHost, and LocalRegistryNamespace Replicated template functions.
+Additionally, to support your users pushing images to local registries, Replicated recommends that you include the following Replicated template functions when you rewrite image names:
+* **HasLocalRegistry**: Returns true if the environment is configured to rewrite images to a local registry. HasLocalRegistry is always true for air gapped installations and optionally true for online installations. 
+* **LocalRegistryHost**: Returns the host of the local registry that the user configured.
+* **LocalRegistryNamespace**: Returns the namespace of the local registry that the user configured.
 
-**Private Image Example**
+When you include these template functions with a ternary operator, you allow KOTS to dynamically update the image name to use the local image registry if one is configured.
 
-The following example shows how to use a ternary operator with Replicated template functions to dynamically update the image registry and repository to the location of the image on either `proxy.replicated.com` or on the user's local image registry.
+### Examples
+
+These examples demonstrate how to use Replicated template functions to rewrite image names in the `values.image.registry` and `values.image.repository` fields of the HelmChart v2 custom resource.
+
+**Private Image**
 
 ```yaml
 # HelmChart v2 custom resource
 ...
-  values:
-    image:
-      registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "proxy.replicated.com" }}'
-      repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/APP_SLUG/REGISTRY_URL" }}'
-      tag: IMAGE_TAG
-```  
+values:
+  image:
+    registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "proxy.replicated.com" }}'
+    repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/429114214526.dkr.ecr.us-east-1.amazonaws.com/craig" }}/wordpress'
+    tag: 6.1.1-debian-11-r66-custom
+```
 
-
-**Public Image Example**
+**Public Image**
  
 ```yaml 
 # HelmChart v2 custom resource
@@ -57,7 +63,7 @@ The following example shows how to use a ternary operator with Replicated templa
       tag: 10.6.12-debian-11-r9  
 ```
 
-### Without Support for Local Registries {#without-local}
+<!-- ### Without Support for Local Registries {#without-local}
 
 If you do not support air gap installations, or if you do not support the use of local registries for users in online environments, then write image names with a static value that points to the location of the private image on `proxy.replicated.com` or the location of the public image at your private registry URL. 
 
@@ -81,33 +87,44 @@ values:
   image:
     name: my.registry.com/directory/image_name
     tag: IMAGE_TAG
-```
+``` -->
 ## Inject Pull Secrets for Private Images
 
-Use the [ImagePullSecretName](/reference/template-functions-config-context#imagepullsecretname) Replicated template function to inject image pull secrets for private registries:
+To access private images, KOTS requires an image pull secret. Use the [ImagePullSecretName](/reference/template-functions-config-context#imagepullsecretname) Replicated template function to inject image pull secrets for private registries.
+
+Use the following format for the ImagePullSecretName template function:
 
 ```yaml
+# HelmChart v2 custom resource
+...
 pullSecrets:
 - '{{repl ImagePullSecretName }}'
 ```
+
+**Example**
 
 The following example shows how to set the `pullSecrets` field to the ImagePullSecretName template function:
 
 ```yaml
 # HelmChart v2 custom resource
 ...
-  values:
-    image:
-      registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "proxy.replicated.com" }}'
-      repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/APP_SLUG/REGISTRY_URL" }}'/IMAGE_NAME
-      tag: v1.0.5
-      pullSecrets:
-      - '{{repl ImagePullSecretName }}'
+values:
+  image:
+    registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "proxy.replicated.com" }}'
+    repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/429114214526.dkr.ecr.us-east-1.amazonaws.com/craig" }}/wordpress'
+    tag: 6.1.1-debian-11-r66-custom
+    pullSecrets:
+    - '{{repl ImagePullSecretName }}'
 ```
 
 ## Add Backup Labels for Snapshots
 
-Snapshots requires labels on all resources to be included in the backup. To support snapshots in native Helm v2 installations, add the `kots.io/backup: velero` and `kots.io/app-slug` labels in the HelmChart v2 custom resource.
+The Replicated snapshots feature requires the following labels on all resources to be included in the backup:
+* `kots.io/backup: velero`
+* `kots.io/app-slug`
+
+To support snapshots in native Helm v2 installations, add the `kots.io/backup: velero` and `kots.io/app-slug` labels in the HelmChart v2 custom resource:
+
 
 ```yaml
   # HelmChart v2 custom resource
