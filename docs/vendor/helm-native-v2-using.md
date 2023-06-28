@@ -6,7 +6,13 @@ This topic describes how to configure the `apiVersion: kots.io/v1beta2` HelmChar
 
 ## Overview
 
-When you include version `kots.io/v1beta2` of the HelmChart custom resource for a Helm chart in your release, KOTS v1.99.0 or later does a Helm install or upgrade of the chart without making any modifications to the chart. Supporting Helm chart installations with version `kots.io/v1beta2` of the HelmChart custom resource requires additional configuration. You need to update the HelmChart custom resource to rewrite images, inject image pull secrets, and add backup labels for snapshots. Additionally, if you want to support the use of local image registries for air gap or online installations, you must configure the `builder` key.
+When you include version `kots.io/v1beta2` of the HelmChart custom resource for a Helm chart in your release, KOTS v1.99.0 or later does a Helm install or upgrade of the chart without making any modifications to the chart.
+
+Supporting Helm chart installations with version `kots.io/v1beta2` of the HelmChart custom resource requires additional configuration. You need to update the HelmChart custom resource to rewrite images, inject image pull secrets, and add backup labels for snapshots. Additionally, if you want to support the use of local image registries for air gap or online installations, you must configure the `builder` key.
+
+:::note
+Configuring the HelmChart custom resource version `kots.io/v1beta2` requires editing the `values`, `optionalValues`, and `builders` keys. Each of these keys has unique requirements and limitations. For more information about working with these keys, see [values](/reference/custom-resource-helmchart-v2#optional-values), [optionalValues](/reference/custom-resource-helmchart-v2#values), and [builders](/reference/custom-resource-helmchart-v2#builders).
+:::
 
 For more information about how KOTS installs Helm charts with the `kots.io/v1beta2` HelmChart custom resource, including the differences between versions `kots.io/v1beta1` and `kots.io/v1beta2`, see [About Distributing Helm Charts with KOTS](helm-native-about).
 
@@ -49,7 +55,7 @@ When you include the HasLocalRegistry template function with a ternary operator,
 
 ### Examples
 
-This section includes examples to demonstrate how to rewrite private or public image names in the HelmChart custom resource.
+This section includes examples to demonstrate how to rewrite private or public image names in the `value` key of the HelmChart custom resource. For more information about working with the `values` key, see [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_.
 
 **Private Image Example**
 
@@ -57,12 +63,17 @@ The following example for private images shows how to update a `values.image.reg
 
 ```yaml
 # kots.io/v1beta2 HelmChart custom resource
-...
-values:
-  image:
-    registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "proxy.replicated.com" }}'
-    repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/ecr.us-east-1.amazonaws.com/example" }}/wordpress'
-    tag: 6.1.1-debian
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  ...
+  values:
+    image:
+      registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "proxy.replicated.com" }}'
+      repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/ecr.us-east-1.amazonaws.com/example" }}/wordpress'
+      tag: 6.1.1-debian
 ```
 
 **Public Image Example**
@@ -71,13 +82,18 @@ The following example for public images shows how to update a `values.mariadb.im
  
 ```yaml 
 # kots.io/v1beta2 HelmChart custom resource
-...
-values:
-  mariadb:
-    image:
-      registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "docker.io" }}'
-      repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "my-org" }}/mariadb'
-      tag: 10.6.12-debian  
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  ...
+  values:
+    mariadb:
+      image:
+        registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "docker.io" }}'
+        repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "my-org" }}/mariadb'
+        tag: 10.6.12-debian  
 ```
 
 **No Support for Local Registries Examples**
@@ -86,50 +102,73 @@ The following examples show how you can update an image name if you do _not_ nee
 
 ```yaml 
 # kots.io/v1beta2 HelmChart custom resource
-...
-values:
-  image:
-  # private image accessed through the proxy service
-    name: proxy.replicated.com/proxy/my-app/quay.io/my-org/api
-    tag: v1.0.1  
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  ...
+  values:
+    image:
+    # private image accessed through the proxy service
+      name: proxy.replicated.com/proxy/my-app/quay.io/my-org/api
+      tag: v1.0.1  
 ```
+
 ```yaml 
 # kots.io/v1beta2 HelmChart custom resource
-...
-values:
-  image:
-  # public image on quay.io
-    name: quay.io/my-org/api
-    tag: v1.0.1  
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  ...
+  values:
+    image:
+    # public image on quay.io
+      name: quay.io/my-org/api
+      tag: v1.0.1  
 ```
 
 ## Injecting Pull Secrets for Private Images
 
-To access private images, KOTS requires an image pull secret. Use the Replicated ImagePullSecretName template function to inject image pull secrets for private registries. The ImagePullSecretName template function returns the name of the image pull secret that can be added to any Pod specs that use private images. For more information, see [ImagePullSecretName](/reference/template-functions-config-context#imagepullsecretname) in _Config Context_.
+To access private images, KOTS requires an image pull secret. You can use the Replicated ImagePullSecretName template function in the `values` key of the HelmChart custom resource to inject image pull secrets for private registries. The ImagePullSecretName template function returns the name of the image pull secret that can be added to any Pod specs that use private images. For more information, see [ImagePullSecretName](/reference/template-functions-config-context#imagepullsecretname) in _Config Context_.
 
-Use the following format for the ImagePullSecretName template function in the HelmChart v2 custom resource:
+Use the following format for the ImagePullSecretName template function in the `values` key HelmChart custom resource:
 
 ```yaml
 # kots.io/v1beta2 HelmChart custom resource
-...
-pullSecrets:
-- '{{repl ImagePullSecretName }}'
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  values:
+    ...
+    pullSecrets:
+    - '{{repl ImagePullSecretName }}'
 ```
+
+For more information about working with the `values` key, see [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_.
 
 **Example**
 
-The following example shows how to set a `pullSecrets` field to the ImagePullSecretName template function:
+The following example shows how to set a `values.image.pullSecrets` field to the ImagePullSecretName template function.
 
 ```yaml
 # kots.io/v1beta2 HelmChart custom resource
-...
-values:
-  image:
-    registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "proxy.replicated.com" }}'
-    repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/ecr.us-east-1.amazonaws.com/example" }}/wordpress'
-    tag: 6.1.1-debian
-    pullSecrets:
-    - '{{repl ImagePullSecretName }}'
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  values:
+    image:
+      registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "proxy.replicated.com" }}'
+      repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/ecr.us-east-1.amazonaws.com/example" }}/wordpress'
+      tag: 6.1.1-debian
+      pullSecrets:
+      - '{{repl ImagePullSecretName }}'
 ```
 
 ## Adding Backup Labels for Snapshots
@@ -140,14 +179,21 @@ The Replicated snapshots feature requires the following labels on all resources 
 
 For more information about snapshots, see [Understanding Backup and Restore](snapshots-overview).
 
-Add the `kots.io/backup: velero` and `kots.io/APP_SLUG` labels to the HelmChart custom resource `optionalValues` key. Adding the labels to the `optionalValues` key allows you to include a `when` statement that evaluates to true only when the license has the `isSnapshotSupported` entitlement.
+Add the `kots.io/backup: velero` and `kots.io/APP_SLUG` labels to the HelmChart custom resource `optionalValues` key along with a `when` statement that evaluates to true only when the license has the `isSnapshotSupported` entitlement.
+
+For more information about working with the `optionalValues` key, see [optionalValues](/reference/custom-resource-helmchart-v2#optionalvalues) in _HelmChart v2_.
 
 **Example**
 
 The following example shows how to add backup labels for snapshots in the `optionalValues` key of the HelmChart custom resource:
 
 ```yaml
-  # kots.io/v1beta2 HelmChart custom resource
+# kots.io/v1beta2 HelmChart custom resource
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
   ...
   optionalValues:
   # add backup labels only if the license supports snapshots
@@ -163,15 +209,15 @@ The following example shows how to add backup labels for snapshots in the `optio
           kots.io/app-slug: craig-helm
 ```
 
-## Migrating from kots.io/v1beta1 to kots.io/v1beta2 {#migrating}
+## Migrating from `v1beta1` to `v1beta2` {#migrating}
 
-This section includes consideration for migrating from version kots.io/v1beta1 of the HelmChart resource to version kots.io/v2beta2.
+This section includes consideration for migrating from version `kots.io/v1beta1` of the HelmChart resource to version `kots.io/v1beta2`.
 
-### Supporting kots.io/v1beta1 and kots.io/v1beta2
+### Supporting `v1beta1` and `v1beta2`
 
-The HelmChart custom resource version `kots.io/v1beta2` is available only for installations that use KOTS v1.99.0 or later. To support existing users that have not yet upgraded to KOTS v1.99.0 or later, Replicated recommends that you include both a `kots.io/v1beta2` and a `kots.io/v1beta1` HelmChart custom resource for each Helm chart in your release. This allows you to support both the native Helm v1 and native Helm v2 installation methods from the same release.
+The HelmChart custom resource version `kots.io/v1beta2` is available only for installations that use KOTS v1.99.0 or later. To support existing users that have not yet upgraded to KOTS v1.99.0 or later, Replicated recommends that you include both a `kots.io/v1beta2` and a `kots.io/v1beta1` HelmChart custom resource for each Helm chart in your release. This allows you to support both installation methods from the same release.
 
-When you include both a `kots.io/v1beta2` and `kots.io/v1beta1` HelmChart custom resource, installations with KOTS v1.98.0 or earlier use `kots.io/v1beta1`. Installations with KOTS v1.99.0 or later use `kots.io/v1beta2`.
+When you include both a `kots.io/v1beta2` and `kots.io/v1beta1` HelmChart custom resource in a single release for the same Helm chart, installations with KOTS v1.98.0 or earlier use `kots.io/v1beta1`. Installations with KOTS v1.99.0 or later use `kots.io/v1beta2`.
 
 ### Updating an Existing HelmChart Custom Resource
 
