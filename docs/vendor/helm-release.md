@@ -32,17 +32,11 @@ When you add a Helm chart to a release using the vendor portal, the vendor porta
 To add a Helm chart and HelmChart custom resource to a release using the vendor portal:
 
 1. Drag and drop a Helm chart TGZ file to a release in the vendor portal. 
-1. In the **Select Helm Install Method** dialog, select the installation method that you want KOTS to use for the release and click **OK**. 
-
-  :::note
-  For installations with KOTS v1.99.0 and later, native Helm v2 is recommended.
-  :::
+1. In the **Select Helm Install Method** dialog, select the installation method that you want KOTS to use for the release and click **OK**.
 
   Replicated automatically creates a HelmChart custom resource manifest that uses the naming convention `CHART_NAME.yaml`.
 
-1. Configure the HelmChart custom resource:
-   * For native Helm v2, see [Using Native Helm v2](helm-native-v2-using) and [HelmChart v2](/reference/custom-resource-helmchart-v2)
-   * For native Helm v1 or Replicated Helm, see [HelmChart v1](/reference/custom-resource-helmchart)
+1. Configure the HelmChart custom resource. See [Configuring the HelmChart v2 Custom Resource](helm-native-v2-using).
 
 1. Repeat these steps for each Helm chart in your release.
 
@@ -58,10 +52,8 @@ To create a release with a Helm chart using the replicated CLI:
       
   <V2Example/>
 
-1. Configure the HelmChart custom resource:
-   * For native Helm v2, see [HelmChart v2](/reference/custom-resource-helmchart-v2)
-   * For native Helm v1 or Replicated Helm, see [HelmChart v1](/reference/custom-resource-helmchart)
+1. Configure the HelmChart custom resource. See [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
 1. Repeat these steps for each Helm chart in your release.
 
-1. Create and promote the release. See [Create a Release ](releases-creating-cli#create-a-release) _Managing Releases with the CLI_.
+1. Create and promote the release. See [Create a Release](releases-creating-cli#create-a-release) _Managing Releases with the CLI_.
