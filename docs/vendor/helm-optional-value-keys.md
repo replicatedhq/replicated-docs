@@ -1,11 +1,11 @@
 # Configuring Optional Value Keys
 
 The Helm chart `values.yaml` file is not a static mapping in an application.
-It is possible, for native Helm and Replicated Helm installations, to either override values or include values when certain conditions are met.
+It is possible to either override values or include values when certain conditions are met using the Replicated HelmChart custom resource.
 
 ## Override Values
 
-If the Helm chart `values.yaml` contains a static value that must be overridden when deploying using the Replicated KOTS, set the value to `"null"` (including the quotation marks) in the HelmChart custom resource manifest file.
+If the Helm chart `values.yaml` contains a static value that must be overridden when deploying using the Replicated KOTS, set the value to `"null"` (including the quotation marks) in the HelmChart custom resource.
 
 Typically this situation happens when you are including a community chart as a dependency in your own chart. You cannot control how the community chart is built and structured, and you might want to change some of the default behavior that the community chart does not easily expose. For more information, see [Deleting a Default Key](https://helm.sh/docs/chart_template_guide/values_files/#deleting-a-default-key) in the Helm documentation.
 
@@ -13,7 +13,7 @@ Typically this situation happens when you are including a community chart as a d
 
 Some advanced use cases involve writing values to a values file only if there is a value to apply. For example, if a customer has the option to configure a different value than the default value in your file, such as setting the database option they want to use. You can include an optional value key so that your application can dynamically include it based on a `when` condition. 
 
-For more information about the `optionalValues` property, see [`optionalValues`](https://docs.replicated.com/reference/custom-resource-helmchart#optionalvalues) in the _HelmChart_ reference.
+For more information about the `optionalValues` property, see [`optionalValues`](/reference/custom-resource-helmchart-v2#optionalvalues) in _HelmChart v2 (Beta)_.
 
 For example, in the Bitnami Wordpress [chart.yaml.](https://github.com/bitnami/charts/blob/main/bitnami/wordpress/Chart.yaml) file, there is a reference to `mariadb`. This reference is configured through the [values.yaml](https://github.com/bitnami/charts/blob/main/bitnami/wordpress/values.yaml#L1086) file:
 
@@ -44,22 +44,23 @@ externalDatabase:
   ##
   database: bitnami_wordpress
 ```
-If a user wants to configure an external database, you can enable this dynamically through your deployment by adding an `optionalValues` section to the `kind: HelmChart` custom resource, instead of attempting to modify the render logic in the Helm chart.
+If a user wants to configure an external database, you can enable this dynamically through your deployment by adding an `optionalValues` section to the HelmChart custom resource, instead of attempting to modify the render logic in the Helm chart.
 
 The `optionalValues` section includes a `when` condition that instructs KOTS how to determine if these keys should be merged. It also includes a `recursiveMerge` field that defines how to merge the dataset.
 
 For example, the HelmChart custom resource can be configured as follows:
 
 ```yaml
-apiVersion: kots.io/v1beta1
+apiVersion: kots.io/v1beta2
 kind: HelmChart
 metadata:
   name: wordpress
 spec:
-  # chart identifies a matching chart from a .tgz
   chart:
     name: wordpress
     chartVersion: 15.3.2
+
+  releaseName: sample-release-1
 
   # values are used in the customer environment, as a pre-render step
   # these values will be supplied to helm template
@@ -157,7 +158,7 @@ data:
   favorite_drink_hot: {{ .Values.favorite.drink.hot }}
 ```
 
-When `recursiveMerge` is set to `false` in the HelmChart custom resource manifest file, the ConfigMap for the deployed application includes the following key value pairs:
+When `recursiveMerge` is set to `false` in the HelmChart custom resource, the ConfigMap for the deployed application includes the following key value pairs:
 
 ```yaml
 favorite_day: null
