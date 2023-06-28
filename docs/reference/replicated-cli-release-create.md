@@ -10,8 +10,9 @@ Create a new release using a collection of application manifest files.
 replicated release create --yaml-dir YAML_DIR [flags]
 ```
 
-* You must use either the `yaml-dir` or `chart` flag when creating a release, one or the other is required.
+If you want to support KOTS installations when creating your release, you must use `--yaml-dir`. If you just want to support Helm CLI installations when creating your release, you can use either the `yaml-dir` or `chart` flag.
 * _`yaml-dir` corresponds to the root directory of the YAML application manifest files._
+* _`chart` corresponds to the path of the Helm chart._
 * _Additional flags returned by `--help` that are not supported in Replicated have been omitted from the list below_
 
 <table>
