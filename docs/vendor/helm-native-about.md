@@ -155,11 +155,20 @@ This section lists the limitations for the KOTS Helm chart installation methods.
 The following limitations apply when using version `kots.io/v1beta2` of the HelmChart custom resource:
 
 * Available only for Helm V3.
+
 * Available only for KOTS v1.99.0 and later.
-* To support online installations that are configured to use a local private registry, you must provide the necessary values in the `builder` field to render the Helm chart with all necessary images. For more information, see [Supporting Local Image Registries](helm-native-v2-using#supporting-local-image-registries) in _Configuring the HelmChart v2 Custom Resource_.
+
+* Additional configuration is required to support online installations that are configured to use a local private registry, to rewrite image names, to inject image pull secrets for private images, and to support snapshots. For more information, see [Configuring the HelmChart Custom Resource](helm-native-v2-using).
+
 * Editing the downstream Kustomization files to make changes before deploying the application is not supported because KOTS does not use Kustomize to install the Helm chart.
+
 * The rendered manifests shown in the `rendered` directory might not reflect the final manifests that will be deployed to the cluster. This is because the manifests in the `rendered` directory are generated using `helm template`, which is not run with cluster context. So, the values for the `lookup` and `Capabilities` functions might differ.
+
 * When updating the HelmChart custom resource in a release from `kots.io/v1beta1` to `kots.io/v1beta2`, the diff viewer shows a large diff because the underlying file structure of the rendered manifests is different. For more information about migrating, see [Migrating from v1beta1 to v1beta2](helm-native-v2-using#migrating).
+
+* <GitOpsLimitation/>
+
+   For more information, see [Pushing Updates to a GitOps Workflow](/enterprise/gitops-workflow).
 
 ### `kots.io/v1beta1` Limitations
 
@@ -170,6 +179,8 @@ The following limitations apply when using version `kots.io/v1beta1` of the Helm
 * Available only for Helm V3.
 
 * <GitOpsLimitation/>
+
+   For more information, see [Pushing Updates to a GitOps Workflow](/enterprise/gitops-workflow).
 
 * <HooksLimitation/>
 

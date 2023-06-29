@@ -1,3 +1,5 @@
+import GitOpsLimitation from "../partials/helm/_gitops-limitation.mdx"
+
 # Pushing Updates to a GitOps Workflow
 
 This topic describes how to enable a GitOps workflow for your application. In a GitOps workflow, the Replicated admin console pushes all updates to the application to a Git repository that you specify.
@@ -16,7 +18,7 @@ You can change your GitOps settings or disable a GitOps workflow at any time fro
 
 ## Limitations
 
-- The GitOps workflow is not supported for installations with the HelmChart custom resource `apiVersion: kots.io/v1beta2` or the HelmChart custom resource `apiVersion: kots.io/v1beta1` and `useHelmInstall: true`.
+- <GitOpsLimitation/>
 
 - To enable pushing updates through the GitOps workflow, you must first follow the installation workflow for the application using the admin console or the Replicated kots CLI. If the preflight checks pass during installation, then the application is deployed.
 
