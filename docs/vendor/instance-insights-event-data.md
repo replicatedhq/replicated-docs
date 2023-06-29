@@ -10,7 +10,7 @@ Viewing instance data in the vendor portal has the following requirements:
 
 * For instances installed with Helm, you must include the Replicated SDK as a dependency of your Helm chart. For more information, [About the Replicated SDK (Alpha)](replicated-sdk-overview).
 
-* Getting data on the status of application instances requires additional configuration. For more information, see [Enabling and Understanding App Status](insights-app-status).
+* Viewing application status data requires additional configuration. For more information, see [Enabling and Understanding Application Status](insights-app-status).
 
 ## Limitations
 
@@ -79,7 +79,7 @@ The tables in this section include the following details about each event type:
     <td><code>appStatus</code></td>
     <td>
       <p>A string that represents the status of the application. Possible values: Ready, Updating, Degraded, Unavailable, Missing.</p>
-      <p>Additional configuration is required to get <code>appStatus</code> data. See <a href="#requirements">Requirements</a>.</p>
+      <p>Additional configuration is required to get <code>appStatus</code> data. See <a href="insights-app-status">Enabling and Understanding Application Status</a>.</p>
     </td>
     <td>string</td>
     <td>App Status</td>

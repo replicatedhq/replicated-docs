@@ -80,10 +80,11 @@ The **Instances** section displays the following details about each active insta
      The following shows an example of the Nodes field for an instance installed in an embedded cluster.
      ![Instance with 1/1 nodes ready](/images/kurl-instance-row.png)
      [View a larger version of this image](/images/kurl-instance-row.png)
-   * The KOTS version running in the cluster.
+   * (KOTS Only) The KOTS version running in the cluster.
+   * (Replicated SDK Only) The Replicated SDK version running in the cluster.
    * The cloud provider and region, if applicable.
 * Instance uptime data, including:
    * The timestamp of the last recorded check-in for the instance. A check-in is recorded when any of the following occur:
-      <AppCheckin/>
+      <Checkins/>
    * An uptime graph of the previous two weeks. For more information about how the vendor portal determines uptime, see [Instance Uptime](instance-insights-details#instance-uptime) in _Instance Details_.
    * The uptime ratio in the previous two weeks.
