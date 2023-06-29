@@ -4,6 +4,7 @@ import VersionLimitation from "../partials/helm/_helm-version-limitation.mdx"
 import HooksLimitation from "../partials/helm/_hooks-limitation.mdx"
 import Deprecated from "../partials/helm/_replicated-deprecated.mdx"
 import KotsHelmCrDescription from "../partials/helm/_kots-helm-cr-description.mdx"
+import ReplicatedHelmMigration from "../partials/helm/_replicated-helm-migration.mdx"
 
 # About Distributing Helm Charts with KOTS
 
@@ -187,4 +188,6 @@ The following limitations apply when using the Replicated Helm installation meth
 
   For more information, see [helmVersion](/reference/custom-resource-helmchart#helmversion) in _HelmChart_.
 
-* You cannot migrate from Replicated Helm to a different installation method for an existing chart in an existing installation. For more information, see [Migrating from Replicated Helm](#migrate-repl-helm) in _Configuring the HelmChart Custom Resource_.
+* <ReplicatedHelmMigration/>
+
+  For more information, see [Migrating from Replicated Helm](#migrate-repl-helm) in _Configuring the HelmChart Custom Resource_.

@@ -15,12 +15,15 @@ import Namespace from "../partials/helm/_helm-cr-namespace.mdx"
 import Intro from "../partials/helm/_helm-cr-intro.mdx"
 import BuilderAirgapIntro from "../partials/helm/_helm-cr-builder-airgap-intro.mdx"
 import BuilderExample from "../partials/helm/_helm-cr-builder-example.mdx"
-import ReplicatedHelmDeprecated from "../partials/helm/_replicated-deprecated.mdx"
+import Deprecated from "../partials/helm/_replicated-deprecated.mdx"
+import ReplicatedHelmMigration from "../partials/helm/_replicated-helm-migration.mdx"
 
 
 # HelmChart v1
 
-<ReplicatedHelmDeprecated/>
+:::note
+<Deprecated/>
+:::
 
 <Intro/>
 
@@ -45,9 +48,7 @@ spec:
   # helmVersion identifies the Helm Version used to render the chart. Default is v3.
   helmVersion: v3
 
-  # useHelmInstall identifies whether this Helm chart will use the
-  # Replicated Helm installation (false) or native Helm installation (true). Default is false.
-  # Native Helm installations are only available for Helm v3 charts.
+  # useHelmInstall identifies the kots.io/v1beta1 installation method
   useHelmInstall: true
 
   # weight determines the order that charts with "useHelmInstall: true" are applied, with lower weights first.
@@ -109,7 +110,7 @@ spec:
 
 ## helmVersion
 
-Identifies the Helm Version used to render the chart. Acceptable values are `v2` or `v3`. `v3` is the default when no value is specified, and `v3` is required for native Helm installations.
+Identifies the Helm Version used to render the chart. Acceptable values are `v2` or `v3`. `v3` is the default when no value is specified.
 
 :::note
 <VersionLimitation/>
@@ -117,11 +118,13 @@ Identifies the Helm Version used to render the chart. Acceptable values are `v2`
 
 ## useHelmInstall
 
-Identifies whether this Helm chart will use the Replicated Helm installation (`false`) or native Helm installation (`true`). Replicated recommends that you set this to `true` because native Helm is the preferred method. **Default:** `false`
+Identifies the method that KOTS uses to install the Helm chart:
+* `true`: KOTS uses Kustomize to modify the chart then repackages the resulting manifests to install. This method is also referred to as "native Helm".
+* `false`: Use the Replicated Helm installation method. KOTS renders the Helm templates and deploys them as standard Kubernetes manifests using `kubectl apply`.
 
-Native Helm can only be set for new charts. Modifying this flag in existing charts for existing applications is not supported because charts installed with Replicated Helm cannot be migrated to native Helm. However, you can add native Helm charts to an existing release that already uses Replicated Helm. Each chart is installed using the specified installation method for that chart, indicated by the value of the `useHelmInstall` flag.
+<ReplicatedHelmMigration/>
 
-Native Helm installations always deploy using Helm v3.
+For more information, see [Migrating from Replicated Helm](#migrate-repl-helm) in _Configuring the HelmChart Custom Resource_.
 
 ## weight
 

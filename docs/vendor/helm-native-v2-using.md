@@ -1,4 +1,4 @@
-import V2Example from "../partials/helm/_v2-native-helm-cr-example.mdx"
+import ReplicatedHelmMigration from "../partials/helm/_replicated-helm-migration.mdx"
 
 # Configuring the HelmChart Custom Resource
 
@@ -261,11 +261,9 @@ For an example of the HelmChart v2 custom resource, see [HelmChart v2](/referenc
 
 ### Migrating from Replicated Helm {#migrate-repl-helm}
 
-You cannot migrate existing Helm charts in existing installations from the Replicated Helm installation method (HelmChart custom resource with `apiVersion: kots.io/v1beta1` and `useHelmInstall: false`) to a different installation method. If KOTS already installed the Helm chart previously in a customer environment with the Replicated Helm method, then KOTS does not attempt the install the chart using a different method and displays the following error message: `Deployment method for chart <chart_name> has changed`.
+<ReplicatedHelmMigration/>
 
 To migrate from the Replicated Helm installation method to version `kots.io/v1beta2` of the HelmChart custom resource, you can change the `name` of your Helm chart, package the chart, and add the chart to a new release.
-
-Alternatively, you can include more than one HelmChart custom resource for each HelmChart in your release to support different installation methods for a chart from a single release. For more information, see [Supporting Both Versions](#support-both) above.
 
 To migrate from the Replicated Helm installation method:
 
