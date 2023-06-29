@@ -1,32 +1,39 @@
 import Checkins from "../partials/instance-insights/_appCheckins.mdx"
+import SDKLabels from "../partials/replicated-sdk/_labels.mdx"
 
 # About Instance and Event Data
 
 This topic describes the customer and instance insights that you can view in the Replicated vendor portal. It includes information about how the vendor portal accesses data from Helm installations and Replicated KOTS installations, the types of instance events displayed in the vendor portal, and requirements and limitations of instance data.
 
+## Requirements
+
+Viewing instance data in the vendor portal has the following requirements:
+
+* For instances installed with Helm, you must include the Replicated SDK as a dependency of your Helm chart. For more information, [About the Replicated SDK (Alpha)](replicated-sdk-overview).
+
+* Getting data on the status of application instances requires additional configuration. For more information, see [Enabling and Understanding App Status](insights-app-status).
+
+## Limitations
+
+The vendor portal has the following limitations for reporting instance data and generating events:
+
+* **Air gap not supported**: Instance data is available only for application instances installed in online environments. Data for instances installed in air gapped environments is not available.
+* **Active instances only**: Instance data is available only for active application instances. An instance is considered inactive when its most recent check-in was more than two weeks ago. An instance can become inactive if it is decommissioned, stops checking for updates, or otherwise stops reporting.
+
+   The vendor portal continues to display data for an inactive instance from its most-recently seen state. This means that data for an inactive instance might continue to show a Ready status after the instance becomes inactive. Replicated recommends that you use the timestamp in the **Last Check-in** field to understand if an instance might have become inactive, causing its data to be out-of-date.
+* **Instance data freshness**: The rate at which data is updated in the vendor portal varies depending on how often the vendor portal receives instance data.
+* **Event timestamps**: The timestamp of events displayed on the **Instances details** page is the timestamp when the Replicated Vendor API received the data from the instance. The timestamp of events does not necessarily reflect the timestamp of when the event occurred.
+* **Caching for kURL cluster data**: For clusters created with Replicated kURL (embedded clusters), KOTS stores the counts of total nodes and ready nodes in a cache for five minutes. If KOTS sends instance data to the vendor portal within the five minute window, then the reported data for total nodes and ready nodes reflects the data in the cache. This means that events displayed on the **Instances details** page for the total nodes and ready nodes can show values that differ from the current values of these fields.  
+
 ## How the Vendor Portal Collects Instance Data {#about-reporting}
 
-This section describes how instance data is delivered to the vendor portal for instances installed with Helm or with KOTS.
+The vendor portal collects instance data from instances that were installed in online environments with either Helm and the Replicated SDK or with KOTS. Depending on the installation method, either the Replicated SDK or KOTS periodically sends a small amount of data to the vendor portal, including properties such as the current version and status of the instance.
 
-### Helm Installations
+The primary purpose of this instance data is to help the cloud-hosted update service to compile the list of new versions that are available to the given instance for upgrade. For a full overview of what data might be included, see the [Replicated Data Transmission Policy](https://docs.replicated.com/vendor/policies-data-transmission).
 
-For application instances installed with Helm, the Replicated SDK provides access to insights on application instances running in customer environments.
-
-To initialize in a customer environment, the Replicated SDK uses values that are injected by the Replicated registry in your Helm chart values file during installation. The SDK uses labels that you add to all resources deployed as part of your Helm chart to automatically send data to the vendor portal when the status of a resource changes.
-
-For more information about how to distribute the Replicated SDK with your application, see **LINK**.
-
-### KOTS Installations
-
-For application instances installed in online customer environments, Replicated KOTS periodically sends a small amount of instance data to the vendor portal, including properties such as the current version and status of the instance.
-
-KOTS sends this instance data to the vendor portal when any of the following _check-ins_ occur:
+The vendor portal receives instance data when any of the following _check-ins_ occur:
 
 <Checkins/>
-
-The primary purpose of this instance data is to help the cloud-hosted update service to compile the list of new versions that are available to the given instance for upgrade. The vendor portal also uses this instance data to display insights about the active instances of your application.
-
-For a full overview of what data might be included, see the [Replicated Data Transmission Policy](https://docs.replicated.com/vendor/policies-data-transmission).
 
 ## How the Vendor Portal Generates Events
 
@@ -73,7 +80,7 @@ The tables in this section include the following details about each event type:
     <td><code>appStatus</code></td>
     <td>
       <p>A string that represents the status of the application. Possible values: Ready, Updating, Degraded, Unavailable, Missing.</p>
-      <p>Additional configuration is required to get <code>appStatus</code> data. See <a href="#requirements">Requirements</a> below.</p>
+      <p>Additional configuration is required to get <code>appStatus</code> data. See <a href="#requirements">Requirements</a>.</p>
     </td>
     <td>string</td>
     <td>App Status</td>
@@ -249,33 +256,3 @@ The tables in this section include the following details about each event type:
     <td>Versions Behind</td>
   </tr>
 </table>
-
-## Requirements
-
-* For instances installed with Helm:
-
-    * You must include the Replicated SDK as a dependency of your Helm chart. For more information, see **LINK**.
-    * To get insights on application status and uptime, you must add the following labels on all resources deployed as part of your Helm chart:
-
-        ```yaml
-        labels:
-          app.kubernetes.io/instance: {{ .Release.Name }}
-          app.kubernetes.io/managed-by: {{ .Release.Service}}
-          app.kubernetes.io/name: {{ .Chart.Name }}
-        ```  
-
-        These are standard Helm labels that enable the Replicated SDK to report the status of installed instances of your application to the vendor portal. For more information, see **LINK**.
-
-* For instances installed with KOTS, to get insights on application status and uptime, you must configure one or more status informers in the Application custom resource. For more information about how to configure status informers, see [Displaying Application Status](admin-console-display-app-status).
-
-## Limitations
-
-The vendor portal has the following limitations for reporting instance data and generating events:
-
-* **Air gap not supported**: Instance data is available only for application instances installed in online environments. Data for instances installed in air gapped environments is not available.
-* **Active instances only**: Instance data is available only for active application instances. An instance is considered inactive when its most recent check-in was more than two weeks ago. An instance can become inactive if it is decommissioned, stops checking for updates, or otherwise stops reporting.
-
-   The vendor portal continues to display data for an inactive instance from its most-recently seen state. This means that data for an inactive instance might continue to show a Ready status after the instance becomes inactive. Replicated recommends that you use the timestamp in the **Last Check-in** field to understand if an instance might have become inactive, causing its data to be out-of-date.
-* **Instance data freshness**: The rate at which data is updated in the vendor portal varies depending on how often the vendor portal receives instance data.
-* **Event timestamps**: The timestamp of events displayed on the **Instances details** page is the timestamp when the Replicated Vendor API received the data from the instance. The timestamp of events does not necessarily reflect the timestamp of when the event occurred.
-* **Caching for kURL cluster data**: For clusters created with Replicated kURL (embedded clusters), KOTS stores the counts of total nodes and ready nodes in a cache for five minutes. If KOTS sends instance data to the vendor portal within the five minute window, then the reported data for total nodes and ready nodes reflects the data in the cache. This means that events displayed on the **Instances details** page for the total nodes and ready nodes can show values that differ from the current values of these fields.  

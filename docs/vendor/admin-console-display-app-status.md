@@ -1,34 +1,38 @@
 import StatusesTable from "../partials/status-informers/_statusesTable.mdx"
 import AggregateStatus from "../partials/status-informers/_aggregateStatus.mdx"
+import SupportedResources from "../partials/instance-insights/_supported-resources-status.mdx"
 
-# Displaying Application Status
+# Adding Resource Status Informers
 
-This topic describes how to use status informers to display the status of an application instance in the Replicated admin console.
+This topic describes how to add status informers to display the status of an application instance in the Replicated admin console and to send data to the Replicated vendor portal.
 
 ## About Status Informers
 
-You can configure the Application custom resource to display application status on the dashboard of the admin console.
+_Status informers_ are supported Kubernetes resources for your application that you add to the `statusInformers` property of the Replicated Application custom resource. Replicated KOTS watches all Kubernetes resources that you add as status informers for changes in state. 
 
-The following shows an example of how an Unavailable status displays on the admin console dashboard:
+Replicated recommends that you add at least one resource to the `statusInformers` property. For more information, see [Add Status Informers](#add-status-informers) below.
 
-<img src="/images/kotsadm-dashboard-appstatus.png" alt="Unavailable status on the admin console dashboard" width="500px"/>
+When you add status informers, KOTS automatically does the following:
 
-To display application status on the admin console dashboard, you add one or more _status informers_. Status informers are supported Kubernetes resources for your application that you add to the `statusInformers` property of the Application custom resource manifest file. Replicated KOTS watches all Kubernetes resources that you add for changes in state.
+* Displays application status for your users on the dashboard of the admin console. This can help users diagnose and troubleshoot problems with their instance. The following shows an example of how an Unavailable status displays on the admin console dashboard:
 
-Because status informers can help users diagnose and troubleshoot problems with their application instance, Replicated recommends that you add at least one resource to the `statusInformers` property for KOTS to watch. For more information, see [Add Status Informers](#add-status-informers) below.
+   <img src="/images/kotsadm-dashboard-appstatus.png" alt="Unavailable status on the admin console dashboard" width="500px"/>
 
-The following resource types are supported for displaying application status:
+* Sends application status data to the vendor portal. This is useful for viewing insights on the installed instances of your application running in customer environments, such as the current status and the average uptime. You can view insights on the vendor portal **Instance details** page. For more information, see [Instance Details](instance-insights-details).
 
-* Deployment
-* StatefulSet
-* Service
-* Ingress
-* PersistentVolumeClaims (PVC)
-* DaemonSet
+   The following shows an example of the vendor portal **Instance details** page with data about the status of an instance over time:
+
+   <img src="/images/instance-details.png" alt="Instance details full page" width="700px"/>
+
+   [View a larger version of this image](/images/instance-details.png)
+
+### Supported Resource Types   
+
+<SupportedResources/>
 
 You can target resources of the supported types that are deployed in any of the following ways:
 
-* Deployed directly by KOTS.
+* Deployed by KOTS.
 * Deployed by a Kubernetes Operator that is deployed by KOTS. For more information, see [About Packaging a Kubernetes Operator Application](operator-packaging-about).
 * Deployed by Helm. For more information, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).
 

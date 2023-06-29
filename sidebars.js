@@ -184,7 +184,6 @@ const sidebars = {
       items: [
         'vendor/admin-console-customize-app-icon',
         'vendor/custom-domains-download-portal',
-        'vendor/admin-console-display-app-status',
         'vendor/admin-console-adding-buttons-links',
         'vendor/admin-console-prometheus-monitoring',
       ],
@@ -203,6 +202,7 @@ const sidebars = {
       type: 'category',
       label: 'Managing Resources and Objects',
       items: [
+        'vendor/admin-console-display-app-status',
         'vendor/packaging-include-resources',
         'vendor/orchestrating-resource-deployment',
         'vendor/database-config-adding-options',
@@ -317,6 +317,7 @@ const sidebars = {
       label: 'Insights and Telemetry',
       items: [
          'vendor/instance-insights-event-data',
+         'vendor/insights-app-status',
          'vendor/customer-adoption',
          'vendor/customer-reporting',
          'vendor/instance-insights-details',

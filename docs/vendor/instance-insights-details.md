@@ -40,7 +40,7 @@ As shown in the image above, the **Instance details** page includes the followin
 
 The **Current State** section displays the following event data about the status and version of the instance:
 
-* **App status**: The status of the application. Possible statuses are Ready, Updating, Degraded, Unavailable, and Missing. Replicated KOTS computes the application status based on the status informers that you configure for the application. For more information about how to configure status informers, see [Displaying Application Status](/vendor/admin-console-display-app-status).
+* **App status**: The status of the application. Possible statuses are Ready, Updating, Degraded, Unavailable, and Missing. 
 
 * **App version**: The version label of the currently running release. You define the version label when you promote the release to a channel in the vendor portal. For more information about how to create version labels, see [Managing Releases with the Vendor Portal](releases-creating-releases).
 
