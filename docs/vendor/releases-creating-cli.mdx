@@ -25,13 +25,15 @@ Before you create a release using the replicated CLI, complete the following pre
   The token environment variable is valid for a single session. You must export it for each new session.
   :::
 
-## Create a Release From a Local Directory
+## Create a Release From a Local Directory {#dir}
 
 You can use the replicated CLI to create a release from the local directory that contains your application files.
 
 To create and promote a new release:
 
-1. If your release contains any Helm charts, package the Helm charts and add the `.tgz` files to the local directory with your application files. See [Creating a Helm Chart Package](helm-release-creating-package).
+1. (Helm Charts Only) If your release contains any Helm charts, package the Helm charts and add the `.tgz` files to the local directory with your application files. See [Creating a Helm Chart Package](helm-release-creating-package).
+
+  Additionally, if your release supports installation with Replicated KOTS, configure a HelmChart custom resource for each Helm chart in your release and add them to the local directory with your application files. See [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
 1. Do one of the following:
 
@@ -99,6 +101,8 @@ To create and promote a new release:
 ## Create a Release With a Helm Chart Only
 
 For applications that contain only a single Helm chart, you can use the `--chart` flag to add your Helm chart to a release, rather than pointing to a local directory with your application files.
+
+For releases that support installation with Replicated KOTS, see [Create a Release From a Local Directory](#dir) above.
 
 To create a release for an application that contains a Helm chart:
 
