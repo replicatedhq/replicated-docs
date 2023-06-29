@@ -19,7 +19,7 @@ labels:
   app.kubernetes.io/name: {{ .Chart.Name }}
 ``` 
 
-These are standard Helm labels that enable the Replicated SDK to report the status of installed instances of your application to the Replicated vendor portal so that you can view insights on instances running in customer environments. For more information about viewing insights and telemetry in the vendor portal when you distribute with the SDK, see [Customer Reporting and Instance Insights](replicated-sdk-overview#insights) in _About the Replicated SDK_.
+These are standard Helm labels that enable the Replicated SDK to report the status of installed instances of your application to the Replicated vendor portal so that you can view insights on instances running in customer environments. For more information, see [Enabling and Understanding Application Status](insights-app-status).
 
 ## Declare the SDK as a Dependency
 
