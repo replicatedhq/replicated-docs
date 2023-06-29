@@ -31,9 +31,11 @@ You can use the replicated CLI to create a release from the local directory that
 
 To create and promote a new release:
 
-1. (Helm Charts Only) If your release contains any Helm charts, package the Helm charts and add the `.tgz` files to the local directory with your application files. See [Creating a Helm Chart Package](helm-release-creating-package).
+1. (Helm Charts Only) If your release contains any Helm charts:
 
-  Additionally, if your release supports installation with Replicated KOTS, configure a HelmChart custom resource for each Helm chart in your release and add them to the local directory with your application files. See [HelmChart v2](/reference/custom-resource-helmchart-v2).
+   1. Package the Helm charts and add the `.tgz` files to the local directory with your application files. See [Creating a Helm Chart Package](helm-release-creating-package).
+
+   1. (KOTS Only) If your release supports installation with Replicated KOTS, configure a HelmChart custom resource for each Helm chart in your release and add them to the local directory with your application files. See [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
 1. Do one of the following:
 
@@ -100,7 +102,7 @@ To create and promote a new release:
 
 ## Create a Release With a Helm Chart Only
 
-For applications that contain only a single Helm chart, you can use the `--chart` flag to add your Helm chart to a release, rather than pointing to a local directory with your application files.
+For applications that contain only a single Helm chart, you can use the `--chart` flag to add your Helm chart to a release. This prevents you from having to create a local directory with your Helm chart to create the release.
 
 For releases that support installation with Replicated KOTS, see [Create a Release From a Local Directory](#dir) above.
 
@@ -115,6 +117,10 @@ To create a release for an application that contains a Helm chart:
    ```
 
    Replace `CHART_TGZ_FILE` with the `.tgz` Helm chart package. For example, --chart=my-chart-1.0.0.tgz.
+
+   :::note
+   As described in [Create a Release from a Local Directory](#dir) above, the `--promote` flag is optional.
+   :::
 
 1. Verify that the release was promoted to the channel:
 
