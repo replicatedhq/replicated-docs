@@ -1,5 +1,4 @@
 import Checkins from "../partials/instance-insights/_appCheckins.mdx"
-import SDKLabels from "../partials/replicated-sdk/_labels.mdx"
 
 # About Instance and Event Data
 
