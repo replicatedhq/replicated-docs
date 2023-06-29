@@ -38,6 +38,8 @@ To locate images, KOTS requires:
 * The registry domain. For private images, this is the domain of the Registry proxy service at `proxy.replicated.com`. For public images, this is the domain of your external registry.
 * The path to the image repository on the registry. For private images accessed through the proxy service, the path has the following format: `/proxy/APP_SLUG/EXTERNAL_REGISTRY_IMAGE_URL`, where `APP_SLUG` is the slug of your Replicated application and `EXTERNAL_REGISTRY_IMAGE_URL` is the path to the private image on your external registry.
 
+You provide the registry domain and the image repository by adding fields for each under the `values` key of the HelmChart custom resource. The fields in the HelmChart `values` key map to fields in your Helm chart `values.yaml` file. For more information, see [Examples](#examples) below.
+
 For more information about how KOTS uses the proxy service to get proxy access to images on your external private registry, see [About Using an External Registry](private-images-about#about-the-proxy-service).
 
 ### Local Image Registries
