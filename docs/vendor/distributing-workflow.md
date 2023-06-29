@@ -94,7 +94,7 @@ The following table gives a suggested order, but you can add functionality in an
   </tr>
   <tr>
     <td>Status Informers</td>
-    <td>Status informers are supported Kubernetes resources that KOTS watches for changes in state. Add one or more status informers to display the current application status for your users on the admin console dashboard. Additionally, status informers allow you to get insights on the status of application instances running in customer environments. See <a href="admin-console-display-app-status">Displaying Application Status</a>.</td>
+    <td>Status informers are supported Kubernetes resources that KOTS watches for changes in state. Add one or more status informers to display the current application status for your users on the admin console dashboard. Additionally, status informers allow you to get insights on the status of application instances running in customer environments. See <a href="admin-console-display-app-status">Adding Resource Status Informers</a>.</td>
   </tr>
   <tr>
     <td>Preflight Checks and Support Bundles</td>

@@ -43,7 +43,7 @@ metadata:
 
 #### `kots.io/wait-for-ready: '<bool>'`
 
-When this annotation is present on a resource and evaluates to `'true'`, KOTS waits for the resource to be in a Ready state before deploying any other resources. This leverages the same logic as application status informers to determine if a resource is ready. If there is no existing status informer for a given resource type, KOTS waits until the resource exists and is queryable from the Kubernetes API server. For more information about status informers, see [Displaying Application Status](/vendor/admin-console-display-app-status#about-status-informers).
+When this annotation is present on a resource and evaluates to `'true'`, KOTS waits for the resource to be in a Ready state before deploying any other resources. This leverages the same logic as application status informers to determine if a resource is ready. If there is no existing status informer for a given resource type, KOTS waits until the resource exists and is queryable from the Kubernetes API server. For more information about status informers, see [Adding Resource Status Informers](/vendor/admin-console-display-app-status).
 
 :::note
 You must quote the boolean in the annotation because Kubernetes annotations must be strings.
