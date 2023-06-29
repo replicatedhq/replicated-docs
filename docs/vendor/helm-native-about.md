@@ -2,7 +2,7 @@ import NativeHelmLimitations from "../partials/helm/_native-helm-limitations.mdx
 import TemplateLimitation from "../partials/helm/_helm-template-limitation.mdx"
 import VersionLimitation from "../partials/helm/_helm-version-limitation.mdx"
 import HooksLimitation from "../partials/helm/_hooks-limitation.mdx"
-import ReplicatedHelmDeprecated from "../partials/helm/_replicated-deprecated.mdx"
+import Deprecated from "../partials/helm/_replicated-deprecated.mdx"
 import KotsHelmCrDescription from "../partials/helm/_kots-helm-cr-description.mdx"
 
 # About Distributing Helm Charts with KOTS
@@ -22,26 +22,26 @@ For more information about how to add your Helm chart and the HelmChart custom r
 The version and configuration of the HelmChart custom resource determines the method that KOTS uses to install the associated Helm chart in your release. The HelmChart custom resource supports either `apiVersion: kots.io/v1beta2` or `apiVersion: kots.io/v1beta1`.
 
 For more information about how KOTS processes and installs Helm charts based on the version of the HelmChart custom resource, see the sections below:
-* [HelmChart kots.io/v1beta2 (Recommended)](#v1beta2)
-* [HelmChart kots.io/v1beta1](#v1beta1)
-* [Replicated Helm](#replicated)
-### HelmChart kots.io/v1beta2 (Recommended) {#v1beta2}
+* [HelmChart kots.io/v1beta2](#v1beta2)
+* [HelmChart kots.io/v1beta1](#v1beta1) (Deprecated)
+* [Replicated Helm](#replicated) (Deprecated)
+### HelmChart `kots.io/v1beta2` {#v1beta2}
 
 > Introduced in Replicated KOTS v1.99.0
 
-When you include a HelmChart custom resource with `apiVersion: kots.io/v1beta2` in a release, KOTS does a Helm install or upgrade of the associated Helm chart. This supports all Helm functionality including the use of Helm templating.
+When you include a HelmChart custom resource with `apiVersion: kots.io/v1beta2` in a release, KOTS v1.99.0 or later does a Helm install or upgrade of the associated Helm chart directly. This installation method supports all Helm functionality, including the use of Helm templating.
 
-The HelmChart `kots.io/v1beta2` installation method differs from the `kots.io/v1beta1` method in that KOTS does _not_ modify the chart with Kustomize to automatically rewrite images, inject pull secrets, and add backup labels. Therefore, the `kots.io/v1beta2` method results in Helm installations that can be reproduced outside of KOTS because KOTS does not modify the Helm chart.
+The HelmChart custom resource `kots.io/v1beta2` differs from `kots.io/v1beta1` in that KOTS does _not_ modify the chart with Kustomize during installation to automatically rewrite images, inject pull secrets, and add backup labels. Because the chart is not modified, `kots.io/v1beta2` results in Helm chart installations that can be reproduced outside of KOTS.
 
-The `kots.io/v1beta2` HelmChart custom resource requires additional configuration to rewrite images to use the Replicated proxy service or a local registry, inject image pull secrets, and add backup labels for snapshots. For more information, see [Configuring the HelmChart v2 Custom Resource](helm-native-v2-using).    
+The `kots.io/v1beta2` HelmChart custom resource requires additional configuration to support the use of local registries, rewrite images, inject image pull secrets, and add backup labels. For more information, see [Configuring the HelmChart Custom Resource](helm-native-v2-using).    
 
-### HelmChart kots.io/v1beta1 {#v1beta1}
+### HelmChart `kots.io/v1beta1` {#v1beta1}
 
 :::note
-The installation method with `apiVersion: kots.io/v1beta1` of the HelmChart custom resource and `useHelmInstall: true` is also referred to as "native Helm".
+<Deprecated/>
 :::
 
-When you include version `kots.io/v1beta1` of the HelmChart custom resource with the `useHelmInstall` field set to `true`, KOTS uses Kustomize to modify the chart and then packages the resulting manifests to install. For more information about Kustomize, see the [Kustomize documentation](https://kubectl.docs.kubernetes.io/).
+When you include version `kots.io/v1beta1` of the HelmChart custom resource with `useHelmInstall: true`, KOTS uses Kustomize to modify the chart and then packages the resulting manifests to install. For more information about Kustomize, see the [Kustomize documentation](https://kubectl.docs.kubernetes.io/).
 
 The following diagram shows how KOTS processes Helm charts for deployment with the `kots.io/v1beta1` method:
 
@@ -127,13 +127,13 @@ To deploy Helm charts with version `kots.io/v1beta1` of the HelmChart custom res
    Finally, KOTS runs `helm upgrade -i <release-name> <chart> --timeout 3600s -n <namespace>`. The Helm binary processes hooks and weights, applies manifests to the Kubernetes cluster, and saves a release secret similar to `sh.helm.release.v1.chart-name.v1`. Helm uses this secret to track upgrades and rollbacks of applications.
 
 
-### Replicated Helm (Deprecated) {#replicated}
+### Replicated Helm {#replicated}
 
 :::note
-<ReplicatedHelmDeprecated/>
+<Deprecated/>
 :::
 
-The Replicated Helm method uses version `kots.io/v1beta1` of HelmChart custom resource with the `useHelmInstall` field set to `false`.
+The Replicated Helm method uses version `kots.io/v1beta1` of HelmChart custom resource with `useHelmInstall: false`.
 
 With the Replicated Helm deployment method, KOTS renders the Helm templates and deploys them as standard Kubernetes manifests using `kubectl apply`. KOTS also has additional functionality for specific Helm hooks. For example, when KOTS encounters an upstream Helm chart with a `helm.sh/hook-delete-policy` annotation, it automatically adds the same `kots.io/hook-delete-policy` to the Job object.
 
@@ -148,20 +148,22 @@ To support air gap installations of your Helm chart with KOTS, you configure the
 ## Limitations {#replicated-helm-limitations}
 
 This section lists the limitations for the KOTS Helm chart installation methods.
-### HelmChart kots.io/v1beta2 Limitations
+### `kots.io/v1beta2` Limitations
 
-The following limitations apply when using version kots.io/v1beta2 of the HelmChart custom resource:
+The following limitations apply when using version `kots.io/v1beta2` of the HelmChart custom resource:
 
 * Available only for Helm V3.
 * Available only for KOTS v1.99.0 and later.
 * To support online installations that are configured to use a local private registry, you must provide the necessary values in the `builder` field to render the Helm chart with all necessary images. For more information, see [Supporting Local Image Registries](helm-native-v2-using#supporting-local-image-registries) in _Configuring the HelmChart v2 Custom Resource_.
 * Editing the downstream Kustomization files to make changes before deploying the application is not supported because KOTS does not use Kustomize to install the Helm chart.
 * The rendered manifests shown in the `rendered` directory might not reflect the final manifests that will be deployed to the cluster. This is because the manifests in the `rendered` directory are generated using `helm template`, which is not run with cluster context. So, the values for the `lookup` and `Capabilities` functions might differ.
-* When updating the HelmChart custom resource in a release from kots.io/v1beta1 to kots.io/v1beta2, the diff viewer shows a large diff because the underlying file structure of the rendered manifests is different. For more information about migrating, see [Migrating from v1beta1 to v1beta2](helm-native-v2-using#migrating).
+* When updating the HelmChart custom resource in a release from `kots.io/v1beta1` to `kots.io/v1beta2`, the diff viewer shows a large diff because the underlying file structure of the rendered manifests is different. For more information about migrating, see [Migrating from v1beta1 to v1beta2](helm-native-v2-using#migrating).
 
-### HelmChart kots.io/v1beta1 Limitations
+### `kots.io/v1beta1` Limitations
 
-The following limitations apply when using version kots.io/v1beta1 of the HelmChart custom resource with `useHelmInstall: true`:
+The following limitations apply when using version `kots.io/v1beta1` of the HelmChart custom resource with `useHelmInstall: true`:
+
+* <Deprecated/>
 
 <NativeHelmLimitations/>
 
@@ -177,7 +179,7 @@ The following limitations apply when using version kots.io/v1beta1 of the HelmCh
 
 The following limitations apply when using the Replicated Helm installation method (version kots.io/v1beta1 of the HelmChart custom resource with `useHelmInstall: false`):
 
-* <ReplicatedHelmDeprecated/>
+* <Deprecated/>
 
 * <TemplateLimitation/>
 
@@ -185,4 +187,4 @@ The following limitations apply when using the Replicated Helm installation meth
 
   For more information, see [helmVersion](/reference/custom-resource-helmchart#helmversion) in _HelmChart_.
 
-* You cannot migrate from Replicated Helm to a different installation method for an existing chart in an existing application. For more information, see [`useHelmInstall`](/reference/custom-resource-helmchart#usehelminstall) in _HelmChart_.
+* You cannot migrate from Replicated Helm to a different installation method for an existing chart in an existing installation. For more information, see [Migrating from Replicated Helm](#migrate-repl-helm) in _Configuring the HelmChart Custom Resource_.

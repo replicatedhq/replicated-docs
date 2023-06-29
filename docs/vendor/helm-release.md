@@ -32,11 +32,19 @@ When you add a Helm chart to a release using the vendor portal, the vendor porta
 To add a Helm chart and HelmChart custom resource to a release using the vendor portal:
 
 1. Drag and drop a Helm chart TGZ file to a release in the vendor portal. 
-1. In the **Select Helm Install Method** dialog, select the installation method that you want KOTS to use for the release and click **OK**.
+1. In the **Select Installation Method** dialog, select **kots.io/v1beta2** and click **OK**.
 
-  Replicated automatically creates a HelmChart custom resource manifest that uses the naming convention `CHART_NAME.yaml`.
+  <img src="/images/helm-select-install-method.png" alt="select installation method dialog" width="600px"/>
 
-1. Configure the HelmChart custom resource. See [Configuring the HelmChart v2 Custom Resource](helm-native-v2-using).
+  [View a larger version of this image](/images/helm-select-install-method.png)
+
+  :::note
+  For information about migrating from different installation methods to `kots.io/v1beta2`, see [Migrating from `v1beta1` to `v1beta2`](#migrating) in _Configuring the HelmChart Custom Resource_.
+  :::
+
+  Replicated automatically creates a HelmChart custom resource in the release that uses the naming convention `CHART_NAME.yaml`.
+
+1. Configure the HelmChart custom resource. See [Configuring the HelmChart Custom Resource](helm-native-v2-using).
 
 1. Repeat these steps for each Helm chart in your release.
 
