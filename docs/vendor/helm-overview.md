@@ -21,24 +21,28 @@ The following table shows an overview of the Helm installation options:
   <td><a href="helm-install">Helm (Beta)</a></td>
   <td>No</td>
   <td><ul><li>Install and manage the chart with Helm</li><li>Additional Replicated features available through the Replicated SDK</li></ul></td>
-  <td>Promote a release with your Helm chart. See <a href="/vendor/helm-install-release">Adding Your Helm Chart to a Release</a>.</td>  
+  <td><p>Add your Helm chart to a release.</p>
+  <p>See <a href="/vendor/helm-install-release">Creating a Release with Your Helm Chart (Beta)</a>.</p></td>  
 </tr>
 <tr>
-  <td><a href="helm-native-about">HelmChart kots.iov1beta2</a></td>
+  <td><a href="helm-native-about">kots.iov1beta2</a></td>
   <td>Yes</td>
-  <td><ul><li>Recommended type for KOTS</li><li>Supports all Helm features</li><li>Supports air gap and kURL clusters</li></ul></td>
-  <td>Add a Replicated HelmChart v2 custom resource. See <a href="/vendor/helm-release">Creating a Release with Your Helm Chart for KOTS</a>.</td>
+  <td><ul><li>Recommended type for KOTS</li><li>Supports Helm templating</li><li>Supports air gap and kURL clusters</li></ul></td>
+  <td><p>Add your Helm chart and a <code>apiVersion: kots.io/v1beta2</code> Replicated HelmChart custom resource to a release.</p><p>See <a href="/vendor/helm-release">Creating a Release with Your Helm Chart for KOTS</a>.</p></td>
 </tr>
 <tr>
-  <td><a href="helm-native-about">HelmChart kots.iov1beta1</a></td>
+  <td><a href="helm-native-about">kots.iov1beta1</a></td>
   <td>Yes</td>
-  <td><ul><li>Supports some Helm features like hooks and weights</li><li>Supports air gap and kURL clusters</li></ul></td>
-  <td>Set <code>useHelmInstall</code> to <code>true</code> in the Replicated HelmChart custom resource. See <a href="/vendor/helm-release">Creating a Release with Your Helm Chart for KOTS</a>.</td>
+  <td><ul><li>Deprecated. Not recommended for new installations</li><li>Supports some Helm features like hooks and weights</li><li>Supports air gap and kURL clusters</li></ul></td>
+  <td>
+    <p>Add your Helm chart and a <code>apiVersion: kots.io/v1beta1</code> Replicated HelmChart custom resource with <code>useHelmInstall: true</code> to a release.</p>
+    <p>See <a href="/reference/custom-resource-helmchart">HelmChart v1</a>.</p>
+  </td>
 </tr>
 <tr>
   <td><a href="helm-native-about">Replicated Helm</a></td>
   <td>Yes</td>
   <td>Deprecated. Not recommended for new installations</td>
-  <td>Set <code>useHelmInstall</code> to <code>false</code> in the Replicated HelmChart custom resource. See <a href="/vendor/helm-release">Creating a Release with Your Helm Chart for KOTS</a>.</td>
+  <td><p>Add your Helm chart and a <code>apiVersion: kots.io/v1beta1</code> Replicated HelmChart custom resource with <code>useHelmInstall: false</code> to a release.</p><p>See <a href="/reference/custom-resource-helmchart">HelmChart v1</a>.</p></td>
 </tr>
 </table>
