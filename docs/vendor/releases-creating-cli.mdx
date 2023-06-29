@@ -33,7 +33,22 @@ To create and promote a new release:
 
 1. (Helm Charts Only) If your release contains any Helm charts:
 
-   1. Package the Helm charts and add the `.tgz` files to the local directory with your application files. See [Creating a Helm Chart Package](helm-release-creating-package).
+   1. Package the Helm charts into `.tgz` files. See [Creating a Helm Chart Package](helm-release-creating-package).
+
+   1. Move the `.tgz` files to the local directory with your application files:
+
+      ```
+      mv CHART_TGZ PATH_TO_APP_DIR
+      ```
+      Replace:
+      * `CHART_TGZ` with the `.tgz` Helm chart package.
+      * `PATH_TO_APP_DIR` with path to the local directory with your application files.
+
+      **Example**
+
+      ```
+      mv wordpress-1.3.5.tgz manifests
+      ```
 
    1. (KOTS Only) If your release supports installation with Replicated KOTS, configure a HelmChart custom resource for each Helm chart in your release and add them to the local directory with your application files. See [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
@@ -45,7 +60,7 @@ To create and promote a new release:
       replicated release create --yaml-dir PATH_TO_APP_DIR --lint-release --promote CHANNEL
       ```
       Replace:
-      * `PATH_TO_APP_DIR` with path to the directory of the application files.
+      * `PATH_TO_APP_DIR` with path to the local directory with your application files.
       * `CHANNEL` with the channel ID or the case sensitive name of the channel.
 
    * **Create and edit before promoting**:   
@@ -56,7 +71,7 @@ To create and promote a new release:
         replicated release lint --yaml-dir=PATH_TO_APP_DIR
         ```
 
-        Replace `PATH_TO_APP_DIR` with path to the directory of the application files.
+        Replace `PATH_TO_APP_DIR` with path to the local directory with your application files.
 
         For more information about linting, see [release lint](/reference/replicated-cli-release-lint) and [Linter Rules](/reference/linter) in _Reference_.
 
@@ -65,7 +80,7 @@ To create and promote a new release:
           ```bash
           replicated release create --yaml-dir PATH_TO_APP_DIR
           ```
-          Replace `PATH_TO_APP_DIR` with the path to the directory of the application files.
+          Replace `PATH_TO_APP_DIR` with path to the local directory with your application files.
 
         For more information, see [release create](/reference/replicated-cli-release-create) or [release update](/reference/replicated-cli-release-update) in _Reference_.
 
@@ -77,7 +92,7 @@ To create and promote a new release:
           Replace:
             
           -  `SEQUENCE` with the release sequence number. This identifies the existing release to be updated.
-          -  `PATH_TO_APP_DIR` with the path to the directory of the application files.
+          -  `PATH_TO_APP_DIR` with path to the local directory with your application files.
 
           For more information, see [release update](/reference/replicated-cli-release-update) in _Reference_.
 
