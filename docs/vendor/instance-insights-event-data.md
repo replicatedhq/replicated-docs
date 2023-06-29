@@ -2,11 +2,11 @@ import Checkins from "../partials/instance-insights/_appCheckins.mdx"
 
 # About Instance and Event Data
 
-This topic describes the instance data fields that you can view in the Replicated vendor portal.
+This topic describes the customer and instance insights that you can view in the Replicated vendor portal. It includes information about how the vendor portal accesses data from Helm installations and Replicated KOTS installations, the types of instance events displayed in the vendor portal, and requirements and limitations of instance data.
 
 ## How the Vendor Portal Collects Instance Data {#about-reporting}
 
-This section describes how instance data is delivered to the vendor portal for instances installed with Helm or Replicated KOTS.
+This section describes how instance data is delivered to the vendor portal for instances installed with Helm or with KOTS.
 
 ### Helm Installations
 
