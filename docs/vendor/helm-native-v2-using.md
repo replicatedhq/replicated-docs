@@ -47,11 +47,11 @@ To support your users in air gap and online environments pushing images to local
 * **LocalRegistryHost**: Returns the host of the local registry that the user configured. See [LocalRegistryHost](/reference/template-functions-config-context#localregistryhost) in _Config Context_.
 * **LocalRegistryNamespace**: Returns the namespace of the local registry that the user configured. See [LocalRegistryNamespace](/reference/template-functions-config-context#localregistrynamespace) in _Config Context_.
 
+When you include the HasLocalRegistry template function with a ternary operator, KOTS uses the host and namespace of the local registry when a local registry is configured in the environment. Otherwise, KOTS uses the proxy service or external registry URL for the image.
+
 For example, if the user configured a local registry and used the namespace `example-namespace`, then the template function `'{{repl HasLocalRegistry | ternary LocalRegistryNamespace "my-org" }}/mariadb'` evaluates to `example-namespace/mariadb`. If the user did _not_ configure a local registry, then the template function evaluates to `my-org/maridb`.
 
 For more information about how users configure a local image registry with KOTS, see [Using Private Registries](/enterprise/image-registry-settings).
-
-When you include the HasLocalRegistry template function with a ternary operator, KOTS uses the host and namespace of the local registry when a local registry is configured in the environment. Otherwise, KOTS uses the proxy service or external registry URL for the image.
 
 ### Examples
 
@@ -221,7 +221,7 @@ When you include both a `kots.io/v1beta2` and `kots.io/v1beta1` HelmChart custom
 
 ### Updating an Existing HelmChart Custom Resource
 
-To stop supporting installations with version `kots.io/v1beta1` of the HelmChart custom resource and migrate to `kots.io/v1beta2` instead, you can update the fields in the existing HelmChart custom resources in your releases.
+If all your users have KOTS v1.99.0 or later, you can stop supporting installations with version `kots.io/v1beta1` of the HelmChart custom resource. To migrate to `kots.io/v1beta2`, update the fields in the existing HelmChart custom resources in your releases.
 
 :::note
 Migrating from the Replicated Helm installation method (`apiVersion: kots.io/v1beta1` and `useHelmInstall: false`) for an existing chart in an existing installation is not supported. For more information, see [Migrating from Replicated Helm](#migrate-repl-helm) below.

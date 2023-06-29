@@ -119,8 +119,15 @@ Identifies the Helm Version used to render the chart. Acceptable values are `v2`
 ## useHelmInstall
 
 Identifies the method that KOTS uses to install the Helm chart:
-* `true`: KOTS uses Kustomize to modify the chart then repackages the resulting manifests to install. This method is also referred to as "native Helm".
-* `false`: Use the Replicated Helm installation method. KOTS renders the Helm templates and deploys them as standard Kubernetes manifests using `kubectl apply`.
+* `useHelmInstall: true`: KOTS uses Kustomize to modify the chart then repackages the resulting manifests to install.
+   
+  :::note
+  `useHelmInstall: true` was previously referred to as the _native Helm_ installation method.
+  :::
+
+* `useHelmInstall: false`: KOTS renders the Helm templates and deploys them as standard Kubernetes manifests using `kubectl apply`. `useHelmInstall: false` is referred to as the _Replicated Helm_ installation method.
+
+For more information about how KOTS deploys Helm charts when `useHelmInstall` is `true` or `false`, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).
 
 <ReplicatedHelmMigration/>
 
