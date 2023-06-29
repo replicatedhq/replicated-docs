@@ -43,7 +43,7 @@ If the customer has one or more application instances that have reached a Ready 
 * **License time to install**: The time between when you create the customer license in the vendor portal, and when the application instance reaches a Ready status in the customer environment.
 * **Instance time to install**: The time between when the vendor portal records the first event for the application instance in the customer environment, and when the instance reaches a Ready status.
 
-A _Ready_ status indicates that all Kubernetes resources for the application are Ready.
+A _Ready_ status indicates that all Kubernetes resources for the application are Ready. For example, a Deployment resource is considered Ready when the number of Ready replicas equals the total desired number of replicas. For more information, see [Enabling and Understanding Application Status](insights-app-status).
 
 If the customer has no application instances that have ever reported a Ready status, or if you have not configured your application to deliver status data to the vendor portal, then the **Time to install** section displays a **No Ready Instances** message.
 
@@ -70,7 +70,7 @@ You can click any of the rows in the **Instances** section to open the **Instanc
 
 The **Instances** section displays the following details about each active instance:
 * The first seven characters of the instance ID.
-* The status of the instance. Possible statuses are Missing, Unavailable, Degraded, Ready, and Updating.
+* The status of the instance. Possible statuses are Missing, Unavailable, Degraded, Ready, and Updating. For more information, see [Enabling and Understanding Application Status](insights-app-status).
 * The application version.
 * Details about the cluster where the instance is installed, including:
    * The Kubernetes distribution for the cluster, if applicable.
