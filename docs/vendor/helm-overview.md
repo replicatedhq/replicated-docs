@@ -1,9 +1,3 @@
-import NativeHelmLimitations from "../partials/helm/_native-helm-limitations.mdx"
-import TemplateLimitation from "../partials/helm/_helm-template-limitation.mdx"
-import VersionLimitation from "../partials/helm/_helm-version-limitation.mdx"
-import ReplicatedHelmDeprecated from "../partials/helm/_replicated-deprecated.mdx"
-import HooksLimitation from "../partials/helm/_hooks-limitation.mdx"
-
 # About Distributing Helm Charts with Replicated
 
 This topic describes the options and processes for using Replicated to distribute applications that are packaged with Helm charts.

@@ -1,7 +1,8 @@
-import NativeHelmLimitations from "../partials/helm/_native-helm-limitations.mdx"
+import GitOpsLimitation from "../partials/helm/_gitops-limitation.mdx"
 import TemplateLimitation from "../partials/helm/_helm-template-limitation.mdx"
 import VersionLimitation from "../partials/helm/_helm-version-limitation.mdx"
 import HooksLimitation from "../partials/helm/_hooks-limitation.mdx"
+import HookWeightsLimitation from "../partials/helm/_hook-weights-limitation.mdx"
 import Deprecated from "../partials/helm/_replicated-deprecated.mdx"
 import KotsHelmCrDescription from "../partials/helm/_kots-helm-cr-description.mdx"
 import ReplicatedHelmMigration from "../partials/helm/_replicated-helm-migration.mdx"
@@ -166,9 +167,13 @@ The following limitations apply when using version `kots.io/v1beta1` of the Helm
 
 * <Deprecated/>
 
-<NativeHelmLimitations/>
+* Available only for Helm V3.
+
+* <GitOpsLimitation/>
 
 * <HooksLimitation/>
+
+* <HookWeightsLimitation/>
 
 * <TemplateLimitation/>
 
