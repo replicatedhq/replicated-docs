@@ -40,7 +40,7 @@ As shown in the image above, the **Instance details** page includes the followin
 
 The **Current State** section displays the following event data about the status and version of the instance:
 
-* **App status**: The status of the application. Possible statuses are Ready, Updating, Degraded, Unavailable, and Missing. 
+* **App status**: The status of the application. Possible statuses are Ready, Updating, Degraded, Unavailable, and Missing. For more information, see [Enabling and Understanding Application Status](insights-app-status).
 
 * **App version**: The version label of the currently running release. You define the version label when you promote the release to a channel in the vendor portal. For more information about how to create version labels, see [Managing Releases with the Vendor Portal](releases-creating-releases).
 
@@ -62,7 +62,7 @@ The **Current State** section displays the following event data about the status
 
    For example, the instance is currently running version 1.0.0, which was promoted to the Stable channel. If the later versions 1.1.0, 1.2.0, 1.3.0, 1.4.0, and 1.5.0 were also promoted to the Stable channel, then the instance is five versions behind.
 
-* **Last check-in**: The timestamp when KOTS most recently sent instance data  to the vendor portal. The vendor portal receives instance data from KOTS when any of the following occur:
+* **Last check-in**: The timestamp when the instance most recently sent data to the vendor portal. The vendor portal receives instance data when any of the following occur:
 
   <Checkins/>
 
@@ -132,7 +132,7 @@ The **Instance Information** section displays the following details about the cl
 
 * The Kubernetes distribution for the cluster. For example, GKE or EKS.
 * The version of Kubernetes running in the cluster.
-* The KOTS version installed in the cluster.
+* The version of KOTS or the Replicated SDK installed in the cluster.
 * For **First Seen**, the timestamp of the first event that the vendor portal generated for the instance. For more information about how the vendor portal generates events, see [About Events](instance-insights-event-data#about-events) in _Event Data_.
 * If detected, the cloud provider and region where the cluster is running. For example, `GCP: us-central1`.
 
@@ -186,7 +186,7 @@ The **Instance Activity** section displays recent events for the instance. The d
 
 <Checkins/>
 
-The timestamp of events displayed in the **Instance Activity** stream is the timestamp when the Replicated Vendor API received the instance data from KOTS. The timestamp of events does not necessarily reflect the timestamp of when the event occurred.
+The timestamp of events displayed in the **Instance Activity** stream is the timestamp when the Replicated Vendor API received data from the instance. The timestamp of events does not necessarily reflect the timestamp of when the event occurred.
 
 The following shows an example of the **Instance Activity** data stream:
 
@@ -199,6 +199,7 @@ You can filter the **Instance Activity** stream by the following event categorie
 * App status
 * App install/upgrade
 * KOTS status
+* Replicated SDK status
 * Infrastructure status
 
 For more information about the types of events displayed in the **Instance Activity** stream, see [Event Data](instance-insights-event-data).
