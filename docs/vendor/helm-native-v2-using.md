@@ -20,13 +20,13 @@ For more information about how KOTS installs Helm charts with the `kots.io/v1bet
 
 Local image registries are required for KOTS installations in air gapped environments. Also, by default, users in online environments can optionally push images to a local private registry. For more information about how users configure a local image registry with KOTS, see [Using Private Registries](/enterprise/image-registry-settings).
 
-When installing with version `kots.io/v1beta2` of the HelmChart custom resource, you must provide the necessary values in the `builder` field of the HelmChart custom resource to render the Helm chart with all of the necessary images. This instructs KOTS where to pull the images so that it can push them to the local private registry.
+To support the use of local registries for installations with version `kots.io/v1beta2` of the HelmChart custom resource, you must provide the necessary values in the `builder` field of the HelmChart custom resource to render the Helm chart with all of the necessary images. This instructs KOTS where to pull the images so that it can push them to the local private registry.
 
 :::note
 If you already configured the `builder` key previously to support air gap installations, then you can use the same configuration in your HelmChart custom resource to support the use of local registries for online installations. No additional configuration is required.
 :::
 
-For more information about how to configure the `builder` key, see [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
+For more information about how to configure the `builder` key to support the use of local registries, see [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
 ## Rewriting Image Names
 
