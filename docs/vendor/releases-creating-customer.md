@@ -30,7 +30,7 @@ To create a customer:
 
 1. For **Customer type**, set the customer type. Customer type is used only for reporting purposes. Customer access to your application is not affected by the type you assign to them. By default, **Trial** is selected. For more information, see [About Customer License Types](licenses-about-types).
 
-1. In the **License options** pane, enable the options that you have added to your application package. For more information, see [About built-in license fields](licenses-using-builtin-fields).
+1. (KOTS Only) In the **License options** pane, configure any of the built-in KOTS entitlements that you support in your application. For more information, see [Built-in License Fields](licenses-using-builtin-fields).
 
     The available license options are:
 
@@ -61,45 +61,35 @@ To create a customer:
         </tr>
       </table>
 
-1. (Optional) For **Custom fields**, you can add custom fields that let you securely deliver customer-specific values or entitlements to the installation. The custom fields you create apply to all customers. For more information, see [Managing Custom License Fields](licenses-adding-custom-fields).
+1. (Optional) For **Custom fields**, configure any custom fields that are available for your Replicated application. For more information about how to create custom fields for your application, see [Managing Custom License Fields](licenses-adding-custom-fields).
 
 1. Click **Save Changes**.
 
-## Edit License Fields
+## Edit a Customer
 
 You can edit the built-in and custom license fields for a customer at any time.
 
 :::important
-Changing license entitlements might trigger changes to the customer's installed application instance.
+For online environments, changing license entitlements might trigger changes to the customer's installed application instance during runtime. Replicated recommends that you verify the logic your application uses to enforce the target entitlement before making any changes.
 :::
 
-When you make changes to the fields in a customer's license, the change is reflected in the customer's instance in the following ways, depending on the application installation method:
+To edit license fields:
 
-* For applications installed with Helm that use the Replicated SDK, you can add logic to your application to reflect changes to license fields during runtime using the Replicated SDK API license endpoints. See [Checking Entitlements for Helm Installations (Alpha)](icenses-reference-helm).
+1. In the [vendor portal](https://vendor.replicated.com), click **Customers**.
 
-* For applications installed with Replicated KOTS:
+1. Select the target customer and then click the **Customer details** tab.
 
-  * **Online**: your customer uses the Replicated admin console to synchronize the licenses. For online instances, license updates are pulled from the vendor portal when:
+   :::note
+   Replicated recommends that you first test the changes with a customer used for installation in a development environment.
+   :::
 
-    * An automatic or manual update check is performed by Replicated KOTS.
-    * A customer selects **Sync license** in the admin console.
-    * The application status changes. See [About Instance Reporting](instance-insights-details#about-reporting) in _Instance Details_.
+1. On the **Customer details** page, edit the desired fields and click **Save**.
 
-  * **Air Gap**: Because air gap licenses are signed with the updated fields, a regenerated license file must be uploaded directly to the admin console every time you modify license fields. After you update the license fields in the vendor portal, you can notify customers by either sending them a new license file or instructing them to log into their download portal to retrieve the updated license. Customers can then click **Upload license** on the License tab in the admin console to upload the updated license to their air gap environment.  
+   ![Full customer details page for a customer named Prestige Financial](/images/customer-details.png)
 
-## Edit License Type
-
-Unless a customer is upgrading from a community license, it is not possible to replace one license file with another license file without completely reinstalling the application. Using the vendor portal to change the license type prevents end customers from having to reinstall.
-
-:::note
-Updating from a community license to another type cannot be reverted. For more information about community licenses, see Community Licenses.
-:::
-
-To change the license type:
-
-![Customer Page in Vendor Portal](/images/customer-license-type.png)
-
-[View a larger image](/images/customer-license-type.png)
+1. Test the changes. Do one of the following, depending on the installation method for your application:
+    * For applications installed with Helm that use the Replicated SDK, you can add logic to your application to enforce entitlements before installation or during runtime using the Replicated SDK API license endpoints. See [Checking Entitlements for Helm Installations (Alpha)](icenses-reference-helm).
+    * For applications installed with Replicated KOTS, your customers use the Replicated admin console to update their license. See [Update Online Licenses](/enterprise/updating-licenses#update-online-licenses) and [Update Air Gap Licenses](/enterprise/updating-licenses#update-air-gap-licenses) in _Updating Licenses_.
 
 ## Archive a Customer
 

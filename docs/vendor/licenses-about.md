@@ -46,11 +46,26 @@ additional information can be provided.
 * **Community**: The Community type is designed for a free or low cost version of your
 application. For more details about this type, see [Community Licenses](licenses-about-types).
 
-### License Expiration Handling
+### KOTS License Updates
+
+You can make changes to a customer in the vendor portal to edit their license details at any time. For more information about how to edit customers, see [Edit a Customer](releases-creating-customer#edit-a-customer) in _Creating and Managing Customers_.
+
+When you edit customer licenses for an application installed with KOTS, your customers can use the Replicated admin console to update their license.
+
+For online instances, license updates are pulled from the vendor portal when:
+  * An automatic or manual update check is performed by KOTS.
+  * A customer selects **Sync license** in the admin console.
+  * An app status changes. See [Current State](instance-insights-details#current-state) in _Instance Details_.
+
+For air gap instances, because air gap licenses are signed with the updated fields, customers must upload a regenerated license file to the admin console every time you modify license fields. After you update the license fields in the vendor portal, you can notify customers by either sending them a new license file or instructing them to log into their download portal to retrieve the updated license. Then, they can click **Upload license** on the **License** tab of the admin console to upload the new license file.
+
+For more information about how to update licenses in the admin console for KOTS installations, see [Updating Licenses](/enterprise/updating-licenses).
+
+### KOTS License Expiration Handling
 
 The built-in `expires_at` license field defines the expiration date for a customer license. When you set an expiration date in the vendor portal, the `expires_at` field is set to midnight UTC on the date selected.
 
-By default, an application with an expired license continues to run, but is prevented from receiving updates. To change the behavior of your application when a license expires, you can can add custom logic based on the values for the `expires_at` field.
+KOTS includes default logic for license expiration handling. By default, a KOTS installation with an expired license continues to run, but KOTS prevents the application from receiving updates. To change the behavior of your application when a license expires, you can can add custom logic based on the values for the `expires_at` field. For more information, see [Checking Entitlements for KOTS](licenses-referencing-fields).
 
 ## About the Customers Page
 
