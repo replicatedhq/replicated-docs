@@ -33,9 +33,18 @@ You can also create custom license fields to define entitlements specific to the
 
 ### License Types
 
-Each customer license includes a built-in `license_type` field. The type of customer defined by the `license_type` field is used solely for reporting purposes. A customer's access to your application is not affected by the type that you assign.
+Each customer license includes a `license_type` field. The type of customer defined by the `license_type` field is used solely for reporting purposes. A customer's access to your application is not affected by the type that you assign.
 
-The possible values for the `license_type` field are development, trial, paid, and community. For more information about each type, see [Managing License Type](licenses-about-types).
+The customer types are:
+
+* **Development**: The Development type can be used internally by the development
+team for testing and integration.
+* **Trial**: The Trial type can be used for customers who are on 2-4 week trials
+of your software.
+* **Paid**: The Paid type identifies the customer as a paying customer for which
+additional information can be provided.
+* **Community**: The Community type is designed for a free or low cost version of your
+application. For more details about this type, see [Community Licenses](licenses-about-types).
 
 ### License Expiration Handling
 

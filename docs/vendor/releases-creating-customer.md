@@ -65,6 +65,42 @@ To create a customer:
 
 1. Click **Save Changes**.
 
+## Edit License Fields
+
+You can edit the built-in and custom license fields for a customer at any time.
+
+:::important
+Changing license entitlements might trigger changes to the customer's installed application instance.
+:::
+
+When you make changes to the fields in a customer's license, the change is reflected in the customer's instance in the following ways, depending on the application installation method:
+
+* For applications installed with Helm that use the Replicated SDK, you can add logic to your application to reflect changes to license fields during runtime using the Replicated SDK API license endpoints. See [Checking Entitlements for Helm Installations (Alpha)](icenses-reference-helm).
+
+* For applications installed with Replicated KOTS:
+
+  * **Online**: your customer uses the Replicated admin console to synchronize the licenses. For online instances, license updates are pulled from the vendor portal when:
+
+    * An automatic or manual update check is performed by Replicated KOTS.
+    * A customer selects **Sync license** in the admin console.
+    * The application status changes. See [About Instance Reporting](instance-insights-details#about-reporting) in _Instance Details_.
+
+  * **Air Gap**: Because air gap licenses are signed with the updated fields, a regenerated license file must be uploaded directly to the admin console every time you modify license fields. After you update the license fields in the vendor portal, you can notify customers by either sending them a new license file or instructing them to log into their download portal to retrieve the updated license. Customers can then click **Upload license** on the License tab in the admin console to upload the updated license to their air gap environment.  
+
+## Edit License Type
+
+Unless a customer is upgrading from a community license, it is not possible to replace one license file with another license file without completely reinstalling the application. Using the vendor portal to change the license type prevents end customers from having to reinstall.
+
+:::note
+Updating from a community license to another type cannot be reverted. For more information about community licenses, see Community Licenses.
+:::
+
+To change the license type:
+
+![Customer Page in Vendor Portal](/images/customer-license-type.png)
+
+[View a larger image](/images/customer-license-type.png)
+
 ## Archive a Customer
 
 When you archive a customer in the vendor portal, the customer is hidden from search by default and becomes read-only. Archival does not affect the utility of license files downloaded before the customer was archived.

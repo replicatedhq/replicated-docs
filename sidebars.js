@@ -124,8 +124,8 @@ const sidebars = {
       label: 'Customer Licenses',
       items: [
         'vendor/licenses-about',
-        'vendor/licenses-about-types',
         'vendor/licenses-using-builtin-fields',
+        'vendor/licenses-about-types',
         'vendor/releases-creating-customer',
         'vendor/licenses-adding-custom-fields',
         'vendor/licenses-referencing-fields',
