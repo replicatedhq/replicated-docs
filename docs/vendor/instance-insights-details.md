@@ -42,7 +42,7 @@ The **Current State** section displays the following event data about the status
 
 * **App status**: The status of the application. Possible statuses are Ready, Updating, Degraded, Unavailable, and Missing. For more information, see [Enabling and Understanding Application Status](insights-app-status).
 
-* **App version**: The version label of the currently running release. You define the version label when you promote the release to a channel in the vendor portal. For more information about how to create version labels, see [Managing Releases with the Vendor Portal](releases-creating-releases).
+* **App version**: The version label of the currently running release. You define the version label when you promote the release to a channel in the vendor portal. For more information about how to create version labels, see [Release Properties](releases-about#release-properties) in _About Releases_.
 
    If there is no version label for the release, then the vendor portal displays the release sequence in the **App version** field. You can find the sequence number associated with a release by running the `replicated release ls` command. See [release ls](/reference/replicated-cli-release-ls) in the _replicated CLI_ documentation.
 
@@ -198,8 +198,8 @@ You can filter the **Instance Activity** stream by the following event categorie
 * Upstream update
 * App status
 * App install/upgrade
-* KOTS status
-* Replicated SDK status
+* KOTS version
+* Replicated SDK version
 * Infrastructure status
 
-For more information about the types of events displayed in the **Instance Activity** stream, see [Event Data](instance-insights-event-data).
+For more information about the types of events displayed in the **Instance Activity** stream, see [Types of Events](instance-insights-event-data#types-of-events) in _About Instance and Event Data_.

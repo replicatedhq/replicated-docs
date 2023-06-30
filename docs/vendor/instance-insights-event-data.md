@@ -208,7 +208,7 @@ The tables in this section include the following details about each event type:
     <th>Label</th>
   </tr>
   <tr>
-    <td><code>sdkVersion</code></td>
+    <td><code>replicatedSDKVersion</code></td>
     <td>The version of the Replicated SDK that the instance is running. SDK version is displayed as a Semantic Versioning compliant string.</td>
     <td>string</td>
     <td>Replicated SDK Version</td>
