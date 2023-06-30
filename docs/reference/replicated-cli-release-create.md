@@ -4,7 +4,7 @@ import ChartYamlDirReqs from "../partials/replicated-cli/_chart-yaml-dir-reqs.md
 
 # release create
 
-Create a new release using a collection of application manifest files or a Helm chart.
+Create a new release using a collection of application manifest files and/or one or more Helm charts.
 
 ## Usage
 ```bash
