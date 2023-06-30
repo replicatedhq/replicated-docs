@@ -1,17 +1,23 @@
 import Help from "../partials/replicated-cli/_help.mdx"
 import YamlDir from "../partials/replicated-cli/_yaml-dir.mdx"
+import ChartYamlDirReqs from "../partials/replicated-cli/_chart-yaml-dir-reqs.mdx"
 
 # release create
 
-Create a new release using a collection of application manifest files.
+Create a new release using a collection of application manifest files and/or one or more Helm charts.
 
 ## Usage
 ```bash
 replicated release create --yaml-dir YAML_DIR [flags]
 ```
 
-* _`YAML_DIR` corresponds to the root directory of the YAML application manifest files._
-* _Additional flags returned by `--help` that are not supported in Replicated have been omitted from the list below_
+```bash
+replicated release create --chart HELM_CHART [flags]
+```
+
+:::note
+Additional flags returned by `--help` that are not supported by Replicated are omitted from the table below.
+:::
 
 <table>
   <tr>
@@ -19,7 +25,16 @@ replicated release create --yaml-dir YAML_DIR [flags]
     <th width="20%">Type (if applicable)</th>
     <th width="50%">Description</th>
   </tr>
-  <YamlDir/>
+  <tr>
+  <td><code>--yaml-dir</code></td>
+  <td>path</td>
+  <td><p>The local directory containing multiple YAML manifest files for a release. <strong>(Required)</strong></p><p><ChartYamlDirReqs/></p></td>
+</tr>
+  <tr>
+    <td><code>--chart</code></td>
+    <td>string</td>
+    <td><p>The path to the Helm chart for a release.<strong>(Required)</strong></p><p><ChartYamlDirReqs/></p></td>
+  </tr>
   <tr>
     <td><code>--promote</code></td>
     <td>string</td>
@@ -56,6 +71,16 @@ replicated release create --yaml-dir YAML_DIR [flags]
 replicated release create --yaml-dir ./manifests
 
   • Reading manifests from ./manifests ✓
+  • Creating Release ✓
+    • SEQUENCE: 58
+```
+
+### `--chart`
+
+```bash
+replicated release create --chart=my-chart-1.0.0.tgz
+
+  • Reading chart from my-chart-1.0.0.tgz ✓
   • Creating Release ✓
     • SEQUENCE: 58
 ```
