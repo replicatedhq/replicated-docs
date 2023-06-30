@@ -1,4 +1,4 @@
-# About Customer License Types
+# Managing License Type
 
 This topic describes the types of customer licenses, updating licenses, and the
 differences between community licenses and the other types of licenses.

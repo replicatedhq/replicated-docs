@@ -1,6 +1,6 @@
-# Verifying License Field Signatures (Alpha)
+# Verifying License Field Signatures for Helm Installations (Alpha)
 
-This topic describes how to verify the signatures of license fields when you check customer entitlements in your Helm chart application.
+This topic describes how to verify the signatures of license fields when you check customer entitlements in your Helm chart application. For information about checking license fields for Helm installations, see [Checking Entitlements for Helm Installations (Alpha)](licenses-reference-helm).
 
 ## Overview
 

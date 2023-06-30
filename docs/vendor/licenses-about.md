@@ -7,9 +7,9 @@ This topic provides an overview of customer licenses, including information abou
 
 ## Overview
 
-Each customer that you create in the Replicated vendor portal has a unique license file. Your customers use their license when they install or update your application.
+Each customer that you create in the Replicated vendor portal has a unique license ID. Your customers use their license when they install or update your application.
 
-Each customer license includes several fields that uniquely identify the customer and the application, specify the release channel, and define the customer's entitlements, such as if the license has an expiration date or what application functionality the customer can access. Replicated securely delivers these entitlements to the application and makes them available in the Kubernetes manifest files or at runtime using the Replicated admin console API.
+Each customer license includes several fields that uniquely identify the customer and the application, specify the release channel, and define the customer's entitlements, such as if the license has an expiration date or what application functionality the customer can access. Replicated securely delivers these entitlements to the application and makes them available at installation or at runtime.
 
 For more information about how to create and manage customers, see [Creating and Managing Customers](releases-creating-customer).
 
@@ -25,15 +25,17 @@ For more information about how to mark a release as required, see [Release Prope
 
 ### Built-in and Custom License Fields
 
-Each customer license file has several built-in fields. Built-in fields are reserved field names. You can specify the values for these fields to define entitlements for the customer. For example, there are built-in license fields that define the license expiration date, the customer name, the application slug, and whether air gap installations are supported. For more information about built-in fields, see [About Built-in License Fields](licenses-using-builtin-fields).
+Customer licenses have built-in fields and also support custom fields.
+
+Built-in fields are reserved field names. You can specify the values for these fields to define entitlements for the customer. For example, Replicated includes built-in license fields to define the license expiration date, the customer name, and application slug. For more information about built-in fields, see [About Built-in License Fields](licenses-using-builtin-fields).
 
 You can also create custom license fields to define entitlements specific to the customer. For example, you can create a custom license field to limit the number of active users permitted. For more information about creating custom license fields, see [Managing Custom License Fields](licenses-adding-custom-fields).
 
 ### License Types
 
-Each customer license includes a `license_type` field. The type of customer defined by the `license_type` field is used solely for reporting purposes. A customer's access to your application is not affected by the type that you assign.
+Each customer license includes a built-in `license_type` field. The type of customer defined by the `license_type` field is used solely for reporting purposes. A customer's access to your application is not affected by the type that you assign.
 
-The possible values for the `license_type` field are development, trial, paid, and community. For more information about each type, see [About Customer License Types](licenses-about-types).
+The possible values for the `license_type` field are development, trial, paid, and community. For more information about each type, see [Managing License Type](licenses-about-types).
 
 ### License Expiration Handling
 
@@ -58,7 +60,7 @@ From the **Customers** page, you can do the following:
 
 * Click the **Manage customer** button to edit details such as the customer name and email, the custom license fields assigned to the customer, and the license expiration policy. For more information, see [Creating and Managing Customers](releases-creating-customer).
 
-* Download the license file for each customer
+* (KOTS Only) Download the license file for each customer
 
 * Click the **Customer reporting** button to view data about the active application instances associated with each customer. For more information, see [Customer Reporting](customer-reporting).
 
@@ -68,9 +70,9 @@ From the **Customers** page, you can do the following:
   
   [View a larger version of this image](/images/customer-reporting-details.png)
 
-* Archive customers.  For more information, see [Creating and Managing Customers](releases-creating-customer).
+* Archive customers. For more information, see [Creating and Managing Customers](releases-creating-customer).
 
-* Click on a customer in the **Customers** page to access the following customer-specific pages:
+* Click on a customer on the **Customers** page to access the following customer-specific pages:
   * [Reporting](#reporting-page)
   * [Customer details](#customer-details-page)
   * [Support bundles](#support-bundles-page)
