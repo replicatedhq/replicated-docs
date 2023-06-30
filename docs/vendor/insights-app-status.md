@@ -10,19 +10,19 @@ This topic describes how to configure your application so that you can view the 
 
 ## Overview
 
-The vendor portal displays data on the status of instances of your application running in customer environments, including the current status, the instance uptime over time, and the average amount of time it takes your application to reach a Ready state during installation. For more information, see [Instance Details](instance-insights-details).
+The vendor portal displays data on the status of instances of your application that are running in customer environments, including the current state (such as Ready or Degraded), the instance uptime, and the average amount of time it takes your application to reach a Ready state during installation. For more information about viewing instance data, see [Instance Details](instance-insights-details).
 
-To provide insights on application status, Replicated interprets and aggregates the state of one or more supported Kubernetes resource types deployed to the cluster as part of your application.
+To compute and display these insights, the vendor portal uses the value of the instance's `appStatus` data field. To populate the `appStatus` field, Replicated interprets and aggregates the state of one or more of the supported Kubernetes resources that are deployed to the cluster as part of your application.
 
 <SupportedResources/>
 
-To have access to application status data in the vendor portal, you must configure your application to indicate the Kubernetes resources that you want Replicated to track for changes in state. For more information, see [Enable Application Status Insights](#enable-application-status) below.
-
-For more information about how Replicated uses the state of the resources that you provide to report application status, see [Understanding Application Status](#understanding-application-status) below.
+For more information about how instance data is sent to the vendor portal, see [About Instance and Event Data](instance-insights-event-data).
 
 ## Enable Application Status Insights
 
-To enable instances of your application to send status information to the vendor portal, do one of the following, depending on the application installation method:
+Enabling instances of your application to send data in the `appStatus` field requires that you configure your application to indicate the Kubernetes resources that you want Replicated to track for changes in state.
+
+Do one of the following, depending on the application installation method:
 
 * For applications installed with Helm:
 
