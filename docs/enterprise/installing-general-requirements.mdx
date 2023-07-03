@@ -109,9 +109,9 @@ To install or upgrade KOTS with namespace-scoped access, the user must have _one
    kind: Role
    metadata:
      labels:
-     kots.io/backup: velero
-      kots.io/kotsadm: "true"
-      name: kotsadm-role
+       kots.io/backup: velero
+       kots.io/kotsadm: "true"
+     name: kotsadm-role
    rules:
    - apiGroups: [""]
      resources: ["configmaps", "persistentvolumeclaims", "pods", "secrets", "services", "limitranges"]
