@@ -77,10 +77,10 @@ To edit license fields:
 
 1. In the [vendor portal](https://vendor.replicated.com), click **Customers**.
 
-1. Select the target customer and then click the **Customer details** tab.
+1. Select the target customer and click the **Customer details** tab.
 
    :::note
-   Replicated recommends that you test any licenses changes in a development environment with an installation that uses the previous version of this customer license.
+   Replicated recommends that you test any licenses changes in a development environment. If needed, install the application using the current customer license before editing the license in the following step.
    :::
 
 1. On the **Customer details** page, edit the desired fields and click **Save**.
