@@ -31,6 +31,7 @@ const sidebars = {
         'release-notes/rn-kubernetes-installer'
       ],
     },
+    'intro-main',
     'intro-replicated',
     {
       type: 'category',

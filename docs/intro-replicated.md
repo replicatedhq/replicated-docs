@@ -1,42 +1,17 @@
-# What is Replicated?
+# Introduction to KOTS and kURL
 
-The Replicated platform lets you install, manage, support, and get insights on your applications in customer environments. With Replicated, you package and update your application using Kubernetes manifests or Helm charts, then securely distribute to any on-premises or cloud-hosted environments, including air gap.
+This topic describes the Replicated KOTS and Replicated kURL installers, the Replicated admin console, and kots CLI.
 
-For information about the Replicated features and components, see [Replicated Components](#replicated-components) below.
+## About KOTS and kURL
 
-For an overview of the key use cases for software vendors that Replicated serves, see the [Intro to Replicated: 20 Ways We Help](https://www.youtube.com/watch?v=2eOh7CofY3Q) video.
+Replicated includes the KOTS and kURL installers that make it easier for you to manage and deploy applications, and for enterprise users to install and manage their instance of your application.
 
-## Replicated Components
+The following diagram shows the Replicated components as they relate to you as a vendor packaging your application with KOTS, the deployment to an existing cluster, and deployment to a cluster provisioned by kURL on a VM.
 
-Replicated includes components and features that make it easier for you to manage and deploy applications, and for enterprise users to install and manage their instance of your application.
-
-The following diagram shows the Replicated components as they relate to you as a vendor packaging your application, and the deployment to an existing cluster and a cluster provisioned by Replicated kURL on a VM.
-
-![What is Replicated?](/images/replicated-components-diagram.png)
+![KOTS and kURL deployments](/images/replicated-components-diagram.png)
 
 [View larger image](/images/replicated-components-diagram.png)
 
-## Vendor Portal
-
-The Replicated vendor portal is the web-based user interface that you can use to package and manage applications.
-
-![Create an Application in the vendor portal](/images/guides/kots/create-application.png)
-
-You define Kubernetes manifest files, including application and Replicated custom resource manifests, using the built-in YAML editor and linter (in the Help pane). These files describe how to distribute the application. Alternatively, you can use Helm charts.
-
-![YAML editor in the vendor portal](/images/yaml-editor.png)
-
-You can also manage other artifacts, such as customer license files, image registries, and release channels.
-
-![Channels](/images/channels.png)
-
-### replicated CLI
-
-The replicated command-line interface (CLI) is the CLI for the vendor portal. The replicated CLI can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams, license files, and so on. For more information, see [Installing the replicated CLI](/reference/replicated-cli-installing).
-
-### Vendor API v3
-
-The Vendor API is the API for the vendor portal. This API can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams, license files, and so on. For more information, see [Using the Vendor API V3](/reference/vendor-api-using).
 
 ## KOTS
 
