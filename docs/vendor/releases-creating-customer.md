@@ -70,7 +70,7 @@ To create a customer:
 You can edit the built-in and custom license fields for a customer at any time.
 
 :::important
-For online environments, changing license entitlements might trigger changes to the customer's installed application instance during runtime. Replicated recommends that you verify the logic your application uses to enforce the target entitlement before making any changes.
+For online environments, changing license entitlements can trigger changes to the customer's installed application instance during runtime. Replicated recommends that you verify the logic your application uses to enforce the target entitlement before making any changes.
 :::
 
 To edit license fields:
@@ -80,7 +80,7 @@ To edit license fields:
 1. Select the target customer and then click the **Customer details** tab.
 
    :::note
-   Replicated recommends that you test any licenses changes with a customer used for installation in a development environment.
+   Replicated recommends that you test any licenses changes with an installation in a development environment.
    :::
 
 1. On the **Customer details** page, edit the desired fields and click **Save**.
@@ -88,7 +88,7 @@ To edit license fields:
    ![Full customer details page for a customer named Prestige Financial](/images/customer-details.png)
 
 1. Test the changes by installing or updating in a development environment. Do one of the following, depending on the installation method for your application:
-    * For applications installed with Helm that use the Replicated SDK, you can add logic to your application to enforce entitlements before installation or during runtime using the Replicated SDK API license endpoints. See [Checking Entitlements for Helm Installations (Alpha)](icenses-reference-helm).
+    * For applications installed with Helm that use the Replicated SDK, you can add logic to your application to enforce entitlements before installation or during runtime using the Replicated SDK API license endpoints. See [Checking Entitlements for Helm Installations (Alpha)](licenses-reference-helm).
     * For applications installed with Replicated KOTS, update the license in the admin console. See [Update Online Licenses](/enterprise/updating-licenses#update-online-licenses) and [Update Air Gap Licenses](/enterprise/updating-licenses#update-air-gap-licenses) in _Updating Licenses_.
 
 ## Archive a Customer
