@@ -15,7 +15,7 @@ You can configure custom domains for the following registries and services, so t
 
 - **Replicated registry:** Images and Helm charts can be pulled from the Replicated registry. By default, this registry uses the domain `registry.replicated.com`. For more information, see [Push Images to the Replicated Private Registry](private-images-replicated).
 
-- **Proxy service:** Images can be proxied from external private registries. By default, the proxy service uses the domain `proxy.replicated.com`. For more information, see [About the Proxy Service](private-images-about#about-the-proxy-service) in _About Using an External Registry_.
+- **Proxy service:** Images can be proxied from external private registries using the Replicated proxy service. By default, the proxy service uses the domain `proxy.replicated.com`. For more information, see [About the Proxy Service](private-images-about#about-the-proxy-service) in _About Using an External Registry_.
 
 - **replicated.app:** Upstream application YAML and metadata, including a license ID, are pulled from replicated.app. By default, this service uses the domain `replicated.app`. For more information, see [Firewall Openings for Online Installations](/enterprise/installing-general-requirements#firewall-openings-for-online-installations) in _Installation Requirements_.
 
