@@ -27,7 +27,7 @@ For more information about how to mark a release as required, see [Release Prope
 
 Customer licenses have built-in fields and also support custom fields.
 
-Built-in fields are reserved field names. You can specify the values for these fields to define entitlements for the customer. For example, Replicated includes built-in license fields to define the license expiration date, the customer name, and application slug. For more information about built-in fields, see [About Built-in License Fields](licenses-using-builtin-fields).
+Built-in fields are reserved field names. You can specify the values for these fields to define entitlements for the customer. For example, Replicated includes built-in license fields to define the license expiration date, customer name, and application slug. For more information about built-in fields, see [About Built-in License Fields](licenses-using-builtin-fields).
 
 You can also create custom license fields to define entitlements specific to the customer. For example, you can create a custom license field to limit the number of active users permitted. For more information about creating custom license fields, see [Managing Custom License Fields](licenses-adding-custom-fields).
 
@@ -76,15 +76,15 @@ The following shows an example of the **Customers** page:
 
 From the **Customers** page, you can do the following:
 
-* Create new customers
+* Create new customers.
 
-* Download a CSV file with details about each customer
+* Download a CSV file with details about each customer.
 
 * View insights about the adoption rate of each version of your application across your customers. For more information, see [Adoption Rate (Beta)](customer-adoption).
 
 * Click the **Manage customer** button to edit details such as the customer name and email, the custom license fields assigned to the customer, and the license expiration policy. For more information, see [Creating and Managing Customers](releases-creating-customer).
 
-* (KOTS Only) Download the license file for each customer
+* (KOTS Only) Download the license file for each customer.
 
 * Click the **Customer reporting** button to view data about the active application instances associated with each customer. For more information, see [Customer Reporting](customer-reporting).
 
