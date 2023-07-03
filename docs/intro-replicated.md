@@ -1,8 +1,4 @@
-# Introduction to KOTS and kURL
-
-This topic describes the Replicated KOTS and Replicated kURL installers, the Replicated admin console, and kots CLI.
-
-## About KOTS and kURL
+# About KOTS and kURL
 
 Replicated includes the KOTS and kURL installers that make it easier for you to manage and deploy applications, and for enterprise users to install and manage their instance of your application.
 
@@ -11,7 +7,6 @@ The following diagram shows the Replicated components as they relate to you as a
 ![KOTS and kURL deployments](/images/replicated-components-diagram.png)
 
 [View larger image](/images/replicated-components-diagram.png)
-
 
 ## KOTS
 
