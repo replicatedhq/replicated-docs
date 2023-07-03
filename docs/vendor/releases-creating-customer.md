@@ -80,7 +80,7 @@ To edit license fields:
 1. Select the target customer and then click the **Customer details** tab.
 
    :::note
-   Replicated recommends that you test any licenses changes with an installation in a development environment.
+   Replicated recommends that you test any licenses changes in a development environment with an installation that uses the previour version of this customer license.
    :::
 
 1. On the **Customer details** page, edit the desired fields and click **Save**.
