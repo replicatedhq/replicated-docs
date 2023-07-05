@@ -27,6 +27,31 @@ To add and configure a custom domain for the Replicated registry or proxy servic
 
 <UseCustomDomain/>
 
+## Reuse a Custom Domain for Additional Applications
+
+If you have configured a custom domain for one application, you can reuse the custom domain for a second application without going through the ownership and TLS certificate verification process again.
+
+To reuse a custom domain for another application:
+
+1. In the vendor portal, select the application from the dropdown list.
+
+1. Click **Custom Domains**.
+
+1. In the section for the target Replicated endpoint, click **Add your first custom domain** for your first domain.
+
+  The **Configure a custom domain** wizard opens.
+
+1. In the text box, enter the domain name that you want to reuse. Click **Save & continue**.
+  
+  The last page of the wizard opens because the custom domain was verified previously.
+
+1. Do one of the following:
+
+   - Click **Set as default**. In the confirmation dialog that opens, click **Yes, set as default**.
+   
+   - Click **Not now**. You can come back later to set the domain as the default. The vendor portal shows shows that the domain has a Configured status because it was configured for a previous application, though it is not yet assigned as the default for this application.
+
+
 ## Remove a Custom Registry or Proxy Domain
 
 You can remove a custom domain for the Replicated registry or proxy service at any time, but you should plan the transition so that you do not break any existing installations.
