@@ -2,7 +2,15 @@
 
 Replicated includes the KOTS and kURL installers that make it easier for you to manage and deploy applications, and for enterprise users to install and manage their instance of your application.
 
-The following diagram shows the Replicated components as they relate to you as a vendor packaging your application with KOTS, the deployment to an existing cluster, and deployment to a cluster provisioned by kURL on a VM.
+The following options are supported for installing your application:
+
+- **KOTS Installer:** Installs on an existing cluster using the kots CLI or the admin console. 
+
+- **kURL Installer:** Installs on a cluster created by the kURL installer.
+
+- **Helm Installer:** Install with Helm when you distribute your Helm chart application with KOTS. For more information, see [Installing an Application with Helm (Beta)](install-with-helm).
+    
+The following diagram shows the Replicated components as they relate to you as a vendor packaging your application with KOTS, and the deployment to an existing cluster and a cluster provisioned by kURL. The application is packaged using either Helm charts, standard manifests, or Kubernetes operators.
 
 ![KOTS and kURL deployments](/images/replicated-components-diagram.png)
 
@@ -10,13 +18,13 @@ The following diagram shows the Replicated components as they relate to you as a
 
 ## KOTS
 
-Replicated KOTS installs and manages applications in a Kubernetes cluster. You can use KOTS to deploy Kubernetes applications or Helm charts securely to the following Kubernetes cluster environments:
+Replicated KOTS installs and manages applications in a Kubernetes cluster. You can use KOTS to deploy Kubernetes applications securely to the following Kubernetes cluster environments:
 
 - Existing clusters
 - Embedded clusters created by Replicated kURL. See [kURL](#kurl) below.
-- Air gapped clusters
+- Air gapped clusters (existing and embedded)
 
-KOTS is an open source project that is maintained by Replicated. For more information, see the [kots](https://github.com/replicatedhq/kots) repository in GitHub.
+Your application can use Helm charts, standard manifest files, or Kubernetes opertators.
 
 ### Admin Console
 
@@ -30,7 +38,7 @@ The kots command-line interface (CLI) is a kubectl plugin. Users can run command
 
 ## kURL
 
-Replicated kURL allows software vendors to create a custom Kubernetes distributions to share with their users for installation in online or air gapped environments. kURL has a built-in integration with KOTS through its KOTS add-on. With this integration, users can run a kURL installation script in their virtual machine (VM) or bare metal server that creates a cluster and then automatically installs KOTS in the cluster. Clusters created by kURL are called _embedded clusters_.
+Replicated kURL allows software vendors to create a custom Kubernetes distributions to share with their users for installation in online or air gapped environments. kURL has a built-in integration with KOTS through its KOTS add-on. With this integration, users can run a kURL installation script in their virtual machine (VM) or bare metal server, which creates a cluster and then automatically installs KOTS in the cluster. Clusters created by kURL are called _embedded clusters_.
 
 For information about how to install applications in embedded clusters, see [Installing with kURL](/enterprise/installing-embedded-cluster). For information about how to create a specification for kURL, see [Creating a Kubernetes Installer](/vendor/packaging-embedded-kubernetes).
 

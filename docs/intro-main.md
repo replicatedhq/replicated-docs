@@ -1,6 +1,6 @@
 # Introduction to Replicated
 
-This topic describes the Replicated platform...
+This topic describes the Replicated platform, including features, installations options, and release workflow.
 
 For an overview of the key use cases for software vendors that Replicated serves, see the [Intro to Replicated: 20 Ways We Help](https://www.youtube.com/watch?v=2eOh7CofY3Q) video.
 
@@ -8,24 +8,28 @@ For an overview of the key use cases for software vendors that Replicated serves
 
 The Replicated platform lets you install, manage, support, and get insights on your applications in customer environments. With Replicated, you package and update your application using Kubernetes manifests or Helm charts, then securely distribute to customers.
 
-Replicated includes features for managing, monitoring, distributing your apps, including:
-
-Replicated offers a vendor portal and CLI where you can:
+Replicated provides features for managing, monitoring, distributing your apps, including a vendor portal and the replicated CLI where you can:
 
 - Manage your releases and versioning
 - Create and manage custom license entitlements for your customers
 - Connect to a proxied image registry
-- Test app compatibility with different environments with Reliability Matrix
-- Integrate with the Troubleshoot open source project to provide Preflight Checks and Support Bundles for your app
+- Test application compatibility with different environments using the compatibility matrix
+- Integrate with the Troubleshoot open source project to provide preflight checks and support bundles for your application
 - Get telemetry and key insights for the instances of your app running in customer environments.
 
-When you manage your application with Replicated, you can use Helm to deploy or bring your own installer (proprietary).
+## SDK and 
 
-With the Replicated SDK Helm chart, Replicated let's you get all this functionality in your existing Helm chart application while still allowing your customers to install and manage their application instances directly with the helm CLI. See more
+## Installation Options
 
-With KOTS and the KOTS admin console, Replicated also offers a way for your customers to install your application in any Kubernetes cluster. See more
+When you manage your application with Replicated, you can use any of the following installation options:
 
-With kURL, Replicated offers a way for you to create your own K8s distribution where customers can install your app with KOTS. See more 
+- Your own proprietary installer.
+
+- With the Replicated SDK Helm chart, install and manage application instances directly with the helm CLI. For more information, see About Distributing with Helm (Beta](intro-replicated).
+
+- With Replicated KOTS and the KOTS admin console, install your application in any existing Kubernetes cluster. For more information, see [About KOTS and kURL](intro-replicated).
+
+- With kURL, Replicated provides a way to create a Kubernetes cluster and install your application with KOTS. For more information, see [About KOTS and kURL](intro-replicated).
 
 <!--Diagram
 
