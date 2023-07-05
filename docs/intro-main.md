@@ -17,7 +17,7 @@ Replicated provides features for managing, monitoring, distributing your apps, i
 - Integrate with the Troubleshoot open source project to provide preflight checks and support bundles for your application
 - Get telemetry and key insights for the instances of your app running in customer environments.
 
-## SDK and 
+These features are available whether your use the Replicated SDK as a service to your Helm chart, or use the Replicated installation options with either a Helm chart, standard manifest files, or Kubernetes operators. For more information, see [Installation Options](#installation-options).
 
 ## Installation Options
 
@@ -25,7 +25,7 @@ When you manage your application with Replicated, you can use any of the followi
 
 - Your own proprietary installer.
 
-- With the Replicated SDK Helm chart, install and manage application instances directly with the helm CLI. For more information, see About Distributing with Helm (Beta](intro-replicated).
+- With the Replicated SDK Helm chart, install and manage application instances directly with the helm CLI. For more information about the SDK, see [About the Replicated SDK (Alpha)](replicated-sdk-overview).
 
 - With Replicated KOTS and the KOTS admin console, install your application in any existing Kubernetes cluster. For more information, see [About KOTS and kURL](intro-replicated).
 
@@ -44,28 +44,23 @@ Should cover:
     Users installing with KOTS, Helm CLI, kURL
 -->
 
-## Release Workflow
+## Getting Started Release Workflow
 
-High level workflow so that people understand how to navigate the docs
+The following workflow helps you get started with your first release and understand how to navigate the documentation.
 
-Workflow:
+To get started with your first release:
 
-1. Log in to vendor portal to create your team
-1. Connect to an image registry
-1. Create a release with app files (could be helm chart or otherwise)
-1. Promote it to a channel
-1. Create a customer to define a license file
-1. Test your install
+1. Create a vendor account. See [Creating a Vendor Account](vendor-portal-creating-account).
+1. Invite members to your team and manage permissions. See [Managing Team Members](team-management).
+1. Connect to an image registry. See [COnnecting to an Image Registry](packaging-private-images).
+1. Create a release with your application files. See [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
+1. Promote the release to a channel. See [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli)
+1. Create a customer to define a license file. See [Creating and Managing Customers](releases-creating-customer).
+1. Test your installation:
 
-See:
-
-    Vendor Portal Team Management
-    Image registries
-    Channels and Releases
-    Licenses and entitlements
-    Install:
-        SDK install flow
-        Admin console install
+    - For SDK installations using integration mode, see [Developing Against the SDK API (Alpha)](replicated-sdk-development).
+    - For KOTS and kURL installations, see [About Installing an Application](installing-overview) in the KOTS documentation.
+    - For Helm installations, see [Installing an Application with Helm (Beta)](install-with-helm).
 
 ## Vendor Portal
 
@@ -81,11 +76,11 @@ You can also manage other artifacts, such as customer license files, image regis
 
 ![Channels](/images/channels.png)
 
-### replicated CLI
+## replicated CLI
 
 The replicated command-line interface (CLI) is the CLI for the vendor portal. The replicated CLI can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams, license files, and so on. For more information, see [Installing the replicated CLI](/reference/replicated-cli-installing).
 
-### Vendor API v3
+## Vendor API v3
 
 The Vendor API is the API for the vendor portal. This API can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams, license files, and so on. For more information, see [Using the Vendor API V3](/reference/vendor-api-using).
 
