@@ -80,7 +80,7 @@ To edit license fields:
 1. Select the target customer and click the **Customer details** tab.
 
    :::note
-   Replicated recommends that you test any licenses changes in a development environment. If needed, install the application using the current customer license before editing the license in the following step.
+   Replicated recommends that you test any licenses changes in a development environment. If needed, install the application using a dev license matching the current customer's entitlements before editing the dev license to validate the update flow.
    :::
 
 1. On the **Customer details** page, edit the desired fields and click **Save**.
