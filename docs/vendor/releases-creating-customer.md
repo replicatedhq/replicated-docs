@@ -70,7 +70,7 @@ To create a customer:
 You can edit the built-in and custom license fields for a customer at any time.
 
 :::important
-For online environments, changing license entitlements can trigger changes to the customer's installed application instance during runtime. Replicated recommends that you verify the logic your application uses to enforce the target entitlement before making any changes.
+For online environments, changing license entitlements can trigger changes to the customer's installed application instance during runtime. Replicated recommends that you verify the logic your application uses to query/enforce the target entitlement before making any changes.
 :::
 
 To edit license fields:
