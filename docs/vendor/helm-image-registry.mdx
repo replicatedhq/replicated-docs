@@ -1,3 +1,5 @@
+import NameLimitation from "../partials/helm/_name-limitation.mdx"
+
 # Using External Private Registries for Helm Installations (Beta)
 
 This topic describes the steps required to connect to an external private registry for installations with Helm.
@@ -39,6 +41,8 @@ To use an external registry and the proxy service for Helm installations:
    {{ end }}
    ```
 
+  <NameLimitation/>
+
 1. Ensure that you have a field in your Helm chart values file for your image repository URL, and that any references to the image in your Helm chart access the field from your values file.  
 
    **Example**:
@@ -78,6 +82,8 @@ To use an external registry and the proxy service for Helm installations:
      - name: replicated-pull-secret
    {{ end }}
    ```
+
+   <NameLimitation/>
 
    **Example:**
 
