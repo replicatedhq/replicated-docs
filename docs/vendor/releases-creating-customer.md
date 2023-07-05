@@ -68,9 +68,11 @@ To create a customer:
 ## Edit a Customer
 
 You can edit the built-in and custom license fields for a customer at any time.
+   
+Replicated recommends that you test any licenses changes in a development environment. If needed, install the application using a developer license matching the current customer's entitlements before editing the developer license. Then validate the updated license.
 
 :::important
-For online environments, changing license entitlements can trigger changes to the customer's installed application instance during runtime. Replicated recommends that you verify the logic your application uses to query/enforce the target entitlement before making any changes.
+For online environments, changing license entitlements can trigger changes to the customer's installed application instance during runtime. Replicated recommends that you verify the logic your application uses to query and enforce the target entitlement before making any changes.
 :::
 
 To edit license fields:
@@ -78,10 +80,6 @@ To edit license fields:
 1. In the [vendor portal](https://vendor.replicated.com), click **Customers**.
 
 1. Select the target customer and click the **Customer details** tab.
-
-   :::note
-   Replicated recommends that you test any licenses changes in a development environment. If needed, install the application using a dev license matching the current customer's entitlements before editing the dev license to validate the update flow.
-   :::
 
 1. On the **Customer details** page, edit the desired fields and click **Save**.
 
