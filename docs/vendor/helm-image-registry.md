@@ -26,13 +26,13 @@ To use an external registry and the proxy service for Helm installations:
 1. In your Helm chart templates, create a Kubernetes Secret to evaluate if the `global.replicated.dockerconfigjson` value is set, and then write the rendered value into a Secret on the cluster:
 
    ```yaml
-   # /templates/replicated-secret.yaml
+   # /templates/replicated-pull-secret.yaml
 
    {{ if .Values.global.replicated.dockerconfigjson }}
    apiVersion: v1
    kind: Secret
    metadata:
-     name: replicated
+     name: replicated-pull-secret
    type: kubernetes.io/dockerconfigjson
    data:
      .dockerconfigjson: {{ .Values.global.replicated.dockerconfigjson }}
@@ -75,7 +75,7 @@ To use an external registry and the proxy service for Helm installations:
    ...
    {{ if .Values.global.replicated.dockerconfigjson }}
    imagePullSecrets:
-     - name: replicated
+     - name: replicated-pull-secret
    {{ end }}
    ```
 
@@ -87,7 +87,7 @@ To use an external registry and the proxy service for Helm installations:
     image: "{{ .Values.images.myapp.apiImageRepository }}:{{ .Values.images.myapp.apiImageTag }}"
     {{ if .Values.global.replicated.dockerconfigjson }}
     imagePullSecrets:
-      - name: replicated
+      - name: replicated-pull-secret
     {{ end }}
     name: myapp
     ports:
