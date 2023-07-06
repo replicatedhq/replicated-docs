@@ -1,18 +1,15 @@
-import Beta from "../partials/replicated-sdk/_beta.mdx"
 import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
 import HelmDiagramOverview from "../partials/helm/_helm-diagram-overview.mdx"
 
-# About the Replicated SDK (Alpha)
+# About the Replicated SDK (Beta)
 
 This topic provides an introduction to using the Replicated SDK with your Helm chart application.
-
-<Beta/>
 
 ## Overview
 
 <SDKOverview/>
 
-For more information about using the Replicated SDK, see [Using the SDK With Your Application (Alpha)](/vendor/replicated-sdk-using).
+For more information about using the Replicated SDK, see [Using the SDK With Your Application (Beta)](/vendor/replicated-sdk-using).
 
 ## How the SDK Runs in a Customer Environment {#about-sdk-initialize}
 
@@ -85,13 +82,13 @@ The Replicated SDK provides an API that you can use to embed Replicated function
 
 For example, if your application includes a UI where users manage their application instance, then you can use the `/api/v1/app/updates` endpoint to include messages in the UI that encourage users to upgrade when new versions are available. You could also revoke access to the application during runtime when a license expires using the `/api/v1/license/fields` endpoint.
 
-For more information about the Replicated SDK API endpoints, see [Replicated SDK API (Alpha)](/reference/replicated-sdk-apis).
+For more information about the Replicated SDK API endpoints, see [Replicated SDK API (Beta)](/reference/replicated-sdk-apis).
 
 ## Customer Reporting and Instance Insights {#insights}
 
 The Replicated SDK provides access to operational telemetry including customer reporting and insights on application instances running in customer environments. When you distribute your application with the SDK, you can view these insights in the vendor portal.
 
-The SDK uses the values injected by the Replicated registry in your Helm chart values file to automatically send information about the instance back to the vendor portal. Additionally, to enable the SDK to report instance status to the vendor portal, such as if the instance is in a ready, degraded, or down state, you can add standard Helm labels to all resources deployed by your Helm chart. For more information, see [Prerequisite](replicated-sdk-using#prerequisite) in _Using the SDK With Your Application (Alpha)_
+The SDK uses the values injected by the Replicated registry in your Helm chart values file to automatically send information about the instance back to the vendor portal. Additionally, to enable the SDK to report instance status to the vendor portal, such as if the instance is in a ready, degraded, or down state, you can add standard Helm labels to all resources deployed by your Helm chart. For more information, see [Prerequisite](replicated-sdk-using#prerequisite) in _Using the SDK With Your Application (Beta)_.
 
 The following shows an example of the **Instance Details** page in the vendor portal, including application version and status details, instance uptime, and cluster details such as the cloud provider, cloud region, and the Kubernetes version and distribution:
 
@@ -104,4 +101,4 @@ For more information about viewing customer and instance insights in the vendor 
 
 You can run the Replicated SDK in integration mode to more quickly test new functionality for your application. Integration mode allows you to use mock data to test changes locally without having to create a release in the vendor portal and then install your Helm chart from the Replicated registry.
 
-For more information, see [Developing Against the SDK API (Alpha)](replicated-sdk-development).
+For more information, see [Developing Against the SDK API (Beta)](replicated-sdk-development).

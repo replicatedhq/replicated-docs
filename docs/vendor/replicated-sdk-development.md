@@ -1,10 +1,6 @@
-import Beta from "../partials/replicated-sdk/_beta.mdx"
-
 # Developing Against the SDK API (Alpha)
 
 This topic describes how to enable integration mode for the Replicated SDK to develop and test changes locally.
-
-<Beta/>
 
 ## About Integration Mode
 
