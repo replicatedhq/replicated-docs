@@ -1,4 +1,4 @@
-# Developing Against the SDK API (Alpha)
+# Developing Against the SDK API (Beta)
 
 This topic describes how to enable integration mode for the Replicated SDK to develop and test changes locally.
 
