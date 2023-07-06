@@ -26,7 +26,7 @@ Replicated recommends that you use signature verification to ensure the integrit
 Using signature verification has the following requirements:
 
 * The **Foundation Plan Signature Verification** feature flag must be enabled for your team in the Replicated vendor portal.
-* To check entitlements at runtime or before installation in your Helm chart application, you must include the Replicated SDK as a dependency of your application. For more information, see [Using the SDK with Your Application (Alpha)](replicated-sdk-using).
+* To check entitlements at runtime or before installation in your Helm chart application, you must include the Replicated SDK as a dependency of your application. For more information, see [Using the SDK with Your Application (Beta)](replicated-sdk-using).
 
 ## Use Your Public Key to Verify License Field Signatures
 
