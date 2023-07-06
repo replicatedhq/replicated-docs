@@ -11,11 +11,9 @@ toc_max_heading_level: 2
 Released on July 6, 2023
 
 ### New Features {#new-features-v2023-07-06-0}
-* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-06-23T20-26-00Z.
-* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.27.2.
-* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-06-29T05-12-28Z.
-* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.27.2.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) versions RELEASE.2023-06-23T20-26-00Z and RELEASE.2023-06-29T05-12-28Z.
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.27.3.
+* Adds the ability to start a cluster with OpenEBS + MinIO and migrate data to Rook-Ceph after 3 nodes are ready.
 
 ## v2023.06.27-0
 
