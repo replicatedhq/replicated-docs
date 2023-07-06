@@ -36,7 +36,7 @@ The following diagram is a visual representation of the steps that follow for cr
 
 Complete the following procedures to import your application files then create and test your first release:
 
-1. Push your images to the Replicated private registry if you plan to host your images on that registry. See [Push Images to the Replicated Private Registry](packaging-private-images#push-images-to-the-replicated-private-registry) in _Connecting to an Image Registry_.
+1. Push your images to the Replicated registry if you plan to host your images on that registry. See [Push Images to the Replicated Registry](packaging-private-images#push-images-to-the-replicated-private-registry) in _Connecting to an Image Registry_.
 
     If you are using a different image option, skip this step and proceed to the next step.
 
@@ -61,7 +61,7 @@ Complete the following procedures to import your application files then create a
       </tr>
     </table>
 
-1. If you are using private images, either connect to an external private registry or update the image tags to point to the Replicated private registry. See [Connecting to an Image Registry](packaging-private-images).
+1. If you are using private images, either connect to an external private registry or update the image tags to point to the Replicated registry. See [Connecting to an Image Registry](packaging-private-images).
 
   :::note
   Skip this step if your images are open-source or public, or if you are using Kubernetes Operators.

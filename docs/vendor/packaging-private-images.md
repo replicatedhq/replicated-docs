@@ -4,7 +4,7 @@ This topic describes how to connect to an external private registry using the Re
 
 For information about how Replicated KOTS processes images in external private registries, see [About Using an External Registry](private-images-about).
 
-For information about using the Replicated private registry, see [Push Images to the Replicated Private Registry](private-images-replicated).
+For information about using the Replicated registry, see [Push Images to the Replicated Registry](private-images-replicated).
 
 ## About Using External Private Registries
 
@@ -12,9 +12,9 @@ When packaging an application with Replicated KOTS, you can include private
 images for the application without distributing registry credentials
 to your customer.
 
-The customer license file can grant revokable image pull access to private images, whether the images are stored in the Replicated private registry or a supported external registry.
+The customer license file can grant revokable image pull access to private images, whether the images are stored in the Replicated registry or a supported external registry.
 
-If you use the Replicated private registry or proxy service, you can configure custom domains to alias registry.replicated.com and proxy.replicated.com, to remove the Replicated domains from a customer security review and reduce exposure. This feature is configured at the Team level. For more information about custom domains, see [Using Custom Domains](custom-domains).
+If you use the Replicated registry or proxy service, you can configure custom domains to alias registry.replicated.com and proxy.replicated.com, to remove the Replicated domains from a customer security review and reduce exposure. This feature is configured at the Team level. For more information about custom domains, see [Using Custom Domains](custom-domains).
 
 ## Supported Registries
 

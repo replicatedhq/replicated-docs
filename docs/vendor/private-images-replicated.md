@@ -1,11 +1,11 @@
-# Push Images to the Replicated Private Registry
+# Push Images to the Replicated Registry
 
-You can host the private images for your application on the Replicated private registry. Hosting your images on the Replicated private registry is useful if you do not already have your images in an existing private registry. It is also useful for testing purposes.
+You can host the private images for your application on the Replicated registry. Hosting your images on the Replicated registry is useful if you do not already have your images in an existing private registry. It is also useful for testing purposes.
 
 For more information about building, tagging, and pushing Docker images, see the
 [Docker CLI documentation](https://docs.docker.com/engine/reference/commandline/cli/).
 
-To push images to the Replicated private registry:
+To push images to the Replicated registry:
 
 1. Do one of the following to connect with the `registry.replicated.com` container registry:
    * **(Recommended) Log in with a user token**: Use `docker login registry.replicated.com` with your vendor portal email as the username and a vendor portal user token as the password. For more information, see [User tokens](../reference/replicated-cli-tokens#user-tokens) in _Using Vendor API tokens_.
@@ -31,7 +31,7 @@ Docker format:
    docker tag worker registry.replicated.com/myapp/worker:1.0.1
    ```
 
-1. Push your private image to the Replicated private registry:
+1. Push your private image to the Replicated registry:
 
   ```
   docker push registry.replicated.com/APPLICATION_SLUG/TARGET_IMAGE_NAME:TAG

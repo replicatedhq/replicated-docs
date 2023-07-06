@@ -67,7 +67,7 @@ The following describes each of the channel settings:
 * **Channel name**: The name of the channel. You can change the channel name at any time. Each channel also has a unique ID listed below the channel name.
 * **Description**: Optionally, add a description of the channel.
 * **Set this channel to default**: When enabled, sets the channel as the default channel. The default channel cannot be archived.
-* **Custom domains**: Select the customer-facing domains that releases promoted to this channel use for the Replicated private registry, proxy service, or download portal endpoints. If a default custom domain exists for any of these endpoints, choosing a different domain in the channel settings overrides the default. If no custom domains are configured for an endpoint, the drop-down for the endpoint is disabled.
+* **Custom domains**: Select the customer-facing domains that releases promoted to this channel use for the Replicated registry, proxy service, or download portal endpoints. If a default custom domain exists for any of these endpoints, choosing a different domain in the channel settings overrides the default. If no custom domains are configured for an endpoint, the drop-down for the endpoint is disabled.
 
   For more information about configuring custom domains and assigning default domains, see [Using Custom Domains for the Replicated Registry and Proxy Service](custom-domains) and [Using a Custom Domain for the Download Portal](custom-domains-download-portal).
 * The following channel settings apply only to applications that support KOTS:
