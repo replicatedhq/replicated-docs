@@ -1,10 +1,6 @@
-import Beta from "../partials/replicated-sdk/_beta.mdx"
-
-# Developing Against the SDK API (Alpha)
+# Developing Against the SDK API (Beta)
 
 This topic describes how to enable integration mode for the Replicated SDK to develop and test changes locally.
-
-<Beta/>
 
 ## About Integration Mode
 
@@ -70,7 +66,7 @@ When developing against the chart locally in integration mode, you can provide t
 
 To initialize the SDK for use in integration mode:
 
-1. Add the SDK Helm chart as a dependency in your application Helm chart. See [Using the Replicated SDK with Your Application (Alpha)](replicated-sdk-using).
+1. Add the SDK Helm chart as a dependency in your application Helm chart. See [Using the Replicated SDK with Your Application (Beta)](replicated-sdk-using).
 
 1. In the values file for your Helm chart, paste the ID of your development license in the `replicated.integration.licenseID` field:
 

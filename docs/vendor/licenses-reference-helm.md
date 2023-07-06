@@ -6,7 +6,7 @@ This topic describes how to check entitlement information from customer licenses
 
 ## Requirement
 
-To check entitlements at runtime or before installation in your Helm chart application, you must include the Replicated SDK as a dependency of your application. For more information, see [Using the SDK with Your Application (Alpha)](replicated-sdk-using).
+To check entitlements at runtime or before installation in your Helm chart application, you must include the Replicated SDK as a dependency of your application. For more information, see [Using the SDK with Your Application (Beta)](replicated-sdk-using).
 
 ## Checking Entitlements at Runtime with the SDK API {#runtime}
 
@@ -44,7 +44,7 @@ global:
         valueType: String  
 ```
 
-You can access the values in the `global.replicated.licenseFields` field from your Helm templates to check customer entitlements before installation. For more information about the fields that the Replicated registry automatically injects, see [Replicated Helm Values](/vendor/replicated-sdk-overview#replicated-values) in _About the Replicated SDK (Alpha)_.
+You can access the values in the `global.replicated.licenseFields` field from your Helm templates to check customer entitlements before installation. For more information about the fields that the Replicated registry automatically injects, see [Replicated Helm Values](/vendor/replicated-sdk-overview#replicated-values) in _About the Replicated SDK (Beta)_.
 
 ### Example: Prevent Access Before Installation
 

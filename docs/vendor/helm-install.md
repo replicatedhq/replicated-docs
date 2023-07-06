@@ -1,6 +1,5 @@
 import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
 import HelmDiagramOverview from "../partials/helm/_helm-diagram-overview.mdx"
-import Beta from "../partials/helm/_helm-install-beta.mdx"
 
 # About Distributing with Helm (Beta)
 
@@ -22,8 +21,6 @@ For information about how to get started distributing your Helm chart with Repli
 
 The following limitations apply when using Helm to install applications distributed with Replicated:
 
-* <Beta/>
-
 * Replicated does not support Helm installations into air gap environments.
 
 * Helm installations do not provide access to any of the features of the Replicated KOTS installer, including:
@@ -36,4 +33,4 @@ The following limitations apply when using Helm to install applications distribu
 
 <SDKOverview/>
 
-For more information, see [About the Replicated SDK (Alpha)](replicated-sdk-overview).
+For more information, see [About the Replicated SDK (Beta)](replicated-sdk-overview).

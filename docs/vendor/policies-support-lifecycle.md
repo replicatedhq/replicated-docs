@@ -34,18 +34,18 @@ Replicated will provide support for products per our terms and services until th
   </tr>
   <tr>
     <td>Replicated (Replicated SDK)</td>
-    <td>Alpha</td>
+    <td>Beta</td>
     <td>N/A</td>
     <td>N/A</td>
   </tr>
   <tr>
-    <td><a href="[https://docs.replicated.com/](https://docs.replicated.com/intro-replicated#app-manager)">Replicated (KOTS Installer)</a></td>
+    <td><a href="https://docs.replicated.com/intro-replicated#kots">Replicated (KOTS Installer)</a></td>
     <td>GA</td>
     <td>N/A</td>
     <td>N/A</td>
   </tr>
     <tr>
-    <td><a href="https://docs.replicated.com/intro-replicated#kubernetes-installer">Replicated (kURL Installer)</a></td>
+    <td><a href="https://docs.replicated.com/intro-replicated#kurl">Replicated (kURL Installer)</a></td>
     <td>GA</td>
     <td>N/A</td>
     <td>N/A</td>

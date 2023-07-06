@@ -1,13 +1,9 @@
 import FeatureFlag from "../partials/helm/_feature-flag.mdx"
-import Beta from "../partials/helm/_helm-install-beta.mdx"
 
 # Installing an Application with Helm (Beta)
 
 This topic describes how to use Helm to install releases that contain one or more Helm charts.
 
-:::note
-<Beta/>
-:::
 ## Prerequisites
 
 Before you install, complete the following prerequisites:
