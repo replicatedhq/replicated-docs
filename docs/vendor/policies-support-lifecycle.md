@@ -39,13 +39,13 @@ Replicated will provide support for products per our terms and services until th
     <td>N/A</td>
   </tr>
   <tr>
-    <td><a href="intro-replicated#kots">Replicated (KOTS Installer)</a></td>
+    <td><a href="https://docs.replicated.com/intro-replicated#kots">Replicated (KOTS Installer)</a></td>
     <td>GA</td>
     <td>N/A</td>
     <td>N/A</td>
   </tr>
     <tr>
-    <td><a href="intro-replicated#kubernetes-installer">Replicated (kURL Installer)</a></td>
+    <td><a href="https://docs.replicated.com/intro-replicated#kurl">Replicated (kURL Installer)</a></td>
     <td>GA</td>
     <td>N/A</td>
     <td>N/A</td>
