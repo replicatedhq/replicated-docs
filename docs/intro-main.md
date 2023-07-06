@@ -17,7 +17,11 @@ Replicated provides features for managing, monitoring, distributing your apps, i
 - Integrate with the Troubleshoot open source project to provide preflight checks and support bundles for your application
 - Get telemetry and key insights for the instances of your app running in customer environments.
 
-These features are available whether your use the Replicated SDK as a service to your Helm chart, or use the Replicated installation options with either a Helm chart, standard manifest files, or Kubernetes operators. For more information, see [Installation Options](#installation-options).
+These features are available whether your use the Replicated SDK as a service to your Helm chart, or use the Replicated installation options with either a Helm chart, standard manifest files, or Kubernetes operators.
+
+## SDK
+
+
 
 ## Installation Options
 
