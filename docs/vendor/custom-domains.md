@@ -37,7 +37,7 @@ To reuse a custom domain for another application:
 
 1. Click **Custom Domains**.
 
-1. In the section for the target endpoint, click **Add your first custom domain** for your first domain.
+1. In the section for the target endpoint, click Add your first custom domain for your first domain, or click **Add new domain** for additional domains.
 
   The **Configure a custom domain** wizard opens.
 
