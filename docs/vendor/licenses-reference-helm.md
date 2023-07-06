@@ -4,13 +4,11 @@ import LicenseExpirationExample from "../partials/replicated-sdk/_license-expira
 
 This topic describes how to check entitlement information from customer licenses in applications that are installed with Helm. For information about how to check entitlement information for application installed with Replicated KOTS, see [Checking Entitlements for KOTS](licenses-referencing-fields).
 
-## Requirement
-
-To check entitlements at runtime or before installation in your Helm chart application, you must include the Replicated SDK as a dependency of your application. For more information, see [Using the SDK with Your Application (Beta)](replicated-sdk-using).
-
 ## Checking Entitlements at Runtime with the SDK API {#runtime}
 
 The Replicated SDK retrieves up-to-date customer license information from the vendor portal during runtime. This means that any changes to customer licenses are reflected in real time in the customer environment. For example, you can revoke access to your application when a license expires, expose additional product functionality dynamically based on entitlements, and more.
+
+To check entitlements at runtime in your Helm chart application, you must include the Replicated SDK as a dependency of your application. For more information, see [Using the SDK with Your Application (Beta)](replicated-sdk-using).
 
 After the Replicated SDK is initialized and running in a customer environment, you can use the following SDK API endpoints to get information about the license that was used to install:
 * `/api/v1/license/info`: List license details, including the license ID, the channel the customer is assigned, and the license type.
@@ -27,7 +25,7 @@ License fields are cryptographically signed to ensure their integrity. Replicate
 
 ## Checking Entitlements Before Installation {#before-install}
 
-When you include the Replicated SDK as a dependency of your Helm chart application, the Replicated registry automatically injects customer entitlement information in the `global.replicated.licenseFields` field of your Helm chart values. For example:
+The Replicated registry automatically injects customer entitlement information in the `global.replicated.licenseFields` field of your Helm chart values. For example:
 
 ```yaml
 # Helm chart values.yaml
