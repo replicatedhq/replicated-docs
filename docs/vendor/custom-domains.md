@@ -29,7 +29,7 @@ To add and configure a custom domain for the Replicated registry or proxy servic
 
 ## Reuse a Custom Domain for Another Application
 
-If you have configured a custom domain for one application, you can reuse the custom domain for a another application without going through the ownership and TLS certificate verification process again.
+If you have configured a custom domain for one application, you can reuse the custom domain for another application in the same team without going through the ownership and TLS certificate verification process again.
 
 To reuse a custom domain for another application:
 
