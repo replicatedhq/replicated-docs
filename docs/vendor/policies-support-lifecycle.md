@@ -33,7 +33,7 @@ Replicated will provide support for products per our terms and services until th
     <th width="25%">End of Life</th>
   </tr>
   <tr>
-    <td>Replicated (Replicated SDK)</td>
+    <td><a href="https://docs.replicated.com/reference/replicated-sdk-apis">Replicated (Replicated SDK)</a></td>
     <td>Beta</td>
     <td>N/A</td>
     <td>N/A</td>
