@@ -60,7 +60,7 @@ To create a development license:
 
 ## Initialize the SDK {#initialize}
 
-In production use, customer-specific information like the license and the current release on the assigned channel is injected into the chart by the Replicated registry when the chart is pulled. For more information about the values that the Replicated registry automatically injects, see [Replicated Helm Values](/vendor/helm-install#replicated-values) in _About Distributing with Helm (Beta)_.
+In production use, customer-specific information like the license and the current release on the assigned channel is injected into the chart by the Replicated registry when the chart is pulled. For more information about the values that the Replicated registry automatically injects, see [Replicated Helm Values](/vendor/replicated-sdk-overview#replicated-values) in _About Distributing with Helm (Beta)_.
 
 When developing against the chart locally in integration mode, you can provide the license ID to initialize the SDK instead of reproducing all the Helm values that the registry normally injects.
 
