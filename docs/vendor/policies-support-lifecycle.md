@@ -101,4 +101,4 @@ The End of Replicated Support date is the End Of Life (EOL) date for the Kuberne
 
 The information contained herein is believed to be accurate as of the date of publication, but updates and revisions may be posted periodically and without notice.
 
-Last modified May 31, 2023.
+Last modified July 7, 2023.
