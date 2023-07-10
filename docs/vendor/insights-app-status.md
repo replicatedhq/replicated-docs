@@ -27,7 +27,7 @@ Do one of the following, depending on the application installation method:
 * For applications installed with Helm:
 
    * Include the Replicated SDK as a dependency of your Helm chart. See [Using the Replicated SDK with Your Application](replicated-sdk-using).
-   * Add the following labels on one or more Kubernetes resources deployed as part of your Helm chart:
+   * Add the following labels to one or more Kubernetes resources deployed as part of your Helm chart:
 
      <SDKLabels/> 
 
