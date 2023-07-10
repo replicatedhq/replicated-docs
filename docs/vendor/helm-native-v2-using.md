@@ -30,11 +30,11 @@ For more information about how to configure the `builder` key to support the use
 
 ## Rewriting Image Names
 
-This section describes how to configure the `values` key of the HelmChart custom resource to rewrite images names in your Helm chart `values.yaml` file. This ensures that KOTS can locate your application images during installation or upgrade. For more information about working with the `values` key, see [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_.
+This section describes how to configure the `values` key of the HelmChart custom resource to rewrite images names in your Helm chart `values.yaml` file. This ensures that your application images can be located during installation or upgrade. For more information about working with the `values` key, see [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_.
 
-### Image Registry and Repository
+### Private Images
 
-To locate images, KOTS requires:
+To locate images, Kubernetes requires:
 * The registry domain. For private images, this is the domain of the Registry proxy service at `proxy.replicated.com`. For public images, this is the domain of your external registry.
 * The path to the image repository on the registry. For private images accessed through the proxy service, the path has the following format: `/proxy/APP_SLUG/EXTERNAL_REGISTRY_IMAGE_URL`, where `APP_SLUG` is the slug of your Replicated application and `EXTERNAL_REGISTRY_IMAGE_URL` is the path to the private image on your external registry.
 
@@ -225,10 +225,10 @@ When you include both a `kots.io/v1beta2` and `kots.io/v1beta1` HelmChart custom
 
 ### Updating an Existing HelmChart Custom Resource
 
-If all your users have installed KOTS v1.99.0 or later, you can stop supporting installations with version `kots.io/v1beta1` of the HelmChart custom resource. To migrate from `kots.io/v1beta1` to `kots.io/v1beta2`, update the fields in the existing HelmChart custom resources in your releases.
+After all your users install KOTS v1.99.0 or later, you can stop supporting installations with version `kots.io/v1beta1` of the HelmChart custom resource. To migrate from `kots.io/v1beta1` to `kots.io/v1beta2`, update the fields in the existing HelmChart custom resources in your releases.
 
 :::note
-Migrating from the Replicated Helm installation method (`apiVersion: kots.io/v1beta1` and `useHelmInstall: false`) for an existing chart in an existing installation is not supported. For more information, see [Migrating from Replicated Helm](#migrate-repl-helm) below.
+Migrating from the Replicated Helm installation method (`apiVersion: kots.io/v1beta1` and `useHelmInstall: false`) for an existing chart in an existing installation is not supported. For more information, see [Migrating from Replicated Helm](#migrating-from-replicated-helm) below.
 :::
 
 The `kots.io/v1beta2` HelmChart custom resource has the following differences from `kots.io/v1beta1`:
@@ -263,22 +263,8 @@ The `kots.io/v1beta2` HelmChart custom resource has the following differences fr
 
 For an example of the HelmChart v2 custom resource, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
-### Migrating from Replicated Helm {#migrate-repl-helm}
+### Migrating from Replicated Helm
 
 <ReplicatedHelmMigration/>
 
-To migrate from the Replicated Helm installation method to version `kots.io/v1beta2` of the HelmChart custom resource for an existing installation, you can change the `name` of your Helm chart, package the chart, and add the chart to a new release.
-
-To upgrade from the Replicated Helm installation method to `kots.io/v1beta2`:
-
-1. In your Helm chart `Chart.yaml` file, change the `name` of the chart.
-1. Package the chart, create a new release and add the Helm chart `.tgz`. See [Creating a Release with Your Helm Chart for KOTS](helm-release).
-1. In the **Select Installation Method** dropdown, select `kots.io/v1beta2`. 
-
-   <img src="/images/helm-select-install-method.png" alt="select installation method dialog" width="600px"/>
-
-   [View a larger version of this image](/images/helm-select-install-method.png)
-
-1. Configure the `kots.io/v1beta2` HelmChart custom resource. See [Configuring the HelmChart Custom Resource](helm-native-v2-using). 
-
-1. Save and promote the release to your development channel. Install the release in a development environment to test your changes.
+To upgrade from Replicated Helm to another installation method, the user must reinstall your application in a new environment.

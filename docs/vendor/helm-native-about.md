@@ -31,13 +31,17 @@ For more information about how KOTS processes and installs Helm charts based on 
 
 > Introduced in Replicated KOTS v1.99.0
 
-When you include a HelmChart custom resource with `apiVersion: kots.io/v1beta2` in a release, KOTS v1.99.0 or later does a Helm install or upgrade of the associated Helm chart directly. This installation method supports all Helm functionality, including the use of Helm templating.
+When you include a HelmChart custom resource with `apiVersion: kots.io/v1beta2` in a release, KOTS v1.99.0 or later does a Helm install or upgrade of the associated Helm chart directly. This installation method supports most Helm functionality, including all functionality for the `helm install` and `helm upgrade` commands.
 
 The HelmChart custom resource `kots.io/v1beta2` differs from `kots.io/v1beta1` in that KOTS does _not_ modify the chart with Kustomize during installation to automatically rewrite images, inject pull secrets, and add backup labels. Because the chart is not modified, `kots.io/v1beta2` results in Helm chart installations that can be reproduced outside of KOTS.
 
 The `kots.io/v1beta2` HelmChart custom resource requires additional configuration to support the use of local registries, rewrite images, inject image pull secrets, and add backup labels. For more information, see [Configuring the HelmChart Custom Resource](helm-native-v2-using).    
 
-### HelmChart `kots.io/v1beta1` {#v1beta1}
+### Deprecated Methods
+
+This section describes the deprecated Helm chart installation methods that use the HelmChart custom resource `apiVersion: kots.io/v1beta1` .
+
+#### HelmChart `kots.io/v1beta1` {#v1beta1}
 
 :::note
 <Deprecated/>
@@ -129,7 +133,7 @@ To deploy Helm charts with version `kots.io/v1beta1` of the HelmChart custom res
    Finally, KOTS runs `helm upgrade -i <release-name> <chart> --timeout 3600s -n <namespace>`. The Helm binary processes hooks and weights, applies manifests to the Kubernetes cluster, and saves a release secret similar to `sh.helm.release.v1.chart-name.v1`. Helm uses this secret to track upgrades and rollbacks of applications.
 
 
-### Replicated Helm {#replicated}
+#### Replicated Helm {#replicated}
 
 :::note
 <Deprecated/>
