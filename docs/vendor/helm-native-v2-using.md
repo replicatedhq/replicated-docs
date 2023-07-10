@@ -18,7 +18,7 @@ For more information about how KOTS installs Helm charts with the `kots.io/v1bet
 
 ## Supporting Local Image Registries
 
-Local image registries are required for KOTS installations in air gapped environments. Also, by default, users in online environments can optionally push images to a local private registry. For more information about how users configure a local image registry with KOTS, see [Using Private Registries](/enterprise/image-registry-settings).
+Local image registries are required for KOTS installations in air gapped environments. Also, users in online environments can optionally push images to a local private registry. For more information about how users configure a local image registry with KOTS, see [Using Private Registries](/enterprise/image-registry-settings).
 
 To support the use of local registries for installations with version `kots.io/v1beta2` of the HelmChart custom resource, you must provide the necessary values in the `builder` field of the HelmChart custom resource to render the Helm chart with all of the necessary images. This instructs KOTS where to pull the images so that it can push them to the local private registry.
 
@@ -30,19 +30,15 @@ For more information about how to configure the `builder` key to support the use
 
 ## Rewriting Image Names
 
-This section describes how to configure the `values` key of the HelmChart custom resource to rewrite images names in your Helm chart `values.yaml` file. This ensures that your application images can be located during installation or upgrade. For more information about working with the `values` key, see [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_.
-
-### Private Images
+This section describes how to configure the `values` key of the HelmChart custom resource to rewrite image names in your Helm chart `values.yaml` file. This ensures that your application images can be located during installation or upgrade. For more information about working with the `values` key, see [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_.
 
 To locate images, Kubernetes requires:
-* The registry domain. For private images, this is the domain of the Registry proxy service at `proxy.replicated.com`. For public images, this is the domain of your external registry.
+* The registry domain. For private images, this is the domain of the Registry proxy service at `proxy.replicated.com`.
 * The path to the image repository on the registry. For private images accessed through the proxy service, the path has the following format: `/proxy/APP_SLUG/EXTERNAL_REGISTRY_IMAGE_URL`, where `APP_SLUG` is the slug of your Replicated application and `EXTERNAL_REGISTRY_IMAGE_URL` is the path to the private image on your external registry.
 
 You provide the registry domain and the image repository by adding fields for each under the `values` key of the HelmChart custom resource. The fields in the HelmChart `values` key map to fields in your Helm chart `values.yaml` file. For more information, see [Examples](#examples) below.
 
 For more information about how KOTS uses the proxy service to get proxy access to images on your external private registry, see [About Using an External Registry](private-images-about#about-the-proxy-service).
-
-### Local Image Registries
 
 To support users in air gap and online environments that push images to local registries, Replicated recommends that you use Replicated template functions with a ternary operator when you set the image registry domain and repository values.
 
