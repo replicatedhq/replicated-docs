@@ -11,7 +11,7 @@ When you include version `kots.io/v1beta2` of the HelmChart custom resource for 
 Supporting Helm chart installations with version `kots.io/v1beta2` of the HelmChart custom resource requires additional configuration. You need to update the HelmChart custom resource to rewrite images, inject image pull secrets, and add backup labels for snapshots in your Helm chart. Additionally, if you want to support the use of local image registries for air gap or online installations, you must configure the `builder` key.
 
 :::note
-Configuring the HelmChart custom resource version `kots.io/v1beta2` requires editing the `values`, `optionalValues`, and `builders` keys. Each of these keys has unique requirements and limitations. For more information about working with these keys, see [values](/reference/custom-resource-helmchart-v2#optional-values), [optionalValues](/reference/custom-resource-helmchart-v2#values), and [builders](/reference/custom-resource-helmchart-v2#builders).
+Configuring the HelmChart custom resource version `kots.io/v1beta2` requires editing the `values`, `optionalValues`, and `builders` keys. Each of these keys has unique requirements and limitations. For more information about working with these keys, see [values](/reference/custom-resource-helmchart-v2#values), [optionalValues](/reference/custom-resource-helmchart-v2#optionalvalues), and [builders](/reference/custom-resource-helmchart-v2#builders).
 :::
 
 For more information about how KOTS installs Helm charts with the `kots.io/v1beta2` HelmChart custom resource, including the differences between versions `kots.io/v1beta1` and `kots.io/v1beta2`, see [About Distributing Helm Charts with KOTS](helm-native-about).
