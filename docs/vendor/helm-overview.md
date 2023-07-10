@@ -31,7 +31,7 @@ The following table shows an overview of the Helm installation options:
   <td><p>Add your Helm chart and a <code>apiVersion: kots.io/v1beta2</code> Replicated HelmChart custom resource to a release.</p><p>See <a href="/vendor/helm-release">Creating a Release with Your Helm Chart for KOTS</a>.</p></td>
 </tr>
 <tr>
-  <td><a href="helm-native-about">kots.iov1beta1</a> (Native Helm)</td>
+  <td><a href="helm-native-about">kots.io/v1beta1</a> (Native Helm)</td>
   <td>Yes</td>
   <td><ul><li>Deprecated. Not recommended for new installations</li><li>Supports some Helm features like hooks and weights</li><li>Supports air gap and kURL clusters</li></ul></td>
   <td>
