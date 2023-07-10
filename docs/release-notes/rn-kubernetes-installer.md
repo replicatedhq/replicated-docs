@@ -11,10 +11,10 @@ toc_max_heading_level: 2
 Released on July 10, 2023
 
 ### Improvements {#improvements-v2023-07-10-0}
-* Clarify error message when installing on RHEL 9 variants without containerd.
+* Clarifies error message when installing on RHEL 9 variants without containerd.
 
 ### Bug Fixes {#bug-fixes-v2023-07-10-0}
-* Improve messaging when a subnet cannot be automatically discovered.
+* Improves messaging when a subnet cannot be automatically discovered.
 
 ## v2023.07.06-0
 
