@@ -12,7 +12,7 @@ The Replicated platform provides multiple options to manage, support, get insigh
 
 - **Replicated KOTS and Replicated kURL:** With KOTS and kURL installers, you package and update your application using KOTS and then securely distribute to customers using either Replicated installer. For more information, see [KOTS and kURL Installers](#installers).
 
-- **SDK, KOTS, and kURL:** You can use the SDK in the same release with KOTS and kURL. This lets you create one release to support multiple types of customer environments and installation needs.
+- **SDK, KOTS, and kURL:** You can use the SDK in the same release with KOTS and kURL. This lets you create one release to support multiple types of customer environments and installation needs so that your application runs consistently in every environment. For example, you might have customers that only want a Helm CLI installation for their existing cluster, and other customers who want a Kubernetes cluster provisioned for them with the application in an air gapped environment.
 
 Replicated provides the following features for managing, monitoring, distributing your apps, including a vendor portal and the replicated CLI to:
 
@@ -94,11 +94,13 @@ The Vendor API is the API for the vendor portal. This API can be used to complet
 
 ## Key Features
 
-This section describes some of the key features and use cases for the Replicated platform.
+This section describes some of the key features and use cases for the Replicated platform. ALl of these features are supported by the SDK, KOTS, and kURL.
 
 ### Release Management
 
+Replicated release features help you manages your product lifecycle effectively. Each release has release properties that let you define version numbers, optionally use semantic versioning, specify whether a KOTS release is required for upgrade or can be skipped, and provide your own release notes. You can test releases in a channel reserved for development, then promote the release to a Beta channel for customer testing, and then promote the release to a Stable channel when it is ready for general availability.
 
+You manage releases using the vendor portal or the replicated CLI.
 
 ### Custom License Entitlements
 
