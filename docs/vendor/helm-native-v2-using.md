@@ -6,7 +6,7 @@ This topic describes how to configure the `apiVersion: kots.io/v1beta2` HelmChar
 
 ## Overview
 
-When you include version `kots.io/v1beta2` of the HelmChart custom resource for a Helm chart in your release, KOTS v1.99.0 or later does a Helm install or upgrade of the chart without making any modifications to the chart.
+When you include version `kots.io/v1beta2` of the HelmChart custom resource for a Helm chart in your release, KOTS v1.99.0 or later does a Helm install or upgrade of the chart.
 
 Supporting Helm chart installations with version `kots.io/v1beta2` of the HelmChart custom resource requires additional configuration. You need to update the HelmChart custom resource to rewrite images, inject image pull secrets, and add backup labels for snapshots in your Helm chart. Additionally, if you want to support the use of local image registries for air gap or online installations, you must configure the `builder` key.
 
