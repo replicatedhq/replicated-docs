@@ -3,24 +3,9 @@ import UseCustomDomain from "../partials/custom-domains/_use-custom-domain.mdx"
 import Limitations from "../partials/custom-domains/_limitations.mdx"
 import Wizard from "../partials/custom-domains/_wizard.mdx"
 
-# Using Custom Domains for Replicated Registries and the Proxy Service
+# Using Custom Domains for Private Registries
 
 This topic describes how to add and use custom domains to alias the Replicated private registry, Replicated proxy service, and replicated.app.
-
-## About Custom Domains
-
-<CustomDomainsAbout/>
-
-You can configure custom domains for the following registries and services, so that customer-facing URLs reflect your company's brand:
-
-- **Replicated registry:** Images and Helm charts can be pulled from the Replicated registry. By default, this registry uses the domain `registry.replicated.com`. For more information, see [Push Images to the Replicated Private Registry](private-images-replicated).
-
-- **Proxy service:** Images can be proxied from external private registries using the Replicated proxy service. By default, the proxy service uses the domain `proxy.replicated.com`. For more information, see [About the Proxy Service](private-images-about#about-the-proxy-service) in _About Using an External Registry_.
-
-- **replicated.app:** Upstream application YAML and metadata, including a license ID, are pulled from replicated.app. By default, this service uses the domain `replicated.app`. For more information, see [Firewall Openings for Online Installations](/enterprise/installing-general-requirements#firewall-openings-for-online-installations) in _Installation Requirements_.
-
-- **Download portal:** The download portal can be used to share customer license files. For more information about customizing the download portal domain, see [Using a Custom Domain for the Download Portal](custom-domains-download-portal).
-
 
 ## Limitations
 
