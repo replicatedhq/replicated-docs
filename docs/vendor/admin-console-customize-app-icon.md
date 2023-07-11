@@ -3,7 +3,7 @@
 You can add a custom application icon that displays in the Replicated admin console and the download portal. Adding a custom icon helps ensure that your brand is reflected for your customers.
 
 :::note
-You can also use a custom domain for the download portal. For more information, see [About Custom Domains](custom-domains-about).
+You can also use a custom domain for the download portal. For more information, see [About Custom Domains](custom-domains).
 :::
 
 ## Add a Custom Icon
