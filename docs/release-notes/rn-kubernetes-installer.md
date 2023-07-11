@@ -10,6 +10,10 @@ toc_max_heading_level: 2
 
 Released on July 11, 2023
 
+### Bug Fixes {#bug-fixes-v2023-07-11-0}
+* Fixes support for RHEL 9.2
+* Fixes adding the Registry add-on to multi-node clusters using Containerd.
+
 ## v2023.07.10-0
 
 Released on July 10, 2023
