@@ -9,7 +9,7 @@ This topic describes how to add status informers for your application.
 
 ## About Status Informers
 
-_Status informers_ are supported Kubernetes resources deployed as part of your application that you add to the `statusInformers` property in the Replicated Application custom resource. Replicated KOTS watches all resources that you add as status informers for changes in state.
+_Status informers_ report on the status of supported Kubernetes resources deployed as part of your application. You enable status informers by listing the target resources under the `statusInformers` property in the Replicated Application custom resource. Replicated KOTS watches all resources that you add to the `statusInformers` property for changes in state.
 
 Possible resource statuses are Ready, Updating, Degraded, Unavailable, and Missing. For more information, see [Understanding Application Status](#understanding-application-status) below.
 

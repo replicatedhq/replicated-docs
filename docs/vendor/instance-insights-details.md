@@ -192,14 +192,175 @@ The following shows an example of the **Instance Activity** data stream:
 
 ![Instance Activity section of Instance details page](/images/instance-activity.png)
 
-You can filter the **Instance Activity** stream by the following event categories:
+You can filter the **Instance Activity** stream by the following categories:
 
-* Cluster status
-* Upstream update
-* App status
-* App install/upgrade
-* KOTS version
-* Replicated SDK version
-* Infrastructure status
+* [App install/upgrade](#app-install-upgrade)
+* [App status](#app-status)
+* [Cluster status](#cluster)
+* [Infrastructure status](#infrastructure)
+* [KOTS version](#kots)
+* [Replicated SDK version](#sdk)
+* [Upstream update](#upstream)
 
-For more information about the types of events displayed in the **Instance Activity** stream, see [Types of Events](instance-insights-event-data#types-of-events) in _About Instance and Event Data_.
+#### App install/upgrade {#app-install-upgrade}
+
+<table>
+  <tr>
+    <th>Label</th>
+    <th>Description</th>
+  </tr> 
+  <tr>
+    <td>App Channel</td>
+    <td>The ID of the channel the application instance is assigned.</td>
+  </tr> 
+  <tr>
+    <td>App Version</td>
+    <td>The version label of the release that the instance is currently running. The version label is the version that you assigned to the release when promoting it to a channel.</td>
+  </tr> 
+</table>
+
+#### App status {#app-status}
+
+<table>
+  <tr>
+    <th>Label</th>
+    <th>Description</th>
+  </tr> 
+  <tr>
+    <td>App Status</td>
+    <td>
+      <p>A string that represents the status of the application. Possible values: Ready, Updating, Degraded, Unavailable, Missing.</p>
+      <p>Additional configuration is required to get app status data. See <a href="insights-app-status">Enabling and Understanding Application Status</a>.</p>
+    </td>
+  </tr>
+</table>
+
+#### Cluster status {#cluster}
+
+<table>
+  <tr>
+    <th>Label</th>
+    <th>Description</th> 
+  </tr> 
+  <tr>
+    <td>Cluster Type</td>
+    <td>
+      <p>Indicates if the cluster was provisioned by kURL.</p>
+      <p>Possible values:</p>
+      <ul>
+        <li><code>kURL</code>: The cluster is provisioned by kURL.</li>
+        <li><code>Existing</code>: The cluster is <em>not</em> provisioned by kURL.</li>
+      </ul>
+      <p>For more information about kURL clusters, see <a href="packaging-embedded-kubernetes">Creating a Kubernetes Installer</a>.</p>
+    </td>
+  </tr> 
+  <tr>
+    <td>Kubernetes Version</td>
+    <td>The version of Kubernetes running in the cluster.</td>
+  </tr>
+  <tr>
+    <td>Kubernetes Distribution</td>
+    <td>
+      <p>The Kubernetes distribution of the cluster.</p>
+      <p>Possible values:</p>
+      <ul>
+        <li>EKS</li>
+        <li>GKE</li>
+        <li>K3S</li>
+        <li>RKE2</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>kURL Nodes Total</td>
+    <td>
+      <p>Total number of nodes in the cluster.</p>
+      <p><strong>Note:</strong> Applies only to kURL clusters.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>kURL Nodes Ready</td>
+    <td>
+      <p>Number of nodes in the cluster that are in a healthy state and ready to run Pods.</p>
+      <p><strong>Note:</strong> Applies only to kURL clusters.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>New kURL Installer</td>
+    <td>
+      <p>The ID of the Kubernetes installer specification that kURL used to provision the cluster. Indicates that a new Installer specification was added. An installer specification is a manifest file that has <code>apiVersion: cluster.kurl.sh/v1beta1</code> and <code>kind: Installer</code>. </p>
+      <p>For more information about installer specifications for kURL, see <a href="packaging-embedded-kubernetes">Creating a Kubernetes Installer</a>.</p>
+      <p><strong>Note:</strong> Applies only to kURL clusters.</p>
+    </td> 
+  </tr>  
+</table>
+
+
+#### Infrastructure status {#infrastructure}
+
+<table>
+  <tr>
+    <th>Label</th>
+    <th>Description</th>
+  </tr> 
+  <tr>
+    <td>Cloud Provider</td>
+    <td>
+      <p>The cloud provider where the instance is running. Cloud provider is determined by the IP address that makes the request.</p>
+      <p>Possible values:</p>
+      <ul>
+        <li>AWS</li>
+        <li>GCP</li>
+        <li>DigitalOcean</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>Cloud Region</td>
+    <td>
+      <p>The cloud provider region where the instance is running. For example, <code>us-central1-b</code></p>
+    </td> 
+  </tr>
+</table>
+
+#### KOTS version {#kots}
+
+<table>
+  <tr>
+    <th>Label</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>KOTS Version</td>
+    <td>The version of KOTS that the instance is running. KOTS version is displayed as a Semantic Versioning compliant string.</td> 
+  </tr> 
+</table>
+
+#### Replicated SDK version {#sdk}
+
+<table>
+  <tr>
+    <th>Label</th>
+    <th>Description</th> 
+  </tr>
+  <tr>
+    <td>Replicated SDK Version</td>
+    <td>The version of the Replicated SDK that the instance is running. SDK version is displayed as a Semantic Versioning compliant string.</td>
+  </tr> 
+</table>
+
+#### Upstream update {#upstream}
+
+<table>
+  <tr>
+    <th>Label</th>
+    <th>Description</th> 
+  </tr> 
+  <tr>
+    <td>Versions Behind</td>
+    <td>
+      <p>The number of versions between the version that the instance is currently running and the latest version available on the channel.</p>
+      <p>Computed by the vendor portal each time it receives instance data.</p>
+    </td>
+  </tr>
+</table>

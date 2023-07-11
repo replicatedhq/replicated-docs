@@ -1,11 +1,13 @@
+* For Helm installations that include the Replicated SDK, the SDK automatically sends data to the vendor portal every four hours.
+
 * The instance checks for available updates:
-  * By default, the Replicated SDK and KOTS are both configured to check for updates every four hours.
+  * By default, KOTS checks for updates every four hours.
 
     :::note
     KOTS users can modify or disable automatic update checks from the admin console. For more information, see [Updating an Application](/enterprise/updating-apps) in the _Enterprise_ section.
     :::
 
-  * For Helm installations that include the Replicated SDK, an update check can occur when the instance makes a request to the `/api/v1/app/updates` SDK API endpoint. See [app](/reference/replicated-sdk-apis#app) in _Replicated SDK API (Alpha)_.
+  * For Helm installations that include the Replicated SDK, an update check occurs when the instance makes a request to the `/api/v1/app/updates` SDK API endpoint. See [app](/reference/replicated-sdk-apis#app) in _Replicated SDK API (Alpha)_.
 
   * For KOTS installations, an update check can occur when a user clicks the **Check for updates** button in the Replicated admin console.
 
