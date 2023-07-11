@@ -121,6 +121,14 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Custom Domains',
+      items: [
+        'vendor/custom-domains',
+        'vendor/custom-domains-using',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Customer Licenses',
       items: [
         'vendor/licenses-about',
@@ -183,7 +191,6 @@ const sidebars = {
       label: 'Admin Console and Download Portal Customization',
       items: [
         'vendor/admin-console-customize-app-icon',
-        'vendor/custom-domains-download-portal',
         'vendor/admin-console-display-app-status',
         'vendor/admin-console-adding-buttons-links',
         'vendor/admin-console-prometheus-monitoring',

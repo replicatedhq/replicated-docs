@@ -3,39 +3,30 @@ import UseCustomDomain from "../partials/custom-domains/_use-custom-domain.mdx"
 import Limitations from "../partials/custom-domains/_limitations.mdx"
 import Wizard from "../partials/custom-domains/_wizard.mdx"
 
-# About Custom Domains
+# Using Custom Domains
 
-<CustomDomainsAbout/>
+This topic describes how to add and manage custom domains to alias the Replicated private registry, Replicated proxy service, replicated.app, and the download portal.
 
-You can configure custom domains for the following registries and services, so that customer-facing URLs reflect your company's brand:
+For an overview about custom domains and limitations, see [About Custom Domains](custom-domains-about).
 
-- **Replicated registry:** Images and Helm charts can be pulled from the Replicated registry. By default, this registry uses the domain `registry.replicated.com`.
 
-- **Proxy service:** Images can be proxied from external private registries using the Replicated proxy service. By default, the proxy service uses the domain `proxy.replicated.com`.
+## Configure a Custom Domain
 
-- **replicated.app:** Upstream application YAML and metadata, including a license ID, are pulled from replicated.app. By default, this service uses the domain `replicated.app`.
+Before you assign a custom domain for a registry or the download portal, you must first configure and verify the ownership and TLS certificate.
 
-- **Download portal:** The download portal can be used to share customer license files. By default, the download portal uses the domain `get.replicated.com`.
-
-## Limitations
-
-<Limitations/>
-
-## Configure a Custom Registry or Proxy Domain
-
-To add and configure a custom domain for the Replicated registry or proxy service:
+To add and configure a custom domain:
 
 <Wizard/>
 
-## Use a Custom Domain for the Replicated Registry or Proxy {#use}
+## Assign Custom Domain
 
 <UseCustomDomain/>
 
-## Reuse a Custom Domain for Another Application
+## Reuse a Registry Custom Domain for Another Application
 
-If you have configured a custom domain for one application, you can reuse the custom domain for another application in the same team without going through the ownership and TLS certificate verification process again.
+If you have configured a private registry custom domain for one application, you can reuse the custom domain for another application in the same team without going through the ownership and TLS certificate verification process again.
 
-To reuse a custom domain for another application:
+To reuse a registry custom domain for another application:
 
 1. In the vendor portal, select the application from the dropdown list.
 
