@@ -1,6 +1,6 @@
-# Verifying License Field Signatures (Alpha)
+# Verifying License Field Signatures for Helm Installations (Beta)
 
-This topic describes how to verify the signatures of license fields when you check customer entitlements in your Helm chart application.
+This topic describes how to verify the signatures of license fields when you check customer entitlements in your Helm chart application. For information about checking license fields for Helm installations, see [Checking Entitlements for Helm Installations (Beta)](licenses-reference-helm).
 
 ## Overview
 
@@ -19,14 +19,14 @@ To prevent man-in-the-middle attacks or spoofing by your customers, license fiel
 }
 ```
 
-Replicated recommends that you use signature verification to ensure the integrity of each license field you use in your application. For more information about checking entitlements in your application when you are using the Replicated SDK, see [Checking Entitlements for Helm Installations (Alpha)](licenses-reference-helm).
+Replicated recommends that you use signature verification to ensure the integrity of each license field you use in your application. For more information about checking entitlements in your application when you are using the Replicated SDK, see [Checking Entitlements for Helm Installations (Beta)](licenses-reference-helm).
 
 ## Requirements
 
 Using signature verification has the following requirements:
 
 * The **Foundation Plan Signature Verification** feature flag must be enabled for your team in the Replicated vendor portal.
-* To check entitlements at runtime or before installation in your Helm chart application, you must include the Replicated SDK as a dependency of your application. For more information, see [Using the SDK with Your Application (Alpha)](replicated-sdk-using).
+* To check entitlements at runtime or before installation in your Helm chart application, you must include the Replicated SDK as a dependency of your application. For more information, see [Using the SDK with Your Application (Beta)](replicated-sdk-using).
 
 ## Use Your Public Key to Verify License Field Signatures
 

@@ -46,7 +46,7 @@ Released on June 2, 2023
 Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
 
 ### Improvements {#improvements-1-100-1}
-* Updates the way custom domains for the Replicated private registry and proxy service are used. If a default or channel-specific custom domain is configured, that custom domain is associated with a release when it is promoted to a channel. KOTS will rewrite images using that custom domain. The `replicatedRegistryDomain` and `proxyRegistryDomain` fields in the Application custom resource are deprecated but continue to work to give time to migrate to the new mechanism.
+* Updates the way custom domains for the Replicated registry and proxy service are used. If a default or channel-specific custom domain is configured, that custom domain is associated with a release when it is promoted to a channel. KOTS will rewrite images using that custom domain. The `replicatedRegistryDomain` and `proxyRegistryDomain` fields in the Application custom resource are deprecated but continue to work to give time to migrate to the new mechanism.
 * Updates the rqlite/rqlite image to 7.19.0 to resolve CVE-2023-1255 with medium severity.
 
 ## 1.100.0
@@ -397,7 +397,7 @@ Released on December 16, 2022
 Support for Kubernetes: 1.21, 1.22, 1.23, 1.24, and 1.25
 
 ### New Features {#new-features-1-92-0}
-* The app manager uses the `replicatedRegistryDomain` domain to rewrite images stored in the Replicated private registry, when the `replicatedRegistryDomain` field is provided in the Application custom resource.
+* The app manager uses the `replicatedRegistryDomain` domain to rewrite images stored in the Replicated registry, when the `replicatedRegistryDomain` field is provided in the Application custom resource.
 * Adds the [KubernetesVersion](/reference/template-functions-static-context#kubernetesversion), [KubernetesMajorVersion](/reference/template-functions-static-context#kubernetesmajorversion), and [KubernetesMinorVersion](/reference/template-functions-static-context#kubernetesminorversion) template functions.
 
 ### Improvements {#improvements-1-92-0}

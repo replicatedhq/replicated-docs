@@ -25,7 +25,7 @@ Replicated might use the following entities to provide infrastructure that helps
 
 | Entity Name | Purpose | Country where Infrastructure Resides | Notes
 |---------------------|----------------------------|-------|----|
-| Amazon Web Services | Various IIAS  | United States | Vendor portal, registry, api and supporting infrastructure services.
+| Amazon Web Services | Various IaaS  | United States | Vendor portal, registry, api and supporting infrastructure services.
 | Cloudflare | Network security, DDoS mitigation, DNS  | United States |
 | Datadog | Performance monitoring | United States |
 | DBT Labs | Data transformation or migration | United States |

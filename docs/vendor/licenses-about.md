@@ -7,9 +7,9 @@ This topic provides an overview of customer licenses, including information abou
 
 ## Overview
 
-Each customer that you create in the Replicated vendor portal has a unique license file. Your customers use their license when they install or update your application.
+Each customer that you create in the Replicated vendor portal has a unique license ID. Your customers use their license when they install or update your application.
 
-Each customer license includes several fields that uniquely identify the customer and the application, specify the release channel, and define the customer's entitlements, such as if the license has an expiration date or what application functionality the customer can access. Replicated securely delivers these entitlements to the application and makes them available in the Kubernetes manifest files or at runtime using the Replicated admin console API.
+Each customer license includes several fields that uniquely identify the customer and the application, specify the release channel, and define the customer's entitlements, such as if the license has an expiration date or what application functionality the customer can access. Replicated securely delivers these entitlements to the application and makes them available at installation or at runtime.
 
 For more information about how to create and manage customers, see [Creating and Managing Customers](releases-creating-customer).
 
@@ -25,7 +25,9 @@ For more information about how to mark a release as required, see [Release Prope
 
 ### Built-in and Custom License Fields
 
-Each customer license file has several built-in fields. Built-in fields are reserved field names. You can specify the values for these fields to define entitlements for the customer. For example, there are built-in license fields that define the license expiration date, the customer name, the application slug, and whether air gap installations are supported. For more information about built-in fields, see [About Built-in License Fields](licenses-using-builtin-fields).
+Customer licenses have built-in fields and also support custom fields.
+
+Built-in fields are reserved field names. You can specify the values for these fields to define entitlements for the customer. For example, Replicated includes built-in license fields to define the license expiration date, customer name, and application slug. For more information about built-in fields, see [About Built-in License Fields](licenses-using-builtin-fields).
 
 You can also create custom license fields to define entitlements specific to the customer. For example, you can create a custom license field to limit the number of active users permitted. For more information about creating custom license fields, see [Managing Custom License Fields](licenses-adding-custom-fields).
 
@@ -33,13 +35,37 @@ You can also create custom license fields to define entitlements specific to the
 
 Each customer license includes a `license_type` field. The type of customer defined by the `license_type` field is used solely for reporting purposes. A customer's access to your application is not affected by the type that you assign.
 
-The possible values for the `license_type` field are development, trial, paid, and community. For more information about each type, see [About Customer License Types](licenses-about-types).
+The customer types are:
 
-### License Expiration Handling
+* **Development**: The Development type can be used internally by the development
+team for testing and integration.
+* **Trial**: The Trial type can be used for customers who are on 2-4 week trials
+of your software.
+* **Paid**: The Paid type identifies the customer as a paying customer for which
+additional information can be provided.
+* **Community**: The Community type is designed for a free or low cost version of your
+application. For more details about this type, see [Community Licenses](licenses-about-types).
+
+### KOTS License Updates
+
+You can make changes to a customer in the vendor portal to edit their license details at any time. For more information about how to edit customers, see [Edit a Customer](releases-creating-customer#edit-a-customer) in _Creating and Managing Customers_.
+
+When you edit customer licenses for an application installed with KOTS, your customers can use the Replicated admin console to update their license.
+
+For online instances, license updates are pulled from the vendor portal when:
+  * An automatic or manual update check is performed by KOTS.
+  * A customer selects **Sync license** in the admin console.
+  * An app status changes. See [Current State](instance-insights-details#current-state) in _Instance Details_.
+
+For air gap instances, because air gap licenses are signed with the updated fields, customers must upload a regenerated license file to the admin console every time you modify license fields. After you update the license fields in the vendor portal, you can notify customers by either sending them a new license file or instructing them to log into their download portal to retrieve the updated license. Then, they can click **Upload license** on the **License** tab of the admin console to upload the new license file.
+
+For more information about how to update licenses in the admin console for KOTS installations, see [Updating Licenses](/enterprise/updating-licenses).
+
+### KOTS License Expiration Handling
 
 The built-in `expires_at` license field defines the expiration date for a customer license. When you set an expiration date in the vendor portal, the `expires_at` field is set to midnight UTC on the date selected.
 
-By default, an application with an expired license continues to run, but is prevented from receiving updates. To change the behavior of your application when a license expires, you can can add custom logic based on the values for the `expires_at` field.
+KOTS includes default logic for license expiration handling. By default, a KOTS installation with an expired license continues to run, but KOTS prevents the application from receiving updates. To change the behavior of your application when a license expires, you can can add custom logic based on the values for the `expires_at` field. For more information, see [Checking Entitlements for KOTS](licenses-referencing-fields).
 
 ## About the Customers Page
 
@@ -50,15 +76,15 @@ The following shows an example of the **Customers** page:
 
 From the **Customers** page, you can do the following:
 
-* Create new customers
+* Create new customers.
 
-* Download a CSV file with details about each customer
+* Download a CSV file with details about each customer.
 
 * View insights about the adoption rate of each version of your application across your customers. For more information, see [Adoption Rate (Beta)](customer-adoption).
 
 * Click the **Manage customer** button to edit details such as the customer name and email, the custom license fields assigned to the customer, and the license expiration policy. For more information, see [Creating and Managing Customers](releases-creating-customer).
 
-* Download the license file for each customer
+* (KOTS Only) Download the license file for each customer.
 
 * Click the **Customer reporting** button to view data about the active application instances associated with each customer. For more information, see [Customer Reporting](customer-reporting).
 
@@ -68,9 +94,9 @@ From the **Customers** page, you can do the following:
   
   [View a larger version of this image](/images/customer-reporting-details.png)
 
-* Archive customers.  For more information, see [Creating and Managing Customers](releases-creating-customer).
+* Archive customers. For more information, see [Creating and Managing Customers](releases-creating-customer).
 
-* Click on a customer in the **Customers** page to access the following customer-specific pages:
+* Click on a customer on the **Customers** page to access the following customer-specific pages:
   * [Reporting](#reporting-page)
   * [Customer details](#customer-details-page)
   * [Support bundles](#support-bundles-page)

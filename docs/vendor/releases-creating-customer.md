@@ -30,7 +30,7 @@ To create a customer:
 
 1. For **Customer type**, set the customer type. Customer type is used only for reporting purposes. Customer access to your application is not affected by the type you assign to them. By default, **Trial** is selected. For more information, see [About Customer License Types](licenses-about-types).
 
-1. In the **License options** pane, enable the options that you have added to your application package. For more information, see [About built-in license fields](licenses-using-builtin-fields).
+1. (KOTS Only) In the **License options** pane, configure any of the built-in KOTS entitlements that you support in your application. For more information, see [Built-in License Fields](licenses-using-builtin-fields).
 
     The available license options are:
 
@@ -61,9 +61,33 @@ To create a customer:
         </tr>
       </table>
 
-1. (Optional) For **Custom fields**, you can add custom fields that let you securely deliver customer-specific values or entitlements to the installation. The custom fields you create apply to all customers. For more information, see [Managing Custom License Fields](licenses-adding-custom-fields).
+1. (Optional) For **Custom fields**, configure any custom fields that are available for your Replicated application. For more information about how to create custom fields for your application, see [Managing Custom License Fields](licenses-adding-custom-fields).
 
 1. Click **Save Changes**.
+
+## Edit a Customer
+
+You can edit the built-in and custom license fields for a customer at any time.
+   
+Replicated recommends that you test any licenses changes in a development environment. If needed, install the application using a developer license matching the current customer's entitlements before editing the developer license. Then validate the updated license.
+
+:::important
+For online environments, changing license entitlements can trigger changes to the customer's installed application instance during runtime. Replicated recommends that you verify the logic your application uses to query and enforce the target entitlement before making any changes.
+:::
+
+To edit license fields:
+
+1. In the [vendor portal](https://vendor.replicated.com), click **Customers**.
+
+1. Select the target customer and click the **Customer details** tab.
+
+1. On the **Customer details** page, edit the desired fields and click **Save**.
+
+   ![Full customer details page for a customer named Prestige Financial](/images/customer-details.png)
+
+1. Test the changes by installing or updating in a development environment. Do one of the following, depending on the installation method for your application:
+    * For applications installed with Helm that use the Replicated SDK, you can add logic to your application to enforce entitlements before installation or during runtime using the Replicated SDK API license endpoints. See [Checking Entitlements for Helm Installations (Beta)](licenses-reference-helm).
+    * For applications installed with Replicated KOTS, update the license in the admin console. See [Update Online Licenses](/enterprise/updating-licenses#update-online-licenses) and [Update Air Gap Licenses](/enterprise/updating-licenses#update-air-gap-licenses) in _Updating Licenses_.
 
 ## Archive a Customer
 

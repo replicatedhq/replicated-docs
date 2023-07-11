@@ -33,19 +33,19 @@ Replicated will provide support for products per our terms and services until th
     <th width="25%">End of Life</th>
   </tr>
   <tr>
-    <td>Replicated (Replicated SDK)</td>
-    <td>Alpha</td>
+    <td><a href="https://docs.replicated.com/vendor/replicated-sdk-overview">Replicated (Replicated SDK)</a></td>
+    <td>Beta</td>
     <td>N/A</td>
     <td>N/A</td>
   </tr>
   <tr>
-    <td><a href="[https://docs.replicated.com/](https://docs.replicated.com/intro-replicated#app-manager)">Replicated (KOTS Installer)</a></td>
+    <td><a href="https://docs.replicated.com/intro-replicated#kots">Replicated (KOTS Installer)</a></td>
     <td>GA</td>
     <td>N/A</td>
     <td>N/A</td>
   </tr>
     <tr>
-    <td><a href="https://docs.replicated.com/intro-replicated#kubernetes-installer">Replicated (kURL Installer)</a></td>
+    <td><a href="https://docs.replicated.com/intro-replicated#kurl">Replicated (kURL Installer)</a></td>
     <td>GA</td>
     <td>N/A</td>
     <td>N/A</td>
@@ -101,4 +101,4 @@ The End of Replicated Support date is the End Of Life (EOL) date for the Kuberne
 
 The information contained herein is believed to be accurate as of the date of publication, but updates and revisions may be posted periodically and without notice.
 
-Last modified May 31, 2023.
+Last modified July 7, 2023.

@@ -655,7 +655,7 @@ A repeatable config item copies a YAML array entry or YAML document for as many 
 To make an item repeatable, set `repeatable` to true:
 
 ```yaml
-    - name: ports
+    - name: ports_group
       items:
       - name: serviceport
         title: Service Port
@@ -668,7 +668,7 @@ Repeatable items do not use the `default` or `value` fields, but instead a `valu
 
 ```yaml
     valuesByGroup:
-      ports:
+      ports_group:
         port-default-1: "80"
 ```
 
@@ -721,7 +721,7 @@ Repeatable templates are processed before config template rendering.
 Repeatable items are processed in order of the template targets in the Config Spec file. Effectively, this ordering is from the top of the Config Spec, by Config Group, by Config Item, and then by template target.
 
 ```yaml
-    - name: ports
+    - name: ports_group
       items:
       - name: serviceport
         title: Service Port
@@ -771,7 +771,7 @@ In these examples, the default service port of "80" is included with the release
 **Config custom resource manifest file:**
 
 ```yaml
-    - name: ports
+    - name: ports_group
       items:
       - name: serviceport
         title: Service Port
@@ -784,7 +784,7 @@ In these examples, the default service port of "80" is included with the release
           namespace: my-app
           yamlPath: spec.ports[0]
         valuesByGroup:
-          ports:
+          ports_group:
             port-default-1: "80"
 ```
 
@@ -865,7 +865,7 @@ spec:
 ### Repeatable Item Example for an Entire Document
 **Config spec:**
 ```yaml
-    - name: ports
+    - name: ports_group
       items:
       - name: serviceport
         title: Service Port
@@ -877,7 +877,7 @@ spec:
           name: my-service
           namespace: my-app
         valuesByGroup:
-          ports:
+          ports_group:
             port-default-1: "80"
 ```
 

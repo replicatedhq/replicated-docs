@@ -13,29 +13,33 @@ For more information, see [About channels](releases-about-channels).
 
 To create a channel:
 
-1. From the Replicated [vendor portal](https://vendor.replicated.com), select Channels from the left menu.
+1. From the Replicated [vendor portal](https://vendor.replicated.com), select **Channels** from the left menu.
 1. Click **Create Channel**.
 
-  The Create a new channel dialog opens.
+  The Create a new channel dialog opens. For example:
 
-  ![Create Channel](/images/channels-create.png)
+  <img src="/images/channels-create.png" alt="Create channel dialog" width="400px"/>
 
 1. Enter a name and description for the channel.
-1. (Optional) To enable semantic versioning on the channel, if it is not enabled by default, turn on **Enable semantic versioning**. For more information about semantic versioning and defaults, see [Semantic Versioning](releases-about#semantic-versioning).
+1. (KOTS Only) For applications that support installation with Replicated KOTS, to enable semantic versioning on the channel if it is not enabled by default, turn on **Enable semantic versioning**. For more information about semantic versioning and defaults, see [Semantic Versioning](releases-about#semantic-versioning).
 
-1. (Optional) To enable an air gap bundle format that supports image digests and deduplication of image layers, turn on **Enable new air gap bundle format**. For more information, see [Using Image Tags and Digests](/vendor/packaging-private-images#using-image-tags-and-digests) in _Connecting to an Image Registry_.
+1. (KOTS Only) For applications that support installation with KOTS, to enable an air gap bundle format that supports image digests and deduplication of image layers, turn on **Enable new air gap bundle format**. For more information, see [Using Image Tags and Digests](/vendor/packaging-private-images#using-image-tags-and-digests) in _Connecting to an Image Registry_.
 1. Click **Create Channel**.
 
 ## Edit a Channel
 
-To edit an existing channel:
+To edit the settings of an existing channel:
 
 1. In the vendor portal, select **Channels** from the left menu.
 1. Click the gear icon on the top right of the channel that you want to modify.
 
-  The Channel settings dialog opens.
+  The Channel settings dialog opens. For example:
+
+  <img src="/images/channel-settings.png" alt="Channel Settings dialog in the vendor portal" width="500"/>
 
 1. Edit the fields and click **Save**.
+
+   For more information about channel settings, see [Channel Settings](releases-about-channels#channel-settings) in _About Channels_.
 
 ## Archive a Channel
 
@@ -66,11 +70,3 @@ To archive a channel with the vendor portal or the replicated CLI:
      Replace `CHANNEL_ID` with the channel ID that you retrieved in the previous step.
 
      For more information, see [channel delete](/reference/replicated-cli-channel-delete) in the replicated CLI documentation.
-
-## Next Step
-
-- [Managing Releases with the Vendor Portal](releases-creating-releases)
-
-## Related Topic
-
-[How to Create Releases for Your Application](distributing-workflow)

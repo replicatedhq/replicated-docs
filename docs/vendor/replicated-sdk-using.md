@@ -1,12 +1,9 @@
-import Beta from "../partials/replicated-sdk/_beta.mdx"
 import HelmReleaseSteps from "../partials/helm/_helm-release-steps.mdx"
 import HelmReleaseStepsCLI from "../partials/helm/_helm-release-steps-cli.mdx"
 
-# Using the SDK With Your Application (Alpha)
+# Using the SDK With Your Application (Beta)
 
 This topic describes how to begin using the Replicated SDK by declaring it as a dependency in your application Helm chart. 
-
-<Beta/>
 
 ## Prerequisite
 
