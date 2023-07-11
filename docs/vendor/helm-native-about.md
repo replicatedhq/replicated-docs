@@ -31,9 +31,9 @@ For more information about how KOTS processes and installs Helm charts based on 
 
 > Introduced in Replicated KOTS v1.99.0
 
-When you include a HelmChart custom resource with `apiVersion: kots.io/v1beta2` in a release, KOTS v1.99.0 or later does a Helm install or upgrade of the associated Helm chart directly. This installation method supports most Helm functionality, including all functionality for the `helm install` and `helm upgrade` commands.
+When you include a HelmChart custom resource with `apiVersion: kots.io/v1beta2` in a release, KOTS v1.99.0 or later does a Helm install or upgrade of the associated Helm chart directly. This installation method supports most Helm functionality, including all functionality for the `helm install` and `helm upgrade` commands, lookup and Capabilities functions, and using `helm get values` to view the values that were used to install.
 
-The HelmChart custom resource `kots.io/v1beta2` differs from `kots.io/v1beta1` in that KOTS does _not_ modify the chart with Kustomize during installation to automatically rewrite images, inject pull secrets, and add backup labels. Because the chart is not modified, `kots.io/v1beta2` results in Helm chart installations that can be reproduced outside of KOTS.
+The HelmChart custom resource `kots.io/v1beta2` differs from `kots.io/v1beta1` in that KOTS does _not_ modify the chart with Kustomize during installation. Because the chart is not modified, `kots.io/v1beta2` results in Helm chart installations that are more consistent, reliable, and easier to troubleshoot. For example, you can view the values that were used to install with `helm get values`. Also, you can reproduce the exact installation outside of KOTS by downloading a copy of the application files from the cluster with `kots download`, then using those files to install with `helm install`.
 
 The `kots.io/v1beta2` HelmChart custom resource requires additional configuration to support the use of local registries, rewrite images, inject image pull secrets, and add backup labels. For more information, see [Configuring the HelmChart Custom Resource](helm-native-v2-using).    
 
@@ -163,6 +163,8 @@ The following limitations apply when using version `kots.io/v1beta2` of the Helm
 * Available only for KOTS v1.99.0 and later.
 
 * Additional configuration is required to support online installations that are configured to use a local private registry, to rewrite image names, to inject image pull secrets for private images, and to support snapshots. For more information, see [Configuring the HelmChart Custom Resource](helm-native-v2-using).
+
+* <HooksLimitation/>
 
 * Editing the downstream Kustomization files to make changes before deploying the application is not supported because KOTS does not use Kustomize to install the Helm chart.
 
