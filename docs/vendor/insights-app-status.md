@@ -12,7 +12,7 @@ This topic describes how to configure your application so that you can view the 
 
 The vendor portal displays data on the status of instances of your application that are running in customer environments, including the current state (such as Ready or Degraded), the instance uptime, and the average amount of time it takes your application to reach a Ready state during installation. For more information about viewing instance data, see [Instance Details](instance-insights-details).
 
-To compute and display these insights, the vendor portal uses the value of the instance's `appStatus` data field. To populate the `appStatus` field, Replicated interprets and aggregates the state of one or more of the supported Kubernetes resources that are deployed to the cluster as part of your application.
+To compute and display these insights, the vendor portal interprets and aggregates the state of one or more of the supported Kubernetes resources that are deployed to the cluster as part of your application.
 
 <SupportedResources/>
 

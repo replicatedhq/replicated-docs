@@ -2,23 +2,23 @@ import Checkins from "../partials/instance-insights/_appCheckins.mdx"
 
 # About Instance and Event Data
 
-This topic provides an overview of the customer and instance insights that you can view in the Replicated vendor portal. It includes information about how the vendor portal accesses data from online installations, the types of instance events displayed in the vendor portal, and requirements and limitations for viewing instance data.  
+This topic provides an overview of the customer and instance insights that you can view in the Replicated vendor portal. It includes information about how the vendor portal accesses data from online installations and requirements and limitations for viewing instance data.  
 
 ## How the Vendor Portal Collects Instance Data {#about-reporting}
 
 The vendor portal collects data from instances installed in online environments. Depending on the application's installation method, either the Replicated SDK or Replicated KOTS periodically sends a small amount of data to the vendor portal, including properties such as the current version and status of the instance.
 
-The primary purpose of this instance data is to compile the list of new versions that are available to the given instance for upgrade. For a full overview of what data might be included, see the [Replicated Data Transmission Policy](https://docs.replicated.com/vendor/policies-data-transmission).
+For a full overview of what data might be included, see the [Replicated Data Transmission Policy](https://docs.replicated.com/vendor/policies-data-transmission).
 
 The vendor portal receives instance data when any of the following _check-ins_ occur:
 
 <Checkins/>
 
-## How the Vendor Portal Generates Events
+## How the Vendor Portal Generates Events and Insights
 
-When the vendor portal receives instance data, it evaluates each data field to determine if there was a change in its value. For each field that changes in value, the vendor portal creates an _event_ to record the change. For example, a change from `ready` to `degraded` in the `appStatus` field generates an event.
+When the vendor portal receives instance data, it evaluates each data field to determine if there was a change in its value. For each field that changes in value, the vendor portal creates an _event_ to record the change. For example, a change from Ready to Degraded in the application status generates an event.
 
-In addition to creating events for changes in data sent by the instance, the vendor portal also generates events for changes in values of computed metrics. The vendor portal updates the values of computed metrics each time it receives instance data. For example, the vendor portal computes a `numberVersionsBehind` metric that tracks the number of versions behind the latest available version for the instance. When the instance checks for updates and a new update is available, the value of the `numberVersionsBehind` metric changes and the vendor portal generates an event.
+In addition to creating events for changes in data sent by the instance, the vendor portal also generates events for changes in values of computed metrics. The vendor portal updates the values of computed metrics each time it receives instance data. For example, the vendor portal computes a _Versions behind_ metric that tracks the number of versions behind the latest available version for the instance. When the instance checks for updates and a new update is available, the value of this metric changes and the vendor portal generates an event.
 
 The vendor portal uses events to display insights for each active instance in a **Instance details** dashboard. For more information about using the vendor portal **Instance details** page to monitor active instances of your application, see [Instance Details](instance-insights-details).
 
@@ -28,7 +28,7 @@ Viewing instance data in the vendor portal has the following requirements:
 
 * For applications installed with Helm, the Replicated SDK must also be installed in the cluster to send data to the vendor portal. To install the SDK with your application, include the SDK as a dependency in your `Chart.yaml` file. For more information, [About the Replicated SDK (Alpha)](replicated-sdk-overview).
 
-* Collecting status data for an instance from the `appStatus` field requires additional configuration to indicate which of the Kubernetes resources deployed as part of your application Replicated will monitor for changes in state. For more information, see [Enabling and Understanding Application Status](insights-app-status).
+* Collecting application status data for an instance requires additional configuration to indicate which of the Kubernetes resources deployed as part of your application Replicated will monitor for changes in state. For more information, see [Enabling and Understanding Application Status](insights-app-status).
 
 ## Limitations
 
