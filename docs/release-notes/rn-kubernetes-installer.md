@@ -6,6 +6,10 @@ toc_max_heading_level: 2
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.07.11-0
+
+Released on July 11, 2023
+
 ## v2023.07.10-0
 
 Released on July 10, 2023
