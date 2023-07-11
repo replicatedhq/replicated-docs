@@ -18,7 +18,7 @@ The vendor portal receives instance data when any of the following _check-ins_ o
 
 When the vendor portal receives instance data, it evaluates each data field to determine if there was a change in its value. For each field that changes in value, the vendor portal creates an _event_ to record the change. For example, a change from `ready` to `degraded` in the `appStatus` field generates an event.
 
-In addition to creating events for changes in data sent by the instance, the vendor portal also generates events for changes in value of computed metrics. The vendor portal updates the values of computed metrics each time it receives instance data. For example, the vendor portal computes a `numberVersionsBehind` metric that tracks the number of versions behind the latest available version for the instance. When the instance checks for updates and a new update is available, the value of the `numberVersionsBehind` metric changes and the vendor portal generates an event.
+In addition to creating events for changes in data sent by the instance, the vendor portal also generates events for changes in values of computed metrics. The vendor portal updates the values of computed metrics each time it receives instance data. For example, the vendor portal computes a `numberVersionsBehind` metric that tracks the number of versions behind the latest available version for the instance. When the instance checks for updates and a new update is available, the value of the `numberVersionsBehind` metric changes and the vendor portal generates an event.
 
 Each event that the vendor portal generates has the following fields:
 
