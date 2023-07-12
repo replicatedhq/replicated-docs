@@ -113,10 +113,17 @@ const sidebars = {
         'vendor/packaging-private-images',
         'vendor/helm-image-registry',
         'vendor/private-images-replicated',
-        'vendor/custom-domains',
         'vendor/private-images-tags-digests',
         'vendor/packaging-private-registry-security',
         'vendor/tutorial-ecr-private-images',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Custom Domains',
+      items: [
+        'vendor/custom-domains',
+        'vendor/custom-domains-using',
       ],
     },
     {
@@ -183,7 +190,6 @@ const sidebars = {
       label: 'Admin Console and Download Portal Customization',
       items: [
         'vendor/admin-console-customize-app-icon',
-        'vendor/custom-domains-download-portal',
         'vendor/admin-console-display-app-status',
         'vendor/admin-console-adding-buttons-links',
         'vendor/admin-console-prometheus-monitoring',
