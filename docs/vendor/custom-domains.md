@@ -39,4 +39,4 @@ Using custom domains has the following limitations:
 
 - Multiple custom domains can be configured, but only one custom domain can be the default for each Replicated endpoint. All configured custom domains work whether or not they are the default.
 
-- A custom domain can only be used by one team.
+- A particular custom domain can only be used by one team.
