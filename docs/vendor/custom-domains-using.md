@@ -77,7 +77,7 @@ To assign a custom domain to a channel:
 
    [View a larger version of this image](/images/channel-settings.png)
 
-## Reuse a Registry Custom Domain for Another Application
+## Reuse a Custom Domain for Another Application
 
 If you have configured a private registry custom domain for one application, you can reuse the custom domain for another application in the same team without going through the ownership and TLS certificate verification process again.
 
