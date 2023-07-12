@@ -5,11 +5,11 @@ import SupportedResources from "../partials/instance-insights/_supported-resourc
 
 # Adding Resource Status Informers
 
-This topic describes how to add status informers for your application.
+This topic describes how to add status informers for your application. Status informers apply only to applications installed with Replicated KOTS. For information about how to collect application status data for applications installed with Helm, see [Enabling and Understanding Application Status](insights-app-status).
 
 ## About Status Informers
 
-_Status informers_ report on the status of supported Kubernetes resources deployed as part of your application. You enable status informers by listing the target resources under the `statusInformers` property in the Replicated Application custom resource. Replicated KOTS watches all resources that you add to the `statusInformers` property for changes in state.
+_Status informers_ are a feature of KOTS that report on the status of supported Kubernetes resources deployed as part of your application. You enable status informers by listing the target resources under the `statusInformers` property in the Replicated Application custom resource. KOTS watches all of the resources that you add to the `statusInformers` property for changes in state.
 
 Possible resource statuses are Ready, Updating, Degraded, Unavailable, and Missing. For more information, see [Understanding Application Status](#understanding-application-status).
 

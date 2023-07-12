@@ -1,5 +1,3 @@
-import Checkins from "../partials/instance-insights/_appCheckins.mdx"
-
 # Customer Reporting
 
 This topic describes the customer and instance data displayed in the **Customers > Reporting** page of the Replicated vendor portal.
@@ -84,7 +82,6 @@ The **Instances** section displays the following details about each active insta
    * (Replicated SDK Only) The Replicated SDK version running in the cluster.
    * The cloud provider and region, if applicable.
 * Instance uptime data, including:
-   * The timestamp of the last recorded check-in for the instance. A check-in is recorded when any of the following occur:
-      <Checkins/>
+   * The timestamp of the last recorded check-in for the instance. For more information about what triggers an instance check-in, see [How the Vendor Portal Collects Instance Data](instance-insights-event-data#about-reporting) in _About Instance and Event Data_.
    * An uptime graph of the previous two weeks. For more information about how the vendor portal determines uptime, see [Instance Uptime](instance-insights-details#instance-uptime) in _Instance Details_.
    * The uptime ratio in the previous two weeks.

@@ -1,5 +1,3 @@
-import Checkins from "../partials/instance-insights/_appCheckins.mdx"
-
 # Instance Details
 
 This topic describes using the Replicated vendor portal to quickly understand the recent events and performance of application instances installed in your customers' environments.
@@ -182,9 +180,7 @@ You can hover over the event markers in the **Instance Uptime** graph to view mo
 
 ### Instance Activity
 
-The **Instance Activity** section displays recent events for the instance. The data stream is updated each time one of the following occurs:
-
-<Checkins/>
+The **Instance Activity** section displays recent events for the instance. The data stream is updated each time an instance _check-in_ occurs. For more information about what triggers an instance check-in, see [How the Vendor Portal Collects Instance Data](instance-insights-event-data#about-reporting) in _About Instance and Event Data_.
 
 The timestamp of events displayed in the **Instance Activity** stream is the timestamp when the Replicated Vendor API received data from the instance. The timestamp of events does not necessarily reflect the timestamp of when the event occurred.
 
@@ -202,6 +198,7 @@ You can filter the **Instance Activity** stream by the following categories:
 * [Replicated SDK version](#sdk)
 * [Upstream update](#upstream)
 
+The following tables describe the events that can be displayed in the **Instance Activity** stream for each of the categories above:
 #### App install/upgrade {#app-install-upgrade}
 
 <table>

@@ -1,18 +1,34 @@
-import Checkins from "../partials/instance-insights/_appCheckins.mdx"
-
 # About Instance and Event Data
 
-This topic provides an overview of the customer and instance insights that you can view in the Replicated vendor portal. It includes information about how the vendor portal accesses data from online installations and requirements and limitations for viewing instance data.  
+This topic provides an overview of the customer and instance insights that you can view in the Replicated vendor portal. It includes information about how the vendor portal accesses data from online installations. It also includes requirements and limitations for viewing instance data.  
 
 ## How the Vendor Portal Collects Instance Data {#about-reporting}
 
-The vendor portal collects data from instances installed in online environments. Depending on the application's installation method, either the Replicated SDK or Replicated KOTS periodically sends a small amount of data to the vendor portal, including properties such as the current version and status of the instance.
+The vendor portal collects data from instances installed in online environments. Depending on the application's installation method, either the Replicated SDK or Replicated KOTS periodically sends a small amount of data to the vendor portal, including properties such as the current version and status of the instance. For a full overview of what data might be included, see the [Replicated Data Transmission Policy](https://docs.replicated.com/vendor/policies-data-transmission).
 
-For a full overview of what data might be included, see the [Replicated Data Transmission Policy](https://docs.replicated.com/vendor/policies-data-transmission).
+The vendor portal receives instance data from either the Replicated SDK or from KOTS when any of the following _check-ins_ occur:
 
-The vendor portal receives instance data when any of the following _check-ins_ occur:
+* For Helm installations that include the Replicated SDK, the SDK sends instance data to the vendor portal when any of the following occur:
 
-<Checkins/>
+  * The instance checks for updates. An update check occurs when the instance makes a request to the `/api/v1/app/updates` SDK API endpoint. See [app](/reference/replicated-sdk-apis#app) in _Replicated SDK API (Alpha)_.
+
+  * The instance completes a Helm update to a new application version. After the update completes, the SDK sends data when it restarts.
+
+  * The status of an instance changes. For example, an instance can change from a Ready to Degraded status. For more information, see [Enabling and Understanding Application Status](insights-app-status).
+
+  * Every four hours, the SDK automatically sends data.
+
+* For KOTS installations, KOTS sends instance data to the vendor portal when any of the following occur:
+
+  * The instance checks for updates. By default, KOTS checks for updates every four hours. Additionally, an update check can occur when a user clicks the **Check for updates** button in the Replicated admin console. 
+
+    :::note
+    KOTS users can modify or disable automatic update checks from the admin console. For more information, see [Updating an Application](/enterprise/updating-apps) in the _Enterprise_ section.
+    :::
+
+  * The status of an instance changes. For example, an instance can change from a Ready to Degraded status. For more information, see [Enabling and Understanding Application Status](insights-app-status).
+
+  * (KOTS v1.92 and later only) The instance completes an update to a new application version.
 
 ## How the Vendor Portal Generates Events and Insights
 
