@@ -17,7 +17,7 @@ TXT records must be created to verify:
 
 The TXT records can be removed after the verification is complete.
 
-You can configure custom domains for the following registries and services, so that customer-facing URLs reflect your company's brand:
+You can configure custom domains for the following services, so that customer-facing URLs reflect your company's brand:
 
 - **Replicated registry:** Images and Helm charts can be pulled from the Replicated registry. By default, this registry uses the domain `registry.replicated.com`.
 
