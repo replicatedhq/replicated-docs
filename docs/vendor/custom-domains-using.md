@@ -1,6 +1,6 @@
 # Using Custom Domains
 
-This topic describes how to add and manage custom domains to alias the Replicated private registry, Replicated proxy service, Replicated app service, and the download portal.
+This topic describes how to add and manage custom domains to alias the Replicated registry, the Replicated proxy service, the Replicated app service, and the download portal.
 
 For an overview about custom domains and limitations, see [About Custom Domains](custom-domains-about).
 
@@ -39,9 +39,9 @@ To add and configure a custom domain:
 
 The vendor portal marks the domain as **Configured** after the verification checks for ownership and TLS certificate creation are complete.
 
-## Assign Custom Domains
+## Use Custom Domains
 
-After you configure one or more custom domains in the vendor portal, you assign a custom domain by setting it as the default for all channels and customers or by assigning it to an individual release channel. Both of these methods can be used for registries and the download portal.
+After you configure one or more custom domains in the vendor portal, you assign a custom domain by setting it as the default for all channels and customers or by assigning it to an individual release channel.
 
 ### Set a Default Domain
 
@@ -79,9 +79,9 @@ To assign a custom domain to a channel:
 
 ## Reuse a Custom Domain for Another Application
 
-If you have configured a private registry custom domain for one application, you can reuse the custom domain for another application in the same team without going through the ownership and TLS certificate verification process again.
+If you have configured a custom domain for one application, you can reuse the custom domain for another application in the same team without going through the ownership and TLS certificate verification process again.
 
-To reuse a registry custom domain for another application:
+To reuse a custom domain for another application:
 
 1. In the vendor portal, select the application from the dropdown list.
 

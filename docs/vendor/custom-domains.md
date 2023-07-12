@@ -25,9 +25,7 @@ You can configure custom domains for the following services, so that customer-fa
 
 - **Replicated app service:** Upstream application YAML and metadata, including a license ID, are pulled from replicated.app. By default, this service uses the domain `replicated.app`.
 
-- **Download portal:** The download portal can be used to share customer license files. By default, the download portal uses the domain `get.replicated.com`.
-
-For limitations, see [Limitations](#limitations).
+- **Download portal:** The download portal can be used to share customer license files, air gap bundles, and so on. By default, the download portal uses the domain `get.replicated.com`.
 
 ## Limitations
 
@@ -35,7 +33,7 @@ Using custom domains has the following limitations:
 
 - A single custom domain cannot be used for multiple endpoints. For example, a single domain can map to `registry.replicated.com` for any number of applications, but cannot map to both `registry.replicated.com` and `proxy.replicated.com`, even if the applications are different.
 
-- Custom domains cannot be used to alias api.replicated.com (legacy customer-facing APIs) or other services.
+- Custom domains cannot be used to alias api.replicated.com (legacy customer-facing APIs) or kURL.
 
 - Multiple custom domains can be configured, but only one custom domain can be the default for each Replicated endpoint. All configured custom domains work whether or not they are the default.
 
