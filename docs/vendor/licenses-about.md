@@ -44,7 +44,7 @@ of your software.
 * **Paid**: The Paid type identifies the customer as a paying customer for which
 additional information can be provided.
 * **Community**: The Community type is designed for a free or low cost version of your
-application. Community license users can change their license by uploading the new license file in the admin console. For more details about this type, see [Community Licenses](licenses-about-types).
+application. Community license users can change their license by uploading the new license file in the Replicated admin console. For more details about this type, see [Community Licenses](licenses-about-types).
 
 You can change the license type at any time in the vendor portal. For example, if a customer upgraded from a trial to a paid account, then you could change their license type from trial to paid for reporting purposes. 
 
@@ -52,7 +52,7 @@ You can change the license type at any time in the vendor portal. For example, i
 
 You can make changes to a customer in the vendor portal to edit their license details, including the license type, at any time. For more information about how to edit customers, see [Edit a Customer](releases-creating-customer#edit-a-customer) in _Creating and Managing Customers_.
 
-With the exception of community licenses, it is not possible for existing users to use a different license file without reinstalling the application. When you need to make changes to a customer's entitlements, Replicated recommends that you edit the customer's license details in the vendor portal, rather than issuing a new license file.
+With the exception of community licenses, it is not possible for existing users to replace one license file with another license file without reinstalling the application. When you need to make changes to a customer's entitlements, Replicated recommends that you edit the customer's license details in the vendor portal, rather than issuing a new license file.
 
 For more information about how community license users can upload a new license file to the admin console, see [Community Licenses](licenses-about-types).
 
@@ -62,7 +62,7 @@ This section describes the license handling features for installations with Repl
 
 ### License Updates
 
-When you edit customer licenses for an application installed with KOTS, your customers can use the Replicated admin console to update their license.
+When you edit customer licenses for an application installed with KOTS, your customers can use the admin console to update their license.
 
 For online instances, license updates are pulled from the vendor portal when:
 * An automatic or manual update check is performed by KOTS.
