@@ -193,11 +193,11 @@ spec:
 
 The Replicated snapshots feature requires the following labels on all resources in your Helm chart that you want to be included in the backup:
 * `kots.io/backup: velero`
-* `kots.io/APP_SLUG`, where `APP_SLUG` is the slug of your Replicated application.
+* `kots.io/app-slug: APP_SLUG`, where `APP_SLUG` is the slug of your Replicated application.
 
 For more information about snapshots, see [Understanding Backup and Restore](snapshots-overview).
 
-To support backup and restore with snapshots, add the `kots.io/backup: velero` and `kots.io/APP_SLUG` labels to fields under the HelmChart custom resource `optionalValues` key. Add a `when` statement that evaluates to true only when the customer license has the `isSnapshotSupported` entitlement.
+To support backup and restore with snapshots, add the `kots.io/backup: velero` and `kots.io/app-slug: APP_SLUG` labels to fields under the HelmChart custom resource `optionalValues` key. Add a `when` statement that evaluates to true only when the customer license has the `isSnapshotSupported` entitlement.
 
 The fields that you create under the `optionalValues` key must map to fields in your Helm chart `values.yaml` file. For more information about working with the `optionalValues` key, see [optionalValues](/reference/custom-resource-helmchart-v2#optionalvalues) in _HelmChart v2_.
 
