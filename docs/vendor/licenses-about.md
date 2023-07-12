@@ -43,8 +43,7 @@ team for testing and integration.
 of your software.
 * **Paid**: The Paid type identifies the customer as a paying customer for which
 additional information can be provided.
-* **Community**: The Community type is designed for a free or low cost version of your
-application. Community license users can change their license by uploading a new license file in the Replicated admin console. For more details about this type, see [Community Licenses](licenses-about-types).
+* **Community**: The Community type is designed for a free or low cost version of your application. For more details about this type, see [Community Licenses](licenses-about-types).
 
 You can change the type of a license at any time in the vendor portal. For example, if a customer upgraded from a trial to a paid account, then you could change their license type from Trial to Paid for reporting purposes. 
 
