@@ -20,9 +20,11 @@ The HelmChart custom resource `builders`, `values`, and `optionalValues` keys ea
 
 To locate images for your application on a registry, Kubernetes must have the image name and the domain of the registry. For example, you might have an image with the name `example/imagename` on a registry with the domain `example.registry.com`. For more information, see [Images](https://kubernetes.io/docs/concepts/containers/images/) in the Kubernetes documentation.
 
-During installation or upgrade with KOTS, your private images are accessed through the Replicated proxy service at the domain `proxy.replicated.com`. Additionally, KOTS allows users to configure local registries to push images. You must update the HelmChart custom resource to dynamically update image names in your Helm chart to either the location of the image on the proxy service or on a local registry.
+During installation or upgrade with KOTS, your private images are accessed through the Replicated proxy service at the domain `proxy.replicated.com`. Additionally, KOTS allows users to configure local registries to push images. If you use an external private registry or if your users push to a local registry, then you must configure the HelmChart custom resource to dynamically update image names in your Helm chart. This allows Kubernetes to locate images on either the proxy service or on a user-configured local registry.
 
-For more information, if you do _not_ support the use of local registries, see [External Private Registries Only](#external-private-registries-only) below. Otherwise, see [Local or External Registries](#local-or-external-registries).
+For more information:
+* If you use a private image registry and you do _not_ support users pushing to local registries, see [External Private Registries Only](#external-private-registries-only). 
+* If you need to support users that push to local registries, such as users in air gap environments, see [Local Registries](#local-registries).
 
 ### External Private Registries Only
 
@@ -30,7 +32,7 @@ If you use private images with your application, then your images must be access
 
 For more information about how KOTS provides access to private images through proxy service, see [About Using an External Registry](private-images-about).
 
-If you do not support the use of local registries for your users, then you can add a static value in the HelmChart custom resource with the location of your private image on the proxy service domain. This allows KOTS to rewrite image names in your Helm chart during installation or upgrade so that private images can be accessed through the proxy service.
+If you use a private registry and you do _not_ support the use of local registries for your users, then you can add a static value in the HelmChart custom resource with the location of your image on the proxy service domain. This allows KOTS to rewrite image names in your Helm chart during installation or upgrade so that private images can be accessed through the proxy service.
 
 **Example**
 
@@ -61,7 +63,7 @@ image:
   tag: v1.0.1
 ```
 
-During installation, KOTS overwrites the `image.name` field in the Helm chart `values.yaml` file based on the value of the corresponding `spec.values.image.name` field in the HelmChart custom resource. Any templates in the Helm chart that access the `image.name` field are updated to use the location of image on the proxy service, as shown in the example below:
+During installation, KOTS sets the `image.name` field in the Helm chart `values.yaml` file based on the value of the corresponding `spec.values.image.name` field in the HelmChart custom resource. Any templates in the Helm chart that access the `image.name` field are updated to use the location of image on the proxy service, as shown in the example below:
 
 ```yaml
 apiVersion: v1
@@ -74,7 +76,7 @@ spec:
     image: {{ .Values.image.name }}:{{ .Values.image.tag }}
 ```
 
-### Local or External Registries
+### Local Registries
 
 If you support the use of local registries for air gap or online environments, then you can use the Replicated LocalRegistryHost, LocalRegistryNamespace, and HasLocalRegistry template functions to rewrite image names in the HelmChart custom resource. When you use these template functions along with a ternary operator to rewrite image names, you ensure that images are discovered either on the user's local registry, or on your external registry if no local registry is configured.
 
@@ -120,7 +122,7 @@ image:
   tag: v1.0.1
 ```
 
-During installation, KOTS renders the template functions and overwrites the `image.registry` and `image.repository` fields in your Helm chart `values.yaml` file based on the value of the corresponding fields in the HelmChart custom resource. Any templates in the Helm chart that access the `image.registry` and `image.repository` fields are updated to use the appropriate value, as shown in the example below:
+During installation, KOTS renders the template functions and sets the `image.registry` and `image.repository` fields in your Helm chart `values.yaml` file based on the value of the corresponding fields in the HelmChart custom resource. Any templates in the Helm chart that access the `image.registry` and `image.repository` fields are updated to use the appropriate value, as shown in the example below:
 
 ```yaml
 apiVersion: v1
@@ -139,7 +141,7 @@ Kubernetes requires a Secret of type `kubernetes.io/dockerconfigjson` to authent
 
 During installation, KOTS creates a `kubernetes.io/dockerconfigjson` type Secret that is based on the customer license. This pull secret grants access to the private image on the Replicated proxy service. You must provide the name of this KOTS-generated pull secret in any Pod definitions that reference the private image.
 
-You can inject the name of this pull secret into a field in the HelmChart custom resource using the Replicated ImagePullSecretName template function. During installation, KOTS overwrites the value of the corresponding field in your Helm chart `values.yaml` file with the rendered value of the ImagePullSecretName template function. 
+You can inject the name of this pull secret into a field in the HelmChart custom resource using the Replicated ImagePullSecretName template function. During installation, KOTS sets the value of the corresponding field in your Helm chart `values.yaml` file with the rendered value of the ImagePullSecretName template function. 
 
 **Example**
 
@@ -172,7 +174,7 @@ image:
   pullSecret: nginxsecret
 ```
 
-During installation, KOTS overwrites the `image.pullSecrets` field in the Helm chart `values.yaml` file based on the rendered value of the corresponding `spec.values.image.pullSecrets` field in the HelmChart custom resource. Any templates in the Helm chart that access the `image.pullSecrets` field are updated to use the name of the KOTS-generated pull secret, as shown in the example below:
+During installation, KOTS sets the `image.pullSecrets` field in the Helm chart `values.yaml` file based on the rendered value of the corresponding `spec.values.image.pullSecrets` field in the HelmChart custom resource. Any templates in the Helm chart that access the `image.pullSecrets` field are updated to use the name of the KOTS-generated pull secret, as shown in the example below:
 
 ```yaml
 apiVersion: v1
