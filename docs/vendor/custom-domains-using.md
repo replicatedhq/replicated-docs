@@ -1,6 +1,6 @@
 # Using Custom Domains
 
-This topic describes how to add and manage custom domains to alias the Replicated private registry, Replicated proxy service, replicated.app, and the download portal.
+This topic describes how to add and manage custom domains to alias the Replicated private registry, Replicated proxy service, Replicated app service, and the download portal.
 
 For an overview about custom domains and limitations, see [About Custom Domains](custom-domains-about).
 
