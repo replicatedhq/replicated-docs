@@ -1,6 +1,6 @@
 # About Custom Domains
 
-This topic provides an overview and the limitations of using custom domains to alias the Replicated private registry, Replicated proxy service, replicated.app, and the download portal.
+This topic provides an overview and the limitations of using custom domains to alias the Replicated private registry, Replicated proxy service, Replicated app service, and the download portal.
 
 For information about configuring and managing custom domains, see [Using Custom Domains](custom-domains-using).
 
