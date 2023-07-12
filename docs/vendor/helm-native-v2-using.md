@@ -6,7 +6,7 @@ This topic describes how to configure the Replicated HelmChart custom resource v
 
 ## Overview
 
-Supporting KOTS installations of your Helm chart requires that you configure a HelmChart custom resource. The HelmChart custom resource provides instructions for KOTS about how to deploy your Helm chart. Additionally, the HelmChart custom resource creates a mapping between KOTS and your Helm chart `values.yaml` file, which allows you to dynamically inject values into your Helm chart during installation or upgrade. For more information about the HelmChart custom resource, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
+Supporting KOTS installations of your Helm chart requires that you configure a HelmChart custom resource. The HelmChart custom resource provides instructions for KOTS about how to deploy your Helm chart. Additionally, the HelmChart custom resource creates a mapping between KOTS and your Helm chart to allow you to dynamically set values during installation or upgrade. For more information about the HelmChart custom resource, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
 To configure the HelmChart custom resource, do the following:
 * Update the `builders` key to allow your users to push images to local private registries. See [Support Local Image Registries](#support-local-image-registries).
