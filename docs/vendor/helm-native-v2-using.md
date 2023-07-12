@@ -81,10 +81,9 @@ kind: Pod
 metadata:
   name: nginx
 spec:
-  image:
-  - name: {{ .Values.image.name }}
-    tag: {{ .Values.image.tag }}
-```
+  containers:
+  - name: nginx
+    image: {{ .Values.image.name }}:{{ .Values.image.tag }}
 
 ### Local or External Registries
 
@@ -138,11 +137,9 @@ kind: Pod
 metadata:
   name: nginx
 spec:
-  image:
-  - registry: {{ .Values.image.registry }}
-    repository: {{ .Values.image.repository }}
-    tag: {{ .Values.image.tag }}
-```
+  containers:
+  - name: 
+    image: {{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}
 
 ## Inject Image Pull Secrets
 
@@ -180,7 +177,7 @@ The `spec.values.image.pullSecrets` field in the HelmChart custom resource corre
 image:
   registry: ecr.us-east-1.amazonaws.com
   repository: my-org/api/nginx
-  pullSecrets: nginxsecret
+  pullSecret: nginxsecret
 ```
 
 During installation, KOTS overwrites the `image.pullSecrets` field in the Helm chart `values.yaml` file based on the rendered value of the corresponding `spec.values.image.pullSecrets` field in the HelmChart custom resource. Any templates in the Helm chart that access the `image.pullSecrets` field are updated to use the name of the KOTS-generated pull secret, as shown in the example below:
@@ -192,11 +189,10 @@ metadata:
   name: nginx
 spec:
   containers:
-  - name: {{ .Values.image.registry }}
-    image: {{ .Values.image.repository }}
+  - name: nginx
+    image: {{ .Values.image.registry }}/{{ .Values.image.repository }}
   imagePullSecrets:
-  - name: {{ .Values.image.pullSecrets }}  
-```
+  - name: {{ .Values.image.pullSecret }}  
 
 ## Add Backup Labels for Snapshots
 
@@ -279,8 +275,8 @@ The `kots.io/v1beta2` HelmChart custom resource has the following differences fr
   </tr>
   <tr>
     <td>N/A</td>
-    <td><code>helmInstall</code></td>
-    <td><code>helmInstall</code> field is removed</td>
+    <td><code>useHelmInstall</code></td>
+    <td><code>useHelmInstall</code> field is removed</td>
   </tr>
 </table>
 
