@@ -48,11 +48,11 @@ If you have a KOTS entitlement, you can also specify whether a KOTS or kURL rele
 
 You can check in with the service to provide custom license entitlements that are signed, synchronized, and verified, such as expiration dates, which features are enabled, usage limits, and then integrate those values with your application code to enforce the entitlements. By default, Replicated automatically synchronizes and updates custom entitlement values in the running application.
 
-### Custom Domains for Image Registries
+### Custom Domains
 
-Whether you use an external private registry, which is accessed by the Replicated proxy service, you can create custom domains to alias the image registries. This lets you use your own branding instead of the default Replicated domain names for these image registries.
+You can use custom domains for services that use customer-facing URLs. This lets you use your own branding instead of the default Replicated domain name.
 
-Additionally, KOTS entitlements give you the additional option to use the Replicated registry and create custom domains for the download portal feature.
+Custom domains can be used for external private registries, the Replicated registry, the Replicated app service, and the download portal. The download portal an option you can use to distribute your application, license files, and so on.
 
 ### Compatibility Matrix
 
@@ -112,46 +112,34 @@ The Vendor API is the API for the vendor portal. This API can be used to complet
 
 ## Installation Options
 
-When you use the Replicated platform, you can use one of these methods to install your applications in customer environments:
+When you use the Replicated platform, you can install your application using the Helm CLI, KOTS or kURL, or use a proprietary installer.
 
-- **Helm Install:** Uses the Helm CLI to install Helm charts. You can use the SDK to integrate Replicated features as needed. For example, you might want to add relay performance, usage, and health data from your proprietary customer dashboard to the vendor portal and set up notification for events.
+### Helm
 
-- **Replicated KOTS and Replicated kURL:** With KOTS and kURL installers, you package and update your application using KOTS and then securely distribute to customers using either or both Replicated installers.For more information, see [KOTS and kURL Installers](#installers).
+Uses the Helm CLI to install Helm charts. You can include the SDK as a dependency of your Helm chart if you want to integrate some or all of the Replicated features. For example, you might want to relay performance, usage, and health data from your proprietary customer user interface to the vendor portal and set up notifications for events. For more information about the SDK, see [About the Replicated SDK (Beta)](replicated-sdk-overview).
 
-- **Your own installer:** Using your own installer, you can leverage only the following Replicated features:
+### Replicated KOTS and Replicated kURL
 
-    - Release management
-    - Preflight checks and support bundles
+KOTS lets you package and update applications using Helm charts, Kubernetes manifests, or Kubernetes Operators. Applications are then securely deployed in customer environments using the KOTS installer. 
 
-- **SDK, KOTS, and kURL:** You can use the SDK in the same release with KOTS and kURL. This lets you create one release to support multiple types of customer environments and installation needs so that your application runs consistently in every environment. For example, you might have customers that only want a Helm CLI installation for their existing cluster, and other customers who want a Kubernetes cluster provisioned for them with the application in an air gapped environment.
+For customers that do not have an existing cluster, you can include a kURL installer to provision an embedded cluster, and then KOTS installs the application.  
 
-### SDK
-
-Using the SDK, you can choose which feature options you want to add to your Helm charts, integrate the features into your own user interface, and use your current installation method. You add the SDK as a service to your Helm chart application.
-
-For example, your application might already have a proprietary method of managing customer licenses, but you want to get telemetry and insights for customer instances and have an easier way to test your application with different environments. You can add just the Replicated telemetry and compatibility matrix features to your application using the Replicated vendor portal or replicated CLI.
-
-For installation, you can use one of the following methods:
-
-- **Proprietary Installer:** You can use your own proprietary installer.
-
-- **Helm CLI:** With the Replicated SDK Helm chart, install and manage application instances directly with the helm CLI. For more information, see [About Distributing Helm Charts with Replicated](helm-overview).
-
-For more information about the SDK, see [About the Replicated SDK (Beta)](replicated-sdk-overview).
-
-### KOTS and kURL Installers {#installers}
-
-With the Replicated KOTS, you can deploy your application with Helm charts, standard manifests, or Kubernetes operators. KOTS includes an admin console that lets your customers manage their applications instances.
-
-You can use any of the following installation options, depending on your customer needs.
-
-- **KOTS:** With KOTS and the KOTS admin console, install your application in any existing Kubernetes cluster.
-
-- **kURL:**, Replicated provides a way to create a Kubernetes cluster and install your application with KOTS. 
-
-- **Native Helm with KOTS:** Install with the Helm CLI when you distribute your Helm chart application with KOTS. KOTS supports more Helm options, including hooks and weights. Customer instances are managed using the Helm CLI. For more information, see Installing an Application with Helm (Beta). For more information, see [ABout Distributing Helm Charts with Replicated](helm-overview).
+KOTS also provides an admin console that lets your customers manage your application. You can customize the admin console. For example, you can customize the Config screen to allow customers to specify inputs related to unique options that your application provides. You can also include your own branding on the admin console, configure status informers, and add custom graphs.
 
 For more information, see [About KOTS and kURL](intro-replicated).
+
+### Helm, KOTS, and kURL
+
+You can create a single release that supports using a Helm installation, including the SDK, along side of the KOTS and kURL installers. This lets you create one release to support multiple types of customer environments so that your application runs consistently in every environment. For example, you might have customers that only want a Helm CLI installation for their existing cluster, and other customers who want a Kubernetes cluster provisioned for them with the application in an air gapped environment.
+
+One of the many advantages of using a combined release is that you can include the compatibility matrix and test all of the installations using the same application version.
+
+### Proprietary Installer
+
+Using your own installer with Helm charts, you can leverage only the following Replicated features with your Helm charts:
+
+- Release management
+- Preflight checks and support bundles
 
 <!--Diagram
 

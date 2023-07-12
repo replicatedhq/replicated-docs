@@ -12,6 +12,6 @@ To get started with your first release:
 1. Create a customer to define a license file. See [Creating and Managing Customers](releases-creating-customer).
 1. Test your installation:
 
-    - For SDK installations using integration mode, see [Developing Against the SDK API (Alpha)](replicated-sdk-development).
+    - For SDK installations using integration mode in a local environment with mock data, see [Developing Against the SDK API (Alpha)](replicated-sdk-development).
     - For KOTS and kURL installations, see [About Installing an Application](installing-overview) in the KOTS documentation.
     - For Helm installations, see [Installing an Application with Helm (Beta)](install-with-helm).

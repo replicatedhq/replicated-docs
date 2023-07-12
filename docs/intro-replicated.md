@@ -8,8 +8,6 @@ The following options are supported for installing your application:
 
 - **kURL Installer:** Installs on a cluster created by the kURL installer.
 
-- **Helm Installer:** Install with Helm when you distribute your Helm chart application with KOTS. For more information, see [Installing an Application with Helm (Beta)](install-with-helm).
-    
 The following diagram shows the Replicated components as they relate to you as a vendor packaging your application with KOTS, and the deployment to an existing cluster and a cluster provisioned by kURL. The application is packaged using either Helm charts, standard manifests, or Kubernetes operators.
 
 ![KOTS and kURL deployments](/images/replicated-components-diagram.png)
@@ -24,7 +22,7 @@ Replicated KOTS installs and manages applications in a Kubernetes cluster. You c
 - Embedded clusters created by Replicated kURL. See [kURL](#kurl) below.
 - Air gapped clusters (existing and embedded)
 
-Your application can use Helm charts, standard manifest files, or Kubernetes opertators.
+Your application can use Helm charts, standard manifest files, or Kubernetes operators.
 
 ### Admin Console
 
