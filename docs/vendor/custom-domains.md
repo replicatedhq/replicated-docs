@@ -23,7 +23,7 @@ You can configure custom domains for the following services, so that customer-fa
 
 - **Proxy service:** Images can be proxied from external private registries using the Replicated proxy service. By default, the proxy service uses the domain `proxy.replicated.com`.
 
-- **replicated.app:** Upstream application YAML and metadata, including a license ID, are pulled from replicated.app. By default, this service uses the domain `replicated.app`.
+- **Replicated app service:** Upstream application YAML and metadata, including a license ID, are pulled from replicated.app. By default, this service uses the domain `replicated.app`.
 
 - **Download portal:** The download portal can be used to share customer license files. By default, the download portal uses the domain `get.replicated.com`.
 
