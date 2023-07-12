@@ -65,7 +65,7 @@ You can assign a domain to an individual channel by editing the channel settings
 
 Assigning a domain to a release channel is useful when you need to override either the default Replicated domain or a default custom domain for a specific channel. For example:
 * You need to use a different domain for releases promoted to your Beta and Stable channels.
-* You need to test a domain in a development environment before you set the domain as the default for all customers.
+* You need to test a domain in a development environment before you set the domain as the default for all channels.
 
 To assign a custom domain to a channel:
 
