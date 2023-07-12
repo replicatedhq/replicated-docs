@@ -44,7 +44,7 @@ Viewing instance data in the vendor portal has the following requirements:
 
 * For applications installed with Helm, the Replicated SDK must also be installed in the cluster to send data to the vendor portal. To install the SDK with your application, include the SDK as a dependency in your `Chart.yaml` file. For more information, [About the Replicated SDK (Alpha)](replicated-sdk-overview).
 
-* Collecting application status data for an instance requires additional configuration to indicate which of the Kubernetes resources deployed as part of your application Replicated will monitor for changes in state. For more information, see [Enabling and Understanding Application Status](insights-app-status).
+* Collecting application status data for an instance requires additional configuration. You must indicate Kubernetes resources that Replicated will monitor for changes in state. For more information, see [Enabling and Understanding Application Status](insights-app-status).
 
 ## Limitations
 
