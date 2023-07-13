@@ -104,7 +104,9 @@ To reuse a custom domain for another application:
 
 ## Remove a Custom Domain
 
-You can remove a custom domain for the Replicated registry or proxy service at any time, but you should plan the transition so that you do not break any existing installations.
+You can remove a custom domain at any time, but for registry changes, you should plan the transition so that you do not break any existing installations. 
+
+If you remove a custom domain for the download portal, it is no longer accessible using the custom URL.
 
 To remove a custom domain:
 
@@ -112,8 +114,8 @@ To remove a custom domain:
 
 1. Verify that the domain is not set as the default nor in use on any channels. You can edit the domains in use on a channel in the channel settings. For more information, see [Channel Settings](releases-about-releases#channel-settings) in _About Channels_.
 
-1. After ensuring that no installations are using the domain, click **Remove** next to the unused domain in the list to remove it from the vendor portal. Click **Yes, remove domain**.
-
   :::important
-  When you remove a registry custom domain from the vendor portal, any installations that reference that custom domain break. Ensure that a custom domain is no longer in use before you remove it from the vendor portal.
+  When you remove a registry custom domain, any installations that reference that custom domain will break. Ensure that the registry custom domain is no longer in use before you remove it from the vendor portal.
   :::
+
+1. Click **Remove** next to the unused domain in the list, and then click **Yes, remove domain**.  
