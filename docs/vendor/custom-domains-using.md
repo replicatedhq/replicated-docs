@@ -104,7 +104,7 @@ To reuse a custom domain for another application:
 
 ## Remove a Custom Domain
 
-You can remove a custom domain at any time, but for registry changes, you should plan the transition so that you do not break any existing installations. 
+You can remove a custom domain at any time, but for changes to any registry custom domain, you should plan the transition so that you do not break any existing installations. 
 
 If you remove a custom domain for the download portal, it is no longer accessible using the custom URL.
 
