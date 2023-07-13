@@ -16,7 +16,22 @@ Replicated provides the following features on all pricing plans for managing, mo
 - Get telemetry and key insights for the instances of your application running in customer environments
 - Management and configuration tools, which include the Replicated vendor portal, replicated CLI, and the vendor API.
 
-Additional features are available for Replicated KOTS and Replicated kURL. For more information, see [KOTS and kURL](kots-and-kurl).
+Additional features are available for Replicated KOTS and Replicated kURL. For more information about KOTS and kURL, see [KOTS and kURL](#kots-and-kurl).
+
+For more information about these key features, see [Key Features](#key-features).
+
+## Pricing Plans
+
+Replicated offers multiple pricing plans to provide flexibility in supporting your application needs.
+
+- **Builders Plan:** This option supports Helm chart applications and Helm CLI installations. This plan lets you pick and choose which features you want to use using the Replicated SDK. For example, you can use just the compatibility matrix.
+
+   Alternatively, you might want to use just the vendor portal to manage your releases without using any other feature. In this case, you would not need to add the SDK subchart to your Helm charts.
+
+- **Premium Plan:** This option includes the KOTS entitlement, which provides KOTS and kURL installers. This plan also provides an admin console for you end customers, Replicated support, and lets you deploy applications using Helm charts, Kubernetes standard manifests, or Kubernetes Operators.
+
+    You can also support multiple deployment types with a single release, such as KOTS, kURL, and Helm CLI installations using the SDK.
+
 
 ## Key Features
 
@@ -56,7 +71,7 @@ Using the compatibility matrix can help reduce the costs and effort to test, inc
 
 ### Preflight Checks and Support Bundles
 
-Use preflight checks to improve installation success and support bundles to help troubleshoot the cluster and application.
+Use preflight checks to improve installation success and use support bundles to help troubleshoot the cluster and application.
 
 Preflight checks let you define requirements and dependencies for the cluster where your application is installed. Preflight checks provide clear, immediate feedback to your customer about any missing requirements or incompatibilities in the cluster before they install and upgrade your application.
 
@@ -68,9 +83,9 @@ Get telemetry and key insights for the instances of your application running in 
 
 Instance data helps the update service compile a list of new versions that are available to an instance for upgrade. Adoption metrics helps you track how frequently customers are upgrading and which versions they are using. If you see that your customers are on the latest versions, you can reduce the number of older versions that you support and maintain.
 
-For air gap instances, which are supported with KOTS entitlements, the telemetry component integrates closely with the support bundle feature to include valuable telemetry and usage data in support bundles to help with troubleshooting.
-
 Set up notifications to get alerted for the events and metrics to help ensure that important instance issues or performance trends are not missed. For example, you can be notified of a degraded status and you can contact your customer about fixing it before downtime occurs.
+
+For air gap instances, which are supported with KOTS entitlements, the telemetry component integrates closely with the support bundle feature to include valuable telemetry and usage data in support bundles to help with troubleshooting.
 
 ## Management and Configuration Tools
 
@@ -80,13 +95,25 @@ This section describes the management tools that you use to configure and manage
 
 The Replicated vendor portal is the web-based user interface that you can use to package and manage applications, and manage teams.
 
-![Create an Application in the vendor portal](/images/guides/kots/create-application.png)
+For example, team management options let you invite members, manage their permissions and access to the collab repository, configure RBAC for a team, choose from multiple authentication types, use two-factor authentication, set password policies, and configure a Slack webhook to enable Slack notifications about customer instance status changes. 
 
-You configure your application to use Replicated and services using the built-in YAML editor and linter (in the Help pane).
+The following shows an example of the **Team Members** page that shows the list of members, including one with an expired invitation, and current permissions:
 
-![YAML editor in the vendor portal](/images/yaml-editor.png)
+<img src="/images/teams-view.png" alt="View team members list in the vendor portal" width="700"/>
+
+[View a larger image](/images/teams-view.png)
+
+You can view customer reporting data and see adoption graphs to gain insights about performance, health, and usage. 
+
+The following shows an example of the **Reporting** page for a customer that has two active application instances:
+
+![Customer reporting page showing two active instances](/images/customer-reporting-page.png)
+
+[View a larger version of this image](/images/customer-reporting-page.png)
 
 You can also manage other artifacts, such as customer license files, image registries, and release channels.
+
+The following shows an example of the **Channels** page with a KOTS entitlement:
 
 ![Channels](/images/channels.png)
 
@@ -100,25 +127,27 @@ The Vendor API is the API for the vendor portal. This API can be used to complet
 
 ## Installation Options
 
-When you use the Replicated platform, you can install your application using the Helm CLI, KOTS or kURL, or use a proprietary installer.
+When you use the Replicated platform, you can install your application using the Helm CLI, KOTS, kURL, or use a proprietary installer.
 
 ### Helm
 
-Uses the Helm CLI to install Helm charts. You can include the SDK as a dependency of your Helm chart if you want to integrate some or all of the Replicated features. For example, you might want to relay performance, usage, and health data from your proprietary customer user interface to the vendor portal and set up notifications for events. For more information about the SDK, see [About the Replicated SDK (Beta)](replicated-sdk-overview).
+Customers can use the Helm CLI to install Helm charts. You can include the SDK as a dependency of your Helm chart if you want to integrate some or all of the Replicated features. For example, you might want to relay performance, usage, and health data from your proprietary customer user interface to the vendor portal and set up notifications for events. For more information about the SDK, see [About the Replicated SDK (Beta)](replicated-sdk-overview).
 
 ### KOTS and kURL
 
 KOTS lets you package and update applications using Helm charts, Kubernetes manifests, or Kubernetes Operators. Applications are then securely deployed in customer environments using the KOTS installer. 
 
-For customers that do not have an existing cluster, you can include a kURL installer to provision an embedded cluster, and then KOTS installs the application.  
+For customers that do not have an existing cluster, you can include a kURL installer to provision an embedded cluster, and then KOTS installs the application.
+
+KOTS and kURL support installing in air gapped environments.
 
 KOTS also provides an admin console that lets your customers manage your application. You can customize the admin console. For example, you can customize the Config screen to allow customers to specify inputs related to unique options that your application provides. You can also include your own branding on the admin console, configure status informers, and add custom graphs.
 
-For more information, see [About KOTS and kURL](intro-replicated).
+For more information, see [About KOTS and kURL](intro-replicated) in the KOTS documentation.
 
 ### Helm, KOTS, and kURL
 
-You can create a single release that supports using a Helm installation, including the SDK, along side of the KOTS and kURL installers. This lets you create one release to support multiple types of customer environments so that your application runs consistently in every environment. For example, you might have customers that only want a Helm CLI installation for their existing cluster, and other customers who want a Kubernetes cluster provisioned for them with the application in an air gapped environment.
+You can create a single release that supports using a Helm installation, optionally including the SDK, along side of the KOTS and kURL installers. This lets you create one release to support multiple types of customer environments so that your application runs consistently in every environment. For example, you might have customers that only want a Helm CLI installation for their existing cluster, and other customers who want a Kubernetes cluster provisioned for them with the application in an air gapped environment.
 
 One of the many advantages of using a combined release is that you can include the compatibility matrix and test all of the installations using the same application version.
 
