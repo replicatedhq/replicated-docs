@@ -388,14 +388,14 @@ spec:
 ## proxyRegistryDomain
 
 :::important
-`proxyRegistryDomain` is deprecated. For information about how to use a custom domain for the Replicated proxy service, see [Using Custom Domains for the Replicated Registry and Proxy Service](/vendor/custom-domains).
+`proxyRegistryDomain` is deprecated. For information about how to use a custom domain for the Replicated proxy service, see [Using Custom Domains](/vendor/custom-domains-using).
 :::
 
 <table>	
   <tr>	
     <th>Description</th>	
     <td>	
-      <p>The custom domain used for proxy.replicated.com. For more information, see <a href="/vendor/custom-domains">Using Custom Domains for the Replicated Registry and Proxy Service</a>.</p>	
+      <p>The custom domain used for proxy.replicated.com. For more information, see <a href="/vendor/custom-domains-using">Using Custom Domains</a>.</p>	
       <p>Introduced in KOTS v1.91.1.</p>	
     </td>	
   </tr>	
@@ -412,14 +412,14 @@ spec:
 ## replicatedRegistryDomain
 
 :::important
-`replicatedRegistryDomain` is deprecated. For information about how to use a custom domain for the Replicated registry, see [Using Custom Domains for the Replicated Registry and Proxy Service](/vendor/custom-domains).
+`replicatedRegistryDomain` is deprecated. For information about how to use a custom domain for the Replicated registry, see [Using Custom Domains](/vendor/custom-domains-using).
 :::
 
 <table>	
   <tr>	
     <th>Description</th>	
     <td>	
-      <p>The custom domain used for registry.replicated.com. For more information, see <a href="/vendor/custom-domains">Using Custom Domains for the Replicated Registry and Proxy Service</a>.</p>	
+      <p>The custom domain used for registry.replicated.com. For more information, see <a href="/vendor/custom-domains-using">Using Custom Domains</a>.</p>	
       <p>Introduced in KOTS v1.91.1.</p>	
     </td>	
   </tr>	
