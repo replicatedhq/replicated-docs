@@ -2,7 +2,6 @@ import StatusesTable from "../partials/status-informers/_statusesTable.mdx"
 import AggregateStatus from "../partials/status-informers/_aggregateStatus.mdx"
 import AggregateStatusIntro from "../partials/status-informers/_aggregate-status-intro.mdx"
 import SupportedResources from "../partials/instance-insights/_supported-resources-status.mdx"
-import SDKLabels from "../partials/replicated-sdk/_labels.mdx"
 
 # Enabling and Understanding Application Status
 
@@ -24,14 +23,7 @@ Enabling instances of your application to send data in the `appStatus` field req
 
 Do one of the following, depending on the application installation method:
 
-* For applications installed with Helm, do the following:
-
-   1. Include the Replicated SDK as a dependency of your Helm chart. See [Using the Replicated SDK with Your Application](replicated-sdk-using).
-   2. Add the following labels to one or more Kubernetes resources deployed as part of your Helm chart:
-
-     <SDKLabels/> 
-
-     These are standard Helm labels that enable the Replicated SDK to report the status of installed instances of your application to the vendor portal. For more information about the types of resources that are supported, see [Overview](#overview) above.
+* For applications installed with Helm, the Replicated SDK automatically detects and reports the status of the resources that are part of the Helm release. You can optionally configure custom status informers by overriding the `statusInformers` value in the Replicated SDK chart.
 
 * For applications installed with Replicated KOTS, configure one or more _status informers_ in the Replicated Application custom resource. For more information, see [Add Status Informers](admin-console-display-app-status#add-status-informers) in _Adding Resource Status Informers_.
 
