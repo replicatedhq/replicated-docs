@@ -106,11 +106,9 @@ To reuse a custom domain for another application:
 
 You can remove a custom domain at any time, but you should plan the transition so that you do not break any existing installations or documentation.
 
-Removing a custom domain for the Replicated registry, proxy service, or Replicated app service will break existing installations that use those custom domains. Existing installations need to be upgraded to a version that doesn't use the custom domains before they can be safely removed.
+Removing a custom domain for the Replicated registry, proxy service, or Replicated app service will break existing installations that use the custom domain. Existing installations need to be upgraded to a version that does not use the custom domain before it can be removed safely.
 
-If you remove a custom domain for the download portal, customers will no longer be able to access the download portal using that custom domain, so you need to point them to an updated URL.
-
-If you remove a custom domain for the download portal, it is no longer accessible using the custom URL.
+If you remove a custom domain for the download portal, it is no longer accessible using the custom URL. You will need to point customers to an updated URL.
 
 To remove a custom domain:
 
@@ -119,7 +117,7 @@ To remove a custom domain:
 1. Verify that the domain is not set as the default nor in use on any channels. You can edit the domains in use on a channel in the channel settings. For more information, see [Channel Settings](releases-about-channels#channel-settings) in _About Channels_.
 
   :::important
-  When you remove a registry or Replicated app service custom domain, any installations that reference that custom domain will break. Ensure that the registry custom domain is no longer in use before you remove it from the vendor portal.
+  When you remove a registry or Replicated app service custom domain, any installations that reference that custom domain will break. Ensure that the custom domain is no longer in use before you remove it from the vendor portal.
   :::
 
 1. Click **Remove** next to the unused domain in the list, and then click **Yes, remove domain**.  
