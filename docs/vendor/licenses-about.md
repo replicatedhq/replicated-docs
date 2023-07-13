@@ -3,7 +3,7 @@ import ChangeChannel from "../partials/customers/_change-channel.mdx"
 
 # About Customers
 
-This topic provides an overview of customer licenses, including information about license types, the **Customers** page in the Replicated vendor portal, and how Replicated uses the customer entitlement information that you provide in license files.
+This topic provides an overview of customer licenses, including information about license types, the **Customers** page in the Replicated vendor portal, and how Replicated uses the customer entitlement information that you provide in licenses.
 
 ## Overview
 
@@ -51,9 +51,9 @@ You can change the type of a license at any time in the vendor portal. For examp
 
 You can make changes to a customer in the vendor portal to edit their license details, including the license type or the customer name, at any time. The license ID, which is the unique identifier for the customer, never changes. For more information about how to edit customers, see [Edit a Customer](releases-creating-customer#edit-a-customer) in _Creating and Managing Customers_.
 
-Unless an existing customer is using a community license, it is not possible to replace one license file with another license file without reinstalling the application. When you need to make changes to a customer's entitlements, Replicated recommends that you edit the customer's license details in the vendor portal, rather than issuing a new license file.
+Unless the existing customer is using a community license, it is not possible to replace one license with another license without reinstalling the application. When you need to make changes to a customer's entitlements, Replicated recommends that you edit the customer's license details in the vendor portal, rather than issuing a new license. When you update the license in the vendor portal, the customer does not need to reinstall to get the updates, and KOTS users can synchronize the license from the admin console. Additionally, you can avoid the cost that comes with issuing another license.
 
-For more information about how Replicated KOTS users with a community license can upload a different license file in the admin console, see [Community Licenses](licenses-about-types).
+For more information about how Replicated KOTS users with a community license can upload a different license in the admin console, see [Community Licenses](licenses-about-types).
 
 ## KOTS License Handling
 
@@ -66,7 +66,7 @@ When you edit customer licenses for an application installed with KOTS, your cus
 For online instances, license updates are pulled from the vendor portal when:
 * An automatic or manual update check is performed by KOTS.
 * A customer selects **Sync license** in the admin console.
-* An app status changes. See [Current State](instance-insights-details#current-state) in _Instance Details_.
+* An application status changes. See [Current State](instance-insights-details#current-state) in _Instance Details_.
 
 For air gap instances, because air gap licenses are signed with the updated fields, customers must upload a regenerated license file to the admin console every time you modify license fields. After you update the license fields in the vendor portal, you can notify customers by either sending them a new license file or instructing them to log into their download portal to retrieve the updated license. Then, they can click **Upload license** on the **License** tab of the admin console to upload the new license file.
 

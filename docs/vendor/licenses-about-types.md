@@ -6,9 +6,9 @@ This topic describes community licenses. For more information about other types 
 
 Community licenses are intended for use with a free or low cost version of your application. For example, you could use community licenses for an open source version of your application.
 
-After installing an application with a community license, users can replace their community license with a new license file of a different type without having to completely reinstall the application. This means that, if you have several community users who install with the same license, then you can upgrade a single community user without editing the license for all community users.
+After installing an application with a community license, users can replace their community license with a new license of a different type without having to completely reinstall the application. This means that, if you have several community users who install with the same license, then you can upgrade a single community user without editing the license for all community users.
 
-For applications installed with Replicated KOTS, community license users can upload a new license file in the Replicated admin console. Upgrading from a community license cannot be reverted. For more information, see [Upgrade from a Community License](/enterprise/updating-licenses#upgrade-from-a-community-license) in _Updating Licenses_. 
+For applications installed with Replicated KOTS, community license users can upload a new license file of a different types in the Replicated admin console. Upgrading from a community license cannot be reverted. For more information, see [Upgrade from a Community License](/enterprise/updating-licenses#upgrade-from-a-community-license) in _Updating Licenses_. 
 
 ## Limitations
 
