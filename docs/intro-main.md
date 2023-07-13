@@ -141,7 +141,7 @@ For customers that do not have an existing cluster, you can include a kURL insta
 
 KOTS and kURL support installing in air gapped environments.
 
-KOTS also provides an admin console that lets your customers manage your application. You can customize the admin console. For example, you can customize the Config screen to allow customers to specify inputs related to unique options that your application provides. You can also include your own branding on the admin console, configure status informers, and add custom graphs.
+KOTS provides an admin console that lets your customers manage your application. You can customize the admin console. For example, you can customize the Config screen to allow customers to specify inputs related to unique options that your application provides. You can also include your own branding on the admin console, configure status informers, and add custom graphs.
 
 For more information, see [About KOTS and kURL](intro-replicated) in the KOTS documentation.
 

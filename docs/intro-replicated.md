@@ -1,38 +1,49 @@
 # About KOTS and kURL
 
-Replicated includes the KOTS and kURL installers that make it easier for you to manage and deploy applications, and for enterprise users to install and manage their instance of your application.
+This topic describes the Replicated KOTS and Replicated kURL installers, and the Replicated admin console for packaging, deploying, and managing applications in a Kubernetes cluster.
 
-The following options are supported for installing your application:
+## Overview
 
-- **KOTS Installer:** Installs on an existing cluster using the kots CLI or the admin console. 
+KOTS lets you package and update applications using Helm charts, Kubernetes manifests, or Kubernetes Operators. Applications are then securely deployed in customer environments using the KOTS installer. 
 
-- **kURL Installer:** Installs on a cluster created by the kURL installer.
+For customers that do not have an existing cluster, you can include a kURL installer to provision an embedded cluster, and then KOTS installs the application.
 
-The following diagram shows the Replicated components as they relate to you as a vendor packaging your application with KOTS, and the deployment to an existing cluster and a cluster provisioned by kURL. The application is packaged using either Helm charts, standard manifests, or Kubernetes operators.
+KOTS and kURL support installing in air gapped environments.
+
+KOTS installs the admin console and the kots CLI on a cluster that lets customers manage the application, in addition to helping deploy the application and upgrades.
+
+## Architecture
+
+The following architecture diagram shows the components as they relate to you as a vendor packaging your application with KOTS using either the vendor portal, replicated CLI, or Vendor API. The application can be packaged using either Helm charts, Kubernetes manifests, or Kubernetes operators.
+
+ Then the application, admin console, and kots CLI are installed in an existing cluster and on a cluster provisioned by kURL.
 
 ![KOTS and kURL deployments](/images/replicated-components-diagram.png)
 
 [View larger image](/images/replicated-components-diagram.png)
 
+For more information, see:
+
+- [KOTS](#kots)
+- [Admin Console](#admin-console)
+- [kots CLI](#kots-cli)
+- [kURL](#kurl)
+
 ## KOTS
 
-Replicated KOTS installs and manages applications in a Kubernetes cluster. You can use KOTS to deploy Kubernetes applications securely to the following Kubernetes cluster environments:
-
-- Existing clusters
-- Embedded clusters created by Replicated kURL. See [kURL](#kurl) below.
-- Air gapped clusters (existing and embedded)
-
-Your application can use Helm charts, standard manifest files, or Kubernetes operators.
+KOTS installs the admin console and the kots CLI on a cluster, and deploys the application files using either the admin console or kots CLI. The admin console and kots CLI also let customers manage the application.
 
 ### Admin Console
 
-The Replicated admin console is a graphical user interface (GUI) for interacting with KOTS. The admin console includes built-in functionality that allows users to install, manage, update, configure, monitor, backup and restore, and troubleshoot their application instances.
+KOTS installs the admin console. The admin console is a customer-facing user interface includes built-in functionality that allows users to install, manage, update, configure, monitor, backup and restore, and troubleshoot their application instances. The admin console communicates securely with KOTS to synchronize licenses, check for upgrades, and so on. 
+
+As a vendor, you can customize the admin console. For example, you can customize the Config screen to allow customers to specify inputs related to unique options that your application provides. You can also include your own branding on the admin console, configure status informers, and add custom graphs.
 
 ![Admin Console Dashboard](/images/guides/kots/application.png)
 
 ### kots CLI
 
-The kots command-line interface (CLI) is a kubectl plugin. Users can run commands with the kots CLI to install and manage their application instances with KOTS programmatically. For more information, see [Installing the kots CLI](/reference/kots-cli-getting-started).
+The kots command-line interface (CLI) is a kubectl plugin. Customers can run commands with the kots CLI to install and manage their application instances with KOTS programmatically. For more information, see [Installing the kots CLI](/reference/kots-cli-getting-started).
 
 ## kURL
 
