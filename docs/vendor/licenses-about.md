@@ -19,7 +19,7 @@ You assign customers to channels in the vendor portal to control their access to
 
 <ChangeChannel/>
 
-For example, if the latest release promoted to the Beta channel is version 1.25.0 and version 1.10.0 is marked as required, when you edit an existing customer to assign them to the Beta channel, then the admin console always fetches 1.25.0, even though 1.10.0 is marked as required. The required release 1.10.0 is ignored and is not available to the customer for upgrade.
+For example, if the latest release promoted to the Beta channel is version 1.25.0 and version 1.10.0 is marked as required, when you edit an existing customer to assign them to the Beta channel, then the Replicated admin console always fetches 1.25.0, even though 1.10.0 is marked as required. The required release 1.10.0 is ignored and is not available to the customer for upgrade.
 
 For more information about how to mark a release as required, see [Release Properties](releases-about#release-properties) in _About Releases_. For more information about how to synchronize licenses in the admin console, see [Updating Licenses](/enterprise/updating-licenses).
 
@@ -47,19 +47,19 @@ additional information can be provided.
 
 You can change the type of a license at any time in the vendor portal. For example, if a customer upgraded from a trial to a paid account, then you could change their license type from Trial to Paid for reporting purposes. 
 
-### Updating or Replacing Licenses
+### Updating and Replacing Licenses
 
 You can make changes to a customer in the vendor portal to edit their license details, including the license type or the customer name, at any time. The license ID, which is the unique identifier for the customer, never changes. For more information about how to edit customers, see [Edit a Customer](releases-creating-customer#edit-a-customer) in _Creating and Managing Customers_.
 
 Unless an existing customer is using a community license, it is not possible to replace one license file with another license file without reinstalling the application. When you need to make changes to a customer's entitlements, Replicated recommends that you edit the customer's license details in the vendor portal, rather than issuing a new license file.
 
-For more information about how community license users can upload a different license file to the admin console, see [Community Licenses](licenses-about-types).
+For more information about how Replicated KOTS users with a community license can upload a different license file in the admin console, see [Community Licenses](licenses-about-types).
 
 ## KOTS License Handling
 
-This section describes the license handling features for installations with Replicated KOTS.
+This section describes the license handling features for applications installed with KOTS.
 
-### License Updates
+### Synchronizing Licenses
 
 When you edit customer licenses for an application installed with KOTS, your customers can use the admin console to update their license.
 
@@ -70,7 +70,7 @@ For online instances, license updates are pulled from the vendor portal when:
 
 For air gap instances, because air gap licenses are signed with the updated fields, customers must upload a regenerated license file to the admin console every time you modify license fields. After you update the license fields in the vendor portal, you can notify customers by either sending them a new license file or instructing them to log into their download portal to retrieve the updated license. Then, they can click **Upload license** on the **License** tab of the admin console to upload the new license file.
 
-For more information about how to update licenses in the admin console for KOTS installations, see [Updating Licenses](/enterprise/updating-licenses).
+For more information about community licenses, including how KOTS users can update licenses in the admin console, see [Updating Licenses](/enterprise/updating-licenses).
 
 ### License Expiration Handling
 
