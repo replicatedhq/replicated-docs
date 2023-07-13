@@ -2,7 +2,7 @@
 
 This topic describes how to add and manage custom domains to alias the Replicated registry, the Replicated proxy service, the Replicated app service, and the download portal.
 
-For an overview about custom domains and limitations, see [About Custom Domains](custom-domains-about).
+For an overview about custom domains and limitations, see [About Custom Domains](custom-domains).
 
 
 ## Configure a Custom Domain
@@ -116,10 +116,10 @@ To remove a custom domain:
 
 1. Log in to the [vendor portal](https://vendor.replicated.com) and click **Custom Domains**.
 
-1. Verify that the domain is not set as the default nor in use on any channels. You can edit the domains in use on a channel in the channel settings. For more information, see [Channel Settings](releases-about-releases#channel-settings) in _About Channels_.
+1. Verify that the domain is not set as the default nor in use on any channels. You can edit the domains in use on a channel in the channel settings. For more information, see [Channel Settings](releases-about-channels#channel-settings) in _About Channels_.
 
   :::important
-  When you remove a registry custom domain, any installations that reference that custom domain will break. Ensure that the registry custom domain is no longer in use before you remove it from the vendor portal.
+  When you remove a registry or Replicated app service custom domain, any installations that reference that custom domain will break. Ensure that the registry custom domain is no longer in use before you remove it from the vendor portal.
   :::
 
 1. Click **Remove** next to the unused domain in the list, and then click **Yes, remove domain**.  
