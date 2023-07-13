@@ -51,9 +51,9 @@ You can change the type of a license at any time in the vendor portal. For examp
 
 You can make changes to a customer in the vendor portal to edit their license details, including the license type or the customer name, at any time. The license ID, which is the unique identifier for the customer, never changes. For more information about how to edit customers, see [Edit a Customer](releases-creating-customer#edit-a-customer) in _Creating and Managing Customers_.
 
-Unless the existing customer is using a community license, it is not possible to replace one license with another license without reinstalling the application. When you need to make changes to a customer's entitlements, Replicated recommends that you edit the customer's license details in the vendor portal, rather than issuing a new license. When you update the license in the vendor portal, the customer does not need to reinstall to get the updates, and KOTS users can synchronize the license from the admin console. Additionally, you can avoid the cost that comes with issuing another license.
+Unless the existing customer is using a community license, it is not possible to replace one license with another license without reinstalling the application. When you need to make changes to a customer's entitlements, Replicated recommends that you edit the customer's license details in the vendor portal, rather than issuing a new license. When you update the license in the vendor portal, the customer does not need to reinstall to get the updates, and Replicated KOTS users can synchronize the license from the admin console. Additionally, you can avoid the cost that comes with issuing another license.
 
-For more information about how Replicated KOTS users with a community license can upload a different license in the admin console, see [Community Licenses](licenses-about-types).
+For more information about how KOTS users with a community license can upload a different license in the admin console, see [Community Licenses](licenses-about-types).
 
 ## KOTS License Handling
 
