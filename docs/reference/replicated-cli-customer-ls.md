@@ -19,7 +19,7 @@ replicated customer ls
   </tr>
   <Help/>
   <App/>
-  <td><code>--appversion</code></td><td>string</td><td>The application version. Used to list customers and their instances by a specific app version.</td>
+  <td><code>--appversion</code></td><td>string</td><td>The application version. Used to list customers and their instances for a specific app version.</td>
   <Token/>
 </table>
 
@@ -30,3 +30,12 @@ ID                                  NAME                            CHANNELS    
 iEgJuVDHy2pi-AqOjLXbZCTX9bqlV6YH    John Smith                      Unstable         Never      
 YAg7ripYbK0tM5MVn_81nMy0YrhBsHrm    Megacorp                        Megacorp_Beta    Never      
 ```
+
+Listing customers and their instances for a specific app version:
+
+```bash
+replicated customer ls --appversion 1.1.0
+
+CUSTOMER NAME       INSTANCE ID                         LAST ACTIVE                         VERSION
+ACME Corp           iEgJuVDHy2pi-AqOjLXbZCTX9bqlV6YH    2023-05-23 23:13:01.403 +0000 UTC   1.1.0
+Megacorp            YAg7ripYbK0tM5MVn_81nMy0YrhBsHrm    2023-05-24 00:00:02.937 +0000 UTC   1.1.0
