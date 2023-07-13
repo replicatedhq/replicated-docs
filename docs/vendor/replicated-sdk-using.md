@@ -5,19 +5,6 @@ import HelmReleaseStepsCLI from "../partials/helm/_helm-release-steps-cli.mdx"
 
 This topic describes how to begin using the Replicated SDK by declaring it as a dependency in your application Helm chart. 
 
-## Prerequisite
-
-Before you begin using the Replicated SDK, add the following labels on all resources deployed as part of your Helm chart:
-
-```yaml
-labels:
-  app.kubernetes.io/instance: {{ .Release.Name }}
-  app.kubernetes.io/managed-by: {{ .Release.Service}}
-  app.kubernetes.io/name: {{ .Chart.Name }}
-``` 
-
-These are standard Helm labels that enable the Replicated SDK to report the status of installed instances of your application to the Replicated vendor portal so that you can view insights on instances running in customer environments. For more information, see [Enabling and Understanding Application Status](insights-app-status).
-
 ## Declare the SDK as a Dependency
 
 You can distribute the Replicated SDK with your application by declaring it as a dependency in your application Helm chart `Chart.yaml` file.
