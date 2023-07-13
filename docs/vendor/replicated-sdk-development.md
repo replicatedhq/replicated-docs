@@ -57,6 +57,6 @@ To install the SDK in integration mode:
 
   ![Red box surrounding the password value in the Helm install instructions dialog](/images/license-id-helm-install-password.png)
 
-  1. In the **Helm install instructions** dialog, copy and run the command to install the SDK in integration mode.
+  1. From the same dialog, copy and run the command to install the SDK in integration mode.
 
   ![Red box surrounding the password value in the Helm install instructions dialog](/images/license-id-helm-install-password.png)
