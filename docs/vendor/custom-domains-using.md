@@ -104,7 +104,11 @@ To reuse a custom domain for another application:
 
 ## Remove a Custom Domain
 
-You can remove a custom domain at any time, but for changes to any registry custom domain, you should plan the transition so that you do not break any existing installations. 
+You can remove a custom domain at any time, but you should plan the transition so that you do not break any existing installations or documentation.
+
+Removing a custom domain for the Replicated registry, proxy service, or Replicated app service will break existing installations that use those custom domains. Existing installations need to be upgraded to a version that doesn't use the custom domains before they can be safely removed.
+
+If you remove a custom domain for the download portal, customers will no longer be able to access the download portal using that custom domain, so you need to point them to an updated URL.
 
 If you remove a custom domain for the download portal, it is no longer accessible using the custom URL.
 
