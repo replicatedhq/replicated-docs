@@ -102,11 +102,11 @@ To reuse a custom domain for another application:
    - Click **Not now**. You can come back later to set the domain as the default. The vendor portal shows shows that the domain has a Configured status because it was configured for a previous application, though it is not yet assigned as the default for this application.
 
 
-## Remove a Custom Registry or Proxy Domain
+## Remove a Custom Domain
 
 You can remove a custom domain for the Replicated registry or proxy service at any time, but you should plan the transition so that you do not break any existing installations.
 
-To remove a registry custom domain:
+To remove a custom domain:
 
 1. Log in to the [vendor portal](https://vendor.replicated.com) and click **Custom Domains**.
 
