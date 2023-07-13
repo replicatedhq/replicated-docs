@@ -18,20 +18,10 @@ const sidebars = {
 
   // But you can create a sidebar manually
 
-  tutorialSidebar: [
-
-    'intro',
-    {
-      type: 'category',
-      className: 'main-section',
-      label: 'Release Notes',
-      items: [
-        'release-notes/rn-whats-new',
-        'release-notes/rn-app-manager',
-        'release-notes/rn-kubernetes-installer'
-      ],
-    },
-    'intro-replicated',
+  kots: [
+    {type: 'ref', id: 'intro', 'label': 'Back to Home', className: 'menu__list-item__home-link'},
+    {type: 'html', value: '<h5></h5>'},
+    // {type: 'html', value: '<h5>test</h5>', defaultStyle: true}, 
     {
       type: 'category',
       label: 'Getting Started Tutorials',
@@ -68,6 +58,22 @@ const sidebars = {
         },
       ],
     },
+  ],
+
+  main: [
+
+    'intro',
+    {
+      type: 'category',
+      className: 'main-section',
+      label: 'Release Notes',
+      items: [
+        'release-notes/rn-whats-new',
+        'release-notes/rn-app-manager',
+        'release-notes/rn-kubernetes-installer'
+      ],
+    },
+    'intro-replicated',
     {
       type: 'category',
       label: 'Vendor Portal Team Management',
@@ -152,6 +158,7 @@ const sidebars = {
         'vendor/releases-creating-cli',
       ],
     },
+    {type: 'ref', id: 'vendor/tutorial-ui-setup', label: 'KOTS and kURL'},
     {
       type: 'category',
       label: 'Distributing Helm Charts',
@@ -168,8 +175,6 @@ const sidebars = {
                 'vendor/replicated-sdk-overview',
                 'vendor/replicated-sdk-using',
                 'vendor/replicated-sdk-development',
-
-            
           ],
         },
         {
