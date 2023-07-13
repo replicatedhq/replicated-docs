@@ -1,5 +1,6 @@
 import StatusesTable from "../partials/status-informers/_statusesTable.mdx"
 import AggregateStatus from "../partials/status-informers/_aggregateStatus.mdx"
+import AggregateStatusIntro from "../partials/status-informers/_aggregate-status-intro.mdx"
 
 # Viewing Status Details
 
@@ -43,8 +44,6 @@ The following table lists the supported Kubernetes resources and the conditions 
 
 ### Aggregate Application Status
 
-When an application instance reports the status of more than one of the supported Kubernetes resources, KOTS aggregates all resource statuses to display a single application status on the admin console dashboard.
-
-KOTS uses the least available resource status to represent the aggregate application status. For example, if at least one resource is in an Unavailable status, then the aggregate application status is Unavailable.
+<AggregateStatusIntro/>
 
 <AggregateStatus/>

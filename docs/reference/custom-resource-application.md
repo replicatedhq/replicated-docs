@@ -338,7 +338,7 @@ spec:
     <td>
       <p>Resources to watch and report application status back to the user. When you include <code>statusInformers</code>, the dashboard can indicate when the application deployment is complete and the application is ready for use.</p>
       <p><code>statusInformers</code> use the format <code>[namespace/]type/name</code>, where namespace is optional.</p>
-      <p>For more information about including statusInformers, see <a href="/vendor/admin-console-display-app-status">Displaying Application Status</a>.</p>
+      <p>For more information about including statusInformers, see <a href="/vendor/admin-console-display-app-status">Adding Resource Status Informers</a>.</p>
     </td>
   </tr>
   <tr>

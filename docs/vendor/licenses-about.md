@@ -1,4 +1,3 @@
-import AppCheckin from "../partials/instance-insights/_appCheckins.mdx"
 import ChangeChannel from "../partials/customers/_change-channel.mdx"
 
 # About Customers

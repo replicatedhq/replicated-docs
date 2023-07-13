@@ -1,5 +1,3 @@
-import Checkins from "../partials/instance-insights/_appCheckins.mdx"
-
 # Customer Reporting
 
 This topic describes the customer and instance data displayed in the **Customers > Reporting** page of the Replicated vendor portal.
@@ -43,9 +41,9 @@ If the customer has one or more application instances that have reached a Ready 
 * **License time to install**: The time between when you create the customer license in the vendor portal, and when the application instance reaches a Ready status in the customer environment.
 * **Instance time to install**: The time between when the vendor portal records the first event for the application instance in the customer environment, and when the instance reaches a Ready status.
 
-A _Ready_ status indicates that all Kubernetes resources that you added as status informers for the application are Ready. For example, if you defined a Deployment resource as a status informer, then the Deployment resource is considered Ready when the number of Ready replicas equals the total desired number of replicas. For more information about how to configure status informers for your application, see [Displaying Application Status](admin-console-display-app-status).
+A _Ready_ status indicates that all Kubernetes resources for the application are Ready. For example, a Deployment resource is considered Ready when the number of Ready replicas equals the total desired number of replicas. For more information, see [Enabling and Understanding Application Status](insights-app-status).
 
-If the customer has no application instances that have ever reported a Ready status, or if you have not configured status informers for your application, then the **Time to install** section displays a **No Ready Instances** message.
+If the customer has no application instances that have ever reported a Ready status, or if you have not configured your application to deliver status data to the vendor portal, then the **Time to install** section displays a **No Ready Instances** message.
 
 If the customer has more than one application instance that has previously reported a Ready status, then the **Time to install** section displays metrics for the instance that most recently reported a Ready status for the first time.
 
@@ -70,7 +68,7 @@ You can click any of the rows in the **Instances** section to open the **Instanc
 
 The **Instances** section displays the following details about each active instance:
 * The first seven characters of the instance ID.
-* The status of the instance. Status is based on the status informers configured for the application. Possible statuses are Missing, Unavailable, Degraded, Ready, and Updating. For more information, see [Resource Statuses](admin-console-display-app-status#resource-statuses) in _Displaying Application Status_. 
+* The status of the instance. Possible statuses are Missing, Unavailable, Degraded, Ready, and Updating. For more information, see [Enabling and Understanding Application Status](insights-app-status).
 * The application version.
 * Details about the cluster where the instance is installed, including:
    * The Kubernetes distribution for the cluster, if applicable.
@@ -80,10 +78,10 @@ The **Instances** section displays the following details about each active insta
      The following shows an example of the Nodes field for an instance installed in an embedded cluster.
      ![Instance with 1/1 nodes ready](/images/kurl-instance-row.png)
      [View a larger version of this image](/images/kurl-instance-row.png)
-   * The KOTS version running in the cluster.
+   * (KOTS Only) The KOTS version running in the cluster.
+   * (Replicated SDK Only) The Replicated SDK version running in the cluster.
    * The cloud provider and region, if applicable.
 * Instance uptime data, including:
-   * The timestamp of the last recorded check-in for the instance. A check-in is recorded when any of the following occur:
-      <AppCheckin/>
+   * The timestamp of the last recorded check-in for the instance. For more information about what triggers an instance check-in, see [How the Vendor Portal Collects Instance Data](instance-insights-event-data#about-reporting) in _About Instance and Event Data_.
    * An uptime graph of the previous two weeks. For more information about how the vendor portal determines uptime, see [Instance Uptime](instance-insights-details#instance-uptime) in _Instance Details_.
    * The uptime ratio in the previous two weeks.
