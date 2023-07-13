@@ -6,7 +6,7 @@ For an overview of the key use cases for software vendors that Replicated serves
 
 ## About the Replicated Platform
 
-Replicated provides the following features for managing, monitoring, distributing your apps, with any pricing plan, including:
+Replicated provides the following features on all pricing plans for managing, monitoring, distributing your apps, including:
 
 - Manage your releases and versioning
 - Create and manage custom license entitlements for your customers
@@ -16,55 +16,43 @@ Replicated provides the following features for managing, monitoring, distributin
 - Get telemetry and key insights for the instances of your application running in customer environments
 - Management and configuration tools, which include the Replicated vendor portal, replicated CLI, and the vendor API.
 
-For more information about these features, see [Key Features](key-features).
-
-## Pricing Plans
-
-Replicated offers multiple pricing plans to provide flexibility in supporting your application needs.
-
-- **Builders Plan:** This option supports Helm chart applications and Helm CLI installations. This plan lets you pick and choose which features you want to use using the Replicated SDK. For example, you can use just the compatibility matrix. 
-
-    Alternatively, you might want to use just the vendor portal to manage your releases without using any other feature. In this case, you would not need to add the SDK subchart to your Helm charts.
-
-- **Premium Plan:** This option includes the KOTS entitlement, which provides KOTS and kURL installers. This plan also provides an admin console for you end customers, Replicated support, and lets you deploy applications using Helm charts, Kubernetes standard manifests, or Kubernetes Operators.
-
-    You can also support multiple deployment types with a single release, such as KOTS, kURL, and Helm CLI installations using the SDK.
+Additional features are available for Replicated KOTS and Replicated kURL. For more information, see [KOTS and kURL](kots-and-kurl).
 
 ## Key Features
 
-This section describes some of the key features and use cases for the Replicated platform. KOTS denoted features require a KOTS entitlement.
+This section describes some of the key features and use cases for the Replicated platform. KOTS denoted functionality require a KOTS entitlement.
 
 ### Release Management
 
 Replicated release features help you manages your product lifecycle effectively. You manage releases using the vendor portal or the replicated CLI.
 
-You import your application files to the vendor portal to create and package a release using the Replicated features. _Packaging_ refers to the act of authoring, testing, iterating on, and accepting a set of Kubernetes manifests for release to your customers with Replicated.
+You import your application files to the vendor portal to create and package a release using the Replicated features. _Packaging_ refers to the act of authoring, testing, iterating on, and accepting a set of Helm charts or Kubernetes manifests for release to your customers with Replicated.
 
-Each release has release properties that let you define version numbers, optionally use semantic versioning, and provide your own release notes. You can test releases in a channel reserved for development, then promote the release to a Beta channel for customer testing, and then promote the release to a Stable channel when it is ready for general availability.
+Each release has properties that let you define version numbers, optionally use semantic versioning, and provide your own release notes. You can test releases in a channel reserved for development, then promote the release to a Beta channel for customer testing, and then promote the release to a Stable channel when it is ready for general availability.
 
 If you have a KOTS entitlement, you can also specify whether a KOTS or kURL release is required for upgrade or can be skipped.
 
 ### Custom License Entitlements
 
-You can check in with the service to provide custom license entitlements that are signed, synchronized, and verified, such as expiration dates, which features are enabled, usage limits, and then integrate those values with your application code to enforce the entitlements. By default, Replicated automatically synchronizes and updates custom entitlement values in the running application.
+The license service lets you provide custom license entitlements that are signed, synchronized, and verified, such as expiration dates, which features are enabled, usage limits, and then integrate those values with your application code to enforce the entitlements. By default, Replicated automatically synchronizes and updates custom entitlement values in the running application.
 
 ### Custom Domains
 
 You can use custom domains for services that use customer-facing URLs. This lets you use your own branding instead of the default Replicated domain name.
 
-Custom domains can be used for external private registries, the Replicated registry, the Replicated app service, and the download portal. The download portal an option you can use to distribute your application, license files, and so on.
+Custom domains can be used for external private registries, the Replicated registry, the Replicated app service, and the download portal. The download portal is an option you can use to distribute your application, license files, and so on.
 
 ### Compatibility Matrix
 
-Test application compatibility using the compatibility matrix, which provides fast, on-demand programmatic access to test clusters of various Kubernetes distributions and versions many combinations of customer-representative environments. 
+The compatibility matrix provides fast, on-demand programmatic access to test your application compatibility in clusters of various Kubernetes distributions and versions many combinations of customer-representative environments. 
 
 Your team can test as they develop, test before every release, and recreate customer environments for testing support cases. For example, testing as you develop or before every release can help uncover version incompatibilities, letting you fix the issue before it is released to a customer.
 
-Because each vendor's needs are different, you develop any variety of tests that you need, such as smoke tests, policy tests, release tests, and canary tests, and the run the tests with the compatibility matrix. You can explore a simple configuration, end-to-end configurations, or a broad matrix of combinations. 
+Because each vendor's needs are different, you develop the variety of tests that you need, such as smoke tests, policy tests, release tests, and canary tests, and the run the tests with the compatibility matrix. You can explore a simple configuration, end-to-end configurations, or a broad matrix of combinations. 
 
-When you use the compatibility matrix in conjunction with instance insights, you can use insights information to programmatically provision accurate customer-representative environments, configure them, and set up a series of tests for each release. If the test passes, a script that can even automatically promote the release to your stable or latest release channels and notify customers that is available for upgrade.
+When you use the compatibility matrix in conjunction with instance insights, you can use insights information to programmatically provision and configure accurate customer-representative environments, and set up a series of tests for each release. If a test passes, you can create a script that automatically promotes the release to your stable or latest release channels, and automatically notify customers that is available for upgrade.
 
-Using the compatibility matrix you can reduce costs and the effort to test, increase install success rates, reduce support incidents in the field, and reduce risk in diverse environments. The compatibility matrix helps you test more comprehensively, automate common tests to reduce effort, and ultimately catch issues before customers find them.
+Using the compatibility matrix can help reduce the costs and effort to test, increase install success rates, reduce support incidents in the field, and reduce risk in diverse environments. The compatibility matrix helps you test more comprehensively, automate common tests to reduce effort, and catch issues before customers find them.
 
 ### Preflight Checks and Support Bundles
 
@@ -118,7 +106,7 @@ When you use the Replicated platform, you can install your application using the
 
 Uses the Helm CLI to install Helm charts. You can include the SDK as a dependency of your Helm chart if you want to integrate some or all of the Replicated features. For example, you might want to relay performance, usage, and health data from your proprietary customer user interface to the vendor portal and set up notifications for events. For more information about the SDK, see [About the Replicated SDK (Beta)](replicated-sdk-overview).
 
-### Replicated KOTS and Replicated kURL
+### KOTS and kURL
 
 KOTS lets you package and update applications using Helm charts, Kubernetes manifests, or Kubernetes Operators. Applications are then securely deployed in customer environments using the KOTS installer. 
 
