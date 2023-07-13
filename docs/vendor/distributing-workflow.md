@@ -49,7 +49,7 @@ Complete the following procedures to import your application files then create a
       </tr>
       <tr>
         <td>Helm charts</td>
-        <td>To create a release with your Helm chart, add your Helm chart and a Replicated HelmChart custom resource to the release. See <a href="releases-creating-release">Managing Releases with the Vendor Portal</a> and <a href="helm-release">Creating a Release with Your Helm Chart for KOTS</a>.</td>
+        <td>To create a release with your Helm chart, add your Helm chart and a Replicated HelmChart custom resource to the release. See <a href="releases-creating-releases">Managing Releases with the Vendor Portal</a> and <a href="helm-release">Creating a Release with Your Helm Chart for KOTS</a>.</td>
       </tr>
       <tr>
         <td>Standard manifest files</td>

@@ -71,4 +71,4 @@ spec:
 ```
 
 A single support bundle archive can be generated from a combination of these manifests using the `kubectl support-bundle --load-cluster-specs` command. 
-For more information and additional options, see [Generating Support Bundles](suport-bundle-generating).
+For more information and additional options, see [Generating Support Bundles](support-bundle-generating).
