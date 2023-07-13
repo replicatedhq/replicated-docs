@@ -2,7 +2,7 @@
 
 This topic describes how to add and manage custom domains to alias the Replicated registry, the Replicated proxy service, the Replicated app service, and the download portal.
 
-For an overview about custom domains and limitations, see [About Custom Domains](custom-domains-about).
+For an overview about custom domains and limitations, see [About Custom Domains](custom-domains).
 
 
 ## Configure a Custom Domain
@@ -102,18 +102,22 @@ To reuse a custom domain for another application:
    - Click **Not now**. You can come back later to set the domain as the default. The vendor portal shows shows that the domain has a Configured status because it was configured for a previous application, though it is not yet assigned as the default for this application.
 
 
-## Remove a Custom Registry or Proxy Domain
+## Remove a Custom Domain
 
-You can remove a custom domain for the Replicated registry or proxy service at any time, but you should plan the transition so that you do not break any existing installations.
+You can remove a custom domain at any time, but you should plan the transition so that you do not break any existing installations or documentation.
 
-To remove a registry custom domain:
+Removing a custom domain for the Replicated registry, proxy service, or Replicated app service will break existing installations that use the custom domain. Existing installations need to be upgraded to a version that does not use the custom domain before it can be removed safely.
+
+If you remove a custom domain for the download portal, it is no longer accessible using the custom URL. You will need to point customers to an updated URL.
+
+To remove a custom domain:
 
 1. Log in to the [vendor portal](https://vendor.replicated.com) and click **Custom Domains**.
 
-1. Verify that the domain is not set as the default nor in use on any channels. You can edit the domains in use on a channel in the channel settings. For more information, see [Channel Settings](releases-about-releases#channel-settings) in _About Channels_.
-
-1. After ensuring that no installations are using the domain, click **Remove** next to the unused domain in the list to remove it from the vendor portal. Click **Yes, remove domain**.
+1. Verify that the domain is not set as the default nor in use on any channels. You can edit the domains in use on a channel in the channel settings. For more information, see [Channel Settings](releases-about-channels#channel-settings) in _About Channels_.
 
   :::important
-  When you remove a registry custom domain from the vendor portal, any installations that reference that custom domain break. Ensure that a custom domain is no longer in use before you remove it from the vendor portal.
+  When you remove a registry or Replicated app service custom domain, any installations that reference that custom domain will break. Ensure that the custom domain is no longer in use before you remove it from the vendor portal.
   :::
+
+1. Click **Remove** next to the unused domain in the list, and then click **Yes, remove domain**.  
