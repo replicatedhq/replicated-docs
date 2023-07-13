@@ -19,6 +19,7 @@ replicated customer ls
   </tr>
   <Help/>
   <App/>
+  <td><code>--appversion</code></td><td>string</td><td>The application version. Used to list customers and their instances by a specific app version.</td>
   <Token/>
 </table>
 
