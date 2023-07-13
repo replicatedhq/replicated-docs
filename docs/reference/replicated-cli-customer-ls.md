@@ -4,7 +4,7 @@ import App from "../partials/replicated-cli/_app.mdx"
 
 # customer ls
 
-List all customers in your application.
+List the customers for your application.
 
 ## Usage
 ```bash
@@ -19,11 +19,14 @@ replicated customer ls
   </tr>
   <Help/>
   <App/>
-  <td><code>--appversion</code></td><td>string</td><td>The application version. Used to list customers and their instances for a specific app version.</td>
+  <td><code>--appversion</code></td><td>string</td><td>The application version. Used to list customers and their instances for a specific application version.</td>
   <Token/>
 </table>
 
 ## Examples
+
+List all customers:
+
 ```bash
 replicated customer ls
 ID                                  NAME                            CHANNELS         EXPIRES    TYPE
@@ -31,7 +34,7 @@ iEgJuVDHy2pi-AqOjLXbZCTX9bqlV6YH    John Smith                      Unstable    
 YAg7ripYbK0tM5MVn_81nMy0YrhBsHrm    Megacorp                        Megacorp_Beta    Never      
 ```
 
-Listing customers and their instances for a specific app version:
+List customers and their instances for a specific application version:
 
 ```bash
 replicated customer ls --appversion 1.1.0
