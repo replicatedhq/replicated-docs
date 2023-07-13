@@ -1,11 +1,11 @@
 import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
 import HelmDiagramOverview from "../partials/helm/_helm-diagram-overview.mdx"
 
-# About Distributing with Helm (Beta)
+# About Helm Installations with Replicated (Beta)
 
 This topic provides an overview of allowing your customers to install with Helm when you distribute your Helm chart application with Replicated.
 
-## About Helm Installations with Replicated
+## Overview
 
 The following diagram shows how Helm charts distributed with Replicated are installed with Helm in customer environments:
 

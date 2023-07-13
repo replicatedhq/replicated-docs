@@ -161,12 +161,6 @@ ol ol ol {
   padding-top: 20px;
 }
 
-/* Footer styling */
-
-.footer--dark {
-    --ifm-footer-background-color: #ffffff;
-}
-
 /* Release Note label styling */
 
 h3[id^="new-features"] {
