@@ -61,4 +61,4 @@ To install the SDK in integration mode:
 
    ![SDK integration mode install command in the Helm install instructions dialog](/images/helm-install-instructions-sdk-integration.png)
 
-1. Make requests to the SDK API from your application. Requests to the `license` endpoints use your actual license data, while requests to the `app` endpoints use the default mock data. See [app](/reference/replicated-sdk-apis#app) in _Replicated SDK API (Beta)_.
+1. Make requests to the SDK API from your application. Requests to the `license` endpoints use your actual license data, while requests to the `app` endpoints use the default mock data. See [Replicated SDK API (Beta)](/reference/replicated-sdk-apis).
