@@ -167,7 +167,6 @@ const sidebars = {
             'vendor/replicated-sdk-overview',
             'vendor/replicated-sdk-using',
             'vendor/replicated-sdk-development',
-            'vendor/replicated-sdk-mock-data',
           ],
         },
         {
