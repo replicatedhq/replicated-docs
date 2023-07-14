@@ -1,16 +1,18 @@
 # About KOTS and kURL
 
-This topic describes the Replicated KOTS and Replicated kURL installers, and the Replicated admin console for packaging, deploying, and managing applications in a Kubernetes cluster.
+This topic describes Replicated KOTS, used for packaging, installing, and managing applications in a Kubernetes cluster. It also describes the Replicated kURL installer option.
 
 ## Overview
 
 KOTS lets you package and update applications using Helm charts, Kubernetes manifests, or Kubernetes Operators. Applications are then securely deployed in customer environments using the KOTS installer. 
 
-For customers that do not have an existing cluster, you can include a kURL installer to provision an embedded cluster, and then KOTS installs the application.
+For customers that do not have an existing cluster, you can include a kURL installer to provision an embedded cluster, and then KOTS installs the application. For more information about kURL, see [kURL](#kurl).
 
 KOTS and kURL support installing in air gapped environments.
 
-KOTS installs the admin console and the kots CLI on a cluster that lets customers manage the application, in addition to helping deploy the application and upgrades.
+KOTS installs the Replicated admin console and the kots CLI on a cluster that lets customers manage the application, in addition to helping deploy the application and upgrades. For more information, see [Admin Console](#admin-console) and [kots CLI](#kots-cli).
+
+KOTS provides additional features for managing your application. For more information about KOTS and its features, see [KOTS](#kots).
 
 ## Architecture
 
@@ -32,6 +34,24 @@ For more information, see:
 ## KOTS
 
 KOTS installs the admin console and the kots CLI on a cluster, and deploys the application files using either the admin console or kots CLI. The admin console and kots CLI also let customers manage the application.
+
+KOTS lets your customize your customer experience with the admin console during installation and when managing the application instance. For more information about the admin console, see [Admin Console](#admin-console).
+
+You use custom resources to configure and control the application experience. Custom resources are packaged with your application but are not deployed to the cluster. The custom resources are used to customize or enable options, such as the:
+
+- Customer-facing Config screen in the admin console
+- Admin console branding, release notes, custom graphs display, application status display, and more
+- Preflight checks
+- Support bundle specifications
+- Back and restore
+- Identity service
+- Default rule levels for the linter
+
+KOTS lets you add optional and conditional resources, using annotations, to include or exclude resources based on conditional statements. For example, a customer might want to use their own database and so any database option provided by your Kubernetes manifests should not be installed. You can also use annotations to control the order in which resources are deployed. For more information, see [Including Optional and Conditional Resources](packaging-include-resources), [Orchestrating Resource Deployment](orchestrating-resource-deployment).
+
+You can enable backup and restore capabilities with KOTS snapshots, so that customers can implement full disaster recovery protection for the application and the admin console. Backup and restore is supported in all environments, included air gap. For more information, see [Understanding Backup and Restore](snapshots-overview).
+
+Role-based access control (RBAC) is supported for clusters and namespaces. By default, the KOTS installation sets RBAC for the cluster, but you can scope it to namespaces instead. For more information, see [Configuring KOTS RBAC](packaging-rbac).
 
 ### Admin Console
 
