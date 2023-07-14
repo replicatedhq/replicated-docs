@@ -33,14 +33,13 @@ const sidebars = {
     },
     'intro-main',
     'intro-replicated',
-    'vendor/getting-started-workflow',
     {
       type: 'category',
-      label: 'Getting Started Tutorials',
+      label: 'KOTS Tutorials',
       items: [
         {
           type: 'category',
-          label: 'KOTS UI Tutorial',
+          label: 'Admin Console Tutorial',
           items: [
             'vendor/tutorial-ui-setup',
             'vendor/tutorial-ui-create-app',
@@ -54,7 +53,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'KOTS CLI Tutorial',
+          label: 'kots CLI Tutorial',
           items: [
             'vendor/tutorial-cli-setup',
             'vendor/tutorial-cli-install-cli',
