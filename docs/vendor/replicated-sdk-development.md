@@ -10,7 +10,7 @@ To use integration mode, install the Replicated SDK as a standalone component us
 
 To use the Replicated SDK in integration mode, complete the following procedures:
 1. [Create a Development License](#license)
-1. [Install the SDK](#install)
+1. [Install the SDK in integration mode](#install)
 
 ## Create a Development License {#license}
 
@@ -43,7 +43,7 @@ To create a development license:
 
 1. Click **Save Changes**.
 
-## Install the SDK and Enable Mock Data {#install}
+## Install the SDK in integration mode {#install}
 
 To develop against the SDK locally in your development environment, install the SDK in integration mode as a standalone component in your cluster.
 
@@ -57,7 +57,7 @@ To install the SDK in integration mode:
 
    ![Registry login command in the Helm install instructions dialog](/images/helm-install-instructions-registry-login.png)
 
-1. From the same dialog, copy and run the command to install the SDK in integration mode and enable the default mock data:
+1. From the same dialog, copy and run the command to install the SDK in integration mode:
 
    ![SDK integration mode install command in the Helm install instructions dialog](/images/helm-install-instructions-sdk-integration.png)
 
