@@ -428,16 +428,23 @@ const sidebars = {
 
     },
     {type: 'html', value: '<h5>distribute and observe</h5>', defaultStyle: true},
-    'vendor/distributing-about',
-    'vendor/helm-overview',
     {
       type: 'category',
-      label: 'Planning to Distribute',
+      label: 'Introduction',
       items: [
-        'vendor/planning-questionnaire',
-        'vendor/namespaces',
+        'vendor/distributing-about',
+        'vendor/helm-overview',
+        {
+          type: 'category',
+          label: 'Planning to Distribute',
+          items: [
+            'vendor/planning-questionnaire',
+            'vendor/namespaces',
+          ],
+        },
       ],
     },
+    
     {
       type: 'category',
       label: 'Helm',
