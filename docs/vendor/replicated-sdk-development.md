@@ -55,10 +55,10 @@ To install the SDK in integration mode:
 
 1. In the **Helm install instructions** dialog, copy and run the command to log in to the Replicated registry.
 
-   ![Red box surrounding the password value in the Helm install instructions dialog](/images/license-id-helm-install-password.png)
+   ![Registry login command in the Helm install instructions dialog](/images/helm-install-instructions-registry-login.png)
 
 1. From the same dialog, copy and run the command to install the SDK in integration mode and enable the default mock data:
 
-   ![Red box surrounding the password value in the Helm install instructions dialog](/images/license-id-helm-install-password.png)
+   ![SDK integration mode install command in the Helm install instructions dialog](/images/helm-install-instructions-sdk-integration.png)
 
 1. Make requests to the `app` endpoints the SDK API from your application to use the default mock data. See [app](/reference/replicated-sdk-apis#app) in _Replicated SDK API (Beta)_.
