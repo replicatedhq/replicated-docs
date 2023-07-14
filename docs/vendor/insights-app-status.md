@@ -21,7 +21,7 @@ For more information about how instance data is sent to the vendor portal, see [
 
 To display insights on application status, the vendor portal requires that your application has one or more _status informers_. Status informers indicate the Kubernetes resources deployed as part of your application that are monitored for changes in state.
 
-To enable status informers for you application, do one of the following, depending on the installation method:
+To enable status informers for your application, do one of the following, depending on the installation method:
 * [Helm Installations](#helm-installations)
 * [KOTS Installations](#kots-installations)
 
