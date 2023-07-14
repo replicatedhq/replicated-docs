@@ -2,7 +2,11 @@ import LicenseExpirationExample from "../partials/replicated-sdk/_license-expira
 
 # Replicated SDK API (Beta)
 
-The Replicated SDK provides an API that you can use to embed Replicated functionality into your Helm chart application. For more information about how to get started with the Replicated SDK, see [About the Replicated SDK (Beta)](/vendor/replicated-sdk-overview).
+The Replicated SDK provides an API that you can use to embed Replicated functionality into your Helm chart application.
+
+For example, if your application includes a UI where users manage their application instance, then you can use the `/api/v1/app/updates` endpoint to include messages in the UI that encourage users to upgrade when new versions are available. You could also revoke access to the application during runtime when a license expires using the `/api/v1/license/fields` endpoint.
+
+For more information about how to get started with the Replicated SDK, see [About the Replicated SDK (Beta)](/vendor/replicated-sdk-overview).
 
 ## Access the SDK API
 

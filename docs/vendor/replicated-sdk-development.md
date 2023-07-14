@@ -1,12 +1,12 @@
 # Developing Against the SDK API (Beta)
 
-This topic describes how to enable integration mode for the Replicated SDK to develop and test changes locally.
+This topic describes how to enable integration mode for the Replicated SDK to develop and test changes locally. For more information about the SDK API, see [Replicated SDK API (Beta)](/reference/replicated-sdk-apis).
 
 ## About Integration Mode
 
-You can use the Replicated SDK in integration mode to develop locally without needing to make real changes in the Replicated vendor portal or in your environment.
+You can use the Replicated SDK in integration mode to develop locally against the SDK API without needing to make real changes in the Replicated vendor portal or in your environment.
 
-To use integration mode, install the Replicated SDK as a standalone component using a valid development license created in the Replicated vendor portal and enable data mocks in the SDK. The SDK includes a default mock data object that you can use when working in integration mode.
+To use integration mode, install the Replicated SDK as a standalone component using a valid development license created in the Replicated vendor portal. After you install in integration mode, the SDK provides default mock data for requests to the SDK API `app` endpoints. Requests to the `license` endpoints use the real data from your development license.
 
 To use the Replicated SDK in integration mode, complete the following procedures:
 1. [Create a Development License](#license)
@@ -45,7 +45,7 @@ To create a development license:
 
 ## Install the SDK in integration mode {#install}
 
-To develop against the SDK locally in your development environment, install the SDK in integration mode as a standalone component in your cluster.
+To develop against the SDK locally in your development environment, install the SDK in integration mode as a standalone component in your cluster. Integration mode is enabled by default when you install with a development license.
 
 To install the SDK in integration mode:
 
@@ -61,4 +61,4 @@ To install the SDK in integration mode:
 
    ![SDK integration mode install command in the Helm install instructions dialog](/images/helm-install-instructions-sdk-integration.png)
 
-1. Make requests to the SDK API from your application. Requests to the `license` endpoints use your actual license data, while requests to the `app` endpoints use the default mock data. See [Replicated SDK API (Beta)](/reference/replicated-sdk-apis).
+1. Make requests to the SDK API from your application. Requests to the `license` endpoints use your actual development license data, while requests to the `app` endpoints use the default mock data. For more information about using the SDK API, see [Replicated SDK API (Beta)](/reference/replicated-sdk-apis).

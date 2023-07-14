@@ -166,7 +166,6 @@ const sidebars = {
             'vendor/install-with-helm',
             'vendor/replicated-sdk-overview',
             'vendor/replicated-sdk-using',
-            'vendor/replicated-sdk-development',
           ],
         },
         {
@@ -584,7 +583,14 @@ const sidebars = {
     },
     // DEVELOPER TOOLS
     {type: 'html', value: '<h5>Developer tools</h5>', defaultStyle: true},
-    'reference/replicated-sdk-apis',
+    {
+      type: 'category',
+      label: 'Replicated SDK API (Beta)',
+      items: [
+        'reference/replicated-sdk-apis',
+        'vendor/replicated-sdk-development',
+      ]
+    },  
     {
       type: 'category',
       label: 'replicated CLI',
