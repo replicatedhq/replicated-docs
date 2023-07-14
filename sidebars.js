@@ -388,7 +388,7 @@ const sidebars = {
     },
     {type: 'html', value: '<h5>get started</h5>', defaultStyle: true},
     'intro-replicated',
-    'vendor/helm-overview',
+    
     {
       type: 'category',
       label: 'KOTS Tutorials',
@@ -429,9 +429,10 @@ const sidebars = {
     },
     {type: 'html', value: '<h5>distribute and observe</h5>', defaultStyle: true},
     'vendor/distributing-about',
+    'vendor/helm-overview',
     {
       type: 'category',
-      label: 'Planning',
+      label: 'Planning to Distribute',
       items: [
         'vendor/planning-questionnaire',
         'vendor/namespaces',
