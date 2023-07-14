@@ -20,7 +20,7 @@ Click **Upload license** on the right side of the license pane and select the la
 - A **License is already up to date** note appears if no changes are detected.
 - A **License uploaded successfully** note appears when the changes are successfully applied.
 
-## Change Community Licenses
+## Upgrade from a Community License
 
 If you have a community license, you can change your license by uploading a new one. This allows you to upgrade from a community version of the software without having to reinstall the admin console and the application.
 

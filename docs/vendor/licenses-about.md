@@ -2,7 +2,7 @@ import ChangeChannel from "../partials/customers/_change-channel.mdx"
 
 # About Customers
 
-This topic provides an overview of customer licenses, including information about license types, the **Customers** page in the Replicated vendor portal, and how Replicated uses the customer entitlement information that you provide in license files.
+This topic provides an overview of customer licenses, including information about license types, the **Customers** page in the Replicated vendor portal, and how Replicated uses the customer entitlement information that you provide in licenses.
 
 ## Overview
 
@@ -18,7 +18,7 @@ You assign customers to channels in the vendor portal to control their access to
 
 <ChangeChannel/>
 
-For example, if the latest release promoted to the Beta channel is version 1.25.0 and version 1.10.0 is marked as required, when you edit an existing customer to assign them to the Beta channel, then the admin console always fetches 1.25.0, even though 1.10.0 is marked as required. The required release 1.10.0 is ignored and is not available to the customer for upgrade.
+For example, if the latest release promoted to the Beta channel is version 1.25.0 and version 1.10.0 is marked as required, when you edit an existing customer to assign them to the Beta channel, then the Replicated admin console always fetches 1.25.0, even though 1.10.0 is marked as required. The required release 1.10.0 is ignored and is not available to the customer for upgrade.
 
 For more information about how to mark a release as required, see [Release Properties](releases-about#release-properties) in _About Releases_. For more information about how to synchronize licenses in the admin console, see [Updating Licenses](/enterprise/updating-licenses).
 
@@ -32,7 +32,7 @@ You can also create custom license fields to define entitlements specific to the
 
 ### License Types
 
-Each customer license includes a `license_type` field. The type of customer defined by the `license_type` field is used solely for reporting purposes. A customer's access to your application is not affected by the type that you assign.
+Each customer license includes a type. The license type is used solely for reporting purposes. A customer's access to your application is not affected by the type that you assign.
 
 The customer types are:
 
@@ -42,25 +42,36 @@ team for testing and integration.
 of your software.
 * **Paid**: The Paid type identifies the customer as a paying customer for which
 additional information can be provided.
-* **Community**: The Community type is designed for a free or low cost version of your
-application. For more details about this type, see [Community Licenses](licenses-about-types).
+* **Community**: The Community type is designed for a free or low cost version of your application. For more details about this type, see [Community Licenses](licenses-about-types).
 
-### KOTS License Updates
+You can change the type of a license at any time in the vendor portal. For example, if a customer upgraded from a trial to a paid account, then you could change their license type from Trial to Paid for reporting purposes. 
 
-You can make changes to a customer in the vendor portal to edit their license details at any time. For more information about how to edit customers, see [Edit a Customer](releases-creating-customer#edit-a-customer) in _Creating and Managing Customers_.
+### Updating and Replacing Licenses
 
-When you edit customer licenses for an application installed with KOTS, your customers can use the Replicated admin console to update their license.
+You can make changes to a customer in the vendor portal to edit their license details, including the license type or the customer name, at any time. The license ID, which is the unique identifier for the customer, never changes. For more information about how to edit customers, see [Edit a Customer](releases-creating-customer#edit-a-customer) in _Creating and Managing Customers_.
+
+Unless the existing customer is using a community license, it is not possible to replace one license with another license without reinstalling the application. When you need to make changes to a customer's entitlements, Replicated recommends that you edit the customer's license details in the vendor portal, rather than issuing a new license. When you update the license in the vendor portal, the customer does not need to reinstall to get the updates, and Replicated KOTS users can synchronize the license from the admin console. Additionally, you can avoid the cost that comes with issuing another license.
+
+For more information about how KOTS users with a community license can upload a different license in the admin console, see [Community Licenses](licenses-about-types).
+
+## KOTS License Handling
+
+This section describes the license handling features for applications installed with KOTS.
+
+### Synchronizing Licenses
+
+When you edit customer licenses for an application installed with KOTS, your customers can use the admin console to update their license.
 
 For online instances, license updates are pulled from the vendor portal when:
-  * An automatic or manual update check is performed by KOTS.
-  * A customer selects **Sync license** in the admin console.
-  * An app status changes. See [Current State](instance-insights-details#current-state) in _Instance Details_.
+* An automatic or manual update check is performed by KOTS.
+* A customer selects **Sync license** in the admin console.
+* An application status changes. See [Current State](instance-insights-details#current-state) in _Instance Details_.
 
 For air gap instances, because air gap licenses are signed with the updated fields, customers must upload a regenerated license file to the admin console every time you modify license fields. After you update the license fields in the vendor portal, you can notify customers by either sending them a new license file or instructing them to log into their download portal to retrieve the updated license. Then, they can click **Upload license** on the **License** tab of the admin console to upload the new license file.
 
-For more information about how to update licenses in the admin console for KOTS installations, see [Updating Licenses](/enterprise/updating-licenses).
+For more information about community licenses, including how KOTS users can update licenses in the admin console, see [Updating Licenses](/enterprise/updating-licenses).
 
-### KOTS License Expiration Handling
+### License Expiration Handling
 
 The built-in `expires_at` license field defines the expiration date for a customer license. When you set an expiration date in the vendor portal, the `expires_at` field is set to midnight UTC on the date selected.
 
