@@ -4,11 +4,11 @@ This topic describes Replicated KOTS, used for packaging, installing, and managi
 
 ## Overview
 
-KOTS lets you package and update applications using Helm charts, Kubernetes manifests, or Kubernetes Operators. Applications are then securely deployed in customer environments using the KOTS installer. 
+As a vendor, KOTS lets you package and update applications using Helm charts, Kubernetes manifests, or Kubernetes Operators. Applications are then securely deployed in customer environments using the KOTS installer. 
 
 For customers that do not have an existing cluster, you can include a kURL installer to provision an embedded cluster, and then KOTS installs the application. For more information about kURL, see [kURL](#kurl).
 
-KOTS and kURL support installing in air gapped environments.
+Air gap installation are supported by KOTS and kURL.
 
 KOTS installs the Replicated admin console and the kots CLI on a cluster that lets customers manage the application, in addition to helping deploy the application and upgrades. For more information, see [Admin Console](#admin-console) and [kots CLI](#kots-cli).
 
@@ -47,7 +47,7 @@ You use custom resources to configure and control the application experience. Cu
 - Identity service
 - Default rule levels for the linter
 
-KOTS lets you add optional and conditional resources, using annotations, to include or exclude resources based on conditional statements. For example, a customer might want to use their own database and so any database option provided by your Kubernetes manifests should not be installed. You can also use annotations to control the order in which resources are deployed. For more information, see [Including Optional and Conditional Resources](packaging-include-resources), [Orchestrating Resource Deployment](orchestrating-resource-deployment).
+Using custom resources, you can add optional and conditional resources, using annotations, to include or exclude resources based on conditional statements. For example, a customer might want to use their own database and so any database option provided by your Kubernetes manifests should not be installed. You can also use annotations to control the order in which resources are deployed. For more information, see [Including Optional and Conditional Resources](packaging-include-resources), [Orchestrating Resource Deployment](orchestrating-resource-deployment).
 
 You can enable backup and restore capabilities with KOTS snapshots, so that customers can implement full disaster recovery protection for the application and the admin console. Backup and restore is supported in all environments, included air gap. For more information, see [Understanding Backup and Restore](snapshots-overview).
 
@@ -67,7 +67,7 @@ The kots command-line interface (CLI) is a kubectl plugin. Customers can run com
 
 ## kURL
 
-Replicated kURL allows software vendors to create custom Kubernetes distributions to share with their users for installation in online or air gapped environments. kURL has a built-in integration with KOTS through its KOTS add-on. With this integration, users can run a kURL installation script in their virtual machine (VM) or bare metal server, which creates a cluster and then automatically installs KOTS in the cluster. Clusters created by kURL are called _embedded clusters_.
+Replicated kURL allows you to create custom Kubernetes distributions to share with your customers for installation in online or air gapped environments. kURL has a built-in integration with KOTS through its KOTS add-on. With this integration, customers can run a kURL installation script in their virtual machine (VM) or bare metal server, which creates a cluster and then automatically installs KOTS in the cluster. Clusters created by kURL are called _embedded clusters_.
 
 For information about how to install applications in embedded clusters, see [Installing with kURL](/enterprise/installing-embedded-cluster). For information about how to create a specification for kURL, see [Creating a Kubernetes Installer](/vendor/packaging-embedded-kubernetes).
 
