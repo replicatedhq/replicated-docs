@@ -26,14 +26,6 @@ const sidebars = {
     'vendor/distributing-workflow',
     {
       type: 'category',
-      label: 'Planning',
-      items: [
-        'vendor/planning-questionnaire',
-        'vendor/namespaces',
-      ],
-    },
-    {
-      type: 'category',
       label: 'Distribute Helm Charts with KOTS',
       items: [
         'vendor/helm-native-about',
@@ -397,10 +389,9 @@ const sidebars = {
     {type: 'html', value: '<h5>get started</h5>', defaultStyle: true},
     'intro-replicated',
     'vendor/helm-overview',
-    'vendor/get-started-placeholder',
     {
       type: 'category',
-      label: 'Getting Started with KOTS and kURL',
+      label: 'KOTS Tutorials',
       items: [
         {
           type: 'category',
@@ -432,10 +423,20 @@ const sidebars = {
             'vendor/tutorial-cli-update-app',
           ],
         },
+        
+      ],
+
+    },
+    {type: 'html', value: '<h5>distribute and observe</h5>', defaultStyle: true},
+    'vendor/distributing-about',
+    {
+      type: 'category',
+      label: 'Planning',
+      items: [
+        'vendor/planning-questionnaire',
+        'vendor/namespaces',
       ],
     },
-    
-    {type: 'html', value: '<h5>distribute and observe</h5>', defaultStyle: true},
     {
       type: 'category',
       label: 'Helm',
