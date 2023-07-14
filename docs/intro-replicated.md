@@ -8,7 +8,7 @@ As a vendor, KOTS lets you package and update applications using Helm charts, Ku
 
 For customers that do not have an existing cluster, you can include a kURL installer to provision an embedded cluster, and then KOTS installs the application. For more information about kURL, see [kURL](#kurl).
 
-Air gap installation are supported by KOTS and kURL.
+Air gap installations are supported by KOTS and kURL.
 
 KOTS installs the Replicated admin console and the kots CLI on a cluster that lets customers manage the application, in addition to helping deploy the application and upgrades. For more information, see [Admin Console](#admin-console) and [kots CLI](#kots-cli).
 
@@ -37,15 +37,15 @@ KOTS installs the admin console and the kots CLI on a cluster, and deploys the a
 
 KOTS lets your customize your customer experience with the admin console during installation and when managing the application instance. For more information about the admin console, see [Admin Console](#admin-console).
 
-You use custom resources to configure and control the application experience. Custom resources are packaged with your application but are not deployed to the cluster. The custom resources are used to customize or enable options, such as the:
+You use custom resources to configure and control the application experience. Custom resources are packaged with your application but are not deployed to the cluster. The custom resources are used to configure options, such as:
 
-- Customer-facing Config screen in the admin console
-- Admin console branding, release notes, custom graphs display, application status display, and more
-- Preflight checks
-- Support bundle specifications
-- Back and restore
-- Identity service
-- Default rule levels for the linter
+- Customizing the customer-facing Config screen in the admin console
+- Customizing admin console branding, release notes, custom graphs display, application status display, and more
+- Customizing preflight checks to validate customer environments before installing the application
+- Customizing support bundle specifications to gather and analyze data for troubleshooting a cluster and the application
+- Enabling back and restore
+- Enabling identity service to authenticate with the admin console using individual passwords instead of a shared password
+- Setting your own default rule levels for the linter
 
 Using custom resources, you can add optional and conditional resources, using annotations, to include or exclude resources based on conditional statements. For example, a customer might want to use their own database and so any database option provided by your Kubernetes manifests should not be installed. You can also use annotations to control the order in which resources are deployed. For more information, see [Including Optional and Conditional Resources](packaging-include-resources), [Orchestrating Resource Deployment](orchestrating-resource-deployment).
 
