@@ -31,8 +31,8 @@ const sidebars = {
         'release-notes/rn-kubernetes-installer'
       ],
     },
-    'intro-main',
     'intro-replicated',
+    'intro-kots',
     {
       type: 'category',
       label: 'KOTS Tutorials',
