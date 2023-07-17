@@ -1,20 +1,20 @@
 # Adoption Report (Beta)
 
-This topic describes the insights in the **Adoption** section on the Replicated vendor portal **Customers** page.
+This topic describes the insights in the **Adoption** section on the Replicated vendor portal **Dashboard** page.
 
 :::note
-The **Adoption Report** section is in Beta and is labeled as such in the vendor portal. The character of this data, how it is computed, and how it is displayed is subject to change.
+The **Dashboard** is in Beta and is labeled as such in the vendor portal. The character of the adoption data, how it is computed, and how it is displayed is subject to change.
 :::
 
 ## About Adoption Rate
 
-The **Adoption** section on the **Customers** page provides insights about the rate at which your customers upgrade their instances and adopt the latest versions of your application. As an application vendor, you can use these adoption rate metrics to learn if your customers are completing upgrades regularly, which is a key indicator of the discoverability and ease of application upgrades.
+The **Adoption** section on the **Dashboard** provides insights about the rate at which your customers upgrade their instances and adopt the latest versions of your application. As an application vendor, you can use these adoption rate metrics to learn if your customers are completing upgrades regularly, which is a key indicator of the discoverability and ease of application upgrades.
 
 The vendor portal generates adoption rate data from all your customer's application instances that have checked-in during the selected time period. For more information about instance check-ins, see [How the Vendor Portal Collects Instance Data](instance-insights-event-data#about-reporting) in _About Instance and Event Data_.
 
-The following screenshot shows an example of the **Adoption** report:
+The following screenshot shows an example of the **Adoption** section on the **Dashboard**:
 
-![Adoption report section on Customers page ](/images/customer_adoption_rates.png)
+![Adoption report section on dashboard](/images/customer_adoption_rates.png)
 
 [View a larger version of this image](/images/customer_adoption_rates.png)
 
