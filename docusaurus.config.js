@@ -66,13 +66,17 @@ const config = {
         indexName: 'docs',
         contextualSearch: true,
       },
+      docs: {
+        sidebar: {
+          hideable: true,
+        }
+      },
       navbar: {
         title: 'Docs',
         logo: {
           alt: 'R',
           src: 'images/logo-replicated-red.png',
         },
-
       },
       footer: {
         style: 'dark',

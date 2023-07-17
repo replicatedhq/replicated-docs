@@ -20,10 +20,10 @@ const sidebars = {
 
   kots: [
     {type: 'ref', id: 'intro', 'label': 'Back to Home', className: 'menu__list-item__home-link'},
-    {type: 'html', value: '<h5></h5>'},
-    {type: 'doc', id: 'vendor/kots-intro-placeholder'},
-    {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true},
-    'vendor/distributing-workflow',
+    {type: 'html', value: '<h5>get started with kots</h5>', defaultStyle: true},
+        'vendor/kots-intro-placeholder',
+        'vendor/distributing-workflow',
+    {type: 'html', value: '<h5>distribute</h5>', defaultStyle: true},
     {
       type: 'category',
       label: 'Distribute Helm Charts with KOTS',
@@ -33,16 +33,6 @@ const sidebars = {
         'vendor/helm-native-helm-install-order',
         'vendor/helm-optional-charts',
         'vendor/helm-optional-value-keys',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Kubernetes Operators',
-      items: [
-        'vendor/operator-packaging-about',
-        'vendor/operator-defining-additional-images',
-        'vendor/operator-referencing-images',
-        'vendor/operator-defining-additional-namespaces',
       ],
     },
     {
@@ -98,13 +88,23 @@ const sidebars = {
     }, 
     {
       type: 'category',
-      label: 'Kubernetes Installers',
+      label: 'Kubernetes Installers with kURL',
       items: [
         'vendor/packaging-embedded-kubernetes',
         'vendor/packaging-installer-storage',
         'vendor/preflight-host-preflights',
         'vendor/installer-history',
         'vendor/packaging-using-tls-certs',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Kubernetes Operators',
+      items: [
+        'vendor/operator-packaging-about',
+        'vendor/operator-defining-additional-images',
+        'vendor/operator-referencing-images',
+        'vendor/operator-defining-additional-namespaces',
       ],
     },
     {
@@ -386,9 +386,10 @@ const sidebars = {
         'release-notes/rn-kubernetes-installer'
       ],
     },
+    // GET STARTED
     {type: 'html', value: '<h5>get started</h5>', defaultStyle: true},
     'intro-replicated',
-    
+    'vendor/get-started-placeholder',
     {
       type: 'category',
       label: 'KOTS Tutorials',
@@ -427,13 +428,14 @@ const sidebars = {
       ],
 
     },
-    {type: 'html', value: '<h5>distribute and observe</h5>', defaultStyle: true},
+    {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true},
     {
       type: 'category',
-      label: 'Introduction',
+      label: 'Overview',
       items: [
         'vendor/distributing-about',
         'vendor/helm-overview',
+        'vendor/helm-install',
         {
           type: 'category',
           label: 'Planning to Distribute',
@@ -444,27 +446,6 @@ const sidebars = {
         },
       ],
     },
-    
-    {
-      type: 'category',
-      label: 'Helm',
-      items: [
-        'vendor/helm-install',
-        'vendor/helm-install-release',
-        'vendor/helm-release-creating-package',
-        'vendor/install-with-helm',
-      ],
-    }, 
-    {
-      type: 'category',
-      label: 'Replicated SDK',
-      items: [
-        'vendor/replicated-sdk-overview',
-        'vendor/replicated-sdk-using',
-        'vendor/replicated-sdk-development',
-      ],
-    },
-    {type: 'ref', id: 'vendor/kots-intro-placeholder', label: 'KOTS and kURL Installers'},
     {
       type: 'category',
       label: 'Vendor Portal Team Management',
@@ -501,6 +482,8 @@ const sidebars = {
         'vendor/releases-creating-channels',
         'vendor/releases-creating-releases',
         'vendor/releases-creating-cli',
+        'vendor/helm-install-release',
+        'vendor/helm-release-creating-package',
       ],
     },
     {
@@ -584,6 +567,17 @@ const sidebars = {
         },
       ],
     },
+    
+    // INSTALL
+    {type: 'html', value: '<h5>install and observe</h5>', defaultStyle: true},
+    {
+      type: 'category',
+      label: 'Installing Your Application',
+      items: [
+        'vendor/install-with-helm',
+      ],
+    },
+    {type: 'ref', id: 'vendor/kots-intro-placeholder', label: 'KOTS and kURL Installers'},
     {
       type: 'category',
       label: 'Insights and Telemetry',
@@ -596,9 +590,25 @@ const sidebars = {
          'vendor/instance-notifications-config',
        ],
     },
+
     // DEVELOPER TOOLS
     {type: 'html', value: '<h5>Developer tools</h5>', defaultStyle: true},
-    'reference/replicated-sdk-apis',
+    {
+      type: 'category',
+      label: 'Replicated SDK',
+      items: [
+        'vendor/replicated-sdk-overview',
+        'vendor/replicated-sdk-using',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Replicated SDK API',
+      items: [
+        'reference/replicated-sdk-apis',
+    'vendor/replicated-sdk-development',
+      ],
+    },
     {
       type: 'category',
       label: 'replicated CLI',

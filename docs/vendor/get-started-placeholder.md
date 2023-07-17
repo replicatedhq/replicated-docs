@@ -1,1 +1,2 @@
-# Getting Started with a Helm Chart
+# Getting Started with Helm and the SDK
+
