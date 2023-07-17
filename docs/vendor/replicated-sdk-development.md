@@ -43,7 +43,7 @@ To create a development license:
 
 1. Click **Save Changes**.
 
-## Install the SDK in integration mode {#install}
+## Install the SDK in Integration Mode {#install}
 
 To develop against the SDK locally in your development environment, install the SDK in integration mode as a standalone component in your cluster. Integration mode is enabled by default when you install with a development license.
 
