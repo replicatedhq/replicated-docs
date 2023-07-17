@@ -6,18 +6,18 @@ For an overview of the key use cases for software vendors that Replicated serves
 
 ## About the Replicated Platform
 
-The features of the Replicated platform are designed to help vendors of enterprise software to more easily distribute, test, support, and measure the success of Kubernetes applications in diverse customer environments. Whether your customer are SaaS or on-prem, you can use Replicated to deliver the same containers to both instance types without doubling the engineering effort. And you can integrate Replicated with your CI/CD pipeline.
+The features of the Replicated platform are designed to help vendors of enterprise software to more easily distribute, test, support, and measure the success of Kubernetes applications in diverse customer environments. Whether your customers are SaaS or on-prem, you can use Replicated to deliver the same containers to both instance types without doubling the engineering effort. Replicated is highly scalable, and you can integrate Replicated with your CI/CD pipeline.
 
-Replicated features help to simplify complex tasks with reliable solutions, saving vendors effort and cost. For example, Replicated uses channels to manage release readiness. You can iterate on a release in the Unstable channel, used for internal testing, and then promote a production-ready release to the Stable channel. If you have a Replicated KOTS entitlement, an upgraded application release automatically becomes visible to customers in the Replicated admin console.
+Replicated features help to simplify complex tasks with reliable end-to-end solutions, saving vendors effort and cost. For example, Replicated uses channels to manage release readiness. You can iterate on an application release in the Unstable channel, used for internal testing, and then promote a production-ready release to the Stable channel. If you have a Replicated KOTS entitlement, that release upgrade automatically becomes visible in and installable from the customers' Replicated admin consoles.
 
-Additionally, when you distribute your application with Replicated, you can install your application using Helm, using our installers, or using your own proprietary installer. The Replicated platform is useful for vendors who have applications that are Helm charts, that use standard Kubernetes manifests, or that use Kubernetes Operators.
+Additionally, when you distribute your application with Replicated, you can install your application using Helm, using our installers, or using your own proprietary installer. The Replicated platform is useful for vendors who have applications that are Helm charts, that use standard Kubernetes manifests, or that use Kubernetes Operators. Replicated installers support online and air gap installations.
 
 Replicated provides the following features for managing, getting insights and telemetry, and distributing your apps, including:
 
 - Manage your releases and versioning for effective management of your product lifecycle with the vendor portal, replicated CLI, or Vendor API
 - Create and manage custom license entitlements with flexibility and granular control
 - Connect to a proxied image registry to allow customer to install without having to share the credentials to your private registry
-<<!-- - Test application compatibility with different environments using the compatibility matrix and fast, reliable automatic provisioning of test environments.-->
+<!-- - Test application compatibility with different environments using the compatibility matrix and fast, reliable automatic provisioning of test environments.-->
 - Integrate with the Troubleshoot open source project to provide preflight checks and support bundles for your application to improve installation success and faster diagnosis with troubleshooting cluster and application issues
 - Get telemetry and key insights for the instances of your application running in customer environments
 - Management and configuration tools, which include the Replicated vendor portal, replicated CLI, and the vendor API
@@ -29,11 +29,11 @@ For more information about these key features, see [Key Features and Use Cases](
 
 Replicated offers multiple pricing plans to provide flexibility in supporting your application needs. For more information about pricing, see [Pricing](https://www.replicated.com/pricing) on the Replicated website.
 
-- **Builders Plan:** This option supports Helm chart applications and Helm CLI installations using the Replicated SDK. This plan lets you use all of the Helm features and pick and choose which Replicated features you want to use with the SDK, depending on your needs. For example, you can use just the compatibility matrix if all you need is automatic provisioning of test environments.
+- **Builders Plan:** This option supports Helm chart applications and Helm CLI installations using the Replicated SDK. This plan lets you use all of the Helm features and pick and choose which Replicated features you want to use with the SDK, depending on your needs. For example, you can use all of the feature-rich SDK services or just use the compatibility matrix, if all you need is automatic provisioning of test environments. 
 
    Alternatively, you might want to use just the vendor portal to manage your releases without using any other feature. In this case, you would not need to add the SDK subchart to your Helm charts.
 
-- **KOTS Entitlement:** A KOTS entitlement includes everything on the Builders plan, plus KOTS and kURL installers. There are additional features, such as an admin console for customers to manage your application, Replicated support, and more. You can deploy applications using Helm charts, Kubernetes standard manifests, or Kubernetes Operators.
+- **KOTS Entitlement:** A KOTS entitlement includes everything on the Builders plan, plus the KOTS and kURL installers. There are additional KOTS features, such as an admin console for customers to manage your application, Replicated support, and more. You can deploy applications using Helm charts, Kubernetes standard manifests, or Kubernetes Operators.
 
     You can also support multiple deployment types with a single release, such as KOTS, kURL, and Helm installations using the SDK.
 
@@ -56,13 +56,15 @@ If you have a KOTS entitlement, you can also specify whether a KOTS or kURL rele
 
 The license service lets you provide custom license entitlements that are signed, synchronized, and verified, such as expiration dates, which features are enabled, usage limits, and then integrate those values with your application code to enforce the entitlements. By default, Replicated automatically synchronizes and updates custom entitlement values in the running application.
 
-Using Replicated license entitlements helps to reduce release complexities and works with proven tooling. The vendor portal lets you create and manage different license types, such as maintaining community and enterprise licensing. You can also manage granular feature entitlements, which gives you flexibility in how to manage your own pricing and feature plans. You can also create Dev entitlement for testing purposes, or create temporary entitlements for product trials.
+Using Replicated license entitlements helps to reduce release complexities. The vendor portal lets you create and manage different license types, such as maintaining community and enterprise licensing. You can also manage granular feature entitlements, which gives you flexibility in how to manage your own pricing and feature plans. You can also create Dev entitlements for testing purposes, or create temporary entitlements for product trials.
 
 Additionally, Replicated license entitlements are used to verify customers through the Replicated proxy registry if you are using an external private registry, eliminating the need to share your registry credentials with customers. For more information, see [Proxy Service](#proxy-service).
 
 ### Proxy Service
 
-The vendor portal can connect to your private image registry using the Replicated proxy service. The proxy service pulls your image and then instances of your image are pulled from the proxy service. Replicated customer licenses provide licensed access to your private registry through the proxy service. This lets customers install without needing the credentials to your private registry. Instead, customers are validated using their license. And, if a company is no longer a customer, you can revoke their license and they cannot pull images from your private registry. 
+The vendor portal can connect to your private image registry using the Replicated proxy service. The proxy service pulls your image and then customer instances of your image are pulled from the proxy service. 
+
+Replicated customer licenses provide validated access to your private registry through the proxy service. This lets customers install without needing the credentials to your private registry. Instead, customers are validated using their license. And, if a company is no longer a customer, you can revoke their license and they cannot pull images from your private registry. 
 
 Additionally, you can configure custom domains in the vendor portal for services that use customer-facing URLs, such as the proxy service, so your customers see your own branding.
 
@@ -116,7 +118,7 @@ The following shows an example of the **Team Members** page that shows the list 
 
 [View a larger image](/images/teams-view.png)
 
-You can view customer reporting data and see adoption graphs to gain insights about performance, health, and usage. 
+On the **Customers** and **Dashboard** pages, you can view customer reporting data and see adoption graphs to gain insights about performance, health, and usage. 
 
 The following shows an example of the **Reporting** page for a customer that has two active application instances:
 
@@ -150,17 +152,17 @@ The Replicated SDK API is designed for testing purposes. The SDK SPI runs in int
 
 When you use the Replicated platform, you can install your application using the Helm CLI, KOTS, kURL, or use a proprietary installer.
 
-You can create a single release that supports using a Helm installation, optionally including the SDK, along side of the KOTS and kURL installers. This lets you create one release to support multiple types of customer environments so that your application runs consistently in every environment. For example, you might have customers that only want a Helm CLI installation for their existing cluster, and other customers who want a Kubernetes cluster provisioned for them with the application in an air gapped environment.
+With a KOTS entitlement, you can create a single release that supports using a Helm installation, optionally including the SDK, along side of the KOTS and kURL installers. This lets you create one release to support multiple types of customer environments so that your application runs consistently in every environment. For example, you might have customers that only want a Helm CLI installation for their existing cluster, and other customers who want a Kubernetes cluster provisioned for them with the application in an air gapped environment.
 
 One of the many advantages of using a combined release is that you can include the compatibility matrix and test all of the installations using the same application version.
 
-### Helm
+### Helm Installer
 
 Customers can use the Helm CLI to install Helm charts. You can include the SDK as a dependency of your Helm chart if you want to integrate some or all of the Replicated features. For example, you might want to relay performance, usage, and health data from your proprietary customer user interface to the vendor portal and set up notifications for events. For more information about the SDK, see [About the Replicated SDK (Beta)](replicated-sdk-overview).
 
-### KOTS and kURL
+### KOTS and kURL Installers
 
-KOTS entitlements let you package and update applications using Helm charts, Kubernetes manifests, or Kubernetes Operators. Applications are then securely deployed in customer environments using the KOTS installer. 
+KOTS entitlements let you package and update applications using Helm charts, Kubernetes manifests, or Kubernetes Operators. Applications are then securely deployed in customer environments using the KOTS installer.
 
 For customers that do not have an existing cluster, you can include a kURL installer to provision an embedded cluster, and then KOTS installs the application.
 
