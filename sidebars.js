@@ -20,9 +20,8 @@ const sidebars = {
 
   kots: [
     {type: 'ref', id: 'intro', 'label': 'Back to Home', className: 'menu__list-item__home-link'},
-    {type: 'html', value: '<h5>get started with kots</h5>', defaultStyle: true},
-        'vendor/kots-intro-placeholder',
-        'vendor/distributing-workflow',
+    'vendor/kots-intro-placeholder',
+    'vendor/distributing-workflow',
     {type: 'html', value: '<h5>distribute with kots</h5>', defaultStyle: true},
     {
       type: 'category',
@@ -117,6 +116,14 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Distributing Your Application',
+      items: [ 
+        'vendor/releases-sharing-license-install-script',        
+        'vendor/releases-configvalues',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Reference',
       items: [
         'reference/cron-expressions',
@@ -150,8 +157,9 @@ const sidebars = {
         
       ],
     },
+    
     // INSTALL AND MANAGE (ENTERPRISE USER)
-    {type: 'html', value: '<h5>admin console and kots cli</h5>', defaultStyle: true},
+    {type: 'html', value: '<h5>install and manage with kots</h5>', defaultStyle: true},
         {
           type: 'category',
           label: 'Installing an Application',
@@ -379,55 +387,56 @@ const sidebars = {
       ],
     },
     // GET STARTED
-    {type: 'html', value: '<h5>get started</h5>', defaultStyle: true},
+    // {type: 'html', value: '<h5>get started</h5>', defaultStyle: true},
     'intro-replicated',
-    'vendor/get-started-placeholder',
+    // 'vendor/get-started-placeholder',
+    
+    {type: 'html', value: '<h5>package and distribute</h5>', defaultStyle: true},
     {
       type: 'category',
-      label: 'KOTS Tutorials',
-      items: [
-        {
-          type: 'category',
-          label: 'Admin Console Tutorial',
-          items: [
-            'vendor/tutorial-ui-setup',
-            'vendor/tutorial-ui-create-app',
-            'vendor/tutorial-ui-create-release',
-            'vendor/tutorial-ui-create-customer',
-            'vendor/tutorial-ui-install-app-manager',
-            'vendor/tutorial-ui-deploy-app',
-            'vendor/tutorial-ui-create-new-version',
-            'vendor/tutorial-ui-update-app',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'kots CLI Tutorial',
-          items: [
-            'vendor/tutorial-cli-setup',
-            'vendor/tutorial-cli-install-cli',
-            'vendor/tutorial-cli-create-app',
-            'vendor/tutorial-cli-manifests',
-            'vendor/tutorial-cli-create-release',
-            'vendor/tutorial-cli-create-customer',
-            'vendor/tutorial-cli-install-app-manager',
-            'vendor/tutorial-cli-deploy-app',
-            'vendor/tutorial-cli-create-new-version',
-            'vendor/tutorial-cli-update-app',
-          ],
-        },
-        
-      ],
-
-    },
-    {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true},
-    {
-      type: 'category',
-      label: 'Overview',
+      label: 'Getting Started',
       items: [
         'vendor/distributing-about',
         'vendor/helm-overview',
         'vendor/helm-install',
+        {
+          type: 'category',
+          label: 'KOTS Tutorials',
+          items: [
+            {
+              type: 'category',
+              label: 'Admin Console Tutorial',
+              items: [
+                'vendor/tutorial-ui-setup',
+                'vendor/tutorial-ui-create-app',
+                'vendor/tutorial-ui-create-release',
+                'vendor/tutorial-ui-create-customer',
+                'vendor/tutorial-ui-install-app-manager',
+                'vendor/tutorial-ui-deploy-app',
+                'vendor/tutorial-ui-create-new-version',
+                'vendor/tutorial-ui-update-app',
+              ],
+            },
+            {
+              type: 'category',
+              label: 'kots CLI Tutorial',
+              items: [
+                'vendor/tutorial-cli-setup',
+                'vendor/tutorial-cli-install-cli',
+                'vendor/tutorial-cli-create-app',
+                'vendor/tutorial-cli-manifests',
+                'vendor/tutorial-cli-create-release',
+                'vendor/tutorial-cli-create-customer',
+                'vendor/tutorial-cli-install-app-manager',
+                'vendor/tutorial-cli-deploy-app',
+                'vendor/tutorial-cli-create-new-version',
+                'vendor/tutorial-cli-update-app',
+              ],
+            },
+            
+          ],
+    
+        },
         {
           type: 'category',
           label: 'Planning to Distribute',
@@ -559,19 +568,11 @@ const sidebars = {
         },
       ],
     },
-    
-    // INSTALL
-    {type: 'html', value: '<h5>install and observe</h5>', defaultStyle: true},
     {type: 'ref', id: 'vendor/kots-intro-placeholder', label: 'KOTS and kURL Installers'},
     'vendor/install-with-helm',
-    {
-      type: 'category',
-      label: 'Installing with KOTS and kURL',
-      items: [
-        'vendor/releases-sharing-license-install-script',        
-        'vendor/releases-configvalues',
-      ],
-    },
+    
+    // Observe
+    // {type: 'html', value: '<h5>observe</h5>', defaultStyle: true},
     {
       type: 'category',
       label: 'Insights and Telemetry',

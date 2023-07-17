@@ -201,6 +201,7 @@ ol ol ol {
 
 .menu__list-item__home-link > a {
   font-weight: bold;
+  margin-bottom: 20px;
 }
 
 .menu__list-item > h5 {

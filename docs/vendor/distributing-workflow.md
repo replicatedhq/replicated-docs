@@ -1,4 +1,4 @@
-# Configuring KOTS Functionality
+# KOTS Workflow Placeholder
 
 The following table describes the required and optional KOTS functionality that you can add to your application to support installations with KOTS.
 
