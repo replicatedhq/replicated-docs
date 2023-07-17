@@ -1,8 +1,17 @@
 import FeatureFlag from "../partials/helm/_feature-flag.mdx"
+import HelmDiagramOverview from "../partials/helm/_helm-diagram-overview.mdx"
 
-# Installing an Application with Helm (Beta)
+# Installing with Helm (Beta)
 
 This topic describes how to use Helm to install releases that contain one or more Helm charts.
+
+## Overview
+
+The following diagram shows how Helm charts distributed with Replicated are installed with Helm in customer environments:
+
+<img src="/images/helm-install-diagram.png" alt="diagram of a helm chart in a custom environment" width="600px"/> 
+
+<HelmDiagramOverview/>
 
 ## Prerequisites
 

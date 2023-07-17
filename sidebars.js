@@ -23,7 +23,7 @@ const sidebars = {
     {type: 'html', value: '<h5>get started with kots</h5>', defaultStyle: true},
         'vendor/kots-intro-placeholder',
         'vendor/distributing-workflow',
-    {type: 'html', value: '<h5>distribute</h5>', defaultStyle: true},
+    {type: 'html', value: '<h5>distribute with kots</h5>', defaultStyle: true},
     {
       type: 'category',
       label: 'Distribute Helm Charts with KOTS',
@@ -117,14 +117,6 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Distributing Your Application',
-      items: [
-        'vendor/releases-sharing-license-install-script',        
-        'vendor/releases-configvalues',
-      ],
-    },
-    {
-      type: 'category',
       label: 'Reference',
       items: [
         'reference/cron-expressions',
@@ -159,7 +151,7 @@ const sidebars = {
       ],
     },
     // INSTALL AND MANAGE (ENTERPRISE USER)
-    {type: 'html', value: '<h5>install and manage</h5>', defaultStyle: true},
+    {type: 'html', value: '<h5>admin console and kots cli</h5>', defaultStyle: true},
         {
           type: 'category',
           label: 'Installing an Application',
@@ -570,14 +562,16 @@ const sidebars = {
     
     // INSTALL
     {type: 'html', value: '<h5>install and observe</h5>', defaultStyle: true},
+    {type: 'ref', id: 'vendor/kots-intro-placeholder', label: 'KOTS and kURL Installers'},
+    'vendor/install-with-helm',
     {
       type: 'category',
-      label: 'Installing Your Application',
+      label: 'Installing with KOTS and kURL',
       items: [
-        'vendor/install-with-helm',
+        'vendor/releases-sharing-license-install-script',        
+        'vendor/releases-configvalues',
       ],
     },
-    {type: 'ref', id: 'vendor/kots-intro-placeholder', label: 'KOTS and kURL Installers'},
     {
       type: 'category',
       label: 'Insights and Telemetry',
