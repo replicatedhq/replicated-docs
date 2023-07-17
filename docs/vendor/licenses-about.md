@@ -90,8 +90,6 @@ From the **Customers** page, you can do the following:
 
 * Download a CSV file with details about each customer.
 
-* View insights about the adoption rate of each version of your application across your customers. For more information, see [Adoption Rate (Beta)](customer-adoption).
-
 * Click the **Manage customer** button to edit details such as the customer name and email, the custom license fields assigned to the customer, and the license expiration policy. For more information, see [Creating and Managing Customers](releases-creating-customer).
 
 * (KOTS Only) Download the license file for each customer.
