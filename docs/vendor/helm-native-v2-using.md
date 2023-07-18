@@ -12,7 +12,7 @@ To configure the HelmChart custom resource, do the following:
 * Rewrite image names so that images can be located on your private registry or on the user's local private registry. See [Rewrite Image Names](#rewrite-image-names).
 * Inject a KOTS-generated image pull secret that grants proxy access to private images. See [Inject Image Pull Secrets](#inject-image-pull-secrets).
 * Add backup labels to your resources to support backup and restore with the snapshots feature. See [Add Backup Labels for Snapshots](#add-backup-labels-for-snapshots).
-* Configure the `builders` key to allow your users to push images to local private registries. The `builders` key is required to support air gap installations. See [Support Local Image Registries](#support-local-image-registries).
+* Configure the `builder` key to allow your users to push images to local private registries. The `builder` key is required to support air gap installations. See [Support Local Image Registries](#support-local-image-registries).
 
 The HelmChart custom resource `builder`, `values`, and `optionalValues` keys each have unique requirements and limitations. For more information about working with these keys, see [values](/reference/custom-resource-helmchart-v2#values), [optionalValues](/reference/custom-resource-helmchart-v2#optionalvalues), and [builders](/reference/custom-resource-helmchart-v2#builders) in _HelmChart v2_.
 
