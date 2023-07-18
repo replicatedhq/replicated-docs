@@ -8,11 +8,11 @@ import LabsIntro from "./partials/getting-started/_labs-intro.mdx"
 <section class="tile__container">
   <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/red/desktop.png"></img></li>
+        <li><img src="images/icons/vendor_portal_2.png"></img></li>
         <p>Vendor Portal</p>
     </li>
     <li>
-        <p>Use the Replicated vendor portal to create and promote releases.</p>
+        <p>Manage your team, releases, channels, customers, and more.</p>
     </li>
     <li>
       <a href="vendor/vendor-portal-creating-account">Create an account</a>
@@ -21,86 +21,92 @@ import LabsIntro from "./partials/getting-started/_labs-intro.mdx"
       <a href="vendor/team-management#invite-members">Invite team members</a>
     </li>
     <li>
-      <a href="vendor/instance-insights-event-data">View insights and telemetry</a>
+      <a href="vendor/licenses-adding-custom-fields">Define custom entitlements</a>
     </li>
     <li>
-      <a href="vendor/releases-creating-customer">Define licenses</a>
+      <a href="vendor/releases-creating-releases">Create a release</a>
     </li>
     <li>
-      <a href="vendor/releases-creating-releases">Manage releases</a>
+      <a href="vendor/releases-creating-channels">Manage channels</a>
     </li>
     <li>
-      <a href="https://www.google.com">Set up custom domains</a>
+      <a href="vendor/custom-domains-using">Configure custom domains</a>
     </li>
     <li>
-      <a href="https://www.google.com">Connect a private registry</a>
+      <a href="vendor/packaging-private-images">Connect a private registry</a>
     </li>
   </ul>
 </section>
 <section class="tile__container">
   <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/red/desktop.png"></img></li>
+        <li><img src="images/icons/k8s_installer.png" alt="installer icon"></img></li>
         <p>KOTS and kURL</p>
     </li>
     <li>
-        <p>View documentation on how to distribute and install applications with Replicated KOTS and kURL.</p>
+        <p>Distribute and install applications with the Replicated KOTS and kURL installers.</p>
     </li>
     <li>
-      <a href="/vendor/tutorial-ui-setup">Overview</a>
+      <a href="vendor/kots-intro-placeholder">Introduction to KOTS</a>
     </li>
     <li>
-      <a href="https://www.google.com">Getting started tutorials</a>
+      <a href="vendor/tutorial-ui-setup">KOTS tutorials</a>
     </li>
     <li>
-      <a href="https://www.google.com">Install Helm charts with KOTS</a>
+      <a href="vendor/distributing-workflow">Getting started workflow</a>
     </li>
     <li>
-      <a href="https://www.google.com">Configure kURL installers</a>
+      <a href="vendor/helm-native-about">About installing Helm charts with KOTS</a>
     </li>
     <li>
-      <a href="https://www.google.com">Customize the admin console</a>
+      <a href="vendor/packaging-embedded-kubernetes">Configure Kubernetes installers with kURL</a>
     </li>
     <li>
-      <a href="https://www.google.com">Install with KOTS</a>
+      <a href="vendor/admin-console-customize-config-screen">Edit the admin console Config page</a>
+    </li>
+    <li>
+      <a href="vendor/snapshots-configuring-backups">Configure snapshots</a>
+    </li>
+    <li>
+      <a href="enterprise/installing-overview">Install with KOTS</a>
     </li>
   </ul>
   <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/red/desktop.png"></img></li>
+        <li><img src="images/icons/helm-logo.png" alt="helm logo" id="tile__header__helm"></img></li>
         <p>Helm</p>
     </li>
     <li>
         <p>Distribute your Helm chart application with Replicated.</p>
     </li>
     <li>
-      <a href="/vendor/tutorial-ui-setup">Overview</a>
+      <a href="vendor/helm-install">About Helm installations</a>
     </li>
     <li>
-      <a href="/vendor/tutorial-ui-setup">Integrate with the Replicated SDK</a>
+      <a href="vendor/replicated-sdk-using">Use the Replicated SDK</a>
     </li>
     <li>
-      <a href="/vendor/tutorial-ui-setup">Use the proxy service for private images</a>
+      <a href="vendor/replicated-sdk-development">Get started with the SDK API</a>
     </li>
     <li>
-      <a href="/vendor/tutorial-ui-setup">Install with Helm</a>
+      <a href="vendor/helm-image-registry">Use the proxy service for private images</a>
     </li>
     <li>
-      <a href="/vendor/tutorial-ui-setup">Checking entitlements in Helm installations</a>
+      <a href="vendor/install-with-helm">Install with Helm</a>
     </li>
     <li>
-      <a href="/vendor/tutorial-ui-setup">Verifying license field signatures</a>
+      <a href="vendor/licenses-reference-helm">Checking entitlements in Helm installations</a>
+    </li>
+    <li>
+      <a href="vendor/licenses-verify-fields-sdk-api">Verifying license field signatures</a>
     </li>
   </ul>
 </section>
 <section class="tile__container">
    <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/red/desktop.png"></img></li>
+        <li><img src="images/icons/commands.png" alt="command prompt icon"></img></li>
         <p>APIs, CLIs, and SDK</p>
-    </li>
-    <li>
-        <p></p>
     </li>
     <li>
       <a href="https://www.google.com">Replicated SDK</a>
@@ -109,22 +115,22 @@ import LabsIntro from "./partials/getting-started/_labs-intro.mdx"
       <a href="https://www.google.com">Get started with the SDK API</a>
     </li>
     <li>
-      <a href="https://www.google.com">replicated CLI</a>
+      <a href="reference/replicated-cli-installing">replicated CLI</a>
     </li>
     <li>
-      <a href="https://www.google.com">Vendor API v3</a>
+      <a href="reference/vendor-api-using">Vendor API v3</a>
     </li>
     <li>
-      <a href="https://www.google.com">kots CLI</a>
+      <a href="reference/kots-cli-getting-started">kots CLI</a>
     </li>
   </ul>
   <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/red/desktop.png"></img></li>
+        <li><img src="images/icons/release.png" alt="rocket ship icon"></img></li>
         <p>Compatibility Matrix</p>
     </li>
     <li>
-        <p></p>
+        <p>TBD</p>
     </li>
     <li>
       <a href="/vendor/tutorial-ui-setup">Learn more</a>
@@ -132,61 +138,64 @@ import LabsIntro from "./partials/getting-started/_labs-intro.mdx"
   </ul>
     <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/red/desktop.png"></img></li>
+        <li><img src="images/icons/dashboard_1.png" alt="dashboard icon"></img></li>
         <p>Insights and Telemetry</p>
     </li>
     <li>
-        <p></p>
+      <a href="vendor/instance-notifications-config">Set up notifications</a>
     </li>
     <li>
-      <a href="https://www.google.com">Set up notifications</a>
+      <a href="vendor/insights-app-status">Enable application status data</a>
     </li>
     <li>
-      <a href="https://www.google.com">Understanding application status data</a>
+      <a href="vendor/customer-adoption">View customer adoption</a>
     </li>
     <li>
-      <a href="https://www.google.com">Adoption reports</a>
-    </li>
-    <li>
-      <a href="https://www.google.com">Instance insights</a>
+      <a href="vendor/instance-insights-details">View instance insights</a>
     </li>
   </ul>
 </section>
 <section class="tile__container">
   <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/red/desktop.png"></img></li>
+        <li><img src="images/icons/checklist.png" alt="checklist icon"></img></li>
         <p>Preflight Checks</p>
     </li>
     <li>
-        <p>Define preflight checks to verify the environment meets requirements before installation.</p>
+        <p>Define and verify installation environment requirements.</p>
     </li>
     <li>
-      <a href="https://www.google.com">Define preflights for Helm charts</a>
+      <a href="vendor/preflight-helm-defining">Define preflights for Helm charts</a>
     </li>
     <li>
-      <a href="https://www.google.com">Define preflights for KOTS installations</a>
+      <a href="vendor/preflight-kots-defining">Define preflights for KOTS installations</a>
     </li>
     <li>
-      <a href="https://www.google.com">Run preflight checks</a>
+      <a href="vendor/preflight-running">Run preflight checks for Helm installations</a>
+    </li>
+    <li>
+      <a href="https://troubleshoot.sh/docs/preflight/introduction/">Troubleshoot.sh documentation</a>
     </li>
   </ul>
   <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/red/desktop.png"></img></li>
+        <li><img src="images/icons/support_bundle.png" alt="support bundle icon"></img></li>
         <p>Support Bundles</p>
     </li>
     <li>
-        <p>Customize support bundles to gather information about customer environments.</p>
+        <p>Gather information about customer environments for troubleshooting.</p>
     </li>
     <li>
-      <a href="https://www.google.com">Customize support bundles for Helm charts</a>
+      <a href="vendor/support-bundle-helm-customizing">Customize support bundles for Helm charts</a>
     </li>
     <li>
-      <a href="https://www.google.com">Customize support bundles for KOTS installations</a>
+      <a href="vendor/support-bundle-kots-customizing">Customize support bundles for KOTS-only installations</a>
     </li>
     <li>
-      <a href="https://www.google.com">Generate support bundles</a>
+      <a href="vendor/support-host-support-bundles">Customize host support bundles for kURL</a>
+    </li>
+    <li>
+      <a href="vendor/support-bundle-generating">Generate support bundles</a>
     </li>
   </ul>
 </section>
