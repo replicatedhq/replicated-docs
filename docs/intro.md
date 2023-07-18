@@ -15,19 +15,19 @@ import LabsIntro from "./partials/getting-started/_labs-intro.mdx"
         <p>Use the Replicated vendor portal to create and promote releases.</p>
     </li>
     <li>
-      <a href="https://www.google.com">Create an account</a>
+      <a href="vendor/vendor-portal-creating-account">Create an account</a>
     </li>
     <li>
-      <a href="https://www.google.com">Invite team members</a>
+      <a href="vendor/team-management#invite-members">Invite team members</a>
     </li>
     <li>
-      <a href="https://www.google.com">View insights and telemetry</a>
+      <a href="vendor/instance-insights-event-data">View insights and telemetry</a>
     </li>
     <li>
-      <a href="https://www.google.com">Define licenses and entitlements</a>
+      <a href="vendor/releases-creating-customer">Define licenses</a>
     </li>
     <li>
-      <a href="https://www.google.com">Manage channels and releases</a>
+      <a href="vendor/releases-creating-releases">Manage releases</a>
     </li>
     <li>
       <a href="https://www.google.com">Set up custom domains</a>

@@ -190,9 +190,13 @@ ol ol ol {
 
 /*Sidebar Styling*/
 
-.menu__list-item > h5 {
+.menu__list-item > h5, h6 {
   text-transform: uppercase;
   margin: 2.5rem 0 1.5rem 0;
+}
+
+.menu__list-item > h6 {
+  margin: 1rem 0;
 }
 
 /* .menu__link--active {

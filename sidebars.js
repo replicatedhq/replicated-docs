@@ -21,11 +21,12 @@ const sidebars = {
   kots: [
     {type: 'ref', id: 'intro', 'label': 'Back to Home', className: 'menu__list-item__home-link'},
     'vendor/kots-intro-placeholder',
-    'vendor/distributing-workflow',
+    
     {type: 'html', value: '<h5>distribute with kots</h5>', defaultStyle: true},
+    'vendor/distributing-workflow',
     {
       type: 'category',
-      label: 'Distribute Helm Charts with KOTS',
+      label: 'Helm Charts with KOTS',
       items: [
         'vendor/helm-native-about',
         'vendor/helm-release',
@@ -52,6 +53,17 @@ const sidebars = {
           'vendor/admin-console-customize-config-screen',
           'vendor/config-screen-map-inputs',
           'vendor/helm-mapping-example',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Kubernetes Installers with kURL',
+      items: [
+        'vendor/packaging-embedded-kubernetes',
+        'vendor/packaging-installer-storage',
+        'vendor/preflight-host-preflights',
+        'vendor/installer-history',
+        'vendor/packaging-using-tls-certs',
       ],
     },
     {
@@ -85,17 +97,7 @@ const sidebars = {
         'vendor/packaging-ingress',
       ],
     }, 
-    {
-      type: 'category',
-      label: 'Kubernetes Installers with kURL',
-      items: [
-        'vendor/packaging-embedded-kubernetes',
-        'vendor/packaging-installer-storage',
-        'vendor/preflight-host-preflights',
-        'vendor/installer-history',
-        'vendor/packaging-using-tls-certs',
-      ],
-    },
+    
     {
       type: 'category',
       label: 'Kubernetes Operators',
@@ -391,7 +393,7 @@ const sidebars = {
     'intro-replicated',
     // 'vendor/get-started-placeholder',
     
-    {type: 'html', value: '<h5>package and distribute</h5>', defaultStyle: true},
+    {type: 'html', value: '<h5>distribute and observe</h5>', defaultStyle: true},
     {
       type: 'category',
       label: 'Getting Started',
@@ -566,13 +568,9 @@ const sidebars = {
             'vendor/support-host-support-bundles',
           ],
         },
+        {type: 'link', href: 'https://troubleshoot.sh/docs/collect/', label: 'Troubleshoot.sh Documentation'},
       ],
     },
-    {type: 'ref', id: 'vendor/kots-intro-placeholder', label: 'KOTS and kURL Installers'},
-    'vendor/install-with-helm',
-    
-    // Observe
-    // {type: 'html', value: '<h5>observe</h5>', defaultStyle: true},
     {
       type: 'category',
       label: 'Insights and Telemetry',
@@ -585,6 +583,13 @@ const sidebars = {
          'vendor/instance-notifications-config',
        ],
     },
+
+    {type: 'ref', id: 'vendor/kots-intro-placeholder', label: 'KOTS Documentation'},
+    {type: 'link', href: 'https://kurl.sh/docs/introduction/', label: 'kURL.sh Documentation'},
+    {type: 'html', value: '<h5>install</h5>', defaultStyle: true},
+    'vendor/install-with-helm',
+    {type: 'ref', id: 'enterprise/installing-overview', label: 'Installing with KOTS'},
+    
 
     // DEVELOPER TOOLS
     {type: 'html', value: '<h5>Developer tools</h5>', defaultStyle: true},
