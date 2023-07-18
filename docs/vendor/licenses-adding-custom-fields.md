@@ -48,7 +48,7 @@ To create a custom license field:
    | Type| The field type. Supported formats include integer, string, text (multi-line string), and boolean values. This value cannot be changed. |
    | Default | The default value for the field for both existing and new customers. It is a best practice to provide a default value when possible. |
    | Required | If checked, this prevents the creation of customers unless this field is explicitly defined with a value. |
-   | Hidden | If checked, the field is not visible to your customer in the admin console. The field is still visible to you in the vendor portal. |
+   | Hidden | If checked, the field is not visible to your customer in the Replicated admin console. The field is still visible to you in the vendor portal. **Note**: The Hidden field is available only to vendors with the KOTS entitlement. |
 
 ## Update Custom License Fields
 
