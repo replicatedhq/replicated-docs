@@ -185,8 +185,10 @@ spec:
   containers:
   - name: nginx
     image: {{ .Values.image.registry }}/{{ .Values.image.repository }}
+  {{- with .Values.image.pullSecrets }}
   imagePullSecrets:
-  - name: {{ .Values.image.pullSecret }}  
+  {{- toYaml . | nindent 2 }}
+  {{- end }}
 ```
 
 ## Add Backup Labels for Snapshots
