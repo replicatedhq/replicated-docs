@@ -38,7 +38,7 @@ const config = {
           anonymizeIP: true,
         },
         gtag: {
-          trackingID: 'G-8G66XE897T',
+          trackingID: 'G-MBWBP4JW70',
           anonymizeIP: true,
         },
         blog: {
