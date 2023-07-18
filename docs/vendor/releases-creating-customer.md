@@ -40,6 +40,10 @@ To create a customer:
           <th width="70%">Description</th>
         </tr>
         <tr>
+          <td>KOTS Install Enabled</td>
+          <td>Enables customers to install with Replicated KOTS.</td>
+        </tr>
+        <tr>
           <td>Airgap Download Enabled</td>
           <td>Enables new installations with this license to install from an air gap package or from an online installation.</td>
         </tr>
