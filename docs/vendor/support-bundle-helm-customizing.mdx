@@ -34,33 +34,41 @@ Replicated recommends using Secrets to contain a support bundle specifications i
 
 <ConfigmapNote/>
 
-To customize a support bundle as a Secret, create a specification using `kind: Secret`. You must include the following fields:
+To create a Secret for the support bundle specification:
 
-- `Label` - Label the secret definition as `troubleshoot.sh/kind: support-bundle`
-- `stringData` - Specify a `stringData` field with a key named `support-bundle-spec`
+1. Create a Secret as a YAML file with `kind: Secret` and `apiVersion: v1`. The Secret must include the following:
 
-**Example:**
+    - The label `troubleshoot.sh/kind: support-bundle`
+    - A `stringData` field with a key named `support-bundle-spec`
 
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  labels:
-    troubleshoot.sh/kind: support-bundle
-  name: {{ .Release.Name }}-support-bundle
-stringData:
-  # This is the support bundle spec that will be used to generate the support bundle
-  # Notes: You can use {{ .Release.Namespace }} to ensure that the support bundle is scoped to the release namespace
-  # We can use any of Helm's templating features here, including {{ .Values.someValue }}
-  support-bundle-spec: |
-    apiVersion: troubleshoot.sh/v1beta2
-    kind: SupportBundle
+    **Template:**
+
+    ```yaml
+    apiVersion: v1
+    kind: Secret
     metadata:
-      name: support-bundle
-    spec:
-      collectors: []
-      analyzers: []
-```
+      labels:
+        troubleshoot.sh/kind: support-bundle
+      name: {{ .Release.Name }}-support-bundle
+    stringData:
+      # This is the support bundle spec that is used to generate the support bundle.
+      # Notes: You can use {{ .Release.Namespace }} to ensure that the support bundle
+      # is scoped to the release namespace.
+      # You can use any of Helm's templating features here, including {{ .Values.someValue }}
+      support-bundle-spec: |
+        apiVersion: troubleshoot.sh/v1beta2
+        kind: SupportBundle
+        metadata:
+          name: support-bundle
+        spec:
+          collectors: []
+          analyzers: []
+    ```
+
+1. Add the Secret to your Helm chart `templates/` directory.  
+
+Next, define the support bundle specification by adding collectors and analyzers. For more information, see [Define the Support Bundle Specification](#spec).
+
 ### Create a SupportBundle Custom Resource
 
 If you do not want to use Secrets, you can create a SupportBundle custom resource instead. Helm templates are supported when the specification is distributed using an OCI registry.
@@ -77,7 +85,9 @@ spec:
   analyzers: []
 ```
 
-## Define the Support Bundle Specification
+Next, define the support bundle specification by adding collectors and analyzers. For more information, see [Define the Support Bundle Specification](#spec).
+
+## Define the Support Bundle Specification {#spec}
 
 Defining support bundle specifications depends on your application's needs. This section gives some guidance about how to think about using collectors and analyzers to design support bundles.
 
