@@ -1,28 +1,36 @@
-# How to Create Releases for Your Application
+import PrerequisitesWorkflows from "../partials/getting-started/_prerequisites-workflows.mdx"
 
-This topic provides prerequisites and a workflow for creating the first release for your application, iterating, and testing.
+
+# KOTS Release Workflows
+
+This topic provides prerequisites and workflows for creating a Replicated KOTS release for your application with and without the Replicated SDK.
 
 ## About Releasing your Application
 
-A release for your application can include a set of standard Kubernetes manifests, Helm charts, or Kubernetes Operators. (While an operator is technically deployed either using plain Kubernetes manifests or a Helm chart, we list it separately because of the advanced image management work needed to effectively deliver Operators into customer environments.) In addition to your application files, a release also includes [Replicated custom resources](/reference/custom-resource-about) that are used to invoke various Replicated KOTS functions.
+A KOTS release for your application can include a set of standard Kubernetes manifests, Helm charts, or Kubernetes Operators. (While an operator is technically deployed either using plain Kubernetes manifests or a Helm chart, we list it separately because of the advanced image management work needed to effectively deliver Operators into customer environments.) 
 
-For more information about releases, see [About Releases](releases-about).
+In addition to your application files, a release also includes [Replicated custom resources](/reference/custom-resource-about) that are used to invoke various Replicated KOTS functions.
 
 After you create the first release for your application, you continue the process of authoring, testing, iterating on, and accepting a set of files for release to your customers. Replicated recommends that you create and test releases for your application in small iterations before sharing a release with your customers. To begin, see [Prerequisites](#prerequisites) below.
 
-If you have questions about this workflow, you can post a question on our [Community site](https://community.replicated.com/).
+If you have questions about these workflows, you can post a question on our [Community site](https://community.replicated.com/).
+
+## Supported Installation Types
+
+From a single release, you can support one or more of these installation methods.
+
+**Install with Helm:**
+
+- Add your Helm chart app to a release in the vendor portal.
+- Optionally use the SDK with your Helm chart to get access to Replicated functionality.
+
+**Install with KOTS:**
+
+KOTS is the Replicated installer available to vendors with KOTS entitlements. KOTS provides support for installations on existing clusters, embedded clusters on virtual machines or bare metal servers, and air gap environments.
 
 ## Prerequisites
 
-Complete the following items before you create the first release for your application:
-
-- Ensure that you have a Kubernetes application or Helm chart that includes at least one Deployment and one Service. Replicated recommends that you architect the application to deploy into a single namespace. For more information, see [Application Namespaces](namespaces).
-- Set up a development server that you can use to install and test each release.
-- Create an account in the Replicated vendor portal. See [Creating a Vendor Account](vendor-portal-creating-account).
-- Complete a tutorial to create a release for a sample application and then install the application in a development environment:
-  * [CLI Tutorial](tutorial-cli-setup)
-  * [UI Tutorial](tutorial-ui-setup)
-- (Recommended) To help you plan, Replicated recommends that you send a questionnaire to your customers to gather information about their environments. See [Customer Application Deployment Questionnaire](planning-questionnaire).
+<PrerequisitesWorkflows/>
 
 ## Plan, Promote, and Test Your Initial Release
 
