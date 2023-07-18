@@ -97,6 +97,7 @@ const sidebars = {
     },
     {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true},
     'vendor/distributing-workflow',
+    'vendor/helm-workflow',
     'vendor/custom-resources',
     'vendor/sdk-functionality-add',
     {

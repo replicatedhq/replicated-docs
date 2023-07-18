@@ -1,0 +1,59 @@
+import PrerequisitesWorkflows from "../partials/getting-started/_prerequisites-workflows.mdx"
+import HelmInstallRequirements from "../partials/helm/_helm-install-requirements.mdx"
+import PromoteUnstable from "../partials/releases/_promote-unstable.mdx"
+import LicenseCreate from "../partials/releases/_license-create.mdx"
+import ImageRegistryConnect from "../partials/releases/_image-registry-connect.mdx"
+import TestDev from "../partials/releases/_test-dev.mdx"
+import KurlInstaller from "../partials/releases/_kurl-installer.mdx"
+
+# Helm with SDK Release Workflow
+
+This topic provides prerequisites and workflows for creating a Helm release for your application with the Replicated SDK.
+
+## About Releasing your Application
+
+A Helm release for your application includes one or more Helm charts. When you distribute your Helm-based application using the Helm installation method, you can add the Replicated SDK features to your release for better management, insights, and security of your deployed application.
+
+After you create the first release for your application, you continue the process of authoring, testing, iterating on, and accepting a set of files for release to your customers. Replicated recommends that you create and test releases for your application in small iterations before sharing a release with your customers. To begin, see [Prerequisites](#prerequisites) below.
+
+If you have questions about this workflow, you can post a question on our [Community site](https://community.replicated.com/).
+
+## Supported Installation Type
+
+When you include the SDK with a Helm chart release, you use the Helm installation.
+
+## Prerequisites
+
+<PrerequisitesWorkflows/>
+
+Additionally, supporting Helm installations has the following requirements:
+
+<HelmInstallRequirements/>
+
+## Helm with SDK Release
+
+**Audience:** New vendors who want to use SDK features with Helm installations
+
+When you add the SDK to a Helm release, you get the benefits of the SDK features, including the ability to use the proxy service for license validation without exposing your registry credentials.
+
+Complete the following procedures to create and test a Helm release that includes the SDK:
+
+1. (Recommended) Familiarize yourself by using the SDK in integration mode. This lets you test the SDK API with mock data in a local environment without making changes to your release in the vendor portal. See [Developing Against the SDK API](replicated-sdk-development).
+
+  Integration mode testing is a fast, reliable way to test and iterate every time you create or update a release, before committing changes in the vendor portal and performing full testing.
+
+1. Add the SDK as a dependency to your Helm chart and package the Helm chart. See [Declare the SDK as a Dependency](replicated-sdk-using#declare-the-sdk-as-a-dependency) in _Using the SDK with Your Application (Beta)_.
+
+1. Create an application or use an existing application in the vendor portal, and create a new release. See [Using the Vendor Portal](replicated-sdk-using#using-the-vendor-portal) in _Using the SDK with Your Application (Beta)_.
+
+1. <PromoteUnstable/>
+
+1. <LicenseCreate/>
+
+1. <ImageRegistryConnect/>
+
+1. Test your release with the Helm Installation. See [Installing an Application with Helm (Beta)](install-with-helm)
+
+1. Validate that telemetry is showing up for the customer instance. Click through to the instance details and review the events. See [About Instance and Event Data](instance-insights-event-data).
+
+After you install the first release for your application, return to the vendor portal to create a new release with additional SDK functionality. For more information, see [Add SDK Functionality](sdk-functionality-add)

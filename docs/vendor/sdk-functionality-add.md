@@ -2,6 +2,8 @@ import AddFunctionality from "../partials/releases/_add-functionality.mdx"
 
 # Add SDK Functionality
 
+SDK features and functionality are optional features that can be added to Helm installations. Vendors using Helm charts with KOTS installers can also support Helm installations and add SDK functionality to the Helm installation.
+
 <AddFunctionality/>
 
 The following table gives a suggested order, but you can add functionality to the SDK in any order and as needed.
@@ -29,7 +31,7 @@ The following table gives a suggested order, but you can add functionality to th
   </tr>
   <tr>
     <td>Proxy Service</td>
-    <td>Configure the Replicated proxy service to use customer licenses to grant pull-through access from your online private registry without exposing your registry credentials. See <a href="helm-image-registry">Using External Registries for Helm Installations</a>.</td>
+    <td>Configure the Replicated proxy service to use customer licenses to grant pull-through access from your online private registry without exposing your registry credentials. See <a href="helm-image-registry">Using External Registries for Helm Installations (Beta)</a>.</td>
   </tr>
   <tr>
     <td>Custom Domains</td>
