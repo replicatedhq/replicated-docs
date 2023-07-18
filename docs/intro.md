@@ -1,7 +1,6 @@
 ---
 slug: /
 ---
-import LabsIntro from "./partials/getting-started/_labs-intro.mdx"
 
 # Home
 
@@ -133,7 +132,7 @@ import LabsIntro from "./partials/getting-started/_labs-intro.mdx"
         <p>TBD</p>
     </li>
     <li>
-      <a href="/vendor/tutorial-ui-setup">Learn more</a>
+      <a href="">Learn more</a>
     </li>
   </ul>
     <ul class="tile">

@@ -187,7 +187,7 @@ ol ol ol {
 }
 
 [data-theme='dark'] #tile__header__helm {
-  background-color:rgb(255, 255, 255);
+  background-color:rgb(243,243,249);
 }
 
 @media (max-width: 1300px) {
@@ -207,10 +207,6 @@ ol ol ol {
   margin: 1rem 0;
 }
 
-/* .menu__link--active {
-    font-weight: bold;
-} */
-
 .menu__list-item__home-link > a {
   font-weight: bold;
   margin: 10px 0 25px 0;
@@ -223,9 +219,9 @@ ol ol ol {
   padding-top: 20px;
 }
 
-/* #kots {
-  max-width: 100px;
-} */
+#kots {
+  max-width: 75px;
+}
 
 /* Release Note label styling */
 

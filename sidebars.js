@@ -19,12 +19,13 @@ const sidebars = {
   // But you can create a sidebar manually
 
   kots: [
-    {type: 'ref', id: 'intro', 'label': 'Back to Home', className: 'menu__list-item__home-link'},
-    // {
-    //   type: 'html',
-    //   value: '<img src="/images/icons/kots.png" id="kots">', // The HTML to be rendered
-    //   defaultStyle: true, // Use the default menu item styling
-    // },
+    
+    {
+      type: 'html',
+      value: '<img src="/images/icons/kots.png" alt="kots logo" id="kots">',
+      defaultStyle: true,
+    },
+    {type: 'ref', id: 'intro', 'label': 'Back to Replicated Docs Home', className: 'menu__list-item__home-link'},
     'vendor/kots-intro-placeholder',
     {
       type: 'category',
@@ -161,7 +162,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Distributing Your Application',
+      label: 'Sharing Installation Files and Commands',
       items: [ 
         'vendor/releases-sharing-license-install-script',        
         'vendor/releases-configvalues',
