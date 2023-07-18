@@ -171,7 +171,8 @@ The `spec.values.image.pullSecrets` field in the HelmChart custom resource corre
 image:
   registry: ecr.us-east-1.amazonaws.com
   repository: my-org/api/nginx
-  pullSecret: nginxsecret
+  pullSecrets:
+  - name: my-org-secret
 ```
 
 During installation, KOTS sets the `image.pullSecrets` field in the Helm chart `values.yaml` file based on the rendered value of the corresponding `spec.values.image.pullSecrets` field in the HelmChart custom resource. Any templates in the Helm chart that access the `image.pullSecrets` field are updated to use the name of the KOTS-generated pull secret, as shown in the example below:
