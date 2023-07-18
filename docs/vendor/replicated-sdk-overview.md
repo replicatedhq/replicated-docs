@@ -88,7 +88,9 @@ For more information about the Replicated SDK API endpoints, see [Replicated SDK
 
 The Replicated SDK provides access to operational telemetry including customer reporting and insights on application instances running in customer environments. When you distribute your application with the SDK, you can view these insights in the vendor portal.
 
-The SDK uses the values injected by the Replicated registry in your Helm chart values file to automatically send information about the instance back to the vendor portal. Additionally, to enable the SDK to report instance status to the vendor portal, such as if the instance is in a ready, degraded, or down state, you can add standard Helm labels to all resources deployed by your Helm chart. For more information, see [Enabling and Understanding Application Status](insights-app-status).
+The SDK uses the values injected by the Replicated registry in your Helm chart values file to automatically send information about the instance back to the vendor portal, such as the Kubernetes version and distribution of the cluster and the cloud provider where the instance is running.
+
+Additionally, the SDK automatically detects and reports the status of the resources that are part of the Helm release. The vendor portal uses this resource status data to provide insights on the aggregate status of the application, such as if the instance is in a ready, degraded, or down state. You can customize which resources report their status back to the vendor portal by listing the resources in the `replicated.statusInformers` field of your Helm chart values file. For more information, see [Enabling and Understanding Application Status](insights-app-status).
 
 The following shows an example of the **Instance Details** page in the vendor portal, including application version and status details, instance uptime, and cluster details such as the cloud provider, cloud region, and the Kubernetes version and distribution:
 

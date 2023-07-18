@@ -2,7 +2,6 @@ import StatusesTable from "../partials/status-informers/_statusesTable.mdx"
 import AggregateStatus from "../partials/status-informers/_aggregateStatus.mdx"
 import AggregateStatusIntro from "../partials/status-informers/_aggregate-status-intro.mdx"
 import SupportedResources from "../partials/instance-insights/_supported-resources-status.mdx"
-import SDKLabels from "../partials/replicated-sdk/_labels.mdx"
 
 # Enabling and Understanding Application Status
 
@@ -20,20 +19,33 @@ For more information about how instance data is sent to the vendor portal, see [
 
 ## Enable Application Status Insights
 
-Enabling instances of your application to send data in the `appStatus` field requires that you configure your application to indicate the Kubernetes resources that you want Replicated to track for changes in state.
+To display insights on application status, the vendor portal requires that your application has one or more _status informers_. Status informers indicate the Kubernetes resources deployed as part of your application that are monitored for changes in state.
 
-Do one of the following, depending on the application installation method:
+To enable status informers for your application, do one of the following, depending on the installation method:
+* [Helm Installations](#helm-installations)
+* [KOTS Installations](#kots-installations)
 
-* For applications installed with Helm, do the following:
+### Helm Installations 
 
-   1. Include the Replicated SDK as a dependency of your Helm chart. See [Using the Replicated SDK with Your Application](replicated-sdk-using).
-   2. Add the following labels to one or more Kubernetes resources deployed as part of your Helm chart:
+For applications installed with Helm, the Replicated SDK automatically detects and reports the status of the resources that are part of the Helm release. For information, see [Using the SDK with Your Application (Beta)](replicated-sdk-using).
 
-     <SDKLabels/> 
+You can optionally configure custom status informers by overriding the `statusInformers` value in the Replicated SDK chart. For example:
 
-     These are standard Helm labels that enable the Replicated SDK to report the status of installed instances of your application to the vendor portal. For more information about the types of resources that are supported, see [Overview](#overview) above.
+```yaml
+# Helm chart values.yaml file 
 
-* For applications installed with Replicated KOTS, configure one or more _status informers_ in the Replicated Application custom resource. For more information, see [Add Status Informers](admin-console-display-app-status#add-status-informers) in _Adding Resource Status Informers_.
+replicated:
+  statusInformers:
+    - deployment/nginx
+    - statefulset/mysql
+```
+:::note
+When the `replicated.statusInformers` field is set, the SDK detects and reports the status of only the resources included in the `replicated.statusInformers` field. 
+:::
+
+### KOTS Installations
+
+For applications installed with Replicated KOTS, configure one or more status informers in the Replicated Application custom resource. For more information, see [Add Status Informers](admin-console-display-app-status#add-status-informers) in _Adding Resource Status Informers_.
 
 ## Understanding Application Status
 

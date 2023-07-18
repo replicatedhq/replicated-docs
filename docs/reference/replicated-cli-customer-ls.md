@@ -19,7 +19,7 @@ replicated customer ls
   </tr>
   <Help/>
   <App/>
-  <td><code>--appversion</code></td><td>string</td><td>The application version. Used to list customers and their instances for a specific application version.</td>
+  <td><code>--app-version</code></td><td>string</td><td>The application version. Used to list customers and their instances for a specific application version.</td>
   <Token/>
 </table>
 
@@ -37,7 +37,7 @@ YAg7ripYbK0tM5MVn_81nMy0YrhBsHrm    Megacorp                        Megacorp_Bet
 List customers and their instances for a specific application version:
 
 ```bash
-replicated customer ls --appversion 1.1.0
+replicated customer ls --app-version 1.1.0
 
 CUSTOMER NAME       INSTANCE ID                         LAST ACTIVE                         VERSION
 ACME Corp           iEgJuVDHy2pi-AqOjLXbZCTX9bqlV6YH    2023-05-23 23:13:01.403 +0000 UTC   1.1.0
