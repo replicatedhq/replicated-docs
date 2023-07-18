@@ -14,7 +14,7 @@ To configure the HelmChart custom resource, do the following:
 * Add backup labels to your resources to support backup and restore with the snapshots feature. See [Add Backup Labels for Snapshots](#add-backup-labels-for-snapshots).
 * Configure the `builders` key to allow your users to push images to local private registries. The `builders` key is required to support air gap installations. See [Support Local Image Registries](#support-local-image-registries).
 
-The HelmChart custom resource `builders`, `values`, and `optionalValues` keys each have unique requirements and limitations. For more information about working with these keys, see [values](/reference/custom-resource-helmchart-v2#values), [optionalValues](/reference/custom-resource-helmchart-v2#optionalvalues), and [builders](/reference/custom-resource-helmchart-v2#builders) in _HelmChart v2_.
+The HelmChart custom resource `builder`, `values`, and `optionalValues` keys each have unique requirements and limitations. For more information about working with these keys, see [values](/reference/custom-resource-helmchart-v2#values), [optionalValues](/reference/custom-resource-helmchart-v2#optionalvalues), and [builders](/reference/custom-resource-helmchart-v2#builders) in _HelmChart v2_.
 
 ## Rewrite Image Names
 
