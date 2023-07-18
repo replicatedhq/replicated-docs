@@ -43,7 +43,7 @@ To create a Secret for the preflight checks specification:
 1. Create a Secret as a YAML file with `kind: Secret` and `apiVersion: v1`. The Secret must include the following:
 
     - The label `troubleshoot.sh/kind: preflight`
-    - A `stringData` field with a key named `preflight.yaml` so that the preflight binary can use this Secret when it runs from the CLI.
+    - A `stringData` field with a key named `preflight.yaml` so that the preflight binary can use this Secret when it runs from the CLI
 
     **Template:**
 
