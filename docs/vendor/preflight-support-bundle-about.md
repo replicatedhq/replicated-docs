@@ -1,5 +1,3 @@
-import HelmPreflights from "../partials/preflights/_helm-preflights.mdx"
-
 # About Preflight Checks and Support Bundles
 
 This topic provides information about preflight checks and customize support
@@ -69,11 +67,9 @@ Analyzer outcomes for preflight checks differ from the outcomes for support bund
 
 To use preflight checks and support bundles with your application, you define collectors and analyzers in a YAML specification. Using multiple specifications is supported. For more information about using multiple specifications for preflight or support bundles, see [About Modular Specifications](support-modular-support-bundle-specs).
 
-<HelmPreflights/>
-
 For information about how to write the specifications, see:
   
-  - [Define Preflight Checks for Helm Installations](preflight-helm-defining)
+  - [Define Preflight Checks for Helm Charts](preflight-helm-defining)
   - [Define Preflight Checks for KOTS](preflight-kots-defining)
   - [Customize Support Bundles for Helm Installations](support-bundle-helm-customizing)
   - [Customize Support Bundles for KOTS](support-bundle-kots-customizing)

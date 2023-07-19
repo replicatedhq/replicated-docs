@@ -8,19 +8,20 @@ import AnalyzersNote from "../partials/preflights/_analyzers-note.mdx"
 import RedactorsAbout from "../partials/redactors/_redactors-about.mdx"
 import PreflightSbHelmTemplates from "../partials/preflights/_preflight-sb-helm-templates.mdx"
 import ConfigmapNote from "../partials/support-bundles/_configmap-note.mdx"
-import HelmPreflights from "../partials/preflights/_helm-preflights.mdx"
 
-# Define Preflight Checks for Helm Installations
+# Define Preflight Checks for Helm Charts
 
-This topic provides a basic understanding and some key considerations about preflight checks for Helm installations to help guide you in defining them for your application.
+This topic provides a basic understanding and some key considerations about preflight checks for Helm charts and to help guide you in defining them for your application.
 
 ## About Preflight Checks for Helm Charts
 
 <PreflightsAbout/>
 
-Preflight checks run using a `helm template` command before running the installation to confirm the target cluster has the resources required for a successful installation.
+Preflight checks are not included by default, so you must enable them.
 
-<HelmPreflights/>
+For Helm installations, preflight checks run using a `helm template` command before running the installation to confirm the target cluster has the resources required for a successful installation. For more information about running the `helm install` command, see [Running Preflight Checks for Helm Installations](preflight-running).
+
+For KOTS installations with Helm charts, preflight checks run automatically.
 
 ## Choose an Input Kind
 
@@ -33,6 +34,8 @@ The plugin requires a preflight check specification as input. For Helm installat
 -  Preflight custom resource (`kind: Preflight`)
 
 All of these input options allow customization of preflight checks based on values unique to the customer, using Helm templates with conditional statements.
+
+For KOTS installations, the preflight checks run automatically and KOTS looks for the preflights specified in the Helm chart archive.
 
 ### Create a Secret (Recommended)
 

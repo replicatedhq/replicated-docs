@@ -6,23 +6,30 @@ import PreflightsDefine from "../partials/preflights/_preflights-define.mdx"
 import PreflightsDefineXref from "../partials/preflights/_preflights-define-xref.mdx"
 import PreflightsCrNote from "../partials/preflights/_preflights-cr-note.mdx"
 import AnalyzersNote from "../partials/preflights/_analyzers-note.mdx"
-import HelmPreflights from "../partials/preflights/_helm-preflights.mdx"
 
-# Define Preflight Checks for KOTS
+# Define Preflight Checks for Non-Helm Applications
 
- This topic provides a basic understanding and some key considerations about preflight checks for Replicated KOTS installations to help guide you in defining them for your application.
+ This topic provides a basic understanding and some key considerations about preflight checks for Replicated KOTS installations that use standard Kubernetes manifests or Kubernetes Operators to help guide you in defining them for your application.
+
+ For information about defining preflight checks for Helm charts, see [Define Preflight Checks for Helm Charts](preflight-kots-defining).
 
 ## About KOTS Preflight Checks
 
 <PreflightsAbout/>
 
-<HelmPreflights/> 
+Preflights checks for KOTS and kURL run automatically before the application is installed.
 
-For more information about defining preflight checks in a Helm chart, see [Define Preflight Checks for Helm Installations](preflight-helm-defining).
+Preflight checks are not included by default, so you must enable them. For KOTS entitlements, you add a Preflight custom resource to your release to define preflight checks for standard Kubernetes manifests and Kubernetes Operators.
+
+:::note
+If you have already created a KOTS release using Helm charts and want to support for Helm installations, Replicated recommends defining preflight checks directly in the Helm charts. This lets you maintain one set of preflight specifications for all installation types. 
+
+Preflights specified in the Helm chart override the Preflight custom resource used by KOTS. During installation, if KOTS cannot find preflights specified in the Helm chart archive, then KOTS searches for `kind: Preflight` in the root of the release. See [Define Preflight Checks for Helm Charts](preflight-helm-defining).
+:::
 
 ## Create a Preflight Custom Resource
 
-When you run preflight checks with KOTS, you add the Preflight custom resource (`kind: Preflight`) to your release.
+To define preflight checks for KOTS installations, you add the Preflight custom resource (`kind: Preflight`) to your release.
 
 The following example shows a basic Preflight custom resource in your release.
 
