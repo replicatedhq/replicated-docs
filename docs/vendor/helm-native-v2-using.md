@@ -91,6 +91,50 @@ The following describes the LocalRegistryHost, LocalRegistryNamespace, and HasLo
 
   For more information, see [HasLocalRegistry](/reference/template-functions-config-context#haslocalregistry) in _Config Context_.
 
+**External Private Registry Example**
+
+The following example shows a field in the `values` key that rewrites the registry domain to `proxy.replicated.com` unless the user configured a local registry. Similarly, it shows a field that rewrites the image repository to the path of the image on `proxy.replicated.com` or in the user's local registry:
+
+```yaml
+# kots.io/v1beta2 HelmChart custom resource
+
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: samplechart
+spec:
+  ...
+  values:
+    image:
+      registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "proxy.replicated.com" }}'
+      repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/quay.io/my-org" }}/nginx'
+      tag: v1.0.1
+```
+
+The `spec.values.image.registry` and `spec.values.image.repository` fields in the HelmChart custom resource correspond to `image.registry` and `image.repository` fields in the Helm chart `values.yaml` file, as shown in the example below:
+
+```yaml
+# Helm chart values.yaml file
+
+image:
+  registry: quay.io
+  repository: my-org/nginx
+  tag: v1.0.1
+```
+
+During installation, KOTS renders the template functions and sets the `image.registry` and `image.repository` fields in your Helm chart `values.yaml` file based on the value of the corresponding fields in the HelmChart custom resource. Any templates in the Helm chart that access the `image.registry` and `image.repository` fields are updated to use the appropriate value, as shown in the example below:
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: 
+    image: {{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}
+```
+
 **Public Registry Example**
 
 The following example shows a field in the `values` key that rewrites the registry domain to `docker.io` unless the user configured a local registry. Similarly, it shows a field that rewrites the image repository to the path of the public image on `docker.io` or in the user's local registry:
@@ -129,50 +173,6 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: mariadb
-spec:
-  containers:
-  - name: 
-    image: {{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}
-```
-
-**Private Registry Example**
-
-The following example shows a field in the `values` key that rewrites the registry domain to `proxy.replicated.com` unless the user configured a local registry. Similarly, it shows a field that rewrites the image repository to the path of the image on `proxy.replicated.com` or in the user's local registry:
-
-```yaml
-# kots.io/v1beta2 HelmChart custom resource
-
-apiVersion: kots.io/v1beta2
-kind: HelmChart
-metadata:
-  name: samplechart
-spec:
-  ...
-  values:
-    image:
-      registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "proxy.replicated.com" }}'
-      repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/quay.io/my-org" }}/nginx'
-      tag: v1.0.1
-```
-
-The `spec.values.image.registry` and `spec.values.image.repository` fields in the HelmChart custom resource correspond to `image.registry` and `image.repository` fields in the Helm chart `values.yaml` file, as shown in the example below:
-
-```yaml
-# Helm chart values.yaml file
-
-image:
-  registry: quay.io
-  repository: my-org/nginx
-  tag: v1.0.1
-```
-
-During installation, KOTS renders the template functions and sets the `image.registry` and `image.repository` fields in your Helm chart `values.yaml` file based on the value of the corresponding fields in the HelmChart custom resource. Any templates in the Helm chart that access the `image.registry` and `image.repository` fields are updated to use the appropriate value, as shown in the example below:
-
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  name: nginx
 spec:
   containers:
   - name: 
@@ -219,7 +219,7 @@ image:
   - name: my-org-secret
 ```
 
-During installation, KOTS adds the name of the pull secret to the `image.pullSecrets` array in the Helm chart `values.yaml` file based on the rendered value of the ImagePullSecretName template function. Any templates in the Helm chart that access the `image.pullSecrets` field are updated to use the name of the KOTS-generated pull secret, as shown in the example below:
+During installation, KOTS renders the ImagePullSecretName template function and adds the rendered pull secret name to the `image.pullSecrets` array in the Helm chart `values.yaml` file. Any templates in the Helm chart that access the `image.pullSecrets` field are updated to use the name of the KOTS-generated pull secret, as shown in the example below:
 
 ```yaml
 apiVersion: v1
