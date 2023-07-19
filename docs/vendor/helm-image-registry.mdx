@@ -1,14 +1,12 @@
 import NameLimitation from "../partials/helm/_name-limitation.mdx"
 
-# Using External Private Registries for Helm Installations (Beta)
+# Proxying Images for Helm Installations (Beta)
 
-This topic describes the steps required to connect to an external private registry for installations with Helm.
+This topic describes how to use the Replicated proxy service to proxy images for installations with Helm. For more information about the proxy service, see [About Proxying Images with Replicated](private-images-about).
 
 ## Overview
 
-If your application images are available in a private image registry exposed to the Internet, such as Docker Hub or Amazon Elastic Container Registry (ECR), then the unique customer licenses that you create for your application can grant proxy, or _pull-through_, access to the assignee without exposing registry credentials to your customer.
-
-To grant access to an external private registry for Helm installations, you can use the Replicated SDK and the Replicated proxy service. When you include the Replicated SDK with your Helm chart application, a `global.replicated.dockerconfigjson` field is automatically injected in the Helm chart values after customers provide their license ID during installation. The `global.replicated.dockerconfigjson` field contains a base64 encoded Docker configuration file that you can use to create a pull secret for accessing your private images through the proxy service at `proxy.replicated.com`.
+To grant access to an external private registry for Helm installations, you use the Replicated SDK and the Replicated proxy service. When you include the Replicated SDK with your Helm chart application, a `global.replicated.dockerconfigjson` field is automatically injected in the Helm chart values after customers provide their license ID during installation. The `global.replicated.dockerconfigjson` field contains a base64 encoded Docker configuration file that you can use to create a pull secret for accessing your private images through the proxy service at `proxy.replicated.com`.
 
 For more information about the Replicated SDK, see [About the Replicated SDK (Beta)](replicated-sdk-overview).
 
@@ -17,8 +15,9 @@ For information about how Kubernetes uses the `kubernetes.io/dockerconfigjson` S
 ## Prerequisites
 
 * Declare the Replicated SDK as a dependency in your Helm chart. See [Using the SDK With Your Application (Beta)](replicated-sdk-using).
-* Provide read-only credentials for the external private registry in your Replicated account. This allows Replicated to access the images through the proxy service. See [Configure Access to an External Registry](packaging-private-images#configure-access-to-an-external-registry) in _Connecting to an Image Registry_.
+* Provide read-only credentials for the external private registry in your Replicated account. This allows Replicated to access the images through the proxy service. See [Add Credentials for an External Registry](packaging-private-images#configure-access-to-an-external-registry) in _Adding an Image Registry_.
 * (Optional) To use a custom domain for the proxy service instead of `proxy.replicated.com`, see [Using Custom Domains](custom-domains-using).
+
 ## Deliver Image Pull Secrets for the Proxy Service
 
 This procedure shows how to create an image pull secret for the proxy service and then override your private registry URL during installation to use `proxy.replicated.com` instead.

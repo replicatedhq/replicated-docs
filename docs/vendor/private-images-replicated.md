@@ -1,8 +1,15 @@
-# Push Images to the Replicated Registry
+# Using the Replicated Registry for KOTS Installations
 
-You can host the private images for your application on the Replicated registry. Hosting your images on the Replicated registry is useful if you do not already have your images in an existing private registry. It is also useful for testing purposes.
+This topic describes how to use the Replicated private image registry for Replicated KOTS installations.
+## Overview
 
-For more information about building, tagging, and pushing Docker images, see the
+For applications installed with KOTS, you can host private images on the Replicated registry. Hosting your images on the Replicated registry is useful if you do not already have your images in an existing private registry. It is also useful for testing purposes.
+
+For more information about security for the Replicated registry, see [Replicated Registry Security](packaging-private-registry-security).
+
+## Push Images to the Replicated Registry
+
+This procedure describes how to tag and push images to the Replicated registry. For more information about building, tagging, and pushing Docker images, see the
 [Docker CLI documentation](https://docs.docker.com/engine/reference/commandline/cli/).
 
 To push images to the Replicated registry:

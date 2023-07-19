@@ -1,10 +1,8 @@
 # Tutorial: Using ECR for Private Images
 
-Replicated KOTS supports working with private images stored in Amazon's Elastic Container Registry (ECR).
-
 ## Objective
 
-The purpose of this tutorial is to walk you through how to configure KOTS to pull images from a private registry in Amazon's Elastic Container Registry (ECR). This tutorial demonstrates the differences between using public and private images with Replicated.
+The purpose of this tutorial is to walk you through how to configure Replicated KOTS to pull images from a private registry in Amazon's Elastic Container Registry (ECR). This tutorial demonstrates the differences between using public and private images with KOTS.
 
 ## Prerequisites
 
