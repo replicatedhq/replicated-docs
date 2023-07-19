@@ -42,7 +42,7 @@ For more information about the role-based access control (RBAC) requirements for
 During install, KOTS can re-tag and push images to a local image registry.
 This is useful to enable CVE scans, image policy validation, and other pre-deployment rules. A private image registry is required for air gapped environments, and is optional for online environments.
 
-For information about image registry requirements, see [Private Registry Requirements](installing-general-requirements#docker-compatibility).
+For information about image registry requirements, see [Private Registry Requirements](installing-general-requirements#private-registry-requirements).
 
 ### Use a GitOps or Internal Version Control Workflow
 
