@@ -1,8 +1,6 @@
 # Including Optional Charts
 
-This topic describes using optional Helm charts in your application. It also provides an example of how to configure the Replicated HelmChart custom resource to exclude optional Helm charts from your application when a given condition is met.
-
-This topic applies to the Native Helm and Replicated KOTS deployment methods.
+This topic describes using optional Helm charts in your application. It also provides an example of how to configure the Replicated HelmChart custom resource to exclude optional Helm charts from your application when a given condition is met. 
 
 ## About Optional Helm Charts
 
@@ -113,35 +111,28 @@ Next, package the Helm chart and add it to the release in the vendor portal:
   helm fetch bitnami/postgresql
   ```
 
-1. Drag and drop the `.tgz` file into the file tree of the release. The vendor portal automatically creates a new file with `kind: HelmChart` named `postgresql.yaml`, which references the `.tgz` file you uploaded.
+1. Drag and drop the `.tgz` file into the file tree of the release. The vendor portal automatically creates a new HelmChart custom resource named `postgresql.yaml`, which references the `.tgz` file you uploaded.
 
-   For more information about adding Helm charts to a release in the vendor portal, see [Managing Releases with the Vendor Portal](releases-creating-releases).
+   For more information about adding Helm charts to a release in the vendor portal, see [Creating a Release with Your Helm Chart for KOTS](helm-release).
 
 ### Step 4: Edit the HelmChart Custom Resource
 
-Finally, edit the `postgresql.yaml` HelmChart custom resource:
+Finally, edit the HelmChart custom resource:
 
-1. In the `postgresql.yaml` file, add a mapping to the `values` key so that it uses the password you created. Also, add an `exclude` field to specify that the Postgres Helm chart must only be included when the user selects the embedded Postgres option on the Config page:
+1. In the HelmChart custom resource, add a mapping to the `values` key so that it uses the password you created. Also, add an `exclude` field to specify that the Postgres Helm chart must only be included when the user selects the embedded Postgres option on the Config page:
 
   ```yaml
-  apiVersion: kots.io/v1beta1
+  apiVersion: kots.io/v1beta2
   kind: HelmChart
   metadata:
     name: postgresql
   spec:
     exclude: 'repl{{ ConfigOptionEquals `postgres_type` `external_postgres` }}'
-    # chart identifies a matching chart from a .tgz
     chart:
       name: postgresql
       chartVersion: 12.1.7
 
-    # helmVersion identifies the Helm Version used to render the Chart. Default is v2.
-    helmVersion: v3
-
-    # useHelmInstall identifies whether this Helm chart will use the
-    # Replicated Helm installation (false) or native Helm installation (true). Default is false.
-    # Native Helm installations are only available for Helm v3 charts.
-    useHelmInstall: true
+    releaseName: samplechart-release-1
     
     # values are used in the customer environment, as a pre-render step
     # these values will be supplied to helm template
@@ -150,10 +141,6 @@ Finally, edit the `postgresql.yaml` HelmChart custom resource:
         username: username
         password: "repl{{ ConfigOption `embedded_postgres_password` }}"
         database: mydatabase
-
-    # builder values provide a way to render the chart with all images
-    # and manifests. this is used in replicated to create airgap packages
-    builder: {}
   ```
 
-1. Save and promote the release for the application in the vendor portal. Then, install the release in a development environment to test the embedded and external Postgres options. For more information, see [Installing on an Existing Cluster](/enterprise/installing-existing-cluster) in the _Enterprise_ section.
+1. Save and promote the release. Then, install the release in a development environment to test the embedded and external Postgres options. For more information, see [Installing in an Existing Cluster](/enterprise/installing-existing-cluster).

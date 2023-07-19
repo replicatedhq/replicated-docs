@@ -1,69 +1,40 @@
 import HooksLimitation from "../partials/helm/_hooks-limitation.mdx"
+import WeightLimitation from "../partials/helm/_helm-cr-weight-limitation.mdx"
+import HookWeightsLimitation from "../partials/helm/_hook-weights-limitation.mdx"
 
-# Defining Installation Order for Native Helm Charts
+# Defining Installation Order for Helm Charts
 
-This topic describes how to use the `weight` property to define the installation order for charts deployed with the native Helm method. For more information about using native Helm charts with Replicated KOTS, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).
+This topic describes how to use the `weight` property in HelmChart custom resources to define the installation order for Helm charts. For more information about installing Helm charts with Replicated KOTS, see [About Distributing Helm Charts with KOTS](/vendor/helm-native-about).
 
-## About Native Helm Chart Installation Weight
+## About Installation Weight
 
-For Helm charts deployed with native Helm, you can add a `weight` property to the `HelmChart` custom resource manifest file to define the order in which Helm installs the charts.
+You can add a `weight` property to the HelmChart custom resource manifest file to define the order in which Helm installs the charts. For more information, see [weight](/reference/custom-resource-helmchart-v2#weight) in _HelmChart v2_.
 
-This is useful if you have multiple `HelmChart` custom resources in your application, and it is important that the resources referenced in one or more Helm charts are deployed before one or more other Helm charts.
+This is useful if you have multiple HelmChart custom resources in your application, and it is important that the resources referenced in one or more Helm charts are deployed before one or more other Helm charts.
 
-Assigning a `weight` also helps you avoid relying on Helm dependencies and subcharts to define a chart installation order in Replicated KOTS. This is particularly useful when you include hooks in your native Helm charts, as Helm waits for certain hooks to complete before continuing. For more information about how KOTS handles dependencies and hooks for Helm charts, see [Subcharts and Dependencies](#subcharts-and-dependencies) and [Hooks](#hooks) below.
+Assigning a `weight` also helps you avoid relying on Helm dependencies and subcharts to define a chart installation order in Replicated KOTS. This is particularly useful when you include hooks in your Helm charts, as Helm waits for certain hooks to complete before continuing. For more information about how KOTS handles dependencies and hooks for Helm charts, see [Subcharts and Dependencies](#subcharts-and-dependencies) and [Hooks](#hooks) below.
 
-KOTS directs Helm to install the native Helm charts in your application based on the value of `weight` in ascending order, deploying the chart with the lowest weight first. For example, a chart with a `weight` of `-1` deploys before a chart with a `weight` of `0`.
+KOTS directs Helm to install the Helm charts in your application based on the value of `weight` in ascending order, deploying the chart with the lowest weight first. For example, a chart with a `weight` of `-1` deploys before a chart with a `weight` of `0`.
 
-The value for the `weight` property can be any negative or positive integer or `0`. By default, when you do not provide a `weight` for a native Helm chart, the `weight` is `0`.
+The value for the `weight` property can be any negative or positive integer or `0`. By default, when you do not provide a `weight` for a Helm chart, the `weight` is `0`.
 
-## Assign Installation Weight to Native Helm Charts
+## Limitations
 
-You can add a `weight` property to any native Helm charts in your application to define the order in which they are installed.
+The `weight` field in the HelmChart custom resource has the following limitations:
 
-To add a `weight` to native Helm charts:
+* <WeightLimitation/>
 
-1. Open the manifest file for the `HelmChart` custom resource you want to assign an installation order.
+* <HooksLimitation/>
 
-1. Add the following line to the `HelmChart` custom resource manifest file at the same level as `useHelmInstall: true`:
-
-   ```yaml
-   weight: INSTALL-WEIGHT
-   ```
-   Where `INSTALL-WEIGHT` is any negative or positive integer or `0`.
-
-   **Example:**:
-
-   ```yaml
-   apiVersion: kots.io/v1beta1
-   kind: HelmChart
-   metadata:
-     name: samplechart
-   spec:
-     chart:
-       name: samplechart
-       chartVersion: 3.1.7
-
-     exclude: "repl{{ ConfigOptionEquals `include_chart` `include_chart_no`}}"
-
-     helmVersion: v3
-
-     useHelmInstall: true
-     weight: 1
-
-     values:
-       ...
-
-     namespace: samplechart-namespace
-   ```
-1. Save your changes.
+* <HookWeightsLimitation/>
 
 ## Subcharts and Dependencies
 
-When you add a `weight` property to `HelmChart` custom resources in your application, KOTS instructs Helm to install any dependencies, including subcharts, along with the parent chart.
+When you add a `weight` property to HelmChart custom resources in your application, KOTS instructs Helm to install any dependencies, including subcharts, along with the parent chart.
 
-For example, if you have two native Helm charts in your application, one with a `weight` of `-1` and one with a `weight` of `0`, then Helm installs the chart with a `weight` of `-1` first, including any subcharts and dependencies listed in the `dependencies` field for that chart.
+For example, if you have two Helm charts in your application, one with a `weight` of `-1` and one with a `weight` of `0`, then Helm installs the chart with a `weight` of `-1` first, including any subcharts and dependencies listed in the `dependencies` field for that chart.
 
-If you do not add a `weight` to native Helm charts in your application, you can still use dependencies and subcharts to define installation order constraints during application deployment.
+If you do not add a `weight` to Helm charts in your application, you can still use dependencies and subcharts to define installation order constraints during application deployment.
 
 For more information about using Helm dependencies, see [Chart Dependencies](https://helm.sh/docs/topics/charts/#chart-dependencies) in the Helm documentation.
 
@@ -71,7 +42,7 @@ For more information about using Helm dependencies, see [Chart Dependencies](htt
 
 Helm hooks enable more control over when Helm installs the resources in your Helm charts. This is useful if you want to bundle actions as part of a release. For example, you can build in a database backup as part of the upgrade process while ensuring that the backup occurs prior to upgrading the rest of the resources.
 
-KOTS supports using some Helm hooks with native Helm charts. If you use hooks in your native Helm charts, you can use the `weight` property to further manage the installation order of resources. For example, if you include a pre-install hook in Helm chart A that requires a resource from Helm chart B, you can add a lower `weight` to chart B to ensure that Replicated KOTS directs Helm to install chart B before chart A.
+KOTS supports using some Helm hooks with Helm charts. If you use hooks in your Helm charts, you can use the `weight` property to further manage the installation order of resources. For example, if you include a pre-install hook in Helm chart A that requires a resource from Helm chart B, you can add a lower `weight` to chart B to ensure that Replicated KOTS directs Helm to install chart B before chart A.
 
 The following hooks are supported:
   * `pre-install`: Executes after resources are rendered but before any resources are installed.

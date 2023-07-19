@@ -7,6 +7,7 @@ import ChartReleaseName from "../partials/helm/_helm-cr-chart-release-name.mdx"
 import HelmUpgradeFlags from "../partials/helm/_helm-cr-upgrade-flags.mdx"
 import Values from "../partials/helm/_helm-cr-values.mdx"
 import Weight from "../partials/helm/_helm-cr-weight.mdx"
+import WeightLimitation from "../partials/helm/_helm-cr-weight-limitation.mdx"
 import Exclude from "../partials/helm/_helm-cr-exclude.mdx"
 import OptionalValues from "../partials/helm/_helm-cr-optional-values.mdx"
 import OptionalValuesWhen from "../partials/helm/_helm-cr-optional-values-when.mdx"
@@ -15,12 +16,11 @@ import Namespace from "../partials/helm/_helm-cr-namespace.mdx"
 import Intro from "../partials/helm/_helm-cr-intro.mdx"
 import BuilderAirgapIntro from "../partials/helm/_helm-cr-builder-airgap-intro.mdx"
 import BuilderExample from "../partials/helm/_helm-cr-builder-example.mdx"
+import V2Example from "../partials/helm/_v2-native-helm-cr-example.mdx"
 
-# HelmChart v2 (Beta)
+# HelmChart v2
 
 > Introduced in Replicated KOTS v1.99.0
-
-The HelmChart v2 custom resource supports the native Helm v2 installation. This v2 installation method does a Helm install or upgrade of your Helm chart without modifying it with Kustomize. This is an improvement to the v1 installation method because it results in Helm installations that can be reproduced outside of KOTS, and it enables the use of additional Helm functionality that was not available in v1. Because this method bypasses existing Kustomize logic to rewrite images, inject pull secrets, and add backup labels, you must configure a combination of Replicated and Helm templating for the images, pull secrets, and backup labels.
 
 <Intro/>
 
@@ -28,59 +28,7 @@ The HelmChart v2 custom resource supports the native Helm v2 installation. This 
 
 The following is an example manifest file for the HelmChart v2 custom resource:
 
-```yaml
-apiVersion: kots.io/v1beta2
-kind: HelmChart
-metadata:
-  name: samplechart
-spec:
-  # chart identifies a matching chart from a .tgz
-  chart:
-    name: samplechart
-    chartVersion: 3.1.7
-  
-  releaseName: samplechart-release-1
-
-  exclude: "repl{{ ConfigOptionEquals `include_chart` `include_chart_no`}}"
-
-  # weight determines the order that charts are applied, with lower weights first.
-  weight: 42
-
-  # helmUpgradeFlags specifies additional flags to pass to the `helm upgrade` command.
-  helmUpgradeFlags:
-    - --skip-crds
-    - --no-hooks
-    - --timeout
-    - 1200s
-    - --history-max=15
-
-  # values are used in the customer environment, as a pre-render step
-  # these values will be supplied to helm template
-  values:
-    postgresql:
-      enabled: repl{{ ConfigOptionEquals `postgres_type` `embedded_postgres`}}
-
-  optionalValues:
-    - when: "repl{{ ConfigOptionEquals `postgres_type` `external_postgres`}}"
-      recursiveMerge: false
-      values:
-        postgresql:
-          postgresqlDatabase: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_database`}}repl{{ end}}"
-          postgresqlUsername: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_username`}}repl{{ end}}"
-          postgresqlHost: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_host`}}repl{{ end}}"
-          postgresqlPassword: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_password`}}repl{{ end}}"
-          postgresqlPort: "repl{{ if ConfigOptionEquals `postgres_type` `external_postgres`}}repl{{ ConfigOption `external_postgres_port`}}repl{{ end}}"
-
-  # namespace allows for a chart to be installed in an alternate namespace to
-  # the default
-  namespace: samplechart-namespace
-
-  # builder values provide a way to render the chart with all images
-  # and manifests. this is used in Replicated to create `.airgap` packages
-  builder:
-    postgresql:
-      enabled: true
-```
+<V2Example/>
 
 ## chart
 
@@ -101,6 +49,8 @@ spec:
 ## weight
 
 <Weight/>
+
+<WeightLimitation/>
 
 ## helmUpgradeFlags
 
@@ -132,17 +82,17 @@ spec:
 
 ## builder
 
-The `builder` field is required for the following use cases:
+The `builder` key is required for the following use cases:
 
 * <BuilderAirgapIntro/>
 
-* To support online installations that are configured to push and pull from a private registry. In this case, your customer must not enable the `--disable-image-push` flag for the `kots install` command or disable pushing the images to a registry in the admin console. By default, pushing images to a registry is enabled.
+* To support online installations that use a local private registry, the `builder` field renders the Helm chart with all of the necessary images so that KOTS knows where to pull the images.
 
-  You must provide the necessary values in the `builder` field to render the Helm chart with all of the necessary images so that KOTS knows where to pull the images from to push them into the private registry.
-
-  If you already support an air gap installation, use the same `builder` field configuration for this online installation use case. No additional changes are needed.
+  By default, pushing images to a local registry is enabled for all installations. A user in an online environment might disable the ability to push images to a local registry only if an external process is responsible for pushing all images to the registry. For more information, see [Using Private Registries](/enterprise/image-registry-settings).
 
 <HelmBuilderRequirements/>
+
+* Use the same `builder` configuration to support the use of local registries in both online and air gap installations. If you already configured the `builder` key to support air gap installations, then no additional configuration is required.
 
 **Example:**
 
