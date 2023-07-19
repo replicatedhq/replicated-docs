@@ -21,7 +21,7 @@ Released on July 19, 2023
 Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
 
 ### New Features {#new-features-1-101-0}
-* KOTS now supports running preflights defined in a Helm chart. If any Helm charts in a release contain preflights, KOTS will run those. If no Helm charts exist or no preflights are defined in any Helm charts, KOTS will use the previous behavior and run any preflights defined in a `kind: Preflight` file in the root of the release. For more information about preflights in Helm charts, see [Define Preflight Checks for Helm Installations
+* KOTS now supports running preflight checks defined in a Helm chart. If any Helm charts in a release contain preflight specifications, KOTS runs those. If no Helm charts exist or no preflights are defined in any Helm charts, KOTS uses the previous behavior and runs any preflights defined in a `kind: Preflight` file in the root of the release. For more information about preflights in Helm charts, see [Define Preflight Checks for Helm Installations
 ](/vendor/preflight-helm-defining).
 
 ### Improvements {#improvements-1-101-0}
