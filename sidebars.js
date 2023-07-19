@@ -570,7 +570,6 @@ const sidebars = {
             'vendor/support-host-support-bundles',
           ],
         },
-        {type: 'link', href: 'https://troubleshoot.sh/docs/collect/', label: 'Troubleshoot.sh Documentation'},
       ],
     },
     {
@@ -586,11 +585,11 @@ const sidebars = {
        ],
     },
 
-    {type: 'ref', id: 'vendor/kots-intro-placeholder', label: 'KOTS Documentation'},
-    {type: 'link', href: 'https://kurl.sh/docs/introduction/', label: 'kURL.sh Documentation'},
+    {type: 'ref', id: 'vendor/kots-intro-placeholder', label: 'KOTS and kURL Documentation'},
     {type: 'html', value: '<h5>install</h5>', defaultStyle: true},
     'vendor/install-with-helm',
     {type: 'ref', id: 'enterprise/installing-overview', label: 'Installing with KOTS'},
+    {type: 'ref', id: 'enterprise/installing-embedded-cluster', label: 'Installing with kURL'},
     
 
     // DEVELOPER TOOLS
@@ -665,6 +664,10 @@ const sidebars = {
         },
       ],
     },
+    //OPEN SOURCE DOCS
+    {type: 'html', value: '<h5>open source docs</h5>', defaultStyle: true},
+    {type: 'link', href: 'https://kurl.sh/docs/introduction/', label: 'kURL.sh'},
+    {type: 'link', href: 'https://troubleshoot.sh/docs/collect/', label: 'Troubleshoot.sh'},
     // POLICIES
     {type: 'html', value: '<h5>policies</h5>', defaultStyle: true},
     {

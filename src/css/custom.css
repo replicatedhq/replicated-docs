@@ -223,6 +223,10 @@ ol ol ol {
   max-width: 75px;
 }
 
+[data-theme='dark'] #kots {
+  content:url("/images/icons/kots_w.png");
+}
+
 /* Release Note label styling */
 
 h3[id^="new-features"] {

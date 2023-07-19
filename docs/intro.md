@@ -40,7 +40,7 @@ slug: /
   <ul class="tile">
     <li class="tile__header">
         <li><img src="images/icons/k8s_installer.png" alt="installer icon"></img></li>
-        <p>KOTS and kURL</p>
+        <p>KOTS and kURL Installers</p>
     </li>
     <li>
         <p>Distribute and install applications with the Replicated KOTS and kURL installers.</p>
@@ -67,7 +67,10 @@ slug: /
       <a href="vendor/snapshots-configuring-backups">Configure snapshots</a>
     </li>
     <li>
-      <a href="enterprise/installing-overview">Install with KOTS</a>
+      <a href="enterprise/installing-overview">Install with KOTS and kURL</a>
+    </li>
+    <li>
+      <a href="https://kurl.sh/docs/introduction/">kURL.sh Documentation</a>
     </li>
   </ul>
   <ul class="tile">
@@ -108,10 +111,10 @@ slug: /
         <p>APIs, CLIs, and SDK</p>
     </li>
     <li>
-      <a href="https://www.google.com">Replicated SDK</a>
+      <a href="vendor/replicated-sdk-overview">Replicated SDK</a>
     </li>
     <li>
-      <a href="https://www.google.com">Get started with the SDK API</a>
+      <a href="reference/replicated-sdk-apis">Replicated SDK API</a>
     </li>
     <li>
       <a href="reference/replicated-cli-installing">replicated CLI</a>
@@ -195,6 +198,9 @@ slug: /
     </li>
     <li>
       <a href="vendor/support-bundle-generating">Generate support bundles</a>
+    </li>
+    <li>
+      <a href="https://troubleshoot.sh/docs/preflight/introduction/">Troubleshoot.sh documentation</a>
     </li>
   </ul>
 </section>
