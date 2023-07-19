@@ -288,7 +288,7 @@ The `kots.io/v1beta2` HelmChart custom resource has the following differences fr
 
 For an example of the HelmChart v2 custom resource, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
-### Migrate from Replicated Helm
+### Upgrade from Replicated Helm
 
 <ReplicatedHelmMigration/>
 
