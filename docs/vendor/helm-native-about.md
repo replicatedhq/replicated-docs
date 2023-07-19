@@ -31,7 +31,7 @@ For more information about how KOTS processes and installs Helm charts based on 
 
 > Introduced in Replicated KOTS v1.99.0
 
-When you include a HelmChart custom resource with `apiVersion: kots.io/v1beta2` in a release, KOTS v1.99.0 or later does a Helm install or upgrade of the associated Helm chart directly. This installation method supports most Helm functionality, such as lookup and Capabilities functions, the `alias` field for dependencies, all functionality for the `helm install` and `helm upgrade` commands, and `helm get values` for viewing the values that were used to install.
+When you include a HelmChart custom resource with `apiVersion: kots.io/v1beta2` in a release, KOTS v1.99.0 or later does a Helm install or upgrade of the associated Helm chart directly. This installation method supports most Helm functionality, such as the `lookup` function and the built-in `Capabilities` object, the `alias` field for dependencies, all functionality for the `helm install` and `helm upgrade` commands, and `helm get values` for viewing the values that were used to install.
 
 The HelmChart custom resource `kots.io/v1beta2` differs from `kots.io/v1beta1` in that KOTS does _not_ modify the chart with Kustomize during installation. Because the chart is not modified, `kots.io/v1beta2` results in Helm chart installations that are more consistent, reliable, and easier to troubleshoot. For example, you can view the values that were used to install with `helm get values`. Also, you can reproduce the exact installation outside of KOTS by downloading a copy of the application files from the cluster with `kots download`, then using those files to install with `helm install`.
 
@@ -168,7 +168,7 @@ The following limitations apply when using version `kots.io/v1beta2` of the Helm
 
 * Editing the downstream Kustomization files to make changes before deploying the application is not supported because KOTS does not use Kustomize to install the Helm chart.
 
-* The rendered manifests shown in the `rendered` directory might not reflect the final manifests that will be deployed to the cluster. This is because the manifests in the `rendered` directory are generated using `helm template`, which is not run with cluster context. So, the values for the `lookup` and `Capabilities` functions might differ.
+* The rendered manifests shown in the `rendered` directory might not reflect the final manifests that will be deployed to the cluster. This is because the manifests in the `rendered` directory are generated using `helm template`, which is not run with cluster context. So, the values for the `lookup` function and the built-in `Capabilities` object might differ.
 
 * When updating the HelmChart custom resource in a release from `kots.io/v1beta1` to `kots.io/v1beta2`, the diff viewer shows a large diff because the underlying file structure of the rendered manifests is different. For more information about migrating, see [Migrating from v1beta1 to v1beta2](helm-native-v2-using#migrating).
 
