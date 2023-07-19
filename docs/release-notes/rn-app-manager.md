@@ -14,6 +14,25 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.101.0
+
+Released on July 19, 2023
+
+Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
+
+### New Features {#new-features-1-101-0}
+* KOTS now supports running preflight checks defined in a Helm chart. If any Helm charts in a release contain preflight specifications, KOTS runs those. If no Helm charts exist or no preflights are defined in any Helm charts, KOTS uses the previous behavior and runs any preflights defined in a `kind: Preflight` file in the root of the release. For more information about preflights in Helm charts, see [Define Preflight Checks for Helm Installations
+](/vendor/preflight-helm-defining).
+
+### Improvements {#improvements-1-101-0}
+* Updates the replicated/local-volume-provider image to v0.5.4 to resolve CVE-2023-0464 with high severity.
+* Updates the kotsadm/dex image to v2.37.0 to resolve CVE-2022-4450, CVE-2023-0215, CVE-2023-0464, CVE-2023-2650 with high severity and CVE-2022-4304, CVE-2023-0465, CVE-2023-0466, CVE-2023-1255 with medium severity.
+* Updates the MinIO image to RELEASE.2023-06-29T05-12-28Z to resolve CVE-2020-24736, CVE-2023-1667, CVE-2023-2283, and CVE-2023-26604 with medium severity.
+* Upgrades webpack to 5.88.1 to resolve CVE-2023-28154 with critical severity.
+
+### Bug Fixes {#bug-fixes-1-101-0}
+* Fixes an issue where the `rendered` directory was not created for airgap application updates.
+
 ## 1.100.3
 
 Released on June 20, 2023
