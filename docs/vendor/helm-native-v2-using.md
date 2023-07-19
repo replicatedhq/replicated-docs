@@ -160,7 +160,7 @@ spec:
       registry: '{{repl HasLocalRegistry | ternary LocalRegistryHost "proxy.replicated.com" }}'
       repository: '{{repl HasLocalRegistry | ternary LocalRegistryNamespace "proxy/my-app/ecr.us-east-1.amazonaws.com/my-org" }}/api'
       pullSecrets:
-      - '{{repl ImagePullSecretName }}'
+      - name: '{{repl ImagePullSecretName }}'
 ```
 
 The `spec.values.image.pullSecrets` field in the HelmChart custom resource corresponds to a `image.pullSecrets` field in the Helm chart `values.yaml` file, as shown in the example below:
