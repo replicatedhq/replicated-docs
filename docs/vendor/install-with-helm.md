@@ -32,7 +32,7 @@ To install a Helm chart:
    ```
    Replace `EMAIL_ADDRESS` and `LICENSE_ID` with the values provided in the command in the **Helm install instructions** dialog.
 
-1. (Optional) Run the second and third commands to install the preflight plugin and run preflight checks. For more information about configuring and running preflight checks, see [About Preflight Checks and Support Bundles](preflight-support-bundle-about).
+1. (Optional) Run the second and third commands to install the preflight plugin and run preflight checks. If no preflight checks are defined, these commands are not displayed. For more information about defining and running preflight checks, see [About Preflight Checks and Support Bundles](preflight-support-bundle-about).
 
 1. Run the fourth command to install using Helm:
 
