@@ -1,6 +1,6 @@
 # About Proxying Images with Replicated
 
-This topic describes how the Replicated proxy service can provide proxy access to your application's external private images. It also includes information about how Replicated KOTS automatically patches image names and inject pull secrets during installation and upgrade to use the proxy service.
+This topic describes using the Replicated proxy service to grant proxy access to your application's private images. It also includes information about how Replicated KOTS accesses images through the proxy service.
 
 ## About the Proxy Service
 
