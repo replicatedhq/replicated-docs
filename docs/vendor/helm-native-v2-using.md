@@ -20,13 +20,13 @@ The HelmChart custom resource `builder`, `values`, and `optionalValues` keys eac
 
 To locate images for your application in a registry, Kubernetes must have the image name and the domain of the registry. For example, you might have an image with the name `example/imagename` on a registry with the domain `example.registry.com`. For more information, see [Images](https://kubernetes.io/docs/concepts/containers/images/) in the Kubernetes documentation.
 
-During installation or upgrade with KOTS, your private images are accessed either through the Replicated proxy service at the domain `proxy.replicated.com` or in the Replicated private registry at `replicated.registry.com`. Additionally, KOTS allows users to configure local registries to push images. If you use a private registry or if your users push to a local private registry, then you must configure the HelmChart custom resource to dynamically update image names in your Helm chart. This allows Kubernetes to locate images on either the proxy service or on a user-configured local registry.
+During installation or upgrade with KOTS, private images stored in an external private registry are accessed through the Replicated proxy service at the domain `proxy.replicated.com`. Additionally, KOTS allows users to configure local registries to push images. If you use an external private registry or if your users push to a local private registry, then you must configure the HelmChart custom resource to dynamically update image names in your Helm chart. This allows Kubernetes to locate images on either the proxy service or on a user-configured local registry.
 
 For more information:
 * If you use a private image registry and you do _not_ support users pushing to local registries, see [External Private Registries or Replicated Registry](#external). 
 * If you need to support users that push to local registries, such as users in air gap environments, see [Local Registries](#local-registries).
 
-### External Private Registries or Replicated Registry {#external}
+### External Private Registries {#external}
 
 If you use private images with your application, then your images must be accessed through the Replicated proxy service at `proxy.replicated.com/proxy/APP_SLUG/EXTERNAL_REGISTRY_IMAGE_URL`, where `APP_SLUG` is the slug of your Replicated application and `EXTERNAL_REGISTRY_IMAGE_URL` is the path to the private image in your external registry. For example, `proxy.replicated.com/proxy/my-app/quay.io/my-org/api`.
 
