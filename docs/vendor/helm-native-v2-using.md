@@ -269,10 +269,10 @@ spec:
       mariadb:
         commonLabels:
           kots.io/backup: velero
-          kots.io/app-slug: repl{{LicenseFieldValue "appSlug" }}
+          kots.io/app-slug: repl{{ LicenseFieldValue "appSlug" }}
         podLabels:
           kots.io/backup: velero
-          kots.io/app-slug: repl{{LicenseFieldValue "appSlug" }}
+          kots.io/app-slug: repl{{ LicenseFieldValue "appSlug" }}
 ```
 
 ## Support Local Image Registries for Online Installations
