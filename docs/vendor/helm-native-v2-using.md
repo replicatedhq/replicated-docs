@@ -23,7 +23,7 @@ To locate images for your application in a registry, Kubernetes must have the im
 During installation or upgrade with KOTS, private images stored in an external private registry are accessed through the Replicated proxy service at the domain `proxy.replicated.com`. Additionally, KOTS allows users to configure local registries to push images. If you use an external private registry or if your users push to a local private registry, then you must configure the HelmChart custom resource to dynamically update image names in your Helm chart. This allows Kubernetes to locate images on either the proxy service or on a user-configured local registry.
 
 For more information:
-* If you use a private image registry and you do _not_ support users pushing to local registries, see [External Private Registries or Replicated Registry](#external). 
+* If you use a private image registry and you do _not_ support users pushing to local registries, see [External Private Registries](#external). 
 * If you need to support users that push to local registries, such as users in air gap environments, see [Local Registries](#local-registries).
 
 ### External Private Registries {#external}
