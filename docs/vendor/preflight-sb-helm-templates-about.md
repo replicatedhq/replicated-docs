@@ -75,7 +75,7 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name | quote }}
     app.kubernetes.io/version: {{ .Chart.AppVersion }}
     helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    troubleshoot.io/kind: preflight
+    troubleshoot.sh/kind: preflight
   name: "{{ .Release.Name }}-preflight-config"
 stringData:
   preflight.yaml: |
