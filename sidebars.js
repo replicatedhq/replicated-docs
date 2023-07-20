@@ -438,7 +438,7 @@ const sidebars = {
       type: 'category',
       label: 'Getting Started',
       items: [
-        'vendor/distributing-about',
+        'vendor/replicated-onboarding',
         'vendor/helm-overview',
         'vendor/helm-install',
         {
