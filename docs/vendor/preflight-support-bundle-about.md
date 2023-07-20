@@ -69,7 +69,7 @@ To use preflight checks and support bundles with your application, you define co
 
 For information about how to write the specifications, see:
   
-  - [Define Preflight Checks for Helm Installations](preflight-helm-defining)
+  - [Define Preflight Checks for Helm Charts](preflight-helm-defining)
   - [Define Preflight Checks for KOTS](preflight-kots-defining)
   - [Customize Support Bundles for Helm Installations](support-bundle-helm-customizing)
   - [Customize Support Bundles for KOTS](support-bundle-kots-customizing)
