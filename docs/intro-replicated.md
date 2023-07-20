@@ -13,10 +13,11 @@ Your application can use Helm charts, standard Kubernetes manifests, or Kubernet
 Replicated provides the features for managing and distributing your apps, including:
 
 - Manage your releases and versioning for effective management of your product lifecycle
-- Create and manage custom license entitlements with flexibility and granular control
+- Provision test environments quickly using the compatibility matrix so that you can test release compatibility in a variety of customer environments
+- Create and manage custom license entitlements with flexibility and granular control, including free licenses for trial, dev, and community licenses
 - Connect to a proxied image registry to allow customer to install without having to share the credentials to your private registry
-- Creating custom domains
-- Provision test environments quickly that represent a variety of customer environments using the compatibility matrix
+- Create custom domains to brand your customer-facing URLs
+
 
 ## Installing
 
@@ -42,7 +43,13 @@ Use Replicated features to support your customers and application:
 
 ## Observing and Measuring
 
-- Get telemetry and key insights to understand the state of your distributed software 
+- Get telemetry and key insights to understand the health and status of your distributed software, get adoption metrics, and get key performance metrics
+
+- Set up notifications to get alerted for events to help ensure that important instance issues or performance trends are not missed
+
+## Administering
+
+Manage your teams, such as inviting and removing members, in the vendor portal. 
 
 ## Management and Development Tools
 

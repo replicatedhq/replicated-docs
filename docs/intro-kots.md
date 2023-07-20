@@ -3,17 +3,16 @@
 This topic describes Replicated KOTS, used for packaging, installing, and managing applications in a Kubernetes cluster. It also describes the Replicated kURL installer option.
 
 :::note
-You must have the KOTS entitlement to use the KOTS and kURL installers and features.
+You must have the Replicated KOTS entitlement to use the KOTS and kURL installers and features.
 :::
 
 ## KOTS
 
-Replicated KOTS installs and manages applications in a Kubernetes cluster. You can use KOTS to deploy Kubernetes applications or Helm charts securely to the following online or air gap environments:
+Vendors that want to provide a UI-based installation and management experience for applications can leverage KOTS and kURL. KOTS provides the Replicated admin console to make it easy for customers to install your application on an existing Kubernetes cluster. 
 
-- Existing clusters
-- Embedded clusters created by Replicated kURL. See [kURL](#kurl) below.
+When KOTS is combined with kURL, kURL provisions an embedded Kubernetes cluster on a virtual machine (VM) or bare metal server. KOTS then installs the application and admin console. This makes it easy for customers to install your application if they do not have or do not want to provision their own Kubernetes cluster.
 
-KOTS installs the Replicated admin console and then deploys the application files using either the admin console or kots CLI. The admin console and kots CLI also let customers manage the application.
+KOTS deploys applications securely to online and air gap environments.
 
 KOTS is an open source project that is maintained by Replicated. For more information, see the kots repository in GitHub.
 
