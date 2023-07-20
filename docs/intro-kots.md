@@ -8,25 +8,16 @@ You must have the KOTS entitlement to use the KOTS and kURL installers and featu
 
 ## KOTS
 
-KOTS is a kubectl plugin and admin console to help manage Kubernetes Off-The-Shelf software. As a vendor, you package and update your application with KOTS, primarily using Replicated and Troubleshoot custom resources to provide integration and customization with Replicated options. For example, you can customize the Config screen for your customers or customize the admin console experience using the Application custom resource file.
+Replicated KOTS installs and manages applications in a Kubernetes cluster. You can use KOTS to deploy Kubernetes applications or Helm charts securely to the following online or air gap environments:
 
-Your application can use Helm charts, standard Kubernetes manifests, or Kubernetes Operators. Applications are securely deployed in customer environments using the KOTS installer. 
+- Existing clusters
+- Embedded clusters created by Replicated kURL. See [kURL](#kurl) below.
 
-For customers that do not have an existing cluster, you can include a kURL installer to provision an embedded Kubernetes cluster, and then KOTS installs the application. For more information about kURL, see [kURL](#kurl).
+KOTS installs the Replicated admin console and then deploys the application files using either the admin console or kots CLI. The admin console and kots CLI also let customers manage the application.
 
-Air gap installations are supported by KOTS and kURL.
+KOTS is an open source project that is maintained by Replicated. For more information, see the kots repository in GitHub.
 
-KOTS installs the admin console and then deploys the application files using either the admin console or kots CLI. The admin console and kots CLI also let customers manage the application. For more information, see [Admin Console](#admin-console) and [kots CLI](#kots-cli).
-
-KOTS provides additional functionality that is not available through the Replicated platform alone, including the following options:
-
-- **Config Screen:** Customize the customer-facing Config screen in the admin console to collect required or optional values from your customers that are used to run your application. 
-- **Custom Admin Console:** Customize the admin console with your company's branding, release notes, custom graphs display, application status display, and more.
-- **Backup and Restore:** Enable backup and restore capabilities so that customers can implement full disaster recovery protection for the application and the admin console. 
-- **Embedded Preflights and Support Bundles:** Preflight checks and support bundle generation are embedded with the installation and admin console experience.
-- **RBAC:** Use role-based access control (RBAC) for clusters and namespaces. By default, the KOTS installation sets RBAC for the cluster, but you can scope it to namespaces instead.
-
-## Custom Resources
+<!--## Custom Resources
 
 You use KOTS and Troubleshoot custom resources to configure and control the application experience. Custom resources are packaged with your application but are not deployed to the cluster. 
 
@@ -49,15 +40,22 @@ For more information, see:
 - [KOTS](#kots)
 - [Admin Console](#admin-console)
 - [kots CLI](#kots-cli)
-- [kURL](#kurl)
+- [kURL](#kurl) -->
 
 ## Admin Console
 
-KOTS installs the admin console. The admin console is a customer-facing user interface that includes built-in functionality allowing users to install, manage, update, configure, monitor, backup and restore, and troubleshoot their application instances. The admin console communicates securely with KOTS to synchronize licenses, check for upgrades, and so on. 
-
-As a vendor, you can customize the admin console. For example, you can customize the Config screen to allow customers to specify inputs related to unique options that your application provides. You can also include your own branding on the admin console, configure status informers, and add custom graphs.
+The admin console is a customer-facing user interface that includes built-in functionality allowing users to install, manage, update, configure, monitor, backup and restore, and troubleshoot their application instances. The admin console communicates securely with KOTS to synchronize licenses, check for upgrades, and so on. 
 
 ![Admin Console Dashboard](/images/guides/kots/application.png)
+
+<!--
+The admin console features include:
+
+- **Config Screen:** Customize the customer-facing Config screen in the admin console to collect required or optional values from your customers that are used to run your application. 
+- **Custom Admin Console:** Customize the admin console with your company's branding, release notes, custom graphs display, application status display, and more.
+- **Backup and Restore:** Enable backup and restore capabilities so that customers can implement full disaster recovery protection for the application and the admin console. 
+- **RBAC:** Use role-based access control (RBAC) for clusters and namespaces. By default, the KOTS installation sets RBAC for the cluster, but you can scope it to namespaces instead. 
+-->
 
 ## kots CLI
 
@@ -65,13 +63,9 @@ The kots command-line interface (CLI) is a kubectl plugin. Customers can run com
 
 ## kURL
 
-Replicated kURL creates Kubernetes clusters, which allows customers who do not have an existing cluster to install your application without provisioning a cluster themselves. Clusters created by kURL are called _embedded clusters_.
+Replicated kURL provisions Kubernetes clusters, which allows customers who do not have an existing cluster to install your application without provisioning a cluster themselves. Clusters created by kURL are called _embedded clusters_. Embedded clusters can be online or air gap environments.
 
 kURL has a built-in integration with KOTS through its KOTS add-on. With this integration, customers can run a kURL installation script in their virtual machine (VM) or bare metal server, which creates a cluster and then automatically installs KOTS in the cluster. Your application is then deployed with KOTS. 
-
-KOTS and kURL installations are supported for online or air gapped environments.
-
-Using kURL can help you attract customers who are interested in your application but who do not want or might not have the resources to provision and maintain their own Kubernetes cluster.
 
 For information about how to install applications in embedded clusters, see [Installing with kURL](/enterprise/installing-embedded-cluster). For information about how to create a specification for kURL, see [Creating a Kubernetes Installer](/vendor/packaging-embedded-kubernetes).
 
