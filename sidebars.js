@@ -310,6 +310,16 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Compatibility Testing',
+      items: [
+        'vendor/testing-about',
+        'vendor/testing-supported-clusters',
+        'vendor/testing-manual',
+        'vendor/testing-cicd',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Distributing Your Application',
       items: [
         'vendor/releases-sharing-license-install-script',        
