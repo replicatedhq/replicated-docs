@@ -4,9 +4,7 @@ Before you package and distribute an application, we at Replicated would like to
 understand some key characteristics about the current architecture of your application
 as well as your customers' technical expertise and expectations. 
 
-## Replicated Onboarding Questionnaire
-
-### Application Architecture & Deployment
+## Application Architecture & Deployment
 
 - How many microservices comprise your application?
 
@@ -28,7 +26,7 @@ as well as your customers' technical expertise and expectations.
 
 - Does your application require GPUs?
 
-### Customer Infrastructure​
+## Customer Infrastructure​
 
 - Do you anticipate that any of your customers will have access to install on an existing Kubernetes cluster?
 
