@@ -8,14 +8,13 @@ The Replicated platform lets you install, manage, support, and get insights on y
 
 Your application can use Helm charts, standard Kubernetes manifests, or Kubernetes Operators.
 
-## Managing and Testing Distribution  
+## Distributing  
 
-Replicated provides the features for managing and distributing your apps, including:
+Replicated provides the features for distributing and managing your application, including:
 
-- Manage your releases and versioning for effective management of your product lifecycle
-- Provision test environments quickly using the compatibility matrix so that you can test release compatibility in a variety of customer environments
-- Create and manage custom license entitlements with flexibility and granular control, including free licenses for trial, dev, and community licenses
-- Connect to a proxied image registry to allow customer to install without having to share the credentials to your private registry
+- Use release channels and versioning for effective management of your product lifecycle
+- Provision test environments quickly using the compatibility matrix to create a variety of environments
+- Create and manage custom license entitlements with granular control and flexibility, including free licenses for trial, dev, and community licenses
 - Create custom domains to brand your customer-facing URLs
 
 
@@ -30,18 +29,20 @@ When you use the Replicated platform, you can install your application using the
     - Existing clusters
     - Embedded clusters created by Replicated kURL
 
-If your application uses Helm charts, you can create a single release that supports Helm and KOTS installations. This helps ensure that your application runs consistently in every environment.
+    If your application uses Helm charts, you can create a single release that supports Helm and KOTS installations. This helps ensure that your application runs consistently in every environment.
 
-For more information about KOTS, see [About KOTS and kURL](intro-kots) in the KOTS documentation.
+    For more information about KOTS, see [About KOTS and kURL](intro-kots) in the KOTS documentation.
 
 ## Supporting
 
 Use Replicated features to support your customers and application:
 
 - Help customers stay on stable versions
-- Use preflight checks and support bundles to improve installation success and faster diagnosis with troubleshooting cluster and application issues
+- Use preflight checks and support bundles to improve installation success and diagnose application issues faster
 
 ## Observing and Measuring
+
+Replicated provides comprehensive observability of application instances installed in customer environments:
 
 - Get telemetry and key insights to understand the health and status of your distributed software, get adoption metrics, and get key performance metrics
 
@@ -49,7 +50,11 @@ Use Replicated features to support your customers and application:
 
 ## Administering
 
-Manage your teams, such as inviting and removing members, in the vendor portal. 
+Manage your teams, such as inviting and removing members, in the vendor portal, such as:
+
+- Inviting and removing members
+- Managing permissions
+- Configuring authentication options and enabling two-factor authentication
 
 ## Management and Development Tools
 
@@ -57,11 +62,18 @@ This section describes the management and development tools that you use to conf
 
 ### Vendor Portal
 
-The Replicated vendor portal is the web-based user interface that you can use to package and manage applications, and manage teams.
+The Replicated vendor portal is the web-based user interface that you can use to configure and manage all of the Replicated features for distributing and managing application releases, supporting your release, viewing customer insights and reporting, and managing teams.
 
+The following shows an example of the **Reporting** page for a customer that has two active application instances:
+
+![Customer reporting page showing two active instances](/images/customer-reporting-page.png)
+
+[View a larger version of this image](/images/customer-reporting-page.png)
+
+<!--
 For example, team management options let you invite members, manage their permissions and access to the collab repository, configure RBAC for a team, choose from multiple authentication types, use two-factor authentication, set password policies, and configure a Slack webhook to enable Slack notifications about customer instance status changes.
 
-<!-->
+
 
 The following shows an example of the **Team Members** page that shows the list of members, including one with an expired invitation, and current permissions:
 

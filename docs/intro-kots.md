@@ -10,9 +10,9 @@ You must have the Replicated KOTS entitlement to use the KOTS and kURL installer
 
 Vendors that want to provide a UI-based installation and management experience for applications can leverage KOTS and kURL. KOTS provides the Replicated admin console to make it easy for customers to install your application on an existing Kubernetes cluster. 
 
-When KOTS is combined with kURL, kURL provisions an embedded Kubernetes cluster on a virtual machine (VM) or bare metal server. KOTS then installs the application and admin console. This makes it easy for customers to install your application if they do not have or do not want to provision their own Kubernetes cluster.
+When KOTS is combined with kURL, kURL provisions an embedded Kubernetes cluster on a virtual machine (VM) or bare metal server. KOTS then installs the application and admin console. This makes it easy for customers to install your application if they do not have or do not want to provision their own Kubernetes cluster. For more information about kURL, see [kURL](#kurl).
 
-KOTS deploys applications securely to online and air gap environments.
+KOTS and kURL deploy applications securely to online and air gap environments.
 
 KOTS is an open source project that is maintained by Replicated. For more information, see the kots repository in GitHub.
 
@@ -46,6 +46,8 @@ For more information, see:
 The admin console is a customer-facing user interface that includes built-in functionality allowing users to install, manage, update, configure, monitor, backup and restore, and troubleshoot their application instances. The admin console communicates securely with KOTS to synchronize licenses, check for upgrades, and so on. 
 
 ![Admin Console Dashboard](/images/guides/kots/application.png)
+
+[View a larger version of this image](/images/guides/kots/application.png)
 
 <!--
 The admin console features include:
