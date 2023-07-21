@@ -28,7 +28,7 @@ as well as your customers' technical expertise and expectations.
 
 - Does your application require GPUs?
 
-### Development and Deployment Processes
+### Customer Infrastructure​
 
 - Do you anticipate that any of your customers will have access to install on an existing Kubernetes cluster?
 
