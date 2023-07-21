@@ -12,7 +12,7 @@ as well as your customers' technical expertise and expectations.
 
     - If your application is containerized:
 
-        - Do you host a private registry for your container images? 
+        - Are your container images hosted in a private registry? 
 
     - If your application is deployable to Kubernetes:
 
