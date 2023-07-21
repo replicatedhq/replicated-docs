@@ -1,6 +1,6 @@
 # Introduction to Replicated
 
-This topic describes the Replicated platform, including features, pricing plans, installation options, and release workflow.
+This topic describes the Replicated platform, including features, installation options, and management and development tools.
 
 ## About the Replicated Platform
 

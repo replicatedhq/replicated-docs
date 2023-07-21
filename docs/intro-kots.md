@@ -1,6 +1,6 @@
 # About KOTS and kURL
 
-This topic describes Replicated KOTS, used for packaging, installing, and managing applications in a Kubernetes cluster. It also describes the Replicated kURL installer option.
+This topic describes Replicated KOTS and Replicated kURL, used for installing and upgrading applications in a Kubernetes cluster, and the Replicated admin console that customers use to manage application instances.
 
 :::note
 You must have the Replicated KOTS entitlement to use the KOTS and kURL installers and features.
