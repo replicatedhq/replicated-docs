@@ -4,19 +4,18 @@ This topic describes the Replicated platform, including features, installation o
 
 ## About the Replicated Platform
 
-The Replicated platform lets you install, manage, support, and get insights on your applications in customer environments. With Replicated, you package and update your application using Kubernetes manifests or Helm charts, then securely distribute to any on-premises or cloud-hosted environments, including air gap.
+The Replicated platform lets you distribute, install, support, and observe on your applications in customer environments. With Replicated, you distribute your application using Helm charts, Kubernetes manifests, or Kubernetes Operators, then securely distribute to any on-prem or cloud-hosted environments, including air gap.
 
-Your application can use Helm charts, standard Kubernetes manifests, or Kubernetes Operators.
+The following sections describe the Replicated features that support the key aspects and challenges of distributing and supporting an application successfully. 
 
 ## Distributing  
 
-Replicated provides the features for distributing and managing your application, including:
+Replicated provides features for distributing and managing your application in diverse environments, including:
 
 - Use release channels and versioning for effective management of your product lifecycle
-- Provision test environments quickly using the compatibility matrix to create a variety of environments
+- Provision test environments quickly using the compatibility matrix to create a variety of customer-representative environments
 - Create and manage custom license entitlements with granular control and flexibility, including free licenses for trial, dev, and community licenses
 - Create custom domains to brand your customer-facing URLs
-
 
 ## Installing
 
@@ -37,28 +36,29 @@ When you use the Replicated platform, you can install your application using the
 
 Use Replicated features to support your customers and application:
 
-- Help customers stay on stable versions
+- Use reporting to find out which customers are running vulnerable versions of your application so you can contact them about upgrading to the latest version
 - Use preflight checks and support bundles to improve installation success and diagnose application issues faster
+- Provision customer-representative environments to quickly recreate and diagnose issues
 
 ## Observing and Measuring
 
-Replicated provides comprehensive observability of application instances installed in customer environments:
+Replicated provides comprehensive insights of application instances installed in customer environments:
 
-- Get telemetry and key insights to understand the health and status of your distributed software, get adoption metrics, and get key performance metrics
+- Get telemetry and key insights to understand the health and status of your distributed software, view adoption metrics, and monitor key performance metrics
 
 - Set up notifications to get alerted for events to help ensure that important instance issues or performance trends are not missed
 
 ## Administering
 
-Manage your teams, such as inviting and removing members, in the vendor portal, such as:
+Manage your teams in the vendor portal, such as:
 
 - Inviting and removing members
 - Managing permissions
 - Configuring authentication options and enabling two-factor authentication
 
-## Management and Development Tools
+## Vendor Platform
 
-This section describes the management and development tools that you use to configure and manage your application and teams with Replicated.
+This section describes the vendor platform options that you use to configure and manage your application and teams with Replicated.
 
 ### Vendor Portal
 
@@ -72,8 +72,6 @@ The following shows an example of the **Reporting** page for a customer that has
 
 <!--
 For example, team management options let you invite members, manage their permissions and access to the collab repository, configure RBAC for a team, choose from multiple authentication types, use two-factor authentication, set password policies, and configure a Slack webhook to enable Slack notifications about customer instance status changes.
-
-
 
 The following shows an example of the **Team Members** page that shows the list of members, including one with an expired invitation, and current permissions:
 
@@ -103,9 +101,11 @@ The replicated command-line interface (CLI) is the CLI for the vendor portal. Th
 
 The Vendor API is the API for the vendor portal. This API can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams, license files, and so on. For more information, see [Using the Vendor API V3](/reference/vendor-api-using).
 
-### SDK API
+<!-- ### SDK API
 
 The Replicated SDK API is designed for testing purposes. The SDK SPI runs in integration mode, which allows you to develop and test locally with mock data, without making any changes in the vendor portal or in your environment. You can test your changes in different scenarios and iterate faster.
+
+-->
 
 <!--Diagram
 

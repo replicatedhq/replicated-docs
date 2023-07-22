@@ -16,7 +16,7 @@ KOTS and kURL deploy applications securely to on-prem, SaaS, and air gap environ
 
 KOTS also provides the Replicated admin console to make it easy for customers to install, upgrade, and manage their application instance. For more information, see [Admin Console](#admin-console).
 
-KOTS is an open source project that is maintained by Replicated. For more information, see the kots repository in GitHub.
+KOTS is an open source project that is maintained by Replicated. For more information, see the [kots](https://github.com/replicatedhq/kots) repository in GitHub.
 
 <!--## Custom Resources
 
@@ -66,7 +66,7 @@ The kots command-line interface (CLI) is a kubectl plugin. Customers can run com
 
 ## kURL
 
-Replicated kURL provisions Kubernetes clusters, which allows customers who do not have an existing cluster to install your application without provisioning a cluster themselves. Clusters created by kURL are called _embedded clusters_. Embedded clusters can be online or air gap environments.
+Replicated kURL provisions Kubernetes clusters, which allows customers who do not have an existing cluster to install your application without provisioning a cluster themselves. Clusters created by kURL are called _embedded clusters_. Embedded clusters can be provisioned in online or air gap environments.
 
 kURL has a built-in integration with KOTS through its KOTS add-on. With this integration, customers can run a kURL installation script in their virtual machine (VM) or bare metal server, which creates a cluster and then automatically installs KOTS in the cluster. Your application is then deployed with KOTS. 
 
