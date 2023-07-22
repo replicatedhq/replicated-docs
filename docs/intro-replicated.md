@@ -4,24 +4,24 @@ This topic describes the Replicated platform, including features, installation o
 
 ## About the Replicated Platform
 
-The Replicated platform lets you distribute, install, support, and observe on your applications in customer environments. With Replicated, you distribute your application using Helm charts, Kubernetes manifests, or Kubernetes Operators, then securely distribute to any on-prem or cloud-hosted environments, including air gap.
+The Replicated platform lets you distribute, install, support, and observe your applications in customer environments. With Replicated, you distribute your application using Helm charts, Kubernetes manifests, or Kubernetes Operators, then securely distribute to any on-prem or cloud-hosted environments, including air gap.
 
-The following sections describe the Replicated features that support the key aspects and challenges of distributing and supporting an application successfully. 
+The following sections describe Replicated key features that simplify the complex tasks and challenges of distributing and supporting an application successfully. 
 
 ## Distributing  
 
 Replicated provides features for distributing and managing your application in diverse environments, including:
 
-- Use release channels and versioning for effective management of your product lifecycle
+- Use release channels and versioning for effective management of your product lifecycle. See [About Releases](releases-about) and [About Channels](releases-about-channels).
 - Provision test environments quickly using the compatibility matrix to create a variety of customer-representative environments
-- Create and manage custom license entitlements with granular control and flexibility, including free licenses for trial, dev, and community licenses
-- Create custom domains to brand your customer-facing URLs
+- Create and manage custom license entitlements with granular control and flexibility, including free licenses for trial, dev, and community licenses. See [Creating and Managing Customers](releases-creating-customer).
+- Create custom domains to brand your customer-facing URLs. See [Using Custom Domains](custom-domains-using).
 
 ## Installing
 
 When you use the Replicated platform, you can install your application using the Helm CLI or Replicated installers:
 
-- **Helm CLI:** You can use the Helm CLI to install Helm charts. Add the the SDK to your Helm chart to integrate Replicated features. Supported for online environments.
+- **Helm CLI:** You can use the Helm CLI to install Helm charts. Add the the SDK to your Helm chart to integrate Replicated features. Supported for online environments. See [About Distributing with Helm](helm-install).
 
 - **KOTS:** With a KOTS entitlement, you use KOTS to install in online or air gap environments on:
 
@@ -36,29 +36,29 @@ When you use the Replicated platform, you can install your application using the
 
 Use Replicated features to support your customers and application:
 
-- Use reporting to find out which customers are running vulnerable versions of your application so you can contact them about upgrading to the latest version
-- Use preflight checks and support bundles to improve installation success and diagnose application issues faster
+- Use reporting to find out which customers are running vulnerable versions of your application so you can contact them about upgrading to the latest stable version. See [Customer Reporting](customer-reporting).
+- Use preflight checks and support bundles to improve installation success and diagnose application issues faster. See [About Preflights Checks and Support Bundles](preflight-support-bundle-about).
 - Provision customer-representative environments to quickly recreate and diagnose issues
 
 ## Observing and Measuring
 
 Replicated provides comprehensive insights of application instances installed in customer environments:
 
-- Get telemetry and key insights to understand the health and status of your distributed software, view adoption metrics, and monitor key performance metrics
+- Get telemetry and key insights to understand the health and status of your distributed software, view adoption metrics, and monitor key performance metrics. See [About Instance and Event Data](instance-insights-event-data).
 
-- Set up notifications to get alerted for events to help ensure that important instance issues or performance trends are not missed
+- Set up email and Slack notifications to get alerted for events to help ensure that important instance issues or performance trends are not missed. See [Configuring a Slack Webhook (Alpha)](team-management-slack-config) and [Configuring Instance Notifications (Alpha)](instance-notifications-config).
 
 ## Administering
 
 Manage your teams in the vendor portal, such as:
 
-- Inviting and removing members
-- Managing permissions
-- Configuring authentication options and enabling two-factor authentication
+- Invite and remove members. See [Managing Team Members](team-management).
+- Manage permissions. See [Configuring RBAC Policies](team-management-rbac-configuring).
+- Configure authentication options and enable two-factor authentication. See [Managing Google Authentication](team-management-google-auth) and [Managing Two-Factor Authentication](team-management-two-factor-auth).
 
 ## Vendor Platform
 
-This section describes the vendor platform interface options that you use to distribute and manage your application and teams with Replicated.
+This section describes the Replicated vendor platform interface options that you use to distribute and manage your application, and manage teams.
 
 ### Vendor Portal
 
