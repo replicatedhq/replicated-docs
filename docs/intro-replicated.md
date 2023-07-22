@@ -1,6 +1,6 @@
 # Introduction to Replicated
 
-This topic describes the Replicated platform, including features, installation options, and management and development tools.
+This topic describes the Replicated platform, including features, installation options, and vendor platform interface options for distributing and managing your application with Replicated.
 
 ## About the Replicated Platform
 
@@ -58,7 +58,7 @@ Manage your teams in the vendor portal, such as:
 
 ## Vendor Platform
 
-This section describes the vendor platform options that you use to configure and manage your application and teams with Replicated.
+This section describes the vendor platform interface options that you use to distribute and manage your application and teams with Replicated.
 
 ### Vendor Portal
 
