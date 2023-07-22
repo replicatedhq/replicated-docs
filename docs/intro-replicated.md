@@ -12,16 +12,16 @@ The following sections describe Replicated key features that simplify the comple
 
 Replicated provides features for distributing and managing your application in diverse environments, including:
 
-- Use release channels and versioning for effective management of your product lifecycle. See [About Releases](releases-about) and [About Channels](releases-about-channels).
+- Use release channels and versioning for effective management of your product lifecycle. See [About Releases](/vendor/releases-about) and [About Channels](/vendor/releases-about-channels).
 - Provision test environments quickly using the compatibility matrix to create a variety of customer-representative environments
-- Create and manage custom license entitlements with granular control and flexibility, including free licenses for trial, dev, and community licenses. See [Creating and Managing Customers](releases-creating-customer).
-- Create custom domains to brand your customer-facing URLs. See [Using Custom Domains](custom-domains-using).
+- Create and manage custom license entitlements with granular control and flexibility, including free licenses for trial, dev, and community licenses. See [Creating and Managing Customers](/vendor/releases-creating-customer).
+- Create custom domains to brand your customer-facing URLs. See [Using Custom Domains](/vendor/custom-domains-using).
 
 ## Installing
 
 When you use the Replicated platform, you can install your application using the Helm CLI or Replicated installers:
 
-- **Helm CLI:** You can use the Helm CLI to install Helm charts. Add the the SDK to your Helm chart to integrate Replicated features. Supported for online environments. See [About Distributing with Helm](helm-install).
+- **Helm CLI:** You can use the Helm CLI to install Helm charts. Add the the SDK to your Helm chart to integrate Replicated features. Supported for online environments. See [Using the SDK with Your Application (Alpha)](/vendor/replicated-sdk-using).
 
 - **KOTS:** With a KOTS entitlement, you use KOTS to install in online or air gap environments on:
 
@@ -36,25 +36,25 @@ When you use the Replicated platform, you can install your application using the
 
 Use Replicated features to support your customers and application:
 
-- Use reporting to find out which customers are running vulnerable versions of your application so you can contact them about upgrading to the latest stable version. See [Customer Reporting](customer-reporting).
-- Use preflight checks and support bundles to improve installation success and diagnose application issues faster. See [About Preflights Checks and Support Bundles](preflight-support-bundle-about).
+- Use reporting to find out which customers are running vulnerable versions of your application so you can contact them about upgrading to the latest stable version. See [Customer Reporting](/vendor/customer-reporting).
+- Use preflight checks and support bundles to improve installation success and diagnose application issues faster. See [About Preflights Checks and Support Bundles](/vendor/preflight-support-bundle-about).
 - Provision customer-representative environments to quickly recreate and diagnose issues
 
 ## Observing and Measuring
 
 Replicated provides comprehensive insights of application instances installed in customer environments:
 
-- Get telemetry and key insights to understand the health and status of your distributed software, view adoption metrics, and monitor key performance metrics. See [About Instance and Event Data](instance-insights-event-data).
+- Get telemetry and key insights to understand the health and status of your distributed software, view adoption metrics, and monitor key performance metrics. See [About Instance and Event Data](/vendor/instance-insights-event-data).
 
-- Set up email and Slack notifications to get alerted for events to help ensure that important instance issues or performance trends are not missed. See [Configuring a Slack Webhook (Alpha)](team-management-slack-config) and [Configuring Instance Notifications (Alpha)](instance-notifications-config).
+- Set up email and Slack notifications to get alerted for events to help ensure that important instance issues or performance trends are not missed. See [Configuring a Slack Webhook (Alpha)](/vendor/team-management-slack-config) and [Configuring Instance Notifications (Alpha)](/vendor/instance-notifications-config).
 
 ## Administering
 
 Manage your teams in the vendor portal, such as:
 
-- Invite and remove members. See [Managing Team Members](team-management).
-- Manage permissions. See [Configuring RBAC Policies](team-management-rbac-configuring).
-- Configure authentication options and enable two-factor authentication. See [Managing Google Authentication](team-management-google-auth) and [Managing Two-Factor Authentication](team-management-two-factor-auth).
+- Invite and remove members. See [Managing Team Members](/vendor/team-management).
+- Manage permissions. See [Configuring RBAC Policies](/vendor/team-management-rbac-configuring).
+- Configure authentication options and enable two-factor authentication. See [Managing Google Authentication](/vendor/team-management-google-auth) and [Managing Two-Factor Authentication](/vendor/team-management-two-factor-auth).
 
 ## Vendor Platform
 
