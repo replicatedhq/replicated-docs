@@ -1,6 +1,6 @@
-# KOTS Workflow Placeholder
+# Distributing with KOTS
 
-The following table describes the required and optional KOTS functionality that you can add to your application to support installations with KOTS.
+The following table describes the KOTS functionality to integrate with your application to support installations with KOTS.
 
 <table>
   <tr>
@@ -14,10 +14,6 @@ The following table describes the required and optional KOTS functionality that 
   <tr>
     <td>Status Informers</td>
     <td>Status informers are supported Kubernetes resources that KOTS watches for changes in state. Add one or more status informers to display the current application status for your users on the admin console dashboard. Additionally, status informers allow you to get insights on the status of application instances running in customer environments. See <a href="admin-console-display-app-status">Adding Resource Status Informers</a>.</td>
-  </tr>
-  <tr>
-    <td>Preflight Checks and Support Bundles</td>
-    <td>Define preflight checks to test for system compliance during the installation process and reduce the number of support escalations. <br></br><br></br>Enable support bundles to collect and analyze troubleshooting data from your customers' clusters to help you diagnose problems with application deployments. See <a href="preflight-support-bundle-about">About Preflight Checks and Support Bundles</a></td>
   </tr>
   <tr>
     <td>Kubernetes Installers</td>
