@@ -4,7 +4,7 @@ This topic describes the Replicated platform, including features, installation o
 
 ## About the Replicated Platform
 
-The Replicated platform lets you distribute, install, support, and observe your applications in customer environments. With Replicated, you distribute your application using Helm charts, Kubernetes manifests, or Kubernetes Operators, then securely distribute to any on-prem or cloud-hosted environments, including air gap.
+The Replicated platform lets you distribute, install, support, and observe your applications in customer environments. With Replicated, you distribute your application using Helm charts, Kubernetes manifests, or Kubernetes Operators, then securely distribute to on-prem, online environments, and air gap environments.
 
 The following sections describe Replicated key features that simplify the complex tasks and challenges of distributing and supporting an application successfully. 
 
@@ -26,7 +26,7 @@ When you use the Replicated platform, you can install your application using the
 - **KOTS:** With a KOTS entitlement, you use KOTS to install in online or air gap environments on:
 
     - Existing clusters
-    - Embedded clusters created by Replicated kURL
+    - Embedded clusters provisioned by Replicated kURL
 
     If your application uses Helm charts, you can create a single release that supports Helm and KOTS installations. This helps ensure that your application runs consistently in every environment.
 
@@ -38,7 +38,7 @@ Use Replicated features to support your customers and application:
 
 - Use reporting to find out which customers are running vulnerable versions of your application so you can contact them about upgrading to the latest stable version. See [Customer Reporting](/vendor/customer-reporting).
 - Use preflight checks and support bundles to improve installation success and diagnose application issues faster. See [About Preflights Checks and Support Bundles](/vendor/preflight-support-bundle-about).
-- Provision customer-representative environments to quickly recreate and diagnose issues
+- Provision customer-representative environments to quickly recreate and diagnose issues.
 
 ## Observing and Measuring
 

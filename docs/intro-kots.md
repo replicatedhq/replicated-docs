@@ -12,7 +12,7 @@ Vendors that want to provide a UI-based installation and management experience f
 
 When KOTS is combined with kURL, kURL provisions an embedded cluster on a virtual machine (VM) or bare metal server for customers that do not have their own Kubernetes cluster. For more information about kURL, see [kURL](#kurl).
 
-KOTS and kURL deploy applications securely to on-prem, SaaS, and air gap environments.
+Applications are deployed securely to on-prem, online, and air gap environments.
 
 KOTS also provides the Replicated admin console to make it easy for customers to install, upgrade, and manage their application instance. For more information, see [Admin Console](#admin-console).
 
