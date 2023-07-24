@@ -18,170 +18,29 @@ const sidebars = {
 
   // But you can create a sidebar manually
 
-  tutorialSidebar: [
-
-    'intro',
+  kots: [
+    
     {
-      type: 'category',
-      className: 'main-section',
-      label: 'Release Notes',
-      items: [
-        'release-notes/rn-whats-new',
-        'release-notes/rn-app-manager',
-        'release-notes/rn-kubernetes-installer'
-      ],
+      type: 'html',
+      value: '<img src="/images/icons/kots.png" alt="kots logo" id="kots">',
+      defaultStyle: true,
     },
-    'intro-replicated',
-    {
-      type: 'category',
-      label: 'Getting Started Tutorials',
-      items: [
-        {
-          type: 'category',
-          label: 'UI Tutorial',
-          items: [
-            'vendor/tutorial-ui-setup',
-            'vendor/tutorial-ui-create-app',
-            'vendor/tutorial-ui-create-release',
-            'vendor/tutorial-ui-create-customer',
-            'vendor/tutorial-ui-install-app-manager',
-            'vendor/tutorial-ui-deploy-app',
-            'vendor/tutorial-ui-create-new-version',
-            'vendor/tutorial-ui-update-app',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'CLI Tutorial',
-          items: [
-            'vendor/tutorial-cli-setup',
-            'vendor/tutorial-cli-install-cli',
-            'vendor/tutorial-cli-create-app',
-            'vendor/tutorial-cli-manifests',
-            'vendor/tutorial-cli-create-release',
-            'vendor/tutorial-cli-create-customer',
-            'vendor/tutorial-cli-install-app-manager',
-            'vendor/tutorial-cli-deploy-app',
-            'vendor/tutorial-cli-create-new-version',
-            'vendor/tutorial-cli-update-app',
-          ],
-        },
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Vendor Portal Team Management',
-      items: [
-        'vendor/vendor-portal-creating-account',
-        'vendor/team-management',
-        'vendor/team-management-github-username',
-        {
-           type: 'category',
-           label: 'Configuring Role-based Access Control',
-           items: [
-              'vendor/team-management-rbac-configuring',
-              'vendor/team-management-rbac-resource-names',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Configuring Authentication',
-          items: [
-            'vendor/team-management-two-factor-auth',
-            'vendor/team-management-google-auth',
-            'vendor/team-management-saml-auth',
-         ],
-        },
-        'vendor/team-management-slack-config',
-      ],
-    },
-    {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true},
+    {type: 'ref', id: 'intro', 'label': 'Back to Replicated Docs Home', className: 'menu__list-item__home-link'},
+    'vendor/kots-intro-placeholder',
+    // DISTRIBUTE WITH KOTS 
+    {type: 'html', value: '<h5>distribute with kots</h5>', defaultStyle: true},
     'vendor/distributing-workflow',
     {
       type: 'category',
-      label: 'Planning',
+      label: 'Helm Charts with KOTS',
       items: [
-        'vendor/planning-questionnaire',
-        'vendor/namespaces',
+        'vendor/helm-native-about',
+        'vendor/helm-release',
+        'vendor/helm-native-helm-install-order',
+        'vendor/helm-optional-charts',
+        'vendor/helm-optional-value-keys',
       ],
     },
-    {
-      type: 'category',
-      label: 'Private Registries',
-      items: [
-        'vendor/private-images-about',
-        'vendor/packaging-private-images',
-        'vendor/helm-image-registry',
-        'vendor/private-images-replicated',
-        'vendor/private-images-tags-digests',
-        'vendor/packaging-private-registry-security',
-        'vendor/tutorial-ecr-private-images',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Custom Domains',
-      items: [
-        'vendor/custom-domains',
-        'vendor/custom-domains-using',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Customer Licenses',
-      items: [
-        'vendor/licenses-about',
-        'vendor/licenses-using-builtin-fields',
-        'vendor/licenses-about-types',
-        'vendor/releases-creating-customer',
-        'vendor/licenses-adding-custom-fields',
-        'vendor/licenses-referencing-fields',
-        'vendor/licenses-reference-helm',
-        'vendor/licenses-verify-fields-sdk-api',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Channels and Releases',
-      items: [
-        'vendor/releases-about',
-        'vendor/releases-about-channels',
-        'vendor/releases-creating-channels',
-        'vendor/helm-release-creating-package',
-        'vendor/releases-creating-releases',
-        'vendor/releases-creating-cli',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Distributing Helm Charts',
-      items: [
-        'vendor/helm-overview',
-        {
-          type: 'category',
-          label: 'Distributing with Helm (Beta)',
-          items: [
-            'vendor/helm-install',
-            'vendor/helm-install-release',
-            'vendor/install-with-helm',
-            'vendor/replicated-sdk-overview',
-            'vendor/replicated-sdk-using',
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Distributing Helm Charts with KOTS',
-          items: [
-            'vendor/helm-native-about',
-            'vendor/helm-release',
-            'vendor/helm-native-v2-using',  
-            'vendor/helm-native-helm-install-order',
-            'vendor/helm-optional-charts',
-            'vendor/helm-optional-value-keys',
-          ],
-        },
-      ],
-    },   
     {
       type: 'category',
       label: 'Admin Console and Download Portal Customization',
@@ -204,72 +63,13 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Managing Resources and Objects',
-      items: [
-        'vendor/admin-console-display-app-status',
-        'vendor/packaging-include-resources',
-        'vendor/orchestrating-resource-deployment',
-        'vendor/database-config-adding-options',
-        'vendor/tutorial-adding-db-config',
-        'vendor/packaging-cleaning-up-jobs',
-        'vendor/packaging-ingress',
-      ],
-    }, 
-    {
-      type: 'category',
-      label: 'Kubernetes Installers',
+      label: 'Kubernetes Installers with kURL',
       items: [
         'vendor/packaging-embedded-kubernetes',
         'vendor/packaging-installer-storage',
         'vendor/preflight-host-preflights',
         'vendor/installer-history',
         'vendor/packaging-using-tls-certs',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Preflights and Support Bundles',
-      items: [
-        'vendor/preflight-support-bundle-about',
-        'vendor/support-online-support-bundle-specs',
-        'vendor/support-modular-support-bundle-specs',
-        'vendor/preflight-sb-helm-templates-about',
-        {
-          type: 'category',
-          label: 'Preflight Checks',
-          items: [
-             'vendor/preflight-helm-defining',
-             'vendor/preflight-kots-defining',
-         ],
-        },
-        {
-          type: 'category',
-          label: 'Support Bundles',
-          items: [
-            'vendor/support-bundle-helm-customizing',
-            'vendor/support-bundle-kots-customizing',
-         ],
-        },
-        {
-          type: 'category',
-          label: 'Custom Resources',
-          items: [
-            'reference/custom-resource-preflight',
-            'reference/custom-resource-redactor',
-
-         ],
-        },
-        {
-          type: 'category',
-          label: 'Supporting Your Application',
-          items: [
-            'vendor/preflight-running',
-            'vendor/support-bundle-generating',
-            'vendor/support-inspecting-support-bundles',
-            'vendor/support-submit-request',
-            'vendor/support-host-support-bundles',
-          ],
-        },
       ],
     },
     {
@@ -292,6 +92,20 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Managing Resources and Objects',
+      items: [
+        'vendor/admin-console-display-app-status',
+        'vendor/packaging-include-resources',
+        'vendor/orchestrating-resource-deployment',
+        'vendor/database-config-adding-options',
+        'vendor/tutorial-adding-db-config',
+        'vendor/packaging-cleaning-up-jobs',
+        'vendor/packaging-ingress',
+      ],
+    }, 
+    
+    {
+      type: 'category',
       label: 'Kubernetes Operators',
       items: [
         'vendor/operator-packaging-about',
@@ -310,23 +124,11 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Distributing Your Application',
-      items: [
+      label: 'Sharing Installation Files and Commands',
+      items: [ 
         'vendor/releases-sharing-license-install-script',        
         'vendor/releases-configvalues',
       ],
-    },
-    {
-      type: 'category',
-      label: 'Insights and Telemetry',
-      items: [
-         'vendor/instance-insights-event-data',
-         'vendor/insights-app-status',
-         'vendor/customer-adoption',
-         'vendor/customer-reporting',
-         'vendor/instance-insights-details',
-         'vendor/instance-notifications-config',
-       ],
     },
     {
       type: 'category',
@@ -363,12 +165,9 @@ const sidebars = {
         
       ],
     },
+    
     // INSTALL AND MANAGE (ENTERPRISE USER)
-    {type: 'html', value: '<h5>install and manage</h5>', defaultStyle: true},
-    {
-      type: 'category',
-      label: 'KOTS',
-      items: [
+    {type: 'html', value: '<h5>install and manage with kots</h5>', defaultStyle: true},
         {
           type: 'category',
           label: 'Installing an Application',
@@ -400,7 +199,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Private Registries',
+          label: 'Local Private Registries',
           items: [
             'enterprise/image-registry-settings',
             'enterprise/image-registry-embedded-cluster',
@@ -475,8 +274,6 @@ const sidebars = {
             'enterprise/delete-admin-console',
           ],
         },
-      ],
-    },
     {
       type: 'category',
       label: 'kots CLI',
@@ -581,17 +378,242 @@ const sidebars = {
           ],
         },
       ],
+    }, 
+
+  ],
+
+  main: [
+    'intro',
+    {
+      type: 'category',
+      label: 'Release Notes',
+      items: [
+        'release-notes/rn-whats-new',
+        'release-notes/rn-app-manager',
+        'release-notes/rn-kubernetes-installer'
+      ],
     },
+
+    //GET STARTED
+    {type: 'html', value: '<h5>get started</h5>', defaultStyle: true},
+    'intro-replicated',
+    'vendor/replicated-onboarding',
+    {
+      type: 'category',
+      label: 'Tutorials',
+      items: [
+        {
+          type: 'category',
+          label: 'KOTS Tutorial (UI)',
+          items: [
+            'vendor/tutorial-ui-setup',
+            'vendor/tutorial-ui-create-app',
+            'vendor/tutorial-ui-create-release',
+            'vendor/tutorial-ui-create-customer',
+            'vendor/tutorial-ui-install-app-manager',
+            'vendor/tutorial-ui-deploy-app',
+            'vendor/tutorial-ui-create-new-version',
+            'vendor/tutorial-ui-update-app',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'KOTS Tutorial (CLI)',
+          items: [
+            'vendor/tutorial-cli-setup',
+            'vendor/tutorial-cli-install-cli',
+            'vendor/tutorial-cli-create-app',
+            'vendor/tutorial-cli-manifests',
+            'vendor/tutorial-cli-create-release',
+            'vendor/tutorial-cli-create-customer',
+            'vendor/tutorial-cli-install-app-manager',
+            'vendor/tutorial-cli-deploy-app',
+            'vendor/tutorial-cli-create-new-version',
+            'vendor/tutorial-cli-update-app',
+          ],
+        },
+        
+      ],
+
+    },
+    // DISTRIBUTE AND OBSERVE
+    {type: 'html', value: '<h5>distribute and observe</h5>', defaultStyle: true},
+    {
+      type: 'category',
+      label: 'Overview',
+      items: [
+        
+        'vendor/helm-overview',
+        'vendor/helm-install',
+        {
+          type: 'category',
+          label: 'Planning to Distribute',
+          items: [
+            'vendor/planning-questionnaire',
+            'vendor/namespaces',
+          ],
+        },
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Vendor Portal Team Management',
+      items: [
+        'vendor/vendor-portal-creating-account',
+        'vendor/team-management',
+        'vendor/team-management-github-username',
+        {
+           type: 'category',
+           label: 'Configuring Role-based Access Control',
+           items: [
+              'vendor/team-management-rbac-configuring',
+              'vendor/team-management-rbac-resource-names',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Configuring Authentication',
+          items: [
+            'vendor/team-management-two-factor-auth',
+            'vendor/team-management-google-auth',
+            'vendor/team-management-saml-auth',
+         ],
+        },
+        'vendor/team-management-slack-config',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Channel and Release Management',
+      items: [
+        'vendor/releases-about',
+        'vendor/releases-about-channels',
+        'vendor/releases-creating-channels',
+        'vendor/releases-creating-releases',
+        'vendor/releases-creating-cli',
+        'vendor/helm-install-release',
+        'vendor/helm-release-creating-package',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Customer Licenses',
+      items: [
+        'vendor/licenses-about',
+        'vendor/licenses-using-builtin-fields',
+        'vendor/licenses-about-types',
+        'vendor/releases-creating-customer',
+        'vendor/licenses-adding-custom-fields',
+        'vendor/licenses-referencing-fields',
+        'vendor/licenses-reference-helm',
+        'vendor/licenses-verify-fields-sdk-api',
+      ],
+    },   
+    {
+      type: 'category',
+      label: 'Private Registries',
+      items: [
+        'vendor/private-images-about',
+        'vendor/packaging-private-images',
+        'vendor/helm-image-registry',
+        'vendor/private-images-replicated',
+        'vendor/private-images-tags-digests',
+        'vendor/packaging-private-registry-security',
+        'vendor/tutorial-ecr-private-images',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Custom Domains',
+      items: [
+        'vendor/custom-domains',
+        'vendor/custom-domains-using',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Preflights and Support Bundles',
+      items: [
+        'vendor/preflight-support-bundle-about',
+        'vendor/support-online-support-bundle-specs',
+        'vendor/support-modular-support-bundle-specs',
+        'vendor/preflight-sb-helm-templates-about',
+        {
+          type: 'category',
+          label: 'Preflight Checks',
+          items: [
+             'vendor/preflight-helm-defining',
+             'vendor/preflight-kots-defining',
+         ],
+        },
+        {
+          type: 'category',
+          label: 'Support Bundles',
+          items: [
+            'vendor/support-bundle-helm-customizing',
+            'vendor/support-bundle-kots-customizing',
+         ],
+        },
+        {
+          type: 'category',
+          label: 'Custom Resources',
+          items: [
+            'reference/custom-resource-preflight',
+            'reference/custom-resource-redactor',
+
+         ],
+        },
+        {
+          type: 'category',
+          label: 'Supporting Your Application',
+          items: [
+            'vendor/preflight-running',
+            'vendor/support-bundle-generating',
+            'vendor/support-inspecting-support-bundles',
+            'vendor/support-submit-request',
+            'vendor/support-host-support-bundles',
+          ],
+        },
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Insights and Telemetry',
+      items: [
+         'vendor/instance-insights-event-data',
+         'vendor/insights-app-status',
+         'vendor/customer-adoption',
+         'vendor/customer-reporting',
+         'vendor/instance-insights-details',
+         'vendor/instance-notifications-config',
+       ],
+    },
+
+    {type: 'ref', id: 'vendor/kots-intro-placeholder', label: 'KOTS and kURL Documentation'},
+    {type: 'html', value: '<h5>install</h5>', defaultStyle: true},
+    'vendor/install-with-helm',
+    {type: 'ref', id: 'enterprise/installing-overview', label: 'Installing with KOTS'},
+    {type: 'ref', id: 'enterprise/installing-embedded-cluster', label: 'Installing with kURL'},
+    
+
     // DEVELOPER TOOLS
     {type: 'html', value: '<h5>Developer tools</h5>', defaultStyle: true},
+    {
+      type: 'category',
+      label: 'Replicated SDK (Beta)',
+      items: [
+        'vendor/replicated-sdk-overview',
+        'vendor/replicated-sdk-using',
+      ],
+    },
     {
       type: 'category',
       label: 'Replicated SDK API (Beta)',
       items: [
         'reference/replicated-sdk-apis',
         'vendor/replicated-sdk-development',
-      ]
-    },  
+      ],
+    },
     {
       type: 'category',
       label: 'replicated CLI',
@@ -646,6 +668,10 @@ const sidebars = {
         },
       ],
     },
+    //OPEN SOURCE DOCS
+    {type: 'html', value: '<h5>open source docs</h5>', defaultStyle: true},
+    {type: 'link', href: 'https://kurl.sh/docs/introduction/', label: 'kURL.sh'},
+    {type: 'link', href: 'https://troubleshoot.sh/docs/collect/', label: 'Troubleshoot.sh'},
     // POLICIES
     {type: 'html', value: '<h5>policies</h5>', defaultStyle: true},
     {
