@@ -1,77 +1,80 @@
-# Distributing with KOTS
+import Recommendations from "../partials/onboarding/_recommendations.mdx"
 
-This topic describes how to create releases for your application that support installations with Replicated KOTS.
+# Onboarding with KOTS
 
-## About Distributing your Application with KOTS
-
-A release for your application can include a set of standard Kubernetes manifests, Helm charts, or Kubernetes Operators. (While an operator is technically deployed either using plain Kubernetes manifests or a Helm chart, we list it separately because of the advanced image management work needed to effectively deliver Operators into customer environments.) In addition to your application files, a release also includes [Replicated custom resources](/reference/custom-resource-about) that are used to invoke various Replicated KOTS functions.
-
-After you create the first release for your application, you continue the process of authoring, testing, iterating on, and accepting a set of files for release to your customers. Replicated recommends that you create and test releases for your application in small iterations before sharing a release with your customers.
+This topic describes how to onboard with Replicated KOTS, including prerequisites and the list of custom resources to add to your releases in order to support KOTS installations.
 
 ## Prerequisites
 
-Before you begin integrating KOTS features with your application, complete the following prerequisites:
+If you are new to Replicated, complete the following prerequisites before you get started with KOTS:
+* Create an account in the vendor portal. You can either create a new team or join an existing team. For more information, see [Creating a Vendor Account](vendor-portal-creating-account).
+* Complete a basic Replicated onboarding workflow to create an application and then promote and install initial releases in a development environment: 
+  * (Recommended) For Helm chart-based applications, see [Onboarding with Replicated](/vendor/replicated-onboarding).
+  
+    :::note
+    Distributing your application as a Helm chart is recommended because you can support both installations with the helm CLI and with KOTS from the same release, without having to maintain separate sets of Helm charts or application manifests. For more information, see [About Distributing Helm Charts with Replicated](/vendor/helm-overview).
+    :::
 
-* If you are new to Replicated, see [Onboarding with Replicated](/vendor/replicated-onboarding) for a basic onboarding workflow, best practices, and a list of key Replicated features to integrate with your application before getting started with KOTS.
-* For an introduction to installing with KOTS, complete the following tutorials with a sample Kubernetes application:
-  * [KOTS Tutorial (CLI)](tutorial-cli-setup)
-  * [KOTS Tutorial (UI)](tutorial-ui-setup)
+  * Alternatively, if you do _not_ intend to distribute a Helm chart-based application with Replicated, see [KOTS Tutorial (UI)](tutorial-ui-setup) for a workflow that uses a sample application with standard Kubernetes manifests.
+* Review the [Features Checklist](/vendor/replicated-onboarding#features-checklist) in _Onboarding with Replicated_ for a list of features to integrate with your application to fully onboard onto the Replicated platform. You can integrate these platform features before, during, or after getting started with KOTS.
 
-## KOTS Feature Checklist
+## Custom Resources Checklist
 
-This section provides a checklist of functionality to integrate with your application to support installations with Replicated KOTS. These features are provided in order of less challenging to more challenging, though you can configure and test the features in any order. 
+To support installations with KOTS, you add custom resources to your releases. The custom resources are consumed by KOTS and are not deployed to the cluster. This section provides a checklist of the recommended custom resources to add, including links to additional documentation about how to configure each one.
 
-Replicated recommends that you integrate one feature at a time by creating a release and then upgrading in a development environment to test.
+Replicated recommends that you configure and add one custom resource at a time by creating a release and then upgrading in a development environment to test. The custom resources are listed in a recommended order, though you can add them to releases in any order that you prefer.
+
+For more information about creating releases, see [Managing Releases with the Vendor Portal](releases-creating-releases). For more information about installing and upgrading with KOTS, see [About Installing an Application](/enterprise/installing-overview) and [Updating Applications](/enterprise/updating-apps).
 
 <table>
   <tr>
-    <th width="30%">Functionality</th>
+    <th width="25%">Custom Resource</th>
     <th width="50%">Description</th>
-    <th width="20%">How To</th>
+    <th width="25%">How To</th>
   </tr>
   <tr>
-  <td>HelmChart custom resource</td>
-  <td>Support KOTS installations of Helm charts</td>
-  <td><a href="helm-native-v2-using">Configuring the HelmChart Custom Resource</a></td>
+    <td>HelmChart</td>
+    <td><p>Provides instructions for KOTS about how to deploy your Helm chart.</p><p><strong>Note:</strong> Required for supporting KOTS installations of Helm charts.</p></td>
+    <td><a href="helm-native-v2-using">Configuring the HelmChart Custom Resource</a></td>
   </tr>
   <tr>
-  <td>Configuration Screen</td>
-      <td><p>Create a Configuration screen in the admin console to collect required and optional configuration values from your users. See <a href="admin-console-customize-config-screen">Creating and Editing Configuration Fields</a>.</p><p><strong>Note:</strong> This feature does not apply to Kubernetes Operators.</p></td>
-  </tr>
-  <tr>
-    <td>Status Informers</td>
-    <td>Add one or more status informers to display the current application status for your users on the admin console dashboard. Additionally, status informers allow you to get insights on the status of application instances running in customer environments. See <a href="admin-console-display-app-status">Adding Resource Status Informers</a>.</td>
-  </tr>
-  <tr>
-    <td>Preflight Checks and Support Bundles</td>
-    <td>Define preflight checks to test for system compliance during the installation process and reduce the number of support escalations. <br></br><br></br>Enable support bundles to collect and analyze troubleshooting data from your customers' clusters to help you diagnose problems with application deployments. See <a href="preflight-support-bundle-about">About Preflight Checks and Support Bundles</a></td>
-  </tr>
-  <tr>
-    <td>Kubernetes Installers</td>
-    <td>Create a Kubernetes installer specification file (or add to an existing specification) so that your customers can provision a cluster in their VM or bare metal server. See <a href="packaging-embedded-kubernetes">Creating a Kubernetes Installer</a>.</td>
-  </tr>
-  <tr>
-    <td>Backup and Restore (Snapshots)</td>
-    <td>Enable snapshots so that end users can back up and restore their application data. See <a href="snapshots-configuring-backups">Configuring Backup and Restore</a>.</td>
-  </tr>
-  <tr>
-    <td>KOTS Annotations</td>
+  <td>Config</td>
     <td>
-    <p>Add annotations to manage resources and objects in your release:</p>
-    <ul>
-      <li>Include and exclude resources, such as an embedded database, based on a customers' license entitlements or configuration choices. See <a href="packaging-include-resources">Including Optional and Conditional Resources</a>.</li>
-      <li>Add a delete hook policy to delete jobs after they successfully complete. See <a href="packaging-cleaning-up-jobs">Cleaning Up Kubernetes Jobs</a>.</li>
-    </ul>
+      <p>Create a configuration screen in the admin console to collect required and optional configuration values from your users.</p>
+      <p><strong>Note:</strong> This feature does not apply to Kubernetes Operators.</p>
+    </td>
+    <td>
+        <a href="/vendor/admin-console-customize-config-screen">Creating and Editing Configuration Fields</a>
     </td>
   </tr>
   <tr>
-    <td>Admin Console and Download Portal Customization</td>
-    <td>Customize the branding and application icon displayed in the admin console and the download portal. You can also customize the functionality of the admin console, such as adding ports and port forwarding, adding custom graphs, and more. See the <a href="admin-console-customize-app-icon">Admin Console and Download Portal Customization</a> section.</td>
+    <td>Application</td>
+    <td><p>Control the KOTS experience for your application, including:</p>
+    <ul>
+      <li>Specify the application icon displayed in the admin console and download portal</li>
+      <li>Customize the functionality of the admin console, such as adding port forwarding, custom graphs, and more</li>
+      <li>Specify the minimum or target versions of KOTS that are required for installation</li>
+      <li>Add status informers to display the current application status in the admin console and vendor portal</li>
+    </ul>  
+    </td>
+    <td>
+      <ul>
+        <li><a href="admin-console-customize-app-icon">Admin Console and Download Portal Customization</a></li>
+        <li><a href="admin-console-display-app-status">Adding Resource Status Informers</a></li>
+        <li><a href="packaging-kots-versions">Setting Minimum and Target Versions for KOTS</a></li>
+      </ul>
+    </td>  
   </tr>
   <tr>
-    <td>Minimum and Target KOTS Versions</td>
+    <td>Installer</td>
+    <td>Create a kURL specification so that your customers can provision a cluster in their VM or bare metal server.</td>
+    <td><a href="packaging-embedded-kubernetes">Creating a Kubernetes Installer</a></td>
+  </tr>
+  <tr>
+    <td>Backup</td>
+    <td>Enable snapshots so that end users can back up and restore their application data.</td>
     <td>
-    <p>Specify the minimum or target versions of KOTS that are required for users to install your application release. See <a href="packaging-kots-versions">Setting Minimum and Target Versions for KOTS</a>.</p>
+      <a href="snapshots-configuring-backups">Configuring Backup and Restore</a>
     </td>
   </tr>
 </table>

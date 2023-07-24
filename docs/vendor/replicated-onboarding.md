@@ -1,3 +1,5 @@
+import Recommendations from "../partials/onboarding/_recommendations.mdx"
+
 # Onboarding with Replicated
 
 Welcome! This topic provides an onboarding workflow and a feature checklist to help you get started with Replicated. For more information about Replicated, see [Introduction to Replicated](../intro-replicated).
@@ -6,6 +8,12 @@ The goals of this topic are to introduce new Replicated users to the following c
 * Working with applications, channels, releases, and customers in the Replicated vendor portal and replicated CLI
 * Testing and iterating on releases by installing in a development environment
 * Integrating key Replicated features and functionality with an application
+
+## Best Practices and Recommendations
+
+The following are Replicated's best practices and recommendations for successfully onboarding:
+
+<Recommendations/>
 
 ## Prerequisites
 
@@ -33,16 +41,8 @@ Before you begin, complete the following prerequisites:
   :::note
   If you do not intend to distribute a Helm chart-based application with Replicated, see [KOTS Tutorial (UI)](tutorial-ui-setup) to follow an onboarding workflow that uses a sample application with standard Kubernetes manifests and demonstrates installing with Replicated KOTS.
   ::: 
+
 * You must have kubectl access to a cluster where you can develop against the Helm chart. Replicated recommends that you confirm that you can successfully install the chart in the cluster and also log in to the application UI. After you confirm that you can install and access the application, uninstall it. For more information, see [Helm Install](https://helm.sh/docs/helm/helm_install/) and [Helm Uninstall](https://helm.sh/docs/helm/helm_uninstall/) in the Helm documentation.
-
-## Best Practices and Recommendations
-
-The following are Replicated's best practices and recommendations for successfully onboarding:
-
-* If you are relatively new to Kubernetes or Helm, start with a basic tutorial. For example, see [10 Helm Tutorials to Start your Kubernetes Journey](https://jfrog.com/blog/10-helm-tutorials-to-start-your-kubernetes-journey/) or [Tutorials](https://kubernetes.io/docs/tutorials/) in the Kubernetes documentation.
-* When integrating new Replicated features with an application, make changes in small iterations and test frequently by installing or upgrading the application in a development environment. This will help you to more easily identify issues and troubleshoot.
-* Try creating and managing releases with both the vendor portal and the replicated CLI. For more information, see [Installing the replicated CLI](/reference/replicated-cli-installing).
-* Ask for help from the Replicated community. For more information, see [Get Help from the Community](#get-help-from-the-community).
 
 ## Onboarding Workflow
 
@@ -180,7 +180,7 @@ To begin onboarding to the Replicated platform with a Helm chart:
 
 ## Features Checklist
 
-This section provides a checklist of key Replicated features to integrate with your application to get the most value from the Replicated platform. These features are provided in order of less challenging to more challenging, though you can configure and test the features in any order.
+This section provides a checklist of key Replicated features to integrate with your application to onboard and get the most value from the Replicated platform. These features are provided in order of less challenging to more challenging, though you can configure and test the features in any order.
 
 <table>
   <tr>
@@ -192,7 +192,7 @@ This section provides a checklist of key Replicated features to integrate with y
     <td>Preflight checks</td>
     <td>
       <p>Define preflight checks to test for system compliance during the installation process and reduce the number of support escalations.</p>
-      <p><strong>Estimated time:</strong> 1 hour to define a collector and analyzer for your application</p>
+      <p><strong>Estimated time:</strong> 1 hour to define and test one or more collectors and analyzers for your application</p>
     </td>
     <td>
       <ul>
@@ -205,7 +205,7 @@ This section provides a checklist of key Replicated features to integrate with y
     <td>Support bundles</td>
     <td>
       <p>Enable support bundles to collect and analyze troubleshooting data from your customers' clusters to help you diagnose problems with application deployments.</p>
-      <p><strong>Estimated time:</strong> 1 hour to define a collector and analyzer for your application</p>
+      <p><strong>Estimated time:</strong> 1 hour to define and test one or more collectors and analyzers for your application</p>
     </td>
     <td>
       <ul>
@@ -278,7 +278,7 @@ This section provides a checklist of key Replicated features to integrate with y
     <td><p>For vendors with the KOTS entitlement, add custom resources to your release to support KOTS installations.</p>
     <p><strong>Estimated time:</strong> 1 to 2 hours to configure and test each custom resource.</p>
     </td>
-    <td><a href="/vendor/distributing-workflow">Distributing with KOTS</a>
+    <td><a href="/vendor/distributing-workflow">Onboarding with KOTS</a>
     </td>
   </tr>
 </table>

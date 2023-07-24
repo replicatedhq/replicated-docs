@@ -4,7 +4,7 @@ This topic describes the Replicated platform, including features, installation o
 
 ## About the Replicated Platform
 
-The Replicated platform lets you distribute, install, support, and observe your applications in customer environments. With Replicated, you distribute your application using Helm charts, Kubernetes manifests, or Kubernetes Operators, then securely distribute to on-prem, online environments, and air gap environments.
+The Replicated platform lets you distribute, install, support, and observe your applications in customer environments. With Replicated, you distribute your application using Helm charts, Kubernetes manifests, or Kubernetes Operators, then securely install in any environment, including on-prem and air gap.
 
 The following sections describe Replicated key features that simplify the complex tasks and challenges of distributing and supporting an application successfully. 
 
@@ -21,16 +21,16 @@ Replicated provides features for distributing and managing your application in d
 
 When you use the Replicated platform, you can install your application using the Helm CLI or Replicated installers:
 
-- **Helm CLI:** You can use the Helm CLI to install Helm charts. Add the the SDK to your Helm chart to integrate Replicated features. Supported for online environments. See [Using the SDK with Your Application (Alpha)](/vendor/replicated-sdk-using).
+- **Helm CLI:** You can use the Helm CLI to install Helm charts. Add the the SDK to your Helm chart to integrate Replicated features. Supported for online environments. See [About Distributing with Helm](/vendor/helm-install).
 
-- **KOTS:** With a KOTS entitlement, you use KOTS to install in online or air gap environments on:
+- **KOTS:** With a KOTS entitlement, you use KOTS to install in online or air gap environments in:
 
     - Existing clusters
-    - Embedded clusters provisioned by Replicated kURL
+    - Embedded clusters provisioned by Replicated kURL on a VM or bare metal server
 
-    If your application uses Helm charts, you can create a single release that supports Helm and KOTS installations. This helps ensure that your application runs consistently in every environment.
+  For more information about KOTS, see [About KOTS and kURL](intro-kots) in the KOTS documentation.
 
-    For more information about KOTS, see [About KOTS and kURL](intro-kots) in the KOTS documentation.
+If your application uses Helm charts, you can create a single release that supports both Helm and KOTS installations, without having to maintain separate sets of Helm charts or application manifests.
 
 ## Supporting
 
