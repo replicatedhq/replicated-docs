@@ -1,5 +1,3 @@
-import Recommendations from "../partials/onboarding/_recommendations.mdx"
-
 # Onboarding with Replicated
 
 Welcome! This topic provides an onboarding workflow and a feature checklist to help you get started with Replicated. For more information about Replicated, see [Introduction to Replicated](../intro-replicated).
