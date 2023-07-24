@@ -221,7 +221,7 @@ This section provides a checklist of key Replicated features to integrate with y
     <td>Custom license entitlements</td>
     <td>
       <p>Configure custom license fields fields that are specific to a customer, such as limiting the number of active users permitted.</p>
-      <p><strong>Estimated time:</strong> 1 hour to create and test each entitlement</p>
+      <p><strong>Estimated time:</strong> 30 minutes to 1 hour to create and test each entitlement</p>
     </td>
     <td>
       <ul>
@@ -278,7 +278,7 @@ This section provides a checklist of key Replicated features to integrate with y
   </tr>
   <tr>
     <td>Replicated KOTS</td>
-    <td><p>For vendors with the KOTS entitlement, add additional custom resources to your release to support KOTS installations.</p>
+    <td><p>For vendors with the KOTS entitlement, add the HelmChart custom resource and additional custom resources to your release to support KOTS installations.</p>
     <p><strong>Estimated time:</strong> 1 to 2 hours to configure and test each custom resource.</p>
     </td>
     <td><a href="/vendor/distributing-workflow">Onboarding with KOTS</a>

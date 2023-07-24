@@ -2,17 +2,29 @@
 
 The following table describes the KOTS functionality to integrate with your application to support installations with KOTS.
 
+Custom Resources to configure KOTS experience:
+
+* Application custom resource: The Application custom resource enables features such as branding, release notes, port forwarding, dashboard buttons, app status indicators, and custom graphs.
+* Config Custom Resource
+* HelmChart Custom Resource: 
+* Backup Custom Resource and configure backups: https://docs.replicated.com/vendor/snapshots-configuring-backups 
+* Installer custom resource: Support embedded VM install by configuring a kURL installer
+
+Other:
+* KOTS annotations to manage resources
+
+
 <table>
   <tr>
-    <th width="30%">Functionality</th>
+    <th width="30%">Custom Resource</th>
     <th width="70%">Description</th>
   </tr>
   <tr>
-  <td>Configuration Screen</td>
-      <td><p>Create a Configuration screen in the admin console to collect required and optional configuration values from your users. See <a href="admin-console-customize-config-screen">Creating and Editing Configuration Fields</a>.</p><p><strong>Note:</strong> This feature does not apply to Kubernetes Operators.</p></td>
+  <td>Config</td>
+    <td><p>Create a Configuration screen in the admin console to collect required and optional configuration values from your users. See <a href="admin-console-customize-config-screen">Creating and Editing Configuration Fields</a>.</p><p><strong>Note:</strong> This feature does not apply to Kubernetes Operators.</p></td>
   </tr>
   <tr>
-    <td>Status Informers</td>
+    <td>Application</td>
     <td>Status informers are supported Kubernetes resources that KOTS watches for changes in state. Add one or more status informers to display the current application status for your users on the admin console dashboard. Additionally, status informers allow you to get insights on the status of application instances running in customer environments. See <a href="admin-console-display-app-status">Adding Resource Status Informers</a>.</td>
   </tr>
   <tr>
