@@ -19,14 +19,13 @@ const sidebars = {
   // But you can create a sidebar manually
 
   kots: [
-    
     {
       type: 'html',
       value: '<img src="/images/icons/kots.png" alt="kots logo" id="kots">',
       defaultStyle: true,
     },
     {type: 'ref', id: 'intro', 'label': 'Back to Replicated Docs Home', className: 'menu__list-item__home-link'},
-    'vendor/kots-intro-placeholder',
+    'intro-kots',
     // DISTRIBUTE WITH KOTS 
     {type: 'html', value: '<h5>distribute with kots</h5>', defaultStyle: true},
     'vendor/distributing-workflow',
@@ -36,6 +35,7 @@ const sidebars = {
       items: [
         'vendor/helm-native-about',
         'vendor/helm-release',
+        'vendor/helm-native-v2-using',
         'vendor/helm-native-helm-install-order',
         'vendor/helm-optional-charts',
         'vendor/helm-optional-value-keys',
