@@ -1,5 +1,3 @@
-import Recommendations from "../partials/onboarding/_recommendations.mdx"
-
 # Onboarding with KOTS
 
 This topic describes how to onboard with Replicated KOTS, including prerequisites and the list of custom resources to add to your releases in order to support KOTS installations.
@@ -16,7 +14,7 @@ If you are new to Replicated, complete the following prerequisites before you ge
     :::
 
   * Alternatively, if you do _not_ intend to distribute a Helm chart-based application with Replicated, see [KOTS Tutorial (UI)](tutorial-ui-setup) for a workflow that uses a sample application with standard Kubernetes manifests.
-* Review the [Features Checklist](/vendor/replicated-onboarding#features-checklist) in _Onboarding with Replicated_ for a list of features to integrate with your application to fully onboard onto the Replicated platform. You can integrate these platform features before, during, or after getting started with KOTS.
+* Review the [Features Checklist](/vendor/replicated-onboarding#features-checklist) in _Onboarding with Replicated_ for a list of features to integrate with your application to fully onboard onto the Replicated platform. You can integrate these platform features before, during, or after onboarding with KOTS.
 
 ## Custom Resources Checklist
 
@@ -35,6 +33,11 @@ For more information about creating releases, see [Managing Releases with the Ve
   <tr>
     <td>HelmChart</td>
     <td><p>Provides instructions for KOTS about how to deploy your Helm chart.</p><p><strong>Note:</strong> Required for supporting KOTS installations of Helm charts.</p></td>
+    <td><a href="helm-native-v2-using">Configuring the HelmChart Custom Resource</a></td>
+  </tr>
+  <tr>
+    <td>Preflight and SupportBundle</td>
+    <td><p>Define preflight checks to test for system compliance during the installation process and reduce the number of support escalations.</p><p>Enable support bundles to collect and analyze troubleshooting data from your customers' clusters to help you diagnose problems with application deployments.</p><p><strong>Note:</strong> If you are using Helm charts, define the specifications within the Helm chart rather than creating custom resources.</p></td>
     <td><a href="helm-native-v2-using">Configuring the HelmChart Custom Resource</a></td>
   </tr>
   <tr>

@@ -400,6 +400,14 @@ const sidebars = {
     'vendor/replicated-onboarding',
     {
       type: 'category',
+      label: 'Planning',
+      items: [
+        'vendor/planning-questionnaire',
+        'vendor/namespaces',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Tutorials',
       items: [
         {
@@ -432,29 +440,12 @@ const sidebars = {
             'vendor/tutorial-cli-update-app',
           ],
         },
-        
       ],
-
     },
     // DISTRIBUTE AND OBSERVE
-    {type: 'html', value: '<h5>distribute and observe</h5>', defaultStyle: true},
-    {
-      type: 'category',
-      label: 'Overview',
-      items: [
-        
-        'vendor/helm-overview',
-        'vendor/helm-install',
-        {
-          type: 'category',
-          label: 'Planning to Distribute',
-          items: [
-            'vendor/planning-questionnaire',
-            'vendor/namespaces',
-          ],
-        },
-      ],
-    },
+    {type: 'html', value: '<h5>distribute and observe</h5>', defaultStyle: true}, 
+    'vendor/helm-overview',
+    'vendor/helm-install',
     {
       type: 'category',
       label: 'Vendor Portal Team Management',

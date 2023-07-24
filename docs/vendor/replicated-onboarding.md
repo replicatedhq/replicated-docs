@@ -13,7 +13,15 @@ The goals of this topic are to introduce new Replicated users to the following c
 
 The following are Replicated's best practices and recommendations for successfully onboarding:
 
-<Recommendations/>
+* If you are relatively new to Kubernetes or Helm, start with a basic tutorial. For example, see [10 Helm Tutorials to Start your Kubernetes Journey](https://jfrog.com/blog/10-helm-tutorials-to-start-your-kubernetes-journey/) or [Tutorials](https://kubernetes.io/docs/tutorials/) in the Kubernetes documentation.
+
+* When integrating new Replicated features with an application, make changes in small iterations and test frequently by installing or upgrading the application in a development environment. This will help you to more easily identify issues and troubleshoot.
+
+* Try creating and managing releases with both the vendor portal and the replicated CLI. For more information, see [Installing the replicated CLI](/reference/replicated-cli-installing).
+
+* Ask for help from the Replicated community. For more information, see [Get Help from the Community](#get-help-from-the-community).
+
+* Before you distribute your own application to customers, review the [Planning](/vendor/planning-questionnaire) section for application architecture and planning recommendations. 
 
 ## Prerequisites
 
@@ -180,7 +188,7 @@ To begin onboarding to the Replicated platform with a Helm chart:
 
 ## Features Checklist
 
-This section provides a checklist of key Replicated features to integrate with your application to onboard and get the most value from the Replicated platform. These features are provided in order of less challenging to more challenging, though you can configure and test the features in any order.
+This section provides a checklist of key Replicated features to integrate with your application to fully onboard onto the Replicated platform. These features are provided in order of less challenging to more challenging, though you can configure and test the features in any order.
 
 <table>
   <tr>
@@ -275,7 +283,7 @@ This section provides a checklist of key Replicated features to integrate with y
   </tr>
   <tr>
     <td>Replicated KOTS</td>
-    <td><p>For vendors with the KOTS entitlement, add custom resources to your release to support KOTS installations.</p>
+    <td><p>For vendors with access to the KOTS installer, add custom resources to your release to support KOTS installations.</p>
     <p><strong>Estimated time:</strong> 1 to 2 hours to configure and test each custom resource.</p>
     </td>
     <td><a href="/vendor/distributing-workflow">Onboarding with KOTS</a>
