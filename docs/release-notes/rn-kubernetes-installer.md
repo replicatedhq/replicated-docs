@@ -6,6 +6,15 @@ toc_max_heading_level: 2
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.07.21-0
+
+Released on July 21, 2023
+
+### New Features {#new-features-v2023-07-21-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.27.4 1.26.7 1.25.12 1.24.16.
+* Updates [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) 1.27.3 to use crictl v1.27.1.
+* Updates [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) with runc v1.1.8.
+
 ## v2023.07.11-0
 
 Released on July 11, 2023
