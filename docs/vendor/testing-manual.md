@@ -1,45 +1,67 @@
-# Manually Testing and Validation
+# Manual Testing and Validation
 
-It's often useful to manually create a customer-representative enviornment for a short period of time in order to reproduce a customer problem or to iterate and use as part of a developer inner-loop.
+It can be useful to manually create a customer-representative environment for a short period of time. 
 
-## Common use cases
+Some common use cases are: 
 
-### Support
+- For support teams, for debugging a customer issue, it is often ideal to reproduce the problem in an environment that matches the customer's as much as possible.
 
-For support teams, when a customer opens an issue with a reported problem, it's best to attempt to reproduce the problem in an environment that matches the customer's as much as possible. For example, you wouldn't want to create a K3s cluster to reproduce an issue with OpenShift. 
+- For developers, who want to iterate and use testing as part of an inner development loop.
 
-To enable this, Replicated provides the full functionality of the Reliability Matrix for ephemeral cluster creation. Clusters created will have an expiration (time to live, or TTL) assigned. You will only be charged credits for the amount of time the cluster is runnimng.
+- Sales and other personas can use the compatibility matrix to match a prospective customer's intended environment to create more confidence in your application solution.
 
-### Developer
+To enable short term testing, the full functionality of the Replicated compatibility matrix is provided using the replicated CLI for ephemeral cluster creation. Test clusters have an expiration (time-to-live, or TTL) assigned, which is configurable. You are only charged for the amount of time the cluster is running in a Ready state.
 
-Developers often need to debug an issue in a customer-representative enviornment.
+## Prerequisite
 
-### Demos
-
-Sales and other personas can use the Reliability Matrix to get clusters that match the customer's intended environment. This does create more confidence in the solution for end customers.
+You must install the replicated CLI to provision test clusters with the compatibility matrix, see [Installing the replicated CLI](/reference/replicated-cli-installing).
 
 
+## Create a Test Cluster
 
-
-## Replicated CLI
-
-Replicated supports creating and managing ephemeral test clusters using the [Replicated CLI](reference/replicated-cli-installing). 
-
-### Listing clusters
+Run the following command to create a compatibility matrix test cluster:
 
 ```
-replicated cluster ls
+replicated cluster create --distribution TYPE --version VERSION
 ```
 
-### Creating a new cluster
+Replace:
+
+- `TYPE` with the type of supported VM or cloud-based distribution, such as `kind`.
+- `VERSION` with a version number for the type of cluster you want to use. 
+
+For a list of supported clusters and versions, see [Supported Clusters](testing-supported-clusters).
+
+
+The following example shows the command for creating a k3s cluster:
 
 ```
-replicated cluster create --distribution kind --ttl 2h --version 1.25.0
+replicated cluster create --distribution k3s --version v.1.26.3
 ```
 
-### Getting the kubeconfig
+## Get the Cluster ID
+
+Run the following command to list your clusters and get the ID:
 
 ```
-replicated cluster kubeconfig --id <paste>
+replicated customer ls
 ```
 
+**Example Output:**
+
+```
+ID                                  NAME                            CHANNELS         EXPIRES    TYPE
+iEgJuVDHy2pi-AqOjLXbZCTX9bqlV6YH    John Smith                      Unstable         Never      
+YAg7ripYbK0tM5MVn_81nMy0YrhBsHrm    Megacorp                        Megacorp_Beta    Never      
+```
+
+
+## Download the kubeconfig
+
+Run the following command to download the kubeconfig credentials and have full access to manage the cluster:
+
+```
+replicated cluster kubeconfig --id ID
+```
+
+Replace `ID` with the ID number of the cluster for which you want the credentials.
