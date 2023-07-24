@@ -589,7 +589,7 @@ const sidebars = {
        ],
     },
 
-    {type: 'ref', id: 'vendor/kots-intro-placeholder', label: 'KOTS and kURL Documentation'},
+    {type: 'ref', id: 'intro-kots', label: 'KOTS and kURL Documentation'},
     {type: 'html', value: '<h5>install</h5>', defaultStyle: true},
     'vendor/install-with-helm',
     {type: 'ref', id: 'enterprise/installing-overview', label: 'Installing with KOTS'},
