@@ -6,7 +6,7 @@ This topic describes Replicated KOTS and Replicated kURL, used for installing an
 You must have the Replicated KOTS entitlement to use the KOTS and kURL installers and features.
 :::
 
-## KOTS
+## Replicated KOTS
 
 Vendors that want to provide a UI-based installation and management experience for applications can leverage KOTS, which provides highly successful installs in diverse environments using a single installer. KOTS is a kubectl plugin that automates installations, making it quick and easy to install with minimal expertise. Applications are deployed securely to on-prem, online, and air gap environments.
 
@@ -16,7 +16,7 @@ KOTS also provides the Replicated admin console to make it easy for customers to
 
 KOTS is an open source project that is maintained by Replicated. For more information, see the [kots](https://github.com/replicatedhq/kots) repository in GitHub.
 
-<!--## Custom Resources
+<!--Custom Resources
 
 You use KOTS and Troubleshoot custom resources to configure and control the application experience. Custom resources are packaged with your application but are not deployed to the cluster. 
 

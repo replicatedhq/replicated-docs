@@ -275,7 +275,7 @@ This section provides a checklist of key Replicated features to integrate with y
   </tr>
   <tr>
     <td>Replicated KOTS</td>
-    <td><p>For vendors with the KOTS entitlement, add the HelmChart custom resource and additional custom resources to your release to support KOTS installations.</p>
+    <td><p>For vendors with the KOTS entitlement, add custom resources to your release to support KOTS installations.</p>
     <p><strong>Estimated time:</strong> 1 to 2 hours to configure and test each custom resource.</p>
     </td>
     <td><a href="/vendor/distributing-workflow">Distributing with KOTS</a>

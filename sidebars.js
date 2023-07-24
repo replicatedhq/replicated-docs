@@ -26,9 +26,9 @@ const sidebars = {
     },
     {type: 'ref', id: 'intro', 'label': 'Back to Replicated Docs Home', className: 'menu__list-item__home-link'},
     'intro-kots',
+    'vendor/distributing-workflow',
     // DISTRIBUTE WITH KOTS 
     {type: 'html', value: '<h5>distribute with kots</h5>', defaultStyle: true},
-    'vendor/distributing-workflow',
     {
       type: 'category',
       label: 'Helm Charts with KOTS',
