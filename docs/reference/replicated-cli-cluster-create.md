@@ -20,27 +20,27 @@ replicated cluster create [flags]
   <tr>
     <td>--disk</td>
     <td>integer</td>
-    <td>Disk Size (GiB) to request per node (Default: 50) (default 50)</td>
+    <td>The disk size (GiB) to request per node. **Default:** 50</td>
   </tr>
   <tr>
     <td>--distribution</td>
     <td>string</td>
-    <td>Kubernetes distribution of the cluster to provision (default "kind")</td>
+    <td>The Kubernetes cluster distribution type to provision. **Default:** kind)</td>
   </tr>
   <tr>
     <td>--dry-run</td>
     <td></td>
-    <td>Dru run.</td>
+    <td>The dry run option runs a simulated test to test that your inputs are valid without actually creating the cluster.</td>
   </tr>
   <tr>
     <td>--instance-type</td>
     <td>string</td>
-    <td>the type of instance to use for cloud-based clusters (e.g. x5.xlarge)</td>
+    <td>The type of instance to use for cloud-based clusters, such as x5.xlarge.</td>
   </tr>
   <tr>
     <td>--memory</td>
     <td>integer</td>
-    <td>Memory (GiB) to request per node (default 4)</td>
+    <td>The amount of memory (GiB) to request per node. **Default:** 4</td>
   </tr>
   <tr>
     <td>--name</td>
@@ -50,7 +50,7 @@ replicated cluster create [flags]
   <tr>
     <td>--node-count</td>
     <td>integer</td>
-    <td>Node count (default 1).</td>
+    <td>The node count. **Default:** 1</td>
   </tr>
   <tr>
     <td>--output</td>

@@ -1,6 +1,6 @@
 # Using the Reliability Matrix in CI/CD
 
-The Reliability Matrix works great in a CI/CD pipeline. This document describes  the concepts and fundamental building blocks Replicated provides to integrate reliability testing into your pipeline. We also have a [specific document for GitHub Actions](./reliability-testing-github-actions).
+The Reliability Matrix works great in a CI/CD pipeline. This document describes the concepts and fundamental building blocks Replicated provides to integrate reliability testing into your pipeline. We also have a [specific document for GitHub Actions](./reliability-testing-github-actions).
 
 Designing a comprehensive testing strategy for your application is essential to ensure quality and reliability before it is released to customers. Given the variety of customer environments and configurations, it's important to establish a progressively-more-complete test scenario that delivers quick feedback on every change while also incorporating more thorough and representative scenarios before releasing. Here is a suggested multi-stage testing strategy:
 
