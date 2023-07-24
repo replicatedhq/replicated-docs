@@ -55,7 +55,7 @@ To install the SDK with custom RBAC:
    **Example**:
 
    ```
-   helm install wordpress oci://registry.replicated.com/my-app/beta/wordpress --set serviceAccountName=mycustomserviceaccount
+   helm install wordpress oci://registry.replicated.com/my-app/beta/wordpress --set replicated.serviceAccountName=mycustomserviceaccount
    ```
 
  For more information about installing with Helm, see [Installing an Application with Helm (Beta)](/vendor/install-with-helm).  
