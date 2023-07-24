@@ -4,7 +4,7 @@ This topic describes role-based access control (RBAC) for the Replicated SDK, in
 
 ## Default RBAC
 
-The SDK creates default Role, RoleBinding, and ServiceAccount objects during installation. The default Role allows the SDK to get, list, and watch all resources in the Helm release and to update the `replicated` Secret and ConfigMap:
+The SDK creates default Role, RoleBinding, and ServiceAccount objects during installation. The default Role allows the SDK to get, list, and watch all resources in the namespace and to update the `replicated` Secret and ConfigMap:
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
