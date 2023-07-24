@@ -7,17 +7,11 @@ The goals of this topic are to introduce new Replicated users to the following c
 * Testing and iterating on releases by installing in a development environment
 * Integrating key Replicated features and functionality with an application
 
-:::note
-This onboarding topic a workflow for distributing Helm charts with Replicated. To follow a workflow that uses a sample application with standard Kubernetes manifests to support installations with Replicated KOTS, see [KOTS Tutorial (UI)](tutorial-ui-setup).
-:::
-
 ## Prerequisites
 
 Before you begin, complete the following prerequisites:
 
-* You must have a Helm chart that you can install and develop against. This can be your own application chart or a sample chart.
-
-  If you want to use a sample chart, Replicated recommends one of the following open source Helm charts:
+* This workflow assumes that you have a Helm chart that you can install and develop against. This can be your own application chart or a sample chart. If you want to use a sample chart, Replicated recommends one of the following open source Helm charts:
     * [Gitea](https://github.com/bitnami/charts/tree/main/bitnami/gitea)
 
        ```
@@ -36,7 +30,10 @@ Before you begin, complete the following prerequisites:
        helm fetch bitnami/wordpress
        ``` 
 
-* You must have kubectl access to a cluster where you can develop against the Helm chart. Replicated recommends that you confirm that you can successfully install the chart in the cluster and then log in to the application UI. After you confirm that you can install and access the application, uninstall it. For more information, see [Helm Install](https://helm.sh/docs/helm/helm_install/) and [Helm Uninstall](https://helm.sh/docs/helm/helm_uninstall/) in the Helm documentation.
+  :::note
+  If you do not intend to distribute a Helm chart-based application with Replicated, see [KOTS Tutorial (UI)](tutorial-ui-setup) to follow an onboarding workflow that uses a sample application with standard Kubernetes manifests and demonstrates installing with Replicated KOTS.
+  ::: 
+* You must have kubectl access to a cluster where you can develop against the Helm chart. Replicated recommends that you confirm that you can successfully install the chart in the cluster and also log in to the application UI. After you confirm that you can install and access the application, uninstall it. For more information, see [Helm Install](https://helm.sh/docs/helm/helm_install/) and [Helm Uninstall](https://helm.sh/docs/helm/helm_uninstall/) in the Helm documentation.
 
 ## Best Practices and Recommendations
 
@@ -151,9 +148,9 @@ To begin onboarding to the Replicated platform with a Helm chart:
 
 1. Create a new release in the vendor portal and then upgrade the instance in the cluster:
 
-   1. Make a small change in the chart, such as incrementing the semantic version in the `Chart.yaml` to a new version, and package the chart.
+   1. Make a small change in the chart, such as incrementing the semantic version in the `Chart.yaml` to a new version. Then, package the chart again.
 
-   1. In the vendor portal, create a new release (**Releases > Create release**). Drag and drop the chart new `.tgz` and then promote the new release to the Unstable channel. 
+   1. In the vendor portal, create a new release (**Releases > Create release**). Drag and drop the new chart `.tgz` and then promote the new release to the Unstable channel. 
 
    1. In your cluster, run `helm upgrade` to upgrade the instance to the new release that you just promoted.
 
@@ -165,7 +162,7 @@ To begin onboarding to the Replicated platform with a Helm chart:
 
       See [Helm Upgrade](https://helm.sh/docs/helm/helm_upgrade/) in the Helm documentation.
 
-   1. After the upgrade completes, in the vendor portal, return to the **Instance details** page and confirm that you can see the new application version.
+   1. After the upgrade completes, return to the **Instance details** page in the vendor portal and confirm that you can see the new application version.
 
       **Example**:
 
@@ -173,7 +170,7 @@ To begin onboarding to the Replicated platform with a Helm chart:
 
       [View a larger version](/images/onboarding-instance-details-new-version.png)
 
-1. Now that you are familiar with the workflow of creating and installing releases, repeat step 8 to integrate and test new Replicated features with the application. Integrate one feature at a time by creating a release and then installing in a development environment to test. For the list of recommended features, see [Features Checklist](#features-checklist) below.
+1. Now that you are familiar with the workflow of creating and installing releases, repeat step 8 to integrate and test new Replicated features with the application. Integrate one feature at a time by creating a release and then upgrading in a development environment to test. For the list of recommended features to integrate, see [Features Checklist](#features-checklist) below.
 
 1. (Recommended) Finish setting up your vendor portal account and team:
 
@@ -183,7 +180,7 @@ To begin onboarding to the Replicated platform with a Helm chart:
 
 ## Features Checklist
 
-This section provides a checklist of key Replicated features to integrate with your application to get the most value from the Replicated platform.
+This section provides a checklist of key Replicated features to integrate with your application to get the most value from the Replicated platform. These features are provided in order of less challenging to more challenging, though you can configure and test the features in any order.
 
 <table>
   <tr>
@@ -195,7 +192,7 @@ This section provides a checklist of key Replicated features to integrate with y
     <td>Preflight checks</td>
     <td>
       <p>Define preflight checks to test for system compliance during the installation process and reduce the number of support escalations.</p>
-      <p><strong>Estimated time:</strong> 1 hour</p>
+      <p><strong>Estimated time:</strong> 1 hour to define a collector and analyzer for your application</p>
     </td>
     <td>
       <ul>
@@ -208,7 +205,7 @@ This section provides a checklist of key Replicated features to integrate with y
     <td>Support bundles</td>
     <td>
       <p>Enable support bundles to collect and analyze troubleshooting data from your customers' clusters to help you diagnose problems with application deployments.</p>
-      <p><strong>Estimated time:</strong> 1 hour</p>
+      <p><strong>Estimated time:</strong> 1 hour to define a collector and analyzer for your application</p>
     </td>
     <td>
       <ul>
@@ -231,18 +228,10 @@ This section provides a checklist of key Replicated features to integrate with y
     </td>
   </tr>
   <tr>
-    <td>Compatibility matrix</td>
-    <td><p>Configure GitHub actions to run smoke tests with the compatibility matrix.</p>
-    <p><strong>Estimated time:</strong> </p>
-    </td>
-    <td><a href="/vendor/custom-domains-using">Using Custom Domains</a>
-    </td>
-  </tr>
-  <tr>
     <td>Replicated SDK API</td>
     <td>
       <p>Embed Replicated functionality into Helm chart applications.</p><p>To get started, use integration mode to develop locally without needing to make real changes in the vendor portal or in your environment.</p>
-      <p><strong>Estimated time:</strong> 1 hour to mock endpoints locally with integration mode, plus more time to optionally integrate features with your application.</p>
+      <p><strong>Estimated time:</strong> 1 hour to mock endpoints locally with integration mode, plus more time to optionally integrate features with your application</p>
     </td>
     <td>
       <ul>
@@ -255,7 +244,7 @@ This section provides a checklist of key Replicated features to integrate with y
     <td>Proxy service</td>
     <td>
       <p>Allow customer licenses to grant proxy access to your application's private images.</p>
-      <p><strong>Estimated time:</strong> 2 hours</p>
+      <p><strong>Estimated time:</strong> 1 to 2 hours to connect your external registry and update your Helm chart to deliver image pull secrets for the proxy service</p>
     </td>
     <td>
       <a href="/vendor/helm-image-registry">Proxying Images for Helm Installations</a>
@@ -272,8 +261,16 @@ This section provides a checklist of key Replicated features to integrate with y
   <tr>
     <td>License field signature validation</td>
     <td><p>Verify the signatures of license fields when you check customer entitlements in your application.</p>
-    <p><strong>Estimated time:</strong> 2 hours</p></td>
+    <p><strong>Estimated time:</strong> 2 hours, including time to add entitlement checks in your application if you have not already</p></td>
     <td><a href="/vendor/licenses-verify-fields-sdk-api">Verifying License Field Signatures for Helm Installations</a>
+    </td>
+  </tr>
+  <tr>
+    <td>Compatibility matrix</td>
+    <td><p>Quickly spin up ephemeral clusters for development, support, and testing.</p>
+    <p><strong>Estimated time:</strong> Minutes to spin up a cluster with the replicated CLI, plus time for developing or testing on the cluster. Optionally, an additional 2 hours to configure GitHub Actions in your CI pipeline to automatically test releases with the compatibility matrix.</p>
+    </td>
+    <td>TBD
     </td>
   </tr>
   <tr>
@@ -281,7 +278,7 @@ This section provides a checklist of key Replicated features to integrate with y
     <td><p>For vendors with the KOTS entitlement, add the HelmChart custom resource and additional custom resources to your release to support KOTS installations.</p>
     <p><strong>Estimated time:</strong> 1 to 2 hours to configure and test each custom resource.</p>
     </td>
-    <td><a href="/vendor/distributing-workflow">Onboarding with KOTS</a>
+    <td><a href="/vendor/distributing-workflow">Distributing with KOTS</a>
     </td>
   </tr>
 </table>

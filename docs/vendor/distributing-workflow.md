@@ -1,34 +1,32 @@
-# Distributing with KOTS
+# Getting Started with KOTS
+
+This topic provides information for new users about how to get started with Replicated KOTS. 
+
+## Prerequisites
+
+## KOTS Checklist
 
 The following table describes the KOTS functionality to integrate with your application to support installations with KOTS.
 
-Custom Resources to configure KOTS experience:
-
-* Application custom resource: The Application custom resource enables features such as branding, release notes, port forwarding, dashboard buttons, app status indicators, and custom graphs.
-* Config Custom Resource
-* HelmChart Custom Resource: 
-* Backup Custom Resource and configure backups: https://docs.replicated.com/vendor/snapshots-configuring-backups 
-* Installer custom resource: Support embedded VM install by configuring a kURL installer
-
-Other:
-* KOTS annotations to manage resources
-
-
 <table>
   <tr>
-    <th width="30%">Custom Resource</th>
-    <th width="70%">Description</th>
+    <th width="50%">Task</th>
+    <th width="20">How To</th>
   </tr>
   <tr>
-  <td>Config</td>
-    <td><p>Create a Configuration screen in the admin console to collect required and optional configuration values from your users. See <a href="admin-console-customize-config-screen">Creating and Editing Configuration Fields</a>.</p><p><strong>Note:</strong> This feature does not apply to Kubernetes Operators.</p></td>
-  </tr>
+    <td><p>Configure the HelmChart custom resource to install Helm charts with KOTS.</p></td>
+    <td><a href="helm-native-v2-using">Configuring the HelmChart Custom Resource</a></td>
+  </tr> 
   <tr>
-    <td>Application</td>
+    <td><p>Create a Configuration screen in the admin console to collect required and optional configuration values from your users.</p><p><strong>Note:</strong> This feature does not apply to Kubernetes Operators.</p></td>
+    <td><a href="admin-console-customize-config-screen">Creating and Editing Configuration Fields</a></td>
+  </tr> 
+  <tr>
     <td>Status informers are supported Kubernetes resources that KOTS watches for changes in state. Add one or more status informers to display the current application status for your users on the admin console dashboard. Additionally, status informers allow you to get insights on the status of application instances running in customer environments. See <a href="admin-console-display-app-status">Adding Resource Status Informers</a>.</td>
+    <td></td>
   </tr>
   <tr>
-    <td>Kubernetes Installers</td>
+    <td>kURL Installer</td>
     <td>Create a Kubernetes installer specification file (or add to an existing specification) so that your customers can provision a cluster in their VM or bare metal server. See <a href="packaging-embedded-kubernetes">Creating a Kubernetes Installer</a>.</td>
   </tr>
   <tr>
