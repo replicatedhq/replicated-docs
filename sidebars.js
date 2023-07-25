@@ -166,6 +166,7 @@ const sidebars = {
             'vendor/install-with-helm',
             'vendor/replicated-sdk-overview',
             'vendor/replicated-sdk-using',
+            'vendor/replicated-sdk-rbac',
           ],
         },
         {
