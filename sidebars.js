@@ -314,9 +314,7 @@ const sidebars = {
       items: [
         'vendor/testing-about',
         'vendor/testing-supported-clusters',
-        'vendor/testing-manual',
-        'vendor/testing-cicd',
-        'vendor/testing-github-actions',
+        'vendor/testing-how-to',
         'vendor/testing-process-violation',
       ],
     },

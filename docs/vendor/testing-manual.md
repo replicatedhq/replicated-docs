@@ -8,8 +8,6 @@ Some common use cases are:
 
 - For developers, who want to iterate and use testing as part of an inner development loop.
 
-- Sales and other personas can use the compatibility matrix to match a prospective customer's intended environment to create more confidence in your application solution.
-
 To enable short term testing, the full functionality of the Replicated compatibility matrix is provided using the replicated CLI for ephemeral cluster creation. Test clusters have an expiration (time-to-live, or TTL) assigned, which is configurable. You are only charged for the amount of time the cluster is running in a Ready state.
 
 ## Prerequisite
