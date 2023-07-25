@@ -13,7 +13,7 @@ Before you install, complete the following prerequisites:
 
 ## Install
 
-If you declared the Replicated SDK as a dependency of your Helm chart, then the SDK is installed alongside your application. For more information about the SDK, see [About the Replicated SDK (Beta)](replicated-sdk-overview).
+If you declared the Replicated SDK as a dependency of your Helm chart, then the SDK is installed alongside your application. For more information about the SDK, see [About the Replicated SDK (Beta)](replicated-sdk-overview). You can also install the SDK as a standalone component, rather than installing it alongside the application. For more information, see [Developing Against the SDK API](replicated-sdk-development).
 
 To install a Helm chart:
 
