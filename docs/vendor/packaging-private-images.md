@@ -1,4 +1,4 @@
-# Adding an External Registry
+# Connecting to an External Registry
 
 This topic describes how to add credentials for an external private registry. Adding an external registry allows you to grant proxy access to private images using the Replicated proxy service. For more information about how to enable the proxy service, see [About Proxying Images with Replicated](private-images-about).
 

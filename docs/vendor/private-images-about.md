@@ -17,7 +17,7 @@ The following diagram demonstrates how the proxy service pulls images from your 
 ## How to Enable the Proxy Service
 
 The proxy service requires the following to grant proxy access to your images:
-* Read-only credentials to your private registry. For information about how to provide registry credentials, see [Adding an External Registry](packaging-private-images).
+* Read-only credentials to your private registry. For information about how to provide registry credentials, see [Connecting to an External Registry](packaging-private-images).
 * An image pull Secret with `type: kubernetes.io/dockerconfigjson`. For KOTS installations, the required Secret is automatically created in the application namespace during installation or upgrade using the customer's license. For more information, see [How KOTS Accesses Images Through the Proxy Service](#how-kots).
   
   For Helm installations, you use values injected by the Replicated SDK to create the Secret. For more information about delivering image pull Secrets for Helm installations, see [Proxying Images for Helm Installations (Beta)](helm-image-registry).
