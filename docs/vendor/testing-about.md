@@ -1,11 +1,11 @@
 # About the Compatibility Matrix
-This topic describes how vendors can use the Replicated compatibility matrix feature to test an application on customer-representative environments before distribution.
+This topic describes how vendors can use the Replicated compatibility matrix feature to test applications on customer-representative environments.
 
 :::note
 The compatibility matrix add-on is available to Replicated customers at an additional cost. Please [open a product request](https://vendor.replicated.com/support?requestType=feature&productArea=vendor) if you are interested in this feature. 
 :::
 
-## About the Compatibility Matrix
+## Overview
 
 The Replicated compatibility matrix quickly creates managed, ephemeral clusters representing your customer environments, so that you can test your application and troubleshoot issues. 
 

@@ -8,7 +8,7 @@ The Replicated compatibility matrix functionality is provided using the replicat
 
 Before you can use the compatibility matrix, you must complete the following prerequisites:
 
-- Get an entitlement for compatibility testing.
+- Purchase an entitlement for compatibility testing. To do so, [open a product request](https://vendor.replicated.com/support?requestType=feature&productArea=vendor).
 - Create your test scripts.
 - Review the limitations. See [Limitations](testing-about#limitations) in _About the Compatibility Matrix_.
 - Install the replicated CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
