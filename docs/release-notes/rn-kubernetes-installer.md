@@ -6,13 +6,13 @@ toc_max_heading_level: 2
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
-:::important
-There is currently an outstanding issue that causes a delay in storage avalibility when using the OpenEBS to Rook migration on a new install.  Please refrain from using this feature until this is resolved.
-:::
-
 ## v2023.07.21-0
 
 Released on July 21, 2023
+
+:::important
+kURL v2023.07.21-0 has a known issue for the OpenEBS to Rook storage migration feature that causes a delay in storage availability when using the feature on new installations. Do not use this feature until the known issue is resolved.
+:::
 
 ### New Features {#new-features-v2023-07-21-0}
 * Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.27.4 1.26.7 1.25.12 1.24.16.
@@ -23,6 +23,10 @@ Released on July 21, 2023
 
 Released on July 11, 2023
 
+:::important
+kURL v2023.07.11-0 has a known issue for the OpenEBS to Rook storage migration feature that causes a delay in storage availability when using the feature on new installations. Do not use this feature until the known issue is resolved.
+:::
+
 ### Bug Fixes {#bug-fixes-v2023-07-11-0}
 * Fixes support for RHEL 9.2
 * Fixes adding the Registry add-on to multi-node clusters using Containerd.
@@ -30,6 +34,10 @@ Released on July 11, 2023
 ## v2023.07.10-0
 
 Released on July 10, 2023
+
+:::important
+kURL v2023.07.10-0 has a known issue for the OpenEBS to Rook storage migration feature that causes a delay in storage availability when using the feature on new installations. Do not use this feature until the known issue is resolved.
+:::
 
 ### Improvements {#improvements-v2023-07-10-0}
 * Clarifies error message when installing on RHEL 9 variants without containerd.
@@ -40,6 +48,10 @@ Released on July 10, 2023
 ## v2023.07.06-0
 
 Released on July 6, 2023
+
+:::important
+kURL v2023.07.06-0 has a known issue for the OpenEBS to Rook storage migration feature that causes a delay in storage availability when using the feature on new installations. Do not use this feature until the known issue is resolved.
+:::
 
 ### New Features {#new-features-v2023-07-06-0}
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) versions RELEASE.2023-06-23T20-26-00Z and RELEASE.2023-06-29T05-12-28Z.
