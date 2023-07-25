@@ -5,11 +5,13 @@ import KotsHelmCrDescription from "../partials/helm/_kots-helm-cr-description.md
 
 # Creating a Release with Your Helm Chart for KOTS
 
-This topic describes how to support Helm chart installations with Replicated KOTS. For information about creating releases with Helm charts for installation with Helm, see [Creating a Release with Your Helm Chart (Beta)](helm-install-release).
+This topic describes how to support Helm chart installations with Replicated KOTS using the HelmChart custom resource.
 
 ## Overview
 
 <KotsHelmCrDescription/>
+
+If you have an existing release with your Helm chart, you can add the HelmChart custom resource to support KOTS installations from the same release. This means that you can support both Helm installations and KOTS installations from a single release, without having to maintain separate sets of Helm charts or application manifests. For more information about supporting Helm installations, see [About Distributing with Helm](/vendor/helm-install).
 
 For more information about the HelmChart custom resource, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
