@@ -36,13 +36,21 @@ rules:
 ## Minimum RBAC Requirements
 
 The SDK requires the following minimum RBAC permissions:
-* Get, list, and watch any resources included in the application Helm release that are used as status informers:
-  * If you defined custom status informers, then the SDK must have permissions to get, list, and watch all the resources listed in the `replicated.statusInformers` array in your Helm chart `values.yaml` file.
-  * If you did _not_ define custom status informers, then the SDK must have permissions to get, list, and watch all resources in the application Helm release.
-
-  The Replicated vendor portal uses status informers to provide application status data. For more information, see [Helm Installations](/vendor/insights-app-status#helm-installations) in _Enabling and Understanding Application Status_.   
 * Get and update a Secret and a ConfigMap named `replicated`.
+* The SDK requires the following minimum RBAC permissions for status informers:
+  * If you defined custom status informers, then the SDK must have permissions to get, list, and watch all the resources listed in the `replicated.statusInformers` array in your Helm chart `values.yaml` file.
+  * If you did _not_ define custom status informers, then the SDK must have permissions to get, list, and watch the following resources:
+    * Deployments
+    * Daemonsets
+    * Ingresses
+    * PersistentVolumeClaims
+    * Statefulsets
+    * Services   
+  * For any Ingress resources used as status informers, the SDK requires `get` permissions for the Service resources listed in the `backend.Service.Name` field of the Ingress resource.
+  * For any Daemonset and Statefulset resources used as status informers, the SDK requires `list` permissions for pods in the namespace.
+  * For any Service resources used as status informers, the SDK requires `get` permissions for Endpoint resources with the same name as the service.  
 
+  The Replicated vendor portal uses status informers to provide application status data. For more information, see [Helm Installations](/vendor/insights-app-status#helm-installations) in _Enabling and Understanding Application Status_.
 ## Install the SDK with Custom RBAC
 
 To use the SDK with custom RBAC permissions, provide the name for a custom ServiceAccount object during installation. When a service account is provided, the SDK uses the RBAC permissions granted to the service account and does not create the default Role, RoleBinding, or ServiceAccount objects.
@@ -50,12 +58,12 @@ To use the SDK with custom RBAC permissions, provide the name for a custom Servi
 To install the SDK with custom RBAC:
 
 1. Create custom Role, RoleBinding, and ServiceAccount objects. The Role must meet the minimum requirements described in [Minimum RBAC Requirements](#minimum-rbac-requirements) above.
-1. During installation, provide the name of the service account that you created by including `--set serviceAccountName=CUSTOM_SERVICEACCOUNT_NAME`.
+1. During installation, provide the name of the service account that you created by including `--set replicated.serviceAccountName=CUSTOM_SERVICEACCOUNT_NAME`.
 
-   **Example**:
+  **Example**:
 
-   ```
-   helm install wordpress oci://registry.replicated.com/my-app/beta/wordpress --set replicated.serviceAccountName=mycustomserviceaccount
-   ```
+  ```
+  helm install wordpress oci://registry.replicated.com/my-app/beta/wordpress --set replicated.serviceAccountName=mycustomserviceaccount
+  ```
 
  For more information about installing with Helm, see [Installing an Application with Helm (Beta)](/vendor/install-with-helm).  
