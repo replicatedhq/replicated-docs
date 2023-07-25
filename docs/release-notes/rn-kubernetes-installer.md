@@ -6,6 +6,10 @@ toc_max_heading_level: 2
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+:::important
+There is currently an outstanding issue that causes a delay in storage avalibility when using the OpenEBS to Rook migration on a new install.  Please refrain from using this feature until this is resolved.
+:::
+
 ## v2023.07.21-0
 
 Released on July 21, 2023
