@@ -4,11 +4,13 @@ This topic describes the options and processes for using Replicated to distribut
 
 ## Overview
 
-Helm is a popular package manager for Kubernetes applications. Replicated supports installing Helm charts with KOTS or with Helm directly. If you use KOTS to deploy your application, you can create a single release that supports both KOTS and Helm installations.
+Helm is a popular package manager for Kubernetes applications. For vendors that support installation with Replicated KOTS, Replicated strongly recommends that you distribute your application as a Helm chart. When you distribute your application as a Helm chart, you can support both installations with the helm CLI and with KOTS from the same release, without having to maintain separate sets of Helm charts or application manifests.
 
-Using KOTS to distribute applications packaged with Helm provides additional functionality not available through Helm, such as a user interface for collecting user configuration values and backup and restore with snapshots.
+Additionally, using KOTS to distribute applications packaged with Helm provides additional functionality not available through Helm, such as a user interface for collecting user configuration values and backup and restore with snapshots.
 
-The following table shows an overview of the Helm installation options:
+## Helm Chart Installation Methods
+
+The following table shows an overview of the installation options when you distribute a Helm chart-based application with Replicated:
 
 <table>
 <tr>
