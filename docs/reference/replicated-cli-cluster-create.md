@@ -55,27 +55,27 @@ replicated cluster create [flags]
   <tr>
     <td>--output</td>
     <td>string</td>
-    <td>The output format to use. One of: json|table (default: table) (default "table").</td>
+    <td>The output format to use. **Valid values:** json or table. **Default:** table</td>
   </tr>
   <tr>
     <td>--ttl</td>
     <td>string</td>
-    <td>Cluster TTL (duration, max 48h)</td>
+    <td>The cluster Time to Live (TTL) duration, in hours, before the cluster is automatically deleted by the service. TTL starts when the cluster is in a Ready state. **Valid values:** 1 - 48. **Default:** 2</td>
   </tr>
   <tr>
     <td>--vcpu</td>
     <td>integer</td>
-    <td>Number of vCPUs to request per node (default 4)</td>
+    <td>The number of vCPUs to request per node. **Default:** 4</td>
   </tr>
   <tr>
     <td>--version</td>
     <td>string</td>
-    <td>Kubernetes version to provision (format is distribution dependent) (default "v1.25.3")</td>
+    <td>The Kubernetes version to provision. The format is distribution dependent. **Default:** v1.25.3</td>
   </tr>
   <tr>
     <td>--wait</td>
     <td>duration</td>
-    <td>Wait duration for cluster to be ready (leave empty to not wait)</td>
+    <td>The wait duration for the cluster to be ready. Leave the value empty to avoid waiting.</td>
   </tr>
 </table>
 

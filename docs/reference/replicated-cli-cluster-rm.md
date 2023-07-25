@@ -21,7 +21,7 @@ replicated cluster rm ID [ID...] [flags]
   <tr>
     <td>--force</td>
     <td></td>
-    <td>force remove cluster</td>
+    <td>Does a force remove of the clusters.</td>
   </tr>
 </table>
 

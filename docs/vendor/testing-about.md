@@ -7,23 +7,29 @@ The compatibility matrix add-on is available to Replicated customers at an addit
 
 ## About the Compatibility Matrix
 
-The Replicated compatibility matrix quickly creates managed, ephemeral clusters that represent customer environments that you can use to test your application and to help troubleshoot support issues. 
+The Replicated compatibility matrix quickly creates managed, ephemeral clusters representing your customer environments, so that you can test your application and troubleshoot issues. 
 
-You design and run your own tests based on your application and use case needs. Using the compatibility matrix let you focus on iterating your code base instead of spending time creating test clusters. Cloud and virtual machine (VM) clusters are supported. For a list of supported clusters and versions, see [Supported Clusters](testing-supported-clusters).
+You design your own tests based on your application needs, and then run your tests on the infrastructure created by the compatibility matrix. For some guidance on writing tests, see [Writing Your Scripts](#write-your-scripts).
+ 
+The compatibility matrix provisions cloud-based and virtual machine (VM) clusters. For a list of supported clusters and versions, see [Supported Clusters](testing-supported-clusters).
 
-Cloud-based clusters are run in the Replicated cloud account, not in your vendor account. When you request a cloud cluster, the compatibility matrix has control planes ready and adds a node group when you request it, making the cluster available much faster than if you try to create your own cluster with your own cloud account.
+Cloud-based clusters are run in the Replicated cloud account, not in your vendor account. The compatibility matrix has control planes ready and adds a node group when you request it, making the cluster available much faster than if you try to create your own cluster with your own cloud account.
+
+Virtual machines (VMs) run on Replicated bare metal servers located in the EU.
 
 Clusters are created using the replicated CLI. You have full access to the cluster using kubeconfig, so you can connect with kubectl or use another tool and have full admin access to the cluster.
 
 ## Use Cases
 
-An application that functions reliably in one Kubernetes distribution can fail in other distributions because distributions often have different requirements for workloads. For example, some distributions do not run root or privileged containers. LoadBalancer service controllers are generally available in cloud providers, and are not always available on bare metal servers. Ingress objects are often non-portable. The differences in distributions require that vendors test applications in a variety of customer-representative environments to ensure compatibility.
+An application that functions reliably in one Kubernetes distribution can fail in other distributions because distributions often have different requirements for workloads. For example, some distributions do not run root or privileged containers. LoadBalancer service controllers are generally available in cloud providers, and are not always available on bare metal servers. The differences in distributions require that vendors test applications in a variety of customer-representative environments to ensure compatibility.
 
 The compatibility matrix is useful for creating test environments for:
 
-- Continuous integration (CI) to automate testing and validate an application is compatible with supported distributions. See [Testing with CI](testing-cicd).
-- Local development to quickly get access to a cluster, develop on it, and delete it when done. See [Manual Testing and Validation](testing-manual).
-- Support to quickly reproduce a reported issue on a customer-representative environment. See [Manual Testing and Validation](testing-manual).
+- Continuous integration (CI) to automate testing and validate an application is compatible with supported distributions.
+- Local development to quickly get access to a cluster, develop on it, and delete it when done.
+- Support to quickly reproduce a reported issue on a customer-representative environment.
+
+For more information about how to use the compatibility matrix, see [Using the Compatibility Matrix](testing-how-to).
 
 ## Limitations
 

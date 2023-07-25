@@ -1,8 +1,8 @@
 # Using the Compatibility Matrix
 
-This topic describes how to use the compatibility matrix to create for ephemeral clusters that vendors can use for manual testing and CI/CD pipeline testing.
+This topic describes how to use the compatibility matrix to create an ephemeral cluster infrastructure that vendors can use for manual and CI/CD pipeline testing.
 
-The full functionality of the Replicated compatibility matrix is provided using the replicated CLI.
+The Replicated compatibility matrix functionality is provided using the replicated CLI.
 
 ## Prerequisites
 
@@ -15,16 +15,40 @@ Before you can use the compatibility matrix, you must complete the following pre
 
 ## Manual Testing
 
-It can be useful to test manually when you need customer-representative clusters for a short period of time, such as when debugging a customer issue or when you want to use testing as part of an inner development loop.
+It can be useful to test manually when you need customer-representative clusters for a short period of time, such as when debugging a support issue or when you want to use testing as part of an inner development loop.
 
-Use the `replicated cluster` commands locally to create and get admin access to a test cluster. For more information about the `replicated cluster` commands, see the [replicated CLI](replicated-cli-customer-create) reference.
+- Use the `replicated cluster` commands locally to create and get admin access to a test cluster. For more information about the `replicated cluster` commands, see the [replicated CLI](replicated-cli-customer-create) reference.
 
+- Specify the values based on your needs and the type of cluster you are creating. For more information, see [Supported Clusters](testing-supported-clusters).
 
 ## CI/CD Testing
 
-In general, software vendors should always test for compatibility before releasing an application. This compatibility testing should be included within CI/CD pipelines so that it is automated. Replicated vendors can update their existing CI/CD workflows to include the replicated CLI commands to spin up test clusters where they can run their compatibility tests. Additionally, Replicated offers example workflows in GitHub Actions that you can reference.
+In general, software vendors should test for compatibility before releasing an application. Replicated recommends  including compatibility testing within CI/CD pipelines so that it is automated. As a vendor, you can update your existing CI/CD workflows to include the replicated CLI commands to create the test cluster infrastructure where you can run your unique compatibility tests. Additionally, Replicated offers example workflows in GitHub Actions that you can reference.
 
-To use compatibility with CI, add the `replicated cluster` commands to your CI/CD pipeline. For more information about the `replicated cluster` commands, see the [replicated CLI](replicated-cli-customer-create) reference.
+To use the compatibility matrix with CI/CD, add the `replicated cluster` commands directly to your CI/CD pipeline. For more information about the `replicated cluster` commands, see the [replicated CLI](replicated-cli-customer-create) reference.
+
+**Examples:**
+
+- To create a k3s test cluster:
+
+    ```bash
+    replicated cluster create --name k3s-example --distribution k3s --version 1.24 --disk 100 --instance-type repl.small
+    ```
+    Specify the values based on your needs and the type of cluster you are creating. For more information, see [Supported Clusters](testing-supported-clusters).
+
+- To get the cluster ID:
+
+    ```bash
+    replicated cluster ls
+    ```
+
+- To get full admin access to the test cluster:
+
+    ```bash
+    replicated cluster kubeconfig --id ID
+    ```
+
+    Replace `ID` with the ID of the cluster from the output of the `replicated cluster ls` command.
 
 ## Handling Semantic Versioning
 

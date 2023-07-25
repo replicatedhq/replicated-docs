@@ -8,16 +8,9 @@ Replicated uses Falco and a predefined set of rules that Replicated curated and 
 
 Because application activity is what often triggers process violations, it is important that you run end-to-end tests or some other automation to simulate standard workflows and usage of your application before generating the process violation testing report.
 
-You can view the process violation testing report in CI (using GitHub Actions) or using the replicated CLI.
+## Generate a Process Violation Report
 
-
-### GitHub Actions
-
-????????????????????????????
-
-### Replicated CLI
-
-After deploying your application and running your application tests:
+After deploying your application and running your application tests, you can view the process violation testing report using the replicated CLI:
 
 ```bash
 replicated cluster report --id ID --format [text|json]

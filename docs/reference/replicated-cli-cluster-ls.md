@@ -22,27 +22,27 @@ replicated cluster ls [flags]
   <tr>
     <td>--end-time</td>
     <td>string</td>
-    <td>end time for the query (Format: 2006-01-02T15:04:05Z)</td>
+    <td>The end time for the query. **Format:** 2006-01-02T15:04:05Z</td>
   </tr>
   <tr>
     <td>--output</td>
     <td>string</td>
-    <td>The output format to use. One of: json|table (default: table) (default "table")</td>
+    <td>The output format to use. **Value values:** json or table. **Default:** table</td>
   </tr>
   <tr>
     <td>--show-terminated</td>
     <td></td>
-    <td>when set, only show terminated clusters</td>
+    <td>When set, only shows terminated clusters.</td>
   </tr>
   <tr>
     <td>--start-time</td>
     <td>string</td>
-    <td>start time for the query (Format: 2006-01-02T15:04:05Z)</td>
+    <td>The start time for the query. **Format:** 2006-01-02T15:04:05Z</td>
   </tr>
   <tr>
     <td>-w, --watch</td>
     <td></td>
-    <td>watch clusters</td>
+    <td>Watches the clusters.</td>
   </tr>
 </table>
 

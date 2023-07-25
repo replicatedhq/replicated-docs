@@ -20,22 +20,22 @@ replicated cluster kubeconfig ID [flags]
   <tr>
     <td>--id</td>
     <td>string</td>
-    <td>id of the cluster to download credentials for (when name is not provided)</td>
+    <td>The ID of the cluster to download credentials for, when the a name is not specified.</td>
   </tr>
   <tr>
     <td>--name</td>
     <td>string</td>
-    <td>name of the cluster to download credentials for (when id is not provided)</td>
+    <td>The name of the cluster to download credentials for, when an ID is not provided.</td>
   </tr>
   <tr>
     <td>--output-path</td>
     <td>string</td>
-    <td>path to kubeconfig file to write to, if not provided, it will be merged into your existing kubeconfig</td>
+    <td>The path to kubeconfig file to write to. If a path is not specified, the output will be merged to your existing kubeconfig.</td>
   </tr>
   <tr>
     <td>--stdout</td>
     <td></td>
-    <td>write kubeconfig to stdout</td>
+    <td>Writes kubeconfig to stdout.</td>
   </tr>
 </table>
 

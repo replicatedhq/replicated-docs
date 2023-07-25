@@ -1,6 +1,6 @@
 # Supported Clusters
 
-The compatibility matrix provisions ephemeral clusters for testing that are cloud-based or virtual machines that run in the Replicated cloud account.
+The compatibility matrix provisions ephemeral clusters for testing that are cloud-based or virtual machines (VMs).
 
 ## Kubernetes Version Support Policy
 
@@ -8,7 +8,7 @@ We do not maintain forks or patches of the supported distributions. When a Kuber
 
 ## VM Clusters
 
-VM clusters are hosted on Replicated bare metal servers in the EU. This section lists the supported VM clusters for compatibility testing.
+This section lists the supported VM clusters for compatibility testing.
 
 ### kind
 
