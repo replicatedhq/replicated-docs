@@ -315,7 +315,6 @@ const sidebars = {
         'vendor/testing-about',
         'vendor/testing-supported-clusters',
         'vendor/testing-how-to',
-        'vendor/testing-process-violation',
       ],
     },
     {
