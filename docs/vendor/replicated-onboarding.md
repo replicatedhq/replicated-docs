@@ -170,12 +170,12 @@ To begin onboarding to the Replicated platform with a Helm chart:
 
    1. In the vendor portal, create a new release (**Releases > Create release**). Drag and drop the new chart `.tgz` and then promote the new release to the Unstable channel. 
 
-   1. In your cluster, run `helm upgrade` to upgrade the instance to the new release that you just promoted.
+   1. In your cluster, run `helm upgrade` to upgrade the instance to the new release that you just promoted. The `helm upgrade` command is  the same as the command you used for `helm install` in a previous step, replacing `install` with `upgrade`.
 
       **Example**:
 
       ```
-      helm upgrade --namespace default wordpress oci://registry.replicated.com/my-app/unstable/wordpress
+      helm upgrade wordpress oci://registry.replicated.com/my-app/unstable/wordpress
       ```
 
       See [Helm Upgrade](https://helm.sh/docs/helm/helm_upgrade/) in the Helm documentation.
