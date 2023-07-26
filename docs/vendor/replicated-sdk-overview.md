@@ -9,10 +9,6 @@ This topic provides an introduction to using the Replicated SDK with your Helm c
 
 <SDKOverview/>
 
-:::note
-If the application pod is running and the SDK API service (replicated.app) goes down, cached data is served from memory. Customer-specific license information will continue to work with your application.
-:::
-
 For more information about using the Replicated SDK, see [Using the SDK With Your Application (Beta)](/vendor/replicated-sdk-using).
 
 ## How the SDK Runs in a Customer Environment {#about-sdk-initialize}
@@ -24,6 +20,10 @@ The following diagram shows how the Replicated SDK is installed and runs in a cu
 <HelmDiagramOverview/>
 
 Finally, the SDK is initialized in the customer environment using values that the Replicated registry injects in the Helm chart values file. After the SDK is initialized, you can use the SDK API to get customer-specific license information from the vendor portal during runtime. You can also use the API to get details about the instance from the customer environment and from the vendor portal.
+
+:::note
+If the application pod is running and the SDK API service (replicated.app) goes down, cached data is served from memory. Customer-specific license information will continue to work with your application.
+:::
 
 For more information about installing with Helm, see [Installing an Application with Helm (Beta)](install-with-helm).
 
