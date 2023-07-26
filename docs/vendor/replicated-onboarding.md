@@ -1,4 +1,4 @@
-# Onboarding with Replicated
+# Replicated Quick Start
 
 Welcome! This topic provides an onboarding workflow and a feature checklist to help you get started with Replicated. For more information about Replicated, see [Introduction to Replicated](../intro-replicated).
 
@@ -58,7 +58,7 @@ Before you begin, complete the following prerequisites:
 
 * You must have kubectl access to a cluster where you can develop against the Helm chart. Replicated recommends that you confirm that you can successfully install the chart in the cluster and also log in to the application UI. After you confirm that you can install and access the application, uninstall it before proceeding to the onboarding workflow. For more information, see [Helm Install](https://helm.sh/docs/helm/helm_install/) and [Helm Uninstall](https://helm.sh/docs/helm/helm_uninstall/) in the Helm documentation.
 
-## Onboarding Workflow
+## Workflow
 
 This onboarding workflow provides steps for using the Replicated platform to create releases for a Helm chart-based application, then using the helm CLI to install in a development environment.
 
@@ -81,7 +81,7 @@ To begin onboarding to the Replicated platform with a Helm chart:
    dependencies:
    - name: replicated
      repository: oci://registry.replicated.com/library
-     version: 0.0.1-alpha.15
+     version: 0.0.1-alpha.23
    ```
 
    The Replicated SDK is a Helm chart that provides access to Replicated features and can be installed as a small service alongside your application. For more information, see [About the Replicated SDK (Beta)](/vendor/replicated-sdk-overview).
@@ -89,7 +89,7 @@ To begin onboarding to the Replicated platform with a Helm chart:
 1. Update dependencies then package the Helm chart to a `.tgz` file:
 
    ```bash
-   helm package . -u
+   helm package . --dependency-update
    ```
 
    For more information, see [Create a Helm Chart Package](helm-release-creating-package).  
@@ -112,6 +112,10 @@ To begin onboarding to the Replicated platform with a Helm chart:
 
    1. In the dialog, For **Which channels you would like to promote this release to?** select **Unstable**. Unstable is a default channel that is intended for use with internal testing.
 
+      <img alt="Promote release dialog" src= "/images/release-promote.png" width="500px"/>
+
+      [View a larger image](/images/release-promote.png)
+
    1. Click **Promote**.
 
      :::note
@@ -126,7 +130,7 @@ To begin onboarding to the Replicated platform with a Helm chart:
 
    1. For **Channel**, select **Unstable**. This allows the customer to install releases promoted to the Unstable channel.
 
-   1. For **Customer email**, enter an email address. An email address is required for Helm installations to authenticate with the Replicated registry.
+   1. For **Customer email**, enter an email address. An email address is required for Helm installations to authenticate with the Replicated registry. This email address is never used send emails to customers.
 
    1. Click **Save Changes**.
 
