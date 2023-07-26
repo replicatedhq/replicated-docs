@@ -22,12 +22,12 @@ replicated cluster ls [flags]
   <tr>
     <td>--end-time</td>
     <td>string</td>
-    <td>The end time for the query. **Format:** 2006-01-02T15:04:05Z</td>
+    <td>The end time for the query. <strong>Format:</strong> 2006-01-02T15:04:05Z</td>
   </tr>
   <tr>
     <td>--output</td>
     <td>string</td>
-    <td>The output format to use. **Value values:** json or table. **Default:** table</td>
+    <td>The output format to use. <strong>Value values:</strong> json or table. <strong>Default:</strong> table</td>
   </tr>
   <tr>
     <td>--show-terminated</td>
@@ -37,7 +37,7 @@ replicated cluster ls [flags]
   <tr>
     <td>--start-time</td>
     <td>string</td>
-    <td>The start time for the query. **Format:** 2006-01-02T15:04:05Z</td>
+    <td>The start time for the query. <strong>Format:</strong> 2006-01-02T15:04:05Z</td>
   </tr>
   <tr>
     <td>-w, --watch</td>

@@ -20,17 +20,17 @@ replicated cluster create [flags]
   <tr>
     <td>--disk</td>
     <td>integer</td>
-    <td>The disk size (GiB) to request per node. **Default:** 50</td>
+    <td>The disk size (GiB) to request per node. <strong>Default:</strong> 50</td>
   </tr>
   <tr>
     <td>--distribution</td>
     <td>string</td>
-    <td>The Kubernetes cluster distribution type to provision. **Default:** kind)</td>
+    <td>The Kubernetes cluster distribution type to provision. <strong>Default:</strong> kind</td>
   </tr>
   <tr>
     <td>--dry-run</td>
     <td></td>
-    <td>The dry run option runs a simulated test to test that your inputs are valid without actually creating the cluster.</td>
+    <td>The dry run option runs a simulated test to verify that your inputs are valid without actually creating a cluster.</td>
   </tr>
   <tr>
     <td>--instance-type</td>
@@ -40,7 +40,7 @@ replicated cluster create [flags]
   <tr>
     <td>--memory</td>
     <td>integer</td>
-    <td>The amount of memory (GiB) to request per node. **Default:** 4</td>
+    <td>The amount of memory (GiB) to request per node. <strong>Default:</strong> 4</td>
   </tr>
   <tr>
     <td>--name</td>
@@ -50,27 +50,27 @@ replicated cluster create [flags]
   <tr>
     <td>--node-count</td>
     <td>integer</td>
-    <td>The node count. **Default:** 1</td>
+    <td>The node count. <strong>Default:</strong> 1</td>
   </tr>
   <tr>
     <td>--output</td>
     <td>string</td>
-    <td>The output format to use. **Valid values:** json or table. **Default:** table</td>
+    <td>The output format to use. <strong>Valid values:</strong> json or table. <strong>Default:</strong> table</td>
   </tr>
   <tr>
     <td>--ttl</td>
     <td>string</td>
-    <td>The cluster Time to Live (TTL) duration, in hours, before the cluster is automatically deleted by the service. TTL starts when the cluster is in a Ready state. **Valid values:** 1 - 48. **Default:** 2</td>
+    <td>The cluster Time to Live (TTL) duration, in hours, before the cluster is automatically deleted by the service. TTL starts when the cluster is in a Ready state. <strong>Valid values:</strong> 1 - 48. <strong>Default:</strong> 1</td>
   </tr>
   <tr>
     <td>--vcpu</td>
     <td>integer</td>
-    <td>The number of vCPUs to request per node. **Default:** 4</td>
+    <td>The number of vCPUs to request per node. <strong>Default:</strong> 4</td>
   </tr>
   <tr>
     <td>--version</td>
     <td>string</td>
-    <td>The Kubernetes version to provision. The format is distribution dependent. **Default:** v1.25.3</td>
+    <td>The Kubernetes version to provision. The format is distribution dependent. <strong>Default:</strong> v1.25.3</td>
   </tr>
   <tr>
     <td>--wait</td>
