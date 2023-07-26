@@ -172,7 +172,6 @@ const sidebars = {
           label: 'Distributing Helm Charts with KOTS',
           items: [
             'vendor/helm-native-about',
-            'vendor/helm-release',
             'vendor/helm-native-v2-using',  
             'vendor/helm-native-helm-install-order',
             'vendor/helm-optional-charts',
