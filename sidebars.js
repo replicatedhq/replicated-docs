@@ -442,8 +442,8 @@ const sidebars = {
         },
       ],
     },
-    // DISTRIBUTE AND OBSERVE
-    {type: 'html', value: '<h5>distribute and observe</h5>', defaultStyle: true}, 
+    // DISTRIBUTE AND SUPPORT
+    {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true}, 
     'vendor/helm-overview',
     'vendor/helm-install',
     {

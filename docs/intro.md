@@ -4,7 +4,32 @@ slug: /
 
 # Home
 
+
 <section class="tile__container">
+<ul class="tile">
+    <li class="tile__header">
+        <li><img src="images/icons/vendor_portal_2.png"></img></li>
+        <p>Getting Started</p>
+    </li>
+    <li>
+        <p>Onboarding workflows, tutorials, and labs to help you get started with Replicated quickly.</p>
+    </li>
+    <li>
+      <a href="vendor/replicated-onboarding">Replicated quick start workflow</a>
+    </li>
+    <li>
+      <a href="https://www.google.com">**UPDATE**Helm Chart labs in Instruqt</a>
+    </li>
+    <li>
+      <a href="intro-replicated">Introduction to Replicated</a>
+    </li>
+    <li>
+      <a href="vendor/helm-overview">About distributing Helm charts with Replicated</a>
+    </li>
+    <li>
+      <a href="vendor/tutorial-ui-setup">Introduction to KOTS tutorial</a>
+    </li>
+  </ul>
   <ul class="tile">
     <li class="tile__header">
         <li><img src="images/icons/vendor_portal_2.png"></img></li>
@@ -144,16 +169,16 @@ slug: /
         <p>Insights and Telemetry</p>
     </li>
     <li>
+      <a href="vendor/customer-adoption">Customer adoption</a>
+    </li>
+    <li>
+      <a href="vendor/instance-insights-details">Instance details</a>
+    </li>
+    <li>
+      <a href="vendor/insights-app-status">Configure application telemetry</a>
+    </li>
+    <li>
       <a href="vendor/instance-notifications-config">Set up notifications</a>
-    </li>
-    <li>
-      <a href="vendor/insights-app-status">Enable application status data</a>
-    </li>
-    <li>
-      <a href="vendor/customer-adoption">View customer adoption</a>
-    </li>
-    <li>
-      <a href="vendor/instance-insights-details">View instance insights</a>
     </li>
   </ul>
 </section>
@@ -191,7 +216,7 @@ slug: /
       <a href="vendor/support-bundle-helm-customizing">Customize support bundles for Helm charts</a>
     </li>
     <li>
-      <a href="vendor/support-bundle-kots-customizing">Customize support bundles for KOTS-only installations</a>
+      <a href="vendor/support-bundle-kots-customizing">Customize support bundles for KOTS installations</a>
     </li>
     <li>
       <a href="vendor/support-host-support-bundles">Customize host support bundles for kURL</a>

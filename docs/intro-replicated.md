@@ -16,6 +16,7 @@ Replicated provides features for distributing and managing your application in d
 - Provision test environments quickly using the compatibility matrix to create a variety of customer-representative environments
 - Create and manage custom license entitlements with granular control and flexibility, including free licenses for trial, dev, and community licenses. See [Creating and Managing Customers](/vendor/releases-creating-customer).
 - Create custom domains to brand your customer-facing URLs. See [Using Custom Domains](/vendor/custom-domains-using).
+- Use the proxy service to grant proxy access to private images without exposing registry credentials to your customers. See [About Proxying Image with Replicated](/vendor/private-images-about).
 
 ## Installing
 
@@ -36,7 +37,7 @@ If your application uses Helm charts, you can create a single release that suppo
 
 Use Replicated features to support your customers and application:
 
-- Use reporting to find out which customers are running vulnerable versions of your application so you can contact them about upgrading to the latest stable version. See [Customer Reporting](/vendor/customer-reporting).
+- Quickly understand the state of a customer instance, including application health, current running versions, and infrastructure and cluster details. See [Customer Reporting](/vendor/customer-reporting).
 - Use preflight checks and support bundles to improve installation success and diagnose application issues faster. See [About Preflights Checks and Support Bundles](/vendor/preflight-support-bundle-about).
 - Provision customer-representative environments to quickly recreate and diagnose issues.
 
@@ -44,11 +45,11 @@ Use Replicated features to support your customers and application:
 
 Replicated provides comprehensive insights of application instances installed in customer environments:
 
-- Get telemetry and key insights to understand the health and status of your distributed software, view adoption metrics, and monitor key performance metrics. See [About Instance and Event Data](/vendor/instance-insights-event-data).
+- Get telemetry and key insights to understand the health and status of your distributed software, view adoption metrics, and monitor key performance metrics. See [About Instance and Event Data](/vendor/instance-insights-event-data) and [Adoption Report](/vendor/customer-adoption).
 
 - Set up email and Slack notifications to get alerted for events to help ensure that important instance issues or performance trends are not missed. See [Configuring a Slack Webhook (Alpha)](/vendor/team-management-slack-config) and [Configuring Instance Notifications (Alpha)](/vendor/instance-notifications-config).
 
-## Administering
+## Team Management
 
 Manage your teams in the vendor portal, such as:
 
@@ -58,7 +59,7 @@ Manage your teams in the vendor portal, such as:
 
 ## Vendor Platform
 
-This section describes the Replicated vendor platform interface options that you use to distribute and manage your application, and manage teams.
+This section describes the Replicated vendor platform (vendor portal, replicated CLI, and Vendor API).
 
 ### Vendor Portal
 
@@ -70,52 +71,14 @@ The following shows an example of the **Reporting** page for a customer that has
 
 [View a larger version of this image](/images/customer-reporting-page.png)
 
-<!--
-For example, team management options let you invite members, manage their permissions and access to the collab repository, configure RBAC for a team, choose from multiple authentication types, use two-factor authentication, set password policies, and configure a Slack webhook to enable Slack notifications about customer instance status changes.
-
-The following shows an example of the **Team Members** page that shows the list of members, including one with an expired invitation, and current permissions:
-
-<img src="/images/teams-view.png" alt="View team members list in the vendor portal" width="700"/>
-
-[View a larger image](/images/teams-view.png)
-
-On the **Customers** and **Dashboard** pages, you can view customer reporting data and see adoption graphs to gain insights about performance, health, and usage. 
-
-The following shows an example of the **Reporting** page for a customer that has two active application instances:
-
-![Customer reporting page showing two active instances](/images/customer-reporting-page.png)
-
-[View a larger version of this image](/images/customer-reporting-page.png)
-
-You can also manage other artifacts, such as customer license files, image registries, and release channels.
-
-The following shows an example of the **Channels** page with a KOTS entitlement:
-
-![Channels](/images/channels.png) -->
-
 ### replicated CLI
 
 The replicated command-line interface (CLI) is the CLI for the vendor portal. The replicated CLI can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams, license files, and so on. For more information, see [Installing the replicated CLI](/reference/replicated-cli-installing).
+
+![terminal with replicated CLI commands](/images/replicated-cli.gif)
 
 ### Vendor API v3
 
 The Vendor API is the API for the vendor portal. This API can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams, license files, and so on. For more information, see [Using the Vendor API V3](/reference/vendor-api-using).
 
-<!-- ### SDK API
-
-The Replicated SDK API is designed for testing purposes. The SDK SPI runs in integration mode, which allows you to develop and test locally with mock data, without making any changes in the vendor portal or in your environment. You can test your changes in different scenarios and iterate faster.
-
--->
-
-<!--Diagram
-
-Create a diagram that shows the end-to-end workflow of importing your app into a release/channel, then pushing to a registry, then your customers pulling from the registry to install.
-
-Should cover:
-
-    Helm chart with the SDK
-    Helm chart without the SDK (Native Helm)
-    Standard manifest with KOTS
-    Proxied registry
-    Users installing with KOTS, Helm CLI, kURL
--->
+![landing page of the vendor api documentation site](/images/vendor-api-docs.png)
