@@ -9,6 +9,10 @@ This topic provides an introduction to using the Replicated SDK with your Helm c
 
 <SDKOverview/>
 
+:::note
+If the application pod is running and the SDK API service (replicated.app) goes down, cached data is served from memory. Customer-specific license information will continue to work with your application.
+:::
+
 For more information about using the Replicated SDK, see [Using the SDK With Your Application (Beta)](/vendor/replicated-sdk-using).
 
 ## How the SDK Runs in a Customer Environment {#about-sdk-initialize}
