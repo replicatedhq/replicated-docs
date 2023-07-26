@@ -27,8 +27,17 @@ To create and promote a release in the vendor portal:
    If no drop down is displayed, continue to the next step.  
 
 1. Add your files to the release:
-   * For Helm-only releases, in the **Upload Helm Chart** dialog, drag and drop or select one or more Helm chart `.tgz` files. For more information, see [Creating a Release with Your Helm Chart](helm-install-release).
-   * For KOTS releases, drag and drop a Helm chart or other application files to the file directory in the YAML editor. You can also click the plus icon to add a new, untitled YAML file.
+   * For Helm-only releases, in the **Upload Helm Chart** dialog, drag and drop or select a Helm chart `.tgz` file.
+   
+     <img src="/images/upload-helm-chart-modal.png" alt="upload helm chart dialog" width="550px"/>
+
+     [View a larger image](/images/upload-helm-chart-modal.png)
+
+   * For KOTS releases, drag and drop a Helm chart or other application files to the file directory in the YAML editor. You can also click the plus icon to add a new, untitled YAML file. If you add a Helm chart, In the **Select Installation Method** dialog, select **kots.io/v1beta2** and click **OK**. For more information, see [Configuring the HelmChart Custom Resource](helm-native-v2-using).
+
+     <img src="/images/helm-select-install-method.png" alt="select installation method dialog" width="550px"/>
+
+     [View a larger image](/images/helm-select-install-method.png)
 
 1. Click **Save release**. This saves a draft that you can continue to edit until you promote it.
    
