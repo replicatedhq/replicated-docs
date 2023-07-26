@@ -258,7 +258,7 @@ This section provides a checklist of key Replicated features to integrate with y
   </tr>
   <tr>
     <td>Custom domains</td>
-    <td><p>Configure custom domains to alias the Replicated endpoints that are used for customer-facing URLs, such as the Replicated registry and proxy service.</p>
+    <td><p>Configure custom domains to alias the Replicated endpoints that are used for customer-facing URLs, such as `registry.replicated.com` and `proxy.replicated.com`</p>
     <p><strong>Estimated time:</strong> 30 minutes, plus up to 24 hours to create and verify the CNAME record in your DNS account.</p>
     </td>
     <td><a href="/vendor/custom-domains-using">Using Custom Domains</a>
