@@ -23,7 +23,8 @@ To create a channel:
 1. Enter a name and description for the channel.
 1. (KOTS Only) For applications that support installation with Replicated KOTS, to enable semantic versioning on the channel if it is not enabled by default, turn on **Enable semantic versioning**. For more information about semantic versioning and defaults, see [Semantic Versioning](releases-about#semantic-versioning).
 
-1. (KOTS Only) For applications that support installation with KOTS, to enable an air gap bundle format that supports image digests and deduplication of image layers, turn on **Enable new air gap bundle format**. For more information, see [Using Image Tags and Digests](/vendor/packaging-private-images#using-image-tags-and-digests) in _Connecting to an Image Registry_.
+1. (KOTS Only) For applications that support installation with KOTS, to enable an air gap bundle format that supports image digests and deduplication of image layers, turn on **Enable new air gap bundle format**. For more information, see [Using Image Tags and Digests](private-images-tags-digests).
+
 1. Click **Create Channel**.
 
 ## Edit a Channel

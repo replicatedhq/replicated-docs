@@ -1,24 +1,10 @@
-# Connecting to an Image Registry
+# Connecting to an External Registry
 
-This topic describes how to connect to an external private registry using the Replicated vendor portal or the replicated CLI.
-
-For information about how Replicated KOTS processes images in external private registries, see [About Using an External Registry](private-images-about).
-
-For information about using the Replicated registry, see [Push Images to the Replicated Registry](private-images-replicated).
-
-## About Using External Private Registries
-
-When packaging an application with Replicated KOTS, you can include private
-images for the application without distributing registry credentials
-to your customer.
-
-The customer license file can grant revokable image pull access to private images, whether the images are stored in the Replicated registry or a supported external registry.
-
-If you use the Replicated registry or proxy service, you can configure custom domains to alias registry.replicated.com and proxy.replicated.com, to remove the Replicated domains from a customer security review and reduce exposure. This feature is configured at the Team level. For more information about custom domains, see [Using Custom Domains](custom-domains).
+This topic describes how to add credentials for an external private registry. Adding an external registry allows you to grant proxy access to private images using the Replicated proxy service. For more information about how to enable the proxy service, see [About Proxying Images with Replicated](private-images-about).
 
 ## Supported Registries
 
-Replicated recommends that application vendors use one the following external private registries, which have been tested for compatibility with KOTS:
+Replicated recommends that application vendors use one the following external private registries:
 
 * Amazon Elastic Container Registry (ECR)
 * DockerHub
@@ -26,24 +12,24 @@ Replicated recommends that application vendors use one the following external pr
 * Google Container Registry
 * Quay.io
 
+These registries have been tested for compatibility with KOTS.
+
 You can also configure access to most other external registries if the registry conforms to the Open Container Initiative (OCI) standard. 
 
-## Configure Access to an External Registry
+## Add Credentials for an External Registry
 
-You can provide the credentials for an external registry in the vendor portal to grant KOTS proxy access to the private application images in the registry.
-
-All applications in your vendor portal Team have access to the external registry that you add. This means that you can use the images in the external registry across multiple apps in the Team.
+All applications in your team have access to the external registry that you add. This means that you can use the images in the external registry across multiple apps in the same team.
 
 ### Using the Vendor Portal
 
-To configure access to your private images in an external registry using the vendor portal:
+To add an external registry using the vendor portal:
 
-1. Log in to the [vendor portal](https://vendor.replicated.com) and go to the Images page.
-1. Click **Add external registry**.
+1. Log in to the [vendor portal](https://vendor.replicated.com) and go to the **Images** page.
+1. Click **Add External Registry**.
 
    <img src="/images/add-external-registry.png" alt="/images/add-external-registry.png" width="400px"></img>
 
-1. In the **Provider** drop-down, select your private registry provider. 
+1. In the **Provider** drop-down, select your registry provider. 
 
 1. Complete the fields in the dialog, depending on the provider that you chose:
 
