@@ -21,11 +21,15 @@ The following diagram shows how the Replicated SDK is installed and runs in a cu
 
 Finally, the SDK is initialized in the customer environment using values that the Replicated registry injects in the Helm chart values file. After the SDK is initialized, you can use the SDK API to get customer-specific license information from the vendor portal during runtime. You can also use the API to get details about the instance from the customer environment and from the vendor portal.
 
-:::note
-The application and license ID are pulled by the SDK API from the replicated.app service. If the application pod is running and the replicated.app service goes down, the cached data is served from memory. Customer-specific license information will continue to work with your application.
-:::
-
 For more information about installing with Helm, see [Installing an Application with Helm (Beta)](install-with-helm).
+
+## SDK Resiliency
+
+At startup and when serving requests, the SDK retrieves and caches the latest information from the upstream Replicated APIs, including customer license information.
+
+If the upstream APIs are not available at startup, the SDK does not accept connections or serve requests until it is able to communicate with the upstream APIs. If communication fails, the SDK retries every 10 seconds and the SDK pod is at `0/1` ready.
+
+When serving requests, if the upstream APIs become unavailable, the SDK serves from the memory cache and sets the `X-Replicated-Served-From-Cache` header to `true`.
 
 ## Replicated Helm Values {#replicated-values}
 
