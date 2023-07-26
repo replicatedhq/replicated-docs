@@ -210,7 +210,7 @@ This section provides a checklist of key Replicated features to integrate with y
     <td>Preflight checks</td>
     <td>
       <p>Define preflight checks to test for system compliance during the installation process and reduce the number of support escalations.</p>
-      <p><strong>Estimated time:</strong> 1 hour to define and test one or more collectors and analyzers for your application</p>
+      <p><strong>Estimated time:</strong> 30 minutes to define and test one or more collectors and analyzers for your application</p>
     </td>
     <td>
       <ul>
@@ -223,7 +223,7 @@ This section provides a checklist of key Replicated features to integrate with y
     <td>Support bundles</td>
     <td>
       <p>Add a support bundle spec to enable customers to quickly collect and analyze troubleshooting data from your their clusters to help you diagnose problems with application deployments.</p>
-      <p><strong>Estimated time:</strong> 1 hour to define and test one or more collectors and analyzers for your application</p>
+      <p><strong>Estimated time:</strong> 30 minutes to define and test one or more collectors and analyzers for your application</p>
     </td>
     <td>
       <ul>
