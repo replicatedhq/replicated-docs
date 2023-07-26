@@ -150,7 +150,7 @@ To begin onboarding to the Replicated platform with a Helm chart:
      [View a larger image](/images/helm-install-instructions-no-preflights.png)
 
      :::note
-     Ignore the **No preflight checks found** warning, if one is displayed in the dialog. This warning appears because there are no specifications for preflight checks in the Helm chart archive.
+     Ignore the **No preflight checks found** warning, if one is displayed in the dialog. This warning appears because there are no specifications for preflight checks in the Helm chart archive. You will add preflight checks later in the onboarding process.
      ::: 
 
    1. After you install, in the vendor portal, go to **Customers**. Under the name of the customer, confirm that you can see an active instance.
