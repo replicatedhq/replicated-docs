@@ -210,7 +210,7 @@ This section provides a checklist of key Replicated features to integrate with y
   <tr>
     <td>Support bundles</td>
     <td>
-      <p>Enable support bundles to collect and analyze troubleshooting data from your customers' clusters to help you diagnose problems with application deployments.</p>
+      <p>Add a support bundle spec to enable customers to quickly collect and analyze troubleshooting data from your their clusters to help you diagnose problems with application deployments.</p>
       <p><strong>Estimated time:</strong> 1 hour to define and test one or more collectors and analyzers for your application</p>
     </td>
     <td>
