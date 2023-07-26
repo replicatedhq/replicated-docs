@@ -25,7 +25,7 @@ Replicated recommends that your application is installed as a single chart that 
 
 For the latest version information for the Replicated SDK, see the [replicated-sdk](https://github.com/replicatedhq/replicated-sdk/tags) repository in GitHub.
 
-After you add the SDK as a dependency, you can package your Helm chart to add it to a release. For more information, see [Packaging a Helm Chart](helm-install-release).
+After you add the SDK as a dependency, you can package your Helm chart to add it to a release. For more information, see [Packaging a Helm Chart for a Release](helm-install-release).
 ## How the SDK Runs in a Customer Environment {#about-sdk-initialize}
 
 The following diagram shows how the Replicated SDK is installed and runs in a customer environment:

@@ -10,7 +10,11 @@ This topic describes how to use the Replicated vendor portal to create and promo
 
 ## Create a Release
 
-You can create a release with one or more Helm charts, Kubernetes manifests, or a combination. You must package a Helm chart to a `.tgz` file to add it to a release. For more information, see [Create a Release with Your Helm Chart](helm-install-release).
+You can create a release with one or more Helm charts. Vendors that support Replicated KOTS installations can also create releases that contain standard Kubernetes manifests.
+
+:::note
+You must package each Helm chart and its dependencies to a `.tgz` file before you can add it to a release. For more information, see [Packaging a Helm Chart for a Release](helm-install-release).
+:::
 
 To create and promote a release in the vendor portal:
 
@@ -24,7 +28,7 @@ To create and promote a release in the vendor portal:
 
 1. If a drop down is displayed, select one of the following options:
    * **Create Helm-only release**: Create a release with one or more Helm charts. Supports installations with the Helm CLI only.
-   * **Create KOTS release**: Create a release with one or more Helm charts, standard Kubernetes manifests, or a combination. Supports installations with the Helm CLI or with Replicated KOTS.
+   * **Create KOTS release**: Create a release with one or more Helm charts, standard Kubernetes manifests, or a combination. Supports installations with Replicated KOTS. KOTS releases that contain Helm charts also support installation with Helm.
 
    If no drop down is displayed, continue to the next step.  
 

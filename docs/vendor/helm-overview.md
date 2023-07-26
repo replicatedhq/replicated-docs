@@ -22,7 +22,7 @@ The following table shows an overview of the Helm installation options:
   <td>No</td>
   <td><ul><li>Install and manage the chart with Helm</li><li>Additional Replicated features available through the Replicated SDK</li></ul></td>
   <td><p>Add your Helm chart to a release.</p>
-  <p>See <a href="/vendor/helm-install-release">Creating a Release with Your Helm Chart (Beta)</a>.</p></td>  
+  <p>See <a href="/vendor/helm-install-release">Packaging a Helm Chart for a Release</a>.</p></td>  
 </tr>
 <tr>
   <td><a href="helm-native-about">kots.io/v1beta2</a></td>
