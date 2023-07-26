@@ -223,7 +223,7 @@ This section provides a checklist of key Replicated features to integrate with y
   <tr>
     <td>Custom license entitlements</td>
     <td>
-      <p>Configure custom license fields fields that are specific to a customer, such as limiting the number of active users permitted.</p>
+      <p>Configure custom license fields that are specific to a customer, such as limiting the number of active users permitted.</p>
       <p><strong>Estimated time:</strong> 30 minutes to 1 hour to create and test each entitlement</p>
     </td>
     <td>
