@@ -1,5 +1,3 @@
-import HelmReleaseSteps from "../partials/helm/_helm-release-steps.mdx"
-import HelmReleaseStepsCLI from "../partials/helm/_helm-release-steps-cli.mdx"
 import HelmChartPackage from "../partials/helm/_helm-chart-package-steps.mdx"
 import FeatureFlag from "../partials/helm/_feature-flag.mdx"
 
@@ -23,18 +21,63 @@ Supporting Helm installations has the following requirements:
 
 * <FeatureFlag/>  
 
-## Package the Helm Chart
+## Package a Helm Chart and Create a Release
 
-<HelmChartPackage/>
+Before you can include a Helm chart in a release, you must first package the Helm chart, including any of its dependencies, as a `.tgz` file. Then, you add the `.tgz` Helm chart package to your release. For more information about the Helm CLI commands in this procedure, see the [Helm Commands](https://helm.sh/docs/helm/helm/) section in the Helm documentation.
 
-## Add Your Helm Chart to a Release {#release}
+To add a Helm chart to a release:
 
-You can create and promote a release with your Helm chart `.tgz` package using the replicated CLI or the vendor portal.
+1. If the Helm chart source is in a chart repository, do the following:
 
-### Using the replicated CLI
+   1. Run the following command to update your local directory with the latest available Helm chart information from your chart repositories:
 
-<HelmReleaseStepsCLI/>
+      ```
+      helm repo update
+      ```
+      :::note
+      You can also pass the names of a specific repository or repositories that you want to update in the `helm repo update` command. For more information, see [Helm Repo Update](https://helm.sh/docs/helm/helm_repo_update/) in the Helm documentation.
+      :::
+      
+   1. Download the latest copy of the desired Helm chart from a repository:
 
-### Using the Vendor Portal
+      ```
+      helm fetch REPO_NAME/CHART_NAME
+      ```
+      Replace:
+      * `REPO_NAME` with the name of the repository where the Helm chart is located.
+      * `CHART_NAME` with the name of the Helm chart as it appears in the repository.
 
-<HelmReleaseSteps/>   
+      The Helm chart, including any dependencies, is packaged and copied to your current directory in a `.tgz` file. The file uses the naming convention: `CHART_NAME-VERSION.tgz`. For example, `postgresql-8.1.2.tgz`.
+
+1. (Recommended) In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
+
+    ```yaml
+    # Chart.yaml
+    dependencies:
+    - name: replicated
+      repository: oci://registry.replicated.com/library
+      version: 0.0.1-alpha.15
+    ```  
+
+  The Replicated SDK is a Helm chart that provides access to Replicated features and can be installed as a small service alongside your application. For more information, see [About the Replicated SDK](replicated-sdk-about).
+
+1. If the Helm chart source is in your local directory, do the following:
+
+   1. In your local directory, `cd` to the location of the `Chart.yaml` file for the Helm chart.
+
+   1. If the `Chart.yaml` file includes any dependencies, update the `charts/` directory:
+
+      ```
+      helm dependency update
+      ```
+   1. Package the Helm chart:
+
+      ```
+      helm package .
+      ```
+
+      The Helm chart, including any dependencies, is packaged and copied to your current directory in a `.tgz` file. The file uses the naming convention: `CHART_NAME-VERSION.tgz`. For example, `postgresql-8.1.2.tgz`.
+
+1. Add the `.tgz` to a release. See [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
+
+  After the release is promoted, your Helm chart is automatically pushed to the Replicated registry. For information about how to install the release in a development environment with Helm, see [Installing an Application with Helm (Beta)](install-with-helm).  

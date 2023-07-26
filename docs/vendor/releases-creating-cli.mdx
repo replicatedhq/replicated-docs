@@ -33,7 +33,11 @@ To create and promote a new release:
 
 1. (Helm Charts Only) If your release contains any Helm charts:
 
-   1. Package the Helm charts into `.tgz` files. See [Creating a Helm Chart Package](helm-release-creating-package).
+   1. Package the Helm charts into `.tgz` files:
+
+      ```
+      helm package . -u
+      ```
 
    1. Move the `.tgz` files to the local directory with your application files:
 
@@ -123,7 +127,11 @@ For releases that support installation with Replicated KOTS, see [Create a Relea
 
 To create a release for an application that contains a Helm chart:
 
-1. Package your Helm chart into a `.tgz`. See [Creating a Helm Chart Package](helm-release-creating-package).
+1. Package your Helm chart into a `.tgz` file:
+
+   ```
+   helm package . -u
+   ```
 
 1. Create a release and promote it to the Unstable channel:
    

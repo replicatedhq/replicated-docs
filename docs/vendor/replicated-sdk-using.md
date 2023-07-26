@@ -1,6 +1,3 @@
-import HelmReleaseSteps from "../partials/helm/_helm-release-steps.mdx"
-import HelmReleaseStepsCLI from "../partials/helm/_helm-release-steps-cli.mdx"
-
 # Using the SDK With Your Application (Beta)
 
 This topic describes how to begin using the Replicated SDK by declaring it as a dependency in your application Helm chart. 
@@ -38,18 +35,4 @@ To declare the Replicated SDK as a dependency:
 
    The output of this command is a `.tgz` file.
 
-Continue to [Add Your Helm Chart to a Release](#release) below to add the `.tgz` file to a release.   
-
-## Add Your Helm Chart to a Release {#release}   
-
-After you package your Helm chart with the Replicated SDK as a dependency, you can add the `.tgz` file to a release. When you promote the release to a channel, the vendor portal automatically pushes your Helm chart to the Replicated registry where your customers can then pull the chart. For more information, see [How the SDK Runs in a Customer Environment](replicated-sdk-overview#about-sdk-initialize).
-
-You can create and promote the release using the replicated CLI or the vendor portal.
-
-### Using the replicated CLI
-
-<HelmReleaseStepsCLI/>
-
-### Using the Vendor Portal
-
-<HelmReleaseSteps/>
+After you package your Helm chart with the Replicated SDK as a dependency, add the `.tgz` file to a release. For more information, see [Creating a Release with Your Helm Chart](helm-install-release).
