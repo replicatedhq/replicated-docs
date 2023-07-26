@@ -21,7 +21,7 @@ Supporting Helm installations has the following requirements:
 
 * <FeatureFlag/>  
 
-## Package a Helm Chart and Create a Release
+## Package a Helm Chart and Create a Release {#release}
 
 Before you can include a Helm chart in a release, you must first package the Helm chart, including any of its dependencies, as a `.tgz` file. Then, you add the `.tgz` Helm chart package to your release. For more information about the Helm CLI commands in this procedure, see the [Helm Commands](https://helm.sh/docs/helm/helm/) section in the Helm documentation.
 
