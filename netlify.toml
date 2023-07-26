@@ -110,6 +110,10 @@
   from="https://docs.replicated.com/vendor/custom-domains-download-portal"
   to="https://docs.replicated.com/vendor/custom-domains-using"
 
+ [[redirect]]
+  from="https://docs.replicated.com/vendor/helm-release-creating-package.md"
+  to="https://docs.replicated.com/vendor/helm-install-release" 
+
 
 ###################################################
 # Redirects To the Enterprise Section

@@ -10,6 +10,8 @@ This topic describes how to use the Replicated vendor portal to create and promo
 
 ## Create a Release
 
+You can create a release with one or more Helm charts, Kubernetes manifests, or a combination. You must package a Helm chart to a `.tgz` file to add it to a release. For more information, see [Create a Release with Your Helm Chart](helm-install-release).
+
 To create and promote a release in the vendor portal:
 
 1. From the **Applications** dropdown list, select **Create an app** or select an existing application to update.
@@ -21,8 +23,8 @@ To create and promote a release in the vendor portal:
   [View a larger image](/images/release-create-new.png)
 
 1. If a drop down is displayed, select one of the following options:
-   * **Create Helm-only release**: Create a release that contains one or more Helm charts. Supports installations with the Helm CLI only.
-   * **Create KOTS release**: Create a release that can contain Helm charts, standard Kubernetes manifests, or a combination. Supports installations with the Helm CLI or with Replicated KOTS.
+   * **Create Helm-only release**: Create a release with one or more Helm charts. Supports installations with the Helm CLI only.
+   * **Create KOTS release**: Create a release with one or more Helm charts, standard Kubernetes manifests, or a combination. Supports installations with the Helm CLI or with Replicated KOTS.
 
    If no drop down is displayed, continue to the next step.  
 
@@ -33,7 +35,9 @@ To create and promote a release in the vendor portal:
 
      [View a larger image](/images/upload-helm-chart-modal.png)
 
-   * For KOTS releases, drag and drop a Helm chart or other application files to the file directory in the YAML editor. You can also click the plus icon to add a new, untitled YAML file. If you add a Helm chart, In the **Select Installation Method** dialog, select **kots.io/v1beta2** and click **OK**. For more information, see [Configuring the HelmChart Custom Resource](helm-native-v2-using).
+   * For KOTS releases, drag and drop your application files to the file directory in the YAML editor. You can also click the plus icon to add a new, untitled YAML file.
+   
+     For any Helm charts that you add, in the **Select Installation Method** dialog, select the version of the HelmChart custom resource that KOTS will use to install the chart. kots.io/v1beta2 is recommended. For more information about the HelmChart custom resource, see [Configuring the HelmChart Custom Resource](helm-native-v2-using).
 
      <img src="/images/helm-select-install-method.png" alt="select installation method dialog" width="550px"/>
 
