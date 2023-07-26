@@ -236,7 +236,7 @@ This section provides a checklist of key Replicated features to integrate with y
   <tr>
     <td>Replicated SDK API</td>
     <td>
-      <p>Embed Replicated functionality into Helm chart applications.</p><p>To get started, use integration mode to develop locally without needing to make real changes in the vendor portal or in your environment.</p>
+      <p>Embed Replicated functionality like licensing and update checks into your Helm-based application.</p><p>To get started, use integration mode to develop locally without needing to make real changes in the vendor portal or in your environment.</p>
       <p><strong>Estimated time:</strong> 1 hour to mock endpoints locally with integration mode, plus more time to optionally integrate features with your application</p>
     </td>
     <td>
