@@ -25,7 +25,7 @@ The compatibility matrix supports creating single-node [kind](https://kind.sigs.
   </tr>
   <tr>
     <th>Limitations</th>
-    <td>See <a href="testing-about#limitations">Limitations</a></td>
+    <td>See <a href="testing-how-to#limitations">Limitations</a></td>
   </tr>
   <tr>
     <th>Common Use Cases</th>
@@ -52,7 +52,7 @@ The compatibility matrix supports creating single-node [k3s](https://k3s.io) clu
   </tr>
   <tr>
     <th>Limitations</th>
-    <td>You can only choose a minor version, not a patch version. The K3s installer chooses the latest patch for that minor version. See <a href="https://docs.k3s.io/upgrades/manual">k3s</a>.<br></br><br></br>For additional limitations, see <a href="testing-about#limitations">Limitations</a>.</td>
+    <td>You can only choose a minor version, not a patch version. The K3s installer chooses the latest patch for that minor version. See <a href="https://docs.k3s.io/upgrades/manual">k3s</a>.<br></br><br></br>For additional limitations, see <a href="testing-how-to#limitations">Limitations</a>.</td>
   </tr>
   <tr>
     <th>Common Use Cases</th>
@@ -75,7 +75,7 @@ The compatibility matrix supports creating single-node [Red Hat OpenShift OKD](h
   </tr>
   <tr>
     <th>Limitations</th>
-    <td>See <a href="testing-about#limitations">Limitations</a></td>
+    <td>See <a href="testing-how-to#limitations">Limitations</a></td>
   </tr>
   <tr>
     <th>Common Use Cases</th>
@@ -103,7 +103,7 @@ The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/
   </tr>
   <tr>
     <th>Limitations</th>
-    <td>You can only choose a minor version, not a patch version. The EKS installer chooses the latest patch for that minor version.<br></br><br></br>For additional limitations, see <a href="testing-about#limitations">Limitations</a>.</td>
+    <td>You can only choose a minor version, not a patch version. The EKS installer chooses the latest patch for that minor version.<br></br><br></br>For additional limitations, see <a href="testing-how-to#limitations">Limitations</a>.</td>
   </tr>
   <tr>
     <th>Node and Supported Instance Types</th>
