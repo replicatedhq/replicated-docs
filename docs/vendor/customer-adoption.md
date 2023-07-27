@@ -2,10 +2,6 @@
 
 This topic describes the insights in the **Adoption** section on the Replicated vendor portal **Dashboard** page.
 
-:::note
-The **Dashboard** is in Beta and is labeled as such in the vendor portal. The character of the adoption data, how it is computed, and how it is displayed is subject to change.
-:::
-
 ## About Adoption Rate
 
 The **Adoption** section on the **Dashboard** provides insights about the rate at which your customers upgrade their instances and adopt the latest versions of your application. As an application vendor, you can use these adoption rate metrics to learn if your customers are completing upgrades regularly, which is a key indicator of the discoverability and ease of application upgrades.
