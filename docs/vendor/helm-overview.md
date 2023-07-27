@@ -22,13 +22,13 @@ The following table shows an overview of the Helm installation options:
   <td>No</td>
   <td><ul><li>Install and manage the chart with Helm</li><li>Additional Replicated features available through the Replicated SDK</li></ul></td>
   <td><p>Add your Helm chart to a release.</p>
-  <p>See <a href="/vendor/helm-install-release">Creating a Release with Your Helm Chart (Beta)</a>.</p></td>  
+  <p>See <a href="/vendor/helm-install-release">Packaging a Helm Chart for a Release</a>.</p></td>  
 </tr>
 <tr>
   <td><a href="helm-native-about">kots.io/v1beta2</a></td>
   <td>Yes</td>
   <td><ul><li>Recommended type for KOTS</li><li>Supports most Helm features</li><li>Supports air gap and kURL clusters</li></ul></td>
-  <td><p>Add your Helm chart and a <code>apiVersion: kots.io/v1beta2</code> Replicated HelmChart custom resource to a release.</p><p>See <a href="/vendor/helm-release">Creating a Release with Your Helm Chart for KOTS</a>.</p></td>
+  <td><p>Add your Helm chart and a <code>apiVersion: kots.io/v1beta2</code> Replicated HelmChart custom resource to a release.</p><p>See <a href="/vendor/helm-native-v2-using">Configuring the HelmChart Custom Resource</a>.</p></td>
 </tr>
 <tr>
   <td><a href="helm-native-about">kots.io/v1beta1</a> (Native Helm)</td>

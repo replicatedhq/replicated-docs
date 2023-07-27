@@ -147,7 +147,6 @@ const sidebars = {
         'vendor/releases-about',
         'vendor/releases-about-channels',
         'vendor/releases-creating-channels',
-        'vendor/helm-release-creating-package',
         'vendor/releases-creating-releases',
         'vendor/releases-creating-cli',
       ],
@@ -165,7 +164,6 @@ const sidebars = {
             'vendor/helm-install-release',
             'vendor/install-with-helm',
             'vendor/replicated-sdk-overview',
-            'vendor/replicated-sdk-using',
             'vendor/replicated-sdk-rbac',
           ],
         },
@@ -174,7 +172,6 @@ const sidebars = {
           label: 'Distributing Helm Charts with KOTS',
           items: [
             'vendor/helm-native-about',
-            'vendor/helm-release',
             'vendor/helm-native-v2-using',  
             'vendor/helm-native-helm-install-order',
             'vendor/helm-optional-charts',

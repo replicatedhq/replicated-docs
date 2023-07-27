@@ -15,7 +15,7 @@ The following diagram shows how Helm charts distributed with Replicated are inst
 
 For more information about how to install an application with Helm, see [Installing an Application with Helm (Beta)](install-with-helm).
 
-For information about how to get started distributing your Helm chart with Replicated, see [Add Your Helm Chart to a Release](helm-install-release).
+For information about how to get started distributing your Helm chart with Replicated, see [Packaging a Helm Chart for a Release](helm-install-release).
 
 ## Limitations
 
