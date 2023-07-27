@@ -198,25 +198,14 @@ ol ol ol {
 
 /*Sidebar Styling*/
 
-.menu__list-item > h5, h6 {
+.menu__list-item > h5 {
   text-transform: uppercase;
   margin: 2.5rem 0 1.5rem 0;
-}
-
-.menu__list-item > h6 {
-  margin: 1rem 0;
 }
 
 .menu__list-item__home-link > a {
   font-weight: bold;
   margin: 10px 0 25px 0;
-}
-
-.menu__list-item > h5 {
-  text-transform: uppercase;
-  margin: 1.25rem 0;
-  /* border-top: 1px solid rgba(88,88,88,0.2); */
-  padding-top: 20px;
 }
 
 #kots {
