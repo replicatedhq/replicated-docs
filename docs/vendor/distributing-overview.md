@@ -5,7 +5,7 @@ import HelmDiagramOverview from "../partials/helm/_helm-diagram-overview.mdx"
 
 This topic describes the options for using Replicated to distribute applications, including information about supporting installation with the Helm CLI and with Replicated KOTS.
 
-## About Supporting Installations with the Helm CLI 
+## About Supporting Installations with the Helm CLI {#helm}
 
 You can distribute your Helm chart-based application with Replicated and allow your customers to install with the Helm CLI. The following diagram shows how Helm charts distributed with Replicated are installed with Helm in customer environments:
 
@@ -50,7 +50,7 @@ The following diagram demonstrates how applications distributed with Replicated 
 
 As shown in the diagram above, customers can install an application by first installing KOTS in their existing cluster or in the cluster provisioned by kURL. Then, they can use KOTS to configure and install the application. For more information about installing with KOTS and kURL, see [About Installing an Application](/enterprise/installing-overview).
 
-### Distributing Helm Charts with KOTS
+### About Installing Helm Charts with KOTS
 
 Helm is a popular package manager for Kubernetes applications. For vendors that support installation with Replicated KOTS, Replicated strongly recommends that you distribute your application as a Helm chart. When you distribute your application as a Helm chart, you can support both installations with the Helm CLI and with KOTS from the same release, without having to maintain separate sets of Helm charts or application manifests. This is important because many enterprise users expect to be able to install an application with Helm.
 
@@ -67,7 +67,7 @@ The following table shows an overview of the installation options when you distr
 <tr>
   <td><a href="helm-native-about">kots.io/v1beta2</a></td>
   <td><ul><li>Supports most Helm features</li><li>Supports air gap and kURL clusters</li></ul></td>
-  <td><p>Add your Helm chart and a <code>apiVersion: kots.io/v1beta2</code> Replicated HelmChart custom resource to a release.</p><p>See <a href="/vendor/helm-release">Creating a Release with Your Helm Chart for KOTS</a>.</p></td>
+  <td><p>Add your Helm chart and a <code>apiVersion: kots.io/v1beta2</code> Replicated HelmChart custom resource to a release.</p><p>See <a href="/vendor/helm-native-v2-using">Configuring the HelmChart Custom Resource</a>.</p></td>
 </tr>
 <tr>
   <td><a href="helm-native-about">kots.io/v1beta1</a> (Native Helm)</td>

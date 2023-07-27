@@ -45,7 +45,6 @@ const sidebars = {
       label: 'Admin Console and Download Portal Customization',
       items: [
         'vendor/admin-console-customize-app-icon',
-        'vendor/admin-console-display-app-status',
         'vendor/admin-console-adding-buttons-links',
         'vendor/admin-console-prometheus-monitoring',
       ],
@@ -443,7 +442,7 @@ const sidebars = {
     },
     // DISTRIBUTE AND SUPPORT
     {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true}, 
-    'vendor/helm-overview',
+    'vendor/distributing-overview',
     {type: 'ref', id: 'intro-kots', label: 'KOTS and kURL Documentation'},
     {
       type: 'category',

@@ -10,7 +10,7 @@ If you are new to Replicated, complete the following prerequisites before you ge
   * (Recommended) For Helm chart-based applications, see [Onboarding with Replicated](/vendor/replicated-onboarding).
   
     :::note
-    Distributing your application as a Helm chart is recommended because you can support both installations with the helm CLI and with KOTS from the same release, without having to maintain separate sets of Helm charts or application manifests. For more information, see [About Distributing Helm Charts with Replicated](/vendor/helm-overview).
+    Distributing your application as a Helm chart is recommended because you can support both installations with the helm CLI and with KOTS from the same release, without having to maintain separate sets of Helm charts or application manifests. For more information, see [About Installing Helm Charts with KOTS](/vendor/distributing-overview#about-installing-helm-charts-with-kots) in _About Distributing Applications with Replicated_.
     :::
 
   * Alternatively, if you do _not_ intend to distribute a Helm chart-based application with Replicated, see [KOTS Tutorial (UI)](tutorial-ui-setup) for a workflow that uses a sample application with standard Kubernetes manifests.
@@ -38,7 +38,12 @@ For more information about creating releases, see [Managing Releases with the Ve
   <tr>
     <td>Preflight and SupportBundle</td>
     <td><p>Define preflight checks to test for system compliance during the installation process and reduce the number of support escalations.</p><p>Enable support bundles to collect and analyze troubleshooting data from your customers' clusters to help you diagnose problems with application deployments.</p><p><strong>Note:</strong> If you are using Helm charts, define the specifications within the Helm chart rather than creating custom resources.</p></td>
-    <td><a href="helm-native-v2-using">Configuring the HelmChart Custom Resource</a></td>
+    <td>
+      <ul>
+        <li><a href="/vendor/preflight-helm-defining">Define Preflight Checks for Helm Charts</a></li>
+        <li><a href="/vendor/preflight-kots-defining">Define Preflight Checks for KOTS</a></li>
+      </ul>  
+    </td>
   </tr>
   <tr>
   <td>Config</td>

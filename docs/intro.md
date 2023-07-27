@@ -24,7 +24,7 @@ slug: /
       <a href="https://play.instruqt.com/embed/replicated/tracks/distributing-with-replicated?token=em_VHOEfNnBgU3auAnN">Getting started lab in Instruqt</a>
     </li>
     <li>
-      <a href="vendor/helm-overview">About distributing Helm charts with Replicated</a>
+      <a href="vendor/distributing-overview">About distributing Helm charts with Replicated</a>
     </li>
     <li>
       <a href="vendor/tutorial-ui-setup">KOTS tutorials</a>
@@ -71,7 +71,7 @@ slug: /
         <p>Distribute and install applications with the Replicated KOTS and kURL installers.</p>
     </li>
     <li>
-      <a href="vendor/kots-intro-placeholder">Introduction to KOTS</a>
+      <a href="intro-kots">Introduction to KOTS</a>
     </li>
     <li>
       <a href="vendor/distributing-workflow">Onboard with KOTS</a>
@@ -104,10 +104,10 @@ slug: /
         <p>Distribute your Helm chart application with Replicated.</p>
     </li>
     <li>
-      <a href="vendor/helm-install">About Helm installations</a>
+      <a href="vendor/distributing-overview#helm">About Helm installations</a>
     </li>
     <li>
-      <a href="vendor/replicated-sdk-using">Use the Replicated SDK</a>
+      <a href="vendor/replicated-sdk-overview">Use the Replicated SDK</a>
     </li>
     <li>
       <a href="vendor/replicated-sdk-development">Get started with the SDK API</a>

@@ -95,7 +95,7 @@ To begin onboarding to the Replicated platform with a Helm chart:
    helm package . --dependency-update
    ```
 
-   For more information, see [Create a Helm Chart Package](helm-release-creating-package).  
+   For more information, see [Packaging a Helm Chart for a Release](helm-install-release).  
 
 1. Create a release with the Helm chart:
 
