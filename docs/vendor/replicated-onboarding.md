@@ -19,7 +19,10 @@ The following are Replicated's best practices and recommendations for successful
 
 * Ask for help from the Replicated community. For more information, see [Get Help from the Community](#get-help-from-the-community).
 
-* Before you distribute your own application to customers, review the [Planning](/vendor/planning-questionnaire) section for application architecture and planning recommendations. 
+* Replicated also offers labs in Instruqt that provide a hands-on introduction to working with Replicated features, without needing your own sample application or development environment. To complete one or more labs before you begin the onboarding workflow, see:
+  * [Distributing Your Application with Replicated](https://play.instruqt.com/embed/replicated/tracks/distributing-with-replicated?token=em_VHOEfNnBgU3auAnN): Learn how to quickly get value from the Replicated platform for your application.
+  * [Avoiding Installation Pitfalls](https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG): Learn how to use preflight checks to avoid common installation issues and assure you customer is installing into a supported environment.
+  * [Closing the Support Information Gap](https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca): Learn how to use support bundles to close the information gap between your customers and your support team.
 
 ## Prerequisites
 

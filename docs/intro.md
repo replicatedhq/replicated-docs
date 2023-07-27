@@ -8,31 +8,31 @@ slug: /
 <section class="tile__container">
 <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/vendor_portal_2.png"></img></li>
+        <li><img src="images/icons/alien_vault.png" alt="ufo icon"></img></li>
         <p>Getting Started</p>
     </li>
     <li>
         <p>Onboarding workflows, tutorials, and labs to help you get started with Replicated quickly.</p>
     </li>
     <li>
+      <a href="intro-replicated">Introduction to Replicated</a>
+    </li>
+    <li>
       <a href="vendor/replicated-onboarding">Replicated quick start workflow</a>
     </li>
     <li>
-      <a href="https://www.google.com">**UPDATE**Helm Chart labs in Instruqt</a>
-    </li>
-    <li>
-      <a href="intro-replicated">Introduction to Replicated</a>
+      <a href="https://play.instruqt.com/embed/replicated/tracks/distributing-with-replicated?token=em_VHOEfNnBgU3auAnN">Getting started lab in Instruqt</a>
     </li>
     <li>
       <a href="vendor/helm-overview">About distributing Helm charts with Replicated</a>
     </li>
     <li>
-      <a href="vendor/tutorial-ui-setup">Introduction to KOTS tutorial</a>
+      <a href="vendor/tutorial-ui-setup">KOTS tutorials</a>
     </li>
   </ul>
   <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/vendor_portal_2.png"></img></li>
+        <li><img src="images/icons/vendor_portal_2.png" alt="dashboard icon"></img></li>
         <p>Vendor Portal</p>
     </li>
     <li>
@@ -74,13 +74,13 @@ slug: /
       <a href="vendor/kots-intro-placeholder">Introduction to KOTS</a>
     </li>
     <li>
-      <a href="vendor/tutorial-ui-setup">KOTS tutorials</a>
+      <a href="vendor/distributing-workflow">Onboard with KOTS</a>
     </li>
     <li>
-      <a href="vendor/distributing-workflow">Getting started workflow</a>
+      <a href="vendor/helm-native-about">About distributing Helm charts with KOTS</a>
     </li>
     <li>
-      <a href="vendor/helm-native-about">About installing Helm charts with KOTS</a>
+      <a href="enterprise/installing-overview">Install with KOTS and kURL</a>
     </li>
     <li>
       <a href="vendor/packaging-embedded-kubernetes">Configure Kubernetes installers with kURL</a>
@@ -90,9 +90,6 @@ slug: /
     </li>
     <li>
       <a href="vendor/snapshots-configuring-backups">Configure snapshots</a>
-    </li>
-    <li>
-      <a href="enterprise/installing-overview">Install with KOTS and kURL</a>
     </li>
     <li>
       <a href="https://kurl.sh/docs/introduction/">kURL.sh Documentation</a>
@@ -201,6 +198,9 @@ slug: /
       <a href="vendor/preflight-running">Run preflight checks for Helm installations</a>
     </li>
     <li>
+      <a href="https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG">Preflight checks lab in Instruqt</a>
+    </li>
+    <li>
       <a href="https://troubleshoot.sh/docs/preflight/introduction/">Troubleshoot.sh documentation</a>
     </li>
   </ul>
@@ -223,6 +223,9 @@ slug: /
     </li>
     <li>
       <a href="vendor/support-bundle-generating">Generate support bundles</a>
+    </li>
+    <li>
+      <a href="https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca">Support bundles lab in Instruqt</a>
     </li>
     <li>
       <a href="https://troubleshoot.sh/docs/preflight/introduction/">Troubleshoot.sh documentation</a>
