@@ -31,48 +31,23 @@ Replicated recommends including compatibility testing within CI/CD pipelines so 
 
 To use the compatibility matrix with CI/CD, add the `replicated cluster` commands directly to your CI/CD pipeline.
 
-## CLI Workflow Example
+## CLI Workflow
 
 Whether you are testing locally or are using CI/CD, the following example shows the basic CLI command workflow to create and get access to a test cluster. Additional flags can be set. For more information about the `replicated cluster` commands, see the [replicated CLI](replicated-cli-customer-create) reference. 
 
-1. Create a test cluster. Specify the values based on your needs and the type of cluster you are creating. For more information, see [Supported Clusters](testing-supported-clusters).
+1. Create a test cluster using the `cluster create` command. Specify the values based on your needs and the type of cluster you are creating. For more information, see [Supported Clusters](testing-supported-clusters).
 
-    ```bash
-    replicated cluster create --name NAME --distribution DISTRIBUTION --version VERSION --disk SIZE --instance-type INSTANCE_TYPE
-    ```
-    Replace:
+1. Get the cluster ID using the `cluster ls` command.
 
-    - `NAME` with the name of the cluster. If no name is specified, a name is generated.
-    - `DISTRIBUTION` with a supported distribution type.
-    - `VERSION` with a supported Kubernetes version.
-    - `SIZE` with the size of the disk needed for testing.
-    - `INSTANCE_TYPE` with a supported instance type.
-    
-1. Get the cluster ID:
-
-    ```bash
-    replicated cluster ls
-    ```
-
-1. Get full admin access to the test cluster:
-
-    ```bash
-    replicated cluster kubeconfig --id ID
-    ```
-
-    Replace `ID` with the ID of the cluster from the output of the `replicated cluster ls` command.
+1. Get full admin access to the test cluster using the `cluster kubeconfig` command.
 
 ## Setting TTL
 
 To help you manage costs, compatibility matrix clusters have a Time To Live (TTL) mechanism, using the `--ttl` flag. By default, the TTL is one hour, but you can configure it to a minimum of 10 minutes and a maximum of 48 hours. When the TTL expires, the cluster is automatically deleted. The TTL countdown does not begin until a cluster is in the Ready state.
 
-## Handling Semantic Versioning
+To delete the cluster before the TTL expires, use the `replicated cluster rm` command with the cluster ID. 
 
-Helm charts use semantic versioning (semver) for release. Until you are ready to push a release, you might not want to create a new semver for every commit or PR. To help avoid the consumption of semvers during test commits and PRs, Replicated actions use a pattern to push a tag in your CI to represent the new semver.
-
-The Replicated pattern finds the closest semver to the branch the commit is on, or that the PR is targetting, by querying the GitHub releases and tags. Replicated takes that version and appends `-<sha>` to the version and uses that internally.
-
-If you do not want to use this behavior, make sure that your branch is semver compliant. Replicated treats the branch as a semver release if it parses as a semver.
+For more information about the `replicated cluster` commands, see the [replicated CLI](replicated-cli-customer-create) reference.
 
 ## Test Script Recommendations
 

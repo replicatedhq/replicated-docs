@@ -16,12 +16,8 @@ The compatibility matrix supports creating single-node [kind](https://kind.sigs.
 
 <table>
   <tr>
-    <th>Supported kind Versions</th>
-    <td>0.18.0</td>
-  </tr>
-  <tr>
-    <th>Supported Kubernetes Version</th>
-    <td>v1.25.0, v1.25.1, v1.25.2, v1.25.3, v1.25.4, v1.25.5, v1.25.6, v1.25.7, v1.25.8, v1.26.0, v1.26.1, v1.26.2, v1.26.3, v1.27.0</td>
+    <th>Supported Kubernetes Versions</th>
+    <td>v1.25, v1.25.1, v1.25.2, v1.25.3, v1.25.4, v1.25.5, v1.25.6, v1.25.7, v1.25.8, v1.26, v1.26.1, v1.26.2, v1.26.3, v1.27</td>
   </tr>
   <tr>
     <th>Limitations</th>
@@ -30,10 +26,6 @@ The compatibility matrix supports creating single-node [kind](https://kind.sigs.
   <tr>
     <th>Common Use Cases</th>
     <td>Smoke tests</td>
-  </tr>
-  <tr>
-    <th>Example Command</th>
-    <td><code>replicated cluster create --name kind-example --distribution kind --version 1.25.2 --disk 100 --instance-type repl.small</code></td>
   </tr>
 </table>
 
@@ -47,20 +39,16 @@ The compatibility matrix supports creating single-node [k3s](https://k3s.io) clu
     <td>The upstream k8s version that matches the Kubernetes version requested.</td>
   </tr>
   <tr>
-    <th>Supported Kubernetes Version</th>
-    <td>v1.24.0, v1.25.0, v1.26.0</td>
+    <th>Supported Kubernetes Versions</th>
+    <td>v1.24, v1.25, v1.26</td>
   </tr>
   <tr>
     <th>Limitations</th>
-    <td>You can only choose a minor version, not a patch version. The K3s installer chooses the latest patch for that minor version. (See https://docs.k3s.io/upgrades/manual.). For more limitations, see <a href="testing-about#limitations">Limitations</a>.</td>
+    <td>You can only choose a minor version, not a patch version. The K3s installer chooses the latest patch for that minor version. See [k3s](https://docs.k3s.io/upgrades/manual). For more limitations, see <a href="testing-about#limitations">Limitations</a>.</td>
   </tr>
   <tr>
     <th>Common Use Cases</th>
     <td><ul><li>Smoke tests</li><li>Customer release tests</li></ul></td>
-  </tr>
-  <tr>
-    <th>Example Command</th>
-    <td><code>replicated cluster create --name k3s-example --distribution k3s --version 1.24 --disk 100 --instance-type repl.small</code></td>
   </tr>
 </table>
 
@@ -70,12 +58,8 @@ The compatibility matrix supports creating single-node [Red Hat OpenShift OKD](h
 
 <table>
   <tr>
-    <th>Supported OKD Versions</th>
+    <th>Supported OpenShift Version</th>
     <td>4.13.0-okd</td>
-  </tr>
-  <tr>
-    <th>Supported Kubernetes Version</th>
-    <td>???</td>
   </tr>
   <tr>
     <th>Limitations</th>
@@ -84,11 +68,6 @@ The compatibility matrix supports creating single-node [Red Hat OpenShift OKD](h
   <tr>
     <th>Common Use Cases</th>
     <td>Customer release tests</td>
-  </tr>
-  <tr>
-    <th>Example Command</th>
-    <td><code>replicated cluster create --name openshift-example --distribution openshift --version 4.13.0-okd --disk 100 --instance-type repl.medium
-</code></td>
   </tr>
 </table>
 
@@ -103,12 +82,8 @@ The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/
 
 <table>
   <tr>
-    <th>Supported EKS Versions</th>
-    <td>???</td>
-  </tr>
-  <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>v1.22.0, v1.23.0, v1.24.0, v1.25.0, v1.26.0, v1.27.0</td>
+    <td>v1.22, v1.23, v1.24, v1.25, v1.26, v1.27</td>
   </tr>
   <tr>
     <th>Limitations</th>
@@ -122,9 +97,5 @@ The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/
   <tr>
     <th>Common Use Cases</th>
     <td>Customer release tests</td>
-  </tr>
-  <tr>
-    <th>Example Command</th>
-    <td><code>replicated cluster create --name eks-example --distribution eks --version 1.27 --node-count 3 --instance-type m5.xlarge</code></td>
   </tr>
 </table>

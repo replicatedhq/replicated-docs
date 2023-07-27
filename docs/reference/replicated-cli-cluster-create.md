@@ -40,7 +40,7 @@ replicated cluster create [flags]
   <tr>
     <td>--memory</td>
     <td>integer</td>
-    <td>The amount of memory (GiB) to request per node. <strong>Default:</strong> 4</td>
+    <td>The amount of memory (GiB) to request per node. Required for VM clusters. <strong>Default:</strong> 4</td>
   </tr>
   <tr>
     <td>--name</td>
@@ -65,7 +65,7 @@ replicated cluster create [flags]
   <tr>
     <td>--vcpu</td>
     <td>integer</td>
-    <td>The number of vCPUs to request per node. <strong>Default:</strong> 4</td>
+    <td>The number of vCPUs to request per node. Required for VM clusters. <strong>Default:</strong> 4</td>
   </tr>
   <tr>
     <td>--version</td>
@@ -79,8 +79,14 @@ replicated cluster create [flags]
   </tr>
 </table>
 
-## Example
+## Examples
 
-```bash
-replicated cluster create --name eks-example --distribution eks --version 1.27 --node-count 3 --instance-type m5.xlarge
-```
+For an EKS cloud distribution:
+
+  ```bash
+  replicated cluster create --name eks-example --distribution eks --version 1.27 --node-count 3 --instance-type m5.xlarge
+  ```
+
+:::note
+For VM distributions, you must specify `--vpcu` and `--memory  instead of `--instance-type`.
+:::

@@ -11,6 +11,8 @@ Remove the test clusters. You can delete multiple clusters at a time.
 replicated cluster rm ID [ID...] [flags]
 ```
 
+Replace `ID` with the ID of the cluster from the output of the `replicated cluster ls` command.
+
 <table>
   <tr>
     <th width="30%">Flag</th>
