@@ -19,9 +19,9 @@ The following table describes the use cases in which image tags and digests are 
   </tr>
   <tr>
     <td>Air Gap</td>
-    <td>Supported by default</td>
+    <td>Supported by default for Replicated KOTS installations</td>
     <td>
-    <p>Supported for applications on Replicated KOTS v1.82.0 and later when the <b>Enable new air gap bundle format</b> toggle is enabled on the channel.</p>
+    <p>Supported for applications on KOTS v1.82.0 and later when the <b>Enable new air gap bundle format</b> toggle is enabled on the channel.</p>
     <p>For more information, see <a href="#digests-air-gap">Using Image Digests in Air Gap Installations</a> below.</p>
     </td>
   </tr>

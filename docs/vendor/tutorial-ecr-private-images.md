@@ -1,10 +1,8 @@
 # Tutorial: Using ECR for Private Images
 
-Replicated KOTS supports working with private images stored in Amazon's Elastic Container Registry (ECR).
-
 ## Objective
 
-The purpose of this tutorial is to walk you through how to configure KOTS to pull images from a private registry in Amazon's Elastic Container Registry (ECR). This tutorial demonstrates the differences between using public and private images with Replicated.
+The purpose of this tutorial is to walk you through how to configure Replicated KOTS to pull images from a private registry in Amazon's Elastic Container Registry (ECR). This tutorial demonstrates the differences between using public and private images with KOTS.
 
 ## Prerequisites
 
@@ -297,7 +295,7 @@ The install of the new version should have created a new pod. If we run `kubectl
 
 ## Related Topics
 
-- [Using Private Image Registries](packaging-private-images/)
+- [Connecting to an External Registry](packaging-private-images/)
 
 - [Replicated Community Thread on AWS Roles and Permissions](https://help.replicated.com/community/t/what-are-the-minimal-aws-iam-permissions-needed-to-proxy-images-from-elastic-container-registry-ecr/267)
 

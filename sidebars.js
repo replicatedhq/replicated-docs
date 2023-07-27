@@ -34,7 +34,6 @@ const sidebars = {
       label: 'Helm Charts with KOTS',
       items: [
         'vendor/helm-native-about',
-        'vendor/helm-release',
         'vendor/helm-native-v2-using',
         'vendor/helm-native-helm-install-order',
         'vendor/helm-optional-charts',
@@ -381,7 +380,7 @@ const sidebars = {
     }, 
 
   ],
-
+  // MAIN SIDEBAR
   main: [
     'intro',
     {
@@ -483,7 +482,6 @@ const sidebars = {
         'vendor/releases-creating-releases',
         'vendor/releases-creating-cli',
         'vendor/helm-install-release',
-        'vendor/helm-release-creating-package',
       ],
     },
     {
@@ -507,8 +505,8 @@ const sidebars = {
         'vendor/private-images-about',
         'vendor/packaging-private-images',
         'vendor/helm-image-registry',
-        'vendor/private-images-replicated',
         'vendor/private-images-tags-digests',
+        'vendor/private-images-replicated',
         'vendor/packaging-private-registry-security',
         'vendor/tutorial-ecr-private-images',
       ],
@@ -592,7 +590,7 @@ const sidebars = {
       label: 'Replicated SDK (Beta)',
       items: [
         'vendor/replicated-sdk-overview',
-        'vendor/replicated-sdk-using',
+        'vendor/replicated-sdk-rbac',
       ],
     },
     {

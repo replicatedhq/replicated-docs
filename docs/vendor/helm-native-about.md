@@ -17,7 +17,7 @@ When you distribute your Helm chart application with KOTS, your users have acces
 
 <KotsHelmCrDescription/>
 
-For more information about how to add your Helm chart and the HelmChart custom resource to a release, see [Creating a Release with Your Helm Chart for KOTS](helm-release).
+For more information about how to configure the HelmChart custom resource, see [Configuring the HelmChart Custom Resource](helm-native-v2-using).
 
 ## Installation Methods
 

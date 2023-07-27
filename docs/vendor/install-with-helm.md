@@ -9,11 +9,12 @@ This topic describes how to use Helm to install releases that contain one or mor
 Before you install, complete the following prerequisites:
 
 * You must have a customer in the Replicated vendor portal with a valid email address. This email address is only used as a username for the Replicated registry and is never contacted in any way. For more information about creating and editing customers in the vendor portal, see [Creating a Customer](/vendor/releases-creating-customer).
+* If you want to install the SDK with custom RBAC, create a custom Role, RoleBinding, and ServiceAccount then provide the name of the ServiceAccount during installation. For more information, see [Customizing RBAC for the SDK](replicated-sdk-rbac).
 * <FeatureFlag/>
 
 ## Install
 
-If you declared the Replicated SDK as a dependency of your Helm chart, then the SDK is installed alongside your application. For more information about the SDK, see [About the Replicated SDK (Beta)](replicated-sdk-overview).
+If you declared the Replicated SDK as a dependency of your Helm chart, then the SDK is installed alongside your application. For more information about the SDK, see [About the Replicated SDK (Beta)](replicated-sdk-overview). You can also install the SDK as a standalone component, rather than installing it alongside the application. For more information, see [Developing Against the SDK API](replicated-sdk-development).
 
 To install a Helm chart:
 
@@ -32,7 +33,7 @@ To install a Helm chart:
    ```
    Replace `EMAIL_ADDRESS` and `LICENSE_ID` with the values provided in the command in the **Helm install instructions** dialog.
 
-1. Skip the second and third commands for installing the preflight plugin and running preflight checks. For more information about configuring and running preflight checks, see [About Preflight Checks and Support Bundles](preflight-support-bundle-about).
+1. (Optional) Run the second and third commands to install the preflight plugin and run preflight checks. If no preflight checks are defined, these commands are not displayed. For more information about defining and running preflight checks, see [About Preflight Checks and Support Bundles](preflight-support-bundle-about).
 
 1. Run the fourth command to install using Helm:
 

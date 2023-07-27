@@ -1,5 +1,3 @@
-import RepositoryCicdNote from "../partials/releases/_repository-cicd-note.mdx"
-
 # Managing Releases with the CLI
 
 This topic describes how to use the replicated CLI to create and promote releases.
@@ -33,9 +31,15 @@ To create and promote a new release:
 
 1. (Helm Charts Only) If your release contains any Helm charts:
 
-   1. Package the Helm charts into `.tgz` files. See [Creating a Helm Chart Package](helm-release-creating-package).
+   1. For each Helm chart, package the chart and its dependencies into `.tgz` files:
 
-   1. Move the `.tgz` files to the local directory with your application files:
+      ```
+      helm package . --dependency-update
+      ```
+
+      For more information, see [Helm Package](https://helm.sh/docs/helm/helm_package/) in the Helm documentation.
+
+   1. Move the `.tgz` file or files to the local directory with your application files:
 
       ```
       mv CHART_TGZ PATH_TO_APP_DIR
@@ -50,7 +54,7 @@ To create and promote a new release:
       mv wordpress-1.3.5.tgz manifests
       ```
 
-   1. (KOTS Only) If your release supports installation with Replicated KOTS, configure a HelmChart custom resource for each Helm chart in your release and add them to the local directory with your application files. See [HelmChart v2](/reference/custom-resource-helmchart-v2).
+   1. (KOTS Only) If your release supports installation with Replicated KOTS, configure a HelmChart custom resource for each Helm chart in your release and add them to the local directory with your application files. See [Configuring the HelmChart Custom Resource](helm-native-v2-using).
 
 1. Do one of the following:
 
@@ -123,7 +127,13 @@ For releases that support installation with Replicated KOTS, see [Create a Relea
 
 To create a release for an application that contains a Helm chart:
 
-1. Package your Helm chart into a `.tgz`. See [Creating a Helm Chart Package](helm-release-creating-package).
+1. Package the chart and its dependencies into a `.tgz` file:
+
+   ```
+   helm package . --dependency-update
+   ```
+
+   For more information, see [Helm Package](https://helm.sh/docs/helm/helm_package/) in the Helm documentation.
 
 1. Create a release and promote it to the Unstable channel:
    

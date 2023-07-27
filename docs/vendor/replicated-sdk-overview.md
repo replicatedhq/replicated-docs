@@ -9,8 +9,21 @@ This topic provides an introduction to using the Replicated SDK with your Helm c
 
 <SDKOverview/>
 
-For more information about using the Replicated SDK, see [Using the SDK With Your Application (Beta)](/vendor/replicated-sdk-using).
+## How to Distribute the SDK
 
+You can distribute the Replicated SDK with your application by declaring it as a dependency in your application Helm chart `Chart.yaml` file:
+
+```yaml
+# Chart.yaml
+dependencies:
+- name: replicated
+  repository: oci://registry.replicated.com/library
+  version: 0.0.1-alpha.23
+```
+
+Replicated recommends that your application is installed as a single chart that includes all necessary charts as dependencies. However, if your application is installed as multiple charts, declare the SDK as a dependency of the chart that customers install first.
+
+For the latest version information for the Replicated SDK, see the [replicated-sdk](https://github.com/replicatedhq/replicated-sdk/tags) repository in GitHub.
 ## How the SDK Runs in a Customer Environment {#about-sdk-initialize}
 
 The following diagram shows how the Replicated SDK is installed and runs in a customer environment:
@@ -22,6 +35,14 @@ The following diagram shows how the Replicated SDK is installed and runs in a cu
 Finally, the SDK is initialized in the customer environment using values that the Replicated registry injects in the Helm chart values file. After the SDK is initialized, you can use the SDK API to get customer-specific license information from the vendor portal during runtime. You can also use the API to get details about the instance from the customer environment and from the vendor portal.
 
 For more information about installing with Helm, see [Installing an Application with Helm (Beta)](install-with-helm).
+
+## SDK Resiliency
+
+At startup and when serving requests, the SDK retrieves and caches the latest information from the upstream Replicated APIs, including customer license information.
+
+If the upstream APIs are not available at startup, the SDK does not accept connections or serve requests until it is able to communicate with the upstream APIs. If communication fails, the SDK retries every 10 seconds and the SDK pod is at `0/1` ready.
+
+When serving requests, if the upstream APIs become unavailable, the SDK serves from the memory cache and sets the `X-Replicated-Served-From-Cache` header to `true`.
 
 ## Replicated Helm Values {#replicated-values}
 
@@ -67,7 +88,7 @@ replicated:
 ```
 
 The values in the `global.replicated` field provide information about the following:
-* Details about the fields in the customer's license, such as the field name, description, signature, and value
+* Details about the fields in the customer's license, such as the field name, description, signature, value, and any custom license fields that you define.
 * A base64 encoded Docker configuration file. If you use the Replicated proxy service to proxy images from an external private registry, you can use the `global.replicated.dockerconfigjson` field to create an image pull secret for the proxy service. For more information, see [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry) in the Kubernetes documentation. 
 
 The values in the `replicated` field provide information about the following:
