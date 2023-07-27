@@ -9,7 +9,7 @@ The compatibility matrix add-on is available to Replicated customers at an addit
 
 The Replicated compatibility matrix quickly provisions ephemeral clusters representing your customer environments, so that you can test your application and troubleshoot issues.
 
-The compatibility matrix provisions cloud-based and virtual machine (VM) clusters. For a list of supported clusters and versions, see [Supported Clusters](testing-supported-clusters).
+You can chose either a cloud-based and virtual machine (VM) clusters for the compatibility matrix to provision. For a list of supported clusters and versions, see [Supported Clusters](testing-supported-clusters).
 
 Cloud-based Kubernetes distributions are run in a Replicated managed and controlled cloud account to optimize and deliver a clusters quickly and reliably. The Replicated account has control planes ready and adds a node group when you request it, making the cluster available much faster than if you try to create your own cluster with your own cloud account.
 
@@ -17,7 +17,7 @@ Virtual machines (VMs) run on Replicated bare metal servers located in several d
 
 Clusters are created using the replicated CLI. You can download a kubeconfig file, and then connect using kubectl or another tool to have full admin access to the cluster.
 
-You design your own tests based on your application needs, and then run your tests on the clusters created by the compatibility matrix. For test recommendations, see [Writing Your Scripts](#write-your-scripts).
+You design your own tests based on your application needs, and then run your tests on the clusters created by the compatibility matrix. For information about test recommendations, see [Test Script Recommendations](testing-how-to#test-script-recommendations).
 
 ## Use Cases
 

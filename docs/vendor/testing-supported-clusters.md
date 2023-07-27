@@ -16,8 +16,12 @@ The compatibility matrix supports creating single-node [kind](https://kind.sigs.
 
 <table>
   <tr>
+        <th width="35%">Type</th>
+        <th width="65%">Description</th>
+  </tr>
+  <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>v1.25, v1.25.1, v1.25.2, v1.25.3, v1.25.4, v1.25.5, v1.25.6, v1.25.7, v1.25.8, v1.26, v1.26.1, v1.26.2, v1.26.3, v1.27</td>
+    <td>1.25, 1.25.1, 1.25.2, 1.25.3, 1.25.4, 1.25.5, 1.25.6, 1.25.7, 1.25.8, 1.26, 1.26.1, 1.26.2, 1.26.3, 1.27</td>
   </tr>
   <tr>
     <th>Limitations</th>
@@ -35,16 +39,20 @@ The compatibility matrix supports creating single-node [k3s](https://k3s.io) clu
 
 <table>
   <tr>
+        <th width="35%">Type</th>
+        <th width="65%">Description</th>
+  </tr>
+  <tr>
     <th>Supported k3s Versions</th>
     <td>The upstream k8s version that matches the Kubernetes version requested.</td>
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>v1.24, v1.25, v1.26</td>
+    <td>1.24, 1.25, 1.26</td>
   </tr>
   <tr>
     <th>Limitations</th>
-    <td>You can only choose a minor version, not a patch version. The K3s installer chooses the latest patch for that minor version. See [k3s](https://docs.k3s.io/upgrades/manual). For more limitations, see <a href="testing-about#limitations">Limitations</a>.</td>
+    <td>You can only choose a minor version, not a patch version. The K3s installer chooses the latest patch for that minor version. See <a href="https://docs.k3s.io/upgrades/manual">k3s</a>.<br></br><br></br>For additional limitations, see <a href="testing-about#limitations">Limitations</a>.</td>
   </tr>
   <tr>
     <th>Common Use Cases</th>
@@ -57,6 +65,10 @@ The compatibility matrix supports creating single-node [k3s](https://k3s.io) clu
 The compatibility matrix supports creating single-node [Red Hat OpenShift OKD](https://www.okd.io/) clusters, which is the community distribution of OpenShift, using CodeReady Containers (CRC). 
 
 <table>
+  <tr>
+        <th width="35%">Type</th>
+        <th width="65%">Description</th>
+  </tr>
   <tr>
     <th>Supported OpenShift Version</th>
     <td>4.13.0-okd</td>
@@ -82,12 +94,16 @@ The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/
 
 <table>
   <tr>
+        <th width="35%">Type</th>
+        <th width="65%">Description</th>
+  </tr>
+  <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>v1.22, v1.23, v1.24, v1.25, v1.26, v1.27</td>
+    <td>1.22, 1.23, 1.24, 1.25, 1.26, 1.27</td>
   </tr>
   <tr>
     <th>Limitations</th>
-    <td>You can only choose a minor version, not a patch version. The EKS installer chooses the latest patch for that minor version. For more limitations, see <a href="testing-about#limitations">Limitations</a>.</td>
+    <td>You can only choose a minor version, not a patch version. The EKS installer chooses the latest patch for that minor version.<br></br><br></br>For additional limitations, see <a href="testing-about#limitations">Limitations</a>.</td>
   </tr>
   <tr>
     <th>Node and Supported Instance Types</th>

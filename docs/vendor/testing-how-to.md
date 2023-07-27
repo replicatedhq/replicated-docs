@@ -23,13 +23,13 @@ Before you can use the compatibility matrix, you must complete the following pre
 
 It can be useful to manually create a cluster when you need one for a short period of time, such as when debugging a support issue or to use testing as part of an inner development loop.
 
-Run the `replicated cluster` commands locally to create and get admin access to a test cluster.  
+Run the `replicated cluster` commands locally to create and get admin access to a test cluster. For more information, see [CLI Workflow](#cli-workflow).
 
 ## CI/CD
 
 Replicated recommends including compatibility testing within CI/CD pipelines so that it is automated. As a vendor, you can update your existing CI/CD workflows to include the replicated CLI commands to create test clusters where you can run your unique compatibility tests. Additionally, Replicated offers example workflows in GitHub Actions that you can reference.
 
-To use the compatibility matrix with CI/CD, add the `replicated cluster` commands directly to your CI/CD pipeline.
+To use the compatibility matrix with CI/CD, add the `replicated cluster` commands directly to your CI/CD pipeline. For more information, see [CLI Workflow](#cli-workflow).
 
 ## CLI Workflow
 

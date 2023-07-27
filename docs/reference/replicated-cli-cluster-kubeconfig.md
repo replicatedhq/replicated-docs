@@ -7,7 +7,7 @@ Download the credentials for a test cluster.
 ## Usage
 
 ```bash
-replicated cluster kubeconfig ID [flags]
+replicated cluster kubeconfig [flags]
 ```
 
   <table>

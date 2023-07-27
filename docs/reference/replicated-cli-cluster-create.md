@@ -70,7 +70,7 @@ replicated cluster create [flags]
   <tr>
     <td>--version</td>
     <td>string</td>
-    <td>The Kubernetes version to provision. The format is distribution dependent. <strong>Default:</strong> v1.25.3</td>
+    <td>The Kubernetes version to provision. For OpenShift clusters, provide the supported OpenShift version. The format is distribution dependent. <strong>Default:</strong> v1.25.3<br></br><br></br>For supported versions, see <a href="/vendor/testing-supported-clusters">Supported Clusters</a>.</td>
   </tr>
   <tr>
     <td>--wait</td>
@@ -81,12 +81,12 @@ replicated cluster create [flags]
 
 ## Examples
 
-For an EKS cloud distribution:
+For an EKS distribution:
 
   ```bash
   replicated cluster create --name eks-example --distribution eks --version 1.27 --node-count 3 --instance-type m5.xlarge
   ```
 
 :::note
-For VM distributions, you must specify `--vpcu` and `--memory  instead of `--instance-type`.
+For VM distributions, you must specify `--vpcu` and `--memory` instead of `--instance-type`.
 :::
