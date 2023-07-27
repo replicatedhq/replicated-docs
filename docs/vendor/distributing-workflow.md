@@ -10,7 +10,7 @@ If you are new to Replicated, complete the following prerequisites before you ge
   * (Recommended) For Helm chart-based applications, see [Onboarding with Replicated](/vendor/replicated-onboarding).
   
     :::note
-    Distributing your application as a Helm chart is recommended because you can support both installations with the helm CLI and with KOTS from the same release, without having to maintain separate sets of Helm charts or application manifests. For more information, see [About Installing Helm Charts with KOTS](/vendor/distributing-overview#about-installing-helm-charts-with-kots) in _About Distributing Applications with Replicated_.
+    Distributing your application as a Helm chart is recommended because you can support both installations with the helm CLI and with KOTS from the same release, without having to maintain separate sets of Helm charts or application manifests. For more information, see [Helm Charts with KOTS](/vendor/distributing-overview#helm-charts-with-kots) in _About Distributing Applications with Replicated_.
     :::
 
   * Alternatively, if you do _not_ intend to distribute a Helm chart-based application with Replicated, see [KOTS Tutorial (UI)](tutorial-ui-setup) for a workflow that uses a sample application with standard Kubernetes manifests.

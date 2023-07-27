@@ -22,14 +22,14 @@ Replicated provides features for distributing and managing your application in d
 
 When you distribute your application with Replicated, you can install your application using the Helm CLI or Replicated installers:
 
-- **Helm CLI:** You can use the Helm CLI to install Helm chart-based applications. Add the recommended Replicated SDK to your Helm chart to integrate valuable Replicated features such as telemetry and licensing. Supported for online, existing cluster installations. See [About Supporting Installations with the Helm CLI](/vendor/distributing-overview#helm) in _About Distributing Applications with Replicated_.
+- **Helm CLI:** You can use the Helm CLI to install Helm chart-based applications. Add the recommended Replicated SDK to your Helm chart to integrate valuable Replicated features such as telemetry and licensing. Supported for online, existing cluster installations. See [About Installations with the Helm CLI](/vendor/distributing-overview#helm) in _About Distributing Applications with Replicated_.
 
 - **KOTS:** With a KOTS entitlement, you can use KOTS to install your application in the following environments:
 
     - Online or air gap existing clusters
     - Online or air gap _embedded clusters_ provisioned by Replicated kURL on a VM or bare metal server
 
-  For more information, see [About KOTS and kURL](intro-kots) and [About Supporting Installations with KOTS](/vendor/distributing-overview#about-supporting-installations-with-kots) in _About Distribution Applications with Replicated_.
+  For more information, see [About KOTS and kURL](intro-kots) and [About Installations with KOTS](/vendor/distributing-overview#about-installations-with-kots) in _About Distribution Applications with Replicated_.
 
 If your application uses Helm charts, you can create a single release that supports both Helm and KOTS installations, without having to maintain separate sets of Helm charts or application manifests.
 

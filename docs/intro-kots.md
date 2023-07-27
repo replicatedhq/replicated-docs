@@ -16,31 +16,6 @@ KOTS also provides the Replicated admin console to make it easy for customers to
 
 KOTS is an open source project that is maintained by Replicated. For more information, see the [kots](https://github.com/replicatedhq/kots) repository in GitHub.
 
-<!--Custom Resources
-
-You use KOTS and Troubleshoot custom resources to configure and control the application experience. Custom resources are packaged with your application but are not deployed to the cluster. 
-
-You can add optional and conditional resources with annotations to include or exclude resources based on conditional statements. For example, a customer might want to use their own database and so any database option provided by your Kubernetes manifests should not be installed. You can also use annotations to control the order in which resources are deployed. For more information, see [Including Optional and Conditional Resources](packaging-include-resources), [Orchestrating Resource Deployment](orchestrating-resource-deployment).
-
-For more information about adding KOTS functionality, see [How to Create Releases for Your Application](distributing-workflow).
-
-## Architecture
-
-The following architecture diagram shows the components as they relate to you as a vendor packaging your application with KOTS using either the vendor portal, replicated CLI, or Vendor API.
-
- Then the application, admin console, and kots CLI are installed in an existing cluster and on a cluster provisioned by kURL.
-
-![KOTS and kURL deployments](/images/replicated-components-diagram.png)
-
-[View larger image](/images/replicated-components-diagram.png)
-
-For more information, see:
-
-- [KOTS](#kots)
-- [Admin Console](#admin-console)
-- [kots CLI](#kots-cli)
-- [kURL](#kurl) -->
-
 ## Admin Console
 
 The admin console is a customer-facing user interface that includes built-in functionality allowing users to install, manage, update, configure, monitor, backup and restore, and troubleshoot their application instances. The admin console communicates securely with KOTS to synchronize licenses, check for upgrades, and so on. 
