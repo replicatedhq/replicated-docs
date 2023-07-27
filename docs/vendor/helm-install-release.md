@@ -7,7 +7,7 @@ This topic describes how to package a Helm chart and the Replicated SDK to a `.t
 
 ## Overview
 
-To add a Helm chart to a release, you first add the Replicated SDK as a dependency of the Helm chart and then package the chart and its dependencies to a `.tgz` file. The Replicated SDK is a Helm chart can be installed as a small service alongside your application. The SDK is strongly recommended because it provides access to key Replicated features, such as insights and telemetry, for instances installed with Helm. For more information, see [About the Replicated SDK](replicated-sdk-about).   
+To add a Helm chart to a release, you first add the Replicated SDK as a dependency of the Helm chart and then package the chart and its dependencies to a `.tgz` file. The Replicated SDK is a Helm chart can be installed as a small service alongside your application. The SDK is strongly recommended because it provides access to key Replicated features, such as insights and telemetry, for instances installed with Helm. For more information, see [About the Replicated SDK](replicated-sdk-overview).   
 
 Replicated recommends that vendors with the Replicated KOTS entitlement who use Helm charts also follow these steps to include the SDK to support both Helm installations and KOTS installations from the same release.
 
