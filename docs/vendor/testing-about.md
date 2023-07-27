@@ -25,7 +25,7 @@ An application that functions reliably in one Kubernetes distribution can fail i
 
 The compatibility matrix is useful for creating test environments for:
 
-- Continuous integration (CI) to automate testing and validate an application is compatible with supported distributions.
+- CI/CD to automate testing and validate an application is compatible with supported distributions.
 - Local development to quickly get access to a cluster, develop on it, and delete it when done.
 - Support to quickly reproduce a reported issue on a customer-representative environment.
 

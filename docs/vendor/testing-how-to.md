@@ -2,8 +2,6 @@
 
 This topic describes how to use the compatibility matrix to create ephemeral clusters that you can use for manual and CI/CD testing.
 
-The Replicated compatibility matrix functionality is provided using the replicated CLI.
-
 ## Limitations
 
 The following limitations apply when using the compatibility matrix:
@@ -19,27 +17,19 @@ Before you can use the compatibility matrix, you must complete the following pre
 - Purchase an entitlement for compatibility testing. To do so, [open a product request](https://vendor.replicated.com/support?requestType=feature&productArea=vendor).
 - Install the replicated CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
 
-## Manual
+## Create a Cluster
 
-It can be useful to manually create a cluster when you need one for a short period of time, such as when debugging a support issue or to use testing as part of an inner development loop.
+The Replicated compatibility matrix functionality is provided using the `replicated cluster` commands. For command usage, see the [replicated CLI](/reference/replicated-cli-cluster-create) reference.
 
-Run the `replicated cluster` commands locally to create and get admin access to a test cluster. For more information, see [CLI Workflow](#cli-workflow).
+Create a test cluster with the compatibility matrix using one of the follow options:
 
-## CI/CD
+- Manually create a cluster when you need one for a short period of time, such as when debugging a support issue or to use testing as part of an inner development loop.
 
-Replicated recommends including compatibility testing within CI/CD pipelines so that it is automated. As a vendor, you can update your existing CI/CD workflows to include the replicated CLI commands to create test clusters where you can run your unique compatibility tests. Additionally, Replicated offers example workflows in GitHub Actions that you can reference.
+- Integrate the compatibility matrix with your existing CI/CD pipeline so that cluster management is automated to run with your unique testing.
 
-To use the compatibility matrix with CI/CD, add the `replicated cluster` commands directly to your CI/CD pipeline. For more information, see [CLI Workflow](#cli-workflow).
-
-## CLI Workflow
-
-Whether you are testing locally or are using CI/CD, the following example shows the basic CLI command workflow to create and get access to a test cluster. Additional flags can be set. For more information about the `replicated cluster` commands, see the [replicated CLI](replicated-cli-customer-create) reference. 
-
-1. Create a test cluster using the `cluster create` command. Specify the values based on your needs and the type of cluster you are creating. For more information, see [Supported Clusters](testing-supported-clusters).
-
-1. Get the cluster ID using the `cluster ls` command.
-
-1. Get full admin access to the test cluster using the `cluster kubeconfig` command.
+    To use the compatibility matrix with CI/CD, add the `replicated cluster` commands directly to your CI/CD pipeline. 
+    
+    Additionally, Replicated offers example workflows in Replicated Actions that you can reference. For more information, see [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions#examples) in GitHub.  
 
 ## Setting TTL
 
@@ -53,7 +43,7 @@ For more information about the `replicated cluster` commands, see the [replicate
 
 You design and write your own test scripts to use with the compatibility matrix. This section describes some of the options and common use cases to help guide you.
 
-For release testing, Replicated recommends that you create and run all of the following test types.
+For release testing, Replicated recommends that you create and run all of the following test types and include them in CI/CD pipelines so that testing is automated.
 
 - **Application Testing:** Traditional application testing includes unit, integration, and end-to-end tests. These tests are critical for application reliability, and the compatibility matrix is designed to to incorporate and use your application testing.
 
