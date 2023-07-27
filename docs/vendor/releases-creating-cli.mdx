@@ -34,7 +34,7 @@ To create and promote a new release:
    1. For each Helm chart, package the chart and its dependencies into `.tgz` files:
 
       ```
-      helm package . -u
+      helm package . --dependency-update
       ```
 
       For more information, see [Helm Package](https://helm.sh/docs/helm/helm_package/) in the Helm documentation.
@@ -130,7 +130,7 @@ To create a release for an application that contains a Helm chart:
 1. Package the chart and its dependencies into a `.tgz` file:
 
    ```
-   helm package . -u
+   helm package . --dependency-update
    ```
 
    For more information, see [Helm Package](https://helm.sh/docs/helm/helm_package/) in the Helm documentation.
