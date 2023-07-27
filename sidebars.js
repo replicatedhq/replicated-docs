@@ -445,7 +445,7 @@ const sidebars = {
     // DISTRIBUTE AND SUPPORT
     {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true}, 
     'vendor/helm-overview',
-    'vendor/helm-install',
+    {type: 'ref', id: 'intro-kots', label: 'KOTS and kURL Documentation'},
     {
       type: 'category',
       label: 'Vendor Portal Team Management',
@@ -579,8 +579,6 @@ const sidebars = {
          'vendor/instance-notifications-config',
        ],
     },
-
-    {type: 'ref', id: 'intro-kots', label: 'KOTS and kURL Documentation'},
     {type: 'html', value: '<h5>install</h5>', defaultStyle: true},
     'vendor/install-with-helm',
     {type: 'ref', id: 'enterprise/installing-overview', label: 'Installing with KOTS'},
