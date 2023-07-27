@@ -112,8 +112,8 @@ const sidebars = {
         'vendor/private-images-about',
         'vendor/packaging-private-images',
         'vendor/helm-image-registry',
-        'vendor/private-images-replicated',
         'vendor/private-images-tags-digests',
+        'vendor/private-images-replicated',
         'vendor/packaging-private-registry-security',
         'vendor/tutorial-ecr-private-images',
       ],
@@ -164,6 +164,7 @@ const sidebars = {
             'vendor/helm-install-release',
             'vendor/install-with-helm',
             'vendor/replicated-sdk-overview',
+            'vendor/replicated-sdk-rbac',
           ],
         },
         {
