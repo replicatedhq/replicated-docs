@@ -82,23 +82,23 @@ The `kots/app/[:appId]/installer/promote` policy does not grant the holder permi
 
 Grants the holder permission to create a new license in the specified application(s).
 
-### kots/app/[:appId]/license/[:licenseId]/read
+### kots/app/[:appId]/license/[:customerId]/read
 
 Grants the holder permission to view the license specified by ID. If this is denied, the licenses will not show up in search, CSV export or on the Vendor Portal.
 
-### kots/app/[:appId]/license/[:licenseId]/update
+### kots/app/[:appId]/license/[:customerId]/update
 
-Grants the holder permission to edit the license specified (by ID) for the specified application(s).
+Grants the holder permission to edit the license specified by ID for the specified application(s).
 
-### kots/license/[:licenseId]/airgap/password
+### kots/license/[:customerId]/airgap/password
 
 Grants the holder permission to generate a new download portal password for the license specified (by ID) for the specified application(s).
 
-### kots/license/[:licenseId]/archive
+### kots/license/[:customerId]/archive
 
 Grants the holder permission to archive the specified license (by ID).
 
-### kots/license/[:licenseId]/unarchive
+### kots/license/[:customerId]/unarchive
 
 Grants the holder permissions to unarchive the specified license (by ID).
 
