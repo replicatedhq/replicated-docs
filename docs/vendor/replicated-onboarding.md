@@ -233,7 +233,7 @@ This section provides a checklist of key Replicated features to integrate with y
   <tr>
     <td>Support bundles</td>
     <td>
-      <p>Add a support bundle spec to enable customers to quickly collect and analyze troubleshooting data from your their clusters to help you diagnose problems with application deployments.</p>
+      <p>Add a support bundle spec to enable customers to quickly collect and analyze troubleshooting data from their clusters to help you diagnose problems with application deployments.</p>
       <p><strong>Estimated time:</strong> 30 minutes to define and test one or more collectors and analyzers for your application</p>
     </td>
     <td>
@@ -281,7 +281,7 @@ This section provides a checklist of key Replicated features to integrate with y
   </tr>
   <tr>
     <td>Custom domains</td>
-    <td><p>Configure custom domains to alias the Replicated endpoints that are used for customer-facing URLs, such as `registry.replicated.com` and `proxy.replicated.com`</p>
+    <td><p>Configure custom domains to alias the Replicated endpoints that are used for customer-facing URLs, such as <code>registry.replicated.com</code> and <code>proxy.replicated.com</code>.</p>
     <p><strong>Estimated time:</strong> 30 minutes, plus up to 24 hours to create and verify the CNAME record in your DNS account.</p>
     </td>
     <td><a href="/vendor/custom-domains-using">Using Custom Domains</a>
@@ -296,8 +296,8 @@ This section provides a checklist of key Replicated features to integrate with y
   </tr>
   <tr>
     <td>Compatibility matrix</td>
-    <td><p>Quickly spin up ephemeral clusters for development, support, and testing.</p>
-    <p><strong>Estimated time:</strong> Minutes to spin up a cluster with the replicated CLI, plus time for developing or testing on the cluster. Optionally, an additional 2 hours to configure GitHub Actions in your CI pipeline to automatically test releases with the compatibility matrix.</p>
+    <td><p>Quickly create ephemeral clusters for development, support, and testing.</p>
+    <p><strong>Estimated time:</strong> Minutes to create a cluster with the replicated CLI, plus time for developing or testing on the cluster. Optionally, an additional 2 hours to configure GitHub Actions in your CI pipeline to automatically test releases with the compatibility matrix.</p>
     </td>
     <td>TBD
     </td>
