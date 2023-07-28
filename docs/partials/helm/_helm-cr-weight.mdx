@@ -1,3 +1,5 @@
-Determines the order to apply charts. Charts are applied by weight in ascending order, with lower weights applied first. **Supported values:** Positive or negative integers. **Default:** `0`
+Determines the order in which KOTS applies the Helm chart. Charts are applied by weight in ascending order, with lower weights applied first. **Supported values:** Positive or negative integers. **Default:** `0`
+
+In KOTS v1.99.0 and later, `weight` also determines the order in which charts are uninstalled. Charts are uninstalled by weight in descending order, with higher weights uninstalled first. For more information about uninstalling applications, see [remove](kots-cli-remove) in _kots CLI_.
 
 For more information, see [Defining Installation Order for Helm Charts](/vendor/helm-native-helm-install-order).
