@@ -74,4 +74,4 @@ To package a Helm chart so that it can be added to a release:
 
 1. Add the `.tgz` to a release. See [Managing Releases with the Vendor Portal](releases-creating-releases) or [Managing Releases with the CLI](releases-creating-cli).
 
-  After the release is promoted, your Helm chart is automatically pushed to the Replicated registry. For information about how to install the release in a development environment with Helm, see [Installing an Application with Helm (Beta)](install-with-helm).  
+  After the release is promoted, your Helm chart is automatically pushed to the Replicated registry. For information about how to install the release in a development environment with Helm, see [Installing with Helm](install-with-helm).  

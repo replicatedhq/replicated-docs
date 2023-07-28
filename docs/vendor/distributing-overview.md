@@ -1,3 +1,7 @@
+---
+pagination_prev: null
+---
+
 import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
 import HelmDiagramOverview from "../partials/helm/_helm-diagram-overview.mdx"
 
@@ -13,7 +17,7 @@ You can distribute your Helm chart-based application with Replicated and allow y
 
 <HelmDiagramOverview/>
 
-For more information about how to install an application with Helm, see [Installing an Application with Helm](install-with-helm).
+For more information about how to install an application with Helm, see [Installing with Helm](install-with-helm).
 
 For information about how to get started distributing your Helm chart with Replicated, see [Replicated Quick Start](replicated-onboarding).
 

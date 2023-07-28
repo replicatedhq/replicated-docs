@@ -10,7 +10,7 @@ For more information about how to get started with the Replicated SDK, see [Abou
 
 ## Access the SDK API
 
-The Replicated SDK API is available after the Replicated SDK is installed and initialized in a cluster. For information about installing the SDK, see [Installing an Application with Helm (Beta)](/vendor/install-with-helm).
+The Replicated SDK API is available after the Replicated SDK is installed and initialized in a cluster. For information about installing the SDK, see [Installing with Helm](/vendor/install-with-helm).
 
 After the SDK is installed, the Replicated SDK API service is exposed at `replicated:3000`. To verify where the Replicated SDK API service is exposed, you can run `kubectl get service -A`.
 

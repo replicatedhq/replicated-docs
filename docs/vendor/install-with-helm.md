@@ -1,6 +1,4 @@
-import FeatureFlag from "../partials/helm/_feature-flag.mdx"
-
-# Installing an Application with Helm (Beta)
+# Installing with Helm
 
 This topic describes how to use Helm to install releases that contain one or more Helm charts.
 
@@ -10,7 +8,6 @@ Before you install, complete the following prerequisites:
 
 * You must have a customer in the Replicated vendor portal with a valid email address. This email address is only used as a username for the Replicated registry and is never contacted in any way. For more information about creating and editing customers in the vendor portal, see [Creating a Customer](/vendor/releases-creating-customer).
 * If you want to install the SDK with custom RBAC, create a custom Role, RoleBinding, and ServiceAccount then provide the name of the ServiceAccount during installation. For more information, see [Customizing RBAC for the SDK](replicated-sdk-rbac).
-* <FeatureFlag/>
 
 ## Install
 

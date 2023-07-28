@@ -1,3 +1,8 @@
+---
+pagination_next: null
+pagination_prev: null
+---
+
 # Release Notes Overview
 
 New features and improvements that have been added to Replicated are documented on a per component basis in the corresponding release notes section. Component updates may be released at any time following a continuous delivery model.

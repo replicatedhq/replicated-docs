@@ -1,3 +1,7 @@
+---
+pagination_prev: null
+---
+
 # Introduction to Replicated
 
 This topic describes the Replicated platform, including features, installation options, and vendor platform interface options for distributing and managing your application with Replicated.
