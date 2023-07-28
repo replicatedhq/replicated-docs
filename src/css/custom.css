@@ -176,7 +176,7 @@ ol ol ol {
 }
 
 .tile__header img {
-  min-width: 2.75em;
+  max-width: 2.75em;
   height: 2.75em;
   background-color:rgba(255,72,86,0.1);
   border-radius: 7px;
