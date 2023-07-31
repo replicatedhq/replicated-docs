@@ -1,4 +1,4 @@
-# Installing an Application with Helm (Beta)
+# Installing with Helm
 
 This topic describes how to use Helm to install releases that contain one or more Helm charts.
 
