@@ -1,5 +1,4 @@
 import HelmChartPackage from "../partials/helm/_helm-chart-package-steps.mdx"
-import FeatureFlag from "../partials/helm/_feature-flag.mdx"
 
 # Packaging a Helm Chart for a Release
 

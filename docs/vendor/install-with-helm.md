@@ -19,9 +19,9 @@ To install a Helm chart:
 
 1. Click **Helm install instructions**.
 
-   <img alt="Helm install instructions dialog" src="/images/helm-install-instructions.png" width="500px"/>
+   <img alt="Helm install button" src="/images/helm-install-button.png" width="700px"/>
 
-   [View a larger version of this image](/images/helm-install-instructions.png)
+   [View a larger image](/images/helm-install-button.png)
 
 1. In the **Helm install instructions** dialog, run the first command to log into the Replicated registry:
 
