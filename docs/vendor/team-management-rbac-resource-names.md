@@ -170,6 +170,18 @@ Grants the holder permission to push images into Replicated registry.
 
 ## Team
 
+### team/auditlog/read
+
+Grants the holder permission to view the audit log for the team.
+
+### team/authentication/update
+
+Grants the holder permission to manage the following team authentication settings: Google authentication, Auto-join, and SAML authentication.
+
+### team/authentication/read
+
+Grants the holder permission to read the following authentication settings: Google authentication, Auto-join, and SAML authentication.
+
 ### team/integration/list
 
 Grants the holder permission to view team's integrations.
@@ -198,21 +210,13 @@ Grants the holder permission to invite additional people to the team.
 
 Grants the holder permission to delete other team members.
 
-### team/serviceaccount/list
+### team/notifications/slack-webhook/read
 
-Grants the holder permission to list service accounts.
+Grants the holder permission to view the team's Slack webhook for instance notifications.
 
-### team/serviceaccount/create
+### team/notifications/slack-webhook/update
 
-Grants the holder permission to create new service accounts.
-
-### team/serviceaccount/[:name]/delete
-
-Grants the holder permission to delete the service account identified by the name specified.
-
-### team/auditlog/read
-
-Grants the holder permission to view the audit log for the team.
+Grants the holder permission to edit the team's Slack webhook for instance notifications.
 
 ### team/policy/read
 
@@ -230,17 +234,21 @@ Grants the holder permission to delete RBAC policies for the team.
 
 Grants the holder permission to create RBAC policies for the team.
 
-### team/authentication/update
-
-Grants the holder permission to manage the following team authentication settings: Google authentication, Auto-join, and SAML authentication.
-
-### team/authentication/read
-
-Grants the holder permission to read the following authentication settings: Google authentication, Auto-join, and SAML authentication.
-
 ### team/security/update
 
 Grants the holder permission to manage team password requirements including two-factor authentication and password complexity requirements.
+
+### team/serviceaccount/list
+
+Grants the holder permission to list service accounts.
+
+### team/serviceaccount/create
+
+Grants the holder permission to create new service accounts.
+
+### team/serviceaccount/[:name]/delete
+
+Grants the holder permission to delete the service account identified by the name specified.
 
 ### team/support-issues/read
 
@@ -289,14 +297,6 @@ Grants the holder Admin permissions in the Replicated collab repository in GitHu
 For more information about the Admin role in GitHub, see [Permissions for each role](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/repository-roles-for-an-organization#permissions-for-each-role) in the GitHub documentation.
 
 <CollabRbacResourcesImportant/>
-
-### team/notifications/slack-webhook/read
-
-Grants the holder permission to view team's Slack webhook for instance notifications.
-
-### team/notifications/slack-webhook/update
-
-Grants the holder permission to edit team's Slack webhook for instance notifications.
 
 ## User
 
