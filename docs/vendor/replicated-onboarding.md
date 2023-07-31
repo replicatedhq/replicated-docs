@@ -295,14 +295,6 @@ This section provides a checklist of key Replicated features to integrate with y
     </td>
   </tr>
   <tr>
-    <td>Compatibility matrix</td>
-    <td><p>Quickly create ephemeral clusters for development, support, and testing.</p>
-    <p><strong>Estimated time:</strong> Minutes to create a cluster with the replicated CLI, plus time for developing or testing on the cluster. Optionally, an additional 2 hours to configure GitHub Actions in your CI pipeline to automatically test releases with the compatibility matrix.</p>
-    </td>
-    <td>TBD
-    </td>
-  </tr>
-  <tr>
     <td>Replicated KOTS</td>
     <td><p>For vendors with access to the KOTS installer, add custom resources to your release to support KOTS installations.</p>
     <p><strong>Estimated time:</strong> 1 to 2 hours to configure and test each custom resource.</p>

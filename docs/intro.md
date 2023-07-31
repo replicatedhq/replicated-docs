@@ -151,18 +151,6 @@ pagination_next: null
   </ul>
   <ul class="tile">
     <li class="tile__header">
-        <li><img src="images/icons/release.png" alt="rocket ship icon"></img></li>
-        <p>Compatibility Matrix</p>
-    </li>
-    <li>
-        <p>TBD</p>
-    </li>
-    <li>
-      <a href="">Learn more</a>
-    </li>
-  </ul>
-    <ul class="tile">
-    <li class="tile__header">
         <li><img src="images/icons/dashboard_1.png" alt="dashboard icon"></img></li>
         <p>Insights and Telemetry</p>
     </li>
