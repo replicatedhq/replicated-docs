@@ -84,11 +84,19 @@ Grants the holder permission to create a new license in the specified applicatio
 
 ### kots/app/[:appId]/license/[:customerId]/read
 
-Grants the holder permission to view the license specified by ID. If this is denied, the licenses will not show up in search, CSV export or on the Vendor Portal.
+Grants the holder permission to view the license specified by ID. If this is denied, the licenses will not show up in search, CSV export or on the Vendor Portal, and the holder will not be able to subscribe to this license's instance notifications.
 
 ### kots/app/[:appId]/license/[:customerId]/update
 
 Grants the holder permission to edit the license specified by ID for the specified application(s).
+
+### kots/app/[:appId]/license/[:customerId]/slack-notifications/read
+
+Grants the holder permission to view the team's Slack notification subscriptions for instances associated with the specified license.
+
+### kots/app/[:appId]/license/[:customerId]/slack-notifications/update
+
+Grants the holder permission to edit the team's Slack notification subscriptions for instances associated with the specified license.
 
 ### kots/license/[:customerId]/airgap/password
 
@@ -281,6 +289,14 @@ Grants the holder Admin permissions in the Replicated collab repository in GitHu
 For more information about the Admin role in GitHub, see [Permissions for each role](https://docs.github.com/en/organizations/managing-user-access-to-your-organizations-repositories/repository-roles-for-an-organization#permissions-for-each-role) in the GitHub documentation.
 
 <CollabRbacResourcesImportant/>
+
+### team/notifications/slack-webhook/read
+
+Grants the holder permission to view team's Slack webhook for instance notifications.
+
+### team/notifications/slack-webhook/update
+
+Grants the holder permission to edit team's Slack webhook for instance notifications.
 
 ## User
 
