@@ -1,7 +1,6 @@
 import HelmChartPackage from "../partials/helm/_helm-chart-package-steps.mdx"
 import Dependency from "../partials/replicated-sdk/_dependency.mdx"
 import SDKReleases from "../partials/replicated-sdk/_sdk-releases-github.mdx"
-import ChartRequirements from "../partials/replicated-sdk/_chart-requirements-note.mdx"
 
 # Packaging a Helm Chart for a Release
 
@@ -53,9 +52,7 @@ To package a Helm chart so that it can be added to a release:
 
     <SDKReleases/>
     
-    :::note
-    <ChartRequirements/>
-    :::
+    For additional guidelines related to adding the SDK as a dependency, see [How to Distribute the SDK](replicated-sdk-overview#how-to-distribute-the-sdk) in _About the Replicated SDK_.
 
 1. If the Helm chart source is in your local directory, do the following:
 
