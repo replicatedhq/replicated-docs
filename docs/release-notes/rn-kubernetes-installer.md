@@ -8,6 +8,18 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.07.31-0
+
+Released on July 31, 2023
+
+### New Features {#new-features-v2023-07-31-0}
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.66.0-48.1.2.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.0.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.1.
+* Adds [Metrics Server add-on](https://kurl.sh/docs/add-ons/metrics-server) version 0.6.4.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.2.
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.25.2.
+
 ## v2023.07.21-0
 
 Released on July 21, 2023
