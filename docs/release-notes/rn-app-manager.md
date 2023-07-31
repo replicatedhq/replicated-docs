@@ -21,7 +21,7 @@ Released on July 31, 2023
 Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
 
 ### Bug Fixes {#bug-fixes-1-101-1}
-* Fixes an issue where defaults were not used for [repeatable config items](/reference/custom-resource-config#repeatable-items) when doing an automated install via the KOTS CLI.
+* Fixes an issue where defaults were not used for [repeatable config items](/reference/custom-resource-config#repeatable-items) when doing an automated install with the kots CLI.
 * Fixes an issue where processing Helm charts or sub-charts that have `-charts` as a suffix failed.
 
 ## 1.101.0
