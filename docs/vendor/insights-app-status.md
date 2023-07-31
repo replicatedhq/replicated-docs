@@ -34,13 +34,13 @@ You can optionally configure custom status informers by overriding the `statusIn
 ```yaml
 # Helm chart values.yaml file 
 
-replicated:
+replicated-sdk:
   statusInformers:
     - deployment/nginx
     - statefulset/mysql
 ```
 :::note
-When the `replicated.statusInformers` field is set, the SDK detects and reports the status of only the resources included in the `replicated.statusInformers` field. 
+When the `replicated-sdk.statusInformers` field is set, the SDK detects and reports the status of only the resources included in the `replicated-sdk.statusInformers` field. 
 :::
 
 ### KOTS Installations

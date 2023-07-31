@@ -16,9 +16,9 @@ You can distribute the Replicated SDK with your application by declaring it as a
 ```yaml
 # Chart.yaml
 dependencies:
-- name: replicated
+- name: replicated-sdk
   repository: oci://registry.replicated.com/library
-  version: 0.0.1-alpha.23
+  version: 0.0.1-beta.1
 ```
 
 Replicated recommends that your application is installed as a single chart that includes all necessary charts as dependencies. However, if your application is installed as multiple charts, declare the SDK as a dependency of the chart that customers install first.
@@ -46,7 +46,7 @@ When serving requests, if the upstream APIs become unavailable, the SDK serves f
 
 ## Replicated Helm Values {#replicated-values}
 
-When a customer installs your Helm chart from the Replicated registry, the Replicated registry injects values into the `global.replicated` and `replicated` fields of the Helm chart values file. 
+When a customer installs your Helm chart from the Replicated registry, the Replicated registry injects values into the `global.replicated` and `replicated-sdk` fields of the Helm chart values file. 
 
 The following is an example of a Helm values file containing only the information injected by the Replicated registry:
 
@@ -64,7 +64,7 @@ global:
         title: Expiration
         value: "2023-05-30T00:00:00Z"
         valueType: String
-replicated:
+replicated-sdk:
   appName: my-app
   channelID: 2CBDxNwDH1xyYiIXRTjiB7REjKX
   channelName: Stable
@@ -91,11 +91,11 @@ The values in the `global.replicated` field provide information about the follow
 * Details about the fields in the customer's license, such as the field name, description, signature, value, and any custom license fields that you define.
 * A base64 encoded Docker configuration file. If you use the Replicated proxy service to proxy images from an external private registry, you can use the `global.replicated.dockerconfigjson` field to create an image pull secret for the proxy service. For more information, see [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry) in the Kubernetes documentation. 
 
-The values in the `replicated` field provide information about the following:
+The values in the `replicated-sdk` field provide information about the following:
 * The full customer license and the license ID
 * The target application release from the vendor portal
 
-The Replicated SDK uses the values in the `replicated` field to initialize in a customer environment.
+The Replicated SDK uses the values in the `replicated-sdk` field to initialize in a customer environment.
 
 ## SDK API 
 
@@ -111,7 +111,7 @@ The Replicated SDK provides access to operational telemetry including customer r
 
 The SDK uses the values injected by the Replicated registry in your Helm chart values file to automatically send information about the instance back to the vendor portal, such as the Kubernetes version and distribution of the cluster and the cloud provider where the instance is running.
 
-Additionally, the SDK automatically detects and reports the status of the resources that are part of the Helm release. The vendor portal uses this resource status data to provide insights on the aggregate status of the application, such as if the instance is in a ready, degraded, or down state. You can customize which resources report their status back to the vendor portal by listing the resources in the `replicated.statusInformers` field of your Helm chart values file. For more information, see [Enabling and Understanding Application Status](insights-app-status).
+Additionally, the SDK automatically detects and reports the status of the resources that are part of the Helm release. The vendor portal uses this resource status data to provide insights on the aggregate status of the application, such as if the instance is in a ready, degraded, or down state. You can customize which resources report their status back to the vendor portal by listing the resources in the `replicated-sdk.statusInformers` field of your Helm chart values file. For more information, see [Enabling and Understanding Application Status](insights-app-status).
 
 The following shows an example of the **Instance Details** page in the vendor portal, including application version and status details, instance uptime, and cluster details such as the cloud provider, cloud region, and the Kubernetes version and distribution:
 

@@ -49,9 +49,9 @@ To package a Helm chart so that it can be added to a release:
     ```yaml
     # Chart.yaml
     dependencies:
-    - name: replicated
+    - name: replicated-sdk
       repository: oci://registry.replicated.com/library
-      version: 0.0.1-alpha.23
+      version: 0.0.1-beta.1
     ```
 
 1. If the Helm chart source is in your local directory, do the following:
