@@ -1,4 +1,5 @@
 import HelmChartPackage from "../partials/helm/_helm-chart-package-steps.mdx"
+import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 
 # Packaging a Helm Chart for a Release
 
@@ -46,13 +47,7 @@ To package a Helm chart so that it can be added to a release:
 
 1. (Recommended) In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
 
-    ```yaml
-    # Chart.yaml
-    dependencies:
-    - name: replicated-sdk
-      repository: oci://registry.replicated.com/library
-      version: 0.0.1-beta.1
-    ```
+    <DependencyYaml/>
 
 1. If the Helm chart source is in your local directory, do the following:
 
