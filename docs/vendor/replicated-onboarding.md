@@ -2,6 +2,10 @@
 pagination_next: null
 ---
 
+import Dependency from "../partials/replicated-sdk/_dependency.mdx"
+import SDKReleases from "../partials/replicated-sdk/_sdk-releases-github.mdx"
+import ChartRequirements from "../partials/replicated-sdk/_chart-requirements-note.mdx"
+
 # Replicated Quick Start
 
 Welcome! This topic provides an onboarding workflow and a feature checklist to help you get started with Replicated. For more information about Replicated, see [Introduction to Replicated](../intro-replicated).
@@ -83,18 +87,14 @@ To begin onboarding to the Replicated platform with a Helm chart:
 
 1. In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
 
-   ```yaml
-   # Chart.yaml
-   dependencies:
-   - name: replicated-sdk
-     repository: oci://registry.replicated.com/library
-     version: 0.0.1-beta.1
-   ```
+   <Dependency/>
 
    The Replicated SDK is a Helm chart that provides access to Replicated features and can be installed as a small service alongside your application. For more information, see [About the Replicated SDK (Beta)](/vendor/replicated-sdk-overview).
+   
+   <SDKReleases/>
 
    :::note
-   If your chart uses the Chart API version 1 (v1), then add the dependency to the `requirements.yaml` file rather than the `Chart.yaml` file. For more information, see [Consolidation of requirements.yaml into Chart.yaml](https://helm.sh/docs/faq/changes_since_helm2/#consolidation-of-requirementsyaml-into-chartyaml) in the Helm documentation.
+   <ChartRequirements/>
    :::
 
 1. Update dependencies then package the Helm chart to a `.tgz` file:

@@ -1,5 +1,8 @@
 import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
 import HelmDiagramOverview from "../partials/helm/_helm-diagram-overview.mdx"
+import Dependency from "../partials/replicated-sdk/_dependency.mdx"
+import SDKReleases from "../partials/replicated-sdk/_sdk-releases-github.mdx"
+import ChartRequirements from "../partials/replicated-sdk/_chart-requirements-note.mdx"
 
 # About the Replicated SDK (Beta)
 
@@ -13,17 +16,16 @@ This topic provides an introduction to using the Replicated SDK with your Helm c
 
 You can distribute the Replicated SDK with your application by declaring it as a dependency in your application Helm chart `Chart.yaml` file:
 
-```yaml
-# Chart.yaml
-dependencies:
-- name: replicated-sdk
-  repository: oci://registry.replicated.com/library
-  version: 0.0.1-beta.1
-```
+<Dependency/>
 
-Replicated recommends that your application is installed as a single chart that includes all necessary charts as dependencies. However, if your application is installed as multiple charts, declare the SDK as a dependency of the chart that customers install first.
+<SDKReleases/>
 
-For the latest version information for the Replicated SDK, see the [replicated-sdk](https://github.com/replicatedhq/replicated-sdk/tags) repository in GitHub.
+Consider the following guidelines for adding the SDK as a dependency:
+
+* <ChartRequirements/>
+
+* Replicated recommends that your application is installed as a single chart that includes all necessary charts as dependencies. However, if your application is installed as multiple charts, declare the SDK as a dependency of the chart that customers install first.
+
 ## How the SDK Runs in a Customer Environment {#about-sdk-initialize}
 
 The following diagram shows how the Replicated SDK is installed and runs in a customer environment:
