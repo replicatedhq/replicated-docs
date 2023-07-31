@@ -67,7 +67,7 @@ Before you begin, complete the following prerequisites:
 
 ## Workflow
 
-This onboarding workflow provides steps for using the Replicated platform to create releases for a Helm chart-based application, then using the helm CLI to install in a development environment.
+This onboarding workflow provides steps for using the Replicated platform to create releases for a Helm chart-based application, then using the Helm CLI to install in a development environment.
 
 You will repeat these same basic steps to create and test releases throughout the onboarding process to test Replicated features. You will also repeat these steps after onboarding whenever you need to integrate new Replicated features with your application.
 
