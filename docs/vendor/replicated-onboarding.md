@@ -86,9 +86,9 @@ To begin onboarding to the Replicated platform with a Helm chart:
    ```yaml
    # Chart.yaml
    dependencies:
-   - name: replicated-sdk
+   - name: replicated
      repository: oci://registry.replicated.com/library
-     version: 0.0.1-beta.1
+     version: 0.0.1-alpha.23
    ```
 
    The Replicated SDK is a Helm chart that provides access to Replicated features and can be installed as a small service alongside your application. For more information, see [About the Replicated SDK (Beta)](/vendor/replicated-sdk-overview).
