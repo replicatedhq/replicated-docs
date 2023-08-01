@@ -18,37 +18,36 @@ The chart version must also comply with the Semantic Versioning (SemVer) specifi
 
 ## Package a Helm Chart {#release}
 
-For more information about the Helm CLI commands in this procedure, see the [Helm Commands](https://helm.sh/docs/helm/helm/) section in the Helm documentation.
+This procedure shows how to create a Helm chart archive to add to a release. For more information about the Helm CLI commands in this procedure, see the [Helm Commands](https://helm.sh/docs/helm/helm/) section in the Helm documentation.
 
 To package a Helm chart so that it can be added to a release:
 
-1. (Optional) If the Helm chart source is in a chart repository, do the following:
+1. If the Helm chart source is in a chart repository, do the following:
 
-   1. Run the following command to update your local directory with the latest available Helm chart information from your chart repositories:
+   1. Update your local directory with the latest information from your chart repositories:
 
       ```
       helm repo update
       ```
-      :::note
-      You can also pass the names of a specific repository or repositories that you want to update in the `helm repo update` command. For more information, see [Helm Repo Update](https://helm.sh/docs/helm/helm_repo_update/) in the Helm documentation.
-      :::
+
+      For more information about adding and updating chart repositories, see [Helm Repo](https://helm.sh/docs/helm/helm_repo) in the Helm documentation.
       
-   1. Download the latest copy of the desired Helm chart from a repository:
+   1. Download the latest copy of the Helm chart from the repository and unpack the chart archive in a local directory:
 
       ```
-      helm fetch REPO_NAME/CHART_NAME
+      helm pull --untar REPO_NAME/CHART_NAME
       ```
       Replace:
       * `REPO_NAME` with the name of the repository where the Helm chart is located.
       * `CHART_NAME` with the name of the Helm chart as it appears in the repository.
 
-      The Helm chart, including any dependencies, is packaged and copied to your current directory in a `.tgz` file. The file uses the naming convention: `CHART_NAME-VERSION.tgz`. For example, `postgresql-8.1.2.tgz`.
-
-   1. If you are going to add the Replicated SDK as a dependency, untar the `.tgz` archive.   
+     :::note
+     The `helm fetch` command was replaced by `helm pull` in Helm v3. For more information, see [Migrating Helm v2 to v3](https://helm.sh/docs/topics/v2_v3_migration/#overview-of-helm-3-changes) in the Helm documentation.
+     :::
 
 1. In your local directory, `cd` to the location of the `Chart.yaml` file for the Helm chart.
 
-1. (Recommended) In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
+1. In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
 
     <DependencyYaml/>
 
@@ -57,7 +56,7 @@ To package a Helm chart so that it can be added to a release:
    ```
    helm dependency update
    ```
-1. Package the Helm chart:
+1. Package the Helm chart into a `.tgz` archive:
 
    ```
    helm package .
