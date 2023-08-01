@@ -2,9 +2,8 @@
 pagination_next: null
 ---
 
-import Dependency from "../partials/replicated-sdk/_dependency.mdx"
-import SDKReleases from "../partials/replicated-sdk/_sdk-releases-github.mdx"
 import ChartRequirements from "../partials/replicated-sdk/_chart-requirements-note.mdx"
+import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 
 # Replicated Quick Start
 
@@ -71,7 +70,7 @@ Before you begin, complete the following prerequisites:
 
 ## Workflow
 
-This onboarding workflow provides steps for using the Replicated platform to create releases for a Helm chart-based application, then using the helm CLI to install in a development environment.
+This onboarding workflow provides steps for using the Replicated platform to create releases for a Helm chart-based application, then using the Helm CLI to install in a development environment.
 
 You will repeat these same basic steps to create and test releases throughout the onboarding process to test Replicated features. You will also repeat these steps after onboarding whenever you need to integrate new Replicated features with your application.
 
@@ -87,11 +86,9 @@ To begin onboarding to the Replicated platform with a Helm chart:
 
 1. In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
 
-   <Dependency/>
+   <DependencyYaml/>
 
    The Replicated SDK is a Helm chart that provides access to Replicated features and can be installed as a small service alongside your application. For more information, see [About the Replicated SDK (Beta)](/vendor/replicated-sdk-overview).
-   
-   <SDKReleases/>
 
    :::note
    <ChartRequirements/>

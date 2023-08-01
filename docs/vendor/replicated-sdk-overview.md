@@ -1,8 +1,7 @@
 import SDKOverview from "../partials/replicated-sdk/_overview.mdx"
 import HelmDiagramOverview from "../partials/helm/_helm-diagram-overview.mdx"
-import Dependency from "../partials/replicated-sdk/_dependency.mdx"
-import SDKReleases from "../partials/replicated-sdk/_sdk-releases-github.mdx"
 import ChartRequirements from "../partials/replicated-sdk/_chart-requirements-note.mdx"
+import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 
 # About the Replicated SDK (Beta)
 
@@ -16,9 +15,7 @@ This topic provides an introduction to using the Replicated SDK with your Helm c
 
 You can distribute the Replicated SDK with your application by declaring it as a dependency in your application Helm chart `Chart.yaml` file:
 
-<Dependency/>
-
-<SDKReleases/>
+<DependencyYaml/>
 
 Consider the following guidelines for adding the SDK as a dependency:
 

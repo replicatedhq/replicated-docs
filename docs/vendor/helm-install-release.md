@@ -1,6 +1,5 @@
 import HelmChartPackage from "../partials/helm/_helm-chart-package-steps.mdx"
-import Dependency from "../partials/replicated-sdk/_dependency.mdx"
-import SDKReleases from "../partials/replicated-sdk/_sdk-releases-github.mdx"
+import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 
 # Packaging a Helm Chart for a Release
 
@@ -47,12 +46,10 @@ To package a Helm chart so that it can be added to a release:
       The Helm chart, including any dependencies, is packaged and copied to your current directory in a `.tgz` file. The file uses the naming convention: `CHART_NAME-VERSION.tgz`. For example, `postgresql-8.1.2.tgz`.
 
 1. (Recommended) In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
-
-    <Dependency/>
-
-    <SDKReleases/>
     
     For additional guidelines related to adding the SDK as a dependency, see [How to Distribute the SDK](replicated-sdk-overview#how-to-distribute-the-sdk) in _About the Replicated SDK_.
+
+    <DependencyYaml/>
 
 1. If the Helm chart source is in your local directory, do the following:
 
