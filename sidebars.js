@@ -122,15 +122,6 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Compatibility Testing',
-      items: [
-        'vendor/testing-about',
-        'vendor/testing-supported-clusters',
-        'vendor/testing-how-to',
-      ],
-    },
-    {
-      type: 'category',
       label: 'Sharing Installation Files and Commands',
       items: [ 
         'vendor/releases-sharing-license-install-script',        
@@ -583,6 +574,15 @@ const sidebars = {
             'vendor/support-host-support-bundles',
           ],
         },
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Compatibility Testing',
+      items: [
+        'vendor/testing-about',
+        'vendor/testing-supported-clusters',
+        'vendor/testing-how-to',
       ],
     },
     {
