@@ -43,7 +43,7 @@ To install a Helm chart:
     The channel slug is not required if the release is promoted to the Stable channel.
     :::
 
-1. (Optional) In the vendor portal, click **Customers**. You can see that the customer you used to install is marked as **Active** and that details about the application instance that you installed are listed under the customer name. 
+1. (Optional) In the vendor portal, click **Customers**. You can see that the customer you used to install is marked as **Active** and the details about the application instance are listed under the customer name. 
 
    **Example**:
 
