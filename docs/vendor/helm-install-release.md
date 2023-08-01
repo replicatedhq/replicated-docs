@@ -50,12 +50,15 @@ To package a Helm chart so that it can be added to a release:
 1. In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
 
     <DependencyYaml/>
+    
+    For additional guidelines related to adding the SDK as a dependency, see [How to Distribute the SDK](replicated-sdk-overview#how-to-distribute-the-sdk) in _About the Replicated SDK_.
 
 1. Update the `charts/` directory:
 
    ```
    helm dependency update
    ```
+   
 1. Package the Helm chart into a `.tgz` archive:
 
    ```
