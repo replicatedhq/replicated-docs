@@ -4,13 +4,13 @@ import LicenseExpirationExample from "../partials/replicated-sdk/_license-expira
 
 This topic describes how to check entitlement information from customer licenses in applications that are installed with Helm. For information about how to check entitlement information for application installed with Replicated KOTS, see [Checking Entitlements for KOTS](licenses-referencing-fields).
 
-## Checking Entitlements at Runtime with the SDK API {#runtime}
+## Overview
+
+For Helm installations, you can add logic to your application to check entitlements both at installation and at runtime.
+
+## Checking at Runtime {#runtime}
 
 The Replicated SDK retrieves up-to-date customer license information from the vendor portal during runtime. This means that any changes to customer licenses are reflected in real time in the customer environment. For example, you can revoke access to your application when a license expires, expose additional product functionality dynamically based on entitlements, and more.
-
-:::note
-To check entitlements at runtime in your Helm chart application, you must include the Replicated SDK as a dependency of your application. For more information, see [How to Distribute the SDK](replicated-sdk-overview#how-to-distribute-the-sdk) in _About the Replicated SDK_.
-:::
 
 After the Replicated SDK is initialized and running in a customer environment, you can use the following SDK API endpoints to get information about the license that was used to install:
 * `/api/v1/license/info`: List license details, including the license ID, the channel the customer is assigned, and the license type.
@@ -21,11 +21,15 @@ For more information about these endpoints, see [license](/reference/replicated-
 
 License fields are cryptographically signed to ensure their integrity. Replicated recommends that you use signature verification to ensure the integrity of each license field you use. For more information, see [Verifying Licenses Field Signatures (Beta)](licenses-verify-fields-sdk-api).
 
-### Example: Revoke Access at Runtime
+### Requirement
+
+To check entitlements at runtime in your Helm chart application, you must include the Replicated SDK as a dependency of your application. For more information, see [How to Distribute the SDK](replicated-sdk-overview#how-to-distribute-the-sdk) in _About the Replicated SDK_.
+
+### Example: Revoke Access When a License Expires
 
 <LicenseExpirationExample/>
 
-## Checking Entitlements Before Installation {#before-install}
+## Checking Before Installation {#before-install}
 
 The Replicated registry automatically injects customer entitlement information in the `global.replicated.licenseFields` field of your Helm chart values. For example:
 
@@ -46,7 +50,7 @@ global:
 
 You can access the values in the `global.replicated.licenseFields` field from your Helm templates to check customer entitlements before installation. For more information about the fields that the Replicated registry automatically injects, see [Replicated Helm Values](/vendor/replicated-sdk-overview#replicated-values) in _About the Replicated SDK (Beta)_.
 
-### Example: Prevent Access Before Installation
+### Prevent Installation with an Expired License
 
 You can use the license `expires_at` field to prevent a customer from installing your application if their license is expired.
 
