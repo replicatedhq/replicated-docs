@@ -106,3 +106,38 @@ To archive a customer:
 1. Click **Archive Customer**. In the confirmation dialog, click **Archive Customer** again.
 
 You can unarchive by clicking **Unarchive Customer** in the customer's **Customer details** page.
+
+
+## Filter and Download Customer Data
+
+The **Customers** page provides a standard text search box and filters that let you find customers based on whether they are active, by their license type, or by channel name. You can also download customer data to a CSV file and export it for further analysis.
+
+For example, this data can help you determine which customers are inactive and might be likely to churn, or to see which customers are on a vulnerable application version so you can support them in upgrading to the latest stable version.
+
+### Filter
+
+To filter the list of customers:
+
+1. On the **Customers** page, select the filter icon to the right of the Search box. 
+
+  ![Filter customer list](/images/customers-filter.png)
+
+  [View a larger version of this image](/images/customers-filter.png)
+
+1. From the filter dropdown list, select active or inactive customers, license type (Any, Development, Trial, Paid, Community), or channel (Any, Stable, Beta, Unstable). You can search using more than one criteria, such as Inactive, Active, and Paid. 
+
+  Note that you can filter on only one license type. So, if you want information about Paid and Trial customers, you can download a CSV file instead. For more information, see [Download](#download).
+
+  The search results display in the list.
+
+1. Select **Reset** to delete the selected filters and reset to the full customer list view.
+
+### Download {#download}
+
+You can download all of your customer data to a CSV file for an overall customer view and use the data for analysis. For example, you can import the data to a spreadsheet and then sort by license types.
+
+To download customer data, select **Download CSV** in the upper right corner of the **Customers** page.
+
+![Filter customer list](/images/customers-download-csv.png)
+
+[View a larger version of this image](/images/customers-download-csv.png)
