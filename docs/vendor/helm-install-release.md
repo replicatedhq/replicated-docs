@@ -41,7 +41,6 @@ To package a Helm chart so that it can be added to a release:
       * `REPO_NAME` with the name of the repository where the Helm chart is located.
       * `CHART_NAME` with the name of the Helm chart as it appears in the repository.
 
-
      :::note
      The `helm fetch` command was replaced by `helm pull` in Helm v3. For more information, see [Migrating Helm v2 to v3](https://helm.sh/docs/topics/v2_v3_migration/#overview-of-helm-3-changes) in the Helm documentation.
      :::
