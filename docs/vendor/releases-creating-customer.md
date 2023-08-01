@@ -110,7 +110,7 @@ You can unarchive by clicking **Unarchive Customer** in the customer's **Custome
 
 ## Filter and Download Customer Data
 
-The **Customers** page provides a standard text search box. It also provides filters that help you find customers based on whether they are active, by their license type, or by channel name. You can also download customer data to a CSV file and export it for further analysis.
+The **Customers** page provides a standard text search box and filters that help you find customers based on whether they are active, by their license type, or by channel name. You can also download customer data to a CSV file and export it for further analysis.
 
 For example, this data can help you determine which customers are inactive and might be likely to churn, or see which customers are on a vulnerable application version so you can support them in upgrading to the latest stable version.
 
@@ -130,7 +130,9 @@ To filter the list of customers:
 
   The search results display in the list.
 
-1. Select **Reset** to delete the selected filters and reset to the full customer list view.
+1. (Optional) Enter text in the search box to refine the search results, if needed.
+
+1. (Optional) You can deselect specific filters as needed, or select **Reset** to delete all of the filters and reset to the full customer list view.
 
 ### Download {#download}
 
