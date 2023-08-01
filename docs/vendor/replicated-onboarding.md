@@ -211,8 +211,8 @@ This section provides a checklist of key Replicated features to integrate with y
 <table>
   <tr>
     <th width="20%">Feature</th>
-    <th width="40%">Description</th>
-    <th width="40%">How to</th>
+    <th width="50%">Description</th>
+    <th width="30%">How to</th>
   </tr>
   <tr>
     <td>Preflight checks</td>
@@ -289,6 +289,14 @@ This section provides a checklist of key Replicated features to integrate with y
     <td><p>Verify the signatures of license fields when you check customer entitlements in your application.</p>
     <p><strong>Estimated time:</strong> 2 hours, including time to add entitlement checks in your application if you have not already</p></td>
     <td><a href="/vendor/licenses-verify-fields-sdk-api">Verifying License Field Signatures for Helm Installations</a>
+    </td>
+  </tr>
+    <tr>
+    <td>Compatibility matrix</td>
+    <td><p>Quickly create ephemeral clusters for development, support, and testing.</p>
+    <p><strong>Estimated time:</strong> Minutes to create a cluster with the replicated CLI, plus time for developing or testing on the cluster. Optionally, an additional 2 hours to configure GitHub Actions in your CI pipeline to automatically test releases with the compatibility matrix.</p>
+    </td>
+    <td><a href="/vendor/testing-how-to">Using the Compatibility Matrix</a>
     </td>
   </tr>
   <tr>
