@@ -82,23 +82,31 @@ The `kots/app/[:appId]/installer/promote` policy does not grant the holder permi
 
 Grants the holder permission to create a new license in the specified application(s).
 
-### kots/app/[:appId]/license/[:licenseId]/read
+### kots/app/[:appId]/license/[:customerId]/read
 
-Grants the holder permission to view the license specified by ID. If this is denied, the licenses will not show up in search, CSV export or on the Vendor Portal.
+Grants the holder permission to view the license specified by ID. If this is denied, the licenses will not show up in search, CSV export or on the Vendor Portal, and the holder will not be able to subscribe to this license's instance notifications.
 
-### kots/app/[:appId]/license/[:licenseId]/update
+### kots/app/[:appId]/license/[:customerId]/update
 
-Grants the holder permission to edit the license specified (by ID) for the specified application(s).
+Grants the holder permission to edit the license specified by ID for the specified application(s).
 
-### kots/license/[:licenseId]/airgap/password
+### kots/app/[:appId]/license/[:customerId]/slack-notifications/read
+
+Grants the holder permission to view the team's Slack notification subscriptions for instances associated with the specified license.
+
+### kots/app/[:appId]/license/[:customerId]/slack-notifications/update
+
+Grants the holder permission to edit the team's Slack notification subscriptions for instances associated with the specified license.
+
+### kots/license/[:customerId]/airgap/password
 
 Grants the holder permission to generate a new download portal password for the license specified (by ID) for the specified application(s).
 
-### kots/license/[:licenseId]/archive
+### kots/license/[:customerId]/archive
 
 Grants the holder permission to archive the specified license (by ID).
 
-### kots/license/[:licenseId]/unarchive
+### kots/license/[:customerId]/unarchive
 
 Grants the holder permissions to unarchive the specified license (by ID).
 
@@ -162,6 +170,18 @@ Grants the holder permission to push images into Replicated registry.
 
 ## Team
 
+### team/auditlog/read
+
+Grants the holder permission to view the audit log for the team.
+
+### team/authentication/update
+
+Grants the holder permission to manage the following team authentication settings: Google authentication, Auto-join, and SAML authentication.
+
+### team/authentication/read
+
+Grants the holder permission to read the following authentication settings: Google authentication, Auto-join, and SAML authentication.
+
 ### team/integration/list
 
 Grants the holder permission to view team's integrations.
@@ -190,21 +210,13 @@ Grants the holder permission to invite additional people to the team.
 
 Grants the holder permission to delete other team members.
 
-### team/serviceaccount/list
+### team/notifications/slack-webhook/read
 
-Grants the holder permission to list service accounts.
+Grants the holder permission to view the team's Slack webhook for instance notifications.
 
-### team/serviceaccount/create
+### team/notifications/slack-webhook/update
 
-Grants the holder permission to create new service accounts.
-
-### team/serviceaccount/[:name]/delete
-
-Grants the holder permission to delete the service account identified by the name specified.
-
-### team/auditlog/read
-
-Grants the holder permission to view the audit log for the team.
+Grants the holder permission to edit the team's Slack webhook for instance notifications.
 
 ### team/policy/read
 
@@ -222,17 +234,21 @@ Grants the holder permission to delete RBAC policies for the team.
 
 Grants the holder permission to create RBAC policies for the team.
 
-### team/authentication/update
-
-Grants the holder permission to manage the following team authentication settings: Google authentication, Auto-join, and SAML authentication.
-
-### team/authentication/read
-
-Grants the holder permission to read the following authentication settings: Google authentication, Auto-join, and SAML authentication.
-
 ### team/security/update
 
 Grants the holder permission to manage team password requirements including two-factor authentication and password complexity requirements.
+
+### team/serviceaccount/list
+
+Grants the holder permission to list service accounts.
+
+### team/serviceaccount/create
+
+Grants the holder permission to create new service accounts.
+
+### team/serviceaccount/[:name]/delete
+
+Grants the holder permission to delete the service account identified by the name specified.
 
 ### team/support-issues/read
 

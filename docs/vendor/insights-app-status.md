@@ -27,20 +27,20 @@ To enable status informers for your application, do one of the following, depend
 
 ### Helm Installations 
 
-For applications installed with Helm, the Replicated SDK automatically detects and reports the status of the resources that are part of the Helm release. For information, see [Using the SDK with Your Application (Beta)](replicated-sdk-using).
+For applications installed with Helm, the Replicated SDK automatically detects and reports the status of the resources that are part of the Helm release. For information, see [How to Distribute the SDK](replicated-sdk-overview#how-to-distribute-the-sdk) in _About the Replicated SDK_..
 
 You can optionally configure custom status informers by overriding the `statusInformers` value in the Replicated SDK chart. For example:
 
 ```yaml
 # Helm chart values.yaml file 
 
-replicated:
+replicated-sdk:
   statusInformers:
     - deployment/nginx
     - statefulset/mysql
 ```
 :::note
-When the `replicated.statusInformers` field is set, the SDK detects and reports the status of only the resources included in the `replicated.statusInformers` field. 
+When the `replicated-sdk.statusInformers` field is set, the SDK detects and reports the status of only the resources included in the `replicated-sdk.statusInformers` field. 
 :::
 
 ### KOTS Installations

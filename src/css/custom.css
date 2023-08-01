@@ -139,6 +139,63 @@ ol ol ol {
   justify-content: center !important;
 }
 
+/* Landing page styling */
+
+.tile__container {
+  display: flex;
+  flex-direction: row;
+  gap: 0.7em;
+}
+
+.tile__container > ul {
+  padding: 1.5em;
+  list-style: none;
+  border-radius: 7px;
+  border: 1px solid rgba(88,88,88,0.2);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tile__container > ul:hover {
+  border: 1px solid rgba(88,88,88,0.5);
+  background-image: linear-gradient(to bottom right, rgba(88,88,88,0.03), rgba(88,88,88,0.01));
+}
+
+[data-theme='dark'] .tile__container > ul:hover {
+  background-image: linear-gradient(to bottom right, rgba(88,88,88,0.08), rgba(88,88,88,0.02));
+}
+
+.tile__header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.0em;
+  font-size: 1.25em;
+}
+
+.tile__header img {
+  max-width: 2.75em;
+  height: 2.75em;
+  background-color:rgba(255,72,86,0.1);
+  border-radius: 7px;
+}
+
+#tile__header__helm {
+  background-color:rgba(15, 22, 137,0.05);
+}
+
+[data-theme='dark'] #tile__header__helm {
+  background-color:rgb(243,243,249);
+}
+
+@media (max-width: 1300px) {
+  .tile__container {
+    flex-direction: column;
+  }
+}
+
 /*Sidebar Styling*/
 
 .menu__list-item > h5 {
@@ -146,6 +203,18 @@ ol ol ol {
   margin: 2.5rem 0 1.5rem 0;
 }
 
+.menu__list-item__home-link > a {
+  font-weight: bold;
+  margin: 10px 0 25px 0;
+}
+
+#kots {
+  max-width: 75px;
+}
+
+[data-theme='dark'] #kots {
+  content:url("/images/icons/kots_w.png");
+}
 
 /* Release Note label styling */
 

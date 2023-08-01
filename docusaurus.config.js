@@ -85,8 +85,8 @@ const config = {
                 to: 'release-notes/rn-whats-new',
               },
               {
-                label: 'Getting Started Tutorials',
-                to: 'vendor/tutorial-ui-setup',
+                label: 'Replicated Quick Start',
+                to: 'vendor/replicated-onboarding',
               },
             ],
           },

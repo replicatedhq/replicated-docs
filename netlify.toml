@@ -91,11 +91,11 @@
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/helm-installing-native-helm"
-  to="https://docs.replicated.com/vendor/helm-overview"
+  to="https://docs.replicated.com/vendor/distributing-overview"
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/helm-processing"
-  to="https://docs.replicated.com/vendor/helm-overview"
+  to="https://docs.replicated.com/vendor/distributing-overview"
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/team-management-rbac-about"
@@ -110,6 +110,21 @@
   from="https://docs.replicated.com/vendor/custom-domains-download-portal"
   to="https://docs.replicated.com/vendor/custom-domains-using"
 
+[[redirect]]
+  from="https://docs.replicated.com/vendor/helm-release-creating-package"
+  to="https://docs.replicated.com/vendor/helm-install-release" 
+
+[[redirect]]
+  from="https://docs.replicated.com/vendor/helm-release"
+  to="https://docs.replicated.com/vendor/helm-native-v2-using"   
+
+[[redirect]]
+  from="https://docs.replicated.com/vendor/helm-overview"
+  to="https://docs.replicated.com/vendor/distributing-overview"
+
+[[redirect]]
+  from="https://docs.replicated.com/vendor/helm-install"
+  to="https://docs.replicated.com/vendor/distributing-overview"    
 
 ###################################################
 # Redirects To the Enterprise Section

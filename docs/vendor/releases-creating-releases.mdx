@@ -1,4 +1,3 @@
-import RepositoryCicdNote from "../partials/releases/_repository-cicd-note.mdx"
 import RequiredReleasesLimitations from "../partials/releases/_required-releases-limitations.mdx"
 import RequiredReleasesDescription from "../partials/releases/_required-releases-description.mdx"
 
@@ -6,13 +5,13 @@ import RequiredReleasesDescription from "../partials/releases/_required-releases
 
 This topic describes how to use the Replicated vendor portal to create and promote versions of your application, edit releases, edit release properties, and archive releases.
 
-<RepositoryCicdNote/>
-
 ## Create a Release
 
-You can use standard manifest files or Helm charts to create a release. 
+A release contains one or more Helm charts. Alternatively, vendors that support Replicated KOTS installations can create a release with standard Kubernetes manifests only or use a combination of standard manifests and Helm charts.
 
-If you are using Helm charts, make sure that you first create the Helm chart package. For more information, see [Creating a Helm Chart Package](helm-release-creating-package).
+:::note
+You must package each Helm chart that you want to include in a release and its dependencies to a `.tgz` file before you can add it to the release. For more information, see [Packaging a Helm Chart for a Release](helm-install-release).
+:::
 
 To create and promote a release in the vendor portal:
 
@@ -24,11 +23,28 @@ To create and promote a release in the vendor portal:
 
   [View a larger image](/images/release-create-new.png)
 
-1. Drag and drop your application files to the file directory in the YAML editor.
+1. If a drop down is displayed, select one of the following options:
+   * **Create Helm-only release**: Create a release with one or more Helm charts. Supports installations with the Helm CLI only.
+   * **Create KOTS release**: Create a release with one or more Helm charts or standard Kubernetes manifests. Supports installations with Replicated KOTS. For Helm charts, supports installation with KOTS and installation with the Helm CLI in the same release.
 
-  You can click the plus icon to add a new, untitled YAML file.
+   If no drop down is displayed, continue to the next step.  
 
-1. Edit the YAML files as needed, and click **Save release**. This saves a draft that you can continue to edit until you promote it.
+1. Add your files to the release:
+   * For Helm-only releases, in the **Upload Helm Chart** dialog, drag and drop or select a Helm chart `.tgz` file.
+   
+     <img src="/images/upload-helm-chart-modal.png" alt="upload helm chart dialog" width="550px"/>
+
+     [View a larger image](/images/upload-helm-chart-modal.png)
+
+   * For KOTS releases, drag and drop your application files to the file directory in the YAML editor. You can also click the plus icon to add a new, untitled YAML file.
+   
+     For any Helm charts that you add, in the **Select Installation Method** dialog, select the version of the HelmChart custom resource that KOTS will use to install the chart. kots.io/v1beta2 is recommended. For more information about the HelmChart custom resource, see [Configuring the HelmChart Custom Resource](helm-native-v2-using).
+
+     <img src="/images/helm-select-install-method.png" alt="select installation method dialog" width="550px"/>
+
+     [View a larger image](/images/helm-select-install-method.png)
+
+1. Click **Save release**. This saves a draft that you can continue to edit until you promote it.
    
 1. Click **Promote**. In the Promote Release dialog that opens, edit the fields:
 
@@ -41,18 +57,19 @@ To create and promote a release in the vendor portal:
   </tr>
   <tr>
     <td>Channel</td>
-    <td>Select the channel where you want to promote the release.</td>
+    <td>Select the channel where you want to promote the release. If you are not sure which channel to use, use the default Unstable channel.</td>
   </tr>
   <tr>
     <td>Version label</td>
     <td>
-      Enter a version label.
+      <p>Enter a version label.</p>
+      <p>If you have one or more Helm charts in your release, the vendor portal automatically populates this field. You can change the version label to any <code>version</code> specified in any of the <code>Chart.yaml</code> files included in the release.</p>
     </td>
   </tr>
   <tr>
     <td>Requirements</td>
     <td>
-      Select <strong>Prevent this release from being skipped during upgrades</strong> to mark the release as required. Applies only to releases that support installation with Replicated KOTS.
+      (KOTS Only) Select the <strong>Prevent this release from being skipped during upgrades</strong> to mark the release as required for KOTS installations. This option does not apply to installations with Helm.
     </td>
   </tr>
   <tr>

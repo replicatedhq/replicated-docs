@@ -1,14 +1,43 @@
 ---
 toc_max_heading_level: 2
+pagination_next: null
+pagination_prev: null
 ---
 
 # Kubernetes Installer (kURL) Release Notes
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.07.31-0
+
+Released on July 31, 2023
+
+### New Features {#new-features-v2023-07-31-0}
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.66.0-48.1.2.
+* Adds [Metrics Server add-on](https://kurl.sh/docs/add-ons/metrics-server) version 0.6.4.
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.2.
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.25.2.
+
+## v2023.07.21-0
+
+Released on July 21, 2023
+
+:::important
+kURL v2023.07.21-0 has a known issue for the OpenEBS to Rook storage migration feature that causes a delay in storage availability when using the feature on new installations. Do not use this feature until the known issue is resolved.
+:::
+
+### New Features {#new-features-v2023-07-21-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.27.4 1.26.7 1.25.12 1.24.16.
+* Updates [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) 1.27.3 to use crictl v1.27.1.
+* Updates [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) with runc v1.1.8.
+
 ## v2023.07.11-0
 
 Released on July 11, 2023
+
+:::important
+kURL v2023.07.11-0 has a known issue for the OpenEBS to Rook storage migration feature that causes a delay in storage availability when using the feature on new installations. Do not use this feature until the known issue is resolved.
+:::
 
 ### Bug Fixes {#bug-fixes-v2023-07-11-0}
 * Fixes support for RHEL 9.2
@@ -17,6 +46,10 @@ Released on July 11, 2023
 ## v2023.07.10-0
 
 Released on July 10, 2023
+
+:::important
+kURL v2023.07.10-0 has a known issue for the OpenEBS to Rook storage migration feature that causes a delay in storage availability when using the feature on new installations. Do not use this feature until the known issue is resolved.
+:::
 
 ### Improvements {#improvements-v2023-07-10-0}
 * Clarifies error message when installing on RHEL 9 variants without containerd.
@@ -27,6 +60,10 @@ Released on July 10, 2023
 ## v2023.07.06-0
 
 Released on July 6, 2023
+
+:::important
+kURL v2023.07.06-0 has a known issue for the OpenEBS to Rook storage migration feature that causes a delay in storage availability when using the feature on new installations. Do not use this feature until the known issue is resolved.
+:::
 
 ### New Features {#new-features-v2023-07-06-0}
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) versions RELEASE.2023-06-23T20-26-00Z and RELEASE.2023-06-29T05-12-28Z.

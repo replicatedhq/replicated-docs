@@ -4,7 +4,7 @@ import ReplicatedHelmMigration from "../partials/helm/_replicated-helm-migration
 
 This topic describes how to configure the Replicated HelmChart custom resource version `kots.io/v1beta2` to support Helm chart installations with KOTS. It also includes guidance for updating the HelmChart custom resource from `kots.io/v1beta1` to `kots.io/v1beta2`. For more information about how KOTS installs Helm charts, see [About Distributing Helm Charts with KOTS](helm-native-about).
 
-## Overview
+## Workflow
 
 Supporting KOTS installations of your Helm chart requires that you configure a HelmChart custom resource. The HelmChart custom resource provides instructions for KOTS about how to deploy your Helm chart. Additionally, the HelmChart custom resource creates a mapping between KOTS and your Helm chart to allow you to dynamically set values during installation or upgrade. For more information about the HelmChart custom resource, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
