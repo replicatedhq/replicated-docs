@@ -295,7 +295,7 @@ This section provides a checklist of key Replicated features to integrate with y
     <td><p>Quickly create ephemeral clusters for development, support, and testing.</p>
     <p><strong>Estimated time:</strong> Minutes to create a cluster with the replicated CLI, plus time for developing or testing on the cluster. Optionally, an additional 2 hours to configure GitHub Actions in your CI pipeline to automatically test releases with the compatibility matrix.</p>
     </td>
-    <td><a href="/vendor/testing-how to">Using the Compatibility Matrix</a>
+    <td><a href="/vendor/testing-how-to">Using the Compatibility Matrix</a>
     </td>
   </tr>
   <tr>
