@@ -17,7 +17,7 @@ The following sections describe Replicated key features that simplify the comple
 Replicated provides features for distributing and managing your application in diverse environments, including:
 
 - Use release channels and versioning for controlled customer distribution and effective management of your product lifecycle. See [About Releases](/vendor/releases-about) and [About Channels](/vendor/releases-about-channels).
-<!-- - Provision test environments quickly using the compatibility matrix to create a variety of customer-representative environments -->
+- Provision test environments quickly using the compatibility matrix to create a variety of customer-representative environments. See [About the Compatibility Matrix](/vendor/testing-about).
 - Create and manage custom license entitlements with granular control and flexibility, including free licenses for trial, dev, and community licenses. See [Creating and Managing Customers](/vendor/releases-creating-customer).
 - Create custom domains to brand your customer-facing URLs. See [Using Custom Domains](/vendor/custom-domains-using).
 - Use the proxy service to grant proxy access to private images without exposing registry credentials to your customers. See [About Proxying Image with Replicated](/vendor/private-images-about).

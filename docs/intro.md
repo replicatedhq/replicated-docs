@@ -151,6 +151,24 @@ pagination_next: null
   </ul>
   <ul class="tile">
     <li class="tile__header">
+        <li><img src="images/icons/release.png" alt="rocket ship icon"></img></li>
+        <p>Compatibility Matrix</p>
+    </li>
+    <li>
+      <a href="vendor/testing-about">About the compatibility matrix</a>
+    </li>
+    <li>
+      <a href="vendor/testing-how-to">Create clusters</a>
+    </li>
+    <li>
+      <a href="vendor/testing-supported-clusters">Supported cluster types</a>
+    </li>
+    <li>
+      <a href="reference/replicated-cli-cluster-create">replicated CLI reference</a>
+    </li>
+  </ul>
+  <ul class="tile">
+    <li class="tile__header">
         <li><img src="images/icons/dashboard_1.png" alt="dashboard icon"></img></li>
         <p>Insights and Telemetry</p>
     </li>
