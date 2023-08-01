@@ -184,7 +184,7 @@ Items have a `name`, `title`, `type`, and other optional properties.
   <tr>
     <th>Description</th>
     <td>
-      <p>Items can be affixed <code>left</code> or <code>right</code>. Affixing items allows them to appear in the admin console on the same line.<br></br><br></br>Specify the <code>affix</code> field to all of the items in a particular group to prevent the appearance of crowded text. </p>
+      <p>Items can be affixed <code>left</code> or <code>right</code>. Affixing items allows them to appear in the admin console on the same line.<br></br><br></br>Specify the <code>affix</code> field to all of the items in a particular group to preserve the line spacing and prevent the appearance of crowded text. </p>
     </td>
   </tr>
   <tr>
