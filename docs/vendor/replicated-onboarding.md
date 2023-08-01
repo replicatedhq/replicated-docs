@@ -2,6 +2,8 @@
 pagination_next: null
 ---
 
+import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
+
 # Replicated Quick Start
 
 Welcome! This topic provides an onboarding workflow and a feature checklist to help you get started with Replicated. For more information about Replicated, see [Introduction to Replicated](../intro-replicated).
@@ -83,13 +85,7 @@ To begin onboarding to the Replicated platform with a Helm chart:
 
 1. In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
 
-   ```yaml
-   # Chart.yaml
-   dependencies:
-   - name: replicated-sdk
-     repository: oci://registry.replicated.com/library
-     version: 0.0.1-beta.1
-   ```
+   <DependencyYaml/>
 
    The Replicated SDK is a Helm chart that provides access to Replicated features and can be installed as a small service alongside your application. For more information, see [About the Replicated SDK (Beta)](/vendor/replicated-sdk-overview).
 
