@@ -122,6 +122,15 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Compatibility Testing',
+      items: [
+        'vendor/testing-about',
+        'vendor/testing-supported-clusters',
+        'vendor/testing-how-to',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Sharing Installation Files and Commands',
       items: [ 
         'vendor/releases-sharing-license-install-script',        
@@ -627,6 +636,10 @@ const sidebars = {
         'reference/replicated-cli-channel-enable-semver',
         'reference/replicated-cli-channel-inspect',
         'reference/replicated-cli-channel-ls',
+        'reference/replicated-cli-cluster-create',
+        'reference/replicated-cli-cluster-kubeconfig',
+        'reference/replicated-cli-cluster-ls',
+        'reference/replicated-cli-cluster-rm',
         'reference/replicated-cli-customer-create',
         'reference/replicated-cli-customer-download-license',
         'reference/replicated-cli-customer-ls',
