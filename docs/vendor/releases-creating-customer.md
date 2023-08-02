@@ -110,9 +110,9 @@ You can unarchive by clicking **Unarchive Customer** in the customer's **Custome
 
 ## Filter and Download Customer Data
 
-The **Customers** page provides a standard text search box and filters that help you find customers based on whether they are active, by their license type, or by channel name. You can also download customer data to a CSV file and export it for further analysis.
+The **Customers** page provides a standard search box and filters that help you find customers based on whether they are active, by license type, or by channel name. You can also download customer data to a CSV file further analysis.
 
-For example, this data can help you determine which customers are inactive and might be likely to churn, or see which customers are on a vulnerable application version so you can support them in upgrading to the latest stable version.
+For example, you can use the data to determine which customers are inactive and might be likely to churn, or see which customers are on a vulnerable application version and contact them about upgrading to the latest stable version.
 
 ### Filter
 
@@ -124,22 +124,20 @@ To filter the list of customers:
 
   [View a larger version of this image](/images/customers-filter.png)
 
-1. From the filter dropdown list, select active or inactive customers, license type (Any, Development, Trial, Paid, Community), or channel (Any, Stable, Beta, Unstable). 
+1. From the filter dropdown list, select active or inactive customers, license type (**Any**, **Development**, **Trial**, **Paid**, **Community**), or channel (**Any**, **Stable**, **Beta**, **Unstable**). 
 
-  You can search using more than one criteria, such as Inactive, Active, Paid, and Stable. However, you can select only one license type and one channel at a time. So, if you want information about multiple license types or channels, you can download a CSV file instead. For more information, see [Download](#download).
+  You can search using more than one criteria, such as Inactive, Active, Paid, and Stable. However, you can select only one license type and one channel at a time. If you want information about multiple license types or channels, you can download a CSV file instead. For more information, see [Download](#download).
 
   The search results display in the list.
 
 1. (Optional) Enter text in the search box to refine the search results, if needed.
 
-1. (Optional) You can deselect specific filters as needed, or select **Reset** to delete all of the filters and reset to the full customer list view.
+1. (Optional) You can deselect specific filters as needed, or select **Reset** to delete all of the filters and view the full customer list.
 
 ### Download {#download}
 
-You can download all of your customer data to a CSV file and use the data for analysis. For example, you can import the data to a spreadsheet and then sort by license types.
+You can download all of your customer data to a CSV file for analysis. For example, you can import the data to a spreadsheet and then sort by license types.
 
 To download customer data, select **Download CSV** in the upper right corner of the **Customers** page.
 
 ![Filter customer list](/images/customers-download-csv.png)
-
-[View a larger version of this image](/images/customers-download-csv.png)
