@@ -124,3 +124,14 @@ For more information about viewing customer and instance insights in the vendor 
 You can run the Replicated SDK in integration mode to more quickly test new functionality for your application. Integration mode allows you to use mock data to test changes locally without having to create a release in the vendor portal and then install your Helm chart from the Replicated registry.
 
 For more information, see [Developing Against the SDK API (Beta)](replicated-sdk-development).
+
+## Using an SDK-enabled Chart in a KOTS Release
+
+Many vendors will find it convenient to use the same Helm Chart for KOTS releases that they use for Helm CLI releases, in some cases even exposing the same Replicated release to both sets of customers. However, running both KOTS and the SDK can cause duplication of instance data in the Vendor Portal and related APIs. To avoid this, you will need to create a single Helm Chart that contains the Replicated SDK, but with a conditional value to exclude the SDK when the chart is being deployed by KOTS. To do this, you will need to make three changes to your application.
+
+1. Adjust your `dependencies` entry to make SDK inclusion configurable [Example](https://github.com/dexhorthy/wordpress-enterprise/blob/main/Chart.yaml#L12)
+1. Add a value to your default `values.yaml` to include the SDK by default [Example](https://github.com/dexhorthy/wordpress-enterprise/blob/main/values.yaml#L3-L4)
+1. Adjust your `HelmChart` custom resource that KOTS consumes to pass a value that disables the SDK [Example](https://github.com/dexhorthy/wordpress-enterprise/blob/main/manifests/myapp.yaml#L13-L14)
+
+Note that in the case where KOTS deploys a chart and the SDK is not included, endpoints for version/update checks will not be available. Fortunately, your end users will have a UI for version management via the KOTS admin console.
+
