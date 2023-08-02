@@ -45,9 +45,9 @@ When serving requests, if the upstream APIs become unavailable, the SDK serves f
 
 ## Replicated Helm Values {#replicated-values}
 
-When a customer installs your Helm chart from the Replicated registry, the Replicated registry injects values into the `global.replicated` and `replicated-sdk` fields of the Helm chart values file. 
+When a customer installs your Helm chart from the Replicated registry, the Replicated registry injects values into the `global.replicated` field of the Helm chart values file. Additionally, when the Replicated SDK is installed alongside your application, the registry injects values into the `replicated-sdk` field. 
 
-The following is an example of a Helm values file containing only the information injected by the Replicated registry:
+The following is an example of a Helm values file containing both the `global.replicated` and `replicated-sdk` fields injected by the Replicated registry:
 
 ```yaml
 # Helm values.yaml
