@@ -54,10 +54,10 @@ metadata:
   name: tls-config
 data:
   tls.crt: |
-    {{repl ConfigOptionData "tls_certificate_file" | nindent 4 }}
+    repl{{- ConfigOptionData "tls_certificate_file" | nindent 4 }}
 
   tls.key: |
-    {{repl ConfigOptionData "tls_private_key_file" | nindent 4 }}
+    repl{{- ConfigOptionData "tls_private_key_file" | nindent 4 }}
 ```
 
 ## ConfigOptionFilename
