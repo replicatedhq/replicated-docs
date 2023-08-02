@@ -9,7 +9,7 @@ on:
 
 jobs:
   generate-release-notes-pr:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v3
 
@@ -20,8 +20,8 @@ jobs:
       uses: replicatedhq/release-notes-generator@main
       with:
         owner-repo: replicatedhq/replicated-sdk
-        head: v$SDK_VERSION
-        title: $SDK_VERSION
+        head: v$REPLICATED_SDK_VERSION
+        title: $REPLICATED_SDK_VERSION
         include-pr-links: false
         github-token: ${{ secrets.GITHUB_TOKEN }}
 
