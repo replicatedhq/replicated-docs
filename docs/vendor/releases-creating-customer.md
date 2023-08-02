@@ -110,7 +110,7 @@ You can unarchive by clicking **Unarchive Customer** in the customer's **Custome
 
 ## Filter and Download Customer Data
 
-The **Customers** page provides a search box and filters that help you find customers based on whether they are active, by license type, or by channel name. You can also download customer data to a CSV file further analysis.
+The **Customers** page provides a search box and filters that help you find customers based on whether they are active, by license type, or by channel name. You can also download customer data to a CSV file for further analysis.
 
 For example, you can use the data to determine which customers are inactive and might be likely to churn, or see which customers are on a vulnerable application version and contact them about upgrading to the latest stable version.
 
@@ -124,7 +124,7 @@ To filter the list of customers:
 
   [View a larger version of this image](/images/customers-filter.png)
 
-1. From the filter dropdown list, select active or inactive customers, license type (**Any**, **Development**, **Trial**, **Paid**, **Community**), or channel (**Any**, **Stable**, **Beta**, **Unstable**). 
+1. From the filter dropdown list, select active or inactive customers, license type (**Any**, **Development**, **Trial**, **Paid**, **Community**), or channel. 
 
   You can search using more than one criteria, such as Active, Paid, and Stable. However, you can select only one license type and one channel at a time. If you want to filter information using multiple license types or channels, you can download a CSV file instead. For more information, see [Download](#download).
 
