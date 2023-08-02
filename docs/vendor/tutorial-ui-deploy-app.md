@@ -80,6 +80,12 @@ To install and deploy the application:
 
   If you are using a VM that is behind a firewall and you get an error message, you might need to create a firewall rule to enable access to port 8800. For more information, see [Installation Requirements](/enterprise/installing-general-requirements).
 
+1. Under **Customers** in the vendor portal, select the customer name to open the **Reporting** page. In the **Instances** pane, you can verify that the instance is active and drill down from the details area to see the instance details. For more information, see [Customer Reporting](customer-reporting) and [Instance Details](instance-insights-details).
+
+  ![Customer instance reporting](/images/customer-instances-tutorial.png)
+
+  [View a larger version of this image](/images/customer-instances-tutorial.png)
+
 ## Next Step
 
 Continue to [Step 6: Create a New Version](tutorial-ui-create-new-version) to make a change to one of the manifest files and promote a new release.
