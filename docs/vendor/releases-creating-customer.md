@@ -106,3 +106,40 @@ To archive a customer:
 1. Click **Archive Customer**. In the confirmation dialog, click **Archive Customer** again.
 
 You can unarchive by clicking **Unarchive Customer** in the customer's **Customer details** page.
+
+
+## Filter and Download Customer Data
+
+The **Customers** page provides a search box and filters that help you find customers based on whether they are active, by license type, or by channel name. You can also download customer data to a CSV file for further analysis.
+
+For example, you can use the data to determine which customers are inactive and might be likely to churn, or see which customers are on a vulnerable application version and contact them about upgrading to the latest stable version.
+
+### Filter
+
+To filter the list of customers:
+
+1. On the **Customers** page, select the filter icon to the right of the Search box. 
+
+  ![Filter customer list](/images/customers-filter.png)
+
+  [View a larger version of this image](/images/customers-filter.png)
+
+1. From the filter dropdown list, select active or inactive customers, license type (**Any**, **Development**, **Trial**, **Paid**, **Community**), or channel. 
+
+  You can search using more than one criteria, such as Active, Paid, and Stable. However, you can select only one license type and one channel at a time. If you want to filter information using multiple license types or channels, you can download a CSV file instead. For more information, see [Download](#download).
+
+  The search results display in the list.
+
+1. (Optional) Select **Sort** and select an option in the dropdown list to sort the list by creation date, customer name, expiry date, or license type. 
+
+1. (Optional) Enter text in the search box to refine the search results, if needed.
+
+1. (Optional) You can deselect specific filters as needed, or select **Reset** to delete all of the filters and view the full customer list.
+
+### Download {#download}
+
+You can download all of your customer data to a CSV file for analysis. For example, you can import the data to a spreadsheet and then sort by license types.
+
+To download customer data, select **Download CSV** in the upper right corner of the **Customers** page.
+
+![Filter customer list](/images/customers-download-csv.png)
