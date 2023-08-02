@@ -388,7 +388,8 @@ const sidebars = {
       items: [
         'release-notes/rn-whats-new',
         'release-notes/rn-app-manager',
-        'release-notes/rn-kubernetes-installer'
+        'release-notes/rn-kubernetes-installer',
+        'release-notes/rn-replicated-sdk'
       ],
     },
 
