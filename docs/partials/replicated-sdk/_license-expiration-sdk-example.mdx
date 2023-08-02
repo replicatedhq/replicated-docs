@@ -14,6 +14,12 @@ To revoke access to your application when a license expires:
 
   [View a larger version of this image](/images/customer-expiration-policy.png)
 
+1. (Optional) Test the `expires_at` field in your development environment:
+
+   1. Create a port forward:
+    
+   1. In another tab, run the following command to verify that you can see the correct value for the `expires_at` field for the customer
+
 1. In your application, use the `/api/v1/license/fields/expires_at` endpoint to get the `expires_at` field that you defined in the previous step.
 
     ```bash
