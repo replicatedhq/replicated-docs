@@ -1,20 +1,18 @@
+import TopicIntro from "../partials/vendor-api/_topic-intro.mdx"
 import TokensAbout from "../partials/vendor-api/_tokens-about.mdx"
+import ServiceAccounts from "../partials/vendor-api/_service-accounts.mdx"
 
 # Using Vendor API Tokens
+
+<TopicIntro/>
+
+## About Tokens
 
 <TokensAbout/>
 
 ## Service Accounts
 
-Service accounts are assigned a token and associated with an RBAC policy. Any user with the proper permissions can create, retrieve or revoke them. Admin users can assign any RBAC policy to a service account. Non-admin users can only assign their own RBAC policy.
-
-At creation time, users can also choose to limit the service account to a read-only version of the selected RBAC policy
-
-Service account names must be unique within a given team.
-
-Service account tokens are only displayed once when created. The token cannot be retrieved again after initial creation. 
-
-Updates to a service account's RBAC policy are automatically applied to its associated token. When a service account is removed, its token is also invalidated.
+<ServiceAccounts/>
 
 ## User Tokens
 
