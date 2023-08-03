@@ -10,6 +10,11 @@ pagination_prev: null
 
 ## 0.0.1-beta.1
 
+:::important
+This Beta release of the Replicated SDK includes a [name change](#improvements-0-0-1-beta-1) that will break previous integrations that were done with the alpha versions.
+If you were previously using an alpha version of the Replicated SDK make sure to update the library SDK chart name from `replicated` to `replicated-sdk`.
+:::
+
 Released on July 28, 2023
 
 ### Improvements {#improvements-0-0-1-beta-1}
