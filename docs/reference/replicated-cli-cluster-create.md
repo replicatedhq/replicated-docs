@@ -35,7 +35,7 @@ replicated cluster create [flags]
   <tr>
     <td>--instance-type</td>
     <td>string</td>
-    <td>The type of instance to use for nodes in the cluster, such as x5.xlarge.</td>
+    <td>The type of instance to use for nodes in the cluster, such as x5.xlarge. For VM-based clusters, see <a href="/vendor/testing-replicated-instance-types">Replicated Instance Types</a>.</td>
   </tr>
   <tr>
     <td>--name</td>
