@@ -101,28 +101,28 @@
   from="https://docs.replicated.com/vendor/team-management-rbac-about"
   to="https://docs.replicated.com/vendor/team-management-rbac-configuring"
 
-[[redirect]]
+[[redirects]]
   from="https://docs.replicated.com/vendor/preflight-support-bundle-creating"
   to="https://docs.replicated.com/vendor/preflight-support-bundle-about"
 
  
-[[redirect]]
+[[redirects]]
   from="https://docs.replicated.com/vendor/custom-domains-download-portal"
   to="https://docs.replicated.com/vendor/custom-domains-using"
 
-[[redirect]]
+[[redirects]]
   from="https://docs.replicated.com/vendor/helm-release-creating-package"
   to="https://docs.replicated.com/vendor/helm-install-release" 
 
-[[redirect]]
+[[redirects]]
   from="https://docs.replicated.com/vendor/helm-release"
   to="https://docs.replicated.com/vendor/helm-native-v2-using"   
 
-[[redirect]]
+[[redirects]]
   from="https://docs.replicated.com/vendor/helm-overview"
   to="https://docs.replicated.com/vendor/distributing-overview"
 
-[[redirect]]
+[[redirects]]
   from="https://docs.replicated.com/vendor/helm-install"
   to="https://docs.replicated.com/vendor/distributing-overview"    
 
