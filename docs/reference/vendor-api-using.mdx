@@ -1,11 +1,16 @@
 import TopicIntro from "../partials/vendor-api/_topic-intro.mdx"
 import TokensAbout from "../partials/vendor-api/_tokens-about.mdx"
 import ServiceAccounts from "../partials/vendor-api/_service-accounts.mdx"
+import UserTokens from "../partials/vendor-api/_user-tokens.mdx"
+import ServiceAccountsGenerate from "../partials/vendor-api/_service-accounts-generate.mdx"
+import UserTokensGenerate from "../partials/vendor-api/_user-tokens-generate.mdx"
 
 
 # Using the Vendor API v3
 
-<TopicIntro/>
+<TopicIntro/> 
+
+It also shows an example of how to pass a token in an authorization header.
 
 ## About Tokens
 
@@ -15,27 +20,21 @@ import ServiceAccounts from "../partials/vendor-api/_service-accounts.mdx"
 
 <ServiceAccounts/>
 
+## User API Tokens
+
+<UserTokens/>
+
 ## Generate an API Token
 
 To access the Vendor API, you need a User API Token or a Service Account (Team API tokens also continue to work).
 
 ### Generate a User API Token
 
-To generate a user API token:
-
-1. Log in to the vendor portal and go to the [Account Settings](https://vendor.replicated.com/account-settings) page.
-1. Under **User API Tokens**, click **New User API Token**.
-1. Name the token and select the required permissions, and click **Create token**.
-1. Copy the user API token and save it in a secure location. The token will not be available to view again.
+<UserTokensGenerate/>
 
 ### Generate a Service Account
 
-To generate a service account:
-
-1. Log in to the vendor portal and go to the Team page.
-1. Navigate to [Service Accounts](https://vendor.replicated.com/team/serviceaccounts), and click **New Service Account**.
-1. Name the token and select the RBAC policy. Optionally, check the box to limit the token to a read-only version of the selected RBAC policy. Click **Create Service Account**.
-1. Copy the user API token and save it in a secure location. The token will not be available to view again.
+<ServiceAccountsGenerate/>
 
 ## Using API Tokens
 

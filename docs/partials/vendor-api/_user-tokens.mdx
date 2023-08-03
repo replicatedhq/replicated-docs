@@ -1,0 +1,11 @@
+User tokens are private to the user creating the token. User tokens assume the user's account when used, including RBAC permissions.
+
+ Tied to a user account so the user inherits the RBAC policy and only exists if the user exists in the team. Any changes to the user's RBAC are applied to all User API Tokens.
+
+User token names must be unique per user.
+
+User tokens are only displayed once when created. The token cannot be retrieved again after initial creation. 
+
+Revoking a user token will immediately invalidate that token. Additionally, deleting the user account also deletes all user tokens that belong to the user account.
+
+Updates to a user's RBAC role are applied to the user's tokens.

@@ -625,8 +625,8 @@ const sidebars = {
       type: 'category',
       label: 'replicated CLI',
       items: [
-        'reference/replicated-cli-installing',
         'reference/replicated-cli-tokens',
+        'reference/replicated-cli-installing',
         'reference/replicated-cli-app-create',
         'reference/replicated-cli-app-delete',
         'reference/replicated-cli-app-ls',

@@ -1,8 +1,11 @@
 import TopicIntro from "../partials/vendor-api/_topic-intro.mdx"
 import TokensAbout from "../partials/vendor-api/_tokens-about.mdx"
 import ServiceAccounts from "../partials/vendor-api/_service-accounts.mdx"
+import UserTokens from "../partials/vendor-api/_user-tokens.mdx"
+import ServiceAccountsGenerate from "../partials/vendor-api/_service-accounts-generate.mdx"
+import UserTokensGenerate from "../partials/vendor-api/_user-tokens-generate.mdx"
 
-# Using Vendor API Tokens
+# Generating Vendor API Tokens
 
 <TopicIntro/>
 
@@ -14,20 +17,18 @@ import ServiceAccounts from "../partials/vendor-api/_service-accounts.mdx"
 
 <ServiceAccounts/>
 
-## User Tokens
+## User API Tokens
 
-User tokens are private to the user creating the token. User tokens assume the user's account when used, including RBAC permissions.
+<UserTokens/>
 
-User token names must be unique per user.
+## Generate a User API Token
 
-User tokens are only displayed once when created. The token cannot be retrieved again after initial creation. 
+<UserTokensGenerate/>
 
-Revoking a user token will immediately invalidate that token. Additionally, deleting the user account also deletes all user tokens that belong to the user account.
+## Generate a Service Account
 
-Updates to a user's RBAC role are applied to the user's tokens. 
+<ServiceAccountsGenerate/>
 
-## Team Tokens
+## Next Step
 
-Team tokens are deprecated, but continue to function similar to Service Accounts. Team tokens are not connected to a user account lifecycle. Team tokens do not have an RBAC policy applied other than Admin or Read Only. All use cases for a team token can be replaced with a Service Account.
-
-We recommended replacing Team Tokens with Service Accounts for automation and integrations.
+Install the replicated CLI and export the token as an environment variable. For more information, see [Installing the replicated CLI](replicated-cli-installing).
