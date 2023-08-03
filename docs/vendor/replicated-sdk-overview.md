@@ -127,7 +127,7 @@ For more information, see [Developing Against the SDK API (Beta)](replicated-sdk
 
 ## Using an SDK-enabled Chart in a KOTS Release
 
-Many vendors will find it convenient to use the same Helm Chart for KOTS releases that they use for Helm CLI releases, in some cases even exposing the same Replicated release to both sets of customers. However, running both KOTS and the SDK can cause duplication of instance data in the Vendor Portal and related APIs. To avoid this, you will need to create a single Helm Chart that contains the Replicated SDK, but with a conditional value to exclude the SDK when the chart is being deployed by KOTS. To do this, you will need to make three changes to your application.
+Many vendors will find it convenient to use the same Helm Chart for KOTS releases that they use for Helm CLI releases, in some cases even exposing the same Replicated release to both sets of customers. However, running both KOTS and the SDK can cause duplication of instance data in the Vendor Portal and related APIs. To avoid this, any of your Helm Charts that contain the Replicated SDK will need a conditional value to exclude the SDK when the chart is being deployed by KOTS. To do this, you will need to make three changes to your application.
 
 1. Adjust your `dependencies` entry to make SDK inclusion configurable [Example](https://github.com/dexhorthy/wordpress-enterprise/blob/main/Chart.yaml#L12)
 1. Add a value to your default `values.yaml` to include the SDK by default [Example](https://github.com/dexhorthy/wordpress-enterprise/blob/main/values.yaml#L3-L4)
