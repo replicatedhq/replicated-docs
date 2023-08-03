@@ -6,8 +6,8 @@ on:
       version:
         description: Replicated SDK version
         required: true
-      base:
-        description: Previous SDK release tag
+      prev_version:
+        description: Previous Replicated SDK version
         required: true
 
 jobs:
@@ -20,11 +20,11 @@ jobs:
       id: release-notes
       env:
         REPLICATED_SDK_VERSION: ${{ github.event.client_payload.version }}
-        BASE_TAG: ${{ github.event.client_payload.base }}
+        PREV_REPLICATED_SDK_VERSION: ${{ github.event.client_payload.prev_version }}
       uses: replicatedhq/release-notes-generator@main
       with:
         owner-repo: replicatedhq/replicated-sdk
-        base: $BASE_TAG
+        base: $PREV_REPLICATED_SDK_VERSION
         head: v$REPLICATED_SDK_VERSION
         title: $REPLICATED_SDK_VERSION
         include-pr-links: false
