@@ -6,6 +6,9 @@ on:
       version:
         description: Replicated SDK version
         required: true
+      base:
+        description: Previous SDK release tag
+        required: true
 
 jobs:
   generate-release-notes-pr:
@@ -13,23 +16,15 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Get previous tag
-      id: get-previous-tag
-      run: |
-        git fetch -a
-        tags=($(git tag --sort="-committerdate"))
-        previous_tag=${tags[1]}
-        echo "::set-output name=previous_tag::$previous_tag"
-
     - name: Generate Release Notes
       id: release-notes
       env:
         REPLICATED_SDK_VERSION: ${{ github.event.client_payload.version }}
-        PREVIOUS_TAG: ${{ steps.get-previous-tag.outputs.previous_tag }}
+        BASE_TAG: ${{ github.event.client_payload.base }}
       uses: replicatedhq/release-notes-generator@main
       with:
         owner-repo: replicatedhq/replicated-sdk
-        base: $PREVIOUS_TAG
+        base: $BASE_TAG
         head: v$REPLICATED_SDK_VERSION
         title: $REPLICATED_SDK_VERSION
         include-pr-links: false
