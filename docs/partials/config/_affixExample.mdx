@@ -1,12 +1,17 @@
 ```yaml
-- name: username
-  title: Username
-  type: text
-  required: true
-  affix: left
-- name: password
-  title: Password
-  type: password
-  required: true
-  affix: right
+groups:
+- name: example_settings
+  title: My Example Config
+  description: Configuration to serve as an example for creating your own.
+  items:
+  - name: username
+    title: Username
+    type: text
+    required: true
+    affix: left
+  - name: password
+    title: Password
+    type: password
+    required: true
+    affix: right
 ```

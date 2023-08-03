@@ -84,7 +84,7 @@ To add fields to the admin console configuration screen:
 
    The example above includes a single group with the name `smtp_settings`.
 
-   The `items` array for the `smtp_settings` group includes the following user-input fields: `enable_smtp`, `smtp_host`, `smtp_port`, `smtp_user`, and `smtp_password`.
+   The `items` array for the `smtp_settings` group includes the following user-input fields: `enable_smtp`, `smtp_host`, `smtp_port`, `smtp_user`, and `smtp_password`. Additional item properties are available, such as `affix` to make items appear horizontally on the same line. For more information about item properties, see [Item Properties](/reference/custom-resource-config#item-properties) in Config.
 
    The following screenshot shows how the SMTP Settings group from the example YAML above displays in the admin console configuration screen during application installation:
 
