@@ -125,13 +125,8 @@ You can run the Replicated SDK in integration mode to more quickly test new func
 
 For more information, see [Developing Against the SDK API (Beta)](replicated-sdk-development).
 
-## Using an SDK-enabled Chart in a KOTS Release
+## SDK-Enabled Helm Charts with KOTS
 
-Many vendors will find it convenient to use the same Helm Chart for KOTS releases that they use for Helm CLI releases, in some cases even exposing the same Replicated release to both sets of customers. However, running both KOTS and the SDK can cause duplication of instance data in the Vendor Portal and related APIs. To avoid this, any of your Helm Charts that contain the Replicated SDK will need a conditional value to exclude the SDK when the chart is being deployed by KOTS. To do this, you will need to make three changes to your application.
+Distributing your application as one or more Helm charts is recommended because you can use the same Helm charts to support installations with both Replicated KOTS and with the Helm CLI. However, when an SDK-enabled Helm chart is installed with KOTS, instance data in the vendor portal and related APIs can be duplicated as both KOTS and the SDK are reporting data.
 
-1. Adjust your `dependencies` entry to make SDK inclusion configurable [Example](https://github.com/dexhorthy/wordpress-enterprise/blob/main/Chart.yaml#L12)
-1. Add a value to your default `values.yaml` to include the SDK by default [Example](https://github.com/dexhorthy/wordpress-enterprise/blob/main/values.yaml#L3-L4)
-1. Adjust your `HelmChart` custom resource that KOTS consumes to pass a value that disables the SDK [Example](https://github.com/dexhorthy/wordpress-enterprise/blob/main/manifests/myapp.yaml#L13-L14)
-
-Note that in the case where KOTS deploys a chart and the SDK is not included, endpoints for version/update checks will not be available. Fortunately, your end users will have a UI for version management via the KOTS admin console.
-
+To install a Helm chart that includes the SDK with KOTS, you must update the chart and the HelmChart custom resource so that the SDK is excluded from KOTS installations. For more information, see [Using an SDK-Enabled Chart for KOTS Installations](helm-kots-using-sdk).
