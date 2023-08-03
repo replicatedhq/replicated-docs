@@ -88,7 +88,7 @@ replicated-sdk:
 
 The values in the `global.replicated` field provide information about the following:
 * Details about the fields in the customer's license, such as the field name, description, signature, value, and any custom license fields that you define.
-* A base64 encoded Docker configuration file. If you use the Replicated proxy service to proxy images from an external private registry, you can use the `global.replicated.dockerconfigjson` field to create an image pull secret for the proxy service. For more information, see [Pull an Image from a Private Registry](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry) in the Kubernetes documentation. 
+* A base64 encoded Docker configuration file. If you use the Replicated proxy service to proxy images from an external private registry, you can use the `global.replicated.dockerconfigjson` field to create an image pull secret for the proxy service. For more information, see [Proxying Images for Helm Installations](/vendor/helm-image-registry). 
 
 The values in the `replicated-sdk` field provide information about the following:
 * The full customer license and the license ID
