@@ -1,6 +1,6 @@
 # Checking Entitlements for Helm Installations (Beta)
 
-This topic describes how to check entitlement information from customer licenses in applications that are installed with Helm. For information about how to check entitlement information for application installed with Replicated KOTS, see [Checking Entitlements for KOTS](licenses-referencing-fields).
+This topic describes how to check entitlement information from customer licenses in applications that are installed with Helm. For information about how to check entitlement information for applications installed with Replicated KOTS, see [Checking Entitlements for KOTS](licenses-referencing-fields).
 
 ## Check Entitlements at Runtime with the SDK API {#runtime}
 
