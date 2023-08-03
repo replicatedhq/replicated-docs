@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 0.0.0-alpha.0
+
+Released on August 3, 2023
+
+### Improvements {#improvements-0-0-0-alpha-0}
+* adds workflow to automate replicated sdk release notes.
+
 ## 0.0.1-beta.1
 
 Released on July 28, 2023
