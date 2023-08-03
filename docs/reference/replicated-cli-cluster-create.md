@@ -35,12 +35,7 @@ replicated cluster create [flags]
   <tr>
     <td>--instance-type</td>
     <td>string</td>
-    <td>The type of instance to use for cloud-based clusters, such as x5.xlarge.</td>
-  </tr>
-  <tr>
-    <td>--memory</td>
-    <td>integer</td>
-    <td>The amount of memory (GiB) to request per node. Required for VM clusters. <strong>Default:</strong> 4</td>
+    <td>The type of instance to use for nodes in the cluster, such as x5.xlarge.</td>
   </tr>
   <tr>
     <td>--name</td>
@@ -63,11 +58,6 @@ replicated cluster create [flags]
     <td>The cluster Time to Live (TTL) duration, in hours, before the cluster is automatically deleted by the service. TTL starts when the cluster is in a Ready state. <strong>Valid values:</strong> 1 - 48. <strong>Default:</strong> 1</td>
   </tr>
   <tr>
-    <td>--vcpu</td>
-    <td>integer</td>
-    <td>The number of vCPUs to request per node. Required for VM clusters. <strong>Default:</strong> 4</td>
-  </tr>
-  <tr>
     <td>--version</td>
     <td>string</td>
     <td>The Kubernetes version to provision. For OpenShift clusters, provide the supported OpenShift version. The format is distribution dependent. <strong>Default:</strong> v1.25.3<br></br><br></br>For supported versions, see <a href="/vendor/testing-supported-clusters">Supported Clusters</a>.</td>
@@ -87,6 +77,3 @@ For an EKS distribution:
   replicated cluster create --name eks-example --distribution eks --version 1.27 --node-count 3 --instance-type m5.xlarge
   ```
 
-:::note
-For VM distributions, you must specify `--vpcu` and `--memory` instead of `--instance-type`.
-:::
