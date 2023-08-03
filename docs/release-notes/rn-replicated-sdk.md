@@ -34,7 +34,7 @@ To avoid this breaking change, do the following before upgrading:
 
 * Update any requests to the SDK service in the cluster to use `replicated-sdk:3000` instead of `replicated:3000`.
 
-* Update any automation that references the installation command for integration mode to `install replicated-sdk oci://registry.replicated.com/library/replicated-sdk --version 0.0.1-beta.1`.
+* Update any automation that references the installation command for integration mode to `helm install replicated-sdk oci://registry.replicated.com/library/replicated-sdk --version 0.0.1-beta.1`.
 
 * If the SDK's values are modified in the `values.yaml` file of the parent chart, change the field name for the SDK subchart in the `values.yaml` file from `replicated` to `replicated-sdk`.
 
