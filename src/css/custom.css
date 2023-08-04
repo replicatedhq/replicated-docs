@@ -259,18 +259,6 @@ h3[id^="breaking-changes"] {
   font-size: 20px;
 }
 
-
-h3[id^="known-issues"] {
-  background-color: #414288;
-  /* background-color: #D64399; */
-  border-radius: 7px!important;
-  color: #fff;
-  width: max-content;
-  padding: 0.2em 0.6em 0.2em;
-  font-weight: 500;
-  font-size: 20px;
-}
-
 h3[id^="new-features"] a {
   color: #fff;
   opacity: .5;
@@ -290,12 +278,6 @@ h3[id^="bug-fixes"] a {
 }
 
 h3[id^="breaking-changes"] a {
-  color: #fff;
-  opacity: .5;
-  text-decoration: none;
-}
-
-h3[id^="known-issues"] a {
   color: #fff;
   opacity: .5;
   text-decoration: none;
