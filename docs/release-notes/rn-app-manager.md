@@ -16,6 +16,18 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.101.2
+
+Released on August 4, 2023
+
+Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
+
+### Improvements {#improvements-1-101-2}
+* Upgrades the Helm binary in the kotsadm image to 3.12.2 to resolve CVE-2023-2253 with high severity.
+
+### Bug Fixes {#bug-fixes-1-101-2}
+* Fixes an issue where parsing invalid KOTS kinds failed silently.
+
 ## 1.101.1
 
 Released on July 31, 2023
