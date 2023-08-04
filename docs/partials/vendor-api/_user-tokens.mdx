@@ -1,9 +1,9 @@
 User API tokens are private to the user creating the token. User tokens assume the user's account when used, including any RBAC permissions.
 
-User token names must be unique per user.
+Names for user API tokens must be unique per user.
 
-User tokens are only displayed once, when created. The token cannot be retrieved again after the initial creation. 
+User API tokens are only displayed  at the time they are created. The token cannot be retrieved again after the initial creation. 
 
 Updates to a user's RBAC role are applied to all of the tokens belonging to that user.
 
-Revoking a user token immediately invalidates that token. Additionally, deleting the user account also deletes all user tokens that belong to the user account.
+Revoking a user token immediately invalidates that token. When a user account is deleted, its user tokens are also deleted.
