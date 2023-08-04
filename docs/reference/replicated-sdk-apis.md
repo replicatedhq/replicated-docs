@@ -30,6 +30,7 @@ Response:
 {
   "appSlug": "my-app",
   "appName": "My App",
+  "appStatus": "ready",
   "helmChartURL": "oci://registry.replicated.com/my-app/beta/my-helm-chart",
   "currentRelease": {
     "versionLabel": "0.1.72",
