@@ -28,6 +28,11 @@ The compatibility matrix supports creating single-node [kind](https://kind.sigs.
     <td>See <a href="testing-how-to#limitations">Limitations</a></td>
   </tr>
   <tr>
+    <th>Node and Supported Instance Types</th>
+    <td><ul><li>Specify a Replicated instance type for the nodes.
+</li></ul></td>
+  </tr>  
+  <tr>
     <th>Common Use Cases</th>
     <td>Smoke tests</td>
   </tr>
@@ -50,6 +55,11 @@ The compatibility matrix supports creating single-node [k3s](https://k3s.io) clu
     <th>Supported Kubernetes Versions</th>
     <td>1.24, 1.25, 1.26</td>
   </tr>
+  <tr>
+    <th>Node and Supported Instance Types</th>
+    <td><ul><li>Specify a Replicated instance type for the nodes.
+</li></ul></td>
+  </tr>  
   <tr>
     <th>Limitations</th>
     <td>You can only choose a minor version, not a patch version. The K3s installer chooses the latest patch for that minor version. See <a href="https://docs.k3s.io/upgrades/manual">k3s</a>.<br></br><br></br>For additional limitations, see <a href="testing-how-to#limitations">Limitations</a>.</td>
@@ -77,6 +87,40 @@ The compatibility matrix supports creating single-node [Red Hat OpenShift OKD](h
     <th>Limitations</th>
     <td>See <a href="testing-how-to#limitations">Limitations</a></td>
   </tr>
+  <tr>
+    <th>Node and Supported Instance Types</th>
+    <td><ul><li>Specify a Replicated instance type for the nodes.
+</li></ul></td>
+  </tr>  
+  <tr>
+    <th>Common Use Cases</th>
+    <td>Customer release tests</td>
+  </tr>
+</table>
+
+
+### Helm VM
+
+The compatibility matrix supports creating single-node [HelmVM](https://github.com/replicatedhq/helmbin) clusters, which is a version of Kubernetes that has a Helm chart embedded and runs as a single binary.
+
+<table>
+  <tr>
+        <th width="35%">Type</th>
+        <th width="65%">Description</th>
+  </tr>
+  <tr>
+    <th>Supported HelmVM Version</th>
+    <td>1.27</td>
+  </tr>
+  <tr>
+    <th>Limitations</th>
+    <td>See <a href="testing-how-to#limitations">Limitations</a></td>
+  </tr>
+  <tr>
+    <th>Node and Supported Instance Types</th>
+    <td><ul><li>Specify a Replicated instance type for the nodes.
+</li></ul></td>
+  </tr>  
   <tr>
     <th>Common Use Cases</th>
     <td>Customer release tests</td>
