@@ -8,6 +8,16 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 0.0.1-beta.2
+
+Released on August 4, 2023
+
+### New Features {#new-features-0-0-1-beta-2}
+* Includes the application status as part of the [/app/info](/reference/replicated-sdk-apis#get-appinfo) endpoint response.
+
+### Improvements {#improvements-0-0-1-beta-2}
+* The replicated-sdk image is now built using a distroless base image from Chainguard, which significantly reduces the overall size and attack surface.
+
 ## 0.0.1-beta.1
 
 Released on July 28, 2023
