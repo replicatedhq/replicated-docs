@@ -17,6 +17,7 @@ v0.0.1-beta.1 of the Replicated SDK includes a name change that can cause existi
 :::
 ### Improvements {#improvements-0-0-1-beta-1}
 * Renames the SDK's Kubernetes resources and the library SDK chart from `replicated` to `replicated-sdk` to distinguish them from other replicated components.
+
 ### Breaking Change {#breaking-changes-0-0-1-beta-1}
 
 v0.0.1-beta.1 renames the SDK's Kubernetes resources and the library SDK chart. This can cause existing integrations that use an alpha version of the SDK to break.
