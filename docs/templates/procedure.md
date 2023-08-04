@@ -33,6 +33,14 @@ To [do this task]: [For example, "To create a customer license:"]
     </tr>
   </table>
 
+  <!--If you need a resizable screenshot, and give the user the ability to display a larger size image if needed, format it like this:
+    
+   <img alt="channel settings dialog" src="/images/channel-settings.png" width="500px"/>
+
+   [View a larger version of this image](/images/channel-settings.png)>
+
+  -->
+
 1. Run the following command to export the blah blah blah:
 
   ```
