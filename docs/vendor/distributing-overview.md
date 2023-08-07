@@ -60,4 +60,6 @@ Helm is a popular package manager for Kubernetes applications. For vendors that 
 
 Also, using KOTS to distribute Helm charts provides additional functionality not directly available with the Helm CLI, such as a user interface for collecting user configuration values and backup and restore with snapshots.
 
-For information about how to get started distributing your Helm chart with Replicated so that you can support both installations with the Helm CLI and with KOTS, see [Replicated Quick Start](replicated-onboarding). 
+For information about how to get started distributing your Helm chart with Replicated so that you can support both installations with the Helm CLI and with KOTS, see [Replicated Quick Start](replicated-onboarding).
+
+For more information about how KOTS installs Helm charts, see [About Distributing Helm Charts with KOTS](helm-native-about).

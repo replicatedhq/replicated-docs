@@ -124,3 +124,9 @@ For more information about viewing customer and instance insights in the vendor 
 You can run the Replicated SDK in integration mode to more quickly test new functionality for your application. Integration mode allows you to use mock data to test changes locally without having to create a release in the vendor portal and then install your Helm chart from the Replicated registry.
 
 For more information, see [Developing Against the SDK API (Beta)](replicated-sdk-development).
+
+## SDK-Enabled Helm Charts with KOTS
+
+Distributing your application as one or more Helm charts is recommended because you can use the same Helm charts to support installations with both Replicated KOTS and with the Helm CLI. However, when an SDK-enabled Helm chart is installed with KOTS, instance data in the vendor portal and related APIs can be duplicated as both KOTS and the SDK are reporting data.
+
+To install a Helm chart that includes the SDK with KOTS, you must update the chart and the HelmChart custom resource so that the SDK is excluded from KOTS installations. For more information, see [Using an SDK-Enabled Chart for KOTS Installations](helm-kots-using-sdk).
