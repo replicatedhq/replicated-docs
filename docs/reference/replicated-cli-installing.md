@@ -10,12 +10,15 @@ Vendors can use the replicated CLI to manage their applications with Replicated 
 
 Complete the following prerequisites before installing the replicated CLI:
 
-* To run on Linux or Mac, install [curl](https://curl.haxx.se/).
-* To run through a Docker container, install [docker](https://www.docker.com).
-* Create an application in the vendor portal and get the application name (`APP_NAME`). The following screenshot shows an example of the `APP_NAME` in the vendor portal URL path:
+- To run on Linux or Mac, install [curl](https://curl.haxx.se/).
+- To run through a Docker container, install [docker](https://www.docker.com).
+- From the vendor portal, get the application name (`APP_NAME`) from the vendor portal URL path:
 
-  ![Vendor Application Slug](/images/vendor-app-slug.png)
-* Generate a service account or user API token in the vendor portal. The token must have `Read/Write` access to create new releases. See [Generating Vendor API Tokens](replicated-cli-tokens).
+  <img alt="Application name in the vendor portal URL" src="/images/vendor-app-slug.png" width="500px"/>
+
+  [View a larger version of this image](/images/vendor-app-slug.png)
+
+- Generate a service account or user API token in the vendor portal. The token must have `Read/Write` access to create new releases. See [Generating Vendor API Tokens](replicated-cli-tokens).
 
 ## Install the replicated CLI
 
@@ -53,6 +56,8 @@ To install the latest replicated CLI on Mac:
 
 1. <EnvVariablesSet/>
 
+   <EnvVariablesReplace/>
+
 ### Linux
 
 To install latest replicated CLI on Linux:
@@ -72,6 +77,8 @@ To install latest replicated CLI on Linux:
   ```
 
 1. <EnvVariablesSet/>
+
+   <EnvVariablesReplace/>
 
 ### Docker / Windows
 
