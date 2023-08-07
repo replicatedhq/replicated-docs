@@ -638,7 +638,7 @@ The validation rules are as follows:
 - If a group `when` condition is set to `false`, the items in the group are not validated.
 
 ### `regex`
-A `regex` can be used to validate whether an item's value matches the provided regular expression `pattern`. The regex pattern should be of the [RE2 regular expression](https://github.com/google/re2/wiki/Syntax) type and can validate the `text`, `textarea`, `password`, and `file` field types.
+For applications installed with KOTS v1.98.0 or later, A `regex` can be used to validate whether an item's value matches the provided regular expression `pattern`. The regex pattern should be of the [RE2 regular expression](https://github.com/google/re2/wiki/Syntax) type and can validate the `text`, `textarea`, `password`, and `file` field types.
 
  The default validation message is `Value does not match regex`.
 
