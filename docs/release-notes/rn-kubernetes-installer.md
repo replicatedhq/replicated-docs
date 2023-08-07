@@ -8,6 +8,15 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.08.07-0
+
+Released on August 7, 2023
+
+### New Features {#new-features-v2023-08-07-0}
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.12.0.
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.12.1.
+* Fix an issue where storage could not be moved from Longhorn to OpenEBS at the same time as Kubernetes was upgraded to 1.25.x+.
+
 ## v2023.07.31-0
 
 Released on July 31, 2023
