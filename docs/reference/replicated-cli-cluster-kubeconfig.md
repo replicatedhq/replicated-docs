@@ -1,6 +1,6 @@
 import Help from "../partials/replicated-cli/_help.mdx"
 
-# cluster kubeconfig
+# cluster kubeconfig (Beta)
 
 Download the credentials for a test cluster.
 

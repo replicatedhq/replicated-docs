@@ -1,7 +1,7 @@
 import Help from "../partials/replicated-cli/_help.mdx"
 
 
-# cluster ls
+# cluster ls (Beta)
 
 List the clusters available for compatibility testing.
 

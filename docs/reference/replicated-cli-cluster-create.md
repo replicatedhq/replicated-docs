@@ -1,7 +1,7 @@
 import Help from "../partials/replicated-cli/_help.mdx"
 
 
-# cluster create
+# cluster create (Beta)
 
 Create clusters for compatibility testing.
 

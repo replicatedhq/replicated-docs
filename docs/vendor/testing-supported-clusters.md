@@ -1,4 +1,4 @@
-# Supported Clusters
+# Supported Clusters (Beta)
 
 The compatibility matrix provisions ephemeral clusters for testing that are cloud-based or virtual machines (VMs).
 

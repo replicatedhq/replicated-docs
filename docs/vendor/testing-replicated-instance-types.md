@@ -1,6 +1,6 @@
-# Replicated Instance Types
+# Replicated Instance Types (Beta)
 
-When creating a VM-based cluster, you must specify a Replicated instance type.
+When creating a VM-based cluster with the compatibility matrix, you must specify a Replicated instance type.
 
 
 <table>
