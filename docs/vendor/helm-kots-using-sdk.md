@@ -10,9 +10,11 @@ If you include the Replicated SDK as a dependency in a Helm chart that you want 
 
 ## Limitation
 
-When the SDK is excluded from KOTS installations, the SDK API endpoints are not available. For example, you cannot use the `app` endpoints to allow your users to check for updates when the SDK is excluded. And, you cannot use the `license` endpoints to check customer entitlements during runtime.
+When the SDK is excluded from KOTS installations, the SDK API endpoints are not available. For example, you cannot use the `app` endpoints to allow your users to check for updates when the SDK is excluded. And, you cannot use the `license` endpoints to check customer entitlements during runtime. However, KOTS provides access to similar functionality.
 
-However, KOTS also provides access to similar functionality that is available through the SDK API. For example, users can check for applicaton updates through the admin console UI or CLI. If you use any SDK API endpoints in your application, Replicated recommends that you verify that the comparable functionality available through KOTS provides the expected user experience.
+If you use any SDK API endpoints in your application, Replicated recommends that you verify that the comparable functionality available through KOTS provides the expected user experience.
+
+For information about checking for updates with KOTS, see [Updating an Application](/enterprise/updating-apps). For information about checking license entitlements for KOTS installations, see [Checking Entitlements for KOTS](/vendor/licenses-referencing-fields).
 
 ## Exclude the SDK from KOTS Installations
 
