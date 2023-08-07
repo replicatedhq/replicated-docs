@@ -1,4 +1,4 @@
-# About the Compatibility Matrix
+# About the Compatibility Matrix (Beta)
 This topic describes the Replicated compatibility matrix feature and use cases for testing applications in customer-representative environments.
 
 :::note

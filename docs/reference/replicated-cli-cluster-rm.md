@@ -1,7 +1,7 @@
 import Help from "../partials/replicated-cli/_help.mdx"
 
 
-# cluster rm
+# cluster rm (Beta)
 
 Remove the test clusters. You can delete multiple clusters at a time.
 

@@ -1,4 +1,4 @@
-# Using the Compatibility Matrix
+# Using the Compatibility Matrix (Beta)
 
 This topic describes how to use the compatibility matrix to create ephemeral clusters that you can use for manual and CI/CD testing.
 
