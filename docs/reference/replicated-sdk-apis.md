@@ -178,34 +178,6 @@ Response:
 }
 ```
 
-## mock-data
-
-This section describes the mock-data endpoints for working with data when developing against the SDK in integration mode. For information about integration mode, see [Developing Against the SDK API (Beta)](/vendor/replicated-sdk-development).
-
-### POST mock-data
-
-Publish mock data for use developing against the Replicated SDK in integration mode. Accepts a JSON request body to set the mock data.
-
-```
-/api/v1/mock-data
-```
-
-### GET mock-data
-
-List the mock data JSON object that you are using to develop against the Replicated SDK in integration mode.
-
-```
-/api/v1/mock-data
-```
-
-### DELETE mock-data
-
-Delete the mock data JSON object that you are using to develop against the Replicated SDK in integration mode.
-
-```
-/api/v1/mock-data
-```
-
 ## Examples
 
 This section provides example use cases for the Replicated SDK API.
