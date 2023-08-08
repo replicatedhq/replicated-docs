@@ -8,26 +8,13 @@ license, see [Using built-in license fields](licenses-using-builtin-fields).
 
 ## About Custom License Fields
 
-Custom license fields are useful when there is entitlement information that applies
-to a subset of customers.
+Custom license fields are useful when there is entitlement information that applies to a subset of customers. For example, you can create a custom license field to limit the number of active users permitted. Or, you can create a field that limits the number of nodes a customer is permitted on their cluster.
 
-For example, you can create a custom license field to limit the number of active
-users permitted. Or, you can create a field that limits the number of nodes a
-customer is permitted on their cluster.
+The custom license fields that you create are displayed in the vendor portal for all new and existing customers. If the custom field is not hidden, it is also displayed under the **Licenses** tab for customers in the Replicated admin console.
 
-The custom license fields that you create are displayed in the vendor portal for
-all new and existing customers. If the custom field is not hidden, it is also
-displayed under the **Licenses** tab for customers in the Replicated admin console.
+After you create custom license fields for a customer, you can query these fields from your application to check customer entitlements both before installation and during runtime. See [Checking Entitlements for Helm Installations](licenses-reference-helm) or [Checking Entitlements for KOTS](licenses-referencing-fields).   
 
 ## Create Custom License Fields
-
-After you create custom license fields for a customer, you must create references
-to these fields that your application can query.
-
-This ensures that the customer's application instance can enforce the entitlements
-that you defined in their license file.
-
-For more information, see [Referencing Custom License Fields](licenses-referencing-fields).
 
 To create a custom license field:
 

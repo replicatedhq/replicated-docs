@@ -15,40 +15,28 @@ For more information about these endpoints, see [license](/reference/replicated-
 
 To use the SDK API to check entitlements at runtime:
 
-1. In the vendor portal, click **Customers**. Select a customer and click the **Customer details** tab. Alternatively, click **+ Create customer** to create a new customer. For more information, see [Creating and Managing Customers](/vendor/releases-creating-customer).
+1. Create or edit a customer that you will use for testing:
 
-1. Edit the built-in license fields or add custom fields for the customer. For example, you can set a license expiration date in the **Expiration policy** field. For more information, see [Managing Custom License Fields](/vendor/licenses-adding-custom-fields).
+   1. In the vendor portal, click **Customers**. Select a customer and click the **Customer details** tab. Alternatively, click **+ Create customer** to create a new customer. For more information, see [Creating and Managing Customers](/vendor/releases-creating-customer).
 
-1. (Recommended) In a development environment, use the customer license ID to install the Replicated SDK in integration mode. When you install in integration mode, you can use the SDK API `license` endpoints to return details about the license that was used to install. This allows you to develop against the SDK API locally, without needing to create and promote releases in the vendor portal. For information about how to install in integration mode, see [Developing Against the SDK API](/vendor/replicated-sdk-development).   
+   1. Edit the built-in license fields or add custom fields for the customer. For example, you can set a license expiration date in the **Expiration policy** field. Or, you can create a custom field that limits the number of nodes a user is permitted in their cluster. For more information, see [Managing Custom License Fields](/vendor/licenses-adding-custom-fields).
 
-1. In your application, use the SDK API `license` endpoints to add logic that controls application behavior based on the values of license fields.
+1. (Recommended) Develop against the SDK API `license` endpoints locally in integration mode:
 
-   **Example**
+   1. Install the Replicated SDK as a standalone component in your cluster, referred to as _integration mode_. Integration mode allows you to develop locally against the SDK API without needing to create releases for your application in the vendor portal. See [Developing Against the SDK API](/vendor/replicated-sdk-development).
 
-    ```bash
-    curl replicated-sdk:3000/api/v1/license/fields/expires_at
-    ```
+   1. In your application, add logic to control application behavior based on the values of the license fields returned by the SDK API. See [license](/reference/replicated-sdk-apis#license) in _Replicated SDK API (Beta)_.
 
-    ```json
-    {
-      "name": "expires_at",
-      "title": "Expiration",
-      "description": "License Expiration",
-      "value": "2023-05-30T00:00:00Z",
-      "valueType": "String",
-      "signature": {
-        "v1": "c6rsImpilJhW0eK+Kk37jeRQvBpvWgJeXK2M..."
-      }
-    }
-    ```
+1. When you are ready to test your changes outside of integration mode, do the following:
 
-    For more information, see [license](/reference/replicated-sdk-apis#license) in _Replicated SDK API (Beta)_.
-
-1. Test your changes by promoting a new release and installing in a development environment:
    1. Package your Helm chart and its dependencies (including the Replicated SDK) into a `.tgz` chart archive. See [Packaging a Helm Chart for a Release](helm-install-release).
+
    1. Add the `.tgz` archive to a release and promote to a development channel, such as Unstable. See [Managing Releases with the Vendor Portal](/vendor/releases-creating-releases).
-   1. Install the release in a development environment using the customer's license ID. See [Installing with Helm](install-with-helm).
-   1. (Optional) As needed, verify license information in your development environment using port forwarding to access the Replicated SDK service locally:
+
+   1. Install or upgrade in a development environment. See [Installing with Helm](install-with-helm).
+
+   1. (Optional) As needed, verify the license information returned by the SDK API in your development environment using port forwarding to access the Replicated SDK service locally:
+
       1. Use port forwarding to access the Replicated SDK service from the local development environment on port 3000:
 
         ```bash
@@ -74,8 +62,6 @@ To use the SDK API to check entitlements at runtime:
 1. Repeat these steps to add and test new license fields.
 
 1. (Recommended) Use signature verification in your application to ensure the integrity of the license field. See [Verifying License Field Signatures](/vendor/licenses-verify-fields-sdk-api).
-
-   License fields are cryptographically signed to ensure their integrity. Replicated recommends that you use signature verification to ensure the integrity of each license field you use.
 
 ## Check Entitlements Before Installation {#before-install}
 
@@ -104,7 +90,7 @@ To check entitlements before installation:
 
 1. Edit the built-in license fields or add custom fields for the customer. For example, you can set a license expiration date in the **Expiration policy** field. For more information, see [Managing Custom License Fields](/vendor/licenses-adding-custom-fields).
 
-1. In your Helm chart, update the Helm templates with one or more directives to access the license field. For example, you can access the built-in `expires_at` field with `{{ .Values.global.replicated.licenseFields.expires_at }}`. Add the desired logic to control application behavior based on the values of license fields. For more information about the API `license` endpoints, see [license](/reference/replicated-sdk-apis#license) in _Replicated SDK API (Beta)_.
+1. In your Helm chart, update the Helm templates with one or more directives to access the license field. For example, you can access the built-in `expires_at` field with `{{ .Values.global.replicated.licenseFields.expires_at }}`. Add the desired logic to control application behavior based on the values of license fields.
 
    For more information about accessing values files from Helm templates, see [Values Files](https://helm.sh/docs/chart_template_guide/values_files/) in the _Chart Template Guide_ section of the Helm documentation.
 
