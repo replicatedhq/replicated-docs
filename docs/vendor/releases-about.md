@@ -13,7 +13,7 @@ A _release_ represents a single version of your application with the Replicated 
 
 Replicated release features help manage your product lifecycle effectively. You can test releases in a channel reserved for development, then promote the release to a Beta channel for customer testing, and ultimately promote the release to a Stable channel when it is ready for general availability.
 
-You can use the vendor portal to create and promote versions of your application. The vendor portal hosts a built-in YAML editor and linter to help you write and validate YAML files. 
+You can use the vendor portal to create, manage, and promote versions of your application. The vendor portal hosts a built-in YAML editor and linter to help you write and validate YAML files, create custom domains, and provides other features. For more information about the vendor portal, see [Vendor Portal](intro-replicated#vendor-portal) in _Introduction to Replicated_.
 
 Alternatively, use the replicated CLI and vendor API to automate releases. For more information about using the CLI, see [Installing the replicated CLI](/reference/replicated-cli-installing). For information about the API, see [Using the Vendor API v3](/reference/vendor-api-using).
 
