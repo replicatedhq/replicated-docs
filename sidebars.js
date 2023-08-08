@@ -480,6 +480,7 @@ const sidebars = {
             'vendor/team-management-saml-auth',
          ],
         },
+        'reference/replicated-cli-tokens',
         'vendor/team-management-slack-config',
       ],
     },
@@ -625,7 +626,6 @@ const sidebars = {
       type: 'category',
       label: 'replicated CLI',
       items: [
-        'reference/replicated-cli-tokens',
         'reference/replicated-cli-installing',
         'reference/replicated-cli-app-create',
         'reference/replicated-cli-app-delete',

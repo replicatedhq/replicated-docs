@@ -1,6 +1,7 @@
 import EnvVariablesSet from "../partials/replicated-cli/_env-variables-set.mdx"
 import EnvVariablesReplace from "../partials/replicated-cli/_env-variables-replace.mdx"
 import InstallFiles from "../partials/replicated-cli/_install-files.mdx"
+import PrereqToken from "../partials/vendor-api/_prereq-token.mdx"
 
 # Installing the replicated CLI
 
@@ -12,13 +13,13 @@ Complete the following prerequisites before installing the replicated CLI:
 
 - To run on Linux or Mac, install [curl](https://curl.haxx.se/).
 - To run through a Docker container, install [docker](https://www.docker.com).
-- From the vendor portal, get the application name (`APP_NAME`) from the vendor portal URL path:
+- From the vendor portal, get the application slug from your application's **Settings** page:
 
-  <img alt="Application name in the vendor portal URL" src="/images/vendor-app-slug.png" width="500px"/>
+  <img alt="Application slug" src="/images/vendor-app-slug.png" width="500px"/>
 
   [View a larger version of this image](/images/vendor-app-slug.png)
 
-- Generate a service account or user API token in the vendor portal. The token must have `Read/Write` access to create new releases. See [Generating Vendor API Tokens](replicated-cli-tokens).
+- <PrereqToken/>
 
 ## Install the replicated CLI
 

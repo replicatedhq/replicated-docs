@@ -2,6 +2,8 @@
 pagination_prev: null
 ---
 
+import ApiAbout from "/docs/partials/vendor-api/_api-about.mdx"
+
 # Introduction to Replicated
 
 This topic describes the Replicated platform, including features, installation options, and vendor platform interface options for distributing and managing your application with Replicated.
@@ -83,6 +85,8 @@ The replicated command-line interface (CLI) is the CLI for the vendor portal. Th
 
 ### Vendor API v3
 
-The Vendor API is the API for the vendor portal. This API can be used to complete tasks programmatically, including all tasks for packaging and managing applications, and managing artifacts such as teams, license files, and so on. For more information, see [Using the Vendor API V3](/reference/vendor-api-using).
+<ApiAbout/>
+
+For more information, see [Using the Vendor API V3](/reference/vendor-api-using).
 
 ![landing page of the vendor api documentation site](/images/vendor-api-docs.png)
