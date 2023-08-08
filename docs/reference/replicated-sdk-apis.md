@@ -289,13 +289,15 @@ To revoke access to your application when a license expires:
 
   [View a larger version of this image](/images/customer-expiration-policy.png)
 
+1. Install the SDK as a standalone component in a cluster so that you can develop against the SDK API locally. See [Developing Against the SDK API](/vendor/replicated-sdk-development).
+
 1. In your application, use the `/api/v1/license/fields/expires_at` endpoint to get the `expires_at` field that you defined in the previous step.
+
+    **Example:**
 
     ```bash
     curl replicated-sdk:3000/api/v1/license/fields/expires_at
     ```
-
-    **Example response**:
 
     ```json
     {
@@ -312,6 +314,4 @@ To revoke access to your application when a license expires:
 
 1. Add logic to your application to revoke access if the current date and time is more recent than the expiration date of the license.
 
-1. Use signature verification in your application to ensure the integrity of the license field. See [Verifying License Field Signatures](/vendor/licenses-verify-fields-sdk-api).
-
-1. To test your changes, create a new release and promote it to a development channel, such as Unstable. Install the release in a development environment using the license ID for the customer that you created or edited. For more information, see [Installing with Helm](/vendor/install-with-helm).
+1. (Recommended) Use signature verification in your application to ensure the integrity of the license field. See [Verifying License Field Signatures](/vendor/licenses-verify-fields-sdk-api).

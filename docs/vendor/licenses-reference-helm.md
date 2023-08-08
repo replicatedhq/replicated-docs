@@ -15,7 +15,7 @@ For more information about these endpoints, see [license](/reference/replicated-
 
 To use the SDK API to check entitlements at runtime:
 
-1. Create or edit a customer that you will use for testing:
+1. Create or edit a customer to use for testing:
 
    1. In the vendor portal, click **Customers**. Select a customer and click the **Customer details** tab. Alternatively, click **+ Create customer** to create a new customer. For more information, see [Creating and Managing Customers](/vendor/releases-creating-customer).
 
@@ -25,7 +25,7 @@ To use the SDK API to check entitlements at runtime:
 
    1. Install the Replicated SDK as a standalone component in your cluster, referred to as _integration mode_. Integration mode allows you to develop locally against the SDK API without needing to create releases for your application in the vendor portal. See [Developing Against the SDK API](/vendor/replicated-sdk-development).
 
-   1. In your application, add logic to control application behavior based on the values of the license fields returned by the SDK API. See [license](/reference/replicated-sdk-apis#license) in _Replicated SDK API (Beta)_.
+   1. In your application, add logic to control application behavior based on the values of the license fields returned by the SDK API service running in your cluster. See [license](/reference/replicated-sdk-apis#license) in _Replicated SDK API (Beta)_.
 
 1. When you are ready to test your changes outside of integration mode, do the following:
 
@@ -33,7 +33,7 @@ To use the SDK API to check entitlements at runtime:
 
    1. Add the `.tgz` archive to a release and promote to a development channel, such as Unstable. See [Managing Releases with the Vendor Portal](/vendor/releases-creating-releases).
 
-   1. Install or upgrade in a development environment. See [Installing with Helm](install-with-helm).
+   1. Install or upgrade in a development environment using the customer's license ID. See [Installing with Helm](install-with-helm).
 
    1. (Optional) As needed, verify the license information returned by the SDK API in your development environment using port forwarding to access the Replicated SDK service locally:
 
@@ -95,6 +95,9 @@ To check entitlements before installation:
    For more information about accessing values files from Helm templates, see [Values Files](https://helm.sh/docs/chart_template_guide/values_files/) in the _Chart Template Guide_ section of the Helm documentation.
 
 1. Test your changes by promoting a new release and installing in a development environment:
+   
    1. Package your Helm chart and its dependencies into a `.tgz` chart archive. See [Packaging a Helm Chart for a Release](helm-install-release).
+   
    1. Add the `.tgz` archive to a release and promote to a development channel, such as Unstable. See [Managing Releases with the Vendor Portal](/vendor/releases-creating-releases).
-   1. Install the release in a development environment using the customer's license ID. See [Installing with Helm](install-with-helm).
+   
+   1. Install or upgrade in a development environment using the customer's license ID. See [Installing with Helm](install-with-helm).
