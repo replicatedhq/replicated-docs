@@ -80,7 +80,7 @@ To install and deploy the application:
 
   If you are using a VM that is behind a firewall and you get an error message, you might need to create a firewall rule to enable access to port 8800. For more information, see [Installation Requirements](/enterprise/installing-general-requirements).
 
-1. Under **Customers** in the vendor portal, select the customer name to open the **Reporting** page. In the **Instances** pane, you can verify that the instance is active and drill down from the details area to see the instance details. For more information, see [Customer Reporting](customer-reporting) and [Instance Details](instance-insights-details).
+1. Under **Customers** in the vendor portal, select the customer name to open the **Reporting** page. In the **Instances** pane, you can verify that the instance is active and drill down from the details area to see the **Instance details** page. For more information, see [Customer Reporting](customer-reporting) and [Instance Details](instance-insights-details).
 
   ![Customer instance reporting](/images/customer-instances-tutorial.png)
 
