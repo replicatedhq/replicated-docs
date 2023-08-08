@@ -25,7 +25,7 @@ To package a Helm chart so that it can be added to a release:
 1. In your local directory, `cd` to the location of the `Chart.yaml` file for the Helm chart.
 
    :::note
-   If the Helm chart that you want to use is available in a chart repository and you do not have access to the source, you can use `helm repo add` and `helm pull` to download a local copy of the chart archive. For more information, see [Helm Repo](https://helm.sh/docs/helm/helm_repo/) and [Helm Pull](https://helm.sh/docs/helm/helm_pull/) in the Helm documentation.
+   If the Helm chart that you want to use is available in a chart repository and you do not have access to the source, you can run `helm repo add` and `helm pull` to download a local copy of the chart archive. For more information, see [Helm Repo](https://helm.sh/docs/helm/helm_repo/) and [Helm Pull](https://helm.sh/docs/helm/helm_pull/) in the Helm documentation.
    :::
 
 1. In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
