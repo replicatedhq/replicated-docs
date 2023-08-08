@@ -55,7 +55,7 @@ global:
   replicated:
     channelName: Stable
     customerEmail: username@example.com
-    customerName: Builders Plan Tester
+    customerName: Example Customer
     dockerconfigjson: eyJhdXRocyI6eyJd1dIRk5NbEZFVGsxd2JGUmFhWGxYWm5scloyNVRSV1pPT2pKT2NGaHhUVEpSUkU1...
     licenseFields:
       expires_at:
