@@ -2,7 +2,7 @@ import LicenseExpirationExample from "../partials/replicated-sdk/_license-expira
 
 # Replicated SDK API (Beta)
 
-The Replicated SDK provides an API that you can use to embed Replicated functionality into your Helm chart application.
+The Replicated SDK provides an API that you can use to embed Replicated functionality in your Helm chart application.
 
 For example, if your application includes a UI where users manage their application instance, then you can use the `/api/v1/app/updates` endpoint to include messages in the UI that encourage users to upgrade when new versions are available. You could also revoke access to the application during runtime when a license expires using the `/api/v1/license/fields` endpoint.
 
@@ -176,34 +176,6 @@ Response:
     "v1": "c6rsImpilJhW0eK+Kk37jeRQvBpvWgJeXK2MD0YBlIAZEs1zXpmvwLdfcoTsZMOj0lZbxkPN5dPhEPIVcQgrzfzwU5HIwQbwc2jwDrLBQS4hGOKdxOWXnBUNbztsHXMqlAYQsmAhspRLDhBiEoYpFV/8oaaAuNBrmRu/IVAW6ahB4KtP/ytruVdBup3gn1U/uPAl5lhzuBifaW+NDFfJxAXJrhdTxMBxzfdKa6dGmlGu7Ou/xqDU1bNF3AuWoP3C78GzSBQrD1ZPnu/d+nuEjtakKSX3EK6VUisNucm8/TFlEVKUuX7hex7uZ9Of+UgS1GutQXOhXzfMZ7u+0zHXvQ=="
   }
 }
-```
-
-## mock-data
-
-This section describes the mock-data endpoints for working with data when developing against the SDK in integration mode. For information about integration mode, see [Developing Against the SDK API (Beta)](/vendor/replicated-sdk-development).
-
-### POST mock-data
-
-Publish mock data for use developing against the Replicated SDK in integration mode. Accepts a JSON request body to set the mock data.
-
-```
-/api/v1/mock-data
-```
-
-### GET mock-data
-
-List the mock data JSON object that you are using to develop against the Replicated SDK in integration mode.
-
-```
-/api/v1/mock-data
-```
-
-### DELETE mock-data
-
-Delete the mock data JSON object that you are using to develop against the Replicated SDK in integration mode.
-
-```
-/api/v1/mock-data
 ```
 
 ## Examples
