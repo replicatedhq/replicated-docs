@@ -34,7 +34,7 @@ To update the application:
   If you do not see the new text, refresh your browser.
   :::
 
-1. In the vendor portal, return to the customer reporting page. Confirm that you can see the new application version in the **Instances** pane and then drill down from the details area to see the **Instance details** page.
+1. In the vendor portal, return to the **Customers > Reporting** page. Confirm that you can see the new application version in the **Instances** pane and then drill down from the details area to see the **Instance details** page.
 
 ## Next Steps
 
