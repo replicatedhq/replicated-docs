@@ -310,7 +310,7 @@ To revoke access to your application when a license expires:
     }
     ```
 
-1. Add logic to your application to revoke access if the current date and time matches the expiration date of the license.
+1. Add logic to your application to revoke access if the current date and time is more recent than the expiration date of the license.
 
 1. Use signature verification in your application to ensure the integrity of the license field. See [Verifying License Field Signatures](/vendor/licenses-verify-fields-sdk-api).
 
