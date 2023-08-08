@@ -1,8 +1,8 @@
 # Generating Tokens
 
-This topic describes the available types of authentication tokens and how to generate them for use with the replicated CLI and Replicated Vendor API v3.
+This topic describes the available types of API tokens and how to generate them for use with the replicated CLI and Replicated Vendor API v3.
 
-## About Tokens
+## About API Tokens
 
 The Vendor API v3 is the API that manages applications in the Replicated vendor portal. The replicated CLI is an implementation of the Vendor API v3.
 
@@ -19,7 +19,7 @@ Team API tokens are deprecated and cannot be generated. If you are already using
 
 ### Service Accounts
 
-Service accounts are assigned a token and associated with an RBAC policy. Users with the proper permissions can create, retrieve, or revoke service account tokens. Admin users can assign any RBAC policy to a service account. Non-admin users can only assign their own RBAC policy.
+Service accounts are assigned a token and associated with an RBAC policy. Users with the proper permissions can create, retrieve, or revoke service account tokens. Admin users can assign any RBAC policy to a service account. Non-admin users can only assign their own RBAC policy when they create a service account.
 
 Service accounts are useful for operations that are not tied to a particular user, such as CI/CD or integrations.
 
