@@ -109,7 +109,7 @@ Response:
   "licenseID": "YiIXRTjiB7R...",
   "channelID": "2CBDxNwDH1xyYiIXRTjiB7REjKX",
   "channelName": "Stable",
-  "customerName": "Builders Plan Tester",
+  "customerName": "Example Customer",
   "customerEmail": "username@example.com",
   "licenseType": "dev"
 }

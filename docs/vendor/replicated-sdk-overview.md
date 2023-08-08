@@ -53,6 +53,9 @@ The following is an example of a Helm values file containing both the `global.re
 # Helm values.yaml
 global:
   replicated:
+    channelName: Stable
+    customerEmail: username@example.com
+    customerName: Example Customer
     dockerconfigjson: eyJhdXRocyI6eyJd1dIRk5NbEZFVGsxd2JGUmFhWGxYWm5scloyNVRSV1pPT2pKT2NGaHhUVEpSUkU1...
     licenseFields:
       expires_at:
@@ -63,6 +66,8 @@ global:
         title: Expiration
         value: "2023-05-30T00:00:00Z"
         valueType: String
+    licenseID: YiIXRTjiB7R...
+    licenseType: dev
 replicated-sdk:
   appName: my-app
   channelID: 2CBDxNwDH1xyYiIXRTjiB7REjKX
