@@ -52,7 +52,7 @@ To use the SDK API to check entitlements at runtime:
 
    1. Add the `.tgz` archive to a release and promote to a development channel, such as Unstable. See [Managing Releases with the Vendor Portal](/vendor/releases-creating-releases).
 
-   1. Install in a development environment using the ID for the test customer that you created. See [Installing with Helm](install-with-helm).
+   1. Install in a development environment using the license ID for the test customer that you created. See [Installing with Helm](install-with-helm).
 
    1. (Optional) As needed, verify the license information returned by the SDK API in your development environment using port forwarding to access the SDK service locally:
 
@@ -121,6 +121,6 @@ To check entitlements before installation:
    
    1. Add the `.tgz` archive to a release and promote to a development channel, such as Unstable. See [Managing Releases with the Vendor Portal](/vendor/releases-creating-releases).
    
-   1. Install in a development environment using the ID for the test customer that you created. See [Installing with Helm](install-with-helm).
+   1. Install in a development environment using the license ID for the test customer that you created. See [Installing with Helm](install-with-helm).
 
 1. Repeat these steps to add and test new license fields.
