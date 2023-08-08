@@ -1,5 +1,3 @@
-import LicenseExpirationExample from "../partials/replicated-sdk/_license-expiration-sdk-example.mdx"
-
 # Replicated SDK API (Beta)
 
 The Replicated SDK provides an API that you can use to embed Replicated functionality in your Helm chart application.
@@ -248,4 +246,45 @@ To use the SDK API to check for available application updates and provide custom
 
 ### Revoke Access at Runtime When a License Expires        
 
-<LicenseExpirationExample/>
+You can use the Replicated SDK API `/api/v1/license/fields/{field_name}` endpoint to revoke a customer's access to your application during runtime when their license expires.
+
+To revoke access to your application when a license expires:
+
+1. In the vendor portal, click **Customers**. Select the target customer and click the **Customer details** tab. Alternatively, click **+ Create customer** to create a new customer.
+
+1. Under **Expiration policy**:
+
+   1. Enable **Customer's license has an expiration date**.
+
+   1. For **When does this customer expire?**, use the calendar to set an expiration date for the license.
+
+  <img alt="expiration policy field in the customer details page" src="/images/customer-expiration-policy.png" width="500px"/>
+
+  [View a larger version of this image](/images/customer-expiration-policy.png)
+
+1. Install the Replicated SDK as a standalone component in your cluster. This is called _integration mode_. Installing in integration mode allows you to develop locally against the SDK API without needing to create releases for your application in the vendor portal. See [Developing Against the SDK API](/vendor/replicated-sdk-development).
+
+1. In your application, use the `/api/v1/license/fields/expires_at` endpoint to get the `expires_at` field that you defined in the previous step.
+
+    **Example:**
+
+    ```bash
+    curl replicated-sdk:3000/api/v1/license/fields/expires_at
+    ```
+
+    ```json
+    {
+      "name": "expires_at",
+      "title": "Expiration",
+      "description": "License Expiration",
+      "value": "2023-05-30T00:00:00Z",
+      "valueType": "String",
+      "signature": {
+        "v1": "c6rsImpilJhW0eK+Kk37jeRQvBpvWgJeXK2M..."
+      }
+    }
+    ```
+
+1. Add logic to your application to revoke access if the current date and time is more recent than the expiration date of the license.
+
+1. (Recommended) Use signature verification in your application to ensure the integrity of the license field. See [Verifying License Field Signatures](/vendor/licenses-verify-fields-sdk-api).
