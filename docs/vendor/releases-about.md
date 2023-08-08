@@ -9,15 +9,15 @@ This topic describes concepts about creating and promoting releases, editing rel
 
 ## Overview of Releases
 
-A _release_ represents a single version of your application. You can promote releases to one or more channels to either test the release internally or share the release with customers. For example, while you are developing and testing releases, you can promote releases to a channel reserved for development, such as the default Unstable channel.
+A _release_ represents a single version of your application with the Replicated platform. Your application can use Helm charts, Kubernetes manifest files, or Kubernetes Operators. 
 
-Each release contains application files. Application files can be Helm charts or Kubernetes manifest files, such as Deployment and Service resources. Additionally, releases that support installation with Replicated KOTS contain Replicated custom resources to configure KOTS functionality. For releases that use YAML manifests, the vendor portal hosts a built-in YAML editor and linter to help you write and validate manifest files.  
+Replicated release features help you manage your product lifecycle effectively. You can test releases in a channel reserved for development, then promote the release to a Beta channel for customer testing, and ultimately promote the release to a Stable channel when it is ready for general availability.
 
-You can use the vendor portal to create and release versions of your application to various release channels. Alternatively, you can use the replicated CLI and vendor API to automate releases. For more information about using the CLI, see [Installing the replicated CLI](/reference/replicated-cli-installing). For information about the API, see [Using the Vendor API v3](/reference/vendor-api-using).
+You can use the vendor portal to create versions of your application and promote them to various release channels. The vendor portal hosts a built-in YAML editor and linter to help you write and validate YAML files. Alternatively, you can use the replicated CLI and vendor API to automate releases. For more information about using the CLI, see [Installing the replicated CLI](/reference/replicated-cli-installing). For information about the API, see [Using the Vendor API v3](/reference/vendor-api-using).
 
 ### Release Promotion
 
-After you save a release, you can promote it to any of your release channels. While you are developing and testing releases, Replicated recommends that you promote to a channel that does not have any customers assigned, such as the default Unstable channel. When you are ready to share your application with customers, you can then promote a release to a channel where customers are assigned, such as the Beta or Stable channels. For more information about channels, see [About Release Channels](releases-about-channels).
+When you are ready to test a release, you can promote it to any of your release channels. While you are iterating on and testing releases, Replicated recommends that you promote to a channel that does not have any customers assigned, such as the default Unstable channel. When you are ready to share your application with customers, you can then promote a release to the Beta or Stable channels. You can also create custom channels. For more information about channels, see [About Release Channels](releases-about-channels).
 
 Every customer license file that you create in the vendor portal is assigned to a channel. Each time you promote a new release to a channel, customers assigned to that channel can update their installed application instance to the new release version.
 
