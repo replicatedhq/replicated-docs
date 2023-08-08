@@ -289,7 +289,7 @@ To revoke access to your application when a license expires:
 
   [View a larger version of this image](/images/customer-expiration-policy.png)
 
-1. Install the SDK as a standalone component in a cluster so that you can develop against the SDK API locally. See [Developing Against the SDK API](/vendor/replicated-sdk-development).
+1. Install the Replicated SDK as a standalone component in your cluster. This is called _integration mode_. Installing in integration mode allows you to develop locally against the SDK API without needing to create releases for your application in the vendor portal. See [Developing Against the SDK API](/vendor/replicated-sdk-development).
 
 1. In your application, use the `/api/v1/license/fields/expires_at` endpoint to get the `expires_at` field that you defined in the previous step.
 
