@@ -4,9 +4,9 @@ This topic describes release channels, including the default channels and the **
 
 ## Overview of Channels
 
-The vendor portal includes release channels where you promote your application releases and assign customers. These channels are designed to align with your software development lifecycle. For example, you can have a channel in the vendor portal where you promote alpha or beta releases, and a separate channel where you promote releases that are generally available.
+The vendor portal includes release channels where you promote your application releases and assign customers. These channels are designed to align with your software development lifecycle. For example, you can have a channel in the vendor portal to promote alpha or beta releases, and a separate channel where you promote releases that are generally available.
 
-You assign customers to channels in the vendor portal to control access to your application releases. Customers can install or upgrade to releases that are promoted to the channel to which they are assigned. For example, assigning a customer to your Beta channel allows that customer to install or upgrade to only releases promoted to the Beta channel. You can change the channel to which a customer is assigned at any time. For more information, see [Creating and Managing Customers](releases-creating-customer).
+You assign customers to channels in the vendor portal to control access to your application releases. Customers can install or upgrade to releases that are promoted to the channel to which they are assigned. For example, assigning a customer to the Beta channel allows that customer to install or upgrade to only releases promoted to the Beta channel. You can change the channel to which a customer is assigned at any time. For more information, see [Creating and Managing Customers](releases-creating-customer).
 
 The vendor portal includes the following channels by default:
 
@@ -14,7 +14,7 @@ The vendor portal includes the following channels by default:
 * **Beta**: The Beta channel is designed for release candidates and early-adopting customers. Replicated recommends that you promote a release to the Beta channel after it has passed automated testing in the Unstable channel. You can also choose to license early-adopting customers against this channel.
 * **Stable**: The Stable channel is designed for releases that are generally available to your customers. Replicated recommends that you assign most of your customers to the Stable channel. Customers licensed against the Stable channel only receive application updates when you promote a new release to the Stable channel.
 
-You can archive or edit any of the default channels. You can also create new channels. For more information, see [Creating and Editing Channels](releases-creating-channels).
+You can archive or edit any of the default channels, and create new channels. For more information, see [Creating and Editing Channels](releases-creating-channels).
 
 ## Channels Page
 
@@ -36,7 +36,7 @@ As shown in the image above, you can do the following from the **Channels** page
 
 * In the **Latest release** section, view the properties of the latest release, and get information about any warnings or errors in the YAML files for the latest release.
 
-   You can also click **Release history** to access the history of all releases promoted to the channel. From the **Release History** page, you can view the version labels and files in each release that has been promoted to the selected channel.
+   Click **Release history** to access the history of all releases promoted to the channel. From the **Release History** page, you can view the version labels and files in each release that has been promoted to the selected channel.
    
    For applications that support installation with Replicated KOTS, you can also build and download air gap bundles and edit the release properties for each release promoted to the channel from the **Release History** page.
 
@@ -48,7 +48,7 @@ As shown in the image above, you can do the following from the **Channels** page
 
 * For applications that support KOTS, you can also do the following from the **Channel** page:
 
-   * In the **Kubernetes installer** section, view the current Kubernetes installer promoted to the channel. You can also click **Installer history** to view the history of Kubernetes installers promoted to the channel. For more information about creating Kubernetes installers within a release or separate from a release, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
+   * In the **Kubernetes installer** section, view the current Kubernetes installer promoted to the channel. Click **Installer history** to view the history of Kubernetes installers promoted to the channel. For more information about creating Kubernetes installers within a release or separate from a release, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
 
    * In the **Install** section, view and copy the installation commands for the latest release on the channel. For more information, see the [Installing an Application](/enterprise/installing-overview) section.
 
@@ -56,7 +56,7 @@ As shown in the image above, you can do the following from the **Channels** page
 
 Each release channel has settings. You can customize the settings for a channel to control some of the behavior of releases promoted to the channel.
 
-The following shows the **Channel Settings** dialog that you can access by clicking the settings icon on a channel:
+The following shows the **Channel Settings** dialog, accessed by clicking the settings icon on a channel:
 
 <img src="/images/channel-settings.png" alt="Channel Settings dialog in the vendor portal" width="500"/>
 
