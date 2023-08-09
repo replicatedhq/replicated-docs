@@ -53,7 +53,7 @@ For more information about defining preflight checks for applications installed 
 
 ## Query License Fields at Runtime {#runtime}
 
-The Replicated admin console runs on the customer's cluster and provides entitlement information during application runtime. You can query the admin console {license} endpoint to enforce entitlements at runtime.
+The Replicated admin console runs on the customer's cluster and provides entitlement information during application runtime. You can query the admin console `/license/v1/license` endpoint to enforce entitlements at runtime.
 
 To reference license fields at runtime, send an HTTP request to the admin console `/license/v1/license` endpoint at the following location:
 
