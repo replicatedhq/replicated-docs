@@ -51,7 +51,7 @@ For more information about this example, see [How Can I Use License Custom Field
 
 For more information about defining preflight checks for applications installed with KOTS, see [Define Preflight Checks for KOTS](preflight-kots-defining).
 
-## Query the License Fields {#runtime}
+## Query License Fields at Runtime {#runtime}
 
 The Replicated admin console runs on the customer's cluster and provides entitlement information during application runtime. You can query the admin console {license} endpoint to enforce entitlements at runtime.
 
