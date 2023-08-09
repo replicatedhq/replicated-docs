@@ -9,17 +9,21 @@ This topic describes concepts about creating and promoting releases, editing rel
 
 ## Overview of Releases
 
-A _release_ represents a single version of your application with the Replicated platform. An application can use Helm charts, Kubernetes manifest files, or Kubernetes Operators. 
+A _release_ represents a single version of your application. An application can use Helm charts, Kubernetes manifest files, or Kubernetes Operators. 
 
-Replicated release features help manage your product lifecycle effectively. You can test releases in a channel reserved for development, then promote the release to a Beta channel for customer testing, and ultimately promote the release to a Stable channel when it is ready for general availability.
+Replicated release features help manage your product lifecycle effectively. Using one application codebase and a single workflow, you can test releases in a channel reserved for development, then promote the release to a Beta channel for customer testing, and ultimately promote the release to a Stable channel when it is ready for general availability. You can reduce the complexity and engineering effort of delivering a high quality application when you use one code base and a single release workflow.
 
-You can use the vendor portal to create, manage, and promote versions of your application. The vendor portal hosts a built-in YAML editor and linter to help you write and validate YAML files, create custom domains, and provides other features. For more information about the vendor portal, see [Vendor Portal](/intro-replicated#vendor-portal) in _Introduction to Replicated_.
+Using releases also limits complexity when distributing to customers because you use the same application code base to distribute releases to all of your customers. For example, you can distribute a release to cloud customers and on-prem customers at different cadences. If you are using Helm charts, you can support Helm customers and Replicated KOTS installations from the same Helm chart in the same release. 
+
+Additionally, Replicated license entitlements let you use the same release to support different license types, such as enterprise and community licenses. For more information about customizing licenses, see [Managing Custom License Fields](licenses-adding-custom-fields).
+
+You can use the vendor portal to create, manage, and promote versions of your application, create custom domains, and provides other features. For releases that use Kubernetes manifests, the vendor portal hosts a built-in YAML editor and linter to help you write and validate YAML files. For more information about the vendor portal, see [Vendor Portal](/intro-replicated#vendor-portal) in _Introduction to Replicated_.
 
 Alternatively, use the replicated CLI and vendor API to automate releases. For more information about using the CLI, see [Installing the replicated CLI](/reference/replicated-cli-installing). For information about the API, see [Using the Vendor API v3](/reference/vendor-api-using).
 
 ### Release Promotion
 
-When a release is ready for testing, you promote it to a release channel. While you are developing and testing releases, Replicated recommends promoting to a channel that does not have any customers assigned, such as the default Unstable channel. When the application is ready to be shared with customers, you can then promote a release to the Beta or Stable channels, or create a custom channel. For more information about channels, see [About Release Channels](releases-about-channels).
+After you save release, you promote it to a release channel. While you are developing and testing releases, Replicated recommends promoting to a channel that does not have any customers assigned, such as the default Unstable channel. When the application is ready to be shared with customers, you can then promote a release to the Beta or Stable channels, or create a custom channel. For more information about channels, see [About Release Channels](releases-about-channels).
 
 Every customer license file that you create is assigned to a channel. Each time a new release is promoted to a channel, customers assigned to that channel can update their installed application instance to the new release version. For more information about customer licenses, see [About Customers](licenses-about).
 
