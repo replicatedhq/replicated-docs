@@ -38,7 +38,7 @@ As shown in the image above, you can do the following from the **Channels** page
 
    Click **Release history** to access the history of all releases promoted to the channel. From the **Release History** page, you can view the version labels and files in each release that has been promoted to the selected channel.
    
-   For applications that support installation with Replicated KOTS, you can also build and download air gap bundles and edit the release properties for each release promoted to the channel from the **Release History** page.
+   For applications that support installation with Replicated KOTS, you can also build and download air gap bundles, and edit the release properties for each release promoted to the channel from the **Release History** page.
 
    The following shows an example of the **Release History** page: 
 
@@ -67,7 +67,7 @@ The following describes each of the channel settings:
 * **Channel name**: The name of the channel. You can change the channel name at any time. Each channel also has a unique ID listed below the channel name.
 * **Description**: Optionally, add a description of the channel.
 * **Set this channel to default**: When enabled, sets the channel as the default channel. The default channel cannot be archived.
-* **Custom domains**: Select the customer-facing domains that releases promoted to this channel use for the Replicated registry, proxy service, or download portal endpoints. If a default custom domain exists for any of these endpoints, choosing a different domain in the channel settings overrides the default. If no custom domains are configured for an endpoint, the drop-down for the endpoint is disabled.
+* **Custom domains**: Select the customer-facing domains that releases promoted to this channel use for the Replicated registry, proxy service, Replicated app service, or download portal endpoints. If a default custom domain exists for any of these endpoints, choosing a different domain in the channel settings overrides the default. If no custom domains are configured for an endpoint, the drop-down for the endpoint is disabled.
 
   For more information about configuring custom domains and assigning default domains, see [Using Custom Domains](custom-domains-using).
 * The following channel settings apply only to applications that support KOTS:
