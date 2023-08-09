@@ -208,11 +208,35 @@ ol ol ol {
   margin: 10px 0 25px 0;
 }
 
-#kots {
+.menu__list-item__ref-link > a::after {
+  background-image: url(../../static/images/icons/k8s_installer_b.png);
+  background-size: 30px;
+  background-repeat: no-repeat;
+  content: "";
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin-left: 6px;
+}
+
+.menu__list-item__ref-link > a:hover {
+  /* color: rgb(255,72,86); */
+  color: black;
+}
+
+[data-theme='dark'] .menu__list-item__ref-link > a::after {
+  background-image: url(../../static/images/icons/k8s_installer_w.png);
+}
+
+[data-theme='dark'] .menu__list-item__ref-link > a:hover {
+  color: white;
+}
+
+#kots-logo {
   max-width: 75px;
 }
 
-[data-theme='dark'] #kots {
+[data-theme='dark'] #kots-logo {
   content:url("/images/icons/kots_w.png");
 }
 
