@@ -51,20 +51,17 @@ For more information about this example, see [How Can I Use License Custom Field
 
 For more information about defining preflight checks for applications installed with KOTS, see [Define Preflight Checks for KOTS](preflight-kots-defining).
 
-## Query License Fields from the API {#runtime}
+## Query the License Fields Endpoint {#runtime}
 
-The Replicated admin console runs on the customer's cluster and provides entitlement
-information during application runtime. You can query the admin console API to
-enforce entitlements at runtime.
+The Replicated admin console runs on the customer's cluster and provides entitlement information during application runtime. You can query the admin console {license} endpoint to enforce entitlements at runtime.
 
-To reference license fields at runtime, send an HTTP request to the admin console
-API `/license/v1/license` endpoint at the following location:
+To reference license fields at runtime, send an HTTP request to the admin console `/license/v1/license` endpoint at the following location:
 
 ```
 http://kotsadm:3000/license/v1/license
 ```
 
-The admin console API returns a response in YAML format. For example:
+The query returns a response in YAML format. For example:
 
 ```javascript
 {"license_id":"WicPRaoCv1pJ57ZMf-iYRxTj25eZalw3",
@@ -81,7 +78,7 @@ The admin console API returns a response in YAML format. For example:
 To return a license field value, parse the response using the name of the license
 field.
 
-For example, the following Javascript parses the API response for the value of a
+For example, the following Javascript parses the response for the value of a
 `seat_count` custom field:
 
 ```javascript
