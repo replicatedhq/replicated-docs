@@ -33,4 +33,4 @@ For more information about how to use the compatibility matrix, see [Using the C
 
 ## Supported Clusters and Kubernetes Versions
 
-The compatibility matrix can create clusters on VMs, such as kind, k3s, and Red Hat OpenShift OKD, and also create cloud-managed clusters, such as AWS EKS. For a complete list of supported clusters, Kubernetes versions, and the Kubernetes support policy, see [Supported Clusters](testing-supported-clusters).
+The compatibility matrix can create clusters on VMs, such as kind, k3s, and Red Hat OpenShift OKD, and also create cloud-managed clusters, such as AWS EKS and GCP GKE. For a complete list of supported clusters, Kubernetes versions, and the Kubernetes support policy, see [Supported Clusters](testing-supported-clusters).
