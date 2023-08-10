@@ -35,7 +35,8 @@ Create a test cluster with the compatibility matrix using one of the follow opti
 
     To use the compatibility matrix with CI/CD, add the `replicated cluster` commands directly to your CI/CD pipeline. 
     
-    Additionally, Replicated offers example workflows in Replicated Actions that you can reference. For more information, see [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions#examples) in GitHub.  
+    Additionally, Replicated offers example workflows in Replicated Actions that you can reference. For more information, see [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions#examples) in GitHub.
+      
 
 ## Setting TTL
 
