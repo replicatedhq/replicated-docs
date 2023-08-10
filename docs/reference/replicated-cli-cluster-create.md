@@ -35,7 +35,7 @@ replicated cluster create [flags]
   <tr>
     <td>--instance-type</td>
     <td>string</td>
-    <td>The type of instance to use for nodes in the cluster, such as x5.xlarge. For VM-based clusters, see <a href="/vendor/testing-replicated-instance-types">Replicated Instance Types</a>.</td>
+    <td>The type of instance to use for nodes in the cluster, such as x5.xlarge for EKS. For VM-based clusters, see <a href="/vendor/testing-replicated-instance-types">Replicated Instance Types</a>.</td>
   </tr>
   <tr>
     <td>--name</td>
@@ -71,9 +71,15 @@ replicated cluster create [flags]
 
 ## Examples
 
-For an EKS distribution:
+- For an EKS distribution:
+
+    ```bash
+    replicated cluster create --name eks-example --distribution eks --version 1.27 --node-count 3 --instance-type m5.xlarge
+    ```
+
+- For a kind cluster:
 
   ```bash
-  replicated cluster create --name eks-example --distribution eks --version 1.27 --node-count 3 --instance-type m5.xlarge
+  replicated cluster create --name kind-example --distribution kind --version 1.26.2 --node-count 3 --instance-type r1.large
   ```
 

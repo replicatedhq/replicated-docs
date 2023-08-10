@@ -25,6 +25,12 @@ Create a test cluster with the compatibility matrix using one of the follow opti
 
 - Manually create a cluster when you need one for a short period of time, such as when debugging a support issue or to use testing as part of an inner development loop.
 
+    **Example:**
+
+    ```bash
+    replicated cluster create --name kind-example --distribution kind --version 1.26.2 --node-count 3 --instance-type r1.large
+    ```
+
 - Integrate the compatibility matrix with your existing CI/CD pipeline so that cluster management is automated to run with your unique testing.
 
     To use the compatibility matrix with CI/CD, add the `replicated cluster` commands directly to your CI/CD pipeline. 
