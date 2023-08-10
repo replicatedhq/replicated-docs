@@ -13,7 +13,7 @@ Complete the following prerequisites before installing the replicated CLI:
 
 - To run on Linux or Mac, install [curl](https://curl.haxx.se/).
 - To run through a Docker container, install [docker](https://www.docker.com).
-- Get your application slug from the vendor portal. See [Managing Application Settings](vendor-portal-application-settings).
+- Get your application slug from the vendor portal **Application Settings** page.
 - <PrereqToken/>
 
 ## Install the replicated CLI
