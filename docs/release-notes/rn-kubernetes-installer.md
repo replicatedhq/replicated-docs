@@ -13,7 +13,6 @@ pagination_prev: null
 Released on August 10, 2023
 
 ### New Features {#new-features-v2023-08-10-0}
-* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.22.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-08-04T17-40-21Z.
 * Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.66.0-48.3.1.
 * Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) version 3.8.0.
@@ -21,8 +20,8 @@ Released on August 10, 2023
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.2.
 
 ### Bug Fixes {#bug-fixes-v2023-08-10-0}
-* Fixes an issue where the control plane would not get upgraded on remote primary nodes due to /etc/kubernetes/audit.yaml file missing.
-* Fix an error `failed to pull image registry.k8s.io/coredns:v1.8.6` when upgrading from k8s `1.23.15` to `1.24.4`.
+* Fixes an issue where the control plane would not get upgraded on remote primary nodes due to a missing file /etc/kubernetes/audit.yaml.
+* Fixes an error `failed to pull image registry.k8s.io/coredns:v1.8.6` when upgrading from k8s `1.23.15` to `1.24.4`.
 
 ## v2023.08.07-0
 
