@@ -28,15 +28,14 @@ Create a test cluster with the compatibility matrix using one of the follow opti
     **Example:**
 
     ```bash
-    replicated cluster create --name kind-example --distribution kind --version 1.26.2 --node-count 3 --instance-type r1.large
+    replicated cluster create --name kind-example --distribution kind --version 1.25.2 --disk 100 --instance-type r1.small
     ```
 
 - Integrate the compatibility matrix with your existing CI/CD pipeline so that cluster management is automated to run with your unique testing.
 
     To use the compatibility matrix with CI/CD, add the `replicated cluster` commands directly to your CI/CD pipeline. 
     
-    Additionally, Replicated offers example workflows in Replicated Actions that you can reference. For more information, see [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions#examples) in GitHub.
-      
+    Additionally, Replicated offers example workflows in Replicated Actions that you can reference. For more information, see [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions#examples) in GitHub.  
 
 ## Setting TTL
 

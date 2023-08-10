@@ -1,4 +1,4 @@
-# Supported Clusters (Beta)
+# Supported Clusters and Instance Types (Beta)
 
 The compatibility matrix provisions ephemeral clusters for testing that are cloud-based or virtual machines (VMs).
 
@@ -29,8 +29,8 @@ The compatibility matrix supports creating single-node [kind](https://kind.sigs.
   </tr>
   <tr>
     <th>Node and Supported Instance Types</th>
-    <td><ul><li>Specify a Replicated instance type for the nodes.
-</li></ul></td>
+    <td>Specify a Replicated instance type for the nodes. See <a href="#types">Replicated Instance Types</a>.
+</td>
   </tr>  
   <tr>
     <th>Common Use Cases</th>
@@ -57,8 +57,8 @@ The compatibility matrix supports creating single-node [k3s](https://k3s.io) clu
   </tr>
   <tr>
     <th>Node and Supported Instance Types</th>
-    <td><ul><li>Specify a Replicated instance type for the nodes.
-</li></ul></td>
+    <td>Specify a Replicated instance type for the nodes. See <a href="#types">Replicated Instance Types</a>.
+</td>
   </tr>  
   <tr>
     <th>Limitations</th>
@@ -89,8 +89,8 @@ The compatibility matrix supports creating single-node [Red Hat OpenShift OKD](h
   </tr>
   <tr>
     <th>Node and Supported Instance Types</th>
-    <td><ul><li>Specify a Replicated instance type for the nodes.
-</li></ul></td>
+    <td>Specify a Replicated instance type for the nodes. See <a href="#types">Replicated Instance Types</a>.
+</td>
   </tr>  
   <tr>
     <th>Common Use Cases</th>
@@ -118,8 +118,8 @@ The compatibility matrix supports creating single-node [HelmVM](https://github.c
   </tr>
   <tr>
     <th>Node and Supported Instance Types</th>
-    <td><ul><li>Specify a Replicated instance type for the nodes.
-</li></ul></td>
+    <td>Specify a Replicated instance type for the nodes. See <a href="#types">Replicated Instance Types</a>.
+</td>
   </tr>  
   <tr>
     <th>Common Use Cases</th>
@@ -158,4 +158,42 @@ The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/
     <th>Common Use Cases</th>
     <td>Customer release tests</td>
   </tr>
+</table>
+
+## Replicated Instance Types {#types}
+
+When creating a VM-based cluster with the compatibility matrix, you must specify one of the following Replicated instance types:
+
+
+<table>
+  <tr>
+        <th width="30%">Type</th>
+        <th width="35%">Memory (GiB)</th>
+        <th width="35%">VCPU Count</th>
+  </tr>
+  <tr>
+    <th>r1.small</th>
+    <td>8 GB</td>
+    <td>2 VCPUs</td>
+  </tr>
+  <tr>
+    <th>r1.medium</th>
+    <td>16 GB</td>
+    <td>4 VCPUs</td>
+  </tr>
+  <tr>
+    <th>r1.large</th>
+    <td>32 GB</td>
+    <td>8 VCPUs</td>
+  </tr>
+  <tr>
+    <th>r1.xlarge</th>
+    <td>64 GB</td>
+    <td>16 VCPUs</td>
+  </tr>      
+  <tr>
+    <th>r1.2xlarge</th>
+    <td>128 GB</td>
+    <td>32 VCPUs</td>
+  </tr>  
 </table>
