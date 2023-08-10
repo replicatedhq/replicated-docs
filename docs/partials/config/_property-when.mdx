@@ -1,6 +1,6 @@
 The `when` property denotes conditional user inputs that are only displayed on the admin console Config page when a condition evaluates to true. The equality check in the conditional statement of the `when` property must match exactly, without quotes.
 
-The `when` property can be used on groups, items, and `select_one` options.
+The `when` property can be used as a group or item property. The `select_one` item type can be used as an option under the `when` property. However, `when` is not an item type, so it cannot be used as an option under `select_one`.
 
 When the `when` property for a group or item evaluates to `false`, the group or item is not displayed on the Config page.
 
