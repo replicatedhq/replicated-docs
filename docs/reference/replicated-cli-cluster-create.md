@@ -35,7 +35,7 @@ replicated cluster create [flags]
   <tr>
     <td>--instance-type</td>
     <td>string</td>
-    <td>The type of instance to use for nodes in the cluster. For supported instance types, see <a href="/vendor/testing-supported-clusters">Supported Clusters and Instance Types (Beta)</a>.</td>
+    <td>The type of instance to use for nodes in the cluster. For supported instance types, see <a href="/vendor/testing-supported-clusters">Supported Clusters and Requirements (Beta)</a>.</td>
   </tr>
   <tr>
     <td>--name</td>
@@ -60,7 +60,7 @@ replicated cluster create [flags]
   <tr>
     <td>--version</td>
     <td>string</td>
-    <td><p>The Kubernetes version to provision. For OpenShift clusters, provide the supported OpenShift version. The format is distribution dependent. <strong>Default:</strong> v1.25.3</p><p>For supported versions, see <a href="/vendor/testing-supported-clusters">Supported Clusters and Instance Types (Beta)</a>.</p></td>
+    <td><p>The Kubernetes version to provision. For OpenShift clusters, provide the supported OpenShift version. The format is distribution dependent. <strong>Default:</strong> v1.25.3</p><p>For supported versions, see <a href="/vendor/testing-supported-clusters">Supported Clusters and Requirements (Beta)</a>.</p></td>
   </tr>
   <tr>
     <td>--wait</td>

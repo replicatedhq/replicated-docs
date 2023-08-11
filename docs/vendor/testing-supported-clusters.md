@@ -1,12 +1,8 @@
-# Supported Clusters and Instance Types (Beta)
+# Supported Clusters and Requirements (Beta)
 
-This topic describes the Kubernetes version support policy and supported versions, supported clusters, supported instance types, limitations, and common use cases for the Replicated compatibility matrix. 
+This topic describes the supported clusters, Kubernetes versions and policy, instance types, nodes, limitations, and common use cases for the Replicated compatibility matrix. 
 
 The compatibility matrix provisions ephemeral clusters for testing that are cloud-based or virtual machines (VMs). 
-
-## Kubernetes Version Support Policy
-
-We do not maintain forks or patches of the supported distributions. When a Kubernetes version in the compatibility matrix is out of support (EOL), Replicated will attempt to continue to support this version for six months for compatibility testing to support customers who are running out-of-date versions of Kubernetes. In the event that a critical security issue or bug is found and unresolved, we might discontinue support for EOL versions of Kubernetes prior to 6 months post EOL.
 
 ## VM Clusters
 
@@ -14,7 +10,7 @@ This section lists the supported VM clusters for compatibility testing.
 
 ### kind
 
-The compatibility matrix supports creating single-node [kind](https://kind.sigs.k8s.io/) clusters.
+The compatibility matrix supports creating [kind](https://kind.sigs.k8s.io/) clusters.
 
 <table>
   <tr>
@@ -27,8 +23,11 @@ The compatibility matrix supports creating single-node [kind](https://kind.sigs.
   </tr>
   <tr>
     <th>Supported Instance Types</th>
-    <td>See <a href="#types">Replicated Instance Types</a>
-</td>
+    <td>See <a href="#types">Replicated Instance Types</a></td>
+  </tr>
+  <tr>
+    <th>Nodes</th>
+    <td>Supports a single node.</td>
   </tr>
   <tr>
     <th>Limitations</th>
@@ -42,7 +41,7 @@ The compatibility matrix supports creating single-node [kind](https://kind.sigs.
 
 ### k3s
 
-The compatibility matrix supports creating single-node [k3s](https://k3s.io) clusters.
+The compatibility matrix supports creating [k3s](https://k3s.io) clusters.
 
 <table>
   <tr>
@@ -60,6 +59,10 @@ The compatibility matrix supports creating single-node [k3s](https://k3s.io) clu
   <tr>
     <th>Supported Instance Types</th>
     <td>See <a href="#types">Replicated Instance Types</a></td>
+  </tr>
+  <tr>
+    <th>Nodes</th>
+    <td>Supports a single node.</td>
   </tr>  
   <tr>
     <th>Limitations</th>
@@ -73,7 +76,7 @@ The compatibility matrix supports creating single-node [k3s](https://k3s.io) clu
 
 ### OpenShift OKD
 
-The compatibility matrix supports creating single-node [Red Hat OpenShift OKD](https://www.okd.io/) clusters, which is the community distribution of OpenShift, using CodeReady Containers (CRC). 
+The compatibility matrix supports creating [Red Hat OpenShift OKD](https://www.okd.io/) clusters, which is the community distribution of OpenShift, using CodeReady Containers (CRC). 
 
 <table>
   <tr>
@@ -89,6 +92,10 @@ The compatibility matrix supports creating single-node [Red Hat OpenShift OKD](h
     <td>See <a href="#types">Replicated Instance Types</a></td>
   </tr>
   <tr>
+    <th>Nodes</th>
+    <td>Supports a single node.</td>
+  </tr>
+  <tr>
     <th>Limitations</th>
     <td>See <a href="testing-how-to#limitations">Limitations</a></td>
   </tr> 
@@ -101,7 +108,7 @@ The compatibility matrix supports creating single-node [Red Hat OpenShift OKD](h
 
 ### Helm VM
 
-The compatibility matrix supports creating single-node [HelmVM](https://github.com/replicatedhq/helmbin) clusters, which is a version of Kubernetes that has a Helm chart embedded and runs as a single binary.
+The compatibility matrix supports creating [HelmVM](https://github.com/replicatedhq/helmbin) clusters, which is a version of Kubernetes that has a Helm chart embedded and runs as a single binary.
 
 <table>
   <tr>
@@ -115,6 +122,10 @@ The compatibility matrix supports creating single-node [HelmVM](https://github.c
   <tr>
     <th>Supported Instance Types</th>
     <td><a href="#types">Replicated Instance Types</a></td>
+  </tr>
+  <tr>
+    <th>Nodes</th>
+    <td>Supports a single node.</td>
   </tr>
   <tr>
     <th>Limitations</th>
@@ -146,11 +157,15 @@ The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/
   </tr>
   <tr>
     <th>Supported Instance Types</th>
-    <td><p>m6i.large, m6i.xlarge, m6i.2xlarge, m6i.4xlarge, m6i.8xlarge</p><p>You can specify more than one node.</p></td>
+    <td>m6i.large, m6i.xlarge, m6i.2xlarge, m6i.4xlarge, m6i.8xlarge</td>
+  </tr>
+  <tr>
+    <th>Nodes</th>
+    <td>Supports multiple nodes.</td>
   </tr>
   <tr>
     <th>Limitations</th>
-    <td>You can only choose a minor version, not a patch version. The EKS installer chooses the latest patch for that minor version.<br></br><br></br>For additional limitations, see <a href="testing-how-to#limitations">Limitations</a>.</td>
+    <td><p>You can only choose a minor version, not a patch version. The EKS installer chooses the latest patch for that minor version.</p><p>For additional limitations, see <a href="testing-how-to#limitations">Limitations</a>.</p></td>
   </tr>
   <tr>
     <th>Common Use Cases</th>
@@ -174,6 +189,10 @@ The compatibility matrix supports creating [Google GKE](https://cloud.google.com
   <tr>
     <th>Supported Instance Types</th>
     <td><p>n2-balanced-2, n2-balanced-4, n2-balanced-8, n2-balanced-16, n2-balanced-32</p><p>You can specify more than one node.</p></td>
+  </tr>
+  <tr>
+    <th>Nodes</th>
+    <td>Supports multiple nodes.</td>
   </tr>
   <tr>
     <th>Limitations</th>
@@ -221,3 +240,7 @@ When creating a VM-based cluster with the compatibility matrix, you must specify
     <td>32 VCPUs</td>
   </tr>  
 </table>
+
+## Kubernetes Version Support Policy
+
+We do not maintain forks or patches of the supported distributions. When a Kubernetes version in the compatibility matrix is out of support (EOL), Replicated will attempt to continue to support this version for six months for compatibility testing to support customers who are running out-of-date versions of Kubernetes. In the event that a critical security issue or bug is found and unresolved, we might discontinue support for EOL versions of Kubernetes prior to 6 months post EOL.
