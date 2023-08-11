@@ -37,7 +37,7 @@ To help you manage costs, compatibility matrix clusters have a Time To Live (TTL
 
 To delete the cluster before the TTL expires, use the `replicated cluster rm` command with the cluster ID. 
 
-For more information about the `replicated cluster` commands, see the [replicated CLI](replicated-cli-customer-create) reference.
+For more information about the `replicated cluster` commands, see the [replicated CLI](/reference/replicated-cli-cluster-create) reference.
 
 ## Test Script Recommendations
 
