@@ -1,6 +1,8 @@
 # Supported Clusters and Instance Types (Beta)
 
-The compatibility matrix provisions ephemeral clusters for testing that are cloud-based or virtual machines (VMs).
+This topic describes the Kubernetes version support policy and supported versions, supported clusters, supported instance types, limitations, and common use cases for the Replicated compatibility matrix. 
+
+The compatibility matrix provisions ephemeral clusters for testing that are cloud-based or virtual machines (VMs). 
 
 ## Kubernetes Version Support Policy
 
