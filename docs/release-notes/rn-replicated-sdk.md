@@ -10,6 +10,13 @@ pagination_prev: null
 
 ## 0.0.1-beta.3
 
+Released on August 11, 2023
+
+### Bug Fixes {#bug-fixes-0-0-1-beta-3}
+* Fixes an issue where generating a support bundle failed when using the Replicated SDK support bundle Secret in the Helm chart. The failure occurred due to a syntax issue where the `selector` field expected an array of strings instead of a map.
+
+## 0.0.1-beta.2
+
 Released on August 4, 2023
 
 ### New Features {#new-features-0-0-1-beta-2}
