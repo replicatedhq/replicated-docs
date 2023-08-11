@@ -35,7 +35,7 @@ replicated cluster create [flags]
   <tr>
     <td>--instance-type</td>
     <td>string</td>
-    <td>The type of instance to use for nodes in the cluster, such as x5.xlarge. For VM-based clusters, see <a href="/vendor/testing-replicated-instance-types">Replicated Instance Types</a>.</td>
+    <td>The type of instance to use for nodes in the cluster. For supported instance types, see <a href="/vendor/testing-supported-clusters">Supported Clusters and Requirements (Beta)</a>.</td>
   </tr>
   <tr>
     <td>--name</td>
@@ -60,7 +60,7 @@ replicated cluster create [flags]
   <tr>
     <td>--version</td>
     <td>string</td>
-    <td>The Kubernetes version to provision. For OpenShift clusters, provide the supported OpenShift version. The format is distribution dependent. <strong>Default:</strong> v1.25.3<br></br><br></br>For supported versions, see <a href="/vendor/testing-supported-clusters">Supported Clusters</a>.</td>
+    <td>(Required) The Kubernetes version to provision. For OpenShift clusters, provide the supported OpenShift version. The format is distribution dependent. For supported versions, see <a href="/vendor/testing-supported-clusters">Supported Clusters and Requirements (Beta)</a>.</td>
   </tr>
   <tr>
     <td>--wait</td>
@@ -71,9 +71,14 @@ replicated cluster create [flags]
 
 ## Examples
 
-For an EKS distribution:
+- For an EKS distribution:
 
   ```bash
   replicated cluster create --name eks-example --distribution eks --version 1.27 --node-count 3 --instance-type m6i.large
   ```
 
+- For a kind distribution:
+
+  ```bash
+  replicated cluster create --name kind-example --distribution kind --version 1.25.2 --disk 100 --instance-type r1.small
+  ```

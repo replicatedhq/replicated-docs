@@ -1,6 +1,6 @@
 # Using the Compatibility Matrix (Beta)
 
-This topic describes how to use the compatibility matrix to create ephemeral clusters that you can use for manual and CI/CD testing.
+This topic describes how to use the Replicated compatibility matrix to create ephemeral clusters that you can use for manual and CI/CD testing.
 
 ## Limitations
 
@@ -24,6 +24,12 @@ The Replicated compatibility matrix functionality is provided using the `replica
 Create a test cluster with the compatibility matrix using one of the follow options:
 
 - Manually create a cluster when you need one for a short period of time, such as when debugging a support issue or to use testing as part of an inner development loop.
+
+    **Example:**
+
+    ```bash
+    replicated cluster create --name kind-example --distribution kind --version 1.25.2 --disk 100 --instance-type r1.small
+    ```
 
 - Integrate the compatibility matrix with your existing CI/CD pipeline so that cluster management is automated to run with your unique testing.
 
