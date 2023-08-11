@@ -125,7 +125,7 @@ replicated cluster prepare [flags]
   <tr>
     <td>--yaml-dir</td>
     <td>string</td>
-    <td>The directory containing multiple yamls for a Kots release. Cannot be used with the --yaml flag.</td>
+    <td>The directory containing multiple yamls for a KOTS release. Cannot be used with the --yaml flag.</td>
   </tr>
   <tr>
     <td>--config-values-file</td>
@@ -135,7 +135,7 @@ replicated cluster prepare [flags]
   <tr>
     <td>--shared-password</td>
     <td>string</td>
-    <td>Shared password for the kots admin console.</td>
+    <td>Shared password for the KOTS admin console.</td>
   </tr>
   
 </table>
@@ -156,7 +156,7 @@ For a helm app with kind distribution:
   --values values.yaml
   ```
 
-  For a kots app with k3s distribution:
+  For a KOTS app with k3s distribution:
 
   ```bash
  replicated cluster prepare \
