@@ -124,7 +124,11 @@
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/helm-install"
-  to="https://docs.replicated.com/vendor/distributing-overview"    
+  to="https://docs.replicated.com/vendor/distributing-overview"
+
+[[redirects]]
+  from="https://docs.replicated.com/vendor/testing-replicated-instance-types"
+  to="https://docs.replicated.com/vendor/testing-supported-clusters"    
 
 ###################################################
 # Redirects To the Enterprise Section

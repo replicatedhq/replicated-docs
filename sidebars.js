@@ -584,7 +584,6 @@ const sidebars = {
       items: [
         'vendor/testing-about',
         'vendor/testing-supported-clusters',
-        'vendor/testing-replicated-instance-types',
         'vendor/testing-how-to',
       ],
     },

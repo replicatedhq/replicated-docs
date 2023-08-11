@@ -9,7 +9,7 @@ The compatibility matrix add-on is available to Replicated customers at an addit
 
 The Replicated compatibility matrix quickly provisions ephemeral clusters representing your customer environments, so that you can test your application and troubleshoot issues.
 
-You can chose either a cloud-based and virtual machine (VM) clusters for the compatibility matrix to provision. For a list of supported clusters and versions, see [Supported Clusters](testing-supported-clusters).
+You can chose either a cloud-based and virtual machine (VM) clusters for the compatibility matrix to provision. For a list of supported clusters and versions, see [Supported Clusters and Instance Types](testing-supported-clusters).
 
 Cloud-based Kubernetes distributions are run in a Replicated managed and controlled cloud account to optimize and deliver a clusters quickly and reliably. The Replicated account has control planes ready and adds a node group when you request it, making the cluster available much faster than if you try to create your own cluster with your own cloud account.
 
@@ -33,4 +33,4 @@ For more information about how to use the compatibility matrix, see [Using the C
 
 ## Supported Clusters and Kubernetes Versions
 
-The compatibility matrix can create clusters on VMs, such as kind, k3s, and Red Hat OpenShift OKD, and also create cloud-managed clusters, such as AWS EKS and GCP GKE. For a complete list of supported clusters, Kubernetes versions, and the Kubernetes support policy, see [Supported Clusters](testing-supported-clusters).
+The compatibility matrix can create clusters on VMs, such as kind, k3s, and Red Hat OpenShift OKD, and also create cloud-managed clusters, such as AWS EKS and GCP GKE. For a complete list of supported clusters, Kubernetes versions, and the Kubernetes support policy, see [Supported Clusters and Instance Types](testing-supported-clusters).

@@ -1,4 +1,4 @@
-# Supported Clusters (Beta)
+# Supported Clusters and Instance Types (Beta)
 
 The compatibility matrix provisions ephemeral clusters for testing that are cloud-based or virtual machines (VMs).
 
@@ -24,13 +24,13 @@ The compatibility matrix supports creating single-node [kind](https://kind.sigs.
     <td>1.25, 1.25.1, 1.25.2, 1.25.3, 1.25.4, 1.25.5, 1.25.6, 1.25.7, 1.25.8, 1.26, 1.26.1, 1.26.2, 1.26.3, 1.27</td>
   </tr>
   <tr>
-    <th>Limitations</th>
-    <td>See <a href="testing-how-to#limitations">Limitations</a></td>
+    <th>Supported Instance Types</th>
+    <td>See <a href="#types">Replicated Instance Types</a>
+</td>
   </tr>
   <tr>
-    <th>Node and Supported Instance Types</th>
-    <td><ul><li>Specify a Replicated instance type for the nodes.
-</li></ul></td>
+    <th>Limitations</th>
+    <td>See <a href="testing-how-to#limitations">Limitations</a></td>
   </tr>  
   <tr>
     <th>Common Use Cases</th>
@@ -56,9 +56,8 @@ The compatibility matrix supports creating single-node [k3s](https://k3s.io) clu
     <td>1.24, 1.25, 1.26</td>
   </tr>
   <tr>
-    <th>Node and Supported Instance Types</th>
-    <td><ul><li>Specify a Replicated instance type for the nodes.
-</li></ul></td>
+    <th>Supported Instance Types</th>
+    <td>See <a href="#types">Replicated Instance Types</a></td>
   </tr>  
   <tr>
     <th>Limitations</th>
@@ -84,14 +83,13 @@ The compatibility matrix supports creating single-node [Red Hat OpenShift OKD](h
     <td>4.13.0-okd</td>
   </tr>
   <tr>
-    <th>Limitations</th>
-    <td>See <a href="testing-how-to#limitations">Limitations</a></td>
+    <th>Supported Instance Types</th>
+    <td>See <a href="#types">Replicated Instance Types</a></td>
   </tr>
   <tr>
-    <th>Node and Supported Instance Types</th>
-    <td><ul><li>Specify a Replicated instance type for the nodes.
-</li></ul></td>
-  </tr>  
+    <th>Limitations</th>
+    <td>See <a href="testing-how-to#limitations">Limitations</a></td>
+  </tr> 
   <tr>
     <th>Common Use Cases</th>
     <td>Customer release tests</td>
@@ -113,14 +111,13 @@ The compatibility matrix supports creating single-node [HelmVM](https://github.c
     <td>1.27</td>
   </tr>
   <tr>
-    <th>Limitations</th>
-    <td>See <a href="testing-how-to#limitations">Limitations</a></td>
+    <th>Supported Instance Types</th>
+    <td><a href="#types">Replicated Instance Types</a></td>
   </tr>
   <tr>
-    <th>Node and Supported Instance Types</th>
-    <td><ul><li>Specify a Replicated instance type for the nodes.
-</li></ul></td>
-  </tr>  
+    <th>Limitations</th>
+    <td>See <a href="testing-how-to#limitations">Limitations</a></td>
+  </tr> 
   <tr>
     <th>Common Use Cases</th>
     <td>Customer release tests</td>
@@ -147,16 +144,11 @@ The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/
   </tr>
   <tr>
     <th>Supported Instance Types</th>
-    <td>m6i.large, m6i.xlarge, m6i.2xlarge, m6i.4xlarge, m6i.8xlarge</td>
+    <td><p>m6i.large, m6i.xlarge, m6i.2xlarge, m6i.4xlarge, m6i.8xlarge</p><p>You can specify more than one node.</p></td>
   </tr>
   <tr>
     <th>Limitations</th>
     <td>You can only choose a minor version, not a patch version. The EKS installer chooses the latest patch for that minor version.<br></br><br></br>For additional limitations, see <a href="testing-how-to#limitations">Limitations</a>.</td>
-  </tr>
-  <tr>
-    <th>Node and Supported Instance Types</th>
-    <td><ul><li>You can specify more than one node.</li><li>Specify an AWS EC2 instance type for the nodes.
-</li></ul></td>
   </tr>
   <tr>
     <th>Common Use Cases</th>
@@ -179,19 +171,51 @@ The compatibility matrix supports creating [Google GKE](https://cloud.google.com
   </tr>
   <tr>
     <th>Supported Instance Types</th>
-    <td>n2-balanced-2, n2-balanced-4, n2-balanced-8, n2-balanced-16, n2-balanced-32</td>
+    <td><p>n2-balanced-2, n2-balanced-4, n2-balanced-8, n2-balanced-16, n2-balanced-32</p><p>You can specify more than one node.</p></td>
   </tr>
   <tr>
     <th>Limitations</th>
     <td>You can only choose a minor version, not a patch version. The GKE installer chooses the latest patch for that minor version.<br></br><br></br>For additional limitations, see <a href="testing-how-to#limitations">Limitations</a>.</td>
   </tr>
   <tr>
-    <th>Node and Supported Instance Types</th>
-    <td><ul><li>You can specify more than one node.</li><li>Specify a GCP machine type for the nodes.
-</li></ul></td>
-  </tr>
-  <tr>
     <th>Common Use Cases</th>
     <td>Customer release tests</td>
   </tr>
+</table>
+
+## Replicated Instance Types {#types}
+
+When creating a VM-based cluster with the compatibility matrix, you must specify a Replicated instance type.
+
+<table>
+  <tr>
+        <th width="30%">Type</th>
+        <th width="35%">Memory (GiB)</th>
+        <th width="35%">VCPU Count</th>
+  </tr>
+  <tr>
+    <th>r1.small</th>
+    <td>8 GB</td>
+    <td>2 VCPUs</td>
+  </tr>
+  <tr>
+    <th>r1.medium</th>
+    <td>16 GB</td>
+    <td>4 VCPUs</td>
+  </tr>
+  <tr>
+    <th>r1.large</th>
+    <td>32 GB</td>
+    <td>8 VCPUs</td>
+  </tr>
+  <tr>
+    <th>r1.xlarge</th>
+    <td>64 GB</td>
+    <td>16 VCPUs</td>
+  </tr>      
+  <tr>
+    <th>r1.2xlarge</th>
+    <td>128 GB</td>
+    <td>32 VCPUs</td>
+  </tr>  
 </table>
