@@ -3,7 +3,7 @@ import Help from "../partials/replicated-cli/_help.mdx"
 
 # cluster prepare (Beta)
 
-Create a cluster without promoting a release to a channel, and deploy application for compatibility testing. This method is not recommended for production testing. For production testing, use `cluster create` instead.
+Create a cluster without promoting a release to a channel, and deploy applications for compatibility testing. This method is not recommended for production testing. For production testing, use `cluster create` instead.
 
 ## Usage
 ```bash
@@ -30,7 +30,7 @@ replicated cluster prepare [flags]
   <tr>
     <td>--instance-type</td>
     <td>string</td>
-    <td>The type of instance to use for nodes in the cluster. See <a href="/vendor/testing-supported-clusters">Supported Clusters and Requirements</a>.</td>
+    <td>The type of instance to use for nodes in the cluster. See <a href="/vendor/testing-supported-clusters">Supported Clusters and Requirements (Beta)</a>.</td>
   </tr>
   <tr>
     <td>--name</td>
@@ -50,7 +50,7 @@ replicated cluster prepare [flags]
   <tr>
     <td>--version</td>
     <td>string</td>
-    <td>(Required) The Kubernetes version to provision. For OpenShift clusters, provide the supported OpenShift version. The format is distribution dependent. For supported versions, see <a href="/vendor/testing-supported-clusters">Supported Clusters and Requirements</a>.</td>
+    <td>(Required) The Kubernetes version to provision. For OpenShift clusters, provide the supported OpenShift version. The format is distribution dependent. For supported versions, see <a href="/vendor/testing-supported-clusters">Supported Clusters and Requirements (Beta)</a>.</td>
   </tr>
   <tr>
     <td>--wait</td>
@@ -70,7 +70,7 @@ replicated cluster prepare [flags]
   <tr>
     <td>--namespace</td>
     <td>string</td>
-    <td>The namespace in which to deploy the KOTS or Helm chart application. <strong>Default:</strong> default</td>
+    <td>The namespace in which to deploy the KOTS or Helm chart release. <strong>Default:</strong> default</td>
   </tr>
   <tr>
     <td>--app-ready-timeout</td>
@@ -90,32 +90,32 @@ replicated cluster prepare [flags]
   <tr>
     <td>--set</td>
     <td>string</td>
-    <td>Set values on the command line. Specify multiple or separate values with commas: key1=val1,key2=val2.</td>
+    <td>Set values using the command line. Specify multiple or separate values with commas: key1=val1,key2=val2.</td>
   </tr>
   <tr>
     <td>--set-string</td>
     <td>string</td>
-    <td>Set STRING values on the command line. Specify multiple or separate values with commas: key1=val1,key2=val2.</td>
+    <td>Set String values using the command line. Specify multiple or separate values with commas: key1=val1,key2=val2.</td>
   </tr>
   <tr>
     <td>--set-file</td>
     <td>string</td>
-    <td>Set values from respective files specified via the command line. Specify multiple or separate values with commas: key1=path1,key2=path2.</td>
+    <td>Set values from respective files specified using the command line. Specify multiple or separate values with commas: key1=path1,key2=path2.</td>
   </tr>
   <tr>
     <td>--set-json</td>
     <td>string</td>
-    <td>Set JSON values on the command line. Specify multiple or separate values with commas: key1=jsonval1,key2=jsonval2.</td>
+    <td>Set JSON values using the command line. Specify multiple or separate values with commas: key1=jsonval1,key2=jsonval2.</td>
   </tr>
   <tr>
     <td>--set-literal</td>
     <td>string</td>
-    <td>Set a literal STRING value on the command line.</td>
+    <td>Set a literal String value using the command line.</td>
   </tr>
   <tr>
     <td>--yaml</td>
     <td>string</td>
-    <td>The YAML config for this release. Use '-' to read from stdin. Cannot be used with the <code>--yaml-file</code> flag.</td>
+    <td>The YAML config for this release. Use <code>-</code> to read from stdin. Cannot be used with the <code>--yaml-file</code> flag.</td>
   </tr>
   <tr>
     <td>--yaml-file</td>
