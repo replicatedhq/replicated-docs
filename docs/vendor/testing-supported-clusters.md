@@ -146,7 +146,7 @@ The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/
     <td>1.22, 1.23, 1.24, 1.25, 1.26, 1.27</td>
   </tr>
   <tr>
-    <th>Support Instance Types</th>
+    <th>Supported Instance Types</th>
     <td>m6i.large, m6i.xlarge, m6i.2xlarge, m6i.4xlarge, m6i.8xlarge</td>
   </tr>
   <tr>
@@ -178,7 +178,7 @@ The compatibility matrix supports creating [Google GKE](https://cloud.google.com
     <td>1.22, 1.23, 1.24, 1.25, 1.26, 1.27</td>
   </tr>
   <tr>
-    <th>Support Instance Types</th>
+    <th>Supported Instance Types</th>
     <td>n2-balanced-2, n2-balanced-4, n2-balanced-8, n2-balanced-16, n2-balanced-32</td>
   </tr>
   <tr>
@@ -187,7 +187,7 @@ The compatibility matrix supports creating [Google GKE](https://cloud.google.com
   </tr>
   <tr>
     <th>Node and Supported Instance Types</th>
-    <td><ul><li>You can specify more than one node.</li><li>Specify an GCP machine type for the nodes.
+    <td><ul><li>You can specify more than one node.</li><li>Specify a GCP machine type for the nodes.
 </li></ul></td>
   </tr>
   <tr>
