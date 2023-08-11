@@ -21,14 +21,18 @@ Replace `ID` with the ID of the cluster from the output of the `replicated clust
   </tr>
   <Help/>
   <tr>
-    <td>--force</td>
+    <td>--all</td>
     <td></td>
-    <td>Does a force remove of the clusters.</td>
+    <td>Removes all clusters.</td>
   </tr>
 </table>
 
 ## Example
 
 ```bash
-replicated cluster rm 1234567890 --force
+replicated cluster rm 1234567890
+```
+
+```bash
+replicated cluster rm --all
 ```
