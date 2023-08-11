@@ -51,7 +51,7 @@ Viewing instance data in the vendor portal has the following requirements:
 The vendor portal has the following limitations for reporting instance data and generating events:
 
 * **Air gap not supported**: Instance data is available only for application instances installed in online environments. Data for instances installed in air gapped environments is not available.
-* **Active instances only**: Instance data is available only for active application instances. An instance is considered inactive when its most recent check-in was more than two weeks ago. An instance can become inactive if it is decommissioned, stops checking for updates, or otherwise stops reporting.
+* **Active instances only**: Instance data is available only for active application instances. An instance is considered inactive when its most recent check-in was more than 24 hours ago. An instance can become inactive if it is decommissioned, stops checking for updates, or otherwise stops reporting.
 
    The vendor portal continues to display data for an inactive instance from its most-recently seen state. This means that data for an inactive instance might continue to show a Ready status after the instance becomes inactive. Replicated recommends that you use the timestamp in the **Last Check-in** field to understand if an instance might have become inactive, causing its data to be out-of-date.
 * **Instance data freshness**: The rate at which data is updated in the vendor portal varies depending on how often the vendor portal receives instance data.
