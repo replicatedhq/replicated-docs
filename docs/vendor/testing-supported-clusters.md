@@ -146,12 +146,48 @@ The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/
     <td>1.22, 1.23, 1.24, 1.25, 1.26, 1.27</td>
   </tr>
   <tr>
+    <th>Supported Instance Types</th>
+    <td>m6i.large, m6i.xlarge, m6i.2xlarge, m6i.4xlarge, m6i.8xlarge</td>
+  </tr>
+  <tr>
     <th>Limitations</th>
     <td>You can only choose a minor version, not a patch version. The EKS installer chooses the latest patch for that minor version.<br></br><br></br>For additional limitations, see <a href="testing-how-to#limitations">Limitations</a>.</td>
   </tr>
   <tr>
     <th>Node and Supported Instance Types</th>
     <td><ul><li>You can specify more than one node.</li><li>Specify an AWS EC2 instance type for the nodes.
+</li></ul></td>
+  </tr>
+  <tr>
+    <th>Common Use Cases</th>
+    <td>Customer release tests</td>
+  </tr>
+</table>
+
+### GKE
+
+The compatibility matrix supports creating [Google GKE](https://cloud.google.com/kubernetes-engine) clusters.
+
+<table>
+  <tr>
+        <th width="35%">Type</th>
+        <th width="65%">Description</th>
+  </tr>
+  <tr>
+    <th>Supported Kubernetes Versions</th>
+    <td>1.22, 1.23, 1.24, 1.25, 1.26, 1.27</td>
+  </tr>
+  <tr>
+    <th>Supported Instance Types</th>
+    <td>n2-balanced-2, n2-balanced-4, n2-balanced-8, n2-balanced-16, n2-balanced-32</td>
+  </tr>
+  <tr>
+    <th>Limitations</th>
+    <td>You can only choose a minor version, not a patch version. The GKE installer chooses the latest patch for that minor version.<br></br><br></br>For additional limitations, see <a href="testing-how-to#limitations">Limitations</a>.</td>
+  </tr>
+  <tr>
+    <th>Node and Supported Instance Types</th>
+    <td><ul><li>You can specify more than one node.</li><li>Specify a GCP machine type for the nodes.
 </li></ul></td>
   </tr>
   <tr>
