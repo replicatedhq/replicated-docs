@@ -23,7 +23,7 @@ Replace `ID` with the ID of the cluster from the output of the `replicated clust
   <tr>
     <td>--all</td>
     <td></td>
-    <td>Removes all clusters</td>
+    <td>Removes all clusters.</td>
   </tr>
 </table>
 
