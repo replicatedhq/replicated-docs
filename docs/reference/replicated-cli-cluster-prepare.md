@@ -3,7 +3,7 @@ import Help from "../partials/replicated-cli/_help.mdx"
 
 # cluster prepare (Beta)
 
-Create a cluster and deploy application for compatibility testing.
+Create a cluster without promoting a release to a channel, and deploy application for compatibility testing. This method is not recommended for production testing. For production testing, use `cluster create` instead.
 
 ## Usage
 ```bash
