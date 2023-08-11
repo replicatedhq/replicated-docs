@@ -70,7 +70,7 @@ replicated cluster prepare [flags]
   <tr>
     <td>--namespace</td>
     <td>string</td>
-    <td>The namespace in which to deploy the KOTS or Helm chart release. <strong>Default:</strong> default</td>
+    <td>The namespace in which to deploy the KOTS or Helm chart application. <strong>Default:</strong> default</td>
   </tr>
   <tr>
     <td>--app-ready-timeout</td>
@@ -142,7 +142,7 @@ replicated cluster prepare [flags]
 
 ## Examples
 
-- For a helm app with kind distribution:
+- For a Helm application with a kind distribution:
 
     ```bash
     replicated cluster cluster prepare \
@@ -156,7 +156,7 @@ replicated cluster prepare [flags]
     --values values.yaml
     ```
 
-- For a KOTS app with k3s distribution:
+- For a KOTS-based application with a k3s distribution:
 
     ```bash
     replicated cluster prepare \
