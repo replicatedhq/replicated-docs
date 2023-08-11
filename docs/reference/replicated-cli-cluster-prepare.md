@@ -30,7 +30,7 @@ replicated cluster prepare [flags]
   <tr>
     <td>--instance-type</td>
     <td>string</td>
-    <td>The type of instance to use for nodes in the cluster, such as x5.xlarge. For VM-based clusters, see <a href="/vendor/testing-replicated-instance-types">Replicated Instance Types</a>.</td>
+    <td>The type of instance to use for nodes in the cluster. See <a href="/vendor/testing-supported-clusters">Supported Clusters and Requirements</a>.</td>
   </tr>
   <tr>
     <td>--name</td>
@@ -50,7 +50,7 @@ replicated cluster prepare [flags]
   <tr>
     <td>--version</td>
     <td>string</td>
-    <td>The Kubernetes version to provision. For OpenShift clusters, provide the supported OpenShift version. The format is distribution dependent. <strong>Default:</strong> v1.25.3<br></br><br></br>For supported versions, see <a href="/vendor/testing-supported-clusters">Supported Clusters</a>.</td>
+    <td>(Required) The Kubernetes version to provision. For OpenShift clusters, provide the supported OpenShift version. The format is distribution dependent. For supported versions, see <a href="/vendor/testing-supported-clusters">Supported Clusters and Requirements</a>.</td>
   </tr>
   <tr>
     <td>--wait</td>
@@ -60,22 +60,22 @@ replicated cluster prepare [flags]
   <tr>
     <td>--cluster-id</td>
     <td>string</td>
-    <td>The ID of an existing cluster to use instead of creating a new one.</td>
+    <td>The ID of an existing cluster to use instead of creating a new ID.</td>
   </tr>
   <tr>
     <td>--entitlements</td>
     <td>string</td>
-    <td>The entitlements to set on the customer. Can be specified multiple times.</td>
+    <td>The entitlements to set on the customer. You can specify multiple entitlements.</td>
   </tr>
   <tr>
     <td>--namespace</td>
     <td>string</td>
-    <td>The namespace into which to deploy the KOTS application or Helm chart. <strong>Default:</strong> default</td>
+    <td>The namespace in which to deploy the KOTS or Helm chart application. <strong>Default:</strong> default</td>
   </tr>
   <tr>
     <td>--app-ready-timeout</td>
     <td>string</td>
-    <td>Timeout to wait for the application to be ready. Must be in Go duration format (e.g., 10s, 2m). <strong>Default:</strong> 5 minutes</td>
+    <td>Timeout to wait for the application to be ready. Requires the Go duration format (e.g., 10s, 2m). <strong>Default:</strong> 5 minutes</td>
   </tr>
   <tr>
     <td>--chart</td>
@@ -85,27 +85,27 @@ replicated cluster prepare [flags]
   <tr>
     <td>--values</td>
     <td>string</td>
-    <td>Specify values in a YAML file or a URL (can specify multiple).</td>
+    <td>Specify values in a YAML file or a URL. You can specify multiple values.</td>
   </tr>
   <tr>
     <td>--set</td>
     <td>string</td>
-    <td>Set values on the command line (can specify multiple or separate values with commas: key1=val1,key2=val2).</td>
+    <td>Set values on the command line. Specify multiple or separate values with commas: key1=val1,key2=val2.</td>
   </tr>
   <tr>
     <td>--set-string</td>
     <td>string</td>
-    <td>Set STRING values on the command line (can specify multiple or separate values with commas: key1=val1,key2=val2).</td>
+    <td>Set STRING values on the command line. Specify multiple or separate values with commas: key1=val1,key2=val2.</td>
   </tr>
   <tr>
     <td>--set-file</td>
     <td>string</td>
-    <td>Set values from respective files specified via the command line (can specify multiple or separate values with commas: key1=path1,key2=path2).</td>
+    <td>Set values from respective files specified via the command line. Specify multiple or separate values with commas: key1=path1,key2=path2.</td>
   </tr>
   <tr>
     <td>--set-json</td>
     <td>string</td>
-    <td>Set JSON values on the command line (can specify multiple or separate values with commas: key1=jsonval1,key2=jsonval2).</td>
+    <td>Set JSON values on the command line. Specify multiple or separate values with commas: key1=jsonval1,key2=jsonval2.</td>
   </tr>
   <tr>
     <td>--set-literal</td>
@@ -115,22 +115,22 @@ replicated cluster prepare [flags]
   <tr>
     <td>--yaml</td>
     <td>string</td>
-    <td>The YAML config for this release. Use '-' to read from stdin. Cannot be used with the --yaml-file flag.</td>
+    <td>The YAML config for this release. Use '-' to read from stdin. Cannot be used with the <code>--yaml-file</code> flag.</td>
   </tr>
   <tr>
     <td>--yaml-file</td>
     <td>string</td>
-    <td>The YAML config for this release. Cannot be used with the --yaml flag.</td>
+    <td>The YAML config for this release. Cannot be used with the <code>--yaml</code> flag.</td>
   </tr>
   <tr>
     <td>--yaml-dir</td>
     <td>string</td>
-    <td>The directory containing multiple yamls for a KOTS release. Cannot be used with the --yaml flag.</td>
+    <td>The directory containing multiple YAML files for a KOTS release. Cannot be used with the <code>--yaml</code> flag.</td>
   </tr>
   <tr>
     <td>--config-values-file</td>
     <td>string</td>
-    <td>Path to a manifest containing config values (must be apiVersion: kots.io/v1beta1, kind: ConfigValues).</td>
+    <td>Path to a manifest containing config values. Must use <code>apiVersion: kots.io/v1beta1</code>, <code>kind: ConfigValues</code>.</td>
   </tr>
   <tr>
     <td>--shared-password</td>
@@ -142,31 +142,31 @@ replicated cluster prepare [flags]
 
 ## Examples
 
-For a helm app with kind distribution:
+- For a helm app with kind distribution:
 
-  ```bash
-  replicated cluster cluster prepare \
-  --distribution kind \
-  --version 1.27.0 \
-  --chart nginx-chart-0.0.14.tgz \
-  --set key1=val1,key2=val2 \
-  --set-string s1=val1,s2=val2 \
-  --set-json j1='{"key1":"val1","key2":"val2"}' \
-  --set-literal l1=val1,l2=val2 \
-  --values values.yaml
-  ```
+    ```bash
+    replicated cluster cluster prepare \
+    --distribution kind \
+    --version 1.27.0 \
+    --chart nginx-chart-0.0.14.tgz \
+    --set key1=val1,key2=val2 \
+    --set-string s1=val1,s2=val2 \
+    --set-json j1='{"key1":"val1","key2":"val2"}' \
+    --set-literal l1=val1,l2=val2 \
+    --values values.yaml
+    ```
 
-  For a KOTS app with k3s distribution:
+- For a KOTS app with k3s distribution:
 
-  ```bash
- replicated cluster prepare \
-  --distribution k3s \
-  --version 1.26 \
-  --namespace config-validation \
-  --shared-password password \
-  --app-ready-timeout 10m \
-  --yaml-dir config-validation \
-  --config-values-file conifg-values.yaml \
-  --entitlements "num_of_queues=5"
-  ```
+    ```bash
+    replicated cluster prepare \
+    --distribution k3s \
+    --version 1.26 \
+    --namespace config-validation \
+    --shared-password password \
+    --app-ready-timeout 10m \
+    --yaml-dir config-validation \
+    --config-values-file conifg-values.yaml \
+    --entitlements "num_of_queues=5"
+    ```
 
