@@ -45,23 +45,21 @@ To generate a service account:
 1. Log in to the vendor portal, and select [**Team > Service Accounts**](https://vendor.replicated.com/team/serviceaccounts).
 1. Select **New Service Account**. If one or more service accounts already exist, you can add another by selecting **New Service Account**.
 
-  <img alt="Service Accounts Page" src="/images/service-accounts.png" width="600px"/>
+1. Edit the fields in the **New Service Account** dialog:
 
-  [View a larger version of this image](/images/service-accounts.png)
+    <img alt="New Service Accounts Dialog" src="/images/service-accounts.png" width="400px"/>
 
-1. In the **New Service Account** dialog:
+      [View a larger version of this image](/images/service-accounts.png)
 
-    1. Enter a name the token in the **Nickname** field. Names for service accounts must be unique within a given team.
+    1. For **Nickname**, enter a name the token. Names for service accounts must be unique within a given team.
 
-    1. Select the RBAC policy from the dropdown list. The token must have `Admin` access to create new releases.
+    1. For **RBAC**, select the RBAC policy from the dropdown list. The token must have `Admin` access to create new releases.
 
-    1. (Optional) Select the **Limit to read-only version of above policy** check box to if you want use an existing RBAC policy that has Read/Write permissions but limit this service account to read-only. This option lets you maintain one version of an RBAC policy instead of two versions (one read/write version and one read-only version).
+      This list includes the vendor portal default policies `Admin` and `Read Only`. Any custom policies also display in this list. For more information, see [Configuring RBAC Policies](/vendor/team-management-rbac-configuring).
 
       Users with a non-admin RBAC role cannot select any other RBAC role when creating a token. They are restricted to creating a token with their same level of access to avoid permission elevation.
 
-      <img alt="New Service Accounts Dialog" src="/images/service-account-create.png" width="400px"/>
-
-      [View a larger version of this image](/images/service-accounts.png)
+    1. (Optional) For custom RBAC policies, select the **Limit to read-only version of above policy** check box to if you want use a policy that has Read/Write permissions but limit this service account to read-only. This option lets you maintain one version of a custom RBAC policy and use it two ways: as read/write and as read-only.
 
 1. Select **Create Service Account**.
 
