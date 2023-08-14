@@ -168,6 +168,11 @@
   from="https://docs.replicated.com/reference/kots-lint"
   to="https://docs.replicated.com/reference/linter"
 
+# Redirects from the reference section to the teams section for generating API tokens
+[[redirects]]
+  from="https://docs.replicated.com/reference/replicated-cli-tokens"
+  to="https://docs.replicated.com/vendor/replicated-api-tokens"
+
 ###################################################
 # Redirects To the Release Notes Section
 ###################################################

@@ -481,7 +481,7 @@ const sidebars = {
          ],
         },
         'vendor/team-management-slack-config',
-        'reference/replicated-cli-tokens',
+        'vendor/replicated-api-tokens',
         'vendor/vendor-portal-application-settings',
       ],
     },

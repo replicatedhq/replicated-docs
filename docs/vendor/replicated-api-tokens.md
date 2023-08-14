@@ -1,3 +1,5 @@
+import TeamTokenNote from "../partials/vendor-api/_team-token-note.mdx"
+
 # Generating API Tokens
 
 This topic describes the available types of API tokens and how to generate them for use with the replicated CLI and Replicated Vendor API v3.
@@ -13,9 +15,7 @@ The following types of tokens are available:
 - [Service Accounts](#service-accounts)
 - [User API Tokens](user-api-tokens)
 
-:::note
-Team API tokens are deprecated and cannot be generated. If you are already using team API tokens, Replicated recommends that you migrate to Service Accounts or User API tokens instead because these options provide better granular control over token access.
-:::
+<TeamTokenNote/>
 
 ### Service Accounts
 
@@ -55,7 +55,7 @@ To generate a service account:
 
     1. For **RBAC**, select the RBAC policy from the dropdown list. The token must have `Admin` access to create new releases.
 
-      This list includes the vendor portal default policies `Admin` and `Read Only`. Any custom policies also display in this list. For more information, see [Configuring RBAC Policies](/vendor/team-management-rbac-configuring).
+      This list includes the vendor portal default policies `Admin` and `Read Only`. Any custom policies also display in this list. For more information, see [Configuring RBAC Policies](team-management-rbac-configuring).
 
       Users with a non-admin RBAC role cannot select any other RBAC role when creating a token. They are restricted to creating a token with their same level of access to avoid permission elevation.
 

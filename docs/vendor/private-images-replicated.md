@@ -1,3 +1,5 @@
+import TeamTokenNote from "../partials/vendor-api/_team-token-note.mdx"
+
 # Using the Replicated Registry for KOTS Installations
 
 This topic describes how to use the Replicated private image registry for Replicated KOTS installations.
@@ -15,8 +17,11 @@ This procedure describes how to tag and push images to the Replicated registry. 
 To push images to the Replicated registry:
 
 1. Do one of the following to connect with the `registry.replicated.com` container registry:
-   * **(Recommended) Log in with a user token**: Use `docker login registry.replicated.com` with your vendor portal email as the username and a vendor portal user token as the password. For more information, see [User tokens](../reference/replicated-cli-tokens#user-tokens) in _Using Vendor API tokens_.
-   * **Log in with a service account or team token**: Use `docker login registry.replicated.com` with a Replicated vendor portal service account or team token as the password. You can use any string as the username. For more information, see [Service accounts](../reference/replicated-cli-tokens#service-accounts) and [Team tokens](../reference/replicated-cli-tokens#team-tokens) in _Using Vendor API tokens_.
+   * **(Recommended) Log in with a user token**: Use `docker login registry.replicated.com` with your vendor portal email as the username and a vendor portal user token as the password. For more information, see [User API Tokens](replicated-api-tokens#user-api-tokens) in _Using Vendor API tokens_.
+   * **Log in with a service account token:** Use `docker login registry.replicated.com` with a Replicated vendor portal service account as the password. If you have an existing team token, you can use that instead. You can use any string as the username. For more information, see [Service Accounts](replicated-api-tokens#service-accounts) in _Using Vendor API Tokens_.
+   
+      <TeamTokenNote/>
+
    * **Log in with your credentials**: Use `docker login registry.replicated.com` with your vendor portal email and password as the credentials.
 
 1. Tag your private image with the Replicated registry hostname in the standard
