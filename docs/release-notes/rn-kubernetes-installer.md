@@ -15,6 +15,9 @@ Released on August 15, 2023
 ### New Features {#new-features-v2023-08-15-0}
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.3.
 
+### Bug Fixes {#bug-fixes-v2023-08-15-0}
+* Fixes an issue where EKCO-created Rook-Ceph clusters would not mount volumes on RHEL 7 based OSes.
+
 ## v2023.08.10-0
 
 Released on August 10, 2023
