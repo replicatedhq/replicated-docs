@@ -460,7 +460,7 @@ const sidebars = {
     {type: 'ref', id: 'intro-kots', label: 'KOTS and kURL Documentation'},
     {
       type: 'category',
-      label: 'Vendor Portal Team Management',
+      label: 'Vendor Portal Teams and Accounts',
       items: [
         'vendor/vendor-portal-creating-account',
         'vendor/team-management',
@@ -483,6 +483,8 @@ const sidebars = {
          ],
         },
         'vendor/team-management-slack-config',
+        'vendor/replicated-api-tokens',
+        'vendor/vendor-portal-application-settings',
       ],
     },
     {
@@ -628,7 +630,6 @@ const sidebars = {
       label: 'replicated CLI',
       items: [
         'reference/replicated-cli-installing',
-        'reference/replicated-cli-tokens',
         'reference/replicated-cli-app-create',
         'reference/replicated-cli-app-delete',
         'reference/replicated-cli-app-ls',
