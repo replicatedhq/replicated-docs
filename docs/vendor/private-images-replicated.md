@@ -17,8 +17,8 @@ This procedure describes how to tag and push images to the Replicated registry. 
 To push images to the Replicated registry:
 
 1. Do one of the following to connect with the `registry.replicated.com` container registry:
-   * **(Recommended) Log in with a user token**: Use `docker login registry.replicated.com` with your vendor portal email as the username and a vendor portal user token as the password. For more information, see [User API Tokens](replicated-api-tokens#user-api-tokens) in _Using Vendor API tokens_.
-   * **Log in with a service account token:** Use `docker login registry.replicated.com` with a Replicated vendor portal service account as the password. If you have an existing team token, you can use that instead. You can use any string as the username. For more information, see [Service Accounts](replicated-api-tokens#service-accounts) in _Using Vendor API Tokens_.
+   * **(Recommended) Log in with a user token**: Use `docker login registry.replicated.com` with your vendor portal email as the username and a vendor portal user token as the password. For more information, see [User API Tokens](replicated-api-tokens#user-api-tokens) in _Generating API Tokens_.
+   * **Log in with a service account token:** Use `docker login registry.replicated.com` with a Replicated vendor portal service account as the password. If you have an existing team token, you can use that instead. You can use any string as the username. For more information, see [Service Accounts](replicated-api-tokens#service-accounts) in _Generating API Tokens_.
    
       <TeamTokenNote/>
 

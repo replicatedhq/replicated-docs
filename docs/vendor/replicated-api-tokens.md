@@ -25,7 +25,6 @@ Service accounts are useful for operations that are not tied to a particular use
 
 Updates to a service account's RBAC policy are automatically applied to its associated token. When a service account is removed, its tokens are also invalidated.
 
-
 ### User API Tokens
 
 User API tokens are private to the user creating the token. User tokens assume the user's account when used, including any RBAC permissions.
@@ -36,7 +35,7 @@ Revoking a user token immediately invalidates that token. When a user account is
 
 ## Generate Tokens
 
-To use the replicated CLI, you need a User API Token or a Service Account (Team API tokens also continue to work).
+To use the replicated CLI or the Vendor API v3, you need a User API token or a Service Account token. Existing team API tokens also continue to work.
 
 ### Generate a Service Account
 

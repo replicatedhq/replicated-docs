@@ -458,7 +458,7 @@ const sidebars = {
     {type: 'ref', id: 'intro-kots', label: 'KOTS and kURL Documentation'},
     {
       type: 'category',
-      label: 'Vendor Portal Team Management',
+      label: 'Vendor Portal Teams and Accounts',
       items: [
         'vendor/vendor-portal-creating-account',
         'vendor/team-management',
