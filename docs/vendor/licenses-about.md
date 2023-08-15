@@ -14,7 +14,7 @@ For more information about how to create and manage customers, see [Creating and
 
 ### Channel Assignment
 
-You assign customers to channels in the vendor portal to control their access to your application releases. Customers can install or upgrade to releases that are promoted to the channel they are assigned. For example, assigning a customer to your Beta channel allows that customer to install or upgrade to only releases promoted to the Beta channel.
+You assign customers to channels in the vendor portal to control their access to your application releases. Customers can install or upgrade to releases that are promoted to the channel they are assigned. For example, assigning a customer to your Beta channel allows that customer to install or upgrade to only releases promoted to the Beta channel. For information about how to assign a customer to a channel, see [Create a Customer](releases-creating-customer#create-a-customer) in _Creating and Managing Customers_.
 
 <ChangeChannel/>
 

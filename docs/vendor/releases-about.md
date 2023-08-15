@@ -3,31 +3,69 @@ import RequiredReleasesLimitations from "../partials/releases/_required-releases
 import RequiredReleasesDescription from "../partials/releases/_required-releases-description.mdx"
 import VersionLabelReqsHelm from "../partials/releases/_version-label-reqs-helm.mdx"
 
-# About Releases
+# About Channels and Releases
 
-This topic describes concepts about creating and promoting releases, editing release properties, and information about the Releases page in the Replicated vendor portal.
+This topic describes channels and releases, including information about the **Releases** and **Channels** pages in the Replicated vendor portal.
 
-## Overview of Releases
+## Overview
 
-A _release_ represents a single version of your application. An application can use Helm charts, Kubernetes manifest files, or Kubernetes Operators. 
+A _release_ contains Helm charts or Kubernetes manifests and represents a single version of your application. Each release is promoted to one or more _channels_. Channels control which customers are able to install a release. For example, a customer assigned to the Beta channel can install only releases that are promoted to the Beta channel. For more information about assigning customers to channels, see [Channel Assignment](licenses-about#channel-assignment) in _About Customers_.
 
-Replicated release features help manage your product lifecycle effectively. Using one application codebase and a single workflow, you can test releases in a channel reserved for development, then promote the release to a Beta channel for customer testing, and ultimately promote the release to a Stable channel when it is ready for general availability. You can reduce the complexity and engineering effort of delivering a high quality application when you use one code base and a single release workflow.
+Channels and releases help you distribute your application to all of your customers, including SaaS and on-prem customers, without needing to manage separate code bases, deployments, or release workflows. Instead, to make a release available to your customers, you can simply promote it to a channel where the target customers are assigned. This reduces complexity and helps ensure that all your customers have access to the same release on the same cadence.
 
-Using releases also limits complexity when distributing to customers because you use the same application code base to distribute releases to all of your customers. For example, you can distribute a release to cloud customers and on-prem customers at different cadences. If you are using Helm charts, you can support Helm customers and Replicated KOTS installations from the same Helm chart in the same release. 
+You can manage channels and releases with the vendor portal, the replicated CLI, or the Vendor API v3. For more information about creating and managing releases or channels, see [Managing Releases with the Vendor Portal](releases-creating-releases) or [Creating and Editing Channels](releases-creating-channels). 
 
-Additionally, Replicated license entitlements let you use the same release to support different license types, such as enterprise and community licenses. For more information about customizing licenses, see [Managing Custom License Fields](licenses-adding-custom-fields).
+## About Channels
 
-You can use the vendor portal to create, manage, and promote versions of your application, create custom domains, and provides other features. For releases that use Kubernetes manifests, the vendor portal hosts a built-in YAML editor and linter to help you write and validate YAML files. For more information about the vendor portal, see [Vendor Portal](/intro-replicated#vendor-portal) in _Introduction to Replicated_.
+This section provides additional information about channels.
+### Defaults
 
-Alternatively, use the replicated CLI and vendor API to automate releases. For more information about using the CLI, see [Installing the replicated CLI](/reference/replicated-cli-installing). For information about the API, see [Using the Vendor API v3](/reference/vendor-api-using).
+Replicated includes the following channels by default:
 
-### Release Promotion
+* **Unstable**: The Unstable channel is designed for internal testing and development. You can create and assign an internal test customer to the Unstable channel to install in a development environment. Replicated recommends that you do not license any of your external users against the Unstable channel.
+* **Beta**: The Beta channel is designed for release candidates and early-adopting customers. Replicated recommends that you promote a release to the Beta channel after it has passed automated testing in the Unstable channel. You can also choose to license early-adopting customers against this channel.
+* **Stable**: The Stable channel is designed for releases that are generally available. Replicated recommends that you assign most of your customers to the Stable channel. Customers licensed against the Stable channel only receive application updates when you promote a new release to the Stable channel.
 
-After you save release, you promote it to a release channel. While you are developing and testing releases, Replicated recommends promoting to a channel that does not have any customers assigned, such as the default Unstable channel. When the application is ready to be shared with customers, you can then promote a release to the Beta or Stable channels, or create a custom channel. For more information about channels, see [About Release Channels](releases-about-channels).
+You can archive or edit any of the default channels, and create new channels. For more information, see [Creating and Editing Channels](releases-creating-channels).
+
+### Settings
+
+Each channel has settings. You can customize the settings for a channel to control some of the behavior of releases promoted to the channel.
+
+The following shows the **Channel Settings** dialog, accessed by clicking the settings icon on a channel:
+
+<img src="/images/channel-settings.png" alt="Channel Settings dialog in the vendor portal" width="500"/>
+
+[View a larger version of this image](/images/channel-settings.png)
+
+The following describes each of the channel settings:
+
+* **Channel name**: The name of the channel. You can change the channel name at any time. Each channel also has a unique ID listed below the channel name.
+* **Description**: Optionally, add a description of the channel.
+* **Set this channel to default**: When enabled, sets the channel as the default channel. The default channel cannot be archived.
+* **Custom domains**: Select the customer-facing domains that releases promoted to this channel use for the Replicated registry, proxy service, Replicated app service, or download portal endpoints. If a default custom domain exists for any of these endpoints, choosing a different domain in the channel settings overrides the default. If no custom domains are configured for an endpoint, the drop-down for the endpoint is disabled.
+
+  For more information about configuring custom domains and assigning default domains, see [Using Custom Domains](custom-domains-using).
+* The following channel settings apply only to applications that support KOTS:
+    * **Automatically create airgap builds for newly promoted releases in this channel**: When enabled, the vendor portal automatically builds an air gap bundle when a new release is promoted to the channel. When disabled, you can generate an air gap bundle manually for a release on the **Release History** page for the channel. For more information, see [Download Bundles for Air Gap Installations](releases-sharing-license-install-script#download-bundles-for-air-gap-installations) in _Sharing a Release_.
+    * **Enable semantic versioning**: When enabled, the vendor portal verifies that the version label for any releases promoted to the channel uses a valid semantic version. For more information, see [Semantic Versioning](releases-about#semantic-versioning) in _About Releases_.
+    * **Enable new airgap bundle format**: When enabled, air gap bundles built for releases promoted to the channel use a format that supports image digests. This air gap bundle format also ensures that identical image layers are not duplicated, resulting in a smaller air gap bundle size. For more information, see [Using Image Digests in Air Gap Installations](private-images-tags-digests#digests-air-gap) in _Using Image Tags and Digests_.
+
+      :::note
+      The new air gap bundle format is supported for applications installed with KOTS v1.82.0 or later. 
+      :::  
+   
+## About Releases
+
+This section provides additional information about releases.
+
+### Promotion
+
+After you save release, you promote it to a channel. While you are developing and testing releases, Replicated recommends promoting to a channel that does not have any customers assigned, such as the default Unstable channel. When the release is ready to be shared with customers, you can then promote to a channel that has customers assigned, such as the Beta or Stable channel.
 
 Every customer license file that you create is assigned to a channel. Each time a new release is promoted to a channel, customers assigned to that channel can update their installed application instance to the new release version. For more information about customer licenses, see [About Customers](licenses-about).
 
-### Release Properties
+### Properties
 
 Each release has properties. You define release properties when you promote a release to a channel. You can edit release properties at any time from the channel **Release History** page in the vendor portal. For more information, see [Edit Release Properties](releases-creating-releases#edit-release-properties) in _Managing Releases with the Vendor Portal_.
 
@@ -54,7 +92,7 @@ As shown in the screenshot above, the release has the following properties:
 
 * **Release notes (supports markdown)**: Detailed release notes for the release. The release notes support markdown and are shown to your customer.
 
-### Release Sequencing
+### Sequencing
 
 By default, Replicated uses release sequence numbers to organize and order releases, and uses instance sequence numbers in an instance's internal version history.
 
@@ -129,7 +167,47 @@ If you enable semantic versioning for a channel and then promote releases to it,
 
 You can enable semantic versioning on a channel that already has releases promoted to it without semantic versioning. Any subsequently promoted releases must use semantic versioning. In this case, the channel will have releases with and without semantic version numbers. For information about how Replicated organizes these release sequences, see [Semantic Versioning Sequences](#semantic-versioning-sequence).
 
-## About the Draft Release Page
+## Vendor Portal Pages
+
+This section provides information about the channels and releases pages in the vendor portal.
+
+### Channels Page
+
+The **Channels** page in the vendor portal includes information about each channel. From the **Channels** page, you can edit and archive your channels. You can also edit the properties of the releases promoted to each channel, and view and edit the customers assigned to each channel.
+
+The following shows an example of a channel in the vendor portal **Channels** page:
+
+<img src="/images/channel-card.png" alt="Channel card in the vendor portal" width="400"/>
+
+[View a larger version of this image](/images/channel-card.png)
+
+As shown in the image above, you can do the following from the **Channels** page:
+
+* Edit the channel settings by clicking on the settings icon, or archive the channel by clicking on the trash can icon. For information about managing channel settings, see [Channel Settings](#channel-settings) below.
+
+* In the **Adoption rate** section, view data on the adoption rate of releases promoted to the channel among customers assigned to the channel.
+
+* In the **Customers** section, view the number of active and inactive customers assigned to the channel. Click **Details** to go to the **Customers** page, where you can view details about the customers assigned to the channel.
+
+* In the **Latest release** section, view the properties of the latest release, and get information about any warnings or errors in the YAML files for the latest release.
+
+   Click **Release history** to access the history of all releases promoted to the channel. From the **Release History** page, you can view the version labels and files in each release that has been promoted to the selected channel.
+   
+   For applications that support installation with Replicated KOTS, you can also build and download air gap bundles, and edit the release properties for each release promoted to the channel from the **Release History** page.
+
+   The following shows an example of the **Release History** page: 
+
+   <img src="/images/channels-release-history.png" alt="Release history page in the vendor portal" width="750"/>
+
+   [View a larger version of this image](/images/channel-card.png)
+
+* For applications that support KOTS, you can also do the following from the **Channel** page:
+
+   * In the **Kubernetes installer** section, view the current Kubernetes installer promoted to the channel. Click **Installer history** to view the history of Kubernetes installers promoted to the channel. For more information about creating Kubernetes installers within a release or separate from a release, see [Creating a Kubernetes Installer](packaging-embedded-kubernetes).
+
+   * In the **Install** section, view and copy the installation commands for the latest release on the channel. For more information, see the [Installing an Application](/enterprise/installing-overview) section.
+
+### Draft Release Page
 
 For applications that support installation with KOTS, the **Draft** page provides a YAML editor to add, edit, and delete your application files and Replicated custom resources. You click **Releases > Create Release** in the vendor portal to open the **Draft** page. 
 
