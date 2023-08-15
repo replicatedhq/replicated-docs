@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.08.15-0
+
+Released on August 15, 2023
+
+### New Features {#new-features-v2023-08-15-0}
+* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.3.
+
 ## v2023.08.10-0
 
 Released on August 10, 2023
