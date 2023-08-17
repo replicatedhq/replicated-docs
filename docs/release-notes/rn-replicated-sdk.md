@@ -8,6 +8,16 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 0.0.1-beta.4
+
+Released on August 17, 2023
+
+### New Features {#new-features-0-0-1-beta-4}
+* Adds support for OpenShift clusters.
+
+### Improvements {#improvements-0-0-1-beta-4}
+* Application updates returned by the `/api/v1/app/updates` endpoint show in order from newest to oldest.
+
 ## 0.0.1-beta.3
 
 Released on August 11, 2023
