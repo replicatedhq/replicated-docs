@@ -16,7 +16,7 @@ Released on August 17, 2023
 * Adds support for OpenShift clusters.
 
 ### Improvements {#improvements-0-0-1-beta-4}
-* Application updates returned by the `/api/v1/app/updates` endpoint will now show in order from newest to oldest.
+* Application updates returned by the `/api/v1/app/updates` endpoint show in order from newest to oldest.
 
 ## 0.0.1-beta.3
 
