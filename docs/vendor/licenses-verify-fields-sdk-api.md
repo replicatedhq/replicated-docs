@@ -29,7 +29,7 @@ Using signature verification has the following requirements:
 
 ## Use Your Public Key to Verify License Field Signatures
 
-To verify the signatures of license fields, you use a public key to decrypt the signature of a license field and compare it to the license field value returned by the SDK API `license` endpoint. For more information, see [license](/reference/replicated-sdk-apis#license) in _Replicated SDK API (Beta)_.
+To verify the signatures of license fields, you use a public key to verify the PSS signature of the MD5 hash of the raw license field value. The response from the SDK API `/license/fields` and `/license/fields/<field-name>` endpoints includes the Base64 encoded PSS signature, and the raw license field value. For more information, see [license](/reference/replicated-sdk-apis#license) in _Replicated SDK API (Beta)_.
 
 To use your public key to verify license field signatures:
 
