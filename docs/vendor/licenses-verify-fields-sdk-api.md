@@ -4,7 +4,7 @@ This topic describes how to verify the signatures of license fields when you che
 
 ## Overview
 
-To prevent man-in-the-middle attacks or spoofing by your customers, license fields are cryptographically signed with a probabilistic signature scheme (PSS) signature to ensure their integrity. The PSS signature for a license field is included in the response from the Replicated SDK API `/license/fields` and `/license/fields/<field-name>` endpoints as a Base64 encoded string.
+To prevent man-in-the-middle attacks or spoofing by your customers, license fields are cryptographically signed with a probabilistic signature scheme (PSS) signature to ensure their integrity. The PSS signature for a license field is included in the response from the Replicated SDK API `/license/fields` and `/license/fields/{field-name}` endpoints as a Base64 encoded string.
 
 The following shows an example of a Base64 encoded PSS signature for an `expires_at` field returned by the SDK API:
 
@@ -47,5 +47,5 @@ To use your public key to verify license field signatures:
 1. In your application, add logic that uses the public key to verify the integrity of license field signatures. If you copied one of the code samples from the vendor portal in the previous step, paste it into your application and make any additional edits as required. 
 
   If you are not using one of the code samples provided, consider the following requirements for verifying license field values:  
-    * License field signatures included in the response from the SDK API `/license/fields` and `/license/fields/<field-name>` endpoints are Base64 encoded and must be decoded before being decrypted.
-    * The MD5 hash of the license field value is required to verify the signature of the license field. The raw license filed value included in the response from the SDK API `/license/fields` and `/license/fields/<field-name>` endpoints must be encoded into an MD5 hash before it can be used for signature verification.
+    * License field signatures included in the response from the SDK API `/license/fields` and `/license/fields/{field-name}` endpoints are Base64 encoded and must be decoded before being decrypted.
+    * The MD5 hash of the license field value is required to verify the signature of the license field. The raw license filed value included in the response from the SDK API `/license/fields` and `/license/fields/{field-name}` endpoints must be encoded into an MD5 hash before it can be used for signature verification.
