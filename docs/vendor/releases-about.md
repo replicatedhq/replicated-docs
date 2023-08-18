@@ -17,7 +17,7 @@ You can manage channels and releases with the vendor portal, the replicated CLI,
 
 ## About Channels
 
-This section provides additional information about channels.
+This section provides additional information about channels, including details about the default channels in the vendor portal and channel settings.
 ### Defaults
 
 Replicated includes the following channels by default:
@@ -57,7 +57,7 @@ The following describes each of the channel settings:
    
 ## About Releases
 
-This section provides additional information about releases.
+This section provides additional information about releases, including details about release promotion, properties, sequencing, and versioning.
 
 ### Promotion
 
@@ -102,9 +102,9 @@ In the vendor portal, each release is automatically assigned a unique, monotonic
 
 The following graphic shows release sequence numbers in the vendor portal:
 
-![Release sequence numbers](/images/release-sequences.png)
+<img alt="Release sequence numbers" src="/images/release-sequences.png" width="750px"/>
 
-[View a larger version](/images/release-sequences.png)
+[View a larger version of this image](/images/release-sequences.png)
 
 #### Instance Sequences 
 
@@ -116,7 +116,9 @@ Note that instance sequences are only tracked by KOTS instances, and the vendor 
 
 The following graphic shows instance sequence numbers on the admin console dashboard:
 
-![Instance sequence numbers](/images/instance-sequences.png)
+<img alt="Instance sequence numbers" src="/images/instance-sequences.png" width="550px"/>
+
+[View a larger version of this image](/images/instance-sequences.png)
 
 #### Channel Sequences
 
@@ -215,7 +217,7 @@ The following shows an example of the **Draft** page in the vendor portal:
 
  ![Default YAML](/images/guides/kots/default-yaml.png)
 
-  [View a larger image](/images/guides/kots/default-yaml.png)
+  [View a larger version of this image](/images/guides/kots/default-yaml.png)
 
 You can do the following tasks on the **Draft** page:
 
