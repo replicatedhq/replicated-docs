@@ -47,5 +47,5 @@ To use your public key to verify license field signatures:
 1. In your application, add logic that uses the public key to verify the integrity of license field signatures. If you copied one of the code samples from the vendor portal in the previous step, paste it into your application and make any additional edits as required. 
 
   If you are not using one of the code samples provided, consider the following requirements for verifying license field values:  
-    * License field signatures included in the response from the SDK API `/license/fields` and `/license/fields/{field-name}` endpoints are Base64 encoded and must be decoded before being decrypted.
+    * License field signatures included in the response from the SDK API `/license/fields` and `/license/fields/{field-name}` endpoints are Base64 encoded and must be decoded before they are verified.
     * The MD5 hash of the license field value is required to verify the signature of the license field. The raw license filed value included in the response from the SDK API `/license/fields` and `/license/fields/{field-name}` endpoints must be encoded into an MD5 hash before it can be used for signature verification.
