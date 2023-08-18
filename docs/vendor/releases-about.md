@@ -79,7 +79,7 @@ As shown in the screenshot above, the release has the following properties:
 
 * **Version label**: The version label for the release. Version labels have the following requirements:
 
-  * For releases that support installation with KOTS, if semantic versioning is enabled for the channel, you must use a valid semantic version. For more information, see [Semantic Versioning](#semantic-versioning) above.
+  * For releases that support installation with KOTS, if semantic versioning is enabled for the channel, you must use a valid semantic version. For more information, see [Semantic Versioning](#semantic-versioning).
 
   * For releases that support installation with Helm only:
     <VersionLabelReqsHelm/>
@@ -185,7 +185,7 @@ The following shows an example of a channel in the vendor portal **Channels** pa
 
 As shown in the image above, you can do the following from the **Channels** page:
 
-* Edit the channel settings by clicking on the settings icon, or archive the channel by clicking on the trash can icon. For information about managing channel settings, see [Channel Settings](#channel-settings) below.
+* Edit the channel settings by clicking on the settings icon, or archive the channel by clicking on the trash can icon. For information about channel settings, see [Settings](#settings).
 
 * In the **Adoption rate** section, view data on the adoption rate of releases promoted to the channel among customers assigned to the channel.
 

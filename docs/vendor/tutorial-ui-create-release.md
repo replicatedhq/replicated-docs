@@ -2,7 +2,7 @@
 
 Now that you have created an application object that contains example YAML manifest files, you can create a release and promote it to the Unstable channel.
 
-By default, the vendor portal includes Unstable, Beta, and Stable release channels. The Unstable channel is intended for software vendors to use for internal testing, before promoting a release to the Beta or Stable channels for distribution to customers. For more information about channels, see [About Release Channels](releases-about-channels).
+By default, the vendor portal includes Unstable, Beta, and Stable release channels. The Unstable channel is intended for software vendors to use for internal testing, before promoting a release to the Beta or Stable channels for distribution to customers. For more information about channels, see [About Channels and Releases](releases-about).
 
 To create a release:
 

@@ -126,6 +126,10 @@
   from="https://docs.replicated.com/vendor/helm-install"
   to="https://docs.replicated.com/vendor/distributing-overview"    
 
+[[redirects]]
+  from="https://docs.replicated.com/vendor/releases-about-channels"
+  to="https://docs.replicated.com/vendor/releases-about"     
+
 ###################################################
 # Redirects To the Enterprise Section
 ###################################################

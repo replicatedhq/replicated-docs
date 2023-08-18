@@ -71,7 +71,7 @@ To assign a custom domain to a channel:
 
 1. In the vendor portal, go to **Channels** and click the settings icon for the target channel.
 
-1. Under **Custom domains**, in the drop-down for the target Replicated endpoint, select the domain to use for the channel. For more information about channel settings, see [Channel Settings](releases-about-channels#channel-settings) in _About Channels_.
+1. Under **Custom domains**, in the drop-down for the target Replicated endpoint, select the domain to use for the channel. For more information about channel settings, see [Settings](releases-about#settings) in _About Channels and Releases_.
 
    <img alt="channel settings dialog" src="/images/channel-settings.png" width="500px"/>
 
@@ -114,7 +114,7 @@ To remove a custom domain:
 
 1. Log in to the [vendor portal](https://vendor.replicated.com) and click **Custom Domains**.
 
-1. Verify that the domain is not set as the default nor in use on any channels. You can edit the domains in use on a channel in the channel settings. For more information, see [Channel Settings](releases-about-channels#channel-settings) in _About Channels_.
+1. Verify that the domain is not set as the default nor in use on any channels. You can edit the domains in use on a channel in the channel settings. For more information, see [Settings](releases-about#settings) in _About Channels and Releases_.
 
   :::important
   When you remove a registry or Replicated app service custom domain, any installations that reference that custom domain will break. Ensure that the custom domain is no longer in use before you remove it from the vendor portal.
