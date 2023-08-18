@@ -16,6 +16,19 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.101.3
+
+Released on August 18, 2023
+
+Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
+
+### Improvements {#improvements-1-101-3}
+* Updates the MinIO image to RELEASE.2023-08-09T23-30-22Z to resolve CVE-2023-27536, CVE-2023-28321, CVE-2023-34969, CVE-2023-2603, CVE-2023-28484, CVE-2023-29469 with medium severity and CVE-2023-2602 with low severity.
+
+### Bug Fixes {#bug-fixes-1-101-3}
+* Removes the distinction between `gke` and `gke-autopilot` from Kubernetes distribution reporting as this check was not working as intended and potentially displaying inconsistent information. All GKE clusters will now be reported as `gke` regardless of it being a Standard or Autopilot cluster.
+* Fixes an issue where the admin console was not correctly processing multi-doc yaml files containing windows line endings.
+
 ## 1.101.2
 
 Released on August 4, 2023
