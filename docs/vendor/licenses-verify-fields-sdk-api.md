@@ -1,6 +1,6 @@
 # Verifying License Field Signatures for Helm Installations (Beta)
 
-This topic describes how to verify the signatures of license fields when you check customer entitlements in your Helm chart application. For information about checking license fields for Helm installations, see [Checking Entitlements for Helm Installations (Beta)](licenses-reference-helm).
+This topic describes how to verify the signatures of license fields when you check customer entitlements in your Helm chart-based application.
 
 ## Overview
 
@@ -21,7 +21,7 @@ The following shows an example of a Base64 encoded PSS signature for an `expires
 }
 ```
 
-Replicated recommends that you use signature verification to ensure the integrity of each license field you use in your application. For more information about checking entitlements in your application when you are using the Replicated SDK, see [Checking Entitlements for Helm Installations (Beta)](licenses-reference-helm).
+Replicated recommends that you use signature verification to ensure the integrity of each license field you use in your application. For more information about how to check entitlements in your application for Helm CLI installations, see [Checking Entitlements for Helm Installations (Beta)](licenses-reference-helm).
 
 ## Requirement
 
@@ -29,7 +29,7 @@ You must include the Replicated SDK as a dependency of your application. For mor
 
 ## Use Your Public Key to Verify License Field Signatures
 
-You can use your public key (available in the vendor portal) and the MD5 hash of a license field value to verify the PSS signature of the license field.
+In your application, you can use your public key (available in the vendor portal) and the MD5 hash of a license field value to verify the PSS signature of the license field.
 
 To use your public key to verify license field signatures:
 
@@ -44,8 +44,8 @@ To use your public key to verify license field signatures:
 
 1. (Optional) Under **Verification**, select the tab for the necessary programming language, and copy the code sample provided.
 
-1. In your application, add logic that uses the public key that you copied to verify the integrity of license field signatures. If you copied one of the code samples from the vendor portal in the previous step, paste it into your application and make any additional edits as required. 
+1. In your application, add logic that uses the public key to verify the integrity of license field signatures. If you copied one of the code samples from the vendor portal in the previous step, paste it into your application and make any additional edits as required. 
 
   If you are not using one of the code samples provided, consider the following requirements for verifying license field values:  
-    * Signatures are returned by the SDK API are Base64 encoded and must be decoded before being decrypted.
-    * 
+    * License field signatures included in the response from the SDK API `/license/fields` and `/license/fields/<field-name>` endpoints are Base64 encoded and must be decoded before being decrypted.
+    * The MD5 hash of the license field value is required to verify the signature of the license field. The raw license filed value included in the response from the SDK API `/license/fields` and `/license/fields/<field-name>` endpoints must be encoded into an MD5 hash before it can be used for signature verification.
