@@ -18,8 +18,6 @@ Replicated recommends that vendor portal admins manage user access to the collab
 * Users are automatically removed from the collab repository when they are removed from the vendor portal team.
 * Vendor portal and collab repository RBAC policies are managed from a single location.
 
-For more information about adding users to the collab repository through the vendor portal, see [Add Users to the Collab Repository](#add) below.
-
 ## Add Users to the Collab Repository {#add}
 
 This procedure describes how to use the vendor portal to access the collab repository for the first time as an Admin, then automatically add new and existing users to the repository. This allows you to use the vendor portal to manage the GitHub roles for users in the collab repository, rather than manually adding, managing, and removing users from the repository through GitHub.
@@ -51,7 +49,7 @@ To add new and existing users to the collab repository through the vendor portal
 
 1. (Optional) In the vendor portal, go to the [Team](https://vendor.replicated.com/team/members) page. For each team member, click **Edit permissions** as necessary to specify their GitHub role in the collab repository.
 
-   For information about which policies to select, see [Default GitHub Roles](#default) and [About Changing the Default GitHub Role](#custom) above.
+   For information about which policies to select, see [About GitHub Roles](#about-github-roles).
 
 1. Instruct each vendor portal team member to add their GitHub username to the [Account Settings](https://vendor.replicated.com/account-settings) page in the vendor portal.
 
@@ -61,23 +59,17 @@ To add new and existing users to the collab repository through the vendor portal
 
 ## About GitHub Roles
 
-This section provides information about managing GitHub user roles in the collab repository, including the default GitHub role mapping that the vendor portal uses, and how to change the default role for a user.
-
-### Default GitHub Roles {#default}
-
-When team members add a GitHub username to their vendor portal account, the vendor portal determines how to assign the user a GitHub role in the collab repository based on the following criteria:
+When team members add a GitHub username to their vendor portal account, the vendor portal determines how to assign the user a default GitHub role in the collab repository based on the following criteria:
 * If the GitHub username already exists in the collab repository
-* The policy assigned to the member in the vendor portal
+* The RBAC policy assigned to the member in the vendor portal
 
-For more information about how the vendor portal handles existing GitHub usernames, see [Default GitHub Roles for Existing Users](#existing-username) below.
+You can also update any custom RBAC policies in the vendor portal to change the default GitHub roles for those policies. 
 
-For more information about how the policy assigned to the member in the vendor portal maps to a GitHub role in the collab repository, see [Default GitHub Role Mapping](#role-mapping) below.
-
-#### Default GitHub Roles for Existing Users {#existing-username}
+### Default Roles for Existing Users {#existing-username}
 
 <CollabExistingUser/>
 
-#### Default GitHub Role Mapping {#role-mapping}
+### Default Role Mapping {#role-mapping}
 
 When team members add a GitHub username to their vendor portal account, the vendor portal assigns them to a GitHub role in the collab repository that corresponds to their vendor portal policy. For example, users with the default Read Only policy in the vendor portal are assigned the Read GitHub role in the collab repository.
 
@@ -129,7 +121,7 @@ The table below describes how each default and custom vendor portal policy corre
   </tr>
 </table>
 
-### Change the Default GitHub Role {#custom}
+### Change the Default Role {#custom}
 
 You can update any custom RBAC policies that you create in the vendor portal to change the default GitHub roles for those policies. For example, by default, any team members assigned a custom policy with `**/admin` under `allowed:` are assigned the Admin role in the collab repository in GitHub. You can update the custom policy to specify a more restrictive GitHub role.
 
