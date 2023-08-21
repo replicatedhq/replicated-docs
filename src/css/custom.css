@@ -209,13 +209,13 @@ ol ol ol {
 }
 
 .menu__list-item__ref-link > a::after {
-  background-image: url(../../static/images/icons/kots_favicon.ico);
-  background-size: 20px;
+  background-image: url(../../static/images/icons/kots.png);
+  background-size: 35px;
   background-repeat: no-repeat;
   content: "";
   display: inline-block;
-  width: 20px;
-  height: 20px;
+  width: 35px;
+  height: 15px;
   margin-left: 8px;
 }
 
@@ -224,7 +224,7 @@ ol ol ol {
 }
 
 [data-theme='dark'] .menu__list-item__ref-link > a::after {
-  background-image: url(../../static/images/icons/kots_favicon_w.png);
+  background-image: url(../../static/images/icons/kots_w.png);
 }
 
 [data-theme='dark'] .menu__list-item__ref-link > a:hover {
