@@ -148,7 +148,7 @@ ol ol ol {
 }
 
 .tile__container > ul {
-  padding: 1.5em;
+  padding: 20px;
   list-style: none;
   border-radius: 7px;
   border: 1px solid rgba(88,88,88,0.2);
@@ -171,13 +171,17 @@ ol ol ol {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 1.0em;
+  gap: 20px;
   font-size: 1.25em;
 }
 
+.tile__header li {
+  min-width: 50px;
+}
+
 .tile__header img {
-  max-width: 55px;
-  height: 55px;
+  width: 50px;
+  height: 50px;
   background-color:rgba(255,72,86,0.1);
   border-radius: 7px;
 }
@@ -190,7 +194,7 @@ ol ol ol {
   background-color:rgb(243,243,249);
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1350px) {
   .tile__container {
     flex-direction: column;
   }
