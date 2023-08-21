@@ -144,7 +144,7 @@ ol ol ol {
 .tile__container {
   display: flex;
   flex-direction: row;
-  gap: 0.7em;
+  gap: 10px;
 }
 
 .tile__container > ul {
@@ -176,7 +176,7 @@ ol ol ol {
 }
 
 .tile__header li {
-  min-width: 50px;
+  width: 50px;
 }
 
 .tile__header img {
