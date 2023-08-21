@@ -176,8 +176,8 @@ ol ol ol {
 }
 
 .tile__header img {
-  max-width: 2.75em;
-  height: 2.75em;
+  max-width: 55px;
+  height: 55px;
   background-color:rgba(255,72,86,0.1);
   border-radius: 7px;
 }
@@ -208,11 +208,34 @@ ol ol ol {
   margin: 10px 0 25px 0;
 }
 
-#kots {
+.menu__list-item__ref-link > a::after {
+  background-image: url(../../static/images/icons/kots.png);
+  background-size: 35px;
+  background-repeat: no-repeat;
+  content: "";
+  display: inline-block;
+  width: 35px;
+  height: 15px;
+  margin-left: 8px;
+}
+
+.menu__list-item__ref-link > a:hover {
+  color: black;
+}
+
+[data-theme='dark'] .menu__list-item__ref-link > a::after {
+  background-image: url(../../static/images/icons/kots_w.png);
+}
+
+[data-theme='dark'] .menu__list-item__ref-link > a:hover {
+  color: white;
+}
+
+#kots-logo {
   max-width: 75px;
 }
 
-[data-theme='dark'] #kots {
+[data-theme='dark'] #kots-logo {
   content:url("/images/icons/kots_w.png");
 }
 

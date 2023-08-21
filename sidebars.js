@@ -21,7 +21,7 @@ const sidebars = {
   kots: [
     {
       type: 'html',
-      value: '<img src="/images/icons/kots.png" alt="kots logo" id="kots">',
+      value: '<img src="/images/icons/kots.png" alt="kots logo" id="kots-logo">',
       defaultStyle: true,
     },
     {type: 'ref', id: 'intro', 'label': 'Back to Replicated Docs Home', className: 'menu__list-item__home-link'},
@@ -457,7 +457,7 @@ const sidebars = {
     // DISTRIBUTE AND SUPPORT
     {type: 'html', value: '<h5>distribute and support</h5>', defaultStyle: true}, 
     'vendor/distributing-overview',
-    {type: 'ref', id: 'intro-kots', label: 'KOTS and kURL Documentation'},
+    {type: 'ref', id: 'intro-kots', label: 'KOTS and kURL Documentation', className: 'menu__list-item__ref-link'},
     {
       type: 'category',
       label: 'Vendor Portal Teams and Accounts',
@@ -603,8 +603,7 @@ const sidebars = {
     },
     {type: 'html', value: '<h5>install</h5>', defaultStyle: true},
     'vendor/install-with-helm',
-    {type: 'ref', id: 'enterprise/installing-overview', label: 'Installing with KOTS'},
-    {type: 'ref', id: 'enterprise/installing-embedded-cluster', label: 'Installing with kURL'},
+    {type: 'ref', id: 'enterprise/installing-overview', label: 'Installing with KOTS', className: 'menu__list-item__ref-link'},
     
 
     // DEVELOPER TOOLS

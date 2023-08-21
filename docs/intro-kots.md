@@ -1,3 +1,7 @@
+---
+displayed_sidebar: kots
+---
+
 # About KOTS and kURL
 
 This topic describes Replicated KOTS and Replicated kURL, used for installing and upgrading applications in a Kubernetes cluster, and the Replicated admin console, used for managing application instances.
