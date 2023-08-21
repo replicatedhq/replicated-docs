@@ -117,7 +117,6 @@ const sidebars = {
       type: 'category',
       label: 'CI/CD',
       items: [
-        'vendor/repository-workflow-and-tagging-releases',
         'vendor/tutorial-ci-cd-integration',
       ],
     },
@@ -587,6 +586,14 @@ const sidebars = {
         'vendor/testing-about',
         'vendor/testing-supported-clusters',
         'vendor/testing-how-to',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'CI Workflows',
+      items: [
+        'vendor/ci-overview',
+        'vendor/repository-workflow-and-tagging-releases',
       ],
     },
     {
