@@ -7,7 +7,7 @@ The default channels are:
 * **Unstable**: The Unstable channel is intended for internal testing.
 * **Beta**: The Beta channel is intended for release candidates and early adopting customers.
 
-For more information, see [About channels](releases-about-channels).
+For more information, see [About Channels and Releases](releases-about).
 
 ## Create a Channel
 
@@ -40,7 +40,7 @@ To edit the settings of an existing channel:
 
 1. Edit the fields and click **Save**.
 
-   For more information about channel settings, see [Channel Settings](releases-about-channels#channel-settings) in _About Channels_.
+   For more information about channel settings, see [Settings](releases-about#settings) in _About Channels and Releases_.
 
 ## Archive a Channel
 

@@ -130,6 +130,10 @@
   from="https://docs.replicated.com/vendor/testing-replicated-instance-types"
   to="https://docs.replicated.com/vendor/testing-supported-clusters"    
 
+[[redirects]]
+  from="https://docs.replicated.com/vendor/releases-about-channels"
+  to="https://docs.replicated.com/vendor/releases-about"     
+
 ###################################################
 # Redirects To the Enterprise Section
 ###################################################

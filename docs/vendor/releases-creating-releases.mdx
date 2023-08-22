@@ -7,7 +7,7 @@ This topic describes how to use the Replicated vendor portal to create and promo
 
 ## Create a Release
 
-A release contains one or more Helm charts. Alternatively, vendors that support Replicated KOTS installations can create a release with standard Kubernetes manifests only or use a combination of standard manifests and Helm charts.
+A release contains one or more Helm charts. Alternatively, vendors that support Replicated KOTS installations can create a release with standard Kubernetes manifests only or use a combination of standard manifests and Helm charts. KOTS releases also support the use of Kubernetes Operators.
 
 :::note
 You must package each Helm chart that you want to include in a release and its dependencies to a `.tgz` file before you can add it to the release. For more information, see [Packaging a Helm Chart for a Release](helm-install-release).
@@ -48,7 +48,7 @@ To create and promote a release in the vendor portal:
    
 1. Click **Promote**. In the Promote Release dialog that opens, edit the fields:
 
-   For more information about the requirements and limitations of each field, see <a href="releases-about#release-properties">Release Properties</a> in <em>About Releases</em>.
+   For more information about the requirements and limitations of each field, see <a href="releases-about#properties">Properties</a> in <em>About Channels and Releases</em>.
 
   <table>
   <tr>
@@ -98,7 +98,7 @@ To edit a draft release:
   
 ## Edit Release Properties
 
-You can edit the properties of a release at any time. For more information about release properties, see [Release Properties](releases-about#release-properties) in _About Releases_.
+You can edit the properties of a release at any time. For more information about release properties, see [Properties](releases-about#properties) in _About Channels and Releases_.
 
 To edit release properties:
 

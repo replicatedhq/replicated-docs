@@ -492,7 +492,6 @@ const sidebars = {
       label: 'Channel and Release Management',
       items: [
         'vendor/releases-about',
-        'vendor/releases-about-channels',
         'vendor/releases-creating-channels',
         'vendor/releases-creating-releases',
         'vendor/releases-creating-cli',
