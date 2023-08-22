@@ -1,10 +1,10 @@
-# About Running CI Workflows
+# CI Workflows
 
-This topic describes recommendations and considerations for running continuous integration and continuous delivery (CI/CD) workflows when distributing your application with Replicated.
+This topic provides recommendations and considerations for integrating replicated CLI commands into your continuous integration (CI) workflows.
 
 ## Overview
 
-Replicated recommends that you integrate the replicated CLI with your CI/CD workflow. Integration with your CI/CD pipeline ensures that every iteration of your application is available for testing and can be promoted quickly to customers.
+Using automated CI workflows to compile your code and run tests frequently throughout the development process helps to ensure . When you integrate replicated CLI commands to create customers, channels, releases, and clusters, 
 
 Additionally, Replicated offers example workflows in Replicated Actions that you can reference. For more information, see [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions#examples) in GitHub.
 
@@ -48,9 +48,9 @@ Replicated recommends that you run a workflow to creates a new release on the Un
    ```yaml
    # github actions example
 
-    compatibility-matrix:
-    runs-on: ubuntu-22.04
-    strategy:
+   compatibility-matrix:
+   runs-on: ubuntu-22.04
+   strategy:
       fail-fast: false
       matrix:
         cluster: [ {distribution: k3s, version: "1.26"}, {distribution: k3s, version: "1.25"}, {distribution: eks, version: "1.27"}]

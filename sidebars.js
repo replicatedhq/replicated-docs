@@ -590,7 +590,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'CI Workflows',
+      label: 'CI',
       items: [
         'vendor/ci-overview',
         'vendor/repository-workflow-and-tagging-releases',
