@@ -115,13 +115,6 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'CI/CD',
-      items: [
-        'vendor/tutorial-ci-cd-integration',
-      ],
-    },
-    {
-      type: 'category',
       label: 'Sharing Installation Files and Commands',
       items: [ 
         'vendor/releases-sharing-license-install-script',        
@@ -590,10 +583,11 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'CI',
+      label: 'Continuous Integration and Delivery',
       items: [
         'vendor/ci-overview',
         'vendor/repository-workflow-and-tagging-releases',
+        'vendor/tutorial-ci-cd-integration',
       ],
     },
     {
