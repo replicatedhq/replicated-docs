@@ -1,18 +1,18 @@
 # CI Workflows
 
-This topic provides recommendations and considerations for integrating replicated CLI commands into your continuous integration (CI) workflows.
+This topic provides recommendations and considerations for integrating replicated CLI commands into your continuous integration and continuous delivery (CI/CD) workflows.
 
 ## Overview
 
-Using automated CI workflows to compile your code and run tests frequently throughout the development process helps to ensure . When you integrate replicated CLI commands to create customers, channels, releases, and clusters, 
+Using automated CI workflows to compile code and run tests against every commit to a shared repository improves the speed at which developers can test, iterate on, and deliver releases to customers. When you integrate replicated CLI commands into your CI pipeline, you can automate the process of creating customers, channels, clusters, and releases, rather than needing to manually create these artifacts to test your changes in a development environment.
 
-Additionally, Replicated offers example workflows in Replicated Actions that you can reference. For more information, see [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions#examples) in GitHub.
+Additionally, for users of GitHub Actions, Replicated offers example workflows in the [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions#examples) repository in GitHub.
 
 ## Recommended Workflows 
 
-This section includes recommended CI/CD workflow steps to automate on every commit and when . The implementation details for these workflows varies depending on your CI platform.
+This section includes recommended CI workflow steps to integrate replicated CLI commands into a CI pipeline. How you implement these workflows varies depending on the CI platform that you use, such as GitHub, GitLab, CircleCI, TravisCI, or Jenkins.
 
-### Workflow for Every Commit
+### Workflow To Run on Every Commit
 
 This workflow is intended to run on every commit to a branch. It creates a channel, customer, and cluster for running automated tests, then cleans up the artifacts after tests are complete.
 
@@ -31,7 +31,6 @@ This workflow is intended to run on every commit to a branch. It creates a chann
 1. Run tests against that cluster.
 1. Tear down the cluster.
 1. Archive the channel and customer.
-
 
 ### Workflow for Creating Unstable Releases
 
