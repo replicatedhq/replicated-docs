@@ -153,7 +153,7 @@ The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.22, 1.23, 1.24, 1.25, 1.26, 1.27</td>
+    <td>1.23, 1.24, 1.25, 1.26, 1.27</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
