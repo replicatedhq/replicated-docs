@@ -9,7 +9,7 @@ This topic describes channels and releases, including information about the **Re
 
 ## Overview
 
-A _release_ contains Helm charts or Kubernetes manifests and represents a single version of your application. Each release is promoted to one or more _channels_. Channels provide a way to progress releases through the software development lifecycle: from internal testing, to sharing with early-adopters, and finally to making the release generally available. Channels also control which customers are able to install a release. For example, a customer assigned to the Beta channel can install only releases that are promoted to the Beta channel. For more information about assigning customers to channels, see [Channel Assignment](licenses-about#channel-assignment) in _About Customers_.
+A _release_ represents a single version of your application and contains your application files (Helm charts or Kubernetes manifests). Each release is promoted to one or more _channels_. Channels provide a way to progress releases through the software development lifecycle: from internal testing, to sharing with early-adopters, and finally to making the release generally available. Channels also control which customers are able to install a release. For example, a customer assigned to the Beta channel can install only releases that are promoted to the Beta channel. For more information about assigning customers to channels, see [Channel Assignment](licenses-about#channel-assignment) in _About Customers_.
 
 Channels and releases help you distribute your application to your customers, including both SaaS and on-prem customers, without needing to manage separate code bases, deployments, or release workflows. Instead, to make a release available to your customers, you promote it to a channel where the target customers are assigned. This reduces complexity and helps ensure that all your customers have access to the same release on the same cadence. 
 
@@ -58,6 +58,12 @@ The following describes each of the channel settings:
 ## About Releases
 
 This section provides additional information about releases, including details about release promotion, properties, sequencing, and versioning.
+
+### Application Files
+
+Each release contains your application files. To support installation with the Helm CLI, the application files in a release can include one or more Helm charts. For more information about adding Helm charts to a release, see [Packaging a Helm Chart for a Release](/vendor/helm-install-release) 
+
+Alternatively, vendors that support Replicated KOTS installations can create a release with standard Kubernetes manifests only, or use a combination of standard manifests and Helm charts. KOTS releases also support the use of Kubernetes Operators. For more information about creating releases to support KOTS installation, see [Onboarding with KOTS](/vendor/distributing-workflow).
 
 ### Promotion
 
