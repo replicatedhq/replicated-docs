@@ -9,7 +9,7 @@ This topic describes channels and releases, including information about the **Re
 
 ## Overview
 
-A _release_ represents a single version of your application and contains your application files (Helm charts or Kubernetes manifests). Each release is promoted to one or more _channels_. Channels provide a way to progress releases through the software development lifecycle: from internal testing, to sharing with early-adopters, and finally to making the release generally available. Channels also control which customers are able to install a release. For example, a customer assigned to the Beta channel can install only releases that are promoted to the Beta channel. For more information about assigning customers to channels, see [Channel Assignment](licenses-about#channel-assignment) in _About Customers_.
+A _release_ represents a single version of your application and contains your application files (Helm charts or Kubernetes manifests). Each release is promoted to one or more _channels_. Channels provide a way to progress releases through the software development lifecycle: from internal testing, to sharing with early-adopters, and finally to making the release generally available. Channels also control which customers are able to install a release. For example, a customer assigned to the Stable channel can only install releases that are promoted to the Stable channel, and cannot see any releases promoted to the Beta, Unstable, or other channels. For more information about assigning customers to channels, see [Channel Assignment](licenses-about#channel-assignment) in _About Customers_.
 
 Channels and releases help you distribute your application to your customers, including both SaaS and on-prem customers, without needing to manage separate code bases, deployments, or release workflows. Instead, to make a release available to your customers, you promote it to a channel where the target customers are assigned. This reduces complexity and helps ensure that all your customers have access to the same release on the same cadence. 
 
@@ -67,7 +67,9 @@ Alternatively, vendors that support Replicated KOTS installations can create a r
 
 ### Promotion
 
-After you save release, you promote it to a channel. While you are developing and testing releases, Replicated recommends promoting to a channel that does not have any customers assigned, such as the default Unstable channel. When the release is ready to be shared with customers, you can then promote to a channel that has customers assigned, such as the Beta or Stable channel.
+Each release is promoted to one or more channels. While you are developing and testing releases, Replicated recommends promoting to a channel that does not have any real customers assigned, such as the default Unstable channel. When the release is ready to be shared externally with customers, you can then promote to a channel that has the target customers assigned, such as the Beta or Stable channel.
+
+After being promoted to a channel, a release is immutable. This means that you can test a release on an internal development channel, and know with confidence that the same release will be available to your customers when you promote it to a channel where real customers are assigned.
 
 Every customer license file that you create is assigned to a channel. Each time a new release is promoted to a channel, customers assigned to that channel can update their installed application instance to the new release version. For more information about customer licenses, see [About Customers](licenses-about).
 
