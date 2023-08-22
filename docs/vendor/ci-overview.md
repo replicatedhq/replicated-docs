@@ -1,19 +1,18 @@
 # Integrating with CI/CD
 
-This topic provides recommendations and considerations for integrating Replicated into your continuous integration and continuous delivery (CI/CD) workflows.
+This topic provides recommendations and considerations for integrating replicated CLI commands into your continuous integration and continuous delivery (CI/CD) pipeline.
 
 ## Overview
 
-Using automated CI workflows to compile code and run tests against every commit to a shared repository improves the speed at which developers can test, iterate on, and deliver releases to customers. When you integrate common Replicated application distribution tasks (though including replicated CLI commands, Vendor API v3 requests, or Replicated GitHub Actions) into your CI pipeline, you can automate the process of creating customers, channels, clusters, and releases, rather than needing to manually create these artifacts to test your changes in a development environment.
+Using automated CI workflows to compile code and run tests against commits to a shared repository improves the speed at which teams can test, iterate on, and deliver releases to customers. When you integrate replicated CLI commands into your CI pipeline, you can automate the process of deploying your application to development environments for testing, rather than needing to manually create and archive releases, channels, and customers to install and test in a development environment.
 
-## CI/CD Workflow
+In addition to integrating replicated CLI commands into CI workflows to support the development process, you can also include workflows in your pipeline for continuous delivery of your releases. For example, you can define a workflow to automatically create and promote a release to the shared Unstable or Beta channel after tests pass.
 
-This section includes recommended CI workflow steps to integrate replicated CLI commands into a CI pipeline. How you implement CI/CD workflows varies depending on the CI/CD platform that you use, such as GitHub, GitLab, CircleCI, TravisCI, or Jenkins. Refer to the documentation for your CI/CD platform for more information.
+:::note
+How you implement CI/CD workflows varies depending on the CI/CD platform that you use, such as GitHub, GitLab, CircleCI, TravisCI, or Jenkins. Refer to the documentation for your CI/CD platform for more information.
+:::
 
-The following table includes:
-* The recommended CI workflow steps with descriptions of each step
-* When applicable, the corresponding replicated CLI command or Vendor API v3 endpoint
-* For users of GitHub Actions, the corresponding GitHub Action maintained by Replicated
+## Release Workflow
 
 <table>
 <tr>
@@ -28,7 +27,7 @@ The following table includes:
 </tr>
 <tr>
   <td>
-    Create release, channel, and customer artifacts in the Replicated platform. See <a href="#create-artifacts">Create a Release, Channel, and Customer</a>.
+    Create a release, channel, and customer
   </td>
   <td>
     <p><a href="/reference/replicated-cli-release-create">release create</a></p>
@@ -42,7 +41,7 @@ The following table includes:
 </tr>
 <tr>
   <td>
-    Use the compatibility matrix to create one or more clusters and deploy the application. See <a href="#create-clusters">Create Clusters</a>.
+    Use the Replicated compatibility matrix to create one or more clusters and deploy the application. See <a href="#create-clusters">Create Clusters</a>.
   </td>
   <td>
     <a href="/reference/replicated-cli-cluster-create">cluster create</a>
@@ -59,7 +58,7 @@ The following table includes:
   </td>
 </tr>
 <tr>
-  <td>Delete the cluster and archive the channel and customer. See <a href="#clean-up">Clean Up</a>.</td>
+  <td>Delete the cluster and archive the channel and customer.</td>
   <td>
     <p><a href="/reference/replicated-cli-channel-delete">channel delete</a></p>
     <p><a href="https://replicated-vendor-api.readme.io/reference/archivecustomer">customer/&#123;customer_id&#125;/archive</a></p>
@@ -69,7 +68,7 @@ The following table includes:
   </td>
 </tr>
 <tr>
-  <td>Promote to a shared channel, such as the Unstable, Beta, or Stable channels. See <a href="#promote-release">Promote Release (Continuous Deliver)</a>.</td>
+  <td>Promote to a shared channel, such as the Unstable, Beta, or Stable channels. See <a href="#promote-release">Promote Release</a>.</td>
   <td>
     <a href="/reference/replicated-cli-release-promote">release promote</a>
   </td>
@@ -79,13 +78,19 @@ The following table includes:
 </tr>
 </table>
 
-### Create a Release, Channel, and Customer {#create-artifacts}
+### Create a Release, Channel, and Customer
 
-Replicated recommends that you run a workflow to creates a new release on the Unstable channel every time you merge a branch or commit to `main`. Create a release named for the commit: `Unstable-${SHA}`.
+TBD
+
+If you use `cluster prepare`, you do not need to create releases, channels, or customers to deploy the application to a cluster for testing.
 
 ### Create Clusters {#create-clusters}
 
 Your CI workflow should create one or more cluster where you can deploy the application and run tests. Whether you decide to create one or many clusters depends on if you intend to run the tests on every commit to a development branch, or only for every release that you intend to promote to a channel (as indicated by a tag or on merge to the `main` branch).
+
+#### Use `cluster-prepare`
+
+TBD
 
 #### Create a Single Cluster
 
@@ -132,21 +137,13 @@ For release testing, Replicated recommends that you create and run all of the fo
 
 - **Canary Testing:** Before releasing to all customers, consider deploying your application to a small subset of your customer base as a _canary_ release. This lets you monitor the application's performance and stability in real-world environments, while minimizing the impact of potential issues. The compatibility matrix enables canary testing by simulating exact (or near) customer environments and configurations to test your application with.
 
-### Clean Up
-
-After the tests complete, clean up the development environment by deleting the cluster and archive channels and customers.
-
-### Promote Release (Continuous Delivery) {#promote-release}
-
-#### Using Tags for Production Releases
-
-Replicated recommends using a Git-based workflow. Using a Git-based workflow allows teams to map Git branches to channels in the Replicated vendor portal, and allows multiple team members to seamlessly collaborate across features and releases.
+### Promote Release
 
 Replicated recommends:
-* On pushes to the `main` branch, create a release on unstable with the name `Unstable-${SHA}`
-* On pushing a Git tag, create a release on the beta branch, using the name `Beta-${TAG}` for the release version.
+* For every merge or commit to the `main` branch, create a release on the Unstable with the version label `Unstable-${SHA}`.
+* On pushing a Git tag, create a release on the Beta branch with the version label `Beta-${TAG}`.
 
-Replicated recommends that these tags be tested, and then the release be manually promoted to the `Stable` channel using the vendor portal. Using manual promotion with the vendor portal rather than automated promotion with the replicated CLI allows you to restrict which team members can publish new versions using RBAC roles in the vendor portal.
+Replicated recommends that these tags are tested, and then the release be manually promoted to the `Stable` channel using the vendor portal. Using manual promotion with the vendor portal rather than automated promotion with the replicated CLI allows you to restrict which team members can publish new versions using RBAC roles in the vendor portal.
 
 ## Examples
 
