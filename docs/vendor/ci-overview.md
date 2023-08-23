@@ -8,15 +8,21 @@ Using automated CI/CD workflows to compile code and run tests improves the speed
 
 In addition to integrating replicated CLI commands into workflows that support the development process, you can also create continuous delivery workflows to automatically promote a release to a shared channel in your Replicated team. This allows you to more easily share releases with team members for internal testing and iteration, and to promote releases when they are ready to be shared with customers.
 
-For more information about the CI/CD workflows that Replicated recommends for developing against and releasing your application, see [Recommended CI/CD Workflows](ci-workflows).
+## Best Practices and Recommendations
 
-## Using the Compatibility Matrix in CI/CD
+The following are Replicated's best practices and recommendations for CI/CD:
 
-The Replicated compatibility matrix quickly provisions ephemeral clusters where you can deploy your application to run tests and troubleshoot issues. Integrating the compatibility matrix into your development and release CI/CD workflows allows you to automate the process of provisioning clusters for testing.
+* Use unique workflows for development and for releasing your application so that you can run tests on every commit, and . For more information about the CI/CD workflows that Replicated recommends for developing against and releasing your application, see [Recommended CI/CD Workflows](ci-workflows).
 
-You can also use the compatibility matrix with the matrix functionality provided by your CI/CD platform to create and deploy your application to multiple clusters of different Kubernetes distributions and versions. 
+* Integrate the Replicated compatibility matrix into your CI/CD workflows. The compatibility matrix allows you to quickly provision ephemeral clusters where you can deploy your application to run tests.
 
-For more information about the compatibility matrix, see [About the Compatibility Matrix](testing-about).
+   You can also the compatibility matrix with the matrix functionality provided by your CI/CD platform to create and deploy your application to multiple clusters of different Kubernetes distributions and versions. 
+
+   For more information about the compatibility matrix, see [About the Compatibility Matrix](testing-about).
+
+* Use consistent semantic versioning
+
+* 
 
 ## GitHub Actions
 
