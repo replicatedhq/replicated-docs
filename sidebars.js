@@ -586,6 +586,7 @@ const sidebars = {
       label: 'CI/CD',
       items: [
         'vendor/ci-overview',
+        'vendor/ci-workflows',
         'vendor/tutorial-ci-cd-integration',
       ],
     },
