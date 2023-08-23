@@ -1,36 +1,22 @@
 # About Integrating with CI/CD
 
-This topic provides recommendations and considerations for integrating replicated CLI commands into your continuous integration and continuous delivery (CI/CD) pipeline.
+This topic provides recommendations and considerations for integrating replicated CLI commands as part of your existing continuous integration and continuous delivery (CI/CD) pipelines.
 
 ## Overview
 
-Using automated CI/CD workflows to compile code and run tests improves the speed at which teams can test, iterate on, and deliver releases to customers. When you integrate replicated CLI commands into your CI/CD pipeline, you can automate the process of deploying your application to clusters for testing, rather than needing to manually create and archive channels, customers, and development environments to test your releases.
+Using automated CI/CD workflows to compile code and run tests improves the speed at which teams can test, iterate on, and deliver releases to customers. When you integrate replicated CLI commands into your CI/CD workflows, you can automate the process of deploying your application to clusters for testing, rather than needing to manually create and archive channels, customers, and development environments to test your releases.
 
-In addition to integrating replicated CLI commands into CI/CD workflows that support the development process, you can also create continuous delivery workflows to automatically promote a release to a shared channel in your Replicated team. This allows you to more easily share releases with team members for internal testing and iteration, and to promote releases when they are ready to be shared with customers.
+In addition to integrating replicated CLI commands into workflows that support the development process, you can also create continuous delivery workflows to automatically promote a release to a shared channel in your Replicated team. This allows you to more easily share releases with team members for internal testing and iteration, and to promote releases when they are ready to be shared with customers.
 
-For more information about the CI/CD workflows that Replicated recommends for development and releasing, see [Recommended Workflows](ci-workflows).
+For more information about the CI/CD workflows that Replicated recommends for developing against and releasing your application, see [Recommended CI/CD Workflows](ci-workflows).
 
-## Compatibility Matrix
+## Using the Compatibility Matrix in CI/CD
 
-The Replicated compatibility matrix quickly provisions ephemeral clusters representing your customer environments, so that you can test your application and troubleshoot issues. Integrating the compatibility matrix into your development and release workflows for CI/CD allows you to automate the process of provisioning clusters for testing.
+The Replicated compatibility matrix quickly provisions ephemeral clusters where you can deploy your application to run tests and troubleshoot issues. Integrating the compatibility matrix into your development and release CI/CD workflows allows you to automate the process of provisioning clusters for testing.
+
+You can also use the compatibility matrix with the matrix functionality provided by your CI/CD platform to create and deploy your application to multiple clusters of different Kubernetes distributions and versions. 
 
 For more information about the compatibility matrix, see [About the Compatibility Matrix](testing-about).
-
-## Test Recommendations
-
-Incorporating code tests into your CI/CD workflows is important for ensuring that developers receive quick feedback and can make updates in small iterations.
-
-Replicated recommends that you create and run all of the following test types as part of your CI/CD workflows:
-
-- **Application Testing:** Traditional application testing includes unit, integration, and end-to-end tests. These tests are critical for application reliability, and the compatibility matrix is designed to to incorporate and use your application testing.
-
-- **Performance Testing:** Performance testing is used to benchmark your application to ensure it can handle the expected load and scale gracefully. Test your application under a range of workloads and scenarios to identify any bottlenecks or performance issues. Make sure to optimize your application for different Kubernetes distributions and configurations by creating all of the environments you need to test in.
-
-- **Smoke Testing:** Using a single, conformant Kubernetes distribution to test basic functionality of your application with default (or standard) configuration values is a quick way to get feedback if something is likely to be broken for all or most customers.
-
-- **Compatibility Testing:** Because applications run on various Kubernetes distributions and configurations, it is important to test compatibility across different environments. The compatibility matrix provides this infrastructure.
-
-- **Canary Testing:** Before releasing to all customers, consider deploying your application to a small subset of your customer base as a _canary_ release. This lets you monitor the application's performance and stability in real-world environments, while minimizing the impact of potential issues. The compatibility matrix enables canary testing by simulating exact (or near) customer environments and configurations to test your application with.
 
 ## GitHub Actions
 
