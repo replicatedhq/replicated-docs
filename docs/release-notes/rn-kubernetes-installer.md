@@ -8,6 +8,15 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.08.23-0
+
+Released on August 23, 2023
+
+### New Features {#new-features-v2023-08-23-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.28.0 1.27.4 1.26.7 1.25.12 1.24.16 1.23.17 1.22.17.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.22.2.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.22.
+
 ## v2023.08.15-0
 
 Released on August 15, 2023
