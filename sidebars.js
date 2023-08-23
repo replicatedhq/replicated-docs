@@ -583,7 +583,7 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Continuous Integration and Delivery',
+      label: 'CI/CD',
       items: [
         'vendor/ci-overview',
         'vendor/tutorial-ci-cd-integration',
