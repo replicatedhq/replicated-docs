@@ -12,141 +12,165 @@ In addition to integrating replicated CLI commands into CI workflows to support 
 How you implement CI/CD workflows varies depending on the CI/CD platform that you use, such as GitHub, GitLab, CircleCI, TravisCI, or Jenkins. Refer to the documentation for your CI/CD platform for more information.
 :::
 
-## Recommended Workflows
+## Recommended Development Workflow
 
-### Development Workflow
+Replicated recommends that you update your CI pipeline to run the following workflow on every commit to a branch in your shared repository that is not `main`: 
 
-Replicated recommends that you run this workflow on every commit to a branch in your shared repository that is not `main`.
+1. [Build source code](#dev-build)
+1. [Prepare a cluster, deploy, and test](#dev-deploy)
+### Build source code {#dev-build}
 
-<table>
-<tr>
-  <th width="33%">Step</th>
-  <th width="33%">Description</th>
-  <th width="33%">Commands or Endpoints</th>
-</tr>
-<tr>
-  <td>Build</td>
-  <td>Build your application source code and Docker images.</td>
-  <td>N/A</td>
-</tr>
-<tr>
-  <td>
-    Create clusters
-  </td>
-  <td>
-    Use the Replicated compatibility matrix to create one or more clusters. Deploy the application.
-  </td>
-  <td>
-    <a href="/reference/replicated-cli-cluster-prepare">cluster prepare</a>
-  </td>
-</tr>
-<tr>
-  <td>
-    Test
-  </td>
-  <td>Run tests against the cluster. See Test Script Recommendations</td>
-  <td>N/A</td>
-</tr>
-<tr>
-  <td>Clean up</td>
-  <td>Delete the cluster and archive the channel and customer.</td>
-  <td>
-    <p><a href="/reference/replicated-cli-channel-delete">channel delete</a></p>
-    <p><a href="https://replicated-vendor-api.readme.io/reference/archivecustomer">customer/&#123;customer_id&#125;/archive</a></p>
-    <p><a href="/reference/replicated-cli-cluster-rm">cluster rm</a></p>
-  </td>
-</tr>
-</table>
+Build your application source code. For more information, see the documentation for your CI/CD platform.
 
-### Release Workflow
+### Prepare a cluster, deploy, and test {#dev-deploy}
 
-Replicated recommends that you run this workflow based on the following event triggers:
-* For every merge or commit to the `main` branch, create a release on the Unstable with the version label `Unstable-${SHA}`.
-* On pushing a Git tag, create a release on the Beta branch with the version label `Beta-${TAG}`.
+To prepare a cluster and deploy the application, add a job that does the following:
+1. (Helm Charts Only) Update chart dependencies and package the Helm chart into a `.tgz` chart archive.
 
-After you test the tags, and then the release be manually promoted to the `Stable` channel using the vendor portal. Using manual promotion with the vendor portal rather than automated promotion with the replicated CLI allows you to restrict which team members can publish new versions using RBAC roles in the vendor portal.
+   ```
+   helm package . -u
+   ```
 
-<table>
-<tr>
-  <th width="33%">Step</th>
-  <th width="33%">Commands or Endpoints</th>
-</tr>
-<tr>
-  <td>Build your application source code and Docker images.</td>
-  <td>N/A</td>
-</tr>
-<tr>
-  <td>
-    Create a release, channel, and customer.
-  </td>
-  <td>
-    <p><a href="/reference/replicated-cli-release-create">release create</a></p>
-    <p><a href="/reference/replicated-cli-channel-create">channel create</a></p>
-    <p><a href="/reference/replicated-cli-customer-create">customer create</a></p>
-  </td>
-</tr>
-<tr>
-  <td>
-    Use the Replicated compatibility matrix to create one or more clusters and deploy the application. See <a href="#create-clusters">Create Clusters</a>.
-  </td>
-  <td>
-    <a href="/reference/replicated-cli-cluster-create">cluster create</a>
-  </td>
-</tr>
-<tr>
-  <td>
-    Run tests against the cluster.
-  </td>
-  <td>N/A</td>
-</tr>
-<tr>
-  <td>Delete the cluster and archive the channel and customer.</td>
-  <td>
-    <p><a href="/reference/replicated-cli-channel-delete">channel delete</a></p>
-    <p><a href="https://replicated-vendor-api.readme.io/reference/archivecustomer">customer/&#123;customer_id&#125;/archive</a></p>
-    <p><a href="/reference/replicated-cli-cluster-rm">cluster rm</a></p>
-  </td>
-</tr>
-<tr>
-  <td>Promote to a shared channel, such as the Unstable or Beta channel.</td>
-  <td><a href="/reference/replicated-cli-release-promote">release promote</a></td>
-</tr>
-</table>
+   See [Helm Package](https://helm.sh/docs/helm/helm_package/) in the Helm documentation. 
 
-<!-- ## Create Clusters {#create-clusters}
+1. Use the Replicated compatibility matrix to prepare one or more clusters and deploy the application. 
 
-Your CI workflow should create one or more cluster where you can deploy the application and run tests. Whether you decide to create one or many clusters depends on if you intend to run the tests on every commit to a development branch, or only for every release that you intend to promote to a channel (as indicated by a tag or on merge to the `main` branch).
+  For development workflows, Replicated recommends that you use the compatibility matrix `cluster prepare` command to provision one or more clusters. When you use the `cluster prepare` command, you create a cluster and deploy an application in the cluster in a single command, without needing to create a release, channel, or customer. See [`cluster prepare`](/reference/replicated-cli-cluster-prepare). 
 
-### Create a Single Cluster
+  :::note
+  The `cluster prepare` command is Beta. It is recommended for development only and is not recommended for production releases. For production releases, Replicated recommends that you use the `cluster create` command instead. For more information, see [Create cluster matrix and deploy](#rel-deploy) in _Release Workflow_ below.
+  :::
 
-For the purpose of running tests against every commit to a development branch, Replicated recommends that you use the Replicated compatibility matrix to create a single cluster of Kind distribution. Kind is a lighter weight Kubernetes distribution, which makes it useful for the purpose of frequent testing. 
+  The following example shows how using the `cluster prepare` command to provision a single kind cluster and deploy a Helm chart-based application:
 
-The following example replicated CLI command demonstrates using the compatibility matrix to create a kind cluster: 
+  ```bash
+  replicated cluster cluster prepare \
+  --distribution kind \
+  --version 1.27.0 \
+  --chart nginx-chart-0.0.14.tgz \
+  --set key1=val1,key2=val2 \
+  --set-string s1=val1,s2=val2 \
+  --set-json j1='{"key1":"val1","key2":"val2"}' \
+  --set-literal l1=val1,l2=val2 \
+  --values values.yaml
+  ```
 
-```bash
-replicated cluster create --name kind-example --distribution kind --version 1.25.2 --disk 100 --instance-type r1.small
-```
+1. Run tests, such as integration, smoke, and canary tests. For more information about recommended types of tests to run, see [Test Script Recommendations](#test-script-recommendations) below.
 
-### Create Multiple Clusters Using a Matrix
+1. After the tests complete, remove the cluster. Alternatively, if you set a `ttl` value for the cluster with the `prepare cluster` command, that cluster is automatically removed when the `ttl` is reached. See [`cluster remove`](/reference/replicated-cli-cluster-prepare). 
 
-For releases that you intended to promote to the customer-facing channels, Replicated recommends that you run tests against multiple clusters of different Kubernetes distributions and versions. To create this representative set of clusters, you can use the compatibility matrix and the matrix functionality provided by your CI/CD platform. You can go to the **Customers** page in the Replicated vendor portal to see the common k8s distributions and versions.
+## Recommended Release Workflow
 
-The following example shows creating a matrix of clusters of different distributions and versions using GitHub Actions:
+This section includes a recommended workflow for releasing and application version to your internal development or customer-facing channels (such as the default Unstable, Beta, and Stable channels). You can use variations of this workflow for continuous delivery when you are ready to promote a release for internal testing or for sharing externally with customers.
 
-  ```yaml
-  # github actions cluster matrix example
+Replicated recommends that you use the following workflow in your CI/CD pipeline for releases:
 
-  compatibility-matrix:
-    runs-on: ubuntu-22.04
-    strategy:
-      matrix:
-        cluster:
-          - {distribution: kind, version: "1.25.3"}
-          - {distribution: kind, version: "1.26.3"}
-          - {distribution: eks, version: "1.26"}
-          - {distribution: gke, version: "1.27"}
-          - {distribution: openshift, version: "4.13.0-okd"} 
-  ``` -->
+1. [Define workflow triggers](#rel-triggers)
+1. [Build source code](#rel-build)
+1. [Create a release](#rel-release)
+1. [Create cluster matrix, deploy, and test](#rel-deploy)
+1. [Archive the temporary channel and customer](#rel-cleanup)
+1. [Promote to a shared channel](#rel-cleanup)
+
+### Define workflow triggers {#rel-triggers}
+
+Define event triggers for your release workflows so that releases are only promoted to a channel when a given condition is met.
+
+Replicated recommends the following event triggers for unstable, beta, and stable releases:
+* On every commit to the `main` branch in your code repository, promote a release to the channel that your team uses for internal testing (such as the default Unstable channel). 
+* On pushing a tag that contains a version label with the semantic versioning format `x.y.z-beta-n` (such as `1.0.0-beta.1` or `v1.0.0-beta.2`), promote a release to your team's Beta channel.
+* On pushing a tag that contains a version label with the semantic versioning format `x.y.z` (such as `1.0.0` or `v1.0.01`), promote a release to your team's Stable channel.
+
+  :::note
+  Replicated recommends that the version label that is used in the tag matches the version label for the release that is created later in this workflow.
+  :::
+
+### Build source code {#rel-build}
+
+Build your application source code. For more information, see the documentation for your CI/CD platform.
+
+### Create a release and temporary channel {#rel-release}
+
+Add a job that creates a release and promotes it to a temporary channel. This step allows the release to be installed in clusters for testing. For more information, see [release create](/reference/replicated-cli-release-create).
+
+Include the following in the job to create and promote a release to a temporary channel:
+
+* The application slug and the API token. These are required for interacting with the replicated CLI and the Vendor API v3. See [app ls](/reference/replicated-cli-app-ls) and [Generating API Tokens](/vendor/replicated-api-tokens). 
+
+* (Helm Charts Only) For Helm chart-based applications, update chart dependencies and package the Helm chart into a `.tgz` chart archive.
+
+   ```
+   helm package . -u
+   ```
+
+   See [Helm Package](https://helm.sh/docs/helm/helm_package/) in the Helm documentation.
+
+* The application files:
+  * For releases installed with KOTS, include the directory for your application files. For Helm chart-based applications, ensure that the `.tgz` chart archive is located in the same directory as the rest of your application files.
+  * For releases installed with the Helm CLI, include the `.tgz` Helm chart archive. 
+
+* The name for a temporary channel to promote the release. The `--ensure-channel` flag for the `release create` command creates the channel if it does not already exist.
+
+* The release version label.
+
+### Create cluster matrix, deploy, and test {#rel-deploy}
+
+To provision clusters and run tests, add a job that does the following:
+
+* Create a temporary customer so that the release can be installed in the clusters created by the compatibility matrix. See:
+  * [channel create](/reference/replicated-cli-channel-create) 
+  * [customer create](/reference/replicated-cli-customer-create) 
+
+* Use the matrix functionality provided by your CI/CD platform to create a matrix of different Kubernetes cluster distributions and versions to run tests against. See [cluster create](/reference/replicated-cli-cluster-create).
+
+   For release workflows that promote a release to one or more shared channels, Replicated recommends that you run tests against multiple clusters of different Kubernetes distributions and versions. You can find the most common Kubernetes distributions and versions used by your customers on the **Customers > Reporting** page in the Replicated vendor portal. For more information, see [Customer Reporting](/vendor/customer-reporting).
+
+   The following example shows creating a matrix of clusters of different distributions and versions using GitHub Actions:
+
+    ```yaml
+    # github actions cluster matrix example
+
+    compatibility-matrix:
+      runs-on: ubuntu-22.04
+      strategy:
+        matrix:
+          cluster:
+            - {distribution: kind, version: "1.25.3"}
+            - {distribution: kind, version: "1.26.3"}
+            - {distribution: eks, version: "1.26"}
+            - {distribution: gke, version: "1.27"}
+            - {distribution: openshift, version: "4.13.0-okd"} 
+    ```
+
+* Run tests, such as integration, smoke, and canary tests. For more information about recommended types of tests to run, see [Test Script Recommendations](#test-script-recommendations) below.
+
+* Delete the cluster when the tests complete. See [cluster rm](/reference/replicated-cli-cluster-rm).
+### Archive the temporary channel and customer {#rel-cleanup}
+
+Add a job to archive the temporary channel and customer that you created. This ensures that these artifacts are removed from your Replicated team and that they do not have to be manually archived after the release is promoted.
+
+For more information, [channel delete](/reference/replicated-cli-channel-delete) and [customer/{customer_id}/archive](https://replicated-vendor-api.readme.io/reference/archivecustomer) in the Vendor API v2 documentation.
+
+### Promote to a shared channel {#rel-promote}
+
+Finally, add a job that uses the `release promote` command to promote the release to a channel, such as the default Unstable, Beta, or Stable channel. The channel to which the release is promoted depends on the event triggers that you defined for the workflow. For example, if the workflow runs on every commit to the `main` branch, then promote the release to an internal-only channel, such as Unstable. For more information, see [Define Workflow Triggers](#rel-triggers) above.
+
+Include the following details in the job to promote the release:
+
+* The release sequence number. You can find the release sequence number by running `replicated release ls`. For more information, see [release ls](/reference/replicated-cli-release-ls) and [Sequencing](/vendor/releases-about#sequencing) in _About Channels and Releases_.
+
+* The channel ID. You can find the channel ID by running `replicated channel ls`. For more information, see [channel ls](/reference/replicated-cli-channel-ls) and [Settings](/vendor/releases-about#settings) in _About Channels and Releases_.
+Note the following requirements and recommendations for the version label:
+  
+  * If semantic versioning is enabled on the channel, then the version label must be a valid semantic version number. See [Semantic Versioning](releases-about#semantic-versioning) in _About Channels and Releases_.
+  
+  * For Helm chart-based applications, the release version label must match the version in the `version` field of the Helm chart `Chart.yaml` file. 
+  
+  * For releases promoted to a customer-facing channel such as Beta or Stable, Replicated recommends that the version label for the release matches the version label that was used in the tag that triggered the release workflow. See [Define workflow triggers](#rel-triggers) above.
+
+* The application slug and the API token. These are required for interacting with the replicated CLI and the Vendor API v3. See [app ls](/reference/replicated-cli-app-ls) and [Generating API Tokens](/vendor/replicated-api-tokens). 
+
+For more information, see [release promote](/reference/replicated-cli-release-promote).
 
 ## Test Script Recommendations
 
@@ -166,24 +190,18 @@ For release testing, Replicated recommends that you create and run all of the fo
 
 ### Replicated Actions
 
-Replicated maintains a set of custom actions that are compatible with GitHub Actions pipelines. If your use GitHub Actions as your CI/CD platform, you can include these custom actions in your workflows rather than  
+Replicated maintains a set of custom actions that are compatible with GitHub Actions pipelines. The custom Replicated actions are designed to complete repetitive CI/CD tasks such as creating and removing customers, channels, clusters, and more. If your use GitHub Actions as your CI/CD platform, you can include these custom actions in your workflows rather than using replicated CLI commands. 
 
-<a href="https://github.com/replicatedhq/replicated-actions/blob/main/create-release/README.md">replicatedhq/replicated-actions/create-release</a>
-<a href="https://github.com/replicatedhq/replicated-actions/tree/main/create-customer">replicatedhq/replicated-actions/create-customer</a>
-<a href="https://github.com/replicatedhq/replicated-actions/tree/main/promote-release">replicatedhq/replicated-actions/promote-release</a>
-<a href="https://github.com/replicatedhq/replicated-actions/tree/main/prepare-cluster">replicatedhq/replicated-actions/prepare-cluster</a>
-<a href="https://github.com/replicatedhq/replicated-actions/tree/main/create-cluster">replicatedhq/replicated-actions/create-cluster</a>
-<a href="https://github.com/replicatedhq/replicated-actions/tree/main/remove-cluster">replicatedhq/replicated-actions/remove-cluster</a>
-<a href="https://github.com/replicatedhq/replicated-actions/tree/main/archive-customer">replicatedhq/replicated-actions/archive-customer</a>
-<a href="/reference/replicated-cli-release-promote">release promote</a>
+For more information, see the [replicated-actions](https://github.com/replicatedhq/replicated-actions/) repository in GitHub.
 
 ### Example GitHub Action Workflows
 
-The [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions#examples) repository in GitHub contains example workflows that:
+The [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions#examples) repository in GitHub alsdo contains example GitHub Actions workflows that you can use as a template for your own CI/CD pipelines.
+
 * Development workflow that uses the Beta `cluster prepare` command to avoid the need to create a release, channel, or customer for testing: https://github.com/replicatedhq/replicated-actions/blob/main/example-workflows/development-helm-prepare-cluster.yaml
 * Development workflow for Helm that runs on each commit: https://github.com/replicatedhq/replicated-actions/blob/main/example-workflows/development-helm.yaml
 * Development workflow for KOTS installations that runs on each commit: https://github.com/replicatedhq/replicated-actions/blob/main/example-workflows/development-kots.yaml
 * Release workflow that runs each time a tag is placed on the repository: https://github.com/replicatedhq/replicated-actions/blob/main/example-workflows/release.yaml
 
-Additionally, if you support Replicated KOTS installation, for an example tag-based workflow that adds logic for making production releases using Git tags, see [main.yml
+Additionally, if you support Replicated KOTS installations, for an example tag-based workflow that adds logic for making production releases using Git tags, see [main.yml
 ](https://github.com/replicatedhq/replicated-starter-kots/tree/main/.github/workflows/main.yml) in the `replicated-starter-kots` repository in GitHub.
