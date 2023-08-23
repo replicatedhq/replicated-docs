@@ -13,9 +13,13 @@ pagination_prev: null
 Released on August 23, 2023
 
 ### New Features {#new-features-v2023-08-23-0}
-* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.28.0 1.27.4 1.26.7 1.25.12 1.24.16 1.23.17 1.22.17.
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version 1.28.0.
 * Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.22.2.
-* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.22.
+* Adds [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) version 1.6.22. As this package has not been published for Ubuntu 18.04, 1.6.21 will be installed there when 1.6.22 is selected.
+
+### Improvements {#improvements-v2023-08-23-0}
+* When PVC storage migrations from Rook or Longhorn to OpenEBS 3.7.0+ are required, the migrations will be performed before upgrading Kubernetes.
+* When object storage migrations from Rook to MinIO 2023-08-04T17-40-21Z+ are required, the migrations will be performed before upgrading Kubernetes.
 
 ## v2023.08.15-0
 
