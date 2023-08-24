@@ -35,32 +35,40 @@ The following are Replicated's best practices and recommendations for successful
 
 Before you begin, complete the following prerequisites:
 
-* This workflow assumes that you have a Helm chart that you can install and develop against. Replicated strongly recommends that all vendors distribute their application as a Helm chart because many enterprise users expect to be able to install using Helm.
+### Getting a Helm Chart 
 
-  You can use your own application chart or a sample chart. If you want to use a sample chart, Replicated recommends that you run the following Helm CLI command to to create a new `replicated-onboarding` folder with a basic NGINX deployment:
-  ```bash
-  helm create replicated-onboarding
-  ``` 
-  For more information, see [Helm Create](https://helm.sh/docs/helm/helm_create/) in the Helm documentation.
-  
-  Alternatively, more advanced users can also use one of the following open source Helm charts:
-    * [Gitea](https://github.com/bitnami/charts/tree/main/bitnami/gitea)
+This workflow assumes that you have a Helm chart that you can install and develop against. Replicated strongly recommends that all vendors distribute their application as a Helm chart because many enterprise users expect to be able to install using Helm.
 
-       ```
-       helm pull --untar oci://registry-1.docker.io/bitnamicharts/gitea
-       ```
+#### Using a sample nginx chart
 
-    * [MediaWiki](https://github.com/bitnami/charts/tree/main/bitnami/mediawiki) 
+You can use your own application chart or a sample chart. If you want to use a sample chart, Replicated recommends that you run the following Helm CLI command to to create a new `replicated-onboarding` folder with a basic NGINX deployment:
 
-       ```
-       helm pull --untar oci://registry-1.docker.io/bitnamicharts/mediawiki
-       ```
+```bash
+helm create replicated-onboarding
+``` 
 
-    * [WordPress](https://github.com/bitnami/charts/tree/main/bitnami/wordpress)
+For more information, see [Helm Create](https://helm.sh/docs/helm/helm_create/) in the Helm documentation.
 
-       ```
-       helm pull --untar oci://registry-1.docker.io/bitnamicharts/wordpress
-       ``` 
+#### Using an open source chart
+
+Alternatively, more advanced users can also use one of the following open source Helm charts:
+  * [Gitea](https://github.com/bitnami/charts/tree/main/bitnami/gitea)
+
+     ```
+     helm pull --untar oci://registry-1.docker.io/bitnamicharts/gitea
+     ```
+
+  * [MediaWiki](https://github.com/bitnami/charts/tree/main/bitnami/mediawiki) 
+
+     ```
+     helm pull --untar oci://registry-1.docker.io/bitnamicharts/mediawiki
+     ```
+
+  * [WordPress](https://github.com/bitnami/charts/tree/main/bitnami/wordpress)
+
+     ```
+     helm pull --untar oci://registry-1.docker.io/bitnamicharts/wordpress
+     ``` 
 
   :::note
   If you do not intend to distribute a Helm chart-based application with Replicated, see [KOTS Tutorial (UI)](tutorial-ui-setup) to follow an onboarding workflow that uses a sample application with standard Kubernetes manifests and demonstrates installing with Replicated KOTS.
