@@ -35,11 +35,11 @@ The following are Replicated's best practices and recommendations for successful
 
 Before you begin, complete the following prerequisites:
 
-### Getting a Helm Chart 
+### Access to a Helm Chart 
 
 This workflow assumes that you have a Helm chart that you can install and develop against. Replicated strongly recommends that all vendors distribute their application as a Helm chart because many enterprise users expect to be able to install using Helm.
 
-#### Using a sample nginx chart
+#### Using your chart or a sample nginx chart
 
 You can use your own application chart or a sample chart. If you want to use a sample chart, Replicated recommends that you run the following Helm CLI command to to create a new `replicated-onboarding` folder with a basic NGINX deployment:
 
@@ -74,7 +74,9 @@ Alternatively, more advanced users can also use one of the following open source
   If you do not intend to distribute a Helm chart-based application with Replicated, see [KOTS Tutorial (UI)](tutorial-ui-setup) to follow an onboarding workflow that uses a sample application with standard Kubernetes manifests and demonstrates installing with Replicated KOTS.
   ::: 
 
-* You must have kubectl access to a cluster where you can develop against the Helm chart. Replicated recommends that you confirm that you can successfully install the chart in the cluster and also log in to the application UI. After you confirm that you can install and access the application, uninstall it before proceeding to the onboarding workflow. For more information, see [Helm Install](https://helm.sh/docs/helm/helm_install/) and [Helm Uninstall](https://helm.sh/docs/helm/helm_uninstall/) in the Helm documentation.
+### Access to a Cluster
+
+You must have `kubectl` access to a cluster where you can develop against the Helm chart. Replicated recommends that you confirm that you can successfully install the chart in the cluster and also log in to the application UI. After you confirm that you can install and access the application, uninstall it before proceeding to the onboarding workflow. For more information, see [Helm Install](https://helm.sh/docs/helm/helm_install/) and [Helm Uninstall](https://helm.sh/docs/helm/helm_uninstall/) in the Helm documentation.
 
 ## Workflow
 
