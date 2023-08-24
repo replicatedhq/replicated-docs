@@ -1,4 +1,6 @@
 import ChangeChannel from "../partials/customers/_change-channel.mdx"
+import KotsHelmChannels from "../partials/releases/_kots-helm-release-promotion.mdx"
+import KotsEntitlement from "../partials/customers/_kots-entitlement-overview.mdx"
 
 # About Customers
 
@@ -16,11 +18,34 @@ For more information about how to create and manage customers, see [Creating and
 
 You assign customers to channels in the vendor portal to control their access to your application releases. Customers can install or upgrade to releases that are promoted to the channel they are assigned. For example, assigning a customer to your Beta channel allows that customer to install or upgrade to only releases promoted to the Beta channel. For information about how to assign a customer to a channel, see [Create a Customer](releases-creating-customer#create-a-customer) in _Creating and Managing Customers_.
 
+#### Changing Channel Assignment
+
 <ChangeChannel/>
 
 For example, if the latest release promoted to the Beta channel is version 1.25.0 and version 1.10.0 is marked as required, when you edit an existing customer to assign them to the Beta channel, then the Replicated admin console always fetches 1.25.0, even though 1.10.0 is marked as required. The required release 1.10.0 is ignored and is not available to the customer for upgrade.
 
 For more information about how to mark a release as required, see [Properties](releases-about#properties) in _About Channels and Releases_. For more information about how to synchronize licenses in the admin console, see [Updating Licenses](/enterprise/updating-licenses).
+
+#### Assigning KOTS-Enabled and Helm-Only Customers
+
+<KotsEntitlement/>
+
+To prevent KOTS-enabled or Helm CLI-only customers from accessing a release that they cannot install, Replicated prevents the following channel assignments:
+* A KOTS-enabled customer cannot be assigned to a channel where the head release does _not_ contain the Kubernetes manifests required by KOTS.
+
+  <img width="400px" alt="KOTS customer blocked from channel assignment" src="/images/channel-assignment-helm-only.png"/>
+
+  [View a larger version of this image](/images/channel-assignment-helm-only.png) 
+
+* A Helm CLI-only customer cannot be assigned to a channel where the head release does _not_ contain any Helm charts.
+
+  <img width="400px" alt="Helm customer blocked from channel assignment" src="/images/channel-assignment-kots-only.png"/>
+  
+  [View a larger version of this image](/images/channel-assignment-kots-only.png)   
+
+Additionally, Replicated prevents releases from being promoted to a channel if the customers assigned to the channel cannot install the release:
+
+<KotsHelmChannels/>
 
 ### Built-in and Custom License Fields
 
