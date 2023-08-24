@@ -51,21 +51,7 @@ Add a job with the following steps to prepare clusters with the Replicated compa
 
 1. Use the Replicated compatibility matrix to prepare one or more clusters and deploy the application. For more information about the compatibility matrix, see [About the Compatibility Matrix](testing-about).
 
-  For development workflows, Replicated recommends that you use the `cluster prepare` command to provision one or more clusters with the compatibility matrix. The `cluster prepare` command both creates a cluster and deploys the application in the cluster, without the need to create a release, channel, or customer. For more information, see [`cluster prepare`](/reference/replicated-cli-cluster-prepare). 
-
-  The following example shows using the `cluster prepare` command to provision a single kind cluster and deploy a Helm chart-based application:
-
-  ```bash
-  replicated cluster prepare \
-  --distribution kind \
-  --version 1.27.0 \
-  --chart nginx-chart-0.0.14.tgz \
-  --set key1=val1,key2=val2 \
-  --set-string s1=val1,s2=val2 \
-  --set-json j1='{"key1":"val1","key2":"val2"}' \
-  --set-literal l1=val1,l2=val2 \
-  --values values.yaml
-  ```
+  For development workflows, Replicated recommends that you use the `cluster prepare` command to provision one or more clusters with the compatibility matrix. The `cluster prepare` command both creates a cluster and deploys the application in the cluster, without the need to create a release, channel, or customer. For more information, see [`cluster prepare`](/reference/replicated-cli-cluster-prepare).
 
   :::note
   The `cluster prepare` command is Beta. It is recommended for development only and is not recommended for production releases. For production releases, Replicated recommends that you use the `cluster create` command instead. For more information, see [Create cluster matrix and deploy](#rel-deploy) in _Release Workflow_ below.
