@@ -128,7 +128,13 @@
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/testing-replicated-instance-types"
-  to="https://docs.replicated.com/vendor/testing-supported-clusters"    
+  to="https://docs.replicated.com/vendor/testing-supported-clusters" 
+
+
+[[redirects]]
+  from="https://docs.replicated.com/vendor/repository-workflow-and-tagging-releases"
+  to="https://docs.replicated.com/vendor/ci-workflows"
+     
 
 ###################################################
 # Redirects To the Enterprise Section

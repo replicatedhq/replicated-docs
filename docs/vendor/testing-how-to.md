@@ -1,3 +1,5 @@
+import TestRecs from "../partials/ci-cd/_test-recs.mdx"
+
 # Using the Compatibility Matrix (Beta)
 
 This topic describes how to use the Replicated compatibility matrix to create ephemeral clusters that you can use for manual and CI/CD testing.
@@ -42,3 +44,9 @@ To help you manage costs, compatibility matrix clusters have a Time To Live (TTL
 To delete the cluster before the TTL expires, use the `replicated cluster rm` command with the cluster ID. 
 
 For more information about the `replicated cluster` commands, see the [replicated CLI](/reference/replicated-cli-cluster-create) reference.
+
+## Test Script Recommendations
+
+Incorporating code tests into your CI/CD workflows is important for ensuring that developers receive quick feedback and can make updates in small iterations. Replicated recommends that you create and run all of the following test types as part of your CI/CD workflows:
+
+<TestRecs/>

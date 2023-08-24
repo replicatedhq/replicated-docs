@@ -1,31 +1,29 @@
+import TestRecs from "../partials/ci-cd/_test-recs.mdx"
+
 # About Integrating with CI/CD
 
-This topic provides recommendations and considerations for integrating replicated CLI commands as part of your existing continuous integration and continuous delivery (CI/CD) pipelines.
+This topic provides an introduction to integrating replicated CLI commands in your continuous integration and continuous delivery (CI/CD) pipelines, including Replicated's best practices and recommendations.
 
 ## Overview
 
-Using automated CI/CD workflows to compile code and run tests improves the speed at which teams can test, iterate on, and deliver releases to customers. When you integrate replicated CLI commands into your CI/CD workflows, you can automate the process of deploying your application to clusters for testing, rather than needing to manually create and archive channels, customers, and development environments to test your releases.
+Using CI/CD workflows to automatically compile code and run tests improves the speed at which teams can test, iterate on, and deliver releases to customers. When you integrate replicated CLI commands into your CI/CD workflows, you can automate the process of deploying your application to clusters for testing, rather than needing to manually create and then archive channels, customers, and environments for testing.
 
-In addition to integrating replicated CLI commands into workflows that support the development process, you can also create continuous delivery workflows to automatically promote a release to a shared channel in your Replicated team. This allows you to more easily share releases with team members for internal testing and iteration, and to promote releases when they are ready to be shared with customers.
+You can also include continuous delivery workflows to automatically promote a release to a shared channel in your Replicated team. This allows you to more easily share releases with team members for internal testing and iteration, and then to promote releases when they are ready to be shared with customers.
 
 ## Best Practices and Recommendations
 
 The following are Replicated's best practices and recommendations for CI/CD:
 
-* Use unique workflows for development and for releasing your application so that you can run tests on every commit, and . For more information about the CI/CD workflows that Replicated recommends for developing against and releasing your application, see [Recommended CI/CD Workflows](ci-workflows).
+* Include unique workflows for development and for releasing your application. This allows you to run tests on every commit, and then to promote releases to internal and customer-facing channels only when ready. For more information about the workflows that Replicated recommends, see [Recommended CI/CD Workflows](ci-workflows).
 
-* Integrate the Replicated compatibility matrix into your CI/CD workflows. The compatibility matrix allows you to quickly provision ephemeral clusters where you can deploy your application to run tests.
+* Integrate the Replicated compatibility matrix into your CI/CD workflows to quickly create multiple different types of clusters where you can deploy and test your application. Supported distributions include OpenShift, GKE, EKS, and more. For more information, see [About the Compatibility Matrix](testing-about).
 
-   You can also the compatibility matrix with the matrix functionality provided by your CI/CD platform to create and deploy your application to multiple clusters of different Kubernetes distributions and versions. 
+* To help show you are conforming to a secure supply chain, sign all commits and container images. Additionally, provide a verification mechanism for container images.
 
-   For more information about the compatibility matrix, see [About the Compatibility Matrix](testing-about).
-
-* Use consistent semantic versioning
-
-* 
+* Incorporating code tests into your CI/CD workflows is important for ensuring that developers receive quick feedback and can make updates in small iterations. Replicated recommends that you create and run all of the following test types as part of your CI/CD workflows:
+    <TestRecs/>
 
 ## GitHub Actions
-
 Replicated maintains custom actions and example workflows that that are compatible with the GitHub Action CI/CD platform. Users of GitHub Actions can use these actions and example workflows to help create their own CI/CD workflows.
 
 ### Replicated Custom Actions
