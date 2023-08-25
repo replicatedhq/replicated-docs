@@ -79,7 +79,7 @@ Every customer license file that you create is assigned to a channel. Each time 
 
 <KotsEntitlement/>
 
-Replicated prevents releases from being promoted to a channel if the customers assigned to the channel cannot install the release::
+Replicated prevents releases from being promoted to a channel if the customers assigned to the channel cannot install the release:
 
 <KotsHelmChannels/>
 
