@@ -2,6 +2,8 @@ import ChangeChannel from "../partials/customers/_change-channel.mdx"
 import RequiredReleasesLimitations from "../partials/releases/_required-releases-limitations.mdx"
 import RequiredReleasesDescription from "../partials/releases/_required-releases-description.mdx"
 import VersionLabelReqsHelm from "../partials/releases/_version-label-reqs-helm.mdx"
+import KotsHelmChannels from "../partials/releases/_kots-helm-release-promotion.mdx"
+import KotsEntitlement from "../partials/customers/_kots-entitlement-overview.mdx"
 
 # About Channels and Releases
 
@@ -72,6 +74,14 @@ Each release is promoted to one or more channels. While you are developing and t
 After being promoted to a channel, a release is immutable. This means that you can test a release on an internal development channel, and know with confidence that the same release will be available to your customers when you promote it to a channel where real customers are assigned.
 
 Every customer license file that you create is assigned to a channel. Each time a new release is promoted to a channel, customers assigned to that channel can update their installed application instance to the new release version. For more information about customer licenses, see [About Customers](licenses-about).
+
+#### Promoting KOTS-Only and Helm CLI-Only Releases {#kots-helm-releases}
+
+<KotsEntitlement/>
+
+Replicated prevents releases from being promoted to a channel if the customers assigned to the channel cannot install the release:
+
+<KotsHelmChannels/>
 
 ### Properties
 

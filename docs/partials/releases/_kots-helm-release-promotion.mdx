@@ -1,0 +1,17 @@
+* A release that does not contain the required Kubernetes manifests for KOTS installations cannot be promoted to a channel where KOTS-enabled customers are assigned.
+
+  <img width="400px" alt="Release without the required manifests blocked from promotion" src="/images/release-promotion-kots-customers.png"/>
+  
+  [View a larger version of this image](/images/release-promotion-kots-customers.png)
+
+* A release with no Helm charts cannot be promoted to a channel where one or more Helm CLI-only customers are assigned.
+
+  <img width="400px" src="/images/release-promotion-helm-customers.png" alt="Release with no helm charts blocked from being promoted"/>
+  
+  [View a larger version of this image](/images/release-promotion-helm-customers.png)
+
+* KOTS-only or Helm-only releases cannot be promoted to a channel where both KOTS-enabled and Helm CLI-only customers are assigned.
+
+  <img width="400px" alt="KOTS only and helm only releases blocked from being promoted" src="/images/release-promotion-kots-and-helm-customers.png"/> 
+  
+  [View a larger version of this image](/images/release-promotion-kots-and-helm-customers.png)

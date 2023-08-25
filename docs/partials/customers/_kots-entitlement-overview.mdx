@@ -1,0 +1,3 @@
+Vendors that support both KOTS and Helm CLI installations define which customers can install with KOTS by enabling or disabling the **KOTS Install Enabled** entitlement. Customers that do not have the **KOTS Install Enabled** entitlement can install with the Helm CLI only. For more information, see [Creating and Managing Customers](releases-creating-customer).
+
+KOTS-enabled customers cannot install with KOTS unless a release contains the Kubernetes manifests required for KOTS installations. For more information about the required Kubernetes manifests, see [Custom Resource Checklist](/vendor/distributing-workflow#custom-resources-checklist) in _Onboarding with KOTS_. Helm CLI-only customers cannot install a release unless the release contains a Helm chart.
