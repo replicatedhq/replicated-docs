@@ -106,7 +106,7 @@ The compatibility matrix supports creating [Red Hat OpenShift OKD](https://www.o
 </table>
 
 
-### Helm VM
+### HelmVM
 
 The compatibility matrix supports creating [HelmVM](https://github.com/replicatedhq/helmbin) clusters, which is a version of Kubernetes that has a Helm chart embedded and runs as a single binary.
 
@@ -121,7 +121,7 @@ The compatibility matrix supports creating [HelmVM](https://github.com/replicate
   </tr>
   <tr>
     <th>Supported Instance Types</th>
-    <td><a href="#types">Replicated Instance Types</a></td>
+    <td>See <a href="#types">Replicated Instance Types</a></td>
   </tr>
   <tr>
     <th>Nodes</th>
@@ -137,6 +137,36 @@ The compatibility matrix supports creating [HelmVM](https://github.com/replicate
   </tr>
 </table>
 
+### kURL
+
+The compatibility matrix supports creating [kURL](https://kurl.sh) clusters.
+
+<table>
+  <tr>
+        <th width="35%">Type</th>
+        <th width="65%">Description</th>
+  </tr>
+  <tr>
+    <th>Supported kURL Versions</th>
+    <td>Any kURL installer ID. For more information, see <a href="/vendor/packaging-embedded-kubernetes">Creating a Kubernetes Installer</a>.</td>
+  </tr>
+  <tr>
+    <th>Supported Instance Types</th>
+    <td>See <a href="#types">Replicated Instance Types</a></td>
+  </tr>
+  <tr>
+    <th>Nodes</th>
+    <td>Supports a single node.</td>
+  </tr>  
+  <tr>
+    <th>Limitations</th>
+    <td><p>Does not work with the <a href="https://kurl.sh/docs/add-ons/longhorn">Longhorn add-on</a>.</p><p>For additional limitations, see <a href="testing-how-to#limitations">Limitations</a>.</p></td>
+  </tr>
+  <tr>
+    <th>Common Use Cases</th>
+    <td>Customer release tests</td>
+  </tr>
+</table>
 
 ## Cloud Clusters
 
