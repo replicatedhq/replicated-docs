@@ -30,6 +30,12 @@ For more information about how to mark a release as required, see [Properties](r
 
 <KotsEntitlement/>
 
+Customers can only be assigned to channels where they can install the head release. As shown in the diagram below, both KOTS-enabled and Helm CLI-only customers can be installed to a channel where the head release contains the required Kubernetes manifests for KOTS releases and contains one or more Helm charts:
+
+<img width="400px" alt="KOTS and Helm customers successfully assigned to a channel" src="/images/channel-assignment-kots-and-helm.png"/>
+
+  [View a larger version of this image](/images/channel-assignment-kots-and-helm.png) 
+
 To prevent KOTS-enabled or Helm CLI-only customers from accessing a release that they cannot install, Replicated prevents the following channel assignments:
 * A KOTS-enabled customer cannot be assigned to a channel where the head release does _not_ contain the Kubernetes manifests required by KOTS.
 
@@ -41,7 +47,7 @@ To prevent KOTS-enabled or Helm CLI-only customers from accessing a release that
 
   <img width="400px" alt="Helm customer blocked from channel assignment" src="/images/channel-assignment-kots-only.png"/>
   
-  [View a larger version of this image](/images/channel-assignment-kots-only.png)   
+  [View a larger version of this image](/images/channel-assignment-kots-only.png)     
 
 Additionally, Replicated prevents releases from being promoted to a channel if the customers assigned to the channel cannot install the release:
 
