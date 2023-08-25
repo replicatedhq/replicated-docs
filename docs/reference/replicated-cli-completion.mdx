@@ -1,0 +1,50 @@
+import App from "../partials/replicated-cli/_app.mdx"
+import SkipValidation from "../partials/replicated-cli/_skip-validation.mdx"
+import Token from "../partials/replicated-cli/_token.mdx"
+import Help from "../partials/replicated-cli/_help.mdx"
+
+# completion 
+
+Generates scripts for bash, zsh, fish, and powershell command completion.
+
+## Usage
+
+```bash
+completion [command] [flags]
+```
+
+The following `completion` commands are supported:
+
+<table>
+<tr>
+  <th width="50%">Flag</th>
+  <th width="50%">Description</th>
+</tr>
+  <tr>
+    <td><code>replicated completion bash</code></td>
+    <td>Generates `bash` completion script</td>
+  </tr>
+  <tr>
+    <td><code>replicated completion zsh</code></td>
+    <td>Generates `zsh` completion script</td>
+  </tr>
+  <tr>
+    <td><code>replicated completion fish</code></td>
+    <td>Generates `fish` completion script</td>
+  </tr>
+  <tr>
+    <td><code>replicated completion powershell</code></td>
+    <td>Generates `powershell` completion script</td>
+  </tr>
+</table>
+
+The following flags are supported:
+
+<table>
+  <tr>
+    <th width="30%">Flag</th>
+    <th width="20%">Type (if applicable)</th>
+    <th width="50%">Description</th>
+  </tr>
+  <Help/>
+</table>
