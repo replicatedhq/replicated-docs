@@ -4,7 +4,7 @@ Each application has its own settings, which include the application name and ap
 
 The following shows the **Application Settings** page, that you access by selecting **_Application Name_ > Settings**:
 
-<img alt="Application slug" src="/images/application-settings.png" width="600px"/>
+<img alt="Settings page" src="/images/application-settings.png" width="600px"/>
 
 [View a larger version of this image](/images/application-settings.png)
 

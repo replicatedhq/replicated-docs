@@ -4,17 +4,25 @@ This topic provides information about managing applications, including how to cr
 
 ## Create an Application
 
-Teams can create one or more applications. It is common to create multiple applications for testing.
+Teams can create one or more applications. It is common to create multiple applications for testing purposes.
 
 ### Vendor Portal
 
 To create a new application:
 
-1. Log in to the vendor portal. If you do not yet have a vendor portal account, see [Creating a Vendor Account](/vendor/vendor-portal-creating-account).
+1. Log in to the [vendor portal](https://vendor.replicated.com/). If you do not yet have a vendor portal account, see [Creating a Vendor Account](/vendor/vendor-portal-creating-account).
 
 1. Open the application drop down in the top left of the screen, and click **Create new app...**.
 
+   <img alt="create new app drop down" src="/images/create-new-app.png" width="200px"/>
+
+   [View a larger version of this image](/images/create-new-app.png)
+
 1. On the **Create application** page, enter a name for the application.
+
+   <img alt="create new app page" src="/images/create-application-page.png" width="500px"/>
+
+   [View a larger version of this image](/images/create-application-page.png)
 
    :::important
    If you intend to use the application for testing purposes, Replicated recommends that you use a temporary name such as `My Application Demo` or `My Application Test`.
@@ -53,11 +61,13 @@ Each application has a slug, which is used for interacting with the application 
 
 To retrieve an application slug in the vendor portal:
 
-1. Log in to the vendor portal and go to **_Application Name_ > Settings**.
+1. Log in to the [vendor portal](https://vendor.replicated.com/) and go to **_Application Name_ > Settings**.
 
-1. Click **Settings**.
+1. Under **Application Slug**, copy the slug.
 
-1. Under **Application slug**, copy the slug.
+   <img alt="Application slug" src="/images/application-settings.png" width="600px"/>
+
+   [View a larger version of this image](/images/application-settings.png)
 
 ### Replicated CLI
 
@@ -66,6 +76,13 @@ To retrieve an application slug with the replicated CLI:
 1. Install the replicated CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
 
 1. Run the following command:
+
+   ```bash
+   replicated app ls APP-NAME
+   ```
+   Replace `APP-NAME` with the name of the target application. Or, include no `APP-NAME` to list all applications in the team.
+
+   **Example:**
 
    ```bash
    replicated app ls cli-app
@@ -83,11 +100,19 @@ When you delete an application, you also delete all licenses and data associated
 
 To delete an application in the vendor portal:
 
-1. Log in to the vendor portal and go to **_Application Name_ > Settings**.
+1. Log in to the [vendor portal](https://vendor.replicated.com/) and go to **_Application Name_ > Settings**.
 
-1. Under **Danger Zone**, click **Delete app**.
+1. Under **Danger Zone**, click **Delete App**.
+
+   <img alt="Setting page" src="/images/application-settings.png" width="600px"/>
+
+   [View a larger version of this image](/images/application-settings.png)
 
 1. In the **Are you sure you want to delete this app?** dialog, enter the application name. Optionally, enter your password if you want to delete all images associated with the application from the Replicated registry.
+
+   <img alt="delete app dialog" src="/images/delete-app-dialog.png" width="400px"/>
+
+   [View a larger version of this image](/images/delete-app-dialog.png)
 
 1. Click **Delete app**.
 
