@@ -69,7 +69,7 @@ pagination_next: null
         <p>KOTS and kURL Installers</p>
     </li>
     <li>
-        <p>Distribute and install applications with the Replicated KOTS and kURL installers.</p>
+        <p>Support online and air gap installations in existing clusters (KOTS) or in embedded clusters on VMs (KOTS and kURL).</p>
     </li>
     <li>
       <a href="intro-kots">Introduction to KOTS</a>
