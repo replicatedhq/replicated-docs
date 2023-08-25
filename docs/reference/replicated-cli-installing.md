@@ -15,7 +15,7 @@ Complete the following prerequisites before installing the replicated CLI:
 
 - To run through a Docker container, install [docker](https://www.docker.com).
 
-- Get your application slug from the vendor portal. See [Managing Application Settings](/vendor/vendor-portal-application-settings).
+- Get your application slug from the **Application Settings** page in the vendor portal. For more information, see [Get the Application Slug](/vendor/vendor-portal-maange-app#slug) in _Managing Applications_.
 
 - <PrereqToken/>
 

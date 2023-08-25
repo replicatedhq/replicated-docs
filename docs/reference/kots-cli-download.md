@@ -8,7 +8,7 @@ Requires a running application with the Replicated admin console.
 kubectl kots download [app-slug] [flags]
 ```
 
-* _Replace `[app-slug]` with the "slug" of your KOTS application (required)._
+* _Replace `[app-slug]` with the application slug provided by your software vendor (required)._ For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
 * _Provide `[flags]` according to the table below_
 
 This command supports all [global flags](kots-cli-global-flags) and also:

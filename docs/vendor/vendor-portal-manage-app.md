@@ -53,13 +53,13 @@ To create an application with the replicated CLI:
    1xy9t8G9CO0PRGzTwSwWFkMUjZO    cli-app            cli-app            kots
    ```  
 
-## Retrieve the Application Slug
+## Get the Application Slug {#slug}
 
 Each application has a slug, which is used for interacting with the application programmatically with the replicated CLI or with the Vendor Portal v3 API. The slug is automatically generated based on the application name and cannot be changed.
 
 ### Vendor Portal 
 
-To retrieve an application slug in the vendor portal:
+To get an application slug in the vendor portal:
 
 1. Log in to the [vendor portal](https://vendor.replicated.com/) and go to **_Application Name_ > Settings**.
 
@@ -71,7 +71,7 @@ To retrieve an application slug in the vendor portal:
 
 ### Replicated CLI
 
-To retrieve an application slug with the replicated CLI:
+To get an application slug with the replicated CLI:
 
 1. Install the replicated CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
 

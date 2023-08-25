@@ -33,7 +33,7 @@ Docker format:
 
    Where:
    * `IMAGE_NAME` is the name of the existing private image for your application.
-   * `APPLICATION_SLUG` is the slug assigned to your application. You can find your application slug on the **Images** page of the vendor portal.
+   * `APPLICATION_SLUG` is the slug assigned to your application. You can find your application slug on the **Application Settings** page in the vendor portal. For more information, see [Get the Application Slug](/vendor/vendor-portal-maange-app#slug) in _Managing Applications_.
    * `TARGET_IMAGE_NAME` is a name for the image. Replicated recommends that the `TARGET_IMAGE_NAME` is the same as the `IMAGE_NAME`.
    * `TAG` is a tag for the image.
 
