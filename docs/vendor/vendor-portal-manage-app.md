@@ -14,7 +14,7 @@ To create a new application:
 
 1. Open the application drop down in the top left of the screen, and click **Create new app...**.
 
-   <img alt="create new app drop down" src="/images/create-new-app.png" width="200px"/>
+   <img alt="create new app drop down" src="/images/create-new-app.png" width="300px"/>
 
    [View a larger version of this image](/images/create-new-app.png)
 
