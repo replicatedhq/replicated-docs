@@ -121,7 +121,7 @@ The compatibility matrix supports creating [HelmVM](https://github.com/replicate
   </tr>
   <tr>
     <th>Supported Instance Types</th>
-    <td><a href="#types">Replicated Instance Types</a></td>
+    <td>See <a href="#types">Replicated Instance Types</a></td>
   </tr>
   <tr>
     <th>Nodes</th>
@@ -148,7 +148,7 @@ The compatibility matrix supports creating [kURL](https://kurl.sh) clusters.
   </tr>
   <tr>
     <th>Supported kURL Versions</th>
-    <td>*Any kURL installer ID*</td>
+    <td>Any kURL installer ID. For more information, see <a href="/vendor/packaging-embedded-kubernetes">Creating a Kubernetes Installer</a>.</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -160,7 +160,7 @@ The compatibility matrix supports creating [kURL](https://kurl.sh) clusters.
   </tr>  
   <tr>
     <th>Limitations</th>
-    <td>Does not work with the <a href="https://kurl.sh/docs/add-ons/longhorn">Longhorn add-on</a>.<br></br><br></br>For additional limitations, see <a href="testing-how-to#limitations">Limitations</a>.</td>
+    <td><p>Does not work with the <a href="https://kurl.sh/docs/add-ons/longhorn">Longhorn add-on</a>.</p><p>For additional limitations, see <a href="testing-how-to#limitations">Limitations</a>.</p></td>
   </tr>
   <tr>
     <th>Common Use Cases</th>
