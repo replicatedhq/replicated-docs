@@ -1,5 +1,4 @@
 import Build from "../partials/ci-cd/_build-source-code.mdx"
-import VersionLabelReqs from "../partials/releases/_version-label-reqs.mdx"
 
 # Recommended CI/CD Workflows
 
@@ -89,7 +88,7 @@ Create multiple release workflows for creating and promoting releases to your te
      ...
    ```
 
-* On pushing a tag that contains a version label with the semantic versioning format `x.y.z-beta-n` (such as `1.0.0-beta.1` or `v1.0.0-beta.2`), promote a release to your team's Beta channel. Replicated recommends that the same version label is used for the release that is created and promoted as part of the workflow. See [Create a release and promote to a temporary channel](#rel-release).
+* On pushing a tag that contains a version label with the semantic versioning format `x.y.z-beta-n` (such as `1.0.0-beta.1` or `v1.0.0-beta.2`), promote a release to your team's Beta channel.
 
   The following example shows defining a workflow trigger in GitHub Actions that runs the workflow when a tag that matches the format `v*.*.*-beta.*` is pushed:
 
@@ -105,7 +104,7 @@ Create multiple release workflows for creating and promoting releases to your te
      ...
    ```
 
-* On pushing a tag that contains a version label with the semantic versioning format `x.y.z` (such as `1.0.0` or `v1.0.01`), promote a release to your team's Stable channel. Replicated recommends that the same version label is used for the release that is created and promoted as part of the workflow. See [Create a release and promote to a temporary channel](#rel-release).
+* On pushing a tag that contains a version label with the semantic versioning format `x.y.z` (such as `1.0.0` or `v1.0.01`), promote a release to your team's Stable channel.
 
   The following example shows defining a workflow trigger in GitHub Actions that runs the workflow when a tag that matches the format `v*.*.*` is pushed:
 
@@ -127,11 +126,21 @@ Create multiple release workflows for creating and promoting releases to your te
 
 ### Create a release and promote to a temporary channel {#rel-release}
 
-Add a job that uses the `releases create` command to create and promote a release to a temporary channel. This allows the release to be installed for testing in the next step. For more information, see [release create](/reference/replicated-cli-release-create).
+Add a job that uses the `release create` command to create and promote a release to a temporary channel. This allows the release to be installed for testing in the next step. For more information, see [release create](/reference/replicated-cli-release-create).
 
-The following requirements and recommendations apply to the version label for the release:
+Consider the following requirements and recommendations:
 
-<VersionLabelReqs/>
+* Use a consistent naming pattern for the temporary channels. Additionally, configure the workflow so that a new temporary channel with a unique name is created each time that the release workflow runs. 
+
+* Use semantic versioning for the release version label.
+
+  :::note
+  If semantic versioning is enabled on the channel where you promote the release, then the release version label _must_ be a valid semantic version number. See [Semantic Versioning](releases-about#semantic-versioning) in _About Channels and Releases_.
+  :::
+
+* For Helm chart-based applications, the release version label must match the version in the `version` field of the Helm chart `Chart.yaml` file. To automatically update the `version` field in the `Chart.yaml` file, you can define a step in this job that updates the version label before packaging the Helm chart into a `.tgz` archive.
+
+* For releases that will be promoted to a customer-facing channel such as Beta or Stable, Replicated recommends that the version label for the release matches the tag that triggered the release workflow. For example, if the tag `1.0.0-beta.1` was used to trigger the workflow, then the version label for the release is also `1.0.0-beta.1`.
 
 ### Create cluster matrix, deploy, and test {#rel-deploy}
 
@@ -168,13 +177,9 @@ Add a job with the following steps to provision clusters with the compatibility 
 
 Add a job that uses the `release promote` command to promote the release to a channel, such as the default Unstable, Beta, or Stable channel. For more information, see [release promote](/reference/replicated-cli-release-promote).
 
-The following requirements and recommendations apply to release promotion:
+Consider the following requirements and recommendations:
 
 * Replicated recommends that you include the `--version` flag with the `release promote` command to explicitly declare the version label for the release. Use the same version label that was used when the release was created as part of [Create a release and promote to a temporary channel](#rel-release) above. Although the `--version` flag is not required, declaring the same release version label during promotion provides additional consistency that makes the releases easier to track. 
-
-  The following requirements and recommendations apply to the version label for the release:
-
-  <VersionLabelReqs/>
 
 * The channel to which the release is promoted depends on the event triggers that you defined for the workflow. For example, if the workflow runs on every commit to the `main` branch, then promote the release to an internal-only channel, such as Unstable. For more information, see [Define Workflow Triggers](#rel-triggers) above.
 
