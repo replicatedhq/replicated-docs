@@ -183,6 +183,8 @@ Consider the following requirements and recommendations:
 
 * The channel to which the release is promoted depends on the event triggers that you defined for the workflow. For example, if the workflow runs on every commit to the `main` branch, then promote the release to an internal-only channel, such as Unstable. For more information, see [Define Workflow Triggers](#rel-triggers) above.
 
+* Use the `--release-notes` flag to include detailed release notes in markdown.
+
 ### Archive the temporary channel and customer {#rel-cleanup}
 
 Finally, add a job to archive the temporary channel and customer that you created. This ensures that these artifacts are removed from your Replicated team and that they do not have to be manually archived after the release is promoted.
