@@ -158,6 +158,10 @@ Grants the holder permission to set default custom hostnames.
 
 Grants the holder permission to unset the default custom hostnames.
 
+### kots/app/[:appId]/supportbundle/read
+
+Grants the holder permission to view and download support bundles.
+
 ## Registry
 
 ### registry/namespace/:namespace/pull
