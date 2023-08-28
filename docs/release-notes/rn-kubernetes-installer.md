@@ -77,12 +77,16 @@ Released on July 31, 2023
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.2.
 * Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.25.2.
 
+### Bug Fixes {#bug-fixes-v2023-07-31-0}
+
+* Resolves an issue for the OpenEBS to Rook storage migration feature that caused a delay in storage availability when using the feature on new installations. See [Known Issues](#known-issues-v2023-07-06-0) in _v2023.07.06-0_.
+
 ## v2023.07.21-0
 
 Released on July 21, 2023
 
 :::important
-kURL v2023.07.21-0 has a known issue for the OpenEBS to Rook storage migration feature that causes a delay in storage availability when using the feature on new installations. Do not use this feature until the known issue is resolved.
+kURL v2023.07.21-0 has a known issue for the OpenEBS to Rook storage migration feature. This issue is resolved in [v2023.07.31-0](#bug-fixes-v2023-07-31-0).
 :::
 
 ### New Features {#new-features-v2023-07-21-0}
@@ -90,24 +94,32 @@ kURL v2023.07.21-0 has a known issue for the OpenEBS to Rook storage migration f
 * Updates [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) 1.27.3 to use crictl v1.27.1.
 * Updates [Containerd add-on](https://kurl.sh/docs/add-ons/containerd) with runc v1.1.8.
 
+### Known Issues {#known-issues-v2023-07-21-0}
+
+kURL v2023.07.21-0 has a known issue for the OpenEBS to Rook storage migration feature. This issue is resolved in [v2023.07.31-0](#bug-fixes-v2023-07-31-0).
+
 ## v2023.07.11-0
 
 Released on July 11, 2023
 
 :::important
-kURL v2023.07.11-0 has a known issue for the OpenEBS to Rook storage migration feature that causes a delay in storage availability when using the feature on new installations. Do not use this feature until the known issue is resolved.
+kURL v2023.07.11-0 has a known issue for the OpenEBS to Rook storage migration feature. This issue is resolved in [v2023.07.31-0](#bug-fixes-v2023-07-31-0).
 :::
 
 ### Bug Fixes {#bug-fixes-v2023-07-11-0}
 * Fixes support for RHEL 9.2
 * Fixes adding the Registry add-on to multi-node clusters using Containerd.
 
+### Known Issues {#known-issues-v2023-07-11-0}
+
+kURL v2023.07.11-0 has a known issue for the OpenEBS to Rook storage migration feature that causes a delay in storage availability when using the feature on new installations. This issue is resolved in [v2023.07.31-0](#bug-fixes-v2023-07-31-0).
+
 ## v2023.07.10-0
 
 Released on July 10, 2023
 
 :::important
-kURL v2023.07.10-0 has a known issue for the OpenEBS to Rook storage migration feature that causes a delay in storage availability when using the feature on new installations. Do not use this feature until the known issue is resolved.
+kURL v2023.07.10-0 has a known issue for the OpenEBS to Rook storage migration feature. This issue is resolved in [v2023.07.31-0](#bug-fixes-v2023-07-31-0).
 :::
 
 ### Improvements {#improvements-v2023-07-10-0}
@@ -116,18 +128,26 @@ kURL v2023.07.10-0 has a known issue for the OpenEBS to Rook storage migration f
 ### Bug Fixes {#bug-fixes-v2023-07-10-0}
 * Improves messaging when a subnet cannot be automatically discovered.
 
+### Known Issues {#known-issues-v2023-07-10-0}
+
+kURL v2023.07.10-0 has a known issue for the OpenEBS to Rook storage migration feature that causes a delay in storage availability when using the feature on new installations. This issue is resolved in [v2023.07.31-0](#bug-fixes-v2023-07-31-0).
+
 ## v2023.07.06-0
 
 Released on July 6, 2023
 
 :::important
-kURL v2023.07.06-0 has a known issue for the OpenEBS to Rook storage migration feature that causes a delay in storage availability when using the feature on new installations. Do not use this feature until the known issue is resolved.
+kURL v2023.07.06-0 has a known issue for the OpenEBS to Rook storage migration feature. This issue is resolved in [v2023.07.31-0](#bug-fixes-v2023-07-31-0).
 :::
 
 ### New Features {#new-features-v2023-07-06-0}
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) versions RELEASE.2023-06-23T20-26-00Z and RELEASE.2023-06-29T05-12-28Z.
 * Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.27.3.
 * Adds the ability to start a cluster with OpenEBS and MinIO, and then migrate data to Rook-Ceph after three or more nodes are ready. For more information, see [Migrating CSI](https://kurl.sh/docs/install-with-kurl/migrating-csi#automated-local-to-distributed-storage-migrations) in the kURL documentation.
+
+### Known Issues {#known-issues-v2023-07-06-0}
+
+kURL v2023.07.10-0 has a known issue for the OpenEBS to Rook storage migration feature that causes a delay in storage availability when using the feature on new installations. This issue is resolved in [v2023.07.31-0](#bug-fixes-v2023-07-31-0).
 
 ## v2023.06.27-0
 
