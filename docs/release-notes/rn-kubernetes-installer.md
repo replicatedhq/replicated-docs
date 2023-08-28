@@ -13,10 +13,10 @@ pagination_prev: null
 Released on August 28, 2023
 
 ### New Features {#new-features-v2023-08-28-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.28.1 1.27.5 1.26.8 1.25.13.
 * Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.12.2.
 * Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.11.1.
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-08-23T10-07-06Z.
-* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.28.1 1.27.5 1.26.8 1.25.13.
 
 ## v2023.08.23-0
 
