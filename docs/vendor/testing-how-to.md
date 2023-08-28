@@ -1,3 +1,5 @@
+import TestRecs from "../partials/ci-cd/_test-recs.mdx"
+
 # Using the Compatibility Matrix (Beta)
 
 This topic describes how to use the Replicated compatibility matrix to create ephemeral clusters that you can use for manual and CI/CD testing.
@@ -19,7 +21,7 @@ Before you can use the compatibility matrix, you must complete the following pre
 
 ## Create a Cluster
 
-The Replicated compatibility matrix functionality is provided using the `replicated cluster` commands. For command usage, see the [replicated CLI](/reference/replicated-cli-cluster-create) reference.
+The Replicated compatibility matrix functionality is provided using the `replicated cluster` commands. For command usage, see the [cluster create](/reference/replicated-cli-cluster-create) replicated CLI reference.
 
 Create a test cluster with the compatibility matrix using one of the follow options:
 
@@ -31,9 +33,7 @@ Create a test cluster with the compatibility matrix using one of the follow opti
     replicated cluster create --name kind-example --distribution kind --version 1.25.2 --disk 100 --instance-type r1.small
     ```
 
-- Integrate the compatibility matrix with your existing CI/CD pipeline so that cluster management is automated to run with your unique testing.
-
-    To use the compatibility matrix with CI/CD, add the `replicated cluster` commands directly to your CI/CD pipeline. 
+- Integrate the compatibility matrix with your existing CI/CD pipeline to automatically provision clusters for testing. For more information about integrating the compatibility matrix into your CI/CD pipeline, see [Integrating with CI/CD](ci-overview). 
     
     Additionally, Replicated offers example workflows in Replicated Actions that you can reference. For more information, see [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions#examples) in GitHub.  
 
@@ -47,16 +47,6 @@ For more information about the `replicated cluster` commands, see the [replicate
 
 ## Test Script Recommendations
 
-You design and write your own test scripts to use with the compatibility matrix. This section describes some of the options and common use cases to help guide you.
+Incorporating code tests into your CI/CD workflows is important for ensuring that developers receive quick feedback and can make updates in small iterations. Replicated recommends that you create and run all of the following test types as part of your CI/CD workflows:
 
-For release testing, Replicated recommends that you create and run all of the following test types and include them in CI/CD pipelines so that testing is automated.
-
-- **Application Testing:** Traditional application testing includes unit, integration, and end-to-end tests. These tests are critical for application reliability, and the compatibility matrix is designed to to incorporate and use your application testing.
-
-- **Performance Testing:** Performance testing is used to benchmark your application to ensure it can handle the expected load and scale gracefully. Test your application under a range of workloads and scenarios to identify any bottlenecks or performance issues. Make sure to optimize your application for different Kubernetes distributions and configurations by creating all of the environments you need to test in.
-
-- **Smoke Testing:** Using a single, conformant Kubernetes distribution to test basic functionality of your application with default (or standard) configuration values is a quick way to get feedback if something is likely to be broken for all or most customers. <!--The compatibility matrix expands basic smoke testing by adding process violation testing to smoke tests for quick feedback. For more information, see [Process Violation Testing](testing-process-violation).-->
-
-- **Compatibility Testing:** Because applications run on various Kubernetes distributions and configurations, it is important to test compatibility across different environments. The compatibility matrix provides this infrastructure.
-
-- **Canary Testing:** Before releasing to all customers, consider deploying your application to a small subset of your customer base as a _canary_ release. This lets you monitor the application's performance and stability in real-world environments, while minimizing the impact of potential issues. The compatibility matrix enables canary testing by simulating exact (or near) customer environments and configurations to test your application with.
+<TestRecs/>

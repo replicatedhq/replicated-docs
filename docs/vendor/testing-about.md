@@ -17,7 +17,7 @@ Virtual machines (VMs) run on Replicated bare metal servers located in several d
 
 Clusters are created using the replicated CLI. You can download a kubeconfig file, and then connect using kubectl or another tool to have full admin access to the cluster.
 
-You design your own tests based on your application needs, and then run your tests on the clusters created by the compatibility matrix. For information about test recommendations, see [Test Script Recommendations](testing-how-to#test-script-recommendations).
+You design your own tests based on your application needs, and then run your tests on the clusters created by the compatibility matrix. For information about test recommendations, see [Test Script Recommendations](testing-how-to#test-script-recommendations) in _Using the Compatibility Matrix_.
 
 ## Use Cases
 

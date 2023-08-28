@@ -115,14 +115,6 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'CI/CD',
-      items: [
-        'vendor/repository-workflow-and-tagging-releases',
-        'vendor/tutorial-ci-cd-integration',
-      ],
-    },
-    {
-      type: 'category',
       label: 'Sharing Installation Files and Commands',
       items: [ 
         'vendor/releases-sharing-license-install-script',        
@@ -586,6 +578,15 @@ const sidebars = {
         'vendor/testing-about',
         'vendor/testing-supported-clusters',
         'vendor/testing-how-to',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'CI/CD',
+      items: [
+        'vendor/ci-overview',
+        'vendor/ci-workflows',
+        'vendor/tutorial-ci-cd-integration',
       ],
     },
     {
