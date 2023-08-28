@@ -17,8 +17,6 @@ How you implement CI/CD workflows varies depending on the platform, such as GitH
 
 ## Development Workflow
 
-Replicated recommends that you use the following development workflow:
-
 1. [Define workflow triggers](#dev-triggers)
 1. [Build source code](#dev-build)
 1. [Prepare clusters, deploy, and test](#dev-deploy)
@@ -64,10 +62,6 @@ Add a job with the following steps to prepare clusters with the Replicated compa
 
 ## Release Workflow
 
-This section includes a recommended workflow for releasing an application version to your internal development or customer-facing channels (such as the default Unstable, Beta, and Stable channels). You can use variations of this workflow for continuous delivery when you are ready to promote a release for internal testing or for sharing externally with customers.
-
-Replicated recommends that you use the following release workflow:
-
 1. [Define workflow triggers](#rel-triggers)
 1. [Build source code](#rel-build)
 1. [Create a release and promote to a temporary channel](#rel-release)
@@ -77,9 +71,7 @@ Replicated recommends that you use the following release workflow:
 
 ### Define workflow triggers {#rel-triggers}
 
-Define event triggers for each of your release workflows so that releases are only promoted to a channel when a given condition is met.
-
-Replicated recommends that release workflows are triggered on the following events:
+Create multiple release workflows for creating and promoting releases to your team's internal-only, beta, or stable channels. Define unique event triggers for each of your release workflows so that releases are only promoted to a channel when a given condition is met:
 
 * On every commit to the `main` branch in your code repository, promote a release to the channel that your team uses for internal testing (such as the default Unstable channel).
 
@@ -137,7 +129,7 @@ Replicated recommends that release workflows are triggered on the following even
 
 Add a job that uses the `releases create` command to create and promote a release to a temporary channel. This allows the release to be installed for testing in the next step. For more information, see [release create](/reference/replicated-cli-release-create).
 
-The following are requirements and recommendations for the release version label:
+The following requirements and recommendations apply to the version label for the release:
 
 <VersionLabelReqs/>
 
@@ -176,9 +168,13 @@ Add a job with the following steps to provision clusters with the compatibility 
 
 Add a job that uses the `release promote` command to promote the release to a channel, such as the default Unstable, Beta, or Stable channel. For more information, see [release promote](/reference/replicated-cli-release-promote).
 
-The following are requirements and recommendations for the release properties:
+The following requirements and recommendations apply to release promotion:
 
-<VersionLabelReqs/>
+* Replicated recommends that you include the `--version` flag with the `release promote` command to explicitly declare the version label for the release. Use the same version label that was used when the release was created as part of [Create a release and promote to a temporary channel](#rel-release) above. Although the `--version` flag is not required, declaring the same release version label during promotion provides additional consistency that makes the releases easier to track. 
+
+  The following requirements and recommendations apply to the version label for the release:
+
+  <VersionLabelReqs/>
 
 * The channel to which the release is promoted depends on the event triggers that you defined for the workflow. For example, if the workflow runs on every commit to the `main` branch, then promote the release to an internal-only channel, such as Unstable. For more information, see [Define Workflow Triggers](#rel-triggers) above.
 
