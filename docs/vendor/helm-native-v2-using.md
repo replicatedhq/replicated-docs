@@ -332,8 +332,6 @@ The `kots.io/v1beta2` HelmChart custom resource has the following differences fr
 
 For an example of the HelmChart v2 custom resource, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
-### Upgrade from Replicated Helm
+### Migration from `useHelmInstall: false` Not Supported
 
 <ReplicatedHelmMigration/>
-
-To upgrade from Replicated Helm to another installation method, the user must reinstall your application in a new environment.
