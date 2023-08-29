@@ -119,7 +119,7 @@ kubectl kots upstream upgrade <app slug> \
 
 Adding the `--deploy` flag will also automatically deploy this version.
 
-The application slug is provided by your software vendor. For more information, see [Get the Application Slug](/vendor/vendor-portal-maange-app#slug) in _Managing Applications_.
+The application slug is provided by your software vendor. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
 
 ### Air Gapped Installations on an Embedded Cluster
 
@@ -134,6 +134,6 @@ Adding the `--deploy` flag will also automatically deploy this version.
 
 Replace:
 
-* `APP_SLUG` with the application slug provided by your software vendor. For more information, see [Get the Application Slug](/vendor/vendor-portal-maange-app#slug) in _Managing Applications_.
+* `APP_SLUG` with the application slug provided by your software vendor. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
 * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle file.
 * `NAMESPACE` with the admin console namespace. Typically this value is `default`.
