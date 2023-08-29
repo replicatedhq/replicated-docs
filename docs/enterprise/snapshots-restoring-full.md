@@ -129,7 +129,7 @@ To use a full backup to do a partial restore in the admin console:
     You can also get the CLI commands for full restores or admin console only restores from this dialog.
     :::     
 
-1. At the bottom of the dialog, enter the application slug provided by your software vendor. For more information, see [Get the Application Slug](/vendor/vendor-portal-maange-app#slug) in _Managing Applications_.
+1. At the bottom of the dialog, enter the application slug provided by your software vendor. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
 
 1. Click **Confirm and restore**.
 

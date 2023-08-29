@@ -124,7 +124,7 @@ export REPLICATED_APP=YOUR_APP_SLUG
 curl -LS https://k8s.kurl.sh/bundle/$REPLICATED_APP.tar.gz -o $REPLICATED_APP.tar.gz
 ```
 
-Replace `YOUR_APP_SLUG` with the application slug. You can find the slug on the **Application Settings** page in the [vendor portal](https://vendor.replicated.com/apps). For more information, see [Get the Application Slug](/vendor/vendor-portal-maange-app#slug) in _Managing Applications_.
+Replace `YOUR_APP_SLUG` with the application slug. You can find the slug on the **Application Settings** page in the [vendor portal](https://vendor.replicated.com/apps). For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
 
 **Download the kURL bundle for other channels**
 

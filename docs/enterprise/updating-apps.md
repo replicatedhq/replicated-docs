@@ -101,7 +101,7 @@ kubectl kots upstream upgrade <app slug> -n <admin console namespace>
 
 Adding the `--deploy` flag will also automatically deploy the latest version.
 
-The application slug is provided by your software vendor. For more information, see [Get the Application Slug](/vendor/vendor-portal-maange-app#slug) in _Managing Applications_.
+The application slug is provided by your software vendor. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
 
 ### Air Gapped Installations on an Existing Cluster
 
