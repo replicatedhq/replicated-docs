@@ -1,6 +1,6 @@
 # Managing Applications
 
-This topic provides information about managing applications, including how to create, delete, and retrieve the slug for applications in the Replicated vendor portal and replicated CLI.
+This topic provides information about managing applications, including how to create, delete, and retrieve the slug for applications in the Replicated vendor portal and with the replicated CLI.
 
 ## Create an Application
 
@@ -10,9 +10,9 @@ Teams can create one or more applications. It is common to create multiple appli
 
 To create a new application:
 
-1. Log in to the [vendor portal](https://vendor.replicated.com/). If you do not yet have a vendor portal account, see [Creating a Vendor Account](/vendor/vendor-portal-creating-account).
+1. Log in to the [vendor portal](https://vendor.replicated.com/). If you do not have an account, see [Creating a Vendor Account](/vendor/vendor-portal-creating-account).
 
-1. Open the application drop down in the top left of the screen, and click **Create new app...**.
+1. In the top left of the page, open the application drop down and click **Create new app...**.
 
    <img alt="create new app drop down" src="/images/create-new-app.png" width="300px"/>
 
@@ -55,7 +55,7 @@ To create an application with the replicated CLI:
 
 ## Get the Application Slug {#slug}
 
-Each application has a slug, which is used for interacting with the application programmatically with the replicated CLI or with the Vendor Portal v3 API. The slug is automatically generated based on the application name and cannot be changed.
+Each application has a slug, which is used for interacting with the application using the replicated CLI. The slug is automatically generated based on the application name and cannot be changed.
 
 ### Vendor Portal 
 
@@ -80,7 +80,7 @@ To get an application slug with the replicated CLI:
    ```bash
    replicated app ls APP-NAME
    ```
-   Replace `APP-NAME` with the name of the target application. Or, include no `APP-NAME` to list all applications in the team.
+   Replace `APP-NAME` with the name of the target application. Or, exclude `APP-NAME` to list all applications in the team.
 
    **Example:**
 
