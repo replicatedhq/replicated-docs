@@ -46,7 +46,7 @@ For information about migrating the HelmChart custom resource from `apiVersion: 
 #### HelmChart kots.io/v1beta1 (useHelmInstall: true) {#v1beta1}
 
 :::note
-The method that uses version `kots.io/v1beta1` of the HelmChart custom resource with `useHelmInstall: true` was previously referred to as _native Helm_.
+This method was previously referred to as _native Helm_.
 :::
 
 When you include version `kots.io/v1beta1` of the HelmChart custom resource with `useHelmInstall: true`, KOTS uses Kustomize to modify the chart and then packages the resulting manifests to install. For more information about Kustomize, see the [Kustomize documentation](https://kubectl.docs.kubernetes.io/).
@@ -137,7 +137,7 @@ To deploy Helm charts with version `kots.io/v1beta1` of the HelmChart custom res
 #### HelmChart kots.io/v1beta1 (useHelmInstall: false) {#v1beta1-false}
 
 :::note
-The method that uses version `kots.io/v1beta1` of the HelmChart custom resource with `useHelmInstall: false` is also referred to as _Replicated_ Helm_.
+This method is also referred to as _Replicated Helm_.
 :::
 
 When you use version `kots.io/v1beta1` of HelmChart custom resource with `useHelmInstall: false`, KOTS renders the Helm templates and deploys them as standard Kubernetes manifests using `kubectl apply`. KOTS also has additional functionality for specific Helm hooks. For example, when KOTS encounters an upstream Helm chart with a `helm.sh/hook-delete-policy` annotation, it automatically adds the same `kots.io/hook-delete-policy` to the Job object.
