@@ -607,6 +607,7 @@ const sidebars = {
          'vendor/customer-reporting',
          'vendor/instance-insights-details',
          'vendor/instance-notifications-config',
+         'vendor/custom-metrics',
        ],
     },
     {type: 'html', value: '<h5>install</h5>', defaultStyle: true},
