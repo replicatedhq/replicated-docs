@@ -49,7 +49,7 @@ Add a job with the following steps to prepare clusters with the Replicated compa
 
 1. Use the Replicated compatibility matrix to prepare one or more clusters and deploy the application. For more information about the compatibility matrix, see [About the Compatibility Matrix](testing-about).
 
-  For development workflows, Replicated recommends that you use the `cluster prepare` command to provision one or more clusters with the compatibility matrix. The `cluster prepare` command both creates a cluster and deploys the application in the cluster, without the need to create a release, channel, or customer. For more information, see [`cluster prepare`](/reference/replicated-cli-cluster-prepare).
+  For development workflows, Replicated recommends that you use the `cluster prepare` command to provision one or more clusters with the compatibility matrix. The `cluster prepare` command creates a cluster, creates a release, and installs the release in the cluster, without the need to promote the release to a channel or create a temporary customer. For more information, see [`cluster prepare`](/reference/replicated-cli-cluster-prepare).
 
   :::note
   The `cluster prepare` command is Beta. It is recommended for development only and is not recommended for production releases. For production releases, Replicated recommends that you use the `cluster create` command instead. For more information, see [Create cluster matrix and deploy](#rel-deploy) in _Release Workflow_ below.
