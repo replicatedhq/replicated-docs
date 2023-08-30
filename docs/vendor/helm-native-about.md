@@ -46,7 +46,7 @@ For information about migrating the HelmChart custom resource from `apiVersion: 
 #### HelmChart kots.io/v1beta1 (useHelmInstall: true) {#v1beta1}
 
 :::note
-This method was previously referred to as _native Helm_.
+This method was previously referred to as _Native Helm_.
 :::
 
 When you include version `kots.io/v1beta1` of the HelmChart custom resource with `useHelmInstall: true`, KOTS uses Kustomize to modify the chart and then packages the resulting manifests to install. For more information about Kustomize, see the [Kustomize documentation](https://kubectl.docs.kubernetes.io/).
