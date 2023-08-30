@@ -27,7 +27,7 @@ You can run the commands to manually create a cluster when you need one for a sh
 
 You can use both `cluster create` and `cluster prepare` to provision clusters. The following describes the use cases for each command:
 
-* `cluster create`: Provisions a cluster based on the parameters specified. After a cluster is provisioned, an application can be installed in the cluster by creating a release, promoting the release to a temporary channel, and creating a temporary customer in the Replicated platform. A recommended use case for the `cluster create` command is provisioning clusters for testing in continuous delivery (CD) workflows that release your software to customers.
+* `cluster create`: Provisions a cluster based on the parameters specified. After a cluster is provisioned, an application can be installed in the cluster by creating a release, promoting the release to a temporary channel, and creating a temporary customer in the Replicated platform. A recommended use case for the `cluster create` command is provisioning clusters for testing in CD workflows that release your software to customers.
 
   The following example creates a kind cluster with Kubernetes version 1.27.0, a disk size of 100 GiB, and an instance type of `r1.small`. 
 
@@ -37,7 +37,7 @@ You can use both `cluster create` and `cluster prepare` to provision clusters. T
 
   For command usage, see [cluster create](/reference/replicated-cli-cluster-create) in the _replicated CLI_ reference.
 
-* `cluster prepare`: Provisions a cluster based on the parameters specified, creates a release, and then installs the release in the cluster. The `cluster prepare` command allows you to install an application in a cluster for testing without needing to create a temporary channel or a temporary customer in the Replicated platform. A recommended use case for the `cluster prepare` command is provisioning clusters for testing in continuous integration (CI) workflows that run on every commit.
+* `cluster prepare`: Provisions a cluster based on the parameters specified, creates a release, and then installs the release in the cluster. The `cluster prepare` command allows you to install an application in a cluster for testing without needing to create a temporary channel or a temporary customer in the Replicated platform. A recommended use case for the `cluster prepare` command is provisioning clusters for testing in CI workflows that run on every commit.
 
   The following example creates a kind cluster and installs a Helm chart in the cluster using the `nginx-chart-0.0.14.tgz` chart archive:
 
