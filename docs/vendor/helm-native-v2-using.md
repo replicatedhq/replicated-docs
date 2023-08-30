@@ -1,8 +1,8 @@
-import ReplicatedHelmMigration from "../partials/helm/_replicated-helm-migration.mdx"
-
 # Configuring the HelmChart Custom Resource
 
-This topic describes how to configure the Replicated HelmChart custom resource version `kots.io/v1beta2` to support Helm chart installations with KOTS. It also includes guidance for updating the HelmChart custom resource from `kots.io/v1beta1` to `kots.io/v1beta2`. For more information about how KOTS installs Helm charts, see [About Distributing Helm Charts with KOTS](helm-native-about).
+This topic describes how to configure the Replicated HelmChart custom resource version `kots.io/v1beta2` to support Helm chart installations with KOTS.
+
+It also includes guidance for migrating existing installations that use the HelmChart custom resource `kots.io/v1beta1` with `useHelmInstall: true` to `kots.io/v1beta2`.
 
 ## Workflow
 
@@ -286,19 +286,25 @@ For more information about how to configure the `builder` key, see [`builder`](/
 :::note
 If you already configured the `builder` key previously to support air gap installations, then you can use the same configuration in your HelmChart custom resource to support the use of local registries for online installations. No additional configuration is required.
 :::
-## Migrate from v1beta1 to v1beta2 {#migrating}
+## Migrate to kots.io/v1beta2 {#migrating}
 
-The HelmChart custom resource `kots.io/v1beta1` is deprecated and is not recommended for new installations. This section includes considerations for migrating from version `kots.io/v1beta1` of the HelmChart resource to version `kots.io/v1beta2`.
+The HelmChart custom resource `kots.io/v1beta1` is deprecated and is not recommended for new installations. Existing installations that installed with `kots.io/v1beta1` and `useHelmInstall: true` can be migrated to `kots.io/v1beta2` without needing to reinstall the application.
+
+:::note
+Migration from `kots.io/v1beta1` with `useHelmInstall: false` to any other installation method (including to `kots.io/v1beta1` with `useHelmInstall: true` or to `kots.io/v1beta2`) is _not_ supported.
+
+To change the installation method from `useHelmInstall: false` to a different method, the user must reinstall your application in a new environment.
+:::
 
 ### Support Both Versions {#support-both}
 
-The HelmChart custom resource version `kots.io/v1beta2` is available only for installations that use KOTS v1.99.0 or later. To support existing users that have not yet upgraded to KOTS v1.99.0 or later, Replicated recommends that you include both a `kots.io/v1beta2` and a `kots.io/v1beta1` HelmChart custom resource for each Helm chart in your release. This allows you to support both installation methods from the same release.
+The HelmChart custom resource version `kots.io/v1beta2` is available only for installations that use KOTS v1.99.0 or later. To support existing users that have not yet upgraded to KOTS v1.99.0 or later, Replicated recommends that you include both a `kots.io/v1beta2` and a `kots.io/v1beta1` (with `useHelmInstall: true`) HelmChart custom resource for each Helm chart in your release. This allows you to support both installation methods from the same release.
 
-When you include both a `kots.io/v1beta2` and `kots.io/v1beta1` HelmChart custom resource in a single release for the same Helm chart, installations with KOTS v1.98.0 or earlier use `kots.io/v1beta1`. Installations with KOTS v1.99.0 or later use `kots.io/v1beta2`.
+When you include both versions in a single release for the same Helm chart, installations with KOTS v1.98.0 or earlier use `kots.io/v1beta1`. Installations with KOTS v1.99.0 or later use `kots.io/v1beta2`.
 
-After all your users install KOTS v1.99.0 or later, you can stop supporting installations with version `kots.io/v1beta1` of the HelmChart custom resource.
+After all customer environments where the Helm chart was previously installed with `kots.io/v1beta1` and `useHelmInstall: true` are upgraded to KOTS v1.99.0 or later, you can remove version `kots.io/v1beta1` of the HelmChart custom resource from your releases.
 
-### HelmChart Custom Resource v1 and v2 Differences
+### HelmChart v1 and v2 Differences
 
 The `kots.io/v1beta2` HelmChart custom resource has the following differences from `kots.io/v1beta1`:
 
@@ -331,9 +337,3 @@ The `kots.io/v1beta2` HelmChart custom resource has the following differences fr
 </table>
 
 For an example of the HelmChart v2 custom resource, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
-
-### Upgrade from Replicated Helm
-
-<ReplicatedHelmMigration/>
-
-To upgrade from Replicated Helm to another installation method, the user must reinstall your application in a new environment.
