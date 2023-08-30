@@ -101,6 +101,8 @@ kubectl kots upstream upgrade <app slug> -n <admin console namespace>
 
 Adding the `--deploy` flag will also automatically deploy the latest version.
 
+The application slug is provided by your software vendor. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
+
 ### Air Gapped Installations on an Existing Cluster
 
 In order to install an update from an air gap file, the following command can be used:
@@ -117,6 +119,8 @@ kubectl kots upstream upgrade <app slug> \
 
 Adding the `--deploy` flag will also automatically deploy this version.
 
+The application slug is provided by your software vendor. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
+
 ### Air Gapped Installations on an Embedded Cluster
 
 > Introduced in the KOTS v1.34.0
@@ -130,6 +134,6 @@ Adding the `--deploy` flag will also automatically deploy this version.
 
 Replace:
 
-* `APP_SLUG` with the unique slug for the application. The application slug is provided by the vendor.
+* `APP_SLUG` with the application slug provided by your software vendor. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
 * `PATH_TO_AIRGAP_BUNDLE` with the path to the `.airgap` bundle file.
 * `NAMESPACE` with the admin console namespace. Typically this value is `default`.

@@ -476,6 +476,14 @@ const sidebars = {
         },
         'vendor/team-management-slack-config',
         'vendor/replicated-api-tokens',
+        
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Applications',
+      items: [
+        'vendor/vendor-portal-manage-app',
         'vendor/vendor-portal-application-settings',
       ],
     },

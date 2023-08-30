@@ -13,7 +13,7 @@ Using the replicated CLI and Vendor API V3 requires an API token for authorizati
 The following types of tokens are available:
 
 - [Service Accounts](#service-accounts)
-- [User API Tokens](user-api-tokens)
+- [User API Tokens](#user-api-tokens)
 
 <TeamTokenNote/>
 
