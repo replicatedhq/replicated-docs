@@ -19,23 +19,41 @@ Before you can use the compatibility matrix, you must complete the following pre
 - Purchase an entitlement for compatibility testing. To do so, [open a product request](https://vendor.replicated.com/support?requestType=feature&productArea=vendor).
 - Install the replicated CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
 
-## Create a Cluster
+## Creating and Preparing Clusters
 
-The Replicated compatibility matrix functionality is provided using the `replicated cluster` commands. For command usage, see the [cluster create](/reference/replicated-cli-cluster-create) replicated CLI reference.
+The Replicated compatibility matrix functionality is provided through the replicated CLI  `cluster` commands.
 
-Create a test cluster with the compatibility matrix using one of the follow options:
+You can run the commands to manually create a cluster when you need one for a short period of time, such as when debugging a support issue or to use testing as part of an inner development loop. You can also integrate the commands in your continuous integration and continuous delivery (CI/CD) workflows to automatically provision clusters for running tests. For more information, see [Integrating with CI/CD](ci-overview). 
 
-- Manually create a cluster when you need one for a short period of time, such as when debugging a support issue or to use testing as part of an inner development loop.
+You can use both `cluster create` and `cluster prepare` to provision clusters. The following describes the use cases for each command:
 
-    **Example:**
+* `cluster create`: Provisions a cluster based on the parameters specified. After a cluster is provisioned, an application can be installed in the cluster by creating a release, a temporary channel, and a temporary customer in the Replicated platform. A recommended use case for the `cluster create` command is provisioning clusters for testing in continuous delivery (CD) workflows that release your software to customers.
 
-    ```bash
-    replicated cluster create --name kind-example --distribution kind --version 1.25.2 --disk 100 --instance-type r1.small
-    ```
+  The following example creates a kind cluster with Kubernetes version 1.25.2, a disk size of 100 GiB, and an instance type of `r1.small`. 
 
-- Integrate the compatibility matrix with your existing CI/CD pipeline to automatically provision clusters for testing. For more information about integrating the compatibility matrix into your CI/CD pipeline, see [Integrating with CI/CD](ci-overview). 
-    
-    Additionally, Replicated offers example workflows in Replicated Actions that you can reference. For more information, see [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions#examples) in GitHub.  
+  ```bash
+  replicated cluster create --name kind-example --distribution kind --version 1.25.2 --disk 100 --instance-type r1.small
+  ```
+
+  For command usage, see [cluster create](/reference/replicated-cli-cluster-create) in the _replicated CLI_ reference.
+
+* `cluster prepare`: Provisions a cluster based on the parameters specified and then installs an application in the cluster. The `cluster prepare` command allows you to install an application in a cluster for testing without needing to create a release, a temporary channel, or a temporary customer in the Replicated platform. A recommended use case for the `cluster prepare` command is provisioning clusters for testing in continuous integration (CI) workflows that run on every commit.
+
+  The following example creates a kind cluster and installs a Helm chart in the cluster using the `nginx-chart-0.0.14.tgz` chart archive:
+
+  ```bash
+  replicated cluster cluster prepare \
+    --distribution kind \
+    --version 1.27.0 \
+    --chart nginx-chart-0.0.14.tgz \
+    --set key1=val1,key2=val2 \
+    --set-string s1=val1,s2=val2 \
+    --set-json j1='{"key1":"val1","key2":"val2"}' \
+    --set-literal l1=val1,l2=val2 \
+    --values values.yaml
+  ```
+
+  For command usage, see [cluster prepare](/reference/replicated-cli-cluster-prepare) in the _replicated CLI_ reference.
 
 ## Setting TTL
 
