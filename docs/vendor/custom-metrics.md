@@ -1,6 +1,6 @@
 # Configuring Custom Metrics (Alpha)
 
-This topic describes how to configure your application to send custom metrics to the Replicated vendor portal.
+This topic describes how to configure an application to send custom metrics to the Replicated vendor portal.
 
 :::note
 The custom metrics feature is Alpha and is subject change. To access this feature, open a feature request.
@@ -8,9 +8,9 @@ The custom metrics feature is Alpha and is subject change. To access this featur
 
 ## Overview
 
-In addition to the built-in insights displayed in the Replicated vendor portal by default (such as uptime and time to install), you can configure custom metrics to measure instances of your application running in customer environments. For example, you can configure custom metrics to get insights on customer usage and adoption of new features, which can help your team to make more informed prioritization decisions.
+In addition to the built-in insights displayed in the vendor portal by default (such as uptime and time to install), you can also configure custom metrics to measure instances of your application running in customer environments. For example, you can add custom metrics to get insights on customer usage and adoption of new features, which can help your team to make more informed prioritization decisions.
 
-The vendor portal collects your custom metrics through Replicated KOTS or through the Replicated SDK, depending on which is installed in the cluster alongside the application instance. KOTS and the SDK both expose an in-cluster API where you can configure your application to send metric payloads. When the instance sends data to the API, KOTS or the SDK sends the data (including any custom and built-in metrics) to the Replicated app service. The app service is located at `replicated.app` or at your custom domain.
+The vendor portal collects custom metrics through Replicated KOTS or through the Replicated SDK, depending on which is installed in the cluster alongside the application instance. KOTS and the SDK both expose an in-cluster API where you can configure your application to POST metric payloads. When an application instance sends data to the API, KOTS or the SDK sends the data (including any custom and built-in metrics) to the Replicated app service. The app service is located at `replicated.app` or at your custom domain.
 
 If any values in the metric payload are different from the current values for the instance, then a new event is generated and displayed in the vendor portal. For more information about how the vendor portal generates events, see [How the Vendor Portal Generates Events and Insights](/vendor/instance-insights-event-data#how-the-vendor-portal-generates-events-and-insights) in _About Instance and Event Data_.
 
@@ -65,7 +65,7 @@ Custom metrics have the following limitations:
 
 ## Configure Custom Metrics
 
-To collect custom metrics, you can configure your application to send a set of metrics as key value pairs to the API that is running in the cluster alongside the application instance.
+You can configure your application to send a set of metrics as key value pairs to the API that is running in the cluster alongside the application instance.
 
 The location of the API endpoint is different depending on if KOTS or the SDK is installed in the cluster:
 * For applications installed with KOTS, the in-cluster API custom metrics endpoint is located at `http://kotsadm:3000/api/v1/metrics`. 
@@ -143,11 +143,44 @@ async function startMetricsLoop(db) {
 startMetricsLoop(getDatabase());
 ```
 
+### CronJob Example
+
+The following example shows a Kubernetes CronJob that sends metrics on a weekly interval to the in-cluster API exposed by the SDK:
+
+```yaml
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: metrics
+spec:
+  schedule: "0 0 0 0 0"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hello
+            image: postgres:14
+            command:
+            - /bin/sh
+            - -c
+            - |
+                date; echo sending metrics
+                activeUsers=$(psql -t -c 'select COUNT(*) from active_users')
+                numProjects=$(psql -t -c 'select COUNT(*) from projects')                
+                curl -X POST https://replicated-sdk:3000/api/v1/metrics --data-binary "{\"activeUsers\":${activeUsers}, \"numProjects\":${numProjects}}"
+            envFrom:
+            - secretRef:
+                name: postgres-credentials
+```
+
 ## View Custom Metrics
 
-You can view the custom metrics that you configure for each active instance of your application on the **Instance Details** page in the Replicated vendor portal.
+You can view the custom metrics that you configure for each active instance of your application on the **Instance Details** page in the vendor portal.
 
-The **Custom Metrics** section of the **Instance Details** page includes the following information:
+**ADD SCREENSHOT**
+
+As shown in the image above, the **Custom Metrics** section of the **Instance Details** page includes the following information:
 * The timestamp when the custom metric data was last updated.
 * Each custom metric that you configured, along with the most recent value for the metric for the instance.
 
