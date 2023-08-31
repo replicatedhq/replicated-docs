@@ -1,21 +1,29 @@
-# Configuring Custom Metrics
+# Configuring Custom Metrics (Alpha)
 
-This topic describes how to configure custom metrics.
+This topic describes how to configure your application to send custom metrics to the Replicated vendor portal.
+
+:::note
+The custom metrics feature is Alpha and is subject change. To access this feature, open a feature request.
+:::
 
 ## Overview
 
-In addition to the metrics that are included in the Replicated vendor portal by default, you can also configure custom metrics to measure your customer instances. For example, you can configure custom metrics to get insights on customer usage and adoption of new features, which can help your team to make more informed decisions about how to engage .
+In addition to the built-in insights displayed in the Replicated vendor portal by default (such as uptime and time to install), you can configure custom metrics to measure instances of your application running in customer environments. For example, you can configure custom metrics to get insights on customer usage and adoption of new features, which can help your team to make more informed prioritization decisions.
 
-## How the Vendor Portal Collects Custom Metrics
+The vendor portal collects your custom metrics through Replicated KOTS or through the Replicated SDK, depending on which is installed in the cluster alongside the application instance. KOTS and the SDK both expose an in-cluster API where you can configure your application to send metric payloads. When the instance sends data to the API, KOTS or the SDK sends the data (including any custom and built-in metrics) to the Replicated app service. The app service is located at `replicated.app` or at your custom domain.
 
-In-cluster APIs 
-Instance Summary API
+If any values in the metric payload are different from the current values for the instance, then a new event is generated and displayed in the vendor portal. For more information about how the vendor portal generates events, see [How the Vendor Portal Generates Events and Insights](/vendor/instance-insights-event-data#how-the-vendor-portal-generates-events-and-insights) in _About Instance and Event Data_.
+
+The following diagram demonstrates how a custom `activeUsers` metric is sent to the in-cluster API and ultimately displayed in the vendor portal, as described above:
+
+![Custom metrics flowing from customer environment to vendor portal](/images/custom-metrics-diagram.png)
+[View a larger version of this image](/images/custom-metrics-diagram.png)
 
 ## Requirements
 
-To support the collection of custom metrics, application instances running in customer environments must meet _one_ of the following requirements:
-* The instance is using Replicated KOTS version 1.112.0 or later
-* The instance is a Helm chart-based application that includes the Replicated SDK version 0.0.1-beta.9 or later
+To support the collection of custom metrics, one of the following must be running in the cluster alongside the application instance:
+* Replicated KOTS version 1.112.0 or later
+* Replicated SDK version 0.0.1-beta.9 or later
 
 If you have any customers that are running earlier versions of KOTS or the SDK, Replicated recommends that you add logic to your application to gracefully handle a 404 from the in-cluster APIs.
 
@@ -23,7 +31,9 @@ If you have any customers that are running earlier versions of KOTS or the SDK, 
 
 Custom metrics have the following limitations:
 
-* Metric payloads are limited to one push per hour. Any additional metric POST requests are rejected with a 422 error code. In case of frequent restarts, Replicated recommends that an application instance that sends metrics on startup is built to gracefully handle a 422 error from the in-cluster APIs, waiting until the next scheduled interval to try again. Additionally, Replicated recommends that you log or count these 422 errors in your application so that you can detect if your push interval might be incorrectly configured.
+* Metric payloads are limited to one push per hour. Any additional metric POST requests are rejected with a 422 error code.
+
+  In the case of frequent restarts, Replicated recommends that an application instance that sends metrics on startup is built to gracefully handle a 422 error from the in-cluster APIs, waiting until the next scheduled interval to try again. Additionally, Replicated recommends that you log or count these 422 errors in your application so that you can detect if your push interval might be incorrectly configured.
 
 * The label that is used to display metrics in the vendor portal cannot be customized. Metrics are sent to the vendor portal with the same name that is sent in the POST payload. The vendor portal then converts camel case to title case: for example, `activeUsers` is displayed as **Active Users**.
 
@@ -51,14 +61,87 @@ Custom metrics have the following limitations:
   }
   ```
 
-  The instance detail will show the following, which represents the most recent payload received:
-
-    * Active Users: 10
-    * Using Custom Reports: false
-
-  The previously-sent `numProjects` value is discarded from the instance summary and is available in the instance events payload.
+  The instance detail will show `Active Users: 10` and `Using Custom Reports: false`, which represents the most recent payload received. The previously-sent `numProjects` value is discarded from the instance summary and is available in the instance events payload.
 
 ## Configure Custom Metrics
+
+To collect custom metrics, you can configure your application to send a set of metrics as key value pairs to the API that is running in the cluster alongside the application instance.
+
+The location of the API endpoint is different depending on if KOTS or the SDK is installed in the cluster:
+* For applications installed with KOTS, the in-cluster API custom metrics endpoint is located at `http://kotsadm:3000/api/v1/metrics`. 
+
+  **Example:**
+
+  ```
+  POST http://kotsadm:3000/api/v1/metrics
+  ```
+
+  ```json
+  {
+    "data": {
+      "num_projects": 5,
+      "weekly_active_users": 10
+    }
+  }
+  ```
+
+* For Helm chart-based applications that include the Replicated SDK, the in-cluster API custom metrics endpoint is located at `http://replicated-sdk:3000/api/v1/metrics`.
+
+  **Example:**
+
+  ```bash
+  POST http://replicated-sdk:3000/api/v1/metrics
+  ```
+
+  ```json
+  {
+    "data": {
+      "num_projects": 5,
+      "weekly_active_users": 10
+    }
+  }
+  ```
+
+### NodeJS Example
+
+The following example shows a NodeJS application that sends metrics on a weekly interval to the in-cluster API exposed by the SDK:
+
+```javascript
+async function sendMetrics(db) {
+
+    const projectsQuery = "SELECT COUNT(*) as num_projects from projects";
+    const numProjects = (await db.getConnection().queryOne(projectsQuery)).num_projects;
+
+    const usersQuery = 
+        "SELECT COUNT(*) as active_users from users where DATEDIFF('day', last_active, CURRENT_TIMESTAMP) < 7";
+    const activeUsers = (await db.getConnection().queryOne(usersQuery)).active_users;
+
+    const metrics = { data: { numProjects, activeUsers }};
+    
+    await fetch('https://replicated-sdk:3000/api/v1/metrics', {
+        method: 'POST',
+        body: JSON.stringify(metrics),
+    });
+}
+
+async function startMetricsLoop(db) {
+
+    const ONE_WEEK_IN_MS = 1000 * 60 * 60 * 24 * 7
+
+    // send metrics once on startup
+    await sendTelemetry(db)
+      .catch((e) => { console.log("error sending metrics: ", e) });        
+
+    // schedule weekly metrics payload
+
+    setInterval( () => {
+        sendMetrics(db)
+          .catch((e) => { console.log("error sending metrics: ", e) });        
+    }, ONE_WEEK_IN_MS);
+}
+
+startMetricsLoop(getDatabase());
+```
 
 ## View Custom Metrics
 
