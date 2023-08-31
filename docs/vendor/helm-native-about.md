@@ -29,11 +29,11 @@ For more information about the HelmChart custom resource, see [HelmChart v2](/re
 
 ### Resource Deployment Order
 
-When installing your Helm chart-based application, KOTS always deploys standard Kubernetes manifests to the cluster _before_ deploying Helm charts. For example, if your release contains a Helm chart, an Application resource, and a KOTS Config custom resource, then the Application and Config resources are deployed before the Helm chart. 
+When installing a Helm chart-based application, KOTS always deploys standard Kubernetes manifests to the cluster _before_ deploying Helm charts. For example, if your release contains a Helm chart, an Application resource, and a KOTS Config custom resource, then the Application and Config resources are deployed before the Helm chart. 
 
 This allows you to control the deployment order of your application resources by either defining the resources as standard manifests or as Helm charts. Additionally, you can manage the order in which resources are deployed using the following methods:
 
-* Add KOTS annotations to standard manifests to specify their deployment order. For example, you can add a `wait-for-properties` annotation to a resource so that KOTS waits for a given property to reach a target value before deploying other resources. For more information about using KOTS annotations to control the deployment order of standard Kubernetes manifests, see [Orchestrating Resource Deployment](/vendor/orchestrating-resource-deployment).
+* Add KOTS annotations to standard manifests to specify their deployment order. For example, you can add a `wait-for-properties` annotation to a resource so that KOTS waits for a given property to reach a target value before deploying other resources. For more information, see [Orchestrating Resource Deployment](/vendor/orchestrating-resource-deployment).
 
 * Use the `weight` property in the HelmChart custom resourceIf to specify the deployment order of any Helm charts and subcharts. For more information, see [`weight`](/reference/custom-resource-helmchart-v2#weight) in _HelmChart v2_.
 
