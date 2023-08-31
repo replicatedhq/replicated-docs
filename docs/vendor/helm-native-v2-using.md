@@ -1,3 +1,5 @@
+import KotsHelmCrDescription from "../partials/helm/_kots-helm-cr-description.mdx"
+
 # Configuring the HelmChart Custom Resource
 
 This topic describes how to configure the Replicated HelmChart custom resource version `kots.io/v1beta2` to support Helm chart installations with KOTS.
@@ -6,7 +8,9 @@ It also includes guidance for migrating existing installations that use the Helm
 
 ## Workflow
 
-Supporting KOTS installations of your Helm chart requires that you configure a HelmChart custom resource. The HelmChart custom resource provides instructions for KOTS about how to deploy your Helm chart. Additionally, the HelmChart custom resource creates a mapping between KOTS and your Helm chart to allow you to dynamically set values during installation or upgrade. For more information about the HelmChart custom resource, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
+<KotsHelmCrDescription/>
+
+For more information about the HelmChart custom resource, see [HelmChart v2](/reference/custom-resource-helmchart-v2).
 
 To configure the HelmChart custom resource, do the following:
 * Rewrite image names so that images can be located in your private registry or in the user's local private registry. See [Rewrite Image Names](#rewrite-image-names).

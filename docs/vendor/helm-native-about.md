@@ -15,9 +15,25 @@ This topic provides an overview of how Replicated KOTS deploys Helm charts, incl
 
 When you distribute your Helm chart application with KOTS, your users have access to all of the KOTS features, including the Replicated admin console, backup and restore with snapshots, support for air gap installations, and support for installations into embedded clusters created by Replicated kURL. An application deployed with KOTS can use more than one Helm chart, can include Helm charts as components, and can use more than a single instance of any Helm chart.
 
+### HelmChart Custom Resource
+
 <KotsHelmCrDescription/>
 
-For more information about how to configure the HelmChart custom resource, including how to migrate the HelmChart custom resource from `apiVersion: kots.io/v1beta1` to `kots.io/v1beta2`, see [Configuring the HelmChart Custom Resource](helm-native-v2-using).
+For more information about the HelmChart custom resource, see [HelmChart v2](/reference/custom-resource-helmchart-v2) and [Configuring the HelmChart Custom Resource](helm-native-v2-using).
+
+### Resource Installation Order
+
+When you distribute a Helm chart-based application with KOTS, KOTS deploys any standard Kubernetes manifests to the cluster before deploying Helm charts. For example, if your release contains a Helm chart and several manifests including a Kubernetes Application resource and a KOTS Config custom resource, then KOTS deploys the Application and Config manifests to the cluster before deploying the Helm chart.
+
+You can control the order in which the Helm charts are deployed using the `weight` field in the HelmChart custom resource. For more information, see [`weight`](/reference/custom-resource-helmchart-v2#weight) in _HelmChart v2_.
+
+You can also use the KOTS support for deployment orchestration to control the order in which KOTS deploys Kubernetes manifests. For example, you could annotate the Kubernetes resource with an earlier `creation-phase` to ensure it is deployed first and also include a `wait-for-properties` annotation to make KOTS wait for a particular resource property to reach a desired value before moving on to other resources.
+
+### Air Gap Installations
+
+KOTS supports installations into air gap environments. When a user installs an application with one or more Helm charts in an air gap environment, the chart processing is managed in the end user environment. This means that KOTS can use user-supplied values, license values, and existing values to create deployable manifests.
+
+To support air gap installations of your Helm chart with KOTS, you configure the `builder` field in the HelmChart custom resource. For more information, see [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
 ## Installation Methods
 
@@ -145,12 +161,6 @@ When you use version `kots.io/v1beta1` of HelmChart custom resource with `useHel
 The resulting deployment is comprised of standard Kubernetes manifests. Therefore, cluster operators can view the exact differences between what is currently deployed and what an update will deploy.
 
 There is no migration path for existing installations from the `useHelmInstall: false` method to a different installation method. For more information, see [kots.io/v1beta1 (useHelmInstall: false)](#v1beta1-false-limitations) below.
-
-## Air Gap Installations
-
-KOTS supports installations into air gap environments. When a user installs an application with one or more Helm charts in an air gap environment, the chart processing is managed in the end user environment. This means that KOTS can use user-supplied values, license values, and existing values to create deployable manifests.
-
-To support air gap installations of your Helm chart with KOTS, you configure the `builder` field in the HelmChart custom resource. For more information, see [`builder`](/reference/custom-resource-helmchart-v2#builder) in _HelmChart v2_.
 
 ## Limitations {#replicated-helm-limitations}
 
