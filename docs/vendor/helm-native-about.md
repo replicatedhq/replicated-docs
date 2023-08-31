@@ -13,7 +13,13 @@ This topic provides an overview of how Replicated KOTS deploys Helm charts, incl
 
 ## Overview
 
-When you distribute your Helm chart application with KOTS, your users have access to all of the KOTS features, including the Replicated admin console, backup and restore with snapshots, support for air gap installations, and support for installations into embedded clusters created by Replicated kURL. An application deployed with KOTS can use more than one Helm chart, can include Helm charts as components, and can use more than a single instance of any Helm chart.
+When you distribute your Helm chart-based application with KOTS, your users have access to all of the KOTS features, such as:
+* The Replicated admin console
+* Backup and restore with snapshots
+* Support for air gap installations
+* Support for installations into embedded clusters created by Replicated kURL
+
+An application deployed with KOTS can use one or more Helm charts, can include Helm charts as components, and can use more than a single instance of any Helm chart.
 
 ### HelmChart Custom Resource
 
@@ -21,13 +27,15 @@ When you distribute your Helm chart application with KOTS, your users have acces
 
 For more information about the HelmChart custom resource, see [HelmChart v2](/reference/custom-resource-helmchart-v2) and [Configuring the HelmChart Custom Resource](helm-native-v2-using).
 
-### Resource Installation Order
+### Resource Deployment Order
 
-When you distribute a Helm chart-based application with KOTS, KOTS deploys any standard Kubernetes manifests to the cluster before deploying Helm charts. For example, if your release contains a Helm chart and several manifests including a Kubernetes Application resource and a KOTS Config custom resource, then KOTS deploys the Application and Config manifests to the cluster before deploying the Helm chart.
+When installing your Helm chart-based application, KOTS always deploys standard Kubernetes manifests to the cluster _before_ deploying Helm charts. For example, if your release contains a Helm chart, an Application resource, and a KOTS Config custom resource, then the Application and Config resources are deployed before the Helm chart. 
 
-You can control the order in which the Helm charts are deployed using the `weight` field in the HelmChart custom resource. For more information, see [`weight`](/reference/custom-resource-helmchart-v2#weight) in _HelmChart v2_.
+This allows you to control the deployment order of your application resources by either defining the resources as standard manifests or as Helm charts. Additionally, you can manage the order in which resources are deployed using the following methods:
 
-You can also use the KOTS support for deployment orchestration to control the order in which KOTS deploys Kubernetes manifests. For example, you could annotate the Kubernetes resource with an earlier `creation-phase` to ensure it is deployed first and also include a `wait-for-properties` annotation to make KOTS wait for a particular resource property to reach a desired value before moving on to other resources.
+* Add KOTS annotations to standard manifests to specify their deployment order. For example, you can add a `wait-for-properties` annotation to a resource so that KOTS waits for a given property to reach a target value before deploying other resources. For more information about using KOTS annotations to control the deployment order of standard Kubernetes manifests, see [Orchestrating Resource Deployment](/vendor/orchestrating-resource-deployment).
+
+* Use the `weight` property in the HelmChart custom resourceIf to specify the deployment order of any Helm charts and subcharts. For more information, see [`weight`](/reference/custom-resource-helmchart-v2#weight) in _HelmChart v2_.
 
 ### Air Gap Installations
 
