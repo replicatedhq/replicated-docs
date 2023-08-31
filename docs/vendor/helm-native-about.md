@@ -35,7 +35,7 @@ This allows you to control the deployment order of your application resources by
 
 * Add KOTS annotations to standard manifests to specify their deployment order. For example, you can add a `wait-for-properties` annotation to a resource so that KOTS waits for a given property to reach a target value before deploying other resources. For more information, see [Orchestrating Resource Deployment](/vendor/orchestrating-resource-deployment).
 
-* Use the `weight` property in the HelmChart custom resourceIf to specify the deployment order of any Helm charts and subcharts. For more information, see [`weight`](/reference/custom-resource-helmchart-v2#weight) in _HelmChart v2_.
+* Use the `weight` property in the HelmChart custom resource to specify the deployment order of any Helm charts and subcharts. For more information, see [`weight`](/reference/custom-resource-helmchart-v2#weight) in _HelmChart v2_.
 
 ### Air Gap Installations
 
