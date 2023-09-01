@@ -8,6 +8,14 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.0.0-beta.5
+
+Released on September 1, 2023
+
+### New Features {#new-features-1-0-0-beta-5}
+* Adds replicated-sdk API to send custom application metrics to replicated.app service.
+* Adds support for installing the Helm chart via `helm template` then `kubectl apply` the generated manifests.
+
 ## 0.0.1-beta.4
 
 Released on August 17, 2023
