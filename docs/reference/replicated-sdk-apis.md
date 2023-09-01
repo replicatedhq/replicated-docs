@@ -90,6 +90,10 @@ Response:
 }
 ```
 
+### POST /api/v1/app/custom-metrics
+
+Send custom application metrics. Note that this API requires authentication. For more information and examples see [Configuring Custom Metrics](/vendor/custom-metrics)
+
 ## license
 
 ### GET /license/info
@@ -175,13 +179,6 @@ Response:
   }
 }
 ```
-
-## api
-
-### POST /api/v1/app/custom-metrics
-
-Send custom metrics. Note that this API requires authentication. For more informtation and examples see [Configuring Custom Metrics](/vendor/custom-metrics)
-
 ## Examples
 
 This section provides example use cases for the Replicated SDK API.
