@@ -69,7 +69,7 @@ The location of the API endpoint is different depending on if KOTS or the SDK is
   **Example:**
 
   ```
-  POST http://kotsadm:3000/api/v1/metrics
+  POST http://kotsadm:3000/api/v1/app/custom-metrics
   ```
 
   ```json
