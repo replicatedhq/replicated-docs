@@ -168,7 +168,7 @@ spec:
                 date; echo sending metrics
                 activeUsers=$(psql -t -c 'select COUNT(*) from active_users')
                 numProjects=$(psql -t -c 'select COUNT(*) from projects')                
-                curl -X POST https://replicated-sdk:3000/api/v1/metrics -H 'Authorization: ${licenseId}' --data-binary "{\"activeUsers\":${activeUsers}, \"numProjects\":${numProjects}}"
+                curl -X POST https://replicated-sdk:3000/api/v1/app/custom-metrics -H 'Authorization: ${licenseId}' --data-binary "{\"activeUsers\":${activeUsers}, \"numProjects\":${numProjects}}"
             envFrom:
             - secretRef:
                 name: postgres-credentials
