@@ -64,7 +64,7 @@ You can configure your application to send a set of metrics as key value pairs t
 `Authorization` header is required for this API and must contain license ID.
 
 The location of the API endpoint is different depending on if KOTS or the SDK is installed in the cluster:
-* For applications installed with KOTS, the in-cluster API custom metrics endpoint is located at `http://kotsadm:3000/api/v1/metrics`. 
+* For applications installed with KOTS, the in-cluster API custom metrics endpoint is located at `http://kotsadm:3000/api/v1/app/custom-metrics`. 
 
   **Example:**
 
