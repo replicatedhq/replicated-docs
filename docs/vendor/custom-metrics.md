@@ -180,7 +180,9 @@ spec:
 
 You can view the custom metrics that you configure for each active instance of your application on the **Instance Details** page in the vendor portal.
 
-<!-- **ADD SCREENSHOT** -->
+The following shows an example of an instance with custom metrics:
+
+![Custom Metrics section of Instance details page](/images/instance-custom-metrics.png)
 
 As shown in the image above, the **Custom Metrics** section of the **Instance Details** page includes the following information:
 * The timestamp when the custom metric data was last updated.
