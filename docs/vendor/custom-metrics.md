@@ -81,7 +81,7 @@ The location of the API endpoint is different depending on if KOTS or the SDK is
   }
   ```
 
-* For Helm chart-based applications that include the Replicated SDK, the in-cluster API custom metrics endpoint is located at `http://replicated-sdk:3000/api/v1/metrics`.
+* For Helm chart-based applications that include the Replicated SDK, the in-cluster API custom metrics endpoint is located at `http://replicated-sdk:3000/api/v1/app/custom-metrics`.
 
   **Example:**
 
