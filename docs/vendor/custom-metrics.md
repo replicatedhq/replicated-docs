@@ -114,7 +114,7 @@ async function sendMetrics(db, licenseId) {
 
     const metrics = { data: { numProjects, activeUsers }};
     
-    await fetch('https://replicated-sdk:3000/api/v1/metrics', {
+    await fetch('https://replicated-sdk:3000/api/v1/app/custom-metrics', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
