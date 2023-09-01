@@ -31,13 +31,7 @@ If you have any customers that are running earlier versions of KOTS or the SDK, 
 
 Custom metrics have the following limitations:
 
-* Metric payloads are limited to one push per hour. Any additional metric POST requests are rejected with a 422 error code.
-
-  In the case of frequent restarts, Replicated recommends that an application instance that sends metrics on startup is built to gracefully handle a 422 error from the in-cluster APIs, waiting until the next scheduled interval to try again. Additionally, Replicated recommends that you log or count these 422 errors in your application so that you can detect if your push interval might be incorrectly configured.
-
 * The label that is used to display metrics in the vendor portal cannot be customized. Metrics are sent to the vendor portal with the same name that is sent in the POST payload. The vendor portal then converts camel case to title case: for example, `activeUsers` is displayed as **Active Users**.
-
-* For each unique metric, the last known value for an instance is always preserved and unaggregated, regardless of age.
 
 * The in-cluster APIs accept only JSON scalar values for metrics. Any requests containing nested objects or arrays are rejected.
 
@@ -66,6 +60,8 @@ Custom metrics have the following limitations:
 ## Configure Custom Metrics
 
 You can configure your application to send a set of metrics as key value pairs to the API that is running in the cluster alongside the application instance.
+
+`Authorization` header is required for this API and must contain license ID.
 
 The location of the API endpoint is different depending on if KOTS or the SDK is installed in the cluster:
 * For applications installed with KOTS, the in-cluster API custom metrics endpoint is located at `http://kotsadm:3000/api/v1/metrics`. 
@@ -107,7 +103,7 @@ The location of the API endpoint is different depending on if KOTS or the SDK is
 The following example shows a NodeJS application that sends metrics on a weekly interval to the in-cluster API exposed by the SDK:
 
 ```javascript
-async function sendMetrics(db) {
+async function sendMetrics(db, licenseId) {
 
     const projectsQuery = "SELECT COUNT(*) as num_projects from projects";
     const numProjects = (await db.getConnection().queryOne(projectsQuery)).num_projects;
@@ -120,27 +116,31 @@ async function sendMetrics(db) {
     
     await fetch('https://replicated-sdk:3000/api/v1/metrics', {
         method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": licenseId,
+        },
         body: JSON.stringify(metrics),
     });
 }
 
-async function startMetricsLoop(db) {
+async function startMetricsLoop(db, licenseId) {
 
     const ONE_WEEK_IN_MS = 1000 * 60 * 60 * 24 * 7
 
     // send metrics once on startup
-    await sendTelemetry(db)
+    await sendTelemetry(db, licenseId)
       .catch((e) => { console.log("error sending metrics: ", e) });        
 
     // schedule weekly metrics payload
 
     setInterval( () => {
-        sendMetrics(db)
+        sendMetrics(db, licenseId)
           .catch((e) => { console.log("error sending metrics: ", e) });        
     }, ONE_WEEK_IN_MS);
 }
 
-startMetricsLoop(getDatabase());
+startMetricsLoop(getDatabase(), getLicenseId());
 ```
 
 ### CronJob Example
@@ -168,17 +168,19 @@ spec:
                 date; echo sending metrics
                 activeUsers=$(psql -t -c 'select COUNT(*) from active_users')
                 numProjects=$(psql -t -c 'select COUNT(*) from projects')                
-                curl -X POST https://replicated-sdk:3000/api/v1/metrics --data-binary "{\"activeUsers\":${activeUsers}, \"numProjects\":${numProjects}}"
+                curl -X POST https://replicated-sdk:3000/api/v1/metrics -H 'Authorization: ${licenseId}' --data-binary "{\"activeUsers\":${activeUsers}, \"numProjects\":${numProjects}}"
             envFrom:
             - secretRef:
                 name: postgres-credentials
+            - secretRef:
+                name: replicated-license
 ```
 
 ## View Custom Metrics
 
 You can view the custom metrics that you configure for each active instance of your application on the **Instance Details** page in the vendor portal.
 
-**ADD SCREENSHOT**
+<!-- **ADD SCREENSHOT** -->
 
 As shown in the image above, the **Custom Metrics** section of the **Instance Details** page includes the following information:
 * The timestamp when the custom metric data was last updated.
