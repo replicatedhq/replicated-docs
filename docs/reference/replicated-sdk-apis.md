@@ -178,7 +178,7 @@ Response:
 
 ## api
 
-### POST /api/v1/metrics
+### POST /api/v1/app/custom-metrics
 
 Send custom metrics. Note that this API requires authentication. For more informtation and examples see [Configuring Custom Metrics](/vendor/custom-metrics)
 
