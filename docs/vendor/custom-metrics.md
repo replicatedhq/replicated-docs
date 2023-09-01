@@ -86,7 +86,7 @@ The location of the API endpoint is different depending on if KOTS or the SDK is
   **Example:**
 
   ```bash
-  POST http://replicated-sdk:3000/api/v1/metrics
+  POST http://replicated-sdk:3000/api/v1/app/custom-metrics
   ```
 
   ```json
