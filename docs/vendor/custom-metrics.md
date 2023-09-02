@@ -14,11 +14,6 @@ The vendor portal collects custom metrics through Replicated KOTS or through the
 
 If any values in the metric payload are different from the current values for the instance, then a new event is generated and displayed in the vendor portal. For more information about how the vendor portal generates events, see [How the Vendor Portal Generates Events and Insights](/vendor/instance-insights-event-data#how-the-vendor-portal-generates-events-and-insights) in _About Instance and Event Data_.
 
-The following diagram demonstrates how a custom `activeUsers` metric is sent to the in-cluster API and ultimately displayed in the vendor portal, as described above:
-
-![Custom metrics flowing from customer environment to vendor portal](/images/custom-metrics-diagram.png)
-[View a larger version of this image](/images/custom-metrics-diagram.png)
-
 ## Requirements
 
 To support the collection of custom metrics, one of the following must be running in the cluster alongside the application instance:
