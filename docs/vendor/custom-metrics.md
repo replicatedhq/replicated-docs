@@ -17,7 +17,7 @@ If any values in the metric payload are different from the current values for th
 ## Requirements
 
 To support the collection of custom metrics, one of the following must be running in the cluster alongside the application instance:
-* Replicated KOTS version 1.112.0 or later
+* Replicated KOTS version [TBD, not yet available]
 * Replicated SDK version 1.0.0-beta.5 or later
 
 If you have any customers that are running earlier versions of KOTS or the SDK, Replicated recommends that you add logic to your application to gracefully handle a 404 from the in-cluster APIs.
