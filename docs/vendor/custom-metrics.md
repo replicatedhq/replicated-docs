@@ -3,7 +3,7 @@
 This topic describes how to configure an application to send custom metrics to the Replicated vendor portal.
 
 :::note
-The custom metrics feature is Beta and is subject change. To access this feature, open a [feature request](https://vendor.replicated.com/support).
+The custom metrics feature is Beta and is subject to change. To access this feature, open a [feature request](https://vendor.replicated.com/support).
 :::
 
 ## Overview
