@@ -163,7 +163,7 @@ spec:
                 date; echo sending metrics
                 activeUsers=$(psql -t -c 'select COUNT(*) from active_users')
                 numProjects=$(psql -t -c 'select COUNT(*) from projects')
-                licenseID=$(curl -s --fail --show-error http://replicated-sdk:3000/api/v1/license/info | jq -r .licenseID | tr -d '\n')
+                licenseID=$(curl -s --fail --show-error http://replicated-sdk:3000/api/v1/license/info | sed 's/[\{\},]/\n/g' | grep licenseID | awk -F'"' '{print $4}')
                 curl -X POST http://replicated-sdk:3000/api/v1/app/custom-metrics -H 'Authorization: ${licenseID}' --data-binary "{\"activeUsers\":${activeUsers}, \"numProjects\":${numProjects}}"
             envFrom:
             - secretRef:
