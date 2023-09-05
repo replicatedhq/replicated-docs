@@ -218,7 +218,7 @@ The compatibility matrix supports creating [Google GKE](https://cloud.google.com
   </tr>
   <tr>
     <th>Supported Instance Types</th>
-    <td><p>n2-balanced-2, n2-balanced-4, n2-balanced-8, n2-balanced-16, n2-balanced-32</p><p>You can specify more than one node.</p></td>
+    <td><p>n2-standard-2, n2-standard-4, n2-standard-8, n2-standard-16, n2-standard-32</p><p>You can specify more than one node.</p></td>
   </tr>
   <tr>
     <th>Nodes</th>
