@@ -155,20 +155,19 @@ spec:
         spec:
           containers:
           - name: hello
-            image: postgres:14
+            image: app-metrics:latest
             command:
             - /bin/sh
             - -c
             - |
                 date; echo sending metrics
                 activeUsers=$(psql -t -c 'select COUNT(*) from active_users')
-                numProjects=$(psql -t -c 'select COUNT(*) from projects')                
-                curl -X POST https://replicated-sdk:3000/api/v1/app/custom-metrics -H 'Authorization: ${licenseId}' --data-binary "{\"activeUsers\":${activeUsers}, \"numProjects\":${numProjects}}"
+                numProjects=$(psql -t -c 'select COUNT(*) from projects')
+                licenseID=$(curl -s --fail --show-error http://replicated-sdk:3000/api/v1/license/info | jq -r .licenseID | tr -d '\n')
+                curl -X POST http://replicated-sdk:3000/api/v1/app/custom-metrics -H 'Authorization: ${licenseID}' --data-binary "{\"activeUsers\":${activeUsers}, \"numProjects\":${numProjects}}"
             envFrom:
             - secretRef:
                 name: postgres-credentials
-            - secretRef:
-                name: replicated-license
 ```
 
 ## View Custom Metrics
