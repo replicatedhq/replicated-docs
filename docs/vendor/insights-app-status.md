@@ -27,21 +27,26 @@ To enable status informers for your application, do one of the following, depend
 
 ### Helm Installations 
 
-For applications installed with Helm, the Replicated SDK automatically detects and reports the status of the resources that are part of the Helm release. For information, see [How to Distribute the SDK](replicated-sdk-overview#how-to-distribute-the-sdk) in _About the Replicated SDK_..
+To get instance status data for applications installed with Helm, include the Replicated SDK as a dependency of your application. For information about how to distribute the SDK with your application, see [About the Replicated SDK](replicated-sdk-overview).
 
-You can optionally configure custom status informers by overriding the `statusInformers` value in the Replicated SDK chart. For example:
+After you include the SDK as a dependency, the requirements for enabling status informers vary depending on how your Helm chart-based application is installed:
 
-```yaml
-# Helm chart values.yaml file 
+* For applications installed by running `helm install` or `helm upgrade`, the Replicated SDK automatically detects and reports the status of the resources that are part of the Helm release. No additional configuration is required to get instance status data.
 
-replicated-sdk:
-  statusInformers:
-    - deployment/nginx
-    - statefulset/mysql
-```
-:::note
-When the `replicated-sdk.statusInformers` field is set, the SDK detects and reports the status of only the resources included in the `replicated-sdk.statusInformers` field. 
-:::
+* For applications installed by running `helm template` then `kubectl apply`, the SDK cannot automatically detect and report the status of resources. You must configure custom status informers by overriding the `statusInformers` value in the Replicated SDK chart. For example:
+
+  ```yaml
+  # Helm chart values.yaml file 
+
+  replicated-sdk:
+    statusInformers:
+      - deployment/nginx
+      - statefulset/mysql
+  ```
+
+  :::note
+  Applications installed by running `helm install` or `helm upgrade` can also use custom status informers. When the `replicated-sdk.statusInformers` field is set, the SDK detects and reports the status of only the resources included in the `replicated-sdk.statusInformers` field.
+  :::
 
 ### KOTS Installations
 
