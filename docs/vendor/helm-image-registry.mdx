@@ -34,7 +34,7 @@ To create an image pull secret to enable the proxy service for Helm installation
    ```
 
   :::note
-  If you use the Replicated SDK, do not use `replicated-sdk` for the name of the image pull secret because the SDK automatically creates a Secret named `replicated-sdk`. Using the same name causes an error.
+  If you use the Replicated SDK, do not use `replicated` for the name of the image pull secret because the SDK automatically creates a Secret named `replicated`. Using the same name causes an error.
   :::
 
 1. Ensure that you have a field in your Helm chart values file for your image repository URL, and that any references to the image in your Helm chart access the field from your values file.  

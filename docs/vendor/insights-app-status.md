@@ -38,14 +38,14 @@ After you include the SDK as a dependency, the requirements for enabling status 
   ```yaml
   # Helm chart values.yaml file 
 
-  replicated-sdk:
+  replicated:
     statusInformers:
       - deployment/nginx
       - statefulset/mysql
   ```
 
   :::note
-  Applications installed by running `helm install` or `helm upgrade` can also use custom status informers. When the `replicated-sdk.statusInformers` field is set, the SDK detects and reports the status of only the resources included in the `replicated-sdk.statusInformers` field.
+  Applications installed by running `helm install` or `helm upgrade` can also use custom status informers. When the `replicated.statusInformers` field is set, the SDK detects and reports the status of only the resources included in the `replicated.statusInformers` field.
   :::
 
 ### KOTS Installations

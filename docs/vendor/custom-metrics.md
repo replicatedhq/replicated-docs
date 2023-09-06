@@ -76,12 +76,12 @@ The location of the API endpoint is different depending on if KOTS or the SDK is
   }
   ```
 
-* For Helm chart-based applications that include the Replicated SDK, the in-cluster API custom metrics endpoint is located at `http://replicated-sdk:3000/api/v1/app/custom-metrics`.
+* For Helm chart-based applications that include the Replicated SDK, the in-cluster API custom metrics endpoint is located at `http://replicated:3000/api/v1/app/custom-metrics`.
 
   **Example:**
 
   ```bash
-  POST http://replicated-sdk:3000/api/v1/app/custom-metrics
+  POST http://replicated:3000/api/v1/app/custom-metrics
   ```
 
   ```json
@@ -109,7 +109,7 @@ async function sendMetrics(db, licenseId) {
 
     const metrics = { data: { numProjects, activeUsers }};
     
-    await fetch('https://replicated-sdk:3000/api/v1/app/custom-metrics', {
+    await fetch('https://replicated:3000/api/v1/app/custom-metrics', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
@@ -163,8 +163,8 @@ spec:
                 date; echo sending metrics
                 activeUsers=$(psql -t -c 'select COUNT(*) from active_users')
                 numProjects=$(psql -t -c 'select COUNT(*) from projects')
-                licenseID=$(curl -s --fail --show-error http://replicated-sdk:3000/api/v1/license/info | jq -r .licenseID | tr -d '\n')
-                curl -X POST http://replicated-sdk:3000/api/v1/app/custom-metrics -H 'Authorization: ${licenseID}' --data-binary "{\"activeUsers\":${activeUsers}, \"numProjects\":${numProjects}}"
+                licenseID=$(curl -s --fail --show-error http://replicated:3000/api/v1/license/info | jq -r .licenseID | tr -d '\n')
+                curl -X POST http://replicated:3000/api/v1/app/custom-metrics -H 'Authorization: ${licenseID}' --data-binary "{\"activeUsers\":${activeUsers}, \"numProjects\":${numProjects}}"
             envFrom:
             - secretRef:
                 name: postgres-credentials

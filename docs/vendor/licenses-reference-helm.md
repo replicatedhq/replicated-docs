@@ -30,7 +30,7 @@ To use the SDK API to check entitlements at runtime:
       **Example:**
 
       ```bash
-      curl replicated-sdk:3000/api/v1/license/fields/expires_at
+      curl replicated:3000/api/v1/license/fields/expires_at
       ```
 
       ```json
@@ -56,10 +56,10 @@ To use the SDK API to check entitlements at runtime:
 
    1. (Optional) As needed, verify the license information returned by the SDK API in your development environment using port forwarding to access the SDK service locally:
 
-      1. Use port forwarding to access the `replicated-sdk` service from the local development environment on port 3000:
+      1. Use port forwarding to access the `replicated` service from the local development environment on port 3000:
 
         ```bash
-        kubectl port-forward service/replicated-sdk 3000
+        kubectl port-forward service/replicated 3000
         ```
 
         The output looks similar to the following:
