@@ -16,6 +16,15 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.102.0
+
+Released on September 6, 2023
+
+Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
+
+### New Features {#new-features-1-102-0}
+* Adds kotsadm API to send custom application metrics to replicated.app service.
+
 ## 1.101.3
 
 Released on August 18, 2023
