@@ -1,7 +1,5 @@
-The Replicated SDK is a Helm chart that can be installed as a small service alongside your application Helm chart. The Replicated SDK allows you to install your application with Helm while having access to Replicated features such as:
+The Replicated SDK is a Helm chart that can be installed as a small service alongside your application Helm chart. The Replicated SDK provides an in-cluster API that you can use to embed Replicated features into your application such as:
 
-* Insights and telemetry for instances of your application running in customer environments 
-* Support for customer license entitlement checks before installation and at runtime 
-* Support for update checks to alert your customers when new versions of your application are available for upgrade
-
-To get started with the Replicated SDK, edit your application Helm chart to declare the SDK as a dependency, then promote a new release with your Helm chart to a development channel in the Replicated vendor portal.
+* Insights and operational telemetry for instances of your application running in customer environments, including support for collecting custom metrics. See [About Instance and Event Data](/vendor/instance-insights-event-data) and [Enabling and Understanding Application Status](insights-app-status).
+* Support for checking customer license entitlements at runtime, including signature verification. See [Checking Entitlements for Helm Installations (Beta)](/vendor/licenses-reference-helm) and [Verifying License Field Signatures for Helm Installations (Beta)](/vendor/licenses-verify-fields-sdk-api). 
+* Support for update checks to alert your customers when new versions of your application are available for upgrade. See [Support Update Checks in Your Admin Console](/reference/replicated-sdk-apis#support-update-checks-in-your-admin-console) in _Replicated SDK API (Beta)_.
