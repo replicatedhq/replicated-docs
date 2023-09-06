@@ -23,7 +23,7 @@ Released on September 6, 2023
 Support for Kubernetes: 1.24, 1.25, 1.26 and 1.27
 
 ### New Features {#new-features-1-102-0}
-* Adds kotsadm API to send [custom application metrics](/vendor/custom-metrics) to replicated.app service.
+* Adds support for sending [custom application metrics](/vendor/custom-metrics) via the `/api/v1/app/custom-metrics` endpoint.
 
 ## 1.101.3
 
