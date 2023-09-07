@@ -10,7 +10,7 @@ For more information about how to get started with the Replicated SDK, see [Abou
 
 The Replicated SDK API is available after the Replicated SDK is installed and initialized in a cluster. For information about installing the SDK, see [Installing with Helm](/vendor/install-with-helm).
 
-After the SDK is installed, the Replicated SDK API service is exposed at `replicated-sdk:3000`. To verify where the Replicated SDK API service is exposed, you can run `kubectl get service -A`.
+After the SDK is installed, the Replicated SDK API service is exposed at `replicated:3000`. To verify where the Replicated SDK API service is exposed, you can run `kubectl get service -A`.
 
 ## app
 
@@ -162,7 +162,7 @@ List details about one of the fields in the license that was used to install, in
 Example request:
 
 ```
-curl replicated-sdk:3000/api/v1/license/fields/expires_at
+curl replicated:3000/api/v1/license/fields/expires_at
 ```
 
 Response:
@@ -202,7 +202,7 @@ To use the SDK API to check for available application updates and provide custom
 1. From your admin console application, call the `api/v1/app/updates` endpoint to return available updates for the application instance. Use the response to display available upgrades for the customer.
 
    ```bash 
-   curl replicated-sdk:3000/api/v1/app/updates
+   curl replicated:3000/api/v1/app/updates
    ```
 
    **Example response**:
@@ -272,7 +272,7 @@ To revoke access to your application when a license expires:
     **Example:**
 
     ```bash
-    curl replicated-sdk:3000/api/v1/license/fields/expires_at
+    curl replicated:3000/api/v1/license/fields/expires_at
     ```
 
     ```json

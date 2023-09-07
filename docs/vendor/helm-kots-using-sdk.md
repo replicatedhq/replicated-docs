@@ -28,9 +28,9 @@ To conditionally exclude the SDK from KOTS installations, do the following for e
    # Chart.yaml file
 
    dependencies:
-   - name: replicated-sdk
+   - name: replicated
      repository: oci://registry.replicated.com/library
-     version: .0.1-beta.1
+     version: 1.0.0-beta.6
      condition: replicated.enabled
    ```
 

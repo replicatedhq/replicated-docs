@@ -42,7 +42,7 @@ To install a Helm chart:
     :::
 
     :::note
-    To install the SDK with custom RBAC permissions, include the `--set` flag with the `helm install` command to override the value of the `replicated-sdk.serviceAccountName` field with a custom service account. For more information, see [Customizing RBAC for the SDK](/vendor/replicated-sdk-rbac).
+    To install the SDK with custom RBAC permissions, include the `--set` flag with the `helm install` command to override the value of the `replicated.serviceAccountName` field with a custom service account. For more information, see [Customizing RBAC for the SDK](/vendor/replicated-sdk-rbac).
     :::
 
 1. (Optional) In the vendor portal, click **Customers**. You can see that the customer you used to install is marked as **Active** and the details about the application instance are listed under the customer name. 

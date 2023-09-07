@@ -23,7 +23,7 @@ The Replicated SDK has the following limitations:
 
   * The `/api/v1/app/history` SDK API endpoint always returns an empty array because there is no Helm history in the cluster. See [GET /app/history](/reference/replicated-sdk-apis#get-apphistory) in _Replicated SDK API (Beta)_.
 
-  * The SDK does not automatically generate status informers to report status data for installed instances of the application. To get instance status data, you must enable custom status informers by overriding the `replicated-sdk.statusInformers` Helm value. See [Enable Application Status Insights](/vendor/insights-app-status#enable-application-status-insights) in _Enabling and Understanding Application Status_.
+  * The SDK does not automatically generate status informers to report status data for installed instances of the application. To get instance status data, you must enable custom status informers by overriding the `replicated.statusInformers` Helm value. See [Enable Application Status Insights](/vendor/insights-app-status#enable-application-status-insights) in _Enabling and Understanding Application Status_.
 
 
 ## How to Distribute the SDK
@@ -52,11 +52,11 @@ For more information about installing with Helm, see [Installing with Helm](inst
 
 ### Replicated Helm Values {#replicated-values}
 
-When a customer installs your Helm chart from the Replicated registry, the Replicated registry injects values into the `global.replicated` field of the Helm chart values file. Additionally, when the Replicated SDK is installed alongside your application, the registry injects values into the `replicated-sdk` field. 
+When a customer installs your Helm chart from the Replicated registry, the Replicated registry injects values into the `global.replicated` field of the Helm chart values file. Additionally, when the Replicated SDK is installed alongside your application, the registry injects values into the `replicated` field.
 
-The Replicated SDK uses the values in the `replicated-sdk` field to initialize in a customer environment and to send information about the instance back to the vendor portal, such as the Kubernetes version and distribution of the cluster and the cloud provider where the instance is running.
+The Replicated SDK uses the values in the `replicated` field to initialize in a customer environment and to send information about the instance back to the vendor portal, such as the Kubernetes version and distribution of the cluster and the cloud provider where the instance is running.
 
-The following is an example of a Helm values file containing both the `global.replicated` and `replicated-sdk` fields injected by the Replicated registry:
+The following is an example of a Helm values file containing both the `global.replicated` and `replicated` fields injected by the Replicated registry:
 
 ```yaml
 # Helm values.yaml
@@ -77,7 +77,7 @@ global:
         valueType: String
     licenseID: YiIXRTjiB7R...
     licenseType: dev
-replicated-sdk:
+replicated:
   appName: my-app
   channelID: 2CBDxNwDH1xyYiIXRTjiB7REjKX
   channelName: Stable
@@ -104,7 +104,7 @@ The values in the `global.replicated` field provide information about the follow
 * Details about the fields in the customer's license, such as the field name, description, signature, value, and any custom license fields that you define.
 * A base64 encoded Docker configuration file. If you use the Replicated proxy service to proxy images from an external private registry, you can use the `global.replicated.dockerconfigjson` field to create an image pull secret for the proxy service. For more information, see [Proxying Images for Helm Installations](/vendor/helm-image-registry). 
 
-The values in the `replicated-sdk` field provide information about the following:
+The values in the `replicated` field provide information about the following:
 * The full customer license and the license ID
 * The target application release from the vendor portal
 
