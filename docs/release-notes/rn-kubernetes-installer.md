@@ -8,6 +8,20 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.09.07-0
+
+Released on September 7, 2023
+
+### New Features {#new-features-v2023-09-07-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.24.17.
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.12.3.
+* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.11.1.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.67.1-50.3.1.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-09-04T19-57-37Z.
+
+### Bug Fixes {#bug-fixes-v2023-09-07-0}
+* Improve the experience using Velero on OpenEBS with no object storage available by forcing the user to choose an out-of-cluster configuration instead of providing a broken default configuration.
+
 ## v2023.08.28-0
 
 Released on August 28, 2023
