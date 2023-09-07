@@ -8,6 +8,20 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.09.07-0
+
+Released on September 7, 2023
+
+### New Features {#new-features-v2023-09-07-0}
+* Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.24.17.
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.12.3.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.67.1-50.3.1.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-09-04T19-57-37Z.
+
+### Bug Fixes {#bug-fixes-v2023-09-07-0}
+* Velero 1.11.1 and later properly removes the 'restic' daemonset when upgrading. This is replaced by a new daemonset named 'node-agent'.
+* Velero 1.11.1 and later running with OpenEBS with no object storage creates no default backup location instead of a broken one.
+
 ## v2023.08.28-0
 
 Released on August 28, 2023
