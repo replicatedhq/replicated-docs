@@ -80,8 +80,5 @@ Released on August 4, 2023
 
 Released on July 28, 2023
 
-:::important
-v0.0.1-beta.1 of the Replicated SDK includes a name change that can cause existing integrations to break. For information about how to avoid this breaking change, see [Breaking Change](#breaking-changes-0-0-1-beta-1).
-:::
 ### Improvements {#improvements-0-0-1-beta-1}
 * Renames the SDK's Kubernetes resources and the library SDK chart from `replicated` to `replicated-sdk` to distinguish them from other replicated components.
