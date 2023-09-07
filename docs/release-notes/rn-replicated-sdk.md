@@ -8,6 +8,37 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.0.0-beta.6
+
+Released on September 7, 2023
+
+### New Features {#new-features-1-0-0-beta-6}
+
+Renames the SDK's Kubernetes resources and the library SDK chart from `replicated-sdk` to `replicated` to better align with standard SDK naming conventions.
+
+The `replicated-sdk` naming convention is still supported and existing integrations can continue to use `replicated-sdk` as the name of the SDK Kubernetes resources and SDK chart name. However, Replicated recommends that new integrations use the `replicated` naming convention.
+
+To update the naming convention of an existing integration from `replicated-sdk` to `replicated`, do the following before you upgrade to 1.0.0-beta.6 to avoid breaking changes:
+
+* Update the dependencies entry for the SDK in the parent chart:
+
+   ```yaml
+   dependencies:
+   - name: replicated
+     repository: oci://registry.replicated.com/library
+     version: 1.0.0-beta.6
+   ```
+
+* Update any requests to the SDK service in the cluster to use `replicated:3000` instead of `replicated-sdk:3000`.
+
+* Update any automation that references the installation command for integration mode to `helm install replicated oci://registry.replicated.com/library/replicated --version 1.0.0-beta.6`.
+
+* If the SDK's values are modified in the `values.yaml` file of the parent chart, change the field name for the SDK subchart in the `values.yaml` file from `replicated-sdk` to `replicated`.
+
+* Change the field name of any values that are provided at runtime to the SDK from `replicated-sdk` to `replicated`. For example, `--set replicated.integration.enabled=false`.
+
+For more information, see [About the Replicated SDK](/vendor/replicated-sdk-overview).
+
 ## 1.0.0-beta.5
 
 Released on September 1, 2023
