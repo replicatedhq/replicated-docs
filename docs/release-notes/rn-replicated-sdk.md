@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.0.0-beta.6
+
+Released on September 7, 2023
+
+### New Features {#new-features-1-0-0-beta-6}
+* TBD.
+
 ## 1.0.0-beta.5
 
 Released on September 1, 2023
