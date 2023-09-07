@@ -17,7 +17,7 @@ Released on September 7, 2023
 Renames the SDK's Kubernetes resources and the library SDK chart from `replicated-sdk` to `replicated`.
 Early beta adopters using `replicated-sdk` as the name of the SDK Kubernetes resources and SDK chart name are still supported. However, we recommend new integrations use the recommended `replicated` naming convention for these resources.
 
-Switching existing integrations to use the new `replicated` naming convention can cause them to break. To avoid this breaking change, do the following before upgrading:
+If an existing `replicated-sdk` integration desires to move to the newer `replicated` naming convention, the following updates should be made before upgrading to avoid introducing breaking changes:
 
 * Update the dependencies entry for the SDK in the parent chart:
 
