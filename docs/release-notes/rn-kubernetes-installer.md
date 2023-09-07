@@ -21,6 +21,7 @@ Released on September 7, 2023
 ### Bug Fixes {#bug-fixes-v2023-09-07-0}
 * Velero 1.11.1 and later properly removes the 'restic' daemonset when upgrading. This is replaced by a new daemonset named 'node-agent'.
 * Velero 1.11.1 and later running with OpenEBS with no object storage creates no default backup location instead of a broken one.
+* Fixes an issue when merging an Installer patch file containing HostPreflights definitions.
 
 ## v2023.08.28-0
 
