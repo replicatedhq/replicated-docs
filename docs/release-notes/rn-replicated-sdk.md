@@ -14,10 +14,11 @@ Released on September 7, 2023
 
 ### New Features {#new-features-1-0-0-beta-6}
 
-Renames the SDK's Kubernetes resources and the library SDK chart from `replicated-sdk` to `replicated`.
-Early beta adopters using `replicated-sdk` as the name of the SDK Kubernetes resources and SDK chart name are still supported. However, we recommend new integrations use the recommended `replicated` naming convention for these resources.
+Renames the SDK's Kubernetes resources and the library SDK chart from `replicated-sdk` to `replicated` to better align with standard SDK naming conventions.
 
-If an existing `replicated-sdk` integration desires to move to the newer `replicated` naming convention, the following updates should be made before upgrading to avoid introducing breaking changes:
+The `replicated-sdk` naming convention is still supported and existing integrations can continue to use `replicated-sdk` as the name of the SDK Kubernetes resources and SDK chart name. However, Replicated recommends that new integrations use the `replicated` naming convention.
+
+To update the naming convention of an existing integration from `replicated-sdk` to `replicated`, do the following before you upgrade to 1.0.0-beta.6 to avoid breaking changes:
 
 * Update the dependencies entry for the SDK in the parent chart:
 
