@@ -42,7 +42,7 @@ You can use both `cluster create` and `cluster prepare` to provision clusters. T
   The following example creates a kind cluster and installs a Helm chart in the cluster using the `nginx-chart-0.0.14.tgz` chart archive:
 
   ```bash
-  replicated cluster cluster prepare \
+  replicated cluster prepare \
     --distribution kind \
     --version 1.27.0 \
     --chart nginx-chart-0.0.14.tgz \
