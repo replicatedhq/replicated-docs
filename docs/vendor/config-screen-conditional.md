@@ -4,31 +4,27 @@ This topic describes how to use Replicated template functions in the Config cust
 
 ## Overview
 
-The `when` property in the Config custom resource denotes configuration fields that are displayed on the admin console **Config** page only when a condition evaluates to true. When the condition evaluates to false, the field is not displayed. 
+The `when` property in the Config custom resource denotes configuration fields that are displayed on the admin console **Config** page only when a condition evaluates to true. When the condition evaluates to false, the field is not displayed. It can be useful to show or hide fields so that your users are only provided the options that are relevant to them. This helps to reduce user error when configuring your application.
 
-It can be useful to show or hide fields on the **Config** page so that your users are only provided the options that are relevant to them. This helps to reduce user error when configuring the application.
-
-You can show or hide configuration fields based on the user's environment, license entitlements, and preferences. For example, fields can be shown or hidden based on:
+You can show or hide configuration fields based on the user's environment, license entitlements, and preferences. For example, conditional statements in the `when` property can be used to evaluate:
 * The Kubernetes distribution of the cluster
 * If the license includes a specific feature entitlement
 * The number of users that the license permits
 * If the user chooses to bring their own external database, rather than using an embedded database offered with the application
 
-For more information about the `when` property of the Config custom resource, see [when](/reference/custom-resource-config#when) in _Config_.
+You can construct conditional statements in the `when` property using Replicated template functions. Replicated template functions are a set of custom template functions based on the Go text/template library that can be used to generate values specific to customer environments. For more information about Replicated template functions, including a full list of available template functions, see [About Template Functions](/reference/template-functions-about).
+
+For more information about the Config custom resource `when` property, see [when](/reference/custom-resource-config#when) in _Config_.
 
 ## Conditional Statement Examples
 
-This section includes examples of common types of conditional statements that you can add to the `when` property to show or hide configuration fields. The examples in this section use Replicated template functions and Go functions to construct conditional statements. 
-
-For more information about Replicated template functions, including a full list of available template functions, see [About Template Functions](/reference/template-functions-about). For more information about the syntax of Go template functions, see the [Go documentation](https://pkg.go.dev/text/template).
+This section includes examples of common types of `when` property conditional statements that use Replicated template functions. 
 
 ### Cluster Distribution Check
 
-The Distribution template function returns the Kubernetes distribution of the cluster where KOTS is running, such as GKE, OpenShift, or EKS. It can be useful to show or hide fields related to the distribution of the user's cluster because different distributions often have unique configuration requirements.
+The Distribution template function returns the Kubernetes distribution of the cluster where Replicated KOTS is running. It can be useful to show or hide fields depending on the distribution of the user's cluster because different distributions often have unique configuration requirements. For more information about the Distribution template function, see [Distribution](/reference/template-functions-static-context#distribution) in _Static Context_.
 
-The following example shows conditional statements that use the Distribution template function to show or hide fields based on the distribution of the cluster.
-
-For more information, including the possible return values of the Distribution template function, see [Distribution](/reference/template-functions-static-context#distribution) in _Static Context_.
+In the following Config custom resource example, the conditional statements in the `when` properties evaluate to true when the distribution of the cluster matches the specified distribution:
 
 ```yaml
 # Config custom resource
@@ -57,17 +53,17 @@ spec:
       ...
 ```
 
+Based on the Config custom resource above, the following shows how the **Config** page renders for users running KOTS in a GKE cluster:
+
 ![Config page with the text "You are deploying to GKE"](/images/config-example-distribution-gke.png)
 
 [View a larger version of this image](/images/config-example-distribution-gke.png)
 
 ### kURL Cluster Check
 
-The IsKurl template function evaluates to true if the cluster was provisioned using Replicated kURL. 
+The IsKurl template function evaluates to true if the cluster was provisioned by Replicated kURL. For more information, see [IsKurl](/reference/template-functions-static-context#iskurl) in _Static Context_.
 
-The following example shows an ingress configuration field that displays on the **Config** page only when the cluster is _not_ provisioned by kURL. For kURL clusters, the user is _not_ shown the ingress configuration options and the cluster uses the ingress controller specified in the Kubernetes installer manifest.  
-
-For more information, see [IsKurl](/reference/template-functions-static-context#iskurl) in _Static Context_.
+In the following Config custom resource example, an ingress configuration field that displays on the **Config** page only when the cluster is _not_ provisioned by kURL. For kURL clusters, the user is _not_ shown the ingress configuration options and the cluster uses the ingress controller specified in the Kubernetes installer manifest.
 
 ```yaml
 # Config custom resource
@@ -80,23 +76,17 @@ spec:
   - name: ingress_settings
     title: Ingress Settings
     description: Configure Ingress
+    when: 'repl{{ not IsKurl }}'
     items:
-    - name: ingress_type
-      title: Ingress Type
-      help_text: | 
-        Select how traffic will ingress to the appliction. The Ingress Controller option will create an Ingress object, 
-        and Load Balancer will configure the applicaiton's Kubernetes service to be of type LoadBalancer.
-      type: select_one
-      items:
-      - name: ingress_controller
-        title: Ingress Controller
-      - name: load_balancer
-        title: Load Balancer
-      default: "ingress_controller"
-      required: true
-      # display the field only if KOTS is not running in a kURL cluster
-      when: 'repl{{ not IsKurl }}'
-      ...
+    - name: ingress_controller
+      title: Ingress Controller
+      type: text
+     - name: determined_ingress_annotations
+      type: textarea
+      title: Ingress Annotations
+      help_text: See your ingress controller’s documentation for the required annotations.
+      when: 'repl{{ and (not IsKurl) (ConfigOptionEquals "determined_ingress_type" "ingress_controller") }}'  
+    ...
 ```
 
 ### License Field Value Equality Check
@@ -274,3 +264,11 @@ spec:
       help_text: See your cloud provider’s documentation for the required annotations.
       when: 'repl{{ and (not IsKurl) (ConfigOptionEquals "determined_ingress_type" "load_balancer") }}'
 ```
+
+![Config page displaying the ingress controller options](/images/config-example-ingress-controller.png)
+
+[View a larger version of this image](/images/config-example-ingress-controller.png)
+
+![Config page displaying the load balancer options](/images/config-example-ingress-load-balancer.png)
+
+[View a larger version of this image](/images/config-example-ingress-load-balancer.png)
