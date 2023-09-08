@@ -156,6 +156,18 @@ metadata:
       repl{{if ConfigOptionEquals "custom_annotation" "1" }}repl{{ printf "my.custom/annotation.class: %s" (ConfigOption "annotation_class") | nindent 4 }}repl{{end}}
 ```
 
+You can map multiple annotations from a single [textarea](/reference/custom-resource-config#textarea) config option value as part of the annotation value, for example:
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: example-annotation
+  annotations:
+    kots.io/placeholder: |-
+      repl{{ ConfigOption "additional_annotations" | nindent 4 }}
+```
+
 You can specify multiple annotations using the same placeholder annotation:
 
 ```yaml
@@ -168,4 +180,3 @@ metadata:
       repl{{if ConfigOptionEquals "custom_annotation" "1" }}repl{{ printf "my.custom/annotation.class: somevalue" | nindent 4 }}repl{{end}}
       repl{{if ConfigOptionEquals "enable_ingress" "1" }}repl{{ printf "my.custom/annotation.ingress.hostname: %s" (ConfigOption "ingress_hostname") | nindent 4 }}repl{{end}}
 ```
-
