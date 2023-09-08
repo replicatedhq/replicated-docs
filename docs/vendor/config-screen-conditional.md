@@ -16,17 +16,54 @@ You can show or hide configuration fields based on the user's environment, licen
 
 For more information about the `when` property of the Config custom resource, see [when](/reference/custom-resource-config#when) in _Config_.
 
-## Types of Conditional Statements
+## Conditional Statement Examples
 
 This section includes examples of common types of conditional statements that you can add to the `when` property to show or hide configuration fields. The examples in this section use Replicated template functions and Go functions to construct conditional statements. 
 
 For more information about Replicated template functions, including a full list of available template functions, see [About Template Functions](/reference/template-functions-about). For more information about the syntax of Go template functions, see the [Go documentation](https://pkg.go.dev/text/template).
 
-### Kubernetes Distributions
+### Cluster Distribution Check
 
-The Distribution template function returns the Kubernetes distribution of the cluster where KOTS is running, such as GKE, OpenShift, or EKS. The IsKurl template function evaluates to true if the cluster was provisioned using Replicated kURL. It can be useful to show or hide fields related to the distribution of the user's cluster because different distributions often have unique configuration requirements.
+The Distribution template function returns the Kubernetes distribution of the cluster where KOTS is running, such as GKE, OpenShift, or EKS. It can be useful to show or hide fields related to the distribution of the user's cluster because different distributions often have unique configuration requirements.
 
-#### IsKurl Template Function
+The following example shows conditional statements that use the Distribution template function to show or hide fields based on the distribution of the cluster.
+
+For more information, including the possible return values of the Distribution template function, see [Distribution](/reference/template-functions-static-context#distribution) in _Static Context_.
+
+```yaml
+# Config custom resource
+apiVersion: kots.io/v1beta1
+kind: Config
+metadata:
+  name: config-sample
+spec:
+  groups:
+    - name: example_settings
+      title: My Example Config
+      description: Example fields for using Distribution template function
+      items:
+      - name: gke-description
+        type: label
+        title: "You are deploying to GKE"
+        when: 'repl{{ eq Distribution "gke" }}'
+      - name: kurl-description
+        type: label
+        title: "You are deploying to kURL"
+        when: 'repl{{ eq Distribution "kurl" }}'
+      - name: eks-description
+        type: label
+        title: "You are deploying to EKS"
+        when: 'repl{{ eq Distribution "eks" }}'
+      ...
+```
+
+![Config page with the text "You are deploying to GKE"](/images/config-example-distribution-gke.png)
+
+[View a larger version of this image](/images/config-example-distribution-gke.png)
+
+### kURL Cluster Check
+
+The IsKurl template function evaluates to true if the cluster was provisioned using Replicated kURL. 
 
 The following example shows an ingress configuration field that displays on the **Config** page only when the cluster is _not_ provisioned by kURL. For kURL clusters, the user is _not_ shown the ingress configuration options and the cluster uses the ingress controller specified in the Kubernetes installer manifest.  
 
@@ -62,42 +99,7 @@ spec:
       ...
 ```
 
-#### Distribution Template Function
-
-The following example shows conditional statements that use the Distribution template function to show or hide fields based on the distribution of the cluster.
-
-For more information, including the possible return values of the Distribution template function, see [Distribution](/reference/template-functions-static-context#distribution) in _Static Context_.
-
-```yaml
-# Config custom resource
-apiVersion: kots.io/v1beta1
-kind: Config
-metadata:
-  name: config-sample
-spec:
-  groups:
-    - name: example_settings
-      title: My Example Config
-      description: Example fields for using Distribution template function
-      items:
-      - name: gke-description
-        type: label
-        title: "You are deploying to GKE"
-        when: 'repl{{ eq Distribution "gke" }}'
-      - name: kurl-description
-        type: label
-        title: "You are deploying to kURL"
-        when: 'repl{{ eq Distribution "kurl" }}'
-      - name: eks-description
-        type: label
-        title: "You are deploying to EKS"
-        when: 'repl{{ eq Distribution "eks" }}'
-      ...
-```
-
-![Config page with the text "You are deploying to GKE"](/images/config-example-distribution-gke.png)
-
-### License Fields
+### License Field Value Equality Check
 
 You can conditionally show and hide options on the **Config** screen for users depending on the values of fields in the customer's license file.
 
@@ -120,7 +122,13 @@ spec:
         when: '{{repl (LicenseFieldValue "newFeature") }}'
 ```
 
-The following example shows 
+![Config page displaying the text "You have the new feature entitlement"](/images/config-example-newfeature.png)
+
+[View a larger version of this image](/images/config-example-newfeature.png)
+
+### License Field Value Integer Comparison
+
+The following example shows comparing integer values from the customer's license:
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -133,16 +141,27 @@ spec:
     title: Example Config
     items:
     - name: small
-      title: Less Than 101 Seats
+      title: Small (100 or Fewer Seats)
       type: text
-      when: '{{repl lt (LicenseFieldValue "numSeats") "101" }}'
+      default: Default for small teams
+      when: '{{repl le (atoi (LicenseFieldValue "numSeats")) 100 }}'
+    - name: medium
+      title: Medium (101-1000 Seats)
+      type: text
+      default: Default for medium teams
+      when: '{{repl (and (ge (atoi (LicenseFieldValue "numSeats")) 101) (le (atoi (LicenseFieldValue "numSeats")) 1000)) }}'
     - name: large
-      title: Greater Than 100 Seats
+      title: Large (More Than 1000 Seats)
       type: text
-      when: '{{repl gt (LicenseFieldValue "numSeats") "100" }}'
+      default: Default for large teams
+      when: '{{repl gt (atoi (LicenseFieldValue "numSeats")) 1000 }}'
 ```
 
-### User Selections
+![Config page displaying the Medium (101-1000 Seats) item](/images/config-example-numseats.png)
+
+[View a larger version of this image](/images/config-example-numseats.png)
+
+### User-Supplied Value Equality Check
 
 The ConfigOptionEquals template function evaluates to true when the specified configuration option value is equal to the value that the user selects. This is useful when you want to show or hide a field or a group of fields based on a selection that the user makes. 
 
@@ -177,7 +196,7 @@ spec:
       when: '{{repl (ConfigOptionEquals "db_type" "external")}}'
 ```
 
-## Use Multiple Conditions
+## Include Multiple Conditions in the `when` Property
 
 You can combine different types of template functions in the `when` property to create more complex conditional statements. 
 
