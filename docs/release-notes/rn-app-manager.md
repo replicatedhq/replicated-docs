@@ -23,7 +23,7 @@ Released on September 8, 2023
 Support for Kubernetes: 1.25, 1.26, 1.27, and 1.28
 
 ### Bug Fixes {#bug-fixes-1-102-1}
-* Fixes an issue where uploading the application air gap bundle could fail due to a permissions issue when creating files under the `/tmp` directory inside the `kotsadm` pod/container. This is only applicable to embedded cluster installs.
+* Fixes an issue where uploading the application air gap bundle could fail due to a permissions issue when creating files under the `/tmp` directory inside the `kotsadm` pod/container. This is only applicable to embedded cluster installations with Replicated kURL.
 
 ## 1.102.0
 
