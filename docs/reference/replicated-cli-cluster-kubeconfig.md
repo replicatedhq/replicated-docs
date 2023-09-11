@@ -18,6 +18,11 @@ replicated cluster kubeconfig ID [flags]
   </tr>
   <Help/>
   <tr>
+    <td>--id</td>
+    <td>string</td>
+    <td>The ID of the cluster to download credentials for, when the a name is not specified.</td>
+  </tr>
+  <tr>
     <td>--name</td>
     <td>string</td>
     <td>The name of the cluster to download credentials for, when an ID is not provided.</td>
