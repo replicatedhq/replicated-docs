@@ -55,6 +55,16 @@ You can use both `cluster create` and `cluster prepare` to provision clusters. T
 
   For command usage, see [cluster prepare](/reference/replicated-cli-cluster-prepare) in the _replicated CLI_ reference.
 
+* `cluster upgrade`: Upgrades an existing cluster version. A recommended use case for the `cluster upgrade` command is for testing your application's compatibility with Kubernetes API resource version migrations post upgrade in CD workflows that release your software to customers.
+
+  The following example upgrades a kURL cluster from its previous version to version 9d5a44c.
+
+  ```bash
+  replicated cluster upgrade upgrade cabb74d5 --version 9d5a44c
+  ```
+
+  For command usage, see [cluster upgrade](/reference/replicated-cli-cluster-upgrade) in the _replicated CLI_ reference.
+
 ## Setting TTL
 
 To help you manage costs, compatibility matrix clusters have a Time To Live (TTL) mechanism, using the `--ttl` flag. By default, the TTL is one hour, but you can configure it to a minimum of 10 minutes and a maximum of 48 hours. When the TTL expires, the cluster is automatically deleted. The TTL countdown does not begin until a cluster is in the Ready state.

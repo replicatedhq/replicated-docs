@@ -7,7 +7,7 @@ Download the credentials for a test cluster.
 ## Usage
 
 ```bash
-replicated cluster kubeconfig [flags]
+replicated cluster kubeconfig ID [flags]
 ```
 
   <table>
@@ -17,11 +17,6 @@ replicated cluster kubeconfig [flags]
     <th width="50%">Description</th>
   </tr>
   <Help/>
-  <tr>
-    <td>--id</td>
-    <td>string</td>
-    <td>The ID of the cluster to download credentials for, when the a name is not specified.</td>
-  </tr>
   <tr>
     <td>--name</td>
     <td>string</td>
