@@ -10,10 +10,9 @@ The following limitations apply when using the compatibility matrix:
 
 - Clusters cannot be resized. Create another cluster if you want to make changes, such as add another node.
 - On cloud clusters, only one node group per cluster is supported.
-- Multi-node support is only available for GKE and EKS
-- OpenShift builds take approximately 17 minutes
-- OpenShift does not support r1.small instance types
-- There is no support for IPv6
+- Multi-node support is available only for GKE and EKS.
+- OpenShift does not support r1.small instance types.
+- There is no support for IPv6.
 
 ## Prerequisites
 
