@@ -18,13 +18,13 @@ You can construct conditional statements in the `when` property using Replicated
 
 ## Conditional Statement Examples
 
-This section includes examples of common types of conditional statements that use Replicated template functions to include in the `when` property of the Config custom resource. 
+This section includes examples of common types of conditional statements used in the `when` property of the Config custom resource. 
 
 ### Cluster Distribution Check
 
 It can be useful to show or hide configuration fields depending on the distribution of the cluster because different distributions often have unique requirements.
 
-In the following example, the `when` properties use the Distribution template function to return the Kubernetes distribution of the cluster where Replicated KOTS is running. If the distribution of the cluster matches the specified distribution, the `when` property evaluate to true. For more information about the Distribution template function, see [Distribution](/reference/template-functions-static-context#distribution) in _Static Context_.
+In the following example, the `when` properties use the Distribution template function to return the Kubernetes distribution of the cluster where Replicated KOTS is running. If the distribution of the cluster matches the specified distribution, then the `when` property evaluates to true. For more information about the Distribution template function, see [Distribution](/reference/template-functions-static-context#distribution) in _Static Context_.
 
 ```yaml
 # Config custom resource
