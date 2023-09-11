@@ -57,6 +57,7 @@ const sidebars = {
           'vendor/config-screen-about',
           'vendor/admin-console-customize-config-screen',
           'vendor/config-screen-map-inputs',
+          'vendor/config-screen-conditional',
           'vendor/helm-mapping-example',
       ],
     },
