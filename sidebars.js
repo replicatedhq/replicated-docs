@@ -652,6 +652,7 @@ const sidebars = {
         'reference/replicated-cli-cluster-ls',
         'reference/replicated-cli-cluster-prepare',
         'reference/replicated-cli-cluster-rm',
+        'reference/replicated-cli-cluster-upgrade',
         'reference/replicated-cli-completion',
         'reference/replicated-cli-completion-bash',
         'reference/replicated-cli-completion-fish',
