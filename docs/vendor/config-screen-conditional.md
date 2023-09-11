@@ -18,7 +18,9 @@ You can construct conditional statements in the `when` property using Replicated
 
 ## Conditional Statement Examples
 
-This section includes examples of common types of conditional statements used in the `when` property of the Config custom resource. 
+This section includes examples of common types of conditional statements used in the `when` property of the Config custom resource.
+
+For additional examples of using conditional statements in the Config custom resource, see [Applications](https://github.com/replicatedhq/platform-examples/tree/main/applications) in the platform-examples repository in GitHub.
 
 ### Cluster Distribution Check
 
@@ -231,13 +233,12 @@ spec:
   groups:  
   - name: ingress_settings
     title: Ingress Settings
-    description: Configure Ingress for Determined
+    description: Configure Ingress
     items:
-    - name: determined_ingress_type
-      title: Determined Ingress Type
+    - name: ingress_type
+      title: Ingress Type
       help_text: | 
-        Select how traffic will ingress to the Determined appliction. The Ingress Controller option will create an Ingress object, 
-        and Load Balancer will configure Determined's Kubernetes service to be of type LoadBalancer.
+        Select how traffic will ingress to the appliction.
       type: select_one
       items:
       - name: ingress_controller
@@ -247,20 +248,20 @@ spec:
       default: "ingress_controller"
       required: true
       when: 'repl{{ not IsKurl }}'
-    - name: determined_ingress_host
-      title: Determined Hostname
-      help_text: Hostname which will be used to access Determined
+    - name: ingress_host
+      title: Hostname
+      help_text: Hostname used to access the application.
       type: text
-      default: "determined.example.com"
+      default: "hostname.example.com"
       required: true
-      when: 'repl{{ and (not IsKurl) (ConfigOptionEquals "determined_ingress_type" "ingress_controller") }}'
-    - name: determined_ingress_annotations
+      when: 'repl{{ and (not IsKurl) (ConfigOptionEquals "ingress_type" "ingress_controller") }}'
+    - name: ingress_annotations
       type: textarea
       title: Ingress Annotations
       help_text: See your ingress controller’s documentation for the required annotations.
-      when: 'repl{{ and (not IsKurl) (ConfigOptionEquals "determined_ingress_type" "ingress_controller") }}'
-    - name: determined_ingress_tls_type
-      title: Determined Ingress TLS Type
+      when: 'repl{{ and (not IsKurl) (ConfigOptionEquals "ingress_type" "ingress_controller") }}'
+    - name: ingress_tls_type
+      title: Ingress TLS Type
       type: select_one
       items:
       - name: self_signed
@@ -269,29 +270,29 @@ spec:
         title: User Provided (Upload a TLS Certificate and Key Pair)
       required: true
       default: self_signed
-      when: 'repl{{ and (not IsKurl) (ConfigOptionEquals "determined_ingress_type" "ingress_controller") }}'
-    - name: determined_ingress_tls_cert
-      title: Determined TLS Cert
+      when: 'repl{{ and (not IsKurl) (ConfigOptionEquals "ingress_type" "ingress_controller") }}'
+    - name: ingress_tls_cert
+      title: TLS Cert
       type: file
-      when: '{{repl and (ConfigOptionEquals "determined_ingress_type" "ingress_controller") (ConfigOptionEquals "determined_ingress_tls_type" "user_provided") }}'
+      when: '{{repl and (ConfigOptionEquals "ingress_type" "ingress_controller") (ConfigOptionEquals "ingress_tls_type" "user_provided") }}'
       required: true
-    - name: determined_ingress_tls_key
-      title: Determined TLS Key
+    - name: ingress_tls_key
+      title: TLS Key
       type: file
-      when: '{{repl and (ConfigOptionEquals "determined_ingress_type" "ingress_controller") (ConfigOptionEquals "determined_ingress_tls_type" "user_provided") }}'
+      when: '{{repl and (ConfigOptionEquals "ingress_type" "ingress_controller") (ConfigOptionEquals "ingress_tls_type" "user_provided") }}'
       required: true
-    - name: determined_load_balancer_port
+    - name: load_balancer_port
       title: Load Balancer Port
-      help_text: Port which will be used to access Determined via the Load Balancer
+      help_text: Port used to access the application through the Load Balancer.
       type: text
       default: "443"
       required: true
-      when: 'repl{{ and (not IsKurl) (ConfigOptionEquals "determined_ingress_type" "load_balancer") }}'
-    - name: determined_load_balancer_annotations
+      when: 'repl{{ and (not IsKurl) (ConfigOptionEquals "ingress_type" "load_balancer") }}'
+    - name: load_balancer_annotations
       type: textarea
       title: Load Balancer Annotations
       help_text: See your cloud provider’s documentation for the required annotations.
-      when: 'repl{{ and (not IsKurl) (ConfigOptionEquals "determined_ingress_type" "load_balancer") }}'
+      when: 'repl{{ and (not IsKurl) (ConfigOptionEquals "ingress_type" "load_balancer") }}'
 ```
 
 As shown in the image below, the configuration fields that are specific to the ingress controller display only when the user selects the ingress controller option and KOTS is _not_ running in a kURL cluster:
