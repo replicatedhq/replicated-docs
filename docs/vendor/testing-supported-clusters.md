@@ -66,7 +66,7 @@ The compatibility matrix supports creating [k3s](https://k3s.io) clusters.
   </tr>  
   <tr>
     <th>Limitations</th>
-    <td>You can only choose a minor version, not a patch version. The K3s installer chooses the latest patch for that minor version. See <a href="https://docs.k3s.io/upgrades/manual">k3s</a>.<br></br><br></br>For additional limitations, see <a href="testing-how-to#limitations">Limitations</a>.</td>
+    <td>You can only choose a minor version, not a patch version. The K3s installer chooses the latest patch for that minor version. See <a href="https://docs.k3s.io/upgrades/manual">Manual Upgrades</a> in the k3s documentation.<br></br><br></br>For additional limitations that apply to all distributions, see <a href="testing-how-to#limitations">Limitations</a>.</td>
   </tr>
   <tr>
     <th>Common Use Cases</th>
@@ -97,7 +97,13 @@ The compatibility matrix supports creating [Red Hat OpenShift OKD](https://www.o
   </tr>
   <tr>
     <th>Limitations</th>
-    <td>See <a href="testing-how-to#limitations">Limitations</a></td>
+    <td>
+      <ul>
+      <li>OpenShift does not support r1.small instance types.</li>
+      <li>OpenShift builds take approximately 17 minutes.</li>
+      </ul>
+      <p>For additional limitations that apply to all distributions, see <a href="testing-how-to#limitations">Limitations</a>.</p>
+    </td>
   </tr> 
   <tr>
     <th>Common Use Cases</th>
@@ -160,7 +166,7 @@ The compatibility matrix supports creating [kURL](https://kurl.sh) clusters.
   </tr>  
   <tr>
     <th>Limitations</th>
-    <td><p>Does not work with the <a href="https://kurl.sh/docs/add-ons/longhorn">Longhorn add-on</a>.</p><p>For additional limitations, see <a href="testing-how-to#limitations">Limitations</a>.</p></td>
+    <td><p>Does not work with the <a href="https://kurl.sh/docs/add-ons/longhorn">Longhorn add-on</a>.</p><p>For additional limitations that apply to all distributions, see <a href="testing-how-to#limitations">Limitations</a>.</p></td>
   </tr>
   <tr>
     <th>Common Use Cases</th>
@@ -195,7 +201,7 @@ The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/
   </tr>
   <tr>
     <th>Limitations</th>
-    <td><p>You can only choose a minor version, not a patch version. The EKS installer chooses the latest patch for that minor version.</p><p>For additional limitations, see <a href="testing-how-to#limitations">Limitations</a>.</p></td>
+    <td><p>You can only choose a minor version, not a patch version. The EKS installer chooses the latest patch for that minor version.</p><p>For additional limitations that apply to all distributions, see <a href="testing-how-to#limitations">Limitations</a>.</p></td>
   </tr>
   <tr>
     <th>Common Use Cases</th>
@@ -226,7 +232,7 @@ The compatibility matrix supports creating [Google GKE](https://cloud.google.com
   </tr>
   <tr>
     <th>Limitations</th>
-    <td>You can only choose a minor version, not a patch version. The GKE installer chooses the latest patch for that minor version.<br></br><br></br>For additional limitations, see <a href="testing-how-to#limitations">Limitations</a>.</td>
+    <td><p>You can choose only a minor version, not a patch version. The GKE installer chooses the latest patch for that minor version.</p><p>For additional limitations that apply to all distributions, see <a href="testing-how-to#limitations">Limitations</a>.</p></td>
   </tr>
   <tr>
     <th>Common Use Cases</th>
