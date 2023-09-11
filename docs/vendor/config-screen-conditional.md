@@ -1,30 +1,30 @@
 # Using Conditional Statements in Configuration Fields
 
-This topic describes how to use Replicated template functions in the Config custom resource to conditionally show or hide configuration options for your application on the Replicated admin console **Config** page.
+This topic describes how to use Replicated template functions in the Config custom resource to conditionally show or hide configuration fields for your application on the Replicated admin console **Config** page.
 
 ## Overview
 
-The `when` property in the Config custom resource denotes configuration fields that are displayed on the admin console **Config** page only when a condition evaluates to true. When the condition evaluates to false, the field is not displayed. It can be useful to show or hide fields so that your users are only provided the options that are relevant to them. This helps to reduce user error when configuring your application.
+The `when` property in the Config custom resource denotes configuration items that are displayed on the admin console **Config** page only when a condition evaluates to true. When the condition evaluates to false, the field is not displayed. It can be useful to show or hide fields so that your users are only provided the configuration options that are relevant to them. This helps to reduce user error when configuring the application.
 
-You can show or hide configuration fields based on the user's environment, license entitlements, and preferences. For example, conditional statements in the `when` property can be used to evaluate:
+You can conditionally show or hide configuration fields based on the user's environment, license entitlements, and preferences. For example, conditional statements in the `when` property can be used to evaluate:
 * The Kubernetes distribution of the cluster
 * If the license includes a specific feature entitlement
 * The number of users that the license permits
 * If the user chooses to bring their own external database, rather than using an embedded database offered with the application
 
-You can construct conditional statements in the `when` property using Replicated template functions. Replicated template functions are a set of custom template functions based on the Go text/template library that can be used to generate values specific to customer environments. For more information about Replicated template functions, including a full list of available template functions, see [About Template Functions](/reference/template-functions-about).
+For more information about the Config custom resource `when` property, see [when](/reference/custom-resource-config#when) in _Config_.
 
-For more information about the Config custom resource and the `when` property, see [when](/reference/custom-resource-config#when) in _Config_.
+You can construct conditional statements in the `when` property using Replicated template functions. Replicated template functions are a set of custom template functions based on the Go text/template library that can be used to generate values specific to customer environments. For more information about Replicated template functions, including a full list of available template functions, see [About Template Functions](/reference/template-functions-about). For more information about the Go library, see [text/template](https://pkg.go.dev/text/template) in the Go documentation.
 
 ## Conditional Statement Examples
 
-This section includes examples of common types of `when` property conditional statements that use Replicated template functions. 
+This section includes examples of common types of conditional statements that use Replicated template functions to include in the `when` property of the Config custom resource. 
 
 ### Cluster Distribution Check
 
-The Distribution template function returns the Kubernetes distribution of the cluster where Replicated KOTS is running. It can be useful to show or hide fields depending on the distribution of the user's cluster because different distributions often have unique configuration requirements. For more information about the Distribution template function, see [Distribution](/reference/template-functions-static-context#distribution) in _Static Context_.
+It can be useful to show or hide configuration fields depending on the distribution of the cluster because different distributions often have unique requirements.
 
-In the following example, the conditional statements in the `when` properties evaluate to true only when the distribution of the cluster matches the specified distribution:
+In the following example, the `when` properties use the Distribution template function to return the Kubernetes distribution of the cluster where Replicated KOTS is running. If the distribution of the cluster matches the specified distribution, the `when` property evaluate to true. For more information about the Distribution template function, see [Distribution](/reference/template-functions-static-context#distribution) in _Static Context_.
 
 ```yaml
 # Config custom resource
@@ -61,9 +61,9 @@ The following image shows how only the `gke_distribution` item is displayed on t
 
 ### kURL Cluster Check
 
-The IsKurl template function evaluates to true if the cluster was provisioned by Replicated kURL. This allows you to show or hide fields depending on if the cluster was provisioned by kURL. For more information, see [IsKurl](/reference/template-functions-static-context#iskurl) in _Static Context_.
+It can be useful to show or hide configuration fields if the cluster was provisioned by Replicated kURL because kURL distributions often include add-ons to manage functionality such as ingress and storage. This means that kURL clusters frequently have fewer configuration options for the end user.
 
-In the following example, the `when` property of the `not_kurl` group evaluates to true when the cluster is not provisioned by kURL:
+In the following example, the `when` property of the `not_kurl` group uses the IsKurl template function to evaluate if the cluster was provisioned by kURL. For more information about the IsKurl template function, see [IsKurl](/reference/template-functions-static-context#iskurl) in _Static Context_.
 
 ```yaml
 # Config custom resource
@@ -96,7 +96,7 @@ As shown in the image below, both the `all_distributions` and `non_kurl` groups 
 
 [View a larger version of this image](/images/config-example-iskurl-false.png)
 
-However, when KOTS is running in a kURL cluster, only `all_distributions` is displayed, as shown below:
+However, when KOTS is running in a kURL cluster, only the `all_distributions` group is displayed, as shown below:
 
 ![Config page displaying only the first group from the example](/images/config-example-iskurl-true.png)
 
@@ -104,9 +104,9 @@ However, when KOTS is running in a kURL cluster, only `all_distributions` is dis
 
 ### License Field Value Equality Check
 
-The LicenseFieldValue template function returns the value of a specified field from the license used to install. For more information, see [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) in _License Context_.
+You can show or hide configuration fields based on the values in a license to ensure that users only see configuration options for the features and entitlements granted by their license. 
 
-In the following example, the `when` property of the `new_feature` item evaluates to true only when the user's license contains a `newFeature` field that is set to `true`: 
+In the following example, the `when` property of the `new_feature_config` item uses the LicenseFieldValue template function to determine if the user's license contains a `newFeatureEntitlement` field that is set to `true`. For more information about the LicenseFieldValue template function, see [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) in _License Context_.
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -119,13 +119,13 @@ spec:
       title: My Example Config
       description: Example fields for using LicenseFieldValue template function
       items:
-      - name: new_feature
+      - name: new_feature_config
         type: label
         title: "You have the new feature entitlement"
-        when: '{{repl (LicenseFieldValue "newFeature") }}'
+        when: '{{repl (LicenseFieldValue "newFeatureEntitlement") }}'
 ```
 
-As shown in the image below, the **Config** page displays the `new_feature` item when the user's license contains `newFeature: true`:
+As shown in the image below, the **Config** page displays the `new_feature_config` item when the user's license contains `newFeatureEntitlement: true`:
 
 ![Config page displaying the text "You have the new feature entitlement"](/images/config-example-newfeature.png)
 
@@ -133,9 +133,11 @@ As shown in the image below, the **Config** page displays the `new_feature` item
 
 ### License Field Value Integer Comparison
 
-You can use the LicenseFieldValue template function to evaluate integer values from a license. 
+You can show or hide configuration fields based on the values in a license to ensure that users only see configuration options for the features and entitlements granted by their license. You can also compare integer values from license fields to control the configuration experience for your users.
 
-The following example shows how to evaluate integer values from a license:
+The following example uses the LicenseFieldValue template function to evaluate the number of seats permitted by the license. This example also uses the Atoi function in the strconv Go package to convert the string values from the license to integers, then uses Go binary comparison operators to compare the integers.
+
+For more information about the LicenseFieldValue template function, see [LicenseFieldValue](/reference/template-functions-license-context#licensefieldvalue) in _License Context_. For more information about Atoi, see [strconv](https://pkg.go.dev/strconv) in the Go documentation.
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -164,17 +166,17 @@ spec:
       when: '{{repl gt (atoi (LicenseFieldValue "numSeats")) 1000 }}'
 ```
 
-As shown in the image below, if the user's license contains `numSeats: 150`, then the `medium` item is displayed on the **Config** page:
+As shown in the image below, if the user's license contains `numSeats: 150`, then the `medium` item is displayed on the **Config** page and the `small` and `large` items are not displayed:
 
 ![Config page displaying the Medium (101-1000 Seats) item](/images/config-example-numseats.png)
 
 [View a larger version of this image](/images/config-example-numseats.png)
 
-### User-Supplied Value Equality Check
+### User-Supplied Value Check
 
-The ConfigOptionEquals template function evaluates to true when the specified configuration option value is equal to the value that the user selects. This is useful when you want to show or hide a field or a group of fields based on a selection that the user makes. For more information, see [ConfigOptionEquals](/reference/template-functions-license-context#configoptionequals) in _Config Context_. 
+You can show or hide configuration fields based on user-supplied values on the **Config** page to ensure that users only see options that are relevant to their selections.
 
-In the following example, the user can select the external or embedded database option. The configuration fields relevant to each option are displayed only when the user selects the option:
+In the following example, the `database_host` and `database_passwords` items use the ConfigOptionEquals template function to evaluate if the user selected the `external` database option for the `db_type` item. For more information about the ConfigOptionEquals template function, see [ConfigOptionEquals](/reference/template-functions-config-context#configoptionequals) in _Config Context_.
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -204,15 +206,23 @@ spec:
       type: password
       when: '{{repl (ConfigOptionEquals "db_type" "external")}}'
 ```
+As shown in the images below, when the user selects the external database option, the `database_host` and `database_passwords` items are displayed. Alternatively, when the user selects the embedded database option, the items are _not_ displayed:
 
-## Include Multiple Conditions in the `when` Property
+![Config page displaying the database host and password fields](/images/config-example-external-db.png)
 
-You can combine different types of template functions in the `when` property to create more complex conditional statements. 
+[View a larger version of this image](/images/config-example-external-db.png)
 
-The following example shows how to combine a conditional statement that uses the IsKurl template function with a second conditional statement that uses the ConfigOptionEquals template function.
+![Config page with embedded database option selected](/images/config-example-embedded-db.png)
+
+[View a larger version of this image](/images/config-example-embedded-db.png)
+
+## Use Multiple Conditions in the `when` Property
+
+You can use more than one template function in the `when` property to create more complex conditional statements. This allows you to show or hide configuration fields based on multiple conditions being true.
+
+The following example includes `when` properties that use both the ConfigOptionEquals and IsKurl template functions:
 
 ```yaml
-# Config custom resource
 apiVersion: kots.io/v1beta1
 kind: Config
 metadata:
@@ -284,13 +294,13 @@ spec:
       when: 'repl{{ and (not IsKurl) (ConfigOptionEquals "determined_ingress_type" "load_balancer") }}'
 ```
 
-As shown in the image below, the configuration fields that are specific to the ingress controller options display only when the user selects the ingress controller option and KOTS is not running in a kURL cluster:
+As shown in the image below, the configuration fields that are specific to the ingress controller display only when the user selects the ingress controller option and KOTS is _not_ running in a kURL cluster:
 
 ![Config page displaying the ingress controller options](/images/config-example-ingress-controller.png)
 
 [View a larger version of this image](/images/config-example-ingress-controller.png)
 
-Similarly, the options relevant to the load balancer option display when the user selects that option:
+Additionally, the options relevant to the load balancer display when the user selects the load balancer option and KOTS is _not_ running in a kURL cluster:
 
 ![Config page displaying the load balancer options](/images/config-example-ingress-load-balancer.png)
 
