@@ -18,17 +18,17 @@ replicated cluster upgrade ID [flags]
   </tr>
   <Help/>
   <tr>
-    <td>--dry-run</td>
+    <td><code>--dry-run</code></td>
     <td></td>
     <td>The dry run option runs a simulated test to verify that your inputs are valid without actually creating a cluster.</td>
   </tr>
   <tr>
-    <td>--version</td>
+    <td><code>--version</code></td>
     <td>string</td>
     <td>(Required) Kubernetes version to upgrade to (format is distribution dependent). For supported versions, see <a href="/vendor/testing-supported-clusters">Supported Clusters and Requirements (Beta)</a>.</td>
   </tr>
   <tr>
-    <td>--wait</td>
+    <td><code>--wait</code></td>
     <td>duration</td>
     <td>Wait duration for cluster to be ready (leave empty to not wait)</td>
   </tr>
@@ -36,8 +36,8 @@ replicated cluster upgrade ID [flags]
 
 ## Examples
 
-- For a kURL distribution:
+For a kURL distribution:
 
-  ```bash
-  replicated cluster upgrade upgrade cabb74d5 --version 9d5a44c
-  ```
+```bash
+replicated cluster upgrade upgrade cabb74d5 --version 9d5a44c
+```
