@@ -4,31 +4,27 @@ This topic describes how to use Replicated KOTS annotations and Replicated templ
 
 ## About Including and Excluding Resources
 
-Often, vendors need a way to optionally install resources depending on customers' configuration choices. A common example is giving the customer the choice to install a new database or use an existing database.
+Often, vendors need a way to optionally install resources depending on users' configuration choices. A common example is giving the user the choice to use an external or an embedded database. In this scenario, when a user chooses to use their own external database, it is not desirable to deploy the embedded database resources (StatefulSet, Service, and so on).
 
-In this scenario, when a customer chooses to bring their own database, it is not desirable to deploy the optional database resources (StatefulSet, Service, etc.). This means that the customer-supplied configuration input values may result in optional Kubernetes manifests that should not be installed.
+To conditionally include or exclude optional resources, you can use the `kots.io/exclude` and `kots.io/when` annotations. Additionally, you can use Replicated template functions to create conditional statements .
 
-## About KOTS Annotations
+For information about Replicated template functions, see [About Template Functions](/reference/template-functions-about) in _Template Functions_.
 
-To support optional resource installation, KOTS uses annotations and template functions. For information about Kubernetes annotations, see [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) in the Kubernetes documentation. For information about the Replicated template functions, see [About Template Functions](/reference/template-functions-about) in _Template Functions_.
+## Requirements
 
-You can use the KOTS `kots.io/exclude` and `kots.io/when` annotations to conditionally include or exclude resources.
+The `kots.io/exclude` nor `kots.io/when` annotations have the following requirements:
 
-By default, if neither `kots.io/exclude` nor `kots.io/when` is present on a resource, the resource is included.
+* By default, if neither `kots.io/exclude` nor `kots.io/when` is present on a resource, the resource is included.
 
-Only one of the `kots.io/exclude` nor `kots.io/when` annotations can be present on a resource. If both are present, the `kots.io/exclude` annotation is applied, and the `kots.io/when` annotation is ignored.
+* Only one of the `kots.io/exclude` nor `kots.io/when` annotations can be present on a single resource. If both are present, the `kots.io/exclude` annotation is applied, and the `kots.io/when` annotation is ignored.
 
-## Exclude A Resource
+* The `kots.io/exclude` nor `kots.io/when` annotations must be written in quotes (for example, `"kots.io/exclude":`). This is because Kubernetes annotations cannot be booleans and must be strings. For more information about Kubernetes annotations, see [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) in the Kubernetes documentation. 
 
-`kots.io/exclude: '<bool>'`
+## Conditionally Exclude A Resource
 
-When this annotation is present on a resource and evaluates to `'true'`, the resource will not be included in the `kustomization.yaml` file and will not be written to disk.
+When the `kots.io/exclude: '<bool>'` annotation is present on a resource and evaluates to true, the resource is excluded from the deployment.
 
-:::note
-Kubernetes annotations cannot be booleans and must be strings, so make sure to quote this.
-:::
-
-The following example does _not_ include the postgres `StatefulSet` if the user has _not_ selected the `install_postgres` checkbox.
+The following example excludes the postgres `StatefulSet` when the `install_postgres` checkbox is disabled:
 
 ```yaml
 apiVersion: apps/v1
@@ -57,17 +53,11 @@ spec:
 ...
 ```
 
-## Include A Resource
+## Conditionally Include A Resource
 
-`kots.io/when: '<bool>'`
+When the `kots.io/when: '<bool>'` annotation is present on a resource and evaluates to false, the resource is excluded from the deployment.
 
-When this annotation is present on a resource and evaluates to `'false'`, the resource is not included in the `kustomization.yaml` file and is not written to disk.
-
-:::note
-Kubernetes annotations cannot be booleans and must be strings, so make sure to quote this.
-:::
-
-The following example _does_ include the postgres `StatefulSet` when the user has selected the `install_postgres` checkbox.
+The following example excludes the postgres `StatefulSet` resource when the `install_postgres` checkbox is enabled:
 
 ```yaml
 apiVersion: apps/v1
