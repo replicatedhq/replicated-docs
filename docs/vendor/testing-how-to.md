@@ -6,11 +6,14 @@ This topic describes how to use the Replicated compatibility matrix to create ep
 
 ## Limitations
 
-The following limitations apply when using the compatibility matrix:
+The compatibility matrix has the following limitations:
 
 - Clusters cannot be resized. Create another cluster if you want to make changes, such as add another node.
 - On cloud clusters, only one node group per cluster is supported.
-- For virtual machine (VM) clusters, only single nodes are supported.
+- Multi-node support is available only for GKE and EKS.
+- There is no support for IPv6.
+
+For additional distribution-specific limitations, see [Supported Clusters and Requirements](testing-supported-clusters).
 
 ## Prerequisites
 
