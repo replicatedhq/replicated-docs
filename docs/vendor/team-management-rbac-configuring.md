@@ -154,7 +154,7 @@ In the following example, a policy grants access to viewing all customers, but n
 
 ### Support Engineer
 
-The support engineer policy grants read access to release, channels, and application data, but read-write access to customer and license details.
+The support engineer policy grants read access to release, channels, and application data, but read-write access to customer and license details. It also grants permission to open Replicated support issues and upload support bundles.
 
 ```json
 {
@@ -164,7 +164,9 @@ The support engineer policy grants read access to release, channels, and applica
       "allowed": [
         "**/read",
         "**/list",
-        "kots/app/*/license/**"
+        "kots/app/*/license/**",
+	"team/support-issues/read",
+	"team/support-issues/write"
       ],
       "denied": [
         "**/*"
