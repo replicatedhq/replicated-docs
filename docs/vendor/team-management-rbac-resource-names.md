@@ -172,6 +172,32 @@ Grants the holder permission to pull images from Replicated registry.
 
 Grants the holder permission to push images into Replicated registry.
 
+## Compatibility Matrix
+
+### kots/cluster/create
+
+Grants the holder permission to create new clusters.
+
+### kots/cluster/list
+
+Grants the holder permission to list running and terminated clusters.
+
+### kots/cluster/[:clusterId]
+
+Grants the holder permission to get cluster details.
+
+### kots/cluster/[:clusterId]/upgrade
+
+Grants the holder permission to upgrade a cluster.
+
+### kots/cluster[:clusterId]/kubeconfig
+
+Grants the holder permision to get the kubeconfig for a cluster.
+
+### kots/cluster/[:clusterId]/delete
+
+Grants the holder permission to delete a cluster.
+
 ## Team
 
 ### team/auditlog/read
