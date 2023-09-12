@@ -165,8 +165,8 @@ The support engineer policy grants read access to release, channels, and applica
         "**/read",
         "**/list",
         "kots/app/*/license/**",
-	"team/support-issues/read",
-	"team/support-issues/write"
+        "team/support-issues/read",
+        "team/support-issues/write"
       ],
       "denied": [
         "**/*"
