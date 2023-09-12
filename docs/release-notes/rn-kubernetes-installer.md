@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.09.12-0
+
+Released on September 12, 2023
+
+### Bug Fixes {#bug-fixes-v2023-09-12-0}
+* Docker 20.10.x will properly use RHEL 8 packages when installing on RHEL 8 based operating systems. This is still considered an unsupported configuration.
+
 ## v2023.09.07-0
 
 Released on September 7, 2023
