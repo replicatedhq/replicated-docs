@@ -12,9 +12,6 @@ pagination_prev: null
 
 Released on September 12, 2023
 
-### New Features {#new-features-v2023-09-12-0}
-* Adds [EKCO add-on](https://kurl.sh/docs/add-ons/ekco) version 0.28.3.
-
 ### Bug Fixes {#bug-fixes-v2023-09-12-0}
 * Docker 20.10.x will properly use RHEL 8 packages when installing on RHEL 8 based operating systems. This is still considered an unsupported configuration.
 
