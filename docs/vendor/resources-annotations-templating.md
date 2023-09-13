@@ -24,49 +24,22 @@ For more information about Replicated template functions in the Config text, see
 
 For applications installed with KOTS that use standard Kubernetes manifests, the `kots.io/placeholder` annotation allows you to template annotations in resources and objects without breaking the base YAML or needing to include the annotation key.
 
-The `kots.io/placeholder` annotation uses the following format:
+:::note
+For Helm chart-based applications installed with KOTS, Replicated recommends that you map user-supplied annotations to the Helm chart `values.yaml` file, rather than using `kots.io/placeholder`. This allows you to access user-supplied values in your Helm chart without needing to include Replicated template functions directly in the Helm chart templates.
+
+For more information, see [About Mapping User-Supplied Annotations to Helm Charts](#helm) below.
+:::
+
+The `kots.io/placeholder` annotation uses the format `kots.io/placeholder 'bool' 'string'`. For example:
 
 ```yaml
-kots.io/placeholder 'bool' 'string'
-```
-
-For example, the following Ingress object includes an `annotations` field with the `kots.io/placeholder` annotation that renders `my.custom/annotation.class: somevalue` if the user enables a `custom_annotation` field on the **Config** page:
-
-```yaml
-# Ingress object in the release
-
-apiVersion: v1
-kind: Ingress
-metadata:
-  name: myapp
-  labels:
-    app: myapp
-annotations:
+# Application manifest file
+...
   kots.io/placeholder: |-
-    repl{{if ConfigOptionEquals "custom_annotation" "1" }}repl{{ printf "my.custom/annotation.class: somevalue" | nindent 4 }}repl{{end}}
-spec:
-...    
+    repl{{ ConfigOption "additional_annotations" | nindent 4 }}
 ```
 
-If the user enables the `custom_annotation` configuration field, then the template function is rendered as shown below:
-
-```yaml
-# Rendered Ingress object
-
-apiVersion: v1
-kind: Ingress
-metadata:
-  name: myapp
-  labels:
-    app: myapp
-  annotations:
-    kots.io/placeholder: |-
-    my.custom/annotation.class: somevalue
-spec:    
-...  
-```
-
-For additional examples of using Replicated template functions to map user-supplied annotations to the resources and objects in your release, see [Examples](#examples) below.
+For examples of how to use `kots.io/placeholder` with Replicated template functions to map user-supplied annotations to resources and objects, see [Examples](#examples) below.
 
 ### About Mapping User-Supplied Annotations to Helm Charts {#helm}
 
@@ -143,6 +116,18 @@ For additional examples of mapping values to Helm chart-based applications, see 
 
 ### Map User-Supplied Key and Value
 
+It can be useful to map both 
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: example-annotation
+  annotations:
+    kots.io/placeholder: |-
+      repl{{ ConfigOption "additional_annotations" | nindent 4 }}
+```
+
 ### Map User-Supplied Value Only
 
 It can be useful to map only a user-supplied value to an annotation rather than mapping a key value pair when you have a specific key that you want to use for the annotation.
@@ -191,6 +176,46 @@ metadata:
 ### Conditionally Include or Exclude Annotations
 
 You can include or exclude annotations from a resource or object based on a conditional statement. This is useful for ensuring that an annotation is only applied to resource or object when required.
+
+#### ConfigOptionEquals
+
+The following Ingress object includes an `annotations` field with the `kots.io/placeholder` annotation that renders `my.custom/annotation.class: somevalue` if the user enables a `custom_annotation` field on the **Config** page:
+
+```yaml
+# Ingress object in the release
+
+apiVersion: v1
+kind: Ingress
+metadata:
+  name: myapp
+  labels:
+    app: myapp
+annotations:
+  kots.io/placeholder: |-
+    repl{{if ConfigOptionEquals "custom_annotation" "1" }}repl{{ printf "my.custom/annotation.class: somevalue" | nindent 4 }}repl{{end}}
+spec:
+...    
+```
+
+If the user enables the `custom_annotation` configuration field, then the template function is rendered as shown below:
+
+```yaml
+# Rendered Ingress object
+
+apiVersion: v1
+kind: Ingress
+metadata:
+  name: myapp
+  labels:
+    app: myapp
+  annotations:
+    kots.io/placeholder: |-
+    my.custom/annotation.class: somevalue
+spec:    
+...  
+```
+
+#### ConfigOptionEquals and ConfigOption
 
 For example, the `kots.io/placeholder` field below includes a conditional statement that uses the ConfigOptionEquals template function to evaluate if a configuration field named `custom_annotation` is enabled:
 
