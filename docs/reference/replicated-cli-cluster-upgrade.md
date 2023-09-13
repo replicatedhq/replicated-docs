@@ -39,5 +39,5 @@ replicated cluster upgrade ID [flags]
 For a kURL distribution:
 
 ```bash
-replicated cluster upgrade upgrade cabb74d5 --version 9d5a44c
+replicated cluster upgrade cabb74d5 --version 9d5a44c
 ```
