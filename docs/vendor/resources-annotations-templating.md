@@ -1,26 +1,30 @@
 # Templating Annotations
 
-This topic describes how to use Replicated template functions and the `kots.io/placeholder` annotation to template resource annotations based on user-supplied values.
+This topic describes how to use Replicated template functions to template annotations for resources and objects based on user-supplied values.
 
 ## Overview
 
-You can configure the Replicated admin console **Config** page to allow users to provide custom annotations for resources deployed by your application. You can then template resource annotations based on these user-supplied values. One common use case for templating annotations is to allow users to provide custom annotations for their desired ingress controller, as shown in the image below:
+It is common to need your users to be able to set custom annotations or labels on a resource or object deployed by your application. For example, one use case is allowing users to provide annotations to apply to a Service or Ingress object in public cloud environments.
+
+You can support this by adding a field to the Replicated admin console **Config** page where users enter the required annotations or labels. Then, you can use Replicated template functions to template annotations in the target resources or objects based on these user-supplied values.
+
+The following shows an example of a **Config** page that includes a field to collect user-supplied annotations for an ingress controller:
 
 ![Config page with custom annotations in a Ingress Annotations field](/images/config-map-annotations.png)
 
 [View a larger version of this image](/images/config-map-annotations.png)
 
-For more information about collecting user-supplied values from the **Config** page, see [Creating and Editing Configuration Fields](/vendor/admin-console-customize-config-screen).
+For more information about configuring the fields on the **Config** page, see [Creating and Editing Configuration Fields](/vendor/admin-console-customize-config-screen).
 
-To template annotations in resources deployed by your application, you can include the `kots.io/placeholder` annotation on the resource. The `kots.io/placeholder` annotation allows you to template logic without breaking the base YAML or needing to include the annotation key.
+## Map User-Supplied Annotations to Manifest Files
 
-## Inject User-Supplied Annotations
+The `kots.io/placeholder` annotation allows you to template annotations in the resources deployed by your application without breaking the base YAML or needing to include the annotation key.
 
-To map user-supplied annotations to resources deployed by your application, you can use the Replicated ConfigOption template function in the target resource.
+For information about how to use `kots.io/placeholder` with Replicated template functions to template annotations, see [Inject User-Supplied Annotations](#inject-user-supplied-annotations) and [Conditionally Include and Exclude Annotations](#conditionally-include-and-exclude-annotations) below.
 
-### User-Supplied Key and Value
+### Inject User-Supplied Key and Value
 
-In the following example, the ConfigOption 
+In the following example, the ConfigOption template function
 
 ```yaml
 apiVersion: v1
@@ -36,7 +40,7 @@ spec:
 ...
 ```
 
-### User-Supplied Value Only
+### Inject User-Supplied Value Only
 
 ```yaml
 apiVersion: extensions/v1beta1
@@ -45,10 +49,10 @@ metadata:
   name: example-annotation
   annotations:
     kots.io/placeholder: |-
-      repl{{if ConfigOptionEquals "enable_ingress" "1" }}repl{{ printf "my.custom/annotation.ingress.hostname: %s" (ConfigOption "ingress_hostname") | nindent 4 }}repl{{end}}
+      repl{{ printf "my.custom/annotation.ingress.hostname: %s" (ConfigOption "ingress_hostname") | nindent 4 }}
 ```
 
-### Multiple Annotations
+### Inject Multiple Annotations
 
 You can inject user-supplied annotations from more than one configuration item. In the example below, multiple user-supplied annotations are injected:
 
@@ -63,7 +67,7 @@ metadata:
       repl{{if ConfigOptionEquals "enable_ingress" "1" }}repl{{ printf "my.custom/annotation.ingress.hostname: %s" (ConfigOption "ingress_hostname") | nindent 4 }}repl{{end}}
 ```
 
-### Multiple Annotations from Single Configuration Field
+### Inject Multiple Annotations from Single Configuration Field
 
 The Config custom resource `textarea` item type supports multi-line text input. From a single `textarea` item, you can collect and map multiple annotations to a resource.
 
@@ -92,6 +96,53 @@ metadata:
     key3: value3
 spec:    
 ...  
+```
+
+## Map User-Supplied Annotations to Helm Chart Values
+
+```yaml
+# Config custom resource
+
+apiVersion: kots.io/v1beta1
+kind: Config
+metadata:
+  name: config
+spec:
+  groups:
+  - name: ingress_settings
+    title: Ingress Settings
+    description: Configure Ingress for Determined
+    items:
+    - name: determined_load_balancer_annotations
+      type: textarea
+      title: Load Balancer Annotations
+      help_text: See your cloud provider’s documentation for the required annotations.
+      when: 'repl{{ and (not IsKurl) (ConfigOptionEquals "determined_ingress_type" "load_balancer") }}'
+```
+
+```yaml
+# HelmChart custom resource
+
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: myapp
+spec:
+  values:
+    services:
+      determined:
+        enabled: true
+        appName: ["myapp"]
+        annotations: repl{{ ConfigOption "load_balancer_annotations" | nindent 10 }}
+```
+
+```yaml
+# Helm chart values.yaml
+services:
+  determined:
+    enabled: true
+    appName: ["myapp"]
+    annotations: placeholdervalue
 ```
 
 ## Conditionally Include and Exclude Annotations
