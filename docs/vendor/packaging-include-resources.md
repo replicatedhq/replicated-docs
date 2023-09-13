@@ -1,4 +1,4 @@
-# Including Optional and Conditional Resources
+# Conditionally Including or Excluding Resources
 
 This topic describes how to use Replicated KOTS annotations and Replicated template functions to include or exclude optional resources based on a conditional statement.
 
