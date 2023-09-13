@@ -4,15 +4,9 @@ This topic describes how to use Replicated template functions to template annota
 
 ## Overview
 
-It is common for users to need to set custom annotations on a resource or object deployed by your application. For example, you might need to allow your users to provide annotations to apply to a Service or Ingress object in public cloud environments.
+It is common for users to need to set custom annotations for a resource or object deployed by your application. For example, you might need to allow your users to provide annotations to apply to a Service or Ingress object in public cloud environments.
 
 For applications installed with Replicated KOTS, you can apply user-supplied annotations to resources or objects by first adding a field to the Replicated admin console **Config** page where users can enter one or more annotations. For information about how to add fields on the **Config** page, see [Creating and Editing Configuration Fields](/vendor/admin-console-customize-config-screen).
-
-The following shows an example of a **Config** page that includes an **Ingress Annotations** field to collect user-supplied annotations for an ingress controller:
-
-![Config page with custom annotations in a Ingress Annotations field](/images/config-map-annotations.png)
-
-[View a larger version of this image](/images/config-map-annotations.png)
 
 You can then map these user-supplied values from the **Config** page to resources and objects in your release using Replicated template functions. Replicated template functions are a set of custom template functions based on the Go text/template library that can be used to generate values specific to customer environments. The template functions in the Config context return user-supplied values on the **Config** page.
 
@@ -25,68 +19,30 @@ For applications installed with KOTS that use standard Kubernetes manifests, the
 The `kots.io/placeholder` annotation uses the format `kots.io/placeholder 'bool' 'string'`. For example:
 
 ```yaml
-# Application manifest file
-...
+# Example manifest file
+
+annotations:
   kots.io/placeholder: |-
     repl{{ ConfigOption "additional_annotations" | nindent 4 }}
 ```
 
+:::note
 For Helm chart-based applications installed with KOTS, Replicated recommends that you map user-supplied annotations to the Helm chart `values.yaml` file, rather than using `kots.io/placeholder`. This allows you to access user-supplied values in your Helm chart without needing to include Replicated template functions directly in the Helm chart templates.
+
+For an example, see [Map User-Supplied Annotations to Helm Chart Values](#map-user-supplied-annotations-to-helm-chart-values) below.
+:::
 
 ## Annotation Templating Examples
 
-This section includes common examples of mapping user-supplied annotations. It includes examples for mapping user-supplied annotations to standard manifest files and to Helm chart `values.yaml` files.
+This section includes common examples of templating annotations in resources and objects to map user-supplied values.
 
 For additional examples of how to map values to Helm chart-based applications, see [Applications](https://github.com/replicatedhq/platform-examples/tree/main/applications) in the platform-examples repository in GitHub.
 
-### Map User-Supplied Annotations to Helm Chart Values
-
-This example demonstrates how to map user-supplied annotations from the **Config** page to a Helm chart `values.yaml `file. For information about accessing values from a `values.yaml` file, see [Values Files](https://helm.sh/docs/chart_template_guide/values_files/) in the Helm documentation.
-
-The following Replicated HelmChart custom resource uses a ConfigOption template function in `values.services.myservice.annotations` field to render the user-supplied value in the `additional_annotations` configuration field:
-
-```yaml
-# HelmChart custom resource
-
-apiVersion: kots.io/v1beta2
-kind: HelmChart
-metadata:
-  name: myapp
-spec:
-  values:
-    services:
-      myservice:
-        annotations: repl{{ ConfigOption "additional_annotations" | nindent 10 }}
-```
-
-The `values.services.myservice.annotations` field in the HelmChart custom resource corresponds to a `services.myservice.annotations` field in the `value.yaml` file, as shown in the example below:
-
-```yaml
-# Helm chart values.yaml
-
-services:
-  myservice:
-    annotations: placeholdervalue
-```
-
-During installation, the ConfigOption template function in the `values.services.myservice.annotations` field renders the user-supplied values from the `additional_annotations` configuration field. Then, KOTS merges with the rendered `values.services.myservice.annotations` field with the corresponding field in the `values.yaml` in the chart archive.
-
-```yaml
-# Rendered Helm chart values.yaml
-
-services:
-  myservice:
-    annotations:
-      key1: value1
-      key2: value2
-      key3: value3
-spec:    
-...  
-```
-
-For more information about mapping values to a Helm chart `values.yaml` file, see [Map Values to a Helm Chart](/vendor/config-screen-map-inputs#map-values-to-a-helm-chart) in _Mapping User-Supplied Values_.
-
 ### Map Multiple Annotations from a Single Configuration Field
+
+You can map one or more annotations from a single `textarea` field on the **Config** page. The `textarea` type defines multi-line text input and supports properties such as `rows` and `cols`. For more information, see [textarea](/reference/custom-resource-config#textarea) in _Config_.
+
+For example, the following Config custom resource adds an `ingress_annotations` field of type `textarea`: 
 
 ```yaml
 # Config custom resource
@@ -107,6 +63,12 @@ spec:
       help_text: See your cloud provider’s documentation for the required annotations.
 ```
 
+On the **Config** page, users can enter one or more key value pairs in the `ingress_annotations` field, as shown in the example below:
+
+![Config page with custom annotations in a Ingress Annotations field](/images/config-map-annotations.png)
+
+[View a larger version of this image](/images/config-map-annotations.png)
+
 ```yaml
 apiVersion: extensions/v1beta1
 kind: Ingress
@@ -116,6 +78,8 @@ metadata:
     kots.io/placeholder: |-
       repl{{ ConfigOption "additional_annotations" | nindent 4 }}
 ```
+
+During installation, KOTS renders the YAML with the multi-line input from the configuration field as shown below:
 
 ```yaml
 # Rendered Ingress object
@@ -127,11 +91,12 @@ metadata:
     kots.io/placeholder: |-
       key1: value1
       key2: value2
+      key3: value3
 ```
 
 ### Map Annotations from Multiple Configuration Fields
 
-You can template user-supplied annotations from more than one configuration item.
+You can specify multiple annotations using the same `kots.io/placeholder` annotation.
 
 For example, the following Ingress object includes ConfigOption template functions that render the user-supplied values for the `ingress_annotation` and `ingress_hostname` fields: 
 
@@ -145,6 +110,9 @@ metadata:
       repl{{ ConfigOption "ingress_annotation" | nindent 4 }}
       repl{{ printf "my.custom/annotation.ingress.hostname: %s" (ConfigOption "ingress_hostname") | nindent 4 }}
 ```
+
+During installation, KOTS renders the YAML as shown below:
+
 ```yaml
 # Rendered Ingress object
 
@@ -158,11 +126,11 @@ metadata:
       my.custom/annotation.ingress.hostname: example.hostname.com
 ```
 
-### Template Annotation Key and Map User-Supplied Value
+### Map User-Supplied Value to a Key
 
-It can be useful to map only a user-supplied value to an annotation rather than mapping a key value pair when you have a specific key that you want to use for the annotation.
+You can map a user-supplied value from the **Config** page to a pre-defined annotation key.
 
-For example, in the following Ingress object, `my.custom/annotation.ingress.hostname` is rendered as the key for the templated annotation and the user-supplied value for the `ingress_hostname` field on the **Config** page is rendered as the value:
+For example, in the following Ingress object, `my.custom/annotation.ingress.hostname` is the key for the templated annotation. The annotation also uses the ConfigOption template function to map the user-supplied value from a `ingress_hostname` configuration field:
 
 ```yaml
 apiVersion: extensions/v1beta1
@@ -173,6 +141,8 @@ metadata:
     kots.io/placeholder: |-
       repl{{ printf "my.custom/annotation.ingress.hostname: %s" (ConfigOption "ingress_hostname") | nindent 4 }}
 ```
+
+During installation, KOTS renders the YAML as shown below:
 
 ```yaml
 # Rendered Ingress object
@@ -188,13 +158,11 @@ metadata:
 
 ### Include Conditional Statements in Templated Annotations
 
-You can include or exclude annotations from a resource or object based on a conditional statement. This is useful for ensuring that an annotation is only applied to resource or object when required.
+You can include or exclude templated annotations based on a conditional statement.
 
-For example, the following Ingress object includes an `annotations` field with the `kots.io/placeholder` annotation that renders `my.custom/annotation.class: somevalue` if the user enables a `custom_annotation` field on the **Config** page:
+For example, the following Ingress object includes a conditional statement for `kots.io/placeholder` that renders `my.custom/annotation.class: somevalue` if the user enables a `custom_annotation` field on the **Config** page:
 
 ```yaml
-# Ingress object in the release
-
 apiVersion: v1
 kind: Ingress
 metadata:
@@ -208,7 +176,7 @@ spec:
 ...    
 ```
 
-If the user enables the `custom_annotation` configuration field, then the template function is rendered as shown below:
+During installation, if the user enables the `custom_annotation` configuration field, KOTS renders the YAML as shown below:
 
 ```yaml
 # Rendered Ingress object
@@ -240,3 +208,50 @@ metadata:
 spec:    
 ...  
 ```
+
+### Map User-Supplied Annotations to Helm Chart Values
+
+For Helm chart-based applications installed with KOTS, Replicated recommends that you map user-supplied annotations to the Helm chart `values.yaml` file, rather than using `kots.io/placeholder`. This allows you to access user-supplied values in your Helm chart without needing to include Replicated template functions directly in the Helm chart templates.
+
+To map user-supplied annotations from the **Config** page to the Helm chart `values.yaml` file, you use the `values` field of the Replicated HelmChart custom resource. For more information, see [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_.
+
+For example, the following HelmChart custom resource uses a ConfigOption template function in `values.services.myservice.annotations` to map the value of a configuration field named `additional_annotations`:
+
+```yaml
+# HelmChart custom resource
+
+apiVersion: kots.io/v1beta2
+kind: HelmChart
+metadata:
+  name: myapp
+spec:
+  values:
+    services:
+      myservice:
+        annotations: repl{{ ConfigOption "additional_annotations" | nindent 10 }}
+```
+
+The `values.services.myservice.annotations` field in the HelmChart custom resource corresponds to a `services.myservice.annotations` field in the `value.yaml` file of the application Helm chart, as shown in the example below:
+
+```yaml
+# Helm chart values.yaml
+
+services:
+  myservice:
+    annotations: somevalue
+```
+
+During installation, the ConfigOption template function in the HelmChart custom resource renders the user-supplied values from the `additional_annotations` configuration field.
+
+Then, KOTS replaces the value in the corresponding field in the `values.yaml` in the chart archive, as shown in the example below.
+
+```yaml
+# Rendered Helm chart values.yaml
+
+services:
+  myservice:
+    annotations:
+      key1: value1
+```
+
+In your Helm chart templates, you can access these values from the `values.yaml` file to apply the user-supplied annotations to the target resources or objects. For information about how to access values from a `values.yaml` file, see [Values Files](https://helm.sh/docs/chart_template_guide/values_files/) in the Helm documentation.
