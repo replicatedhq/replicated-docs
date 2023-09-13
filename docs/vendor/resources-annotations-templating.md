@@ -16,15 +16,11 @@ The following shows an example of a **Config** page that includes a field to col
 
 For more information about configuring the fields on the **Config** page, see [Creating and Editing Configuration Fields](/vendor/admin-console-customize-config-screen).
 
-## Map User-Supplied Annotations to Manifest Files
+## Template Annotations in Manifest Files
 
 The `kots.io/placeholder` annotation allows you to template annotations in the resources deployed by your application without breaking the base YAML or needing to include the annotation key.
 
-For information about how to use `kots.io/placeholder` with Replicated template functions to template annotations, see [Inject User-Supplied Annotations](#inject-user-supplied-annotations) and [Conditionally Include and Exclude Annotations](#conditionally-include-and-exclude-annotations) below.
-
-### Inject User-Supplied Key and Value
-
-In the following example, the ConfigOption template function
+This section includes examples of how to use the `kots.io/placeholder` annotation to template annotations in the manifest files in your releases.
 
 ```yaml
 apiVersion: v1
@@ -38,47 +34,6 @@ metadata:
       repl{{ ConfigOption "ingress_annotation" | nindent 4 }}
 spec:      
 ...
-```
-
-### Inject User-Supplied Value Only
-
-```yaml
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: example-annotation
-  annotations:
-    kots.io/placeholder: |-
-      repl{{ printf "my.custom/annotation.ingress.hostname: %s" (ConfigOption "ingress_hostname") | nindent 4 }}
-```
-
-### Inject Multiple Annotations
-
-You can inject user-supplied annotations from more than one configuration item. In the example below, multiple user-supplied annotations are injected:
-
-```yaml
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: example-annotation
-  annotations:
-    kots.io/placeholder: |-
-      repl{{if ConfigOptionEquals "custom_annotation" "1" }}repl{{ printf "my.custom/annotation.class: somevalue" | nindent 4 }}repl{{end}}
-      repl{{if ConfigOptionEquals "enable_ingress" "1" }}repl{{ printf "my.custom/annotation.ingress.hostname: %s" (ConfigOption "ingress_hostname") | nindent 4 }}repl{{end}}
-```
-
-### Inject Multiple Annotations from Single Configuration Field
-
-The Config custom resource `textarea` item type supports multi-line text input. From a single `textarea` item, you can collect and map multiple annotations to a resource.
-
-```yaml
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: example-annotation
-  annotations:
-    kots.io/placeholder: |-
-      repl{{ ConfigOption "additional_annotations" | nindent 4 }}
 ```
 
 When the application is deployed, the annotations in the resource is rendered with the user-supplied annotations from the corresponding field on the **Config** page. For example:
@@ -98,7 +53,11 @@ spec:
 ...  
 ```
 
-## Map User-Supplied Annotations to Helm Chart Values
+## Template Annotations to Helm Chart Values
+
+If you are deploying a Helm chart-based application with KOTS, you can map user-supplied values to the Helm chart `values.yaml` file using the Replicated HelmChart custom resource. 
+
+For more information about mapping values from the HelmChart custom resource, see [values](/reference/custom-resource-helmchart-v2#values) in _HelmChart v2_.
 
 ```yaml
 # Config custom resource
@@ -145,9 +104,76 @@ services:
     annotations: placeholdervalue
 ```
 
-## Conditionally Include and Exclude Annotations
+When the application is deployed, the annotations are rendered with the user-supplied values:
 
-You can use conditional statements with `kots.io/placeholder` to include or exclude optional annotations.
+```yaml
+# Helm chart values.yaml
+services:
+  determined:
+    enabled: true
+    appName: ["myapp"]
+    annotations:
+      key1: value1
+      key2: value2
+      key3: value3
+spec:    
+...  
+```
+
+## Examples
+
+This section includes common examples of mapping user-supplied annotations to both manifest files and to Helm chart `values.yaml` files.
+
+For additional examples of mapping values to Helm chart-based applications, see [Applications](https://github.com/replicatedhq/platform-examples/tree/main/applications) in the platform-examples repository in GitHub.
+
+### Map User-Supplied Value Only
+
+It can be useful to map only a user-supplied value to an annotation rather than mapping a key value pair when you have a specific key that you want to use for the annotation.
+
+In the following example, `my.custom/annotation.ingress.hostname` is rendered as the key for the annotation and the user-supplied value for the `ingress_hostname` field on the **Config** page is rendered as the value.
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: example-annotation
+  annotations:
+    kots.io/placeholder: |-
+      repl{{ printf "my.custom/annotation.ingress.hostname: %s" (ConfigOption "ingress_hostname") | nindent 4 }}
+```
+
+### Map Values from Multiple Configuration Fields
+
+You can template user-supplied annotations from more than one configuration item, as shown in the example below:
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: example-annotation
+  annotations:
+    kots.io/placeholder: |-
+      repl{{ ConfigOption "ingress_annotation" | nindent 4 }}
+      repl{{ printf "my.custom/annotation.ingress.hostname: %s" (ConfigOption "ingress_hostname") | nindent 4 }}
+```
+
+### Map Multiple Annotations from Single Configuration Field
+
+The Config custom resource `textarea` item type supports multi-line text input. From a single `textarea` item, you can collect and map multiple annotations to a resource.
+
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: example-annotation
+  annotations:
+    kots.io/placeholder: |-
+      repl{{ ConfigOption "additional_annotations" | nindent 4 }}
+```
+
+### Conditionally Include and Exclude Annotations
+
+You can use conditional statements to include or exclude optional annotations.
 
 For example, the `kots.io/placeholder` field below includes a conditional statement that uses the ConfigOptionEquals template function to evaluate if a configuration field named `custom_annotation` is enabled:
 
@@ -184,7 +210,7 @@ metadata:
     kots.io/placeholder: |-
 ```
 
-You can also combine conditional statements with the ConfigOption template function 
+You can also combine conditional statements with the ConfigOption template function:
 
 ```yaml
 apiVersion: extensions/v1beta1
