@@ -6,19 +6,17 @@ This topic describes how to use the Replicated compatibility matrix to create ep
 
 ## Limitations
 
-The compatibility matrix currently has the following limitations:
+The compatibility matrix has the following limitations:
 
 - Clusters cannot be resized. Create another cluster if you want to make changes, such as add another node.
 - On cloud clusters, only one node group per cluster is supported.
 - Multi-node support is available only for GKE and EKS.
 - There is no support for IPv6.
-- Cluster upgrades is available only for kURL
-- Clustes have a max TTL of 48 hours
-- Cloud clusters do not allow for the configuration of CNI, CSI, CRI, Ingress etc
-- The underlying node operating systems are not swappable nor configurable
-- The underlying scheduler is not swappable
-
-Many limitations will be removed as this product matures.
+- The `cluster upgrade` feature is available only for kURL distributions. See [cluster upgrade](/reference/replicated-cli-cluster-upgrade).
+- Clusters have a maximum Time To Live (TTL) of 48 hours. See [Setting TTL](#setting-ttl) below.
+- Cloud clusters do not allow for the configuration of CNI, CSI, CRI, Ingress, or other plugins, add-ons, services, and interfaces.
+- The node operating systems for clusters created with the compatibility matrix cannot be configured nor replaced with different operating systems.
+- The Kubernetes scheduler for clusters created with the compatibility matrix cannot be replaced with a different scheduler.
 
 For additional distribution-specific limitations, see [Supported Clusters and Requirements](testing-supported-clusters).
 
