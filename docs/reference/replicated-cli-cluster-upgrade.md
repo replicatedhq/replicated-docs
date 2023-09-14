@@ -25,7 +25,7 @@ replicated cluster upgrade ID [flags]
   <tr>
     <td><code>--version</code></td>
     <td>string</td>
-    <td>(Required) Kubernetes version to upgrade to (format is distribution dependent). For supported versions, see <a href="/vendor/testing-supported-clusters">Supported Clusters and Requirements (Beta)</a>.</td>
+    <td>(Required) Kubernetes version to upgrade to (format is distribution dependent). For supported versions, see <a href="/vendor/testing-supported-clusters">Supported Compatibility Matrix Cluster Types (Beta)</a>.</td>
   </tr>
   <tr>
     <td><code>--wait</code></td>

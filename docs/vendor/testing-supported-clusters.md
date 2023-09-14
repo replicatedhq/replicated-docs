@@ -1,12 +1,12 @@
-# Supported Clusters and Requirements (Beta)
+# Supported Compatibility Matrix Cluster Types (Beta)
 
-This topic describes the supported clusters, Kubernetes versions and policy, instance types, nodes, limitations, and common use cases for the Replicated compatibility matrix. 
+This topic describes the supported Kubernetes distributions, Kubernetes versions, instance types, nodes, limitations, and common use cases for clusters created with the Replicated compatibility matrix. 
 
-The compatibility matrix provisions ephemeral clusters for testing that are cloud-based or virtual machines (VMs). 
+The compatibility matrix provisions cloud-based or virtual machine (VM) clusters.
 
 ## VM Clusters
 
-This section lists the supported VM clusters for compatibility testing.
+This section lists the supported VM cluster distributions for clusters created with the compatiblity matrix.
 
 ### kind
 
