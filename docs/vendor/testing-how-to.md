@@ -13,7 +13,7 @@ The compatibility matrix has the following limitations:
 - Multi-node support is available only for GKE and EKS.
 - There is no support for IPv6.
 
-For additional distribution-specific limitations, see [Supported Clusters and Requirements](testing-supported-clusters).
+For additional distribution-specific limitations, see [Supported Compatibility Matrix Cluster Types (Beta)](testing-supported-clusters).
 
 ## Prerequisites
 
