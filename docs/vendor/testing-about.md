@@ -1,8 +1,9 @@
 # About the Compatibility Matrix (Beta)
+
 This topic describes the Replicated compatibility matrix feature and use cases for testing applications in customer-representative environments.
 
 :::note
-The compatibility matrix add-on is available to Replicated customers at an additional cost. Please [open a product request](https://vendor.replicated.com/support?requestType=feature&productArea=vendor) if you are interested in this feature. 
+The compatibility matrix add-on requires the purchase of credits at an additional cost. For more information, see [Prerequisites](testing-how-to#prerequisites) in _Using the Compatibility Matrix_.
 :::
 
 ## Overview
