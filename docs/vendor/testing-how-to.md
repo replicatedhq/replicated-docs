@@ -6,12 +6,19 @@ This topic describes how to use the Replicated compatibility matrix to create ep
 
 ## Limitations
 
-The compatibility matrix has the following limitations:
+The compatibility matrix currently has the following limitations:
 
 - Clusters cannot be resized. Create another cluster if you want to make changes, such as add another node.
 - On cloud clusters, only one node group per cluster is supported.
 - Multi-node support is available only for GKE and EKS.
 - There is no support for IPv6.
+- Cluster upgrades is available only for kURL
+- Clustes have a max TTL of 48 hours
+- Cloud clusters do not allow for the configuration of CNI, CSI, CRI, Ingress etc
+- The underlying node operating systems are not swappable nor configurable
+- The underlying scheduler is not swappable
+
+Many limitations will be removed as this product matures.
 
 For additional distribution-specific limitations, see [Supported Clusters and Requirements](testing-supported-clusters).
 
@@ -19,8 +26,10 @@ For additional distribution-specific limitations, see [Supported Clusters and Re
 
 Before you can use the compatibility matrix, you must complete the following prerequisites:
 
-- Purchase an entitlement for compatibility testing. To do so, [open a product request](https://vendor.replicated.com/support?requestType=feature&productArea=vendor).
+- Request access or purchase access to the compatibility testing. To do so, [open a product request](https://vendor.replicated.com/support?requestType=feature&productArea=vendor).
 - Install the replicated CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
+- Existing accounts will need to accept the TOS for the trial at the [Compatibility Matrix page](https://vendor.replicated.com/compatibility-matrix).
+- All users will need to "Request more credits" on the [Compatibility Matrix page](https://vendor.replicated.com/compatibility-matrix).
 
 ## Creating and Preparing Clusters
 
