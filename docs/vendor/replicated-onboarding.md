@@ -28,7 +28,7 @@ The following are Replicated's best practices and recommendations for successful
 
 * Replicated also offers labs in Instruqt that provide a hands-on introduction to working with Replicated features, without needing your own sample application or development environment. To complete one or more labs before you begin the onboarding workflow, see:
   * [Distributing Your Application with Replicated](https://play.instruqt.com/embed/replicated/tracks/distributing-with-replicated?token=em_VHOEfNnBgU3auAnN): Learn how to quickly get value from the Replicated platform for your application.
-  * [Avoiding Installation Pitfalls](https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG): Learn how to use preflight checks to avoid common installation issues and assure you customer is installing into a supported environment.
+  * [Avoiding Installation Pitfalls](https://play.instruqt.com/embed/replicated/tracks/avoiding-installation-pitfalls?token=em_gJjtIzzTTtdd5RFG): Learn how to use preflight checks to avoid common installation issues and assure your customer is installing into a supported environment.
   * [Closing the Support Information Gap](https://play.instruqt.com/embed/replicated/tracks/closing-information-gap?token=em_MO2XXCz3bAgwtEca): Learn how to use support bundles to close the information gap between your customers and your support team.
 
 ## Prerequisites
@@ -138,7 +138,7 @@ To begin onboarding to the Replicated platform with a Helm chart:
 
    1. For **Channel**, select **Unstable**. This allows the customer to install releases promoted to the Unstable channel.
 
-   1. For **Customer email**, enter an email address. An email address is required for Helm installations to authenticate with the Replicated registry. This email address is never used send emails to customers.
+   1. For **Customer email**, enter an email address. An email address is required for Helm installations to authenticate with the Replicated registry. This email address is never used to send emails to customers.
 
    1. Click **Save Changes**.
 
