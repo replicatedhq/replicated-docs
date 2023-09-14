@@ -89,9 +89,10 @@ metadata:
   name: example-annotation
   annotations:
     kots.io/placeholder: |-
-      key1: value1
-      key2: value2
-      key3: value3
+    
+    key1: value1
+    key2: value2
+    key3: value3
 ```
 
 ### Map Annotations from Multiple Configuration Fields
@@ -122,8 +123,9 @@ metadata:
   name: example-annotation
   annotations:
     kots.io/placeholder: |-
-      key1: value1
-      my.custom/annotation.ingress.hostname: example.hostname.com
+    
+    key1: value1
+    my.custom/annotation.ingress.hostname: example.hostname.com
 ```
 
 ### Map User-Supplied Value to a Key
@@ -153,7 +155,8 @@ metadata:
   name: example-annotation
   annotations:
     kots.io/placeholder: |-
-      my.custom/annotation.ingress.hostname: example.hostname.com
+    
+    my.custom/annotation.ingress.hostname: example.hostname.com
 ```
 
 ### Include Conditional Statements in Templated Annotations
@@ -238,7 +241,7 @@ The `values.services.myservice.annotations` field in the HelmChart custom resour
 
 services:
   myservice:
-    annotations: somevalue
+    annotations: {}
 ```
 
 During installation, the ConfigOption template function in the HelmChart custom resource renders the user-supplied values from the `additional_annotations` configuration field.
