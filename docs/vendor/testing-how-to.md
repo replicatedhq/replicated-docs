@@ -26,8 +26,8 @@ Before you can use the compatibility matrix, you must complete the following pre
 
 - Request access or purchase access to the compatibility testing. To do so, [open a product request](https://vendor.replicated.com/support?requestType=feature&productArea=vendor).
 - Install the replicated CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
-- Existing accounts will need to accept the TOS for the trial at the [Compatibility Matrix page](https://vendor.replicated.com/compatibility-matrix).
-- All users will need to "Request more credits" on the [Compatibility Matrix page](https://vendor.replicated.com/compatibility-matrix).
+- Existing accounts must accept the TOS for the trial at the [Compatibility Matrix](https://vendor.replicated.com/compatibility-matrix) page in the Replicated vendor portal.
+- Request credits for the compatibility by going to the [Compatibility Matrix](https://vendor.replicated.com/compatibility-matrix) page in the vendor portal and clicking **Request more credits**.
 
 ## Creating and Preparing Clusters
 
