@@ -76,7 +76,7 @@ metadata:
   name: example-annotation
   annotations:
     kots.io/placeholder: |-
-      repl{{ ConfigOption "additional_annotations" | nindent 4 }}
+      repl{{ ConfigOption "ingress_annotations" | nindent 4 }}
 ```
 
 During installation, KOTS renders the YAML with the multi-line input from the configuration field as shown below:
