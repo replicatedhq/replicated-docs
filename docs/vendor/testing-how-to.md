@@ -4,11 +4,14 @@ import TestRecs from "../partials/ci-cd/_test-recs.mdx"
 
 This topic describes how to use the Replicated compatibility matrix to create ephemeral clusters that you can use for manual and CI/CD testing.
 
+:::note
+The compatibility matrix add-on is Beta. The features, limitations, and requirements of the compatibility matrix are subject to change.
+:::
+
 ## Limitations
 
 The compatibility matrix has the following limitations:
 
-- The compatibility matrix add-on is Beta. The features, limitations, and requirements of the compatibility matrix are subject to change.
 - Clusters cannot be resized. Create another cluster if you want to make changes, such as add another node.
 - On cloud clusters, only one node group per cluster is supported.
 - Multi-node support is available only for GKE and EKS.
