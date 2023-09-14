@@ -62,8 +62,6 @@ Custom metrics have the following limitations:
 
 You can configure your application to send a set of metrics as key value pairs to the API that is running in the cluster alongside the application instance.
 
-`Authorization` header is required for this API and must contain license ID.
-
 The location of the API endpoint is different depending on if KOTS or the SDK is installed in the cluster:
 * For applications installed with KOTS, the in-cluster API custom metrics endpoint is located at `http://kotsadm:3000/api/v1/app/custom-metrics`. 
 
@@ -119,7 +117,6 @@ async function sendMetrics(db, licenseId) {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
-          "Authorization": licenseId,
         },
         body: JSON.stringify(metrics),
     });
@@ -169,8 +166,7 @@ spec:
                 date; echo sending metrics
                 activeUsers=$(psql -t -c 'select COUNT(*) from active_users')
                 numProjects=$(psql -t -c 'select COUNT(*) from projects')
-                licenseID=$(curl -s --fail --show-error http://replicated:3000/api/v1/license/info | jq -r .licenseID | tr -d '\n')
-                curl -X POST http://replicated:3000/api/v1/app/custom-metrics -H 'Authorization: ${licenseID}' --data-binary "{\"activeUsers\":${activeUsers}, \"numProjects\":${numProjects}}"
+                curl -X POST http://replicated:3000/api/v1/app/custom-metrics --data-binary "{\"activeUsers\":${activeUsers}, \"numProjects\":${numProjects}}"
             envFrom:
             - secretRef:
                 name: postgres-credentials
