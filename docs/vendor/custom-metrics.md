@@ -32,6 +32,10 @@ If you have any customers that are running earlier versions of KOTS or the SDK, 
 
 Custom metrics have the following limitations:
 
+* Custom metrics are not available for instances that are running in airgapped environments.
+
+* Custom metrics are not available for KOTS instances that have multiple licenses installed.
+
 * The label that is used to display metrics in the vendor portal cannot be customized. Metrics are sent to the vendor portal with the same name that is sent in the POST payload. The vendor portal then converts camel case to title case: for example, `activeUsers` is displayed as **Active Users**.
 
 * The in-cluster APIs accept only JSON scalar values for metrics. Any requests containing nested objects or arrays are rejected.
