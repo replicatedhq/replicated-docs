@@ -96,11 +96,12 @@ const sidebars = {
       items: [
         'vendor/admin-console-display-app-status',
         'vendor/packaging-include-resources',
+        'vendor/resources-annotations-templating',
         'vendor/orchestrating-resource-deployment',
         'vendor/database-config-adding-options',
-        'vendor/tutorial-adding-db-config',
         'vendor/packaging-cleaning-up-jobs',
         'vendor/packaging-ingress',
+        'vendor/tutorial-adding-db-config',
       ],
     }, 
     

@@ -1,36 +1,28 @@
-# Including Optional and Conditional Resources
+# Conditionally Including or Excluding Resources
 
 This topic describes how to use Replicated KOTS annotations and Replicated template functions to include or exclude optional resources based on a conditional statement.
 
-## About Including and Excluding Resources
+## Overview
 
-Often, vendors need a way to optionally install resources depending on customers' configuration choices. A common example is giving the customer the choice to install a new database or use an existing database.
+Often, vendors need a way to optionally install resources depending on users' configuration choices. For example, a common use case is giving the user the choice to use an external database or an embedded database. In this scenario, when a user chooses to use their own external database, it is not desirable to deploy the embedded database resources (StatefulSet, Service, and so on).
 
-In this scenario, when a customer chooses to bring their own database, it is not desirable to deploy the optional database resources (StatefulSet, Service, etc.). This means that the customer-supplied configuration input values may result in optional Kubernetes manifests that should not be installed.
+To include or exclude resources from your application deployment, you can use the `kots.io/exclude` or `kots.io/when` annotation on the resource. You can also set the value of the annotation to a conditional statement using Replicated template functions. For information about Replicated template functions, see [About Template Functions](/reference/template-functions-about) in _Template Functions_.
 
-## KOTS Annotations
+## Requirements
 
-To support optional resource installation, KOTS uses annotations and template functions. For information about Kubernetes annotations, see [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) in the Kubernetes documentation. For information about the Replicated template functions, see [About Template Functions](/reference/template-functions-about) in _Template Functions_.
+The `kots.io/exclude` nor `kots.io/when` annotations have the following requirements:
 
-You can use the KOTS `kots.io/exclude` and `kots.io/when` annotations to conditionally include or exclude resources.
+* By default, if neither `kots.io/exclude` nor `kots.io/when` is present on a resource, the resource is included.
 
-By default, if neither `kots.io/exclude` nor `kots.io/when` is present on a resource, the resource is included.
+* Only one of the `kots.io/exclude` nor `kots.io/when` annotations can be present on a single resource. If both are present, the `kots.io/exclude` annotation is applied, and the `kots.io/when` annotation is ignored.
 
-Only one of the `kots.io/exclude` nor `kots.io/when` annotations can be present on a resource. If both are present, the `kots.io/exclude` annotation is applied, and the `kots.io/when` annotation is ignored.
+* The `kots.io/exclude` nor `kots.io/when` annotations must be written in quotes (for example, `"kots.io/exclude":`). This is because Kubernetes annotations cannot be booleans and must be strings. For more information about Kubernetes annotations, see [Annotations](https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/) in the Kubernetes documentation. 
 
-### Exclude A Resource
+## Conditionally Exclude a Resource
 
-`kots.io/exclude: '<bool>'`
+When the `kots.io/exclude: '<bool>'` annotation is present on a resource and evaluates to true, the resource is excluded from the deployment.
 
-When this annotation is present on a resource and evaluates to `'true'`, the resource will not be included in the `kustomization.yaml` file and will not be written to disk.
-
-:::note
-Kubernetes annotations cannot be booleans and must be strings, so make sure to quote this.
-:::
-
-#### Example
-
-The following example does _not_ include the postgres `StatefulSet` if the user has _not_ selected the `install_postgres` checkbox.
+The following example excludes the Postgres `StatefulSet` when the user disables a `install_postgres` checkbox on the Replicated admin console **Config** page:
 
 ```yaml
 apiVersion: apps/v1
@@ -59,19 +51,11 @@ spec:
 ...
 ```
 
-### Include A Resource
+## Conditionally Include a Resource
 
-`kots.io/when: '<bool>'`
+When the `kots.io/when: '<bool>'` annotation is present on a resource and evaluates to false, the resource is excluded from the deployment.
 
-When this annotation is present on a resource and evaluates to `'false'`, the resource is not included in the `kustomization.yaml` file and is not written to disk.
-
-:::note
-Kubernetes annotations cannot be booleans and must be strings, so make sure to quote this.
-:::
-
-#### Example
-
-The following example _does_ include the postgres `StatefulSet` when the user has selected the `install_postgres` checkbox.
+The following example excludes the postgres `StatefulSet` resource when the `install_postgres` checkbox is enabled:
 
 ```yaml
 apiVersion: apps/v1
@@ -98,85 +82,4 @@ spec:
         image: "postgres:9.6"
         imagePullPolicy: ""
 ...
-```
-
-
-### Placeholder Annotation
-
-`kots.io/placeholder '<bool>' '<string>'`
-
-KOTS uses placeholder annotations as a way to use template logic to specify optional annotations without breaking the base YAML or needing to always include the annotation key.
-
-One use case is providing custom Ingress annotations for a customer-provided Ingress controller.
-
-Example:
-
-```yaml
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: example-annotation
-  annotations:
-    kots.io/placeholder: |-
-      repl{{if ConfigOptionEquals "custom_annotation" "1" }}repl{{ printf "my.custom/annotation.class: somevalue" | nindent 4 }}repl{{end}}
-```
-
-When the condition evaluates to `true`, it is replaced with the value of the desired annotation in the final rendered YAML:
-
-```yaml
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: example-annotation
-  annotations:
-    kots.io/placeholder: |-
-    my.custom/annotation.class: somevalue
-```
-
-When the condition evaluates to `false`, the annotation does not appear in the final rendered YAML:
-
-```yaml
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: example-annotation
-  annotations:
-    kots.io/placeholder: |-
-```
-
-A config option value can be used as part of the annotation value, for example:
-
-```yaml
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: example-annotation
-  annotations:
-    kots.io/placeholder: |-
-      repl{{if ConfigOptionEquals "custom_annotation" "1" }}repl{{ printf "my.custom/annotation.class: %s" (ConfigOption "annotation_class") | nindent 4 }}repl{{end}}
-```
-
-You can map multiple annotations from a single [textarea](/reference/custom-resource-config#textarea) config option value as part of the annotation value, for example:
-
-```yaml
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: example-annotation
-  annotations:
-    kots.io/placeholder: |-
-      repl{{ ConfigOption "additional_annotations" | nindent 4 }}
-```
-
-You can specify multiple annotations using the same placeholder annotation:
-
-```yaml
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: example-annotation
-  annotations:
-    kots.io/placeholder: |-
-      repl{{if ConfigOptionEquals "custom_annotation" "1" }}repl{{ printf "my.custom/annotation.class: somevalue" | nindent 4 }}repl{{end}}
-      repl{{if ConfigOptionEquals "enable_ingress" "1" }}repl{{ printf "my.custom/annotation.ingress.hostname: %s" (ConfigOption "ingress_hostname") | nindent 4 }}repl{{end}}
 ```
