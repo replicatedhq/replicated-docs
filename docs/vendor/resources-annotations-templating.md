@@ -27,7 +27,7 @@ annotations:
 ```
 
 :::note
-For Helm chart-based applications installed with KOTS, Replicated recommends that you map user-supplied annotations to the Helm chart `values.yaml` file, rather than using `kots.io/placeholder`. This allows you to access user-supplied values in your Helm chart without needing to include Replicated template functions directly in the Helm chart templates.
+For Helm chart-based applications installed with KOTS, Replicated recommends that you map user-supplied annotations to the Helm chart `values.yaml` file using the Replicated HelmChart custom resource, rather than using `kots.io/placeholder`. This allows you to access user-supplied values in your Helm chart without needing to include Replicated template functions directly in the Helm chart templates.
 
 For an example, see [Map User-Supplied Annotations to Helm Chart Values](#map-user-supplied-annotations-to-helm-chart-values) below.
 :::
