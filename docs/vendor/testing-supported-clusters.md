@@ -66,7 +66,7 @@ The compatibility matrix supports creating [k3s](https://k3s.io) clusters.
   </tr>  
   <tr>
     <th>Limitations</th>
-    <td>You can only choose a minor version, not a patch version. The K3s installer chooses the latest patch for that minor version. See <a href="https://docs.k3s.io/upgrades/manual">Manual Upgrades</a> in the k3s documentation.<br></br><br></br>For additional limitations that apply to all distributions, see <a href="testing-how-to#limitations">Limitations</a>.</td>
+    <td>See <a href="https://docs.k3s.io/upgrades/manual">Manual Upgrades</a> in the k3s documentation.<br></br><br></br>For additional limitations that apply to all distributions, see <a href="testing-how-to#limitations">Limitations</a>.</td>
   </tr>
   <tr>
     <th>Common Use Cases</th>
@@ -193,7 +193,7 @@ The compatibility matrix supports creating [AWS EKS](https://aws.amazon.com/eks/
   </tr>
   <tr>
     <th>Supported Instance Types</th>
-    <td>m6i.large, m6i.xlarge, m6i.2xlarge, m6i.4xlarge, m6i.8xlarge</td>
+    <td>m6i.large, m6i.xlarge, m6i.2xlarge, m6i.4xlarge, m6i.8xlarge, m7i.large, m7i.xlarge, m7i.2xlarge, m7i.4xlarge, m7i.8xlarge, m7g.large, m7g.xlarge, m7g.2xlarge, m7g.4xlarge, m7g.8xlarge</td>
   </tr>
   <tr>
     <th>Nodes</th>
