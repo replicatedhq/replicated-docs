@@ -5,7 +5,7 @@ import TestRecs from "../partials/ci-cd/_test-recs.mdx"
 This topic describes how to use the Replicated compatibility matrix to create ephemeral clusters that you can use for manual and CI/CD testing.
 
 :::note
-The compatibility matrix add-on is Beta. The features, limitations, and requirements of the compatibility matrix are subject to change.
+The compatibility matrix add-on is Beta. The features, limitations, and requirements of the compatibility matrix are subject to change. As the compatiblity matrix add-on progresses towards general availability, many of its limitations will be removed.
 :::
 
 ## Limitations
