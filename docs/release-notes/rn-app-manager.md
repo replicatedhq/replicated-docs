@@ -27,7 +27,7 @@ Support for Kubernetes: 1.25, 1.26, 1.27, and 1.28
 
 ### Bug Fixes {#bug-fixes-1-102-2}
 * Fixes an issue where updating the registry settings would not always display the loading indicator and status messages in the UI.
-* Fixes an issue where deployments or diffing could fail after upgrading from KOTS 1.95 or earlier if versions contained empty Kustomize bases.
+* Fixes an issue where deployments or diffing could fail after upgrading from KOTS 1.95 or earlier to KOTS 1.101.2-1.102.1 if versions contained empty Kustomize bases.
 
 ## 1.102.1
 
