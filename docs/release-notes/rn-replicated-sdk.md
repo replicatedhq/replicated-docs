@@ -12,8 +12,8 @@ pagination_prev: null
 
 Released on September 15, 2023
 
-### Bug Fixes {#bug-fixes-1-0-0-beta-7}
-* Custom metrics API no longer requires authorization header.
+### Improvements {#improvements-1-0-0-beta-7}
+* The [custom metrics](/vendor/custom-metrics#configure-custom-metrics) API no longer requires authorization header.
 
 ## 1.0.0-beta.6
 
