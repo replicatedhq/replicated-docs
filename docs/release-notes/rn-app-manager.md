@@ -22,10 +22,12 @@ Released on September 15, 2023
 
 Support for Kubernetes: 1.25, 1.26, 1.27, and 1.28
 
+### Improvements {#improvements-1-102-2}
+* The [custom metrics](/vendor/custom-metrics#configure-custom-metrics) API no longer requires authorization header.
+
 ### Bug Fixes {#bug-fixes-1-102-2}
 * Fixes an issue where updating the registry settings would not always display the loading indicator and status messages in the UI.
 * Fixes an issue where deployments or diffing could fail after upgrading from KOTS 1.95 or earlier if versions contained empty Kustomize bases.
-* Custom metrics API no longer requires authorization header.
 
 ## 1.102.1
 
