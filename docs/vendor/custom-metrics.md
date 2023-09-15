@@ -32,7 +32,7 @@ If you have any customers that are running earlier versions of KOTS or the SDK, 
 
 Custom metrics have the following limitations:
 
-* Custom metrics are not available for instances that are running in airgapped environments.
+* Custom metrics are not available for instances that are running in air gapped environments.
 
 * Custom metrics are not available for KOTS instances that have multiple licenses installed.
 
