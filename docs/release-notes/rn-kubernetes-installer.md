@@ -13,8 +13,8 @@ pagination_prev: null
 Released on September 15, 2023
 
 ### New Features {#new-features-v2023-09-15-0}
-* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.68.0-51.0.0.
 * Adds [Kubernetes](https://kurl.sh/docs/add-ons/kubernetes) version(s) 1.28.2 1.27.6 1.26.9 1.25.14.
+* Adds [Prometheus add-on](https://kurl.sh/docs/add-ons/prometheus) version 0.68.0-51.0.0.
 
 ## v2023.09.12-0
 
