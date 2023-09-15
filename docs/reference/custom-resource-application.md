@@ -199,16 +199,16 @@ spec:
     <td>
      <p>When <code>kubectlVersion</code> is unspecified, KOTS uses the latest supported version of kubectl. The following minor versions are supported:</p>
      <ul>
+       <li>1.28.x (Added in <a href="/release-notes/rn-app-manager#11020">KOTS v1.102.1</a>)</li>
+       <li>1.27.x (Added in <a href="/release-notes/rn-app-manager#11000">KOTS v1.100.0</a>)</li>
+       <li>1.26.x (Added in <a href="/release-notes/rn-app-manager#1931">KOTS v1.93.1</a>)</li>
+       <li>1.25.x (Added in <a href="/release-notes/rn-app-manager#1870">KOTS v1.87.0</a>)</li>
        <li>1.24.x (Added in <a href="/release-notes/rn-app-manager#1710">KOTS v1.71.0</a>)</li>
        <li>1.23.x (Added in <a href="/release-notes/rn-app-manager#1610">KOTS v1.61.0</a>)</li>
        <li>1.22.x (Added in <a href="/release-notes/rn-app-manager#1593">KOTS v1.59.3</a>)</li>
        <li>1.21.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">KOTS v1.48.0</a>)</li>
        <li>1.20.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">KOTS v1.48.0</a>)</li>
        <li>1.19.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">KOTS v1.22.0</a>)</li>
-       <li>1.18.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">KOTS v1.22.0</a>)</li>
-       <li>1.17.x (Added in <a href="/release-notes/rn-app-manager#1570-and-earlier">KOTS v1.22.0</a>)</li>
-       <li>1.16.x</li>
-       <li>1.14.x</li>
      </ul>
     </td>
   </tr>
