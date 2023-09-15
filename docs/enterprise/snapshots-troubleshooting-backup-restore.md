@@ -149,19 +149,21 @@ kubectl -n velero set env daemonset/restic GOGC=1
 
 #### Symptom
 
-Example error message:
+In the Replicated admin console, you see an **Application failed to restore** error message that indicates the port number for a static NodePort is already in use. For example:
 
 ![Snapshot Troubleshoot Service NodePort](/images/snapshot-troubleshoot-service-nodeport.png)
 
+[View a larger version of this image](/images/snapshot-troubleshoot-service-nodeport.png)
+
 #### Cause
 
-There is a known issue in older Kubernetes versions (earlier than v1.19) where using a static NodePort for services can collide in multi-primary high availability setup when recreating the services. You can find more details about the issue here: https://github.com/kubernetes/kubernetes/issues/85894.
+There is a known issue in Kubernetes versions earlier than version 1.19 where using a static NodePort for services can collide in multi-primary high availability setups when recreating the services. For more information about this known issue, see https://github.com/kubernetes/kubernetes/issues/85894.
 
 #### Solution
 
-This issue has been fixed in Kubernetes version 1.19. You can find more details about the fix here: https://github.com/kubernetes/kubernetes/pull/89937.
+This issue is fixed in Kubernetes version 1.19. To resolve this issue, upgrade to Kubernetes version 1.19 or later.
 
-Upgrading to Kubernetes version v1.19 or later should resolve the issue.
+For more infromation about the fix, see https://github.com/kubernetes/kubernetes/pull/89937.
 
 ### Partial Snapshot Restore is Stuck in Progress
 
