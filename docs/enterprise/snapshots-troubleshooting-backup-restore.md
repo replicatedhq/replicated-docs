@@ -56,66 +56,6 @@ When configuring Velero to use a bucket, the bucket cannot contain other data, o
 
 Configure Velero to use a bucket that does not contain other data.
 
-## Snapshot Restore is Failing
-
-### Service NodePort is Already Allocated
-
-#### Symptom
-
-Example error message:
-
-![Snapshot Troubleshoot Service NodePort](/images/snapshot-troubleshoot-service-nodeport.png)
-
-#### Cause
-
-There is a known issue in older Kubernetes versions (earlier than v1.19) where using a static NodePort for services can collide in multi-primary high availability setup when recreating the services. You can find more details about the issue here: https://github.com/kubernetes/kubernetes/issues/85894.
-
-#### Solution
-
-This issue has been fixed in Kubernetes version 1.19. You can find more details about the fix here: https://github.com/kubernetes/kubernetes/pull/89937.
-
-Upgrading to Kubernetes version v1.19 or later should resolve the issue.
-
-### Partial Snapshot Restore is Stuck in Progress
-
-#### Symptom
-
-In the Replicated admin console, you see at least one volume restore progress bar frozen at 0%. Example admin console display:
-
-![Snapshot Troubleshoot Frozen Restore](/images/snapshot-troubleshoot-frozen-restore.png)
-
-You can confirm this is the same issue by running `kubectl get pods -n <application namespace>`, and you should see at least one pod stuck in initialization:
-
-```shell
-NAME                                  READY   STATUS      RESTARTS   AGE
-example-mysql-0                       0/1     Init:0/2    0          4m15s  #<- the offending pod
-example-nginx-77b878b4f-zwv2h         3/3     Running     0          4m15s
-```
-
-#### Cause
-
-We have seen this issue with Velero version 1.5.4 and opened up this issue with the project to inspect the root cause: https://github.com/vmware-tanzu/velero/issues/3686. However we have not experienced this using Velero 1.6.0 or later.
-
-#### Solution
-
-Upgrade Velero to 1.9.0. You can upgrade using Replicated kURL. Or, to follow the Velero upgrade instructions, see [Upgrading to Velero 1.9](https://velero.io/docs/v1.9/upgrade-to-1.9/) in the Velero documentation.
-
-### Partial Snapshot Restore Finishes with Warnings
-
-#### Symptom
-
-In the admin console, when the partial snapshot restore completes, you see warnings indicating that Endpoint resources were not restored:
-
-![Snapshot Troubleshoot Restore Warnings](/images/snapshot-troubleshoot-restore-warnings.png)
-
-#### Cause
-
-The resource restore priority was changed in Velero 1.10.3 and 1.11.0, which leads to this warning when restoring Endpoint resources. For more information about this issue, see [the issue details](https://github.com/vmware-tanzu/velero/issues/6280) in GitHub.
-
-#### Solution
-
-These warnings do not necessarily mean that the restore itself failed. The endpoints likely do exist as they are created by Kubernetes when the related Service resources were restored. However, to prevent encountering these warnings, use Velero version 1.10.2 or earlier.
-
 ## Snapshot Creation is Failing
 
 ### Timeout Error when Creating a Snapshot
@@ -161,7 +101,11 @@ The timeout value reverts back to the default value if you rerun the `velero ins
 
 #### Symptom
 
-The node-agent (restic) Pod is killed by the Linux kernel Out Of Memory (OOM) killer.
+The node-agent (restic) Pod is killed by the Linux kernel Out Of Memory (OOM) killer or snapshots are failing with errors simlar to:
+
+```
+pod volume backup failed: ... signal: killed
+```
 
 #### Cause
 
@@ -171,14 +115,26 @@ For more information, see the [Restic backup — OOM-killed on raspberry pi afte
 
 #### Solution
 
-Increase the default memory limit for the node-agent (restic) Pod if your application is particularly large. For more information about configuring Velero resource requests and limits, see [Customize resource requests and limits](https://velero.io/docs/v1.10/customize-installation/#customize-resource-requests-and-limits) in the Velero documentation.
+Increase the default memory limit for the node-agent (restic) Pod if your application is particularly large. For more information about configuring Velero resource requests and limits, see [Customize resource requests and limits](https://velero.io/docs/v1.10/customize-installation/#customize-resource-requests-and-limits) in the Velero documentation. For example, the following kubectl commands will increase the memory limit for the node-agent (restic) daemon set from the default of 1Gi to 2Gi.
+
+**Velero  1.10 and later**:
+
+```
+kubectl -n velero patch daemonset node-agent -p '{"spec":{"template":{"spec":{"containers":[{"name":"node-agent","resources":{"limits":{"memory":"2Gi"}}}]}}}}'
+```
+
+**Velero versions earlier than 1.10**:
+
+```
+kubectl -n velero patch daemonset restic -p '{"spec":{"template":{"spec":{"containers":[{"name":"restic","resources":{"limits":{"memory":"2Gi"}}}]}}}}'
+```
 
 Alternatively, you can potentially avoid the node-agent (restic) Pod reaching the memory limit during snapshot creation by running the following kubectl command to lower the memory garbage collection target percentage on the node-agent (restic) daemon set:
 
 **Velero  1.10 and later**:
 
 ```
-kubectl -n velero set env daemonset (node-agent) GOGC=1
+kubectl -n velero set env daemonset/node-agent GOGC=1
 ```
 
 **Velero versions earlier than 1.10**:
@@ -186,3 +142,65 @@ kubectl -n velero set env daemonset (node-agent) GOGC=1
 ```
 kubectl -n velero set env daemonset/restic GOGC=1
 ```
+
+## Snapshot Restore is Failing
+
+### Service NodePort is Already Allocated
+
+#### Symptom
+
+In the Replicated admin console, you see an **Application failed to restore** error message that indicates the port number for a static NodePort is already in use. For example:
+
+![Snapshot Troubleshoot Service NodePort](/images/snapshot-troubleshoot-service-nodeport.png)
+
+[View a larger version of this image](/images/snapshot-troubleshoot-service-nodeport.png)
+
+#### Cause
+
+There is a known issue in Kubernetes versions earlier than version 1.19 where using a static NodePort for services can collide in multi-primary high availability setups when recreating the services. For more information about this known issue, see https://github.com/kubernetes/kubernetes/issues/85894.
+
+#### Solution
+
+This issue is fixed in Kubernetes version 1.19. To resolve this issue, upgrade to Kubernetes version 1.19 or later.
+
+For more infromation about the fix, see https://github.com/kubernetes/kubernetes/pull/89937.
+
+### Partial Snapshot Restore is Stuck in Progress
+
+#### Symptom
+
+In the Replicated admin console, you see at least one volume restore progress bar frozen at 0%. Example admin console display:
+
+![Snapshot Troubleshoot Frozen Restore](/images/snapshot-troubleshoot-frozen-restore.png)
+
+You can confirm this is the same issue by running `kubectl get pods -n <application namespace>`, and you should see at least one pod stuck in initialization:
+
+```shell
+NAME                                  READY   STATUS      RESTARTS   AGE
+example-mysql-0                       0/1     Init:0/2    0          4m15s  #<- the offending pod
+example-nginx-77b878b4f-zwv2h         3/3     Running     0          4m15s
+```
+
+#### Cause
+
+We have seen this issue with Velero version 1.5.4 and opened up this issue with the project to inspect the root cause: https://github.com/vmware-tanzu/velero/issues/3686. However we have not experienced this using Velero 1.6.0 or later.
+
+#### Solution
+
+Upgrade Velero to 1.9.0. You can upgrade using Replicated kURL. Or, to follow the Velero upgrade instructions, see [Upgrading to Velero 1.9](https://velero.io/docs/v1.9/upgrade-to-1.9/) in the Velero documentation.
+
+### Partial Snapshot Restore Finishes with Warnings
+
+#### Symptom
+
+In the admin console, when the partial snapshot restore completes, you see warnings indicating that Endpoint resources were not restored:
+
+![Snapshot Troubleshoot Restore Warnings](/images/snapshot-troubleshoot-restore-warnings.png)
+
+#### Cause
+
+The resource restore priority was changed in Velero 1.10.3 and 1.11.0, which leads to this warning when restoring Endpoint resources. For more information about this issue, see [the issue details](https://github.com/vmware-tanzu/velero/issues/6280) in GitHub.
+
+#### Solution
+
+These warnings do not necessarily mean that the restore itself failed. The endpoints likely do exist as they are created by Kubernetes when the related Service resources were restored. However, to prevent encountering these warnings, use Velero version 1.10.2 or earlier.
