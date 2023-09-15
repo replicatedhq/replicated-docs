@@ -4,6 +4,10 @@ import TestRecs from "../partials/ci-cd/_test-recs.mdx"
 
 This topic describes how to use the Replicated compatibility matrix to create ephemeral clusters that you can use for manual and CI/CD testing.
 
+:::note
+The compatibility matrix add-on is Beta. The features, limitations, and requirements of the compatibility matrix are subject to change. As the compatiblity matrix add-on progresses towards general availability, many of its limitations will be removed.
+:::
+
 ## Limitations
 
 The compatibility matrix has the following limitations:
@@ -12,6 +16,11 @@ The compatibility matrix has the following limitations:
 - On cloud clusters, only one node group per cluster is supported.
 - Multi-node support is available only for GKE and EKS.
 - There is no support for IPv6.
+- The `cluster upgrade` feature is available only for kURL distributions. See [cluster upgrade](/reference/replicated-cli-cluster-upgrade).
+- Clusters have a maximum Time To Live (TTL) of 48 hours. See [Setting TTL](#setting-ttl) below.
+- Cloud clusters do not allow for the configuration of CNI, CSI, CRI, Ingress, or other plugins, add-ons, services, and interfaces.
+- The node operating systems for clusters created with the compatibility matrix cannot be configured nor replaced with different operating systems.
+- The Kubernetes scheduler for clusters created with the compatibility matrix cannot be replaced with a different scheduler.
 
 For additional distribution-specific limitations, see [Supported Compatibility Matrix Cluster Types (Beta)](testing-supported-clusters).
 
@@ -19,8 +28,10 @@ For additional distribution-specific limitations, see [Supported Compatibility M
 
 Before you can use the compatibility matrix, you must complete the following prerequisites:
 
-- Purchase an entitlement for compatibility testing. To do so, [open a product request](https://vendor.replicated.com/support?requestType=feature&productArea=vendor).
+- Request access or purchase access to the compatibility testing. To do so, [open a product request](https://vendor.replicated.com/support?requestType=feature&productArea=vendor).
 - Install the replicated CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
+- Existing accounts must accept the TOS for the trial at the [Compatibility Matrix](https://vendor.replicated.com/compatibility-matrix) page in the Replicated vendor portal.
+- Request credits for the compatibility by going to the [Compatibility Matrix](https://vendor.replicated.com/compatibility-matrix) page in the vendor portal and clicking **Request more credits**.
 
 ## Creating and Preparing Clusters
 
