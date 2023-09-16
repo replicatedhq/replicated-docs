@@ -21,6 +21,7 @@ The compatibility matrix has the following limitations:
 - Cloud clusters do not allow for the configuration of CNI, CSI, CRI, Ingress, or other plugins, add-ons, services, and interfaces.
 - The node operating systems for clusters created with the compatibility matrix cannot be configured nor replaced with different operating systems.
 - The Kubernetes scheduler for clusters created with the compatibility matrix cannot be replaced with a different scheduler.
+- Each team has a quota limit on the amount of resources that can be used simultaneously. This limit can be raised by messaging your account rep.
 
 For additional distribution-specific limitations, see [Supported Compatibility Matrix Cluster Types (Beta)](testing-supported-clusters).
 
