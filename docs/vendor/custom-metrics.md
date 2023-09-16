@@ -126,12 +126,12 @@ async function sendMetrics(db) {
     });
 }
 
-async function startMetricsLoop(db, licenseId) {
+async function startMetricsLoop(db) {
 
     const ONE_WEEK_IN_MS = 1000 * 60 * 60 * 24 * 7
 
     // send metrics once on startup
-    await sendMetrics(db, licenseId)
+    await sendMetrics(db)
       .catch((e) => { console.log("error sending metrics: ", e) });        
 
     // schedule weekly metrics payload
