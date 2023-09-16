@@ -131,7 +131,7 @@ async function startMetricsLoop(db, licenseId) {
     const ONE_WEEK_IN_MS = 1000 * 60 * 60 * 24 * 7
 
     // send metrics once on startup
-    await sendTelemetry(db, licenseId)
+    await sendMetrics(db, licenseId)
       .catch((e) => { console.log("error sending metrics: ", e) });        
 
     // schedule weekly metrics payload
