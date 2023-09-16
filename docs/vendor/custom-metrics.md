@@ -106,7 +106,7 @@ The location of the API endpoint is different depending on if KOTS or the SDK is
 The following example shows a NodeJS application that sends metrics on a weekly interval to the in-cluster API exposed by the SDK:
 
 ```javascript
-async function sendMetrics(db, licenseId) {
+async function sendMetrics(db) {
 
     const projectsQuery = "SELECT COUNT(*) as num_projects from projects";
     const numProjects = (await db.getConnection().queryOne(projectsQuery)).num_projects;
@@ -142,7 +142,7 @@ async function startMetricsLoop(db, licenseId) {
     }, ONE_WEEK_IN_MS);
 }
 
-startMetricsLoop(getDatabase(), getLicenseId());
+startMetricsLoop(getDatabase());
 ```
 
 ### CronJob Example
