@@ -16,19 +16,19 @@ How you implement CI/CD workflows varies depending on the platform, such as GitH
 
 ## Development Workflow
 
-### Diagram
+The following diagram shows the recommended development workflow, where a commit to the application code repository triggers the source code to be built and the application to be deployed to clusters for testing:
 
 ![Development CI workflow](/images/ci-workflow-dev.png)
 
 [View a larger version of this image](/images/ci-workflow-dev.png)
 
-### Steps
+The following describes the recommended steps to include in a development workflow, as shown in the diagram above:
 
 1. [Define workflow triggers](#dev-triggers)
 1. [Build source code](#dev-build)
 1. [Prepare clusters, deploy, and test](#dev-deploy)
 
-#### Define workflow triggers {#dev-triggers}
+### Define workflow triggers {#dev-triggers}
 
 Run a development workflow on every commit to a branch in your code repository that is _not_ `main`.
 
@@ -49,11 +49,11 @@ jobs:
   ...
 ```
 
-#### Build source code {#dev-build}
+### Build source code {#dev-build}
 
 <Build/>
 
-#### Prepare clusters, deploy, and test {#dev-deploy}
+### Prepare clusters, deploy, and test {#dev-deploy}
 
 Add a job with the following steps to prepare clusters with the Replicated compatibility matrix, deploy the application, and run tests:
 
@@ -71,17 +71,15 @@ Add a job with the following steps to prepare clusters with the Replicated compa
 
 ## Release Workflow
 
-### Diagram
+Replicated recommends that you create unique workflows for promoting releases to your team's Unstable, Beta, and Stable channels. In a release workflow (which is triggered by an action such as a commit to `main` or a tag being pushed to the repository), the source code is built, the application is deployed to clusters for testing, and then a release is promoted to a channel.
 
-The following diagram demonstrates the steps in the recommended release workflow: 
+The following diagram demonstrates a release workflow that promotes a release to the Beta channel when a tag with the format `"v*.*.*-beta.*"` is pushed:
 
 ![Workflow that promotes to Beta channel](/images/ci-workflow-beta.png)
 
 [View a larger version of this image](/images/ci-workflow-beta.png)
 
-### Steps
-
-The following describes the steps in the recommended release workflow:
+The following describes the recommended steps to include in release workflows, as shown in the diagram above:
 
 1. [Define workflow triggers](#rel-triggers)
 1. [Build source code](#rel-build)
@@ -90,7 +88,7 @@ The following describes the steps in the recommended release workflow:
 1. [Promote to a shared channel](#rel-promote)
 1. [Archive the temporary channel and customer](#rel-cleanup)
 
-#### Define workflow triggers {#rel-triggers}
+### Define workflow triggers {#rel-triggers}
 
 Create multiple release workflows for creating and promoting releases to your team's internal-only, beta, or stable channels. Define unique event triggers for each of your release workflows so that releases are only promoted to a channel when a given condition is met:
 
@@ -146,7 +144,7 @@ Create multiple release workflows for creating and promoting releases to your te
 
 <Build/>
 
-#### Create a release and promote to a temporary channel {#rel-release}
+### Create a release and promote to a temporary channel {#rel-release}
 
 Add a job that uses the `release create` command to create and promote a release to a temporary channel. This allows the release to be installed for testing in the next step. For more information, see [release create](/reference/replicated-cli-release-create).
 
@@ -164,7 +162,7 @@ Consider the following requirements and recommendations:
 
 * For releases that will be promoted to a customer-facing channel such as Beta or Stable, Replicated recommends that the version label for the release matches the tag that triggered the release workflow. For example, if the tag `1.0.0-beta.1` was used to trigger the workflow, then the version label for the release is also `1.0.0-beta.1`.
 
-#### Create cluster matrix, deploy, and test {#rel-deploy}
+### Create cluster matrix, deploy, and test {#rel-deploy}
 
 Add a job with the following steps to provision clusters with the compatibility matrix, deploy your application to the clusters, and run tests:
 
@@ -195,7 +193,7 @@ Add a job with the following steps to provision clusters with the compatibility 
 
 1. Delete the cluster when the tests complete. See [cluster rm](/reference/replicated-cli-cluster-rm).
 
-#### Promote to a shared channel {#rel-promote}
+### Promote to a shared channel {#rel-promote}
 
 Add a job that uses the `release promote` command to promote the release to a channel, such as the default Unstable, Beta, or Stable channel. For more information, see [release promote](/reference/replicated-cli-release-promote).
 
@@ -207,7 +205,7 @@ Consider the following requirements and recommendations:
 
 * Use the `--release-notes` flag to include detailed release notes in markdown.
 
-#### Archive the temporary channel and customer {#rel-cleanup}
+### Archive the temporary channel and customer {#rel-cleanup}
 
 Finally, add a job to archive the temporary channel and customer that you created. This ensures that these artifacts are removed from your Replicated team and that they do not have to be manually archived after the release is promoted.
 
