@@ -142,7 +142,7 @@ Create unique workflows for promoting releases to your team's internal-only, bet
      ...
    ```
 
-#### Build source code {#rel-build}
+### Build source code {#rel-build}
 
 <Build/>
 
