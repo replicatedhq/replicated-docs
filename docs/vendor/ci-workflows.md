@@ -57,13 +57,15 @@ jobs:
 
 Add a job with the following steps to prepare clusters with the Replicated compatibility matrix, deploy the application, and run tests:
 
-1. Use the Replicated compatibility matrix to prepare one or more clusters and deploy the application. For more information about the compatibility matrix, see [About the Compatibility Matrix](testing-about).
+1. Use the Replicated compatibility matrix to prepare one or more clusters and deploy the application. For more information about the compatibility matrix, see [About the Compatibility Matrix](testing-about). Consider the following recommendations:
 
-  For development workflows, Replicated recommends that you use the `cluster prepare` command to provision one or more clusters with the compatibility matrix. The `cluster prepare` command creates a cluster, creates a release, and installs the release in the cluster, without the need to promote the release to a channel or create a temporary customer. For more information, see [`cluster prepare`](/reference/replicated-cli-cluster-prepare).
+   * For development workflows, Replicated recommends that you use the `cluster prepare` command to provision one or more clusters with the compatibility matrix. The `cluster prepare` command creates a cluster, creates a release, and installs the release in the cluster, without the need to promote the release to a channel or create a temporary customer. For more information, see [`cluster prepare`](/reference/replicated-cli-cluster-prepare).
 
-  :::note
-  The `cluster prepare` command is Beta. It is recommended for development only and is not recommended for production releases. For production releases, Replicated recommends that you use the `cluster create` command instead. For more information, see [Create cluster matrix and deploy](#rel-deploy) in _Release Workflow_ below.
-  :::
+     :::note
+     The `cluster prepare` command is Beta. It is recommended for development only and is not recommended for production releases. For production releases, Replicated recommends that you use the `cluster create` command instead. For more information, see [Create cluster matrix and deploy](#rel-deploy) in _Release Workflow_ below.
+     :::
+
+    * The type and number of clusters that you choose to provision as part of a development workflow depends on how frequently you intend the workflow to run. For example, for workflows that run multiple times a day, you might prefer to provision cluster distributions that can be created quickly, such as kind clusters. 
 
 1. Run tests, such as integration, smoke, and canary tests. For more information about recommended types of tests to run, see [Test Script Recommendations](/vendor/testing-how-to#test-script-recommendations) in _Using the Compatibility Matrix_.
 
@@ -71,7 +73,7 @@ Add a job with the following steps to prepare clusters with the Replicated compa
 
 ## Release Workflow
 
-Replicated recommends that you create unique workflows for promoting releases to your team's Unstable, Beta, and Stable channels. In a release workflow (which is triggered by an action such as a commit to `main` or a tag being pushed to the repository), the source code is built, the application is deployed to clusters for testing, and then a release is promoted to a channel.
+In a release workflow (which is triggered by an action such as a commit to `main` or a tag being pushed to the repository), the source code is built, the application is deployed to clusters for testing, and then a release is promoted to a channel.
 
 The following diagram demonstrates a release workflow that promotes a release to the Beta channel when a tag with the format `"v*.*.*-beta.*"` is pushed:
 
@@ -90,11 +92,11 @@ The following describes the recommended steps to include in release workflows, a
 
 ### Define workflow triggers {#rel-triggers}
 
-Create multiple release workflows for creating and promoting releases to your team's internal-only, beta, or stable channels. Define unique event triggers for each of your release workflows so that releases are only promoted to a channel when a given condition is met:
+Create unique workflows for promoting releases to your team's internal-only, beta, and stable channels. Define unique event triggers for each of your release workflows so that releases are only promoted to a channel when a given condition is met:
 
 * On every commit to the `main` branch in your code repository, promote a release to the channel that your team uses for internal testing (such as the default Unstable channel).
 
-  The following example shows defining a workflow trigger in GitHub Actions that runs the workflow on commits to `main`:
+  The following example shows a workflow trigger in GitHub Actions that runs the workflow on commits to `main`:
 
    ```yaml
    name: unstable-release-example
@@ -110,7 +112,7 @@ Create multiple release workflows for creating and promoting releases to your te
 
 * On pushing a tag that contains a version label with the semantic versioning format `x.y.z-beta-n` (such as `1.0.0-beta.1` or `v1.0.0-beta.2`), promote a release to your team's Beta channel.
 
-  The following example shows defining a workflow trigger in GitHub Actions that runs the workflow when a tag that matches the format `v*.*.*-beta.*` is pushed:
+  The following example shows a workflow trigger in GitHub Actions that runs the workflow when a tag that matches the format `v*.*.*-beta.*` is pushed:
 
    ```yaml
    name: beta-release-example
@@ -126,7 +128,7 @@ Create multiple release workflows for creating and promoting releases to your te
 
 * On pushing a tag that contains a version label with the semantic versioning format `x.y.z` (such as `1.0.0` or `v1.0.01`), promote a release to your team's Stable channel.
 
-  The following example shows defining a workflow trigger in GitHub Actions that runs the workflow when a tag that matches the format `v*.*.*` is pushed:
+  The following example shows a workflow trigger in GitHub Actions that runs the workflow when a tag that matches the format `v*.*.*` is pushed:
 
    ```yaml
    name: stable-release-example
