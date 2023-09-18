@@ -596,6 +596,7 @@ const sidebars = {
       items: [
         'vendor/ci-overview',
         'vendor/ci-workflows',
+        'vendor/ci-workflows-github-actions',
         'vendor/tutorial-ci-cd-integration',
       ],
     },
