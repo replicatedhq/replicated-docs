@@ -8,7 +8,7 @@ This topic provides Replicated's recommended development and release workflows f
 
 Replicated recommends that you maintain unique workflows for development (continuous integration) and for releasing your software (continuous delivery). The development and release workflows in this topic describe the recommended steps and jobs to include in your workflows, as well as the corresponding replicated CLI commands to use. For more information about the requirements for using the replicated CLI, see [Installing the replicated CLI](/reference/replicated-cli-installing).
 
-Replicated also maintains custom actions and example workflows that that are compatible with the GitHub Actions platform. Users of GitHub Actions can reference these actions and example workflows to help create their own CI/CD workflows. For more information, see the [replicated-actions](https://github.com/replicatedhq/replicated-actions/) repository in GitHub.
+Replicated also maintains custom GitHub actions that that are compatible with the GitHub Actions platform. Users of GitHub Actions can include these actions in their own CI/CD workflows instead of replicated CLI commands. For more information, see [Integrating Replicated GitHub Actions](ci-workflows-github-actions).
 
 :::note
 How you implement CI/CD workflows varies depending on the platform, such as GitHub, GitLab, CircleCI, TravisCI, or Jenkins. Refer to the documentation for your CI/CD platform for additional guidance on how to create jobs and workflows.
@@ -150,7 +150,11 @@ Add a job with the following steps to provision clusters with the compatibility 
 
 1. Use the compatibility matrix to create a matrix of different Kubernetes cluster distributions and versions to run tests against. See [cluster create](/reference/replicated-cli-cluster-create).
 
-   For release workflows, Replicated recommends that you run tests against multiple clusters of different Kubernetes distributions and versions. To help build the matrix, you can review the most common Kubernetes distributions and versions used by your customers on the **Customers > Reporting** page in the Replicated vendor portal. For more information, see [Customer Reporting](/vendor/customer-reporting).
+   Consdier the following recommendations:
+
+     * For release workflows, Replicated recommends that you run tests against multiple clusters of different Kubernetes distributions and versions. To help build the matrix, you can review the most common Kubernetes distributions and versions used by your customers on the **Customers > Reporting** page in the Replicated vendor portal. For more information, see [Customer Reporting](/vendor/customer-reporting).
+     
+     * GitHub Actions users can also use the `get-customer-instances` action For more information, see [get-customer-instances](https://github.com/replicatedhq/replicated-actions/tree/main/get-customer-instances) in GitHub. 
 
    The following example shows creating a matrix of clusters of different distributions and versions using GitHub Actions:
 
