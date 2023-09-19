@@ -580,7 +580,9 @@ This returns `true` if the Kubernetes minor version is greater than `19`.
 func Lookup() map[string]interface{}
 ```
 
-Lookup uses the Helm lookup function to search resources in a running cluster and returns a resource or resource list. For more information about the Helm lookup function, see [lookup](https://helm.sh/docs/chart_template_guide/functions_and_pipelines/#using-the-lookup-function) in the Helm documentation.
+Lookup searches resources in a running cluster and returns a resource or resource list.
+
+Lookup uses the Helm lookup function to search resources and has the same functionality as the Helm lookup function. For more information, see [lookup](https://helm.sh/docs/chart_template_guide/functions_and_pipelines/#using-the-lookup-function) in the Helm documentation. Lookup can be used to search resources deployed by any application that is installed with KOTS, including applications that use standard Kubernetes manifests and Helm chart-based applications.
 
 ```yaml
 repl{{ Lookup "API_VERSION" "KIND" "NAMESPACE" "NAME" }}
