@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.0.0-beta.8
+
+Released on September 19, 2023
+
+### Bug Fixes {#bug-fixes-1-0-0-beta-8}
+* Fixes an issue where the `replicated` Pod/API failed to come up due to the inability to generate status informers if the application contains empty YAML documents, or documents that only have comments.
+
 ## 1.0.0-beta.7
 
 Released on September 15, 2023
