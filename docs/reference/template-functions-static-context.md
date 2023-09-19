@@ -580,7 +580,7 @@ This returns `true` if the Kubernetes minor version is greater than `19`.
 func Lookup() map[string]interface{}
 ```
 
-The lookup function can be used to _look up_ resources in a running cluster. It uses the Helm [lookup](https://helm.sh/docs/chart_template_guide/functions_and_pipelines/#using-the-lookup-function) function behind the scenes. Returns a resource or resource list.
+Lookup uses the Helm lookup function to search resources in a running cluster and returns a resource or resource list. For more information about the Helm lookup function, see [lookup](https://helm.sh/docs/chart_template_guide/functions_and_pipelines/#using-the-lookup-function) in the Helm documentation.
 
 ```yaml
 repl{{ Lookup "API_VERSION" "KIND" "NAMESPACE" "NAME" }}
@@ -617,30 +617,30 @@ The following combination of parameters are possible:
   </tr>
 </table>
 
-When `Lookup` returns an object, it will return a dictionary. This dictionary can be further navigated to extract specific values.
+The following describes working with values returned by the Lookup function:
 
-The following example will return the annotations present for the `mynamespace` object:
+* When Lookup finds an object, it returns a dictionary with the key value pairs from the object. This dictionary can be navigated to extract specific values. For example, the following returns the annotations for the `mynamespace` object:
 
-```
-repl{{ (Lookup "v1" "Namespace" "" "mynamespace").metadata.annotations }}
-```
+    ```
+    repl{{ (Lookup "v1" "Namespace" "" "mynamespace").metadata.annotations }}
+    ```
 
-When `Lookup` returns a list of objects, it is possible to access the object list via the `items` field:
+* When Lookup returns a list of objects, it is possible to access the object list through the `items` field. For example:
 
-```
-services: |
-  repl{{- range $index, $service := (Lookup "v1" "Service" "mynamespace" "").items }}
-  - repl{{ $service.metadata.name }}
-  repl{{- end }}
-```
+    ```
+    services: |
+      repl{{- range $index, $service := (Lookup "v1" "Service" "mynamespace" "").items }}
+      - repl{{ $service.metadata.name }}
+      repl{{- end }}
+    ```
 
-The `|` can be omitted if an array value type is desired. For example:
+    For an array value type, omit the `|`. For example:
 
-```
-services:
-  repl{{- range $index, $service := (Lookup "v1" "Service" "mynamespace" "").items }}
-  - repl{{ $service.metadata.name }}
-  repl{{- end }}
-```
+    ```
+    services:
+      repl{{- range $index, $service := (Lookup "v1" "Service" "mynamespace" "").items }}
+      - repl{{ $service.metadata.name }}
+      repl{{- end }}
+    ```
 
-When no object is found, an empty value is returned. This can be used to check for the existence of an object.
+* When no object is found, Lookup returns an empty value. This can be used to check for the existence of an object.
