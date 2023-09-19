@@ -8,6 +8,10 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.0.0-beta.8
+
+Released on September 19, 2023
+
 ## 1.0.0-beta.7
 
 Released on September 15, 2023
