@@ -26,9 +26,13 @@ The [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated
 
 * For a release workflow, see [release.yaml](https://github.com/replicatedhq/replicated-actions/blob/main/example-workflows/release.yaml).
 
-## About Integrating GitHub Actions
+## Integrate GitHub Actions
 
 The following table lists GitHub actions that are maintained by Replicated that you can integrate into your CI/CI workflows. The table also provides links to examples of using the action in a workflow and any related replicated CLI commands.
+
+:::note
+For an up-to-date list of all the avilable custom GitHuc actions, see the [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions/) repository in GitHub.
+:::
 
 <table>
   <tr>
