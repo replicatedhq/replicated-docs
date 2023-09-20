@@ -6,9 +6,9 @@ This topic provides Replicated's recommended development and release workflows f
 
 ## Overview
 
-Replicated recommends that you maintain unique workflows for development (continuous integration) and for releasing your software (continuous delivery). The development and release workflows in this topic describe the recommended steps and jobs to include in your workflows. For each step, the corresponding replicated CLI command or custom GitHub action is provided. 
+Replicated recommends that you maintain unique CI/CD workflows for development (continuous integration) and for releasing your software (continuous delivery). The development and release workflows in this topic describe the recommended steps and jobs to include in your own workflows, including how to integrate the Replicated compatibility matrix into your workflows for testing. For more information about the compatibility matrix, see [About the Compatibility Matrix](testing-about).
 
-For more information about using the replicated CLI, see [Installing the replicated CLI](/reference/replicated-cli-installing). For more information about integrating the GitHub actions into your CI/CD workflows, see [Integrating Replicated GitHub Actions](ci-workflows-github-actions).
+For each step, the corresponding replicated CLI command is provided. Additionally, for users of the GitHub Actions platform, a corresponding custom GitHub action that is maintained by Replicated is also provided. For more information about using the replicated CLI, see [Installing the replicated CLI](/reference/replicated-cli-installing). For more information about the Replicated GitHub actions, see [Integrating Replicated GitHub Actions](ci-workflows-github-actions).
 
 :::note
 How you implement CI/CD workflows varies depending on the platform, such as GitHub, GitLab, CircleCI, TravisCI, or Jenkins. Refer to the documentation for your CI/CD platform for additional guidance on how to create jobs and workflows.
@@ -47,9 +47,9 @@ jobs:
 
 Add a job with the following steps to prepare clusters with the Replicated compatibility matrix, deploy the application, and run tests:
 
-1. Use the Replicated compatibility matrix to prepare one or more clusters and deploy the application. For more information about the compatibility matrix, see [About the Compatibility Matrix](testing-about).
+1. Use the Replicated compatibility matrix to prepare one or more clusters and deploy the application. 
 
-  For development workflows, Replicated recommends that you use the `cluster prepare` command to provision one or more clusters with the compatibility matrix. The `cluster prepare` command creates a cluster, creates a release, and installs the release in the cluster, without the need to promote the release to a channel or create a temporary customer. For more information, see [`cluster prepare`](/reference/replicated-cli-cluster-prepare).
+  For development workflows, Replicated recommends that you use the `cluster prepare` command to provision one or more clusters with the compatibility matrix. The `cluster prepare` command creates a cluster, creates a release, and installs the release in the cluster, without the need to promote the release to a channel or create a temporary customer. See the [`cluster prepare`](/reference/replicated-cli-cluster-prepare) replicated CLI command. Or, for GitHub Actions workflows, see the [prepare-cluster](https://github.com/replicatedhq/replicated-actions/tree/main/prepare-cluster) GitHub action.
 
   :::note
   The `cluster prepare` command is Beta. It is recommended for development only and is not recommended for production releases. For production releases, Replicated recommends that you use the `cluster create` command instead. For more information, see [Create cluster matrix and deploy](#rel-deploy) in _Release Workflow_ below.
@@ -57,7 +57,7 @@ Add a job with the following steps to prepare clusters with the Replicated compa
 
 1. Run tests, such as integration, smoke, and canary tests. For more information about recommended types of tests to run, see [Test Script Recommendations](/vendor/testing-how-to#test-script-recommendations) in _Using the Compatibility Matrix_.
 
-1. After the tests complete, remove the cluster. Alternatively, if you used the `--ttl` flag with the `prepare cluster` command, the cluster is automatically removed when the time period provided is reached. See the [`cluster remove`](/reference/replicated-cli-cluster-prepare) replicated CLI command. Or, for GitHub Actions workflow, see the [remove-cluster](https://github.com/replicatedhq/replicated-actions/tree/main/remove-cluster) action. 
+1. After the tests complete, remove the cluster. Alternatively, if you used the `--ttl` flag with the `prepare cluster` command, the cluster is automatically removed when the time period provided is reached. See the [`cluster remove`](/reference/replicated-cli-cluster-prepare) replicated CLI command. Or, for GitHub Actions workflows, see the [remove-cluster](https://github.com/replicatedhq/replicated-actions/tree/main/remove-cluster) action. 
 
 ## Release Workflow
 
@@ -126,7 +126,7 @@ Create multiple release workflows for creating and promoting releases to your te
 
 ### Create a release and promote to a temporary channel {#rel-release}
 
-Add a job that uses the `release create` command to create and promote a release to a temporary channel. This allows the release to be installed for testing in the next step. For more information, see [release create](/reference/replicated-cli-release-create).
+Add a job that creates and promotes a release to a temporary channel. This allows the release to be installed for testing in the next step. See the [release create](/reference/replicated-cli-release-create) replicated CLI command. Or, for GitHub Actions workflows, see [create-release](https://github.com/replicatedhq/replicated-actions/tree/main/create-release).
 
 Consider the following requirements and recommendations:
 
@@ -175,11 +175,11 @@ Add a job with the following steps to provision clusters with the compatibility 
 
 1. Run tests, such as integration, smoke, and canary tests. For more information about recommended types of tests to run, see [Test Script Recommendations](/vendor/testing-how-to#test-script-recommendations) in _Using the Compatibility Matrix_.
 
-1. Delete the cluster when the tests complete. See [cluster rm](/reference/replicated-cli-cluster-rm).
+1. Delete the cluster when the tests complete. See the [cluster rm](/reference/replicated-cli-cluster-rm) replicated CLI command. Or, for GitHub Actions workflows, see the [remove-cluster](https://github.com/replicatedhq/replicated-actions/tree/main/remove-cluster) action.
 
 ### Promote to a shared channel {#rel-promote}
 
-Add a job that uses the `release promote` command to promote the release to a channel, such as the default Unstable, Beta, or Stable channel. For more information, see [release promote](/reference/replicated-cli-release-promote).
+Add a job that promotes the release to a shared internal-only or customer-facing channel, such as the default Unstable, Beta, or Stable channel. See the [release promote](/reference/replicated-cli-release-promote) replicated CLI command. Or, for GitHub Actions workflows, see the [promote-release](https://github.com/replicatedhq/replicated-actions/tree/main/promote-release) action.
 
 Consider the following requirements and recommendations:
 
@@ -193,4 +193,4 @@ Consider the following requirements and recommendations:
 
 Finally, add a job to archive the temporary channel and customer that you created. This ensures that these artifacts are removed from your Replicated team and that they do not have to be manually archived after the release is promoted.
 
-For more information, see [channel delete](/reference/replicated-cli-channel-delete) and [customer/{customer_id}/archive](https://replicated-vendor-api.readme.io/reference/archivecustomer) in the Vendor API v3 documentation.
+See the [channel delete](/reference/replicated-cli-channel-delete) replicated CLI command and the [customer/{customer_id}/archive](https://replicated-vendor-api.readme.io/reference/archivecustomer) endpoint in the Vendor API v3 documentation. Or, for GitHub Actions workflows, see the [archive-channel](https://github.com/replicatedhq/replicated-actions/tree/main/archive-channel) and [archive-customer](https://github.com/replicatedhq/replicated-actions/tree/main/archive-customer) actions.
