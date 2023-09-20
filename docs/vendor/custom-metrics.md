@@ -117,18 +117,21 @@ async function sendMetrics(db) {
 
     const metrics = { data: { numProjects, activeUsers }};
     
-    await fetch('https://replicated:3000/api/v1/app/custom-metrics', {
+    const res = await fetch('https://replicated:3000/api/v1/app/custom-metrics', {
         method: 'POST',
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(metrics),
     });
+    if (res.status !== 200) {
+        throw new Error(`Failed to send metrics: ${res.statusText}`);
+    }
 }
 
 async function startMetricsLoop(db) {
 
-    const ONE_WEEK_IN_MS = 1000 * 60 * 60 * 24 * 7
+    const ONE_DAY_IN_MS = 1000 * 60 * 60 * 24
 
     // send metrics once on startup
     await sendMetrics(db)
@@ -139,41 +142,10 @@ async function startMetricsLoop(db) {
     setInterval( () => {
         sendMetrics(db, licenseId)
           .catch((e) => { console.log("error sending metrics: ", e) });        
-    }, ONE_WEEK_IN_MS);
+    }, ONE_DAY_IN_MS);
 }
 
 startMetricsLoop(getDatabase());
-```
-
-### CronJob Example
-
-The following example shows a Kubernetes CronJob that sends metrics on a weekly interval to the in-cluster API exposed by the SDK:
-
-```yaml
-apiVersion: batch/v1
-kind: CronJob
-metadata:
-  name: metrics
-spec:
-  schedule: "0 0 0 0 0"
-  jobTemplate:
-    spec:
-      template:
-        spec:
-          containers:
-          - name: hello
-            image: app-metrics:latest
-            command:
-            - /bin/sh
-            - -c
-            - |
-                date; echo sending metrics
-                activeUsers=$(psql -t -c 'select COUNT(*) from active_users')
-                numProjects=$(psql -t -c 'select COUNT(*) from projects')
-                curl -X POST http://replicated:3000/api/v1/app/custom-metrics --data-binary "{\"activeUsers\":${activeUsers}, \"numProjects\":${numProjects}}"
-            envFrom:
-            - secretRef:
-                name: postgres-credentials
 ```
 
 ## View Custom Metrics
