@@ -30,7 +30,7 @@ To conditionally exclude the SDK from KOTS installations, do the following for e
    dependencies:
    - name: replicated
      repository: oci://registry.replicated.com/library
-     version: 1.0.0-beta.6
+     version: 1.0.0-beta.8
      condition: replicated.enabled
    ```
 

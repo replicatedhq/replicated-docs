@@ -571,3 +571,78 @@ repl{{gt (KubernetesMinorVersion | ParseInt) 19 }}
 ```
 
 This returns `true` if the Kubernetes minor version is greater than `19`.
+
+## Lookup
+
+> Introduced in KOTS v1.103.0
+
+```go
+func Lookup() map[string]interface{}
+```
+
+Lookup searches resources in a running cluster and returns a resource or resource list.
+
+Lookup uses the Helm lookup function to search resources and has the same functionality as the Helm lookup function. For more information, see [lookup](https://helm.sh/docs/chart_template_guide/functions_and_pipelines/#using-the-lookup-function) in the Helm documentation.
+
+```yaml
+repl{{ Lookup "API_VERSION" "KIND" "NAMESPACE" "NAME" }}
+```
+
+Both `NAME` and `NAMESPACE` are optional and can be passed as an empty string ("").
+
+The following combination of parameters are possible:
+
+<table>
+  <tr>
+    <th>Behavior</th>
+    <th>Lookup function</th>
+  </tr>
+  <tr>
+    <td style={{ fontSize: 14 }}><code>kubectl get pod mypod -n mynamespace</code></td>
+    <td style={{ fontSize: 14 }}><code>repl&#123;&#123; Lookup "v1" "Pod" "mynamespace" "mypod" &#125;&#125;</code></td>
+  </tr>
+  <tr>
+    <td style={{ fontSize: 14 }}><code>kubectl get pods -n mynamespace</code></td>
+    <td style={{ fontSize: 14 }}><code>repl&#123;&#123; Lookup "v1" "Pod" "mynamespace" "" &#125;&#125;</code></td>
+  </tr>
+  <tr>
+    <td style={{ fontSize: 14 }}><code>kubectl get pods --all-namespaces</code></td>
+    <td style={{ fontSize: 14 }}><code>repl&#123;&#123; Lookup "v1" "Pod" "" "" &#125;&#125;</code></td>
+  </tr>
+  <tr>
+    <td style={{ fontSize: 14 }}><code>kubectl get namespace mynamespace</code></td>
+    <td style={{ fontSize: 14 }}><code>repl&#123;&#123; Lookup "v1" "Namespace" "" "mynamespace" &#125;&#125;</code></td>
+  </tr>
+  <tr>
+    <td style={{ fontSize: 14 }}><code>kubectl get namespaces</code></td>
+    <td style={{ fontSize: 14 }}><code>repl&#123;&#123; Lookup "v1" "Namespace" "" "" &#125;&#125;</code></td>
+  </tr>
+</table>
+
+The following describes working with values returned by the Lookup function:
+
+* When Lookup finds an object, it returns a dictionary with the key value pairs from the object. This dictionary can be navigated to extract specific values. For example, the following returns the annotations for the `mynamespace` object:
+
+    ```
+    repl{{ (Lookup "v1" "Namespace" "" "mynamespace").metadata.annotations }}
+    ```
+
+* When Lookup returns a list of objects, it is possible to access the object list through the `items` field. For example:
+
+    ```
+    services: |
+      repl{{- range $index, $service := (Lookup "v1" "Service" "mynamespace" "").items }}
+      - repl{{ $service.metadata.name }}
+      repl{{- end }}
+    ```
+
+    For an array value type, omit the `|`. For example:
+
+    ```
+    services:
+      repl{{- range $index, $service := (Lookup "v1" "Service" "mynamespace" "").items }}
+      - repl{{ $service.metadata.name }}
+      repl{{- end }}
+    ```
+
+* When no object is found, Lookup returns an empty value. This can be used to check for the existence of an object.
