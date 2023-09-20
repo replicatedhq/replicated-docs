@@ -154,7 +154,7 @@ Add a job with the following steps to provision clusters with the compatibility 
 
      * For release workflows, Replicated recommends that you run tests against multiple clusters of different Kubernetes distributions and versions. To help build the matrix, you can review the most common Kubernetes distributions and versions used by your customers on the **Customers > Reporting** page in the Replicated vendor portal. For more information, see [Customer Reporting](/vendor/customer-reporting).
      
-     * GitHub Actions users can also use the `get-customer-instances` action For more information, see [get-customer-instances](https://github.com/replicatedhq/replicated-actions/tree/main/get-customer-instances) in GitHub. 
+     * GitHub Actions users can also use the `get-customer-instances` action to automate the creation of a cluster matrix based on the distributions of clusters where instances of your application are installed and running. For more information, see [get-customer-instances](https://github.com/replicatedhq/replicated-actions/tree/main/get-customer-instances) in GitHub. 
 
    The following example shows creating a matrix of clusters of different distributions and versions using GitHub Actions:
 
