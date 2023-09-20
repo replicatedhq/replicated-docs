@@ -23,7 +23,7 @@ Released on September 20, 2023
 Support for Kubernetes: 1.25, 1.26, 1.27, and 1.28
 
 ### New Features {#new-features-1-103-0}
-* Adds support for `Lookup` template function.
+* Adds support for [Lookup](/reference/template-functions-static-context#lookup) template function.
 
 ## 1.102.2
 
