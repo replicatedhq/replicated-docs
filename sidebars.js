@@ -583,24 +583,6 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Testing with Compatibility Matrix (Beta)',
-      items: [
-        'vendor/testing-about',
-        'vendor/testing-supported-clusters',
-        'vendor/testing-how-to',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'CI/CD',
-      items: [
-        'vendor/ci-overview',
-        'vendor/ci-workflows',
-        'vendor/tutorial-ci-cd-integration',
-      ],
-    },
-    {
-      type: 'category',
       label: 'Insights and Telemetry',
       items: [
          'vendor/instance-insights-event-data',
@@ -612,6 +594,22 @@ const sidebars = {
          'vendor/custom-metrics',
        ],
     },
+    
+    {type: 'html', value: '<h5>test with compatibility matrix</h5>', defaultStyle: true},
+
+    'vendor/testing-about',
+    'vendor/testing-supported-clusters',
+    'vendor/testing-how-to',
+    {
+      type: 'category',
+      label: 'Integrating with CI/CD',
+      items: [
+        'vendor/ci-overview',
+        'vendor/ci-workflows',
+        'vendor/tutorial-ci-cd-integration',
+      ],
+    },
+
     {type: 'html', value: '<h5>install</h5>', defaultStyle: true},
     'vendor/install-with-helm',
     {type: 'ref', id: 'enterprise/installing-overview', label: 'Installing with KOTS', className: 'menu__list-item__ref-link'},
