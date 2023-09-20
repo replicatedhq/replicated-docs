@@ -26,21 +26,21 @@ The [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated
 
 * For a release workflow, see [release.yaml](https://github.com/replicatedhq/replicated-actions/blob/main/example-workflows/release.yaml).
 
-## Integrate GitHub Actions into CI/CD Workflows
+## About Integrating GitHub Actions
 
-The following table lists GitHub actions that are maintained by Replicated that you can integrate into your CI/CI workflows. The table also provides links to examples of using the action in a workflow and any related replicated CLI or kots CLI commands.
+The following table lists GitHub actions that are maintained by Replicated that you can integrate into your CI/CI workflows. The table also provides links to examples of using the action in a workflow and any related replicated CLI commands.
 
 <table>
   <tr>
     <th width="20%">GitHub Action</th>
     <th width="40%">When to Use</th>
     <th width="20%">Example</th>
-    <th width="20%">Related CLI commands</th>
+    <th width="20%">Related replicated CLI commands</th>
   </tr>
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/archive-channel">archive-channel</a></td>
     <td>
-      <p>In release workflows, archive any temporary channels that were created after running tests against the target release.</p>
+      <p>In release workflows, a temporary channel is created to promote a release so for testing. This action archives the temporary channel after tests complete.</p>
       <p>See <a href="/vendor/ci-workflows#rel-cleanup">Archive the temporary channel and customer</a> in <em>Recommended CI/CD Workflows</em>.</p>
     </td> 
     <td><a href="https://github.com/replicatedhq/replicated-actions/blob/main/example-workflows/release.yaml">release.yaml</a></td>
@@ -49,7 +49,7 @@ The following table lists GitHub actions that are maintained by Replicated that 
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/archive-customer">archive-customer</a></td>
     <td>
-      <p>In release workflows, archive the temporary customer after running tests.</p>
+      <p>In release workflows, a temporary customer is created so that a release can be installed for testing. This action archives the temporary customer after tests complete.</p>
       <p>See <a href="/vendor/ci-workflows#rel-cleanup">Archive the temporary channel and customer</a> in <em>Recommended CI/CD Workflows</em>.</p>
     </td> 
     <td><a href="https://github.com/replicatedhq/replicated-actions/blob/main/example-workflows/release.yaml">release.yaml</a></td>
@@ -62,16 +62,16 @@ The following table lists GitHub actions that are maintained by Replicated that 
       <p>See <a href="/vendor/ci-workflows#rel-deploy">Create cluster matrix, deploy, and test</a> in <em>Recommended CI/CD Workflows</em>.</p>
     </td>
     <td><a href="https://github.com/replicatedhq/replicated-actions/blob/main/example-workflows/release.yaml">release.yaml</a></td>
-    <td><code>cluster create</code></td>
+    <td><a href="/reference/replicated-cli-cluster-create"><code>cluster create</code></a></td>
   </tr>
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/create-release">create-release</a></td>
     <td>
-      <p>In release workflows, create a release and promote it release to a temporary channel. This allows the release to be installed in one or more clusters for testing.</p>
+      <p>In release workflows, create a release to be installed and tested, and optionally to be promoted to a shared channel after tests complete.</p>
       <p>See <a href="/vendor/ci-workflows#rel-release">Create a release and promote to a temporary channel</a> in <em>Recommended CI/CD Workflows</em>. </p>
     </td>
     <td><a href="https://github.com/replicatedhq/replicated-actions/blob/main/example-workflows/release.yaml">release.yaml</a></td>
-    <td><code>release create</code></td>
+    <td><a href="/reference/replicated-cli-release-create"><code>release create</code></a></td>
   </tr>
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/get-customer-instances">get-customer-instances</a></td>
@@ -80,30 +80,35 @@ The following table lists GitHub actions that are maintained by Replicated that 
       <p>See <a href="/vendor/ci-workflows#rel-deploy">Create cluster matrix, deploy, and test</a> in <em>Recommended CI/CD Workflows</em>.</p>
     </td>
     <td></td>
-    <td></td>
+    <td>N/A</td>
   </tr>
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/helm-install">helm-install</a></td>
-    <td>In development or release workflows, install a release using the Helm CLI in one or more clusters for testing.</td>
+    <td><p>In development or release workflows, use this action to install a release using the Helm CLI in one or more clusters for testing.</p>
+    <p>See <a href="/vendor/ci-workflows#rel-deploy">Create cluster matrix, deploy, and test</a> in <em>Recommended CI/CD Workflows</em>.</p>
+    </td>
     <td><a href="https://github.com/replicatedhq/replicated-actions/blob/main/example-workflows/release.yaml">release.yaml</a></td>
     <td>N/A</td>
   </tr>
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/kots-install">kots-install</a></td>
-    <td>In development or release workflows, install a release using KOTS in one or more clusters for testing.</td>
+    <td>
+    <p>In development or release workflows, use this action to install a release with Replicated KOTS in one or more clusters for testing.</p>
+    <p>See <a href="/vendor/ci-workflows#rel-deploy">Create cluster matrix, deploy, and test</a> in <em>Recommended CI/CD Workflows</em>.</p>
+    </td>
     <td><a href="https://github.com/replicatedhq/replicated-actions/blob/main/example-workflows/development-kots.yaml">development-kots.yaml</a></td>
     <td>N/A</td>
   </tr>
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/prepare-cluster">prepare-cluster</a></td>
     <td>
-      <p>Use in development workflows to create a cluster, create a temporary customer of type <code>test</code>, and install an application in the cluster.</p>
+      <p>In development workflows, use this action to create a cluster, create a temporary customer of type <code>test</code>, and install an application in the cluster.</p>
       <p>See <a href="/vendor/ci-workflows#dev-deploy">Prepare clusters, deploy, and test</a> in <em>Recommended CI/CD Workflows</em>.</p>
     </td>
     <td>
     <a href="https://github.com/replicatedhq/replicated-actions/blob/main/example-workflows/development-helm-prepare-cluster.yaml">development-helm-prepare-cluster.yaml</a>
     </td>
-    <td><code>cluster prepare</code></td>
+    <td><a href="/reference/replicated-cli-cluster-prepare"><code>cluster prepare</code></a></td>
   </tr>
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/promote-release">promote-release</a></td>
@@ -112,7 +117,7 @@ The following table lists GitHub actions that are maintained by Replicated that 
       <p>See <a href="/vendor/ci-workflows#rel-promote">Promote to a shared channel</a>in <em>Recommended CI/CD Workflows</em>.</p>
     </td>
     <td><a href="https://github.com/replicatedhq/replicated-actions/blob/main/example-workflows/release.yaml">release.yaml</a></td>
-    <td><code>release promote</code></td>
+    <td><a href="/reference/replicated-cli-release-promote"><code>release promote</code></a></td>
   </tr>
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/remove-cluster">remove-cluster</a></td>
@@ -120,7 +125,7 @@ The following table lists GitHub actions that are maintained by Replicated that 
     <p>See <a href="/vendor/ci-workflows#dev-deploy">Prepare clusters, deploy, and test</a> and <a href="/vendor/ci-workflows#rel-deploy">Create cluster matrix, deploy, and test</a> in <em>Recommended CI/CD Workflows</em>.</p>
     </td>
     <td><a href="https://github.com/replicatedhq/replicated-actions/blob/main/example-workflows/release.yaml">release.yaml</a></td>
-    <td><code>cluster rm</code></td>
+    <td><a href="/reference/replicated-cli-cluster-rm"><code>cluster rm</code></a></td>
   </tr>
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/report-compatibility-result">report-compatibility-result</a></td>
