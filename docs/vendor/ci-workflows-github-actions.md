@@ -16,7 +16,7 @@ To view all the available GitHub actions that Replicated maintains, see the [rep
 
 ## GitHub Actions Workflow Examples
 
-The [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions#examples) repository in GitHub contains example GitHub Actions workflows that you can use as a template for your own CI/CD pipelines:
+The [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions#examples) repository in GitHub contains example workflows that use the Replicated GitHub actions. You can use these workflows as a template for your own GitHub Actions CI/CD workflows:
 
 * For a simplified development workflow, see [development-helm-prepare-cluster.yaml](https://github.com/replicatedhq/replicated-actions/blob/main/example-workflows/development-helm-prepare-cluster.yaml).
 * For a customizable development workflow for applications installed with the Helm CLI, see [development-helm.yaml](https://github.com/replicatedhq/replicated-actions/blob/main/example-workflows/development-helm.yaml).
@@ -40,7 +40,7 @@ For an up-to-date list of the avilable custom GitHub actions, see the [replicate
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/archive-channel">archive-channel</a></td>
     <td>
-      <p>In release workflows, a temporary channel is created to promote a release so for testing. This action archives the temporary channel after tests complete.</p>
+      <p>In release workflows, a temporary channel is created to promote a release for testing. This action archives the temporary channel after tests complete.</p>
       <p>See <a href="/vendor/ci-workflows#rel-cleanup">Archive the temporary channel and customer</a> in <em>Recommended CI/CD Workflows</em>.</p>
     </td> 
     <td><a href="/reference/replicated-cli-channel-delete"><code>channel delete</code></a></td>
@@ -56,7 +56,7 @@ For an up-to-date list of the avilable custom GitHub actions, see the [replicate
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/create-cluster">create-cluster</a></td>
     <td>
-      <p>In release workflows, create one or more clusters for testing.</p>
+      <p>In release workflows, use this action to create one or more clusters for testing.</p>
       <p>See <a href="/vendor/ci-workflows#rel-deploy">Create cluster matrix, deploy, and test</a> in <em>Recommended CI/CD Workflows</em>.</p>
     </td>
     <td><a href="/reference/replicated-cli-cluster-create"><code>cluster create</code></a></td>
@@ -64,7 +64,7 @@ For an up-to-date list of the avilable custom GitHub actions, see the [replicate
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/create-release">create-release</a></td>
     <td>
-      <p>In release workflows, create a release to be installed and tested, and optionally to be promoted to a shared channel after tests complete.</p>
+      <p>In release workflows, use this action to create a release to be installed and tested, and optionally to be promoted to a shared channel after tests complete.</p>
       <p>See <a href="/vendor/ci-workflows#rel-release">Create a release and promote to a temporary channel</a> in <em>Recommended CI/CD Workflows</em>. </p>
     </td>
     <td><a href="/reference/replicated-cli-release-create"><code>release create</code></a></td>
@@ -72,7 +72,7 @@ For an up-to-date list of the avilable custom GitHub actions, see the [replicate
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/get-customer-instances">get-customer-instances</a></td>
     <td>
-      <p>In release workflows, create a matrix of clusters for running tests based on the Kubernetes distributions and versions of active instances of your application running in customer environments.</p>
+      <p>In release workflows, use this action to create a matrix of clusters for running tests based on the Kubernetes distributions and versions of active instances of your application running in customer environments.</p>
       <p>See <a href="/vendor/ci-workflows#rel-deploy">Create cluster matrix, deploy, and test</a> in <em>Recommended CI/CD Workflows</em>.</p>
     </td>
     <td>N/A</td>
@@ -103,26 +103,26 @@ For an up-to-date list of the avilable custom GitHub actions, see the [replicate
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/promote-release">promote-release</a></td>
     <td>
-      <p>In release workflows, promote a release to an internal or customer-facing channel (such as Unstable, Beta, or Stable) after tests pass.</p>
+      <p>In release workflows, use this action to promote a release to an internal or customer-facing channel (such as Unstable, Beta, or Stable) after tests pass.</p>
       <p>See <a href="/vendor/ci-workflows#rel-promote">Promote to a shared channel</a>in <em>Recommended CI/CD Workflows</em>.</p>
     </td>
     <td><a href="/reference/replicated-cli-release-promote"><code>release promote</code></a></td>
   </tr>
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/remove-cluster">remove-cluster</a></td>
-    <td><p>In development or release workflows, remove a cluster after running tests if no <code>ttl</code> was set for the cluster.</p>
+    <td><p>In development or release workflows, use this action to remove a cluster after running tests if no <code>ttl</code> was set for the cluster.</p>
     <p>See <a href="/vendor/ci-workflows#dev-deploy">Prepare clusters, deploy, and test</a> and <a href="/vendor/ci-workflows#rel-deploy">Create cluster matrix, deploy, and test</a> in <em>Recommended CI/CD Workflows</em>.</p>
     </td>
     <td><a href="/reference/replicated-cli-cluster-rm"><code>cluster rm</code></a></td>
   </tr>
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/report-compatibility-result">report-compatibility-result</a></td>
-    <td>In development or release workflows, report the success or failure of tests that ran in clusters provisioned by the compatibility matrix.</td>
+    <td>In development or release workflows, use this action to report the success or failure of tests that ran in clusters provisioned by the compatibility matrix.</td>
     <td>N/A</td>
   </tr>
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/upgrade-cluster">upgrade-cluster</a></td>
-    <td>In release workflows, test your application's compatibility with Kubernetes API resource version migrations after upgrading.</td>
+    <td>In release workflows, use this action to test your application's compatibility with Kubernetes API resource version migrations after upgrading.</td>
     <td><a href="/reference/replicated-cli-cluster-upgrade"><code>cluster upgrade</code></a></td>
   </tr>
 </table> 
