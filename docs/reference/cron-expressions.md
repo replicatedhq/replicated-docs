@@ -1,4 +1,4 @@
-# Cron Expressions
+# Cron Expressions for Scheduling Updates
 
 This topic describes the supported cron expressions that are used to schedule checking for application updates in the Replicated admin console.
 

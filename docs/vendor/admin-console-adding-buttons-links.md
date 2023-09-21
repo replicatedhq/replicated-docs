@@ -1,5 +1,9 @@
 # Adding Buttons and Links
 
+This topic describes how to use the Kubernetes and KOTS Application custom resources to add buttons and links to the Replicated admin console dashboard.
+
+## Overview
+
 When distributing an application, it’s helpful to make sure that the person or process performing the installation can easily verify that the application is running.
 Networking and ingress is handled differently in each cluster and this makes it difficult to provide a consistent URL at application packaging time, and even likely requires that the cluster operator creates firewall rules before they can test the application installation.
 
@@ -7,24 +11,23 @@ Replicated KOTS can provide a port-forward tunnel that will work more consistent
 
 To export a port and a button on the Replicated admin console dashboard to the application, a couple of additional steps are necessary.
 
-## Add a button to the dashboard
+## Add A Button to the Dashboard
 
-It’s recommended that every application include an application custom resource as defined by [Kubernetes SIG Apps](https://github.com/kubernetes-sigs/application).
+Replicated recommends that every application include a Kubernetes SIG Application custom resource. The Kubernetes SIG Application custom resource provides a standard API for creating, viewing, and managing applications. For more information, see [Kubernetes Applications](https://github.com/kubernetes-sigs/application#kubernetes-applications) in the `kubernetes-sigs/application` Github repository.
+
 KOTS uses this as metadata and will not require or use an in-cluster controller to handle this custom resource.
 An application that follows best practices will never require cluster admin privileges or any cluster-wide components to be installed.
 
-The Application custom resource includes many fields, but the one that we are going to examine in this document is the links:
+The Kubernetes Application custom resource `spec.descriptor.links` field is an array of links that reference the application, after the application is deployed. The `spec.descriptor.links` field can be used to configure buttons on the Replicated admin console that link to application dashboards or landing pages.
 
-The `spec.descriptor.links` field is an array of links that reference the application, once it’s deployed.
-
-Each link contains two fields, description and url.
+Each link contains two fields, description and url. 
 
 The description field is the title of the button that will be added to the admin console.
 The url field should be the url of your application.
 
 You can use the service name in place of the host name and KOTS will rewrite the URL with hostname in the browser.
 
-#### Example
+For example:
 
 ```yaml
 apiVersion: app.k8s.io/v1beta1
@@ -44,7 +47,7 @@ spec:
         url: https://my-application-url
 ```
 
-## Additional ports and port forwarding
+## Additional Ports and Port Forwarding
 
 When running the `kubectl` plugin for the kots CLI, KOTS can add additional ports that are defined in the application to the port-forward tunnel.
 This is useful for internal services such as application admin controls and other services that should not be exposed to all users.

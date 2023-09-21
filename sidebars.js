@@ -79,6 +79,7 @@ const sidebars = {
         'vendor/snapshots-overview',
         'vendor/snapshots-configuring-backups',
         'vendor/snapshots-hooks',
+        'reference/custom-resource-backup',
       ],
     },
     {
@@ -125,37 +126,26 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'Reference',
+      label: 'Custom Resources',
       items: [
-        'reference/cron-expressions',
-        {
-          type: 'category',
-          label: 'Custom Resources',
-          items: [
-            'reference/custom-resource-about',
-            'reference/custom-resource-application',
-            'reference/custom-resource-backup',
-            'reference/custom-resource-config',
-            'reference/custom-resource-helmchart-v2',
-            'reference/custom-resource-helmchart',
-            'reference/custom-resource-lintconfig',
-            'reference/custom-resource-sig-application',  
-          ],
-        },
-        'reference/linter',
-        {
-          type: 'category',
-          label: 'Template Functions',
-          items: [
-            'reference/template-functions-about',
-            'reference/template-functions-config-context',
-            'reference/template-functions-identity-context',
-            'reference/template-functions-kurl-context',
-            'reference/template-functions-license-context',
-            'reference/template-functions-static-context',
-          ],
-        },
-        
+        'reference/custom-resource-about',
+        'reference/custom-resource-application',
+        'reference/custom-resource-config',
+        'reference/custom-resource-helmchart-v2',
+        'reference/custom-resource-helmchart',
+        'reference/custom-resource-lintconfig',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Template Functions',
+      items: [
+        'reference/template-functions-about',
+        'reference/template-functions-config-context',
+        'reference/template-functions-identity-context',
+        'reference/template-functions-kurl-context',
+        'reference/template-functions-license-context',
+        'reference/template-functions-static-context',
       ],
     },
     
@@ -209,6 +199,7 @@ const sidebars = {
             'enterprise/updating-embedded-cluster',
             'enterprise/updating-licenses',
             'enterprise/updating-tls-cert',
+            'reference/cron-expressions',
           ],
         },
         {
@@ -498,6 +489,7 @@ const sidebars = {
         'vendor/releases-creating-releases',
         'vendor/releases-creating-cli',
         'vendor/helm-install-release',
+        'reference/linter',
       ],
     },
     {
@@ -545,7 +537,7 @@ const sidebars = {
         'vendor/preflight-sb-helm-templates-about',
         {
           type: 'category',
-          label: 'Preflight Checks',
+          label: 'Defining Preflight Checks',
           items: [
              'vendor/preflight-helm-defining',
              'vendor/preflight-kots-defining',
@@ -553,7 +545,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Support Bundles',
+          label: 'Customizing Support Bundles',
           items: [
             'vendor/support-bundle-helm-customizing',
             'vendor/support-bundle-kots-customizing',
@@ -561,13 +553,12 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Custom Resources',
+          label: 'Troubleshoot Custom Resources',
           items: [
             'reference/custom-resource-preflight',
             'reference/custom-resource-redactor',
-
-         ],
-        },
+          ],
+        },    
         {
           type: 'category',
           label: 'Supporting Your Application',

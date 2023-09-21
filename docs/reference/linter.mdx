@@ -41,20 +41,20 @@ import LinterDefinition from "../partials/linter-rules/_linter-definition.mdx"
 
 # Linter Rules
 
-This topic describes the linter and the rules for the linter.
+This topic describes the release linter and the linter rules.
 
-## Using the Linter
+## Overview
 
 <LinterDefinition/>
 
-The linter runs automatically against releases that you create in the Replicated vendor portal, and displays any error or warning messages in the vendor portal UI.
+The linter runs automatically against KOTS releases that you create in the Replicated vendor portal, and displays any error or warning messages in the vendor portal UI.
 
-To lint your application manifest files, you can run the replicated CLI `replicated release lint` command against the root directory of your application manifest files. You can also use the `--lint` flag when you create a release with the `replicated release create` command. For more information, see [release lint](/reference/replicated-cli-release-lint) and [release create](/reference/replicated-cli-release-create) in the _replicated CLI_ section.
-
-You can customize the default rule levels in the Replicated LinterConfig custom resource.
-For more information, see [LintConfig](custom-resource-lintconfig).
+To lint manifest files from the command line, you can run the replicated CLI `replicated release lint` command against the root directory of your application manifest files. You can also use the `--lint` flag when you create a release with the `replicated release create` command. For more information, see [release lint](/reference/replicated-cli-release-lint) and [release create](/reference/replicated-cli-release-create) in the _replicated CLI_ section.
 
 ## Linter Rules
+
+This section lists the linter rules and the default rule levels (Info, Warn, Error). You can customize the default rule levels in the Replicated LinterConfig custom resource.
+For more information, see [LintConfig](custom-resource-lintconfig).
 
 ### allow-privilege-escalation
 

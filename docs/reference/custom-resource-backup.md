@@ -1,4 +1,4 @@
-# Backup
+# Velero Backup Custom Resource
 
 The Backup custom resource enables the Replicated snapshots backup and restore feature. The backend of this feature uses the Velero open source project to back up Kubernetes manifests and persistent volumes.
 
