@@ -61,7 +61,7 @@ To create a customer:
         </tr>
         <tr>
           <td>Allow Snapshot</td>
-          <td>Enables customers to create snapshots for backup and restore. Vendors must also add a Backup custom resource. See <a href="/reference/custom-resource-backup">Backup</a>.</td>
+          <td>Enables customers to create snapshots for backup and restore. Vendors must also add a Backup custom resource. See <a href="/reference/custom-resource-backup">Velero Backup Custom Resource</a>.</td>
         </tr>
       </table>
 

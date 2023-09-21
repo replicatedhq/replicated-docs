@@ -1,4 +1,4 @@
-# Redactor (KOTS)
+# Redactor (KOTS-Only)
 
 Preflight checks and support bundles include built-in redactors that hide sensitive customer data before it is analyzed. These default redactors hide passwords, tokens, AWS secrets, database connection strings, and URLs that contain usernames and passwords.
 

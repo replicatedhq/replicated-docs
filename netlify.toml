@@ -187,6 +187,10 @@
   from="https://docs.replicated.com/reference/replicated-cli-tokens"
   to="https://docs.replicated.com/vendor/replicated-api-tokens"
 
+[[redirects]]
+  from="https://docs.replicated.com/reference/custom-resource-sig-application"
+  to="https://docs.replicated.com/vendor/admin-console-adding-buttons-links"  
+
 ###################################################
 # Redirects To the Release Notes Section
 ###################################################

@@ -10,7 +10,7 @@ To configure backups:
 
 1. Enable backups:
 
-    1. Add a Backup resource (`kind: Backup`) using `apiVersion: velero.io/v1` to the application manifest files. The following minimal YAML example enables backups in the application. For more information about Backup resource options, see [Backup](/reference/custom-resource-backup) in _Reference_.
+    1. Add a Backup resource (`kind: Backup`) using `apiVersion: velero.io/v1` to the application manifest files. The following minimal YAML example enables backups in the application. For more information about Backup resource options, see [Velero Backup Custom Resource](/reference/custom-resource-backup).
 
         **Example:**
 

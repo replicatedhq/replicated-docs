@@ -90,7 +90,7 @@ To schedule automatic backups in the admin console:
 1. Configure the automatic backup schedule for the type of snapshots that you selected:
 
    * For **Schedule**, select Hourly, Daily, Weekly, or Custom.
-   * For **Cron Expression**, enter a cron expression to create a custom automatic backup schedule. For information about supported cron expressions, see [Cron Expressions](/reference/cron-expressions) in _Reference_.
+   * For **Cron Expression**, enter a cron expression to create a custom automatic backup schedule. For information about supported cron expressions, see [Cron Expressions](/reference/cron-expressions).
 
 1. (Optional) For **Retention Policy**, edit the amount of time that backup data is saved. By default, backup data is saved for 30 days.
 
