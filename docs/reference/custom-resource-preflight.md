@@ -1,4 +1,4 @@
-# Preflight and Support Bundle Custom Resources
+# Preflight and Support Bundle
 
 You can define preflight checks and support bundle specifications for Replicated KOTS and Helm installations. 
 

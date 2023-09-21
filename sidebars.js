@@ -553,7 +553,7 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Troubleshoot Custom Resources',
+          label: 'Custom Resources',
           items: [
             'reference/custom-resource-preflight',
             'reference/custom-resource-redactor',
