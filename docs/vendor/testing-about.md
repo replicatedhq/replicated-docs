@@ -2,37 +2,24 @@
 
 This topic describes the Replicated compatibility matrix feature and use cases for testing applications in customer-representative environments.
 
-:::note
-The compatibility matrix add-on requires the purchase of credits at an additional cost. For more information, see [Prerequisites](testing-how-to#prerequisites) in _Using the Compatibility Matrix_.
-:::
-
 ## Overview
 
-The Replicated compatibility matrix quickly provisions ephemeral clusters representing your customer environments, so that you can test your application and troubleshoot issues.
+You can use the Replicated compatibility matrix to quickly provision ephemeral clusters of different Kubernetes distributions and versions, such as OpenShift, EKS, and Replicated kURL clusters. This gives you access to customer-representative environments within minutes or less, rather than 
 
-You can chose either a cloud-based and virtual machine (VM) clusters for the compatibility matrix to provision. For a list of supported clusters and versions, see [Supported Compatibility Matrix Cluster Types (Beta)](testing-supported-clusters).
+The differences in distributions require that vendors test applications in a variety of customer-representative environments to ensure compatibility. An application that functions reliably in one Kubernetes distribution can fail in others because of different workload requirements. For example, some distributions do not run root or privileged containers. LoadBalancer service controllers are generally available in cloud providers, and are not always available on bare metal servers. 
 
-Cloud-based Kubernetes distributions are run in a Replicated managed and controlled cloud account to optimize and deliver a clusters quickly and reliably. The Replicated account has control planes ready and adds a node group when you request it, making the cluster available much faster than if you try to create your own cluster with your own cloud account.
-
-Virtual machines (VMs) run on Replicated bare metal servers located in several data centers, including data centers physically in the European Union.
-
-Clusters are created using the replicated CLI. You can download a kubeconfig file, and then connect using kubectl or another tool to have full admin access to the cluster.
-
-You design your own tests based on your application needs, and then run your tests on the clusters created by the compatibility matrix. For information about test recommendations, see [Test Script Recommendations](testing-how-to#test-script-recommendations) in _Using the Compatibility Matrix_.
-
-## Use Cases
-
-An application that functions reliably in one Kubernetes distribution can fail in others because of different workload requirements. For example, some distributions do not run root or privileged containers. LoadBalancer service controllers are generally available in cloud providers, and are not always available on bare metal servers. The differences in distributions require that vendors test applications in a variety of customer-representative environments to ensure compatibility.
-
-The compatibility matrix is useful for creating test environments for:
-
-- CI/CD to automate testing and validate an application is compatible with supported distributions.
-- Local development to quickly get access to a cluster, develop on it, and delete it when done.
-- Support to quickly reproduce a reported issue on a customer-representative environment.
+Example use cases for the compatiblity matrix include:
+- Get access to a cluster to develop and test features against.
+- Reproduce a reported issue on a customer-representative environment for the purpose of troubleshooting.
+- Run tests before releasing a new version of your application to customers to validate compatibility with supported distributions.
 
 For more information about how to use the compatibility matrix, see [Using the Compatibility Matrix](testing-how-to).
 
 ## Limitations
+
+:::note
+The compatibility matrix add-on is Beta. The features, limitations, and requirements of the compatibility matrix are subject to change. As the compatiblity matrix add-on progresses towards general availability, many of its limitations will be removed.
+:::
 
 The compatibility matrix has the following limitations:
 
@@ -51,4 +38,26 @@ For additional distribution-specific limitations, see [Supported Compatibility M
 
 ## Supported Clusters and Kubernetes Versions
 
-The compatibility matrix can create clusters on VMs, such as kind, k3s, and Red Hat OpenShift OKD, and also create cloud-managed clusters, such as AWS EKS and GCP GKE. For a complete list of supported clusters, Kubernetes versions, and the Kubernetes support policy, see [Supported Compatibility Matrix Cluster Types (Beta)](testing-supported-clusters).
+The compatibility matrix can create clusters on VMs, such as kind, k3s, and Red Hat OpenShift OKD, and also create cloud-managed clusters, such as EKS and GKE.
+
+Cloud-based Kubernetes distributions are run in a Replicated managed and controlled cloud account to optimize and deliver a clusters quickly and reliably. The Replicated account has control planes ready and adds a node group when you request it, making the cluster available much faster than if you try to create your own cluster with your own cloud account.
+
+Virtual machines (VMs) run on Replicated bare metal servers located in several data centers, including data centers physically in the European Union.
+
+For a complete list of supported clusters, Kubernetes versions, and the Kubernetes support policy, see [Supported Compatibility Matrix Cluster Types (Beta)](testing-supported-clusters).
+
+## Compatibility Matrix Billing
+
+The compatibility matrix is an add-on. Clusters that are created with the compatibility matrix are billed on a per-minute basis. 
+
+### Credits
+
+The compatibility matrix add-on requires the purchase of credits at an additional cost.
+
+You can request credits for the compatibility by going to the [Compatibility Matrix](https://vendor.replicated.com/compatibility-matrix) page in the vendor portal and clicking **Request more credits**.
+
+### Time To Live
+
+To help you manage costs, compatibility matrix clusters have a Time To Live (TTL) mechanism. By default, the TTL is one hour, but you can configure it to a minimum of 10 minutes and a maximum of 48 hours. When the TTL expires, the cluster is automatically deleted. The TTL countdown does not begin until a cluster is in the Ready state.
+
+To delete the cluster before the TTL expires, use the `replicated cluster rm` command with the cluster ID.
