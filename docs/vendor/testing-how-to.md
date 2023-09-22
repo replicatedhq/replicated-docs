@@ -75,7 +75,7 @@ You can use both `cluster create` and `cluster prepare` to provision clusters. T
   The following example upgrades a kURL cluster from its previous version to version 9d5a44c.
 
   ```bash
-  replicated cluster upgrade upgrade cabb74d5 --version 9d5a44c
+  replicated cluster upgrade cabb74d5 --version 9d5a44c
   ```
 
   For command usage, see [cluster upgrade](/reference/replicated-cli-cluster-upgrade) in the _replicated CLI_ reference.
