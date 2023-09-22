@@ -76,12 +76,15 @@ The compatibility matrix supports creating [k3s](https://k3s.io) clusters.
 
 ### OpenShift OKD
 
-The compatibility matrix supports creating [Red Hat OpenShift OKD](https://www.okd.io/) clusters, which is the community distribution of OpenShift, using CodeReady Containers (CRC). 
+The compatibility matrix supports creating [Red Hat OpenShift OKD](https://www.okd.io/) clusters, which is the community distribution of OpenShift, using CodeReady Containers (CRC).
+
+Due to the time it takes to start an Openshift cluster, a warm pool is maintained, but is limited to the default specifications using the CLI (r1.large instance type and 50 GiB disk).
+When available, a warm cluster will start in under a minute.
 
 <table>
   <tr>
-        <th width="35%">Type</th>
-        <th width="65%">Description</th>
+    <th width="35%">Type</th>
+    <th width="65%">Description</th>
   </tr>
   <tr>
     <th>Supported OpenShift Version</th>
@@ -99,8 +102,8 @@ The compatibility matrix supports creating [Red Hat OpenShift OKD](https://www.o
     <th>Limitations</th>
     <td>
       <ul>
-      <li>OpenShift does not support r1.small instance types.</li>
-      <li>OpenShift builds take approximately 17 minutes.</li>
+        <li>OpenShift does not support r1.small instance types.</li>
+        <li>OpenShift builds take approximately 17 minutes (1 minute when a warm cluster is available).</li>
       </ul>
       <p>For additional limitations that apply to all distributions, see <a href="testing-how-to#limitations">Limitations</a>.</p>
     </td>
