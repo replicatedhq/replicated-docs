@@ -25,7 +25,7 @@ There are three options for installing the replicated CLI:
 
 ### MacOS
 
-To install the latest replicated CLI version on Mac:
+To install the latest replicated CLI on Mac:
 
 1. <InstallFiles/>
 
@@ -55,7 +55,7 @@ To install the latest replicated CLI version on Mac:
 
 ### Linux
 
-To install latest replicated CLI version on Linux:
+To install latest replicated CLI on Linux:
 
 1. <InstallFiles/>
 
@@ -77,11 +77,11 @@ To install latest replicated CLI version on Linux:
 
 ### Docker / Windows
 
-For simplicity, the usage is represented assuming that the CLI is downloaded and installed to the desktop.
-
-To run the latest replicated CLI:
+To run the latest replicated CLI in docker or Windows environments:
 
 1. <InstallFiles/>
+
+  Download and install the files.
 
 1. Run one of the following commands:
 
@@ -89,8 +89,7 @@ To run the latest replicated CLI:
 
       ```shell
       docker run \
-        -e REPLICATED_APP=$APP_NAME \
-        -e REPLICATED_API_TOKEN=$TOKEN \
+        replicated login
         replicated/vendor-cli --help
       ```
 
@@ -103,11 +102,11 @@ To run the latest replicated CLI:
         replicated/vendor-cli --help
       ```
 
-1. <Verify/>
-
 ## Authenticate with an Application Slug and API Token {#auth}
 
-To authenticate and begin using the replicated CLI, you need an API token and the application slug. 
+To authenticate and begin using the replicated CLI, you need to provide an API token and the application slug.
+
+To authenticate with the replicated CLI:
 
 1. <PrereqToken/>
 
