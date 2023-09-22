@@ -89,7 +89,8 @@ To run the latest replicated CLI in docker or Windows environments:
 
       ```shell
       docker run \
-        replicated login
+        -e REPLICATED_APP=$APP_NAME \
+        -e REPLICATED_API_TOKEN=$TOKEN \
         replicated/vendor-cli --help
       ```
 
