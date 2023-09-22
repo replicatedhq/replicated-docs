@@ -94,6 +94,8 @@ To run the latest replicated CLI in docker or Windows environments:
         replicated/vendor-cli --help
       ```
 
+      <!-- CHECK ACCURACY OF THESE COMMANDS -->
+
     - On Windows:
 
       ```dos
