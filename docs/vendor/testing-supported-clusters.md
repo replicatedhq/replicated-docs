@@ -1,3 +1,5 @@
+import Pool from "../partials/cmx/_openshift-pool.mdx"
+
 # Supported Compatibility Matrix Cluster Types (Beta)
 
 This topic describes the supported Kubernetes distributions, Kubernetes versions, instance types, nodes, limitations, and common use cases for clusters created with the Replicated compatibility matrix. 
@@ -78,9 +80,6 @@ The compatibility matrix supports creating [k3s](https://k3s.io) clusters.
 
 The compatibility matrix supports creating [Red Hat OpenShift OKD](https://www.okd.io/) clusters, which is the community distribution of OpenShift, using CodeReady Containers (CRC).
 
-Due to the time it takes to start an Openshift cluster, a warm pool is maintained, but is limited to the default specifications using the CLI (r1.large instance type and 50 GiB disk).
-When available, a warm cluster will start in under a minute.
-
 <table>
   <tr>
     <th width="35%">Type</th>
@@ -103,7 +102,9 @@ When available, a warm cluster will start in under a minute.
     <td>
       <ul>
         <li>OpenShift does not support r1.small instance types.</li>
-        <li>OpenShift builds take approximately 17 minutes (1 minute when a warm cluster is available).</li>
+        <li><p>OpenShift builds take approximately 17 minutes.</p>
+            <p><Pool/></p>
+          </li>
       </ul>
       <p>For additional limitations that apply to all distributions, see <a href="testing-how-to#limitations">Limitations</a>.</p>
     </td>
@@ -113,7 +114,6 @@ When available, a warm cluster will start in under a minute.
     <td>Customer release tests</td>
   </tr>
 </table>
-
 
 ### HelmVM
 
