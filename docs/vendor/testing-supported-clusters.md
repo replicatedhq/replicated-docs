@@ -1,3 +1,5 @@
+import Pool from "../partials/cmx/_openshift-pool.mdx"
+
 # Supported Compatibility Matrix Cluster Types (Beta)
 
 This topic describes the supported Kubernetes distributions, Kubernetes versions, instance types, nodes, limitations, and common use cases for clusters created with the Replicated compatibility matrix. 
@@ -76,12 +78,12 @@ The compatibility matrix supports creating [k3s](https://k3s.io) clusters.
 
 ### OpenShift OKD
 
-The compatibility matrix supports creating [Red Hat OpenShift OKD](https://www.okd.io/) clusters, which is the community distribution of OpenShift, using CodeReady Containers (CRC). 
+The compatibility matrix supports creating [Red Hat OpenShift OKD](https://www.okd.io/) clusters, which is the community distribution of OpenShift, using CodeReady Containers (CRC).
 
 <table>
   <tr>
-        <th width="35%">Type</th>
-        <th width="65%">Description</th>
+    <th width="35%">Type</th>
+    <th width="65%">Description</th>
   </tr>
   <tr>
     <th>Supported OpenShift Version</th>
@@ -99,8 +101,10 @@ The compatibility matrix supports creating [Red Hat OpenShift OKD](https://www.o
     <th>Limitations</th>
     <td>
       <ul>
-      <li>OpenShift does not support r1.small instance types.</li>
-      <li>OpenShift builds take approximately 17 minutes.</li>
+        <li>OpenShift does not support r1.small instance types.</li>
+        <li><p>OpenShift builds take approximately 17 minutes.</p>
+            <p><Pool/></p>
+          </li>
       </ul>
       <p>For additional limitations that apply to all distributions, see <a href="testing-how-to#limitations">Limitations</a>.</p>
     </td>
@@ -110,7 +114,6 @@ The compatibility matrix supports creating [Red Hat OpenShift OKD](https://www.o
     <td>Customer release tests</td>
   </tr>
 </table>
-
 
 ### HelmVM
 
