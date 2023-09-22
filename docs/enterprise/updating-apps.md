@@ -75,7 +75,7 @@ To configure automatic updates:
 
    To turn off automatic updates, select **Never**. 
    
-   To define a custom cadence, select **Custom**, then enter a cron expression in the text field. For more information about cron expressions, see [Cron Expressions](/reference/cron-expressions) in _Reference_. Configured automatic update checks leverage the local server time. 
+   To define a custom cadence, select **Custom**, then enter a cron expression in the text field. For more information about cron expressions, see [Cron Expressions](/reference/cron-expressions) in _Reference_. Configured automatic update checks use the local server time. 
 
    ![Configure automatic updates](/images/automatic-updates-config.png)
 
