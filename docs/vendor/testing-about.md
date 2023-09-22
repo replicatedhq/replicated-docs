@@ -32,6 +32,23 @@ The compatibility matrix is useful for creating test environments for:
 
 For more information about how to use the compatibility matrix, see [Using the Compatibility Matrix](testing-how-to).
 
+## Limitations
+
+The compatibility matrix has the following limitations:
+
+- Clusters cannot be resized. Create another cluster if you want to make changes, such as add another node.
+- On cloud clusters, only one node group per cluster is supported.
+- Multi-node support is available only for GKE and EKS.
+- There is no support for IPv6.
+- The `cluster upgrade` feature is available only for kURL distributions. See [cluster upgrade](/reference/replicated-cli-cluster-upgrade).
+- Clusters have a maximum Time To Live (TTL) of 48 hours. See [Setting TTL](#setting-ttl) below.
+- Cloud clusters do not allow for the configuration of CNI, CSI, CRI, Ingress, or other plugins, add-ons, services, and interfaces.
+- The node operating systems for clusters created with the compatibility matrix cannot be configured nor replaced with different operating systems.
+- The Kubernetes scheduler for clusters created with the compatibility matrix cannot be replaced with a different scheduler.
+- Each team has a quota limit on the amount of resources that can be used simultaneously. This limit can be raised by messaging your account representative.
+
+For additional distribution-specific limitations, see [Supported Compatibility Matrix Cluster Types (Beta)](testing-supported-clusters).
+
 ## Supported Clusters and Kubernetes Versions
 
 The compatibility matrix can create clusters on VMs, such as kind, k3s, and Red Hat OpenShift OKD, and also create cloud-managed clusters, such as AWS EKS and GCP GKE. For a complete list of supported clusters, Kubernetes versions, and the Kubernetes support policy, see [Supported Compatibility Matrix Cluster Types (Beta)](testing-supported-clusters).

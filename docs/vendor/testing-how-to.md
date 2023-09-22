@@ -6,23 +6,6 @@ This topic describes how to use the Replicated compatibility matrix to create ep
 The compatibility matrix add-on is Beta. The features, limitations, and requirements of the compatibility matrix are subject to change. As the compatiblity matrix add-on progresses towards general availability, many of its limitations will be removed.
 :::
 
-## Limitations
-
-The compatibility matrix has the following limitations:
-
-- Clusters cannot be resized. Create another cluster if you want to make changes, such as add another node.
-- On cloud clusters, only one node group per cluster is supported.
-- Multi-node support is available only for GKE and EKS.
-- There is no support for IPv6.
-- The `cluster upgrade` feature is available only for kURL distributions. See [cluster upgrade](/reference/replicated-cli-cluster-upgrade).
-- Clusters have a maximum Time To Live (TTL) of 48 hours. See [Setting TTL](#setting-ttl) below.
-- Cloud clusters do not allow for the configuration of CNI, CSI, CRI, Ingress, or other plugins, add-ons, services, and interfaces.
-- The node operating systems for clusters created with the compatibility matrix cannot be configured nor replaced with different operating systems.
-- The Kubernetes scheduler for clusters created with the compatibility matrix cannot be replaced with a different scheduler.
-- Each team has a quota limit on the amount of resources that can be used simultaneously. This limit can be raised by messaging your account representative.
-
-For additional distribution-specific limitations, see [Supported Compatibility Matrix Cluster Types (Beta)](testing-supported-clusters).
-
 ## Prerequisites
 
 Before you can use the compatibility matrix, you must complete the following prerequisites:
@@ -44,7 +27,7 @@ To delete the cluster before the TTL expires, use the `replicated cluster rm` co
 
 For more information about the `replicated cluster` commands, see the [replicated CLI](/reference/replicated-cli-cluster-create) reference.
 
-## Create Clusters
+## Create a Cluster
 
 You can provide parameters to create clusters with the compatibiity matrix, such as the target Kubernetes distribution and version.
 
@@ -80,11 +63,38 @@ To create a cluster with the compatibility matrix from the vendor portal:
    1. **Kubernetes version**, select the target Kubernetes version. The Kubernetes versions available to select vary depending on the distribution.
    1. For **TTL**, set the Time to Live for the cluster. When the TTL is reached, the cluster is automatically deleted.
 
-1. Download the kubeconfig file to begin interacting with the cluster.  
+1. Run one of the following commands to download the kubeconfig file for the cluster:
 
-## Create Clusters and Install an Application
+  * (Default) Write the kubeconfig file to your existing kubeconfig:
 
-Provisions a cluster based on the parameters specified, creates a release, and then installs the release in the cluster. The `cluster prepare` command allows you to install an application in a cluster for testing without needing to create a temporary channel or a temporary customer in the Replicated platform. A recommended use case for the `cluster prepare` command is provisioning clusters for testing in CI workflows that run on every commit.
+    ```
+    replicated cluster kubeconfig CLUSTER_ID
+    ```
+    Replace `CLUSTER_ID` with the ID of the cluster.
+
+  * Write the kubeconfig file to an output path:
+
+    ```
+    replicated cluster kubeconfig CLUSTER_ID --output-path PATH
+    ```
+    Replace `CLUSTER_ID` with the ID of the cluster.
+
+  * Write the kubeconfig file to stdout:
+
+    ```
+    replicated cluster kubeconfig CLUSTER_ID --stdout
+    ```
+    Replace `CLUSTER_ID` with the ID of the cluster.  
+  
+  For command usage, see [cluster kubeconfig](/reference/replicated-cli-cluster-kubeconfig).
+
+1. 
+
+## Create a Cluster and Install a Release
+
+You can use the `replicated cluster prepare` command to provision a cluster based on the parameters specified, create a release, create a test customer, and installs the release in the cluster. This allows you to install a release in a cluster for testing without needing to create and then archive a channel and customer. For example, the `cluster prepare` command is particularly useful 
+
+**Example**
 
 The following example creates a kind cluster and installs a Helm chart in the cluster using the `nginx-chart-0.0.14.tgz` chart archive:
 
