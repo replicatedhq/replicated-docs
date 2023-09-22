@@ -1,7 +1,8 @@
-import EnvVariablesSet from "../partials/replicated-cli/_env-variables-set.mdx"
 import EnvVariablesReplace from "../partials/replicated-cli/_env-variables-replace.mdx"
 import InstallFiles from "../partials/replicated-cli/_install-files.mdx"
 import PrereqToken from "../partials/vendor-api/_prereq-token.mdx"
+import Verify from "../partials/replicated-cli/_verify-install.mdx"
+import Sudo from "../partials/replicated-cli/_sudo-install.mdx"
 
 # Installing the replicated CLI
 
@@ -12,12 +13,7 @@ Vendors can use the replicated CLI to manage their applications with Replicated 
 Complete the following prerequisites before installing the replicated CLI:
 
 - To run on Linux or Mac, install [curl](https://curl.haxx.se/).
-
 - To run through a Docker container, install [docker](https://www.docker.com).
-
-- Get your application slug from the **Application Settings** page in the vendor portal. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Applications_.
-
-- <PrereqToken/>
 
 ## Install the replicated CLI
 
@@ -29,7 +25,7 @@ There are three options for installing the replicated CLI:
 
 ### MacOS
 
-To install the latest replicated CLI on Mac:
+To install the latest replicated CLI version on Mac:
 
 1. <InstallFiles/>
 
@@ -53,13 +49,13 @@ To install the latest replicated CLI on Mac:
       mv replicated /usr/local/bin/replicated
       ```
 
-1. <EnvVariablesSet/>
+      <Sudo/>
 
-   <EnvVariablesReplace/>
+1. <Verify/> 
 
 ### Linux
 
-To install latest replicated CLI on Linux:
+To install latest replicated CLI version on Linux:
 
 1. <InstallFiles/>
 
@@ -75,9 +71,9 @@ To install latest replicated CLI on Linux:
   mv replicated /usr/local/bin/replicated
   ```
 
-1. <EnvVariablesSet/>
+  <Sudo/>
 
-   <EnvVariablesReplace/>
+1. <Verify/>
 
 ### Docker / Windows
 
@@ -107,4 +103,39 @@ To run the latest replicated CLI:
         replicated/vendor-cli --help
       ```
 
-  <EnvVariablesReplace/>
+1. <Verify/>
+
+## Authenticate with an Application Slug and API Token {#auth}
+
+To authenticate and begin using the replicated CLI, you need an API token and the application slug. 
+
+1. <PrereqToken/>
+
+1. In the [vendor portal](https://vendor.replicated.com), go to the **Application Settings** page and copy the slug for the target application. See [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Application_.
+
+1. Do _one_ of the following to authenticate with the replicated CLI:
+
+   * Authenticate with the `replicated login` command:
+
+     1. Run the following command:
+
+      ```
+      replicated login --app APP_SLUG --token TOKEN
+      ```
+
+      <EnvVariablesReplace/>
+
+      1. In the browser window that opens, select **Authorize**.
+
+         <img width="350" alt="Authorize replicated cli web page" src="/images/authorize-repl-cli.png"/>
+
+         [View a larger version of this image](/images/authorize-repl-cli.png)
+
+   * Alternatively, authenticate by setting the following environment variables:
+
+      ```bash
+      export REPLICATED_APP=APP_SLUG
+      export REPLICATED_API_TOKEN=TOKEN
+      ```
+
+      <EnvVariablesReplace/>
