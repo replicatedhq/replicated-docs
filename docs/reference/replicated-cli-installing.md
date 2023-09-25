@@ -92,7 +92,7 @@ To install and run the latest replicated CLI in docker or Windows environments:
 
   Download and install the files.
 
-1. Run one of the following commands to authenticate with the `replicated login` command:
+1. Authorize the replicated CLI:
 
    - Docker:
 
@@ -132,7 +132,7 @@ To install and run the latest replicated CLI in docker or Windows environments:
         replicated/vendor-cli --help
       ```
 
-1. (Optional) When you are done using the replicated CLI, run one of the following commands to remove any stored credentials:
+1. (Optional) When you are done using the replicated CLI, remove any stored credentials created by the `replicated login` command:
 
     - Docker:
 
@@ -168,7 +168,7 @@ To set the `REPLICATED_API_TOKEN` environment variable:
 
 1. Generate a service account or user API token in the vendor portal. To create new releases, the token must have `Read/Write` access. See [Generating API Tokens](/vendor/replicated-api-tokens).
 
-1. Set the environment variables, replacing `TOKEN` with the token you generated in the previous step:
+1. Set the environment variable, replacing `TOKEN` with the token you generated in the previous step:
 
     * **MacOs or Linux**:
 
@@ -196,7 +196,7 @@ To set the `REPLICATED_APP` environment variable:
 
 1. In the [vendor portal](https://vendor.replicated.com), go to the **Application Settings** page and copy the slug for the target application. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Application_.
 
-1. Set the environment variables, replacing `APP_SLUG` with the slug for the target application that you retreived in the previous step:
+1. Set the environment variable, replacing `APP_SLUG` with the slug for the target application that you retreived in the previous step:
 
     * **MacOs or Linux**:
 
