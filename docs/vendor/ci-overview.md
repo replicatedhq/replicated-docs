@@ -18,24 +18,9 @@ The following are Replicated's best practices and recommendations for CI/CD:
 
 * Integrate the Replicated compatibility matrix into your CI/CD workflows to quickly create multiple different types of clusters where you can deploy and test your application. Supported distributions include OpenShift, GKE, EKS, and more. For more information, see [About the Compatibility Matrix](testing-about).
 
+* If you use the GitHub Actions CI/CD platform, integrate the custom GitHub actions that Replicated maintains to replace repetitive tasks related to distributing application with Replicated or using the compatibility matrix. For more information, see [Integrating Replicated GitHub Actions](/vendor/ci-workflows-github-actions).
+
 * To help show you are conforming to a secure supply chain, sign all commits and container images. Additionally, provide a verification mechanism for container images.
 
 * Incorporating code tests into your CI/CD workflows is important for ensuring that developers receive quick feedback and can make updates in small iterations. Replicated recommends that you create and run all of the following test types as part of your CI/CD workflows:
     <TestRecs/>
-
-## GitHub Actions
-Replicated maintains custom actions and example workflows that that are compatible with the GitHub Action CI/CD platform. Users of GitHub Actions can use these actions and example workflows to help create their own CI/CD workflows.
-
-### Replicated Custom Actions
-
-Replicated maintains a set of custom actions that are designed to replace repetitive tasks such as creating and removing customers, channels, clusters, and more. If you use GitHub Actions as your CI/CD platform, you can include these custom actions in your workflows rather than using replicated CLI commands. 
-
-For more information, see the [replicated-actions](https://github.com/replicatedhq/replicated-actions/) repository in GitHub.
-
-### Example GitHub Action Workflows
-
-The [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions#examples) repository in GitHub contains example GitHub Actions workflows that you can use as a template for your own CI/CD pipelines:
-* For a simplified development workflow that uses the `cluster prepare` command to avoid the need to create a release, channel, or customer for testing, see [development-helm-prepare-cluster.yaml](https://github.com/replicatedhq/replicated-actions/blob/main/example-workflows/development-helm-prepare-cluster.yaml).
-* For a customizable development workflow for applications installed with the Helm CLI, see [development-helm.yaml](https://github.com/replicatedhq/replicated-actions/blob/main/example-workflows/development-helm.yaml).
-* For a customizable development workflow for applications installed with KOTS installations, see [development-kots.yaml](https://github.com/replicatedhq/replicated-actions/blob/main/example-workflows/development-kots.yaml).
-* For a release workflow, see [release.yaml](https://github.com/replicatedhq/replicated-actions/blob/main/example-workflows/release.yaml).
