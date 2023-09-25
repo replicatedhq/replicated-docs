@@ -1,4 +1,3 @@
-import PrereqToken from "../partials/vendor-api/_prereq-token.mdx"
 import ApiAbout from "../partials/vendor-api/_api-about.mdx"
 
 # Using the Vendor API v3
@@ -20,7 +19,7 @@ curl --request GET \
      --header 'Authorization: my-token'
 ```
 
-<PrereqToken/>
+Generate a service account or user API token in the vendor portal. The token must have `Read/Write` access to create new releases. See [Generating API Tokens](/vendor/replicated-api-tokens).
 
 ## Vendor API v3 Documentation
 

@@ -1,9 +1,8 @@
-import EnvVariablesReplace from "../partials/replicated-cli/_env-variables-replace.mdx"
-import InstallFiles from "../partials/replicated-cli/_install-files.mdx"
-import PrereqToken from "../partials/vendor-api/_prereq-token.mdx"
 import Verify from "../partials/replicated-cli/_verify-install.mdx"
 import Sudo from "../partials/replicated-cli/_sudo-install.mdx"
 import Login from "../partials/replicated-cli/_login.mdx"
+import Logout from "../partials/replicated-cli/_logout.mdx"
+import AuthToken from "../partials/replicated-cli/_authorize-with-token-note.mdx"
 
 # Installing the replicated CLI
 
@@ -13,6 +12,7 @@ Vendors can use the replicated CLI to manage their applications with Replicated 
 
 Complete the following prerequisites before installing the replicated CLI:
 
+- Create a vendor account. See [Creating a Vendor Account](/vendor/vendor-portal-creating-account).
 - To run on Linux or Mac, install [curl](https://curl.haxx.se/).
 - To run through a Docker container, install [docker](https://www.docker.com).
 
@@ -27,8 +27,6 @@ You can install and run the replicated CLI in the following environments:
 ### MacOS
 
 To install and run the latest replicated CLI on MacOS:
-
-1. <InstallFiles/>
 
 1. Run one of the following commands:
 
@@ -56,17 +54,13 @@ To install and run the latest replicated CLI on MacOS:
 
 1. <Login/>
 
-1. (Optional) When you are done using the replicated CLI, run the following command to remove any stored credentials:
+   <AuthToken/>
 
-   ```
-   replicated logout
-   ```
+1. <Logout/>
 
 ### Linux
 
 To install and run the latest replicated CLI on Linux:
-
-1. <InstallFiles/>
 
 1. Run the following command:
 
@@ -86,17 +80,15 @@ To install and run the latest replicated CLI on Linux:
 
 1. <Login/>
 
-1. (Optional) When you are done using the replicated CLI, run the following command to remove any stored credentials:
+   <AuthToken/>
 
-   ```
-   replicated logout
-   ```
+1. <Logout/>
 
 ### Docker / Windows
 
 To install and run the latest replicated CLI in docker or Windows environments:
 
-1. <InstallFiles/>
+1. Get the latest replicated CLI installation files from the [replicatedhq/replicated repository](https://github.com/replicatedhq/replicated/releases) on GitHub.
 
   Download and install the files.
 
@@ -120,7 +112,9 @@ To install and run the latest replicated CLI in docker or Windows environments:
 
   <img width="350" alt="Authorize replicated cli web page" src="/images/authorize-repl-cli.png"/>
 
-  [View a larger version of this image](/images/authorize-repl-cli.png)     
+  [View a larger version of this image](/images/authorize-repl-cli.png)    
+
+  <AuthToken/> 
 
 1. Verify installation:
 
@@ -154,7 +148,7 @@ To install and run the latest replicated CLI in docker or Windows environments:
         replicated/vendor-cli logout
       ```
 
-## (Optional) Set Environment Variables
+## (Optional) Set Environment Variables {#env-var}
 
 The replicated CLI supports setting the following environment variables:
 
