@@ -3,6 +3,7 @@ import InstallFiles from "../partials/replicated-cli/_install-files.mdx"
 import PrereqToken from "../partials/vendor-api/_prereq-token.mdx"
 import Verify from "../partials/replicated-cli/_verify-install.mdx"
 import Sudo from "../partials/replicated-cli/_sudo-install.mdx"
+import Login from "../partials/replicated-cli/_login.mdx"
 
 # Installing the replicated CLI
 
@@ -15,9 +16,9 @@ Complete the following prerequisites before installing the replicated CLI:
 - To run on Linux or Mac, install [curl](https://curl.haxx.se/).
 - To run through a Docker container, install [docker](https://www.docker.com).
 
-## Install the replicated CLI
+## Install and Run
 
-There are three options for installing the replicated CLI: 
+You can install and run the replicated CLI in the following environments: 
 
 * Directly on MacOS
 * Directly on Linux
@@ -25,7 +26,7 @@ There are three options for installing the replicated CLI:
 
 ### MacOS
 
-To install the latest replicated CLI on Mac:
+To install and run the latest replicated CLI on MacOS:
 
 1. <InstallFiles/>
 
@@ -53,9 +54,17 @@ To install the latest replicated CLI on Mac:
 
 1. <Verify/> 
 
+1. <Login/>
+
+1. (Optional) When you are done using the replicated CLI, run the following command to remove any stored credentials:
+
+   ```
+   replicated logout
+   ```
+
 ### Linux
 
-To install latest replicated CLI on Linux:
+To install and run the latest replicated CLI on Linux:
 
 1. <InstallFiles/>
 
@@ -75,69 +84,142 @@ To install latest replicated CLI on Linux:
 
 1. <Verify/>
 
+1. <Login/>
+
+1. (Optional) When you are done using the replicated CLI, run the following command to remove any stored credentials:
+
+   ```
+   replicated logout
+   ```
+
 ### Docker / Windows
 
-To run the latest replicated CLI in docker or Windows environments:
+To install and run the latest replicated CLI in docker or Windows environments:
 
 1. <InstallFiles/>
 
   Download and install the files.
 
-1. Run one of the following commands:
+1. Run one of the following commands to authenticate with the `replicated login` command:
 
-    - Through a docker container:
+   - Docker:
 
-      ```shell
+    ```shell
+    docker run \
+      replicated/vendor-cli login
+    ```
+
+   - Windows:
+
+    ```dos
+    docker.exe run \
+      replicated/vendor-cli login
+    ```
+
+  In the browser window that opens, complete the prompts to log in to your vendor account and authorize the CLI.
+
+  <img width="350" alt="Authorize replicated cli web page" src="/images/authorize-repl-cli.png"/>
+
+  [View a larger version of this image](/images/authorize-repl-cli.png)     
+
+1. Verify installation:
+
+    - Docker:
+
+     ```shell
       docker run \
-        -e REPLICATED_APP=$APP_NAME \
-        -e REPLICATED_API_TOKEN=$TOKEN \
         replicated/vendor-cli --help
       ```
 
-      <!-- CHECK ACCURACY OF THESE COMMANDS -->
-
-    - On Windows:
+    - Windows:
 
       ```dos
       docker.exe run \
-        -e REPLICATED_APP=%APP_NAME% \
-        -e REPLICATED_API_TOKEN=%TOKEN% \
         replicated/vendor-cli --help
       ```
 
-## Authenticate with an Application Slug and API Token {#auth}
+1. (Optional) When you are done using the replicated CLI, run one of the following commands to remove any stored credentials:
 
-To authenticate and begin using the replicated CLI, you need to provide an API token and the application slug.
+    - Docker:
 
-To authenticate with the replicated CLI:
-
-1. <PrereqToken/>
-
-1. In the [vendor portal](https://vendor.replicated.com), go to the **Application Settings** page and copy the slug for the target application. See [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Application_.
-
-1. Do _one_ of the following to authenticate with the replicated CLI:
-
-   * Authenticate with the `replicated login` command:
-
-     1. Run the following command:
-
-      ```
-      replicated login --app APP_SLUG --token TOKEN
+     ```shell
+      docker run \
+        replicated/vendor-cli logout
       ```
 
-      <EnvVariablesReplace/>
+    - Windows:
 
-      1. In the browser window that opens, select **Authorize**.
-
-         <img width="350" alt="Authorize replicated cli web page" src="/images/authorize-repl-cli.png"/>
-
-         [View a larger version of this image](/images/authorize-repl-cli.png)
-
-   * Alternatively, authenticate by setting the following environment variables:
-
-      ```bash
-      export REPLICATED_APP=APP_SLUG
-      export REPLICATED_API_TOKEN=TOKEN
+      ```dos
+      docker.exe run \
+        replicated/vendor-cli logout
       ```
 
-      <EnvVariablesReplace/>
+## (Optional) Set Environment Variables
+
+The replicated CLI supports setting the following environment variables:
+
+* **`REPLICATED_API_TOKEN`**: A service account or user API token generated from a vendor portal team or individual account. The `REPLICATED_API_TOKEN` environment variable has the following use cases:
+
+  * To use replicated CLI commands as part of automation (such as from continuous integration and continuous delivery pipelines), authenticate by providing the `REPLICATED_API_TOKEN` environment variable.
+  
+  * You can optionally set the `REPLICATED_API_TOKEN` environment variable instead of using the `replicated login` command to authenticate when running replicated CLI commands from the command line.
+
+* **`REPLICATED_APP`**: The slug of the target application.
+
+  When using the replicated CLI to manage applications through your vendor account (including channels, releases, customers, or other objects associated with an application), you can set the `REPLICATED_APP` environment variable to avoid passing the application slug with each command.
+
+### `REPLICATED_API_TOKEN`
+
+To set the `REPLICATED_API_TOKEN` environment variable:
+
+1. Generate a service account or user API token in the vendor portal. To create new releases, the token must have `Read/Write` access. See [Generating API Tokens](/vendor/replicated-api-tokens).
+
+1. Set the environment variables, replacing `TOKEN` with the token you generated in the previous step:
+
+    * **MacOs or Linux**:
+
+     ```
+     export REPLICATED_API_TOKEN=TOKEN
+     ```
+
+    * **Docker**:
+
+     ```
+     docker run \
+        -e REPLICATED_API_TOKEN=$TOKEN
+     ```
+
+    * **Windows**:
+
+      ```
+      docker.exe run \
+        -e REPLICATED_API_TOKEN=%TOKEN% \
+      ```
+
+### `REPLICATED_APP`
+
+To set the `REPLICATED_APP` environment variable:
+
+1. In the [vendor portal](https://vendor.replicated.com), go to the **Application Settings** page and copy the slug for the target application. For more information, see [Get the Application Slug](/vendor/vendor-portal-manage-app#slug) in _Managing Application_.
+
+1. Set the environment variables, replacing `APP_SLUG` with the slug for the target application that you retreived in the previous step:
+
+    * **MacOs or Linux**:
+
+     ```
+     export REPLICATED_APP=APP_NAME
+     ```
+
+    * **Docker**:
+
+     ```
+     docker run \
+        -e REPLICATED_APP=$APP_NAME
+     ```
+
+    * **Windows**:
+
+      ```
+      docker.exe run \
+        -e REPLICATED_APP=%APP_NAME% \
+      ```
