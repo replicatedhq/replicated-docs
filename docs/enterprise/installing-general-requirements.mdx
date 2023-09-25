@@ -102,17 +102,9 @@ To install or upgrade KOTS with namespace-scoped access, the user must have _one
 
   To use the minimum KOTS RBAC permissions to install or upgrade:
 
-  1. Ensure that the user has the minimum RBAC permissions required by KOTS. The following Role lists the minimum RBAC permissions under `rules`:
+  1. Ensure that the user has the minimum RBAC permissions required by KOTS. The following lists the minimum RBAC permissions:
 
     ```yaml
-    apiVersion: rbac.authorization.k8s.io/v1
-    kind: Role
-    metadata:
-      labels:
-        kots.io/backup: velero
-        kots.io/kotsadm: "true"
-      name: kotsadm-role
-    rules:
       - apiGroups: [""]
         resources: ["configmaps", "persistentvolumeclaims", "pods", "secrets", "services", "limitranges"]
         verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
@@ -143,8 +135,8 @@ To install or upgrade KOTS with namespace-scoped access, the user must have _one
     ```
 
     :::note
-    The minimum RBAC requirements can vary slightly depending on the cluster's Kubernetes distribution and the version of KOTS. Contact your application vendor if you have the required RBAC permissions listed above and you see an error related to RBAC during installation or upgrade.
-    :::
+    The minimum RBAC requirements can vary slightly depending on the cluster's Kubernetes distribution and the version of KOTS. Contact your software vendor if you have the required RBAC permissions listed above and you see an error related to RBAC during installation or upgrade.
+    ::: 
 
    1. Save the following ServiceAccount, Role, and RoleBinding to a single YAML file, such as `rbac.yaml`:
 
@@ -209,6 +201,21 @@ To install or upgrade KOTS with namespace-scoped access, the user must have _one
           name: kotsadm
       ```
 
+    1. If the application contains any Custom Resource Definitions (CRDs), add the CRDs to the Role in the YAML file that you created in the previous step with as many permissions as possible: `["get", "list", "watch", "create", "update", "patch", "delete"]`.
+
+      :::note
+      Contact your software vendor for information about any CRDs that are included in the application.
+      :::
+
+      **Example**
+
+      ```yaml
+       rules:
+       - apiGroups: ["stable.example.com"]
+         resources: ["crontabs"]
+         verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+      ```
+    
     1. Run the following command to create the RBAC resources for KOTS in the namespace:
 
      ```
@@ -216,7 +223,7 @@ To install or upgrade KOTS with namespace-scoped access, the user must have _one
      ```
 
      Replace:
-       * `RBAC_YAML_FILE` with the name of the YAML file that you saved in the previous step.
+       * `RBAC_YAML_FILE` with the name of the YAML file with the ServiceAccount, Role, and RoleBinding and that you created.
        * `TARGET_NAMESPACE` with the namespace where the user will install KOTS.
 
   :::note
@@ -281,6 +288,6 @@ No outbound internet access is required for air gapped installations.
 | k8s.kurl.sh<br />s3.kurl.sh          | Not Required                  | Required                      | Embedded cluster installation scripts and artifacts are served from [kurl.sh](https://kurl.sh). An application identifier is sent in a URL path, and bash scripts and binary executables are served from kurl.sh. This domain is owned by Replicated, Inc., which is headquartered in Los Angeles, CA.                                                     |
 | amazonaws.com        | Not Required                  | Required                      | tar.gz packages are downloaded from Amazon S3 during embedded cluster installations. For information about dynamically scraping the IP ranges to allowlist for accessing these packages, see [AWS IP address ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html#aws-ip-download) in the AWS documentation.                                                         |
 
-&#42; Required only if the application uses the Replicated proxy service. Contact your application vendor for more information.
+&#42; Required only if the application uses the Replicated proxy service. Contact your software vendor for more information.
 
-&#42;&#42; Required only if the application uses the Replicated registry. Contact your application vendor for more information.
+&#42;&#42; Required only if the application uses the Replicated registry. Contact your software vendor for more information.
