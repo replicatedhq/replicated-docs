@@ -38,7 +38,7 @@ Alternatively, if your application does not require access to resources across a
 
 ## Namespace-scoped RBAC {#min-rbac}
 
-Rather that use the default cluster-scoped RBAC, you can configure your application so that the RBAC permissions granted to KOTS are limited to a target namespace or namespaces. By default, for namespace-scoped installations, the following Role and RoleBinding resources are created that grant KOTS permissions to all resources in a target namespace:
+Rather than use the default cluster-scoped RBAC, you can configure your application so that the RBAC permissions granted to KOTS are limited to a target namespace or namespaces. By default, for namespace-scoped installations, the following Role and RoleBinding resources are created that grant KOTS permissions to all resources in a target namespace:
 
 ```yaml
 apiVersion: "rbac.authorization.k8s.io/v1"
