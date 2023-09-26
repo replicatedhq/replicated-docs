@@ -51,7 +51,7 @@ To create a cluster with the replicated CLI:
    ```
    cluster rm CLUSTER_ID
    ```
-   Replace `CLUSTER_ID` with the ID of the cluster to delete.
+   Replace `CLUSTER_ID` with the ID of the cluster to delete. You can find the cluster ID with 
 
    For command usage, see [cluster rm](/reference/replicated-cli-cluster-rm).    
 
