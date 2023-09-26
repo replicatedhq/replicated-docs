@@ -2,7 +2,7 @@ import Help from "../partials/replicated-cli/_help.mdx"
 
 # release compatibility
 
-Report the success or failure of compatibility tests ran against a release.
+Report the success or failure of compatibility tests ran against a release. View the compatibility result for a release with [`release inspect`](/reference/replicated-cli-release-inspect).
 
 ## Usage
 

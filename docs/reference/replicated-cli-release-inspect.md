@@ -2,7 +2,7 @@ import Help from "../partials/replicated-cli/_help.mdx"
 
 # release inspect
 
-Inspect a release, including the created and edited timestamps, compatibility results reported from the `replicated release compatibility` command, and release config.
+Inspect a release, including created and edited timestamps, compatibility results reported with the [`replicated release compatibility`](/reference/replicated-cli-release-compatibility) command, and the release config.
 
 ## Usage
 
