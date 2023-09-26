@@ -3,7 +3,7 @@ import Help from "../partials/replicated-cli/_help.mdx"
 
 # cluster ls (Beta)
 
-List the clusters available for compatibility testing.
+List the clusters available for compatibility testing. For more information, see [About the Compatibility Matrix](/vendor/testing-about).
 
 
 ## Usage

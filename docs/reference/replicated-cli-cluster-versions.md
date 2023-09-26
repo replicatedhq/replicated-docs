@@ -1,10 +1,9 @@
 import Help from "../partials/replicated-cli/_help.mdx"
 
 
-# cluster ls (Beta)
+# cluster version (Beta)
 
-List the supported clusters versions available for testing with the compatibility matrix.
-
+List the supported clusters versions available for compatiblity testing. For more information, see [About the Compatibility Matrix](/vendor/testing-about).
 
 ## Usage
 
