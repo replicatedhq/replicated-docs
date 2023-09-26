@@ -154,7 +154,7 @@ To set the `REPLICATED_API_TOKEN` environment variable:
      ```
      docker run \
       -e REPLICATED_API_TOKEN=$TOKEN \
-      replicated/vendor-cli env | grep REPLICATED
+      replicated/vendor-cli --help
      ```
 
     * **Windows**:
@@ -162,7 +162,7 @@ To set the `REPLICATED_API_TOKEN` environment variable:
       ```
       docker.exe run \
         -e REPLICATED_API_TOKEN=%TOKEN% \
-        replicated/vendor-cli env | grep REPLICATED
+        replicated/vendor-cli --help
       ```
 
 ### `REPLICATED_APP`
@@ -184,7 +184,7 @@ To set the `REPLICATED_APP` environment variable:
      ```
      docker run \
         -e REPLICATED_APP=$APP_NAME
-        replicated/vendor-cli env | grep REPLICATED
+        replicated/vendor-cli --help
      ```
 
     * **Windows**:
@@ -192,5 +192,5 @@ To set the `REPLICATED_APP` environment variable:
       ```
       docker.exe run \
         -e REPLICATED_APP=%APP_NAME% \
-        replicated/vendor-cli env | grep REPLICATED
+        replicated/vendor-cli --help
       ```
