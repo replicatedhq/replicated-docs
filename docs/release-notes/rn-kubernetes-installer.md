@@ -19,7 +19,7 @@ Released on September 26, 2023
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-09-23T03-47-50Z.
 
 ### Bug Fixes {#bug-fixes-v2023-09-26-0}
-* Fixes wrong airgap flag usage on weave to flannel migration on connected environment.
+* Fixes an issue where the weave-to-flannel migration would provide prompts for remote nodes that incorrectly included the 'airgap' flag on non-airgap systems and the reverse.
 
 ## v2023.09.15-0
 
