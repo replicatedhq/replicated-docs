@@ -86,67 +86,38 @@ To install and run the latest replicated CLI on Linux:
 
 ### Docker / Windows
 
-To install and run the latest replicated CLI in docker or Windows environments:
+Installing in Docker environments requires that you set the `REPLICATED_API_TOKEN` environment variable to authorize the replicated CLI with an API token. For more information, see [(Optional) Set Environment Variables](#env-var) below.
+
+To install and run the latest replicated CLI in Docker environments:
+
+1. Generate a service account or user API token in the vendor portal. To create new releases, the token must have `Read/Write` access. See [Generating API Tokens](/vendor/replicated-api-tokens).
 
 1. Get the latest replicated CLI installation files from the [replicatedhq/replicated repository](https://github.com/replicatedhq/replicated/releases) on GitHub.
 
-  Download and install the files.
+  Download and install the files. For simplicity, the usage in the next step is represented assuming that the CLI is downloaded and installed to the desktop.
 
 1. Authorize the replicated CLI:
 
-   - Docker:
+   - Through a Docker container:
 
     ```shell
     docker run \
-      replicated/vendor-cli login
+      -e REPLICATED_API_TOKEN=$TOKEN \
+      replicated/vendor-cli --help
     ```
+    Replace `TOKEN` with your API token.
 
-   - Windows:
+   - On Windows:
 
     ```dos
     docker.exe run \
-      replicated/vendor-cli login
+      -e REPLICATED_API_TOKEN=%TOKEN% \
+      replicated/vendor-cli --help
     ```
 
-  In the browser window that opens, complete the prompts to log in to your vendor account and authorize the CLI.
+    Replace `TOKEN` with your API token.
 
-  <img width="350" alt="Authorize replicated cli web page" src="/images/authorize-repl-cli.png"/>
-
-  [View a larger version of this image](/images/authorize-repl-cli.png)    
-
-  <AuthToken/> 
-
-1. Verify installation:
-
-    - Docker:
-
-     ```shell
-      docker run \
-        replicated/vendor-cli --help
-      ```
-
-    - Windows:
-
-      ```dos
-      docker.exe run \
-        replicated/vendor-cli --help
-      ```
-
-1. (Optional) When you are done using the replicated CLI, remove any stored credentials created by the `replicated login` command:
-
-    - Docker:
-
-     ```shell
-      docker run \
-        replicated/vendor-cli logout
-      ```
-
-    - Windows:
-
-      ```dos
-      docker.exe run \
-        replicated/vendor-cli logout
-      ```
+  For more information about the `docker run` command, see [docker run](https://docs.docker.com/engine/reference/commandline/run/) in the Docker documentation.  
 
 ## (Optional) Set Environment Variables {#env-var}
 
@@ -155,8 +126,10 @@ The replicated CLI supports setting the following environment variables:
 * **`REPLICATED_API_TOKEN`**: A service account or user API token generated from a vendor portal team or individual account. The `REPLICATED_API_TOKEN` environment variable has the following use cases:
 
   * To use replicated CLI commands as part of automation (such as from continuous integration and continuous delivery pipelines), authenticate by providing the `REPLICATED_API_TOKEN` environment variable.
+
+  * To authorize the replicated CLI when installing and running the CLI in Docker containers.
   
-  * You can optionally set the `REPLICATED_API_TOKEN` environment variable instead of using the `replicated login` command to authenticate when running replicated CLI commands from the command line.
+  * Optionally set the `REPLICATED_API_TOKEN` environment variable instead of using the `replicated login` command to authorize the replicated CLI in MacOS or Linux environments.
 
 * **`REPLICATED_APP`**: The slug of the target application.
 
@@ -180,7 +153,8 @@ To set the `REPLICATED_API_TOKEN` environment variable:
 
      ```
      docker run \
-        -e REPLICATED_API_TOKEN=$TOKEN
+      -e REPLICATED_API_TOKEN=$TOKEN \
+      replicated/vendor-cli env | grep REPLICATED
      ```
 
     * **Windows**:
@@ -188,6 +162,7 @@ To set the `REPLICATED_API_TOKEN` environment variable:
       ```
       docker.exe run \
         -e REPLICATED_API_TOKEN=%TOKEN% \
+        replicated/vendor-cli env | grep REPLICATED
       ```
 
 ### `REPLICATED_APP`
@@ -209,6 +184,7 @@ To set the `REPLICATED_APP` environment variable:
      ```
      docker run \
         -e REPLICATED_APP=$APP_NAME
+        replicated/vendor-cli env | grep REPLICATED
      ```
 
     * **Windows**:
@@ -216,4 +192,5 @@ To set the `REPLICATED_APP` environment variable:
       ```
       docker.exe run \
         -e REPLICATED_APP=%APP_NAME% \
+        replicated/vendor-cli env | grep REPLICATED
       ```
