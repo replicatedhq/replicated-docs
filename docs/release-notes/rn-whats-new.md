@@ -11,5 +11,6 @@ To view the component release notes, see the following:
 * [KOTS Release Notes](rn-app-manager)
 * [kURL Release Notes](rn-kubernetes-installer)
 * [Replicated SDK Release Notes](rn-replicated-sdk)
+* [Vendor Portal Release Notes](rn-vendor-portal)
 
 For an overview of recent updates to the Replicated platform, see the monthly [Replicated Release Highlights blog](https://www.replicated.com/blog-tags/replicated-release-highlights). 
