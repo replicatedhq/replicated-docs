@@ -2,7 +2,7 @@
 
 This topic provides guidance for selecting the Replicated kURL add-ons to include in your Kubernetes installer manifest file to provide highly available data storage in embedded clusters.
 
-## Overview of Storage Add-ons
+## Overview
 
 kURL includes add-ons for object storage and for dynamic provisioning of PersistentVolumes (PVs) in the cluster. You configure these add-ons in your Kubernetes installer manifest file to define how data for your application and data for Replicated KOTS is managed in the cluster.
 
@@ -11,6 +11,8 @@ The object store or PV provisioner add-ons that you choose to include in your Ku
 For more information about the storage add-ons that Replicated recommends for single node and multi-node clusters, see the sections below:
 * [OpenEBS Local PV for Single Node Clusters](#single-node)
 * [Multi-Node Clusters](#multi-node)
+
+### kURL Storage Add-ons
 
 The following table describes the kURL add-ons for data storage, including if the add-on provides PV provisioning or object storage:
 
@@ -56,9 +58,13 @@ The following table describes the kURL add-ons for data storage, including if th
   </tr>
 </table>
 
-## OpenEBS Local PV for Single Node Clusters {#single-node}
+## Recommended Storage Add-ons
 
-If your application does not require three or more nodes in the cluster where it is deployed, Replicated recommends that you use OpenEBS Local PV to provide local storage on the single node in the cluster.
+This section includes the recommended storage add-ons to include in your Kubernetes installer specification for single and multi-node (three or more nodes) clusters.
+
+### OpenEBS Local PV for Single Node Clusters {#single-node}
+
+If your application does _not_ require multiple nodes in the cluster where it is deployed, Replicated recommends that you use OpenEBS Local PV to provide local storage on the single node in the cluster.
 
 If you use OpenEBS Local PV for single node clusters, you can optionally exclude the MinIO add-on. Excluding the MinIO add-on disables S3-object storage for KOTS. If you use only the OpenEBS add-on and exclude the MinIO add-on, then you must set the `disableS3` field to `true` in the KOTS add-on. For more information, see [Effects of the disableS3 Flag](https://kurl.sh/docs/add-ons/kotsadm#effects-of-the-disables3-flag) in _KOTS Add-on_ in the kURL documentation.
 
@@ -83,18 +89,9 @@ spec:
 
 For more information about properties for the OpenEBS add-on, see [OpenEBS Add-on](https://kurl.sh/docs/add-ons/openebs) in the kURL documentation.
 
-## Multi-Node Clusters {#multi-node}
+### OpenEBS Local PV with MinIO for Multi-Node {#openebs-minio}
 
-If your application must be deployed to a cluster with three or more nodes, Replicated recommends that you use one of the following configurations for highly available data storage in the cluster:
-
-* [OpenEBS Local PV with MinIO](#openebs-minio)
-* [Rook Ceph](#rook-ceph)
-
-For more information about the benefits and limitations of both OpenEBS Local PV and Rook, see [Choosing a PV Provisioner](https://kurl.sh/docs/create-installer/choosing-a-pv-provisioner) in the kURL documentation.
-
-### OpenEBS Local PV with MinIO {#openebs-minio}
-
-Using OpenEBS Local PV with MinIO provides a highly available data storage solution for multi-node clusters that is lighter-weight compared to using Rook Ceph. Replicated recommends that you use OpenEBS Local PV with MinIO for multi-node clusters if your application does _not_ require distributed storage. If you require distributed storage, see [Rook Ceph](#rook-ceph) below.
+Using OpenEBS Local PV with MinIO provides a highly available data storage solution for multi-node clusters (three or more nodes) that is lighter-weight compared to using Rook Ceph. Replicated recommends that you use OpenEBS Local PV with MinIO for multi-node clusters if your application does _not_ require distributed storage. If you require distributed storage, see [Rook Ceph](#rook-ceph) below.
 
 KOTS stores version history, application metadata, and other small amounts of data needed to manage the application on a PV that is provisioned for rqlite. Rqlite is a distributed relational database that uses SQLite as its storage engine. For more information, see the [rqlite](https://rqlite.io/) website.
 
@@ -105,6 +102,8 @@ The kURL EKCO add-on provides an operator that manages data in rqlite and in the
 With both OpenEBS Local PV and MinIO in the embedded cluster, KOTS uses OpenEBS Local PV to provision the PVs on each node that MinIO uses for local storage. Without MinIO, KOTS stores support bundle and application archive data locally in a PV on a single node in the cluster, which can cause loss of data if the node is unavailable.
 
 kURL has a supported migration path from either Rook or Longhorn to OpenEBS v3.3.0 or later. For more information about how to migrate data to OpenEBS, see [Migrating to Change CSI Add-On](https://kurl.sh/docs/install-with-kurl/migrating-csi) in the kURL documentation.
+
+For more information about the benefits and limitations of OpenEBS Local PV, see [Choosing a PV Provisioner](https://kurl.sh/docs/create-installer/choosing-a-pv-provisioner) in the kURL documentation.
 
 #### Requirements
 
@@ -137,7 +136,7 @@ spec:
     version: "2022-09-07T22-25-02Z"
 ```
 
-### Rook Ceph {#rook-ceph}
+### Rook Ceph for Multi-Node with Distributed Storage {#rook-ceph}
 
 If your application requires distributed storage, Replicated recommends that you use the Rook add-on in your Kubernetes installer manifest file. The Rook add-on creates an S3-compatible, distributed object store with Ceph and also creates a StorageClass for dynamically provisioning PVs.
 
@@ -149,9 +148,11 @@ The kURL EKCO add-on manages data in Ceph and in rqlite to ensure that the data 
 
 kURL has a supported migration path from Longhorn to Rook. For more information about how to migrate data from Longhorn to Rook, see [Migrating to Change CSI Add-On](https://kurl.sh/docs/install-with-kurl/migrating-csi) in the kURL documentation.
 
+For more information about the benefits and limitations of Rook, see [Choosing a PV Provisioner](https://kurl.sh/docs/create-installer/choosing-a-pv-provisioner) in the kURL documentation.
+
 #### Requirements
 
-To use the Rook add-on for multi-node embedded clusters, your Kubernetes installer must meet the following requirements:
+To use the Rook add-on for multi-node clusters, your Kubernetes installer must meet the following requirements:
 
 * Rook versions 1.4.3 and later require a dedicated block device attached to each node in the cluster. The block device must be unformatted and dedicated for use by Rook only. The device cannot be used for other purposes, such as being part of a Raid configuration. If the device is used for purposes other than Rook, then the installer fails, indicating that it cannot find an available block device for Rook.
 

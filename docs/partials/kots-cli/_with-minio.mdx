@@ -1,5 +1,8 @@
 <tr>
   <td><code>--with-minio</code></td>
   <td>bool</td>
-  <td>When <code>true</code>, KOTS deploys a local MinIO instance for storage and attempts to change any MinIO-based snapshots (hostpath and NFS) to the local-volume-provider plugin. See <a href="https://github.com/replicatedhq/local-volume-provider">local-volume-provider</a> in GitHub. <strong>Default:</strong> <code>true</code></td>
+  <td><p>When <code>true</code>, KOTS upgrades the admin console, deploying a local MinIO instance for application archive, support bundle, and host path and NFS snapshot storage.</p>
+  <p>When <code>false</code>, KOTS replaces the running deployment with a StatefulSet, and removes MinIO after a data migration. This results in temporary downtime for the admin console, but deployed applications are unaffected. See <a href="https://github.com/replicatedhq/local-volume-provider">local-volume-provider</a> in GitHub. </p>
+  <p><strong>Default:</strong> <code>true</code></p>
+  </td>
 </tr>
