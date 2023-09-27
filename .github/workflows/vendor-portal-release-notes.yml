@@ -11,56 +11,56 @@ jobs:
   generate-release-notes-pr:
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Generate Release Notes
-      id: release-notes
-      env:
-        VENDOR_PORTAL_VERSION: ${{ github.event.client_payload.version }}
-      uses: replicatedhq/release-notes-generator@main
-      with:
-        owner-repo: replicatedhq/vandoor
-        head: $VENDOR_PORTAL_VERSION
-        title: $VENDOR_PORTAL_VERSION
-        include-pr-links: false
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        feature-type-labels: type::feature
+      - name: Generate Release Notes
+        id: release-notes
+        env:
+          VENDOR_PORTAL_VERSION: ${{ github.event.client_payload.version }}
+        uses: replicatedhq/release-notes-generator@main
+        with:
+          owner-repo: replicatedhq/vandoor
+          head: $VENDOR_PORTAL_VERSION
+          title: $VENDOR_PORTAL_VERSION
+          include-pr-links: false
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          feature-type-labels: type::feature
 
-    - name: Update Release Notes
-      env:
-        PATTERN: ".+RELEASE_NOTES_PLACEHOLDER.+"
-      run: |
-        cat <<EOT >> /tmp/release-notes.txt
+      - name: Update Release Notes
+        env:
+          PATTERN: ".+RELEASE_NOTES_PLACEHOLDER.+"
+        run: |
+          cat <<EOT >> /tmp/release-notes.txt
 
-        ${{ steps.release-notes.outputs.release-notes }}
-        EOT
-        sed -i -E "/$PATTERN/r /tmp/release-notes.txt" docs/release-notes/rn-vendor-portal.md
-        rm -rf /tmp/release-notes.txt
+          ${{ steps.release-notes.outputs.release-notes }}
+          EOT
+          sed -i -E "/$PATTERN/r /tmp/release-notes.txt" docs/release-notes/rn-vendor-platform.md
+          rm -rf /tmp/release-notes.txt
 
-    - name: Create Pull Request # creates a PR if there are differences
-      uses: peter-evans/create-pull-request@v3
-      id: cpr
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        commit-message: Vendor Portal ${{ github.event.client_payload.version }} release notes
-        title: Vendor Portal ${{ github.event.client_payload.version }} release notes
-        branch: automation/vendor-portal-release-notes-${{ github.event.client_payload.version }}
-        delete-branch: true
-        base: "main"
-        body: "Automated changes by the [vendor-portal-release-notes](https://github.com/replicatedhq/replicated-docs/blob/main/.github/workflows/vendor-portal-release-notes.yml) GitHub action"
+      - name: Create Pull Request # creates a PR if there are differences
+        uses: peter-evans/create-pull-request@v3
+        id: cpr
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Vendor Portal ${{ github.event.client_payload.version }} release notes
+          title: Vendor Portal ${{ github.event.client_payload.version }} release notes
+          branch: automation/vendor-portal-release-notes-${{ github.event.client_payload.version }}
+          delete-branch: true
+          base: "main"
+          body: "Automated changes by the [vendor-portal-release-notes](https://github.com/replicatedhq/replicated-docs/blob/main/.github/workflows/vendor-portal-release-notes.yml) GitHub action"
 
-    - name: Check outputs
-      run: |
-        echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
-        echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+      - name: Check outputs
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
 
-    - name: Slack Notification
-      uses: slackapi/slack-github-action@v1.16.0
-      with: 
-        payload: |
-          {
-            "version": "${{ github.event.client_payload.version }}",
-            "pull_request_url": "${{steps.cpr.outputs.pull-request-url}}"
-          }
-      env:
-        SLACK_WEBHOOK_URL: ${{ secrets.VENDOR_PORTAL_RELEASE_NOTES_SLACK_WEBHOOK }}
+      - name: Slack Notification
+        uses: slackapi/slack-github-action@v1.16.0
+        with:
+          payload: |
+            {
+              "version": "${{ github.event.client_payload.version }}",
+              "pull_request_url": "${{steps.cpr.outputs.pull-request-url}}"
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.VENDOR_PORTAL_RELEASE_NOTES_SLACK_WEBHOOK }}

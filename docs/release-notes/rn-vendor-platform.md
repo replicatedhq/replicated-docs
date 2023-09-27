@@ -4,6 +4,6 @@ pagination_next: null
 pagination_prev: null
 ---
 
-# Vendor Portal Release Notes
+# Vendor Platform Release Notes
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
