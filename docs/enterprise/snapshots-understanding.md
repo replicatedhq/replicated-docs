@@ -1,12 +1,10 @@
+import VeleroCompatibility from "../partials/install/_velero-compatibility.mdx" 
+
 # About Backup and Restore
 
 An important part of the lifecycle of an application is backup and restore. The Replicated snapshots feature creates and restores backups. The Replicated admin console can be used to create and manage your storage destination and schedule, and to perform and monitor the backup and restore process.
 
 Velero and restic are the underlying technologies for snapshots.
-
-## Licensing
-
-The snapshots feature is available only for licenses that have the Allow Snapshots feature enabled. 
 
 ## About Backups
 
@@ -56,7 +54,11 @@ You initially configure backups on a supported storage provider backend using th
 
 kURL installers that include the Velero add-on also include a locally-provisioned object store. By default, embedded clusters are preconfigured in the admin console to store backups in the locally-provisioned object store. This object store is sufficient for only rollbacks and downgrades and is not a suitable configuration for disaster recovery. Replicated recommends that you configure a snapshots storage destination that is external to the cluster in the admin console for embedded clusters.
 
-## Limitations and Considerations
+## Limitations
+
+The snapshots feature has the following limitations:
+
+- The snapshots feature is available only for licenses that have the Allow Snapshots feature enabled. 
 
 - Snapshots are useful for rollback and disaster recovery scenarios. They are not intended to be used for application migration scenarios.
 
@@ -70,12 +72,22 @@ kURL installers that include the Velero add-on also include a locally-provisione
 
 - Removing data from the snapshot storage itself results in data corruption and the loss of snapshots. Instead, use the Snapshots tab in the admin console to cleanup and remove snapshots.
 
+- By default, KOTS stores any backups with NFS or host path storage destinations in s3-compatible object storage. If KOTS was installed without object storage, backups that have a NFS or host path storage destination are stored in local PVs using the `local-volume-provider` Velero plugin.  The `local-volume-provider` plugin has the following limitations:
+
+    -   provide an external S3 or have RWX storage.
+    
+    - Hostpath volumes are not designed to work on multi-node clusters unless the underlying host mounts point to shared storage. Volume snapshots performed in this configuration without shared storage can result in fragmented backups.
+
+    - Customized deployments of Velero (RBAC, container names), may not be supported.
+
+    - When BackupStorageLocations are removed, they are NOT cleaned up from the Velero and Node Agent pods.
+
+    - This plugin relies on a sidecar container at runtime to provide signed-url access to storage data.
+
+  For more information, see [local-volume-provider](https://github.com/replicatedhq/local-volume-provider) in GitHub.  
+
 ## Velero Version Compatibility
 
 The following table lists which versions of Velero are compatible with each version of KOTS.
 
-| KOTS version | Velero version |
-|------|-------------|
-| 1.15 to 1.20.2 | 1.2.0 |
-| 1.20.3 and later | 1.5.1 through 1.9.x |
-| 1.94.1 and later | 1.6.x through 1.10.2 |
+<VeleroCompatibility/>
