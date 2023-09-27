@@ -4,10 +4,6 @@ An important part of the lifecycle of an application is backup and restore. The 
 
 Velero and restic are the underlying technologies for snapshots.
 
-## Licensing
-
-The snapshots feature is available only for licenses that have the Allow Snapshots feature enabled. 
-
 ## About Backups
 
 Full backups, or _instance snapshots_, back up the admin console and all application data, including application volumes and manifest files.
@@ -58,6 +54,8 @@ kURL installers that include the Velero add-on also include a locally-provisione
 
 ## Limitations and Considerations
 
+- The snapshots feature is available only for licenses that have the Allow Snapshots feature enabled.
+
 - Snapshots are useful for rollback and disaster recovery scenarios. They are not intended to be used for application migration scenarios.
 
 - Only full snapshots are usable in disaster recovery scenarios.
@@ -69,6 +67,8 @@ kURL installers that include the Velero add-on also include a locally-provisione
 - Snapshots does not support Amazon Simple Storage Service (Amazon S3) buckets that have a bucket policy requiring the server-side encryption header. If you want to require server-side encryption for objects, you can enable default encryption on the bucket instead. For more information about Amazon S3, see the [Amazon S3](https://docs.aws.amazon.com/s3/?icmpid=docs_homepage_featuredsvcs) documentation.
 
 - Removing data from the snapshot storage itself results in data corruption and the loss of snapshots. Instead, use the Snapshots tab in the admin console to cleanup and remove snapshots.
+
+- If you install Replicated KOTS without object storage, you must provide external S3 object storage or RWX storage
 
 ## Velero Version Compatibility
 
