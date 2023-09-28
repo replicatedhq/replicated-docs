@@ -176,7 +176,7 @@ To patch your application:
     - ../../midstream
     kind: Kustomization
     patches:
-    - ./FILENAME.yaml
+    - path: ./FILENAME.yaml
    ```
 
 1. Upload your changes to the cluster:
