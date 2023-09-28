@@ -8,7 +8,13 @@ The custom metrics feature is Beta and is subject to change. To access this feat
 
 ## Overview
 
-In addition to the built-in insights displayed in the vendor portal by default (such as uptime and time to install), you can also configure custom metrics to measure instances of your application running in customer environments. For example, you can add custom metrics to get insights on customer usage and adoption of new features, which can help your team to make more informed prioritization decisions.
+In addition to the built-in insights displayed in the vendor portal by default (such as uptime and time to install), you can also configure custom metrics to measure instances of your application running in customer environments.
+
+Custom metrics can be used to generate insights on customer usage and adoption of new features, which can help your team to make more informed prioritization decisions. For example:
+* Decreased or plateaued usage for a customer can indicate a potential churn risk
+* Increased usage for a customer can indicate the opportunity to invest in growth, co-marketing, and upsell efforts
+* Low feature usage and adoption overall can indicate the need to invest in usability, discoverability, documentation, education, or in-product onboarding
+* High usage volume for a customer can indicate that the customer might need help in scaling their instance infrastructure to keep up with projected usage
 
 The vendor portal collects custom metrics through Replicated KOTS or through the Replicated SDK, depending on which is installed in the cluster alongside the application instance. KOTS and the SDK both expose an in-cluster API where you can configure your application to POST metric payloads. When an application instance sends data to the API, KOTS or the SDK sends the data (including any custom and built-in metrics) to the Replicated app service. The app service is located at `replicated.app` or at your custom domain.
 
