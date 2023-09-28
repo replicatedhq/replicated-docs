@@ -31,29 +31,16 @@ For more information about configuring backup stoage with snapshots, see [About 
 
 This section describes how to install KOTS without object storage in embedded cluster or in existing clusters.
 
+### Existing Clusters
+
+To install KOTS without object storage in an existing cluster, you can use the `--with-minio=false` flag:
+* When `--with-minio=false` is used with the `kots install` command, KOTS does _not_ deploy MinIO. KOTS deploys the admin console as a Statefulset with an attached PV instead of as a deployment. For command usage, see [install](/reference/kots-cli-install/).
+* When `--with-minio=false` is used with the `kots admin-console upgrade` command, KOTS upgrades the existing admin console instance to the latest version, replaces the running deployment with a StatefulSet, and removes MinIO after a data migration. This results in temporary downtime for the admin console, but deployed applications are unaffected. For command usage, see [admin-console upgrade](/reference/kots-cli-admin-console-upgrade/).
+
 ### Embedded Clusters
 
-To install KOTS in an embedded kURL cluster created by kURL without an object store, remove the object storage add-on from the installer and set the `disableS3` flag to `true` in the add-on.
+To enable KOTS installations without object storage, your software vendor must remove the object storage add-on from the installer and set the `disableS3` flag to `true` in the add-on.
 
-This deploys KOTS without an object store, as well as allows the supporting add-ons to use persistent volumes (PVs) instead of object storage.
+This deploys KOTS without an object store, as well as allows the supporting add-ons to use persistent volumes (PVs) instead of object storage. For more information about the behavior of the `disableS3` flag, see [KOTS Add-on](https://kurl.sh/docs/add-ons/kotsadm) in the open source kURL documentation.
 
-For more information about the behavior of the `disableS3` flag, see [KOTS Add-on](https://kurl.sh/docs/add-ons/kotsadm) in the open source kURL documentation.
-
-See [Removing Object Storage](https://kurl.sh/docs/install-with-kurl/removing-object-storage) for documentation on migrating a cluster away from object storage.
-
-
-When deploying, MinIO is configured with a randomly generated `AccessKeyID` and `SecretAccessKey`, and only exposed as a `ClusterIP` on the overlay network.
-
-#### Install the Admin Console Without MinIO
-
-When the flag `--with-minio=false` is used with the `kots install` command, the installer will not deploy MinIO. KOTS deploys the admin console as a Statefulset with an attached PV instead of a deployment.
-
-For more information, see [install](/reference/kots-cli-install/) in the kots CLI documentation.
-
-#### Upgrade the Admin Console Without MinIO
-
-When the flag `--with-minio=false` is used with the `kots admin-console upgrade` command, KOTS upgrades an existing admin console to the latest version, replaces the running deployment with a StatefulSet, and removes MinIO after a data migration.
-
-This results in temporary downtime for the admin console, but deployed applications will be unaffected.
-
-For more information, see [admin-console upgrade](/reference/kots-cli-admin-console-upgrade/) in the kots CLI documentation.
+For information about migrating an embedded cluster away from object storage, see [Removing Object Storage](https://kurl.sh/docs/install-with-kurl/removing-object-storage) in the kURL documentation.
