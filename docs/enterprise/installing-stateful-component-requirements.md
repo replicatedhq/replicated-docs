@@ -9,6 +9,8 @@ The Replicated admin console requires persistent storage for state. By default, 
 * Application archives 
 * Backups taken with Replicated snapshots that are configured to NFS or host path storage destinations.
 
+For more information about the admin console's persistent storage requirements, see [Minimum System Requirements](/enterprise/installing-general-requirements#minimum-system-requirements) in _Installation Requirements_.
+
 By default, for existing cluster installations, KOTS deploys MinIO for object storage. For embedded cluster installations with Replicated kURL, the object storage provider is either MinIO or Rook, depending on which add-on your software vendor included in the kURL installer specification. 
 
 You can optionally install KOTS without object storage. When installed without object storage, KOTS deploys the admin console as a Statefulset with an attached PersistentVolume (PV) instead of as a deployment. In this case, support bundles and application archives are stored in the attached PV instead of in object storage. Additionally, for local snapshots storage, KOTS uses the `local-volume-provisioner` Velero plugin to store backups on local PVs instead of using object storage. The `local-volume-provisioner` plugin uses the existing Velero service account credentials to mount volumes directly to the Velero node-agent pods. For more information, see [`local-volume-provisioner`](https://github.com/replicatedhq/local-volume-provider) in GitHub. 
@@ -31,7 +33,7 @@ This section describes how to install KOTS without object storage in embedded cl
 
 ### Embedded Clusters
 
-To install KOTS on an embedded cluster created by kURL without an object store, remove the object storage add-on from the installer and set the `disableS3` flag to `true` in the add-on.
+To install KOTS in an embedded kURL cluster created by kURL without an object store, remove the object storage add-on from the installer and set the `disableS3` flag to `true` in the add-on.
 
 This deploys KOTS without an object store, as well as allows the supporting add-ons to use persistent volumes (PVs) instead of object storage.
 
@@ -39,13 +41,6 @@ For more information about the behavior of the `disableS3` flag, see [KOTS Add-o
 
 See [Removing Object Storage](https://kurl.sh/docs/install-with-kurl/removing-object-storage) for documentation on migrating a cluster away from object storage.
 
-### Object Store Requirements for Existing Clusters
-
-When installing KOTS on an existing Kubernetes cluster, KOTS creates the required stateful components using the default StorageClass in the cluster.
-
-The only requirement is that a StorageClass be present.
-
-By default, an installation to an existing cluster will deploy MinIO to satisfy the object storage requirement, and nothing further is required during installation.
 
 When deploying, MinIO is configured with a randomly generated `AccessKeyID` and `SecretAccessKey`, and only exposed as a `ClusterIP` on the overlay network.
 

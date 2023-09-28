@@ -47,12 +47,28 @@ To install KOTS in an existing cluster, your environment must meet the following
 
 To install the admin console on an existing cluster, the cluster must meet the following requirements:
 
-* **Admin console minimum requirements**: The admin console requires a minimum of 5GB of disk space on the cluster. This includes 4GB for the object store PersistentVolume and 1GB for the rqlite PersistentVolume. The admin console pod requests 100m CPU resources and 100Mi memory. Existing clusters that have LimitRanges specified must support these values. For more information, see [Installing Without Object Storage](installing-stateful-component-requirements).
+* **Admin console minimum requirements**: Existing clusters that have LimitRanges specified must support these minium values for the admin console:
+
+  * The admin console requires a minimum of 5GB of disk space on the cluster. This includes:
+
+    * 4GB for the object store PersistentVolume 
+
+      :::note
+      You can optionally install KOTS without object storage. For more information, see [Installing Without Object Storage](installing-stateful-component-requirements).
+      :::
+
+    * 1GB for the rqlite PersistentVolume
+
+  * The admin console pod requests 100m CPU resources and 100Mi memory.
+  
 * **Kubernetes version compatibility**: The version of Kubernetes running on the cluster must be compatible with the version of KOTS that you use to install the application. This compatibility requirement does not include any specific and additional requirements defined by the software vendor for the application.
 
   For more information about the versions of Kubernetes that are compatible with each version of KOTS, see [Kubernetes Version Compatibility](#kubernetes-version-compatibility) above.
+
 * **OpenShift version compatibility**: For Red Hat OpenShift clusters, the version of OpenShift must use a supported Kubernetes version. For more information about supported Kubernetes versions, see [Kubernetes Version Compatibility](#kubernetes-version-compatibility) above.
+
 * **Storage class**: The cluster must have an existing storage class available. For more information, see [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) in the Kubernetes documentation.
+
 * **Port forwarding**: To support port forwarding, Kubernetes clusters require that the SOcket CAT (socat) package is installed on each node.
 
   If the package is not installed on each node in the cluster, you see the following error message when the installation script attempts to connect to the admin console: `unable to do port forwarding: socat not found`.
