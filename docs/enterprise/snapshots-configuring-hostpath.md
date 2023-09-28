@@ -14,7 +14,7 @@ This topic describes how to install Velero and configure a host path as your sto
 
 ## Limitation
 
-You cannot configure a host path storage destination if KOTS was installed without object storage (either by passing the `--with-minio=false` flag for existing cluster installations or the `--disable-s3` flag for embedded cluster installations with Replicated kURL). For more information, see [Snapshots Storage Limitations](installing-stateful-component-requirements.md) in _Installing Without Object Storage_.
+You cannot configure a host path storage destination if KOTS was installed without object storage. For more information, see [Snapshots Storage Limitations](installing-stateful-component-requirements.md) in _Installing Without Object Storage_.
 ## Requirements
 
 * The host path must be a dedicated directory. Do not use a partition used by a service like Docker or Kubernetes for ephemeral storage.

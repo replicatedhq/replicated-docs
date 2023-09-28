@@ -16,7 +16,7 @@ This topic describes how to install Velero and configure a Network File System (
 
 Configuring an NFS server as a snapshots storage destination has the following requirements:
 
-* If KOTS was installed without object storage (either by passing the `--with-minio=false` flag for existing cluster installations or the `--disable-s3` flag for embedded cluster installations with Replicated kURL), the NFS PersistentVolume must be exported on the server with ReadWriteMany (RWX) access mode. For more information, see [Snapshots Storage Limitations](installing-stateful-component-requirements.md) in _Installing Without Object Storage_.
+* If KOTS was installed without object storage, the NFS PersistentVolume must be exported on the server with ReadWriteMany (RWX) access mode. For more information, see [Snapshots Storage Limitations](installing-stateful-component-requirements.md) in _Installing Without Object Storage_.
 * The NFS server must be configured to allow access from all of the nodes in the cluster.
 * The NFS directory must be writable by the user:group 1001:1001.
 * Ensure that you configure the user:group 1001:1001 permissions for the directory on the NFS server.
