@@ -1,7 +1,5 @@
 <tr>
   <td><code>--with-minio</code></td>
   <td>bool</td>
-  <td><p>When <code>true</code>, KOTS deploys a local MinIO instance for storage and uses MinIO for host path and NFS snapshot storage.</p>
-  <p>When <code>false</code>, KOTS upgrades the existing admin console instance to the latest version, replaces the running deployment with a StatefulSet, and removes MinIO after a data migration. This results in temporary downtime for the admin console, but deployed applications are unaffected. <strong>Note:</strong> Deploying KOTS without object storage includes limitations for local snapshot storage. See <a href="/enterprise/installing-stateful-component-requirements#snapshots-storage-limitations">Snapshots Storage Limitations</a> in <em>Installing Without Object Storage</em>.</p>
-  <p><strong>Default:</strong> <code>true</code></p></td>
+  <td>When <code>true</code>, KOTS deploys a local MinIO instance for storage and attempts to change any MinIO-based snapshots (hostpath and NFS) to the local-volume-provider plugin. See <a href="https://github.com/replicatedhq/local-volume-provider">local-volume-provider</a> in GitHub. <strong>Default:</strong> <code>true</code></td>
 </tr>
