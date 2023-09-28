@@ -7,27 +7,23 @@ This topic describes how to install Replicated KOTS without the default object s
 The Replicated admin console requires persistent storage for state. By default, KOTS deploys an S3-compatible object store to satisfy the admin console's persistent storage requirement. The admin console stores the following in the object store:
 * Support bundles
 * Application archives 
-* Backups taken with Replicated snapshots that are configured to NFS or host path storage destinations. For hostpath or NFS snapshot storage destinations, the admin console dynamically creates a MinIO instance and attaches it to the specified source.
+* Backups taken with Replicated snapshots that are configured to NFS or host path storage destinations.
 
-By default, for existing cluster installations, KOTS deploys MinIO for object storage. For embedded cluster installations with Replicated kURL, the object storage is either MinIO or Rook, depending on which add-on your software vendor included in the kURL installer specification. 
+By default, for existing cluster installations, KOTS deploys MinIO for object storage. For embedded cluster installations with Replicated kURL, the object storage provider is either MinIO or Rook, depending on which add-on your software vendor included in the kURL installer specification. 
 
-You can optionally install KOTS without object storage. When installed without object storage, KOTS deploys the admin console as a Statefulset with an attached PersistentVolume (PV) instead of as a deployment. In this case, support bundles and application archives are stored in the attached PV instead of in object storage. Additionally, for backup storage with snapshots, KOTS uses the `local-volume-provisioner` Velero plugin to support snapshot storage on local PVs instead of in object storage. For more information, see [`local-volume-provisioner`](https://github.com/replicatedhq/local-volume-provider) in GitHub. 
+You can optionally install KOTS without object storage. When installed without object storage, KOTS deploys the admin console as a Statefulset with an attached PersistentVolume (PV) instead of as a deployment. In this case, support bundles and application archives are stored in the attached PV instead of in object storage. Additionally, for local snapshots storage, KOTS uses the `local-volume-provisioner` Velero plugin to store backups on local PVs instead of using object storage. The `local-volume-provisioner` plugin uses the existing Velero service account credentials to mount volumes directly to the Velero node-agent pods. For more information, see [`local-volume-provisioner`](https://github.com/replicatedhq/local-volume-provider) in GitHub. 
 
 ## Snapshot Storage Limitations
 
-When installed without object storage, KOTS uses the `local-volume-provisioner` Velero plugin to support snapshot storage on local PVs instead of in object storage. The `local-volume-provisioner` plugin uses the existing Velero service account credentials to mount volumes directly to the Velero node-agent pods. For more information, see [`local-volume-provisioner`](https://github.com/replicatedhq/local-volume-provider) in GitHub. 
+The `local-volume-provisioner` Velero plugin that KOTS uses for local snapshot storage requires that the PV used for snaphots storage have ReadWriteMany (RWX) access mode. With RMX access mode, the volume can be mounted as read-write by many nodes. For more information about access modes, see [Access Modes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes) in the Kubernetes documentations.
 
-The `local-volume-provisioner` plugin requires that the PV used for snaphots storage has ReadWriteMany (RWX) access mode. With RMX access mode, the volume can be mounted as read-write by many nodes. For more information about access modes, see [Access Modes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes) in the Kubernetes documentations.
-
-The RWX access mode requirement for the `local-volume-provisioner` plugin creates the following limitations for local snapshot storage destinations:
+To ensure that the RWX access mode requirement for the `local-volume-provisioner` plugin is met, the following limitations apply to local snapshot storage when KOTS is installed without object storage:
 
 * You cannot configure a host path storage destination because host path volumes do not support RWX access mode.
 * To configure an NFS storage destination, the NFS PV must be exported on the server with RWX access mode.
 * The cluster distribution must support RWX storage providers. For example, this means that you cannot configure local storage distinations in K3S clusters.
 
-The following storage destinations for snapshots _are supported_ when KOTS is installed without object storage:
-* Cloud storage destinations such as AWS, GCP, or Azure. For more information, see [Configuring Other Storage Destinations](/enterprise/snapshots-storage-destinations).
-* External S3-compatible storage with Ceph RADOS v12.2.7 or MinIO. For more information, see [Configure S3-Compatible Storage for Online Environments](/enterprise/snapshots-storage-destinations#configure-s3-compatible-storage-for-online-environments) or [Configure S3-Compatible Storage for Air Gap Environments](/enterprise/snapshots-storage-destinations#configure-s3-compatible-storage-for-air-gap-environments) in _Configuring Other Storage Destinations_.
+For more information about configuring backup stoage with snapshots, see [About Backup and Restore](/enterprise/snapshots-understanding).
 
 ## Install Without Object Storage
 
