@@ -12,17 +12,23 @@ This topic describes how to install Velero and configure a Network File System (
 <UpdateDefaultStorage/>
 :::
 
+## Requirements
+
+Configuring an NFS server as a snapshots storage destination has the following requirements:
+
+* If KOTS was installed without object storage, the NFS PersistentVolume must be exported on the server with ReadWriteMany (RWX) access mode. For more information, see [Snapshots Storage Limitations](installing-stateful-component-requirements.md) in _Installing Without Object Storage_.
+* The NFS server must be configured to allow access from all of the nodes in the cluster.
+* The NFS directory must be writable by the user:group 1001:1001.
+* Ensure that you configure the user:group 1001:1001 permissions for the directory on the NFS server.
+* All of the nodes in the cluster must have the necessary NFS client packages installed to be able to communicate with the NFS server. For example, the `nfs-common` package is a common package used on Ubuntu.
+* Any firewalls must be properly configured to allow traffic between the NFS server and clients (cluster nodes).
+
 ## Prerequisites
 
 Complete the following items before you perform this task:
 
 * Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _About Backup and Restore_.
 * Install the velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).
-* The NFS server must be configured to allow access from all of the nodes in the cluster.
-* The NFS directory must be writable by the user:group 1001:1001.
-* Ensure that you configure the user:group 1001:1001 permissions for the directory on the NFS server.
-* All of the nodes in the cluster must have the necessary NFS client packages installed to be able to communicate with the NFS server. For example, the `nfs-common` package is a common package used on Ubuntu.
-* Any firewalls must be properly configured to allow traffic between the NFS server and clients (cluster nodes).
 
 ## Install Velero and Configure NFS Storage in Online Environments
 
