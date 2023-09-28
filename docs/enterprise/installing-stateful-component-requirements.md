@@ -1,32 +1,36 @@
 # Installing Without Object Storage
 
-The Replicated admin console requires persistent storage for state. The following stateful components are required:
+This topic describes how to install Replicated KOTS without the default object storage, including limitations of installing without object storage.
 
-* **rqlite**: The admin console uses a rqlite StatefulSet to store the version history, application metadata and other small amounts of data needed to manage the application(s).
+## Overview
 
-   Replicated KOTS deploys the rqlite component with the admin console and secured with a randomly generated password, and only exposed as a ClusterIP on the overlay network.
+By default, KOTS is deployed with an S3-compatible object store. KOTS stores the following in the object store:
+* Support bundles
+* Application archives 
+* Backups taken with the Replicated snapshots feature that are configured to NFS or host path storage destinations
 
-* **S3-compatible object store**: The admin console requires an S3-compatible object store to store application archives and support bundles.
+By default, for existing cluster installations, KOTS deploys MinIO for object storage. For embedded cluster installations, the object storage is either MinIO or Rook, depending on how your software vendor configured the kURL installer. 
 
-   For more information about the S3-compatible object store requirements for both embedded clusters and existing clusters, see the sections below.
+You can optionally deploy KOTS without object storage. When deployed without object storage, KOTS instead 
 
-### Object Store Requirements for Embedded Clusters
+## Limitations
 
-By default, installations on clusters created by the Replicated kURL installer must include an add-on that satisfies the S3-compatible object store.
+The following limitations apply to installing KOTS without object storage:
 
-This can be either the Rook or MinIO add-on.
-Without one of these add-ons, the installer will fail with an error.
+* You can use snapshots if you configure S3-compatible storage as the storage destination. That can either be Ceph RADOS v12.2.7 or MinIO. It looks like these would be the steps to follow: https://docs.replicated.com/enterprise/snapshots-storage-destinations#configure-s3-compatible-storage-for-online-environments
+* You can use snapshots if you configure an NFS server as the storage destination and the NFS PV is exported on the server with RWX access mode.
+* You cannot use a host path storage destination for snapshots because host path volumes do not support RWX access mode. (according to https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes)
+* You can still configure cloud storage destinations like AWS, GCP, and Azure for snapshots as those have nothing to do with whether or not kots was deployed with object storage
+* All of these limitations apply whether you have a single or multi node cluster
+* All of these limitations are due to the requirements of the local-volume-provisioner Velero plugin, which KOTS uses when deployed without object storage
 
-Clusters created by the kURL installer can have optional, indirect dependencies on the S3-compatible object store:
+## Install Without Object Storage
 
-* The Registry add-on is used for air-gapped installations and uses object storage if available. Otherwise it uses the default `StorageClass`.
-* The Velero add-on is used for backup and restore with the Replicated snapshots feature. By default, it saves snapshots in the object store. The object store refers to the **Internal Storage** option in the admin console).
+### Embedded Clusters
 
-#### Install the Admin Console Without an Object Store
+To install KOTS on an embedded cluster created by kURL without an object store, remove the object storage add-on from the installer and set the `disableS3` flag to `true` in the add-on.
 
-To install the admin console on a cluster created by the kURL installer without an object store, remove the object storage add-on from the installer and set the `disableS3` flag to `true` in the add-on.
-
-This deploys the admin console without an object store, as well as allows the supporting add-ons to use persistent volumes (PVs) instead of object storage.
+This deploys KOTS without an object store, as well as allows the supporting add-ons to use persistent volumes (PVs) instead of object storage.
 
 For more information about the behavior of the `disableS3` flag, see [KOTS Add-on](https://kurl.sh/docs/add-ons/kotsadm) in the open source kURL documentation.
 
@@ -34,7 +38,7 @@ See [Removing Object Storage](https://kurl.sh/docs/install-with-kurl/removing-ob
 
 ### Object Store Requirements for Existing Clusters
 
-When installing the admin console on an existing Kubernetes cluster, KOTS creates the required stateful components using the default StorageClass in the cluster.
+When installing KOTS on an existing Kubernetes cluster, KOTS creates the required stateful components using the default StorageClass in the cluster.
 
 The only requirement is that a StorageClass be present.
 

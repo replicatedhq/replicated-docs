@@ -72,9 +72,9 @@ The snapshots feature has the following limitations:
 
 - Removing data from the snapshot storage itself results in data corruption and the loss of snapshots. Instead, use the Snapshots tab in the admin console to cleanup and remove snapshots.
 
-- By default, KOTS stores any backups with NFS or host path storage destinations in s3-compatible object storage. If KOTS was installed without object storage, backups that have a NFS or host path storage destination are stored in local PVs using the `local-volume-provider` Velero plugin.  The `local-volume-provider` plugin has the following limitations:
+- In order to use NFS or hostpath backup storage locations when KOTS is installed without object storage (either by passing the `--with-minio=false` flag for existing cluster installations or the `--disable-s3` flag for embedded cluster installations with Replicated kURL), the underlying host mounts must point to either external s3-compatible object storage or ReadWriteMany (RWX) persistent volume storage.
 
-    -   provide an external S3 or have RWX storage.
+By default, KOTS stores any backups that are configured to NFS or host path storage destinations in s3-compatible object storage. KOTS attempts to store backups with NFS or host path storage destination in local PVs instead of object storage using the `local-volume-provider` Velero plugin. The `local-volume-provider` plugin has the following limitations:
     
     - Hostpath volumes are not designed to work on multi-node clusters unless the underlying host mounts point to shared storage. Volume snapshots performed in this configuration without shared storage can result in fragmented backups.
 

@@ -18,6 +18,12 @@ Complete the following items before you perform this task:
 
 * Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _About Backup and Restore_.
 * Install the velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).
+
+## Requirements
+
+Configuring an NFS server as a snapshots storage destination has the following requirements:
+
+* If KOTS was installed without object storage (either by passing the `--with-minio=false` flag for existing cluster installations or the `--disable-s3` flag for embedded cluster installations with Replicated kURL), then 
 * The NFS server must be configured to allow access from all of the nodes in the cluster.
 * The NFS directory must be writable by the user:group 1001:1001.
 * Ensure that you configure the user:group 1001:1001 permissions for the directory on the NFS server.
