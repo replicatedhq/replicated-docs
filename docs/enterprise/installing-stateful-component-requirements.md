@@ -19,15 +19,15 @@ When installed without object storage, KOTS uses the `local-volume-provisioner` 
 
 The `local-volume-provisioner` plugin requires that the PV used for snaphots storage has ReadWriteMany (RWX) access mode. With RMX access mode, the volume can be mounted as read-write by many nodes. For more information about access modes, see [Access Modes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes) in the Kubernetes documentations.
 
-The RWX access mode requirement for the `local-volume-provisioner` plugin has the following limitations for local snapshot storage destinations:
+The RWX access mode requirement for the `local-volume-provisioner` plugin creates the following limitations for local snapshot storage destinations:
 
 * You cannot configure a host path storage destination because host path volumes do not support RWX access mode.
 * To configure an NFS storage destination, the NFS PV must be exported on the server with RWX access mode.
 * The cluster distribution must support RWX storage providers. For example, this means that you cannot configure local storage distinations in K3S clusters.
 
 The following storage destinations for snapshots _are supported_ when KOTS is installed without object storage:
-* Cloud storage destinations such as AWS, GCP, or Azure
-* External S3-compatible storage with Ceph RADOS v12.2.7 or MinIO. For more information, see [Configure S3-Compatible Storage for Online Environments](/enterprise/snapshots-storage-destinations#configure-s3-compatible-storage-for-online-environments) or [Configure S3-Compatible Storage for Air Gap Environments](/enterprise/snapshots-storage-destinations#configure-s3-compatible-storage-for-air-gap-environments).
+* Cloud storage destinations such as AWS, GCP, or Azure. For more information, see [Configuring Other Storage Destinations](/enterprise/snapshots-storage-destinations).
+* External S3-compatible storage with Ceph RADOS v12.2.7 or MinIO. For more information, see [Configure S3-Compatible Storage for Online Environments](/enterprise/snapshots-storage-destinations#configure-s3-compatible-storage-for-online-environments) or [Configure S3-Compatible Storage for Air Gap Environments](/enterprise/snapshots-storage-destinations#configure-s3-compatible-storage-for-air-gap-environments) in _Configuring Other Storage Destinations_.
 
 ## Install Without Object Storage
 

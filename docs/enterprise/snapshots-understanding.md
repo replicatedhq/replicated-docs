@@ -72,19 +72,7 @@ The snapshots feature has the following limitations:
 
 - Removing data from the snapshot storage itself results in data corruption and the loss of snapshots. Instead, use the Snapshots tab in the admin console to cleanup and remove snapshots.
 
-- In order to use NFS or hostpath backup storage locations when KOTS is installed without object storage (either by passing the `--with-minio=false` flag for existing cluster installations or the `--disable-s3` flag for embedded cluster installations with Replicated kURL), the underlying host mounts must point to either external s3-compatible object storage or ReadWriteMany (RWX) persistent volume storage.
-
-By default, KOTS stores any backups that are configured to NFS or host path storage destinations in s3-compatible object storage. KOTS attempts to store backups with NFS or host path storage destination in local PVs instead of object storage using the `local-volume-provider` Velero plugin. The `local-volume-provider` plugin has the following limitations:
-    
-    - Hostpath volumes are not designed to work on multi-node clusters unless the underlying host mounts point to shared storage. Volume snapshots performed in this configuration without shared storage can result in fragmented backups.
-
-    - Customized deployments of Velero (RBAC, container names), may not be supported.
-
-    - When BackupStorageLocations are removed, they are NOT cleaned up from the Velero and Node Agent pods.
-
-    - This plugin relies on a sidecar container at runtime to provide signed-url access to storage data.
-
-  For more information, see [local-volume-provider](https://github.com/replicatedhq/local-volume-provider) in GitHub.  
+- Additional limitations apply to local snapshot storage destinations when KOTS is installed without object storage (either by passing the `--with-minio=false` flag for existing cluster installations or the `--disable-s3` flag for embedded cluster installations with Replicated kURL). For more information, see [Snapshots Storage Limitations](installing-stateful-component-requirements.md) in _Installing Without Object Storage_.
 
 ## Velero Version Compatibility
 
