@@ -23,7 +23,7 @@ To ensure that the RWX access mode requirement for the `local-volume-provisioner
 
 * You cannot configure a host path storage destination because host path volumes do not support RWX access mode.
 * To configure an NFS storage destination, the NFS PV must be exported on the server with RWX access mode.
-* The cluster distribution must support RWX storage providers. For example, this means that you cannot configure local storage distinations in K3S clusters.
+* The cluster distribution must support RWX storage providers.
 
 Cloud storage destinations and external S3-compatible object storage storage destinations are still supported when KOTS is installed without object storage. For more information about configuring backup storage with snapshots, see [About Backup and Restore](/enterprise/snapshots-understanding).
 

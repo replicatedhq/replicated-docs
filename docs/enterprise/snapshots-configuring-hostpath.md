@@ -12,7 +12,7 @@ This topic describes how to install Velero and configure a host path as your sto
 <UpdateDefaultStorage/>
 :::
 
-## Limitation
+## Limitations
 
 You cannot configure a host path storage destination if KOTS was installed without object storage. For more information, see [Snapshots Storage Limitations](installing-stateful-component-requirements.md) in _Installing Without Object Storage_.
 ## Requirements
