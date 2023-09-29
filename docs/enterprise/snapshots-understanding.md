@@ -72,8 +72,6 @@ The snapshots feature has the following limitations:
 
 - Removing data from the snapshot storage itself results in data corruption and the loss of snapshots. Instead, use the Snapshots tab in the admin console to cleanup and remove snapshots.
 
-- Additional limitations apply to local snapshot storage destinations when KOTS is installed without object storage. For more information, see [Snapshots Storage Limitations](installing-stateful-component-requirements.md) in _Installing Without Object Storage_.
-
 ## Velero Version Compatibility
 
 The following table lists which versions of Velero are compatible with each version of KOTS.

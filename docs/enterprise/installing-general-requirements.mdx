@@ -56,7 +56,7 @@ To install the admin console on an existing cluster, the cluster must meet the f
     * **4GB for S3-compatible object store**: The admin console requires 4GB for an S3-compatible object store to store appplication archives, support bundles, and snapshots that are configured to use a host path and NFS storage destination. By default, KOTS deploys MinIO to satisfy this object storage requirement. During deployment, MinIO is configured with a randomly generated `AccessKeyID` and `SecretAccessKey`, and only exposed as a ClusterIP on the overlay network.
 
       :::note
-      You can optionally install KOTS without MinIO by passing `--with-minio=false` with the `kots install` command. This installs KOTS as a StatefulSet using a persistent volume (PV) for storage. For more information, including limitations, see [Installing Without Object Storage](/enterprise/installing-stateful-component-requirements).
+      You can optionally install KOTS without MinIO by passing `--with-minio=false` with the `kots install` command. This installs KOTS as a StatefulSet using a persistent volume (PV) for storage. For more information, see [Installing Without Object Storage](/enterprise/installing-stateful-component-requirements).
       :::
 
     * **1GB for rqlite PersistentVolume**: The admin console requires 1GB for a rqlite StatefulSet to store version history, application metadata, and other small amounts of data needed to manage the application(s). During deployment, the rqlite component is secured with a randomly generated password, and only exposed as a ClusterIP on the overlay network.  
