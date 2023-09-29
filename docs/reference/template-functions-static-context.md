@@ -577,7 +577,7 @@ This returns `true` if the Kubernetes minor version is greater than `19`.
 > Introduced in KOTS v1.103.0
 
 ```go
-func Lookup() map[string]interface{}
+func Lookup(apiversion string, resource string, namespace string, name string) map[string]interface{}
 ```
 
 Lookup searches resources in a running cluster and returns a resource or resource list.
