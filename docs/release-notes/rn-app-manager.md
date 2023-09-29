@@ -16,6 +16,20 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.103.1
+
+Released on September 29, 2023
+
+Support for Kubernetes: 1.25, 1.26, 1.27, and 1.28
+
+### Improvements {#improvements-1-103-1}
+* Adds clarifying language that configured automatic update checks use the local server time.
+
+### Bug Fixes {#bug-fixes-1-103-1}
+* Fixes an issue where previously deployed v1beta2 helm charts were not being uninstalled as expected after making configuration changes to exclude the chart.
+* Fixes an issue where image pull secrets and hook informers were not applied for dynamically created namespaces if the `kotsadm` pod/API restarts.
+* Fixes an issue where the applications dropdown for automatic partial snapshots settings showed no options or applications to choose from.
+
 ## 1.103.0
 
 Released on September 20, 2023
