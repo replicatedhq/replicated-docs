@@ -99,15 +99,11 @@ Using the OpenEBS add-on with the MinIO add-on provides a highly available data 
 
 When both the MinIO and OpenEBS add-ons are included, KOTS stores support bundles, application archives, and snapshots that have an NFS or host path storage destination in MinIO object storage. Additionally, KOTS uses OpenEBS Local PV to provision the PVs on each node that MinIO uses for local storage.
 
-#### Requirements
+#### Requirement
 
-To use both the OpenEBS add-on and the MinIO add-on, your Kubernetes installer specification must meet the following requirements:
+To use both the OpenEBS add-on and the MinIO add-on, the KOTS add-on must use KOTS v1.89 or later.  
 
-* The KOTS add-on must use KOTS v1.89 or later.  
-
-   KOTS v1.88 and earlier requires distributed storage, which is not provided by OpenEBS Local PV. To support multi-node clusters, Kubernetes installers that use a KOTS version earlier than v1.88 in the KOTS add-on must use the Rook add-on for distributed storage. See [Rook Ceph](#rook-ceph) below.
- 
-* You must include the kURL EKCO add-on. The kURL EKCO add-on provides an operator that manages data in rqlite and in the MinIO deployment to ensure that the data is properly distributed across multiple nodes in the cluster and has high availability. See [EKCO Add-on](https://kurl.sh/docs/add-ons/ekco) in the kURL documentation.
+KOTS v1.88 and earlier requires distributed storage, which is not provided by OpenEBS Local PV. To support multi-node clusters, Kubernetes installers that use a KOTS version earlier than v1.88 in the KOTS add-on must use the Rook add-on for distributed storage. See [Rook Ceph](#rook-ceph) below.
 
 #### Example
 
@@ -134,15 +130,11 @@ For more information about properties for the OpenEBS and MinIO add-ons, see [Op
 
 If your application requires multiple nodes and distributed storage, Replicated recommends that you use the Rook add-on for storage. The Rook add-on creates an S3-compatible, distributed object store with Ceph and also creates a StorageClass for dynamically provisioning PVs.
 
-#### Requirements
+#### Requirement
 
-To use the Rook add-on, your Kubernetes installer must meet the following requirements:
+Rook versions 1.4.3 and later require a dedicated block device attached to each node in the cluster. The block device must be unformatted and dedicated for use by Rook only. The device cannot be used for other purposes, such as being part of a Raid configuration. If the device is used for purposes other than Rook, then the installer fails, indicating that it cannot find an available block device for Rook.
 
-* Rook versions 1.4.3 and later require a dedicated block device attached to each node in the cluster. The block device must be unformatted and dedicated for use by Rook only. The device cannot be used for other purposes, such as being part of a Raid configuration. If the device is used for purposes other than Rook, then the installer fails, indicating that it cannot find an available block device for Rook.
-
-   For Rook Ceph versions earlier than 1.4.3, a dedicated block device is recommended in production clusters. Running distributed storage such as Rook on block devices is recommended for improved data stability and performance.
-
-* You must include the EKCO add-on to ensure that data in the cluster is highly available. The kURL EKCO add-on manages data in Ceph and in rqlite to ensure that the data is properly distributed across multiple nodes in the cluster and has high availability. The EKCO operator also performs several tasks to maintain the health of the Ceph cluster. For more information about how the EKCO add-on manages data in Rook Ceph, see [Rook](https://kurl.sh/docs/add-ons/ekco#rook) in _EKCO add-on_ in the kURL documentation.
+For Rook Ceph versions earlier than 1.4.3, a dedicated block device is recommended in production clusters. Running distributed storage such as Rook on block devices is recommended for improved data stability and performance.
 
 #### Example
 

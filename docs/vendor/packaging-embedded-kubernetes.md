@@ -86,8 +86,6 @@ Note the following requirements and guidelines for Kubernetes installers:
 
 - You must include the kURL KOTS add-on to provision the Replicated admin console. See [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) in the kURL documentation.
 
-- You must include the EKCO add-on, which performs maintenance tasks to ensure the cluster is healthy with minimal manual operation. See [EKCO Add-on](https://kurl.sh/docs/add-ons/ekco) in the kURL documentation.
-
 - To support the use of Replicated snapshots, Velero must be installed on the cluster. Replicated recommends that you include the Velero add-on in your Kubernetes installer manifest so that your customers do not have to manually install Velero.
 
   :::note
