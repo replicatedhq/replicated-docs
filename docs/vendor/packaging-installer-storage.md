@@ -37,9 +37,9 @@ Both the Rook add-on and the MinIO add-on satisfy this object store requirement.
 
 Alternatively, you can configure KOTS to be deployed without object storage. This installs KOTS as a StatefulSet using a persistent volume (PV) for storage. When there is no object storage available, KOTS stores support bundles, application archives, and snapshots that have an NFS or host path storage destination in the local PV. In this case, the OpenEBS add-on can be included to provide the local PV storage. For more information, see [Installing Without Object Storage](/enterprise/installing-stateful-component-requirements).
 
-### Distributed Storage
+### Distributed Storage in KOTS v1.88 and Earlier
 
-KOTS v1.88 and earlier requires distributed storage. To support multi-node clusters, Kubernetes installer specifications that use a KOTS version earlier than v1.88 in the KOTS add-on must use the Rook add-on for distributed storage.
+KOTS v1.88 and earlier requires distributed storage. To support multi-node clusters, Kubernetes installer specifications that use a KOTS version earlier than v1.88 in the KOTS add-on must use the Rook add-on for distributed storage. For more information, see [Rook Ceph](#rook-ceph) below.
 
 ## Factors to Consider When Choosing a Storage Configuration
 
@@ -54,15 +54,17 @@ This section describes the supported storage configurations for embedded cluster
 
 ### OpenEBS Without Object Storage (Single Node) {#single-node}
 
-If your application requires only a single node cluster, you can use OpenEBS Local PV to provide local storage on the node by including the OpenEBS add-on. When you use the OpenEBS add-on, KOTS stores support bundle and application archive data locally in a PV on a single node in the cluster.
+If your application can be deployed to a single node cluster and does not require object storage, then you can choose to exclude object stroage and instead use OpenEBS Local PV to provide local storage on the single node in the cluster.
+
+When configured to use local PV storage instead of object storage, KOTS stores support bundles, application archives, and snapshots that have an NFS or host path storage destination in a PV on the single node in the cluster.
 
 #### Requirements
 
-To use the OpenEBS add-only and deploy KOTS without object storage, your Kubernetes installer specification must meet the following requirements:
+To use the OpenEBS add-on without object storage, your Kubernetes installer specification must meet the following requirements:
 
-* When neither the MinIO nor the Rook add-on are included in the Kubernetes installer specification, you must set the `disableS3` field to `true` in the KOTS add-on. Setting `disableS3: true` in the KOTS add-on allows KOTS to use the local PV storage provided by OpenEBS instead of using object storage. For more information, see [Effects of the disableS3 Flag](https://kurl.sh/docs/add-ons/kotsadm#effects-of-the-disables3-flag) in _KOTS Add-on_ in the kURL documentation. 
+* When neither the MinIO nor the Rook add-on are included in the Kubernetes installer specification to provide object storage, you must set the `disableS3` field to `true` in the KOTS add-on. Setting `disableS3: true` in the KOTS add-on allows KOTS to use the local PV storage provided by OpenEBS instead of using object storage. For more information, see [Effects of the disableS3 Flag](https://kurl.sh/docs/add-ons/kotsadm#effects-of-the-disables3-flag) in _KOTS Add-on_ in the kURL documentation. 
 
-* When neither the MinIO nor the Rook add-on are included in the Kubernetes installer specification, the Velero add-on cannot be included. For a storage configuration that supports the use of the Velero add-on, see [OpenEBS with MinIO (Single or Multi-Node)](#openebs-minio) below.
+* When neither the MinIO nor the Rook add-on are included in the Kubernetes installer specification to provide object storage, the Velero add-on cannot be included. For a storage configuration that supports the use of the Velero add-on, see [OpenEBS with MinIO (Single or Multi-Node)](#openebs-minio) below.
 
   This is because, during installation, the Velero add-on automatically deploys internal storage for backups taken with the Replicated snapshots feature. The Velero add-on requires object storage (either through the MinIO or Rook add-on) to deploy this internal storage. If you include the Velero add-on without either the MinIO add-on or the Rook add-on, installation fails with the following error message: `Only Rook and Longhorn are supported for Velero Internal backup storage`.
 
@@ -91,7 +93,7 @@ For more information about properties for the OpenEBS add-on, see [OpenEBS](http
 
 Using OpenEBS Local PV with MinIO provides a highly available data storage solution for multi-node clusters that is lighter-weight compared to using Rook Ceph. Replicated recommends that you use OpenEBS Local PV with MinIO for multi-node clusters if your application does _not_ require distributed storage. If your application requires distributed storage, see [Rook Ceph](#rook-ceph) below.
 
-With both OpenEBS Local PV and MinIO in the cluster, KOTS uses OpenEBS Local PV to provision the PVs on each node that MinIO uses for local storage. Without MinIO, KOTS stores support bundle and application archive data locally in a PV on a single node in the cluster, which can cause loss of data if the node is unavailable. For multi-node clusters that use OpenEBS Local PV, MinIO is also required to provide object storage for support bundle and application archive data that can be distributed across multiple nodes in the cluster.
+When both the MinIO and OpenEBS add-ons are included, KOTS stores support bundles, application archives, and snapshots that have an NFS or host path storage destination in MinIO object storage. Additionally, KOTS uses OpenEBS Local PV to provision the PVs on each node that MinIO uses for local storage.
 
 #### Requirements
 
