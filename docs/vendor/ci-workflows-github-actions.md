@@ -104,7 +104,7 @@ For an up-to-date list of the avilable custom GitHub actions, see the [replicate
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/promote-release">promote-release</a></td>
     <td>
       <p>In release workflows, use this action to promote a release to an internal or customer-facing channel (such as Unstable, Beta, or Stable) after tests pass.</p>
-      <p>See <a href="/vendor/ci-workflows#rel-promote">Promote to a shared channel</a>in <em>Recommended CI/CD Workflows</em>.</p>
+      <p>See <a href="/vendor/ci-workflows#rel-promote">Promote to a shared channel</a> in <em>Recommended CI/CD Workflows</em>.</p>
     </td>
     <td><a href="/reference/replicated-cli-release-promote"><code>release promote</code></a></td>
   </tr>
@@ -118,7 +118,7 @@ For an up-to-date list of the avilable custom GitHub actions, see the [replicate
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/report-compatibility-result">report-compatibility-result</a></td>
     <td>In development or release workflows, use this action to report the success or failure of tests that ran in clusters provisioned by the compatibility matrix.</td>
-    <td>release compatibility</td>
+    <td><code>release compatibility</code></td>
   </tr>
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/upgrade-cluster">upgrade-cluster</a></td>
