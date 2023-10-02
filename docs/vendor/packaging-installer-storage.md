@@ -64,9 +64,13 @@ To use the OpenEBS add-on without object storage, your Kubernetes installer spec
 
 * When neither the MinIO nor the Rook add-on are included in the Kubernetes installer specification, you must set the `disableS3` field to `true` in the KOTS add-on. Setting `disableS3: true` in the KOTS add-on allows KOTS to use the local PV storage provided by OpenEBS instead of using object storage. For more information, see [Effects of the disableS3 Flag](https://kurl.sh/docs/add-ons/kotsadm#effects-of-the-disables3-flag) in _KOTS Add-on_ in the kURL documentation. 
 
-* When neither the MinIO nor the Rook add-on are included in the Kubernetes installer specification, the Velero add-on cannot be included. For a storage configuration that supports the use of the Velero add-on, see [OpenEBS with MinIO (Single or Multi-Node)](#openebs-minio) below.
+* When neither the MinIO nor the Rook add-on are included in the Kubernetes installer specification, the Velero add-on cannot be included. This is because, during installation, the Velero add-on automatically deploys internal storage for backups taken with the Replicated snapshots feature. The Velero add-on requires object storage to deploy this internal storage. If you include the Velero add-on without either the MinIO add-on or the Rook add-on, installation fails with the following error message: `Only Rook and Longhorn are supported for Velero Internal backup storage`.
 
-  This is because, during installation, the Velero add-on automatically deploys internal storage for backups taken with the Replicated snapshots feature. The Velero add-on requires object storage (either through the MinIO or Rook add-on) to deploy this internal storage. If you include the Velero add-on without either the MinIO add-on or the Rook add-on, installation fails with the following error message: `Only Rook and Longhorn are supported for Velero Internal backup storage`.
+  When the Velero add-on is not included, your users must install and configure Velero on the cluster after installation in order to use Replicated snapshots for backup and restore. For more information, see [About Backup and Restore](/enterprise/snapshots-understanding).
+
+  For a storage configuration for single node clusters that supports the use of the Velero add-on, see [OpenEBS with MinIO (Single or Multi-Node)](#openebs-minio) below.
+
+  
 
 #### Example
 
