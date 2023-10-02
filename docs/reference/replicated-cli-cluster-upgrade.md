@@ -3,7 +3,7 @@ import Help from "../partials/replicated-cli/_help.mdx"
 
 # cluster upgrade (Beta)
 
-Upgrade cluster version for compatibility testing.
+Upgrade cluster version for compatibility testing. For more information, see [About the Compatibility Matrix](/vendor/testing-about).
 
 ## Usage
 ```bash
