@@ -7,7 +7,7 @@ This topic describes how to install Replicated KOTS without the default object s
 The Replicated admin console requires persistent storage for state. By default, KOTS deploys an S3-compatible object store to satisfy the admin console's persistent storage requirement. The admin console stores the following in object storage:
 * Support bundles
 * Application archives 
-* Backups taken with Replicated snapshots that are configured to NFS or host path storage destinations.
+* Backups taken with Replicated snapshots that are configured to NFS or host path storage destinations
 
 For more information about the admin console's persistent storage requirements, see [Minimum System Requirements](/enterprise/installing-general-requirements#minimum-system-requirements) in _Installation Requirements_.
 
