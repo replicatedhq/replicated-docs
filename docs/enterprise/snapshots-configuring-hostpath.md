@@ -6,7 +6,7 @@ import CheckVersion from "../partials/snapshots/_checkVersion.mdx"
 
 # Configuring a Host Path Storage Destination
 
-This topic describes how to install Velero and configure a host path as your storage destination for backups.
+This topic describes how to install Velero and configure a host path as your storage destination for backups.  
 
 :::note
 <UpdateDefaultStorage/>
@@ -26,7 +26,7 @@ This topic describes how to install Velero and configure a host path as your sto
 Complete the following items before you perform this task:
 
 * Review the limitations and considerations. See [Limitations and Considerations](snapshots-understanding#limitations-and-considerations) in _About Backup and Restore_.
-* Install the velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).   
+* Install the velero CLI. See [Installing the Velero CLI](snapshots-velero-cli-installing).
 
 ## Install Velero and Configure Host Path Storage in Online Environments
 

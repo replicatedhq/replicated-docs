@@ -380,7 +380,8 @@ const sidebars = {
         'release-notes/rn-whats-new',
         'release-notes/rn-app-manager',
         'release-notes/rn-kubernetes-installer',
-        'release-notes/rn-replicated-sdk'
+        'release-notes/rn-replicated-sdk',
+        'release-notes/rn-vendor-platform'
       ],
     },
 
@@ -637,6 +638,7 @@ const sidebars = {
       label: 'replicated CLI',
       items: [
         'reference/replicated-cli-installing',
+        'reference/replicated-cli-api',
         'reference/replicated-cli-app-create',
         'reference/replicated-cli-app-delete',
         'reference/replicated-cli-app-ls',
@@ -652,6 +654,7 @@ const sidebars = {
         'reference/replicated-cli-cluster-prepare',
         'reference/replicated-cli-cluster-rm',
         'reference/replicated-cli-cluster-upgrade',
+        'reference/replicated-cli-cluster-versions',
         'reference/replicated-cli-completion',
         'reference/replicated-cli-completion-bash',
         'reference/replicated-cli-completion-fish',
@@ -662,6 +665,8 @@ const sidebars = {
         'reference/replicated-cli-customer-ls',
         'reference/replicated-cli-installer-create',
         'reference/replicated-cli-installer-ls',
+        'reference/replicated-cli-login',
+        'reference/replicated-cli-logout',
         'reference/replicated-cli-registry-add',
         'reference/replicated-cli-registry-add-dockerhub',
         'reference/replicated-cli-registry-add-ecr',
@@ -674,7 +679,9 @@ const sidebars = {
         'reference/replicated-cli-registry-rm',
         'reference/replicated-cli-registry-test',
         'reference/replicated-cli-release-create',
+        'reference/replicated-cli-release-compatibility',
         'reference/replicated-cli-release-download',
+        'reference/replicated-cli-release-inspect',
         'reference/replicated-cli-release-lint',
         'reference/replicated-cli-release-ls',
         'reference/replicated-cli-release-promote',

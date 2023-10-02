@@ -3,7 +3,7 @@ import Help from "../partials/replicated-cli/_help.mdx"
 
 # cluster create (Beta)
 
-Create clusters for compatibility testing.
+Create clusters for compatibility testing. For more information, see [About the Compatibility Matrix](/vendor/testing-about).
 
 ## Usage
 ```bash

@@ -243,6 +243,37 @@ The compatibility matrix supports creating [Google GKE](https://cloud.google.com
   </tr>
 </table>
 
+### AKS
+
+The compatibility matrix supports creating [Azure AKS](https://azure.microsoft.com/en-us/products/kubernetes-service) clusters.
+
+<table>
+  <tr>
+        <th width="35%">Type</th>
+        <th width="65%">Description</th>
+  </tr>
+  <tr>
+    <th>Supported Kubernetes Versions</th>
+    <td>1.27</td>
+  </tr>
+  <tr>
+    <th>Supported Instance Types</th>
+    <td><p>Standard_B2ms, Standard_B4ms, Standard_B8ms, Standard_B16ms</p><p>You can specify more than one node.</p></td>
+  </tr>
+  <tr>
+    <th>Nodes</th>
+    <td>Supports multiple nodes.</td>
+  </tr>
+  <tr>
+    <th>Limitations</th>
+    <td><p>You can choose only a minor version, not a patch version. The AKS installer chooses the latest patch for that minor version.</p><p>For additional limitations that apply to all distributions, see <a href="testing-how-to#limitations">Limitations</a>.</p></td>
+  </tr>
+  <tr>
+    <th>Common Use Cases</th>
+    <td>Customer release tests</td>
+  </tr>
+</table>
+
 ## Replicated Instance Types {#types}
 
 When creating a VM-based cluster with the compatibility matrix, you must specify a Replicated instance type.

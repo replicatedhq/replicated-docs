@@ -1,6 +1,5 @@
 import DockerCompatibility from "../partials/image-registry/_docker-compatibility.mdx"
 import KubernetesCompatibility from "../partials/install/_kubernetes-compatibility.mdx"
-import VeleroCompatibility from "../partials/install/_velero-compatibility.mdx"
 
 # Installation Requirements
 
@@ -33,11 +32,6 @@ Replicated recommends using a version of KOTS that is compatible with Kubernetes
 
 <KubernetesCompatibility/>
 
-## Velero Version Compatibility for Snapshots
-
-The following table lists the versions of Velero that are compatible with each version of KOTS. Velero is required to enable the Replicated snapshots feature for backup and restore. For more information, see [About Backup and Restore](/enterise-snapshots-understanding).
-
-<VeleroCompatibility/>
 
 ## Existing Cluster Requirements
 
@@ -62,13 +56,12 @@ To install the admin console on an existing cluster, the cluster must meet the f
     * **1GB for rqlite PersistentVolume**: The admin console requires 1GB for a rqlite StatefulSet to store version history, application metadata, and other small amounts of data needed to manage the application(s). During deployment, the rqlite component is secured with a randomly generated password, and only exposed as a ClusterIP on the overlay network.  
 
 * **Available StorageClass**: The cluster must have an existing StorageClass available. KOTS creates the required stateful components using the default StorageClass in the cluster. For more information, see [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) in the Kubernetes documentation.  
-  
+
 * **Kubernetes version compatibility**: The version of Kubernetes running on the cluster must be compatible with the version of KOTS that you use to install the application. This compatibility requirement does not include any specific and additional requirements defined by the software vendor for the application.
 
   For more information about the versions of Kubernetes that are compatible with each version of KOTS, see [Kubernetes Version Compatibility](#kubernetes-version-compatibility) above.
-
 * **OpenShift version compatibility**: For Red Hat OpenShift clusters, the version of OpenShift must use a supported Kubernetes version. For more information about supported Kubernetes versions, see [Kubernetes Version Compatibility](#kubernetes-version-compatibility) above.
-
+* **Storage class**: The cluster must have an existing storage class available. For more information, see [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) in the Kubernetes documentation.
 * **Port forwarding**: To support port forwarding, Kubernetes clusters require that the SOcket CAT (socat) package is installed on each node.
 
   If the package is not installed on each node in the cluster, you see the following error message when the installation script attempts to connect to the admin console: `unable to do port forwarding: socat not found`.
