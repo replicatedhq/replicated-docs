@@ -87,7 +87,7 @@ The compatibility matrix supports creating [Red Hat OpenShift OKD](https://www.o
   </tr>
   <tr>
     <th>Supported OpenShift Version</th>
-    <td>4.13.0-okd</td>
+    <td>4.11.0-okd, 4.12.0-okd, 4.13.0-okd</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
@@ -254,7 +254,7 @@ The compatibility matrix supports creating [Azure AKS](https://azure.microsoft.c
   </tr>
   <tr>
     <th>Supported Kubernetes Versions</th>
-    <td>1.27</td>
+    <td>1.25, 1.26, 1.27</td>
   </tr>
   <tr>
     <th>Supported Instance Types</th>
