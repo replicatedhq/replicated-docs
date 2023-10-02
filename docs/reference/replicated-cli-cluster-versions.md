@@ -38,7 +38,7 @@ replicated cluster versions --distribution openshift
 Supported Kubernetes distributions and versions are:
 DISTRIBUTION: openshift
 • VERSIONS: 4.13.0-okd
-• INSTANCE TYPES: r1.small, r1.medium, r1.large, r1.xlarge, r1.2xlarge
+• INSTANCE TYPES: r1.medium, r1.large, r1.xlarge, r1.2xlarge
 • MAX NODES: 1
 ```
                  
