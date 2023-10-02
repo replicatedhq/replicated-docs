@@ -35,7 +35,7 @@ To include the Kubernetes installer specification in a release:
 
   The YAML editor opens.
 
-1. From the landing page at [kurl.sh](https://kurl.sh/), configure the add-ons and options for your Installer YAML. For guidance on which add-ons to choose, see [Best Practices and Recommendations](#best-practices-and-recommendations) below.
+1. From the landing page at [kurl.sh](https://kurl.sh/), configure the add-ons and options for your Installer YAML. For guidance on which add-ons to choose, see [Requirements and Recommendations](#requirements-and-recommendations) below.
 
 1. Copy the installer YAML from the kURL website and paste it into a new file in your release.
 
@@ -55,7 +55,7 @@ To create a separate Kubernetes installer:
 
 1. On the **Kubernetes Installer** page, click **Create Kubernetes installer**.
 
-1. Edit the file. For guidance on which add-ons to choose, see [Best Practices and Recommendations](#best-practices-and-recommendations) below.
+1. Edit the file. For guidance on which add-ons to choose, see [Requirements and Recommendations](#requirements-and-recommendations) below.
 
 1. Click **Save installer**. You can continue to edit your file until it is promoted.
 
@@ -80,7 +80,7 @@ To create a separate Kubernetes installer:
 
   To make changes after promoting, create a new Kubernetes installer.
 
-## Best Practices and Recommendations
+## Requirements and Recommendations
 
 Note the following requirements and guidelines for Kubernetes installers:
 
