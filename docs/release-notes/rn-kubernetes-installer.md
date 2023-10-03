@@ -8,6 +8,15 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.10.03-0
+
+Released on October 3, 2023
+
+### New Features {#new-features-v2023-10-03-0}
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.26.0.
+* Adds [OpenEBS add-on](https://kurl.sh/docs/add-ons/openebs) version 3.9.0.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-09-30T07-02-29Z.
+
 ## v2023.09.26-0
 
 Released on September 26, 2023
