@@ -23,7 +23,7 @@ jobs:
           head: $VENDOR_PORTAL_VERSION
           title: $VENDOR_PORTAL_VERSION
           include-pr-links: false
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.VENDOR_PORTAL_PAT }}
           feature-type-labels: type::feature
 
       - name: Update Release Notes
