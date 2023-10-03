@@ -1,8 +1,12 @@
-# Create a Customer
+# Step 4: Create a Customer
 
-To create a customer so that you can install the release in your cluster:
+After promoting the first release for the application, create a customer so that you can install the application.
 
-1. Click **Customer > Create customer**.
+A _customer_ is an object in the vendor portal that represents a single licensed user of your application. When you create a customer, you define entitlement information for the user. In order to install your application, your users must be associated with a customer in the vendor portal.
+
+To create a customer:
+
+1. In the vendor portal, click **Customer > Create customer**.
 
 1. For **Customer name**, add a name.
 
@@ -14,6 +18,6 @@ To create a customer so that you can install the release in your cluster:
 
 ## Related Topics
 
-For more information, see [Creating and Managing Customers](/vendor/releases-creating-customer).
+[Creating and Managing Customers](/vendor/releases-creating-customer)
 
 ## Next Step

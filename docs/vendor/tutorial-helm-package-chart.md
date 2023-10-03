@@ -1,9 +1,9 @@
 import ChartRequirements from "../partials/replicated-sdk/_chart-requirements-note.mdx"
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 
-# Get a Helm Chart-Based Application
+# Step 2: Package a Helm Chart
 
-This workflow assumes that you have a Helm chart that you can install and develop against. Replicated strongly recommends that all vendors distribute their application as a Helm chart because many enterprise users expect to be able to install using Helm.
+Next, package a sample Helm chart so that you can add it to a new release for the application that you created in the previous step. distribute their application as a Helm chart because many enterprise users expect to be able to install using Helm.
 
 To get a Helm chart-based application:
 
@@ -30,7 +30,7 @@ To get a Helm chart-based application:
    helm package . --dependency-update
    ```
 
-   For more information, see [Helm Package](https://helm.sh/docs/helm/helm_package/) in the Helm documentation.
+   For more information, see [Helm Package](https://helm.sh/docs/helm/helm_package/) in the Helm documentation.   
 
 ## Next Step
 

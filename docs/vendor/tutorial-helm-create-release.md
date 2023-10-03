@@ -1,4 +1,4 @@
-# Add the Helm Chart Archive to a Release
+# Step 3: Add the Helm Chart to a Release
 
 To create a release with the Helm chart:
 
