@@ -423,10 +423,8 @@ const sidebars = {
             'vendor/tutorial-helm-package-chart',
             'vendor/tutorial-helm-create-release',
             'vendor/tutorial-helm-create-customer',
-            'vendor/tutorial-helm-install-with-helm',
-            'vendor/tutorial-helm-update-release',
-            'vendor/tutorial-helm-configure-helmchart-cr',
             'vendor/tutorial-helm-install-kots',
+            'vendor/tutorial-helm-install-with-helm',
           ],
         },
         {

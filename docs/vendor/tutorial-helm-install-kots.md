@@ -1,4 +1,4 @@
-# Step 8: Install the Release with KOTS
+# Step 6: Install the Release with KOTS
 
 After you add and configure the HelmChart custom resource, install the release with Replicated KOTS. Using the kots CLI, you will install KOTS and the sample application in your cluster.
 

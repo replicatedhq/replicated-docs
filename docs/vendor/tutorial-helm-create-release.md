@@ -6,7 +6,7 @@ A _release_ represents a single version of your application and contains your ap
 
 To create a release with the NGINX Helm chart archive:
 
-1. In the vendor portal, click **Releases > Create release**. In the drop down, select **Create KOTS release**.
+1. In the [vendor portal](https://vendor.replicated.com), click **Releases > Create release**. In the drop down, select **Create KOTS release**.
 
    A KOTS release can contain Helm charts and standard manifests. KOTS releases also include the extra manifests required by KOTS. KOTS releases that contain one or more Helm charts support installation with the Helm CLI and with KOTS.
 
