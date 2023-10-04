@@ -1,27 +1,27 @@
 # Step 6: Install the Release with KOTS
 
-After you add and configure the HelmChart custom resource, install the release with Replicated KOTS. Using the kots CLI, you will install KOTS and the sample application in your cluster.
+Get the installation command from the Unstable channel and then install the release with KOTS, using the customer license that you downloaded.
 
-KOTS is an installer that allows your users to install, manage, and upgrade your application. Users can interact with KOTS through the admin console or through the kots CLI.
+KOTS is a kubectl plugin that automates installations to on-prem, online, or air gap environments, making it quick and easy for your users to install with minimal Kubernetes expertise.
 
-To install KOTS and the application:
+To install the release with KOTS:
 
-1. Before you attempt to install the application with KOTS, uninstall the Helm chart using the Helm CLI. 
+1. In the [vendor portal](https://vendor.replicated.com), go to **Channels**. From the **Unstable** channel card, under **Install**, copy the **KOTS Install** command.
 
-1. In the vendor portal, go to **Customers**. Click on the customer that you created previously and download the license file. KOTS requires the license file for authentication in order to install the application.
+  ![KOTS Install tab on the Unstable channel card](/images/helm-tutorial-unstable-kots-install-command.png)
 
-1. In the vendor portal, go to **Channels**. From the Unstable channel, copy the **KOTS Install** command.
+  [View a larger version of this image](/images/helm-tutorial-unstable-kots-install-command.png)
 
-  ![Installation Methods](/images/guides/kots/installation-methods-existing.png)
-
-  The script installs the latest KOTS version as a `kubectl` plugin. For more information about installing an application with the kots CLI, see [install](../reference/kots-cli-install/) in the kots CLI documentation.
+1. On the command line, run the **KOTS Install** command that you copied.
 
   **Example:**
 
   ```bash
   curl https://kots.io/install | bash
-  kubectl kots install my-test-app/unstable
+  kubectl kots install example-nginx-app/unstable
   ```
+
+  This installs the latest version of KOTS and the Replicated admin console. The admin console provides a user interface where you can upload the customer license file and deploy the application.
 
 1. For `Enter installation path (leave blank for /usr/local/bin):`, use the default and press **Enter**.
 
@@ -118,6 +118,10 @@ To install KOTS and the application:
 
   [View a larger version of this image](/images/customer-instances-tutorial.png)
 
-## Related Topic
-
 ## Next Step
+
+Install the same release with the Helm CLI.
+
+## Related Topics
+
+* [kots install](/reference/kots-cli-install/)

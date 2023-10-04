@@ -26,9 +26,15 @@ To create a customer:
 
 1. Click **Save Changes**.
 
+1. On the **Customer details** page for the customer, click **Download license**. You will use the license to install with KOTS.
+
+   ![Download license button on the customer page](/images/customer-download-license.png)
+
+   [View a larger version of this image](/images/customer-download-license.png)
+
 ## Next Step
 
-Use the customer's license to install. See [Install the Release with KOTS](tutorial-helm-install-kots).
+Get the KOTS installation command and install. See [Install the Release with KOTS](tutorial-helm-install-kots).
 
 ## Related Topics
 
