@@ -1,4 +1,4 @@
-# Install with the Helm CLI
+# Step 5: Install with the Helm CLI
 
 To install the release:
 

@@ -1,4 +1,4 @@
-# Configure the HelmChart Custom Resource for KOTS Installations
+# Step 7: Configure the HelmChart Custom Resource
 
 For vendors with access to the KOTS installer, add a HelmChart custom resource to your release to your release to support KOTS installations.
 

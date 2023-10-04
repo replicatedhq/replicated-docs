@@ -1,4 +1,4 @@
-# Create a New Release and Update
+# Step 6: Create a New Release and Update
 
 Create a new release in the vendor portal and then upgrade the instance in the cluster:
 
