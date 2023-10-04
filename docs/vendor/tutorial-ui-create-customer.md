@@ -1,4 +1,4 @@
-# Step 3: Create a Customer
+# Step X: Create a Customer
 
 After promoting the first release, create a customer and download the license file so that you can install the application.
 

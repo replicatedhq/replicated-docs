@@ -415,9 +415,10 @@ const sidebars = {
       items: [
         {
           type: 'category',
-          label: 'Install a Helm Chart with KOTS and the Helm CLI',
+          label: 'Install with KOTS and the Helm CLI',
           items: [
             'vendor/tutorial-helm-setup',
+            'vendor/tutorial-helm-get-chart',
             'vendor/tutorial-helm-create-app',
             'vendor/tutorial-helm-package-chart',
             'vendor/tutorial-helm-create-release',
