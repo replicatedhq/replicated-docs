@@ -1,4 +1,4 @@
-# Step X: Create an Application
+# Step 2: Create an Application in the Vendor Portal
 
 Create an application in the Replicated vendor portal. An _application_ is an object that has its own customers, channels, releases, license fields, and more.
 
@@ -14,10 +14,18 @@ To create an application:
 
    [View a larger version of this image](/images/create-new-app.png)
 
-1. On the **Create application** page, enter a name for the application. For example, `Replicated Tutorial`.
+1. On the **Create application** page, enter a name for the application. For example, `Example NGINX App`.
 
    <img alt="create new app page" src="/images/create-application-page.png" width="500px"/>
 
    [View a larger version of this image](/images/create-application-page.png)
 
 1. Click **Create application**.
+
+## Next Step
+
+Add the Replicated SDK to the Helm chart and repackage. See [Add the SDK and Package the Chart](tutorial-helm-package-chart).
+
+## Related Topics
+
+[Create an Application](/vendor/vendor-portal-manage-app#create-an-application)

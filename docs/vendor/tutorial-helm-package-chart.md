@@ -1,37 +1,37 @@
 import ChartRequirements from "../partials/replicated-sdk/_chart-requirements-note.mdx"
 import DependencyYaml from "../partials/replicated-sdk/_dependency-yaml.mdx"
 
-# Step 2: Package a Helm Chart
+# Step 3: Add the SDK and Package the Chart
 
-Next, package a sample Helm chart so that you can add it to a new release for the application that you created in the previous step. distribute their application as a Helm chart because many enterprise users expect to be able to install using Helm.
+Next, add the Replicated SDK as a dependency of the sample NGINX Helm chart.
+
+The Replicated SDK is a Helm chart that can be installed as a small service running alongside your application Helm chart. The Replicated SDK provides an in-cluster API that you can use to embed Replicated features into your application.
 
 To get a Helm chart-based application:
 
-1. Create a new `replicated-onboarding` folder with a basic NGINX deployment:
+1. In your local file system, go to the `replicated-onboarding` directory that you created as part of [Step 1: Get the Sample Chart and Test](tutorial-helm-get-chart).
 
-    ```bash
-    helm create replicated-onboarding
-    ``` 
-    For more information, see [Helm Create](https://helm.sh/docs/helm/helm_create/) in the Helm documentation.
+1. Open the `Chart.yaml` file for the sample NGINX Helm chart in your preferred text editor.
 
-1. In the Helm chart `Chart.yaml`, add the Replicated SDK as a dependency:
+1. In the `Chart.yaml` file, add the Replicated SDK as a dependency:
 
    <DependencyYaml/>
-
-   The Replicated SDK is a Helm chart that provides access to Replicated features and can be installed as a small service alongside your application. For more information, see [About the Replicated SDK (Beta)](/vendor/replicated-sdk-overview).
 
    :::note
    <ChartRequirements/>
    :::
 
-1. Update dependencies then package the Helm chart to a `.tgz` file:
+1. Update dependencies then package the Helm chart to a `.tgz` chart archive:
 
    ```bash
    helm package . --dependency-update
    ```
 
-   For more information, see [Helm Package](https://helm.sh/docs/helm/helm_package/) in the Helm documentation.   
-
 ## Next Step
 
-Add the Helm chart archive to a release in the vendor portal.
+Add the Helm chart archive to a release in the vendor portal. See [Add the Chart Archive to a Release](tutorial-helm-create-release).
+
+## Related Topics
+
+* [About the Replicated SDK (Beta)](/vendor/replicated-sdk-overview)
+* [Helm Package](https://helm.sh/docs/helm/helm_package/)

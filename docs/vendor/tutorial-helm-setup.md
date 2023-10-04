@@ -36,3 +36,9 @@ Before you begin, do the following to set up your environment:
    ```
 
    For more information, including alternative installation options, see [Install Helm](https://helm.sh/docs/intro/install/) in the Helm documentation.
+
+* Create a vendor account to access the vendor portal. See [Creating a Vendor Portal](/vendor/vendor-portal-creating-account).
+   
+  :::note
+  If you do not yet have a vendor portal team to join, you can sign up for a trial account. By default, trial accounts do not include access to Replicated KOTS. To get access to KOTS with your trial account so that you can complete this and other tutorials, contact Replicated at contact@replicated.com.  
+  :::

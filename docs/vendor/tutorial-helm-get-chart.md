@@ -1,8 +1,6 @@
 # Step 1: Get the Sample Chart and Test
 
-To begin, you will get a sample NGINX Helm chart, install the Helm chart in your cluster, access the NGINX application in a browser, and then uninstall the Helm chart.
-
-The purpose of this step is to confirm that you can successfully install and access the application before getting started with Replicated components.
+To start, you will get a sample NGINX Helm chart, install the Helm chart in your cluster, verify installation, and then uninstall the Helm chart. The purpose of this step is to confirm that you can successfully install and access the application before getting started with Replicated components.
 
 To get the sample Helm chart and test installation:
 
@@ -87,3 +85,14 @@ To get the sample Helm chart and test installation:
    ```
    kubectl get pods -n default
    ```
+
+## Next Step
+
+Log in to the vendor portal and create an application. See [Create an Application in the Vendor Portal](tutorial-helm-create-app).
+
+## Related Topics
+
+* [Helm Install](https://helm.sh/docs/helm/helm_install/)
+* [Helm Uninstall](https://helm.sh/docs/helm/helm_uninstall/)
+* [Helm Create](https://helm.sh/docs/helm/helm_create/)
+* [Helm Package](https://helm.sh/docs/helm/helm_package/)
