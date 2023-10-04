@@ -1,4 +1,4 @@
-# Step 4: Create a Customer
+# Step 5: Create a Customer
 
 After promoting the first release, create a customer so that you can install.
 
