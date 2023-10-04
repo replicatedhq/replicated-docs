@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.10.04-0
+
+Released on October 4, 2023
+
+### New Features {#new-features-v2023-10-04-0}
+* Adds [Registry add-on](https://kurl.sh/docs/add-ons/registry) version 2.8.3.
+
 ## v2023.10.03-0
 
 Released on October 3, 2023
