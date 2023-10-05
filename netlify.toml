@@ -138,7 +138,11 @@
 
 [[redirects]]
   from="https://docs.replicated.com/vendor/releases-about-channels"
-  to="https://docs.replicated.com/vendor/releases-about"     
+  to="https://docs.replicated.com/vendor/releases-about" 
+  
+[[redirects]]
+  from="https://docs.replicated.com/vendor/replicated-sdk-rbac"
+  to="https://docs.replicated.com/vendor/replicated-sdk-customizing"           
 
 ###################################################
 # Redirects To the Enterprise Section

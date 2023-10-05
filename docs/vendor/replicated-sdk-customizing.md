@@ -2,7 +2,7 @@
 
 This topic describes various ways to customize the Replicated SDK, including customizing RBAC and adding additional environment variables.
 
-## Customizing RBAC for the SDK
+## Customize RBAC for the SDK
 
 This section describes role-based access control (RBAC) for the Replicated SDK, including the default RBAC, minimum RBAC requirements, and how to install the SDK with custom RBAC.
 
@@ -71,15 +71,13 @@ To install the SDK with custom RBAC:
 
  For more information about installing with Helm, see [Installing with Helm](/vendor/install-with-helm).  
 
-## Adding Additional Environment Variables
-
-This section describes how to add additional environment variables to the Replicated SDK deployment.
-
-### Add Environment Variables
+## Add Environment Variables
 
 To add additional environment variables to the Replicated SDK deployment, include the `replicated.extraEnv` array in your Helm chart `values.yaml` file. The `replicated.extraEnv` array accepts a list of environment variables in the following format:
 
 ```yaml
+# Helm chart values.yaml
+
 replicated:
   extraEnv:
   - name: ENV_VAR_NAME
@@ -89,9 +87,13 @@ replicated:
 **Example**:
 
 ```yaml
+# Helm chart values.yaml
+
 replicated:
   extraEnv:
   - name: MY_ENV_VAR
     value: my-value
+  - name: MY_ENV_VAR_2
+    value: my-value-2  
 ```
 
