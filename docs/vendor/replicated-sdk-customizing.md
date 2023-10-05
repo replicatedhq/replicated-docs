@@ -73,7 +73,9 @@ To install the SDK with custom RBAC:
 
 ## Add Environment Variables
 
-To add additional environment variables to the Replicated SDK deployment, include the `replicated.extraEnv` array in your Helm chart `values.yaml` file. The `replicated.extraEnv` array accepts a list of environment variables in the following format:
+You can add additional environment variables to the Replicated SDK deployment. For example, if the SDK is running behind an HTTP proxy server, then the user could set `HTTP_PROXY` or `HTTPS_PROXY` environment variables to provide the hostname or IP address of the proxy server.
+
+To add environment variables to the Replicated SDK deployment, include the `replicated.extraEnv` array in your Helm chart `values.yaml` file. The `replicated.extraEnv` array accepts a list of environment variables in the following format:
 
 ```yaml
 # Helm chart values.yaml
@@ -96,4 +98,3 @@ replicated:
   - name: MY_ENV_VAR_2
     value: my-value-2  
 ```
-
