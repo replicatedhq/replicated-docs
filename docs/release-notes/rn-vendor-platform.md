@@ -7,3 +7,7 @@ pagination_prev: null
 # Vendor Platform Release Notes
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
+
+## main
+
+Released on October 5, 2023
