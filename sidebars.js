@@ -622,7 +622,7 @@ const sidebars = {
       label: 'Replicated SDK (Beta)',
       items: [
         'vendor/replicated-sdk-overview',
-        'vendor/replicated-sdk-rbac',
+        'vendor/replicated-sdk-customizing',
       ],
     },
     {
