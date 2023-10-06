@@ -3,28 +3,6 @@ import TestRecs from "../partials/ci-cd/_test-recs.mdx"
 # Using the Compatibility Matrix (Beta)
 
 This topic describes how to use the Replicated compatibility matrix to create ephemeral clusters that you can use for manual and CI/CD testing.
-
-:::note
-The compatibility matrix add-on is Beta. The features, limitations, and requirements of the compatibility matrix are subject to change. As the compatiblity matrix add-on progresses towards general availability, many of its limitations will be removed.
-:::
-
-## Limitations
-
-The compatibility matrix has the following limitations:
-
-- Clusters cannot be resized. Create another cluster if you want to make changes, such as add another node.
-- On cloud clusters, only one node group per cluster is supported.
-- Multi-node support is available only for GKE and EKS.
-- There is no support for IPv6.
-- The `cluster upgrade` feature is available only for kURL distributions. See [cluster upgrade](/reference/replicated-cli-cluster-upgrade).
-- Clusters have a maximum Time To Live (TTL) of 48 hours. See [Setting TTL](#setting-ttl) below.
-- Cloud clusters do not allow for the configuration of CNI, CSI, CRI, Ingress, or other plugins, add-ons, services, and interfaces.
-- The node operating systems for clusters created with the compatibility matrix cannot be configured nor replaced with different operating systems.
-- The Kubernetes scheduler for clusters created with the compatibility matrix cannot be replaced with a different scheduler.
-- Each team has a quota limit on the amount of resources that can be used simultaneously. This limit can be raised by messaging your account representative.
-
-For additional distribution-specific limitations, see [Supported Compatibility Matrix Cluster Types (Beta)](testing-supported-clusters).
-
 ## Prerequisites
 
 Before you can use the compatibility matrix, you must complete the following prerequisites:
@@ -83,10 +61,6 @@ You can use both `cluster create` and `cluster prepare` to provision clusters. T
 ## Setting TTL
 
 To help you manage costs, compatibility matrix clusters have a Time To Live (TTL) mechanism, using the `--ttl` flag. By default, the TTL is one hour, but you can configure it to a minimum of 10 minutes and a maximum of 48 hours. When the TTL expires, the cluster is automatically deleted. The TTL countdown does not begin until a cluster is in the Ready state.
-
-To delete the cluster before the TTL expires, use the `replicated cluster rm` command with the cluster ID. 
-
-For more information about the `replicated cluster` commands, see the [replicated CLI](/reference/replicated-cli-cluster-create) reference.
 
 ## Test Script Recommendations
 

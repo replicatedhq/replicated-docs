@@ -75,9 +75,9 @@ After a cluster is created and is marked as ready, you can access the kubeconfig
 
 When you are done working with a cluster, you can delete the cluster with the following commadn: `replicated cluster rm CLUSTER_ID`, where CLUSTER_ID is the ID of the target cluster.
 
-You can alsoinclude the TTL property at the time of creating a cluster to ensure that the cluster is deleted after a period of time.
-
 For command usage, see [cluster rm](/reference/replicated-cli-cluster-rm).
+
+Replicated also recommends that you set a Time To Live (TTL) at the time of creating a cluster to ensure that the cluster is deleted after a period of time. By default, the TTL is one hour, but you can configure it to a minimum of 10 minutes and a maximum of 48 hours. When the TTL expires, the cluster is automatically deleted. The TTL countdown does not begin until a cluster is in the Ready state.
 
 ## Integrate with CI/CD
 
