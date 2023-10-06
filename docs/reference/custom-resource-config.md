@@ -575,7 +575,7 @@ The `password` type is a text field that hides the character input.
 
 You can use the `name` field of a `select_one` item with Replicated template functions in the Config context (such as ConfigOption or ConfigOptionEquals) to return the option selected by the user.
 
-For example, if the user selects the **Password** option for the `select_one` item shown below, then the template function `'{{repl ConfigOption "authentication_type"}}'` is rendered as `authentication_type_password` during installation. For more information about working with template functions in the Config context, see [Config Context](/reference/template-functions-config-context).
+For example, if the user selects the **Password** option for the `select_one` item shown below, then the template function `'{{repl ConfigOption "authentication_type"}}'` is rendered as `authentication_type_password`. For more information about working with template functions in the Config context, see [Config Context](/reference/template-functions-config-context).
 
 ```yaml
 spec:
