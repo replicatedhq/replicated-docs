@@ -1,9 +1,11 @@
-# Using the Compatibility Matrix (Beta)
+# Using the Compatibility Matrix as a Standalone Component (Beta)
 
-This topic describes how to get started with and use the Replicated compatibility matrix, inlcuding creating cluster from the vendor portal and the replicated CLI as well as integrating the compatibility matrix with your CI/CD workflows.
+This topic describes how to use the Replicated compatibility matrix, inlcuding requesting credits, creating clusters from the vendor portal and the replicated CLI, and integrating the compatibility matrix with CI/CD workflows.
 
 :::note
-This topic includes information for users that use the compatibility matrix as a standlone feature, and do _not_ use features of the Replicated platform such as release management, licensing, installation, and other tooling. For additional compatibility matrix options that are available to users of other Replicated platform features, see [About the Compatibility Matrix (Beta)](/vendor/testing-about). 
+This topic includes information about using the compatibility matrix as a standalone component.
+
+For additional compatibility matrix options available to users of other Replicated platform features (such as release management, licensing, and installation tooling), see [About the Compatibility Matrix (Beta)](/vendor/testing-about). 
 ::: 
 
 ## Overview
@@ -16,7 +18,7 @@ You can use the Replicated compatibility matrix to quickly provision ephemeral c
 
 ### Supported Clusters
 
-You can chose either a cloud-based and virtual machine (VM) clusters for the compatibility matrix to provision:
+You can create cloud-based and virtual machine (VM) clusters with the compatibility matrix:
 
 * Cloud-based Kubernetes distributions are run in a Replicated managed and controlled cloud account to optimize and deliver a clusters quickly and reliably. The Replicated account has control planes ready and adds a node group when you request it, making the cluster available much faster than if you try to create your own cluster with your own cloud account.
 
@@ -26,9 +28,11 @@ To get the most up-to-date list of support types of clusters, you can run `repli
 
 For more detailed information about the supported clusters and versions, see [Supported Compatibility Matrix Cluster Types (Beta)](testing-supported-clusters).
 
-### Credits and Billing
+### Billing and Credits
 
-Clusters created with the compatiblity matrix are billed by the minute. Per-minute billing begins when the cluster reaches a Ready state and ends when the cluster is deleted. The compatibility matrix marks a cluster as ready when you are able to access a working kubeconfig for the cluster. 
+Clusters created with the compatiblity matrix are billed by the minute. Per-minute billing begins when the cluster reaches a Ready state and ends when the cluster is deleted. The compatibility matrix marks a cluster as ready when a working kubeconfig for the cluster is accessible.
+
+You are billed only for the time that the cluster is in a Ready state. You are not billed for the time that it takes the compatibility matrix to create and tear down clusters.
 
 To create clusters with the compatibility matrix, you must have credits in your vendor portal account. 
 To request credits, log in to the vendor portal and go to [Compatibility Matrix > Request more credits](https://vendor.replicated.com/compatibility-matrix).
@@ -43,7 +47,7 @@ To get started with the compatibility matrix, complete the following prerequisit
 
 * Request access to the compatibility matrix add-on by opening a product request. To open a product request, log in to the vendor portal and go to [Support > Request a feature](https://vendor.replicated.com/support?requestType=feature&productArea=vendor).
 
-* Request credits by going to [Compatibility Matrix > Request more credits](https://vendor.replicated.com/compatibility-matrix) in the vendor portal. For more information, see [Credits and Billing](#credits-and-billing) above.
+* Request credits by going to [Compatibility Matrix > Request more credits](https://vendor.replicated.com/compatibility-matrix) in the vendor portal. For more information, see [Billing and Credits](#billing-and-credits) above.
 
 ## Create, Access, and Delete Clusters
 
@@ -70,6 +74,8 @@ After a cluster is created and is marked as ready, you can access the kubeconfig
 ### Delete Clusters
 
 When you are done working with a cluster, you can delete the cluster with the following commadn: `replicated cluster rm CLUSTER_ID`, where CLUSTER_ID is the ID of the target cluster.
+
+You can alsoinclude the TTL property at the time of creating a cluster to ensure that the cluster is deleted after a period of time.
 
 For command usage, see [cluster rm](/reference/replicated-cli-cluster-rm).
 
