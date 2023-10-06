@@ -21,12 +21,18 @@ To install a Helm chart:
 
    [View a larger image](/images/helm-install-button.png)
 
-1. In the **Helm install instructions** dialog, run the first command to log into the Replicated registry:
+1. In the **Helm install instructions** dialog, run the first command to log in to the Replicated registry:
 
    ```bash
    helm registry login registry.replicated.com --username EMAIL_ADDRESS --password LICENSE_ID
    ```
-   Replace `EMAIL_ADDRESS` and `LICENSE_ID` with the values provided in the command in the **Helm install instructions** dialog.
+   Replace `EMAIL_ADDRESS` and `LICENSE_ID` with the values provided in the dialog. The `--username` flag requires the customer's email address and the `--password` flag requires the ID of the customer's license. 
+
+   :::note
+   You can safely ignore the following warning message: `WARNING: Using --password via the CLI is insecure.` This message is displayed because using the `--password` flag stores the password in bash history. This login method is not insecure.
+
+   Alternatively, to avoid the warning message, you can click **(show advanced)** in the **Helm install instructions** dialog to display a login command that excludes the `--password` flag. With the advanced login command, you are prompted for the password after running the command.  
+   :::
 
 1. (Optional) Run the second and third commands to install the preflight plugin and run preflight checks. If no preflight checks are defined, these commands are not displayed. For more information about defining and running preflight checks, see [About Preflight Checks and Support Bundles](preflight-support-bundle-about).
 
