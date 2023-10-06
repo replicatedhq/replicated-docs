@@ -1,8 +1,12 @@
-# Customizing RBAC for the SDK
+# Customizing the Replicated SDK
 
-This topic describes role-based access control (RBAC) for the Replicated SDK, including the default RBAC, minimum RBAC requirements, and how to install the SDK with custom RBAC.
+This topic describes various ways to customize the Replicated SDK, including customizing RBAC and adding additional environment variables.
 
-## Default RBAC
+## Customize RBAC for the SDK
+
+This section describes role-based access control (RBAC) for the Replicated SDK, including the default RBAC, minimum RBAC requirements, and how to install the SDK with custom RBAC.
+
+### Default RBAC
 
 The SDK creates default Role, RoleBinding, and ServiceAccount objects during installation. The default Role allows the SDK to get, list, and watch all resources in the namespace and to update the `replicated` Secret and ConfigMap:
 
@@ -32,7 +36,7 @@ rules:
   - replicated
 ```
 
-## Minimum RBAC Requirements
+### Minimum RBAC Requirements
 
 The SDK requires the following minimum RBAC permissions:
 * Get and update a Secret named `replicated`.
@@ -50,7 +54,7 @@ The SDK requires the following minimum RBAC permissions:
   * For any Service resources used as status informers, the SDK requires `get` permissions for Endpoint resources with the same name as the service.  
 
   The Replicated vendor portal uses status informers to provide application status data. For more information, see [Helm Installations](/vendor/insights-app-status#helm-installations) in _Enabling and Understanding Application Status_.
-## Install the SDK with Custom RBAC
+### Install the SDK with Custom RBAC
 
 To use the SDK with custom RBAC permissions, provide the name for a custom ServiceAccount object during installation. When a service account is provided, the SDK uses the RBAC permissions granted to the service account and does not create the default Role, RoleBinding, or ServiceAccount objects.
 
@@ -66,3 +70,33 @@ To install the SDK with custom RBAC:
   ```
 
  For more information about installing with Helm, see [Installing with Helm](/vendor/install-with-helm).  
+
+## Add Environment Variables
+
+The Replicated SDK provides a `replicated.extraEnv` value that allows users to set additional environment variables for the deployment that are not exposed as Helm values.
+
+This ensures that users can set the environment variables that they require without the SDK Helm chart needing to be modified to expose the values. For example, if the SDK is running behind an HTTP proxy server, then the user could set `HTTP_PROXY` or `HTTPS_PROXY` environment variables to provide the hostname or IP address of their proxy server.
+
+To add environment variables to the Replicated SDK deployment, include the `replicated.extraEnv` array in your Helm chart `values.yaml` file. The `replicated.extraEnv` array accepts a list of environment variables in the following format:
+
+```yaml
+# Helm chart values.yaml
+
+replicated:
+  extraEnv:
+  - name: ENV_VAR_NAME
+    value: ENV_VAR_VALUE
+```
+
+**Example**:
+
+```yaml
+# Helm chart values.yaml
+
+replicated:
+  extraEnv:
+  - name: MY_ENV_VAR
+    value: my-value
+  - name: MY_ENV_VAR_2
+    value: my-value-2  
+```
