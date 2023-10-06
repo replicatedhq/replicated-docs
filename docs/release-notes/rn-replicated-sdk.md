@@ -13,7 +13,7 @@ pagination_prev: null
 Released on October 6, 2023
 
 ### Improvements {#improvements-1-0-0-beta-9}
-* Adds support for adding additional environment variables to the replicated deployment via the `extraEnv` value.
+* Adds support for setting additional environment variables in the replicated deployment via the `extraEnv` value.
 * Updates the helm.sh/helm/v3 go module to v3.13.0 to resolve GHSA-6xv5-86q9-7xr8 with medium severity.
 
 ### Bug Fixes {#bug-fixes-1-0-0-beta-9}
