@@ -16,6 +16,20 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.103.2
+
+Released on October 9, 2023
+
+Support for Kubernetes: 1.25, 1.26, 1.27, and 1.28
+
+### Improvements {#improvements-1-103-2}
+* Upgrades the minio/minio and minio/mc images to versions RELEASE.2023-09-23T03-47-50Z and RELEASE.2023-09-22T05-07-46Z, respectively, to resolve CVE-2023-29491 with high severity.
+* Upgrades the Helm binary in the kotsadm image to 3.13.0 to resolve CVE-2023-28840 with high severity and CVE-2023-28841, CVE-2023-28842, and GHSA-6xv5-86q9-7xr8 with medium severity.
+* Log preflight checks to the CLI and kotsadm logs whenever there are checks that fail leading to a failed deployment.
+
+### Bug Fixes {#bug-fixes-1-103-2}
+* Fixes a bug that caused no status code to be returned from the custom metrics API requests.
+
 ## 1.103.1
 
 Released on September 29, 2023
