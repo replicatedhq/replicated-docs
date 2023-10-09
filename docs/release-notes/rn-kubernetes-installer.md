@@ -8,6 +8,14 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.10.09-0
+
+Released on October 9, 2023
+
+### Bug Fixes {#bug-fixes-v2023-10-09-0}
+* Files in `/var/lib/kurl` are now properly owned by root:root and not the uid `1001`
+* The kurl reset script now removes `/var/lib/cni` files
+
 ## v2023.10.04-0
 
 Released on October 4, 2023
