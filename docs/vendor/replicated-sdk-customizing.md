@@ -71,7 +71,7 @@ To install the SDK with custom RBAC:
 
  For more information about installing with Helm, see [Installing with Helm](/vendor/install-with-helm).  
 
-## Add Environment Variables
+## Set Environment Variables {#env-var}
 
 The Replicated SDK provides a `replicated.extraEnv` value that allows users to set additional environment variables for the deployment that are not exposed as Helm values.
 
