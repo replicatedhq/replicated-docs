@@ -28,7 +28,7 @@ Support for Kubernetes: 1.25, 1.26, 1.27, and 1.28
 * Log preflight checks to the CLI and kotsadm logs whenever there are checks that fail leading to a failed deployment.
 
 ### Bug Fixes {#bug-fixes-1-103-2}
-* Fixes n bug that caused no status code to be returned from the custom metrics API requests.
+* Fixes a bug that caused no status code to be returned from the custom metrics API requests.
 
 ## 1.103.1
 
