@@ -1,5 +1,5 @@
 import Help from "../partials/replicated-cli/_help.mdx"
-
+import TTL from "../partials/cmx/_ttl.mdx"
 
 # cluster create (Beta)
 
@@ -40,7 +40,7 @@ replicated cluster create [flags]
   <tr>
     <td>--name</td>
     <td>string</td>
-    <td>The name of the cluster. If no name is specified, a name will be generated.</td>
+    <td>The name of the cluster. If no name is specified, a name is generated.</td>
   </tr>
   <tr>
     <td>--node-count</td>
@@ -55,7 +55,7 @@ replicated cluster create [flags]
   <tr>
     <td>--ttl</td>
     <td>string</td>
-    <td>The cluster Time to Live (TTL) duration, in hours, before the cluster is automatically deleted by the service. TTL starts when the cluster is in a Ready state. <strong>Valid values:</strong> 1 - 48. <strong>Default:</strong> 1</td>
+    <td><TTL/> <p><strong>Valid values:</strong> 1 - 48. <strong>Default:</strong> 1</p></td>
   </tr>
   <tr>
     <td>--version</td>

@@ -118,7 +118,7 @@ For an up-to-date list of the avilable custom GitHub actions, see the [replicate
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/report-compatibility-result">report-compatibility-result</a></td>
     <td>In development or release workflows, use this action to report the success or failure of tests that ran in clusters provisioned by the compatibility matrix.</td>
-    <td><code>release compatibility</code></td>
+    <td><a href="/reference/replicated-cli-cluster-compatibility"><code>release compatibility</code></a></td>
   </tr>
   <tr>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/upgrade-cluster">upgrade-cluster</a></td>
