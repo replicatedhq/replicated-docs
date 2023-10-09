@@ -6,7 +6,7 @@ import TTL from "../partials/cmx/_ttl.mdx"
 
 # Using the Compatibility Matrix as a Standalone Component (Beta)
 
-This topic describes how to use the Replicated compatibility matrix, inlcuding requesting credits, creating clusters using the Replicated vendor portal and the replicated CLI, and integrating the compatibility matrix into continuous integration and continuous delivery (CI/CD) workflows.
+This topic describes the Replicated compatibility matrix, inlcuding how to use the compatibility matrix from the Replicated vendor portal and the replicated CLI, and how to integrate the compatibility matrix into continuous integration and continuous delivery (CI/CD) workflows.
 
 :::note
 This topic provides information about using the compatibility matrix as a standalone component.
@@ -143,20 +143,20 @@ To create a cluster from the vendor portal:
 
    [View a larger version of this image](/images/cmx-assigned-cluster.png)
 
-### Access Clusters with Kubectl
+### Access Clusters
 
-The compatibility matrix provides the kubeconfig for clusters so that you can access the cluster with kubectl.
+The compatibility matrix provides the kubeconfig so that you can access the cluster with the kubectl command line tool. For more information, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
 
-To access a cluster with kubectl from the command line:
+To access a cluster from the command line:
 
 1. Verify that the cluster is in a Running state:
 
    ```bash
-   replicated cluster ls CLUSTER_ID
+   replicated cluster ls
    ```
-   Where `CLUSTER_ID` is the ID of the target cluster.
-
-   In the output of this command, the `STATUS` for the cluster must be `running` in order to access the kubeconfig.
+   :::note
+   The `STATUS` for the target cluster must be `running` in order to access the kubeconfig.
+   :::
 
 1. Run the following command to download the kubeconfig for the cluster and update Kubernetes context:
 
@@ -167,7 +167,11 @@ To access a cluster with kubectl from the command line:
 
    For command usage, see [cluster kubeconfig](/reference/replicated-cli-cluster-kubeconfig).
 
-1. Interact with the cluster using kubectl.   
+1. Verify that you can interact with the cluster through kubectl:
+
+   ```bash
+   kubectl get ns
+   ```
 
 ### Delete Clusters
 
@@ -190,6 +194,8 @@ To delete a cluster using the replicated CLI:
    1234abc   My Test Cluster   eks            1.27      running   2023-10-09 17:08:01 +0000 UTC  - 
    ``` 
 
+   For command usage, see [cluster ls](/reference/replicated-cli-cluster-ls).
+
 1. Run the following command:
 
     ```
@@ -202,12 +208,13 @@ To delete a cluster using the replicated CLI:
 1. Confirm that the cluster was deleted:
 
    ```
-   replicated cluster ls CLUSTER_ID
+   replicated cluster ls CLUSTER_ID --show-terminated
    ```
+   Where `CLUSTER_ID` is the ID of the target cluster.
 
-   ```
-   No clusters found. Use the `replicated cluster create` command to create a new cluster.
-   ```
+   In the output of the command, you can see that the `STATUS` of the cluster is `terminated`.
+
+   For command usage, see [cluster ls](/reference/replicated-cli-cluster-ls).
 
 #### Vendor Portal
 
@@ -217,7 +224,7 @@ To delete a cluster using the vendor portal:
 
 1. In the menu for the target cluster, click **Delete cluster**.
 
-   <img alt="Delete cluster button" src="/images/cmx-delete-cluster.png" width="550px"/>
+   <img alt="Delete cluster button" src="/images/cmx-delete-cluster.png" width="650px"/>
 
    [View a larger version of this image](/images/cmx-delete-cluster.png)
 
@@ -225,11 +232,17 @@ To delete a cluster using the vendor portal:
 
 Replicated recommends that you integrate the compatibility matrix into your existing CI/CD workflow to automate the process of creating clusters to install your application and run tests.
 
-Replicated maintains a set of custom GitHub actions that are designed to replace repetitive tasks related to distributing your application with Replicated and related to using the compatibility matrix, such as creating and removing clusters and reporting the success or failure of tests. 
+### About Replicated GitHub Actions
+
+Replicated maintains a set of custom GitHub actions that are designed to replace repetitive tasks related to using the compatibility matrix, such as creating and removing clusters. The Replicated GitHub Actions are also designed to users of other Replicated platform features, such as release management, licensing, and installation tooling,
 
 If you use GitHub Actions as your CI/CD platform, you can include these custom actions in your workflows rather than using replicated CLI commands. Integrating the Replicated GitHub actions into your CI/CD pipeline helps you quickly build workflows with the required inputs and outputs, without needing to manually create the required CLI commands for each step.
 
 To view all the available GitHub actions that Replicated maintains, see the [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions/) repository in GitHub.
+
+### Recommended Workflow
+
+The following table describes a recommended CI/CD workflow. For each step, it includes the corresponding replicated CLI command or Replicated GitHub Action, if applicable.
 
 <table>
   <tr>
@@ -247,19 +260,22 @@ To view all the available GitHub actions that Replicated maintains, see the [rep
   </tr>
   <tr>
     <td>2. Create clusters</td>
-    <td><p>Use the compatibility matrix to create one or more clusters for installing and testing your application.</p><p> You can use your CI/CD platform's matrix functionality to create a matrix of clusters with different Kubernetes distributions and versions.</p></td>
+    <td>
+      <p>Add a job to create one or more clusters with the compatibility matrix.</p>
+      <p>For a list of the available cluster distributions, including the supported Kubernetes versions, instance types, and maximum nodes for each distribution, run <a href="/reference/replicated-cli-cluster-versions"><code>replicated cluster versions</code></a>.</p>
+    </td>
     <td><a href="/reference/replicated-cli-cluster-create"><code>replicated cluster create</code></a></td>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/create-cluster">create-cluster</a></td>
   </tr>
   <tr>
     <td>3. Install the application and run tests</td>
-    <td><p>Install your application on the cluster or clusters created by the compatibility matrix.</p><p> Optionally, run tests against the application after installing. For a list of recommended tests to run, see <a href="/vendor/ci-overview#best-practices-and-recommendations">Best Practices and Recommendations</a> in <em>About Integrating with CI/CD</em>.</p></td>
+    <td><p>Add a job to install your application on the cluster or clusters created by the compatibility matrix.</p><p> Optionally, run tests against the application after installing. For a list of recommended tests to run, see <a href="/vendor/ci-overview#best-practices-and-recommendations">Best Practices and Recommendations</a> in <em>About Integrating with CI/CD</em>.</p></td>
     <td>N/A</td>
     <td>N/A</td>
   </tr>
   <tr>
     <td>4. Delete clusters</td>
-    <td>N/A</td>
+    <td>Add a job to delete the clusters after the application is installed and any tests complete.</td>
     <td><a href="/reference/replicated-cli-cluster-rm"><code>replicated cluster rm</code></a></td>
     <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/remove-cluster">remove-cluster</a></td>
   </tr>
