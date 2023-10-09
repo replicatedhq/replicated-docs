@@ -8,10 +8,10 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
-## 23cab44b67d99fb228a93b7d1986d325da99167a
+## v2023.10.09-0
 
 Released on October 9, 2023
 
-### New Features {#new-features-23cab44b67d99fb228a93b7d1986d325da99167a}
+### New Features {#new-features-v2023.10.09-0}
 * Set `false` as the default value for any new Boolean license fields.
 * Change Boolean license field options to a "True"/"False" dropdown on the **Customer Manage** and **Create Customer** pages.
