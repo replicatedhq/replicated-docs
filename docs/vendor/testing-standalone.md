@@ -1,43 +1,32 @@
+import Billing from "../partials/cmx/_billing.mdx"
+import Overview from "../partials/cmx/_overview.mdx"
+import SupportedClusters from "../partials/cmx/_supported-clusters-overview.mdx"
+
 # Using the Compatibility Matrix as a Standalone Component (Beta)
 
-This topic describes how to use the Replicated compatibility matrix, inlcuding requesting credits, creating clusters from the vendor portal and the replicated CLI, and integrating the compatibility matrix with CI/CD workflows.
+This topic describes how to use the Replicated compatibility matrix, inlcuding requesting credits, creating clusters using the Replicated vendor portal and the replicated CLI, and integrating the compatibility matrix into continuous integration and continuous delivery (CI/CD) workflows.
 
 :::note
-This topic includes information about using the compatibility matrix as a standalone component.
+This topic provides information about using the compatibility matrix as a standalone component.
 
-For additional compatibility matrix options available to users of other Replicated platform features (such as release management, licensing, and installation tooling), see [About the Compatibility Matrix (Beta)](/vendor/testing-about). 
+For additional compatibility matrix options available to users of other Replicated platform features, such as release management, licensing, and installation tooling, see [About the Compatibility Matrix (Beta)](/vendor/testing-about). 
 ::: 
 
 ## Overview
 
-You can use the Replicated compatibility matrix to quickly provision ephemeral clusters. The compatibility matrix is useful for tasks such as:
+<Overview/>
 
-* CI/CD to automate testing and validate an application is compatible with supported distributions.
-* Local development to quickly get access to a cluster, develop on it, and delete it when done.
-* Support to quickly reproduce a reported issue on a customer-representative environment.
+## Supported Clusters
 
-### Supported Clusters
+<SupportedClusters/>
 
-You can create cloud-based and virtual machine (VM) clusters with the compatibility matrix:
+## Billing and Credits
 
-* Cloud-based Kubernetes distributions are run in a Replicated managed and controlled cloud account to optimize and deliver a clusters quickly and reliably. The Replicated account has control planes ready and adds a node group when you request it, making the cluster available much faster than if you try to create your own cluster with your own cloud account.
+<Billing/>
 
-* Virtual machines (VMs) run on Replicated bare metal servers located in several data centers, including data centers physically in the European Union.
+## Use Compatibility Matrix
 
-To get the most up-to-date list of support types of clusters, you can run `replicated cluster versions`. For command usage, see [cluster versions](/reference/replicated-cli-cluster-versions).
-
-For more detailed information about the supported clusters and versions, see [Supported Compatibility Matrix Cluster Types (Beta)](testing-supported-clusters).
-
-### Billing and Credits
-
-Clusters created with the compatiblity matrix are billed by the minute. Per-minute billing begins when the cluster reaches a Ready state and ends when the cluster is deleted. The compatibility matrix marks a cluster as ready when a working kubeconfig for the cluster is accessible.
-
-You are billed only for the time that the cluster is in a Ready state. You are not billed for the time that it takes the compatibility matrix to create and tear down clusters.
-
-To create clusters with the compatibility matrix, you must have credits in your vendor portal account. 
-To request credits, log in to the vendor portal and go to [Compatibility Matrix > Request more credits](https://vendor.replicated.com/compatibility-matrix).
-
-## Prerequisites
+### Prerequisites
 
 To get started with the compatibility matrix, complete the following prerequisites:
 
@@ -49,13 +38,11 @@ To get started with the compatibility matrix, complete the following prerequisit
 
 * Request credits by going to [Compatibility Matrix > Request more credits](https://vendor.replicated.com/compatibility-matrix) in the vendor portal. For more information, see [Billing and Credits](#billing-and-credits) above.
 
-## Create, Access, and Delete Clusters
-
-You can interact with the compatibility matrix through the vendor portal and through the replicated CLI.
-
 ### Create Clusters
 
-Provisions a cluster based on the parameters specified. After a cluster is provisioned, an application can be installed in the cluster by creating a release, promoting the release to a temporary channel, and creating a temporary customer in the Replicated platform. A recommended use case for the `cluster create` command is provisioning clusters for testing in CD workflows that release your software to customers.
+#### replicated CLI
+
+To create clusters with the compatibility matrix:
 
 The following example creates a kind cluster with Kubernetes version 1.27.0, a disk size of 100 GiB, and an instance type of `r1.small`. 
 
@@ -65,11 +52,15 @@ replicated cluster create --name kind-example --distribution kind --version 1.27
 
 For command usage, see [cluster create](/reference/replicated-cli-cluster-create).
 
+#### Vendor Portal
+
 ### Access Clusters with Kubectl
 
 The compatibility matrix provides the kubeconfig for clusters so that you can access the cluster with kubectl.
 
-After a cluster is created and is marked as ready, you can access the kubeconfig for the cluster by running `replicated cluster kubeconfig CLUSTER_ID`, 
+After a cluster is created and is marked as ready, you can access the kubeconfig for the cluster by running `replicated cluster kubeconfig CLUSTER_ID`.
+
+For command usage, see [cluster kubeconfig](/reference/replicated-cli-cluster-kubeconfig).
 
 ### Delete Clusters
 
@@ -79,17 +70,16 @@ For command usage, see [cluster rm](/reference/replicated-cli-cluster-rm).
 
 Replicated also recommends that you set a Time To Live (TTL) at the time of creating a cluster to ensure that the cluster is deleted after a period of time. By default, the TTL is one hour, but you can configure it to a minimum of 10 minutes and a maximum of 48 hours. When the TTL expires, the cluster is automatically deleted. The TTL countdown does not begin until a cluster is in the Ready state.
 
-## Integrate with CI/CD
+### Integrate with CI/CD
 
-Replicated strongly recommends that you integrate the compatibility matrix into your existing CI/CD workflow to automate the process of creating clusters to install your application and run tests.
+Replicated recommends that you integrate the compatibility matrix into your existing CI/CD workflow to automate the process of creating clusters to install your application and run tests.
 
 1. Build application images
 1. Create clusters 
 1. Deploy application and optionally run tests
-1. Delete cluster
-1. Report the success or failure of tests 
+1. Delete cluster 
 
-### GitHub Actions
+#### GitHub Actions
 
 Replicated maintains a set of custom GitHub actions that are designed to replace repetitive tasks related to distributing your application with Replicated and related to using the compatibility matrix, such as creating and removing clusters and reporting the success or failure of tests. 
 
