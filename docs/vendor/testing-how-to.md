@@ -11,6 +11,8 @@ To get started with the compatibility matrix, complete the following prerequisit
 
 <Prerequisites/>
 
+* Existing accounts must accept the TOS for the trial at the [Compatibility Matrix](https://vendor.replicated.com/compatibility-matrix) page in the Replicated vendor portal.
+
 ## Creating and Preparing Clusters
 
 The Replicated compatibility matrix functionality is provided through the replicated CLI  `cluster` commands.
