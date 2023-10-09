@@ -143,3 +143,5 @@ You can download all of your customer data to a CSV file for analysis. For examp
 To download customer data, select **Download CSV** in the upper right corner of the **Customers** page.
 
 ![Filter customer list](/images/customers-download-csv.png)
+
+You can also export customer instance data as JSON using the [customer_instances endpoint](https://replicated-vendor-api.readme.io/reference/listappcustomerinstances).
