@@ -1,17 +1,15 @@
 import TestRecs from "../partials/ci-cd/_test-recs.mdx"
 import TTL from "../partials/cmx/_ttl.mdx"
+import Prerequisites from "../partials/cmx/_prerequisites.mdx"
 
 # Using the Compatibility Matrix (Beta)
 
 This topic describes how to use the Replicated compatibility matrix to create ephemeral clusters that you can use for manual and CI/CD testing.
 ## Prerequisites
 
-Before you can use the compatibility matrix, you must complete the following prerequisites:
+To get started with the compatibility matrix, complete the following prerequisites:
 
-- Request access or purchase access to the compatibility testing. To do so, [open a product request](https://vendor.replicated.com/support?requestType=feature&productArea=vendor).
-- Install the replicated CLI. See [Installing the replicated CLI](/reference/replicated-cli-installing).
-- Existing accounts must accept the TOS for the trial at the [Compatibility Matrix](https://vendor.replicated.com/compatibility-matrix) page in the Replicated vendor portal.
-- Request credits for the compatibility by going to the [Compatibility Matrix](https://vendor.replicated.com/compatibility-matrix) page in the vendor portal and clicking **Request more credits**.
+<Prerequisites/>
 
 ## Creating and Preparing Clusters
 
@@ -58,7 +56,3 @@ You can use both `cluster create` and `cluster prepare` to provision clusters. T
   ```
 
   For command usage, see [cluster upgrade](/reference/replicated-cli-cluster-upgrade) in the _replicated CLI_ reference.
-
-## Setting TTL
-
-<TTL/>

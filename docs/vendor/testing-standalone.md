@@ -3,6 +3,7 @@ import Overview from "../partials/cmx/_overview.mdx"
 import SupportedClusters from "../partials/cmx/_supported-clusters-overview.mdx"
 import Build from "../partials/ci-cd/_build-source-code.mdx"
 import TTL from "../partials/cmx/_ttl.mdx"
+import Prerequisites from "../partials/cmx/_prerequisites.mdx"
 
 # Using the Compatibility Matrix as a Standalone Component (Beta)
 
@@ -34,13 +35,7 @@ This section includes prerequisites and procedures for using the compatibility m
 
 To get started with the compatibility matrix, complete the following prerequisites:
 
-* Create an account in the Replicated vendor portal. See [Creating a Vendor Account](/vendor/vendor-portal-creating-account).
-
-* Install the replicated CLI and then authorize the CLI using your vendor account. See [Installing the replicated CLI](/reference/replicated-cli-installing).
-
-* Request access to the compatibility matrix add-on by opening a product request. To open a product request, log in to the vendor portal and go to [Support > Request a feature](https://vendor.replicated.com/support?requestType=feature&productArea=vendor).
-
-* Request credits by going to [Compatibility Matrix > Request more credits](https://vendor.replicated.com/compatibility-matrix) in the vendor portal. For more information, see [Billing and Credits](#billing-and-credits) above.
+<Prerequisites/>
 
 ### Create Clusters
 
@@ -57,7 +52,7 @@ To create a cluster using the replicated CLI:
    ```
    For command usage, see [cluster versions](/reference/replicated-cli-cluster-versions).
 
-1. Run the following command:
+1. Run the following command to create a cluster:
 
    ```
    replicated cluster create --name NAME --distribution K8S_DISTRO --version K8S_VERSION --disk DISK_SIZE --instance-type INSTANCE_TYPE
@@ -67,7 +62,7 @@ To create a cluster using the replicated CLI:
    * `K8S_DISTRO` is the Kubernetes distribution for the cluster.
    * `K8S_VERSION` is the Kubernetes version for the cluster.
    * `DISK_SIZE` is the disk size (GiB) to request per node.
-   * `INSTANCE_TYPE` is the instance type to use for the nodes.
+   * `INSTANCE_TYPE` is the instance type to use for each node.
    
    For command usage and additional optional flags, see [cluster create](/reference/replicated-cli-cluster-create).
 
@@ -85,14 +80,16 @@ To create a cluster using the replicated CLI:
    replicated cluster ls CLUSTER_NAME
    ```
    Where `CLUSTER_NAME` is the name of the cluster that you created.
+
+   In the output of the command, you can see that the `STATUS` of the cluster is `assigned`. When the kubeconfig for the cluster is accessible, the cluster's status is changed to `running`.
    
 #### Vendor Portal
 
-To create a cluster from the vendor portal:
+To create a cluster using the vendor portal:
 
-1. Go to **Compatibility Matrix > Create cluster**.
+1. Go to [**Compatibility Matrix > Create cluster**](https://vendor.replicated.com/compatibility-matrix).
 
-1. In the **Cluster configuration** dialog, complete the fields. 
+1. In the **Cluster configuration** dialog, complete the fields: 
 
    <img alt="Cluster configuration dialog" src="/images/cmx-cluster-configuration.png" width="400px"/>
 
@@ -133,19 +130,21 @@ To create a cluster from the vendor portal:
      </tr>
    </table>
 
-1. Click **Create cluster**. The cluster is displayed in the list of clusters on the **Compatibility Matrix** page.
+1. Click **Create cluster**.
 
-   :::note
-   If the cluster is not automatically displayed, refresh your browser window.
-   :::
+  The cluster is displayed in the list of clusters on the **Compatibility Matrix** page with a status of Assigned. When the kubeconfig for the cluster is accessible, the cluster's status is changed to Running.
 
-   <img alt="Cluster configuration dialog" src="/images/cmx-assigned-cluster.png" width="650px"/>
+  :::note
+  If the cluster is not automatically displayed, refresh your browser window.
+  :::
 
-   [View a larger version of this image](/images/cmx-assigned-cluster.png)
+  <img alt="Cluster configuration dialog" src="/images/cmx-assigned-cluster.png" width="700px"/>
+
+  [View a larger version of this image](/images/cmx-assigned-cluster.png)
 
 ### Access Clusters
 
-The compatibility matrix provides the kubeconfig so that you can access the cluster with the kubectl command line tool. For more information, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
+The compatibility matrix provides the kubeconfig for clusters so that you can access clusters with the kubectl command line tool. For more information, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
 
 To access a cluster from the command line:
 
@@ -154,18 +153,14 @@ To access a cluster from the command line:
    ```bash
    replicated cluster ls
    ```
-   :::note
-   The `STATUS` for the target cluster must be `running` in order to access the kubeconfig.
-   :::
+   In the output of the command, verify that the `STATUS` for the target cluster is `running`. For command usage, see [cluster ls](/reference/replicated-cli-cluster-ls).
 
 1. Run the following command to download the kubeconfig for the cluster and update Kubernetes context:
 
    ```bash
    replicated cluster kubeconfig CLUSTER_ID
    ```
-   When the command completes, a `Updated kubernetes context` message is displayed.
-
-   For command usage, see [cluster kubeconfig](/reference/replicated-cli-cluster-kubeconfig).
+   When the command completes, a `Updated kubernetes context` message is displayed. For command usage, see [cluster kubeconfig](/reference/replicated-cli-cluster-kubeconfig).
 
 1. Verify that you can interact with the cluster through kubectl:
 
@@ -186,6 +181,7 @@ To delete a cluster using the replicated CLI:
    ```
    replicated cluster ls
    ```
+   In the output of the command, copy the ID for the cluster.
    
    **Example:**
 
@@ -212,9 +208,7 @@ To delete a cluster using the replicated CLI:
    ```
    Where `CLUSTER_ID` is the ID of the target cluster.
 
-   In the output of the command, you can see that the `STATUS` of the cluster is `terminated`.
-
-   For command usage, see [cluster ls](/reference/replicated-cli-cluster-ls).
+   In the output of the command, you can see that the `STATUS` of the cluster is `terminated`. For command usage, see [cluster ls](/reference/replicated-cli-cluster-ls).
 
 #### Vendor Portal
 
@@ -222,9 +216,9 @@ To delete a cluster using the vendor portal:
 
 1. Go to **Compatibility Matrix**.
 
-1. In the menu for the target cluster, click **Delete cluster**.
+1. Under **Clusters**, in the vertical dots menu for the target cluster, click **Delete cluster**.
 
-   <img alt="Delete cluster button" src="/images/cmx-delete-cluster.png" width="650px"/>
+   <img alt="Delete cluster button" src="/images/cmx-delete-cluster.png" width="700px"/>
 
    [View a larger version of this image](/images/cmx-delete-cluster.png)
 
@@ -234,7 +228,7 @@ Replicated recommends that you integrate the compatibility matrix into your exis
 
 ### About Replicated GitHub Actions
 
-Replicated maintains a set of custom GitHub actions that are designed to replace repetitive tasks related to using the compatibility matrix, such as creating and removing clusters. The Replicated GitHub Actions are also designed to users of other Replicated platform features, such as release management, licensing, and installation tooling,
+Replicated maintains a set of custom GitHub actions that are designed to replace repetitive tasks related to using the compatibility matrix and distributing applications with Replicated.
 
 If you use GitHub Actions as your CI/CD platform, you can include these custom actions in your workflows rather than using replicated CLI commands. Integrating the Replicated GitHub actions into your CI/CD pipeline helps you quickly build workflows with the required inputs and outputs, without needing to manually create the required CLI commands for each step.
 
@@ -242,7 +236,12 @@ To view all the available GitHub actions that Replicated maintains, see the [rep
 
 ### Recommended Workflow
 
-The following table describes a recommended CI/CD workflow. For each step, it includes the corresponding replicated CLI command or Replicated GitHub Action, if applicable.
+The following table describes a recommended CI/CD workflow that integrates the compatibility matrix to create and delete clusters. For each workflow step, the table includes the corresponding replicated CLI command or Replicated GitHub Action, if applicable.
+
+:::note
+How you implement CI/CD workflows varies depending on the platform, such as GitHub, GitLab, CircleCI, TravisCI, or Jenkins. Refer to the documentation for your CI/CD platform for additional guidance on how to create jobs and workflows.
+:::
+
 
 <table>
   <tr>
