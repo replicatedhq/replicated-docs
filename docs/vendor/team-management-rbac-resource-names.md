@@ -34,6 +34,10 @@ Grants the holder the ability to delete the specified linked external docker reg
 
 Grants the holder the ability to create a new channel in the specified application(s).
 
+## kots/app/[:appId]/channel/[:channelId]/archive
+
+Grants the holder permission to archive the specified channel(s) of the specified application(s).
+
 ### kots/app/[:appId]/channel/[:channelId]/promote
 
 Grants the holder the ability to promote a new release to the specified channel(s) of the specified application(s).
