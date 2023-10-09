@@ -16,15 +16,21 @@ For additional compatibility matrix options available to users of other Replicat
 
 <Overview/>
 
-## Supported Clusters
+### Supported Clusters
 
 <SupportedClusters/>
 
-## Billing and Credits
+### Billing and Credits
 
 <Billing/>
 
-## Use Compatibility Matrix
+### Time to Live
+
+Replicated recommends that you set a Time To Live (TTL) at the time of creating a cluster to ensure that the cluster is deleted after a period of time. By default, the TTL is one hour, but you can configure it to a minimum of 10 minutes and a maximum of 48 hours. When the TTL expires, the cluster is automatically deleted. The TTL countdown does not begin until a cluster is in the Ready state.
+
+## Use the Compatibility Matrix
+
+This section provides prerequisites and procedures for using the compatibility matrix.
 
 ### Prerequisites
 
@@ -42,8 +48,6 @@ To get started with the compatibility matrix, complete the following prerequisit
 
 #### replicated CLI
 
-To create clusters with the compatibility matrix:
-
 The following example creates a kind cluster with Kubernetes version 1.27.0, a disk size of 100 GiB, and an instance type of `r1.small`. 
 
 ```bash
@@ -53,6 +57,26 @@ replicated cluster create --name kind-example --distribution kind --version 1.27
 For command usage, see [cluster create](/reference/replicated-cli-cluster-create).
 
 #### Vendor Portal
+
+To create a cluster from the vendor portal:
+
+1. Go to **Compatibility Matrix > Create cluster**.
+
+1. In the **Cluster configuration** dialog, complete the fields. 
+
+   <img alt="Cluster configuration dialog" src="/images/cmx-cluster-configuration.png" width="400px"/>
+
+1. Click **Create cluster**.
+
+   <img alt="Cluster configuration dialog" src="/images/cmx-assigned-cluster.png" width="400px"/>
+
+   :::note
+   If the cluster is not automatically displayed in the list of clusters on the **Compatibility Matrix** page, refresh your browser window.
+   :::
+
+#### GitHub Action
+
+The `create-cluster` GtiHub Action https://github.com/replicatedhq/replicated-actions/tree/main/create-cluster 
 
 ### Access Clusters with Kubectl
 
@@ -64,20 +88,81 @@ For command usage, see [cluster kubeconfig](/reference/replicated-cli-cluster-ku
 
 ### Delete Clusters
 
-When you are done working with a cluster, you can delete the cluster with the following commadn: `replicated cluster rm CLUSTER_ID`, where CLUSTER_ID is the ID of the target cluster.
+#### replicated CLI
 
-For command usage, see [cluster rm](/reference/replicated-cli-cluster-rm).
+To delete a cluster using the replicated CLI:
 
-Replicated also recommends that you set a Time To Live (TTL) at the time of creating a cluster to ensure that the cluster is deleted after a period of time. By default, the TTL is one hour, but you can configure it to a minimum of 10 minutes and a maximum of 48 hours. When the TTL expires, the cluster is automatically deleted. The TTL countdown does not begin until a cluster is in the Ready state.
+1. Get the cluster ID:
+
+   * Run `cluster ls`
+   * In the vendor portal, the cluster ID is displayed in the list of assigned and running clusters
+
+1. Run the following command:
+
+    ```
+    replicated cluster rm CLUSTER_ID
+    ```
+    Where `CLUSTER_ID` is the ID of the target cluster. 
+
+    For command usage, see [cluster rm](/reference/replicated-cli-cluster-rm).
+
+Confirm that the cluster was deleted:
+
+#### Vendor Portal
+
+To delete a cluster using the vendor portal:
+
+1. Go to **Compatibility Matrix**.
+
+1. In the menu for the target cluster, click **Delete cluster**.
+
+   <img alt="Delete cluster button" src="/images/cmx-delete-cluster.png" width="550px"/>
+
+   [View a larger version of this image](/images/cmx-delete-cluster.png)
+
+#### GitHub Action
+
+The `remove-cluster` GitHub Action deletes a cluster using your API token and the cluster ID as required input. 
+
+For more information, see [remove-cluster](https://github.com/replicatedhq/replicated-actions/tree/main/remove-cluster) in GitHub.
 
 ### Integrate with CI/CD
 
 Replicated recommends that you integrate the compatibility matrix into your existing CI/CD workflow to automate the process of creating clusters to install your application and run tests.
 
-1. Build application images
-1. Create clusters 
-1. Deploy application and optionally run tests
-1. Delete cluster 
+<table>
+  <tr>
+    <th>Step</th>
+    <th>Description</th>
+    <th width="20%">CLI Command</th>
+    <th width="20%">GitHub Action</th>
+    
+  </tr>
+  <tr>
+    <td>Build application images</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+  </tr>
+  <tr>
+    <td>Create clusters</td>
+    <td>N/A</td>
+    <td>replicated cluster create</td>
+    <td>create-cluster</td>
+  </tr>
+  <tr>
+    <td>Install the application and run tests</td>
+    <td>For a list of recommended tests to run, see <a href="/vendor/ci-overview#best-practices-and-recommendations">Best Practices and Recommendations</a> in <em>About Integrating with CI/CD</em>.</td>
+    <td>N/A</td>
+    <td>N/A</td>
+  </tr>
+  <tr>
+    <td>Delete clusters</td>
+    <td>N/A</td>
+    <td>replicated cluster rm</td>
+    <td>delete-cluster</td>
+  </tr>
+</table>
 
 #### GitHub Actions
 
