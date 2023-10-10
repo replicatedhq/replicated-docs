@@ -112,14 +112,17 @@ KOTS includes default logic for license expiration handling. By default, a KOTS 
 
 The following shows an example of the **Customers** page:
 
-![Customer page showing three customers](/images/customers-page.png)
+![Customers page](/images/customers-page.png)
+
 [View a larger version of this image](/images/customers-page.png)
 
 From the **Customers** page, you can do the following:
 
 * Create new customers.
 
-* Download a CSV file with details about each customer.
+* Download CSVs with customer and instance data.
+
+* Search and filter customers based on whether they are active, by license type, and by channel name.
 
 * Click the **Manage customer** button to edit details such as the customer name and email, the custom license fields assigned to the customer, and the license expiration policy. For more information, see [Creating and Managing Customers](releases-creating-customer).
 
