@@ -9,3 +9,51 @@ Customer data includes details about your customers, such as the customer's chan
 Instance data includes details about the instances assoicated with each customer, such as the Kubernetes distribution and cloud provider of the cluster where the instance is running, the most recent application instance status, if the instance is active or inactive, and more.
 
 You can also export customer instance data as JSON using the Vendor API v3 `customer_instances` endpoint. For more information, see [Get customer instance report in CSV or JSON format](https://replicated-vendor-api.readme.io/reference/listappcustomerinstances) in the Vendor API v3 documentation.
+
+
+### Data Dictionary
+|LABEL|TYPE|DESCRIPTION|
+|---|---|---|
+|customer_id|string|Customer identifier|
+|customer_name|string|The customer name|
+|customer_created_date|timestamptz|The date the license was created|
+|customer_license_expiration_date|timestamptz|The expiration date of the license|
+|customer_channel_id|string|The channel id the customer is assigned|
+|customer_channel_name|string|The channel name the customer is assigned|
+|customer_app_id|string|App identifier|
+|customer_last_active|timestamptz|The date the customer was last active|
+|customer_type|string| One of prod, trial, dev, or community|
+|customer_status|string|The current status of the customer|
+|customer_is_airgap_enabled|boolean|The feature the customer has enabled - Airgap|
+|customer_is_geoaxis_supported|boolean|The feature the customer has enabled - GeoAxis|
+|customer_is_gitops_supported|boolean|The feature the customer has enabled - GitOps|
+|customer_is_helmvm_download_enabled|boolean|The feature the customer has enabled - HelmVM|
+|customer_is_identity_service_supported|boolean|The feature the customer has enabled - Identity|
+|customer_is_snapshot_supported|boolean|The feature the customer has enabled - Snapshot|
+|customer_has_entitlements|boolean|Indicates the presence or absence of entitlements and entitlment_* columns|
+|customer_entitlement__*|string/integer/boolean|"The values of any custom license fields configured for the customer| for example customer_entitlement__max_active_users"|
+|instance_id|string|Instance identifier |
+|instance_is_active|boolean|The instance has pinged within the last 24 hours|
+|instance_first_reported_at|timestamptz|The timestamp of the first recorded check-in for the instance.|
+|instance_last_reported_at|timestamptz|The timestamp of the last recorded check-in for the instance.|
+|instance_first_ready_at|timestamptz|The timestamp of when the cluster was considered ready|
+|instance_kots_version|string|The version of KOTS or the Replicated SDK that the instance is running. The version is displayed as a Semantic Versioning compliant string.|
+|instance_k8s_version|string|The version of Kubernetes running in the cluster.|
+|instance_is_airgap|boolean|The cluster is airgaped |
+|instance_is_kurl|boolean|The instance is installed in a Replicated kURL cluster (embedded cluster)|
+|instance_last_app_status|string|The instance's last reported app status|
+|instance_client|string|Indicates whether this instance is managed by KOTS or if it's a Helm CLI deployed instance using the SDK.|
+|instance_kurl_node_count_total|integer|Total number of nodes in the cluster. Applies only to kURL clusters.|
+|instance_kurl_node_count_ready|integer|Number of nodes in the cluster that are in a healthy state and ready to run Pods. Applies only to kURL clusters.|
+|instance_cloud_provider|string|The cloud provider where the instance is running. Cloud provider is determined by the IP address that makes the request.|
+|instance_cloud_provider_region|string|The cloud provider region where the instance is running. For example: us-central1-b|
+|instance_app_version|string|The current application version|
+|instance_version_age|string|The age (in days) of the currently deployed release. This is relative to the latest available release on the channel.|
+|instance_is_gitops_enabled|boolean|Reflects whether the end user has enabled gitops for deployments in their environment|
+|instance_gitops_provider|string|If GitOps is enabledreflects the GitOps provider in use (e.g. GitHub Enterprise)|
+|instance_is_skip_preflights|boolean|Indicates whether an end user elected to skip preflight check warnings or errors|
+|instance_preflight_status|string|The last reported preflight check status for the instance|
+|instance_k8s_distribution|string|The Kubernetes distribution of the cluster.|
+|instance_has_custom_metrics|boolean|Indicates the presence or absence of custom metrics and custom_metric__* columns|
+|instance_custom_metrics_reported_at|timestamptz|Timestamp of latest custom_metric|
+|custom_metric__*|string/integer/boolean|The values of any custom metrics that have been sent by the instance for example custom_metric__active_users|
