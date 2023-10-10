@@ -114,10 +114,12 @@ You can unarchive by clicking **Unarchive Customer** in the customer's **Custome
 
 ## Filter and Search Customers
 
-The **Customers** page provides a search box and filters that help you find customers based on whether they are active, by license type, or by channel name:
+The **Customers** page provides a search box and filters that help you find customers:
 
 <img alt="search box and filters on the customers page" src="/images/customers-filter.png" width="400px"/>
 
 [View a larger version of this image](/images/customers-filter.png)
 
-You can search using more than one criteria, such as Active, Paid, and Stable. You can select only one license type and one channel at a time. If you want to filter information using multiple license types or channels, you can download a CSV file instead. For more information, see [Download Customer and Instance Data](#download) above.
+You can filter customers based on whether they are active, by license type, and by channel name. You can filter using more than one criteria, such as Active, Paid, and Stable. However, you can select only one license type and one channel at a time.
+
+If you want to filter information using multiple license types or channels, you can download a CSV file instead. For more information, see [Download Customer and Instance Data](#download) above.
