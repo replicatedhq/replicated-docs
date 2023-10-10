@@ -111,3 +111,11 @@ You can unarchive by clicking **Unarchive Customer** in the customer's **Custome
 ## Download Customer and Instance Data
 
 <Download/>
+
+## Filter and Search Customers
+
+The **Customers** page provides a search box and filters that help you find customers based on whether they are active, by license type, or by channel name:
+
+<img alt="search box and filters on the customers page" src="/images/customers-filter.png" width="400px"/>
+
+[View a larger version of this image](/images/customers-filter.png)
