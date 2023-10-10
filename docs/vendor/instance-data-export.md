@@ -11,7 +11,7 @@ While you can always consume customer and instance insight data directly in the 
 * Data warehouses like Redshift, Snowflake, or BigQuery
 * Business intelligence (BI) tools like Looker, Tableau, or PowerBI
 
-In making this data available for your customer instances, you can make better decisions about where to focus your efforts across product, sales, engineering, and customer success.
+By collecting and organizing this data wherever it's most visible and valuable, you can enable your team to make better decisions about where to focus efforts across product, sales, engineering, and customer success.
 
 ## Download Data
 
