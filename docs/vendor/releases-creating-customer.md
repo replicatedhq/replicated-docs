@@ -108,7 +108,7 @@ To archive a customer:
 
 You can unarchive by clicking **Unarchive Customer** in the customer's **Customer details** page.
 
-## Download Customer and Instance Data
+## Download Customer and Instance Data {#download}
 
 <Download/>
 
@@ -119,3 +119,5 @@ The **Customers** page provides a search box and filters that help you find cust
 <img alt="search box and filters on the customers page" src="/images/customers-filter.png" width="400px"/>
 
 [View a larger version of this image](/images/customers-filter.png)
+
+You can search using more than one criteria, such as Active, Paid, and Stable. You can select only one license type and one channel at a time. If you want to filter information using multiple license types or channels, you can download a CSV file instead. For more information, see [Download Customer and Instance Data](#download) above.
