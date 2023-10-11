@@ -35,3 +35,10 @@ For more information about how to use the compatibility matrix, see [Using the C
 ## Supported Clusters and Kubernetes Versions
 
 The compatibility matrix can create clusters on VMs, such as kind, k3s, and Red Hat OpenShift OKD, and also create cloud-managed clusters, such as AWS EKS and GCP GKE. For a complete list of supported clusters, Kubernetes versions, and the Kubernetes support policy, see [Supported Compatibility Matrix Cluster Types (Beta)](testing-supported-clusters).
+
+## Cluster Verification
+
+All clusters are "verified" prior to transitioning to status "running".
+Verification includes checking that the cluster is healthy and running with the correct number of nodes, as well as passing [sonobuoy](https://sonobuoy.io/) tests in `--quick` mode.
+
+*Note: verification is currently limited to distributions OpenShift, Kind, K3s, kURL and HelmVM.*
