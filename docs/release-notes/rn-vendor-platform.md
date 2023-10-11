@@ -8,6 +8,19 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.10.11-1
+
+Released on October 11, 2023
+
+### New Features {#new-features-v2023-10-11-1}
+* Adds "Settings" page within the Compatibility Matrix, granting users the ability to access quota and capacity information and submit requests for increasing their quotas.
+* Add updated table view for the Channels page.
+* Fix bug on Dashboard where user was unable to delete a support bundle.
+* Fix bug on the Kubernetes Installer History page where breadcrumbs were not displaying correctly.
+
+### Bug Fixes {#bug-fixes-v2023-10-11-1}
+* Fixed an issue that could prevent users from logging in because they do not have an RBAC role assigned.
+
 ## v2023.10.10-0
 
 Released on October 10, 2023
