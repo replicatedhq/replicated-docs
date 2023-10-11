@@ -108,10 +108,11 @@ To archive a customer:
 
 You can unarchive by clicking **Unarchive Customer** in the customer's **Customer details** page.
 
-## Download Customer and Instance Data {#download}
+## Export Customer and Instance Data {#export}
 
 <Download/>
 
+For more information about the data fields in the CSV downloads, see [Data Dictionary](/vendor/instance-data-export#data-dictionary) in _Export Customers and Instance Data_.
 ## Filter and Search Customers
 
 The **Customers** page provides a search box and filters that help you find customers:
@@ -122,4 +123,4 @@ The **Customers** page provides a search box and filters that help you find cust
 
 You can filter customers based on whether they are active, by license type, and by channel name. You can filter using more than one criteria, such as Active, Paid, and Stable. However, you can select only one license type and one channel at a time.
 
-If you want to filter information using multiple license types or channels, you can download a CSV file instead. For more information, see [Download Customer and Instance Data](#download) above.
+If you want to filter information using multiple license types or channels, you can download a CSV file instead. For more information, see [Export Customer and Instance Data](#export) above.
