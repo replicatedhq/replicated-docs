@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.10.11-0
+
+Released on October 11, 2023
+
+### New Features {#new-features-v2023-10-11-0}
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.12.5.
+
 ## v2023.10.09-0
 
 Released on October 9, 2023
