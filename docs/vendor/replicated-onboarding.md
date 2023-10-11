@@ -202,7 +202,7 @@ To begin onboarding to the Replicated platform with a Helm chart:
 
    1. If you are an admin, invite and manage team members. See [Invite Members](/vendor/team-management#invite-members) in _Managing Team Members_.
 
-   1. Set up Slack or email notifications to be notified when there are changes in the installed instances of your application. Notifications can help catch problems before they happen and let you proactively contact customers to prevent support cases. See [Configuring Instance Notifications (Alpha)](/vendor/instance-notifications-config)
+   1. Set up Slack or email notifications to be notified when there are changes in the installed instances of your application. Notifications can help catch problems before they happen and let you proactively contact customers to prevent support cases. See [Configuring Instance Notifications](/vendor/instance-notifications-config)
 
 ## Features Checklist
 
