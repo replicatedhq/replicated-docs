@@ -1,6 +1,6 @@
 import Download from "../partials/customers/_download.mdx"
 
-# Download Customer and Instance Data
+# Export Customer and Instance Data
 
 This topic describes how to download and export customer and instance data from the Replicated vendor portal.
 
@@ -13,6 +13,6 @@ While you can always consume customer and instance insight data directly in the 
 
 By collecting and organizing this data wherever it is most visible and valuable, you can enable your team to make better decisions about where to focus efforts across product, sales, engineering, and customer success.
 
-## Download Data
+## Export Data
 
 <Download/>
