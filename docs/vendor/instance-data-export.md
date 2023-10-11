@@ -23,9 +23,9 @@ The following table lists the data fields that can be included in the customers 
 
 <table>
     <tr>
-        <th width="10%">Label</th>
-        <th width="10%">Type</th>
-        <th width="80%">Description</th>
+        <th>Label</th>
+        <th>Type</th>
+        <th>Description</th>
     </tr>
     <tr>
         <td>customer_id</td>
