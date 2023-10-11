@@ -15,6 +15,12 @@ Released on October 11, 2023
 ### New Features {#new-features-v2023-10-11-0}
 * Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.12.5.
 
+### Improvements {#improvements-v2023-10-11-0}
+* The disk performance preflight now relies on the `fio` package instead of an internal implementation. This will be installed when required.
+
+### Bug Fixes {#bug-fixes-v2023-10-11-0}
+* When migrating from Longhorn to OpenEBS storage, PVCs will remain on the same node as the pod using that PVC was previously running on.
+
 ## v2023.10.09-0
 
 Released on October 9, 2023
