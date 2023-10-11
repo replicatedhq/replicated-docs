@@ -9,9 +9,11 @@ import AnalyzersNote from "../partials/preflights/_analyzers-note.mdx"
 
 # Define Preflight Checks for KOTS
 
- This topic provides a basic understanding and some key considerations about preflight checks for Replicated KOTS installations that use standard Kubernetes manifests or Kubernetes Operators to help guide you in defining them for your application.
+This topic provides information about creating a specification for preflight checks for releases that are distributed with Replicaed KOTS and that use standard Kubernetes manifests or Kubernetes Operators.
 
- For information about defining preflight checks for Helm charts, see [Define Preflight Checks for Helm Charts](preflight-helm-defining).
+For information about defining preflight checks for Helm chart-based applications, see [Define Preflight Checks for Helm Charts](preflight-helm-defining).
+
+For more information about defining host preflight checks for Replicated kURL, see [Customizing Host Preflight Checks for kURL](preflight-host-preflights).
 
 ## About KOTS Preflight Checks
 
@@ -136,7 +138,7 @@ spec:
 
 <PreflightsDefineXref/>
 
-## Example
+## Examples
 
 The following example shows a preflight support bundle specification for a KOTS installation. For more examples, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples/preflight) in GitHub.
 
@@ -244,8 +246,162 @@ spec:
             message: All nodes have at least 100 GB of ephemeral storage.   
 ```
 
+### Check Node Memory
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+  name: determined
+spec:
+  analyzers:
+    - nodeResources:
+        checkName: Every node in the cluster must have at least 8 GB of memory, with 32 GB recommended
+        outcomes:
+        - fail:
+            when: "min(memoryCapacity) < 8Gi"
+            message: All nodes must have at least 8 GB of memory.
+            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
+        - warn:
+            when: "min(memoryCapacity) < 32Gi"
+            message: All nodes are recommended to have at least 32 GB of memory.
+            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
+        - pass:
+            message: All nodes have at least 32 GB of memory.
+```            
+
+### Check Node Storage Class Availability
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+  name: determined
+spec:
+  analyzers:
+    - storageClass:
+        checkName: Required storage classes
+        storageClassName: "default"
+        outcomes:
+          - fail:
+              message: Could not find a storage class called default.
+          - pass:
+              message: All good on storage classes
+```              
+
+### Check Node Ephemeral Storage
+
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+  name: determined
+spec:
+  analyzers:
+    - nodeResources:
+        checkName: Every node in the cluster must have at least 40 GB of ephemeral storage, with 100 GB recommended
+        outcomes:
+        - fail:
+            when: "min(ephemeralStorageCapacity) < 40Gi"
+            message: All nodes must have at least 40 GB of ephemeral storage.
+            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
+        - warn:
+            when: "min(ephemeralStorageCapacity) < 100Gi"
+            message: All nodes are recommended to have at least 100 GB of ephemeral storage.
+            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
+        - pass:
+            message: All nodes have at least 100 GB of ephemeral storage.
+```              
+
+### Check Total CPU Cores Across Nodes
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+  name: determined
+spec:
+  analyzers:
+    - nodeResources:
+        checkName: Total CPU Cores in the cluster is 4 or greater
+        outcomes:
+          - fail:
+              when: "sum(cpuCapacity) < 4"
+              message: The cluster must contain at least 4 cores
+              uri: https://kurl.sh/docs/install-with-kurl/system-requirements
+          - pass:
+              message: There are at least 4 cores in the cluster
+```
+
+### Check Kubernetes Version
+
+The following example uses the `clusterVersion` collector to check the version of Kubernetes running in the cluster. 
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+  name: determined
+spec:
+  analyzers:
+    - clusterVersion:
+        outcomes:
+          - fail:
+              when: "< 1.13.0"
+              message: The application requires at Kubernetes 1.13.0 or later, and recommends 1.15.0.
+              uri: https://www.kubernetes.io
+          - warn:
+              when: "< 1.15.0"
+              message: Your cluster meets the minimum version of Kubernetes, but we recommend you update to 1.15.0 or later.
+              uri: https://kubernetes.io
+          - pass:
+              message: Your cluster meets the recommended and required versions of Kubernetes.
+``` 
+
+### Check Kubernetes Distribution
+
+The following example uses the `distribution` collector to check the Kubernetes distribution of the cluster.
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+  name: determined
+spec:
+  analyzers:              
+    - distribution:
+        checkName: Check Kubernetes environment.
+        outcomes:
+          - fail:
+              when: "== docker-desktop"
+              message: The application does not support Docker Desktop Clusters
+          - fail:
+              when: "== microk8s"
+              message: The application does not support Microk8s Clusters
+          - fail:
+              when: "== minikube"
+              message: The application does not support Minikube Clusters
+          - pass:
+              when: "== eks"
+              message: EKS is a supported distribution
+          - pass:
+              when: "== gke"
+              message: GKE is a supported distribution
+          - pass:
+              when: "== aks"
+              message: AKS is a supported distribution
+          # Will be supported in the future
+          - pass:
+              when: "== kurl"
+              message: KURL is a supported distribution
+          - pass:
+              when: "== digitalocean"
+              message: DigitalOcean is a supported distribution
+          - warn:
+              message: Unable to determine the distribution of Kubernetes
+```
+
 ## Next Step
 
 Save and promote the release to a development environment to test your changes. For more information about installing with KOTS, see [About Installing an Application](/enterprise/installing-overview).
-
-

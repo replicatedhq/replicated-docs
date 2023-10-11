@@ -11,21 +11,13 @@ import ConfigmapNote from "../partials/support-bundles/_configmap-note.mdx"
 
 # Define Preflight Checks for Helm Charts
 
-This topic provides a basic understanding and some key considerations about preflight checks for Helm charts with KOTS and Helm installations, and to help guide you in defining them for your application.
-
-:::note
-A KOTS entitlement is required to create KOTS releases.
-:::
+This topic provides information about creating a specification for preflight checks within a Helm chart. The information in this topic applies to Helm chart-based applications that are installed with Replicated KOTS or with the Helm CLI.
 
 ## About Preflight Checks for Helm Charts
 
 <PreflightsAbout/>
 
 Preflight checks are not included by default, so you must enable them.
-
-For Helm installations, preflight checks run using a `helm template` command before running the installation to confirm the target cluster has the resources required for a successful installation. For more information about running the `helm install` command, see [Running Preflight Checks for Helm Installations](preflight-running).
-
-For KOTS installations with Helm charts, preflight checks run automatically.
 
 ## Choose an Input Kind
 

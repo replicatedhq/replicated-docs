@@ -1,9 +1,7 @@
 # About Preflight Checks and Support Bundles
 
-This topic provides information about preflight checks and customize support
-bundles that can be used to troubleshoot your application release before and after installation.
-
-Host preflight checks are also supported for Replicated kURL. For more information about host preflight checks, see [Customizing Host Preflight Checks for kURL](preflight-host-preflights).
+This topic provides an introduction to preflight checks and support
+bundles, which can be used to troubleshoot your application release before and after installation.
 
 ## Overview
 
@@ -74,43 +72,15 @@ For information about how to write the specifications, see:
   - [Customize Support Bundles for Helm Installations](support-bundle-helm-customizing)
   - [Customize Support Bundles for KOTS](support-bundle-kots-customizing)
 
-<!-- The following table gives a brief description of the available options to distribute preflight and support bundle specifications:
+## About Running Preflight Checks
 
-<table>
-    <tr>
-      <th width="25%">Type</th>
-      <th width="75%">Description</th>
-    </tr>
-    <tr>
-      <th>Manual Distribution</th>
-      <td><p>Specifications are manually distributed specifications to customers, who then store the files on their local file systems. This distribution method can be useful for Helm installations that are air gapped.</p></td>
-    </tr>
-    <tr>
-      <th>URLs</th>
-      <td><p>Specifications are hosted online at a URL. This allows updating support bundle specifications in between application updates to automatically notify customers of potential problems and fixes. See <a href="support-online-support-bundle-specs">About Online Support Bundle Specifications</a></p><p>Does not support Helm templates.</p></td>
-    </tr>
-    <tr>
-      <th>OCI Registry</th>
-      <td><p>Specifications are located in an image registry.</p><p>Compatible with Helm templates.</p></td>
-    </tr>
-    <tr>
-      <th>stdin</th>
-      <td><p>Preflight specifications are provided as stdin using <code>-</code> as the argument.</p><p>Compatible with Helm templates.</p><p>Cannot be used for support bundle specifications.</p></td>
-    </tr>
-  </table>
--->
+For installations with Replicated KOTS, preflight checks run automatically as part of the installation process. The results of the preflight checks are displayed either in the Replicated admin console UI or in the kots CLI, depending on the installation method. For more information about the KOTS installation process, see [About Installing an Application](/enterprise/installing-overview).
 
-## Running Preflight Checks
+For installations of Helm chart-based applications with the Helm CLI, your customers can optionally run preflight checks before they run the installation command. In this case, preflight checks run using a `helm template` command to confirm the target cluster has the resources required for a successful installation. For more information, see [Running Preflight Checks for Helm Installations](preflight-running).
 
-For Replicated KOTS installations, your customers run preflight checks as part of the installation.
+## About Generating Support Bundles
 
-For Helm installations, your customers run preflight checks before they run the installation command. For more information, see [Running Preflight Checks for Helm Installations](preflight-running).
-
-## Generating Support Bundles
-
-Replicated KOTS customers can generate support bundles using the Replicated admin console or the CLI. 
-
-For Helm installations, customers generate support bundles using the CLI.
+All customers can generate support bundles using the support-bundle CLI. Additionally, Replicated KOTS customers can generate support bundles through the Replicated admin console. 
 
 For more information about generating support bundles for KOTS and Helm installations, see [Generating Support Bundles](support-bundle-generating).
 
