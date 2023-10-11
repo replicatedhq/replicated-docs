@@ -57,27 +57,27 @@ Next, define the preflight checks specification by adding collectors and analyze
 
 <PreflightsDefineXref/>
 
-### Collectors
+### Add Collectors
 
 Add collectors to define information to be collected for analysis during the analyze phase. For example, you can collect information about the MySQL version that is running in a cluster:
 
-   ```yaml
-   apiVersion: troubleshoot.sh/v1beta2
-   kind: Preflight
-   metadata:
-      name: supported-mysql-version
-   spec:
-      collectors:
-        - mysql:
-            collectorName: mysql
-            uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
-   ```
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+    name: supported-mysql-version
+spec:
+  collectors:
+    - mysql:
+        collectorName: mysql
+        uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
+```
 
 Replicated recommends using a template function for the URI, as shown above, to avoid exposing sensitive information. For more information about template functions, see [About Template Functions](/reference/template-functions-about).
 
 <PreflightsDefineXref/>
 
-### Analyzers
+### Add Analyzers
 
 <PreflightsAddAnalyzers/>
 
@@ -138,36 +138,14 @@ spec:
 
 <PreflightsDefineXref/>
 
-## Examples
+## Example Specifications
 
 The following example shows a preflight support bundle specification for a KOTS installation. For more examples, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples/preflight) in GitHub.
 
 <PreflightsDefineXref/>
 
 ```yaml
-apiVersion: troubleshoot.sh/v1beta2
-kind: Preflight
-metadata:
-      name: supported-mysql-version
-spec:
-  collectors:
-    - mysql:
-        collectorName: mysql
-        uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
-  analyzers:
-    - mysql:
-        strict: true
-        checkName: Must be MySQL 8.x or later
-        collectorName: mysql
-        outcomes:
-          - fail:
-              when: connected == false
-              message: Cannot connect to MySQL server
-          - fail:
-              when: version < 8.x
-              message: The MySQL server must be at least version 8
-          - pass:
-              message: The MySQL server is ready
+
     - clusterVersion:
       outcomes:
         - fail:
@@ -254,6 +232,9 @@ kind: Preflight
 metadata:
   name: determined
 spec:
+  collectors:
+    - clusterInfo: {}
+    - clusterResources: {}
   analyzers:
     - nodeResources:
         checkName: Every node in the cluster must have at least 8 GB of memory, with 32 GB recommended
@@ -367,8 +348,11 @@ The following example uses the `distribution` collector to check the Kubernetes 
 apiVersion: troubleshoot.sh/v1beta2
 kind: Preflight
 metadata:
-  name: determined
+  name: my-app
 spec:
+  collectors:
+    - clusterInfo: {}
+    - clusterResources: {}
   analyzers:              
     - distribution:
         checkName: Check Kubernetes environment.
@@ -400,6 +384,66 @@ spec:
               message: DigitalOcean is a supported distribution
           - warn:
               message: Unable to determine the distribution of Kubernetes
+```
+
+### Check HTTP or HTTPS Requests from the Cluster
+
+The following example uses the http collector and the regex analyzer to check that an HTTP request to the Slack API at `https://api.slack.com/methods/api.test` made from the cluster returns a successful response.
+
+For more information, see [HTTP](https://troubleshoot.sh/docs/collect/http/) and [Regular Expression](https://troubleshoot.sh/docs/analyze/regex/) in the Troubleshoot documentation.
+
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+  name: my-app
+spec:
+  collectors:
+    - http:
+        collectorName: slack
+          get:
+            url: https://api.slack.com/methods/api.test
+  analyzers:  
+    - textAnalyze:
+      checkName: Slack Accessible
+      fileName: slack.json
+      regex: '"status": 200,'
+      outcomes:
+        - pass:
+            when: "true"
+            message: "Can access the Slack API"
+        - fail:
+          when: "false"
+          message: "Cannot access the Slack API. Check that the server can reach the internet and check [status.slack.com](https://status.slack.com)."          
+```
+
+### Check MySQL Version
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+  name: my-app
+spec:
+  collectors:
+    - mysql:
+        collectorName: mysql
+        uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
+  analyzers:
+    - mysql:
+        strict: true
+        checkName: Must be MySQL 8.x or later
+        collectorName: mysql
+        outcomes:
+          - fail:
+              when: connected == false
+              message: Cannot connect to MySQL server
+          - fail:
+              when: version < 8.x
+              message: The MySQL server must be at least version 8
+          - pass:
+              message: The MySQL server is ready
 ```
 
 ## Next Step
