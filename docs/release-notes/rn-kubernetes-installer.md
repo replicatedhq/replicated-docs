@@ -19,7 +19,7 @@ Released on October 11, 2023
 * The disk performance preflight now relies on the `fio` package instead of an internal implementation. This will be installed when required.
 
 ### Bug Fixes {#bug-fixes-v2023-10-11-0}
-* When migrating from Longhorn to OpenEBS storage, PVCs will remain on the same node as the pod using that PVC was previously running on.
+* When migrating from Longhorn to OpenEBS storage, PVCs remain on the node where the pod that uses the PVC was previously running.
 
 ## v2023.10.09-0
 
