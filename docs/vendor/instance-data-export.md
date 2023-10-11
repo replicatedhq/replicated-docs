@@ -115,7 +115,7 @@ The following table lists the data fields that can be included in the customers 
     <tr>
         <td>customer_entitlement__*</td>
         <td>string/integer/boolean</td>
-        <td>The values of any custom license fields configured for the customer. For example, customer_entitlement__max_active_users.</td>
+        <td>The values of any custom license fields configured for the customer. For example, customer_entitlement__active-users.</td>
     </tr>
     <tr>
         <td>instance_id</td>
