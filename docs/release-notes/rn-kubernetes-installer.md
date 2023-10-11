@@ -19,7 +19,7 @@ Released on October 11, 2023
 * The filesystem performance preflight check uses the `fio` package instead of an internal implementation. To support the filesystem performance preflight check, the `fio` package is installed as part of the installation script.
 
   :::note
-  The `fio` package cannot be installed on Ubuntu 18.04 operating systems. This means that the filesystem performance preflight check does not run on Ubuntu 18.04.
+  The `fio` is not automatically installed on Ubuntu 18.04 operating systems. This means that the filesystem performance preflight check does not run on Ubuntu 18.04 unless `fio` has been installed through other means.
   :::
 
 ### Bug Fixes {#bug-fixes-v2023-10-11-0}
