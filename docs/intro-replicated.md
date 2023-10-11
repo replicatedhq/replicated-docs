@@ -53,7 +53,7 @@ Replicated provides comprehensive insights of application instances installed in
 
 - Get telemetry and key insights to understand the health and status of your distributed software, view adoption metrics, and monitor key performance metrics. See [About Instance and Event Data](/vendor/instance-insights-event-data) and [Adoption Report](/vendor/customer-adoption).
 
-- Set up email and Slack notifications to get alerted for events to help ensure that important instance issues or performance trends are not missed. See [Configuring a Slack Webhook (Alpha)](/vendor/team-management-slack-config) and [Configuring Instance Notifications (Alpha)](/vendor/instance-notifications-config).
+- Set up email and Slack notifications to get alerted for events to help ensure that important instance issues or performance trends are not missed. See [Configuring a Slack Webhook](/vendor/team-management-slack-config) and [Configuring Instance Notifications](/vendor/instance-notifications-config).
 
 ### Team Management
 
