@@ -8,6 +8,23 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.10.11-0
+
+Released on October 11, 2023
+
+### New Features {#new-features-v2023-10-11-0}
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.12.5.
+
+### Improvements {#improvements-v2023-10-11-0}
+* The filesystem performance preflight check uses the `fio` package instead of an internal implementation. To support the filesystem performance preflight check, the `fio` package is installed as part of the installation script.
+
+  :::note
+  The `fio` is not automatically installed on Ubuntu 18.04 operating systems. This means that the filesystem performance preflight check does not run on Ubuntu 18.04 unless `fio` has been installed through other means.
+  :::
+
+### Bug Fixes {#bug-fixes-v2023-10-11-0}
+* When migrating from Longhorn to OpenEBS storage, PVCs remain on the node where the pod that uses the PVC was previously running.
+
 ## v2023.10.09-0
 
 Released on October 9, 2023
