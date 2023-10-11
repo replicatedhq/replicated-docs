@@ -6,7 +6,7 @@ import SupportedClusters from "../partials/cmx/_supported-clusters-overview.mdx"
 
 This topic describes the Replicated compatibility matrix feature and use cases for testing applications in customer-representative environments.
 
-:::note	:::note
+:::note
 The compatibility matrix add-on requires the purchase of credits at an additional cost. For more information, see [Prerequisites](testing-how-to#prerequisites) in _Using the Compatibility Matrix_.	The compatibility matrix add-on is Beta. The features, limitations, and requirements of the compatibility matrix are subject to change. As the compatiblity matrix add-on progresses towards general availability, many of its limitations will be removed.
 :::
 
