@@ -233,7 +233,7 @@ The following shows an example of how the `fail` outcome for this preflight chec
 
 [View a larger version of this image](/images/preflight-node-filters-faill.png)
 
-### Check MySQL Version
+### Check MySQL Version Using Replicated Template Functions
 
 The following example uses the `mysql` collector and the `mysql` analyzer to check the version of MySQL running in the cluster.
 
@@ -241,7 +241,7 @@ For more information, see [Collect > MySQL](https://troubleshoot.sh/docs/collect
 
 This example uses Replicated template functions in the Config context to render the credentials and connection details for the MySQL server that were supplied by the user in the Replicated admin console **Config** page. Replicated recommends using a template function for the URI, as shown above, to avoid exposing sensitive information. For more information about template functions, see [About Template Functions](/reference/template-functions-about).
 
-This example also uses an alayzer with `strict: true`, which prevents installation from continuing if the preflight check fails.
+This example also uses an analyzer with `strict: true`, which prevents installation from continuing if the preflight check fails.
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -249,11 +249,13 @@ kind: Preflight
 metadata:
   name: my-app
 spec:
+  collectors:
     - mysql:
         collectorName: mysql
         uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
   analyzers:
     - mysql:
+        # `strict: true` prevents installation from continuing if the preflight check fails
         strict: true
         checkName: Must be MySQL 8.x or later
         collectorName: mysql
