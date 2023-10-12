@@ -8,6 +8,18 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.10.12-0
+
+Released on October 12, 2023
+
+### New Features {#new-features-v2023-10-12-0}
+* Adds [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.12.0.
+* Updates [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.26.0 to use Envoy v1.27.1.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-10-07T15-07-38Z.
+
+### Bug Fixes {#bug-fixes-v2023-10-12-0}
+* Fixes a bug that prevented migrating from Longhorn to OpenEBS or Rook-Ceph storage when Prometheus was installed.
+
 ## v2023.10.11-0
 
 Released on October 11, 2023
