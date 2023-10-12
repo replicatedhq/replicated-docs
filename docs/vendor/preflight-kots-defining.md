@@ -17,6 +17,10 @@ For information about defining host preflight checks for Replicated kURL, see [C
 
 Preflight checks are not included by default, so you must enable them. For releases that use standard Kubernetes manifests or Kubernetes Operators, you add a Preflight custom resource to your release to define a specification for preflight checks.
 
+In the `spec:` of the Preflight custom resource, you define collectors and analyzers for the preflight checks that you want to add.
+
+<PreflightsDefineXref/>
+
 The following is a template manifest file for the Preflight custom resource (`apiVersion: troubleshoot.sh/v1beta2` and `kind: Preflight`):
 
 ```yaml
@@ -28,6 +32,7 @@ spec:
   collectors: []
   analyzers: []
 ```
+
 <PreflightsCrNote/>
 
 :::note
@@ -38,13 +43,9 @@ If you have already created a KOTS release using Helm charts and want to add sup
 Preflights specified in the Helm chart override the Preflight custom resource used by KOTS. During installation, if KOTS cannot find preflights specified in the Helm chart archive, then KOTS searches for `kind: Preflight` in the root of the release. For more information, see [Define Preflight Checks for Helm Charts](preflight-helm-defining).
 :::
 
-In the spec of the Preflight custom resource, define collectors and analyzers. The collectors and analyzers that you choose to add dependent on your application needs.
-
-<PreflightsDefineXref/>
-
 ### Collectors
 
-Add collectors to gather information from the cluster, the environment, the application, and other sources. Collectors generate output that is then used by the analyzers that you define to generate results for the preflight checks. 
+Add collectors to gather information from the cluster, the environment, the application, or other sources. Collectors generate output that is then used by the analyzers that you define to generate results for the preflight checks. 
 
 The default `clusterInfo` and `clusterResources` collectors are always automatically included in the specification to gather information about the cluster and cluster resources. You do not need to manually included these default collectors. For more information, see [Cluster Info](https://troubleshoot.sh/docs/collect/cluster-info/) and [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) in the Troubleshoot documentation.
 
@@ -54,7 +55,7 @@ The Troubleshoot open source project includes several additional collectors that
 
 Analyzers use the output from the collectors to generate results for the preflight checks, including the criteria for pass, fail, and warn outcomes and custom messages for each outcome.
 
-For example, in a preflight check that checks the version of Kubernetes running in the target cluster, the analyzer can define a fail outcome when the cluster is running a version of Kubernetes less than 1.25 that includes the following message to the user: `The application requires at Kubernetes 1.25.0 or later, and recommends 1.27.0`.
+For example, in a preflight check that checks the version of Kubernetes running in the target cluster, the analyzer can define a fail outcome when the cluster is running a version of Kubernetes less than 1.25 that includes the following message to the user: `The application requires Kubernetes 1.25.0 or later, and recommends 1.27.0`.
 
 The Troubleshoot open source project includes several analyzers that you can include in your preflight check specification. The following are some of the analyzers in the Troubleshoot project that use the default `clusterInfo` or `clusterResources` collectors:
 * [clusterPodStatuses](https://troubleshoot.sh/docs/analyze/cluster-pod-statuses/)
@@ -132,7 +133,7 @@ spec:
         outcomes:
           - fail:
               when: "< 1.25.0"
-              message: The application requires at Kubernetes 1.25.0 or later, and recommends 1.27.0.
+              message: The application requires Kubernetes 1.25.0 or later, and recommends 1.28.0.
               uri: https://www.kubernetes.io
           - warn:
               when: "< 1.28.0"
