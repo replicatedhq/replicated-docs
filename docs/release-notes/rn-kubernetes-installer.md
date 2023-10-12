@@ -18,7 +18,8 @@ Released on October 12, 2023
 * Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-10-07T15-07-38Z.
 
 ### Bug Fixes {#bug-fixes-v2023-10-12-0}
-* Fixes a bug that prevented migrating from Longhorn to OpenEBS or Rook-Ceph storage when Prometheus was installed.
+* Fixes a bug introduced in v2023.10.11-0 that prevented migrating from Longhorn to OpenEBS or Rook-Ceph storage when Prometheus was installed.
+* Fixes a race condition that could prevent Prometheus from being upgraded from very old versions.
 
 ## v2023.10.11-0
 
