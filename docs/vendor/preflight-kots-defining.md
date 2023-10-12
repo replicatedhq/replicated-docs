@@ -56,17 +56,16 @@ Analyzers use the output from the collectors to generate results for the preflig
 
 For example, in a preflight check that checks the version of Kubernetes running in the target cluster, the analyzer can define a fail outcome when the cluster is running a version of Kubernetes less than 1.25 that includes the following message to the user: `The application requires at Kubernetes 1.25.0 or later, and recommends 1.27.0`.
 
-The Troubleshoot open source project includes several analyzers that you can include in your preflight check specification. To view all the available analyzers, see the [Analyze](https://troubleshoot.sh/docs/analyze/) section of the Troubleshoot documentation.
+The Troubleshoot open source project includes several analyzers that you can include in your preflight check specification. The following are some of the analyzers in the Troubleshoot project that use the default `clusterInfo` or `clusterResources` collectors:
+* [clusterPodStatuses](https://troubleshoot.sh/docs/analyze/cluster-pod-statuses/)
+* [clusterVersion](https://troubleshoot.sh/docs/analyze/cluster-version/)
+* [deploymentStatus](https://troubleshoot.sh/docs/analyze/deployment-status/)
+* [distribution](https://troubleshoot.sh/docs/analyze/distribution/)
+* [nodeResources](https://troubleshoot.sh/docs/analyze/node-resources/)
+* [statefulsetStatus](https://troubleshoot.sh/docs/analyze/stateful-set-status/)
+* [storageClass](https://troubleshoot.sh/docs/analyze/storage-class/)
 
-The following are some of the analyzers in the Troubleshoot project that use the default `clusterInfo` or `clusterResources` collector:
-* clusterPodStatuses
-* clusterVersion
-* deploymentStatus
-* distribution
-* nodeResources
-* statefulsetStatus
-* storageClass
-
+To view all the available analyzers, see the [Analyze](https://troubleshoot.sh/docs/analyze/) section of the Troubleshoot documentation.
 
 ### `strict` Analyzers
 
@@ -182,6 +181,34 @@ spec:
           - warn:
               message: Unable to determine the distribution of Kubernetes
 ```
+
+### Check Requirements Are Met By At Least One Node
+
+The following example uses the `nodeResources` analyzer with filters to check that the requirements for memory, CPU cores, and architecture are met by at least one node in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
+
+For more information, see [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) and [Node Resources](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+  name: my-app
+spec:
+  collectors:
+  analyzers:  
+    - nodeResources:
+        checkName: Must have 1 node with 16 GB (available) memory and 5 cores (on a single node) with amd64 architecture
+        filters:
+          allocatableMemory: 16Gi
+          cpuArchitecture: amd64
+          cpuCapacity: "5"
+        outcomes:
+          - fail:
+              when: "count() < 1"
+              message: This application requires at least 1 node with 16GB available memory and 5 cpu cores with amd64 architecture
+          - pass:
+              message: This cluster has a node with enough memory and cpu cores
+```              
 
 ### Check MySQL Version
 
