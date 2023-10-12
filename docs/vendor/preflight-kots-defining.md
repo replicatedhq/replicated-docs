@@ -88,26 +88,32 @@ For more information, see [HTTP](https://troubleshoot.sh/docs/collect/http/) and
 apiVersion: troubleshoot.sh/v1beta2
 kind: Preflight
 metadata:
-  name: my-app
+  name: preflight-checks
 spec:
   collectors:
     - http:
         collectorName: slack
-          get:
-            url: https://api.slack.com/methods/api.test
+        get:
+          url: https://api.slack.com/methods/api.test
   analyzers:  
     - textAnalyze:
-      checkName: Slack Accessible
-      fileName: slack.json
-      regex: '"status": 200,'
-      outcomes:
-        - pass:
-            when: "true"
-            message: "Can access the Slack API"
-        - fail:
-          when: "false"
-          message: "Cannot access the Slack API. Check that the server can reach the internet and check [status.slack.com](https://status.slack.com)."          
+        checkName: Slack Accessible
+        fileName: slack.json
+        regex: '"status": 200,'
+        outcomes:
+          - pass:
+              when: "true"
+              message: "Can access the Slack API"
+          - fail:
+              when: "false"
+              message: "Cannot access the Slack API. Check that the server can reach the internet and check [status.slack.com](https://status.slack.com)."        
 ```
+
+The following shows an example of how the `pass` outcome for this preflight check is displayed in the admin console:
+
+![Preflight checks in admin console showing pass message](/images/preflight-http-pass.png)
+
+[View a larger version of this image](/images/preflight-http-pass.png)
 
 ### Check Kubernetes Version
 
@@ -121,7 +127,6 @@ kind: Preflight
 metadata:
   name: my-app
 spec:
-  collectors:
   analyzers:
     - clusterVersion:
         outcomes:
@@ -130,12 +135,18 @@ spec:
               message: The application requires at Kubernetes 1.25.0 or later, and recommends 1.27.0.
               uri: https://www.kubernetes.io
           - warn:
-              when: "< 1.27.0"
-              message: Your cluster meets the minimum version of Kubernetes, but we recommend you update to 1.27.0 or later.
+              when: "< 1.28.0"
+              message: Your cluster meets the minimum version of Kubernetes, but we recommend you update to 1.28.0 or later.
               uri: https://kubernetes.io
           - pass:
               message: Your cluster meets the recommended and required versions of Kubernetes.
 ``` 
+
+The following shows an example of how the `warn` outcome for this preflight check is displayed in the admin console:
+
+![Preflight checks in admin console showing warning message](/images/preflight-k8s-version-warn.png)
+
+[View a larger version of this image](/images/preflight-k8s-version-warn.png)
 
 ### Check Kubernetes Distribution
 
@@ -149,10 +160,9 @@ kind: Preflight
 metadata:
   name: my-app
 spec:
-  collectors:
   analyzers:              
     - distribution:
-        checkName: Check Kubernetes environment.
+        checkName: Kubernetes distribution
         outcomes:
           - fail:
               when: "== docker-desktop"
@@ -182,6 +192,12 @@ spec:
               message: Unable to determine the distribution of Kubernetes
 ```
 
+The following shows an example of how the `pass` outcome for this preflight check is displayed in the admin console:
+
+![Preflight checks in admin console showing pass message](/images/preflight-k8s-distro.png)
+
+[View a larger version of this image](/images/preflight-k8s-distro.png)
+
 ### Check Requirements Are Met By At Least One Node
 
 The following example uses the `nodeResources` analyzer with filters to check that the requirements for memory, CPU cores, and architecture are met by at least one node in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
@@ -194,11 +210,11 @@ kind: Preflight
 metadata:
   name: my-app
 spec:
-  collectors:
   analyzers:  
     - nodeResources:
-        checkName: Must have 1 node with 16 GB (available) memory and 5 cores (on a single node) with amd64 architecture
+        checkName: Node requirements
         filters:
+        # Must have 1 node with 16 GB (available) memory and 5 cores (on a single node) with amd64 architecture
           allocatableMemory: 16Gi
           cpuArchitecture: amd64
           cpuCapacity: "5"
@@ -208,7 +224,13 @@ spec:
               message: This application requires at least 1 node with 16GB available memory and 5 cpu cores with amd64 architecture
           - pass:
               message: This cluster has a node with enough memory and cpu cores
-```              
+```  
+
+The following shows an example of how the `fail` outcome for this preflight check is displayed in the admin console:
+
+![Preflight checks in admin console showing fail message](/images/preflight-node-filters-faill.png)
+
+[View a larger version of this image](/images/preflight-node-filters-faill.png)
 
 ### Check MySQL Version
 
@@ -218,13 +240,14 @@ For more information, see [Collect > MySQL](https://troubleshoot.sh/docs/collect
 
 This example uses Replicated template functions in the Config context to render the credentials and connection details for the MySQL server that were supplied by the user in the Replicated admin console **Config** page. Replicated recommends using a template function for the URI, as shown above, to avoid exposing sensitive information. For more information about template functions, see [About Template Functions](/reference/template-functions-about).
 
+This example also uses an alayzer with `strict: true`, which prevents installation from continuing if the preflight check fails.
+
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
 kind: Preflight
 metadata:
   name: my-app
 spec:
-  collectors:
     - mysql:
         collectorName: mysql
         uri: 'repl{{ ConfigOption "db_user" }}:repl{{ConfigOption "db_password" }}@tcp(repl{{ ConfigOption "db_host" }}:repl{{ConfigOption "db_port" }})/repl{{ ConfigOption "db_name" }}'
@@ -244,6 +267,13 @@ spec:
               message: The MySQL server is ready
 ```
 
+The following shows an example of how a `fail` outcome for this preflight check is displayed in the admin console when `strict: true` is set for the analyzer:
+
+![Strict preflight checks in admin console showing fail message](/images/preflight-mysql-fail-strict.png)
+
+[View a larger version of this image](/images/preflight-mysql-fail-strict.png)
+
+
 ### Check Node Memory
 
 The following example uses the `nodeResources` analyzer to check that a required storage class is available in the nodes in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
@@ -256,7 +286,6 @@ kind: Preflight
 metadata:
   name: my-app
 spec:
-  collectors:
   analyzers:
     - nodeResources:
         checkName: Every node in the cluster must have at least 8 GB of memory, with 32 GB recommended
@@ -271,7 +300,13 @@ spec:
             uri: https://kurl.sh/docs/install-with-kurl/system-requirements
         - pass:
             message: All nodes have at least 32 GB of memory.
-```            
+```  
+
+The following shows an example of how a `warn` outcome for this preflight check is displayed in the admin console:
+
+![Preflight checks in admin console showing warn message](/images/preflight-node-memory-warn.png)
+
+[View a larger version of this image](/images/preflight-node-memory-warn.png)
 
 ### Check Node Storage Class Availability
 
@@ -285,7 +320,6 @@ kind: Preflight
 metadata:
   name: my-app
 spec:
-  collectors:
   analyzers:
     - storageClass:
         checkName: Required storage classes
@@ -295,7 +329,13 @@ spec:
               message: Could not find a storage class called "default".
           - pass:
               message: A storage class called "default" is present.
-```              
+``` 
+
+The following shows an example of how a `fail` outcome for this preflight check is displayed in the admin console:
+
+![Preflight checks in admin console showing fail message](/images/preflight-storageclass-fail.png)
+
+[View a larger version of this image](/images/preflight-storageclass-fail.png)
 
 ### Check Node Ephemeral Storage
 
@@ -309,7 +349,6 @@ kind: Preflight
 metadata:
   name: my-app
 spec:
-  collectors:
   analyzers:
     - nodeResources:
         checkName: Every node in the cluster must have at least 40 GB of ephemeral storage, with 100 GB recommended
@@ -324,7 +363,13 @@ spec:
             uri: https://kurl.sh/docs/install-with-kurl/system-requirements
         - pass:
             message: All nodes have at least 100 GB of ephemeral storage.
-```              
+```  
+
+The following shows an example of how a `pass` outcome for this preflight check is displayed in the admin console:
+
+![Preflight checks in admin console showing pass message](/images/preflight-ephemeral-storage-pass.png)
+
+[View a larger version of this image](/images/preflight-ephemeral-storage-pass.png)
 
 ### Check Total CPU Cores Across Nodes
 
@@ -350,6 +395,12 @@ spec:
           - pass:
               message: There are at least 4 cores in the cluster
 ```
+
+The following shows an example of how a `pass` outcome for this preflight check is displayed in the admin console:
+
+![Preflight checks in admin console showing pass message](/images/preflight-cpu-pass.png)
+
+[View a larger version of this image](/images/preflight-cpu-pass.png)
 
 ## Next Step
 
