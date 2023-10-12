@@ -48,7 +48,7 @@ Add collectors to gather information from the cluster, the environment, the appl
 
 The default `clusterInfo` and `clusterResources` collectors are always automatically included in the specification to gather information about the cluster and cluster resources. You do not need to manually included these default collectors. For more information, see [Cluster Info](https://troubleshoot.sh/docs/collect/cluster-info/) and [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) in the Troubleshoot documentation.
 
-You can add additional collectors to gather more information about the installation environment. For example, you can use the `logs` collector to include logs from pods in the collected output. To view all the available collectors that you can add, see [All Collectors](https://troubleshoot.sh/docs/collect/all/) in the Troubleshoot documentation.
+The Troubleshoot open source project includes several additional collectors that you can include in the specification to gather more information from the installation environment. To view all the available collectors that you can add, see [All Collectors](https://troubleshoot.sh/docs/collect/all/) in the Troubleshoot documentation.
 
 ### Analyzers
 
@@ -58,7 +58,15 @@ For example, in a preflight check that checks the version of Kubernetes running 
 
 The Troubleshoot open source project includes several analyzers that you can include in your preflight check specification. To view all the available analyzers, see the [Analyze](https://troubleshoot.sh/docs/analyze/) section of the Troubleshoot documentation.
 
-<AnalyzersNote/>
+The following are some of the analyzers in the Troubleshoot project that use the default `clusterInfo` or `clusterResources` collector:
+* clusterPodStatuses
+* clusterVersion
+* deploymentStatus
+* distribution
+* nodeResources
+* statefulsetStatus
+* storageClass
+
 
 ### `strict` Analyzers
 
@@ -70,7 +78,12 @@ For more information about cluster privileges, see `requireMinimalRBACPrivileges
 
 This section includes common examples of preflight check specifications. For more examples, see the [Troubleshoot example repository](https://github.com/replicatedhq/troubleshoot/tree/main/examples/preflight) in GitHub.
 
-### Check Node Memory
+### Check HTTP or HTTPS Requests from the Cluster
+
+The following example uses the `http` collector and the `regex` analyzer to check that an HTTP request to the Slack API at `https://api.slack.com/methods/api.test` made from the cluster returns a successful response of `"status": 200,`.
+
+For more information, see [HTTP](https://troubleshoot.sh/docs/collect/http/) and [Regular Expression](https://troubleshoot.sh/docs/analyze/regex/) in the Troubleshoot documentation.
+
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -79,92 +92,29 @@ metadata:
   name: my-app
 spec:
   collectors:
-  analyzers:
-    - nodeResources:
-        checkName: Every node in the cluster must have at least 8 GB of memory, with 32 GB recommended
-        outcomes:
-        - fail:
-            when: "min(memoryCapacity) < 8Gi"
-            message: All nodes must have at least 8 GB of memory.
-            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
-        - warn:
-            when: "min(memoryCapacity) < 32Gi"
-            message: All nodes are recommended to have at least 32 GB of memory.
-            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
+    - http:
+        collectorName: slack
+          get:
+            url: https://api.slack.com/methods/api.test
+  analyzers:  
+    - textAnalyze:
+      checkName: Slack Accessible
+      fileName: slack.json
+      regex: '"status": 200,'
+      outcomes:
         - pass:
-            message: All nodes have at least 32 GB of memory.
-```            
-
-### Check Node Storage Class Availability
-
-```yaml
-apiVersion: troubleshoot.sh/v1beta2
-kind: Preflight
-metadata:
-  name: my-app
-spec:
-  collectors:
-  analyzers:
-    - storageClass:
-        checkName: Required storage classes
-        storageClassName: "default"
-        outcomes:
-          - fail:
-              message: Could not find a storage class called default.
-          - pass:
-              message: All good on storage classes
-```              
-
-### Check Node Ephemeral Storage
-
-
-```yaml
-apiVersion: troubleshoot.sh/v1beta2
-kind: Preflight
-metadata:
-  name: my-app
-spec:
-  collectors:
-  analyzers:
-    - nodeResources:
-        checkName: Every node in the cluster must have at least 40 GB of ephemeral storage, with 100 GB recommended
-        outcomes:
+            when: "true"
+            message: "Can access the Slack API"
         - fail:
-            when: "min(ephemeralStorageCapacity) < 40Gi"
-            message: All nodes must have at least 40 GB of ephemeral storage.
-            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
-        - warn:
-            when: "min(ephemeralStorageCapacity) < 100Gi"
-            message: All nodes are recommended to have at least 100 GB of ephemeral storage.
-            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
-        - pass:
-            message: All nodes have at least 100 GB of ephemeral storage.
-```              
-
-### Check Total CPU Cores Across Nodes
-
-```yaml
-apiVersion: troubleshoot.sh/v1beta2
-kind: Preflight
-metadata:
-  name: my-app
-spec:
-  collectors:
-  analyzers:
-    - nodeResources:
-        checkName: Total CPU Cores in the cluster is 4 or greater
-        outcomes:
-          - fail:
-              when: "sum(cpuCapacity) < 4"
-              message: The cluster must contain at least 4 cores
-              uri: https://kurl.sh/docs/install-with-kurl/system-requirements
-          - pass:
-              message: There are at least 4 cores in the cluster
+          when: "false"
+          message: "Cannot access the Slack API. Check that the server can reach the internet and check [status.slack.com](https://status.slack.com)."          
 ```
 
 ### Check Kubernetes Version
 
-The following example uses the `clusterVersion` collector to check the version of Kubernetes running in the cluster. 
+The following example uses the `clusterVersion` analyzer to check the version of Kubernetes running in the cluster. The `clusterVersion` analyzer uses data from the default `clusterInfo` collector. The `clusterInfo` collector is automatically included.
+
+For more information, see [Cluster Version](https://troubleshoot.sh/docs/analyze/cluster-version/) and [Cluster Info](https://troubleshoot.sh/docs/collect/cluster-info/) in the Troubleshoot documentation.
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -190,7 +140,9 @@ spec:
 
 ### Check Kubernetes Distribution
 
-The following example uses the `distribution` analyzer to check the Kubernetes distribution of the cluster.
+The following example uses the `distribution` analyzer to check the Kubernetes distribution of the cluster. The `distribution` analyzer uses data from the default `clusterInfo` collector. The `clusterInfo` collector is automatically included.
+
+For more information, see [Cluster Info](https://troubleshoot.sh/docs/collect/cluster-info/) and [Distribution](https://troubleshoot.sh/docs/analyze/distribution/) in the Troubleshoot documentation.
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -231,41 +183,13 @@ spec:
               message: Unable to determine the distribution of Kubernetes
 ```
 
-### Check HTTP or HTTPS Requests from the Cluster
-
-The following example uses the http collector and the regex analyzer to check that an HTTP request to the Slack API at `https://api.slack.com/methods/api.test` made from the cluster returns a successful response.
-
-For more information, see [HTTP](https://troubleshoot.sh/docs/collect/http/) and [Regular Expression](https://troubleshoot.sh/docs/analyze/regex/) in the Troubleshoot documentation.
-
-
-```yaml
-apiVersion: troubleshoot.sh/v1beta2
-kind: Preflight
-metadata:
-  name: my-app
-spec:
-  collectors:
-    - http:
-        collectorName: slack
-          get:
-            url: https://api.slack.com/methods/api.test
-  analyzers:  
-    - textAnalyze:
-      checkName: Slack Accessible
-      fileName: slack.json
-      regex: '"status": 200,'
-      outcomes:
-        - pass:
-            when: "true"
-            message: "Can access the Slack API"
-        - fail:
-          when: "false"
-          message: "Cannot access the Slack API. Check that the server can reach the internet and check [status.slack.com](https://status.slack.com)."          
-```
-
 ### Check MySQL Version
 
-The following example shows how to use Replicated template functions 
+The following example uses the `mysql` collector and the `mysql` analyzer to check the version of MySQL running in the cluster.
+
+For more information, see [Collect > MySQL](https://troubleshoot.sh/docs/collect/mysql/) and [Analyze > MySQL](https://troubleshoot.sh/docs/analyze/mysql/) in the Troubleshoot documentation.
+
+This example uses Replicated template functions in the Config context to render the credentials and connection details for the MySQL server that were supplied by the user in the Replicated admin console **Config** page. Replicated recommends using a template function for the URI, as shown above, to avoid exposing sensitive information. For more information about template functions, see [About Template Functions](/reference/template-functions-about).
 
 ```yaml
 apiVersion: troubleshoot.sh/v1beta2
@@ -291,6 +215,113 @@ spec:
               message: The MySQL server must be at least version 8
           - pass:
               message: The MySQL server is ready
+```
+
+### Check Node Memory
+
+The following example uses the `nodeResources` analyzer to check that a required storage class is available in the nodes in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
+
+For more information, see [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) and [Node Resources](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+  name: my-app
+spec:
+  collectors:
+  analyzers:
+    - nodeResources:
+        checkName: Every node in the cluster must have at least 8 GB of memory, with 32 GB recommended
+        outcomes:
+        - fail:
+            when: "min(memoryCapacity) < 8Gi"
+            message: All nodes must have at least 8 GB of memory.
+            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
+        - warn:
+            when: "min(memoryCapacity) < 32Gi"
+            message: All nodes are recommended to have at least 32 GB of memory.
+            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
+        - pass:
+            message: All nodes have at least 32 GB of memory.
+```            
+
+### Check Node Storage Class Availability
+
+The following example uses the `storageClass` analyzer to check that a required storage class is available in the nodes in the cluster. The `storageClass` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
+
+For more information, see [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) and [Node Resources](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+  name: my-app
+spec:
+  collectors:
+  analyzers:
+    - storageClass:
+        checkName: Required storage classes
+        storageClassName: "default"
+        outcomes:
+          - fail:
+              message: Could not find a storage class called "default".
+          - pass:
+              message: A storage class called "default" is present.
+```              
+
+### Check Node Ephemeral Storage
+
+The following example uses the `nodeResources` analyzer to check the ephemeral storage available in the nodes in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
+
+For more information, see [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) and [Node Resources](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+  name: my-app
+spec:
+  collectors:
+  analyzers:
+    - nodeResources:
+        checkName: Every node in the cluster must have at least 40 GB of ephemeral storage, with 100 GB recommended
+        outcomes:
+        - fail:
+            when: "min(ephemeralStorageCapacity) < 40Gi"
+            message: All nodes must have at least 40 GB of ephemeral storage.
+            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
+        - warn:
+            when: "min(ephemeralStorageCapacity) < 100Gi"
+            message: All nodes are recommended to have at least 100 GB of ephemeral storage.
+            uri: https://kurl.sh/docs/install-with-kurl/system-requirements
+        - pass:
+            message: All nodes have at least 100 GB of ephemeral storage.
+```              
+
+### Check Total CPU Cores Across Nodes
+
+The following example uses the `nodeResources` analyzer to check the version of Kubernetes running in the cluster. The `nodeResources` analyzer uses data from the default `clusterResources` collector. The `clusterResources` collector is automatically included.
+
+For more information, see [Cluster Resources](https://troubleshoot.sh/docs/collect/cluster-resources/) and [Node Resources](https://troubleshoot.sh/docs/analyze/node-resources/) in the Troubleshoot documentation.
+
+```yaml
+apiVersion: troubleshoot.sh/v1beta2
+kind: Preflight
+metadata:
+  name: my-app
+spec:
+  collectors:
+  analyzers:
+    - nodeResources:
+        checkName: Total CPU Cores in the cluster is 4 or greater
+        outcomes:
+          - fail:
+              when: "sum(cpuCapacity) < 4"
+              message: The cluster must contain at least 4 cores
+              uri: https://kurl.sh/docs/install-with-kurl/system-requirements
+          - pass:
+              message: There are at least 4 cores in the cluster
 ```
 
 ## Next Step
