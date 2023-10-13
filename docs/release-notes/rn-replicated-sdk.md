@@ -8,6 +8,17 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.0.0-beta.10
+
+Released on October 13, 2023
+
+### Improvements {#improvements-1-0-0-beta-10}
+* Adds support for adding custom tolerations to the SDK deployment via the `tolerations` value.
+* Status informers will no longer be automatically generated if the user explicitly passes an empty array for the `statusInformers` value.
+
+### Bug Fixes {#bug-fixes-1-0-0-beta-10}
+* Fixes a bug that caused no status code to be returned from the custom metrics API requests.
+
 ## 1.0.0-beta.9
 
 Released on October 6, 2023
