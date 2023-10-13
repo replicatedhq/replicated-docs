@@ -1,6 +1,6 @@
 # Customizing the Replicated SDK
 
-This topic describes various ways to customize the Replicated SDK, including customizing RBAC and adding additional environment variables.
+This topic describes various ways to customize the Replicated SDK, including customizing RBAC, setting environment variables, and adding tolerations.
 
 ## Customize RBAC for the SDK
 
@@ -99,4 +99,21 @@ replicated:
     value: my-value
   - name: MY_ENV_VAR_2
     value: my-value-2  
+```
+
+## Add Tolerations
+
+The Replicated SDK provides a `replicated.tolerations` value that allows users to add custom tolerations to the deployment. For more information about tolerations, see [Taints and Tolerations](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/).
+
+To add tolerations to the Replicated SDK deployment, include the `replicated.tolerations` array in your Helm chart `values.yaml` file. The `replicated.tolerations` array accepts a list of tolerations in the following format:
+
+```yaml
+# Helm chart values.yaml
+
+replicated:
+  tolerations:
+  - key: "key"
+    operator: "Equal"
+    value: "value"
+    effect: "NoSchedule"
 ```
