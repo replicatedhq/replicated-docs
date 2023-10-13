@@ -8,6 +8,16 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.10.13-0
+
+Released on October 13, 2023
+
+### New Features {#new-features-v2023-10-13-0}
+* Added proper server-side sort by all columns to the cluster history page.
+* Defaulted the cluster history table view to "compact" (was "comfortable").
+* Moved the "by" column in the cluster history to one of the first columns in the list.
+* Added the name of the entity who created the cluster to the cluster page.
+
 ## v2023.10.11-1
 
 Released on October 11, 2023
