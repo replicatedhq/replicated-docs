@@ -17,11 +17,15 @@ Before you can use the compatibility matrix, you must complete the following pre
 
 * Existing accounts must accept the TOS for the trial on the [**Compatibility Matrix**](https://vendor.replicated.com/compatibility-matrix) page in the Replicated vendor portal.
 
-## Create Clusters
+## Create and Manage Clusters
 
-You can create clusters with the compatibility matrix using the replicated CLI or the Replicated vendor portal.
+This section explains how to use the compatibility matrix from the replicated CLI and the vendor portal to create and manage clusters.
 
-### replicated CLI
+### Create Clusters
+
+You can create clusters with the compatibility matrix using the replicated CLI or the vendor portal.
+
+#### replicated CLI
 
 To create a cluster using the replicated CLI:
 
@@ -63,7 +67,7 @@ To create a cluster using the replicated CLI:
 
    In the output of the command, you can see that the `STATUS` of the cluster is `assigned`. When the kubeconfig for the cluster is accessible, the cluster's status is changed to `running`.
 
-### Vendor Portal
+#### Vendor Portal
 
 To create a cluster using the vendor portal:
 
@@ -122,7 +126,7 @@ To create a cluster using the vendor portal:
 
   [View a larger version of this image](/images/cmx-assigned-cluster.png)
 
-## Prepare Clusters
+### Prepare Clusters
 
 For applications distributed with Replicated, the [`cluster prepare`](/reference/replicated-cli-cluster-prepare) command reduces the number of steps required to provision a cluster and then deploy a release to the cluster for testing. This is useful in continuous integration (CI) workflows that run multiple times a day. For an example workflow that uses the `cluster prepare` command, see [Recommended CI/CD Workflows](/vendor/ci-workflows).
 
@@ -180,7 +184,7 @@ The `cluster prepare` command requires either a Helm chart archive or a director
     ```
 
 For command usage, including additional options, see [cluster prepare](/reference/replicated-cli-cluster-prepare).
-## Access Clusters
+### Access Clusters
 
 The compatibility matrix provides the kubeconfig for clusters so that you can access clusters with the kubectl command line tool. For more information, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
 
@@ -206,7 +210,7 @@ To access a cluster from the command line:
    kubectl get ns
    ```
 
-## Upgrade Clusters (kURL Only)
+### Upgrade Clusters (kURL Only)
 
 Upgrades an existing cluster version. A recommended use case for the `cluster upgrade` command is for testing your application's compatibility with Kubernetes API resource version migrations post upgrade in CD workflows that release your software to customers.
 
@@ -218,11 +222,11 @@ replicated cluster upgrade cabb74d5 --version 9d5a44c
 
 For command usage, see [cluster upgrade](/reference/replicated-cli-cluster-upgrade) in the _replicated CLI_ reference.
 
-## Delete Clusters
+### Delete Clusters
 
 You can delete clusters using the replicated CLI or the vendor portal.
 
-### replicated CLI
+#### replicated CLI
 
 To delete a cluster using the replicated CLI:
 
@@ -255,7 +259,7 @@ To delete a cluster using the replicated CLI:
    ```
    Where `CLUSTER_ID` is the ID of the target cluster.
    In the output of the command, you can see that the `STATUS` of the cluster is `terminated`. For command usage, see [cluster ls](/reference/replicated-cli-cluster-ls).
-### Vendor Portal
+#### Vendor Portal
 
 To delete a cluster using the vendor portal:
 
@@ -267,16 +271,19 @@ To delete a cluster using the vendor portal:
 
    [View a larger version of this image](/images/cmx-delete-cluster.png)
 
-## About Integrating with CI/CD
+## About Using the Compatibility Matrix with CI/CD
 
-Replicated recommends that you integrate the compatibility matrix into your existing CI/CD workflow to automate the process of creating clusters to install your application and run tests.
+Replicated recommends that you integrate the compatibility matrix into your existing CI/CD workflow to automate the process of creating clusters to install your application and run tests. For more information, including additional best practices and recommendations for CI/CD, see [About Integrating with CI/CD](/vendor/ci-overview).
 
-### About Replicated GitHub Actions
+### Replicated GitHub Actions
+
 Replicated maintains a set of custom GitHub actions that are designed to replace repetitive tasks related to using the compatibility matrix and distributing applications with Replicated.
 
 If you use GitHub Actions as your CI/CD platform, you can include these custom actions in your workflows rather than using replicated CLI commands. Integrating the Replicated GitHub actions into your CI/CD pipeline helps you quickly build workflows with the required inputs and outputs, without needing to manually create the required CLI commands for each step.
 
 To view all the available GitHub actions that Replicated maintains, see the [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions/) repository in GitHub.
+
+For more information, see [Integrating Replicated GitHub Actions](/vendor/ci-workflows-github-actions).
 
 ### Recommended Workflows
 
