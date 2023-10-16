@@ -22,7 +22,7 @@ The following diagram shows the recommended development workflow, where a commit
 
 [View a larger version of this image](/images/ci-workflow-dev.png)
 
-The following describes the recommended steps to include in a development workflow, as shown in the diagram above:
+In this example development workflow, a release is created and promoted to a channel in the Replicated vendor platform where it can be accessed by internal teams:
 
 1. [Define workflow triggers](#dev-triggers)
 1. [Build source code](#dev-build)
@@ -136,7 +136,7 @@ Add a job with the following steps to provision clusters with the compatibility 
 
 ## Replicated Platform Release Workflow
 
-In a release workflow (which is triggered by an action such as a commit to `main` or a tag being pushed to the repository), the source code is built, the application is deployed to clusters for testing, and then a release is promoted to a channel in the Replicated vendor platform.
+In a release workflow (which is triggered by an action such as a commit to `main` or a tag being pushed to the repository), the source code is built, the application is deployed to clusters for testing, and then the application is made available to customers. In this example release workflow, a release is created and promoted to a channel in the Replicated vendor platform so that it can be installed by internal teams or by customers.
 
 The following diagram demonstrates a release workflow that promotes a release to the Beta channel when a tag with the format `"v*.*.*-beta.*"` is pushed:
 
