@@ -4,7 +4,7 @@ import SupportedClusters from "../partials/cmx/_supported-clusters-overview.mdx"
 
 # About the Compatibility Matrix (Beta)
 
-This topic describes the Replicated compatibility matrix. including use cases, billing, limitations, and more.
+This topic describes the Replicated compatibility matrix, including use cases, billing, limitations, and more.
 
 :::note
 The compatibility matrix add-on is Beta. The features, limitations, and requirements of the compatibility matrix are subject to change. As the compatiblity matrix add-on progresses towards general availability, many of its limitations will be removed.
