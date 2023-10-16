@@ -65,7 +65,7 @@ To create a cluster using the replicated CLI:
    ```
    Where `CLUSTER_NAME` is the name of the cluster that you created.
 
-   In the output of the command, you can see that the `STATUS` of the cluster is `assigned`. When the kubeconfig for the cluster is accessible, the cluster's status is changed to `running`.
+   In the output of the command, you can see that the `STATUS` of the cluster is `assigned`. When the kubeconfig for the cluster is accessible, the cluster's status is changed to `running`. For more information about cluster statuses, see [Cluster Status](testing-about#cluster-status) in _About the Compatibility Matrix._
 
 #### Vendor Portal
 
@@ -128,7 +128,7 @@ To create a cluster using the vendor portal:
 
 ### Prepare Clusters
 
-For applications distributed with Replicated, the [`cluster prepare`](/reference/replicated-cli-cluster-prepare) command reduces the number of steps required to provision a cluster and then deploy a release to the cluster for testing. This is useful in continuous integration (CI) workflows that run multiple times a day. For an example workflow that uses the `cluster prepare` command, see [Recommended CI/CD Workflows](/vendor/ci-workflows).
+For applications distributed with the Replicated vendor platform, the [`cluster prepare`](/reference/replicated-cli-cluster-prepare) command reduces the number of steps required to provision a cluster and then deploy a release to the cluster for testing. This is useful in continuous integration (CI) workflows that run multiple times a day. For an example workflow that uses the `cluster prepare` command, see [Recommended CI/CD Workflows](/vendor/ci-workflows).
 
 The `cluster prepare` command does the following:
 * Creates a cluster
@@ -170,7 +170,7 @@ The `cluster prepare` command requires either a Helm chart archive or a director
     --version K8S_VERSION \
     --yaml-dir PATH_TO_YAML_DIR
   ```
-  The following example 
+  The following example creates a k3s cluster and installs an application in the cluster using the manifest files in a local directory named `config-validation`: 
   ```bash
   replicated cluster prepare \
     --distribution k3s \
@@ -204,7 +204,7 @@ To access a cluster from the command line:
    ```
    When the command completes, a `Updated kubernetes context` message is displayed. For command usage, see [cluster kubeconfig](/reference/replicated-cli-cluster-kubeconfig).
 
-1. Verify that you can interact with the cluster through kubectl:
+1. Verify that you can interact with the cluster through kubectl by running a command. For example:
 
    ```bash
    kubectl get ns
@@ -212,15 +212,15 @@ To access a cluster from the command line:
 
 ### Upgrade Clusters (kURL Only)
 
-Upgrades an existing cluster version. A recommended use case for the `cluster upgrade` command is for testing your application's compatibility with Kubernetes API resource version migrations post upgrade in CD workflows that release your software to customers.
+For kURL clusters provisioned with the compatibility matrix, you can use the the `cluster upgrade` command to upgrade the version of the kURL installer specification used to provision the cluster. A recommended use case for the `cluster upgrade` command is for testing your application's compatibility with Kubernetes API resource version migrations after upgrade.
 
-The following example upgrades a kURL cluster from its previous version to version 9d5a44c.
+The following example upgrades a kURL cluster from its previous version to version `9d5a44c`:
 
 ```bash
 replicated cluster upgrade cabb74d5 --version 9d5a44c
 ```
 
-For command usage, see [cluster upgrade](/reference/replicated-cli-cluster-upgrade) in the _replicated CLI_ reference.
+For command usage, see [cluster upgrade](/reference/replicated-cli-cluster-upgrade).
 
 ### Delete Clusters
 
