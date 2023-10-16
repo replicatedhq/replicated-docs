@@ -16,14 +16,15 @@ How you implement CI/CD workflows varies depending on the platform, such as GitH
 
 ## Development Workflow
 
+In a development workflow (which runs multiple times per day and is triggered by a commit to the application code repository), the source code is built and the application is deployed to clusters for testing. Additionally, for applications managed in the Replicated vendor portal, a release is created and promoted to a channel in the Replicated vendor platform where it can be shared with internal teams.
+
 The following diagram shows the recommended development workflow, where a commit to the application code repository triggers the source code to be built and the application to be deployed to clusters for testing:
 
 ![Development CI workflow](/images/ci-workflow-dev.png)
 
 [View a larger version of this image](/images/ci-workflow-dev.png)
 
-In this example development workflow, a release is created and promoted to a channel in the Replicated vendor platform where it can be accessed by internal teams:
-
+The following describes the recommended steps to include in release workflows, as shown in the diagram above:
 1. [Define workflow triggers](#dev-triggers)
 1. [Build source code](#dev-build)
 1. [Prepare clusters, deploy, and test](#dev-deploy)
@@ -73,9 +74,11 @@ Add a job with the following steps to prepare clusters with the Replicated compa
 
 ## Compatibility Matrix-Only Development Workflow
 
-This section provides an example development workflow that does _not_ use commands to create releases or customers in the Replicated vendor platform. This workflow is useful for applications that are not distributed or managed in the Replicated platform.
+In a development workflow (which runs multiple times per day and is triggered by a commit to the application code repository), the source code is built and the application is deployed to clusters for testing. 
 
-The following describes the recommended steps to include in a development workflow, as shown in the diagram above:
+This example development workflow does _not_ create releases or customers in the Replicated vendor platform. This workflow is useful for applications that are not distributed or managed in the Replicated platform.
+
+The following describes the recommended steps to include in a development workflow using the compatibility matrix:
 
 1. [Define workflow triggers](#dev-cmx-triggers)
 1. [Build source code](#dev-cmx-build)
@@ -129,6 +132,8 @@ Add a job with the following steps to provision clusters with the compatibility 
             - {distribution: gke, version: "1.27"}
             - {distribution: openshift, version: "4.13.0-okd"} 
     ```
+
+1. Deploy the target application to the cluster or clusters.
 
 1. Run tests, such as integration, smoke, and canary tests. For more information about recommended types of tests to run, see [Test Script Recommendations](/vendor/testing-how-to#test-script-recommendations) in _Using the Compatibility Matrix_.
 
@@ -229,7 +234,7 @@ Consider the following requirements and recommendations:
 
 ### Create cluster matrix, deploy, and test {#rel-deploy}
 
-Add a job with the following steps to provision clusters with the compatibility matrix, deploy your application to the clusters, and run tests:
+Add a job with the following steps to provision clusters with the compatibility matrix, deploy the release to the clusters, and run tests:
 
 1. Create a temporary customer for installing the release. See the [customer create](/reference/replicated-cli-customer-create) replicated CLI command. Or, for GitHub Actions workflows, see the [create-customer](https://github.com/replicatedhq/replicated-actions/tree/main/create-customer) action.
 
@@ -257,6 +262,8 @@ Add a job with the following steps to provision clusters with the compatibility 
             - {distribution: gke, version: "1.27"}
             - {distribution: openshift, version: "4.13.0-okd"} 
     ```
+
+1. Install the release in the cluster or clusters using the Helm CLI or Replicated KOTS. For more information, see [Installing with the Helm CLI](/vendor/install-with-helm) or [](/enterprise/installing-overview).
 
 1. Run tests, such as integration, smoke, and canary tests. For more information about recommended types of tests to run, see [Test Script Recommendations](/vendor/testing-how-to#test-script-recommendations) in _Using the Compatibility Matrix_.
 
