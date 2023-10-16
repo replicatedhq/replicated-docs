@@ -267,11 +267,9 @@ To delete a cluster using the vendor portal:
 
    [View a larger version of this image](/images/cmx-delete-cluster.png)
 
-## Integrate with CI/CD
+## About Integrating with CI/CD
 
 Replicated recommends that you integrate the compatibility matrix into your existing CI/CD workflow to automate the process of creating clusters to install your application and run tests.
-
-This section includes best practices and recommendations for integrating the compatibility matrix into CI/CD workflows. For 
 
 ### About Replicated GitHub Actions
 Replicated maintains a set of custom GitHub actions that are designed to replace repetitive tasks related to using the compatibility matrix and distributing applications with Replicated.
@@ -280,50 +278,9 @@ If you use GitHub Actions as your CI/CD platform, you can include these custom a
 
 To view all the available GitHub actions that Replicated maintains, see the [replicatedhq/replicated-actions](https://github.com/replicatedhq/replicated-actions/) repository in GitHub.
 
-### Recommended Workflow
+### Recommended Workflows
 
-The following table describes a recommended CI/CD workflow that integrates the compatibility matrix to create and delete clusters. For each workflow step, the table includes the corresponding replicated CLI command or Replicated GitHub Action, if applicable.
-
-:::note
-How you implement CI/CD workflows varies depending on the platform, such as GitHub, GitLab, CircleCI, TravisCI, or Jenkins. Refer to the documentation for your CI/CD platform for additional guidance on how to create jobs and workflows.
-:::
-
-<table>
-  <tr>
-    <th width="25%">Step</th>
-    <th width="35%">Description</th>
-    <th width="20%">CLI Command</th>
-    <th width="20%">GitHub Action</th>
-    
-  </tr>
-  <tr>
-    <td>1. Build application images</td>
-    <td><Build/></td>
-    <td>N/A</td>
-    <td>N/A</td>
-  </tr>
-  <tr>
-    <td>2. Create clusters</td>
-    <td>
-      <p>Add a job to create one or more clusters with the compatibility matrix.</p>
-      <p>For a list of the available cluster distributions, including the supported Kubernetes versions, instance types, and maximum nodes for each distribution, run <a href="/reference/replicated-cli-cluster-versions"><code>replicated cluster versions</code></a>.</p>
-    </td>
-    <td><a href="/reference/replicated-cli-cluster-create"><code>replicated cluster create</code></a></td>
-    <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/create-cluster">create-cluster</a></td>
-  </tr>
-  <tr>
-    <td>3. Install the application and run tests</td>
-    <td><p>Add a job to install your application on the cluster or clusters created by the compatibility matrix.</p><p> Optionally, run tests against the application after installing. For a list of recommended tests to run, see <a href="/vendor/ci-overview#best-practices-and-recommendations">Best Practices and Recommendations</a> in <em>About Integrating with CI/CD</em>.</p></td>
-    <td>N/A</td>
-    <td>N/A</td>
-  </tr>
-  <tr>
-    <td>4. Delete clusters</td>
-    <td>Add a job to delete the clusters after the application is installed and any tests complete.</td>
-    <td><a href="/reference/replicated-cli-cluster-rm"><code>replicated cluster rm</code></a></td>
-    <td><a href="https://github.com/replicatedhq/replicated-actions/tree/main/remove-cluster">remove-cluster</a></td>
-  </tr>
-</table>
+Replicated recommends that you maintain unique CI/CD workflows for development (continuous integration) and for releasing your software (continuous delivery). For example development and release workflows that integrate the compatibility matrix for testing, see [Recommended CI/CD Workflows](/vendor/ci-workflows).
 
 ### Test Script Recommendations
 

@@ -73,7 +73,7 @@ Add a job with the following steps to prepare clusters with the Replicated compa
 
 ## Compatibility Matrix-Only Development Workflow
 
-This section provides a workflow that does _not_ use commands to create releases or customers in the Replicated vendor platform. This workflow is useful for applications that are not distributed or managed in the Replicated platform.
+This section provides an example development workflow that does _not_ use commands to create releases or customers in the Replicated vendor platform. This workflow is useful for applications that are not distributed or managed in the Replicated platform.
 
 The following describes the recommended steps to include in a development workflow, as shown in the diagram above:
 
