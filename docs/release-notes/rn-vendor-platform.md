@@ -8,6 +8,16 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.10.16-0
+
+Released on October 16, 2023
+
+### New Features {#new-features-v2023-10-16-0}
+* Add table views for customers and instances on Customers page.
+* Fixed a bug in the copy create cluster command.
+* Fixed the "by" in cluster history to not show "web ui" most of the time.
+* Fixed the display of cost in cluster history table.
+
 ## v2023.10.11-1
 
 Released on October 11, 2023
