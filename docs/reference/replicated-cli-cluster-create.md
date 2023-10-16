@@ -3,7 +3,7 @@ import Help from "../partials/replicated-cli/_help.mdx"
 
 # cluster create (Beta)
 
-Create clusters for compatibility testing. For more information, see [About the Compatibility Matrix](/vendor/testing-about).
+Provision ephemeral clusters with the Replicated compatibility matrix. For more information, see [About the Compatibility Matrix](/vendor/testing-about).
 
 ## Usage
 ```bash
@@ -18,52 +18,52 @@ replicated cluster create [flags]
   </tr>
   <Help/>
   <tr>
-    <td>--disk</td>
+    <td><code>--disk</code></td>
     <td>integer</td>
     <td>The disk size (GiB) to request per node. <strong>Default:</strong> 50</td>
   </tr>
   <tr>
-    <td>--distribution</td>
+    <td><code>--distribution</code></td>
     <td>string</td>
     <td>The Kubernetes cluster distribution type to provision. <strong>Default:</strong> kind</td>
   </tr>
   <tr>
-    <td>--dry-run</td>
+    <td><code>--dry-run</code></td>
     <td></td>
     <td>The dry run option runs a simulated test to verify that your inputs are valid without actually creating a cluster.</td>
   </tr>
   <tr>
-    <td>--instance-type</td>
+    <td><code>--instance-type</code></td>
     <td>string</td>
     <td>The type of instance to use for nodes in the cluster. For supported instance types, see <a href="/vendor/testing-supported-clusters">Supported Compatibility Matrix Cluster Types (Beta)</a>.</td>
   </tr>
   <tr>
-    <td>--name</td>
+    <td><code>--name</code></td>
     <td>string</td>
     <td>The name of the cluster. If no name is specified, a name will be generated.</td>
   </tr>
   <tr>
-    <td>--node-count</td>
+    <td><code>--node-count</code></td>
     <td>integer</td>
     <td>The node count. <strong>Default:</strong> 1</td>
   </tr>
   <tr>
-    <td>--output</td>
+    <td><code>--output</code></td>
     <td>string</td>
     <td>The output format to use. <strong>Valid values:</strong> json or table. <strong>Default:</strong> table</td>
   </tr>
   <tr>
-    <td>--ttl</td>
+    <td><code>--ttl</code></td>
     <td>string</td>
-    <td>The cluster Time to Live (TTL) duration, in hours, before the cluster is automatically deleted by the service. TTL starts when the cluster is in a Ready state. <strong>Valid values:</strong> 1 - 48. <strong>Default:</strong> 1</td>
+    <td>When the Time to Live (TTL) expires, the cluster is automatically deleted. The TTL countdown does not begin until a cluster is in a <code>running</code> state. By default, the TTL is one hour. The maximum TTL is 48 hours.<strong>Valid values:</strong> 1 - 48. <strong>Default:</strong> 1</td>.
   </tr>
   <tr>
-    <td>--version</td>
+    <td><code>--version</code></td>
     <td>string</td>
     <td>(Required) The Kubernetes version to provision. For OpenShift clusters, provide the supported OpenShift version. The format is distribution dependent. For supported versions, see <a href="/vendor/testing-supported-clusters">Supported Compatibility Matrix Cluster Types (Beta)</a>.</td>
   </tr>
   <tr>
-    <td>--wait</td>
+    <td><code>--wait</code></td>
     <td>duration</td>
     <td>The wait duration for the cluster to be ready. Leave the value empty to avoid waiting.</td>
   </tr>
