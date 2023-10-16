@@ -68,7 +68,7 @@ Add a job with the following steps to prepare clusters with the Replicated compa
 
     * The type and number of clusters that you choose to provision as part of a development workflow depends on how frequently you intend the workflow to run. For example, for workflows that run multiple times a day, you might prefer to provision cluster distributions that can be created quickly, such as kind clusters. 
 
-1. Run tests, such as integration, smoke, and canary tests. For more information about recommended types of tests to run, see [Test Script Recommendations](/vendor/testing-how-to#test-script-recommendations) in _Using the Compatibility Matrix_.
+1. Run tests, such as integration, smoke, and canary tests. For more information about recommended types of tests to run, see [Best Practices and Recommendations](/vendor/ci-overview#best-practices-and-recommendations) in _About Integrating with CI/CD_.
 
 1. After the tests complete, remove the cluster. Alternatively, if you used the `--ttl` flag with the `cluster prepare` command, the cluster is automatically removed when the time period provided is reached. See the [`cluster remove`](/reference/replicated-cli-cluster-prepare) replicated CLI command. Or, for GitHub Actions workflows, see the [remove-cluster](https://github.com/replicatedhq/replicated-actions/tree/main/remove-cluster) action.
 
@@ -135,7 +135,7 @@ Add a job with the following steps to provision clusters with the compatibility 
 
 1. For each cluster created, use the cluster's kubeconfig to update Kubernetes context and then install the target application in the cluster. For more information about accessing the kubeconfig for clusters created with the compatibility matrix, see [cluster kubeconfig](/reference/replicated-cli-cluster-kubeconfig).
 
-1. Run tests, such as integration, smoke, and canary tests. For more information about recommended types of tests to run, see [Test Script Recommendations](/vendor/testing-how-to#test-script-recommendations) in _Using the Compatibility Matrix_.
+1. Run tests, such as integration, smoke, and canary tests. For more information about recommended types of tests to run, see [Best Practices and Recommendations](/vendor/ci-overview#best-practices-and-recommendations) in _About Integrating with CI/CD_.
 
 1. Delete the cluster when the tests complete. See the [cluster rm](/reference/replicated-cli-cluster-rm) replicated CLI command. Or, for GitHub Actions workflows, see the [remove-cluster](https://github.com/replicatedhq/replicated-actions/tree/main/remove-cluster) action.
 
@@ -267,7 +267,7 @@ Add a job with the following steps to provision clusters with the compatibility 
 
   For more information about installing with the Helm CLI or Replicated KOTS, see [Installing with Helm](/vendor/install-with-helm) or [About Installing an Application](/enterprise/installing-overview).
 
-1. Run tests, such as integration, smoke, and canary tests. For more information about recommended types of tests to run, see [Test Script Recommendations](/vendor/testing-how-to#test-script-recommendations) in _Using the Compatibility Matrix_.
+1. Run tests, such as integration, smoke, and canary tests. For more information about recommended types of tests to run, see [Best Practices and Recommendations](/vendor/ci-overview#best-practices-and-recommendations) in _About Integrating with CI/CD_.
 
 1. Delete the cluster when the tests complete. See the [cluster rm](/reference/replicated-cli-cluster-rm) replicated CLI command. Or, for GitHub Actions workflows, see the [remove-cluster](https://github.com/replicatedhq/replicated-actions/tree/main/remove-cluster) action.
 
