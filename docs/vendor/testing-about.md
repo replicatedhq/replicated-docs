@@ -46,7 +46,7 @@ The compatibility matrix has the following limitations:
 
 - Clusters cannot be resized. Create another cluster if you want to make changes, such as add another node.
 - On cloud clusters, only one node group per cluster is supported.
-- Multi-node support is available only for GKE and EKS.
+- Multi-node support is available only for GKE, EKS, and AKS.
 - There is no support for IPv6.
 - The `cluster upgrade` feature is available only for kURL distributions. See [cluster upgrade](/reference/replicated-cli-cluster-upgrade).
 - Clusters have a maximum Time To Live (TTL) of 48 hours. See [Setting TTL](#setting-ttl) below.
