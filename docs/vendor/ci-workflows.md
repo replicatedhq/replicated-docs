@@ -16,14 +16,15 @@ How you implement CI/CD workflows varies depending on the platform, such as GitH
 
 ## Development Workflow
 
+In a development workflow (which runs multiple times per day and is triggered by a commit to the application code repository), the source code is built and the application is deployed to clusters for testing. Additionally, for applications managed in the Replicated vendor portal, a release is created and promoted to a channel in the Replicated vendor platform where it can be shared with internal teams.
+
 The following diagram shows the recommended development workflow, where a commit to the application code repository triggers the source code to be built and the application to be deployed to clusters for testing:
 
 ![Development CI workflow](/images/ci-workflow-dev.png)
 
 [View a larger version of this image](/images/ci-workflow-dev.png)
 
-The following describes the recommended steps to include in a development workflow, as shown in the diagram above:
-
+The following describes the recommended steps to include in release workflows, as shown in the diagram above:
 1. [Define workflow triggers](#dev-triggers)
 1. [Build source code](#dev-build)
 1. [Prepare clusters, deploy, and test](#dev-deploy)
@@ -67,13 +68,80 @@ Add a job with the following steps to prepare clusters with the Replicated compa
 
     * The type and number of clusters that you choose to provision as part of a development workflow depends on how frequently you intend the workflow to run. For example, for workflows that run multiple times a day, you might prefer to provision cluster distributions that can be created quickly, such as kind clusters. 
 
-1. Run tests, such as integration, smoke, and canary tests. For more information about recommended types of tests to run, see [Test Script Recommendations](/vendor/testing-how-to#test-script-recommendations) in _Using the Compatibility Matrix_.
+1. Run tests, such as integration, smoke, and canary tests. For more information about recommended types of tests to run, see [Best Practices and Recommendations](/vendor/ci-overview#best-practices-and-recommendations) in _About Integrating with CI/CD_.
 
-1. After the tests complete, remove the cluster. Alternatively, if you used the `--ttl` flag with the `prepare cluster` command, the cluster is automatically removed when the time period provided is reached. See the [`cluster remove`](/reference/replicated-cli-cluster-prepare) replicated CLI command. Or, for GitHub Actions workflows, see the [remove-cluster](https://github.com/replicatedhq/replicated-actions/tree/main/remove-cluster) action. 
+1. After the tests complete, remove the cluster. Alternatively, if you used the `--ttl` flag with the `cluster prepare` command, the cluster is automatically removed when the time period provided is reached. See the [`cluster remove`](/reference/replicated-cli-cluster-prepare) replicated CLI command. Or, for GitHub Actions workflows, see the [remove-cluster](https://github.com/replicatedhq/replicated-actions/tree/main/remove-cluster) action.
 
-## Release Workflow
+## Compatibility Matrix-Only Development Workflow
 
-In a release workflow (which is triggered by an action such as a commit to `main` or a tag being pushed to the repository), the source code is built, the application is deployed to clusters for testing, and then a release is promoted to a channel.
+In a development workflow (which runs multiple times per day and is triggered by a commit to the application code repository), the source code is built and the application is deployed to clusters for testing. 
+
+This example development workflow does _not_ create releases or customers in the Replicated vendor platform. This workflow is useful for applications that are not distributed or managed in the Replicated platform.
+
+The following describes the recommended steps to include in a development workflow using the compatibility matrix:
+
+1. [Define workflow triggers](#dev-cmx-triggers)
+1. [Build source code](#dev-cmx-build)
+1. [Create cluster matrix, deploy, and test](#dev-cmx-deploy)
+
+### Define workflow triggers {#dev-triggers}
+
+Run a development workflow on every commit to a branch in your code repository that is _not_ `main`.
+
+The following example shows defining a workflow trigger in GitHub Actions that runs the workflow when a commit is pushed to any branch other than `main`:
+
+```yaml
+name: development-workflow-example
+
+on:
+  push:
+    branches:
+      - '*'         # matches every branch that doesn't contain a '/'
+      - '*/*'       # matches every branch containing a single '/'
+      - '**'        # matches every branch
+      - '!main'     # excludes main
+
+jobs:
+  ...
+```
+
+### Build source code {#dev-build}
+
+<Build/>
+
+
+### Create cluster matrix, deploy, and test {#dev-cmx-deploy}
+
+Add a job with the following steps to provision clusters with the compatibility matrix, deploy your application to the clusters, and run tests:
+
+1. Use the compatibility matrix to create a matrix of different Kubernetes cluster distributions and versions to run tests against. See the [cluster create](/reference/replicated-cli-cluster-create) replicated CLI command. Or, for GitHub Actions workflows, see the [create-cluster](https://github.com/replicatedhq/replicated-actions/tree/main/create-cluster) action.
+
+   The following example shows creating a matrix of clusters of different distributions and versions using GitHub Actions:
+
+    ```yaml
+    # github actions cluster matrix example
+
+    compatibility-matrix-example:
+      runs-on: ubuntu-22.04
+      strategy:
+        matrix:
+          cluster:
+            - {distribution: kind, version: "1.25"}
+            - {distribution: kind, version: "1.26"}
+            - {distribution: eks, version: "1.26"}
+            - {distribution: gke, version: "1.27"}
+            - {distribution: openshift, version: "4.13.0-okd"} 
+    ```
+
+1. For each cluster created, use the cluster's kubeconfig to update Kubernetes context and then install the target application in the cluster. For more information about accessing the kubeconfig for clusters created with the compatibility matrix, see [cluster kubeconfig](/reference/replicated-cli-cluster-kubeconfig).
+
+1. Run tests, such as integration, smoke, and canary tests. For more information about recommended types of tests to run, see [Best Practices and Recommendations](/vendor/ci-overview#best-practices-and-recommendations) in _About Integrating with CI/CD_.
+
+1. Delete the cluster when the tests complete. See the [cluster rm](/reference/replicated-cli-cluster-rm) replicated CLI command. Or, for GitHub Actions workflows, see the [remove-cluster](https://github.com/replicatedhq/replicated-actions/tree/main/remove-cluster) action.
+
+## Replicated Platform Release Workflow
+
+In a release workflow (which is triggered by an action such as a commit to `main` or a tag being pushed to the repository), the source code is built, the application is deployed to clusters for testing, and then the application is made available to customers. In this example release workflow, a release is created and promoted to a channel in the Replicated vendor platform so that it can be installed by internal teams or by customers.
 
 The following diagram demonstrates a release workflow that promotes a release to the Beta channel when a tag with the format `"v*.*.*-beta.*"` is pushed:
 
@@ -166,7 +234,7 @@ Consider the following requirements and recommendations:
 
 ### Create cluster matrix, deploy, and test {#rel-deploy}
 
-Add a job with the following steps to provision clusters with the compatibility matrix, deploy your application to the clusters, and run tests:
+Add a job with the following steps to provision clusters with the compatibility matrix, deploy the release to the clusters, and run tests:
 
 1. Create a temporary customer for installing the release. See the [customer create](/reference/replicated-cli-customer-create) replicated CLI command. Or, for GitHub Actions workflows, see the [create-customer](https://github.com/replicatedhq/replicated-actions/tree/main/create-customer) action.
 
@@ -195,7 +263,11 @@ Add a job with the following steps to provision clusters with the compatibility 
             - {distribution: openshift, version: "4.13.0-okd"} 
     ```
 
-1. Run tests, such as integration, smoke, and canary tests. For more information about recommended types of tests to run, see [Test Script Recommendations](/vendor/testing-how-to#test-script-recommendations) in _Using the Compatibility Matrix_.
+1. For each cluster created, use the cluster's kubeconfig to update Kubernetes context and then install the target application in the cluster. For more information about accessing the kubeconfig for clusters created with the compatibility matrix, see [cluster kubeconfig](/reference/replicated-cli-cluster-kubeconfig).
+
+  For more information about installing with the Helm CLI or Replicated KOTS, see [Installing with Helm](/vendor/install-with-helm) or [About Installing an Application](/enterprise/installing-overview).
+
+1. Run tests, such as integration, smoke, and canary tests. For more information about recommended types of tests to run, see [Best Practices and Recommendations](/vendor/ci-overview#best-practices-and-recommendations) in _About Integrating with CI/CD_.
 
 1. Delete the cluster when the tests complete. See the [cluster rm](/reference/replicated-cli-cluster-rm) replicated CLI command. Or, for GitHub Actions workflows, see the [remove-cluster](https://github.com/replicatedhq/replicated-actions/tree/main/remove-cluster) action.
 
