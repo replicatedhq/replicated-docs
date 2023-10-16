@@ -133,7 +133,7 @@ Add a job with the following steps to provision clusters with the compatibility 
             - {distribution: openshift, version: "4.13.0-okd"} 
     ```
 
-1. For each cluster created, use the cluster's kubeconfig to update Kuberentes context and then install the target application in the cluster. For more information about accessing the kubeconfig for clusters created with the compatibility matrix, see [cluster kubeconfig](/reference/replicated-cli-cluster-kubeconfig).
+1. For each cluster created, use the cluster's kubeconfig to update Kubernetes context and then install the target application in the cluster. For more information about accessing the kubeconfig for clusters created with the compatibility matrix, see [cluster kubeconfig](/reference/replicated-cli-cluster-kubeconfig).
 
 1. Run tests, such as integration, smoke, and canary tests. For more information about recommended types of tests to run, see [Test Script Recommendations](/vendor/testing-how-to#test-script-recommendations) in _Using the Compatibility Matrix_.
 
