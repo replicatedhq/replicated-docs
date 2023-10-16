@@ -126,8 +126,8 @@ Add a job with the following steps to provision clusters with the compatibility 
       strategy:
         matrix:
           cluster:
-            - {distribution: kind, version: "1.25.3"}
-            - {distribution: kind, version: "1.26.3"}
+            - {distribution: kind, version: "1.25"}
+            - {distribution: kind, version: "1.26"}
             - {distribution: eks, version: "1.26"}
             - {distribution: gke, version: "1.27"}
             - {distribution: openshift, version: "4.13.0-okd"} 
