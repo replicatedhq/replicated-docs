@@ -124,6 +124,8 @@ To create a cluster using the vendor portal:
 
 ## Prepare Clusters
 
+For applications distributed with Replicated, the [`cluster prepare`](/reference/replicated-cli-cluster-prepare) command reduces the number of steps required to provision a cluster and then deploy a release to the cluster for testing. This is useful in continuous integration (CI) workflows that run multiple times a day. For an example workflow that uses the `cluster prepare` command, see [Recommended CI/CD Workflows](/vendor/ci-workflows).
+
 The `cluster prepare` command does the following:
 * Creates a cluster
 * Creates a release for your application based on either a Helm chart archive or a directory containing the application YAML files
@@ -133,34 +135,30 @@ The `cluster prepare` command does the following:
   :::
 * Installs the release in the cluster using either the Helm CLI or Replicated KOTS
 
-For applications distributed with Replicated, the `cluster prepare` command reduces the number of steps required to deploy a release to a cluster for testing. without needing to manually create a new release, promote the release to a channel, and create a customer. This is particularly useful in continuous integration (CI) workflows that run multiple times a day. For an example workflow that uses the `cluster prepare` command, see [Recommended CI/CD Workflows](/vendor/ci-workflows).
-
-For command usage, including additional options, see [cluster prepare](/reference/replicated-cli-cluster-prepare).
-
 The `cluster prepare` command requires either a Helm chart archive or a directory containing the application YAML files to be installed:
 
-* **Install a Helm chart**:
+* **Install a Helm chart with the Helm CLI**:
 
-```bash
-replicated cluster prepare \
-  --distribution K8S_DISTRO \
-  --version K8S_VERSION \
-  --chart HELM_CHART_TGZ
-```
-The following example creates a kind cluster and installs a Helm chart in the cluster using the `nginx-chart-0.0.14.tgz` chart archive:
-```bash
-replicated cluster prepare \
-  --distribution kind \
-  --version 1.27.0 \
-  --chart nginx-chart-0.0.14.tgz \
-  --set key1=val1,key2=val2 \
-  --set-string s1=val1,s2=val2 \
-  --set-json j1='{"key1":"val1","key2":"val2"}' \
-  --set-literal l1=val1,l2=val2 \
-  --values values.yaml
-```
+  ```bash
+  replicated cluster prepare \
+    --distribution K8S_DISTRO \
+    --version K8S_VERSION \
+    --chart HELM_CHART_TGZ
+  ```
+  The following example creates a kind cluster and installs a Helm chart in the cluster using the `nginx-chart-0.0.14.tgz` chart archive:
+  ```bash
+  replicated cluster prepare \
+    --distribution kind \
+    --version 1.27.0 \
+    --chart nginx-chart-0.0.14.tgz \
+    --set key1=val1,key2=val2 \
+    --set-string s1=val1,s2=val2 \
+    --set-json j1='{"key1":"val1","key2":"val2"}' \
+    --set-literal l1=val1,l2=val2 \
+    --values values.yaml
+  ```
 
-* **Install from a YAML directory**:
+* **Install with KOTS from a YAML directory**:
 
   ```bash
   replicated cluster prepare \
@@ -168,6 +166,7 @@ replicated cluster prepare \
     --version K8S_VERSION \
     --yaml-dir PATH_TO_YAML_DIR
   ```
+  The following example 
   ```bash
   replicated cluster prepare \
     --distribution k3s \
@@ -180,6 +179,7 @@ replicated cluster prepare \
     --entitlements "num_of_queues=5"
     ```
 
+For command usage, including additional options, see [cluster prepare](/reference/replicated-cli-cluster-prepare).
 ## Access Clusters
 
 The compatibility matrix provides the kubeconfig for clusters so that you can access clusters with the kubectl command line tool. For more information, see [Command line tool (kubectl)](https://kubernetes.io/docs/reference/kubectl/) in the Kubernetes documentation.
@@ -256,15 +256,22 @@ To delete a cluster using the replicated CLI:
    Where `CLUSTER_ID` is the ID of the target cluster.
    In the output of the command, you can see that the `STATUS` of the cluster is `terminated`. For command usage, see [cluster ls](/reference/replicated-cli-cluster-ls).
 ### Vendor Portal
+
 To delete a cluster using the vendor portal:
+
 1. Go to **Compatibility Matrix**.
+
 1. Under **Clusters**, in the vertical dots menu for the target cluster, click **Delete cluster**.
+
    <img alt="Delete cluster button" src="/images/cmx-delete-cluster.png" width="700px"/>
+
    [View a larger version of this image](/images/cmx-delete-cluster.png)
 
 ## Integrate with CI/CD
 
 Replicated recommends that you integrate the compatibility matrix into your existing CI/CD workflow to automate the process of creating clusters to install your application and run tests.
+
+This section includes best practices and recommendations for integrating the compatibility matrix into CI/CD workflows. For 
 
 ### About Replicated GitHub Actions
 Replicated maintains a set of custom GitHub actions that are designed to replace repetitive tasks related to using the compatibility matrix and distributing applications with Replicated.
