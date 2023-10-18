@@ -1,6 +1,6 @@
 # Step 5: Create a Customer
 
-After promoting the first release, create a customer so that you can install the release. A _customer_ represents a single licensed user of your application.
+After promoting the first release, create a customer so that you can install the release with KOTS. A _customer_ represents a single licensed user of your application.
 
 To create a customer:
 
@@ -15,8 +15,6 @@ To create a customer:
 1. For **Customer name**, enter a name for the customer. For example, `Test Customer`.
 
 1. For **Channel**, select **Unstable**. This allows the customer to install releases promoted to the Unstable channel.
-
-1. For **Customer email**, enter the email address for the customer. The customer email address is required to install the application with the Helm CLI. This email address is never used send emails to customers.
 
 1. For **License type**, select Trial.
 

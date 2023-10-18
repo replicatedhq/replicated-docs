@@ -87,17 +87,17 @@ To install the release with KOTS:
 
    [View a larger version of this image](/images/gitea-app.png)
 
-1. In another browser window, log in to the vendor portal and go to **Customers**. Select the customer that you created to open the **Reporting** page.
+1. In another browser window, log in to the vendor portal and go to **Customers**. Select the customer that you created.
 
-  On the **Reporting** page, you can see details about the customer, including the customer's license details and information about the customer's installed instances:
+  On the **Reporting** page for the customer, you can see details about the customer, including the customer's license details and information about the customer's installed instances:
 
   ![Customer instance reporting](/images/tutorial-gitea-customer-reporting.png)
 
   [View a larger version of this image](/images/tutorial-gitea-customer-reporting.png)
 
-1. On the **Reporting** page, under **Instances**, click on the instance that you just installed to open the instance details page. On the instance details page, you can review additional insights such as details about the cluster where the application is installed, instance status details, and any custom metrics that are configured.
+1. On the **Reporting** page, under **Instances**, click on the instance that you just installed to open the instance details page. On the instance details page, you can review additional insights such as details about the cluster where the application is installed, the version of KOTS running in the cluster, and instance status and uptime.
 
-1. Uninstall the application:
+1. Uninstall the Gitea application from your cluster:
 
   ```
   kubectl kots remove gitea-example --namespace gitea-example --undeploy
@@ -110,7 +110,7 @@ To install the release with KOTS:
 
 ## Next Step
 
-Install the same release with the Helm CLI.
+Install the same release with the Helm CLI. See [Install the Release with the Helm CLI](tutorial-kots-helm-install-helm).
 
 ## Related Topics
 

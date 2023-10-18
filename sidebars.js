@@ -424,6 +424,7 @@ const sidebars = {
             'vendor/tutorial-kots-helm-create-release',
             'vendor/tutorial-kots-helm-create-customer',
             'vendor/tutorial-kots-helm-install-kots',
+            'vendor/tutorial-kots-helm-install-helm',
           ],
         },
         {
