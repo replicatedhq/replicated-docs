@@ -8,6 +8,18 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.10.18-0
+
+Released on October 18, 2023
+
+### New Features {#new-features-v2023-10-18-0}
+* show tags on the cluster and cluster history table.
+
+### Bug Fixes {#bug-fixes-v2023-10-18-0}
+* When using [v3 API to create a release](https://replicated-vendor-api.readme.io/reference/createrelease), release size will be limited to 16MiB when compressed.
+* Shows error message if user encounters an error during application creation.
+* Fixed a bug that would allow creating accounts using an email address with trailing or leading white spaces.
+
 ## v2023.10.11-1
 
 Released on October 11, 2023
