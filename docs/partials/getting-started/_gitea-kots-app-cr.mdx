@@ -1,0 +1,16 @@
+```yaml
+apiVersion: kots.io/v1beta1
+kind: Application
+metadata:
+  name: gitea
+spec:
+  title: Gitea
+  statusInformers:
+    - deployment/gitea
+  ports:
+    - serviceName: "gitea"
+      servicePort: 3000
+      localPort: 8888
+      applicationUrl: "http://gitea"
+  icon: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSa6IpLT8VVWQDXoPuirydW6MC_BfKnuCOZA&usqp=CAU
+```        
