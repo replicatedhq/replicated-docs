@@ -62,12 +62,12 @@ To create a release:
    ```
    In the browser window that opens, complete the prompts to log in to your vendor account and authorize the CLI.
 
-1. Set the `REPLICATED_APP` environment variable:
+1. Set the `REPLICATED_APP` environment variable to the application that you created as part of [Step 2: Create an Application](tutorial-kots-helm-create-app). This allows you to interact with the application using the replicated CLI without needing to use the `--app` flag with every command:
 
-   1. Get the application slug:
+   1. Get the slug for the application that you created:
 
       ```
-      replicated app ls gitea-example
+      replicated app ls
       ```
       **Example output**:
       ```
@@ -76,20 +76,18 @@ To create a release:
       ```
       In the example above, the application slug in `gitea-example`.
 
-   1. Set the environment variable using the slug:
+   1. Set `REPLICATED_APP` the environment variable to the application slug:
 
       ```
       export REPLICATED_APP=gitea-example
       ```   
 
-1. Lint the `manifests` directory using the replicated CLI:
+1. From the `manifests` directory, lint the YAML files to confirm that there are no errors:
 
    ```
-   replicated release lint --yaml-dir . --app gitea-example
+   replicated release lint --yaml-dir .
    ```
-   Where:
-     * `--yaml-dir` is the directory that contains the Helm chart archive and the manifest files required by KOTS.
-     * `--app` is the slug for the application that you created in the vendor portal.
+   `--yaml-dir` is the path to the directory that contains the Helm chart archive and the manifest files required by KOTS.
 
    **Example output**:
 
@@ -100,22 +98,41 @@ To create a release:
    troubleshoot-spec                  warn                          Missing troubleshoot spec
    nonexistent-status-informer-object warn    kots-app.yaml   8     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
    ```
-   You can ignore these warning message for the purpose of this tutorial.
+   The output includes warning messages that list some missing files. You can ignore these warnings for the purpose of this tutorial.
 
-1. Create a release using the replicated CLI:
+1. Create a release:
 
    ```
-   replicated release create --yaml-dir . --app gitea-example
+   replicated release create --yaml-dir .
    ```
-   Where:
-     * `--yaml-dir` is the directory that contains the Helm chart archive and the manifest files required by KOTS.
-     * `--app` is the slug for the application that you created in the vendor portal.
+   **Example output**:
+   ```
+   • Reading manifests from . ✓
+   • Creating Release ✓
+     • SEQUENCE: 1
+   ```
 
-1. Log in to the vendor portal and go to **Releases**. Click on the release that you just created.
+1. Log in to the vendor portal and go to **Releases**.
 
-1. Click **Promote**. In the dialog, for **Which channels you would like to promote this release to?**, select **Unstable**. Unstable is a default channel that is intended for use with internal testing. Click **Promote**.
+  The release that you created in the previous step is listed under **All releases**.
 
-   <img alt="Promote release dialog" src="/images/release-promote.png" width="500px"/>
+  ![Release page in the vendor portal with one release](/images/tutorial-kots-helm-release-seq-1.png)
+
+  [View a larger version of this image](/images/tutorial-kots-helm-release-seq-1.png)
+
+1. Under **All releases**, for the release that you created in the preview step, click **Edit release**.
+
+  On the **Edit release** page, you can see the manifest files that you created, the Helm chart `.tgz` archive, and the `Chart.yaml` and `values.yaml` files for the Gitea Helm chart.
+
+  ![Edit Release page in the vendor portal](/images/tutorial-kots-helm-release-edit-seq-1.png)
+
+  [View a larger version of this image](/images/tutorial-kots-helm-release-edit-seq-1.png)
+
+1. At the top of the page, click **Promote**.
+
+1. In the dialog, for **Which channels you would like to promote this release to?**, select **Unstable**. Unstable is a default channel that is intended for use with internal testing. Click **Promote**.
+
+   <img alt="Promote release dialog" src="/images/release-promote.png" width="400px"/>
 
    [View a larger version of this image](/images/release-promote.png)    
 
