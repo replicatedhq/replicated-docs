@@ -415,6 +415,18 @@ const sidebars = {
       items: [
         {
           type: 'category',
+          label: 'Deploy a Helm Chart with KOTS and Helm CLI',
+          items: [
+            'vendor/tutorial-kots-helm-setup',
+            'vendor/tutorial-kots-helm-get-chart',
+            'vendor/tutorial-kots-helm-create-app',
+            'vendor/tutorial-kots-helm-package-chart',
+            'vendor/tutorial-kots-helm-create-release',
+            'vendor/tutorial-kots-helm-create-customer',
+          ],
+        },
+        {
+          type: 'category',
           label: 'KOTS Tutorial (UI)',
           items: [
             'vendor/tutorial-ui-setup',
