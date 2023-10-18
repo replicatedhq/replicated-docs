@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.10.18-1
+
+Released on October 18, 2023
+
+### New Features {#new-features-v2023-10-18-1}
+* Compatibility matrix will now retry on an error provisioning a cluster up to 2 times for a total of 3 attempts before returning an error.
+
 ## v2023.10.11-1
 
 Released on October 11, 2023
