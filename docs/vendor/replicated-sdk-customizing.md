@@ -8,7 +8,7 @@ This section describes role-based access control (RBAC) for the Replicated SDK, 
 
 ### Default RBAC
 
-The SDK creates default Role, RoleBinding, and ServiceAccount objects during installation. The default Role allows the SDK to get, list, and watch all resources in the namespace, to update the `replicated` Secret, and to create and update the `replicated-instance-report` Secret:
+The SDK creates default Role, RoleBinding, and ServiceAccount objects during installation. The default Role allows the SDK to get, list, and watch all resources in the namespace, to create Secrets, and to update the `replicated` and `replicated-instance-report` Secrets:
 
 ```yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -46,8 +46,8 @@ rules:
 ### Minimum RBAC Requirements
 
 The SDK requires the following minimum RBAC permissions:
-* Get and update a Secret named `replicated`.
-* Create and update a secret named `replicated-instance-report`.
+* Create Secrets.
+* Get and update Secrets named `replicated` and `replicated-instance-report`.
 * The SDK requires the following minimum RBAC permissions for status informers:
   * If you defined custom status informers, then the SDK must have permissions to get, list, and watch all the resources listed in the `replicated.statusInformers` array in your Helm chart `values.yaml` file.
   * If you did _not_ define custom status informers, then the SDK must have permissions to get, list, and watch the following resources:
