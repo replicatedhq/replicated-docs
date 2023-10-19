@@ -1,8 +1,6 @@
 # Step 6: Install the Release with KOTS
 
-Next, get the installation command from the Unstable channel in the vendor portal and then install the release with KOTS, using the customer license that you downloaded.
-
-KOTS is a kubectl plugin that automates installations to on-prem, online, or air gap environments, making it quick and easy for your users to install with minimal Kubernetes expertise.
+Next, get the installation KOTS installation command from the Unstable channel in the vendor portal and then install the release using the customer license that you downloaded.
 
 To install the release with KOTS:
 
@@ -29,7 +27,7 @@ To install the release with KOTS:
 
    1. For `Enter a new password to be used for the Admin Console`, provide a password to access the admin console.
 
-  When the admin console is ready, the command prints the URL where you can access the admin console. At this point, KOTS is installed and the admin console is running, but the application is not yet deployed.
+  When the admin console is ready, the command prints the URL where you can access the admin console. At this point, the kots CLI is installed and the admin console is running, but the application is not yet deployed.
 
   **Example output:**
 
@@ -64,13 +62,13 @@ To install the release with KOTS:
    1. Watch for the `gitea` Deployment to become ready:
 
       ```
-      kubectl get deploy gitea -n gitea-example --watch
+      kubectl get deploy gitea --namespace gitea-example --watch
       ```
 
-   1. After the `gitea` Deployment is ready, confirm that the `gitea` LoadBalancer service has an external IP available:
+   1. After the `gitea` Deployment is ready, confirm that the external IP for the `gitea` LoadBalancer service is available:
 
       ```
-      kubectl get svc gitea -n gitea-example
+      kubectl get svc gitea --namespace gitea-example
       ```
 
    1. Start the port foward again to access the admin console:
@@ -79,25 +77,31 @@ To install the release with KOTS:
       kubectl kots admin-console --namespace gitea-example 
       ```
 
-   1. Go to `http://localhost:8800`.   
+   1. Go to `http://localhost:8800` to open the admin console again.   
 
-1. On the admin console dashboard, the application status is displayed as Ready. You can now click **Open App** to view the Gitea application in a browser:
+1. On the admin console dashboard, the application status is now displayed as Ready and you can now click **Open App** to view the Gitea application in a browser:
 
-   <img alt="Gitea application webpage" src="/images/gitea-app.png" width="500px"/>
+   ![Admin console dashboard showing ready status](/images/tutorial-gitea-ready.png)
 
-   [View a larger version of this image](/images/gitea-app.png)
+   [View a larger version of this image](/images/tutorial-gitea-ready.png)
 
 1. In another browser window, log in to the vendor portal and go to **Customers**. Select the customer that you created.
 
-  On the **Reporting** page for the customer, you can see details about the customer, including the customer's license details and information about the customer's installed instances:
+  On the **Reporting** page for the customer, you can see details about the customer, including information about the customer's license and installed instances:
 
-  ![Customer instance reporting](/images/tutorial-gitea-customer-reporting.png)
+  ![Customer reporting page](/images/tutorial-gitea-customer-reporting.png)
 
   [View a larger version of this image](/images/tutorial-gitea-customer-reporting.png)
 
-1. On the **Reporting** page, under **Instances**, click on the instance that you just installed to open the instance details page. On the instance details page, you can review additional insights such as details about the cluster where the application is installed, the version of KOTS running in the cluster, and instance status and uptime.
+1. On the **Reporting** page, under **Instances**, click on the instance that you just installed to open the instance details page.
 
-1. Uninstall the Gitea application from your cluster:
+  On the instance details page, you can review additional insights such as details about the cluster where the application is installed, the version of KOTS running in the cluster, instance status and uptime, and more:
+
+  ![Customer instance details page](/images/tutorial-gitea-instance-insights.png)
+
+  [View a larger version of this image](/images/tutorial-gitea-instance-insights.png)
+
+1. Uninstall the Gitea application from your cluster so that you can install the same release again using the Helm CLI:
 
   ```
   kubectl kots remove gitea-example --namespace gitea-example --undeploy
@@ -110,11 +114,12 @@ To install the release with KOTS:
 
 ## Next Step
 
-Install the same release with the Helm CLI. See [Install the Release with the Helm CLI](tutorial-kots-helm-install-helm).
+Install the same release with the Helm CLI. See [Step 7: Install the Release with the Helm CLI](tutorial-kots-helm-install-helm).
 
 ## Related Topics
 
 * [kots install](/reference/kots-cli-install/)
 * [Installing the kots CLI](/reference/kots-cli-getting-started/)
+* [Deleting the Admin Console and Removing Applications](/enterprise/delete-admin-console)
 * [Customer Reporting](customer-reporting)
 * [Instance Details](instance-insights-details)

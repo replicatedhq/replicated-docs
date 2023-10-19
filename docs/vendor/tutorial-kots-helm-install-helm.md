@@ -1,8 +1,10 @@
 # Step 7: Install the Release with the Helm CLI
 
-After successfully installing the release with KOTS, 
+Next, install the same release using the Helm CLI. All releases that contain one or more Helm charts can be installed with the Helm CLI.
 
-To install the same release with the Helm CLI:
+All Helm charts included in a release are automatically pushed to the Replicated registry when the release is promoted to a channel. Helm CLI installations require that the customer has a valid email address to authenticate with the Replicated registry.  
+
+To install the release with the Helm CLI:
 
 1. Create a new customer to test the Helm CLI installation:
 
@@ -22,39 +24,57 @@ To install the same release with the Helm CLI:
 
    1. For **License type**, select Trial.
 
-   1. For **License options**, _disable_ the **KOTS Install Enabled** entitlement.
+   1. (Optional) For **License options**, _disable_ the **KOTS Install Enabled** entitlement. 
 
    1. Click **Save Changes**.
 
-1. Click **Helm Install Instructions**.
+1. On the **Customer details** page for the new customer, click **Helm install instructions**.
 
-1. Run the first command to log in to the registry using the customer's license ID.
+   ![Helm install instrucitons button](/images/tutorial-gitea-helm-customer-install-button.png)
 
-1. Run the third command to install the application.
+   [View a larger version of this image](/images/tutorial-gitea-helm-customer-install-button.png)
 
-1. Watch the `gitea` service until an `EXTERNAL-IP` is available:
+1. Run the commands in the provided in the **Helm install instructions** dialog to log in to the registry and install the Helm chart.
+
+   <img alt="Helm install instructions dialog" src="/images/tutorial-gitea-helm-install-instructions.png" width="500px"/>
+
+   [View a larger version of this image](/images/tutorial-gitea-helm-install-instructions.png)
+
+   :::note
+   You can ignore the **No preflight checks found** warning for the purpose of this tutorial. This warning appears because there are no specifications for preflight checks in the Helm chart archive.
+   :::
+
+1. After running the installation command, watch the `gitea` LoadBalancer service until an external IP is available:
 
    ```
    kubectl get svc gitea --watch
    ```
 
-1. Follow the instructions in the output of the installation command to get the Gitea URL and open the application in a browser.
+1. After an external IP address is available for the `gitea` LoadBalancer service, follow the instructions in the output of the installation command to get the Gitea URL and then open the application in a browser to confirm that you can access it.
 
 1. In another browser window, log in to the vendor portal and go to **Customers**. Select the customer that you created for the Helm CLI installation.
 
-  On the **Reporting** page for the customer, you can see details about the customer, including the customer's license details and information about the customer's installed instances:
+  On the **Reporting** page for the customer, because the Replicated SDK was installed alongside the Gitea Helm chart, you can see details about the customer, including the customer's license details and information about the customer's installed instances:
 
   ![Customer reporting](/images/tutorial-gitea-helm-reporting.png)
 
   [View a larger version of this image](/images/tutorial-gitea-helm-reporting.png)
 
-1. On the **Reporting** page, under **Instances**, click on the instance that you just installed to open the instance details page. You can see details about the instance, including the version of the Replicated SDK that is running in the cluster.
+1. On the **Reporting** page, under **Instances**, click on the instance that you just installed to open the instance details page.
+
+  On the instance details page, you can review additional insights such as details about the cluster where the application is installed, the version of the Replicated SDK running in the cluster, instance status and uptime, and more:
 
   ![Customer instance details](/images/tutorial-gitea-helm-instance.png)
 
   [View a larger version of this image](/images/tutorial-gitea-helm-instance.png)
 
+## Next Step
+
+Congratulations! As part of this tutorial, you created a release in the Replicated vendor platform and installed the release with both KOTS and the Helm CLI. To learn more about how to iterate on releases to add more functionality, such as defining preflight checks or custom license entitlements, see [Replicated Quick Start](replicated-onboarding). 
+
 ## Related Topics
 
 * [About Customers](/vendor/licenses-about)
 * [Creating and Managing Customers](/vendor/releases-creating-customer)
+* [About Installations with the Helm CLI](/vendor/distributing-overview#helm)
+* [Installing with Helm](/vendor/install-with-helm)

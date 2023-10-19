@@ -6,27 +6,27 @@ import K8sCr from "../partials/getting-started/_gitea-k8s-app-cr.mdx"
 
 # Step 4: Add the Chart Archive to a Release
 
-Next, create a new release with the Helm chart archive.
+Next, add the Helm chart archive to a new release for the application that you created in the Replicated vendor platform. The purpose of this step is to configure a release that supports installation with both Replicated KOTS and with the Helm CLI.
 
 A _release_ represents a single version of your application and contains your application files. Each release is promoted to one or more _channels_. Channels provide a way to progress releases through the software development lifecycle: from internal testing, to sharing with early-adopters, and finally to making the release generally available.
 
 To create a release:
 
-1. In the `gitea` directory, created a subdirectory named `manifests`:
+1. In the `gitea` directory, create a subdirectory named `manifests`:
 
    ```
    mkdir manifests
    ```
 
-   In this `manifests` subdirectory, you will add the files and manifests required to support installation with Replicated KOTS.
+   You will add the files required to support installation with Replicated KOTS to this subdirectory.
 
-1. Move the Helm chart archive that you created to the `manifests` subdirectory:
+1. Move the Helm chart archive that you created to `manifests`:
 
    ```
    mv gitea-1.0.6.tgz manifests
    ```
 
-1. In the `manifests` subdirectory, create the YAML files required by KOTS:
+1. In `manifests`, create the YAML manifests required by KOTS:
    ```
    cd manifests
    ```
@@ -34,21 +34,30 @@ To create a release:
    touch gitea.yaml kots-app.yaml k8s-app.yaml
    ```
 
-1. In each file, paste the corresponding YAML provided below:
+1. In each of the files that you created, paste the corresponding YAML provided below:
 
    <Tabs>
    <TabItem value="helmchart" label="gitea.yaml" default>
+    <h5>Description</h5>
+    <p>The KOTS HelmChart custom resource provides instructions to KOTS about how to deploy the Helm chart. The <code>name</code> and <code>chartVersion</code> listed in the HelmChart custom resource must match the name and version of a Helm chart archive in the release. Each Helm chart archive in a release requires a unique HelmChart custom resource.</p>
+    <h5>YAML</h5>
     <HelmChartCr/>
    </TabItem>
    <TabItem value="kots-app" label="kots-app.yaml">
+   <h5>Description</h5>
+    <p>The KOTS Application custom resource enables feature in the Replicated admin console enables features such as branding, release notes, port forwarding, dashboard buttons, application status indicators, and custom graphs.</p><p>The YAML below provides a name for the application to display in the admin console, adds a custom <em>status informer</em> that displays the status of the <code>gitea</code> Deployment resource in the admin console dashboard, and creates a port forward so that the user can open the Gitea application in a browser.</p>
+    <h5>YAML</h5>
     <KotsCr/>
    </TabItem>
    <TabItem value="k8s-app" label="k8s-app.yaml">
+   <h5>Description</h5>
+    <p>The Kubernetes Application custom resource supports functionality such as including buttons and links on the Replicated admin console dashboard. The YAML below adds an <strong>Open App</strong> button to the admin console dashboard that opens the application using the port forward configured in the KOTS Application custom resource.</p>
+    <h5>YAML</h5>
     <K8sCr/>
    </TabItem>
    </Tabs>
 
-1. Install the replicated CLI:
+1. Install the replicated CLI so that you can create a release from the command line:
 
    ```
    brew install replicatedhq/replicated/cli
@@ -76,7 +85,7 @@ To create a release:
       ```
       In the example above, the application slug in `gitea-example`.
 
-   1. Set `REPLICATED_APP` the environment variable to the application slug:
+   1. Set the `REPLICATED_APP` environment variable to the application slug:
 
       ```
       export REPLICATED_APP=gitea-example
@@ -98,7 +107,7 @@ To create a release:
    troubleshoot-spec                  warn                          Missing troubleshoot spec
    nonexistent-status-informer-object warn    kots-app.yaml   8     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
    ```
-   The output includes warning messages that list some missing files. You can ignore these warnings for the purpose of this tutorial.
+   The output includes warning messages that list missing manifest files. These manifests control additional KOTS functionality and can be ignored for the purpose of this tutorial.
 
 1. Create a release:
 
@@ -114,15 +123,15 @@ To create a release:
 
 1. Log in to the vendor portal and go to **Releases**.
 
-  The release that you created in the previous step is listed under **All releases**.
+  The release that you created is listed under **All releases**.
 
   ![Release page in the vendor portal with one release](/images/tutorial-kots-helm-release-seq-1.png)
 
   [View a larger version of this image](/images/tutorial-kots-helm-release-seq-1.png)
 
-1. Under **All releases**, for the release that you created in the preview step, click **Edit release**.
+1. Click **Edit release** to view the files in the release.
 
-  On the **Edit release** page, you can see the manifest files that you created, the Helm chart `.tgz` archive, and the `Chart.yaml` and `values.yaml` files for the Gitea Helm chart.
+  In the release editor, you can see the manifest files that you created, the Helm chart `.tgz` archive, and the `Chart.yaml` and `values.yaml` files for the Gitea Helm chart. You can also see the same warning messages that were displayed in the CLI output.
 
   ![Edit Release page in the vendor portal](/images/tutorial-kots-helm-release-edit-seq-1.png)
 
@@ -138,7 +147,7 @@ To create a release:
 
 ## Next Step
 
-Create a customer so that you can install the release in your cluster. See [Create a Customer](tutorial-kots-helm-create-customer).
+Create a customer with the KOTS entitlement so that you can install the release in your cluster using Replicated KOTS. See [Step 5: Create a KOTS-Enabled Customer](tutorial-kots-helm-create-customer).
 
 ## Related Topics
 

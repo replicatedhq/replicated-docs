@@ -23,12 +23,12 @@ To get the sample Gitea Helm chart and test installation:
    ```
    Chart.lock  Chart.yaml  README.md  charts  templates  values.yaml
    ```
-1. Using the installation instructions provided in the `README.md` file, install the Gitea chart in your cluster:
+1. Install the Gitea chart in your cluster:
 
    ```
    helm install gitea oci://registry-1.docker.io/bitnamicharts/gitea
    ```
-   To view the installation instructions in GitHub, see [Installing the Chart](https://github.com/bitnami/charts/blob/main/bitnami/gitea/README.md#installing-the-chart) in the `bitnami/gitea` repository.
+   To view the installation instructions, see [Installing the Chart](https://github.com/bitnami/charts/blob/main/bitnami/gitea/README.md#installing-the-chart) in the `bitnami/gitea` repository.
 
    When the chart is installed, the following output is displayed:
 
@@ -62,47 +62,33 @@ To get the sample Gitea Helm chart and test installation:
    echo Password: $(kubectl get secret --namespace default gitea -o jsonpath="{.data.admin-password}" | base64 -d)
    ```
 
-1. Watch the status of the `gitea` LoadBalancer service to see when the `EXTERNAL-IP` is available:
+1. Watch the `gitea` LoadBalancer service until an `EXTERNAL-IP` is available:
 
    ```
-   kubectl get svc --namespace default -w gitea
+   kubectl get svc gitea --namespace default --watch
    ```
 
-1. When the `EXTERNAL-IP` for the `gitea` LoadBalancer service is available, run the commands provided in the output of the command to get the Gitea URL:
+1. When the `EXTERNAL-IP` for the `gitea` LoadBalancer service is available, run the commands provided in the output of the installation command to get the Gitea URL:
 
    ```
    export SERVICE_IP=$(kubectl get svc --namespace default gitea --template "{{ range (index .status.loadBalancer.ingress 0) }}{{ . }}{{ end }}")
    echo "Gitea URL: http://$SERVICE_IP/"
    ```
 
-1. In a browser, go to the Gitea URL to view the welcome page for the application.
+1. In a browser, go to the Gitea URL to confirm that you can see the welcome page for the application:
 
-1. (Optional) See that the Gitea deployment and pods are ready:
+   <img alt="Gitea application webpage" src="/images/gitea-app.png" width="500px"/>
 
-   ```
-   kubectl get deploy -n default gitea
-   ```
-   **Example output:**
-   ```
-   NAME    READY   UP-TO-DATE   AVAILABLE   AGE
-   gitea   1/1     1            1           2m47s
-   ```
-   ```
-   kubectl get pods -n default
-   ```
-   **Example output:**
-   ```
-   NAME                  READY   STATUS    RESTARTS   AGE
-   gitea-cfb9c74-l64pf   1/1     Running   0          2m57s
-   gitea-postgresql-0    1/1     Running   0          2m57s
-   ```
+   [View a larger version of this image](/images/gitea-app.png)
 
 1. Uninstall the Helm chart:
 
    ```
    helm delete gitea
    ```
-   The command removes all the Kubernetes components associated with the chart and deletes the `gitea` release:
+   This command removes all the Kubernetes components associated with the chart and deletes the `gitea` release.
+
+   **Example output**:
    ```
    release "gitea" uninstalled
    ```
@@ -110,7 +96,7 @@ To get the sample Gitea Helm chart and test installation:
 
 ## Next Step
 
-Log in to the vendor portal and create an application. See [Create an Application](tutorial-kots-helm-create-app).
+Log in to the vendor portal and create an application. See [Step 2: Create an Application](tutorial-kots-helm-create-app).
 
 ## Related Topics
 
@@ -118,3 +104,4 @@ Log in to the vendor portal and create an application. See [Create an Applicatio
 * [Helm Uninstall](https://helm.sh/docs/helm/helm_uninstall/)
 * [Helm Create](https://helm.sh/docs/helm/helm_create/)
 * [Helm Package](https://helm.sh/docs/helm/helm_package/)
+* [bitnami/gitea](https://github.com/bitnami/charts/blob/main/bitnami/gitea)
