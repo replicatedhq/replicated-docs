@@ -8,6 +8,16 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.10.13-0
+
+Released on October 13, 2023
+
+### New Features {#new-features-v2023-10-13-0}
+* Adds the name of the entity that created the cluster to the cluster page.
+
+### Improvements {#improvements-v2023-10-13-0}
+* Various design updates to the **Cluster History** page to improve the user experience.
+
 ## v2023.10.11-1
 
 Released on October 11, 2023
