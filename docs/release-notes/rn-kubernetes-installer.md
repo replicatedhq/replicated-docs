@@ -12,6 +12,9 @@ pagination_prev: null
 
 Released on October 19, 2023
 
+## Bug Fixes {#bug-fixes-v2023-10-19-0}
+* Fixes a bug where having multiple volumes attached to the same pod would cause some volumes not to be created on the correct node when migrating to OpenEBS 
+
 ## v2023.10.12-0
 
 Released on October 12, 2023
