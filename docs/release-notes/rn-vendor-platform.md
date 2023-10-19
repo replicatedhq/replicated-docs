@@ -28,6 +28,13 @@ Released on October 10, 2023
 ### New Features {#new-features-v2023-10-10-0}
 * Adds a verification stage when provisioning bare metal clusters of type Kind, K3s, kURL, and HelmVM to check that the cluster is running and healthy.
 
+## v2023.10.09-1
+
+Released on October 9, 2023
+
+### Bug Fixes {#bug-fixes-v2023.10.09-1}
+* Update the icon for Custom Metrics events on Instance Details pages.
+
 ## v2023.10.09-0
 
 Released on October 9, 2023
