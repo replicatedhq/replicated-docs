@@ -1,6 +1,6 @@
 # Step 1: Get the Sample Chart and Test
 
-To begin, get the sample Gitea Helm chart from Bitnami, install the chart in your cluster using the Helm CLI, and then uninstall. The purpose of this step is to confirm that you can successfully install and access the application before adding the chart to a release in the Replicated vendor portal.
+To begin, get the sample Gitea Helm chart from Bitnami, install the chart in your cluster using the Helm CLI, and then uninstall. The purpose of this step is to confirm that you can successfully install and access the application before adding the chart to a release in the Replicated vendor platform.
 
 To get the sample Gitea Helm chart and test installation:
 

@@ -15,7 +15,7 @@ To add the Replicated SDK and package the Helm chart:
 
    <DependencyYaml/>
 
-1. Update dependencies then package the Helm chart to a `.tgz` chart archive:
+1. Update dependencies and package the Helm chart to a `.tgz` chart archive:
 
    ```bash
    helm package . --dependency-update

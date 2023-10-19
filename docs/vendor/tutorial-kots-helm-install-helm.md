@@ -44,17 +44,17 @@ To install the release with the Helm CLI:
    You can ignore the **No preflight checks found** warning for the purpose of this tutorial. This warning appears because there are no specifications for preflight checks in the Helm chart archive.
    :::
 
-1. After running the installation command, watch the `gitea` LoadBalancer service until an external IP is available:
+1. After the installation command completes, watch the `gitea` LoadBalancer service until an external IP is available:
 
    ```
    kubectl get svc gitea --watch
    ```
 
-1. After an external IP address is available for the `gitea` LoadBalancer service, follow the instructions in the output of the installation command to get the Gitea URL and then open the application in a browser to confirm that you can access it.
+1. After an external IP address is available for the `gitea` LoadBalancer service, follow the instructions in the output of the installation command to get the Gitea URL and then confirm that you can open the application in a browser.
 
-1. In another browser window, log in to the vendor portal and go to **Customers**. Select the customer that you created for the Helm CLI installation.
+1. In another browser window, open the [vendor portal](https://vendor.replicated.com/) and go to **Customers**. Select the customer that you created for the Helm CLI installation.
 
-  On the **Reporting** page for the customer, because the Replicated SDK was installed alongside the Gitea Helm chart, you can see details about the customer, including the customer's license details and information about the customer's installed instances:
+  On the **Reporting** page for the customer, because the Replicated SDK was installed alongside the Gitea Helm chart, you can see details about the customer's license and installed instances:
 
   ![Customer reporting](/images/tutorial-gitea-helm-reporting.png)
 
@@ -62,7 +62,7 @@ To install the release with the Helm CLI:
 
 1. On the **Reporting** page, under **Instances**, click on the instance that you just installed to open the instance details page.
 
-  On the instance details page, you can review additional insights such as details about the cluster where the application is installed, the version of the Replicated SDK running in the cluster, instance status and uptime, and more:
+  On the instance details page, you can see additional insights such the cluster where the application is installed, the version of the Replicated SDK running in the cluster, instance status and uptime, and more:
 
   ![Customer instance details](/images/tutorial-gitea-helm-instance.png)
 
@@ -74,7 +74,6 @@ Congratulations! As part of this tutorial, you created a release in the Replicat
 
 ## Related Topics
 
-* [About Customers](/vendor/licenses-about)
-* [Creating and Managing Customers](/vendor/releases-creating-customer)
 * [About Installations with the Helm CLI](/vendor/distributing-overview#helm)
 * [Installing with Helm](/vendor/install-with-helm)
+* [About the Replicated SDK](/vendor/replicated-sdk-overview)

@@ -4,15 +4,15 @@ This topic provides a summary of the goals and outcomes for the tutorial and als
 
 ## Summary
 
-This tutorial introduces you to the Replicated vendor portal, the Replicated SDK, and the Replicated KOTS installer.
+This tutorial introduces you to the Replicated vendor portal, the replicated CLI, the Replicated SDK, and the Replicated KOTS installer.
 
-In this tutorial, you use a sample Helm chart for a basic NGINX application to learn how to:
+In this tutorial, you use a sample Helm chart to learn how to:
 
-* Add the Replicated SDK to a Helm chart
-* Create a release with the Helm chart in the Replicated vendor portal
-* Configure the release so that it supports installation with both the Helm CLI and with Replicated KOTS
-* Install the release in a cluster using the Helm CLI
-* Install the same release in a cluster using Replicated KOTS and the Replicated admin console
+* Add the Replicated SDK to a Helm chart as a dependency
+* Create a release with the Helm chart using the replicated CLI
+* Add custom resources to the release so that it supports installation with both the Helm CLI and Replicated KOTS
+* Install the release in a cluster using KOTS and the Replicated admin console
+* Install the same release using the Helm CLI
 
 ## Set Up the Environment
 

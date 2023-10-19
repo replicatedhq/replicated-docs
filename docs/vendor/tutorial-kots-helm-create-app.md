@@ -1,6 +1,6 @@
 # Step 2: Create an Application
 
-Create an application in the Replicated vendor portal. An _application_ is an object in Replicated that has its own customers, channels, releases, license fields, and more.
+Create an application in the Replicated vendor portal. An _application_ is an object that has its own customers, channels, releases, license fields, and more.
 
 A single team can have more than one application. It is common for teams to have multiple applications for the purpose of onboarding, testing, and iterating.
 

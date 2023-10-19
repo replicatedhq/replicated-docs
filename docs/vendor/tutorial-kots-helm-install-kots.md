@@ -1,6 +1,6 @@
 # Step 6: Install the Release with KOTS
 
-Next, get the installation KOTS installation command from the Unstable channel in the vendor portal and then install the release using the customer license that you downloaded.
+Next, get the KOTS installation command from the Unstable channel in the vendor portal and then install the release using the customer license that you downloaded.
 
 To install the release with KOTS:
 
@@ -49,7 +49,7 @@ To install the release with KOTS:
 
 1. On the license page, select the license file that you downloaded previously and click **Upload license**.
 
-   The admin console dashboard opens. The application status displays as Unavailable while the `gitea` Deployment is being created:
+   The admin console dashboard opens. The application status changes from Missing to Unavailable while the `gitea` Deployment is being created:
 
    ![Admin console dashboard](/images/tutorial-gitea-unavailable.png)
 
@@ -65,7 +65,7 @@ To install the release with KOTS:
       kubectl get deploy gitea --namespace gitea-example --watch
       ```
 
-   1. After the `gitea` Deployment is ready, confirm that the external IP for the `gitea` LoadBalancer service is available:
+   1. After the `gitea` Deployment is ready, confirm that an external IP for the `gitea` LoadBalancer service is available:
 
       ```
       kubectl get svc gitea --namespace gitea-example
@@ -77,17 +77,17 @@ To install the release with KOTS:
       kubectl kots admin-console --namespace gitea-example 
       ```
 
-   1. Go to `http://localhost:8800` to open the admin console again.   
+   1. Go to `http://localhost:8800` to open the admin console.   
 
-1. On the admin console dashboard, the application status is now displayed as Ready and you can now click **Open App** to view the Gitea application in a browser:
+1. On the admin console dashboard, the application status is now displayed as Ready and you can click **Open App** to view the Gitea application in a browser:
 
    ![Admin console dashboard showing ready status](/images/tutorial-gitea-ready.png)
 
    [View a larger version of this image](/images/tutorial-gitea-ready.png)
 
-1. In another browser window, log in to the vendor portal and go to **Customers**. Select the customer that you created.
+1. In another browser window, open the [vendor portal](https://vendor.replicated.com/) and go to **Customers**. Select the customer that you created.
 
-  On the **Reporting** page for the customer, you can see details about the customer, including information about the customer's license and installed instances:
+  On the **Reporting** page for the customer, you can see details about the customer's license and installed instances:
 
   ![Customer reporting page](/images/tutorial-gitea-customer-reporting.png)
 
@@ -95,7 +95,7 @@ To install the release with KOTS:
 
 1. On the **Reporting** page, under **Instances**, click on the instance that you just installed to open the instance details page.
 
-  On the instance details page, you can review additional insights such as details about the cluster where the application is installed, the version of KOTS running in the cluster, instance status and uptime, and more:
+  On the instance details page, you can see additional insights such the cluster where the application is installed, the version of KOTS running in the cluster, instance status and uptime, and more:
 
   ![Customer instance details page](/images/tutorial-gitea-instance-insights.png)
 
