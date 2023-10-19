@@ -18,6 +18,16 @@ Released on October 16, 2023
 * Fixed the "by" in cluster history to not show "web ui" most of the time.
 * Fixed the display of cost in cluster history table.
 
+## v2023.10.13-0
+
+Released on October 13, 2023
+
+### New Features {#new-features-v2023-10-13-0}
+* Adds the name of the entity that created the cluster to the cluster page.
+
+### Improvements {#improvements-v2023-10-13-0}
+* Various design updates to the **Cluster History** page to improve the user experience.
+
 ## v2023.10.11-1
 
 Released on October 11, 2023
@@ -37,6 +47,13 @@ Released on October 10, 2023
 
 ### New Features {#new-features-v2023-10-10-0}
 * Adds a verification stage when provisioning bare metal clusters of type Kind, K3s, kURL, and HelmVM to check that the cluster is running and healthy.
+
+## v2023.10.09-1
+
+Released on October 9, 2023
+
+### Bug Fixes {#bug-fixes-v2023.10.09-1}
+* Update the icon for Custom Metrics events on Instance Details pages.
 
 ## v2023.10.09-0
 
