@@ -76,7 +76,7 @@ For information about how to write the specifications, see:
 
 For installations with Replicated KOTS, preflight checks run automatically as part of the installation process. The results of the preflight checks are displayed either in the Replicated admin console UI or in the kots CLI, depending on the installation method. For more information about the KOTS installation process, see [About Installing an Application](/enterprise/installing-overview).
 
-For installations of Helm chart-based applications with the Helm CLI, your customers can optionally run preflight checks before they run the installation command. In this case, preflight checks run using a `helm template` command to confirm the target cluster has the resources required for a successful installation. For more information, see [Running Preflight Checks for Helm Installations](preflight-running).
+For installations of Helm chart-based applications with the Helm CLI, your customers can optionally run preflight checks before they run `helm install`. In this case, preflight checks run using a `helm template` command to confirm the target cluster has the resources required for a successful installation. For more information, see [Running Preflight Checks for Helm Installations](preflight-running).
 
 ## About Generating Support Bundles
 
