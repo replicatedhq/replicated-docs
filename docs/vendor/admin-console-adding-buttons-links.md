@@ -4,12 +4,10 @@ This topic describes how to use the Kubernetes and KOTS Application custom resou
 
 ## Overview
 
-When distributing an application, it’s helpful to make sure that the person or process performing the installation can easily verify that the application is running.
+When distributing an application, it is helpful to make sure that the person or process performing the installation can easily verify that the application is running.
 Networking and ingress is handled differently in each cluster and this makes it difficult to provide a consistent URL at application packaging time, and even likely requires that the cluster operator creates firewall rules before they can test the application installation.
 
-Replicated KOTS can provide a port-forward tunnel that will work more consistently to provide an easy way for the cluster operator to open one or more links directly to the application before ingress and firewalls are configured.
-
-To export a port and a button on the Replicated admin console dashboard to the application, a couple of additional steps are necessary.
+To provide an easy way for the cluster operator to open one or more links directly to the application before ingress and firewalls are configured, you can configure Replicated KOTS to provide a port-forward tunnel. You can also add a button to the admin console dashboard that links users to the application through the port-forward. 
 
 ## Add A Button to the Dashboard
 
@@ -20,12 +18,9 @@ An application that follows best practices will never require cluster admin priv
 
 The Kubernetes Application custom resource `spec.descriptor.links` field is an array of links that reference the application, after the application is deployed. The `spec.descriptor.links` field can be used to configure buttons on the Replicated admin console that link to application dashboards or landing pages.
 
-Each link contains two fields, description and url. 
-
-The description field is the title of the button that will be added to the admin console.
-The url field should be the url of your application.
-
-You can use the service name in place of the host name and KOTS will rewrite the URL with hostname in the browser.
+Each link contains two fields:
+* `description`: The title of the button that will be added to the admin console.
+* `url` : The URL of your application. You can use the service name in place of the host name and KOTS rewrites the URL with hostname in the browser.
 
 For example:
 
@@ -49,13 +44,34 @@ spec:
 
 ## Additional Ports and Port Forwarding
 
-When running the `kubectl` plugin for the kots CLI, KOTS can add additional ports that are defined in the application to the port-forward tunnel.
+KOTS can add additional ports that are defined in the application to the port-forward tunnel.
 This is useful for internal services such as application admin controls and other services that should not be exposed to all users.
 It's also recommended to list the primary application port(s) here to make verification of the installation possible before ingress is installed.
 
 In order to define additional ports, add a `ports` key to the Application custom resource manifest file.
 
-#### Example
+<table>
+  <tr>
+    <th>Field</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>serviceName</td>
+    <td>Service should reference the service name that the application deployed without the namespace.</td>
+  </tr>
+  <tr>
+    <td>servicePort</td>
+    <td>The container port</td>
+  </tr>
+  <tr>
+    <td>localPort</td>
+    <td>A local port </td>
+  </tr>
+  <tr>
+    <td>applicationURL</td>
+    <td>When doing this, it's recommended to not use https but instead use http, unless TLS termination is happening in the application pod.</td>
+  </tr>
+</table>
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -72,10 +88,5 @@ spec:
       applicationUrl: "http://myapplication-service"
  ```
 
-Given the above example, when the application starts and the service is ready, the kots CLI will run the equivalent of `kubectl port-forward svc/myapplication-service 9000:9000` and print a message in the terminal.
-Service should reference the service name that the application deployed without the namespace.
+ Given the above example, when the application starts and the service is ready, the kots CLI will run the equivalent of `kubectl port-forward svc/myapplication-service 9000:9000` and print a message in the terminal.
 
-## Using dashboard buttons with port forward
-
-Finally, it's possible to combine these two features and use a dashboard button that links to a port-forwarded service.
-When doing this, it's recommended to not use https but instead use http, unless TLS termination is happening in the application pod.
