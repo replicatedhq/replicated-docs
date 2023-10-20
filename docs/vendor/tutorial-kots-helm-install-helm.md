@@ -62,7 +62,7 @@ To install the release with the Helm CLI:
 
 1. On the **Reporting** page, under **Instances**, click on the instance that you just installed to open the instance details page.
 
-  On the instance details page, you can see additional insights such the cluster where the application is installed, the version of the Replicated SDK running in the cluster, instance status and uptime, and more:
+  On the instance details page, you can see additional insights such as the cluster where the application is installed, the version of the Replicated SDK running in the cluster, instance status and uptime, and more:
 
   ![Customer instance details](/images/tutorial-gitea-helm-instance.png)
 

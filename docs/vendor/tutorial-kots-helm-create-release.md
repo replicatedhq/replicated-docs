@@ -83,7 +83,7 @@ To create a release:
       ID                             NAME            SLUG            SCHEDULER
       2WthxUIfGT13RlrsUx9HR7So8bR    Gitea Example   gitea-example   kots
       ```
-      In the example above, the application slug in `gitea-example`.
+      In the example above, the application slug is `gitea-example`.
 
    1. Set the `REPLICATED_APP` environment variable to the application slug:
 
