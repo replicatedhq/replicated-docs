@@ -538,23 +538,28 @@ const sidebars = {
       label: 'Preflights and Support Bundles',
       items: [
         'vendor/preflight-support-bundle-about',
-        'vendor/support-online-support-bundle-specs',
-        'vendor/support-modular-support-bundle-specs',
         'vendor/preflight-sb-helm-templates-about',
         {
           type: 'category',
-          label: 'Defining Preflight Checks',
+          label: 'Preflight Checks',
           items: [
              'vendor/preflight-helm-defining',
              'vendor/preflight-kots-defining',
+             'vendor/preflight-running',
          ],
         },
         {
           type: 'category',
-          label: 'Customizing Support Bundles',
+          label: 'Support Bundles',
           items: [
+            'vendor/support-online-support-bundle-specs',
+            'vendor/support-modular-support-bundle-specs',
             'vendor/support-bundle-helm-customizing',
             'vendor/support-bundle-kots-customizing',
+            'vendor/support-bundle-generating',
+            'vendor/support-inspecting-support-bundles',
+            'vendor/support-submit-request',
+            'vendor/support-host-support-bundles',
          ],
         },
         {
@@ -565,17 +570,6 @@ const sidebars = {
             'reference/custom-resource-redactor',
           ],
         },    
-        {
-          type: 'category',
-          label: 'Supporting Your Application',
-          items: [
-            'vendor/preflight-running',
-            'vendor/support-bundle-generating',
-            'vendor/support-inspecting-support-bundles',
-            'vendor/support-submit-request',
-            'vendor/support-host-support-bundles',
-          ],
-        },
       ],
     },
     {
