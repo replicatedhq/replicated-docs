@@ -23,7 +23,7 @@ To install the release with KOTS:
 
 1. Complete the installation command prompts:
 
-   1. For `Enter the namespace to deploy to`, enter `gitea-example`. 
+   1. For `Enter the namespace to deploy to`, enter `gitea`. 
 
    1. For `Enter a new password to be used for the Admin Console`, provide a password to access the admin console.
 
@@ -32,7 +32,7 @@ To install the release with KOTS:
   **Example output:**
 
   ```bash
-  Enter the namespace to deploy to: gitea-example
+  Enter the namespace to deploy to: gitea
   • Deploying Admin Console
     • Creating namespace ✓
     • Waiting for datastore to be ready ✓
@@ -62,19 +62,19 @@ To install the release with KOTS:
    1. Watch for the `gitea` Deployment to become ready:
 
       ```
-      kubectl get deploy gitea --namespace gitea-example --watch
+      kubectl get deploy gitea --namespace gitea --watch
       ```
 
    1. After the `gitea` Deployment is ready, confirm that an external IP for the `gitea` LoadBalancer service is available:
 
       ```
-      kubectl get svc gitea --namespace gitea-example
+      kubectl get svc gitea --namespace gitea
       ```
 
    1. Start the port foward again to access the admin console:
 
       ```
-      kubectl kots admin-console --namespace gitea-example 
+      kubectl kots admin-console --namespace gitea 
       ```
 
    1. Go to `http://localhost:8800` to open the admin console.   
@@ -103,13 +103,13 @@ To install the release with KOTS:
 
 1. Uninstall the Gitea application from your cluster so that you can install the same release again using the Helm CLI:
 
-  ```
-  kubectl kots remove gitea-example --namespace gitea-example --undeploy
+  ```bash
+  kubectl kots remove $REPLICATED_APP --namespace gitea --undeploy
   ```
   **Example output**:
   ```
-   • Removing application gitea-example reference from Admin Console and deleting associated resources from the cluster ✓
-   • Application gitea-example has been removed
+   • Removing application gitea-boxer reference from Admin Console and deleting associated resources from the cluster ✓
+   • Application gitea-boxer has been removed
   ```
 
 ## Next Step

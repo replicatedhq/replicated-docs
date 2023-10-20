@@ -68,6 +68,12 @@ To install the release with the Helm CLI:
 
   [View a larger version of this image](/images/tutorial-gitea-helm-instance.png)
 
+1. Uninstall the Helm chart:
+
+   ```
+   helm uninstall gitea
+   ```
+
 ## Next Step
 
 Congratulations! As part of this tutorial, you created a release in the Replicated vendor platform and installed the release with both KOTS and the Helm CLI. To learn more about how to iterate on releases to add more functionality, such as defining preflight checks or custom license entitlements, see [Replicated Quick Start](replicated-onboarding). 
@@ -77,3 +83,4 @@ Congratulations! As part of this tutorial, you created a release in the Replicat
 * [About Installations with the Helm CLI](/vendor/distributing-overview#helm)
 * [Installing with Helm](/vendor/install-with-helm)
 * [About the Replicated SDK](/vendor/replicated-sdk-overview)
+* [Helm Uninstall](https://helm.sh/docs/helm/helm_uninstall/)
