@@ -44,7 +44,19 @@ To install the release with the Helm CLI:
    You can ignore the **No preflight checks found** warning for the purpose of this tutorial. This warning appears because there are no specifications for preflight checks in the Helm chart archive.
    :::
 
-1. After the installation command completes, watch the `gitea` LoadBalancer service until an external IP is available:
+1. After the installation command completes, you can see that both the `gitea` Deployment and the Replicated SDK `replicated` Deployment were created:
+
+   ```
+   kubectl get deploy
+   ```
+   **Example output:**
+   ```
+   NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+   gitea        0/1     1            0           35s
+   replicated   1/1     1            1           35s
+   ```
+
+1. Watch the `gitea` LoadBalancer service until an external IP is available:
 
    ```
    kubectl get svc gitea --watch
@@ -68,10 +80,10 @@ To install the release with the Helm CLI:
 
   [View a larger version of this image](/images/tutorial-gitea-helm-instance.png)
 
-1. Uninstall the Helm chart:
+1. Uninstall the Helm chart and the Replicated SDK:
 
    ```
-   helm uninstall gitea
+   helm delete gitea
    ```
 
 ## Next Step
@@ -84,3 +96,4 @@ Congratulations! As part of this tutorial, you created a release in the Replicat
 * [Installing with Helm](/vendor/install-with-helm)
 * [About the Replicated SDK](/vendor/replicated-sdk-overview)
 * [Helm Uninstall](https://helm.sh/docs/helm/helm_uninstall/)
+* [Helm Delete](https://helm.sh/docs/helm/helm_delete/)

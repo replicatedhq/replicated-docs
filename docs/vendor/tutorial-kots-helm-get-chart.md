@@ -62,16 +62,16 @@ To get the sample Gitea Helm chart and test installation:
    echo Password: $(kubectl get secret --namespace default gitea -o jsonpath="{.data.admin-password}" | base64 -d)
    ```
 
-1. Watch the `gitea` LoadBalancer service until an `EXTERNAL-IP` is available:
+1. Watch the `gitea` LoadBalancer service until an external IP is available:
 
    ```
-   kubectl get svc gitea --namespace default --watch
+   kubectl get svc gitea --watch
    ```
 
-1. When the `EXTERNAL-IP` for the `gitea` LoadBalancer service is available, run the commands provided in the output of the installation command to get the Gitea URL:
+1. When the external IP for the `gitea` LoadBalancer service is available, run the commands provided in the output of the installation command to get the Gitea URL:
 
    ```
-   export SERVICE_IP=$(kubectl get svc --namespace default gitea --template "{{ range (index .status.loadBalancer.ingress 0) }}{{ . }}{{ end }}")
+   export SERVICE_IP=$(kubectl get svc gitea --template "{{ range (index .status.loadBalancer.ingress 0) }}{{ . }}{{ end }}")
    echo "Gitea URL: http://$SERVICE_IP/"
    ```
 
