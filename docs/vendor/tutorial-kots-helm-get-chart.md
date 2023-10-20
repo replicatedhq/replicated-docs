@@ -4,10 +4,10 @@ To begin, get the sample Gitea Helm chart from Bitnami, install the chart in you
 
 To get the sample Gitea Helm chart and test installation:
 
-1. Run the following command to pull and untar the Bitnami Gitea Helm chart:
+1. Run the following command to pull and untar version 1.0.6 of the Bitnami Gitea Helm chart:
 
    ```
-   helm pull --untar oci://registry-1.docker.io/bitnamicharts/gitea
+   helm pull --untar oci://registry-1.docker.io/bitnamicharts/gitea --version 1.0.6
    ```
    For more information about this chart, see the [bitnami/gitea](https://github.com/bitnami/charts/tree/main/bitnami/gitea) repository in GitHub.
 
@@ -26,9 +26,9 @@ To get the sample Gitea Helm chart and test installation:
 1. Install the Gitea chart in your cluster:
 
    ```
-   helm install gitea oci://registry-1.docker.io/bitnamicharts/gitea
+   helm install gitea .
    ```
-   To view the installation instructions, see [Installing the Chart](https://github.com/bitnami/charts/blob/main/bitnami/gitea/README.md#installing-the-chart) in the `bitnami/gitea` repository.
+   To view the full installation instructions from Bitnami, see [Installing the Chart](https://github.com/bitnami/charts/blob/main/bitnami/gitea/README.md#installing-the-chart) in the `bitnami/gitea` repository.
 
    When the chart is installed, the following output is displayed:
 

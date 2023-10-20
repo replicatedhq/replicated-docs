@@ -37,3 +37,7 @@ Before you begin, do the following to set up your environment:
   :::note
   If you do not yet have a vendor portal team to join, you can sign up for a trial account. By default, trial accounts do not include access to Replicated KOTS. To get access to KOTS with your trial account so that you can complete this and other tutorials, contact Replicated at contact@replicated.com.  
   :::
+
+## Next Step
+
+Get the sample Bitnami Helm chart and test installation with the Helm CLI. See [Step 1: Get the Sample Chart and Test](/vendor/tutorial-kots-helm-get-chart)

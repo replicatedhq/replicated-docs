@@ -1,26 +1,56 @@
 # Step 2: Create an Application
 
-Create an application in the Replicated vendor portal. An _application_ is an object that has its own customers, channels, releases, license fields, and more.
+Next, install the replicated CLI and then create an application in the Replicated vendor platform.
 
-A single team can have more than one application. It is common for teams to have multiple applications for the purpose of onboarding, testing, and iterating.
+An _application_ is an object that has its own customers, channels, releases, license fields, and more. A single team can have more than one application. It is common for teams to have multiple applications for the purpose of onboarding, testing, and iterating.
 
 To create an application:
 
-1. Log in to the [vendor portal](https://vendor.replicated.com/).
+1. Install the replicated CLI:
 
-1. In the top left of the page, open the application drop down and click **Create new app...**.
+   ```
+   brew install replicatedhq/replicated/cli
+   ```
+   For more installation options, see [Installing the replicated CLI](/reference/replicated-cli-installing).
 
-   <img alt="create new app drop down" src="/images/create-new-app.png" width="300px"/>
+1. Authorize the replicated CLI:
 
-   [View a larger version of this image](/images/create-new-app.png)
+   ```
+   replicated login
+   ```
+   In the browser window that opens, complete the prompts to log in to your vendor account and authorize the CLI.
 
-1. On the **Create application** page, enter a name for the application. For example, `Gitea Example`.
+1. Create an application named `Gitea`:
 
-   <img alt="create new app page" src="/images/create-application-page.png" width="500px"/>
+   ```
+   replicated create app Gitea
+   ```
 
-   [View a larger version of this image](/images/create-application-page.png)
+1. Set the `REPLICATED_APP` environment variable to the application that you created. This allows you to interact with the application using the replicated CLI without needing to use the `--app` flag with every command:
 
-1. Click **Create application**.
+   1. Get the slug for the application that you created:
+
+      ```
+      replicated app ls
+      ```
+      **Example output**:
+      ```
+      ID                             NAME            SLUG            SCHEDULER
+      2WthxUIfGT13RlrsUx9HR7So8bR    Gitea           gitea-boxer     kots
+      ```
+      In the example above, the application slug is `gitea-boxer`.
+
+      :::note
+      The application _slug_ is a unique string that is generated based on the application name. You can use the application slug to interact with the application through the replicated CLI and the Vendor API v3. The application name and slug are often different from one another because it is possible to create more than one application with the same name.
+      :::
+
+   1. Set the `REPLICATED_APP` environment variable to the application slug.
+
+      **Example:**
+
+      ```
+      export REPLICATED_APP=gitea-boxer
+      ```
 
 ## Next Step
 
@@ -28,4 +58,6 @@ Add the Replicated SDK to the Helm chart and package the chart to an archive. Se
 
 ## Related Topics
 
-[Create an Application](/vendor/vendor-portal-manage-app#create-an-application)
+* [Create an Application](/vendor/vendor-portal-manage-app#create-an-application)
+* [Installing the replicated CLI](/reference/replicated-cli-installing)
+* [replicated app create](/reference/replicated-cli-app-create)

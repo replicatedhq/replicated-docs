@@ -10,11 +10,11 @@ To install the release with KOTS:
 
   [View a larger version of this image](/images/helm-tutorial-unstable-kots-install-command.png)
 
-1. On the command line, run the **KOTS Install** command that you copied.
+1. On the command line, run the **KOTS Install** command that you copied:
 
   ```bash
   curl https://kots.io/install | bash
-  kubectl kots install gitea-example/unstable
+  kubectl kots install $REPLICATED_APP/unstable
   ```
 
   This installs the latest version of the kots CLI and the Replicated admin console. The admin console provides a user interface where you can upload the customer license file and deploy the application.

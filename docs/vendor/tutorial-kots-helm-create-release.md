@@ -55,41 +55,7 @@ To create a release:
     <h5>YAML</h5>
     <K8sCr/>
    </TabItem>
-   </Tabs>
-
-1. Install the replicated CLI so that you can create a release from the command line:
-
-   ```
-   brew install replicatedhq/replicated/cli
-   ```
-   For more installation options, see [Installing the replicated CLI](/reference/replicated-cli-installing).
-
-1. Authorize the replicated CLI:
-
-   ```
-   replicated login
-   ```
-   In the browser window that opens, complete the prompts to log in to your vendor account and authorize the CLI.
-
-1. Set the `REPLICATED_APP` environment variable to the application that you created as part of [Step 2: Create an Application](tutorial-kots-helm-create-app). This allows you to interact with the application using the replicated CLI without needing to use the `--app` flag with every command:
-
-   1. Get the slug for the application that you created:
-
-      ```
-      replicated app ls
-      ```
-      **Example output**:
-      ```
-      ID                             NAME            SLUG            SCHEDULER
-      2WthxUIfGT13RlrsUx9HR7So8bR    Gitea Example   gitea-example   kots
-      ```
-      In the example above, the application slug is `gitea-example`.
-
-   1. Set the `REPLICATED_APP` environment variable to the application slug:
-
-      ```
-      export REPLICATED_APP=gitea-example
-      ```   
+   </Tabs>   
 
 1. From the `manifests` directory, lint the YAML files to confirm that there are no errors:
 
@@ -107,7 +73,9 @@ To create a release:
    troubleshoot-spec                  warn                          Missing troubleshoot spec
    nonexistent-status-informer-object warn    kots-app.yaml   8     Status informer points to a nonexistent kubernetes object. If this is a Helm resource, this warning can be ignored.
    ```
-   The output includes warning messages that list missing manifest files. These manifests control additional KOTS functionality and can be ignored for the purpose of this tutorial.
+   :::note
+   The output includes warning messages that list missing manifest files. These manifests control additional KOTS functionality and can be ignored for the purpose of this tutorial. The `nonexistent-status-informer-object` warning can also be ignored because the `gitea` Deployment resource that was added as a status informer in the KOTS Application custom resource is a Helm resource.
+   :::
 
 1. Create a release:
 
