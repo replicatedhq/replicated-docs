@@ -112,6 +112,22 @@ To install the release with KOTS:
    • Application gitea-boxer has been removed
   ```
 
+1. Remove the admin console from the cluster:  
+
+   1. Delete the namespace where the admin console is installed:
+
+      ```
+      kubectl delete ns gitea
+      ```
+   1. Delete the admin console ClusterRole and ClusterRoleBinding:  
+
+      ```
+      kubectl delete clusterrole kotsadm-role
+      ```
+      ```
+      kubectl delete clusterrolebinding kotsadm-rolebinding
+      ```
+
 ## Next Step
 
 Install the same release with the Helm CLI. See [Step 7: Install the Release with the Helm CLI](tutorial-kots-helm-install-helm).
