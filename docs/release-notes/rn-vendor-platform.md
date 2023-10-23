@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.10.23-0
+
+Released on October 23, 2023
+
+### Bug Fixes {#bug-fixes-v2023-10-23-0}
+* Shows multiple instances for a single customer in the customer instance table view.
+
 ## v2023.10.18-1
 
 Released on October 18, 2023
