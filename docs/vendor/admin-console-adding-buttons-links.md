@@ -1,3 +1,9 @@
+import ServicePortNote from "../partials/custom-resource-application/_servicePort-note.mdx"
+import PortsServiceName from "../partials/custom-resource-application/_ports-serviceName.mdx"
+import PortsLocalPort from "../partials/custom-resource-application/_ports-localPort.mdx"
+import PortsServicePort from "../partials/custom-resource-application/_ports-servicePort.mdx"
+import PortsApplicationURL from "../partials/custom-resource-application/_ports-applicationURL.mdx"
+
 # Adding Buttons and Links
 
 This topic describes how to use the Kubernetes and KOTS Application custom resources to add buttons and links to the Replicated admin console dashboard.
@@ -50,29 +56,6 @@ It's also recommended to list the primary application port(s) here to make verif
 
 In order to define additional ports, add a `ports` key to the Application custom resource manifest file.
 
-<table>
-  <tr>
-    <th>Field</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td>serviceName</td>
-    <td>Service should reference the service name that the application deployed without the namespace.</td>
-  </tr>
-  <tr>
-    <td>servicePort</td>
-    <td>The container port</td>
-  </tr>
-  <tr>
-    <td>localPort</td>
-    <td>A local port </td>
-  </tr>
-  <tr>
-    <td>applicationURL</td>
-    <td>When doing this, it's recommended to not use https but instead use http, unless TLS termination is happening in the application pod.</td>
-  </tr>
-</table>
-
 ```yaml
 apiVersion: kots.io/v1beta1
 kind: Application
@@ -88,5 +71,19 @@ spec:
       applicationUrl: "http://myapplication-service"
  ```
 
- Given the above example, when the application starts and the service is ready, the kots CLI will run the equivalent of `kubectl port-forward svc/myapplication-service 9000:9000` and print a message in the terminal.
+As shown in the example above, `ports` has the following fields:
+
+<ul>
+<PortsServiceName/>
+
+<PortsServicePort/>
+
+<ServicePortNote/>
+
+<PortsLocalPort/>
+
+<PortsApplicationURL/>
+</ul>
+
+Given the above example, when the application starts and the service is ready, the kots CLI will run the equivalent of `kubectl port-forward svc/myapplication-service 9000:9000` and print a message in the terminal.
 

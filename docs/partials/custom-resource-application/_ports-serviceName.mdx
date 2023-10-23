@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 <li><code>ports.serviceName</code>: The name of the service that receives the traffic. KOTS can create a port forward to ClusterIP, NodePort, or LoadBalancer services. For more information about Kubernetes service types, see <a href="https://kubernetes.io/docs/concepts/services-networking/service/">Service</a> in the Kubernetes documentation.</li>
+=======
+<li><code>ports.serviceName</code>: The name of the service that receives the traffic. The service must be a <code>ClusterIP</code> type or, for kURL installations, a <code>NodePort</code> type. KOTS uses <code>ports.serviceName</code> to find a Pod, then port-forwards to the Pod.</li>
+>>>>>>> e4581b14f (add partials for ports parameters)
