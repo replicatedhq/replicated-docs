@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.10.24-0
+
+Released on October 24, 2023
+
+### New Features {#new-features-v2023-10-24-0}
+* Add links to release notes in the vendor portal.
+
 ## v2023.10.23-0
 
 Released on October 23, 2023
