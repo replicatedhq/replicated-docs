@@ -18,7 +18,7 @@ Custom metrics can be used to generate insights on customer usage and adoption o
 
 ## How the Vendor Portal Collects Custom Metrics
 
-The vendor portal collects custom metrics through Replicated KOTS or through the Replicated SDK, depending on which is installed in the cluster alongside the application instance. If both KOTS and SDK are installed in the cluster (such as when a Helm chart-based application that includes the SDK is installed using KOTS), then data is merged to prevent duplication.
+The vendor portal collects custom metrics through Replicated KOTS or through the Replicated SDK, depending on which is installed in the cluster alongside the application instance. If both KOTS and the SDK are installed in the cluster (such as when a Helm chart-based application that includes the SDK is installed using KOTS), then data is merged to prevent duplication.
 
 KOTS and the SDK both expose an in-cluster API where you can configure your application to POST metric payloads. When an application instance sends data to the API, KOTS or the SDK sends the data (including any custom and built-in metrics) to the Replicated app service. The app service is located at `replicated.app` or at your custom domain.
 

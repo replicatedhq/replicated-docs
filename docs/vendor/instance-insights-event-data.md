@@ -4,11 +4,11 @@ This topic provides an overview of the customer and instance insights that you c
 
 ## How the Vendor Portal Collects Instance Data {#about-reporting}
 
-The vendor portal collects data from instances installed in online environments. Depending on the application's installation method, either the Replicated SDK or Replicated KOTS periodically sends a small amount of data to the vendor portal, including properties such as the current version and status of the instance. For a full overview of what data might be included, see the [Replicated Data Transmission Policy](https://docs.replicated.com/vendor/policies-data-transmission).
+The vendor portal collects data from instances installed in online environments. Either the Replicated SDK or Replicated KOTS periodically sends a small amount of data to the vendor portal, depending on which is installed in the cluster alongside the application instance. If both KOTS and the SDK are installed in the cluster (such as when a Helm chart-based application that includes the SDK is installed using KOTS), then data is merged to prevent duplication.
 
-The vendor portal receives instance data from either the Replicated SDK or from KOTS when any of the following _check-ins_ occur:
+The data sent to the vendor portal includes properties such as the current version and status of the instance. For a full overview of what data might be included, see the [Replicated Data Transmission Policy](https://docs.replicated.com/vendor/policies-data-transmission).
 
-* For Helm installations that include the Replicated SDK, the SDK sends instance data to the vendor portal when any of the following occur:
+For Helm chart-based applications that include the Replicated SDK, the SDK sends instance data to the vendor portal when any of the following occur:
 
   * The instance checks for updates. An update check occurs when the instance makes a request to the `/api/v1/app/updates` SDK API endpoint. See [app](/reference/replicated-sdk-apis#app) in _Replicated SDK API (Alpha)_.
 
@@ -18,7 +18,7 @@ The vendor portal receives instance data from either the Replicated SDK or from 
 
   * Every four hours, the SDK automatically sends data.
 
-* For KOTS installations, KOTS sends instance data to the vendor portal when any of the following occur:
+For KOTS installations, KOTS sends instance data to the vendor portal when any of the following occur:
 
   * The instance checks for updates. By default, KOTS checks for updates every four hours. Additionally, an update check can occur when a user clicks the **Check for updates** button in the Replicated admin console. 
 
