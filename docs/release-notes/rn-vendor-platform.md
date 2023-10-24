@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.10.24-0
+
+Released on October 24, 2023
+
+### New Features {#new-features-v2023-10-24-0}
+* Adds links to release notes in the vendor portal.
+
 ## v2023.10.23-0
 
 Released on October 23, 2023
@@ -27,22 +34,22 @@ Released on October 18, 2023
 Released on October 18, 2023
 
 ### New Features {#new-features-v2023-10-18-0}
-* show tags on the cluster and cluster history table.
+* Shows tags on the cluster and cluster history table.
 
 ### Bug Fixes {#bug-fixes-v2023-10-18-0}
 * When using [v3 API to create a release](https://replicated-vendor-api.readme.io/reference/createrelease), release size will be limited to 16MiB when compressed.
 * Shows error message if user encounters an error during application creation.
-* Fixed a bug that would allow creating accounts using an email address with trailing or leading white spaces.
+* Fixes a bug that would allow creating accounts using an email address with trailing or leading white spaces.
 
 ## v2023.10.16-0
 
 Released on October 16, 2023
 
 ### New Features {#new-features-v2023-10-16-0}
-* Add table views for customers and instances on Customers page.
-* Fixed a bug in the copy create cluster command.
-* Fixed the "by" in cluster history to not show "web ui" most of the time.
-* Fixed the display of cost in cluster history table.
+* Adds table views for customers and instances on Customers page.
+* Fixes a bug in the copy create cluster command.
+* Fixes the "by" in cluster history to not show "web ui" most of the time.
+* Fixes the display of cost in cluster history table.
 
 ## v2023.10.13-0
 
@@ -79,12 +86,12 @@ Released on October 10, 2023
 Released on October 9, 2023
 
 ### Bug Fixes {#bug-fixes-v2023.10.09-1}
-* Update the icon for Custom Metrics events on Instance Details pages.
+* Updates the icon for Custom Metrics events on Instance Details pages.
 
 ## v2023.10.09-0
 
 Released on October 9, 2023
 
 ### New Features {#new-features-v2023.10.09-0}
-* Set `false` as the default value for any new Boolean license fields.
-* Change Boolean license field options to a "True"/"False" dropdown on the **Customer Manage** and **Create Customer** pages.
+* Sets `false` as the default value for any new Boolean license fields.
+* Changes Boolean license field options to a "True"/"False" dropdown on the **Customer Manage** and **Create Customer** pages.
