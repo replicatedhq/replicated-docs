@@ -46,6 +46,7 @@ const sidebars = {
       label: 'Admin Console and Download Portal Customization',
       items: [
         'vendor/admin-console-customize-app-icon',
+        'vendor/admin-console-port-forward',
         'vendor/admin-console-adding-buttons-links',
         'vendor/admin-console-prometheus-monitoring',
       ],
