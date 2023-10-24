@@ -16,7 +16,11 @@ Custom metrics can be used to generate insights on customer usage and adoption o
 * Low feature usage and adoption overall can indicate the need to invest in usability, discoverability, documentation, education, or in-product onboarding
 * High usage volume for a customer can indicate that the customer might need help in scaling their instance infrastructure to keep up with projected usage
 
-The vendor portal collects custom metrics through Replicated KOTS or through the Replicated SDK, depending on which is installed in the cluster alongside the application instance. KOTS and the SDK both expose an in-cluster API where you can configure your application to POST metric payloads. When an application instance sends data to the API, KOTS or the SDK sends the data (including any custom and built-in metrics) to the Replicated app service. The app service is located at `replicated.app` or at your custom domain.
+## How the Vendor Portal Collects Custom Metrics
+
+The vendor portal collects custom metrics through Replicated KOTS or through the Replicated SDK, depending on which is installed in the cluster alongside the application instance. If both KOTS and SDK are installed in the cluster (such as when a Helm chart-based application that includes the SDK is installed using KOTS), then data is merged to prevent duplication.
+
+KOTS and the SDK both expose an in-cluster API where you can configure your application to POST metric payloads. When an application instance sends data to the API, KOTS or the SDK sends the data (including any custom and built-in metrics) to the Replicated app service. The app service is located at `replicated.app` or at your custom domain.
 
 If any values in the metric payload are different from the current values for the instance, then a new event is generated and displayed in the vendor portal. For more information about how the vendor portal generates events, see [How the Vendor Portal Generates Events and Insights](/vendor/instance-insights-event-data#how-the-vendor-portal-generates-events-and-insights) in _About Instance and Event Data_.
 
@@ -90,7 +94,7 @@ The location of the API endpoint is different depending on if KOTS or the SDK is
   }
   ```
 
-* For Helm chart-based applications that include the Replicated SDK, the in-cluster API custom metrics endpoint is located at `http://replicated:3000/api/v1/app/custom-metrics`.
+* For Helm chart-based applications that include the Replicated SDK, the in-cluster API custom metrics endpoint is located at `http://replicated:3000/api/v1/app/custom-metrics`. This endpoint is available for SDK-enabled Helm charts that are installed with KOTS or with the Helm CLI.
 
   **Example:**
 
