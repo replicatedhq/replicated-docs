@@ -17,7 +17,7 @@ To get the sample Gitea Helm chart and test installation:
    ```
 1. View the files in the directory:   
    ```
-   gitea ls
+   ls
    ```
    The directory contains the following files:
    ```
@@ -26,7 +26,7 @@ To get the sample Gitea Helm chart and test installation:
 1. Install the Gitea chart in your cluster:
 
    ```
-   helm install gitea .
+   helm install gitea . -n gitea --create-namespace
    ```
    To view the full installation instructions from Bitnami, see [Installing the Chart](https://github.com/bitnami/charts/blob/main/bitnami/gitea/README.md#installing-the-chart) in the `bitnami/gitea` repository.
 
@@ -65,13 +65,13 @@ To get the sample Gitea Helm chart and test installation:
 1. Watch the `gitea` LoadBalancer service until an external IP is available:
 
    ```
-   kubectl get svc gitea --watch
+   kubectl get svc gitea -n gitea --watch
    ```
 
 1. When the external IP for the `gitea` LoadBalancer service is available, run the commands provided in the output of the installation command to get the Gitea URL:
 
    ```
-   export SERVICE_IP=$(kubectl get svc gitea --template "{{ range (index .status.loadBalancer.ingress 0) }}{{ . }}{{ end }}")
+   export SERVICE_IP=$(kubectl get svc --namespace gitea gitea --template "{{ range (index .status.loadBalancer.ingress 0) }}{{ . }}{{ end }}")
    echo "Gitea URL: http://$SERVICE_IP/"
    ```
 
@@ -84,7 +84,7 @@ To get the sample Gitea Helm chart and test installation:
 1. Uninstall the Helm chart:
 
    ```
-   helm delete gitea
+   helm delete gitea -n gitea
    ```
    This command removes all the Kubernetes components associated with the chart and deletes the `gitea` release.
 
