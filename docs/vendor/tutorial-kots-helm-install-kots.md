@@ -117,7 +117,7 @@ To install the release with KOTS:
    1. Delete the namespace where the admin console is installed:
 
       ```
-      kubectl delete ns gitea
+      kubectl delete namespace gitea
       ```
    1. Delete the admin console ClusterRole and ClusterRoleBinding:  
 

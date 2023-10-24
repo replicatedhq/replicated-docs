@@ -45,7 +45,7 @@ To create a release:
    </TabItem>
    <TabItem value="kots-app" label="kots-app.yaml">
    <h5>Description</h5>
-    <p>The KOTS Application custom resource enables features in the Replicated admin console such as branding, release notes, port forwarding, dashboard buttons, application status indicators, and custom graphs.</p><p>The YAML below provides a name for the application to display in the admin console, adds a custom <em>status informer</em> that displays the status of the <code>gitea</code> Deployment resource in the admin console dashboard, and creates a port forward so that the user can open the Gitea application in a browser.</p>
+    <p>The KOTS Application custom resource enables features in the Replicated admin console such as branding, release notes, port forwarding, dashboard buttons, application status indicators, and custom graphs.</p><p>The YAML below provides a name for the application to display in the admin console, adds a custom <em>status informer</em> that displays the status of the <code>gitea</code> Deployment resource in the admin console dashboard, adds a custom application icon, and creates a port forward so that the user can open the Gitea application in a browser.</p>
     <h5>YAML</h5>
     <KotsCr/>
    </TabItem>

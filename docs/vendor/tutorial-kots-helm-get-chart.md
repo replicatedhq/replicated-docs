@@ -26,7 +26,7 @@ To get the sample Gitea Helm chart and test installation:
 1. Install the Gitea chart in your cluster:
 
    ```
-   helm install gitea . -n gitea --create-namespace
+   helm install gitea . --namespace gitea --create-namespace
    ```
    To view the full installation instructions from Bitnami, see [Installing the Chart](https://github.com/bitnami/charts/blob/main/bitnami/gitea/README.md#installing-the-chart) in the `bitnami/gitea` repository.
 
@@ -34,8 +34,8 @@ To get the sample Gitea Helm chart and test installation:
 
    ```
    NAME: gitea
-   LAST DEPLOYED: Tue Oct 17 09:45:19 2023
-   NAMESPACE: default
+   LAST DEPLOYED: Tue Oct 24 12:44:55 2023
+   NAMESPACE: gitea
    STATUS: deployed
    REVISION: 1
    TEST SUITE: None
@@ -49,9 +49,9 @@ To get the sample Gitea Helm chart and test installation:
    1. Get the Gitea URL:
 
    NOTE: It may take a few minutes for the LoadBalancer IP to be available.
-        Watch the status with: 'kubectl get svc --namespace default -w gitea'
+         Watch the status with: 'kubectl get svc --namespace gitea -w gitea'
 
-   export SERVICE_IP=$(kubectl get svc --namespace default gitea --template "{{ range (index .status.loadBalancer.ingress 0) }}{{ . }}{{ end }}")
+   export SERVICE_IP=$(kubectl get svc --namespace gitea gitea --template "{{ range (index .status.loadBalancer.ingress 0) }}{{ . }}{{ end }}")
    echo "Gitea URL: http://$SERVICE_IP/"
 
    WARNING: You did not specify a Root URL for Gitea. The rendered URLs in Gitea may not show correctly. In order to set a root URL use the rootURL value.
@@ -59,13 +59,13 @@ To get the sample Gitea Helm chart and test installation:
    2. Get your Gitea login credentials by running:
 
    echo Username: bn_user
-   echo Password: $(kubectl get secret --namespace default gitea -o jsonpath="{.data.admin-password}" | base64 -d)
+   echo Password: $(kubectl get secret --namespace gitea gitea -o jsonpath="{.data.admin-password}" | base64 -d)
    ```
 
 1. Watch the `gitea` LoadBalancer service until an external IP is available:
 
    ```
-   kubectl get svc gitea -n gitea --watch
+   kubectl get svc gitea --namespace gitea --watch
    ```
 
 1. When the external IP for the `gitea` LoadBalancer service is available, run the commands provided in the output of the installation command to get the Gitea URL:
@@ -84,15 +84,15 @@ To get the sample Gitea Helm chart and test installation:
 1. Uninstall the Helm chart:
 
    ```
-   helm delete gitea -n gitea
+   helm uninstall gitea --namespace gitea
    ```
-   This command removes all the Kubernetes components associated with the chart and deletes the `gitea` release.
+   This command removes all the Kubernetes components associated with the chart and uninstalls the `gitea` release.
 
-   **Example output**:
+1. Delete the namespace:
+
    ```
-   release "gitea" uninstalled
+   kubectl delete namespace gitea
    ```
-   For more information, see [Uninstalling the Chart](https://github.com/bitnami/charts/blob/main/bitnami/gitea/README.md#uninstalling-the-chart) in the `bitnami/gitea` repository.
 
 ## Next Step
 

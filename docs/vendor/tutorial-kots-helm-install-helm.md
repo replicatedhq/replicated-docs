@@ -34,6 +34,20 @@ To install the release with the Helm CLI:
 
    [View a larger version of this image](/images/tutorial-gitea-helm-customer-install-button.png)
 
+   You will use the instructions provided in the **Helm install instructions** dialog to install the chart.
+
+1. Before you run the first command in the **Helm install instructions** dialog, create a `gitea` namespace for the installation:
+
+   ```
+   kubectl create namespace gitea
+   ```
+
+1. Update the current kubectl context to target the new `gitea` namespace. This ensures that the chart is installed in the `gitea` namespace without requiring you to set the `--namespace` flag with the `helm install` command:
+
+   ```
+   kubectl config set-context --namespace=gitea --current
+   ```
+
 1. Run the commands in the provided in the **Helm install instructions** dialog to log in to the registry and install the Helm chart.
 
    <img alt="Helm install instructions dialog" src="/images/tutorial-gitea-helm-install-instructions.png" width="500px"/>
@@ -83,7 +97,13 @@ To install the release with the Helm CLI:
 1. Uninstall the Helm chart and the Replicated SDK:
 
    ```
-   helm delete gitea
+   helm uninstall gitea
+   ```
+
+1. Delete the `gitea` namespace:
+
+   ```
+   kubectl delete namespace gitea
    ```
 
 ## Next Step
