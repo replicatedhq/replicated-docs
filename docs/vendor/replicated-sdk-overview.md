@@ -17,9 +17,7 @@ For more information about the Replicated SDK API, see [Replicated SDK API (Beta
 
 The Replicated SDK has the following limitations:
 
-* **SDK-Enabled Helm Charts with KOTS**: When a Helm chart that includes the SDK as a dependency is installed with KOTS, instance data might be duplicated because both KOTS and the SDK are reporting data. To install an SDK-enabled Helm chart with KOTS, you must update both the chart and the HelmChart custom resource so that the SDK is excluded from KOTS installations. For more information, see [Using an SDK-Enabled Chart for KOTS Installations](helm-kots-using-sdk).
-
-* **Installing with `helm template` and `kubectl apply`**: Some popular enterprise continuous delivery tools, such as ArgoCD and Pulumi, deploy Helm charts by running `helm template` then `kubectl apply` on the generated manifests, rather than running `helm install` or `helm upgrade`.  The following limitations apply to applications installed by running `helm template` then `kubectl apply`:
+* Some popular enterprise continuous delivery tools, such as ArgoCD and Pulumi, deploy Helm charts by running `helm template` then `kubectl apply` on the generated manifests, rather than running `helm install` or `helm upgrade`.  The following limitations apply to applications installed by running `helm template` then `kubectl apply`:
 
   * The `/api/v1/app/history` SDK API endpoint always returns an empty array because there is no Helm history in the cluster. See [GET /app/history](/reference/replicated-sdk-apis#get-apphistory) in _Replicated SDK API (Beta)_.
 

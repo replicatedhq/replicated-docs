@@ -35,7 +35,6 @@ const sidebars = {
       items: [
         'vendor/helm-native-about',
         'vendor/helm-native-v2-using',
-        'vendor/helm-kots-using-sdk',
         'vendor/helm-native-helm-install-order',
         'vendor/helm-optional-charts',
         'vendor/helm-optional-value-keys',
