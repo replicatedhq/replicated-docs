@@ -80,8 +80,8 @@ Custom metrics have the following limitations:
 
 You can configure your application to send a set of metrics as key value pairs to the API that is running in the cluster alongside the application instance.
 
-The location of the API endpoint is different depending on if KOTS or the SDK is installed in the cluster:
-* For applications installed with KOTS, the in-cluster API custom metrics endpoint is located at `http://kotsadm:3000/api/v1/app/custom-metrics`. 
+The location of the custom metrics API endpoint is different for KOTS and the Replicated SDK:
+* KOTS provides an in-cluster API custom metrics endpoint at `http://kotsadm:3000/api/v1/app/custom-metrics`. 
 
   **Example:**
 
@@ -98,7 +98,7 @@ The location of the API endpoint is different depending on if KOTS or the SDK is
   }
   ```
 
-* For Helm chart-based applications that include the Replicated SDK, the in-cluster API custom metrics endpoint is located at `http://replicated:3000/api/v1/app/custom-metrics`. This endpoint is available for SDK-enabled Helm charts that are installed with KOTS or with the Helm CLI.
+* The Replicated SDK provides an in-cluster API custom metrics endpoint at `http://replicated:3000/api/v1/app/custom-metrics`.
 
   **Example:**
 
