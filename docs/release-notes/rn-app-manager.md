@@ -16,6 +16,16 @@ The following table lists the versions of Kubernetes that are compatible with ea
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.103.3
+
+Released on October 25, 2023
+
+Support for Kubernetes: 1.25, 1.26, 1.27, and 1.28
+
+### Improvements {#improvements-1-103-3}
+* Updates the kubectl binary in the kotsadm image to resolve CVE-2023-39325, CVE-2023-3978, and CVE-2023-44487 with medium severity.
+* Updates the golang.org/x/net go module to version 0.17.0 to resolve CVE-2023-39325 and CVE-2023-44487 with medium severity.
+
 ## 1.103.2
 
 Released on October 9, 2023
