@@ -4,7 +4,7 @@ This topic provides an overview of the customer and instance insights that you c
 
 ## How the Vendor Portal Collects Instance Data {#about-reporting}
 
-The vendor portal collects data from instances installed in online environments. Either Replicated KOTS or the Replicated SDK periodically sends a small amount of data to the vendor portal, depending on which is installed in the cluster alongside the application. If both KOTS and the SDK are installed in the cluster (such as when a Helm chart-based application that includes the SDK is installed with KOTS), then instance data is merged to prevent duplication.
+The vendor portal collects data from instances installed in online environments. Either Replicated KOTS or the Replicated SDK periodically sends a small amount of data to the vendor portal, depending on which is installed in the cluster alongside the application. If both KOTS and the SDK are installed in the cluster (such as when a Helm chart-based application that includes the SDK is installed with KOTS), then both KOTS and the SDK send instance data.
 
 The data sent to the vendor portal includes properties such as the current version and status of the instance. For a full overview of what data might be included, see the [Replicated Data Transmission Policy](https://docs.replicated.com/vendor/policies-data-transmission).
 
@@ -46,11 +46,7 @@ The vendor portal uses events to display insights for each active instance in a 
 
 Collecting instance data has the following requirements:
 
-* Either Replicated KOTS or the Replicated SDK must be installed in the cluster where the application instance is running.
-
-  :::note
-  If both KOTS and the SDK are installed in the cluster (such as when a Helm chart-based application that includes the SDK is installed with KOTS), then instance data is merged to prevent duplication.
-  :::
+* Replicated KOTS or the Replicated SDK must be installed in the cluster where the application instance is running. 
 
 * For KOTS installations and for Helm CLI installations that use `helm template` then `kubectl apply`, additional configuration is required to get application status data. For more information, see [Enabling and Understanding Application Status](/vendor/insights-app-status).
 

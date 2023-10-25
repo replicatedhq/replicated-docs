@@ -18,7 +18,7 @@ Custom metrics can be used to generate insights on customer usage and adoption o
 
 ## How the Vendor Portal Collects Custom Metrics
 
-The vendor portal collects custom metrics through Replicated KOTS or through the Replicated SDK, depending on which is installed in the cluster alongside the application. If both KOTS and the SDK are installed in the cluster (such as when a Helm chart-based application that includes the SDK is installed with KOTS), then custom metric data is merged to prevent duplication.
+The vendor portal collects custom metrics through Replicated KOTS or through the Replicated SDK, depending on which is installed in the cluster alongside the application.
 
 KOTS and the SDK both expose an in-cluster API where you can configure your application to POST metric payloads. When an application instance sends data to the API, KOTS or the SDK sends the data (including any custom and built-in metrics) to the Replicated app service. The app service is located at `replicated.app` or at your custom domain.
 
@@ -37,10 +37,6 @@ To support the collection of custom metrics, one of the following must be runnin
 * Replicated SDK version 1.0.0-beta.5 or later
 
 If you have any customers that are running earlier versions of KOTS or the SDK, Replicated recommends that you add logic to your application to gracefully handle a 404 from the in-cluster APIs.
-
-:::note
-If both KOTS and the SDK are installed in the cluster (such as when a Helm chart-based application that includes the SDK is installed with KOTS), then instance data is merged to prevent duplication.
-:::
 
 ## Limitations
 
@@ -78,7 +74,14 @@ Custom metrics have the following limitations:
 
 ## Configure Custom Metrics
 
-You can configure your application to send a set of metrics as key value pairs to the API that is running in the cluster alongside the application instance:
+You can configure your application to POST a set of metrics as key value pairs to the API that is running in the cluster alongside the application instance.
+
+Both KOTS and the SDK expose an in-cluster API:
+
+:::note
+If both KOTS and the SDK are installed in the cluster, then you can POST custom metrics to either in-cluster API.
+:::
+
 * KOTS provides an in-cluster API custom metrics endpoint at `http://kotsadm:3000/api/v1/app/custom-metrics`. 
 
   **Example:**
