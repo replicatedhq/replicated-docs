@@ -21,6 +21,7 @@ import PortsServiceName from "../partials/custom-resource-application/_ports-ser
 import PortsLocalPort from "../partials/custom-resource-application/_ports-localPort.mdx"
 import PortsServicePort from "../partials/custom-resource-application/_ports-servicePort.mdx"
 import PortsApplicationURL from "../partials/custom-resource-application/_ports-applicationURL.mdx"
+import KurlNote from "../partials/custom-resource-application/_ports-kurl-note.mdx"
 
 # Application
 
@@ -312,7 +313,8 @@ spec:
 <tr>
     <th>Description</th>
     <td>
-      <p>Extra ports (additional to the <code>:8800</code> admin console port) that are port-forwarded when running the <code>kots admin-console</code> command. With ports specified, KOTS can establish port forwarding to simplify connections to the deployed application. When the application starts and the service is ready, the kots CLI will print a message in the terminal with the URL where the port-forwarded service can be accessed.</p>
+      <p>Extra ports (additional to the <code>8800</code> admin console port) that are port-forwarded when running the <code>kubectl kots admin-console</code> command. With ports specified, KOTS can establish port forwarding to simplify connections to the deployed application. When the application starts and the service is ready, the kots CLI will print a message in the terminal with the URL where the port-forwarded service can be accessed.</p>
+      <KurlNote/>
       <p>The <code>ports</code> key has the following fields:</p>
       <ul>
         <PortsServiceName/>
@@ -320,8 +322,7 @@ spec:
         <ServicePortNote/>
         <PortsLocalPort/>
         <PortsApplicationURL/>
-      </ul>
-      <p>For information about how to link to a port-forwarded service from the admin console dashboard, see <a href="/vendor/admin-console-adding-buttons-links">Adding Buttons and Links</a>.</p> 
+      </ul> 
     </td>
   </tr>
   <tr>
