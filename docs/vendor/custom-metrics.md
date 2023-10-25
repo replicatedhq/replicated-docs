@@ -78,9 +78,7 @@ Custom metrics have the following limitations:
 
 ## Configure Custom Metrics
 
-You can configure your application to send a set of metrics as key value pairs to the API that is running in the cluster alongside the application instance.
-
-The location of the custom metrics API endpoint is different for KOTS and the Replicated SDK:
+You can configure your application to send a set of metrics as key value pairs to the API that is running in the cluster alongside the application instance:
 * KOTS provides an in-cluster API custom metrics endpoint at `http://kotsadm:3000/api/v1/app/custom-metrics`. 
 
   **Example:**
