@@ -32,7 +32,7 @@ When installed alongisde the application, KOTS automatically sends instance data
 
 * The status of an instance changes. For example, an instance can change from a Ready to Degraded status. For more information, see [Enabling and Understanding Application Status](insights-app-status).
 
-* (KOTS v1.92 and later only) The instance completes an update to a new application version.
+* (KOTS v1.92 and later only) The instance deploys a new application version.
 
 ## How the Vendor Portal Generates Events and Insights
 
