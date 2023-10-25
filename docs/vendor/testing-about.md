@@ -24,6 +24,23 @@ You can use the compatibility matrix with the replicated CLI or the Replicated v
 
 <Billing/>
 
+### Quotas and Capacity
+
+By default, the compatibility matrix sets quotas for the capacity that can be used concurrently by each vendor portal team. These quotas are designed to ensure that Replicated maintains a minimum amount of capacity for provisioning both VM and cloud-based clusters.
+
+By default, the quota for cloud-based cluster distributions (AKS, GKE, EKS) is three clusters running concurrently.
+
+VM-based cluster distributions (such as kind, OpenShift, and Replicated kURL) have the following default quotas:
+* 32 vCPUs
+* 128 GiB memory
+* 800 GiB disk size 
+
+You can request increased quotas at any time with no additional cost. To view your team's current quota and capacity usage, or to request a quota increase, go to [**Compatibility Matrix > Settings**](https://vendor.replicated.com/compatibility-matrix/settings) in the vendor portal:
+
+![Compatibility matrix settings page](/images/compatibility-matrix-settings.png)
+
+[View a larger version of this image](/images/compatibility-matrix-settings.png)
+
 ### Cluster Status
 
 Clusters created with the compatibility matrix can have the following statuses:
