@@ -16,6 +16,11 @@ import TargetKotsVersion from "../partials/custom-resource-application/_targetKo
 import MinKotsVersion from "../partials/custom-resource-application/_minKotsVersion.mdx"
 import ProxyRegistryDomain from "../partials/custom-resource-application/_proxyRegistryDomain.mdx"
 import ReplicatedRegistryDomain from "../partials/custom-resource-application/_replicatedRegistryDomain.mdx"
+import ServicePortNote from "../partials/custom-resource-application/_servicePort-note.mdx"
+import PortsServiceName from "../partials/custom-resource-application/_ports-serviceName.mdx"
+import PortsLocalPort from "../partials/custom-resource-application/_ports-localPort.mdx"
+import PortsServicePort from "../partials/custom-resource-application/_ports-servicePort.mdx"
+import PortsApplicationURL from "../partials/custom-resource-application/_ports-applicationURL.mdx"
 
 # Application
 
@@ -304,20 +309,19 @@ spec:
 ## ports
 
 <table>
-  <tr>
+<tr>
     <th>Description</th>
     <td>
-      <p>Extra ports (additional to the :8800 admin console port) that are port-forwarded when running the <code>kots admin-console</code> command. With ports specified, the kots CLI can establish port-forwarding to simplify connections to the deployed application.</p>
-      <p>You can use the <code>ports</code> field to create a port-forward to a service that has a <code>ClusterIP</code> type. For embedded clusters provisioned by Replicated kURL, you can also create a custom link to a service that has a <code>NodePort</code> type.</p>
-      <p>For more information about configuring a custom link in embedded clusters to a <code>NodePort</code> type service, see <a href="/vendor/admin-console-adding-buttons-links">Adding Buttons and Links</a>.</p>
-      <p><code>ports</code> has the following fields:</p>
+      <p>Extra ports (additional to the <code>:8800</code> admin console port) that are port-forwarded when running the <code>kots admin-console</code> command. With ports specified, KOTS can establish port forwarding to simplify connections to the deployed application. When the application starts and the service is ready, the kots CLI will print a message in the terminal with the URL where the port-forwarded service can be accessed.</p>
+      <p>The <code>ports</code> key has the following fields:</p>
       <ul>
-        <li><code>ports.serviceName</code>: The name of the service that has a <code>ClusterIP</code> type or <code>NodePort</code> type if using kURL, that receives the traffic.</li>
-        <li><code>ports.servicePort</code>: The <code>ClusterIP</code> port to forward traffic.</li>
-        <li><code>ports.localPort</code>: If set, the port to map on the local workstation.
-        If not set, this is the same as <code>servicePort</code>.</li>
-        <li><code>ports.applicationUrl</code>: Must match a service found in the <code>k8s.io</code> Application manifest.</li>
+        <PortsServiceName/>
+        <PortsServicePort/>
+        <ServicePortNote/>
+        <PortsLocalPort/>
+        <PortsApplicationURL/>
       </ul>
+      <p>For information about how to link to a port-forwarded service from the admin console dashboard, see <a href="/vendor/admin-console-adding-buttons-links">Adding Buttons and Links</a>.</p> 
     </td>
   </tr>
   <tr>
