@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.10.25-1
+
+Released on October 25, 2023
+
+### New Features {#new-features-v2023-10-25-1}
+* Update background color and add card styles to Compatibility Matrix pages.
+
 ## v2023.10.24-0
 
 Released on October 24, 2023
