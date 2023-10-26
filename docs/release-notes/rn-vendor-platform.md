@@ -8,6 +8,15 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.10.26-0
+
+Released on October 26, 2023
+
+### New Features {#new-features-v2023-10-26-0}
+* Allow editing tags in the Cluster History table.
+* Allow adding tags as separate columns in the Cluster History table.
+* Show some stats at the top of the Cluster History table.
+
 ## v2023.10.24-0
 
 Released on October 24, 2023
