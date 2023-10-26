@@ -8,6 +8,14 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.10.26-3
+
+Released on October 26, 2023
+
+### New Features {#new-features-v2023-10-26-3}
+* Update styles on the Compatibility Matrix Cluster History page.
+* Updates styles on Customers, Troubleshoot, and License Fields pages.
+
 ## v2023.10.26-0
 
 Released on October 26, 2023
