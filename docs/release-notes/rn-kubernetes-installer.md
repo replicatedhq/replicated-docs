@@ -1124,7 +1124,7 @@ Released on August 25, 2022
 
 ### Bug Fixes {#bug-fixes-v2022-08-25-0}
 
-- Fixes the [reset task](https://kurl.sh/docs/install-with-kurl/adding-nodes#resetting-a-node) which fails when unable to find the kurlsh/weaveexec image.
+- Fixes the [reset task](https://kurl.sh/docs/install-with-kurl/managing-nodes#reset-a-node) which fails when unable to find the kurlsh/weaveexec image.
 - Fixes the [Rook 1.0 to 1.4 task](https://kurl.sh/docs/add-ons/rook#upgrades) which would wait for health indefinitely after upgrading to 1.4.9 on single-node installations.
 
 ## Release v2022.08.23-0
@@ -2337,7 +2337,7 @@ Released on July 9, 2021
 - Added Sonobuoy add-on version 0.52.0.
 
 ### Bug Fixes
-- The [reset task](https://kurl.sh/docs/install-with-kurl/adding-nodes#resetting-a-node) will now properly remove Kubernetes host packages.
+- The [reset task](https://kurl.sh/docs/install-with-kurl/managing-nodes#reset-a-node) will now properly remove Kubernetes host packages.
 
 ## Release v2021.07.02-0
 
@@ -2594,10 +2594,10 @@ Released on May 7, 2021
 - Added [KOTS add-on](https://kurl.sh/docs/add-ons/kotsadm) version 1.41.0.
 
 ### Improvements
-- Allow the `WEAVE_TAG` environment variable to be specified to pin the Weave version when running the [reset task](https://kurl.sh/docs/install-with-kurl/adding-nodes#resetting-a-node).
+- Allow the `WEAVE_TAG` environment variable to be specified to pin the Weave version when running the [reset task](https://kurl.sh/docs/install-with-kurl/managing-nodes#reset-a-node).
 
 ### Bug Fixes
-- Fixed Weave iptables reset when running the [reset task](https://kurl.sh/docs/install-with-kurl/adding-nodes#resetting-a-node).
+- Fixed Weave iptables reset when running the [reset task](https://kurl.sh/docs/install-with-kurl/managing-nodes#reset-a-node).
 - Added the ability to specicify a [release version](https://kurl.sh/docs/install-with-kurl/#versioned-releases) when running the kURL installer.
 - Added [Longhorn add-on](https://kurl.sh/docs/add-ons/longhorn) version 1.1.1.
 

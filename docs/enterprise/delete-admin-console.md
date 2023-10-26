@@ -105,7 +105,7 @@ The `reset` command is intended to be used only on development servers. It has t
 
 Instead of using the `reset` command, you can also discard your current VM (if you are using one) and recreate the VM with a new OS to reinstall the admin console and an application.
 
-For more information about the `reset` command, see [Resetting a Node](https://kurl.sh/docs/install-with-kurl/adding-nodes#resetting-a-node) in the kURL documentation.
+For more information about the `reset` command, see [Resetting a Node](https://kurl.sh/docs/install-with-kurl/managing-nodes#reset-a-node) in the kURL documentation.
 
 To delete the admin console from an embedded cluster:
 
