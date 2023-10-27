@@ -203,4 +203,4 @@ The resource restore priority was changed in Velero 1.10.3 and 1.11.0, which lea
 
 #### Solution
 
-These warnings do not necessarily mean that the restore itself failed. The endpoints likely do exist as they are created by Kubernetes when the related Service resources were restored. However, to prevent encountering these warnings, use Velero version 1.10.2 or earlier.
+These warnings do not necessarily mean that the restore itself failed. The endpoints likely do exist as they are created by Kubernetes when the related Service resources were restored. This issue is resolved in Velero versions 1.11.1 and 1.12.0.
