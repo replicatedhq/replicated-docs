@@ -78,4 +78,4 @@ The following table lists which versions of Velero are compatible with each vers
 |------|-------------|
 | 1.15 to 1.20.2 | 1.2.0 |
 | 1.20.3 to 1.94.0 | 1.5.1 through 1.9.x |
-| 1.94.1 and later | 1.6.x through 1.12.1 |
+| 1.94.1 and later | 1.6.x through 1.12.x |
