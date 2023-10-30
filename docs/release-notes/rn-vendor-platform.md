@@ -15,6 +15,20 @@ Released on October 27, 2023
 ### Improvements {#improvements-v2023-10-27-1}
 * Various style updates to the **Images**, **Kubernetes Installer**, **Custom Domains**, and **App Settings** pages.
 
+## v2023.10.26-3
+
+Released on October 26, 2023
+
+### Improvements {#improvements-v2023-10-26-3}
+* Various style improvements to the Compatibility Matrix **Cluster History**, **Customers**, **Troubleshoot**, and **License Fields** pages.
+
+## v2023.10.26-2
+
+Released on October 26, 2023
+
+### Bug Fixes {#bug-fixes-v2023-10-26-2}
+* Fixes query timeout issues with the `/events` API endpoint.
+
 ## v2023.10.26-0
 
 Released on October 26, 2023
@@ -22,7 +36,7 @@ Released on October 26, 2023
 ### New Features {#new-features-v2023-10-26-0}
 * Allow editing tags in the Cluster History table.
 * Allow adding tags as separate columns in the Cluster History table.
-* Show some stats at the top of the Cluster History table.
+* Show some statistics at the top of the Cluster History table.
 
 ## v2023.10.24-0
 
