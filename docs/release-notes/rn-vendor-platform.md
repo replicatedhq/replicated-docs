@@ -12,8 +12,8 @@ pagination_prev: null
 
 Released on October 27, 2023
 
-### New Features {#new-features-v2023-10-27-1}
-* Update styles for Images, Kubernetes Installer, Custom Domains, and App Settings pages.
+### Improvements {#improvements-v2023-10-27-1}
+* Various style updates to the **Images**, **Kubernetes Installer**, **Custom Domains**, and **App Settings** pages.
 
 ## v2023.10.26-0
 
