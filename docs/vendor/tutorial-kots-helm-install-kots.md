@@ -21,6 +21,10 @@ To install the release with KOTS:
 
   For additional kots CLI installation options, including how to install without root access, see [Installing the kots CLI](/reference/kots-cli-getting-started).
 
+  :::note
+  KOTS v1.104.0 or later is required to deploy the Replicated SDK. You can verify the version of KOTS installed with `kubectl kots version`.
+  :::
+
 1. Complete the installation command prompts:
 
    1. For `Enter the namespace to deploy to`, enter `gitea`. 
