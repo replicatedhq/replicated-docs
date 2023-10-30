@@ -12,7 +12,7 @@ pagination_prev: null
 
 Released on October 27, 2023
 
-### New Features {#new-features-v2023-10-27-2}
+### Improvements {#improvements-v2023-10-27-2}
 * Standardize breadcrumbs across the site.
 
 ## v2023.10.26-0
