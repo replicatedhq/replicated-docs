@@ -13,7 +13,7 @@ pagination_prev: null
 Released on October 26, 2023
 
 ### Improvements {#improvements-v2023-10-26-3}
-* Various style improvements to the Compatibility Matrix **Cluster History**, **Customers**, **Troubleshoot**, and **License Fields** pages
+* Various style improvements to the Compatibility Matrix **Cluster History**, **Customers**, **Troubleshoot**, and **License Fields** pages.
 
 ## v2023.10.26-0
 
