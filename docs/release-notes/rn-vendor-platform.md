@@ -15,6 +15,27 @@ Released on October 27, 2023
 ### Improvements {#improvements-v2023-10-27-2}
 * Standardize breadcrumbs across the site.
 
+## v2023.10.27-1
+
+Released on October 27, 2023
+
+### Improvements {#improvements-v2023-10-27-1}
+* Various style updates to the **Images**, **Kubernetes Installer**, **Custom Domains**, and **App Settings** pages.
+
+## v2023.10.26-3
+
+Released on October 26, 2023
+
+### Improvements {#improvements-v2023-10-26-3}
+* Various style improvements to the Compatibility Matrix **Cluster History**, **Customers**, **Troubleshoot**, and **License Fields** pages.
+
+## v2023.10.26-2
+
+Released on October 26, 2023
+
+### Bug Fixes {#bug-fixes-v2023-10-26-2}
+* Fixes query timeout issues with the `/events` API endpoint.
+
 ## v2023.10.26-0
 
 Released on October 26, 2023
@@ -22,7 +43,7 @@ Released on October 26, 2023
 ### New Features {#new-features-v2023-10-26-0}
 * Allow editing tags in the Cluster History table.
 * Allow adding tags as separate columns in the Cluster History table.
-* Show some stats at the top of the Cluster History table.
+* Show some statistics at the top of the Cluster History table.
 
 ## v2023.10.24-0
 
@@ -61,8 +82,10 @@ Released on October 18, 2023
 
 Released on October 16, 2023
 
-### New Features {#new-features-v2023-10-16-0}
+### Improvements {#improvements-v2023-10-16-0}
 * Adds table views for customers and instances on Customers page.
+
+### Bug Fixes {#bug-fixes-v2023-10-16-0}
 * Fixes a bug in the copy create cluster command.
 * Fixes the "by" in cluster history to not show "web ui" most of the time.
 * Fixes the display of cost in cluster history table.
@@ -71,10 +94,8 @@ Released on October 16, 2023
 
 Released on October 13, 2023
 
-### New Features {#new-features-v2023-10-13-0}
-* Adds the name of the entity that created the cluster to the cluster page.
-
 ### Improvements {#improvements-v2023-10-13-0}
+* Adds the name of the entity that created the cluster to the cluster page.
 * Various design updates to the **Cluster History** page to improve the user experience.
 
 ## v2023.10.11-1
@@ -82,8 +103,10 @@ Released on October 13, 2023
 Released on October 11, 2023
 
 ### New Features {#new-features-v2023-10-11-1}
-* Adds "Settings" page within the Compatibility Matrix, granting users the ability to access quota and capacity information and submit requests for increasing their quotas.
-* Adds updated table view for the Channels page.
+* Adds **Settings** page for the Compatibility Matrix, granting users the ability to access quota and capacity information and submit requests for increasing their quotas.
+
+### Improvements {#improvements-v2023-10-11-1}
+* Adds updated table view for the **Channels** page.
 
 ### Bug Fixes {#bug-fixes-v2023-10-11-1}
 * Fixes an issue that could prevent users from logging in because they do not have an RBAC role assigned.
@@ -108,6 +131,6 @@ Released on October 9, 2023
 
 Released on October 9, 2023
 
-### New Features {#new-features-v2023.10.09-0}
+### Improvements {#improvements-v2023.10.09-0}
 * Sets `false` as the default value for any new Boolean license fields.
 * Changes Boolean license field options to a "True"/"False" dropdown on the **Customer Manage** and **Create Customer** pages.
