@@ -64,15 +64,33 @@ Installing a release using the Helm CLI in an air gapped environment requires fi
 
 To install in air gap environments:
 
-1. Pull the chart from the replicated registry from a machine with internet access and move it to the air gapped machine:
+1. Log in to the Replicated registry:
+
+   ```bash
+   helm registry login registry.replicated.com --username EMAIL_ADDRESS --password LICENSE_ID
+   ```
+   Where:
+   * `EMAIL_ADDRESS` is the email address of the customer.
+   * `LICENSE_ID` is the license ID for the customer.
+
+1. From a machine with internet access, pull the application Helm chart from the Replicated registry:
 
    ```
-   helm pull oci://registry.replicated.com/<app-slug>/<channel-slug>/<chart-name>
+   helm pull oci://registry.replicated.com/APP_SLUG/CHANNEL_SLUG/CHART_NAME
    ```
 
-1. If the Replicated SDK is included in the Helm chart, do the following to copy the `replicated-sdk` image to the air gapped registry:
+1.  Copy the application Helm chart to the air gapped machine.   
 
-   1. From a machine with internet access:
+1. If the Replicated SDK is included in the Helm chart, do the following to get the `replicated-sdk` image:
+
+   1. From a machine with internet access, download the Replicated SDK Helm chart archive:
+
+      ```
+      docker save replicated/replicated-sdk:SDK_VERSION -o replicated-sdk.tar
+      ```
+      Where `SDK_VERSION` is the version of the SDK to save.
+
+      **Example**:
    
       ```
       docker save replicated/replicated-sdk:v1.0.0-beta.11 -o replicated-sdk.tar
@@ -89,17 +107,17 @@ To install in air gap environments:
    1. Retag the image:
    
       ```
-      docker tag replicated/replicated-sdk:v1.0.0-beta.11 DEST_REGISTRY/replicated-sdk:IMAGE_TAG
+      docker tag replicated/replicated-sdk:v1.0.0-beta.11 DESTINATION_REGISTRY/replicated-sdk:IMAGE_TAG
       ```
    
    1. Push to the air gapped registry:
    
       ```
-      docker push <dest-registry>/replicated-sdk:<tag>
+      docker push DESTINATION_REGISTRY/replicated-sdk:IMAGE_TAG
       ```
 
 1. Install the pulled chart with the following Helm values:
 
    ```
-   helm install <release-name> <downloaded-chart.tgz> --set replicated.images.replicated-sdk=<dest-registry>/replicated-sdk:<tag> --set replicated.isAirgap=true
+   helm install RELEASE CHART_TGZ --set replicated.images.replicated-sdk=DESTINATION_REGISTRY/replicated-sdk:IMAGE_NAME --set replicated.isAirgap=true
    ```
