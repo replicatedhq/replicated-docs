@@ -13,7 +13,7 @@ pagination_prev: null
 Released on October 26, 2023
 
 ### Bug Fixes {#bug-fixes-v2023-10-26-2}
-* Fixes query timeout issues /events API endpoint.
+* Fixes query timeout issues with the `/events` API endpoint.
 
 ## v2023.10.26-0
 
