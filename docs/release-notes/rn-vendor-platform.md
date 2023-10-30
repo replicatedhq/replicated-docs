@@ -8,6 +8,12 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.10.27-1
+
+Released on October 27, 2023
+
+### Improvements {#improvements-v2023-10-27-1}
+* Various style updates to the **Images**, **Kubernetes Installer**, **Custom Domains**, and **App Settings** pages.
 
 ## v2023.10.26-3
 
