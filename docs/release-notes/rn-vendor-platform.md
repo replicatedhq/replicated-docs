@@ -12,7 +12,7 @@ pagination_prev: null
 
 Released on October 30, 2023
 
-### New Features {#new-features-v2023-10-30-1}
+### Improvements {#improvements-v2023-10-30-1}
 * Update styles on Instance Details page.
 * Update tab styles across the site.
 
