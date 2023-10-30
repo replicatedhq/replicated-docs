@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.10.30-3
+
+Released on October 30, 2023
+
+### Bug Fixes {#bug-fixes-v2023-10-30-3}
+* Fixes style bug on the Audit Log page where the search input border is partially hidden.
+
 ## v2023.10.30-1
 
 Released on October 30, 2023
