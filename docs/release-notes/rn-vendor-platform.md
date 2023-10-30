@@ -8,6 +8,14 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+
+## v2023.10.26-3
+
+Released on October 26, 2023
+
+### Improvements {#improvements-v2023-10-26-3}
+* Various style improvements to the Compatibility Matrix **Cluster History**, **Customers**, **Troubleshoot**, and **License Fields** pages.
+
 ## v2023.10.26-2
 
 Released on October 26, 2023
@@ -22,7 +30,7 @@ Released on October 26, 2023
 ### New Features {#new-features-v2023-10-26-0}
 * Allow editing tags in the Cluster History table.
 * Allow adding tags as separate columns in the Cluster History table.
-* Show some stats at the top of the Cluster History table.
+* Show some statistics at the top of the Cluster History table.
 
 ## v2023.10.24-0
 
