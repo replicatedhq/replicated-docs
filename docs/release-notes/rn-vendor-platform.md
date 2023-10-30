@@ -13,7 +13,7 @@ pagination_prev: null
 Released on October 30, 2023
 
 ### New Features {#new-features-v2023-10-30-2}
-* Hide all customer columns except name and ID by default in the Instances view on the Customers page and update column names.
+* Make some columns hidden by default in the Instances view on the Customers page and update column names.
 
 ## v2023.10.27-2
 
