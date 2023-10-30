@@ -11,7 +11,7 @@ Before you install, complete the following prerequisites:
 
 ## Install
 
-To install a Helm chart:
+To install a Helm chart in an online environment:
 
 1. In the vendor portal, go to **Customers** and click on the target customer.
 
@@ -38,18 +38,18 @@ To install a Helm chart:
 
 1. Run the fourth command to install using Helm:
 
-    ```bash
-    helm install RELEASE_NAME oci://registry.replicated.com/APP_SLUG/CHANNEL_SLUG/CHART_NAME
-    ```
-    Replace `RELEASE_NAME`, `APP_SLUG`, `CHANNEL_SLUG`, and `CHART_NAME`, with the values provided in the command in the **Helm install instructions** dialog.
+   ```bash
+   helm install RELEASE_NAME oci://registry.replicated.com/APP_SLUG/CHANNEL_SLUG/CHART_NAME
+   ```
+   Replace `RELEASE_NAME`, `APP_SLUG`, `CHANNEL_SLUG`, and `CHART_NAME`, with the values provided in the command in the **Helm install instructions** dialog.
 
-    :::note
-    The channel slug is not required for releases promoted to the Stable channel.
-    :::
+   :::note
+   The channel slug is not required for releases promoted to the Stable channel.
+   :::
 
-    :::note
-    To install the SDK with custom RBAC permissions, include the `--set` flag with the `helm install` command to override the value of the `replicated.serviceAccountName` field with a custom service account. For more information, see [Customizing RBAC for the SDK](/vendor/replicated-sdk-customizing#customize-rbac-for-the-sdk).
-    :::
+   :::note
+   To install the SDK with custom RBAC permissions, include the `--set` flag with the `helm install` command to override the value of the `replicated.serviceAccountName` field with a custom service account. For more information, see [Customizing RBAC for the SDK](/vendor/replicated-sdk-customizing#customize-rbac-for-the-sdk).
+   :::
 
 1. (Optional) In the vendor portal, click **Customers**. You can see that the customer you used to install is marked as **Active** and the details about the application instance are listed under the customer name. 
 
@@ -57,3 +57,49 @@ To install a Helm chart:
 
    ![example customer in the vendor portal with an active instance](/images/sdk-customer-active-example.png)
    [View a larger version of this image](/images/sdk-customer-active-example.png)
+
+## Install in Air Gap Environments
+
+Installing a release using the Helm CLI in an air gapped environment requires first pulling the chart from the Replicated registry from a machine with internet access. Additionally, if the Replicated SDK is included in the Helm chart, you must push the SDK image to a private registry from the air gapped machine.
+
+To install in air gap environments:
+
+1. Pull the chart from the replicated registry from a machine with internet access and move it to the air gapped machine:
+
+   ```
+   helm pull oci://registry.replicated.com/<app-slug>/<channel-slug>/<chart-name>
+   ```
+
+1. If the Replicated SDK is included in the Helm chart, do the following to copy the `replicated-sdk` image to the air gapped registry:
+
+   1. From a machine with internet access:
+   
+      ```
+      docker save replicated/replicated-sdk:v1.0.0-beta.11 -o replicated-sdk.tar
+      ```
+   
+   1. Copy the `replicated-sdk.tar` file to the air gapped machine.
+   
+   1. On the air gapped machine, load the image into Docker:
+   
+      ```
+      docker load -i replicated-sdk.tar
+      ```
+   
+   1. Retag the image:
+   
+      ```
+      docker tag replicated/replicated-sdk:v1.0.0-beta.11 DEST_REGISTRY/replicated-sdk:IMAGE_TAG
+      ```
+   
+   1. Push to the air gapped registry:
+   
+      ```
+      docker push <dest-registry>/replicated-sdk:<tag>
+      ```
+
+1. Install the pulled chart with the following Helm values:
+
+   ```
+   helm install <release-name> <downloaded-chart.tgz> --set replicated.images.replicated-sdk=<dest-registry>/replicated-sdk:<tag> --set replicated.isAirgap=true
+   ```
