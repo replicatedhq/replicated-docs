@@ -8,6 +8,14 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## 1.0.0-beta.11
+
+Released on October 30, 2023
+
+### New Features {#new-features-1-0-0-beta-11}
+* Adds support for running in air gapped mode.
+* Renames the `images.replicated` Helm value to `images.replicated-sdk`.
+
 ## 1.0.0-beta.10
 
 Released on October 13, 2023
