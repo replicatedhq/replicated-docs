@@ -8,6 +8,13 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.10.30-2
+
+Released on October 30, 2023
+
+### Improvements {#improvements-v2023-10-30-2}
+* Make some columns hidden by default in the Instances view on the Customers page and update column names.
+
 ## v2023.10.30-1
 
 Released on October 30, 2023
