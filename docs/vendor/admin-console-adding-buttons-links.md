@@ -6,10 +6,10 @@ This topic describes how to use the Kubernetes and KOTS Application custom resou
 
 Replicated recommends that every application include a Kubernetes SIG Application custom resource. The Kubernetes Application custom resource provides a standard API for creating, viewing, and managing applications. For more information, see [Kubernetes Applications](https://github.com/kubernetes-sigs/application#kubernetes-applications) in the `kubernetes-sigs/application` GitHub repository.
 
-You can configure the Kubernetes Application custom resource to add buttons and links to the Replicated admin console dashboard. A common use case for this is adding a button to the dashboard that users can click on to navigate to the 
+You can configure the Kubernetes Application custom resource to add buttons and links to the Replicated admin console dashboard. A common use case for this is adding a button to the dashboard that users can click on to navigate to port-forwarded services. For more information, see [Configuring Port Forwarding](/vendor/admin-console-port-forward).
 
 :::note
-KOTS uses this as metadata and does not require or use an in-cluster controller to handle this custom resource. An application that follows best practices does not require cluster admin privileges or any cluster-wide components to be installed.
+KOTS uses the Kubernetes Application custom resource as metadata and does not require or use an in-cluster controller to handle this custom resource. An application that follows best practices does not require cluster admin privileges or any cluster-wide components to be installed.
 :::
 
 ## Add A Button to the Dashboard

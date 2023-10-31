@@ -14,13 +14,17 @@ This topic describes how to add one or more ports to the Replicated KOTS port fo
 
 When distributing an application, it is helpful to ensure that the person or process installing the application is able to easily verify that the application is running. However, networking and ingress is handled differently in each cluster, and this makes it difficult to provide a consistent URL to an application at installation. Additionally, the cluster operator might be required to create firewall rules before they can open the application.
 
-To address these challenges, KOTS automatically creates a port forward tunnel and exposes the admin console on port 8800 where it can be accessed by users during installation in existing clusters or in embedded clusters.
+To address these challenges, KOTS automatically creates a port forward tunnel and exposes the admin console on port 8800 where it can be accessed by users during installation.
 
 In addition to the 8800 admin console port, you can configure the KOTS Application custom resource to add one or more extra ports to the port forward tunnel so that users can easily access your application during installation. For example, you can:
 * List the primary application ports to provide one or more links directly to the application before ingress and firewalls are configured 
 * List the ports for internal services, such as application admin controls and other services that are not exposed to all users
 
-## Configure the `ports` Key
+## Configure Port Forwarding
+
+This section describes how to configure port forwarding for application services for installations in existing clusters and embedded kURL clusters.
+
+### Configure the `ports` Key
 
 You can configure the `ports` key in the KOTS Application custom resource to add extra ports to the KOTS port forward tunnel.
 
@@ -37,7 +41,7 @@ spec:
       servicePort: 3000
       localPort: 8888
       applicationUrl: "http://gitea"
- ```
+```
 
 As shown in the example above, the `ports` key has the following fields:
 
@@ -53,9 +57,7 @@ As shown in the example above, the `ports` key has the following fields:
 <PortsApplicationURL/>
 </ul>
 
-For more information, see [ports](/reference/custom-resource-application#ports) in _Application_.
-
-## Configure a NodePort Service for Port Forwarding in kURL Clusters
+### (kURL Only) Create a NodePort Service
 
 Unlike installations in existing clusters, KOTS does _not_ automatically create port forwards for installations in embedded clusters provisioned by Replicated kURL. This is because it cannot be verified that the ports are secure and authenticated.
 
@@ -129,16 +131,28 @@ spec:
       applicationUrl: "http://sentry"
 ```
 
-**Kubernetes custom resource**:
+## Access Port-Forwarded Services
 
-Additionally, to 
+When you configure port forwarding for your application, your users can access the port-forwarded services through the kots CLI or the admin console.
 
+### Open the Port Forward with `kots admin-console`
 
-## Link to a Port-Forwarded Service from the Admin Console
+Users can run [`kubectl kots admin-console`](/reference/kots-cli-admin-console-index) to open the KOTS port forward tunnel. The `kots admin-console` command prints a message with the URLs where the user can access the admin console and any port-forwaded services. For example:
 
-Adding a button on the admin console dashboard that links to the port forward requires additional configuration of a Kubernetes Application custom resource. For more information, see [Adding Buttons and Links](admin-console-adding-buttons-links).
+  ```
+  kubectl kots admin-console --namespace gitea
+  • Press Ctrl+C to exit
+  • Go to http://localhost:8800 to access the Admin Console
+  • Go to http://localhost:8888 to access the application
+  ```
 
-The following KOTS Application custom resource adds port 8888 to the port forward tunnel that KOTS creates during installation so that the user can open the Gitea application in a browser:
+For embedded cluster installations with kURL, if the user installed in a VM where they cannot open a browser window, they must first forward a port on the local machine to the target port on the remote VM using the SSH client. For more information, see [Access the Admin Console](/enterprise/installing-existing-cluster-automation#optional-access-the-admin-console).
+
+### Link to a Port-Forwarded Service from the Admin Console {#link}
+
+Replicated recommends that you also configure a Kubernetes Application custom resource to provide a link to the port-forwarded service from the admin console dashboard. This allows customers to access the service from the admin console at any time without needing to interact with the command line.
+
+The following example KOTS Application custom resource adds port 8888 to the port forward tunnel that KOTS creates during installation so that the user can open the Gitea application in a browser:
 
 ```yaml
 apiVersion: kots.io/v1beta1
@@ -166,3 +180,5 @@ spec:
       - description: Open App
         url: "http://gitea"
 ```
+
+For more information, see [Adding Buttons and Links](admin-console-adding-buttons-links).
