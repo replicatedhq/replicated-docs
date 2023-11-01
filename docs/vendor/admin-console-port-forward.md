@@ -26,7 +26,7 @@ This section describes how to configure port forwarding for installations in exi
 
 ### Configure the `ports` Key
 
-You can configure the `ports` key in the KOTS Application custom resource to add extra ports to the KOTS port forward tunnel. When you add a port to the `ports` key, users can get the URL to access the specified service from their local machine by running `kubectl kots admin-console`. For more information about accessing port-forwaded services, see [Get the URL from the Command Line](#cli) below.
+You can configure the `ports` key in the KOTS Application custom resource to add extra ports to the KOTS port forward tunnel. When you add a port to the `ports` key, users can get the URL to access the specified service from their local machine by running `kubectl kots admin-console`. For more information about accessing port-forwaded services, see [Accessing Port Forwarded Services](#accessing-port-forwarded-services) below.
 
 The following shows an example `ports` key that allows users to access the `gitea` service at port 8888 on the local machine at installation: 
 
@@ -59,7 +59,7 @@ For embedded cluster installations with Replicated kURL, Replicated recommends t
 
 <PortsApplicationURL/>
 
-For more information, see [Link to a Port-Forwarded Service from the Admin Console](#link) below.
+For more information, see [Add a Link on the Admin Console Dashboard](#link) below.
 
 </ul>
 
@@ -141,7 +141,7 @@ spec:
       applicationUrl: "http://sentry"
 ```
 
-### Link to a Port-Forwarded Service from the Admin Console {#link}
+### Add a Link on the Admin Console Dashboard {#link}
 
 Replicated recommends that you provide a link on the admin console dashboard where users can open the port-forwarded service. 
 
@@ -186,23 +186,29 @@ For more information, see [Adding Buttons and Links](admin-console-adding-button
 
 ## Access Port-Forwarded Services
 
-When you configure port forwarding for your application, your users can access the port-forwarded services through the kots CLI or the admin console.
+When you configure port forwarding for your application, your users can access the port-forwarded services by getting the URL from the kots CLI, or by clicking a link on the admin console dashboard.
 
-### Get the URL from the Command Line {#cli}
+### From the Command Line
 
-Users can run [`kubectl kots admin-console`](/reference/kots-cli-admin-console-index) to open the KOTS port forward tunnel. The `kots admin-console` command prints a message with the URLs where the user can access the admin console and any port-forwaded services. For example:
+Users can run [`kubectl kots admin-console`](/reference/kots-cli-admin-console-index) to open the KOTS port forward tunnel. The `kots admin-console` command prints a message with the URLs where the user can access the admin console and any port-forwarded services.
 
-```
+**Example:**
+
+```bash
 kubectl kots admin-console --namespace gitea
+```
+```
 • Press Ctrl+C to exit
 • Go to http://localhost:8800 to access the Admin Console
 • Go to http://localhost:8888 to access the application
 ```
 
-For embedded cluster installations with kURL, if the user installed in a bare metal server or in a VM where they cannot open a browser window, they must first forward a port on their local machine to the target port on the remote VM using the SSH client before they can run the `kots admin-console` command to open the port forward tunnel. 
+For embedded cluster installations with kURL, if the user installed in a bare metal server or in a VM where they cannot open a browser window, they must first forward a port on their local machine to the target port on the remote VM using the SSH client before they can run the `kots admin-console` command to open the port forward tunnel. For an example of how to forward a port on a local machine to the admin console port 8800 on a remote VM, see [Accessing the Admin Console](/enterprise/installing-existing-cluster-automation#optional-access-the-admin-console).
 
-For more information, see [Access the Admin Console](/enterprise/installing-existing-cluster-automation#optional-access-the-admin-console).
+### From the Admin Console
 
-### Open the URL from the Admin Console
+Users can access port-forwarded services by clicking a link on the admin console dashboard. Additional configuration is required to add a link to the dashboard. For more information, see [Add a Link on the Admin Console Dashboard](#link) above. 
 
-For embeded cluster installations, 
+![admin console dashboard with Open App link](/images/gitea-open-app.png)
+
+[View a larger version of this image](/images/gitea-open-app.png)
