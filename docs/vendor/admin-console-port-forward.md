@@ -74,6 +74,10 @@ For embedded cluster installations with Replicated kURL, Replicated recommends t
 
 <PortsApplicationURL/>
 
+:::note
+When adding a link to a port-forwarded service, it is recommended to use `http` instead of `https`, unless TLS termination takes place in the application Pod.
+:::
+
 For more information about how to add a link to a port-forwarded service from the admin console, see [Add a Link on the Admin Console Dashboard](#link) below.
 
 </ul>
@@ -167,6 +171,10 @@ Replicated recommends that you provide a link on the admin console dashboard whe
 
 Providing a link on the admin console dashboard is particularly helpful for embedded cluster installations with kURL because it allows users to easily open the application without needing to forward a port on their local machine to the target port on the remote virtual machine (VM) where the cluster was installed.
 
+:::note
+When adding a link to a port-forwarded service, it is recommended to use `http` instead of `https`, unless TLS termination takes place in the application Pod.
+:::
+
 To add a link to a port-forwaded service on the admin console dashboard:
 
 1. Edit the KOTS Application custom resource to add a `ports.applicationURL` field.
@@ -250,62 +258,58 @@ This example uses the Bitnami Gitea Helm chart. This example works for existing 
 To view the Gitea Helm chart source, see [bitnami/gitea](https://github.com/bitnami/charts/blob/main/bitnami/gitea) in GitHub.
 
 <Tabs>
+<TabItem value="service-lb" label="svc.yaml" default>
+<h5>Description</h5>
+<p>The Bitnami Gitea Helm chart application includes the Service specification below. Based on the default <code>values.yaml</code> file for the Gitea chart, the service has <code>type: LoadBalancer</code> and <code>containerPort: 3000</code>.</p>
+<p>To view the default Gitea Helm chart <code>values.yaml</code> file, see <a href="https://github.com/bitnami/charts/blob/main/bitnami/gitea/values.yaml">bitnami/gitea/values.yaml</a> in the Bitnami repository in GitHub.</p>
+<h5>YAML</h5>
+<GiteaService/>
+</TabItem>
 <TabItem value="kots-app" label="kots-app.yaml" default>
 <h5>Description</h5>
+<p>Based on the Gitea <code>svc.yaml</code> manifest, the following KOTS Application custom resource configures KOTS to forward local port 8888 to port 3000 (the container port of the Pod where the <code>gitea</code> service is running).</p>
 <h5>YAML</h5>
 <GiteaKotsApp/>
 </TabItem>
 <TabItem value="k8s-app" label="k8s-app.yaml" default>
 <h5>Description</h5>
+<p>Based on <code>ports.applicationUrl</code> in <code>kots-app.yaml</code>, the following Kubernetes Application custom resource adds a link to the port-forwarded service from the admin console dashboard.</p>
 <h5>YAML</h5>
 <GiteaK8sApp/>
-</TabItem>
-<TabItem value="service-lb" label="svc.yaml" default>
-<h5>Description</h5>
-<p>For the Gitea Helm chart default <code>values.yaml</code> file, see <a href="https://github.com/bitnami/charts/blob/main/bitnami/gitea/values.yaml">/bitnami/gitea/values.yaml</a> in the Bitnami repository in GitHub.</p>
-<h5>YAML</h5>
-<GiteaService/>
 </TabItem>
 </Tabs>
 
 ### Helm Chart with ClusterIP and NodePort Services
 
-This example uses the the Enterprise GTM Starter example project in the replicatedhq repository in GitHub. To view the full set of release files in the example project, see [enterprise-gtm-starter](https://github.com/replicatedhq/enterprise-gtm-starter/tree/main) in GitHub. 
+This example uses the Enterprise GTM Starter example project in the replicatedhq org in GitHub. To view the full set of release files in the example project, see [enterprise-gtm-starter](https://github.com/replicatedhq/enterprise-gtm-starter/tree/main) in GitHub. 
 
 <Tabs>
+<TabItem value="service" label="service.yaml" default>
+<h5>Description</h5>
+<p>The Enterprise GTM Starter Helm chart includes the following Service specification in the templates directory. The Service specification uses Helm templates to conditionally deploy either a ClusterIP or a NodePort type service depending on if the cluster was provisioned by Replicated kURL.</p>
+<p>To view the source, see <a href="https://github.com/replicatedhq/enterprise-gtm-starter/blob/main/templates/service.yaml">service.yaml</a> in GitHub.</p>
+<h5>YAML</h5>
+<HelmService/>
+</TabItem>
 <TabItem value="kots-app" label="kots-app.yaml" default>
 <h5>Description</h5>
-<p><a href="https://github.com/replicatedhq/enterprise-gtm-starter/blob/main/manifests/kots-app.yaml">kots-app.yaml</a></p>
+<p>Based on the <code>service.yaml</code> file, the following KOTS Application custom resource configures KOTS to forward local port 8888 to the container port 8888.</p>
+<p>To view the source, see <a href="https://github.com/replicatedhq/enterprise-gtm-starter/blob/main/manifests/kots-app.yaml">kots-app.yaml</a> in GitHub.</p>
 <h5>YAML</h5>
 <HelmKotsApp/>
 </TabItem>
 <TabItem value="k8s-app" label="k8s-app.yaml" default>
 <h5>Description</h5>
+<p>Based on <code>ports.applicationUrl</code> in <code>kots-app.yaml</code>, the following Kubernetes Application custom resource adds a link to the port-forwarded service from the admin console dashboard.</p>
 <p><a href="https://github.com/replicatedhq/enterprise-gtm-starter/blob/main/manifests/k8s-app.yaml">k8s-app.yaml</a></p>
 <h5>YAML</h5>
 <HelmK8sApp/>
-</TabItem>
-<TabItem value="service" label="service.yaml" default>
-<h5>Description</h5>
-<p><a href="https://github.com/replicatedhq/enterprise-gtm-starter/blob/main/templates/service.yaml">service.yaml</a></p>
-<h5>YAML</h5>
-<HelmService/>
 </TabItem>
 </Tabs>
 
 ### Standard Manifests with ClusterIP and NodePort Services
 
 <Tabs>
-<TabItem value="kots-app" label="kots-app.yaml" default>
-<h5>Description</h5>
-<h5>YAML</h5>
-<SentryKotsApp/>
-</TabItem>
-<TabItem value="k8s-app" label="k8s-app.yaml" default>
-<h5>Description</h5>
-<h5>YAML</h5>
-<SentryK8sApp/>
-</TabItem>
 <TabItem value="service-cip" label="service-default.yaml" default>
 <h5>Description</h5>
 <p>The following example shows the default ClusterIP service specification for a service named <code>sentry</code>. This specification includes a <code>kots.io/when</code> annotation, which ensures that the service is only created for existing cluster installations.</p>
@@ -318,28 +322,41 @@ This example uses the the Enterprise GTM Starter example project in the replicat
 <h5>YAML</h5>
 <SentryNodePort/>
 </TabItem>
+<TabItem value="kots-app" label="kots-app.yaml" default>
+<h5>Description</h5>
+<h5>YAML</h5>
+<SentryKotsApp/>
+</TabItem>
+<TabItem value="k8s-app" label="k8s-app.yaml" default>
+<h5>Description</h5>
+<p>Based on <code>ports.applicationUrl</code> in <code>kots-app.yaml</code>, the following Kubernetes Application custom resource adds a link to the port-forwarded service from the admin console dashboard.</p>
+<h5>YAML</h5>
+<SentryK8sApp/>
+</TabItem>
 </Tabs>
 
 ### Standard Manifests with NodePort Service
 
-This example uses the hello-world NGINX application from the replicated-field-labs repository in GitHub. To view the full set of release files for the hell-world application, see [hell-world/vendor/manifests](https://github.com/replicatedhq/replicated-field-labs/tree/main/instruqt/hello-world/vendor/manifests) in GitHub.
+This example uses the hello-world NGINX application from the replicated-field-labs repository in GitHub. To view the full set of release files for the hello-world application, see [hello-world/vendor/manifests](https://github.com/replicatedhq/replicated-field-labs/tree/main/instruqt/hello-world/vendor/manifests) in GitHub.
 
 <Tabs>
+<TabItem value="service" label="example-service.yaml" default>
+<h5>Description</h5>
+<p>The hello-world application includes a basic NodePort service named <code>nginx</code>. As shown in the YAML below, the <code>nginx</code> service is exposed on port 80 and node port 30888.</p>
+<h5>YAML</h5>
+<NginxService/>
+</TabItem>
 <TabItem value="kots-app" label="kots-app.yaml" default>
 <h5>Description</h5>
+<p>Given the ports specified in the <code>example-service.yaml</code> manifest, the following KOTS Application custom resource adds </p>
 <h5>YAML</h5>
 <NginxKotsApp/>
 </TabItem>
 <TabItem value="k8s-app" label="k8s-app.yaml" default>
 <h5>Description</h5>
+<p>Based on <code>ports.applicationUrl</code> in <code>kots-app.yaml</code>, the following Kubernetes Application custom resource adds a link to the port-forwarded service from the admin console dashboard.</p>
 <h5>YAML</h5>
 <NginxK8sApp/>
-</TabItem>
-<TabItem value="service" label="nginx-service.yaml" default>
-<h5>Description</h5>
-<p></p>
-<h5>YAML</h5>
-<NginxService/>
 </TabItem>
 </Tabs>
 
