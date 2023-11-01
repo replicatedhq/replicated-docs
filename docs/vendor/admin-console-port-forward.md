@@ -1,10 +1,10 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 import ServicePortNote from "../partials/custom-resource-application/_servicePort-note.mdx"
 import PortsServiceName from "../partials/custom-resource-application/_ports-serviceName.mdx"
 import PortsLocalPort from "../partials/custom-resource-application/_ports-localPort.mdx"
 import PortsServicePort from "../partials/custom-resource-application/_ports-servicePort.mdx"
 import PortsApplicationURL from "../partials/custom-resource-application/_ports-applicationURL.mdx"
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 import HelmKotsApp from "../partials/port-forward/_helm-kots-app.mdx"
 import HelmK8sApp from "../partials/port-forward/_helm-k8s-app.mdx"
 import HelmService from "../partials/port-forward/_helm-service.mdx"
@@ -15,6 +15,9 @@ import SentryClusterIp from "../partials/port-forward/_sentry-clusterip.mdx"
 import NginxKotsApp from "../partials/port-forward/_nginx-kots-app.mdx"
 import NginxK8sApp from "../partials/port-forward/_nginx-k8s-app.mdx"
 import NginxService from "../partials/port-forward/_nginx-service.mdx"
+import GiteaKotsApp from "../partials/port-forward/_gitea-kots-app.mdx"
+import GiteaK8sApp from "../partials/port-forward/_gitea-k8s-app.mdx"
+import GiteaService from "../partials/port-forward/_gitea-service.mdx"
 
 # Configuring Port Forwarding
 
@@ -32,7 +35,7 @@ In addition to the 8800 admin console port, you can configure the KOTS Applicati
 
 ## Configure Port Forwarding
 
-### Configure the `ports` Key
+### Add Ports to the `ports` Key
 
 You can configure the `ports` key in the KOTS Application custom resource to add extra ports to the KOTS port forward tunnel. When you add a port to the `ports` key, users can get the URL to access the specified service from their local machine by running `kubectl kots admin-console`. For more information about accessing port-forwaded services, see [Accessing Port Forwarded Services](#accessing-port-forwarded-services) below.
 
@@ -75,7 +78,7 @@ For more information, see [Add a Link on the Admin Console Dashboard](#link) bel
 
 Unlike installations into existing clusters, KOTS does _not_ automatically open the port forward tunnel for installations in embedded clusters provisioned by Replicated kURL. This is because it cannot be verified that the ports are secure and authenticated.
 
-To work around this limitation, a NodePort service is created for the admin console so that it can be accessed from the user's local machine at the node IP address. Replicated recommends that you use the same method to create NodePort specifications for any services that you want KOTS to port forward.
+To work around this limitation, a NodePort service is created for the admin console so that it can be accessed from the user's local machine at the node IP address. Replicated recommends that you use the same method by creating NodePort specifications for any services that you want KOTS to port forward.
 
 For more information about the NodePort service type, see [type: NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) in the Kubernetes documentation.
 
@@ -128,7 +131,36 @@ For more information, see [Adding Buttons and Links](admin-console-adding-button
 
 ## Examples
 
-### Helm Chart
+This section includes several examples for configuring port forwarding in both Helm chart-based applications and applications that use standard manifests.
+
+### Helm Chart with LoadBalancer Service
+
+This example uses the Bitnami Gitea Helm Chart to set up port forwarding for the Gitea LoadBalancer type service. This example works for existing cluster installations on non-kURL clusters. 
+
+See <a href="https://github.com/bitnami/charts/blob/main/bitnami/gitea/values.yaml">/bitnami/gitea/values.yaml</a> in the Bitnami repository in GitHub.
+
+<Tabs>
+<TabItem value="kots-app" label="kots-app.yaml" default>
+<h5>Description</h5>
+<h5>YAML</h5>
+<GiteaKotsApp/>
+</TabItem>
+<TabItem value="k8s-app" label="k8s-app.yaml" default>
+<h5>Description</h5>
+<h5>YAML</h5>
+<GiteaK8sApp/>
+</TabItem>
+<TabItem value="service-lb" label="svc.yaml" default>
+<h5>Description</h5>
+<p></p>
+<h5>YAML</h5>
+<GiteaService/>
+</TabItem>
+</Tabs>
+
+### Helm Chart with ClusterIP and NodePort Services
+
+This example uses the Helm chart and KOTS manifest files at https://github.com/replicatedhq/enterprise-gtm-starter/tree/main. 
 
 <Tabs>
 <TabItem value="kots-app" label="kots-app.yaml" default>
@@ -151,7 +183,7 @@ For more information, see [Adding Buttons and Links](admin-console-adding-button
 </TabItem>
 </Tabs>
 
-### Standard Manifests with Replicated Template Functions
+### Standard Manifests with ClusterIP and NodePort Services
 
 <Tabs>
 <TabItem value="kots-app" label="kots-app.yaml" default>
@@ -178,7 +210,7 @@ For more information, see [Adding Buttons and Links](admin-console-adding-button
 </TabItem>
 </Tabs>
 
-### Standard Manifests with NodePort Service Only
+### Standard Manifests with NodePort Service
 
 <Tabs>
 <TabItem value="kots-app" label="kots-app.yaml" default>
