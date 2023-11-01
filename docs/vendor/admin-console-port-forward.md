@@ -5,6 +5,16 @@ import PortsServicePort from "../partials/custom-resource-application/_ports-ser
 import PortsApplicationURL from "../partials/custom-resource-application/_ports-applicationURL.mdx"
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import HelmKotsApp from "../partials/port-forward/_helm-kots-app.mdx"
+import HelmK8sApp from "../partials/port-forward/_helm-k8s-app.mdx"
+import HelmService from "../partials/port-forward/_helm-service.mdx"
+import SentryKotsApp from "../partials/port-forward/_sentry-kots-app.mdx"
+import SentryK8sApp from "../partials/port-forward/_sentry-k8s-app.mdx"
+import SentryNodePort from "../partials/port-forward/_sentry-nodeport.mdx"
+import SentryClusterIp from "../partials/port-forward/_sentry-clusterip.mdx"
+import NginxKotsApp from "../partials/port-forward/_nginx-kots-app.mdx"
+import NginxK8sApp from "../partials/port-forward/_nginx-k8s-app.mdx"
+import NginxService from "../partials/port-forward/_nginx-service.mdx"
 
 # Configuring Port Forwarding
 
@@ -21,8 +31,6 @@ In addition to the 8800 admin console port, you can configure the KOTS Applicati
 * List the ports for internal services, such as application admin controls and other services that are not exposed to all users
 
 ## Configure Port Forwarding
-
-This section describes how to configure port forwarding for installations in existing clusters and in embedded clusters created with Replicated kURL.
 
 ### Configure the `ports` Key
 
@@ -67,79 +75,9 @@ For more information, see [Add a Link on the Admin Console Dashboard](#link) bel
 
 Unlike installations into existing clusters, KOTS does _not_ automatically open the port forward tunnel for installations in embedded clusters provisioned by Replicated kURL. This is because it cannot be verified that the ports are secure and authenticated.
 
-To work around this limitation, a NodePort service is created for the admin console so that it can be accessed from the user's local machine at an external IP address. For embedded cluster installations, Replicated recommends that you use the same method to create NodePort specifications for any services that you want KOTS to port forward.
+To work around this limitation, a NodePort service is created for the admin console so that it can be accessed from the user's local machine at the node IP address. Replicated recommends that you use the same method to create NodePort specifications for any services that you want KOTS to port forward.
 
 For more information about the NodePort service type, see [type: NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) in the Kubernetes documentation.
-
-To create a NodePort Service for port forwarding in kURL Installations:
-
-1. 
-
-**ClusterIP service for existing cluster installations**
-
-The following example shows the default ClusterIP service specification for a service named `sentry`. This specification includes a `kots.io/when: "{{repl not IsKurl}}"` annotation, which ensures that the service is only created for existing cluster installations.
-
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: sentry
-  labels:
-    app: sentry
-  annotations:
-    kots.io/when: "{{repl not IsKurl}}"
-spec:
-  type: ClusterIP
-  ports:
-  - port: 9000
-    targetPort: 9000
-    protocol: TCP
-    name: sentry
-  selector:
-    app: sentry
-    role: web
-```  
-
-**NodePort service for kURL installations**
-
-```yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: sentry
-  labels:
-    app: sentry
-  annotations:
-    kots.io/when: "{{repl IsKurl}}"
-spec:
-  type: NodePort
-  ports:
-  - port: 9000
-    targetPort: 9000
-    nodePort: 9000
-    protocol: TCP
-    name: sentry
-  selector:
-    app: sentry
-    role: web
-``` 
-
-**KOTS Application custom resource**
-
-Given the example ClusterIP and NodePort services above, the following KOTS Application custom resourcce creates a port forward to the service 
-
-```yaml
-apiVersion: kots.io/v1beta1
-kind: Application
-metadata:
-  name: sentry-enterprise
-spec:
-  ports:
-    - serviceName: "sentry"
-      servicePort: 9000
-      localPort: 9000
-      applicationUrl: "http://sentry"
-```
 
 ### Add a Link on the Admin Console Dashboard {#link}
 
@@ -154,6 +92,8 @@ To add a link to a port-forwaded service on the admin console dashboard:
   **Example:**
 
   ```yaml
+  # kots.io/v1beta1 Application custom resource
+
   apiVersion: kots.io/v1beta1
   kind: Application
   metadata:
@@ -171,6 +111,8 @@ To add a link to a port-forwaded service on the admin console dashboard:
   Given the `applicationUrl` in the example KOTS Application custom resource in the previous step, the following Kubernetes Application custom resource adds an **Open App** button to the admin console dashboard that the user can click to open the application:
 
   ```yaml
+  # app.k8s.io/v1beta1 Application Custom resource
+
   apiVersion: app.k8s.io/v1beta1
   kind: Application
   metadata:
@@ -183,6 +125,79 @@ To add a link to a port-forwaded service on the admin console dashboard:
   ```
 
 For more information, see [Adding Buttons and Links](admin-console-adding-buttons-links).
+
+## Examples
+
+### Helm Chart
+
+<Tabs>
+<TabItem value="kots-app" label="kots-app.yaml" default>
+<h5>Description</h5>
+<p><a href="https://github.com/replicatedhq/enterprise-gtm-starter/blob/main/manifests/kots-app.yaml">kots-app.yaml</a></p>
+<h5>YAML</h5>
+<HelmKotsApp/>
+</TabItem>
+<TabItem value="k8s-app" label="k8s-app.yaml" default>
+<h5>Description</h5>
+<p><a href="https://github.com/replicatedhq/enterprise-gtm-starter/blob/main/manifests/k8s-app.yaml">k8s-app.yaml</a></p>
+<h5>YAML</h5>
+<HelmK8sApp/>
+</TabItem>
+<TabItem value="service" label="service.yaml" default>
+<h5>Description</h5>
+<p><a href="https://github.com/replicatedhq/enterprise-gtm-starter/blob/main/templates/service.yaml">service.yaml</a></p>
+<h5>YAML</h5>
+<HelmService/>
+</TabItem>
+</Tabs>
+
+### Standard Manifests with Replicated Template Functions
+
+<Tabs>
+<TabItem value="kots-app" label="kots-app.yaml" default>
+<h5>Description</h5>
+<h5>YAML</h5>
+<SentryKotsApp/>
+</TabItem>
+<TabItem value="k8s-app" label="k8s-app.yaml" default>
+<h5>Description</h5>
+<h5>YAML</h5>
+<SentryK8sApp/>
+</TabItem>
+<TabItem value="service-cip" label="service-default.yaml" default>
+<h5>Description</h5>
+<p>The following example shows the default ClusterIP service specification for a service named <code>sentry</code>. This specification includes a <code>kots.io/when</code> annotation, which ensures that the service is only created for existing cluster installations.</p>
+<h5>YAML</h5>
+<SentryClusterIp/>
+</TabItem>
+<TabItem value="service-np" label="service-kurl.yaml" default>
+<h5>Description</h5>
+<p>The following example shows a NodePort specification for the <code>sentry</code> service. This specification includes a <code>kots.io/when</code> annotation that ensures that the service is only created for kURL installations.</p>
+<h5>YAML</h5>
+<SentryNodePort/>
+</TabItem>
+</Tabs>
+
+### Standard Manifests with NodePort Service Only
+
+<Tabs>
+<TabItem value="kots-app" label="kots-app.yaml" default>
+<h5>Description</h5>
+<h5>YAML</h5>
+<NginxKotsApp/>
+</TabItem>
+<TabItem value="k8s-app" label="k8s-app.yaml" default>
+<h5>Description</h5>
+<h5>YAML</h5>
+<NginxK8sApp/>
+</TabItem>
+<TabItem value="service" label="nginx-service.yaml" default>
+<h5>Description</h5>
+<p></p>
+<h5>YAML</h5>
+<NginxService/>
+</TabItem>
+</Tabs>
 
 ## Access Port-Forwarded Services
 
@@ -212,3 +227,8 @@ Users can access port-forwarded services by clicking a link on the admin console
 ![admin console dashboard with Open App link](/images/gitea-open-app.png)
 
 [View a larger version of this image](/images/gitea-open-app.png)
+
+## Additional Resources and Examples
+
+* [Port forwarding for embedded cluster](https://community.replicated.com/t/port-forwarding-for-embedded-cluster/472)
+* [Issues getting port forward / dashboard links working](https://community.replicated.com/t/issues-getting-port-forward-dashboard-links-working/809)

@@ -1,0 +1,31 @@
+```yaml
+{{- if .Values.isKurl -}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: enterprise-gtm-starter
+  labels:
+    app: enterprise-gtm-starter
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      nodePort: 8888
+  selector:
+    app: enterprise-gtm-starter
+{{- else -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: enterprise-gtm-starter
+  labels:
+    app: enterprise-gtm-starter
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+  selector:
+    app: enterprise-gtm-starter
+{{- end -}}
+```

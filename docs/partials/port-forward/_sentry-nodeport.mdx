@@ -1,0 +1,21 @@
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: sentry
+  labels:
+    app: sentry
+annotations:
+  kots.io/when: "{{repl IsKurl}}"
+spec:
+  type: NodePort
+  ports:
+  - port: 9000
+    targetPort: 9000
+    nodePort: 9000
+    protocol: TCP
+    name: sentry
+  selector:
+    app: sentry
+    role: web
+```    
