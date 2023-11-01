@@ -214,7 +214,7 @@ When you configure port forwarding for your application, your users can access t
 
 ### From the Command Line
 
-Users can run [`kubectl kots admin-console`](/reference/kots-cli-admin-console-index) to open the KOTS port forward tunnel. The `kots admin-console` command prints a message with the URLs where the user can access the admin console and any port-forwarded services.
+Users can run [`kubectl kots admin-console`](/reference/kots-cli-admin-console-index) to open the KOTS port forward tunnel. The `kots admin-console` command runs the equivalent of `kubectl port-forward svc/myapplication-service <local-port>:<remote-port>` then prints a message with the URLs where the user can access the admin console and any port-forwarded services. For more information about the `kubectl port-forward` command, see [port-forward](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#port-forward) in the Kubernetes documentation.
 
 **Example:**
 
@@ -241,11 +241,13 @@ Users can access port-forwarded services by clicking a link on the admin console
 
 This section includes several examples for configuring port forwarding in both Helm chart-based applications and applications that use standard manifests.
 
+To test each of the examples in this section, add the files provided to a new release. For the Helm chart-based applications, add the Service manifest provided to the Helm chart templates directory and then package the Helm chart into a `.tgz` archive before adding it to the release.
+
 ### Helm Chart with LoadBalancer Service
 
-This example uses the Bitnami Gitea Helm Chart to set up port forwarding for the Gitea LoadBalancer type service. This example works for existing cluster installations on non-kURL clusters. 
+This example uses the Bitnami Gitea Helm chart. This example works for existing cluster installations (non-kURL clusters).
 
-See <a href="https://github.com/bitnami/charts/blob/main/bitnami/gitea/values.yaml">/bitnami/gitea/values.yaml</a> in the Bitnami repository in GitHub.
+To view the Gitea Helm chart source, see [bitnami/gitea](https://github.com/bitnami/charts/blob/main/bitnami/gitea) in GitHub.
 
 <Tabs>
 <TabItem value="kots-app" label="kots-app.yaml" default>
@@ -260,7 +262,7 @@ See <a href="https://github.com/bitnami/charts/blob/main/bitnami/gitea/values.ya
 </TabItem>
 <TabItem value="service-lb" label="svc.yaml" default>
 <h5>Description</h5>
-<p></p>
+<p>For the Gitea Helm chart default <code>values.yaml</code> file, see <a href="https://github.com/bitnami/charts/blob/main/bitnami/gitea/values.yaml">/bitnami/gitea/values.yaml</a> in the Bitnami repository in GitHub.</p>
 <h5>YAML</h5>
 <GiteaService/>
 </TabItem>
@@ -268,7 +270,7 @@ See <a href="https://github.com/bitnami/charts/blob/main/bitnami/gitea/values.ya
 
 ### Helm Chart with ClusterIP and NodePort Services
 
-This example uses the Helm chart and KOTS manifest files at https://github.com/replicatedhq/enterprise-gtm-starter/tree/main. 
+This example uses the the Enterprise GTM Starter example project in the replicatedhq repository in GitHub. To view the full set of release files in the example project, see [enterprise-gtm-starter](https://github.com/replicatedhq/enterprise-gtm-starter/tree/main) in GitHub. 
 
 <Tabs>
 <TabItem value="kots-app" label="kots-app.yaml" default>
@@ -319,6 +321,8 @@ This example uses the Helm chart and KOTS manifest files at https://github.com/r
 </Tabs>
 
 ### Standard Manifests with NodePort Service
+
+This example uses the hello-world NGINX application from the replicated-field-labs repository in GitHub. To view the full set of release files for the hell-world application, see [hell-world/vendor/manifests](https://github.com/replicatedhq/replicated-field-labs/tree/main/instruqt/hello-world/vendor/manifests) in GitHub.
 
 <Tabs>
 <TabItem value="kots-app" label="kots-app.yaml" default>
