@@ -322,6 +322,7 @@ spec:
         <ServicePortNote/>
         <PortsLocalPort/>
         <PortsApplicationURL/>
+        <p>For information about how to link to a port-forwarded service from the admin console dashboard, see <a href="/vendor/admin-console-adding-buttons-links">Adding Buttons and Links</a>.</p>
       </ul> 
     </td>
   </tr>
