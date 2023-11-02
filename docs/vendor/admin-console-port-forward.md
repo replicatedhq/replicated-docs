@@ -31,7 +31,7 @@ In addition to the 8800 admin console port, you can configure the KOTS Applicati
 
 This section desribes how to configure port forwarding for an application, including:
 * Adding extra ports to the `ports` key in the KOTS Application custom resource
-* Adding a NodePort Service specification to support port forwarding for embedded cluster installations
+* Adding a NodePort Service specification for port forwarding in embedded cluster installations with Replicated kURL
 * Adding a link to a port-forwarded service from the admin console dashboard
 
 ### Add Ports to the `ports` Key {#ports-key}
@@ -48,7 +48,7 @@ As shown in the example above, the `ports` key has the following fields:
 
 <p><PortsServiceName/></p>
 
-For embedded cluster installations with Replicated kURL, Replicated recommends that you configure a NodePort type service to allow users to access the service from their local machine outside the cluster. For more information, see [Create a NodePort Service for kURL Installations](#nodeport).
+For embedded cluster installations with kURL, Replicated recommends that you configure a NodePort type service to allow users to access the service from their local machine outside the cluster. For more information, see [Create a NodePort Service for kURL Installations](#nodeport).
 
 <PortsServicePort/>
 
@@ -68,13 +68,13 @@ For more information about how to add a link to a port-forwarded service from th
 
 ### (kURL Only) Create a NodePort Service for kURL Installations {#nodeport}
 
-This section describes how to create a NodePort service for port forwarding in embedded cluster installations with Replicated kURL.
+This section describes how to create a NodePort service for port forwarding in embedded cluster installations with kURL.
 
 #### Overview
 
-Unlike installations into existing clusters, KOTS does _not_ automatically open the port forward tunnel for installations in embedded clusters provisioned on VMs or bare metal servers by Replicated kURL. This is because it cannot be verified that the ports are secure and authenticated.
+Unlike installations into existing clusters, KOTS does _not_ automatically open the port forward tunnel for installations in embedded clusters provisioned on VMs or bare metal servers by kURL. This is because it cannot be verified that the ports are secure and authenticated.
 
-To make the admin console accessible in embedded cluster installations, the admin console is created as a NodePort service so it can be accessed at the node's IP address on port 8800. Similarly, the UIs of Prometheus, Grafana, and Alertmanager are exposed on NodePorts as well. For example, the following shows output of a kURL installation command, which provides the URL where the admin console can be accessed at the node's IP address:
+To make the admin console accessible in embedded cluster installations, the admin console is created as a NodePort service so it can be accessed at the node's IP address on port 8800. The UIs of Prometheus, Grafana, and Alertmanager are also exposed using NodePorts. For example, the following shows output of a kURL installation command, which provides the URL where the admin console can be accessed at the node's IP address:
 
 ```
 		Installation
@@ -90,9 +90,9 @@ The UIs of Prometheus, Grafana and Alertmanager have been exposed on NodePorts 3
 
 For more information about working with the NodePort service type, see [type: NodePort](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport) in the Kubernetes documentation.
 
-#### Create a Conditional NodePort Service
+#### Create a NodePort Service
 
-For each additional service that you want KOTS to port forward, Replicated recommends that you create a Service specificatons for the service with `type: NodePort`. Additionally, you can use template functions to ensure that the NodePort specification is only deployed for embedded cluster installations.
+For each additional service that you want KOTS to port forward, Replicated recommends that you create a specificaton for the service with `type: NodePort`. Additionally, you can use template functions to ensure that the NodePort specification is only deployed for embedded cluster installations.
 
 For example, a release contains the following `sentry` service with `type: ClusterIP`: 
 
@@ -144,7 +144,7 @@ To add a NodePort service for embedded cluster installations given the ClusterIP
 
   This creates a NodePort service _only_ when installing in embedded clusters with kURL. For more information about using the `kots.io/when` annotation, see [Conditionally Including or Excluding Resources](/vendor/packaging-include-resources). For more information about the IsKurl template fuction, see [IsKurl](/reference/template-functions-static-context#iskurl) in _Static Context_.
 
-1. To prevent the ClusterIP service from also being created in embedded cluster installations, add `annotations.kots.io/when: "{{repl not IsKurl}}"` to the ClusterIP specification:
+1. To ensure that the ClusterIP type service is only created in existing cluster installations, add `annotations.kots.io/when: "{{repl not IsKurl}}"` to the ClusterIP specification:
 
   ```yaml
   apiVersion: v1
@@ -168,7 +168,7 @@ To add a NodePort service for embedded cluster installations given the ClusterIP
       role: web
   ```
 
-1. After adding both service specifications to the release, add the port to the KOTS Application custom resource, as described in [Add Ports to the `ports` Key](#ports-key) above.
+1. Add port 9000 to the KOTS Application custom resource, as described in [Add Ports to the `ports` Key](#ports-key) above.
 
 ### Add a Link on the Admin Console Dashboard {#link}
 
