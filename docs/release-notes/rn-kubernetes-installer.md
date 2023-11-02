@@ -8,6 +8,17 @@ pagination_prev: null
 
 <!--RELEASE_NOTES_PLACEHOLDER-->
 
+## v2023.11.02-0
+
+Released on November 2, 2023
+
+### New Features {#new-features-v2023-11-02-0}
+* Adds [Rook add-on](https://kurl.sh/docs/add-ons/rook) verison 1.12.7.
+* Adds [Contour add-on](https://kurl.sh/docs/add-ons/contour) version 1.27.0.
+* Updates [Velero add-on](https://kurl.sh/docs/add-ons/velero) version 1.12.1 to use local-volume-provider v0.5.5.
+* Adds [Flannel add-on](https://kurl.sh/docs/add-ons/flannel) version 0.23.0.
+* Adds [MinIO add-on](https://kurl.sh/docs/add-ons/minio) version RELEASE.2023-11-01T18-37-25Z.
+
 ## v2023.10.26-0
 
 Released on October 26, 2023
